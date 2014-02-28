@@ -7,7 +7,7 @@ ACTIONS += uninstall
 # modules not to build on linux
 DIRS_NOTBUILD = Makefile README.txt
 ifneq ($(findstring linux,$(EPICS_HOST_ARCH)),)
-DIRS_NOTBUILD += 
+DIRS_NOTBUILD += ISISDAE
 endif
 # modules not to build on windows 64bit
 ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
