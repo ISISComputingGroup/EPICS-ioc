@@ -15,7 +15,7 @@ DIRS_NOTBUILD +=
 endif
 # modules not to build on windows 32bit
 ifneq ($(findstring win32,$(EPICS_HOST_ARCH)),)
-DIRS_NOTBUILD += 
+DIRS_NOTBUILD += ISISDAE
 endif
 # modules not to build if static
 ifeq ($(STATIC_BUILD),YES)
