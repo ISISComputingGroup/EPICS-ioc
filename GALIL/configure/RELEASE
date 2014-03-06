@@ -49,5 +49,7 @@ BUSY=$(SUPPORT)/busy/1-4
 CALC=$(SUPPORT)/calc/2-9
 SSCAN=$(SUPPORT)/sscan/2-8
 GALIL=$(SUPPORT)/galil/1-5
+MOTIONSETPOINTS=$(SUPPORT)/motionSetPoints
+JAWS=$(SUPPORT)/jaws
 
 include $(TOP)/../../ISIS_CONFIG.$(EPICS_HOST_ARCH)

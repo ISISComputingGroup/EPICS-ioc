@@ -34,6 +34,7 @@ $(APPNAME)_DBD += busySupport.dbd
 $(APPNAME)_DBD += devGalil.dbd
 $(APPNAME)_DBD += calcSupport.dbd 
 $(APPNAME)_DBD += sscanSupport.dbd 
+$(APPNAME)_DBD += motionSetPoints.dbd 
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -50,12 +51,9 @@ $(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += busy asyn
+$(APPNAME)_LIBS += motionSetPoints
 
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
-
-
-
-
 
 # GALIL-IOC-01_registerRecordDeviceDriver.cpp derives from GALIL-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

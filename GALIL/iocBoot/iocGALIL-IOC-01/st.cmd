@@ -20,7 +20,11 @@ GALIL_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-#dbLoadRecords("db/xxx.db","user=faa59Host")
+
+# motor util package
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):")
+var motorUtil_debug 1
+motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
