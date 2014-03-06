@@ -40,12 +40,7 @@ SNCSEQ=$(SUPPORT)/seq/2-1-11
 CAPUTLOG=$(SUPPORT)/caPutLog/3-3-3
 SQLITE=$(SUPPORT)/sqlite
 UTILITIES=$(SUPPORT)/utilities
-ASYN=$(SUPPORT)/asyn/4-22
 ZLIB=$(SUPPORT)/zlib/1-2-8
-ONCRPC=$(SUPPORT)/oncrpc/2
-PCRE=$(SUPPORT)/pcre
-TINYXML=$(SUPPORT)/TinyXML
-ISISDAE=$(SUPPORT)/isisdae
 
 ## add other modules here ##
 

@@ -1,0 +1,20 @@
+record (longin, "$(P)CS:STOP:ALL") 
+{
+	field(DESC, "Stop motions if changes and non-zero")
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(VAL,0)
+}
+
+# used by access security file
+record (bo, "$(P)CS:EXCLUSIVE") 
+{
+	field(DESC, "Restrict access to localhost")
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "All access")
+    field(ONAM, "Restricted access")
+}
