@@ -34,6 +34,7 @@ EPICS_BASE=C:/development/EPICS/base/3-14-12-2
 ## ISIS standard modules ##
 ICPCONFIG=$(SUPPORT)/icpconfig
 PVDUMP=$(SUPPORT)/pvdump
+PVCOMPLETE=$(SUPPORT)/pvcomplete
 DEVIOCSTATS=$(SUPPORT)/devIocStats/3-1-11
 AUTOSAVE=$(SUPPORT)/autosave/R5_0
 SNCSEQ=$(SUPPORT)/seq/2-1-11
