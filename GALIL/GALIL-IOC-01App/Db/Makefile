@@ -24,6 +24,8 @@ DB += galil_analog_ports.db
 
 DB += galil_userdef_records.db
 
+DB += galil_userdef_records8.db
+
 #USR_DBFLAGS += -V
 
 #----------------------------------------------------

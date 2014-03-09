@@ -34,7 +34,7 @@
 file "$(GALIL)/db/galil_digital_in_bytes.template"
 { 
    pattern { NAME,     BYTEFUNC,         SCAN,           CARD, DESC}
-           { "$(PP)",  "DMC0$(CC):DIGWORD",  "1 second",     "$(CC)",  "G21X3 byte in"  } 
+           { "$(PP)",  "DMC$(CCP):DIGWORD",  "1 second",     "$(CC)",  "G21X3 byte in"  } 
     
 }
 
@@ -42,53 +42,53 @@ file "$(GALIL)/db/galil_digital_in_bytes.template"
 file "$(GALIL)/db/galil_digital_in_bits.template"
 {
    pattern { NAME,       FIELDDEV, BYTEFUNC,           BITNUM, BITFUNC,        SCAN,       DESC,                 ZNAM,  ZSV,        ONAM,  OSV                 }
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "B0",   "DIGWORD_B0",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  } 
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "B1",   "DIGWORD_B1",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "B2",   "DIGWORD_B2",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "B3",   "DIGWORD_B3",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "B4",   "DIGWORD_B4",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "B5",   "DIGWORD_B5",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "B6",   "DIGWORD_B6",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "B7",   "DIGWORD_B7",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "B0",   "DIGWORD_B0",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  } 
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "B1",   "DIGWORD_B1",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "B2",   "DIGWORD_B2",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "B3",   "DIGWORD_B3",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "B4",   "DIGWORD_B4",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "B5",   "DIGWORD_B5",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "B6",   "DIGWORD_B6",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "B7",   "DIGWORD_B7",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
 
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "B8",   "DIGWORD_B8",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  } 
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "B9",   "DIGWORD_B9",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "BA",   "DIGWORD_BA",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "BB",   "DIGWORD_BB",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "BC",   "DIGWORD_BC",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "BD",   "DIGWORD_BD",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "BE",   "DIGWORD_BE",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "$(PP)",    "DMC0$(CC):", "DMC0$(CC):DIGWORD",    "BF",   "DIGWORD_BF",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "B8",   "DIGWORD_B8",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  } 
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "B9",   "DIGWORD_B9",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "BA",   "DIGWORD_BA",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "BB",   "DIGWORD_BB",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "BC",   "DIGWORD_BC",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "BD",   "DIGWORD_BD",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "BE",   "DIGWORD_BE",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PP)",    "DMC$(CCP):", "DMC$(CCP):DIGWORD",    "BF",   "DIGWORD_BF",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
 }
 
 
 file "$(GALIL)/db/galil_digital_out_bytes.template"
 {
    pattern { NAME,        BYTEFUNC,         CARD, DESC}
-           { "$(PP)",     "DMC0$(CC):DIGWORD",  "0",  "G21X3 byte out"  } 
+           { "$(PP)",     "DMC$(CCP):DIGWORD",  "$(CC)",  "G21X3 byte out"  } 
 }
 
 
 file "$(GALIL)/db/galil_digital_out_bits.template"
 {
    pattern { NAME,        FIELDDEV, BYTEFUNC,        BITNUM,  BITFUNC,        DESC}
-   	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "B0",    "DIGWORD_B0",   "Spare Bo $(BITNUM)"} 
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "B1",    "DIGWORD_B1",   "Spare Bo $(BITNUM)"}
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "B2",    "DIGWORD_B2",   "Spare Bo $(BITNUM)"}
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "B3",    "DIGWORD_B3",   "Spare Bo $(BITNUM)"}
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "B4",    "DIGWORD_B4",   "Spare Bo $(BITNUM)"}
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "B5",    "DIGWORD_B5",   "Spare Bo $(BITNUM)"}
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "B6",    "DIGWORD_B6",   "Spare Bo $(BITNUM)"}
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "B7",    "DIGWORD_B7",   "Spare Bo $(BITNUM)"}
+   	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "B0",    "DIGWORD_B0",   "Spare Bo $(BITNUM)"} 
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "B1",    "DIGWORD_B1",   "Spare Bo $(BITNUM)"}
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "B2",    "DIGWORD_B2",   "Spare Bo $(BITNUM)"}
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "B3",    "DIGWORD_B3",   "Spare Bo $(BITNUM)"}
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "B4",    "DIGWORD_B4",   "Spare Bo $(BITNUM)"}
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "B5",    "DIGWORD_B5",   "Spare Bo $(BITNUM)"}
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "B6",    "DIGWORD_B6",   "Spare Bo $(BITNUM)"}
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "B7",    "DIGWORD_B7",   "Spare Bo $(BITNUM)"}
 	
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "B8",    "DIGWORD_B8",   "Spare Bo $(BITNUM)"} 
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "B9",    "DIGWORD_B9",   "Spare Bo $(BITNUM)"}
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "BA",    "DIGWORD_BA",   "Spare Bo $(BITNUM)"}
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "BB",    "DIGWORD_BB",   "Spare Bo $(BITNUM)"}
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "BC",    "DIGWORD_BC",   "Spare Bo $(BITNUM)"}
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "BD",    "DIGWORD_BD",   "Spare Bo $(BITNUM)"}
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "BE",    "DIGWORD_BE",   "Spare Bo $(BITNUM)"}
-	   { "$(PP)",     "DMC0$(CC):", "DMC0$(CC):DIGWORD", "BF",    "DIGWORD_BF",   "Spare Bo $(BITNUM)"}
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "B8",    "DIGWORD_B8",   "Spare Bo $(BITNUM)"} 
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "B9",    "DIGWORD_B9",   "Spare Bo $(BITNUM)"}
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "BA",    "DIGWORD_BA",   "Spare Bo $(BITNUM)"}
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "BB",    "DIGWORD_BB",   "Spare Bo $(BITNUM)"}
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "BC",    "DIGWORD_BC",   "Spare Bo $(BITNUM)"}
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "BD",    "DIGWORD_BD",   "Spare Bo $(BITNUM)"}
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "BE",    "DIGWORD_BE",   "Spare Bo $(BITNUM)"}
+	   { "$(PP)",     "DMC$(CCP):", "DMC$(CCP):DIGWORD", "BF",    "DIGWORD_BF",   "Spare Bo $(BITNUM)"}
 }
 
 

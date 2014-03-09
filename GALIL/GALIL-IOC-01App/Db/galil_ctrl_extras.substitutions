@@ -34,7 +34,7 @@ file "$(GALIL)/db/galil_ctrl_extras.template"
 {
 pattern
 {   P,		  C, SCAN, 	  DEFAULT_HOMETYPE, DEFAULT_LIMITTYPE}
- {  "$(PP):DMC0$(CC)", $(CC), "1 second",  1,                1 }
+ {  "$(PP):DMC$(CCP)", $(CC), "1 second",  0,                0 }
 }
 
 

@@ -43,14 +43,6 @@ file "$(GALIL)/db/galil_userdef_records.template"
 pattern
 { P,               EPICSName,            GalilStr, DRVCMD, SCAN,        DRVL, DRVH, LOW,  HIGH, LSV,     HSV,     ZNAM,      ONAM,  ZSV,        OSV,        C, DEFAULT, EGU,  PINI}
 #{"$(PP)", "EXPOSURE_TIME",      "expsT",  "VAR"   ".1 second", 1,    1000, 1,    1000, "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "10",    "ms", "YES"}
-{"$(PP):MTR0$(CC)01", "K1",      "K1A",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP):MTR0$(CC)02", "K1",      "K1B",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP):MTR0$(CC)03", "K1",      "K1C",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP):MTR0$(CC)04", "K1",      "K1D",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP):MTR0$(CC)05", "K1",      "K1E",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP):MTR0$(CC)06", "K1",      "K1F",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP):MTR0$(CC)07", "K1",      "K1G",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP):MTR0$(CC)08", "K1",      "K1H",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
 }
 
 # end

@@ -1,0 +1,11 @@
+# Create simulated motors: ( start card , start axis , low limit, high limit, home posn, # cards, # axes to setup)
+motorSimCreate( 0, 0, -32000, 32000, 0, $(GALILNUMCRATES), 8 )
+
+# Setup the Asyn layer (portname, low-level driver drvet name, card, number of axes on card)
+$(IFDMC01) drvAsynMotorConfigure("motorSim00", "motorSim", 0, 8)
+$(IFDMC02) drvAsynMotorConfigure("motorSim01", "motorSim", 0, 8)
+$(IFDMC03) drvAsynMotorConfigure("motorSim02", "motorSim", 0, 8)
+$(IFDMC04) drvAsynMotorConfigure("motorSim03", "motorSim", 0, 8)
+$(IFDMC05) drvAsynMotorConfigure("motorSim04", "motorSim", 0, 8)
+$(IFDMC06) drvAsynMotorConfigure("motorSim05", "motorSim", 0, 8)
+$(IFDMC07) drvAsynMotorConfigure("motorSim06", "motorSim", 0, 8)

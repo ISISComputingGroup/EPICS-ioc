@@ -14,26 +14,76 @@ GALIL_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-## Load record instances
+cd ${TOP}/iocBoot/${IOC}
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-## Load our record instances
+### Scan-support software
+# crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
+# 1D data, but it doesn't store anything to disk.  (See 'saveData' below for that.)
+#dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=$(MYPVPREFIX)$(IOCNAME):,MAXPTS1=8000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=8000")
+
+### autosave
+# specify additional directories in which to to search for included request files
+set_requestfile_path("${GALIL}/db/", "")
+set_requestfile_path("${MOTOR}/motorApp/Db", "")
+
+# how many galil crates we have
+# GALILNUMCRATES set in icpconfig
+
+# this defines macros we can use for conditional loading later
+calc("IFDMC01", "$(GALILNUMCRATES) >= 1", 4)
+calc("IFDMC02", "$(GALILNUMCRATES) >= 2", 4)
+calc("IFDMC03", "$(GALILNUMCRATES) >= 3", 4)
+calc("IFDMC04", "$(GALILNUMCRATES) >= 4", 4)
+calc("IFDMC05", "$(GALILNUMCRATES) >= 5", 4)
+calc("IFDMC06", "$(GALILNUMCRATES) >= 6", 4)
+calc("IFDMC07", "$(GALILNUMCRATES) >= 7", 4)
+
+# configure galil and motors
+< galil.cmd
+
+# configure jaws
+< jaws.cmd
+
+# motion set points
+< motionsetpoints.cmd
+
+# set Galil driver debug level (output only printed if code compiled with DEBUG support)
+var devG21X3Debug 0
+#var devG21X3Debug 1
 
 # motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):")
-var motorUtil_debug 1
+#var motorUtil_debug 1
 motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
-cd ${TOP}/iocBoot/${IOC}
-iocInit
-
-## Start any sequence programs
-#seq sncxxx,"user=faa59Host"
+iocInit()
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
+
+# Save motor positions every 5 seconds
+$(IFDMC01) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX), CCP=01")
+$(IFDMC02) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX), CCP=02")
+$(IFDMC03) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX), CCP=03")
+$(IFDMC04) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX), CCP=04")
+$(IFDMC05) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX), CCP=05")
+$(IFDMC06) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX), CCP=06")
+$(IFDMC07) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX), CCP=07")
+
+# Save motor settings every 30 seconds
+$(IFDMC01) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX), CCP=01")
+$(IFDMC02) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX), CCP=02")
+$(IFDMC03) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX), CCP=03")
+$(IFDMC04) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX), CCP=04")
+$(IFDMC05) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX), CCP=05")
+$(IFDMC06) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX), CCP=06")
+$(IFDMC07) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX), CCP=07")
+
+## Start any sequence programs
+#seq sncxxx,"user=icsHost"

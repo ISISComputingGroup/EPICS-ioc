@@ -34,14 +34,14 @@
 file "$(GALIL)/db/galil_analog.template"
 { 
    pattern { NAME,        FIELDDEV,   ISIGNAL,   OSIGNAL,  SCAN,           CARD, SIGNAL, IDESC, ODESC,	PREC	}
-       { "$(PP)",  "RIO01:",   "AI0",     "AO0",    "1 second",     "$(CC)",  "0",    "AI0", "AO0",	"2"	}
-	   { "$(PP)",  "RIO01:",   "AI1",     "AO1",    "1 second",     "$(CC)",  "1",    "AI1", "AO1",	"2"	}
-	   { "$(PP)",  "RIO01:",   "AI2",     "AO2",    "1 second",     "$(CC)",  "2",    "AI2", "AO2",	"2"	}
-	   { "$(PP)",  "RIO01:",   "AI3",     "AO3",    "1 second",     "$(CC)",  "3",    "AI3", "AO3",	"2"	}
-	   { "$(PP)",  "RIO01:",   "AI4",     "AO4",    "1 second",     "$(CC)",  "4",    "AI4", "AO4",	"2"	}
-	   { "$(PP)",  "RIO01:",   "AI5",     "AO5",    "1 second",     "$(CC)",  "5",    "AI5", "AO5",	"2"	}
-	   { "$(PP)",  "RIO01:",   "AI6",     "AO6",    "1 second",     "$(CC)",  "6",    "AI6", "AO6",	"2"	}
-	   { "$(PP)",  "RIO01:",   "AI7",     "AO7",    "1 second",     "$(CC)",  "7",    "AI7", "AO7",	"2"	}
+       { "$(PP)",  "DMC$(CCP):RIO01:",   "AI0",     "AO0",    "1 second",     "$(CC)",  "0",    "AI0", "AO0",	"2"	}
+	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI1",     "AO1",    "1 second",     "$(CC)",  "1",    "AI1", "AO1",	"2"	}
+	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI2",     "AO2",    "1 second",     "$(CC)",  "2",    "AI2", "AO2",	"2"	}
+	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI3",     "AO3",    "1 second",     "$(CC)",  "3",    "AI3", "AO3",	"2"	}
+	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI4",     "AO4",    "1 second",     "$(CC)",  "4",    "AI4", "AO4",	"2"	}
+	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI5",     "AO5",    "1 second",     "$(CC)",  "5",    "AI5", "AO5",	"2"	}
+	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI6",     "AO6",    "1 second",     "$(CC)",  "6",    "AI6", "AO6",	"2"	}
+	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI7",     "AO7",    "1 second",     "$(CC)",  "7",    "AI7", "AO7",	"2"	}
 }
 
 # end
