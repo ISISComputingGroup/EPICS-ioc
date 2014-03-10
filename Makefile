@@ -5,7 +5,7 @@ ACTIONS += uninstall
 ## by default we build all IOCs, but we can remove some here if needed
 
 # modules not to build on linux
-DIRS_NOTBUILD = Makefile README.txt
+DIRS_NOTBUILD = Makefile README.txt icp_config.xml icp_config.template.xml isisicp.properties isisicp.default.properties 
 ifneq ($(findstring linux,$(EPICS_HOST_ARCH)),)
 DIRS_NOTBUILD += ISISDAE
 endif
