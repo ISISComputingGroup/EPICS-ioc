@@ -54,15 +54,17 @@ calc("IFDMC07", "$(GALILNUMCRATES) >= 7", 4)
 var devG21X3Debug 0
 #var devG21X3Debug 1
 
-# motor util package
+## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):")
-#var motorUtil_debug 1
-motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
 iocInit()
+
+## motor util package
+#var motorUtil_debug 1
+motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
