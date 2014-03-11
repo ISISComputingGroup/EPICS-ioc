@@ -26,7 +26,7 @@ ifeq ($(SHARED_LIBRARIES),YES)
 DIRS_NOTBUILD += 
 endif
 # modules not to build if no ATL
-ifeq ($(HAVE_ATL),NO)  
+ifneq ($(HAVE_ATL),YES)  
 DIRS_NOTBUILD += ISISDAE
 endif
 
