@@ -1,38 +1,7 @@
-# Motor settings
-file "motor_settings.req" P=$(P), M=MTR$(CCP)01
-file "motor_settings.req" P=$(P), M=MTR$(CCP)02
-file "motor_settings.req" P=$(P), M=MTR$(CCP)03
-file "motor_settings.req" P=$(P), M=MTR$(CCP)04
-file "motor_settings.req" P=$(P), M=MTR$(CCP)05
-file "motor_settings.req" P=$(P), M=MTR$(CCP)06
-file "motor_settings.req" P=$(P), M=MTR$(CCP)07
-file "motor_settings.req" P=$(P), M=MTR$(CCP)08
-
-# Controller settings that motorRecord does not support
-file "galil_ctrl_extras.req" P=$(P)DMC$(CCP):
-
-# Motor settings that motorRecord does not support
-file "galil_motor_extras.req" P=$(P), M=MTR$(CCP)01
-file "galil_motor_extras.req" P=$(P), M=MTR$(CCP)02
-file "galil_motor_extras.req" P=$(P), M=MTR$(CCP)03
-file "galil_motor_extras.req" P=$(P), M=MTR$(CCP)04
-file "galil_motor_extras.req" P=$(P), M=MTR$(CCP)05
-file "galil_motor_extras.req" P=$(P), M=MTR$(CCP)06
-file "galil_motor_extras.req" P=$(P), M=MTR$(CCP)07
-file "galil_motor_extras.req" P=$(P), M=MTR$(CCP)08
-
-# galil userdef records
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=K1
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=K2
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=K3
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=IL
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=FV
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=FC
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=FA
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=FN
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=ZP
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=ZN
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=TL
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=CP
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=CT
-file "galil_userdef_records8.req" P=$(P), M=MTR$(CCP), GS=AF
+file "GALIL_01_controller_settings.req" P=$(P),CCP=01
+file "GALIL_01_controller_settings.req" P=$(P),CCP=02
+file "GALIL_01_controller_settings.req" P=$(P),CCP=03
+file "GALIL_01_controller_settings.req" P=$(P),CCP=04
+file "GALIL_01_controller_settings.req" P=$(P),CCP=05
+file "GALIL_01_controller_settings.req" P=$(P),CCP=06
+file "GALIL_01_controller_settings.req" P=$(P),CCP=07

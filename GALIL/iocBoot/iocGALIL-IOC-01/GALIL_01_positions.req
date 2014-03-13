@@ -1,8 +1,7 @@
-$(P)MTR$(CCP)01.DVAL
-$(P)MTR$(CCP)02.DVAL
-$(P)MTR$(CCP)03.DVAL
-$(P)MTR$(CCP)04.DVAL
-$(P)MTR$(CCP)05.DVAL
-$(P)MTR$(CCP)06.DVAL
-$(P)MTR$(CCP)07.DVAL
-$(P)MTR$(CCP)08.DVAL
+file "GALIL_01_controller_positions.req" P=$(P),CCP=01
+file "GALIL_01_controller_positions.req" P=$(P),CCP=02
+file "GALIL_01_controller_positions.req" P=$(P),CCP=03
+file "GALIL_01_controller_positions.req" P=$(P),CCP=04
+file "GALIL_01_controller_positions.req" P=$(P),CCP=05
+file "GALIL_01_controller_positions.req" P=$(P),CCP=06
+file "GALIL_01_controller_positions.req" P=$(P),CCP=07
