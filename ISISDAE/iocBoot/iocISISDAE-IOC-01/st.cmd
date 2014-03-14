@@ -15,7 +15,7 @@ ISISDAE_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 ## local dae, no dcom/labview
-isisdaeConfigure("icp")
+isisdaeConfigure("icp", $(DAEDCOM), $(DAEHOST), "spudulike", "reliablebeam")
 ## pass 1 as second arg to signify DCOM to either local or remote dae
 #isisdaeConfigure("icp", 1, "localhost")
 #isisdaeConfigure("icp", 1, "ndxchipir", "spudulike", "reliablebeam")

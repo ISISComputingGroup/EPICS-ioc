@@ -70,10 +70,10 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 < $(IOCSTARTUP)/postiocinit.cmd
 
 # Save motor positions every 5 seconds
-$(IFDMC01) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)")
+create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:")
 
 # Save motor settings every 30 seconds
-$(IFDMC01) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)")
+create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
 
 ## Start any sequence programs
 #seq sncxxx,"user=icsHost"
