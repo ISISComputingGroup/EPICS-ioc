@@ -28,7 +28,6 @@ $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += motorSupport.dbd
-$(APPNAME)_DBD += devSoftMotor.dbd
 $(APPNAME)_DBD += motorSimSupport.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
@@ -50,11 +49,11 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
 $(APPNAME)_LIBS += galil calc sscan dmclnx
-$(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += motor
-$(APPNAME)_LIBS += busy asyn
 $(APPNAME)_LIBS += motionSetPoints
+$(APPNAME)_LIBS += asubFunctions
+$(APPNAME)_LIBS += busy asyn
 
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
