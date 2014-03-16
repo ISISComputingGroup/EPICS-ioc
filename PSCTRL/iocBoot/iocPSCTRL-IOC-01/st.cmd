@@ -8,8 +8,8 @@
 cd ${TOP}
 
 ## Register all support components
-dbLoadDatabase "dbd/PSCTRL.dbd"
-PSCTRL_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/PSCTRL-IOC-01.dbd"
+PSCTRL_IOC_01_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd

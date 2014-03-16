@@ -25,9 +25,12 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 ## add other dbd here ##
-#$(APPNAME)_DBD += xxx.dbd
+$(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += busySupport.dbd
+$(APPNAME)_DBD += procServControl.dbd
 
 # Add all the support libraries needed by this IOC
+$(APPNAME)_LIBS += procServControl asyn busy
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
@@ -36,8 +39,6 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
-## Add other libraries here ##
-#$(APPNAME)_LIBS += xxx
 
 # PSCTRL-IOC-01_registerRecordDeviceDriver.cpp derives from PSCTRL-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
