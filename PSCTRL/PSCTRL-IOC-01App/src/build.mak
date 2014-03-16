@@ -27,6 +27,7 @@ $(APPNAME)_DBD += caPutLog.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += busySupport.dbd
+$(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += procServControl.dbd
 
 # Add all the support libraries needed by this IOC
