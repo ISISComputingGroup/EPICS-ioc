@@ -31,7 +31,7 @@ $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += procServControl.dbd
 
 # Add all the support libraries needed by this IOC
-$(APPNAME)_LIBS += procServControl asyn busy
+$(APPNAME)_LIBS += procServControl busy asyn
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
