@@ -26,7 +26,7 @@ isisdaeConfigure("icp", $(DAEDCOM=0), $(DAEHOST=localhost), "spudulike", "reliab
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(ISISDAE)/db/isisdae.db","P=$(MYPVPREFIX)DAE")
+dbLoadRecords("$(ISISDAE)/db/isisdae.db","P=$(MYPVPREFIX)DAE:")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -39,3 +39,9 @@ iocInit
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
+
+# Save motor positions every 5 seconds
+create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)DAE:")
+
+# Save motor settings every 30 seconds
+create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)DAE:")
