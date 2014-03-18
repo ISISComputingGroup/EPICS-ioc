@@ -1,9 +1,35 @@
-record (longin, "$(P)CS:STOP:ALL") 
+record (longin, "$(P)CS:MOT:STOP:ALL") 
 {
 	field(DESC, "Stop motions if changes and non-zero")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
 	field(VAL,0)
+}
+
+record(calc, "$(P)CS:MOT:MOVING") 
+{
+	field(DESC, "Count of IoC motors with motion to complete")
+	field(SCAN, "Passive")
+	field(INPA, "$(P)CS:MOT:MOVING:SP")
+	field(INPB, 0)
+	field(CALC, "B+A; B:=B+A")
+}
+
+record(longin, "$(P)CS:MOT:MOVING:SP") 
+{
+	field(DESC, "Set if something starts or stops")
+	field(SCAN, "Passive")
+	field(VAL,0)
+	field(FLNK, "$(P)CS:MOT:MOVING PP")
+}
+
+record(calc, "$(P)CS:MOT:MOVING") 
+{
+	field(DESC, "Count of IoC motors with motion to complete")
+	field(SCAN, "Passive")
+	field(INPA, "$(P)CS:MOT:MOVING:SP")
+	field(INPB, 0)
+	field(CALC, "B+A; B:=B+A")
 }
 
 # used by access security file
