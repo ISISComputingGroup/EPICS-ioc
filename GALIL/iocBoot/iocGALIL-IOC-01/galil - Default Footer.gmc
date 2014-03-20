@@ -1,0 +1,34 @@
+#CMDERR
+errstr=_ED
+errcde=_TC
+cmderr=cmderr+1
+REM XQ _ED3,_ED1,1
+RE 1
+EN
+#LIMSWI
+IF (((_LRA=0) | (_LFA=0)) & (hjogA=0) & (limA=0))
+oldecelA=_DCA;DCA=limdcA;STA;limA=1;rdecelA=1
+ENDIF
+IF (((_LRB=0) | (_LFB=0)) & (hjogB=0) & (limB=0))
+oldecelB=_DCB;DCB=limdcB;STB;limB=1;rdecelB=1
+ENDIF
+IF (((_LRC=0) | (_LFC=0)) & (hjogC=0) & (limC=0))
+oldecelC=_DCC;DCC=limdcC;STC;limC=1;rdecelC=1
+ENDIF
+IF (((_LRD=0) | (_LFD=0)) & (hjogD=0) & (limD=0))
+oldecelD=_DCD;DCD=limdcD;STD;limD=1;rdecelD=1
+ENDIF
+IF (((_LRE=0) | (_LFE=0)) & (hjogE=0) & (limE=0))
+oldecelE=_DCE;DCE=limdcE;STE;limE=1;rdecelE=1
+ENDIF
+IF (((_LRF=0) | (_LFF=0)) & (hjogF=0) & (limF=0))
+oldecelF=_DCF;DCF=limdcF;STF;limF=1;rdecelF=1
+ENDIF
+IF (((_LRG=0) | (_LFG=0)) & (hjogG=0) & (limG=0))
+oldecelG=_DCG;DCG=limdcG;STG;limG=1;rdecelG=1
+ENDIF
+IF (((_LRH=0) | (_LFH=0)) & (hjogH=0) & (limH=0))
+oldecelH=_DCH;DCH=limdcH;STH;limH=1;rdecelH=1
+ENDIF
+RE 1
+EN

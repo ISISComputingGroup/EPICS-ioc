@@ -5,7 +5,7 @@
 #
 #    int   number of cards in system
 #    int   update rate in Hz whilst motor is moving
-G21X3Setup($(GALILNUMCRATES),60)
+G21X3Setup($(GALILNUMCRATES),2)
 
 $(IFSIM) < motorsim.cmd
 
