@@ -15,6 +15,9 @@ PROD_IOC = $(APPNAME)
 # HVCAENSIM-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
+caenhvwrapper_DIR = $(HVCAEN)/lib/$(EPICS_HOST_ARCH)
+hscaenetlib_DIR = $(HVCAEN)/lib/$(EPICS_HOST_ARCH)
+
 # HVCAENSIM-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
@@ -40,6 +43,9 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
 $(APPNAME)_LIBS += asubFunctions
+
+$(APPNAME)_LIBS_WIN32 += caenhvwrapper # hscaenetlib
+$(APPNAME)_SYS_LIBS_Linux += caenhvwrapper hscaenetlib
 
 # HVCAENSIM-IOC-01_registerRecordDeviceDriver.cpp derives from HVCAENSIM-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
