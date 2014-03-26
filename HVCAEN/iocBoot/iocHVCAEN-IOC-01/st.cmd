@@ -14,13 +14,19 @@ HVCAEN_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-## Load record instances
+# use -D argument to turn on debugging
+
+## arguments to CAENx527ConfigureCreate are: name, ip_address, username, password
+## username, password are optional and the crate factory default is used if these are not specified
+CAENx527ConfigureCreate "hv0", "130.246.39.47"
+#CAENx527ConfigureCreate "hv1", "halldcaenhv1"
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
 #dbLoadRecords("db/xxx.db","user=faa59Host")
+CAENx527DbLoadRecords("P=$(MYPVPREFIX)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -33,3 +39,5 @@ iocInit
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
+
+seq sncSummary, "P=$(MYPVPREFIX)CAEN"
