@@ -18,7 +18,7 @@ HVCAEN_IOC_01_registerRecordDeviceDriver pdbbase
 
 ## arguments to CAENx527ConfigureCreate are: name, ip_address, username, password
 ## username, password are optional and the crate factory default is used if these are not specified
-CAENx527ConfigureCreate "hv0", "130.246.39.47"
+CAENx527ConfigureCreate "hv0", "$(HVCAENIP0)"
 #CAENx527ConfigureCreate "hv1", "halldcaenhv1"
 
 ##ISIS## Load common DB records 
