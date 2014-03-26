@@ -7,6 +7,12 @@ include $(TOP)/configure/CONFIG
 
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
+LIBRARY_IOC += instetcSupport
+# Compile and add the code to the supporting library
+instetcSupport_SRCS += instetcDriver.cpp 
+instetcSupport_LIBS += asyn
+instetcSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
+
 #=============================
 # Build the IOC application INSTETC-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
@@ -26,7 +32,7 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
-#$(APPNAME)_DBD += xxx.dbd
+$(APPNAME)_DBD += instetcInclude.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -38,7 +44,7 @@ $(APPNAME)_LIBS += icpconfig
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
-#$(APPNAME)_LIBS += xxx
+$(APPNAME)_LIBS += instetcSupport asyn
 
 # INSTETC-IOC-01_registerRecordDeviceDriver.cpp derives from INSTETC-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

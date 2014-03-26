@@ -35,3 +35,14 @@ record (bo, "$(P)CS:EXCLUSIVE")
     field(ZNAM, "All access")
     field(ONAM, "Restricted access")
 }
+
+# Log file messages PV
+record(waveform, "$(P)LOG:TEXT")
+{
+   field(DESC, "Log messages from running IoCs")  
+   field(NELM, "10024")
+   field(FTVL, "CHAR")
+   field(DTYP, "asynOctetRead")
+   field(INP,  "@asyn(instetc,0,0)TEXT")
+   field(SCAN, "I/O Intr")
+}

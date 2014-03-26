@@ -56,6 +56,8 @@ var devG21X3Debug 0
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):, PVPREFIX=$(MYPVPREFIX)")
+#dbLoadRecords("${TOP}/../INSTETC/db/INSTETC.db","P=$(MYPVPREFIX),IOC=$(IOCNAME)")
+
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

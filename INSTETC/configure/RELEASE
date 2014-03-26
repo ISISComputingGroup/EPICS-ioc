@@ -34,6 +34,7 @@ EPICS_BASE=C:/development/EPICS/base/3-14-12-2
 ## ISIS standard modules ##
 ICPCONFIG=$(SUPPORT)/icpconfig
 PVDUMP=$(SUPPORT)/pvdump
+ONCRPC=$(SUPPORT)/oncrpc/2
 DEVIOCSTATS=$(SUPPORT)/devIocStats/3-1-11
 AUTOSAVE=$(SUPPORT)/autosave/R5_0
 SNCSEQ=$(SUPPORT)/seq/2-1-11
@@ -43,5 +44,6 @@ UTILITIES=$(SUPPORT)/utilities
 ZLIB=$(SUPPORT)/zlib/1-2-8
 
 ## add other modules here ##
+ASYN=$(SUPPORT)/asyn/4-22
 
 include $(TOP)/../../ISIS_CONFIG.$(EPICS_HOST_ARCH)

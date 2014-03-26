@@ -14,6 +14,10 @@ INSTETC_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
+## configure IOC
+#instetcConfigure("instetc",  "C:\Instrument\InstrumentVar\logs\conserver\consoles.log", 10)
+instetcConfigure("instetc",  "${ICPVARDIR}/logs/conserver/consoles.log", 10)
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
