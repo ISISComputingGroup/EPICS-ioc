@@ -25,19 +25,23 @@ struct asynItems<int>
 class instetcDriver : public asynPortDriver 
 {
 	public:
-		instetcDriver(const char* portName, const char* filePath, const int lineCount);
+		instetcDriver(const char* portName, const char* filePath, const int lineCount, double pollingPeriod);
 		static void pollerThreadC(void* arg);
 		virtual asynStatus readFloat64(asynUser *pasynUser, epicsFloat64 *value);
                  
 	private:
 		std::string filePath;
 		int lineCount;
+		double pollingPeriod;
+
 		int P_Text; //string
 	
+		void updateText(std::string text);
+
 		#define FIRST_INSTETC_PARAM P_Text
 		#define LAST_INSTETC_PARAM P_Text
 	
-		void pollerThread(std::string filePath, int lineCount);
+		void pollerThread(std::string filePath, int lineCount, double pollingPeriod);
 		epicsTimeStamp m_timestamp;
 };
 

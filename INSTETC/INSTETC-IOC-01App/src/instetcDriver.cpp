@@ -43,8 +43,8 @@ static const char *driverName="instetcDriver";
 /// Calls constructor for the asynPortDriver base class.
 /// \param[in] dcomint DCOM interface pointer created by lvDCOMConfigure()
 /// \param[in] portName @copydoc initArg0
-instetcDriver::instetcDriver(const char *portName, const char* filePath, const int lineCount) 
-   : filePath(filePath), lineCount(lineCount), asynPortDriver(portName, 
+instetcDriver::instetcDriver(const char *portName, const char* filePath, const int lineCount, const double pollingPeriod) 
+   : filePath(filePath), lineCount(lineCount), pollingPeriod(pollingPeriod), asynPortDriver(portName, 
                     0, /* maxAddr */ 
                     NUM_INSTETC_PARAMS,
                     asynInt32Mask | asynFloat64Mask | asynOctetMask | asynDrvUserMask, /* Interface mask */
@@ -54,8 +54,6 @@ instetcDriver::instetcDriver(const char *portName, const char* filePath, const i
                     0, /* Default priority */
                     0)	/* Default stack size*/
 {
-	std::cout << this->filePath;
-
 	epicsThreadOnce(&onceId, initCOM, NULL);
 	
 	createParam(P_TextString, asynParamOctet, &P_Text);
@@ -111,40 +109,42 @@ asynStatus instetcDriver::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 void instetcDriver::pollerThreadC(void* arg)
 { 
     instetcDriver* driver = (instetcDriver*)arg; 
-	driver->pollerThread(driver->filePath, driver->lineCount);
+	driver->pollerThread(driver->filePath, driver->lineCount, driver->pollingPeriod);
 }
 
 #define LEN_BUFFER 10024
 
-void instetcDriver::pollerThread(std::string filePath, int lineCount)
+void instetcDriver::pollerThread(std::string filePath, int lineCount, double pollingPeriod)
 {
-	lock();
-	setStringParam(P_Text, "");
-	callParamCallbacks();
-	unlock();
+	updateText("");
 
 	while (true)
 	{
 		std::string lines = getLastLines(filePath, lineCount);
 		lines = lines.substr(0, LEN_BUFFER);
-
-		lock();
-		setStringParam(P_Text, lines.c_str());
-		callParamCallbacks();
-		unlock();
+		updateText(lines);
 		
 		epicsThreadSleep(3.0);
 	}
 }	 
 
+void instetcDriver::updateText(std::string text)
+{
+	lock();
+	setStringParam(P_Text, text.c_str());
+	callParamCallbacks();
+	unlock();
+}
+
+
 extern "C" {
 	/// EPICS iocsh callable function to call constructor of lvDCOMInterface().
 	/// \param[in] portName @copydoc initArg0
-	static int instetcConfigure(const char *portName, const char* logFilePath, const int lineCount)
+	static int instetcConfigure(const char *portName, const char* logFilePath, const int lineCount, const double pollingPeriod)
 	{
 		try
 		{
-			new instetcDriver(portName, logFilePath, lineCount);
+			new instetcDriver(portName, logFilePath, lineCount, pollingPeriod);
 			return(asynSuccess);
 		}
 		catch(const std::exception& ex)
@@ -159,14 +159,15 @@ extern "C" {
 	static const iocshArg initArg0 = { "portName", iocshArgString};			///< The name of the asyn driver port we will create
 	static const iocshArg initArg1 = { "logFilePath", iocshArgString};	    ///< The path to the file we will monitor
 	static const iocshArg initArg2 = { "lineCount", iocshArgInt};	        ///< The number of log file lines to broadcast
-	
-	static const iocshArg * const initArgs[] = { &initArg0, &initArg1, &initArg2 };
+	static const iocshArg initArg3 = { "pollingPeriod", iocshArgDouble};	///< The number of seconds between file reads
+
+	static const iocshArg * const initArgs[] = { &initArg0, &initArg1, &initArg2, &initArg3 };
 
 	static const iocshFuncDef initFuncDef = {"instetcConfigure", sizeof(initArgs) / sizeof(iocshArg*), initArgs};
 
 	static void initCallFunc(const iocshArgBuf *args)
 	{
-		instetcConfigure(args[0].sval, args[1].sval, args[2].ival);
+		instetcConfigure(args[0].sval, args[1].sval, args[2].ival, args[3].dval);
 	}
 
 	static void instetcRegister(void)
