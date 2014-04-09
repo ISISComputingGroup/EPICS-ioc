@@ -3,11 +3,8 @@
 ## set crate number (must always be zero padded to 2 digits) - value used below and in galildb.cmd
 epicsEnvSet("GALILCRATE","07")
 
-# Calculate Galil controller ID within the driver - it starts at 0 whereas GALILCRATE starts at 1
-calc("GCID", "$(GALILCRATE) - 1", 2, 2)
-
 # load database records
-< $(TOP)/iocBoot/$(IOC)/galildb.cmd 
+< galildb.cmd 
 
 ## see README_galil_cmd.txt for command usage
 
