@@ -31,6 +31,7 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += asubFunctions.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += instetcInclude.dbd
 
@@ -43,6 +44,7 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
+$(APPNAME)_LIBS += asubFunctions
 ## Add other libraries here ##
 $(APPNAME)_LIBS += instetcSupport asyn
 

@@ -11,6 +11,8 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 DB += INSTETC.db
+DB += inst_string_parameters.db
+DB += inst_real_parameters.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

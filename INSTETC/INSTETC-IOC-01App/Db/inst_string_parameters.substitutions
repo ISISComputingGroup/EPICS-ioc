@@ -1,0 +1,44 @@
+### Sample parameters
+
+#0,Run Title,String,,title
+#1,Sample Name,String,,name
+#2,Temperature Label,String,,temp_label
+#3,Magnetic Field Label,String,,field_label
+#4,Sample Thickness,Real,mm,thickness
+#5,Comments,String,,comments
+#6,Sample Width,Real,mm,width
+#7,Sample Height,Real,mm,height
+#8,Sample Type,String,,type
+#9,Sample Geometry,String,,geometry
+#10,Angle of Incidence,Real,,aoi
+#11,Sample Phi Angle,Real,,phi
+#12,Script Name,String,,script
+#13,Measurement ID,String,,measurement_id
+#14,Measurement Type,String,,measurement_type
+#15,Sample ID,String,,sample_id
+#16,Measurement SubID,String,,measurement_subid
+#17,Measurement Label,String,,measurement_label
+
+### Beamline parameters
+
+#0,Instrument Geometry,String,,geometry
+#1,Primary Flight Path (L1),Real,m,l1
+#2,Aperture 1 Diameter,Real,mm,a1
+#3,Aperture 2 Diameter,Real,mm,a2
+#4,Aperture 3 Diameter,Real,mm,a3
+#5,FOE Mirror Angle,Real,deg,foemirror
+#6,Beam Centre X,Real,mm,bcx
+#7,Beam Centre Y,Real,mm,bcy
+#8,Beamstop Position,String,,bstop
+#9,Chopper Opening Angle,Real,deg,chopen
+#10,Sample Detector Distance,Real,m,sdd
+#11,Journal Blocks,String,,jblocks
+
+pattern { Q, DESC, UNITS, OUT }
+    { "PARS:SAMPLE:NAME", "Sample Name", "", "DAE:SAMPLEPAR:SP" }
+    { "PARS:SAMPLE:TYPE", "Sample Type", "", "DAE:SAMPLEPAR:SP" }
+    { "PARS:SAMPLE:GEOMETRY", "Sample Geometry", "", "DAE:SAMPLEPAR:SP" }
+    { "PARS:SCRIPT:NAME", "Script Name", "", "DAE:SAMPLEPAR:SP" }
+    { "PARS:BL:BEAMSTOP:POS", "Beamstop Position", "", "DAE:SAMPLEPAR:SP" }
+    { "PARS:BL:JOURNAL:BLOCKS", "Journal Blocks", "", "DAE:SAMPLEPAR:SP" }
+    

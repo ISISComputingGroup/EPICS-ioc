@@ -1,0 +1,53 @@
+### Sample parameters
+
+#0,Run Title,String,,title
+#1,Sample Name,String,,name
+#2,Temperature Label,String,,temp_label
+#3,Magnetic Field Label,String,,field_label
+#4,Sample Thickness,Real,mm,thickness
+#5,Comments,String,,comments
+#6,Sample Width,Real,mm,width
+#7,Sample Height,Real,mm,height
+#8,Sample Type,String,,type
+#9,Sample Geometry,String,,geometry
+#10,Angle of Incidence,Real,,aoi
+#11,Sample Phi Angle,Real,,phi
+#12,Script Name,String,,script
+#13,Measurement ID,String,,measurement_id
+#14,Measurement Type,String,,measurement_type
+#15,Sample ID,String,,sample_id
+#16,Measurement SubID,String,,measurement_subid
+#17,Measurement Label,String,,measurement_label
+
+### Beamline parameters
+
+#0,Instrument Geometry,String,,geometry
+#1,Primary Flight Path (L1),Real,m,l1
+#2,Aperture 1 Diameter,Real,mm,a1
+#3,Aperture 2 Diameter,Real,mm,a2
+#4,Aperture 3 Diameter,Real,mm,a3
+#5,FOE Mirror Angle,Real,deg,foemirror
+#6,Beam Centre X,Real,mm,bcx
+#7,Beam Centre Y,Real,mm,bcy
+#8,Beamstop Position,String,,bstop
+#9,Chopper Opening Angle,Real,deg,chopen
+#10,Sample Detector Distance,Real,m,sdd
+#11,Journal Blocks,String,,jblocks
+
+pattern { Q, DESC, UNITS, OUT }
+    { "PARS:SAMPLE:WIDTH", "Sample Width", "mm", "DAE:SAMPLEPAR:SP" }
+    { "PARS:SAMPLE:HEIGHT", "Sample Height", "mm", "DAE:SAMPLEPAR:SP" }
+    { "PARS:SAMPLE:THICK", "Sample Thickness", "m", "DAE:BEAMLINEPAR:SP" }
+    { "PARS:SAMPLE:PHI", "Sample Phi Angle", "", "DAE:SAMPLEPAR:SP" }
+    { "PARS:SAMPLE:AOI", "Angle of Incidence", "", "DAE:SAMPLEPAR:SP" }
+    { "PARS:BL:L1", "Primary Flight Path (L1)", "m", "DAE:BEAMLINEPAR:SP" }
+    { "PARS:BL:A1", "Aperture 1 Diameter", "mm", "DAE:BEAMLINEPAR:SP" }
+    { "PARS:BL:A2", "Aperture 2 Diameter", "mm", "DAE:BEAMLINEPAR:SP" }
+    { "PARS:BL:A3", "Aperture 3 Diameter", "mm", "DAE:BEAMLINEPAR:SP" }
+    { "PARS:BL:FOEMIRROR", "FOE Mirror Angle", "", "DAE:BEAMLINEPAR:SP" }
+    { "PARS:BL:BCX", "Beam Centre X", "mm", "DAE:BEAMLINEPAR:SP" }
+    { "PARS:BL:BCY", "Beam Centre Y", "mm", "DAE:BEAMLINEPAR:SP" }
+    { "PARS:BL:SDD", "Sample Detector Distance", "m", "DAE:BEAMLINEPAR:SP" }
+    { "PARS:BL:CHOPEN:ANG", "Chopper Opening Angle", "", "DAE:BEAMLINEPAR:SP" }
+
+    

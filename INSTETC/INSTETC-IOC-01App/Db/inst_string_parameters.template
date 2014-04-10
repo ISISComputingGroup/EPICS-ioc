@@ -1,0 +1,34 @@
+record(waveform, "$(P)$(Q):SP")
+{
+   field(DESC, "$(DESC)")  
+   field(NELM, "256")
+   field(FTVL, "CHAR")
+   field(DTYP, "Soft Channel")
+   field(PINI, "YES")
+   field(FLNK, "$(P)$(Q):SEND")
+   field(EGU, "$(UNITS)")
+}
+alias("$(P)$(Q):SP", "$(P)$(Q)")
+
+# $(DESC) must match the parameter name as used within the ISISICP
+# NELM above and NOD below must match
+# NOVA below must match with output DAE waveform (see substitutions)
+
+record(aSub, "$(P)$(Q):SEND")
+{
+    field(DESC, "Send $(DESC) to ICP")  
+    field("SNAM", "stringConcatWithCtrlB")
+    field("FTA", "STRING")
+    field("INPA", "$(P)$(Q):SP.DESC NPP NMS")
+    field("FTB", "STRING")
+    field("INPB", "$(P)$(Q):SP.FTVL NPP NMS")
+    field("FTC", "STRING")
+    field("INPC", "$(P)$(Q):SP.EGU NPP NMS")
+    field("FTD", "CHAR")
+    field("NOD", "256")
+    field("INPD", "$(P)$(Q):SP.VAL NPP NMS")
+    field("FTVA", "CHAR")
+    field("NOVA", "512")
+    field("OUTA", "$(P)$(OUT)")
+}
+
