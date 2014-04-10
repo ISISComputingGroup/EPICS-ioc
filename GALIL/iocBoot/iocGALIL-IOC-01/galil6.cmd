@@ -20,4 +20,4 @@ G21X3NameConfig($(GCID),"G",2,0,0,0,0,1,"",0,0,"",1,0)
 G21X3NameConfig($(GCID),"H",2,0,0,0,0,1,"",0,0,"",1,0)
 
 #G21X3StartCard($(GCID),"",0,0)
-G21X3StartCard($(GCID),"$(GALIL)/db/galil_Default_Header.gmc;$(GALIL)/db/galil_Home_RevLimit.gmc!$(GALIL)/db/galil_Home_RevLimit.gmc!g$(GALIL)/db/alil_Home_RevLimit.gmc!$(GALIL)/db/galil_Home_RevLimit.gmc!$(GALIL)/db/galil_Home_RevLimit.gmc!$(GALIL)/db/galil_Home_RevLimit.gmc!$(GALIL)/db/galil_Home_RevLimit.gmc!$(GALIL)/db/galil_Home_RevLimit.gmc;$(GALIL)/db/galil_Default_Footer.gmc",0,0)
+G21X3StartCard($(GCID),"$(GALIL)/db/galil_Default_Header.gmc;$(GALIL)/db/galil_Home_RevLimit.gmc!$(GALIL)/db/galil_Home_RevLimit.gmc!$(GALIL)/db/galil_Home_RevLimit.gmc!$(GALIL)/db/galil_Home_RevLimit.gmc!$(GALIL)/db/galil_Home_RevLimit.gmc!$(GALIL)/db/galil_Home_RevLimit.gmc!$(GALIL)/db/galil_Home_RevLimit.gmc!$(GALIL)/db/galil_Home_RevLimit.gmc;$(GALIL)/db/galil_Default_Footer.gmc",0,0)
