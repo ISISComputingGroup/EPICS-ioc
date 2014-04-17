@@ -20,7 +20,7 @@ record(longin, "$(P)CS:MOT:MOVING:SP")
 	field(DESC, "Set if something starts or stops")
 	field(SCAN, "Passive")
 	field(VAL, 0)
-	field(FLNK, "$(P)CS:MOT:MOVING PP")
+	field(FLNK, "$(P)CS:MOT:MOVING.PROC")
 }
 
 # used by access security file
