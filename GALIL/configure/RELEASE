@@ -54,5 +54,6 @@ SSCAN=$(SUPPORT)/sscan/2-8
 GALIL=$(SUPPORT)/galil/1-5
 MOTIONSETPOINTS=$(SUPPORT)/motionSetPoints
 JAWS=$(SUPPORT)/jaws
+STD=$(SUPPORT)/std/R3_1
 
 include $(TOP)/../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
