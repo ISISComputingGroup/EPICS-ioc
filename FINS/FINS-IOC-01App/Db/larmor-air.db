@@ -1,0 +1,35 @@
+#
+# Read addresses
+# 
+# DM0001               Flow 1                   0-6000 = 0-25L/min
+# DM0002               Flow2                    0-6000 = 0-25L/min
+# DM0003               Flow3                    0-6000 = 0-25L/min
+# DM0004               Flow4                    0-6000 = 0-25L/min
+# 
+# DM0005               Valve1 Position                 0-6000 = 0-100% open
+# DM0006               Valve2 Position                 0-6000 = 0-100% open
+# DM0007               Valve3 Position                 0-6000 = 0-100% open
+# DM0008               Valve4 Position                 0-6000 = 0-100% open
+# 
+# CIO0100.06         ON = Table lifted (valve open & pressure OK)
+# WR0000.00          PLC “Heart Beat” (1s pulse)
+# 
+# 
+# Write address:
+# 
+# WR0000.01          ON = Request table to lift (reset to 0 to lower table)
+# 
+
+record(ai, "$(P)FINS:RANDOM")
+{
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(LN2, 1000, 5.0) FINS_DM_READ")
+	field(SCAN, ".5 second")
+}
+
+record(ai, "$(P)FINS:RANDOM")
+{
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(LN2, 1000, 5.0) FINS_DM_READ")
+	field(SCAN, ".5 second")
+}}
