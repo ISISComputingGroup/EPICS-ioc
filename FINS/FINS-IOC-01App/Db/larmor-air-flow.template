@@ -1,0 +1,7 @@
+
+record(ai, "$(P)FINS:$(NAME)")
+{
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ")
+#	field(SCAN, ".5 second")
+}

@@ -1,7 +1,7 @@
 #
 # Read addresses
 # 
-# DM0001               Flow 1                   0-6000 = 0-25L/min
+# DM0001               Flow1                    0-6000 = 0-25L/min
 # DM0002               Flow2                    0-6000 = 0-25L/min
 # DM0003               Flow3                    0-6000 = 0-25L/min
 # DM0004               Flow4                    0-6000 = 0-25L/min
@@ -20,16 +20,20 @@
 # WR0000.01          ON = Request table to lift (reset to 0 to lower table)
 # 
 
-record(ai, "$(P)FINS:RANDOM")
-{
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(LN2, 1000, 5.0) FINS_DM_READ")
-	field(SCAN, ".5 second")
+file "$(TOP)/FINS-IOC-01App/Db/larmor-air-header.template" {
+    { P=\$(P) }
 }
 
-record(ai, "$(P)FINS:RANDOM")
-{
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(LN2, 1000, 5.0) FINS_DM_READ")
-	field(SCAN, ".5 second")
-}}
+file "$(TOP)/FINS-IOC-01App/Db/larmor-air-valve.template" {
+    { P=\$(P), NAME=VALVE1, ADDR=1 }
+    { P=\$(P), NAME=VALVE2, ADDR=2 }
+    { P=\$(P), NAME=VALVE3, ADDR=2 }
+    { P=\$(P), NAME=VALVE4, ADDR=4 }
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/larmor-air-flow.template" {
+    { P=\$(P), NAME=FLOW1, ADDR=5 }
+    { P=\$(P), NAME=FLOW2, ADDR=6 }
+    { P=\$(P), NAME=FLOW3, ADDR=7 }
+    { P=\$(P), NAME=FLOW4, ADDR=8 }
+}

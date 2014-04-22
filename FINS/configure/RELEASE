@@ -43,6 +43,7 @@ UTILITIES=$(SUPPORT)/utilities
 ZLIB=$(SUPPORT)/zlib/1-2-8
 ASYN = $(SUPPORT)/asyn/4-22
 FINS=$(SUPPORT)/FINS/2-4
+ONCRPC=$(SUPPORT)/oncrpc/2
 
 ## add other modules here ##
 
