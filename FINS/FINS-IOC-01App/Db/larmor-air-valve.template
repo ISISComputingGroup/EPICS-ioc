@@ -1,7 +1,19 @@
 
-record(ai, "$(P)FINS:$(NAME)")
+record(ai, "$(P)$(Q)$(NAME):RAW")
 {
 	field(DTYP, "asynInt32")
 	field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ")
-#	field(SCAN, ".5 second")
+	field(SCAN, "1 second")
+    field(HOPR, "6000")
+    field(LOPR, "0")
+    field(FLNK, "$(P)$(Q)$(NAME)")
+}
+
+record(calc, "$(P)$(Q)$(NAME)")
+{
+	field(INPA, "$(P)$(Q)$(NAME):RAW")
+    field(EGU, "%")
+    field(HOPR, "100")
+    field(LOPR, "0")
+    field(CALC, "A * 100 / 6000")
 }

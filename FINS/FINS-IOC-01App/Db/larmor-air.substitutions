@@ -21,19 +21,19 @@
 # 
 
 file "$(TOP)/FINS-IOC-01App/Db/larmor-air-header.template" {
-    { P=\$(P) }
+    { P=\$(P), Q=\$(Q) }
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/larmor-air-valve.template" {
-    { P=\$(P), NAME=VALVE1, ADDR=1 }
-    { P=\$(P), NAME=VALVE2, ADDR=2 }
-    { P=\$(P), NAME=VALVE3, ADDR=2 }
-    { P=\$(P), NAME=VALVE4, ADDR=4 }
+    { P=\$(P), Q=\$(Q), NAME=VALVE1, ADDR=1 }
+    { P=\$(P), Q=\$(Q), NAME=VALVE2, ADDR=2 }
+    { P=\$(P), Q=\$(Q), NAME=VALVE3, ADDR=3 }
+    { P=\$(P), Q=\$(Q), NAME=VALVE4, ADDR=4 }
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/larmor-air-flow.template" {
-    { P=\$(P), NAME=FLOW1, ADDR=5 }
-    { P=\$(P), NAME=FLOW2, ADDR=6 }
-    { P=\$(P), NAME=FLOW3, ADDR=7 }
-    { P=\$(P), NAME=FLOW4, ADDR=8 }
+    { P=\$(P), Q=\$(Q), NAME=FLOW1, ADDR=5 }
+    { P=\$(P), Q=\$(Q), NAME=FLOW2, ADDR=6 }
+    { P=\$(P), Q=\$(Q), NAME=FLOW3, ADDR=7 }
+    { P=\$(P), Q=\$(Q), NAME=FLOW4, ADDR=8 }
 }
