@@ -24,6 +24,7 @@ instetcConfigure("instetc",  "${ICPVARDIR}/logs/conserver/consoles.log", 10, 3.0
 
 ## Load our record instances
 dbLoadRecords("db/INSTETC.db","P=$(MYPVPREFIX),IOC=$(IOCNAME)")
+dbLoadRecords("db/svn-revision.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/inst_string_parameters.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/inst_real_parameters.db","P=$(MYPVPREFIX)")
 
