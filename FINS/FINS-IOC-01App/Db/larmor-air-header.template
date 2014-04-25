@@ -27,6 +27,8 @@ record(bi, "$(P)$(Q)STATUS")
     field(ONAM, "RAISED")
 	field(INP,  "@asyn(PLC, 100, 5.0) FINS_IO_READ_B6")
 	field(SCAN, "1 second")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:STATUS")
 }
 
 record(bi, "$(P)$(Q)HEARTBEAT")
@@ -36,6 +38,8 @@ record(bi, "$(P)$(Q)HEARTBEAT")
     field(ONAM, "1")
 	field(INP,  "@asyn(PLC, 0, 5.0) FINS_WR_READ_B0")
 	field(SCAN, "1 second")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:HEARTBEAT")
 }
 
 record(bo, "$(P)$(Q)MOVE:SP")
@@ -44,6 +48,8 @@ record(bo, "$(P)$(Q)MOVE:SP")
     field(ZNAM, "LOWER")
     field(ONAM, "RAISE")
 	field(OUT,  "@asyn(PLC, 0, 5.0) FINS_WR_WRITE_B1")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:MOVE")
 }
 
 record(bi, "$(P)$(Q)MOVE:SP:RBV")
@@ -53,8 +59,38 @@ record(bi, "$(P)$(Q)MOVE:SP:RBV")
     field(ONAM, "RAISE")
 	field(INP,  "@asyn(PLC, 0, 5.0) FINS_WR_READ_B1")
 	field(SCAN, "1 second")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:MOVE")
 }
 alias("$(P)$(Q)MOVE:SP:RBV", "$(P)$(Q)MOVE")
+
+### SIMULATION RECORDS ###
+
+record(bo, "$(P)$(Q)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bi, "$(P)$(Q)SIM:MOVE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(P)$(Q)SIM:HEARTBEAT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(P)$(Q)SIM:STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
 
 ## R78 test PVs
 

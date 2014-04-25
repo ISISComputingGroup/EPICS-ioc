@@ -7,6 +7,8 @@ record(ai, "$(P)$(Q)$(NAME):RAW")
     field(HOPR, "6000")
     field(LOPR, "0")
     field(FLNK, "$(P)$(Q)$(NAME)")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(NAME):RAW")
 }
 
 record(calc, "$(P)$(Q)$(NAME)")
@@ -16,4 +18,12 @@ record(calc, "$(P)$(Q)$(NAME)")
     field(HOPR, "100")
     field(LOPR, "0")
     field(CALC, "A * 100 / 6000")
+}
+
+### SIMULATION RECORDS ###
+
+record(ai, "$(P)$(Q)SIM:$(NAME):RAW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
 }
