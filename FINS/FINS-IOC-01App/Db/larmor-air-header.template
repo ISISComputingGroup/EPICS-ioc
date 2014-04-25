@@ -26,7 +26,7 @@ record(bi, "$(P)$(Q)STATUS")
     field(ZNAM, "LOWERED")
     field(ONAM, "RAISED")
 	field(INP,  "@asyn(PLC, 100, 5.0) FINS_IO_READ_B6")
-	field(SCAN, "5 second")
+	field(SCAN, "1 second")
 }
 
 record(bi, "$(P)$(Q)HEARTBEAT")
@@ -35,7 +35,7 @@ record(bi, "$(P)$(Q)HEARTBEAT")
     field(ZNAM, "0")
     field(ONAM, "1")
 	field(INP,  "@asyn(PLC, 0, 5.0) FINS_WR_READ_B0")
-	field(SCAN, "5 second")
+	field(SCAN, "1 second")
 }
 
 record(bo, "$(P)$(Q)MOVE:SP")
@@ -52,7 +52,7 @@ record(bi, "$(P)$(Q)MOVE:SP:RBV")
     field(ZNAM, "LOWER")
     field(ONAM, "RAISE")
 	field(INP,  "@asyn(PLC, 0, 5.0) FINS_WR_READ_B1")
-	field(SCAN, "5 second")
+	field(SCAN, "1 second")
 }
 alias("$(P)$(Q)MOVE:SP:RBV", "$(P)$(Q)MOVE")
 
