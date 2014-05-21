@@ -15,7 +15,8 @@ INSTETC_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 ## configure IOC
-instetcConfigure("instetc",  "${ICPVARDIR}/logs/conserver/consoles.log", 10, 3.0)
+instetcConfigure("consoleslog", "${ICPVARDIR}/logs/conserver/consoles-%Y%m%d.log", 100, 3.0)
+instetcConfigure("daelog", "${ICPVARDIR}/logs/ioc/ISISDAE_01-%Y%m%d.log", 100, 3.0)
 
 ## Load record instances
 
