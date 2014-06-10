@@ -37,7 +37,7 @@
 pattern { Q, DESC, UNITS, OUT }
     { "PARS:SAMPLE:WIDTH", "Sample Width", "mm", "DAE:SAMPLEPAR:SP" }
     { "PARS:SAMPLE:HEIGHT", "Sample Height", "mm", "DAE:SAMPLEPAR:SP" }
-    { "PARS:SAMPLE:THICK", "Sample Thickness", "m", "DAE:BEAMLINEPAR:SP" }
+    { "PARS:SAMPLE:THICK", "Sample Thickness", "mm", "DAE:SAMPLEPAR:SP" }
     { "PARS:SAMPLE:PHI", "Sample Phi Angle", "", "DAE:SAMPLEPAR:SP" }
     { "PARS:SAMPLE:AOI", "Angle of Incidence", "", "DAE:SAMPLEPAR:SP" }
     { "PARS:BL:L1", "Primary Flight Path (L1)", "m", "DAE:BEAMLINEPAR:SP" }
