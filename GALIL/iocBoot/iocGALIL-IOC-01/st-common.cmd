@@ -33,6 +33,9 @@ stringtest("IFDMC07", "$(GALILADDR07=)")
 # configure jaws
 < jaws.cmd
 
+# configure axes
+< axes.cmd
+
 # motion set points
 < motionsetpoints.cmd
 
