@@ -28,6 +28,7 @@ dbLoadRecords("db/INSTETC.db","P=$(MYPVPREFIX),IOC=$(IOCNAME)")
 dbLoadRecords("db/svn-revision.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/inst_string_parameters.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/inst_real_parameters.db","P=$(MYPVPREFIX)")
+dbLoadRecords("db/runcontrol.db","P=$(MYPVPREFIX)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
