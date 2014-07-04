@@ -45,6 +45,7 @@ ZLIB=$(SUPPORT)/zlib/1-2-8
 ASYN=		$(SUPPORT)/asyn/4-22
 ONCRPC =    $(SUPPORT)/oncrpc/2
 STREAMDEVICE=	$(SUPPORT)/StreamDevice
+PCRE = $(SUPPORT)/pcre
 LAKESHORE336=	$(SUPPORT)/lakeshore/lakeshore336
 IP=$(SUPPORT)/ip/2-13
 STD=$(SUPPORT)/std/R3_1
