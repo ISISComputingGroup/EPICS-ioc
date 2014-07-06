@@ -37,6 +37,7 @@ $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += sscanSupport.dbd 
 $(APPNAME)_DBD += motionSetPoints.dbd 
 $(APPNAME)_DBD += stdSupport.dbd 
+$(APPNAME)_DBD += asubFunctions.dbd 
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -56,6 +57,7 @@ $(APPNAME)_LIBS += motionSetPoints
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += busy asyn
 $(APPNAME)_LIBS += std
+$(APPNAME)_LIBS += asubFunctions
 
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
