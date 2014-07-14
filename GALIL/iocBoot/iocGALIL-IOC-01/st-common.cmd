@@ -27,6 +27,8 @@ stringtest("IFDMC05", "$(GALILADDR05=)")
 stringtest("IFDMC06", "$(GALILADDR06=)")
 stringtest("IFDMC07", "$(GALILADDR07=)")
 
+epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
+
 # configure galil and motors
 < galil.cmd
 
