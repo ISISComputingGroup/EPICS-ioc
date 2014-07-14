@@ -22,7 +22,7 @@ record(aSub, "$(P)CS:RC:_OUT:DO")
 	field(FTB, "CHAR")
 	field(NOB, "256")
 	field(INPC, "$(P)CS:RC:_OUT.NELM") # NORD not set by CA
-	field(FTC, "LONG")
+	field(FTC, "ULONG")
 	field(FLNK, "$(P)CS:RC:_OUT:CNT.PROC")
 	
 }
@@ -44,7 +44,7 @@ record(aSub, "$(P)CS:RC:_IN:DO")
 	field(FTB, "CHAR")
 	field(NOB, "256")
 	field(INPC, "$(P)CS:RC:_IN.NELM") # NORD not set by CA
-	field(FTC, "LONG")
+	field(FTC, "ULONG")
 	field(FLNK, "$(P)CS:RC:_OUT:CNT.PROC")
 }
 
@@ -54,7 +54,7 @@ record(aSub, "$(P)CS:RC:_OUT:CNT")
 	field(INPA, "$(P)CS:RC:_SETNAME")
 	field(FTA, "STRING")
 	field(OUTA, "$(P)CS:RC:OUT:CNT PP")
-	field(FTVA, "LONG")
+	field(FTVA, "ULONG")
 	field(FLNK, "$(P)CS:RC:_CALC.PROC")
 } 
 
@@ -102,7 +102,7 @@ record(aSub, "$(P)CS:RC:_OUT:LIST")
 	field(OUTA, "$(P)CS:RC:OUT:LIST PP")
 	field(FTVA, "CHAR")
 	field(NOVA, "4096")
-	field(FTVB, "LONG")
+	field(FTVB, "ULONG")
 } 
 
 record(waveform, "$(P)CS:RC:OUT:LIST")
