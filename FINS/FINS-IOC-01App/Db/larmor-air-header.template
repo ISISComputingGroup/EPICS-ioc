@@ -28,6 +28,7 @@ record(bi, "$(P)$(Q)STATUS")
 	field(SCAN, "1 second")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:STATUS")
+	info(archive, "VAL")
 }
 
 record(longin, "$(P)$(Q)HEARTBEAT")
@@ -47,6 +48,7 @@ record(bo, "$(P)$(Q)MOVE:SP")
 	field(OUT,  "@asyn(PLC, 0, 5.0) FINS_WR_WRITE_B2")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:MOVE")
+	info(archive, "VAL")
 }
 
 record(bi, "$(P)$(Q)MOVE:SP:RBV")
@@ -58,6 +60,7 @@ record(bi, "$(P)$(Q)MOVE:SP:RBV")
 	field(SCAN, "1 second")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:MOVE")
+	info(archive, "VAL")
 }
 alias("$(P)$(Q)MOVE:SP:RBV", "$(P)$(Q)MOVE")
 

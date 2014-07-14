@@ -18,6 +18,7 @@ record(calc, "$(P)$(Q)$(NAME)")
     field(HOPR, "25")
     field(LOPR, "0")
     field(CALC, "A * 25 / 6000")
+	info(archive, "VAL")
 }
 
 ### SIMULATION RECORDS ###
