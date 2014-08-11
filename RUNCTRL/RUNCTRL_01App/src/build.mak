@@ -27,6 +27,7 @@ $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += asubFunctions.dbd
+$(APPNAME)_DBD += std.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
