@@ -22,6 +22,8 @@ RUNCTRL_01_registerRecordDeviceDriver pdbbase
 ## Load our record instances
 #dbLoadRecords("db/xxx.db","user=faa59Host")
 
+< ${ICPCONFIGROOT}/rc_settings.cmd
+
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
