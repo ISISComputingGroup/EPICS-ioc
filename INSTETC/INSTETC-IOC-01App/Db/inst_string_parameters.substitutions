@@ -34,11 +34,11 @@
 #10,Sample Detector Distance,Real,m,sdd
 #11,Journal Blocks,String,,jblocks
 
-pattern { Q, DESC, UNITS, OUT }
-    { "PARS:SAMPLE:NAME", "Sample Name", "", "DAE:SAMPLEPAR:SP" }
-    { "PARS:SAMPLE:TYPE", "Sample Type", "", "DAE:SAMPLEPAR:SP" }
-    { "PARS:SAMPLE:GEOMETRY", "Sample Geometry", "", "DAE:SAMPLEPAR:SP" }
-    { "PARS:SCRIPT:NAME", "Script Name", "", "DAE:SAMPLEPAR:SP" }
-    { "PARS:BL:BEAMSTOP:POS", "Beamstop Position", "", "DAE:SAMPLEPAR:SP" }
-    { "PARS:BL:JOURNAL:BLOCKS", "Journal Blocks", "", "DAE:SAMPLEPAR:SP" }
+pattern { P, Q, DESC, UNITS, OUT }
+    { "\$(P)", "PARS:SAMPLE:NAME", "Sample Name", "", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:SAMPLE:TYPE", "Sample Type", "", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:SAMPLE:GEOMETRY", "Sample Geometry", "", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:SCRIPT:NAME", "Script Name", "", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:BL:BEAMSTOP:POS", "Beamstop Position", "", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:BL:JOURNAL:BLOCKS", "Journal Blocks", "", "DAE:SAMPLEPAR:SP" }
     
