@@ -10,10 +10,10 @@ record(waveform, "$(P)$(Q):SP")
 }
 alias("$(P)$(Q):SP", "$(P)$(Q)")
 
-# $(DESC) must match the parameter name as used within the ISISICP
-# NELM above and NOD below must match
-# NOVA below must match with output DAE waveform (see substitutions)
-
+## Send value to ICP.
+## $(DESC) must match the parameter name as used within the ISISICP
+## NELM above and NOD below must match
+## NOVA below must match with output DAE waveform (see substitutions)
 record(aSub, "$(P)$(Q):SEND")
 {
     field(DESC, "Send $(DESC) to ICP")  

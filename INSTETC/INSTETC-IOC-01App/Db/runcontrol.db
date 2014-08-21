@@ -1,5 +1,5 @@
 
-# this is set externally by RunControl
+## this is set externally by RunControl
 record(waveform, "$(P)CS:RC:_OUT")
 {
 	field(NELM, "256")
@@ -7,7 +7,7 @@ record(waveform, "$(P)CS:RC:_OUT")
 	field(FLNK, "$(P)CS:RC:_OUT:DO.PROC")
 }	
 
-# name of set, stored in a PV as need to used as INLINK 
+## name of set, stored in a PV as need to used as INLINK 
 record(stringin, "$(P)CS:RC:_SETNAME")
 {
 	field(VAL, "RC")
@@ -27,7 +27,7 @@ record(aSub, "$(P)CS:RC:_OUT:DO")
 	
 }
 
-# this is set externally by RunControl
+## this is set externally by RunControl
 record(waveform, "$(P)CS:RC:_IN")
 {
 	field(NELM, "256")

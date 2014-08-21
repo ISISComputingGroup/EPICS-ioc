@@ -9,7 +9,8 @@ record(ao, "$(P)$(Q):SP")
 }
 alias("$(P)$(Q):SP", "$(P)$(Q)")
 
-# aSub records must read from links, hence need to create a record to store data type string for above ao record
+# aSub records must read from links, hence need to create a record 
+# to store data type string for above ao record
 record(stringout, "$(P)$(Q):TYPE")
 {
    field(DESC, "$(DESC) data type")  
@@ -17,9 +18,9 @@ record(stringout, "$(P)$(Q):TYPE")
    field(VAL, "DOUBLE")
 }
 
-# $(DESC) must match the parameter name as used within the ISISICP
-# NOVA below must match with output DAE waveform size (see substitutions)
-
+## Send parameter to ICP.
+## $(DESC) must match the parameter name as used within the ISISICP
+## NOVA below must match with output DAE waveform size (see substitutions)
 record(aSub, "$(P)$(Q):SEND")
 {
     field(DESC, "Send $(DESC) to ICP")  

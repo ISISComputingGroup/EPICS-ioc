@@ -1,3 +1,5 @@
+
+## Stop all motion
 record (longin, "$(P)CS:MOT:STOP:ALL") 
 {
 	field(DESC, "Stop motions if changes and non-zero")
@@ -6,6 +8,7 @@ record (longin, "$(P)CS:MOT:STOP:ALL")
 	field(VAL, 0)
 }
 
+## Count of moving motors
 record(calc, "$(P)CS:MOT:MOVING") 
 {
 	field(DESC, "IOC motors with motion to complete")
@@ -15,6 +18,7 @@ record(calc, "$(P)CS:MOT:MOVING")
 	field(CALC, "B+A; B:=B+A")
 }
 
+## Set externally if something starts to move
 record(longin, "$(P)CS:MOT:MOVING:SP") 
 {
 	field(DESC, "Set if something starts or stops")
