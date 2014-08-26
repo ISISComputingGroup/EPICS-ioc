@@ -1,6 +1,5 @@
 TOP = ../extensions
 include $(TOP)/configure/CONFIG
-ACTIONS += uninstall
 
 ## by default we build all IOCs, but we can remove some here if needed
 
@@ -33,4 +32,4 @@ endif
 
 DIRS := $(DIRS) $(filter-out $(DIRS_NOTBUILD), $(wildcard *))
 
-include $(TOP)/configure/RULES_DIRS
+include $(TOP)/configure/RULES_DIRS_INT
