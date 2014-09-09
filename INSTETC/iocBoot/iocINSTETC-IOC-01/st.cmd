@@ -1,8 +1,7 @@
 #!../../bin/windows-x64-debug/INSTETC-IOC-01
 
-## @file st.cmd
-## You may have to change INSTETC-IOC-01 to something else
-## everywhere it appears in this file
+## @file 
+## Configure INSTETC
 
 < envPaths
 
