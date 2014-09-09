@@ -26,13 +26,13 @@
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = INSTETC
+PROJECT_NAME           = HVCAEN
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "INSTETC IOC"
+PROJECT_BRIEF          = "HVCAEN IOC"
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) path
 # into which the generated documentation will be written. If a relative path is
@@ -63,9 +63,9 @@ OUTPUT_DIRECTORY       = doc
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = . \
-                         INSTETC-IOC-01App/src \
-                         INSTETC-IOC-01App/Db \
-                         iocBoot/iocINSTETC-IOC-01 \
+                         HVCAEN-IOC-01App/src \
+                         HVCAEN-IOC-01App/Db \
+                         iocBoot/iocHVCAEN-IOC-01 \
 						 db
 					
 # The EXAMPLE_PATH tag can be used to specify one or more files or directories
@@ -74,8 +74,8 @@ INPUT                  = . \
 
 #EXAMPLE_PATH           = . \
 #                         doc \
-#                         iocBoot/iocINSTETC-IOC-01 \
-#                         INSTETC-IOC-01App/src 
+#                         iocBoot/iocHVCAEN-IOC-01 \
+#                         HVCAEN-IOC-01App/src 
 
 #---------------------------------------------------------------------------
 # Configuration options related to source browsing
@@ -150,7 +150,7 @@ TAGFILES               =
 # tag file that is based on the input files it reads. See section "Linking to
 # external documentation" for more information about the usage of tag files.
 
-GENERATE_TAGFILE       = INSTETC_IOC.tags
+GENERATE_TAGFILE       = HVCAEN_IOC.tags
 
 #---------------------------------------------------------------------------
 # Configuration options related to the dot tool

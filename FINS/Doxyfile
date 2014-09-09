@@ -26,13 +26,13 @@
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = INSTETC
+PROJECT_NAME           = FINS
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "INSTETC IOC"
+PROJECT_BRIEF          = "FINS IOC"
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) path
 # into which the generated documentation will be written. If a relative path is
@@ -63,9 +63,9 @@ OUTPUT_DIRECTORY       = doc
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = . \
-                         INSTETC-IOC-01App/src \
-                         INSTETC-IOC-01App/Db \
-                         iocBoot/iocINSTETC-IOC-01 \
+                         FINS-IOC-01App/src \
+                         FINS-IOC-01App/Db \
+                         iocBoot/iocFINS-IOC-01 \
 						 db
 					
 # The EXAMPLE_PATH tag can be used to specify one or more files or directories
@@ -150,7 +150,7 @@ TAGFILES               =
 # tag file that is based on the input files it reads. See section "Linking to
 # external documentation" for more information about the usage of tag files.
 
-GENERATE_TAGFILE       = INSTETC_IOC.tags
+GENERATE_TAGFILE       = FINS_IOC.tags
 
 #---------------------------------------------------------------------------
 # Configuration options related to the dot tool
