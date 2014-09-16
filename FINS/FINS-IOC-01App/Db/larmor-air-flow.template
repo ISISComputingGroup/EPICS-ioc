@@ -14,7 +14,7 @@ record(ai, "$(P)$(Q)$(NAME):RAW")
 record(calc, "$(P)$(Q)$(NAME)")
 {
 	field(INPA, "$(P)$(Q)$(NAME):RAW")
-    field(EGU, "L/min")
+    field(EGU, "L/minute")
     field(HOPR, "25")
     field(LOPR, "0")
     field(CALC, "A * 25 / 6000")
