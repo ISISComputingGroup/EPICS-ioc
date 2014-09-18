@@ -1,0 +1,14 @@
+# These entries are creared by PSCTRL for every IOC it manages (see procServControl.template in support)
+# for symmetry, we create then for PSCTRL itself
+
+record(stringin, "$(P)CS:PS:PSCTRL_01:IOCNAME") {
+  field(DESC, "IOC Name")
+  field(VAL, "PSCTRL_01")
+  info(autosaveFields, "VAL")
+}
+
+record(stringin, "$(P)CS:PS:PSCTRL_01:IOCDESC") {
+  field(DESC, "IOC Description")
+  field(VAL, "ProcServ control IOC")
+  info(autosaveFields, "VAL")
+}
