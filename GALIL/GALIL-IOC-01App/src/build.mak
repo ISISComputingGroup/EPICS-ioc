@@ -32,7 +32,7 @@ $(APPNAME)_DBD += motorSimSupport.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += busySupport.dbd
-$(APPNAME)_DBD += devGalil.dbd
+$(APPNAME)_DBD += GalilSupport.dbd
 $(APPNAME)_DBD += calcSupport.dbd 
 $(APPNAME)_DBD += sscanSupport.dbd 
 $(APPNAME)_DBD += motionSetPoints.dbd 
@@ -50,7 +50,7 @@ $(APPNAME)_LIBS += icpconfig
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
-$(APPNAME)_LIBS += galil calc sscan dmclnx
+$(APPNAME)_LIBS += GalilSupport calc sscan
 $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += motionSetPoints

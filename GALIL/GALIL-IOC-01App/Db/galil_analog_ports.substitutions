@@ -1,16 +1,5 @@
 # Description:
-# adc substitution file. 
-#
-# Copyright (c) 2006  Australian Synchrotron
-# NAME - Sector or Ioc name eg. SR12ID01 or SR12ID01IOC01
-# FIELDDEV - Name of field device eg. MPS01, ADC01
-# ISIGNAL_DESC - Description of input signal
-# OSIGNAL_DESC - Description of output signal
-# SCAN - Scan period, only for input records
-# CARD - Device number
-# SIGNAL - The analog port number
-# IDESC - analog input port description for user
-# ODESC - analog output port description for user
+# adc/dac substitution file. 
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -27,21 +16,60 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Contact details:
-# mark.clift@synchrotron.vic.gov.au
+# mark.clift@synchrotron.org.au
 # 800 Blackburn Road, Clayton, Victoria 3168, Australia.
 #
+# P    - PV prefix
+# R    - Record Name
+# PORT - Asyn port name
+# ADDR - Hardware port to read
+# PREC - Precision
 
-file "$(GALIL)/db/galil_analog.template"
+file "$(GALIL)/GalilSup/Db/galil_analog_in.template"
 { 
-   pattern { NAME,        FIELDDEV,   ISIGNAL,   OSIGNAL,  SCAN,           CARD, SIGNAL, IDESC, ODESC,	PREC	}
-       { "$(PP)",  "DMC$(CCP):RIO01:",   "AI0",     "AO0",    "1 second",     "$(CC)",  "0",    "AI0", "AO0",	"2"	}
-	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI1",     "AO1",    "1 second",     "$(CC)",  "1",    "AI1", "AO1",	"2"	}
-	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI2",     "AO2",    "1 second",     "$(CC)",  "2",    "AI2", "AO2",	"2"	}
-	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI3",     "AO3",    "1 second",     "$(CC)",  "3",    "AI3", "AO3",	"2"	}
-	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI4",     "AO4",    "1 second",     "$(CC)",  "4",    "AI4", "AO4",	"2"	}
-	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI5",     "AO5",    "1 second",     "$(CC)",  "5",    "AI5", "AO5",	"2"	}
-	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI6",     "AO6",    "1 second",     "$(CC)",  "6",    "AI6", "AO6",	"2"	}
-	   { "$(PP)",  "DMC$(CCP):RIO01:",   "AI7",     "AO7",    "1 second",     "$(CC)",  "7",    "AI7", "AO7",	"2"	}
+   pattern { P,           R,          PORT,    ADDR,  PREC }
+
+	   { "DMC01",    "GalilAi0",  "Galil", "0",   "3"  }
+	   { "DMC01",    "GalilAi1",  "Galil", "1",   "3"  }
+	   { "DMC01",    "GalilAi2",  "Galil", "2",   "3"  }
+	   { "DMC01",    "GalilAi3",  "Galil", "3",   "3"  }
+	   { "DMC01",    "GalilAi4",  "Galil", "4",   "3"  }
+	   { "DMC01",    "GalilAi5",  "Galil", "5",   "3"  }
+	   { "DMC01",    "GalilAi6",  "Galil", "6",   "3"  }
+	   { "DMC01",    "GalilAi7",  "Galil", "7",   "3"  }
+
+           { "RIO01",    "GalilAi0",  "RIO",   "0",   "3"  }
+	   { "RIO01",    "GalilAi1",  "RIO",   "1",   "3"  }
+	   { "RIO01",    "GalilAi2",  "RIO",   "2",   "3"  }
+	   { "RIO01",    "GalilAi3",  "RIO",   "3",   "3"  }
+	   { "RIO01",    "GalilAi4",  "RIO",   "4",   "3"  }
+	   { "RIO01",    "GalilAi5",  "RIO",   "5",   "3"  }
+	   { "RIO01",    "GalilAi6",  "RIO",   "6",   "3"  }
+	   { "RIO01",    "GalilAi7",  "RIO",   "7",   "3"  }
+}
+
+file "$(GALIL)/GalilSup/Db/galil_analog_out.template"
+{ 
+   pattern { P,          R,           PORT,    ADDR,  PREC,  LOPR,  HOPR }
+
+           { "DMC01",    "GalilAo0",  "Galil", "0",   "3",   "-10", "10" }
+	   { "DMC01",    "GalilAo1",  "Galil", "1",   "3",   "-10", "10" }
+	   { "DMC01",    "GalilAo2",  "Galil", "2",   "3",   "-10", "10" }
+	   { "DMC01",    "GalilAo3",  "Galil", "3",   "3",   "-10", "10" }
+	   { "DMC01",    "GalilAo4",  "Galil", "4",   "3",   "-10", "10" }
+	   { "DMC01",    "GalilAo5",  "Galil", "5",   "3",   "-10", "10" }
+	   { "DMC01",    "GalilAo6",  "Galil", "6",   "3",   "-10", "10" }
+	   { "DMC01",    "GalilAo7",  "Galil", "7",   "3",   "-10", "10" }
+
+           { "RIO01",    "GalilAo0",  "RIO",   "0",   "3",   "-10", "10" }
+	   { "RIO01",    "GalilAo1",  "RIO",   "1",   "3",   "-10", "10" }
+	   { "RIO01",    "GalilAo2",  "RIO",   "2",   "3",   "-10", "10" }
+	   { "RIO01",    "GalilAo3",  "RIO",   "3",   "3",   "-10", "10" }
+	   { "RIO01",    "GalilAo4",  "RIO",   "4",   "3",   "-10", "10" }
+	   { "RIO01",    "GalilAo5",  "RIO",   "5",   "3",   "-10", "10" }
+	   { "RIO01",    "GalilAo6",  "RIO",   "6",   "3",   "-10", "10" }
+	   { "RIO01",    "GalilAo7",  "RIO",   "7",   "3",   "-10", "10" }
 }
 
 # end
+

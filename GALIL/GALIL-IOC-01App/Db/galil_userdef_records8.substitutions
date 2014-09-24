@@ -41,21 +41,21 @@
 file "$(GALIL)/db/galil_userdef_records8.template"
 {
 pattern
-{ P,               EN,            GS, DRVCMD, SCAN,        DRVL, DRVH, LOW,  HIGH, LSV,     HSV,     ZNAM,      ONAM,  ZSV,        OSV,        C, DEFAULT, EGU,  PINI}
-{"$(PP)", "MTR$(CCP)",     "K1",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP)", "MTR$(CCP)",     "K2",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP)", "MTR$(CCP)",     "K3",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP)", "MTR$(CCP)",     "IL",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP)", "MTR$(CCP)",     "FV",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP)", "MTR$(CCP)",     "FC",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP)", "MTR$(CCP)",     "FA",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP)", "MTR$(CCP)",     "FN",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP)", "MTR$(CCP)",     "ZP",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP)", "MTR$(CCP)",     "ZN",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP)", "MTR$(CCP)",     "TL",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP)", "MTR$(CCP)",     "CP",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP)", "MTR$(CCP)",     "CT",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
-{"$(PP)", "MTR$(CCP)",     "AF",  "VAR"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{ P,               EN,            GS, DRVCMD, PORT, SCAN,        DRVL, DRVH, LOW,  HIGH, LSV,     HSV,     ZNAM,      ONAM,  ZSV,        OSV,        C, DEFAULT, EGU,  PINI}
+{"\$(P)", "MTR\$(CCP)",     "K1",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{"\$(P)", "MTR\$(CCP)",     "K2",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{"\$(P)", "MTR\$(CCP)",     "K3",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{"\$(P)", "MTR\$(CCP)",     "IL",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{"\$(P)", "MTR\$(CCP)",     "FV",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{"\$(P)", "MTR\$(CCP)",     "FC",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{"\$(P)", "MTR\$(CCP)",     "FA",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{"\$(P)", "MTR\$(CCP)",     "FN",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{"\$(P)", "MTR\$(CCP)",     "ZP",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{"\$(P)", "MTR\$(CCP)",     "ZN",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{"\$(P)", "MTR\$(CCP)",     "TL",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{"\$(P)", "MTR\$(CCP)",     "CP",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{"\$(P)", "MTR\$(CCP)",     "CT",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
+{"\$(P)", "MTR\$(CCP)",     "AF",  "VAR", "Galil"   "10 second", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "ms", "NO"}
 }
 
 # end

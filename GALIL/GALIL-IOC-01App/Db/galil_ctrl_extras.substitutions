@@ -5,8 +5,6 @@
 #
 # Description
 # Substitution file for readback/commands that are in addition to features provided by motorRecord
-# 
-# Copyright (c) 2006  Australian Synchrotron 
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -23,19 +21,24 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
 # 
 # Contact details:
-# mark.clift@synchrotron.vic.gov.au
+# mark.clift@synchrotron.org.au
 # 800 Blackburn Road, Clayton, Victoria 3168, Australia.
 #
 
-#DEFAULT_LIMITTYPE = 0 Normally open, 1 Normally closed
-#DEFAULT_HOMETYPE = 0 Normally open, 1 Normally closed
+# P    - PV prefix
+# PORT - Asyn port name
+# SCAN - Scan period for monitor records
+# DEFAULT_LIMITTYPE = 0 Normally open, 1 Normally closed
+# DEFAULT_HOMETYPE = 0 Normally open, 1 Normally closed
+# PREC - precision
 
-file "$(GALIL)/db/galil_ctrl_extras.template"
+file "$(GALIL)/GalilSup/Db/galil_ctrl_extras.template"
 {
 pattern
-{   P,		  C, SCAN, 	  DEFAULT_HOMETYPE, DEFAULT_LIMITTYPE}
- {  "$(PP):DMC$(CCP)", $(CC), "1 second",  0,                0 }
+{   P,	     PORT,    SCAN, 	    DEFAULT_HOMETYPE, DEFAULT_LIMITTYPE, PREC}
+ {  "\$(P):DMC\$(CCP)", "Galil", ".1 second",  0,                0,                 5 }
 }
 
 
 # end
+

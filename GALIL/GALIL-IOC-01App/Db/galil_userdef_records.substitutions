@@ -6,8 +6,6 @@
 # Description
 # Substitution file for user defined commands and monitors
 #
-# Copyright (c) 2006  Australian Synchrotron 
-#
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
 # Licence as published by the Free Software Foundation; either
@@ -23,7 +21,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
 # 
 # Contact details:
-# mark.clift@synchrotron.vic.gov.au
+# mark.clift@synchrotron.org.au
 # 800 Blackburn Road, Clayton, Victoria 3168, Australia.
 
 # P:EPICSName_MONITOR
@@ -42,7 +40,7 @@ file "$(GALIL)/db/galil_userdef_records.template"
 {
 pattern
 { P,               EPICSName,            GalilStr, DRVCMD, SCAN,        DRVL, DRVH, LOW,  HIGH, LSV,     HSV,     ZNAM,      ONAM,  ZSV,        OSV,        C, DEFAULT, EGU,  PINI}
-#{"$(PP)", "EXPOSURE_TIME",      "expsT",  "VAR"   ".1 second", 1,    1000, 1,    1000, "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "10",    "ms", "YES"}
+#{"SR08ID01WFS01", "EXPOSURE_TIME",      "expsT",  "VAR"   ".1 second", 1,    1000, 1,    1000, "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", 0, "10",    "ms", "YES"}
 }
 
 # end

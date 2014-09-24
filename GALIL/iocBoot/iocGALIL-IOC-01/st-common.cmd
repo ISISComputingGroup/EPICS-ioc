@@ -12,7 +12,7 @@
 
 ### autosave
 # specify additional directories in which to to search for included request files
-set_requestfile_path("${GALIL}/db/", "")
+set_requestfile_path("${GALIL}/GalilSup/Db", "")
 set_requestfile_path("${MOTOR}/motorApp/Db", "")
 
 # how many galil crates we have
@@ -40,10 +40,6 @@ epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 
 # motion set points
 < motionsetpoints.cmd
-
-# set Galil driver debug level (output only printed if code compiled with DEBUG support)
-var devG21X3Debug 0
-#var devG21X3Debug 1
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):, PVPREFIX=$(MYPVPREFIX)")
