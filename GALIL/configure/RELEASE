@@ -45,7 +45,7 @@ ZLIB=$(SUPPORT)/zlib/1-2-8
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions
 
 ## add other modules here ##
-MOTOR=$(SUPPORT)/motor/6-7-1
+MOTOR=$(SUPPORT)/motor/R6-8-1
 ASYN=$(SUPPORT)/asyn/4-22
 ONCRPC=$(SUPPORT)/oncrpc/2
 BUSY=$(SUPPORT)/busy/1-4
