@@ -29,6 +29,7 @@ $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += motorSupport.dbd
 $(APPNAME)_DBD += motorSimSupport.dbd
+$(APPNAME)_DBD += devSoftMotor.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += busySupport.dbd
@@ -52,6 +53,7 @@ $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
 $(APPNAME)_LIBS += GalilSupport calc sscan
 $(APPNAME)_LIBS += motorSimSupport
+$(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += motionSetPoints
 $(APPNAME)_LIBS += asubFunctions
