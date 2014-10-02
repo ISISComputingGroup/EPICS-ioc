@@ -48,6 +48,11 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):, PVPREFIX=$
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
+## trace mask: 0x1=trace_error,0x2=traceio_device,0x4=traceio_filter, 0x8=traceio_driver, 0x10=trace_flow, 0x20=trace_warning  
+#asynSetTraceMask("Galil",-1,0x39)
+#asynSetTraceFile("Galil",-1,"galil.trace")
+#asynSetTraceIOMask("Galil",-1,0x2)
+
 iocInit()
 
 ## motor util package
