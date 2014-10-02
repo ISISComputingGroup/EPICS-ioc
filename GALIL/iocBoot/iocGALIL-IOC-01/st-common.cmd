@@ -29,6 +29,9 @@ stringtest("IFDMC07", "$(GALILADDR07=)")
 
 epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 
+## uncomment to see every command sent to galil
+#epicsEnvSet("GALIL_DEBUG_FILE", "galil_debug.txt")
+
 # configure galil and motors
 < galil.cmd
 
@@ -52,6 +55,7 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):, PVPREFIX=$
 #asynSetTraceMask("Galil",-1,0x39)
 #asynSetTraceFile("Galil",-1,"galil.trace")
 #asynSetTraceIOMask("Galil",-1,0x2)
+
 
 iocInit()
 
