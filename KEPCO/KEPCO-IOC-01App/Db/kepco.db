@@ -1,0 +1,248 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(stringin, "$(P)IDN")
+{
+    field(DESC, "SCPI identification string")
+    field(DTYP, "stream")
+    field(INP,  "@kepco.proto getIDN $(PORT)")
+    field(PINI, "YES")
+    field(FLNK, "$(P)REMOTE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:IDN")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(stringin, "$(P)RST")
+{
+    field(DESC, "SCPI identification string")
+    field(DTYP, "stream")
+    field(INP,  "@kepco.proto RST $(PORT)")
+    field(PINI, "$(RESET=NO)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RST")
+    field(SDIS, "$(P)DISABLE")
+} 
+
+record(bo, "$(P)REMOTE") 
+{
+    #Must be put into remote before PSU related commands sent
+    field(DESC, "Put the unit into remote mode")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@kepco.proto setRemote $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(VAL, "1")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:REMOTE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)CURRENT") 
+{
+    field(DESC, "Current")
+    info(INTEREST, "HIGH")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@kepco.proto readActualCurrent $(PORT)")
+    field(PREC, "3")
+    field(EGU,  "A")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURRENT")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)CURRENT:SP:RBV") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@kepco.proto readSetpointCurrent $(PORT)")
+    field(PREC, "3")
+    field(EGU,  "A")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURRENT:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)CURRENT:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@kepco.proto writeCurrent $(PORT)")
+    field(EGU, "A")
+    #field(HOPR, "5.0")
+    #field(LOPR, "0.01")    
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURRENT:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)VOLTAGE") 
+{
+    field(DESC, "Voltage")
+    info(INTEREST, "HIGH")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@kepco.proto readActualVoltage $(PORT)")
+    field(PREC, "3")
+    field(EGU,  "A")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLTAGE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)VOLTAGE:SP:RBV") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@kepco.proto readSetpointVoltage $(PORT)")
+    field(PREC, "3")
+    field(EGU,  "A")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLTAGE:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)VOLTAGE:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@kepco.proto writeVoltage $(PORT)")
+    field(EGU, "A")
+    #field(HOPR, "5.0")
+    #field(LOPR, "0.01")    
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLTAGE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)OUTPUTMODE") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@kepco.proto readOutputMode $(PORT)")
+    field(ZNAM, "VOLTAGE")
+    field(ONAM, "CURRENT")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OUTPUTMODE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)OUTPUTMODE:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@kepco.proto setOutputMode $(PORT)")
+    field(ZNAM, "VOLTAGE")
+    field(ONAM, "CURRENT")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OUTPUTMODE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)OUTPUTMODE", "$(P)OUTPUTMODE:SP:RBV")
+
+record(bi, "$(P)OUTPUTSTATUS") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@kepco.proto readOutputStatus $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OUTPUTSTATUS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)OUTPUTSTATUS:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@kepco.proto setOutputStatus $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OUTPUTSTATUS:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)OUTPUTSTATUS", "$(P)OUTPUTSTATUS:SP:RBV")
+
+### SIMULATION RECORDS ###
+
+record(ai, "$(P)SIM:CURRENT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:CURRENT","$(P)SIM:CURRENT:SP")
+
+alias("$(P)SIM:CURRENT","$(P)SIM:CURRENT:SP:RBV")
+
+record(bo, "$(P)SIM:REMOTE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringin, "$(P)SIM:IDN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringin, "$(P)SIM:RST")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:VOLTAGE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:VOLTAGE","$(P)SIM:VOLTAGE:SP")
+
+alias("$(P)SIM:VOLTAGE","$(P)SIM:VOLTAGE:SP:RBV")
+
+record(bi, "$(P)SIM:OUTPUTMODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:OUTPUTMODE","$(P)SIM:OUTPUTMODE:SP")
+
+alias("$(P)SIM:OUTPUTMODE","$(P)SIM:OUTPUTMODE:SP:RBV")
+
+record(bi, "$(P)SIM:OUTPUTSTATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:OUTPUTSTATUS","$(P)SIM:OUTPUTSTATUS:SP")
+
+alias("$(P)SIM:OUTPUTSTATUS","$(P)SIM:OUTPUTSTATUS:SP:RBV")
+
