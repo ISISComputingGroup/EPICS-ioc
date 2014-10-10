@@ -64,6 +64,7 @@ record(ai, "$(P)COUNTS")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     field(EGU, "")
+    field(DESC, "The total number of counts")
 }
 
 record(bo, "$(P)RESET_COUNTS:SP") 
