@@ -1,0 +1,228 @@
+record(bo, "$(P)SIM")
+{
+	field(DTYP, "Soft Channel")
+	field(ZNAM, "No")
+    field(ONAM, "Yes")
+	field(FLNK, "$(P)VERSION")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(stringin, "$(P)VERSION")
+{
+    field(DTYP, "stream")
+    field(INP,  "@julaboCommon.proto getVersion $(PORT)")
+    field(PINI, "YES")
+	field(SIOL, "$(P)SIM:VERSION")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(stringin, "$(P)STATUS")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboCommon.proto getStatus $(PORT)")
+	field(SIOL, "$(P)SIM:STATUS")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Julabo status")
+}
+
+record(ai, "$(P)TEMP:SP:RBV") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboCommon.proto readSetTemp $(PORT)")
+    field(PREC, "1")
+    #field(EGU,  "C")
+	field(SIOL, "$(P)SIM:TEMP:SP:RBV")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Temperature setpoint readback")
+}
+
+record(ai, "$(P)TEMP") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboCommon.proto readInternalTemp $(PORT)")
+    field(PREC, "1")
+    #field(EGU,  "C")
+	field(SIOL, "$(P)SIM:TEMP")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Temperature readback")
+}
+
+record(ao, "$(P)TEMP:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@julaboCommon.proto writeTemp $(PORT)")
+    #field(EGU, "C")
+    field(PREC, "1")
+	field(SIOL, "$(P)SIM:TEMP:SP")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Temperature Setpoint")
+}
+
+record(bi, "$(P)MODE") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboCommon.proto readRunMode $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+	field(SIOL, "$(P)SIM:MODE")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Julabo mode")
+}
+
+record(bo, "$(P)MODE:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@julaboCommon.proto setRunMode $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+	field(SIOL, "$(P)SIM:MODE:SP")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Julabo mode setpoint")
+}
+
+record(ai, "$(P)POWER") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboVariable.proto readPower(02) $(PORT)")
+    field(PREC, "1")
+    field(EGU,  "%")
+	field(SIOL, "$(P)SIM:POWER")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Power")
+}
+
+record(ai, "$(P)EXTTEMP") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboVariable.proto readExtTemp(01) $(PORT)")
+    field(PREC, "1")
+    #field(EGU,  "C")
+	field(SIOL, "$(P)SIM:EXTTEMP PP")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "External temperature")
+}
+
+record(ai, "$(P)HIGHLIMIT") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboVariable.proto readHighLimit(01) $(PORT)")
+    field(PREC, "1")
+    #field(EGU,  "C")
+	field(SIOL, "$(P)SIM:HIGHLIMIT")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "High limit")
+}
+
+record(ai, "$(P)LOWLIMIT") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboVariable.proto readLowLimit(02) $(PORT)")
+    field(PREC, "1")
+    #field(EGU,  "C")
+	field(SVAL, "0")
+	field(SIOL, "$(P)SIM:LOWLIMIT")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Low limit")
+}
+
+### SIMULATION RECORDS ###
+
+record(stringout, "$(P)SIM:VERSION")
+{
+	field(DTYP, "Soft Channel")
+	field(VAL, "Simulated Julabo FP50_MH")
+}
+
+record(stringout, "$(P)SIM:STATUS")
+{
+	field(DTYP, "Soft Channel")
+	field(VAL, "Simulated")
+}
+
+
+record(ao, "$(P)SIM:TEMP:SP")
+{
+	field(DTYP, "Soft Channel")
+}
+
+record(calc, "$(P)SIM:TEMP")
+{
+	field(DTYP, "Soft Channel")
+	field(INPA, "$(P)SIM:TEMP:SP PP")
+	field(CALC, "A + 0.2")
+}
+
+record(bo, "$(P)SIM:MODE")
+{
+	field(DTYP, "Soft Channel")
+	field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(ao, "$(P)SIM:POWER")
+{
+	field(DTYP, "Soft Channel")
+	field(VAL, "75")
+}
+
+record(calc, "$(P)SIM:EXTTEMP")
+{
+	field(DTYP, "Soft Channel")
+	field(INPA, "$(P)SIM:TEMP PP")
+	field(CALC, "25 + A")
+}
+
+record(ao, "$(P)SIM:HIGHLIMIT")
+{
+	field(DTYP, "Soft Channel")
+	field(VAL, "1000")
+}
+
+record(ao, "$(P)SIM:LOWLIMIT")
+{
+	field(DTYP, "Soft Channel")
+	field(VAL, "0")
+}
+
+alias ("$(P)SIM:TEMP:SP","$(P)SIM:TEMP:SP:RBV")
+alias ("$(P)SIM:MODE","$(P)SIM:MODE:SP")
