@@ -34,7 +34,7 @@ $(APPNAME)_DBD += utilities.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += stream asyn
+$(APPNAME)_LIBS += stream pcre asyn
 $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump easySQLite sqlite 
