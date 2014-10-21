@@ -18,7 +18,8 @@ FINS_IOC_01_registerRecordDeviceDriver pdbbase
 #finsUDPInit("PLC", "130.246.36.139", "TCP")
 # this is R78
 #finsUDPInit("PLC", "130.246.55.167", "TCP")
-finsUDPInit("PLC", "$(PLCIP)", "TCP")
+
+finsUDPInit("PLC", "$(PLCIP=10.11.12.13)", "TCP")
 
 # ASYN_TRACE_ERROR     0x0001
 # ASYN_TRACEIO_DEVICE  0x0002
