@@ -1,0 +1,19 @@
+#
+# Read addresses
+# 
+# W103.02		Main Vacuum On
+# W103.03		PPS Key inplaace
+# W103.04		Guide Vacuum Interlock Made
+# W104			Day and hour (BCD Format)
+# W105			Minutes and Seconds (BCD Format)
+# 
+# 
+# Write address:
+# 
+# W103.00		Start Main Vacuum (self re-setting bit)
+# W103.01		Stop Main Vacuum (self re-setting bit)
+# 
+
+file "$(TOP)/FINS-IOC-01App/Db/wish-vacuum.template" {
+	{ P=\$(P), Q=\$(Q) }
+}
