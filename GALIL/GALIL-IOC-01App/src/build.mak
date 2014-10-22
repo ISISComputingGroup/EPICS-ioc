@@ -36,7 +36,8 @@ $(APPNAME)_DBD += busySupport.dbd
 $(APPNAME)_DBD += GalilSupport.dbd
 $(APPNAME)_DBD += calcSupport.dbd 
 $(APPNAME)_DBD += sscanSupport.dbd 
-$(APPNAME)_DBD += motionSetPoints.dbd 
+$(APPNAME)_DBD += motionSetPoints.dbd
+$(APPNAME)_DBD += sampleChanger.dbd 
 $(APPNAME)_DBD += stdSupport.dbd 
 $(APPNAME)_DBD += asubFunctions.dbd 
 
@@ -56,6 +57,7 @@ $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += motionSetPoints
+$(APPNAME)_LIBS += sampleChanger
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += busy asyn
 $(APPNAME)_LIBS += std

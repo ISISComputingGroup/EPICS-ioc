@@ -43,6 +43,7 @@ epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 
 # motion set points
 < motionsetpoints.cmd
+< sampleChanger.cmd
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):, PVPREFIX=$(MYPVPREFIX)")
