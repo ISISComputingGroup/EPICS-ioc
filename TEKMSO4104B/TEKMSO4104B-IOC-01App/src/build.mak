@@ -48,6 +48,7 @@ $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += stream 
 $(APPNAME)_LIBS += pcre 
 $(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += sscan
 $(APPNAME)_LIBS += asyn 
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS_WIN32 += oncrpc
