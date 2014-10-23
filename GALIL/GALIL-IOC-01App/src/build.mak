@@ -48,7 +48,7 @@ $(APPNAME)_LIBS += devIocStats
 $(APPNAME)_LIBS += pvcomplete
 $(APPNAME)_LIBS += pvdump easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
-$(APPNAME)_LIBS += icpconfig
+$(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##

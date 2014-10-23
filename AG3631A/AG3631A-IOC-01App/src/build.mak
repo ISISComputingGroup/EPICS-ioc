@@ -36,11 +36,11 @@ $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
-$(APPNAME)_LIBS += icpconfig
+$(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
-$(APPNAME)_LIBS += stream
+$(APPNAME)_LIBS += stream pcre
 $(APPNAME)_LIBS += asyn
 
 # AG3631A-IOC-01_registerRecordDeviceDriver.cpp derives from AG3631A-IOC-01.dbd
