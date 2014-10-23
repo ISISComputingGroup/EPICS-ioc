@@ -62,6 +62,7 @@ $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += busy asyn
 $(APPNAME)_LIBS += std
 $(APPNAME)_LIBS += asubFunctions
+$(APPNAME)_LIBS += TinyXML
 
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
