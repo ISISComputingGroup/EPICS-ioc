@@ -1,0 +1,143 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(stringin, "$(P)$(R)IDN")
+{
+    field(DESC, "SCPI identification string")
+    field(DTYP, "stream")
+    field(INP,  "@devagilent3631A.proto getIDN $(PORT)")
+    field(PINI, "YES")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:IDN")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)CURRENT")
+{
+    field(DTYP, "stream")
+    field(INP, "@devagilent3631A.proto read_current $(PORT)")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURRENT")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "A")
+}
+
+record(ao, "$(P)CURRENT:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT, "@devagilent3631A.proto write_current $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURRENT:SP")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "A")
+}
+
+alias("$(P)CURRENT", "$(P)CURRENT:SP:RBV")
+
+record(ai, "$(P)VOLT")
+{
+    field(DTYP, "stream")
+    field(INP, "@devagilent3631A.proto read_voltage $(PORT)")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
+}
+
+record(ao, "$(P)VOLT:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@devagilent3631A.proto write_voltage $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:SP")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
+}
+
+alias("$(P)CURRENT", "$(P)VOLT:SP:RBV")
+
+record(bi, "$(P)OUTPUT_STATUS")
+{
+    field(DTYP, "stream")
+    field(INP, "@devagilent3631A.proto read_output_status $(PORT)")
+    field(SCAN, ".1 second")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON") 
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURRENT")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
+}
+
+record(bo, "$(P)OUTPUT_STATUS:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@devagilent3631A.proto write_output_status $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON") 
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURRENT:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)OUTPUT_STATUS", "$(P)OUTPUT_STATUS:SP:RBV")
+
+### SIMULATION RECORDS ###
+
+record(bi, "$(P)SIM:OUTPUT_STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:OUTPUT_STATUS","$(P)SIM:OUTPUT_STATUS:SP")
+
+alias("$(P)SIM:OUTPUT_STATUS","$(P)SIM:OUTPUT_STATUS:SP:RBV")
+
+record(ai, "$(P)SIM:CURRENT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(EGU, "A")
+}
+
+alias("$(P)SIM:CURRENT","$(P)SIM:CURRENT:SP")
+
+alias("$(P)SIM:CURRENT","$(P)SIM:CURRENT:SP:RBV")
+
+record(ai, "$(P)SIM:VOLT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(EGU, "V")
+}
+
+alias("$(P)SIM:VOLT","$(P)SIM:VOLT:SP")
+
+alias("$(P)SIM:VOLT","$(P)SIM:VOLT:SP:RBV")
+
+record(stringin, "$(P)$(R)SIM:IDN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
