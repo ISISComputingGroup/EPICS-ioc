@@ -1,0 +1,259 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(mbbi, "$(P)UNITS")
+{
+    field(DTYP, "stream")
+    field(INP, "@agilent33220A.proto getUnits $(PORT)")
+    field(SCAN, "1 second")
+
+    field(ZRVL, 0)
+    field(ZRST, "VPP")
+    field(ONVL, 1)
+    field(ONST, "VRMS")
+    field(TWVL, 2)
+    field(TWST, "DBM") 
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UNITS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbo, "$(P)UNITS:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@agilent33220A.proto setUnits $(PORT)")
+
+    field(ZRVL, 0)
+    field(ZRST, "VPP")
+    field(ONVL, 1)
+    field(ONST, "VRMS")
+    field(TWVL, 2)
+    field(TWST, "DBM") 
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UNITS:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)UNITS", "$(P)UNITS:SP:RBV")
+
+record(mbbi, "$(P)FUNCTION")
+{
+    field(DTYP, "stream")
+    field(INP, "@agilent33220A.proto getFunction $(PORT)")
+    field(SCAN, "1 second")
+
+    field(ZRVL, 0)
+    field(ZRST, "SIN")
+    field(ONVL, 1)
+    field(ONST, "SQU")
+    field(TWVL, 2)
+    field(TWST, "RAMP")
+    field(THVL, 3)
+    field(THST, "PULS")
+    field(FRVL, 4)
+    field(FRST, "NOIS")
+    field(FVVL, 5)
+    field(FVST, "DC")
+    field(SXVL, 6)
+    field(SXST, "USER")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FUNCTION")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbo, "$(P)FUNCTION:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@agilent33220A.proto setFunction $(PORT)")
+
+    field(ZRVL, 0)
+    field(ZRST, "SIN")
+    field(ONVL, 1)
+    field(ONST, "SQU")
+    field(TWVL, 2)
+    field(TWST, "RAMP")
+    field(THVL, 3)
+    field(THST, "PULS")
+    field(FRVL, 4)
+    field(FRST, "NOIS")
+    field(FVVL, 5)
+    field(FVST, "DC")
+    field(SXVL, 6)
+    field(SXST, "USER")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FUNCTION:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)FUNCTION", "$(P)FUNCTION:SP:RBV")
+
+record(ai, "$(P)FREQUENCY")
+{
+    field(DTYP, "stream")
+    field(INP, "@agilent33220A.proto getFreq $(PORT)")
+    field(PREC, "3")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FREQUENCY")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)FREQUENCY:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@agilent33220A.proto setFreq $(PORT)")
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FREQUENCY:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)FREQUENCY", "$(P)FREQUENCY:SP:RBV")
+
+record(ai, "$(P)AMPLITUDE")
+{
+    field(DTYP, "stream")
+    field(INP, "@agilent33220A.proto getAmplitude $(PORT)")
+    field(PREC, "3")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:AMPLITUDE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)AMPLITUDE:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@agilent33220A.proto setAmplitude $(PORT)")
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:AMPLITUDE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)AMPLITUDE", "$(P)AMPLITUDE:SP:RBV")
+
+record(ai, "$(P)OFFSET")
+{
+    field(DTYP, "stream")
+    field(INP, "@agilent33220A.proto getOffset $(PORT)")
+    field(PREC, "3")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OFFSET")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)OFFSET:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@agilent33220A.proto setOffset $(PORT)")
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OFFSET:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)OFFSET", "$(P)OFFSET:SP:RBV")
+
+record(bi, "$(P)OUTPUT")
+{
+    field(DTYP, "stream")
+    field(INP, "@agilent33220A.proto getOutput $(PORT)")
+    field(SCAN, "1 second")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OUTPUT")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)OUTPUT:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@agilent33220A.proto setOutput $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OUTPUT:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)OUTPUT", "$(P)OUTPUT:SP:RBV")
+### SIMULATION RECORDS ###
+
+record(mbbi, "$(P)SIM:FUNCTION")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:FUNCTION","$(P)SIM:FUNCTION:SP")
+
+alias("$(P)SIM:FUNCTION","$(P)SIM:FUNCTION:SP:RBV")
+
+record(bi, "$(P)SIM:OUTPUT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:OUTPUT","$(P)SIM:OUTPUT:SP")
+
+alias("$(P)SIM:OUTPUT","$(P)SIM:OUTPUT:SP:RBV")
+
+record(ai, "$(P)SIM:FREQUENCY")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:FREQUENCY","$(P)SIM:FREQUENCY:SP")
+
+alias("$(P)SIM:FREQUENCY","$(P)SIM:FREQUENCY:SP:RBV")
+
+record(mbbi, "$(P)SIM:UNITS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:UNITS","$(P)SIM:UNITS:SP")
+
+alias("$(P)SIM:UNITS","$(P)SIM:UNITS:SP:RBV")
+
+record(ai, "$(P)SIM:AMPLITUDE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:AMPLITUDE","$(P)SIM:AMPLITUDE:SP")
+
+alias("$(P)SIM:AMPLITUDE","$(P)SIM:AMPLITUDE:SP:RBV")
+
+record(ai, "$(P)SIM:OFFSET")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:OFFSET","$(P)SIM:OFFSET:SP")
+
+alias("$(P)SIM:OFFSET","$(P)SIM:OFFSET:SP:RBV")
+
