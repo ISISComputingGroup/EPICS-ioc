@@ -1,0 +1,272 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(ai, "$(P)VOLTS")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(frontpanel,0,0)voltage_rb")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLTS")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
+}
+
+record(ao, "$(P)VOLTS:SP")
+{
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(frontpanel,0,0)setpoint")
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLTS:SP")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
+}
+
+record(ai, "$(P)VOLTS:SP:RBV")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(frontpanel,0,0)setpoint")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLTS:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
+}
+
+record(ai, "$(P)CURR")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(frontpanel,0,0)current_rb")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURR")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "A")
+}
+
+record(ai, "$(P)VLIM")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(frontpanel,0,0)v_limit")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VLIM")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
+}
+
+record(ao, "$(P)VLIM:SP")
+{
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(frontpanel,0,0)v_limit")
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VLIM:SP")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
+}
+
+record(ai, "$(P)VLIM:SP:RBV")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(frontpanel,0,0)v_limit_sp")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VLIM:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
+}
+
+record(ai, "$(P)ILIM")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(frontpanel,0,0)i_limit")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ILIM")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "A")
+}
+
+record(ao, "$(P)ILIM:SP")
+{
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(frontpanel,0,0)i_limit")
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ILIM:SP")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "A")
+}
+
+record(ai, "$(P)ILIM:SP:RBV")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(frontpanel,0,0)i_limit_sp")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ILIM:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "A")
+}
+
+record(ai, "$(P)ITRP")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(frontpanel,0,0)i_trip")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ITRP")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "A")
+}
+
+record(ao, "$(P)ITRP:SP")
+{
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(frontpanel,0,0)i_trip")
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ITRP:SP")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "A")
+}
+
+record(ai, "$(P)ITRP:SP:RBV")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(frontpanel,0,0)i_trip_sp")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ITRP:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "A")
+}
+
+record(bi, "$(P)HV")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(frontpanel,0,0)hv_on_rb")
+    field(ZNAM, "FALSE")
+    field(ONAM, "TRUE")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HV")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
+}
+
+record(bo, "$(P)HV:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(frontpanel,0,0)toggle_hv")
+    field(ZNAM, "N/A")
+    field(ONAM, "N/A")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HV:SP")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
+}
+
+record(bi, "$(P)HV:SP:RBV")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(frontpanel,0,0)toggle_hv_sp")
+    field(ZNAM, "FALSE")
+    field(ONAM, "TRUE")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HV:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
+}
+
+### SIMULATION RECORDS ###
+
+record(ai, "$(P)SIM:CURR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(EGU, "A")
+}
+
+record(ai, "$(P)SIM:ILIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(EGU, "A")
+}
+
+alias("$(P)SIM:ILIM","$(P)SIM:ILIM:SP")
+
+alias("$(P)SIM:ILIM","$(P)SIM:ILIM:SP:RBV")
+
+record(ai, "$(P)SIM:VLIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(EGU, "V")
+}
+
+alias("$(P)SIM:VLIM","$(P)SIM:VLIM:SP")
+
+alias("$(P)SIM:VLIM","$(P)SIM:VLIM:SP:RBV")
+
+record(bi, "$(P)SIM:HV")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(EGU, "V")
+}
+
+alias("$(P)SIM:HV","$(P)SIM:HV:SP")
+
+alias("$(P)SIM:HV","$(P)SIM:HV:SP:RBV")
+
+record(ai, "$(P)SIM:ITRP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(EGU, "A")
+}
+
+alias("$(P)SIM:ITRP","$(P)SIM:ITRP:SP")
+
+alias("$(P)SIM:ITRP","$(P)SIM:ITRP:SP:RBV")
+
+record(ai, "$(P)SIM:VOLTS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(EGU, "V")
+}
+
+alias("$(P)SIM:VOLTS","$(P)SIM:VOLTS:SP")
+
+alias("$(P)SIM:VOLTS","$(P)SIM:VOLTS:SP:RBV")
+
