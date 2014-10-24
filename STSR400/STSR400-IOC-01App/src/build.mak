@@ -55,6 +55,8 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
+$(APPNAME)_SYS_LIBS_WIN32 += msxml2
+
 #===========================
 
 include $(TOP)/configure/RULES
