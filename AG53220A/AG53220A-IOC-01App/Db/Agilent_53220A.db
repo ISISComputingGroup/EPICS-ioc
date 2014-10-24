@@ -1,0 +1,124 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SIM")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DISABLE")
+    field(SDIS, "$(P)DISABLE")
+}
+record(ai, "$(P)COUNTS")
+{
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn(frontpanel,0,0)counts")
+   field(PREC, "3")
+   field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:COUNTS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)COUNTING")
+{
+   field(DTYP, "asynInt32")
+   field(INP,  "@asyn(frontpanel,0,0)counting")
+   field(ZNAM, "FALSE")
+   field(ONAM, "TRUE")
+   field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:COUNTING")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)START:SP")
+{
+   field(DTYP, "asynInt32")
+   field(OUT,  "@asyn(frontpanel,0,0)start")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:START:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)START:SP:RBV")
+{
+   field(DTYP, "asynInt32")
+   field(INP,  "@asyn(frontpanel,0,0)start")
+   field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:START:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)START:SP:RBV", "$(P)START")
+
+record(bo, "$(P)STOP:SP")
+{
+   field(DTYP, "asynInt32")
+   field(OUT,  "@asyn(frontpanel,0,0)stop")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STOP:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)STOP:SP:RBV")
+{
+   field(DTYP, "asynInt32")
+   field(INP,  "@asyn(frontpanel,0,0)stop")
+   field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STOP:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)STOP:SP:RBV", "$(P)STOP")
+
+
+
+### SIMULATION RECORDS ###
+
+record(bo, "$(P)SIM:START")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:START","$(P)SIM:START:SP")
+
+alias("$(P)SIM:START","$(P)SIM:START:SP:RBV")
+
+record(ai, "$(P)SIM:COUNTS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(P)SIM:COUNTING")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:STOP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:STOP","$(P)SIM:STOP:SP")
+
+alias("$(P)SIM:STOP","$(P)SIM:STOP:SP:RBV")
+

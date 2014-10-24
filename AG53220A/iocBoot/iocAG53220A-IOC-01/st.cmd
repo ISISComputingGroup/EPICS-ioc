@@ -1,6 +1,6 @@
-#!../../bin/windows-x64-debug/STPS350-IOC-01
+#!../../bin/windows-x64-debug/AG53220A-IOC-01
 
-## You may have to change STPS350-IOC-01 to something else
+## You may have to change AG53220A-IOC-01 to something else
 ## everywhere it appears in this file
 
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
@@ -11,8 +11,8 @@ errlogInit2(65536, 256)
 cd ${TOP}
 
 ## Register all support components
-dbLoadDatabase "dbd/STPS350-IOC-01.dbd"
-STPS350_IOC_01_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/AG53220A-IOC-01.dbd"
+AG53220A_IOC_01_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
@@ -27,11 +27,11 @@ STPS350_IOC_01_registerRecordDeviceDriver pdbbase
 ##
 ## the "options" argument is a combination of the following flags (as per the #lvDCOMOptions enum in lvDCOMInterface.h)
 ##    viWarnIfIdle=1, viStartIfIdle=2, viStopOnExitIfStarted=4, viAlwaysStopOnExit=8
-lvDCOMConfigure("ex1", "frontpanel", "$(ISISSUPPORT)/Stanford_PS350/Stanford_PS350App/protocol/stanfordPS350.xml", "ndxchipir", 6, "", "spudulike", "reliablebeam")
-#lvDCOMConfigure("ex1", "frontpanel", "$(ISISSUPPORT)/Stanford_PS350/Stanford_PS350App/protocol/stanfordPS350.xml", "", 6)
+lvDCOMConfigure("ex1", "frontpanel", "$(TOP)/Agilent_53220AApp/protocol/agilent53200A.xml", "ndxchipir", 6, "", "spudulike", "reliablebeam")
+#lvDCOMConfigure("ex1", "frontpanel", "$(TOP)/Agilent_53220AApp/protocol/agilent53200A.xml", "", 6)
 
-#asynSetTraceMask("frontpanel",0,0xff)
-#asynSetTraceIOMask("ex1",0,0x2)
+#asynSetTraceMask("ex1",0,0xff)
+asynSetTraceIOMask("ex1",0,0x2)
 
 ## Load record instances
 
@@ -39,7 +39,7 @@ lvDCOMConfigure("ex1", "frontpanel", "$(ISISSUPPORT)/Stanford_PS350/Stanford_PS3
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/Stanford_PS350.db","P=$(MYPVPREFIX)$(IOCNAME):")
+dbLoadRecords("db/Agilent_53220A.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
