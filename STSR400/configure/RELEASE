@@ -41,6 +41,7 @@ CAPUTLOG=$(SUPPORT)/caPutLog/3-3-3
 SQLITE=$(SUPPORT)/sqlite
 UTILITIES=$(SUPPORT)/utilities
 ZLIB=$(SUPPORT)/zlib/1-2-8
+PUGIXML=$(SUPPORT)/pugixml
 
 ## add other modules here ##
 ASYN=$(SUPPORT)/asyn/4-22
