@@ -44,6 +44,7 @@ SQLITE=$(SUPPORT)/sqlite
 UTILITIES=$(SUPPORT)/utilities
 ZLIB=$(SUPPORT)/zlib/1-2-8
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions
+PCRE=$(SUPPORT)/pcre
 
 ## add other modules here ##
 ASYN=$(SUPPORT)/asyn/4-22

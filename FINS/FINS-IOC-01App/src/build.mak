@@ -37,7 +37,7 @@ $(APPNAME)_LIBS += pvdump easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities
+$(APPNAME)_LIBS += utilities pcre
 $(APPNAME)_LIBS += FINS
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##

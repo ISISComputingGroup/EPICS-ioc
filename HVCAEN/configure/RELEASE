@@ -44,6 +44,7 @@ UTILITIES=$(SUPPORT)/utilities
 ZLIB=$(SUPPORT)/zlib/1-2-8
 HVCAEN=$(SUPPORT)/HVCAENx527/1-2
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions
+PCRE=$(SUPPORT)/pcre
 
 ## add other modules here ##
 

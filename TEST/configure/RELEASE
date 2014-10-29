@@ -43,6 +43,7 @@ SQLITE=$(SUPPORT)/sqlite
 UTILITIES=$(SUPPORT)/utilities
 RANDOM=$(SUPPORT)/random
 ZLIB=$(SUPPORT)/zlib/1-2-8
+PCRE=$(SUPPORT)/pcre
 
 ## add other modules here ##
 
