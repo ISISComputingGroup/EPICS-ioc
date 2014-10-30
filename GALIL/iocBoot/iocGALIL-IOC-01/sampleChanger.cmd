@@ -1,0 +1,1 @@
+< $(GALILCONFIG)/sampleChanger.cmd
