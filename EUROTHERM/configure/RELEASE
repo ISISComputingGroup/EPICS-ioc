@@ -56,7 +56,7 @@ CALC=$(SUPPORT)/calc/2-9
 SSCAN = $(SUPPORT)/sscan/2-8
 AUTOSAVE=$(SUPPORT)/autosave/R5_4_2
 READASCII=$(SUPPORT)/ReadASCII
-
+FILELIST=$(SUPPORT)/FileList
 
 ## add other modules here ##
 

@@ -33,6 +33,7 @@ $(APPNAME)_DBD += cvtRecord.dbd
 $(APPNAME)_DBD += sseqRecord.dbd
 $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
+$(APPNAME)_DBD += FileList.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -45,7 +46,8 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
-$(APPNAME)_LIBS += stream pcre cvtRecord csmbase std calc sscan ReadASCII
+$(APPNAME)_LIBS += stream cvtRecord csmbase std calc sscan ReadASCII 
+$(APPNAME)_LIBS += pcre libjson FileList
 $(APPNAME)_LIBS += asyn easySQLite sqlite
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx

@@ -1,3 +1,27 @@
+#FileList
+###################
+
+record(stringout, "$(P)SEARCH_DIR")
+{
+   field(DTYP, "asynOctetWrite")
+   field(OUT, "@asyn($(LIST),0,1)DIRBASE")
+}
+
+record(waveform, "$(P)FOUND_FILES")
+{
+	field(FTVL, "CHAR")
+	field(DTYP, "asynOctetRead")
+    field(INP, "@asyn($(LIST),0,1)JARR")	
+	field(NELM, 16384)
+	field(SCAN, "1 second")
+}
+
+record(stringout, "$(P)SEARCH")
+{
+   field(DTYP, "asynOctetWrite")
+   field(OUT, "@asyn($(LIST),0,1)SEARCH")
+}
+
 #ReadASCII
 ###################
 record(stringout, "$(P)DIRBASE")
