@@ -45,10 +45,10 @@ $(APPNAME)_LIBS += pvdump easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities
-$(APPNAME)_LIBS += stream cvtRecord csmbase std calc sscan ReadASCII 
-$(APPNAME)_LIBS += pcre libjson FileList
-$(APPNAME)_LIBS += asyn easySQLite sqlite
+$(APPNAME)_LIBS += FileList ReadASCII
+$(APPNAME)_LIBS += stream cvtRecord csmbase std calc sscan asyn 
+$(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += easySQLite sqlite
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 
