@@ -27,7 +27,7 @@ DIRS_NOTBUILD +=
 endif
 # modules not to build if no ATL
 ifneq ($(HAVE_ATL),YES)  
-DIRS_NOTBUILD += ISISDAE
+DIRS_NOTBUILD += ISISDAE STPS350 AG53220A STSR400
 endif
 
 DIRS := $(DIRS) $(filter-out $(DIRS_NOTBUILD), $(wildcard *))
