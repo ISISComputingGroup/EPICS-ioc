@@ -8,6 +8,9 @@ errlogInit2(65536, 4096)
 
 < envPaths
 
+epicsEnvSet "WIRING_DIR" "C:/InstrumentSettings/calib/sensors"
+epicsEnvSet "WIRING_PATTERN" "C.*"
+
 cd ${TOP}
 
 ## Register all support components
@@ -23,13 +26,16 @@ isisdaeConfigure("icp", $(DAEDCOM=0), $(DAEHOST=localhost), "spudulike", "reliab
 #isisdaeConfigure("icp", 1, "localhost")
 #isisdaeConfigure("icp", 1, "ndxchipir", "spudulike", "reliablebeam")
 
+## Load the FileList
+FileListConfigure("FILELIST", $(WIRING_DIR), $(WIRING_PATTERN))
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(ISISDAE)/db/isisdae.db","P=$(MYPVPREFIX)DAE:")
+dbLoadRecords("$(ISISDAE)/db/isisdae.db","P=$(MYPVPREFIX)DAE:, LIST=FILELIST")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

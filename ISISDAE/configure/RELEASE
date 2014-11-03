@@ -48,6 +48,7 @@ ONCRPC=$(SUPPORT)/oncrpc/2
 PCRE=$(SUPPORT)/pcre
 TINYXML=$(SUPPORT)/TinyXML
 ISISDAE=$(SUPPORT)/isisdae
+FILELIST=$(SUPPORT)/FileList
 
 ## add other modules here ##
 
