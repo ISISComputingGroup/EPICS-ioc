@@ -39,7 +39,7 @@ $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
-$(APPNAME)_LIBS += FileList isisdae asyn oncrpc zlib pcrecpp pcre cas gdd
+$(APPNAME)_LIBS += FileList isisdae asyn oncrpc zlib efsw pcrecpp pcre cas gdd
 
 # ISISDAE-IOC-01_registerRecordDeviceDriver.cpp derives from ISISDAE-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

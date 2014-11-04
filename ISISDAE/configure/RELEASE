@@ -49,6 +49,7 @@ PCRE=$(SUPPORT)/pcre
 TINYXML=$(SUPPORT)/TinyXML
 ISISDAE=$(SUPPORT)/isisdae
 FILELIST=$(SUPPORT)/FileList
+EFSW=$(SUPPORT)/efsw
 
 ## add other modules here ##
 
