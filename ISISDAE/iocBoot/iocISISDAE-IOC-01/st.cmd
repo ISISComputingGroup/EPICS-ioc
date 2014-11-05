@@ -9,7 +9,12 @@ errlogInit2(65536, 4096)
 < envPaths
 
 epicsEnvSet "WIRING_DIR" "C:/InstrumentSettings/calib/sensors"
-epicsEnvSet "WIRING_PATTERN" "C.*"
+epicsEnvSet "WIRING_PATTERN" "^C.*"
+epicsEnvSet "DETECTOR_DIR" "C:/InstrumentSettings/calib/Test"
+epicsEnvSet "DETECTOR_PATTERN" "^D.*"
+epicsEnvSet "SPECTRA_DIR" "C:/InstrumentSettings/calib/Test1"
+epicsEnvSet "SPECTRA_PATTERN" "^B.*"
+
 
 cd ${TOP}
 
@@ -26,8 +31,10 @@ isisdaeConfigure("icp", $(DAEDCOM=0), $(DAEHOST=localhost), "spudulike", "reliab
 #isisdaeConfigure("icp", 1, "localhost")
 #isisdaeConfigure("icp", 1, "ndxchipir", "spudulike", "reliablebeam")
 
-## Load the FileList
-FileListConfigure("FILELIST", $(WIRING_DIR), $(WIRING_PATTERN))
+## Load the FileLists
+FileListConfigure("WLIST", $(WIRING_DIR), $(WIRING_PATTERN))
+FileListConfigure("DLIST", $(DETECTOR_DIR), $(DETECTOR_PATTERN))
+FileListConfigure("SLIST", $(SPECTRA_DIR), $(SPECTRA_PATTERN))
 
 ## Load record instances
 
@@ -35,7 +42,7 @@ FileListConfigure("FILELIST", $(WIRING_DIR), $(WIRING_PATTERN))
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(ISISDAE)/db/isisdae.db","P=$(MYPVPREFIX)DAE:, LIST=FILELIST")
+dbLoadRecords("$(ISISDAE)/db/isisdae.db","P=$(MYPVPREFIX)DAE:, WIRINGLIST=WLIST, WIRINGDIR=$(WIRING_DIR), WIRINGSEARCH=$(WIRING_PATTERN), DETECTORLIST=DLIST, DETECTORDIR=$(DETECTOR_DIR), DETECTORSEARCH=$(DETECTOR_PATTERN), SPECTRALIST=SLIST, SPECTRADIR=$(SPECTRA_DIR), SPECTRASEARCH=$(SPECTRA_PATTERN)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
