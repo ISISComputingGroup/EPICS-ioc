@@ -79,7 +79,12 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
-$(APPNAME)_LIBS_WIN32 += Galil1 # galil2
+ifeq ($(STATIC_BUILD),YES)
+GalilSupport_LIBS_WIN32 += Galil1 # galil2
+GalilSupport_SYS_LIBS_WIN32 += delayimp
+GalilSupport_LDFLAGS_WIN32 += /DELAYLOAD:Galil1.dll
+endif
+
 $(APPNAME)_SYS_LIBS_Linux += Galil
 
 #===========================
