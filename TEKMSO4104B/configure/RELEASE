@@ -50,7 +50,7 @@ STREAMDEVICE=$(SUPPORT)/StreamDevice
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions
 PCRE=$(SUPPORT)/pcre
 ONCRPC=$(SUPPORT)/oncrpc/2
-CALC=$(SUPPORT)/calc/2-9
+CALC=$(SUPPORT)/calc/3-4
 SSCAN=$(SUPPORT)/sscan/2-8
 
 include $(TOP)/../../ISIS_CONFIG.$(EPICS_HOST_ARCH)

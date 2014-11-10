@@ -51,7 +51,7 @@ ONCRPC=$(SUPPORT)/oncrpc/2
 CSM=$(SUPPORT)/csm/4-2
 #Story 285 Include STD for sseq from synapps, and CALC as sseq moved location between version in use and later versions
 STD=$(SUPPORT)/std/R3_1
-CALC=$(SUPPORT)/calc/2-9
+CALC=$(SUPPORT)/calc/3-4
 #Story 285 - the addition of scalcout seems to require this
 SSCAN = $(SUPPORT)/sscan/2-8
 AUTOSAVE=$(SUPPORT)/autosave/R5_4_2
