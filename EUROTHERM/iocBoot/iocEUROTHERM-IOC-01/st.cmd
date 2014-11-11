@@ -7,9 +7,11 @@
 
 epicsEnvSet "IOCNAME" "EUROTHERM"
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(SUPPORT)/eurotherm2k/1-11/eurotherm2kApp/protocol"
-epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM18)"
+epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM34)"
 epicsEnvSet "SENS_DIR" "C:/InstrumentSettings/calib/sensors"
+epicsEnvSet "SENS_PAT" "^C.*"
 epicsEnvSet "RAMP_DIR" "C:/InstrumentSettings"
+epicsEnvSet "RAMP_PAT" ".*"
 
 cd ${TOP}
 
@@ -27,8 +29,10 @@ asynSetOption("L0", -1, "stop", "1")
 
 ## Load FileList
 ## A seperate instance must be created for each eurotherm
-FileListConfigure("FILELIST1")
-FileListConfigure("FILELIST2")
+FileListConfigure("RAMPFILELIST1", $(RAMP_DIR), $(RAMP_PAT)) 
+FileListConfigure("RAMPFILELIST2", $(RAMP_DIR), $(RAMP_PAT))
+FileListConfigure("SENSORFILELIST1", $(SENS_DIR), $(SENS_PAT)) 
+FileListConfigure("SENSORFILELIST2", $(SENS_DIR), $(SENS_PAT))
 
 ## Load ReadASCII
 ## A seperate instance must be created for each eurotherm
@@ -46,8 +50,8 @@ dbLoadRecords("$(TOP)/db/devSimDis.db","Q=$(MYPVPREFIX)EUROTHERM:")
 ## LAD = Lesser Eurotherm address part
 ## For example: eurotherm address 1 => GAD = 0 and LAD = 1
 ## For example: eurotherm address 10 => GAD = 1 and LAD = 0
-dbLoadRecords("$(TOP)/db/devEurotherm.db","P=$(MYPVPREFIX)EUROTHERM1:, Q=$(MYPVPREFIX)EUROTHERM:, GAD=0, LAD=1, PORT=L0, LDIR = $(RAMP_DIR), SDIR=$(SENS_DIR), READ=READASCII1, LIST=FILELIST1")
-dbLoadRecords("$(TOP)/db/devEurotherm.db","P=$(MYPVPREFIX)EUROTHERM2:, Q=$(MYPVPREFIX)EUROTHERM:, GAD=0, LAD=2, PORT=L0, LDIR = $(RAMP_DIR), SDIR=$(SENS_DIR), READ=READASCII2, LIST=FILELIST2")
+dbLoadRecords("$(TOP)/db/devEurotherm.db","P=$(MYPVPREFIX)EUROTHERM1:, Q=$(MYPVPREFIX)EUROTHERM:, GAD=0, LAD=1, PORT=L0, LDIR = $(RAMP_DIR), SDIR=$(SENS_DIR), READ=READASCII1, RAMPLIST=RAMPFILELIST1, RAMPSEARCH=$(RAMP_PAT), SENSORLIST=SENSORFILELIST1, SENSORSEARCH=$(SENS_PAT)")
+dbLoadRecords("$(TOP)/db/devEurotherm.db","P=$(MYPVPREFIX)EUROTHERM2:, Q=$(MYPVPREFIX)EUROTHERM:, GAD=0, LAD=2, PORT=L0, LDIR = $(RAMP_DIR), SDIR=$(SENS_DIR), READ=READASCII2, RAMPLIST=RAMPFILELIST2, RAMPSEARCH=$(RAMP_PAT), SENSORLIST=SENSORFILELIST2, SENSORSEARCH=$(SENS_PAT)")
 
 
 < $(IOCSTARTUP)/preiocinit.cmd

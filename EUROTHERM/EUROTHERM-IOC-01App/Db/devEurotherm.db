@@ -1,49 +1,73 @@
-#FileList
+#FileList for ramp
 ###################
 
-record(stringout, "$(P)SEARCH_DIR")
+record(stringout, "$(P)RAMP_DIRBASE:SP")
 {
+   field(DESC, "Set directory of ramp files")
    field(DTYP, "asynOctetWrite")
-   field(OUT, "@asyn($(LIST),0,1)DIRBASE")
+   field(VAL, "$(LDIR)")
+   field(PINI, "1")
+   field(OUT, "@asyn($(RAMPLIST),0,1)DIRBASE")
+   field(FLNK, "$(P)READ_RAMP_DIRBASE:SP")
 }
 
-record(waveform, "$(P)FOUND_FILES")
+record(stringin, "$(P)RAMP_DIRBASE")
 {
+   field(DESC, "Get directory of ramp files")
+   field(DTYP, "asynOctetRead")
+   field(INP, "@asyn($(RAMPLIST),0,1)DIRBASE")
+   field(SCAN, "I/O Intr")
+}
+
+record(waveform, "$(P)RAMP_FILES")
+{
+	field(DESC, "Compressed JSON list of ramp files")
 	field(FTVL, "CHAR")
 	field(DTYP, "asynOctetRead")
-    field(INP, "@asyn($(LIST),0,1)JARR")	
+    field(INP, "@asyn($(RAMPLIST),0,1)JARR")	
 	field(NELM, 16384)
-	field(SCAN, "1 second")
+	field(SCAN, "I/O Intr")
 }
 
-record(stringout, "$(P)SEARCH")
+record(stringout, "$(P)RAMP_PATTERN:SP")
 {
+   field(DESC, "Set regex search of ramp files")  
    field(DTYP, "asynOctetWrite")
-   field(OUT, "@asyn($(LIST),0,1)SEARCH")
+   field(OUT, "@asyn($(RAMPLIST),0,1)SEARCH")
+}
+record(stringin, "$(P)RAMP_PATTERN")
+{
+   field(DESC, "Get regex search of ramp files")
+   field(DTYP, "asynOctetRead")
+   field(OUT, "@asyn($(RAMPLIST),0,1)SEARCH")
+   field(VAL, "$(RAMPSEARCH)")
+   field(PINI, "YES")
+   field(SCAN, "I/O Intr")
 }
 
 #ReadASCII
 ###################
-record(stringout, "$(P)DIRBASE")
+record(stringout, "$(P)READ_RAMP_DIRBASE:SP")
 {
    field(DTYP, "asynOctetWrite")
    field(VAL, "$(LDIR)")
+   field(DOL, "$(P)RAMP_DIRBASE:SP")
    field(OUT, "@asyn($(READ),0,1)DIRBASE")
    field(PINI, "1")
+   field(OMSL, "closed_loop")
 }
 
-record(stringin, "$(P)DIR")
+record(stringin, "$(P)RAMP_FILE")
 {
    field(DTYP, "asynOctetRead")
    field(INP,  "@asyn($(READ),0,1)DIR")
    field(SCAN, "I/O Intr")
 }
 
-record(stringout, "$(P)DIR:SP")
+record(stringout, "$(P)RAMP_FILE:SP")
 {
    field(DTYP, "asynOctetWrite")
    field(OUT,  "@asyn($(READ),0,1)DIR")
-   field(OMSL, "supervisory")
 }
 
 record(ao, "$(P)TEMP:SP")
@@ -496,6 +520,53 @@ record(seq, "$(P)CAL:APPLY:UPDATE")
 	field(DOL6, "0")
 	field(DLY6, "2")
 	field(LNK6, "$(P)CAL:APPLY:RST.PROC")
+}
+
+# FileList for sensor calibration
+#######################
+
+record(stringout, "$(P)SENSOR_DIRBASE:SP")
+{
+   field(DESC, "Set directory of sensor calib files")
+   field(DTYP, "asynOctetWrite")
+   field(VAL, "$(SDIR)")
+   field(PINI, "1")
+   field(OUT, "@asyn($(SENSORLIST),0,1)DIRBASE")
+   field(OMSL, "supervisory")
+}
+
+record(stringin, "$(P)SENSOR_DIRBASE")
+{
+   field(DESC, "Get directory of sensor calib files")
+   field(DTYP, "asynOctetRead")
+   field(INP, "@asyn($(SENSORLIST),0,1)DIRBASE")
+   field(SCAN, "I/O Intr")
+}
+
+record(waveform, "$(P)SENSOR_FILES")
+{
+	field(DESC, "Compressed JSON list of sensor calib files")
+	field(FTVL, "CHAR")
+	field(DTYP, "asynOctetRead")
+    field(INP, "@asyn($(SENSORLIST),0,1)JARR")	
+	field(NELM, 16384)
+	field(SCAN, "I/O Intr")
+}
+
+record(stringout, "$(P)SENSOR_PATTERN:SP")
+{
+   field(DESC, "Set regex search of sensor calib files")  
+   field(DTYP, "asynOctetWrite")
+   field(OUT, "@asyn($(SENSORLIST),0,1)SEARCH")
+}
+record(stringin, "$(P)SENSOR_PATTERN")
+{
+   field(DESC, "Get regex search of sensor calib files")
+   field(DTYP, "asynOctetRead")
+   field(OUT, "@asyn($(SENSORLIST),0,1)SEARCH")
+   field(VAL, "$(SENSORSEARCH)")
+   field(PINI, "YES")
+   field(SCAN, "I/O Intr")
 }
 
 record(cvt, "$(P)TEMP")
