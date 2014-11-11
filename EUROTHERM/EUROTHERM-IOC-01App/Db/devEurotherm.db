@@ -545,7 +545,7 @@ record(stringin, "$(P)SENSOR_DIRBASE")
 
 record(waveform, "$(P)SENSOR_FILES")
 {
-	field(DESC, "Compressed JSON list of sensor calib files")
+	field(DESC, "Compressed JSON list of sensor files")
 	field(FTVL, "CHAR")
 	field(DTYP, "asynOctetRead")
     field(INP, "@asyn($(SENSORLIST),0,1)JARR")	
