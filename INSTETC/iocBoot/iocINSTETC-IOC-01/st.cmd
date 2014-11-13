@@ -26,6 +26,7 @@ instetcConfigure("daelog", "${ICPVARDIR}/logs/ioc/ISISDAE_01-%Y%m%d.log", 100, 3
 ## Load our record instances
 dbLoadRecords("db/INSTETC.db","P=$(MYPVPREFIX),IOC=$(IOCNAME)")
 dbLoadRecords("db/svn-revision.db","P=$(MYPVPREFIX)")
+dbLoadRecords("db/build-id.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/inst_string_parameters.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/inst_real_parameters.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/runcontrol.db","P=$(MYPVPREFIX)")
