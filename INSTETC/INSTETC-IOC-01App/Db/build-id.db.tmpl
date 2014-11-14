@@ -6,3 +6,14 @@ record(stringin, "$(P)CS:VERSION:BUILD:ID")
 	field(VAL, "BUILD_ID")
 }
 
+record(stringin, "$(P)CS:VERSION:BUILD:NAME") 
+{
+	field(DESC, "Control program build name")
+	field(VAL, "JOB_NAME")
+}
+
+record(stringin, "$(P)CS:VERSION:BUILD:NUMBER") 
+{
+	field(DESC, "Control program build number")
+	field(VAL, "BUILD_NUMBER")
+}
