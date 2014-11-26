@@ -42,6 +42,7 @@ CAPUTLOG=$(SUPPORT)/caPutLog/3-3-3
 SQLITE=$(SUPPORT)/sqlite
 LIBJSON=$(SUPPORT)/libjson
 UTILITIES=$(SUPPORT)/utilities
+MYSQL=$(SUPPORT)/MySQL
 ZLIB=$(SUPPORT)/zlib/1-2-8
 ## add other modules here ##
 ASYN=		$(SUPPORT)/asyn/4-22
