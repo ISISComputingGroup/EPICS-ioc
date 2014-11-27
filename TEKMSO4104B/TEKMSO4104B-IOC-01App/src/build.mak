@@ -39,7 +39,7 @@ $(APPNAME)_DBD += asubFunctions.dbd
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
-$(APPNAME)_LIBS += pvdump easySQLite sqlite 
+$(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
