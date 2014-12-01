@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<config xmlns:xi="http://www.w3.org/2001/XInclude">
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <macros>
 <macro name="GALILADDR01" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]$" description="IP address of Galil controller 1 (MTR01* PVs)" />
 <macro name="GALILADDR02" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]$" description="IP address of Galil controller 2 (MTR02* PVs)" />
@@ -12,4 +12,4 @@
 <pvsets>
 <pvset name="Motor Limits" desc="Motor high and low limits" />
 </pvsets>
-</config>
+</ioc_config>
