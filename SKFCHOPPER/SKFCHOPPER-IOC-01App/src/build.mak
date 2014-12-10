@@ -27,6 +27,9 @@ $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += modbusSupport.dbd
+$(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += drvAsynIPPort.dbd
+
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
