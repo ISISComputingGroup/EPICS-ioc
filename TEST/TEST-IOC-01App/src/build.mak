@@ -27,6 +27,9 @@ $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += random.dbd
+$(APPNAME)_DBD += dbPv.dbd
+$(APPNAME)_DBD += PVAServerRegister.dbd
+
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -39,6 +42,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre
 ## Add other libraries here ##
 $(APPNAME)_LIBS += random
+$(APPNAME)_LIBS += pvaSrv pvAccess pvData pvMB
 
 # TEST-IOC-01_registerRecordDeviceDriver.cpp derives from TEST-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

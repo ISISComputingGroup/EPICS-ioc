@@ -47,6 +47,8 @@ MYSQL=$(SUPPORT)/MySQL
 ZLIB=$(SUPPORT)/zlib/1-2-8
 PCRE=$(SUPPORT)/pcre
 
+include $(TOP)/../../support/EPICS_V4/EPICS-CPP-4_4_0/RELEASE.local
+
 ## add other modules here ##
 
 include $(TOP)/../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
