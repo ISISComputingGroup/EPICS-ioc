@@ -29,46 +29,30 @@ file "$(GALIL)/GalilSup/Db/galil_analog_in.template"
 { 
    pattern { P,           R,          PORT,    ADDR,  PREC }
 
-	   { "DMC01",    "GalilAi0",  "Galil", "0",   "3"  }
-	   { "DMC01",    "GalilAi1",  "Galil", "1",   "3"  }
-	   { "DMC01",    "GalilAi2",  "Galil", "2",   "3"  }
-	   { "DMC01",    "GalilAi3",  "Galil", "3",   "3"  }
-	   { "DMC01",    "GalilAi4",  "Galil", "4",   "3"  }
-	   { "DMC01",    "GalilAi5",  "Galil", "5",   "3"  }
-	   { "DMC01",    "GalilAi6",  "Galil", "6",   "3"  }
-	   { "DMC01",    "GalilAi7",  "Galil", "7",   "3"  }
+	   { "\$(P):DMC\$(CCP)",    "GalilAi0",  "Galil", "0",   "3"  }
+	   { "\$(P):DMC\$(CCP)",    "GalilAi1",  "Galil", "1",   "3"  }
+	   { "\$(P):DMC\$(CCP)",    "GalilAi2",  "Galil", "2",   "3"  }
+	   { "\$(P):DMC\$(CCP)",    "GalilAi3",  "Galil", "3",   "3"  }
+	   { "\$(P):DMC\$(CCP)",    "GalilAi4",  "Galil", "4",   "3"  }
+	   { "\$(P):DMC\$(CCP)",    "GalilAi5",  "Galil", "5",   "3"  }
+	   { "\$(P):DMC\$(CCP)",    "GalilAi6",  "Galil", "6",   "3"  }
+	   { "\$(P):DMC\$(CCP)",    "GalilAi7",  "Galil", "7",   "3"  }
 
-           { "RIO01",    "GalilAi0",  "RIO",   "0",   "3"  }
-	   { "RIO01",    "GalilAi1",  "RIO",   "1",   "3"  }
-	   { "RIO01",    "GalilAi2",  "RIO",   "2",   "3"  }
-	   { "RIO01",    "GalilAi3",  "RIO",   "3",   "3"  }
-	   { "RIO01",    "GalilAi4",  "RIO",   "4",   "3"  }
-	   { "RIO01",    "GalilAi5",  "RIO",   "5",   "3"  }
-	   { "RIO01",    "GalilAi6",  "RIO",   "6",   "3"  }
-	   { "RIO01",    "GalilAi7",  "RIO",   "7",   "3"  }
 }
 
 file "$(GALIL)/GalilSup/Db/galil_analog_out.template"
 { 
    pattern { P,          R,           PORT,    ADDR,  PREC,  LOPR,  HOPR }
 
-           { "DMC01",    "GalilAo0",  "Galil", "0",   "3",   "-10", "10" }
-	   { "DMC01",    "GalilAo1",  "Galil", "1",   "3",   "-10", "10" }
-	   { "DMC01",    "GalilAo2",  "Galil", "2",   "3",   "-10", "10" }
-	   { "DMC01",    "GalilAo3",  "Galil", "3",   "3",   "-10", "10" }
-	   { "DMC01",    "GalilAo4",  "Galil", "4",   "3",   "-10", "10" }
-	   { "DMC01",    "GalilAo5",  "Galil", "5",   "3",   "-10", "10" }
-	   { "DMC01",    "GalilAo6",  "Galil", "6",   "3",   "-10", "10" }
-	   { "DMC01",    "GalilAo7",  "Galil", "7",   "3",   "-10", "10" }
+       { "\$(P):DMC\$(CCP)",    "GalilAo0",  "Galil", "0",   "3",   "-10", "10" }
+	   { "\$(P):DMC\$(CCP)",    "GalilAo1",  "Galil", "1",   "3",   "-10", "10" }
+	   { "\$(P):DMC\$(CCP)",    "GalilAo2",  "Galil", "2",   "3",   "-10", "10" }
+	   { "\$(P):DMC\$(CCP)",    "GalilAo3",  "Galil", "3",   "3",   "-10", "10" }
+	   { "\$(P):DMC\$(CCP)",    "GalilAo4",  "Galil", "4",   "3",   "-10", "10" }
+	   { "\$(P):DMC\$(CCP)",    "GalilAo5",  "Galil", "5",   "3",   "-10", "10" }
+	   { "\$(P):DMC\$(CCP)",    "GalilAo6",  "Galil", "6",   "3",   "-10", "10" }
+	   { "\$(P):DMC\$(CCP)",    "GalilAo7",  "Galil", "7",   "3",   "-10", "10" }
 
-           { "RIO01",    "GalilAo0",  "RIO",   "0",   "3",   "-10", "10" }
-	   { "RIO01",    "GalilAo1",  "RIO",   "1",   "3",   "-10", "10" }
-	   { "RIO01",    "GalilAo2",  "RIO",   "2",   "3",   "-10", "10" }
-	   { "RIO01",    "GalilAo3",  "RIO",   "3",   "3",   "-10", "10" }
-	   { "RIO01",    "GalilAo4",  "RIO",   "4",   "3",   "-10", "10" }
-	   { "RIO01",    "GalilAo5",  "RIO",   "5",   "3",   "-10", "10" }
-	   { "RIO01",    "GalilAo6",  "RIO",   "6",   "3",   "-10", "10" }
-	   { "RIO01",    "GalilAo7",  "RIO",   "7",   "3",   "-10", "10" }
 }
 
 # end
