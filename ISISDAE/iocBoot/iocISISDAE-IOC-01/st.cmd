@@ -32,9 +32,9 @@ isisdaeConfigure("icp", $(DAEDCOM=0), $(DAEHOST=localhost), "spudulike", "reliab
 #isisdaeConfigure("icp", 1, "ndxchipir", "spudulike", "reliablebeam")
 
 ## Load the FileLists
-FileListConfigure("WLIST", $(WIRING_DIR), $(WIRING_PATTERN))
-FileListConfigure("DLIST", $(DETECTOR_DIR), $(DETECTOR_PATTERN))
-FileListConfigure("SLIST", $(SPECTRA_DIR), $(SPECTRA_PATTERN))
+FileListConfigure("WLIST", $(WIRING_DIR), $(WIRING_PATTERN), 1)
+FileListConfigure("DLIST", $(DETECTOR_DIR), $(DETECTOR_PATTERN), 1)
+FileListConfigure("SLIST", $(SPECTRA_DIR), $(SPECTRA_PATTERN), 1)
 
 ## Load record instances
 
