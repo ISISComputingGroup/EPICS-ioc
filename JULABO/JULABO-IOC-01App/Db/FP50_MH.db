@@ -165,6 +165,188 @@ record(ai, "$(P)LOWLIMIT")
     field(DESC, "Low limit")
 }
 
+### Read internal PID Values
+
+record(ai, "$(P)INTP") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboCommon.proto readInternalProportional $(PORT)")
+    field(PREC, "1")
+    field(EGU,  "%")
+	field(SVAL, "0")
+	field(SIOL, "$(P)SIM:INTP")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Proportional component for internal control")
+}
+
+record(ai, "$(P)INTI") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboCommon.proto readInternalIntegral $(PORT)")
+    field(PREC, "1")
+    field(EGU,  "none")
+	field(SVAL, "0")
+	field(SIOL, "$(P)SIM:INTI")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Integral component for internal control")
+}
+
+record(ai, "$(P)INTD") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboCommon.proto readInternalDerivative $(PORT)")
+    field(PREC, "1")
+    field(EGU,  "none")
+	field(SVAL, "0")
+	field(SIOL, "$(P)SIM:INTD")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Derivative component for internal control")
+}
+
+### Write internal PID values
+
+record(ao, "$(P)INTP:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@julaboCommon.proto setInternalProportional $(PORT)")
+    field(EGU, "%")
+    field(PREC, "1")
+	field(SIOL, "$(P)SIM:INTP:SP")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Proportional component for internal control - Set Point")
+}
+
+record(ao, "$(P)INTI:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@julaboCommon.proto setInternalIntegral $(PORT)")
+    field(EGU, "none")
+    field(PREC, "1")
+	field(SIOL, "$(P)SIM:INTI:SP")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Integral component for internal control - Set Point")
+}
+
+record(ao, "$(P)INTD:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@julaboCommon.proto setInternalDerivative $(PORT)")
+    field(EGU, "none")
+    field(PREC, "1")
+	field(SIOL, "$(P)SIM:INTD:SP")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Derivative component for internal control - Set Point")
+}
+
+### Read external PID Values
+
+record(ai, "$(P)EXTP") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboCommon.proto readExternalProportional $(PORT)")
+    field(PREC, "1")
+    field(EGU,  "%")
+	field(SVAL, "0")
+	field(SIOL, "$(P)SIM:EXTP")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Proportional component for external control")
+}
+
+record(ai, "$(P)EXTI") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboCommon.proto readExternalIntegral $(PORT)")
+    field(PREC, "1")
+    field(EGU,  "none")
+	field(SVAL, "0")
+	field(SIOL, "$(P)SIM:EXTI")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Integral component for external control")
+}
+
+record(ai, "$(P)EXTD") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboCommon.proto readExternalDerivative $(PORT)")
+    field(PREC, "1")
+    field(EGU,  "none")
+	field(SVAL, "0")
+	field(SIOL, "$(P)SIM:EXTD")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Derivative component for external control")
+}
+
+### Write external PID values
+
+record(ao, "$(P)EXTP:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@julaboCommon.proto setExternalProportional $(PORT)")
+    field(EGU, "%")
+    field(PREC, "1")
+	field(SIOL, "$(P)SIM:EXTP:SP")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Proportional component for external control - Set Point")
+}
+
+record(ao, "$(P)EXTI:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@julaboCommon.proto setExternalIntegral $(PORT)")
+    field(EGU, "none")
+    field(PREC, "1")
+	field(SIOL, "$(P)SIM:EXTI:SP")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Integral component for external control - Set Point")
+}
+
+record(ao, "$(P)EXTD:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@julaboCommon.proto setExternalDerivative $(PORT)")
+    field(EGU, "none")
+    field(PREC, "1")
+	field(SIOL, "$(P)SIM:EXTD:SP")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    field(DESC, "Derivative component for external control - Set Point")
+}
+
 ### SIMULATION RECORDS ###
 
 record(stringout, "$(P)SIM:VERSION")
