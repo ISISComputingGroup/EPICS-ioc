@@ -1,0 +1,9 @@
+# terminator for output and input
+# use OutTerminator and InTerminator if these are different
+Terminator = CR LF;
+
+# this is hooked up to a 40 character stringout record, which will contain the reply after processing
+sendString {
+    ExtraInput = Ignore;
+    out "%s"; in "%39c"
+}

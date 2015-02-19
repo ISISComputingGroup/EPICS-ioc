@@ -1,0 +1,15 @@
+# send a string to a device, reply will be contained in this record but we pass it onto another 
+record(stringout, "$(P):SDTEST:COMM")
+{
+    field(DESC, "Send string to device")
+	field(DTYP, "stream")
+	field(OUT, "@SDTEST-IOC-01.proto sendString $(PORT)")
+	field(FLNK, "$(P):SDTEST:REPLY.PROC")
+}
+
+# we are triggered when command is processed and pick up reply
+record(stringin, "$(P):SDTEST:REPLY")
+{
+    field(DESC, "Reply from device")
+    field(INP, "$(P):SDTEST:COMM")
+}
