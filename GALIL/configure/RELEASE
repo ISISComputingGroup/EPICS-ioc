@@ -50,7 +50,7 @@ ASUBFUNCTIONS=$(SUPPORT)/asubFunctions
 
 ## add other modules here ##
 MOTOR=$(SUPPORT)/motor/R6-8-1
-ASYN=$(SUPPORT)/asyn/4-22
+ASYN=$(SUPPORT)/asyn/4-26
 ONCRPC=$(SUPPORT)/oncrpc/2
 BUSY=$(SUPPORT)/busy/1-4
 CALC=$(SUPPORT)/calc/3-4

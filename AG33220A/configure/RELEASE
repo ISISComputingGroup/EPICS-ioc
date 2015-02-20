@@ -46,7 +46,7 @@ MYSQL=$(SUPPORT)/MySQL
 ZLIB=$(SUPPORT)/zlib/1-2-8
 
 ## add other modules here ##
-ASYN=$(SUPPORT)/asyn/4-22
+ASYN=$(SUPPORT)/asyn/4-26
 STREAMDEVICE=$(SUPPORT)/StreamDevice
 PCRE=$(SUPPORT)/pcre
 ONRPC=$(SUPPORT)/oncrpc/2

@@ -45,7 +45,7 @@ MYSQL=$(SUPPORT)/MySQL
 ZLIB=$(SUPPORT)/zlib/1-2-8
 
 ## add other modules here ##
-ASYN=$(SUPPORT)/asyn/4-22
+ASYN=$(SUPPORT)/asyn/4-26
 LVDCOM=$(ISISSUPPORT)/lvDCOM
 ONRPC=$(SUPPORT)/oncrpc/2
 PUGIXML=$(SUPPORT)/pugixml

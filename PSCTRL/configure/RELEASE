@@ -47,7 +47,7 @@ ZLIB=$(SUPPORT)/zlib/1-2-8
 BUSY=$(SUPPORT)/busy/1-4
 STREAM=$(SUPPORT)/StreamDevice
 ONCRPC=$(SUPPORT)/oncrpc/2
-ASYN=$(SUPPORT)/asyn/4-22
+ASYN=$(SUPPORT)/asyn/4-26
 PROCSERVCONTROL=$(SUPPORT)/procServControl/1-2
 PCRE=$(SUPPORT)/pcre
 

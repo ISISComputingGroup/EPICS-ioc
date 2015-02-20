@@ -47,7 +47,7 @@ PUGIXML=$(SUPPORT)/pugixml
 PCRE=$(SUPPORT)/pcre
 
 ## add other modules here ##
-ASYN=$(SUPPORT)/asyn/4-22
+ASYN=$(SUPPORT)/asyn/4-26
 LVDCOM=$(ISISSUPPORT)/lvDCOM
 ONRPC=$(SUPPORT)/oncrpc/2
 

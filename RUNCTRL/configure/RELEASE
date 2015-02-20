@@ -48,7 +48,7 @@ ZLIB=$(SUPPORT)/zlib/1-2-8
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions
 RUNCONTROL=$(SUPPORT)/RunControl
 STD=$(SUPPORT)/std/R3_1
-ASYN=$(SUPPORT)/asyn/4-22
+ASYN=$(SUPPORT)/asyn/4-26
 ONCRPC=$(SUPPORT)/oncrpc/2
 
 ## add other modules here ##
