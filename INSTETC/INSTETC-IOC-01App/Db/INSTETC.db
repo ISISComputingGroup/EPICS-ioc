@@ -6,6 +6,7 @@ record (longin, "$(P)CS:MOT:STOP:ALL")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
 	field(VAL, 0)
+	field(MDEL, -1)
 }
 
 ## Count of moving motors
