@@ -61,3 +61,22 @@ record(waveform, "$(P)LOG:CONSOLES:TEXT")
    field(INP,  "@asyn(consoleslog,0,0)TEXT")
    field(SCAN, "I/O Intr")
 }
+
+# user@host with control
+record (stringin, "$(P)CS:CONTROL")
+{
+	field(DESC, "Host which has the control batton")
+	field(INP, "$(P)CS:CONTROL:REQUEST")
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	
+}
+
+# write user@host here to request control
+record (stringout, "$(P)CS:CONTROL:REQUEST") 
+{
+	field(DESC, "Request control")
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(FLNK, "$(P)CS:CONTROL")
+}
