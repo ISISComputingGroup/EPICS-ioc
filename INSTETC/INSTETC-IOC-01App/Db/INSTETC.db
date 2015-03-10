@@ -78,5 +78,26 @@ record (stringout, "$(P)CS:CONTROL:REQUEST")
 	field(DESC, "Request control")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
+	field(SDIS, "$(P)CS:CONTROL:LOCKED")
+	field(DISV, "1")
 	field(FLNK, "$(P)CS:CONTROL")
+}
+
+record (stringin, "$(P)CS:CONTROL:STAT") 
+{
+	field(DESC, "Request control status")
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+}
+
+# set to YES
+record (bo, "$(P)CS:CONTROL:LOCKED") 
+{
+	field(DESC, "Request control lock")
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(ZNAM, "NO")
+	field(ONAM, "YES")
+	field(PINI, "YES")
+	field(VAL, "0")
 }
