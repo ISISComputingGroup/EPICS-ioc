@@ -90,7 +90,7 @@ record (stringin, "$(P)CS:CONTROL:STAT")
 	field(DTYP, "Soft Channel")
 }
 
-# set to YES
+# set to YES to lock out anybody else requesting access
 record (bo, "$(P)CS:CONTROL:LOCKED") 
 {
 	field(DESC, "Request control lock")
