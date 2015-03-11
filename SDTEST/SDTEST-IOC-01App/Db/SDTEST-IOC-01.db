@@ -11,7 +11,7 @@ record(stringout, "$(P):SDTEST:COMM")
 record(stringin, "$(P):SDTEST:REPLY")
 {
     field(DESC, "Reply from device")
-    field(INP, "$(P):SDTEST:COMM")
+    field(INP, "$(P):SDTEST:COMM NPP")
 }
 
 # we get any output sent by device, whether in response to a command or not 
