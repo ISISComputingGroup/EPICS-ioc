@@ -7,3 +7,15 @@ sendString {
     ExtraInput = Ignore;
     out "%s"; in "%39c"
 }
+
+getAllOutputString {
+    ExtraInput = Ignore;
+    in "%39c"
+}
+
+# this uses a char waveform, use camonitor/caget with -S option to read
+# size need to coordinate with waveform definition in db file (but be 1 less to leave space for NULL terminator)
+getAllOutputLongString {
+    ExtraInput = Ignore;
+    in "%1023c"
+}

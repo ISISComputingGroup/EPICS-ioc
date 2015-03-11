@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<macros>
+<macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+$" description="IP  address:port  to connect to" />
+<macro name="COMPORT" pattern="^COM[0-9]+$" description="COM port to connect to" />
+<macro name="BAUD" pattern="^[0-9]+$" description="port baud rate" />
+<macro name="BITS" pattern="^[7-8]$" description="port data bits" />
+<macro name="PARITY" pattern="^(even|odd|none)$" description="port parity" />
+<macro name="STOP" pattern="^[0-2]$" description="port stop bits" />
+</macros>
+</config_part>
+</ioc_config>

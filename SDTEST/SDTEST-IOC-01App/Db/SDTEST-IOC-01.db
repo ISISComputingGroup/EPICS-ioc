@@ -1,4 +1,4 @@
-# send a string to a device, reply will be contained in this record but we pass it onto another 
+# send a string to a device, reply will get written bacl to this record but we pass it onto another for clarity 
 record(stringout, "$(P):SDTEST:COMM")
 {
     field(DESC, "Send string to device")
@@ -12,4 +12,25 @@ record(stringin, "$(P):SDTEST:REPLY")
 {
     field(DESC, "Reply from device")
     field(INP, "$(P):SDTEST:COMM")
+}
+
+# we get any output sent by device, whether in response to a command or not 
+record(stringin, "$(P):SDTEST:REPLY:ASYNC")
+{
+    field(DESC, "Unsollicited output from device")
+	field(DTYP, "stream")
+	field(INP, "@SDTEST-IOC-01.proto getAllOutputString $(PORT)")
+    field(SCAN, "I/O Intr")
+}
+
+# we get any output sent by device, whether in response to a command or not 
+# waveform size need to be one more than max length defined in .proto file function used
+record(waveform, "$(P):SDTEST:REPLYWF:ASYNC")
+{
+    field(DESC, "Unsollicited output from device")
+	field(DTYP, "stream")
+	field(INP, "@SDTEST-IOC-01.proto getAllOutputLongString $(PORT)")
+	field(FTVL, "CHAR")
+	field(NELM, "1024")
+    field(SCAN, "I/O Intr")
 }
