@@ -9,7 +9,7 @@ errlogInit2(65536, 256)
 < envPaths
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(SUPPORT)/TPG300/1-0/TPG300Sup"
-epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM13)"                                   
+#epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM13)"                                   
 
 cd ${TOP}
 
