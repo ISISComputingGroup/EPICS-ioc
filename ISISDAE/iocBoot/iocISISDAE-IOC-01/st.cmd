@@ -8,13 +8,12 @@ errlogInit2(65536, 4096)
 
 < envPaths
 
-epicsEnvSet "WIRING_DIR" "C:/InstrumentSettings/calib/sensors"
-epicsEnvSet "WIRING_PATTERN" "^C.*"
-epicsEnvSet "DETECTOR_DIR" "C:/InstrumentSettings/calib/Test"
-epicsEnvSet "DETECTOR_PATTERN" "^D.*"
-epicsEnvSet "SPECTRA_DIR" "C:/InstrumentSettings/calib/Test1"
-epicsEnvSet "SPECTRA_PATTERN" "^B.*"
-
+epicsEnvSet "WIRING_DIR" "C:/Instrument/Settings/Tables"
+epicsEnvSet "WIRING_PATTERN" ".*wiring.*"
+epicsEnvSet "DETECTOR_DIR" "C:/Instrument/Settings/Tables"
+epicsEnvSet "DETECTOR_PATTERN" ".*detector.*"
+epicsEnvSet "SPECTRA_DIR" "C:/Instrument/Settings/Tables"
+epicsEnvSet "SPECTRA_PATTERN" ".*spectra.*"
 
 cd ${TOP}
 
