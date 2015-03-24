@@ -36,7 +36,7 @@ PUGIXML=$(SUPPORT)/pugixml
 ICPCONFIG=$(SUPPORT)/icpconfig
 PVDUMP=$(SUPPORT)/pvdump
 DEVIOCSTATS=$(SUPPORT)/devIocStats/3-1-11
-AUTOSAVE=$(SUPPORT)/autosave/R5_4_2
+AUTOSAVE=$(SUPPORT)/autosave/R5_6_1
 SNCSEQ=$(SUPPORT)/seq/2-1-11
 CAPUTLOG=$(SUPPORT)/caPutLog/3-3-3
 SQLITE=$(SUPPORT)/sqlite
@@ -55,7 +55,7 @@ STD=$(SUPPORT)/std/R3_1
 CALC=$(SUPPORT)/calc/3-4
 #Story 285 - the addition of scalcout seems to require this
 SSCAN = $(SUPPORT)/sscan/2-8
-AUTOSAVE=$(SUPPORT)/autosave/R5_4_2
+AUTOSAVE=$(SUPPORT)/autosave/R5_6_1
 READASCII=$(SUPPORT)/ReadASCII
 FILELIST=$(SUPPORT)/FileList
 EFSW=$(SUPPORT)/efsw
