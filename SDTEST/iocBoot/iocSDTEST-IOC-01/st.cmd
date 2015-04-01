@@ -17,6 +17,7 @@ epicsEnvSet ("STREAM_PROTOCOL_PATH", "$(TOP)/data")
 drvAsynIPPortConfigure ("SD1", "130.246.51.169:23")
 
 #drvAsynSerialPortConfigure ("SD1", "COM1")
+#drvAsynSerialPortConfigure ("SD1", "\\\\.\\COM13")
 #asynSetOption ("SD1", 0, "baud", "9600")
 #asynSetOption ("SD1", 0, "baud", "115200")
 #asynSetOption ("SD1", 0, "bits", "8")
