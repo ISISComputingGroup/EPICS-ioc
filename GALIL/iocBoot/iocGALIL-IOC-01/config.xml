@@ -2,13 +2,13 @@
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
 <macros>
-<macro name="GALILADDR01" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]$" description="IP address of Galil controller 1 (MTR01* PVs)" />
-<macro name="GALILADDR02" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]$" description="IP address of Galil controller 2 (MTR02* PVs)" />
-<macro name="GALILADDR03" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]$" description="IP address of Galil controller 3 (MTR03* PVs)" />
-<macro name="GALILADDR04" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]$" description="IP address of Galil controller 4 (MTR04* PVs)" />
-<macro name="GALILADDR05" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]$" description="IP address of Galil controller 5 (MTR05* PVs)" />
-<macro name="GALILADDR06" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]$" description="IP address of Galil controller 6 (MTR06* PVs)" />
-<macro name="GALILADDR07" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]$" description="IP address of Galil controller 7 (MTR07* PVs)" />
+<macro name="GALILADDR01" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 1 (MTR01* PVs)" />
+<macro name="GALILADDR02" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 2 (MTR02* PVs)" />
+<macro name="GALILADDR03" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 3 (MTR03* PVs)" />
+<macro name="GALILADDR04" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 4 (MTR04* PVs)" />
+<macro name="GALILADDR05" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 5 (MTR05* PVs)" />
+<macro name="GALILADDR06" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 6 (MTR06* PVs)" />
+<macro name="GALILADDR07" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 7 (MTR07* PVs)" />
 </macros>
 <pvsets>
 <pvset name="Motor Limits" description="Motor high and low limits" />
