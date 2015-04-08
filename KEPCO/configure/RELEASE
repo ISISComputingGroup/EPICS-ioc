@@ -49,7 +49,7 @@ STREAMDEVICE=$(SUPPORT)/StreamDevice
 PCRE=$(SUPPORT)/pcre
 ONCRPC=$(SUPPORT)/oncrpc/2
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions
-
+KEPCO=$(SUPPORT)/kepco
 ## add other modules here ##
 
 include $(TOP)/../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
