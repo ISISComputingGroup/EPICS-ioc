@@ -93,10 +93,8 @@ namespace Server
                 PVs.AddRange(Choppers[Choppers.Count - 1].PVs);
             }
 
-            PvDump pvd = new PvDump(config.DatabaseFile);
-            pvd.ClearPVs("MK3CHOPPER");
+            PvDump pvd = new PvDump();
             pvd.DumpPVs(PVs, "MK3CHOPPER");
-            pvd.DumpInterestingPVs(PVs);
 
             Console.WriteLine();
 

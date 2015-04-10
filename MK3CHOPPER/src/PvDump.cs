@@ -1,96 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.SQLite;
+using System.Runtime.InteropServices;
+using System.Security;
 
 namespace Server
 {
     public class PvDump
     {
-        String _db = "";
+        [SuppressUnmanagedCodeSecurity]
+        [DllImport("pvdump.dll")]
+        private static extern int pvdumpAddPV([MarshalAs(UnmanagedType.LPStr)]string pvName, [MarshalAs(UnmanagedType.LPStr)]string recordType, [MarshalAs(UnmanagedType.LPStr)]string desc);
 
-        public PvDump(String db)
-        {
-            _db = db;
-        }
+        [SuppressUnmanagedCodeSecurity]
+        [DllImport("pvdump.dll")]
+        private static extern int pvdumpAddPVInfo([MarshalAs(UnmanagedType.LPStr)]string pvName, [MarshalAs(UnmanagedType.LPStr)]string infoName, [MarshalAs(UnmanagedType.LPStr)]string infoValue);
 
-        public void ClearPVs(String ioc)
-        {
-            try
-            {
-                SQLiteConnection conn = new SQLiteConnection("Data Source=" + _db + ";Version=3;");
-                conn.Open();
-
-                string sql = "DELETE FROM pvs WHERE iocname IS '" + ioc + "'";
-                SQLiteCommand command = new SQLiteCommand(sql, conn);
-                command.ExecuteNonQuery();
-
-                conn.Close();
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-            }
-        }
+        [SuppressUnmanagedCodeSecurity]
+        [DllImport("pvdump.dll")]
+        private static extern int pvdumpWritePVs([MarshalAs(UnmanagedType.LPStr)]string iocname);
 
         public void DumpPVs(List<PVInfo> pvs, string ioc)
         {
             try
             {
-                SQLiteConnection conn = new SQLiteConnection("Data Source=" + _db + ";Version=3;");
-                conn.Open();
-
                 foreach (PVInfo pv in pvs)
                 {
-                    try
-                    {
-                        string sql = "insert into pvs (pvname, record_type, record_desc, iocname) values ('" + pv.Name + "', '" + pv.Type + "', '', '" + ioc + "')";
-                        SQLiteCommand command = new SQLiteCommand(sql, conn);
-                        command.ExecuteNonQuery();
-                    }
-                    catch
-                    {
-                        //May already exist
-                    }
+
+                    pvdumpAddPV(pv.Name, pv.Type, "");
+                    pvdumpAddPVInfo(pv.Name, "INTEREST", pv.Interest);
                 }
-                conn.Close();
+
+                //Write to db
+                pvdumpWritePVs(ioc);
             }
             catch (Exception err)
             {
-                Console.WriteLine(err.Message);
+                Console.WriteLine("ERROR: Could not dump PVs: " + err.Message);
             }
-        }
-
-        public void DumpInterestingPVs(List<PVInfo> pvs)
-        {
-            try
-            {
-                SQLiteConnection conn = new SQLiteConnection("Data Source=" + _db + ";Version=3;");
-                conn.Open();
-
-                foreach (PVInfo pv in pvs)
-                {
-                    if (!String.IsNullOrEmpty(pv.Interest.Trim()))
-                    {
-                        try
-                        {
-                            string sql = "insert into pvinfo (pvname, infoname, value) values ('" + pv.Name + "', 'INTEREST', '" + pv.Interest.Trim() + "')";
-                            SQLiteCommand command = new SQLiteCommand(sql, conn);
-                            command.ExecuteNonQuery();
-                        }
-                        catch
-                        {
-                        }
-                    }
-                }
-                conn.Close();
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err.Message);
-            }
-
         }
     }
 }
