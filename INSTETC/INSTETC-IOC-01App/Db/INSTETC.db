@@ -17,6 +17,7 @@ record(calc, "$(P)CS:MOT:MOVING")
 	field(INPA, "$(P)CS:MOT:MOVING:SP")
 	field(INPB, 0)
 	field(CALC, "B+A; B:=B+A")
+    info(archive, "VAL")
 }
 
 ## Set externally if something starts to move
