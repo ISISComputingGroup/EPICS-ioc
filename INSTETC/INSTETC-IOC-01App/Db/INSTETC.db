@@ -12,21 +12,11 @@ record (longin, "$(P)CS:MOT:STOP:ALL")
 ## Count of moving motors
 record(calc, "$(P)CS:MOT:MOVING") 
 {
-	field(DESC, "IOC motors with motion to complete")
+	field(DESC, "IOCs with motion to complete")
+    field(VAL, "0")
 	field(SCAN, "Passive")
-	field(INPA, "$(P)CS:MOT:MOVING:SP")
-	field(INPB, 0)
-	field(CALC, "B+A; B:=B+A")
+	field(CALC, "A+B+C+D+E+F+G")
     info(archive, "VAL")
-}
-
-## Set externally if something starts to move
-record(longin, "$(P)CS:MOT:MOVING:SP") 
-{
-	field(DESC, "Set if something starts or stops")
-	field(SCAN, "Passive")
-	field(VAL, 0)
-	field(FLNK, "$(P)CS:MOT:MOVING.PROC")
 }
 
 # used by access security file
