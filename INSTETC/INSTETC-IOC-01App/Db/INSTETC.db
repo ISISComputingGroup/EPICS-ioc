@@ -9,13 +9,13 @@ record (longin, "$(P)CS:MOT:STOP:ALL")
 	field(MDEL, -1)
 }
 
-## Count of moving motors
+## Are any motors moving
 record(calc, "$(P)CS:MOT:MOVING") 
 {
 	field(DESC, "IOCs with motion to complete")
     field(VAL, "0")
 	field(SCAN, "Passive")
-	field(CALC, "A+B+C+D+E+F+G")
+	field(CALC, "(A+B+C+D+E+F+G) > 0 ? 1 : 0")
     info(archive, "VAL")
 }
 
