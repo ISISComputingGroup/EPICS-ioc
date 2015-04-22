@@ -13,6 +13,7 @@ record(ai, "$(P)$(Q)$(NAME):RAW")
 
 record(calc, "$(P)$(Q)$(NAME)")
 {
+    field(DESC, "$(NAME) Flow")
 	field(INPA, "$(P)$(Q)$(NAME):RAW")
     field(EGU, "L/minute")
     field(HOPR, "25")

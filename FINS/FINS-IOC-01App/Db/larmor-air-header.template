@@ -21,6 +21,7 @@
 
 record(bi, "$(P)$(Q)STATUS")
 {
+    field(DESC, "Status")
 	field(DTYP, "asynInt32")
     field(ZNAM, "LOWERED")
     field(ONAM, "RAISED")
@@ -43,6 +44,7 @@ record(longin, "$(P)$(Q)HEARTBEAT")
 
 record(bo, "$(P)$(Q)MOVE:SP")
 {
+    field(DESC, "Request move")
 	field(DTYP, "asynInt32")
     field(ZNAM, "LOWER")
     field(ONAM, "RAISE")
@@ -55,6 +57,7 @@ record(bo, "$(P)$(Q)MOVE:SP")
 
 record(bi, "$(P)$(Q)MOVE:SP:RBV")
 {
+    field(DESC, "Request move readback")
 	field(DTYP, "asynInt32")
     field(ZNAM, "LOWER")
     field(ONAM, "RAISE")

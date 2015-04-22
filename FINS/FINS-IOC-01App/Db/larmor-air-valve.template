@@ -13,6 +13,7 @@ record(ai, "$(P)$(Q)$(NAME):RAW")
 
 record(calc, "$(P)$(Q)$(NAME)")
 {
+    field(DESC, "$(NAME) Opening")
 	field(INPA, "$(P)$(Q)$(NAME):RAW")
     field(EGU, "%")
     field(HOPR, "100")
