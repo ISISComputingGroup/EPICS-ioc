@@ -29,6 +29,7 @@ record(bi, "$(P)$(Q)STATUS")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:STATUS")
 	info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(longin, "$(P)$(Q)HEARTBEAT")
@@ -49,6 +50,7 @@ record(bo, "$(P)$(Q)MOVE:SP")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:MOVE")
 	info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(bi, "$(P)$(Q)MOVE:SP:RBV")
@@ -61,6 +63,7 @@ record(bi, "$(P)$(Q)MOVE:SP:RBV")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:MOVE")
 	info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 alias("$(P)$(Q)MOVE:SP:RBV", "$(P)$(Q)MOVE")
 
