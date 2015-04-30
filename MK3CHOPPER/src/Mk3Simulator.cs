@@ -4,7 +4,7 @@ using CaSharpServer;
 
 namespace Server
 {
-    class Mk3Simulator : IChopper
+    class Mk3Simulator : Mk3Wrapper.IChopper, IGetPvInfo
     {
         public static uint NumEnabledChannels = 0;
 

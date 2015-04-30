@@ -67,9 +67,9 @@ namespace Server
 
             Console.WriteLine("PV PREFIX: " + config.Prefix);
 
-            List<ChopperWrapper> Choppers = new List<ChopperWrapper>();
+            List<CaWrapper> Choppers = new List<CaWrapper>();
 
-            IChopper mk3chopper;
+            Mk3Wrapper.IChopper mk3chopper;
 
             int numChannels = 0;
             List<PVInfo> PVs = new List<PVInfo>();
@@ -85,11 +85,16 @@ namespace Server
                 numChannels = (int)mk3chopper.GetNumberEnabledChannels();
             }
 
-            PVs.AddRange(mk3chopper.GetPvInfo());
+            IGetPvInfo pvinfo = mk3chopper as IGetPvInfo;
+
+            if (pvinfo != null)
+            {
+                PVs.AddRange(pvinfo.GetPvInfo());
+            }
 
             for (uint i = 0; i < numChannels; ++i)
             {
-                Choppers.Add(new ChopperWrapper(server, config.Prefix, i + 1, mk3chopper));
+                Choppers.Add(new CaWrapper(server, config.Prefix, i + 1, mk3chopper));
                 PVs.AddRange(Choppers[Choppers.Count - 1].PVs);
             }
 

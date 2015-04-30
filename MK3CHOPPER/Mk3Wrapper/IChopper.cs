@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 
-namespace Server
+namespace Mk3Wrapper
 {
     public interface IChopper
     {
@@ -30,7 +30,6 @@ namespace Server
         double PutNominalFreq(uint channel, double speed);
         uint PutNominalPhaseErrorWindow(uint channel, uint error);
         uint PutNominalPhase(uint channel, uint phase);
-        List<PVInfo> GetPvInfo();
         bool GetChangeDirectionEnabled(uint channel);
     }
 }
