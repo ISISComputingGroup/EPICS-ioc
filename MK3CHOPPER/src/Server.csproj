@@ -73,10 +73,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite, Version=1.0.93.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\SQLiteLibs\x64\System.Data.SQLite.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -116,7 +112,7 @@ mkdir $(SolutionDir)\iocBoot\iocMk3Chopper
 copy $(ProjectDir)\example_st.cmd $(SolutionDir)\iocBoot\iocMk3Chopper\st.cmd
 copy $(ProjectDir)\example_st_simulate.cmd $(SolutionDir)\iocBoot\iocMk3Chopper\st_simulate.cmd
 copy $(ProjectDir)\runIOC.bat $(SolutionDir)\iocBoot\iocMk3Chopper\runIOC.bat
-copy $(SolutionDir)\SQLiteLibs\$(PlatformName)\*.* $(ProjectDir)\$(OutDir)\.
+
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

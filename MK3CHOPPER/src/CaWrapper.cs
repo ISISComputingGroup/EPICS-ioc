@@ -2,13 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using CaSharpServer;
-using Mk3Wrapper;
 
 namespace Server
 {
     class CaWrapper
     {
-        static IChopper _chopper = null;
+        static Mk3Wrapper.IChopper _chopper = null;
         uint _chanNum = 1;
 
         CADoubleRecord FreqRb;
@@ -37,7 +36,7 @@ namespace Server
 
         public List<PVInfo> PVs { get; private set; }
 
-        public CaWrapper(CAServer server, String prefix, uint channel, IChopper chopper)
+        public CaWrapper(CAServer server, String prefix, uint channel, Mk3Wrapper.IChopper chopper)
         {
             //Only do once - not for each channel
             if (_chopper == null) _chopper = chopper;
