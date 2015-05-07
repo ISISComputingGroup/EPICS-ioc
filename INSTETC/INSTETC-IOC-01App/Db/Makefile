@@ -14,6 +14,7 @@ DB += INSTETC.db
 DB += runcontrol.db
 DB += inst_string_parameters.db
 DB += inst_real_parameters.db
+DB += experiment_data.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

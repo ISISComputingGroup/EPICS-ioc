@@ -1,0 +1,109 @@
+record(bo, "$(P)ED:SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    info("testparam","testvalue")
+}
+
+record(bo, "$(P)ED:DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(stringin, "$(P)ED:RBNUMBER")
+{
+    field(DESC, "Experiment (RB) Number")
+	field(DTYP, "Soft Channel")
+	field(SCAN, "5 second")
+    field(INP, "$(P)DAE:_RBNUMBER")
+    info(INTEREST, "HIGH")
+	field(SIML, "$(P)ED:SIM")
+	field(SIOL, "$(P)ED:SIM:RBNUMBER")
+	field(SDIS, "$(P)ED:DISABLE")
+}
+
+record(stringout, "$(P)ED:RBNUMBER:DAE:SP")
+{
+    field(DESC, "Set Experiment (RB) Number")
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+    field(OUTP, "$(P)DAE:_RBNUMBER:SP")
+	info(autosaveFields, "VAL")
+	field(SDIS, "$(P)ED:DISABLE")
+}
+
+alias("$(P)ED:RBNUMBER", "$(P)ED:RBNUMBER:SP:RBV")
+
+record(stringin, "$(P)ED:SIM:RBNUMBER")
+{
+	field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(waveform, "$(P)ED:USERNAME")
+{
+    field(DESC, "Experiment User names")
+	field(DTYP, "Soft Channel")
+	field(SCAN, "10 second")
+    field(NELM, "1024")
+    field(FTVL, "CHAR")
+	field(INP, "$(P)DAE:_USERNAME")
+    info(INTEREST, "HIGH")
+    field(SIML, "$(P)ED:SIM")
+    field(SIOL, "$(P)ED:SIM:USERNAME")
+	field(SDIS, "$(P)ED:DISABLE")
+}
+
+record(waveform, "$(P)ED:SURNAME")
+{
+    field(DESC, "Experiment User Surnames")
+    field(NELM, "1024")
+    field(FTVL, "CHAR")
+	field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    info(INTEREST, "HIGH")
+	info(autosaveFields, "VAL")
+	field(SIML, "$(P)ED:SIM")
+	field(SDIS, "$(P)ED:DISABLE")
+}
+
+record(waveform, "$(P)ED:ORGS")
+{
+    field(DESC, "Experiment User Organisations")
+    field(NELM, "1024")
+    field(FTVL, "CHAR")
+	field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    info(INTEREST, "HIGH")
+	info(autosaveFields, "VAL")
+}
+
+record(waveform, "$(P)ED:USERNAME:DAE:SP")
+{
+    field(DESC, "Set Experiment User names")
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+    field(NELM, "1024")
+    field(FTVL, "CHAR")
+	field(OUTP, "$(P)DAE:_USERNAME:SP")
+    info(autosaveFields, "VAL")
+	field(SDIS, "$(P)ED:DISABLE")
+}
+
+alias("$(P)ED:USERNAME", "$(P)ED:USERNAME:SP:RBV")
+
+record(waveform, "$(P)ED:SIM:USERNAME")
+{
+    field(DESC, "Simulated Experiment User Name")
+    field(NELM, "1024")
+    field(FTVL, "CHAR")
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
