@@ -15,6 +15,9 @@
 set_requestfile_path("${GALIL}/GalilSup/Db", "")
 set_requestfile_path("${MOTOR}/motorApp/Db", "")
 
+## as all Galils cd to GALIL-IOC-01 need to add this explicitly so info generated req files are found
+set_requestfile_path("${TOP}/iocBoot/iocGALIL-IOC-01", "")
+
 # how many galil crates we have
 # GALILNUMCRATES set in icpconfig
 
