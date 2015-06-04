@@ -11,7 +11,7 @@ errlogInit2(65536, 256)
 cd ${TOP}
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(SUPPORT)/julabo/julaboApp/protocol"
-epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM18)"
+epicsEnvSet "TTY" "$(TTY=COM17)"
 
 ## Register all support components
 dbLoadDatabase "dbd/JULABO-IOC-01.dbd"

@@ -6,7 +6,7 @@
 < envPaths
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(KEPCO)/kepcoApp/protocol"
-epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM19)"
+epicsEnvSet "TTY" "$(TTY=COM19)"
 
 cd ${TOP}
 
