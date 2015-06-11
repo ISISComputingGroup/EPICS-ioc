@@ -1,5 +1,8 @@
 < $(IOCSTARTUP)/init.cmd
 
+##ISIS## Load common DB records 
+< $(IOCSTARTUP)/dbload.cmd
+
 ## set path to stream driver protocol file referenced in db files
 epicsEnvSet ("STREAM_PROTOCOL_PATH", "$(TOP)/data")
 
@@ -26,5 +29,13 @@ epicsEnvSet(PN,7)
 
 epicsEnvSet(PN,8)
 < st-port.cmd
+
+##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
+< $(IOCSTARTUP)/preiocinit.cmd
+
+iocInit()
+
+##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
+< $(IOCSTARTUP)/postiocinit.cmd
 
 #
