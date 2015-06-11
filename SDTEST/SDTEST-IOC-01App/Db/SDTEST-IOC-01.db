@@ -1,36 +1,76 @@
-# send a string to a device, reply will get written bacl to this record but we pass it onto another for clarity 
-record(stringout, "$(P):SDTEST:COMM")
+record(stringin, "$(P)$(Q)NAME")
 {
-    field(DESC, "Send string to device")
+    field(DESC, "Device attached to $(DEV)")
+    field(VAL, "$(NAME)")
+}
+
+# send a string to a device, reply will get written back to this record but we pass it onto another for clarity 
+record(stringout, "$(P)$(Q)COMM")
+{
+    field(DESC, "Send string to $(DEV)")
 	field(DTYP, "stream")
 	field(OUT, "@SDTEST-IOC-01.proto sendString $(PORT)")
-	field(FLNK, "$(P):SDTEST:REPLY.PROC")
+	field(FLNK, "$(P)$(Q)REPLY.PROC")
+	field(SIML, "$(P)$(Q)SIM")
+	field(SIOL, "$(P)$(Q)SIM:VAL")
+	field(SDIS, "$(P)$(Q)DISABLE")
 }
 
 # we are triggered when command is processed and pick up reply
-record(stringin, "$(P):SDTEST:REPLY")
+record(stringin, "$(P)$(Q)REPLY")
 {
-    field(DESC, "Reply from device")
-    field(INP, "$(P):SDTEST:COMM NPP")
+    field(DESC, "Reply from $(DEV)")
+    field(INP, "$(P)$(Q)COMM NPP")
 }
 
 # we get any output sent by device, whether in response to a command or not 
-record(stringin, "$(P):SDTEST:REPLY:ASYNC")
+record(stringin, "$(P)$(Q)REPLY:ASYNC")
 {
-    field(DESC, "Unsollicited output from device")
+    field(DESC, "Unsollicited output from $(DEV)")
 	field(DTYP, "stream")
 	field(INP, "@SDTEST-IOC-01.proto getAllOutputString $(PORT)")
     field(SCAN, "I/O Intr")
+	field(SIML, "$(P)$(Q)SIM")
+	field(SIOL, "$(P)$(Q)SIM:VAL")
+	field(SDIS, "$(P)$(Q)DISABLE")
 }
 
 # we get any output sent by device, whether in response to a command or not 
 # waveform size need to be one more than max length defined in .proto file function used
-record(waveform, "$(P):SDTEST:REPLYWF:ASYNC")
+record(waveform, "$(P)$(Q)REPLYWF:ASYNC")
 {
-    field(DESC, "Unsollicited output from device")
+    field(DESC, "Unsollicited output from $(DEV)")
 	field(DTYP, "stream")
 	field(INP, "@SDTEST-IOC-01.proto getAllOutputLongString $(PORT)")
 	field(FTVL, "CHAR")
 	field(NELM, "1024")
     field(SCAN, "I/O Intr")
+	field(SIML, "$(P)$(Q)SIM")
+	field(SIOL, "$(P)$(Q)SIM:VAL")
+	field(SDIS, "$(P)$(Q)DISABLE")
+}
+
+## SIM and DISABLE records
+record( bo, "$(P)$(Q)DISABLE") 
+{
+  field(DESC, "Disable comms")
+  field(PINI, "YES")
+  field(VAL, "$(DISABLE)")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Comms Enabled")
+  field(ONAM, "Comms Disabled")
+}
+
+record(bo, "$(P)$(Q)SIM") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(SIM)")
+}
+
+record(stringout, "$(P)$(Q)SIM:VAL")
+{
+    field(VAL, "")
 }

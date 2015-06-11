@@ -1,6 +1,7 @@
 # terminator for output and input
 # use OutTerminator and InTerminator if these are different
-Terminator = CR LF;
+# Terminator set in st.cmd via asynOctetSetOutputEos() etc
+# Terminator = CR LF;
 
 # this is hooked up to a 40 character stringout record, which will contain the reply after processing
 sendString {

@@ -14,21 +14,30 @@ SDTEST_IOC_01_registerRecordDeviceDriver(pdbbase)
 ## set path to stream driver protocol file referenced in db files
 epicsEnvSet ("STREAM_PROTOCOL_PATH", "$(TOP)/data")
 
-drvAsynIPPortConfigure ("SD1", "130.246.51.169:23")
+epicsEnvSet(PN,1)
+< st-common.cmd
 
-#drvAsynSerialPortConfigure ("SD1", "COM1")
-#drvAsynSerialPortConfigure ("SD1", "\\\\.\\COM13")
-#asynSetOption ("SD1", 0, "baud", "9600")
-#asynSetOption ("SD1", 0, "baud", "115200")
-#asynSetOption ("SD1", 0, "bits", "8")
-#asynSetOption ("SD1", 0, "parity", "none")
-#asynSetOption ("SD1", 0, "stop", "1")
-#asynSetOption ("SD1", 0, "clocal", "Y")
-#asynSetOption ("SD1", 0, "crtscts", "N")
-#asynOctetSetOutputEos("SD1",0,"\r\n")
-#asynOctetSetInputEos("SD1",0,"\r\n")
+epicsEnvSet(PN,2)
+< st-common.cmd
 
-## Load record instances
-dbLoadRecords("../../db/SDTEST-IOC-01.db","P=$(MYPVPREFIX),PORT=SD1")
+epicsEnvSet(PN,3)
+< st-common.cmd
+
+epicsEnvSet(PN,4)
+< st-common.cmd
+
+epicsEnvSet(PN,5)
+< st-common.cmd
+
+epicsEnvSet(PN,6)
+< st-common.cmd
+
+epicsEnvSet(PN,7)
+< st-common.cmd
+
+epicsEnvSet(PN,8)
+< st-common.cmd
 
 iocInit()
+
+#

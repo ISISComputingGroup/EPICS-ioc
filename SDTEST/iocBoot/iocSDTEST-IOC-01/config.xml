@@ -2,12 +2,17 @@
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
 <macros>
-<macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+$" description="IP  address:port  to connect to" />
-<macro name="COMPORT" pattern="^COM[0-9]+$" description="COM port to connect to" />
-<macro name="BAUD" pattern="^[0-9]+$" description="port baud rate" />
-<macro name="BITS" pattern="^[7-8]$" description="port data bits" />
-<macro name="PARITY" pattern="^(even|odd|none)$" description="port parity" />
-<macro name="STOP" pattern="^[0-2]$" description="port stop bits" />
+<macro name="PORT1" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
+<macro name="BAUD1" pattern="^[0-9]+$" description="port baud rate" />
+<macro name="BITS1" pattern="^[7-8]$" description="port data bits" />
+<macro name="PARITY1" pattern="^(even|odd|none)$" description="port parity" />
+<macro name="STOP1" pattern="^[0-2]$" description="port stop bits" />
+<macro name="OEOS1" pattern="^.*$" description="output end of line separator" />
+<macro name="IEOS1" pattern="^.*$" description="input end of line separator" />
+<macro name="CLOCAL1" pattern="^[YN]$" description="N for output flow control using DSR" />
+<macro name="CRTSCTS1" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control" />
+<macro name="IXON1" pattern="^[YN]$" description="Y for output software flow control" />
+<macro name="IXOFF1" pattern="^[YN]$" description="Y for input software flow control" />
 </macros>
 </config_part>
 </ioc_config>
