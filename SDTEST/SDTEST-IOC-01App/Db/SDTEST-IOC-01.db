@@ -2,6 +2,7 @@ record(stringin, "$(P)$(Q)NAME")
 {
     field(DESC, "Device attached to $(DEV)")
     field(VAL, "$(NAME)")
+    info(autosaveFields, "VAL")
 }
 
 # send a string to a device, reply will get written back to this record but we pass it onto another for clarity 
