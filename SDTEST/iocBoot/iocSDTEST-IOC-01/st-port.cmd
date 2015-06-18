@@ -7,6 +7,7 @@ stringiftest("PORT", "$(PORT$(PN)=)")
 # create a real serial port, unless in simulation mode then crreate an unconnected asyn port 
 $(IFPORT)$(IFSIM)    drvAsynSerialPortConfigure ("SD$(PN)", "NUL", 0, 1)
 
+# defaults should be reflected in config.xml
 $(IFPORT)$(IFNOTSIM) drvAsynSerialPortConfigure ("SD$(PN)", "$(PORT$(PN)=)")
 $(IFPORT)$(IFNOTSIM) asynSetOption ("SD$(PN)", 0, "baud", "$(BAUD$(PN)=9600)")
 $(IFPORT)$(IFNOTSIM) asynSetOption ("SD$(PN)", 0, "bits", "$(BITS$(PN)=8)")
