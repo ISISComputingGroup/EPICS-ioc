@@ -48,10 +48,10 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
+$(APPNAME)_LIBS += Newport
 $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motor
-$(APPNAME)_LIBS += Newport
 $(APPNAME)_LIBS += motionSetPoints
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += busy asyn
