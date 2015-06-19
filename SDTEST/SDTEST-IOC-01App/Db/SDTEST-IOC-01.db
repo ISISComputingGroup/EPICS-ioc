@@ -1,6 +1,7 @@
+## 
 record(stringin, "$(P)$(Q)NAME")
 {
-    field(DESC, "Device attached to device")
+    field(DESC, "Name of device")
     field(VAL, "$(NAME)")
 #    info(autosaveFields, "VAL")
 }
@@ -27,7 +28,7 @@ record(stringin, "$(P)$(Q)REPLY")
 # the command sent to the device to read a value
 record(stringin, "$(P)$(Q)GETVAL:_OUT")
 {
-    field(VAL, "$(GETOUT)")
+    field(VAL, "$(GETOUT=)")
 }
 
 # PV names are too long to put entirely into protocol arguments, so just pass prefix and put rest of name in protocol file
@@ -36,7 +37,7 @@ record(ai, "$(P)$(Q)GETVAL")
     field(DESC, "Read value from device")
 	field(DTYP, "stream")
     field(SCAN, "$(SCAN)")
-	field(INP, "@SDTEST-IOC-01.proto getValue($(P)$(Q),%f) $(PORT)")
+	field(INP, "@SDTEST-IOC-01.proto getValue($(P)$(Q),$(GETIN)) $(PORT)")
 	field(SIML, "$(P)$(Q)SIM")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
@@ -45,12 +46,12 @@ record(ai, "$(P)$(Q)GETVAL")
 
 record(stringin, "$(P)$(Q)SETVAL:_OUT1")
 {
-    field(VAL, "$(SETOUT1)")
+    field(VAL, "$(SETOUT1=)")
 }
 
 record(stringin, "$(P)$(Q)SETVAL:_OUT2")
 {
-    field(VAL, "$(SETOUT2)")
+    field(VAL, "$(SETOUT2=)")
 }
 
 # arg1 = prefix, arg2 = format for value to send, $3 = format for value to receive. 
@@ -59,7 +60,7 @@ record(ao, "$(P)$(Q)SETVAL")
 {
     field(DESC, "Send value to device")
 	field(DTYP, "stream")
-	field(OUT, "@SDTEST-IOC-01.proto setValue($(P)$(Q),%f,%*s) $(PORT)")
+	field(OUT, "@SDTEST-IOC-01.proto setValue($(P)$(Q),$(SETFMT),$(SETREPLY)) $(PORT)")
 	field(SIML, "$(P)$(Q)SIM")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
