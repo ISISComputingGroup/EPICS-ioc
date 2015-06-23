@@ -684,6 +684,7 @@ record(ao, "$(P)SP") {
 	field(EGU, "")
     field(PREC, "3")
 	field(FLNK, "$(P)SP:RBV.PROC PP")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)HILIM") {
