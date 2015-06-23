@@ -8,9 +8,9 @@
 epicsEnvSet "IOCNAME" "EUROTHERM_01"
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(SUPPORT)/eurotherm2k/1-11/eurotherm2kApp/protocol"
 epicsEnvSet "TTY" "$(TTY=COM21)"
-epicsEnvSet "SENS_DIR" "C:/InstrumentSettings/calib/sensors"
+epicsEnvSet "SENS_DIR" "C:/Instrument/Settings/calib/sensors"
 epicsEnvSet "SENS_PAT" "^C.*"
-epicsEnvSet "RAMP_DIR" "C:/InstrumentSettings"
+epicsEnvSet "RAMP_DIR" "C:/Instrument/Settings"
 epicsEnvSet "RAMP_PAT" ".*"
 
 cd ${TOP}
