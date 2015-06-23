@@ -72,7 +72,7 @@ record(stringout, "$(P)RAMP_FILE:SP")
 
 record(ao, "$(P)TEMP:SP")
 {
-   field(DESC, "The temperature setpoint")
+   field(DESC, "Temperature setpoint")
    field(DTYP, "asynFloat64")
    field(OUT, "@asyn($(READ),0,1)TGT")
    field(FLNK, "$(P)OUT_SP")
@@ -81,7 +81,7 @@ record(ao, "$(P)TEMP:SP")
 
 record(ao, "$(P)TEMP:SP:RBV")
 {
-   field(DESC, "The temperature setpoint")
+   field(DESC, "Temperature setpoint readback")
    field(DTYP, "asynFloat64")
    field(OUT, "@asyn($(READ),0,1)TGT:RBV")
    field(EGU, "K")
@@ -340,6 +340,7 @@ record(ai, "$(P)P") {
     field(SIOL, "$(P)SIM:P")
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
+    field(PREC, "3")
 }
 
 record(ao, "$(P)P:SP") {
@@ -364,6 +365,7 @@ record(ai, "$(P)I") {
     field(SIOL, "$(P)SIM:I")
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
+    field(PREC, "3")
 }
 
 record(ao, "$(P)I:SP") {
@@ -388,6 +390,7 @@ record(ai, "$(P)D") {
     field(SIOL, "$(P)SIM:D")
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
+    field(PREC, "3")
 }
 
 record(ao, "$(P)D:SP") {
@@ -578,6 +581,7 @@ record(cvt, "$(P)TEMP")
 	field(METH, "1D TABLE INVERTED")
 	field(SPEC, "None.txt")
 	field(TDIR, "$(SDIR)")
+    field(PREC, "3")
 	field(FLNK, "$(P)CURRENT_TEMP PP")
 }
 
@@ -588,6 +592,7 @@ record(cvt, "$(P)TEMP:SP:RBV:CONV")
 	field(OUT, "$(P)TEMP:SP:RBV PP")
 	field(METH, "1D TABLE INVERTED")
 	field(SPEC, "None.txt")
+    field(PREC, "3")
 	field(TDIR, "$(SDIR)")
 }
 
@@ -598,6 +603,7 @@ record(cvt, "$(P)TEMP:HIGHLIMIT")
 	field(METH, "1D TABLE INVERTED")
 	field(SPEC, "None.txt")
 	field(TDIR, "$(SDIR)")
+    field(PREC, "3")
 }
 
 record(cvt, "$(P)TEMP:LOWLIMIT")
@@ -607,6 +613,7 @@ record(cvt, "$(P)TEMP:LOWLIMIT")
 	field(METH, "1D TABLE INVERTED")
 	field(SPEC, "None.txt")
 	field(TDIR, "$(SDIR)")
+    field(PREC, "3")
 }
 
 record(cvt, "$(P)TEMP:SP:CONV")
@@ -616,6 +623,7 @@ record(cvt, "$(P)TEMP:SP:CONV")
 	field(METH, "1D TABLE")
 	field(SPEC, "None.txt")
 	field(TDIR, "$(SDIR)")
+    field(PREC, "3")
 }
 
 record(ai, "$(P)RBV") {
@@ -628,6 +636,7 @@ record(ai, "$(P)RBV") {
     field(SIOL, "$(P)SIM:TEMP")
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
+    field(PREC, "3")
 	field(FLNK, "$(P)TEMP.PROC PP")
 }
 
@@ -641,6 +650,7 @@ record(ai, "$(P)SP:RBV") {
     field(SIOL, "$(P)SIM:TEMP:SP:RBV")
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
+    field(PREC, "3")
 }
 
 record(ao, "$(P)SP") {
@@ -652,6 +662,7 @@ record(ao, "$(P)SP") {
     field(SIOL, "$(P)SIM:TEMP:SP")
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
+    field(PREC, "3")
 	field(FLNK, "$(P)SP:RBV.PROC PP")
 }
 
@@ -664,6 +675,7 @@ record(ai, "$(P)HILIM") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:HIGHLIMIT")
     field(SDIS, "$(Q)DISABLE")
+    field(PREC, "3")
 }
 
 record(ai, "$(P)LOWLIM") {
@@ -674,6 +686,7 @@ record(ai, "$(P)LOWLIM") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:LOWLIMIT")
     field(SDIS, "$(Q)DISABLE")
+    field(PREC, "3")
 }
 
 ### SIMULATION RECORDS ###
