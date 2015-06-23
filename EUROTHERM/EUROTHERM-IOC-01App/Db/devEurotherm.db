@@ -77,6 +77,8 @@ record(ao, "$(P)TEMP:SP")
    field(OUT, "@asyn($(READ),0,1)TGT")
    field(FLNK, "$(P)OUT_SP")
    field(EGU, "K")
+   info(INTEREST, "HIGH")
+   info(archive, "VAL")
 }
 
 record(ao, "$(P)TEMP:SP:RBV")
@@ -85,6 +87,8 @@ record(ao, "$(P)TEMP:SP:RBV")
    field(DTYP, "asynFloat64")
    field(OUT, "@asyn($(READ),0,1)TGT:RBV")
    field(EGU, "K")
+   info(INTEREST, "MEDIUM")
+   info(archive, "VAL")
 }
 
 record(ao, "$(P)RATE:SP")
@@ -283,6 +287,7 @@ record(ai, "$(P)OUTPUT") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:OUTPUT")
     field(SDIS, "$(Q)DISABLE")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)MAX_OUTPUT") {
@@ -294,6 +299,7 @@ record(ai, "$(P)MAX_OUTPUT") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:MAX_OUTPUT")
     field(SDIS, "$(Q)DISABLE")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)MAX_OUTPUT:SP") {
@@ -306,6 +312,7 @@ record(ao, "$(P)MAX_OUTPUT:SP") {
     field(SIOL, "$(P)SIM:MAX_OUTPUT:SP")
     field(SDIS, "$(Q)DISABLE")
 	field(FLNK, "$(P)MAX_OUTPUT.PROC PP")
+    info(archive, "VAL")
 }
 
 alias("$(P)MAX_OUTPUT", "$(P)MAX_OUTPUT:SP:RBV")
@@ -341,6 +348,7 @@ record(ai, "$(P)P") {
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
     field(PREC, "3")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)P:SP") {
@@ -366,6 +374,7 @@ record(ai, "$(P)I") {
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
     field(PREC, "3")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)I:SP") {
@@ -391,6 +400,7 @@ record(ai, "$(P)D") {
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
     field(PREC, "3")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)D:SP") {
@@ -578,11 +588,13 @@ record(cvt, "$(P)TEMP")
     field(DESC, "Temperature")
     info(INTEREST, "HIGH")
 	field(INPY, "$(P)RBV")
+    field(YSLO, 1)
 	field(METH, "1D TABLE INVERTED")
 	field(SPEC, "None.txt")
 	field(TDIR, "$(SDIR)")
     field(PREC, "3")
 	field(FLNK, "$(P)CURRENT_TEMP PP")
+    info(archive, "VAL")
 }
 
 record(cvt, "$(P)TEMP:SP:RBV:CONV")
@@ -590,6 +602,7 @@ record(cvt, "$(P)TEMP:SP:RBV:CONV")
 	field(SCAN, "1 second")
 	field(INPY, "$(P)SP:RBV PP")
 	field(OUT, "$(P)TEMP:SP:RBV PP")
+    field(YSLO, 1)
 	field(METH, "1D TABLE INVERTED")
 	field(SPEC, "None.txt")
     field(PREC, "3")
@@ -600,26 +613,31 @@ record(cvt, "$(P)TEMP:HIGHLIMIT")
 {
 	field(SCAN, "1 second")
 	field(INPY, "$(P)HILIM PP")
+    field(YSLO, 1)
 	field(METH, "1D TABLE INVERTED")
 	field(SPEC, "None.txt")
 	field(TDIR, "$(SDIR)")
     field(PREC, "3")
+    info(archive, "VAL")
 }
 
 record(cvt, "$(P)TEMP:LOWLIMIT")
 {
 	field(SCAN, "1 second")
 	field(INPY, "$(P)LOWLIM PP")
+    field(YSLO, 1)
 	field(METH, "1D TABLE INVERTED")
 	field(SPEC, "None.txt")
 	field(TDIR, "$(SDIR)")
     field(PREC, "3")
+    info(archive, "VAL")
 }
 
 record(cvt, "$(P)TEMP:SP:CONV")
 {
 	field(OUT, "$(P)SP PP")
 	field(INPX, "$(P)RAMP_SP")
+    field(YSLO, 1)
 	field(METH, "1D TABLE")
 	field(SPEC, "None.txt")
 	field(TDIR, "$(SDIR)")
@@ -638,6 +656,7 @@ record(ai, "$(P)RBV") {
 	field(EGU, "")
     field(PREC, "3")
 	field(FLNK, "$(P)TEMP.PROC PP")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)SP:RBV") {
@@ -651,6 +670,7 @@ record(ai, "$(P)SP:RBV") {
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
     field(PREC, "3")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)SP") {
