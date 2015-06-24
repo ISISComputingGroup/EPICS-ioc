@@ -487,6 +487,7 @@ record(stringout, "$(P)CAL:SEL")
 {
     field(DTYP, "Soft Channel")
 	field(FLNK, "$(P)CAL:SEL:UPDATE.PROC")
+    info(autosaveFields, "VAL")
 }
 
 record(scalcout, "$(P)CAL:SEL:FMT")
