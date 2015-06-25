@@ -451,6 +451,7 @@ record(ai, "$(P)SENSOR") {
 
 record(stringin, "$(P)CAL:SEL:RBV") {
     info(INTEREST, "MEDIUM")
+    field(DESC, "Calibration file")
     field(DTYP, "Soft Channel")
 	field(INP, "$(P)TEMP.NSPE")
 	field(PINI, "YES")
@@ -460,10 +461,12 @@ record(stringin, "$(P)CAL:SEL:RBV") {
 
 record(stringin, "$(P)CAL:RBV")
 {
+    field(DESC, "Current Calibration file")
     field(DTYP, "Soft Channel")
 	field(INP, "$(P)TEMP.SPEC")
 	field(PINI, "YES")
 	field(SCAN, "1 second")
+    info(archive, "VAL")
 }
 
 record(bi, "$(P)CAL:APPLY")
@@ -486,9 +489,13 @@ record(bo, "$(P)CAL:APPLY:RST")
 
 record(stringout, "$(P)CAL:SEL")
 {
+    field(DESC, "Set Calibration file")
     field(DTYP, "Soft Channel")
 	field(FLNK, "$(P)CAL:SEL:UPDATE.PROC")
+    field(PINI, "YES")
+    info(archive, "VAL")
     info(autosaveFields, "VAL")
+#    info(autosaveFields_pass0, "VAL")
 }
 
 record(scalcout, "$(P)CAL:SEL:FMT")
