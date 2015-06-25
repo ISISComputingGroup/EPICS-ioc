@@ -449,12 +449,13 @@ record(ai, "$(P)SENSOR") {
 	field(EGU, "")
 }
 
-record(stringin, "$(P)CAL:SEL:RBV")
-{
+record(stringin, "$(P)CAL:SEL:RBV") {
+    info(INTEREST, "MEDIUM")
     field(DTYP, "Soft Channel")
 	field(INP, "$(P)TEMP.NSPE")
 	field(PINI, "YES")
 	field(SCAN, "1 second")
+    info(archive, "VAL")
 }
 
 record(stringin, "$(P)CAL:RBV")
