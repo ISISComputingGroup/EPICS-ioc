@@ -29,6 +29,7 @@ stringtest("IFDMC04", "$(GALILADDR04=)")
 stringtest("IFDMC05", "$(GALILADDR05=)")
 stringtest("IFDMC06", "$(GALILADDR06=)")
 stringtest("IFDMC07", "$(GALILADDR07=)")
+stringtest("IFDMC08", "$(GALILADDR08=)")
 
 epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 
