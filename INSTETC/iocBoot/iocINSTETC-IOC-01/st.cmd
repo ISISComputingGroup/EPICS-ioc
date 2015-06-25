@@ -45,4 +45,4 @@ iocInit
 < $(IOCSTARTUP)/postiocinit.cmd
 
 # only log value changes
-$(IFISISINSTSTARTUP=#) caPutLogReconf "localhost" 0
+$(IFISISINSTSTARTUP=#) caPutLogReconf 0
