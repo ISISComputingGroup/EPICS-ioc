@@ -46,12 +46,12 @@ record(ai, "$(P)$(Q)GETVAL")
 
 record(stringin, "$(P)$(Q)SETVAL:_OUT1")
 {
-    field(VAL, "$(SETOUT1=)")
+    field(VAL, "$(SETOUTA=)")
 }
 
 record(stringin, "$(P)$(Q)SETVAL:_OUT2")
 {
-    field(VAL, "$(SETOUT2=)")
+    field(VAL, "$(SETOUTB=)")
 }
 
 # arg1 = prefix, arg2 = format for value to send, $3 = format for value to receive. 
