@@ -2,8 +2,13 @@
 record(stringin, "$(P)$(Q)NAME")
 {
     field(DESC, "Name of device")
-    field(VAL, "$(NAME)")
-#    info(autosaveFields, "VAL")
+    field(VAL, "$(NAME) [$(DEV)]")
+}
+
+record(stringin, "$(P)$(Q)DEVICE")
+{
+    field(DESC, "Device COM port")
+    field(VAL, "$(DEV)")
 }
 
 # send a string to a device, reply will get written back to this record but we pass it onto another for clarity 
@@ -16,6 +21,9 @@ record(stringout, "$(P)$(Q)COMM")
 	field(SIML, "$(P)$(Q)SIM")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
+    info(autosaveFields, "VAL")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 # we are triggered when command is processed and pick up reply
@@ -23,6 +31,8 @@ record(stringin, "$(P)$(Q)REPLY")
 {
     field(DESC, "Reply from device")
     field(INP, "$(P)$(Q)COMM NPP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 # the command sent to the device to read a value
@@ -42,16 +52,12 @@ record(ai, "$(P)$(Q)GETVAL")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
     info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
-record(stringin, "$(P)$(Q)SETVAL:_OUT1")
+record(stringin, "$(P)$(Q)SETVAL:_OUT")
 {
     field(VAL, "$(SETOUTA=)")
-}
-
-record(stringin, "$(P)$(Q)SETVAL:_OUT2")
-{
-    field(VAL, "$(SETOUTB=)")
 }
 
 # arg1 = prefix, arg2 = format for value to send, $3 = format for value to receive. 
@@ -60,11 +66,13 @@ record(ao, "$(P)$(Q)SETVAL")
 {
     field(DESC, "Send value to device")
 	field(DTYP, "stream")
-	field(OUT, "@SDTEST-IOC-01.proto setValue($(P)$(Q),$(SETFMT),$(SETREPLY)) $(PORT)")
+	field(OUT, "@SDTEST-IOC-01.proto setValue($(P)$(Q),$(SETOUTB),$(SETIN)) $(PORT)")
 	field(SIML, "$(P)$(Q)SIM")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
     info(archive, "VAL")
+    info(INTEREST, "HIGH")
+    info(autosaveFields, "VAL")
 }
 
 # we get any output sent by device, whether in response to a command or not 
@@ -77,6 +85,7 @@ record(stringin, "$(P)$(Q)REPLY:ASYNC")
 	field(SIML, "$(P)$(Q)SIM")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
+    info(INTEREST, "MEDIUM")
 }
 
 # we get any output sent by device, whether in response to a command or not 
@@ -92,6 +101,7 @@ record(waveform, "$(P)$(Q)REPLYWF:ASYNC")
 	field(SIML, "$(P)$(Q)SIM")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
+    info(INTEREST, "MEDIUM")
 }
 
 ## SIM and DISABLE records
