@@ -40,6 +40,7 @@ record(stringin, "$(P)STATUS")
 
 record(ai, "$(P)TEMP:SP:RBV") 
 {
+    field(DESC, "Temperature setpoint readback")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@julaboCommon.proto readSetTemp $(PORT)")
@@ -49,11 +50,12 @@ record(ai, "$(P)TEMP:SP:RBV")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "Temperature setpoint readback")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)TEMP") 
 {
+    field(DESC, "Temperature readback")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@julaboCommon.proto readInternalTemp $(PORT)")
@@ -63,11 +65,12 @@ record(ai, "$(P)TEMP")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "Temperature readback")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)TEMP:SP") 
 {
+    field(DESC, "Temperature Setpoint")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(OUT,  "@julaboCommon.proto writeTemp $(PORT)")
@@ -77,7 +80,7 @@ record(ao, "$(P)TEMP:SP")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "Temperature Setpoint")
+    info(archive, "VAL")
 }
 
 record(bi, "$(P)MODE") 
@@ -110,6 +113,7 @@ record(bo, "$(P)MODE:SP")
 
 record(ai, "$(P)POWER") 
 {
+    field(DESC, "Power")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@julaboVariable.proto readPower(01) $(PORT)")
@@ -119,11 +123,12 @@ record(ai, "$(P)POWER")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "Power")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)EXTTEMP") 
 {
+    field(DESC, "External temperature")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@julaboVariable.proto readExtTemp(02) $(PORT)")
@@ -133,11 +138,12 @@ record(ai, "$(P)EXTTEMP")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "External temperature")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)HIGHLIMIT") 
 {
+    field(DESC, "High limit")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@julaboVariable.proto readHighLimit(01) $(PORT)")
@@ -147,11 +153,12 @@ record(ai, "$(P)HIGHLIMIT")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "High limit")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)LOWLIMIT") 
 {
+    field(DESC, "Low limit")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@julaboVariable.proto readLowLimit(02) $(PORT)")
@@ -162,13 +169,14 @@ record(ai, "$(P)LOWLIMIT")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "Low limit")
+    info(archive, "VAL")
 }
 
 ### Read internal PID Values
 
 record(ai, "$(P)INTP") 
 {
+    field(DESC, "P for internal control")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@julaboCommon.proto getInternalProportional $(PORT)")
@@ -179,11 +187,12 @@ record(ai, "$(P)INTP")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "P for internal control")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)INTI") 
 {
+    field(DESC, "I for internal control")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@julaboCommon.proto getInternalIntegral $(PORT)")
@@ -194,11 +203,12 @@ record(ai, "$(P)INTI")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "I for internal control")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)INTD") 
 {
+    field(DESC, "D for internal control")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@julaboCommon.proto getInternalDerivative $(PORT)")
@@ -209,13 +219,14 @@ record(ai, "$(P)INTD")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "D for internal control")
+    info(archive, "VAL")
 }
 
 ### Write internal PID values
 
 record(ao, "$(P)INTP:SP") 
 {
+    field(DESC, "P for internal control - Set Point")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(OUT,  "@julaboCommon.proto setInternalProportional $(PORT)")
@@ -225,11 +236,12 @@ record(ao, "$(P)INTP:SP")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "P for internal control - Set Point")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)INTI:SP") 
 {
+    field(DESC, "I for internal control - Set Point")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(OUT,  "@julaboCommon.proto setInternalIntegral $(PORT)")
@@ -239,11 +251,12 @@ record(ao, "$(P)INTI:SP")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "I for internal control - Set Point")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)INTD:SP") 
 {
+    field(DESC, "D for internal control - Set Point")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(OUT,  "@julaboCommon.proto setInternalDerivative $(PORT)")
@@ -253,13 +266,14 @@ record(ao, "$(P)INTD:SP")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "D for internal control - Set Point")
+    info(archive, "VAL")
 }
 
 ### Read external PID Values
 
 record(ai, "$(P)EXTP") 
 {
+    field(DESC, "P for external control")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@julaboCommon.proto getExternalProportional $(PORT)")
@@ -270,11 +284,12 @@ record(ai, "$(P)EXTP")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "P for external control")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)EXTI") 
 {
+    field(DESC, "I for external control")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@julaboCommon.proto getExternalIntegral $(PORT)")
@@ -285,11 +300,12 @@ record(ai, "$(P)EXTI")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "I for external control")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)EXTD") 
 {
+    field(DESC, "D for external control")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@julaboCommon.proto getExternalDerivative $(PORT)")
@@ -300,13 +316,14 @@ record(ai, "$(P)EXTD")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "D for external control")
+    info(archive, "VAL")
 }
 
 ### Write external PID values
 
 record(ao, "$(P)EXTP:SP") 
 {
+    field(DESC, "P for external control - Set Point")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(OUT,  "@julaboCommon.proto setExternalProportional $(PORT)")
@@ -316,11 +333,12 @@ record(ao, "$(P)EXTP:SP")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "P for external control - Set Point")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)EXTI:SP") 
 {
+    field(DESC, "I for external control - Set Point")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(OUT,  "@julaboCommon.proto setExternalIntegral $(PORT)")
@@ -330,11 +348,12 @@ record(ao, "$(P)EXTI:SP")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "I for external control - Set Point")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)EXTD:SP") 
 {
+    field(DESC, "D external control - Set Point")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(OUT,  "@julaboCommon.proto setExternalDerivative $(PORT)")
@@ -344,7 +363,7 @@ record(ao, "$(P)EXTD:SP")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    field(DESC, "D external control - Set Point")
+    info(archive, "VAL")
 }
 
 ### SIMULATION RECORDS ###
