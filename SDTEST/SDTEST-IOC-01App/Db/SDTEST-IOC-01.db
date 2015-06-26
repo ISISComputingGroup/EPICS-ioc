@@ -21,7 +21,7 @@ record(stringout, "$(P)$(Q)COMM")
 	field(SIML, "$(P)$(Q)SIM")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
-    info(autosaveFields, "VAL")
+#    info(autosaveFields, "VAL")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
@@ -51,6 +51,7 @@ record(ai, "$(P)$(Q)GETVAL")
 	field(SIML, "$(P)$(Q)SIM")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
+    field(EGU, "")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
@@ -70,9 +71,10 @@ record(ao, "$(P)$(Q)SETVAL")
 	field(SIML, "$(P)$(Q)SIM")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
+    field(EGU, "")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
-    info(autosaveFields, "VAL")
+#    info(autosaveFields, "VAL")
 }
 
 # we get any output sent by device, whether in response to a command or not 
