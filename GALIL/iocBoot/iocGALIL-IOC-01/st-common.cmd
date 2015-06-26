@@ -50,7 +50,7 @@ epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 < sampleChanger.cmd
 
 ## motor util package
-dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,PVPREFIX=$(MYPVPREFIX),IFDMC01=$(IFDMC01),IFDMC02=$(IFDMC02),IFDMC03=$(IFDMC03),IFDMC04=$(IFDMC04),IFDMC05=$(IFDMC05),IFDMC06=$(IFDMC06),IFDMC07=$(IFDMC07)")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,PVPREFIX=$(MYPVPREFIX),IFDMC01=$(IFDMC01),IFDMC02=$(IFDMC02),IFDMC03=$(IFDMC03),IFDMC04=$(IFDMC04),IFDMC05=$(IFDMC05),IFDMC06=$(IFDMC06),IFDMC07=$(IFDMC07),IFDMC08=$(IFDMC08)")
 #dbLoadRecords("${TOP}/../INSTETC/db/INSTETC.db","P=$(MYPVPREFIX),IOC=$(IOCNAME)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
@@ -72,10 +72,10 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 < $(IOCSTARTUP)/postiocinit.cmd
 
 # Save motor positions every 5 seconds
-create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,IFDMC01=$(IFDMC01),IFDMC02=$(IFDMC02),IFDMC03=$(IFDMC03),IFDMC04=$(IFDMC04),IFDMC05=$(IFDMC05),IFDMC06=$(IFDMC06),IFDMC07=$(IFDMC07)")
+create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,IFDMC01=$(IFDMC01),IFDMC02=$(IFDMC02),IFDMC03=$(IFDMC03),IFDMC04=$(IFDMC04),IFDMC05=$(IFDMC05),IFDMC06=$(IFDMC06),IFDMC07=$(IFDMC07),IFDMC08=$(IFDMC08)")
 
 # Save motor settings every 30 seconds
-create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,IFDMC01=$(IFDMC01),IFDMC02=$(IFDMC02),IFDMC03=$(IFDMC03),IFDMC04=$(IFDMC04),IFDMC05=$(IFDMC05),IFDMC06=$(IFDMC06),IFDMC07=$(IFDMC07)")
+create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,IFDMC01=$(IFDMC01),IFDMC02=$(IFDMC02),IFDMC03=$(IFDMC03),IFDMC04=$(IFDMC04),IFDMC05=$(IFDMC05),IFDMC06=$(IFDMC06),IFDMC07=$(IFDMC07),IFDMC08=$(IFDMC08)")
 
 ## Start any sequence programs
 #seq sncxxx,"user=icsHost"

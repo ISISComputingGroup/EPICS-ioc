@@ -40,3 +40,8 @@ $(IFDMC07) epicsEnvSet("GALILCRATE","07")
 $(IFDMC07) < galildb.cmd 
 $(IFDMC07) $(IFNOTSIM) < $(GALILCONFIG)/galil7.cmd
 $(IFDMC07) calc("GCID", "$(GCID) + 1", 2, 2)
+
+$(IFDMC08) epicsEnvSet("GALILCRATE","08")
+$(IFDMC08) < galildb.cmd 
+$(IFDMC08) $(IFNOTSIM) < $(GALILCONFIG)/galil8.cmd
+$(IFDMC08) calc("GCID", "$(GCID) + 1", 2, 2)
