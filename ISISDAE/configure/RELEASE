@@ -51,6 +51,9 @@ TINYXML=$(SUPPORT)/TinyXML
 ISISDAE=$(SUPPORT)/isisdae
 FILELIST=$(SUPPORT)/FileList
 EFSW=$(SUPPORT)/efsw
+WEBGET=$(SUPPORT)/webget
+HTMLTIDY=$(SUPPORT)/htmltidy
+CURL=$(SUPPORT)/curl
 
 ## add other modules here ##
 

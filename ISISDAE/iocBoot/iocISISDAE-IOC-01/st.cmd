@@ -24,6 +24,9 @@ ISISDAE_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
+## used for restarting EPICS archiver via web URL
+webgetConfigure("web")
+
 ## local dae, no dcom/labview
 isisdaeConfigure("icp", $(DAEDCOM=0), $(DAEHOST=localhost), "spudulike", "reliablebeam")
 ## pass 1 as second arg to signify DCOM to either local or remote dae
