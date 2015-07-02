@@ -37,16 +37,16 @@ You do not need to specify all values, here are defaults
 ======= =======   ================================================================================================================
 Macro   Default   Notes
 ======= =======   ================================================================================================================
-BAUD    9600
-BITS    8
+BAUD    9600      Serial connection baud rate
+BITS    8         Number of data bits
 PARITY  none      Can be none, odd or even
 STOP    1         Number of stop bits
 CLOCAL  Y         if N, output flow control using DSR signal
 CRTSCTS N         if Y, use hardware flow control (RTS/CTS)
 IXON    N         if Y, use software flow control for output
 IXOFF   N         if Y, use software flow control for input
-OEOS    \\r\\n    
-IEOS    \\r\\n
+OEOS    \\r\\n    Output end of string/line character(s)
+IEOS    \\r\\n    Input end of string/line characters(s)
 SCAN    Passive   Any valid EPICS scan value (Passive, .1 second, .2 second, .5 second, 1 second, 2 second, 5 second or 10 second)
 ======= =======   ================================================================================================================
 
@@ -58,17 +58,17 @@ Process variable                     Access  Description
 IN:LARMOR:SDTEST_01:P1:NAME          (read)  short name of device 
 IN:LARMOR:SDTEST_01:P1:DEVICE        (read)  COM port of device
 IN:LARMOR:SDTEST_01:P1:COMM          (write) send arbitrary string to device
-IN:LARMOR:SDTEST_01:P1:REPLY         (read)  reply from decvice after recieving COMM above
+IN:LARMOR:SDTEST_01:P1:REPLY         (read)  reply from device after sending COMM string above
 IN:LARMOR:SDTEST_01:P1:REPLY:ASYNC   (read)  continuously monitors serial port for asynchronous output (40 char epics string)
 IN:LARMOR:SDTEST_01:P1:REPLYWF:ASYNC (read)  continuously monitors serial port for asynchronous output (epics 1024 char waveform)
-IN:LARMOR:SDTEST_01:P1:SETVAL        (write) write a numeric value to device
-IN:LARMOR:SDTEST_01:P1:GETVAL        (read)  numeric value read from device (ususally because of a periodic scan)
+IN:LARMOR:SDTEST_01:P1:SETVAL        (write) write a numeric value to device using previously specified command format
+IN:LARMOR:SDTEST_01:P1:GETVAL        (read)  numeric value read from device (ususally because of a periodic SCAN)
 ==================================== ======= ===================================================================================
 
-When polling the GETVAL process variable, the the IOC will send $(GETOUT) and expect to receive $(GETIN)  Within GETIN can be printf style format characters to match
-the value being read. For valid format converters see __: http://epics.web.psi.ch/software/streamdevice/doc/formats.html
+When polling the GETVAL process variable, the the IOC will send $(GETOUT) and expect to receive $(GETIN)  Within $(GETIN) can be printf style format characters to match
+the value being read. For valid format converters see http://epics.web.psi.ch/software/streamdevice/doc/formats.html
 
-When writing to the SETVAL process variable, the IOC will construct a string from concaternating SETOUTA, SETOUTB and SETOUTC. The writing format character (e.g. %f)
+When writing to the SETVAL process variable, the IOC will construct a string from concaternating $(SETOUTA), $(SETOUTB) and $(SETOUTC). The writing format character (e.g. %f)
 must be in SETOUTC, normally only SETOUTA and SETOUTC are specified, sometimes just SETOUTC. SETOUTB is for sending a special character between these two values, such as a space.
-SETOUTA and SETOUTC are quoted strings as per __: http://epics.web.psi.ch/software/streamdevice/doc/protocol.html whereas SETOUTB can be a byte number such as 0x20 for a space character. Only Only use SETOUTB is you have trouble with using SETOUTA and SETOUTC - in particular needing to send a space character between and string
+SETOUTA and SETOUTC are quoted strings as per http://epics.web.psi.ch/software/streamdevice/doc/protocol.html whereas SETOUTB can be a byte number such as 0x20 for a space character.  Only use SETOUTB is you have trouble with using SETOUTA and SETOUTC - in particular needing to send a space character between and string
 and a format converter that seems to get stripped otherwise.
