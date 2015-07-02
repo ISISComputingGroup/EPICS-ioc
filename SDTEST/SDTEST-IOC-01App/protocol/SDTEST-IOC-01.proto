@@ -3,9 +3,6 @@
 # Terminator set in st.cmd via asynOctetSetOutputEos() etc
 # Terminator = CR LF;
 
-# so we can use $SP for a space
-SP = " ";
-
 # this is hooked up to a 40 character stringout record, which will contain the reply after processing
 sendString {
     ExtraInput = Ignore;
@@ -22,7 +19,7 @@ getValue {
 # $1 is the $(P)$(Q) record prefix, _OUT contains the strings to prefix the value to send  $3 is the reply format
 setValue {
 #    ExtraInput = Ignore;
-    out "%(\$1SETVAL:_OUT.VAL)s\$2"; in "\$3";
+    out "%(\$1SETVAL:_OUT.VAL)s",$2,"\$3"; in "\$4";
 }
 
 getAllOutputString {
