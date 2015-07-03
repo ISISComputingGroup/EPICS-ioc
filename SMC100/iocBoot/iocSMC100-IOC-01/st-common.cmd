@@ -1,43 +1,66 @@
 
-##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-$(IFSIM) motorSimCreateController("motor", 1) 
-$(IFSIM) motorSimConfigAxis("motor", 0, 32000, -320000,  0, 0) 
-
-$(IFNOTSIM) drvAsynSerialPortConfigure("serial1", "$(PORT=NL:)", 0, 0, 0)
-$(IFNOTSIM) asynOctetSetInputEos("serial1",0,"\r\n") 
-$(IFNOTSIM) asynOctetSetOutputEos("serial1",0,"\r\n") 
-$(IFNOTSIM) asynSetOption("serial1",0,"baud","$(BAUD=57600)") 
-$(IFNOTSIM) asynSetOption("serial1",0,"bits","8") 
-$(IFNOTSIM) asynSetOption("serial1",0,"stop","1") 
-$(IFNOTSIM) asynSetOption("serial1",0,"parity","none") 
-$(IFNOTSIM) asynSetOption("serial1",0,"clocal","Y") 
-$(IFNOTSIM) asynSetOption("serial1",0,"crtscts","N") 
-$(IFNOTSIM) asynSetTraceIOMask("serial1", 0, 2)
-
-# (driver port, serial port, axis num, ms mov poll, ms idle poll, egu per step)
-$(IFNOTSIM) SMC100CreateController("motor","serial1",1, 100, 0, "0.00005")
-
-asynSetTraceIOMask("motor", 0, 2)
-
-## Load record instances
-
-# Load asyn record 
-dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=M1:ASYN,PORT=serial1,ADDR=0,OMAX=256,IMAX=256") 
-dbLoadRecords("$(TOP)/db/motor.db", "P=$(MYPVPREFIX),M=M1,PORT=motor,ADDR=0") 
-
-##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
+
+# specify additional directories in which to to search for included request files
+set_requestfile_path("${MOTOR}/motorApp/Db", "")
+## as we are common, we need to explicity define the 01 area for when we are ran by 02, 03 etc 
+set_requestfile_path("${TOP}/iocBoot/iocSMC100-IOC-01", "")
+
+epicsEnvSet(PN,1)
+< st-port.cmd
+
+epicsEnvSet(PN,2)
+< st-port.cmd
+
+epicsEnvSet(PN,3)
+< st-port.cmd
+
+epicsEnvSet(PN,4)
+< st-port.cmd
+
+epicsEnvSet(PN,5)
+< st-port.cmd
+
+epicsEnvSet(PN,6)
+< st-port.cmd
+
+epicsEnvSet(PN,7)
+< st-port.cmd
+
+epicsEnvSet(PN,8)
+< st-port.cmd
+
+## motor util package
+######dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,PVPREFIX=$(MYPVPREFIX)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
-cd ${TOP}/iocBoot/${IOC}
-iocInit
+iocInit()
 
-## Start any sequence programs
-#seq sncxxx,"user=faa59Host"
+## motor util package
+#var motorUtil_debug 1
+######motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
+
+# Save motor positions every 5 seconds
+#create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:")
+
+## make sure motor MRES and SMC100CreateController agree
+#dbpf "M1.MRES", "$(MRES)"
+
+# Save motor settings every 30 seconds
+$(IFPORT1) create_monitor_set("$(IOCNAME)_1_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
+$(IFPORT2) create_monitor_set("$(IOCNAME)_2_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
+$(IFPORT3) create_monitor_set("$(IOCNAME)_3_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
+$(IFPORT4) create_monitor_set("$(IOCNAME)_4_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
+$(IFPORT5) create_monitor_set("$(IOCNAME)_5_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
+$(IFPORT6) create_monitor_set("$(IOCNAME)_6_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
+$(IFPORT7) create_monitor_set("$(IOCNAME)_7_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
+$(IFPORT8) create_monitor_set("$(IOCNAME)_8_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
+
+#create_monitor_set("$(IOCNAME)_settings.req", 5, "P=$(MYPVPREFIX)MOT:")

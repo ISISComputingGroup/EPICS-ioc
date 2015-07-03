@@ -56,5 +56,6 @@ CALC=$(SUPPORT)/calc/3-4
 MOTIONSETPOINTS=$(SUPPORT)/motionSetPoints
 AXIS=$(SUPPORT)/axis
 STD=$(SUPPORT)/std/R3_1
+SSCAN=$(SUPPORT)/sscan/2-8
 
 include $(TOP)/../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
