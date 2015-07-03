@@ -2,19 +2,18 @@
 SDTEST IOC
 ***************
 
-The serial device test module consistes of IOCs called SDTEST_01, SDTEST_02 etc. Each of these can control 8 separate serial devices.
+The serial device test module consists of IOCs called SDTEST_01, SDTEST_02 etc. Each of these can control up to 8 separate serial devices.
 
 Configuration of the devices is via EPICS macros, which can be defined in the globals.txt file located in c:/Instrument/settings/config/NDXLARMOR/configurations
-This file is loaded on IOC startup, so you will need to stop/start the IOC after making a change. 
+This globals.txt file is loaded on IOC startup, so you will need to stop/start the IOC after making a change. 
 
 All macros in globals.txt start with the IOC name followed by two underscores, so SDTEST_01__ for IOC SDTEST_01   Defining a macro  SDTEST_01__NAME3 here will create one that can be referenced as $(NAME3) by IOC SDTEST_01
 
-Easch SDTEST IOC supports 8 devices numbered 1 to 8. Settings for each of these have the device number appended e.g. $(PORT3) is COM/serial port for the third device attached etc.
+Each SDTEST IOC supports 8 devices numbered 1 to 8. Settings for each of these have the device number appended e.g. $(PORT3) is COM/serial port for the third device attached etc.
 
-Arbitrary string commands can be sent to the device via process variables, but it is also possible to define a way to send and receive a numeric value. 
-The format of how to send this value and how often to poll for it can be specified and is described later.
+Arbitrary string commands can be sent to the device via EPICS process variables, but it is also possible to define a way to send and receive a particular numeric value through a PV. The format of how to send this value and how often to poll for it need to be specified and this is described later.
 
-By way of example we will consider a power supply. In globals.txt we have
+By way of example we will consider a power supply. In globals.txt we have:
 
 ::
 
@@ -25,11 +24,11 @@ By way of example we will consider a power supply. In globals.txt we have
     SDTEST_01__OEOS3=\\r             # end of line terminator for output (note \\ to escape \)
     SDTEST_01__GETOUT3=MC?           # string to send to read the special numeric value      
     SDTEST_01__GETIN3=%f             # expected format of reply to sending string specified in GETOUT
-    SDTEST_01__SCAN3=.5 second       # scan (polling) rate for reading special numeric value. Specify Passive for no scan, see below for other valid values. 
+    SDTEST_01__SCAN3=.5 second       # scan (polling) rate for reading special numeric value. 
     SDTEST_01__SETOUTA3=PC           # first part of string to send for setting special numeric value
-    SDTEST_01__SETOUTB3=0x20         # second part of string to send for setting special numeric value (note: treated differently to A and C, see below)
+    SDTEST_01__SETOUTB3=0x20         # second part of string to send for setting special numeric value
     SDTEST_01__SETOUTC3=%f           # third part of string to send for setting special numeric value
-    SDTEST_01__SETIN3=OK             # expected reply after sending above (SETOUTA,SETOUTB,SETOUTC) string for setting special numeric value. Use e.g.  %*40c  to ignore reply
+    SDTEST_01__SETIN3=OK             # expected reply from SETOUT* Use e.g. %*40c to ignore reply
 
 As these all start SDTEST_01__ and end in 3 they refer to the third device attahced to IOC SDTEST_01
 You do not need to specify all values, here are defaults
@@ -47,7 +46,8 @@ IXON    N         if Y, use software flow control for output
 IXOFF   N         if Y, use software flow control for input
 OEOS    \\r\\n    Output end of string/line character(s)
 IEOS    \\r\\n    Input end of string/line characters(s)
-SCAN    Passive   Any valid EPICS scan value (Passive, .1 second, .2 second, .5 second, 1 second, 2 second, 5 second or 10 second)
+SCAN    Passive   Any valid EPICS scan value (Passive, .1 second, .2 second, 
+                  .. .5 second, 1 second, 2 second, 5 second or 10 second)
 ======= =======   ================================================================================================================
 
 Process variables defined are of the form {instrument prefix}{ioc name}{device index}{variable} e.g. for the first device (P1) on IOC SDTEST_01
@@ -59,10 +59,14 @@ IN:LARMOR:SDTEST_01:P1:NAME          (read)  short name of device
 IN:LARMOR:SDTEST_01:P1:DEVICE        (read)  COM port of device
 IN:LARMOR:SDTEST_01:P1:COMM          (write) send arbitrary string to device
 IN:LARMOR:SDTEST_01:P1:REPLY         (read)  reply from device after sending COMM string above
-IN:LARMOR:SDTEST_01:P1:REPLY:ASYNC   (read)  continuously monitors serial port for asynchronous output (40 char epics string)
-IN:LARMOR:SDTEST_01:P1:REPLYWF:ASYNC (read)  continuously monitors serial port for asynchronous output (epics 1024 char waveform)
-IN:LARMOR:SDTEST_01:P1:SETVAL        (write) write a numeric value to device using previously specified command format
-IN:LARMOR:SDTEST_01:P1:GETVAL        (read)  numeric value read from device (ususally because of a periodic SCAN)
+IN:LARMOR:SDTEST_01:P1:REPLY:ASYNC   (read)  continuously monitors serial port for 
+                                             .. asynchronous output (40 char epics string)
+IN:LARMOR:SDTEST_01:P1:REPLYWF:ASYNC (read)  continuously monitors serial port for asynchronous 
+                                             .. output (epics 1024 char waveform)
+IN:LARMOR:SDTEST_01:P1:SETVAL        (write) write a numeric value to device using previously 
+                                             .. specified command format
+IN:LARMOR:SDTEST_01:P1:GETVAL        (read)  numeric value read from device (ususally because 
+                                             .. of a periodic SCAN)
 ==================================== ======= ===================================================================================
 
 When polling the GETVAL process variable, the the IOC will send $(GETOUT) and expect to receive $(GETIN)  Within $(GETIN) can be printf style format characters to match
