@@ -49,6 +49,7 @@ ASUBFUNCTIONS=$(SUPPORT)/asubFunctions
 
 ## add other modules here ##
 MOTOR=$(SUPPORT)/motor/R6-9
+AXIS=$(SUPPORT)/axis
 ASYN=$(SUPPORT)/asyn/4-26
 ONCRPC=$(SUPPORT)/oncrpc/2
 BUSY=$(SUPPORT)/busy/1-6-1
@@ -56,5 +57,6 @@ CALC=$(SUPPORT)/calc/3-4
 MOTIONSETPOINTS=$(SUPPORT)/motionSetPoints
 AXIS=$(SUPPORT)/axis
 STD=$(SUPPORT)/std/R3_1
+SSCAN=$(SUPPORT)/sscan/2-8
 
 include $(TOP)/../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
