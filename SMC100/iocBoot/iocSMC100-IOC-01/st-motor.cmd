@@ -13,8 +13,9 @@ autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 1)
 
 $(IFSIM) motorSimCreateController("$(AMOTOR)", 1) 
 $(IFSIM) motorSimConfigAxis("$(AMOTOR)", 0, 32000, -320000,  0, 0) 
+$(IFSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
 
-$(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT$(PN)=NL:)", 0, 0, 0)
+$(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT$(PN)=NUL)", 0, 0, 0)
 $(IFNOTSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\r\n") 
 $(IFNOTSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r\n") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"baud","$(BAUD$(PN)=57600)") 
