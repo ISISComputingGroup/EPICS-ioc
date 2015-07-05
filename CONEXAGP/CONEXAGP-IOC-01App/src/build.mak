@@ -36,6 +36,7 @@ $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += busySupport.dbd
 $(APPNAME)_DBD += motionSetPoints.dbd
+$(APPNAME)_DBD += stdSupport.dbd
 $(APPNAME)_DBD += asubFunctions.dbd 
 
 # Add all the support libraries needed by this IOC
@@ -56,6 +57,7 @@ $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += motionSetPoints
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += busy asyn
+$(APPNAME)_LIBS += std sscan
 # CONEXAGP-IOC-01_registerRecordDeviceDriver.cpp derives from CONEXAGP-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
