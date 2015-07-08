@@ -10,9 +10,11 @@ epicsEnvSet("AMOTOR", "motor$(PN)")
 epicsEnvSet("AMOTORPV", "MOT:MTR$(MTRCTRL)0$(PN)")
 
 autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 1)
+set_pass0_restoreFile("$(IOCNAME)_$(PN)_built_settings.sav")
+set_pass1_restoreFile("$(IOCNAME)_$(PN)_built_settings.sav")
 
 $(IFSIM) motorSimCreateController("$(AMOTOR)", 1) 
-$(IFSIM) motorSimConfigAxis("$(AMOTOR)", 0, 32000, -320000,  0, 0) 
+$(IFSIM) motorSimConfigAxis("$(AMOTOR)", 0, 32000, -32000,  0, 0) 
 $(IFSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
 
 $(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT$(PN)=NUL)", 0, 0, 0)
