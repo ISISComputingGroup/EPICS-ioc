@@ -24,6 +24,8 @@ $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"stop","1")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"parity","none") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"clocal","Y") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","Y") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","Y") 
 $(IFNOTSIM) asynSetTraceIOMask("$(ASERIAL)", 0, 2)
 
 # asyn_port, serial_port, controller_id, moving_poll_period(ms), idle_poll_period(ms)
