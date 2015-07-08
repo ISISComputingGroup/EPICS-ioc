@@ -11,6 +11,9 @@ cd ${TOP}
 dbLoadDatabase "dbd/INSTETC-IOC-01.dbd"
 INSTETC_IOC_01_registerRecordDeviceDriver pdbbase
 
+## so we don't get lots of messages about puts to the motor moving PV, this logs value changes only rather than all puts which is the default
+epicsEnvSet("CAPUTLOGCONFIG","0")
+
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
@@ -45,4 +48,5 @@ iocInit
 < $(IOCSTARTUP)/postiocinit.cmd
 
 # only log value changes
-$(IFISISINSTSTARTUP=#) caPutLogReconf 0
+# this command does not seem to be implemented!
+#$(IFISISINSTSTARTUP=#) caPutLogReconf 0
