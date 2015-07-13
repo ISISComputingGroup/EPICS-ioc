@@ -7,12 +7,11 @@
 errlogInit2(65536, 4096)
 
 < envPaths
-
-epicsEnvSet "WIRING_DIR" "C:/Instrument/Settings/Tables"
+epicsEnvSet "WIRING_DIR" "$(ICPCONFIGROOT)/tables"
 epicsEnvSet "WIRING_PATTERN" ".*wiring.*"
-epicsEnvSet "DETECTOR_DIR" "C:/Instrument/Settings/Tables"
+epicsEnvSet "DETECTOR_DIR" "$(ICPCONFIGROOT)/tables"
 epicsEnvSet "DETECTOR_PATTERN" ".*detector.*"
-epicsEnvSet "SPECTRA_DIR" "C:/Instrument/Settings/Tables"
+epicsEnvSet "SPECTRA_DIR" "$(ICPCONFIGROOT)/tables"
 epicsEnvSet "SPECTRA_PATTERN" ".*spectra.*"
 
 cd ${TOP}
