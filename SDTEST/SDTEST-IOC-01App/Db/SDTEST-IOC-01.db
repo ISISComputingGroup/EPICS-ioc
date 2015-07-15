@@ -1,4 +1,8 @@
-## 
+# % macro, P, device prefix
+# % macro, Q, device sub prefix
+# % macro, NAME, device name
+# % macro, DEV, device COM port
+
 record(stringin, "$(P)$(Q)NAME")
 {
     field(DESC, "Name of device")
@@ -11,7 +15,7 @@ record(stringin, "$(P)$(Q)DEVICE")
     field(VAL, "$(DEV)")
 }
 
-# send a string to a device, reply will get written back to this record but we pass it onto another for clarity 
+## send a string to a device, reply will get written back to this record but we pass it onto another for clarity 
 record(stringout, "$(P)$(Q)COMM")
 {
     field(DESC, "Send string to device")
@@ -41,7 +45,7 @@ record(stringout, "$(P)$(Q)COMM")
   #  info(INTEREST, "MEDIUM")
 #}
 
-# we are triggered when command is processed and pick up reply
+## we are triggered when command is processed and pick up reply
 record(stringin, "$(P)$(Q)REPLY")
 {
     field(DESC, "Reply from device")
@@ -50,7 +54,7 @@ record(stringin, "$(P)$(Q)REPLY")
     info(INTEREST, "HIGH")
 }
 
-# the command sent to the device to read a value
+## the command sent to the device to read a value
 record(stringin, "$(P)$(Q)GETVAL:_OUT")
 {
     field(VAL, "$(GETOUT=)")
@@ -98,7 +102,7 @@ record(stringin, "$(P)$(Q)REPLY:ASYNC")
     field(DESC, "Unsollicited output from device")
 	field(DTYP, "stream")
 	field(INP, "@SDTEST-IOC-01.proto getAllOutputString $(PORT)")
-    field(SCAN, "I/O Intr")
+#    field(SCAN, "I/O Intr")
 	field(SIML, "$(P)$(Q)SIM")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
@@ -114,7 +118,7 @@ record(waveform, "$(P)$(Q)REPLYWF:ASYNC")
 	field(INP, "@SDTEST-IOC-01.proto getAllOutputLongString $(PORT)")
 	field(FTVL, "CHAR")
 	field(NELM, "1024")
-    field(SCAN, "I/O Intr")
+#    field(SCAN, "I/O Intr")
 	field(SIML, "$(P)$(Q)SIM")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
