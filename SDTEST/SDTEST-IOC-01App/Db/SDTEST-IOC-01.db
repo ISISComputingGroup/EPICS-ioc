@@ -29,6 +29,8 @@ record(stringout, "$(P)$(Q)COMM")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
+alias("$(P)$(Q)COMM", "$(P)$(Q)COMM:SP")
+alias("$(P)$(Q)COMM", "$(P)$(Q)COMM:SP:RBV")
 
 # string needs to be 'fff','ggg',CR   etc
 #record(stringout, "$(P)$(Q)COMM:Q")
@@ -95,6 +97,8 @@ record(ao, "$(P)$(Q)SETVAL")
     info(INTEREST, "HIGH")
 #    info(autosaveFields, "VAL")
 }
+alias("$(P)$(Q)SETVAL", "$(P)$(Q)SETVAL:SP")
+alias("$(P)$(Q)SETVAL", "$(P)$(Q)SETVAL:SP:RBV")
 
 # we get any output sent by device, whether in response to a command or not 
 record(stringin, "$(P)$(Q)REPLY:ASYNC")
