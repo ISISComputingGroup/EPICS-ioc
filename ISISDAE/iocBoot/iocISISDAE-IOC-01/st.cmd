@@ -10,9 +10,9 @@ errlogInit2(65536, 4096)
 epicsEnvSet "WIRING_DIR" "$(ICPCONFIGROOT)/tables"
 epicsEnvSet "WIRING_PATTERN" ".*wiring.*"
 epicsEnvSet "DETECTOR_DIR" "$(ICPCONFIGROOT)/tables"
-epicsEnvSet "DETECTOR_PATTERN" ".*detector.*"
+epicsEnvSet "DETECTOR_PATTERN" ".*det.*"
 epicsEnvSet "SPECTRA_DIR" "$(ICPCONFIGROOT)/tables"
-epicsEnvSet "SPECTRA_PATTERN" ".*spectra.*"
+epicsEnvSet "SPECTRA_PATTERN" ".*spec.*"
 epicsEnvSet "PERIOD_DIR" "$(ICPCONFIGROOT)/tables"
 epicsEnvSet "PERIOD_PATTERN" ".*"
 
