@@ -1,4 +1,4 @@
-TOP = ../extensions
+TOP = ../../extensions/master
 include $(TOP)/configure/CONFIG
 
 ## by default we build all IOCs, but we can remove some here if needed

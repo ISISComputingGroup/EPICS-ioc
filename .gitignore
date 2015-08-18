@@ -1,0 +1,14 @@
+O.*/
+/*/db
+/*/bin
+/*/dbd
+/*/include
+/*/lib
+/*/templates
+/*/doc
+/*/data
+envPaths
+cdCommands
+dllPath.bat
+runIoc.bat
+*.tags

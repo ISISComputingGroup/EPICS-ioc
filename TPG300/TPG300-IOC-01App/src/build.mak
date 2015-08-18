@@ -29,7 +29,6 @@ $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
-$(APPNAME)_DBD += timestampRecord.dbd
 $(APPNAME)_DBD += stream.dbd
 
 # Add all the support libraries needed by this IOC
@@ -45,7 +44,6 @@ $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += timestampRecord
 
 # TPG300-IOC-01_registerRecordDeviceDriver.cpp derives from TPG300-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
