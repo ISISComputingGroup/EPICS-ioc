@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaSharpServer", "..\..\support\epicssharp\rev20\server\CaSharpServer.csproj", "{F4E955E5-E6D7-49A4-BD5B-43FED09E801A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaSharpServer", "..\..\..\support\epicssharp\master\server\CaSharpServer.csproj", "{F4E955E5-E6D7-49A4-BD5B-43FED09E801A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mk3Wrapper", "Mk3Wrapper\Mk3Wrapper.csproj", "{8F7E6E5C-E381-4C72-A60F-D44B498FE648}"
 EndProject

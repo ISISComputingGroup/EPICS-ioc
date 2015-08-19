@@ -12,3 +12,8 @@ cdCommands
 dllPath.bat
 runIoc.bat
 *.tags
+*.tag
+/MK3CHOPPER/Mk3Wrapper/bin/
+/MK3CHOPPER/Mk3Wrapper/obj/
+/MK3CHOPPER/iocBoot/
+/MK3CHOPPER/src/obj/

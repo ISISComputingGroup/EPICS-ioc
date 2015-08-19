@@ -96,7 +96,7 @@
     <None Include="example_st.cmd" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\support\epicssharp\rev20\server\CaSharpServer.csproj">
+    <ProjectReference Include="..\..\..\..\support\epicssharp\master\server\CaSharpServer.csproj">
       <Project>{F4E955E5-E6D7-49A4-BD5B-43FED09E801A}</Project>
       <Name>CaSharpServer</Name>
     </ProjectReference>

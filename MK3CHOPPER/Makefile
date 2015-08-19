@@ -1,5 +1,5 @@
 #Makefile at top of application tree
-TOP = ../../extensions
+TOP = ../../../extensions/master
 include $(TOP)/configure/CONFIG
 
 include $(TOP)/configure/RULES_TOP
