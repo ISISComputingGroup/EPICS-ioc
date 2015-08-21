@@ -17,3 +17,7 @@ runIoc.bat
 /MK3CHOPPER/Mk3Wrapper/obj/
 /MK3CHOPPER/iocBoot/
 /MK3CHOPPER/src/obj/
+*_info_positions.req
+*_info_settings.req
+*_built_positions.req
+*_built_settings.req
