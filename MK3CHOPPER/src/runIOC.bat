@@ -1,4 +1,4 @@
-﻿@echo OFF
+@echo OFF
 set MYDIRCHOP=%~dp0
 
 call %MYDIRCHOP%..\..\..\..\config_env_base.bat
