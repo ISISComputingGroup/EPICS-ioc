@@ -1,14 +1,14 @@
-# this is processed by SubWCRev.exe via get_svn_revision.bat to produce db\svn-revision.db
+# this is processed by get_git_revision.bat (formerly get_svn_revision.bat) to produce db\svn-revision.db
 
 record(stringin, "$(P)CS:VERSION:SVN:REV") 
 {
-	field(DESC, "Control program SVN version")
+	field(DESC, "Control program revision")
 	field(VAL, "$WCREV$")
 }
 
 record(stringin, "$(P)CS:VERSION:SVN:DATE") 
 {
-	field(DESC, "Control program SVN version")
+	field(DESC, "Control program revision date")
 	field(VAL, "$WCDATE$")
 }
 
