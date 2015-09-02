@@ -1,0 +1,8 @@
+/** @example pixelman.cmd
+IOC startup file
+*/
+
+
+/** @example pixelman.db
+EPICS DB file
+*/
