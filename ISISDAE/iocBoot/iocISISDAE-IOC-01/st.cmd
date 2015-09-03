@@ -35,10 +35,10 @@ isisdaeConfigure("icp", $(DAEDCOM=0), $(DAEHOST=localhost), "spudulike", "reliab
 #isisdaeConfigure("icp", 1, "ndxchipir", "spudulike", "reliablebeam")
 
 ## Load the FileLists
-FileListConfigure("WLIST", $(WIRING_DIR), $(WIRING_PATTERN), 1)
-FileListConfigure("DLIST", $(DETECTOR_DIR), $(DETECTOR_PATTERN), 1)
-FileListConfigure("SLIST", $(SPECTRA_DIR), $(SPECTRA_PATTERN), 1)
-FileListConfigure("PLIST", $(PERIOD_DIR), $(PERIOD_PATTERN), 1)
+FileListConfigure("WLIST", "$(WIRING_DIR)", "$(WIRING_PATTERN)", 1)
+FileListConfigure("DLIST", "$(DETECTOR_DIR)", "$(DETECTOR_PATTERN)", 1)
+FileListConfigure("SLIST", "$(SPECTRA_DIR)", "$(SPECTRA_PATTERN)", 1)
+FileListConfigure("PLIST", "$(PERIOD_DIR)", "$(PERIOD_PATTERN)", 1)
 
 ## Load record instances
 
@@ -46,7 +46,7 @@ FileListConfigure("PLIST", $(PERIOD_DIR), $(PERIOD_PATTERN), 1)
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(ISISDAE)/db/isisdae.db","P=$(MYPVPREFIX)DAE:, WIRINGLIST=WLIST, WIRINGDIR=$(WIRING_DIR), WIRINGSEARCH=$(WIRING_PATTERN), DETECTORLIST=DLIST, DETECTORDIR=$(DETECTOR_DIR), DETECTORSEARCH=$(DETECTOR_PATTERN), SPECTRALIST=SLIST, SPECTRADIR=$(SPECTRA_DIR), SPECTRASEARCH=$(SPECTRA_PATTERN), PERIODLIST=PLIST, PERIODDIR=$(PERIOD_DIR), PERIODSEARCH=$(PERIOD_PATTERN)")
+dbLoadRecords("$(ISISDAE)/db/isisdae.db","P=$(MYPVPREFIX)DAE:, WIRINGLIST=WLIST, DETECTORLIST=DLIST, SPECTRALIST=SLIST, PERIODLIST=PLIST")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
