@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(SUPPORT)/Hameg_8123/1-0/Hameg_8123Sup"    
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(HAMEG8123)/Hameg_8123Sup"    
 epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM19)"                                   
 
 cd ${TOP}

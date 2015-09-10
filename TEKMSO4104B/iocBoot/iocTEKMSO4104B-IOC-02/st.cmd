@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(SUPPORT)/Tektronix_MSO_4104B/1-0/Tektronix_MSO_4104BSup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TEKMSO4104B)/Tektronix_MSO_4104BSup"
 epicsEnvSet "EPICS_CA_MAX_ARRAY_BYTES" "100000"
 
 cd ${TOP}

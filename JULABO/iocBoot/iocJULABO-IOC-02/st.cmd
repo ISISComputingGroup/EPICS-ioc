@@ -10,7 +10,7 @@ errlogInit2(65536, 256)
 
 cd ${TOP}
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(SUPPORT)/julabo/julaboApp/protocol"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(JULABO)/julaboApp/protocol"
 epicsEnvSet "TTY" "$(TTY=COM18)"
 
 ## Register all support components

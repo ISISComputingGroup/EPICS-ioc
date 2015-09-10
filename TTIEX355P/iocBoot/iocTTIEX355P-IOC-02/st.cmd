@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(SUPPORT)/ttiEX355P/ttiEX355PApp/protocol"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TTIEX355P)/ttiEX355PApp/protocol"
 epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM19)"
 
 cd ${TOP}

@@ -6,7 +6,7 @@
 < envPaths
 
 epicsEnvSet "IOCNAME" "EUROTHERM_02"
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(SUPPORT)/eurotherm2k/1-11/eurotherm2kApp/protocol"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(EUROTHERM2K)/eurotherm2kApp/protocol"
 epicsEnvSet "TTY" "$(TTY=COM22)"
 epicsEnvSet "SENS_DIR" "C:/Instrument/Settings/calib/sensors"
 epicsEnvSet "SENS_PAT" "^C.*"
