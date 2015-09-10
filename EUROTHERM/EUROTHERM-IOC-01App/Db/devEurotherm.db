@@ -719,7 +719,7 @@ record(ai, "$(P)HILIM") {
 	field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@eurotherm2k.proto read($(GAD),$(LAD),HS) $(PORT)")
-	field(FLNK, "(P)LOWLIM.PROC")
+	field(FLNK, "$(P)LOWLIM.PROC")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:HIGHLIMIT")
     field(SDIS, "$(Q)DISABLE")
