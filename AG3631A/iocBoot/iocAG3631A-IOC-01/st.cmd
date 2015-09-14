@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(SUPPORT)/agilent3631A/1-1-1/agilent3631ASup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(AGILENT3631A)/agilent3631ASup"
 
 cd ${TOP}
 

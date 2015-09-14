@@ -27,8 +27,8 @@ STPS350_IOC_01_registerRecordDeviceDriver pdbbase
 ##
 ## the "options" argument is a combination of the following flags (as per the #lvDCOMOptions enum in lvDCOMInterface.h)
 ##    viWarnIfIdle=1, viStartIfIdle=2, viStopOnExitIfStarted=4, viAlwaysStopOnExit=8
-lvDCOMConfigure("ex1", "frontpanel", "$(ISISSUPPORT)/Stanford_PS350/Stanford_PS350App/protocol/stanfordPS350.xml", "ndxchipir", 6, "", "spudulike", "reliablebeam")
-#lvDCOMConfigure("ex1", "frontpanel", "$(ISISSUPPORT)/Stanford_PS350/Stanford_PS350App/protocol/stanfordPS350.xml", "", 6)
+lvDCOMConfigure("ex1", "frontpanel", "$(STPS350)/Stanford_PS350App/protocol/stanfordPS350.xml", "ndxchipir", 6, "", "spudulike", "reliablebeam")
+#lvDCOMConfigure("ex1", "frontpanel", "$(STPS350)/Stanford_PS350/Stanford_PS350App/protocol/stanfordPS350.xml", "", 6)
 
 #asynSetTraceMask("frontpanel",0,0xff)
 #asynSetTraceIOMask("ex1",0,0x2)
