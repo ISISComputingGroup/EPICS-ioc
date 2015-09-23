@@ -1,6 +1,6 @@
-#!../../bin/windows-x64-debug/SKFCHOPPER-IOC-02
+#!../../bin/windows-x64-debug/SKFCHOPPER-IOC-03
 
-## You may have to change SKFCHOPPER-IOC-02 to something else
+## You may have to change SKFCHOPPER-IOC-03 to something else
 ## everywhere it appears in this file
 
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
@@ -11,8 +11,8 @@ errlogInit2(65536, 256)
 cd ${TOP}
 
 ## Register all support components
-dbLoadDatabase "dbd/SKFCHOPPER-IOC-02.dbd"
-SKFCHOPPER_IOC_02_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/SKFCHOPPER-IOC-03.dbd"
+SKFCHOPPER_IOC_03_registerRecordDeviceDriver pdbbase
 
 cd ${TOP}/iocBoot/iocSKFCHOPPER-IOC-01
 
