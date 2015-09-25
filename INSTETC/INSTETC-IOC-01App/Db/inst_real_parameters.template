@@ -6,6 +6,7 @@ record(ao, "$(P)$(Q):SP")
    field(FLNK, "$(P)$(Q):SEND")
    field(EGU, "$(UNITS)")
    field(OMSL, "supervisory")
+   field(PREC, 3)
    info(autosaveFields, "VAL")
 }
 alias("$(P)$(Q):SP", "$(P)$(Q)")
