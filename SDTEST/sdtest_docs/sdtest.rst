@@ -57,6 +57,7 @@ Process variable                     Access  Description
 ==================================== ======= ===================================================================================
 IN:LARMOR:SDTEST_01:P1:NAME          (read)  short name of device 
 IN:LARMOR:SDTEST_01:P1:DEVICE        (read)  COM port of device
+IN:LARMOR:SDTEST_01:P1:INIT          (write) initialise device
 IN:LARMOR:SDTEST_01:P1:COMM          (write) send arbitrary string to device
 IN:LARMOR:SDTEST_01:P1:REPLY         (read)  reply from device after sending COMM string above
 IN:LARMOR:SDTEST_01:P1:REPLY:ASYNC   (read)  continuously monitors serial port for 
@@ -79,6 +80,8 @@ must be in SETOUTC, normally only SETOUTA and SETOUTC are specified, sometimes j
 SETOUTA and SETOUTC are quoted strings as per http://epics.web.psi.ch/software/streamdevice/doc/protocol.html whereas SETOUTB can be a byte number such as 0x20 for a space character.  Only use SETOUTB is you have trouble with using SETOUTA and SETOUTC - in particular needing to send a space character between and string
 and a format converter that seems to get stripped otherwise.
 
+For INIT, macros INITOUT and INITIN 
+ 
 The ASYN record PV can be useful for diagnostics
 
 -------------------
@@ -88,3 +91,20 @@ SDTEST Synoptic OPI
 An OPI file SDTEST.opt exists that opens a display for managing the serial device, which
 includes the option to open an ayn record OPI - see screenshots at bottom 
 of http://www.aps.anl.gov/epics/modules/soft/asyn/R4-26/asynRecord.html
+
+------------------
+More complex cases
+------------------
+
+===== ====================  ================================================================================================================
+Macro Default               Notes
+===== ====================  ================================================================================================================
+PROTO SDTEST-default.proto  Stream device protocol file to use
+
+You can specify your own protocol file to use. Details of protocol file format are at
+http://epics.web.psi.ch/software/streamdevice/doc/  
+
+because you will load the same DB file, you will need to provide the same functions as SDTEST-default.proto  i.e. getValue() and setValue()
+Place files in $(ICPCONFIGROOT)/SDTEST on machine
+
+

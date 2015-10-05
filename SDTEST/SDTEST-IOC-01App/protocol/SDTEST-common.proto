@@ -1,0 +1,23 @@
+## The terminator for output and input is set in st.cmd via asynOctetSetOutputEos() using the IEOS and OEOS macros
+## so do not set in this file, it defaults to CR LF if not specified
+
+# Terminator = CR LF;
+
+## send a general string to the device, this is hooked up to a 40 character COMM stringout record
+## which will then contain the reply after processing by the device (also contained in REPLY pv)
+sendString {
+    ExtraInput = Ignore;
+    out "%s"; in "%39c";
+}
+
+getAllOutputString {
+    ExtraInput = Ignore;
+    in "%39c";
+}
+
+# this uses a char waveform, use camonitor/caget with -S option to read
+# size need to coordinate with waveform definition in db file (but be 1 less to leave space for NULL terminator)
+getAllOutputLongString {
+    ExtraInput = Ignore;
+    in "%1023c";
+}
