@@ -91,6 +91,14 @@
 <macro name="IXOFF6" pattern="^[YN]$" description="Y for input software flow control (default: N)" />
 <macro name="IXOFF7" pattern="^[YN]$" description="Y for input software flow control (default: N)" />
 <macro name="IXOFF8" pattern="^[YN]$" description="Y for input software flow control (default: N)" />
+<macro name="PROTO1" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
+<macro name="PROTO2" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
+<macro name="PROTO3" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
+<macro name="PROTO4" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
+<macro name="PROTO5" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
+<macro name="PROTO6" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
+<macro name="PROTO7" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
+<macro name="PROTO8" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
 </macros>
 </config_part>
 </ioc_config>

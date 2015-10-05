@@ -6,7 +6,7 @@ epicsEnvSet ("AUTOSAVEREQ", "#")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## set path to stream driver protocol file referenced in db files
-epicsEnvSet ("STREAM_PROTOCOL_PATH", "$(TOP)/data")
+epicsEnvSet ("STREAM_PROTOCOL_PATH", "$(TOP)/data:$(ICPCONFIGROOT)/ioc/SDTEST")
 
 epicsEnvSet(PN,1)
 < st-port.cmd

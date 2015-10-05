@@ -1,0 +1,40 @@
+##
+## @file SDTEST-default.proto Default device protocol file
+##
+## Make device specific versions based on this (but with a different filename) and place into $(ICPCONFIGROOT)/ioc/SDTEST
+## you must implement initDev(), getValue() and setValue() functions
+##
+## See http://epics.web.psi.ch/software/streamdevice/doc/ 
+##
+
+## The terminator for output and input is set in st.cmd via asynOctetSetOutputEos() using the IEOS and OEOS macros
+## so do not set in this file, it defaults to CR LF if not specified.
+# Terminator = CR LF;
+
+## retrieve a value from the device. Argument $1 is the $(P)$(Q) EPICS DB record prefix, 
+## and the $(P)$(Q)GETVAL:_OUT PV used by the function containes the string to send which has been populated from the $(GETOUT) macro
+## The format of the value returned is contained in $2 passed in via the $(GETIN) macro, typically $2 would be %f or similar
+## $1 and $2 need not be used in a custom device protocol file.
+getValue {
+#    ExtraInput = Ignore;
+    out "%(\$1GETVAL:_OUT.VAL)s"; in "\$2";
+}
+
+## send a value to the device, argument $1 is the $(P)$(Q) EPICS DB record prefix, 
+## and the $(P)$(Q)SETVAL:_OUT PV will contain the strings to prefix the value to send from the $(SETOUTA) macro
+## $2 is $(SETOUTB) and $3 is $(SETOUTC) to complete the output string
+## $4 is the reply format $(SETIN)
+## These arguments need not be used in a custome device protocol file.
+setValue {
+#    ExtraInput = Ignore;
+    out "%(\$1SETVAL:_OUT.VAL)s",$2,"\$3"; in "\$4";
+}
+
+## initialise device, argument $1 is the $(P)$(Q) EPICS DB record prefix
+## called when PV $(P)$(Q)INIT is written to
+## $(P)$(Q)INIT:_OUT PV used by the function containes the string to send which has been populated from the $(INITOUT) macro
+## The format of the value returned is contained in $2 passed in via the $(INITIN) macro
+initDev {
+#    ExtraInput = Ignore;
+    out "%(\$1INIT:_OUT.VAL)s"; in "\$2";
+}

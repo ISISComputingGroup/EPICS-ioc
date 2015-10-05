@@ -17,6 +17,8 @@
 *.substitutions text
 *.req text
 *.dox text
+*.proto text
+*.rst text
 
 # Declare files that will always have CRLF line endings on checkout.
 *.sln text eol=crlf
