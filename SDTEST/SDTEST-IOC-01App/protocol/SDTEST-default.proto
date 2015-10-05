@@ -31,7 +31,7 @@ setValue {
 }
 
 ## initialise device, argument $1 is the $(P)$(Q) EPICS DB record prefix
-## called when PV $(P)$(Q)INIT is written to
+## called when PV $(P)$(Q)INIT is written to, but is also called if PINI=YES has been set by the $(INITP) macro 
 ## $(P)$(Q)INIT:_OUT PV used by the function containes the string to send which has been populated from the $(INITOUT) macro
 ## The format of the value returned is contained in $2 passed in via the $(INITIN) macro
 initDev {

@@ -28,6 +28,8 @@ record(longout, "$(P)$(Q)INIT")
 	field(SIML, "$(P)$(Q)SIM")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
+    field(EGU, "")
+    field(PINI, "$(INITP)")
     info(INTEREST, "MEDIUM")
 }
 
