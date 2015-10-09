@@ -41,6 +41,8 @@ drvModbusAsynConfigure("phaserrd", "chop", 0, 3, 481, 2, 8, 1000, "SKF Chopper")
 drvModbusAsynConfigure("rspeed", "chop", 0, 3, 477, 2, 0, 1000, "SKF Chopper")
 drvModbusAsynConfigure("homeang", "chop", 0, 3, 379, 1, 0, 1000, "SKF Chopper")
 drvModbusAsynConfigure("homeangw", "chop", 0, 16, 379, 1, 0, 1, "SKF Chopper")
+drvModbusAsynConfigure("reset", "chop", 0, 16, 392, 1, 0, 1, "SKF Chopper")
+drvModbusAsynConfigure("status", "chop", 0, 3, 478, 1, 0, 1000, "SKF Chopper")
 
 ## Load record instances
 
