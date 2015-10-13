@@ -21,7 +21,7 @@ record(stringin, "$(P)ED:RBNUMBER")
 {
     field(DESC, "Experiment (RB) Number")
 	field(DTYP, "Soft Channel")
-	field(SCAN, "5 second")
+	field(SCAN, "Passive")
     field(INP, "$(P)DAE:_RBNUMBER")
     info(INTEREST, "HIGH")
 	field(SIML, "$(P)ED:SIM")
