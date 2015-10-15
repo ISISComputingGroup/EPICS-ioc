@@ -32,6 +32,7 @@ dbLoadRecords("db/svn-revision.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/build-id.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/inst_string_parameters.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/inst_real_parameters.db","P=$(MYPVPREFIX)")
+dbLoadRecords("db/user_parameters.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/runcontrol.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/experiment_data.db","P=$(MYPVPREFIX)")
 
