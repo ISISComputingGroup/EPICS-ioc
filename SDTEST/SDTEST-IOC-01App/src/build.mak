@@ -30,6 +30,7 @@ $(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
+$(APPNAME)_DBD += asubFunctions.dbd 
 
 # Add all the support libraries needed by this IOC
 $(APPNAME)_LIBS += stream asyn
@@ -41,6 +42,7 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += asubFunctions
 
 # SDTEST-IOC-01_registerRecordDeviceDriver.cpp derives from SDTEST-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

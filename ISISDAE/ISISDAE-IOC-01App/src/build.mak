@@ -29,6 +29,7 @@ $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += isisdae.dbd
 $(APPNAME)_DBD += webget.dbd
 $(APPNAME)_DBD += FileList.dbd
+$(APPNAME)_DBD += asubFunctions.dbd 
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -42,6 +43,8 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
 $(APPNAME)_LIBS += FileList isisdae asyn oncrpc zlib efsw pcrecpp pcre cas gdd
+$(APPNAME)_LIBS += asubFunctions
+
 # ISISDAE-IOC-01_registerRecordDeviceDriver.cpp derives from ISISDAE-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 

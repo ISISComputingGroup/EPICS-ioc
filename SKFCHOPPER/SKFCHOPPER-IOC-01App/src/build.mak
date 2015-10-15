@@ -29,6 +29,7 @@ $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += modbusSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += asubFunctions.dbd 
 
 
 # Add all the support libraries needed by this IOC
@@ -42,6 +43,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 $(APPNAME)_LIBS += modbus asyn
+$(APPNAME)_LIBS += asubFunctions 
 
 # SKFCHOPPER-IOC-01_registerRecordDeviceDriver.cpp derives from SKFCHOPPER-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

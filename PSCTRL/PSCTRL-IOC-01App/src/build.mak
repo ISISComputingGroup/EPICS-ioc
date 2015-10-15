@@ -29,6 +29,7 @@ $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += busySupport.dbd
 $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += procServControl.dbd
+$(APPNAME)_DBD += asubFunctions.dbd 
 
 # Add all the support libraries needed by this IOC
 $(APPNAME)_LIBS += procServControl busy asyn
@@ -40,6 +41,7 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre
+$(APPNAME)_LIBS += asubFunctions 
 
 # PSCTRL-IOC-01_registerRecordDeviceDriver.cpp derives from PSCTRL-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
