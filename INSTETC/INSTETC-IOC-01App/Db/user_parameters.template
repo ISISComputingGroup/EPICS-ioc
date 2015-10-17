@@ -2,29 +2,34 @@
 # % macro, INDEX, user variable index number
 
 ## User settable integer
+## Units, value and description are autosaved
 record (longin, "$(P)PARS:USER:I$(INDEX)") 
 {
 	field(DESC, "User Integer")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
+	field(EGU, "")
     info(archive, "VAL")
     info(autosaveFields, "VAL EGU DESC")
 	info(INTEREST, "MEDIUM")
 }
 
 ## User settable real
+## Units, value and description are autosaved
 record (ai, "$(P)PARS:USER:R$(INDEX)") 
 {
 	field(DESC, "User Real")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
 	field(PREC, 3)
+	field(EGU, "")
     info(archive, "VAL")
     info(autosaveFields, "VAL EGU DESC")
 	info(INTEREST, "MEDIUM")
 }
 
 ## User settable string
+## Value and description are autosaved
 record (stringin, "$(P)PARS:USER:S$(INDEX)") 
 {
 	field(DESC, "User String")
