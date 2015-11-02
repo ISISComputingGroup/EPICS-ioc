@@ -69,7 +69,7 @@ namespace Mk3Wrapper
         {
             string chopperType = GetChopperType(channel);
 
-            if (chopperType == "MK3ChopperServer.TS2DiscChopper")
+            if (chopperType == "MK3ChopperServer.TS2DiscChopper" || chopperType == "MK3ChopperServer.TS1DiscChopper")
             {
                 return true;
             }
@@ -107,6 +107,13 @@ namespace Mk3Wrapper
 
         public bool GetNominalDirection(uint channel)
         {
+            string chopperType = GetChopperType(channel);
+
+            if (chopperType == "MK3ChopperServer.TS2TZeroChopper" || chopperType == "MK3ChopperServer.TS1TZeroChopper")
+            {
+                return true;
+            }
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetStoredDemandCWDirection(channel);
             return res.boolResult;
         }
@@ -167,6 +174,13 @@ namespace Mk3Wrapper
 
         public int PutNominalDirection(uint channel, bool cw)
         {
+            string chopperType = GetChopperType(channel);
+
+            if (chopperType == "MK3ChopperServer.TS2TZeroChopper" || chopperType == "MK3ChopperServer.TS1TZeroChopper")
+            {
+                return 0;
+            }
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.SetStoredDemandCWDirection(channel, cw);
             checkError(res);
             res = _beamline.SendStoredDemandCWDirectionToModule(channel);
