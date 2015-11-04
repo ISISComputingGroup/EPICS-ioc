@@ -11,10 +11,18 @@ namespace Mk3Wrapper
 
         public Chopper(string config_file)
         {
-            RemotingConfiguration.Configure(config_file, false);
+            try
+            {
+                RemotingConfiguration.Configure(config_file, false);
 
-            _helper = new MK3ChopperSkeleton.RemotingHelper();
-            _beamline = (MK3ChopperSkeleton.IBeamLine) MK3ChopperSkeleton.RemotingHelper.CreateProxy();
+                _helper = new MK3ChopperSkeleton.RemotingHelper();
+                _beamline = (MK3ChopperSkeleton.IBeamLine)MK3ChopperSkeleton.RemotingHelper.CreateProxy();
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine("Error: could not create connection to chopper");
+                Console.WriteLine(err.Message);
+            }
         }
 
         public double GetActualFreq(uint channel)
