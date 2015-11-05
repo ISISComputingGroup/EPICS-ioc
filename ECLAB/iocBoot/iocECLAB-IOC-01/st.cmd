@@ -17,10 +17,9 @@ ECLAB_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-#ECLabConfigure("port1", 130.246.36.213)
-#ECLabConfigure("port1", "$(IPADDR=127.0.0.1)")
 # pass "SIM" as ip address for simulation mode
-ECLabConfigure("port1", "SIM")
+$(IFSIM)    ECLabConfigure("port1", "SIM")
+$(IFNOTSIM) ECLabConfigure("port1", "$(IPADDR=127.0.0.1)")
 
 ## Load record instances
 
