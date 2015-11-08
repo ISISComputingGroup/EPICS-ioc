@@ -56,6 +56,7 @@ record(ai, "$(P)PRESSURE_A1")
 	info(archive, "VAL")
     info(INTEREST, "HIGH")
     field(EGU, "")
+	info(alarm, "Pressure")
 }
 record(ai, "$(P)PRESSURE_A2") 
 {
@@ -70,6 +71,7 @@ record(ai, "$(P)PRESSURE_A2")
 	info(archive, "VAL")
     info(INTEREST, "HIGH")
     field(EGU, "")
+	info(alarm, "Pressure")
 }
 
 record(ai, "$(P)PRESSURE_B1") 
@@ -85,6 +87,7 @@ record(ai, "$(P)PRESSURE_B1")
 	info(archive, "VAL")
     info(INTEREST, "HIGH")
     field(EGU, "")
+	info(alarm, "Pressure")
 }
 
 record(ai, "$(P)PRESSURE_B2") 
@@ -100,6 +103,7 @@ record(ai, "$(P)PRESSURE_B2")
 	info(archive, "VAL")
     info(INTEREST, "HIGH")
     field(EGU, "")
+	info(alarm, "Pressure")
 }
 
 record(mbbi, "$(P)UNITS") 

@@ -52,6 +52,7 @@ record(stringout, "$(P)$(Q)COMM")
 #    info(autosaveFields, "VAL")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
+	info(alarm, "SDTEST/$(DEV)")
 }
 alias("$(P)$(Q)COMM", "$(P)$(Q)COMM:SP")
 alias("$(P)$(Q)COMM", "$(P)$(Q)COMM:SP:RBV")
@@ -100,6 +101,7 @@ record(ai, "$(P)$(Q)GETVAL")
 	field(PREC, 3)
     info(archive, "VAL")
     info(INTEREST, "HIGH")
+	info(alarm, "SDTEST/$(DEV)")
 }
 
 record(stringin, "$(P)$(Q)SETVAL:_OUT")
@@ -121,6 +123,7 @@ record(ao, "$(P)$(Q)SETVAL")
 	field(PREC, 3)
     info(archive, "VAL")
     info(INTEREST, "HIGH")
+	info(alarm, "SDTEST/$(DEV)")
 #    info(autosaveFields, "VAL")
 }
 alias("$(P)$(Q)SETVAL", "$(P)$(Q)SETVAL:SP")
@@ -137,6 +140,7 @@ record(stringin, "$(P)$(Q)REPLY:ASYNC")
 	field(SIOL, "$(P)$(Q)SIM:VAL")
 	field(SDIS, "$(P)$(Q)DISABLE")
     info(INTEREST, "MEDIUM")
+	info(alarm, "SDTEST/$(DEV)")
 }
 
 # we get any output sent by device, whether in response to a command or not 
