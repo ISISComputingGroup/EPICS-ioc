@@ -27,13 +27,13 @@ $(IFNOTSIM) ECLabConfigure("port1", "$(IPADDR=127.0.0.1)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(ECLAB)/db/ECLab.db","P=$(MYPVPREFIX),PORT=port1,CHAN=0")
-dbLoadRecords("$(ECLAB)/db/ECLabIntegerParams.db","P=$(MYPVPREFIX),PORT=port1,CHAN=0")
-dbLoadRecords("$(ECLAB)/db/ECLabBooleanParams.db","P=$(MYPVPREFIX),PORT=port1,CHAN=0")
-dbLoadRecords("$(ECLAB)/db/ECLabSingleParams.db","P=$(MYPVPREFIX),PORT=port1,CHAN=0")
-dbLoadRecords("$(ECLAB)/db/ECLabIntegerArrayParams.db","P=$(MYPVPREFIX),PORT=port1,CHAN=0")
-dbLoadRecords("$(ECLAB)/db/ECLabBooleanArrayParams.db","P=$(MYPVPREFIX),PORT=port1,CHAN=0")
-dbLoadRecords("$(ECLAB)/db/ECLabSingleArrayParams.db","P=$(MYPVPREFIX),PORT=port1,CHAN=0")
+dbLoadRecords("$(ECLAB)/db/ECLab.db","P=$(MYPVPREFIX),Q=$(IOCNAME),PORT=port1,CHAN=0")
+dbLoadRecords("$(ECLAB)/db/ECLabIntegerParams.db","P=$(MYPVPREFIX),Q=$(IOCNAME),PORT=port1,CHAN=0")
+dbLoadRecords("$(ECLAB)/db/ECLabBooleanParams.db","P=$(MYPVPREFIX),Q=$(IOCNAME),PORT=port1,CHAN=0")
+dbLoadRecords("$(ECLAB)/db/ECLabSingleParams.db","P=$(MYPVPREFIX),Q=$(IOCNAME),PORT=port1,CHAN=0")
+dbLoadRecords("$(ECLAB)/db/ECLabIntegerArrayParams.db","P=$(MYPVPREFIX),Q=$(IOCNAME),PORT=port1,CHAN=0")
+dbLoadRecords("$(ECLAB)/db/ECLabBooleanArrayParams.db","P=$(MYPVPREFIX),Q=$(IOCNAME),PORT=port1,CHAN=0")
+dbLoadRecords("$(ECLAB)/db/ECLabSingleArrayParams.db","P=$(MYPVPREFIX),Q=$(IOCNAME),PORT=port1,CHAN=0")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

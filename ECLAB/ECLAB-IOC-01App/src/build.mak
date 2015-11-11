@@ -25,6 +25,7 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += asubFunctions.dbd 
 ## add other dbd here ##
 $(APPNAME)_DBD += ECLab.dbd
 
@@ -36,7 +37,7 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += utilities pcre libjson zlib asubFunctions
 ## Add other libraries here ##
 $(APPNAME)_LIBS += ECLab
 $(APPNAME)_LIBS += asyn
