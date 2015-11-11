@@ -36,7 +36,7 @@ record(longout, "$(P)$(Q)INIT")
 ## reload protocol file
 record(sub, "$(P)$(Q)RELOAD_PROTOCOL")
 {
-    record(SNAM, "streamReloadSub")
+    field(SNAM, "streamReloadSub")
 }	
 
 ## send a string to a device, reply will get written back to this record but we pass it onto another for clarity 
