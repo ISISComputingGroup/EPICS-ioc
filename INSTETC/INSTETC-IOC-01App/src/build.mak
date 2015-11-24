@@ -18,22 +18,8 @@ instetcSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# INSTETC-IOC-01.dbd will be created and installed
+# INSTETC-IOC-01.dbd will be created and installed from INSTETC-IOC-01Include.dbd 
 DBD += $(APPNAME).dbd
-
-# INSTETC-IOC-01.dbd will be made up from these files:
-$(APPNAME)_DBD += base.dbd
-## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
-$(APPNAME)_DBD += icpconfig.dbd
-$(APPNAME)_DBD += pvdump.dbd
-$(APPNAME)_DBD += asSupport.dbd
-$(APPNAME)_DBD += devIocStats.dbd
-$(APPNAME)_DBD += caPutLog.dbd
-$(APPNAME)_DBD += utilities.dbd
-$(APPNAME)_DBD += asubFunctions.dbd
-## add other dbd here ##
-$(APPNAME)_DBD += instetcInclude.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -46,7 +32,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre
 $(APPNAME)_LIBS += asubFunctions
 ## Add other libraries here ##
-$(APPNAME)_LIBS += instetcSupport asyn
+$(APPNAME)_LIBS += instetcSupport asyn calc busy
 
 # INSTETC-IOC-01_registerRecordDeviceDriver.cpp derives from INSTETC-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

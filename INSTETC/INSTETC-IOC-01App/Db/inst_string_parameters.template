@@ -18,18 +18,44 @@ alias("$(P)$(Q):SP", "$(P)$(Q)")
 record(aSub, "$(P)$(Q):SEND")
 {
     field(DESC, "Send $(DESC) to ICP")  
-    field("SNAM", "stringConcatWithCtrlB")
-    field("FTA", "STRING")
-    field("INPA", "$(P)$(Q):SP.DESC NPP NMS")
-    field("FTB", "STRING")
-    field("INPB", "$(P)$(Q):SP.FTVL NPP NMS")
-    field("FTC", "STRING")
-    field("INPC", "$(P)$(Q):SP.EGU NPP NMS")
-    field("FTD", "CHAR")
-    field("NOD", "256")
-    field("INPD", "$(P)$(Q):SP.VAL NPP NMS")
-    field("FTVA", "CHAR")
-    field("NOVA", "512")
-    field("OUTA", "$(P)$(OUT)")
+    field(SNAM, "stringConcatWithCtrlB")
+    field(FTA, "STRING")
+    field(INPA, "$(P)$(Q):SP.DESC NPP NMS")
+    field(FTB, "STRING")
+    field(INPB, "$(P)$(Q):SP.FTVL NPP NMS")
+    field(FTC, "STRING")
+    field(INPC, "$(P)$(Q):SP.EGU NPP NMS")
+    field(FTD, "CHAR")
+    field(NOD, "256")
+    field(INPD, "$(P)$(Q):SP.VAL NPP NMS")
+    field(FTVA, "CHAR")
+    field(NOVA, "512")
+    field(OUTA, "$(P)$(Q):_SENDV")
+	field(FLNK, "$(P)$(Q):_SENDPV")
 }
 
+record(waveform, "$(P)$(Q):_SENDV") 
+{
+  field(FTVL, "CHAR") 
+  field(NELM, "512")
+}
+
+# add $ to PV name to trigger long string support, which gives array of char needed for waveform
+record(waveform, "$(P)$(Q):_SENDPV") 
+{
+  field(INP, "$(P)$(OUT).NAME$")
+  field(FTVL, "CHAR") 
+  field(NELM, "128")
+  field(FLNK, "$(P)$(Q):_SENDQ")
+}
+
+record(aSub, "$(P)$(Q):_SENDQ")
+{
+  field(SNAM, "queuedPVSet")
+  field(INPA, "$(P)$(Q):_SENDPV NPP")
+  field(FTA, "CHAR")
+  field(NOA, "128")
+  field(INPB, "$(P)$(Q):_SENDV NPP")
+  field(FTB, "CHAR")
+  field(NOB, "512")
+} 
