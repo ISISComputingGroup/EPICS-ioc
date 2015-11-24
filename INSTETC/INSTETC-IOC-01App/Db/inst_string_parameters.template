@@ -58,4 +58,7 @@ record(aSub, "$(P)$(Q):_SENDQ")
   field(INPB, "$(P)$(Q):_SENDV NPP")
   field(FTB, "CHAR")
   field(NOB, "512")
+  field(INPC, "5")
+  field(FTC, "DOUBLE")
+  field(NOC, "1")
 } 
