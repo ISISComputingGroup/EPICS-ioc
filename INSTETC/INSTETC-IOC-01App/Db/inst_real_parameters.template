@@ -2,7 +2,6 @@ record(ao, "$(P)$(Q):SP")
 {
    field(DESC, "$(DESC)")  
    field(DTYP, "Soft Channel")
-   field(PINI, "YES")
    field(FLNK, "$(P)$(Q):SEND")
    field(EGU, "$(UNITS)")
    field(OMSL, "supervisory")
@@ -10,6 +9,14 @@ record(ao, "$(P)$(Q):SP")
    info(autosaveFields, "VAL")
 }
 alias("$(P)$(Q):SP", "$(P)$(Q)")
+
+# force periodic update of values in case we get out of sync with DAE e.g. program restarts 
+# we use this rather than PINI in above as DAE may not be running when we start this ioc
+record(bo, "$(P)$(Q):_SP_UPDATE")
+{
+    field(SCAN, "10 second")
+	field(FLNK, "$(P)$(Q):SP.PROC")
+}
 
 # aSub records must read from links, hence need to create a record 
 # to store data type string for above ao record
@@ -26,18 +33,47 @@ record(stringout, "$(P)$(Q):TYPE")
 record(aSub, "$(P)$(Q):SEND")
 {
     field(DESC, "Send $(DESC) to ICP")  
-    field("SNAM", "stringConcatWithCtrlB")
-    field("FTA", "STRING")
-    field("INPA", "$(P)$(Q):SP.DESC NPP NMS")
-    field("FTB", "STRING")
-    field("INPB", "$(P)$(Q):TYPE.VAL NPP NMS")
-    field("FTC", "STRING")
-    field("INPC", "$(P)$(Q):SP.EGU NPP NMS")
-    field("FTD", "DOUBLE")
-    field("NOD", "1")
-    field("INPD", "$(P)$(Q):SP.VAL NPP NMS")
-    field("FTVA", "CHAR")
-    field("NOVA", "512")
-    field("OUTA", "$(P)$(OUT)")
+    field(SNAM, "stringConcatWithCtrlB")
+    field(FTA, "STRING")
+    field(INPA, "$(P)$(Q):SP.DESC NPP NMS")
+    field(FTB, "STRING")
+    field(INPB, "$(P)$(Q):TYPE.VAL NPP NMS")
+    field(FTC, "STRING")
+    field(INPC, "$(P)$(Q):SP.EGU NPP NMS")
+    field(FTD, "DOUBLE")
+    field(NOD, "1")
+    field(INPD, "$(P)$(Q):SP.VAL NPP NMS")
+    field(FTVA, "CHAR")
+    field(NOVA, "512")
+    field(OUTA, "$(P)$(Q):_SENDV")
+	field(FLNK, "$(P)$(Q):_SENDPV")
 }
 
+record(waveform, "$(P)$(Q):_SENDV") 
+{
+  field(FTVL, "CHAR") 
+  field(NELM, "512")
+}
+
+# add $ to PV name to trigger long string support, which gives array of char needed for waveform
+record(waveform, "$(P)$(Q):_SENDPV") 
+{
+  field(INP, "$(P)$(OUT).NAME$")
+  field(FTVL, "CHAR") 
+  field(NELM, "128")
+  field(FLNK, "$(P)$(Q):_SENDQ")
+}
+
+record(aSub, "$(P)$(Q):_SENDQ")
+{
+  field(SNAM, "queuedPVSet")
+  field(INPA, "$(P)$(Q):_SENDPV NPP")
+  field(FTA, "CHAR")
+  field(NOA, "128")
+  field(INPB, "$(P)$(Q):_SENDV NPP")
+  field(FTB, "CHAR")
+  field(NOB, "512")
+  field(INPC, "5")
+  field(FTC, "DOUBLE")
+  field(NOC, "1")
+} 

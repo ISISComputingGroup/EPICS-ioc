@@ -105,3 +105,4 @@ record (bo, "$(P)CS:CONTROL:LOCKED")
 	field(PINI, "YES")
 	field(VAL, "0")
 }
+

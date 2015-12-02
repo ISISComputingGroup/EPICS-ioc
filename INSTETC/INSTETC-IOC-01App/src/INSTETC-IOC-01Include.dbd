@@ -1,0 +1,13 @@
+include "base.dbd"
+include "asyn.dbd"
+include "devIocStats.dbd"
+include "devSequencer.dbd"
+include "icpconfig.dbd"
+include "pvdump.dbd"
+include "asSupport.dbd"
+include "caPutLog.dbd"
+include "utilities.dbd"
+include "asubFunctions.dbd"
+include "calcSupport.dbd"
+include "busySupport.dbd"
+registrar("instetcRegister")
