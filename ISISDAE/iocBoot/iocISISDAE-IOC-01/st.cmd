@@ -28,6 +28,9 @@ ISISDAE_IOC_01_registerRecordDeviceDriver pdbbase
 ## used for restarting EPICS archiver via web URL
 webgetConfigure("web")
 
+## uncomment to disable uamps too large check
+#epicsEnvSet("NOCHECKFUAMP","1")
+
 ## local dae, no dcom/labview
 isisdaeConfigure("icp", $(DAEDCOM=0), $(DAEHOST=localhost), "spudulike", "reliablebeam")
 ## pass 1 as second arg to signify DCOM to either local or remote dae
