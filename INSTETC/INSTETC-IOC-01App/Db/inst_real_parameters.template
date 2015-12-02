@@ -2,7 +2,6 @@ record(ao, "$(P)$(Q):SP")
 {
    field(DESC, "$(DESC)")  
    field(DTYP, "Soft Channel")
-   field(PINI, "YES")
    field(FLNK, "$(P)$(Q):SEND")
    field(EGU, "$(UNITS)")
    field(OMSL, "supervisory")
@@ -11,7 +10,13 @@ record(ao, "$(P)$(Q):SP")
 }
 alias("$(P)$(Q):SP", "$(P)$(Q)")
 
-
+# force periodic update of values in case we get out of sync with DAE e.g. program restarts 
+# we use this rather than PINI in above as DAE may not be running when we start this ioc
+record(bo, "$(P)$(Q):_SP_UPDATE")
+{
+    field(SCAN, "10 second")
+	field(FLNK, "$(P)$(Q):SP.PROC")
+}
 
 # aSub records must read from links, hence need to create a record 
 # to store data type string for above ao record

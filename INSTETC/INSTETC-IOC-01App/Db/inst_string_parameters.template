@@ -4,12 +4,19 @@ record(waveform, "$(P)$(Q):SP")
    field(NELM, "256")
    field(FTVL, "CHAR")
    field(DTYP, "Soft Channel")
-   field(PINI, "YES")
    field(FLNK, "$(P)$(Q):SEND")
    field(EGU, "$(UNITS)")
    info(autosaveFields, "VAL")
 }
 alias("$(P)$(Q):SP", "$(P)$(Q)")
+
+# force periodic update of values in case we get out of sync with DAE e.g. program restarts 
+# we use this rather than PINI in above as DAE may not be running when we start this ioc
+record(bo, "$(P)$(Q):_SP_UPDATE")
+{
+    field(SCAN, "10 second")
+	field(FLNK, "$(P)$(Q):SP.PROC")
+}
 
 ## Send value to ICP.
 ## $(DESC) must match the parameter name as used within the ISISICP
