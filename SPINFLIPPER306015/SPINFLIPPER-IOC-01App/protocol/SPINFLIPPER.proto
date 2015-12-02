@@ -1,0 +1,9 @@
+InTerminator = '\r\n';
+OutTerminator = '\r\n';
+ReplyTimeout = 2000;
+
+readGuideTemp {
+    out "TGUI*";
+    in "%f";
+    ExtraInput = Ignore;
+}

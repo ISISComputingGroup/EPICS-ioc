@@ -1,0 +1,11 @@
+record(ai, "$(P)TGUI")
+{
+   field(DESC, "The guide temperature")
+   field(DTYP, "asynFloat64")
+   field(INP,  "@SPINFLIPPER.proto readGuideTemp $(PORT)")
+   field(EGU, "C")
+   field(SCAN, "5")
+   info(INTEREST, "MEDIUM")
+   info(archive, "VAL")
+}
+
