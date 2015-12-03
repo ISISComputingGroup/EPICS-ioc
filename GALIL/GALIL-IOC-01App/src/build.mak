@@ -43,6 +43,7 @@ $(APPNAME)_DBD += asubFunctions.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
+$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvcomplete
@@ -58,7 +59,6 @@ $(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += motionSetPoints
 $(APPNAME)_LIBS += sampleChanger
-$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += busy asyn
 $(APPNAME)_LIBS += std
 $(APPNAME)_LIBS += asubFunctions

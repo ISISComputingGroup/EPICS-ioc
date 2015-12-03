@@ -34,6 +34,7 @@ $(APPNAME)_DBD += asubFunctions.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
+$(APPNAME)_LIBS += asubFunctions 
 $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
@@ -43,7 +44,6 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 $(APPNAME)_LIBS += modbus asyn
-$(APPNAME)_LIBS += asubFunctions 
 
 # SKFCHOPPER-IOC-01_registerRecordDeviceDriver.cpp derives from SKFCHOPPER-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

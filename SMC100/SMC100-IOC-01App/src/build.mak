@@ -41,13 +41,13 @@ $(APPNAME)_DBD += asubFunctions.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += calc autosave
-$(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += asubFunctions utilities pcre libjson zlib
+$(APPNAME)_LIBS += seqDev seq pv
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 $(APPNAME)_LIBS += Newport
@@ -55,7 +55,6 @@ $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += motionSetPoints
-$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += busy asyn
 $(APPNAME)_LIBS += std sscan
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

@@ -46,6 +46,7 @@ $(APPNAME)_DBD += HVCAENx527.dbd
 ## Add other libraries here ##
 $(APPNAME)_LIBS += HVCAENx527Support
 ## ISIS standard libraries ##
+$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
@@ -53,7 +54,6 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre
-$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS_WIN32 += caenhvwrapper # hscaenetlib
 $(APPNAME)_SYS_LIBS_Linux += caenhvwrapper hscaenetlib
 
