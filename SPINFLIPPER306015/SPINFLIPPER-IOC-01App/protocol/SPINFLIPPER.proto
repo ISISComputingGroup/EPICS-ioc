@@ -1,9 +1,63 @@
-InTerminator = '\r\n';
-OutTerminator = '\r\n';
-ReplyTimeout = 2000;
+InTerminator = ';';
+OutTerminator = '*';
+ReplyTimeout = 10000;
 
 readGuideTemp {
-    out "TGUI*";
+    out "TGUI";
     in "%f";
+    ExtraInput = Ignore;
+}
+
+readMaxGuideTemp {
+    out "GLIM";
+    in "%f";
+    ExtraInput = Ignore;
+}
+
+readFlipState {
+    out "FLIP";
+    in "%s";
+    ExtraInput = Ignore;
+}
+
+readCoilTemp {
+    out "TCOI";
+    in "%f";
+    ExtraInput = Ignore;
+}
+
+readMaxCoilTemp {
+    out "CLIM";
+    in "%f";
+    ExtraInput = Ignore;
+}
+
+readFlipCurrentSetpoint {
+    out "SETI";
+    in "%f";
+    ExtraInput = Ignore;
+}
+
+readFlipCurrent {
+    out "IRMS";
+    in "%f";
+    ExtraInput = Ignore;
+}
+
+readFlipFreq {
+    out "FREQ";
+    in "%f";
+    ExtraInput = Ignore;
+}
+
+readAlarmState {
+    out "ALRM";
+    in "%s";
+    ExtraInput = Ignore;
+}
+
+readMode {
+    out "MODE";
+    in "%s";
     ExtraInput = Ignore;
 }

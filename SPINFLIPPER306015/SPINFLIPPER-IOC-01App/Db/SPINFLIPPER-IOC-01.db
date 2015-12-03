@@ -1,11 +1,105 @@
 record(ai, "$(P)TGUI")
 {
-   field(DESC, "The guide temperature")
-   field(DTYP, "asynFloat64")
-   field(INP,  "@SPINFLIPPER.proto readGuideTemp $(PORT)")
-   field(EGU, "C")
-   field(SCAN, "5")
-   info(INTEREST, "MEDIUM")
-   info(archive, "VAL")
+    field (DTYP, "stream")
+    field(DESC, "The guide temperature")
+    field(INP,  "@SPINFLIPPER.proto readGuideTemp $(PORT)")
+    field(EGU, "C")
+    field(SCAN, "5")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)MAXTGUI")
+{
+    field (DTYP, "stream")
+    field(DESC, "The maximum guide temperature")
+    field(INP,  "@SPINFLIPPER.proto readMaxGuideTemp $(PORT)")
+    field(EGU, "C")
+    field(SCAN, "5")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)TCOIL")
+{
+    field (DTYP, "stream")
+    field(DESC, "The coil temperature")
+    field(INP,  "@SPINFLIPPER.proto readCoilTemp $(PORT)")
+    field(EGU, "C")
+    field(SCAN, "5")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)MAXTCOIL")
+{
+    field (DTYP, "stream")
+    field(DESC, "The maximum coil temperature")
+    field(INP,  "@SPINFLIPPER.proto readMaxCoilTemp $(PORT)")
+    field(EGU, "C")
+    field(SCAN, "5")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(stringin, "$(P)FLIPSTATE")
+{
+    field (DTYP, "stream")
+    field(DESC, "The current status of the flipper")
+    field(INP,  "@SPINFLIPPER.proto readFlipState $(PORT)")
+    field(SCAN, "5")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)FLIPCURR")
+{
+    field (DTYP, "stream")
+    field(DESC, "The flip current")
+    field(INP,  "@SPINFLIPPER.proto readFlipCurrent $(PORT)")
+    field(EGU, "I")
+    field(SCAN, "5")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)FLIPCURR:SP:RB")
+{
+    field (DTYP, "stream")
+    field(DESC, "The flip current setpoint")
+    field(INP,  "@SPINFLIPPER.proto readFlipCurrentSetpoint $(PORT)")
+    field(EGU, "I")
+    field(SCAN, "5")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)FLIPFREQ")
+{
+    field (DTYP, "stream")
+    field(DESC, "The flip frequency")
+    field(INP,  "@SPINFLIPPER.proto readFlipFreq $(PORT)")
+    field(EGU, "Hz")
+    field(SCAN, "5")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(stringin, "$(P)ALARM")
+{
+    field (DTYP, "stream")
+    field(DESC, "The current alarm status of the flipper")
+    field(INP,  "@SPINFLIPPER.proto readAlarmState $(PORT)")
+    field(SCAN, "5")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(stringin, "$(P)MODE")
+{
+    field (DTYP, "stream")
+    field(DESC, "The current mode of the flipper")
+    field(INP,  "@SPINFLIPPER.proto readMode $(PORT)")
+    field(SCAN, "5")
 }
 
