@@ -1,48 +1,65 @@
 ﻿using System;
 using System.Runtime.Remoting;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Mk3Wrapper
 {
     public class Chopper : IChopper
     {
+        string configFile = "";
         MK3ChopperSkeleton.IBeamLine _beamline = null;
         MK3ChopperSkeleton.RemotingHelper _helper;
 
-        public Chopper(string config_file)
+        public Chopper(string configFile)
         {
-            RemotingConfiguration.Configure(config_file, false);
+            this.configFile = configFile;
+        }
+
+        public void Initialise()
+        {
+            RemotingConfiguration.Configure(configFile, false);
 
             _helper = new MK3ChopperSkeleton.RemotingHelper();
-            _beamline = (MK3ChopperSkeleton.IBeamLine) MK3ChopperSkeleton.RemotingHelper.CreateProxy();
+            _beamline = (MK3ChopperSkeleton.IBeamLine)MK3ChopperSkeleton.RemotingHelper.CreateProxy();
         }
 
         public double GetActualFreq(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetModuleActualSpeed(channel);
             return res.doubleResult;
         }
 
         public uint GetActualPhase(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetModuleActualDelay(channel);
             return res.uintResult;
         }
 
         public int GetActualPhaseError(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetModuleActualErrorWindow(channel);
             return res.intResult;
         }
 
         public double[] GetAllowedFrequencies(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetAllowedDemandSpeeds(channel);
             return res.doubleArray;
         }
 
         public string GetBeamlineName()
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetBeamLineName();
             return res.stringResult;
         }
@@ -55,12 +72,16 @@ namespace Mk3Wrapper
 
         public string GetChopperName(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetChopperName(channel);
             return res.stringResult;
         }
 
         public string GetChopperType(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetChopperType(channel);
             return res.stringResult;
         }
@@ -83,24 +104,32 @@ namespace Mk3Wrapper
 
         public bool GetComputerMode()
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetComputerMode();
             return res.boolResult;
         }
 
         public int GetFirmwareVersion(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetModuleFirmwareVersion(channel);
             return res.intResult;
         }
 
         public int GetMPPeriod(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetModuleMPPeriod(channel);
             return res.intResult;
         }
 
         public double GetNominalAngle(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetStoredDemandDiscAngle(channel);
             return res.doubleResult;
         }
@@ -120,42 +149,64 @@ namespace Mk3Wrapper
 
         public double GetNominalFreq(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetModuleDemandSpeed(channel);
             return res.doubleResult;
         }
 
         public uint GetNominalPhaseError(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetModuleDemandErrorWindow(channel);
             return res.uintResult;
         }
 
         public uint GetNominalPhase(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetModuleDemandDelay(channel);
             return res.uintResult;
         }
 
         public uint GetNumberEnabledChannels()
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetNumberOfEnabledChannels();
             return res.uintResult;
         }
 
         public int GetSoftwareVersion(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetModuleSoftwareVersion(channel);
             return res.intResult;
         }
 
-        public BitArray GetStatusRegister(uint channel)
+        public bool[] GetStatusRegister(uint channel)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetModuleStatusRegister(channel);
-            return res.statusReg;
+
+            List<bool> ans = new List<bool>();
+            
+            foreach (bool b in res.statusReg)
+            {
+                ans.Add(b);
+            }
+
+            return ans.ToArray();
         }
 
         public int GetNumberChannels()
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.GetTotalNumberOfChannels();
             return res.intResult;
         }
@@ -193,6 +244,8 @@ namespace Mk3Wrapper
 
         public double PutNominalFreq(uint channel, double speed)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.SetStoredDemandSpeed(channel, speed);
             checkError(res);
             res = _beamline.SendStoredDemandSpeedToModule(channel);
@@ -206,6 +259,8 @@ namespace Mk3Wrapper
 
         public uint PutNominalPhaseErrorWindow(uint channel, uint error)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.SetStoredDemandErrorWindow(channel, error);
             checkError(res);
             res = _beamline.SendStoredDemandErrorWindowToModule(channel);
@@ -219,6 +274,8 @@ namespace Mk3Wrapper
 
         public uint PutNominalPhase(uint channel, uint phase)
         {
+            if (_beamline == null) Initialise();
+
             MK3ChopperSkeleton.ResultContainer res = _beamline.SetStoredDemandDelay(channel, phase);
             checkError(res);
             res = _beamline.SendStoredDemandDelayToModule(channel);

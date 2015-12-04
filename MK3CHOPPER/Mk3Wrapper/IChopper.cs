@@ -23,7 +23,7 @@ namespace Mk3Wrapper
         uint GetNominalPhase(uint channel);
         uint GetNumberEnabledChannels();
         int GetSoftwareVersion(uint channel);
-        BitArray GetStatusRegister(uint channel);
+        bool[] GetStatusRegister(uint channel);
         int GetNumberChannels();
         // int PutNominalAngle(uint channel, double angle);
         int PutNominalDirection(uint channel, bool cw);
