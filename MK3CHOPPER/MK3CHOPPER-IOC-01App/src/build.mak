@@ -26,7 +26,7 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
-#$(APPNAME)_DBD += xxx.dbd
+$(APPNAME)_DBD += mk3Include.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -38,13 +38,13 @@ $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
-#$(APPNAME)_LIBS += xxx
+$(APPNAME)_LIBS += asyn
 
 # MK3CHOPPER-IOC-01_registerRecordDeviceDriver.cpp derives from MK3CHOPPER-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
-$(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp
+$(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp mk3Driver.cpp
 $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Add support from base/src/vxWorks if needed
