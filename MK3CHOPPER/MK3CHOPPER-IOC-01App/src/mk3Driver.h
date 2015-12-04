@@ -1,7 +1,8 @@
-#ifndef MK3_INTERFACE_H
-#define MK3_INTERFACE_H
+#ifndef MK3_DRIVER_H
+#define MK3_DRIVER_H
 
 #include "asynPortDriver.h"
+#include "mk3Interface.h"
 
 class mk3Driver : public asynPortDriver {
 public:
@@ -9,10 +10,12 @@ public:
                  
     /* These are the methods that we override from asynPortDriver */
     virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
-    virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
+    virtual asynStatus readFloat64(asynUser *pasynUser, epicsFloat64 *value);
     
 private:
     asynUser* pasynUser;
+    mk3Interface* m_interface;
+    void checkErrorCode(int code);
 
     int P_ActualFreq;
     int P_ActualPhase;
@@ -26,4 +29,4 @@ private:
 #define P_ActualPhaseString          "PHASE"           
     
     
-#endif /* MK3_INTERFACE_H */
+#endif /* MK3_DRIVER_H */

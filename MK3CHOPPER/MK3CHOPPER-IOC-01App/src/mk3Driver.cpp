@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <math.h>
+#include <iostream>
 
 #include <epicsTypes.h>
 #include <epicsTime.h>
@@ -33,31 +34,63 @@ mk3Driver::mk3Driver(const char *portName, const char *configFilePath)
 {
     const char *functionName = "mk3Driver";
     
+    m_interface = new mk3Interface(configFilePath, true);
+    m_interface->initialise();
+    
     createParam(P_ActualFreqString, asynParamInt32, &P_ActualFreq);
     createParam(P_ActualPhaseString, asynParamInt32, &P_ActualPhase);
 
     /* Set the initial values of some parameters */
-    setIntegerParam(P_ActualFreq, 123);
-    setIntegerParam(P_ActualPhase, 246);
+    setIntegerParam(P_ActualFreq, 0);
+    setIntegerParam(P_ActualPhase, 0);
 }
 
 /* Called when asyn clients call pasynInt32->write().*/
 asynStatus mk3Driver::writeInt32(asynUser *pasynUser, epicsInt32 value)
 {
-    printf("writeInt32 called");
+    //printf("writeInt32 called");
     int function = pasynUser->reason; 
     static const char *functionName = "writeInt32"; 
     
     return(asynSuccess);
 }
 
-asynStatus mk3Driver::readInt32(asynUser *pasynUser, epicsInt32 *value)
+asynStatus mk3Driver::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 {
-    printf("readInt32 called");
+    //printf("readFloat64 called");
     int function = pasynUser->reason;
-    static const char *functionName = "readInt32"; 
+    asynStatus status = asynSuccess;
+    const char *paramName;
+    static const char *functionName = "readFloat64"; 
+    getParamName(function, &paramName);
+    
+    int errCode;
+    
+    if (function == P_ActualFreq)
+    {
+        double result;
+        errCode = m_interface->getActualFreq(1, &result);
+        *value = result;
+        // Check error code (move to separate method)
+        checkErrorCode(errCode);
+        
+        //std::cout << result << std::endl;
+    }
+    
+    callParamCallbacks();
     
     return(asynSuccess);
+}
+
+void mk3Driver::checkErrorCode(int code)
+{
+    // 0 = no error
+    if (code != 0)
+    {
+        char answer[50];
+        m_interface->checkErrorCode(code, answer, 50);
+        std::cout << answer << std::endl;
+    }
 }
 
 /* Configuration routine.  Called directly, or from the iocsh function below */

@@ -1,9 +1,9 @@
 record(ai, "$(P)FREQ")
 {
     field(DESC, "The actual frequency")
-    field(DTYP, "asynInt32")
+    field(DTYP, "asynFloat64")
     field(INP,  "@asyn(mk3,0,0)FREQ")
-    field(SCAN, "I/O Intr")
+    field(SCAN, "1 second")
 	field(EGU, "Hz")
     info(INTEREST, "HIGH")
 }
