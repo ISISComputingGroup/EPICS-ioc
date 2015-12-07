@@ -55,16 +55,6 @@ mk3Driver::mk3Driver(const char *portName, const char *configFilePath)
     createParam(P_NumChannelsString, asynParamInt32, &P_NumChannels);
 }
 
-/* Called when asyn clients call pasynInt32->write().*/
-asynStatus mk3Driver::writeInt32(asynUser *pasynUser, epicsInt32 value)
-{
-    //printf("writeInt32 called");
-    int function = pasynUser->reason; 
-    static const char *functionName = "writeInt32"; 
-    
-    return asynSuccess;
-}
-
 asynStatus mk3Driver::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
 {
     //std::cout << "readFloat64" << std::endl;
@@ -253,6 +243,61 @@ asynStatus mk3Driver::readInt32(asynUser *pasynUser, epicsInt32 *value)
         checkErrorCode(errCode);
     }
 
+    return status;
+}
+
+
+asynStatus mk3Driver::writeInt32(asynUser *pasynUser, epicsInt32 value)
+{
+    //std::cout << "writeInt32" << std::endl;
+    int function = pasynUser->reason;
+    asynStatus status = asynSuccess;
+    const char *paramName;
+    static const char *functionName = "writeInt32"; 
+    getParamName(function, &paramName);
+    
+    int errCode;
+    
+    if (function == P_NominalDirection)
+    {
+        int result;
+        errCode = m_interface->putNominalDirection(1, (bool) value, &result);
+        checkErrorCode(errCode);
+    }
+    
+    return status;
+}
+
+asynStatus mk3Driver::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
+{
+    //std::cout << "writeFloat64" << std::endl;
+    int function = pasynUser->reason;
+    asynStatus status = asynSuccess;
+    const char *paramName;
+    static const char *functionName = "writeFloat64"; 
+    getParamName(function, &paramName);
+    
+    int errCode;
+    
+    if (function == P_NominalFreq)
+    {
+        double result;
+        errCode = m_interface->putNominalFreq(1, (double) value, &result);
+        checkErrorCode(errCode);
+    }
+    else if (function == P_NominalPhase)
+    {
+        unsigned int result;
+        errCode = m_interface->putNominalPhase(1, (unsigned int) value, &result);
+        checkErrorCode(errCode);
+    }
+    else if (function == P_NominalPhaseError)
+    {
+        unsigned int result;
+        errCode = m_interface->putNominalPhaseErrorWindow(1, (unsigned int) value, &result);
+        checkErrorCode(errCode);
+    }
+    
     return status;
 }
 

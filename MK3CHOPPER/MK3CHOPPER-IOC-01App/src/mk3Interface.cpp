@@ -71,6 +71,26 @@ int mk3Interface::getNumberChannels(int* result)
     return GetNumberChannels(result);
 }
 
+int mk3Interface::putNominalDirection(unsigned int channel, bool cw, int* result)
+{
+    return PutNominalDirection(channel, cw, result);
+}
+
+int mk3Interface::putNominalFreq(unsigned int channel, double speed, double* result)
+{
+    return PutNominalFreq(channel, speed, result);
+}
+
+int mk3Interface::putNominalPhaseErrorWindow(unsigned int channel, unsigned int error, unsigned int* result)
+{
+    return PutNominalPhaseErrorWindow(channel, error, result);
+}
+
+int mk3Interface::putNominalPhase(unsigned int channel, unsigned int phase, unsigned int* result)
+{
+    return PutNominalPhase(channel, phase, result);
+}
+
 void mk3Interface::checkErrorCode(int code, char* result, int size)
 {
     CheckErrorCode(code, result, size);

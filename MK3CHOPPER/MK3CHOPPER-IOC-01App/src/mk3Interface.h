@@ -24,10 +24,10 @@ __declspec(dllimport) int GetNominalPhase(unsigned int channel, unsigned int* re
 // __declspec(dllimport) int GetNumberEnabledChannels(unsigned int* result);
 // __declspec(dllimport) int GetSoftwareVersion(unsigned int channel, int* result);
 __declspec(dllimport) int GetNumberChannels(int* result);
-// __declspec(dllimport) int PutNominalDirection(unsigned int channel, bool cw, int* result);
-// __declspec(dllimport) int PutNominalFreq(unsigned int channel, double speed, double* result);
-// __declspec(dllimport) int PutNominalPhaseErrorWindow(unsigned int channel, unsigned int error, unsigned int* result);
-// __declspec(dllimport) int PutNominalPhase(unsigned int channel, unsigned int phase, unsigned int* result);
+__declspec(dllimport) int PutNominalDirection(unsigned int channel, bool cw, int* result);
+__declspec(dllimport) int PutNominalFreq(unsigned int channel, double speed, double* result);
+__declspec(dllimport) int PutNominalPhaseErrorWindow(unsigned int channel, unsigned int error, unsigned int* result);
+__declspec(dllimport) int PutNominalPhase(unsigned int channel, unsigned int phase, unsigned int* result);
 __declspec(dllimport) int GetChangeDirectionEnabled(unsigned int channel, bool* result);
 __declspec(dllimport) int GetStatusRegister(unsigned int channel, bool* result, int size);
 
@@ -51,7 +51,11 @@ class mk3Interface
         int getStatusRegister(unsigned int channel, bool* result, int size); 
         int getChopperName(unsigned int channel, char* result, int size);  
         int getChangeDirectionEnabled(unsigned int channel, bool* result); 
-        int getNumberChannels(int* result);        
+        int getNumberChannels(int* result); 
+        int putNominalDirection(unsigned int channel, bool cw, int* result); 
+        int putNominalFreq(unsigned int channel, double speed, double* result); 
+        int putNominalPhaseErrorWindow(unsigned int channel, unsigned int error, unsigned int* result);
+        int putNominalPhase(unsigned int channel, unsigned int phase, unsigned int* result);
         void checkErrorCode(int code, char* result, int size);
 };
 

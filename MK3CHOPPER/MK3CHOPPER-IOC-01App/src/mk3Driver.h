@@ -9,10 +9,11 @@ public:
     mk3Driver(const char *portName, const char *configFilePath);
                  
     /* These are the methods that we override from asynPortDriver */
-    virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
     virtual asynStatus readFloat64(asynUser *pasynUser, epicsFloat64 *value);
     virtual asynStatus readOctet(asynUser *pasynUser, char *value, size_t maxChars, size_t *nActual, int *eomReason);
     virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
+    virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
+    virtual asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
     
 private:
     asynUser* pasynUser;
