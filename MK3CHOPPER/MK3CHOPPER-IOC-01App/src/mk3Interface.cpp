@@ -26,7 +26,7 @@ int mk3Interface::getAllowedFrequencies(unsigned int channel, double* result, in
     return GetAllowedFrequencies(channel, result, size);
 }
 
-int mk3Interface::getActualPhaseError(unsigned int channel, unsigned int* result)
+int mk3Interface::getActualPhaseError(unsigned int channel, int* result)
 {
     return GetActualPhaseError(channel, result);
 }

@@ -15,7 +15,7 @@ namespace Mk3BridgeLib {
 		static int Initialise(char* configFile, bool useMock);
 		static int GetActualFreq(unsigned int channel, double* result);
         static int GetActualPhase(unsigned int channel, unsigned int* result);
-        static int GetActualPhaseError(unsigned int channel, unsigned int* result);
+        static int GetActualPhaseError(unsigned int channel, int* result);
         static int GetAllowedFrequencies(unsigned int channel, double* result, int size);
         static int GetBeamlineName(char* result, int size); 
         static int GetChannelsCurrentSettings(char* result, int size);

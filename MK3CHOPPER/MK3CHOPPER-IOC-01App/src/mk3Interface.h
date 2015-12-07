@@ -10,7 +10,7 @@ __declspec(dllimport) void CheckErrorCode(int code, char* result, int size);
 __declspec(dllimport) int GetAllowedFrequencies(unsigned int channel, double* result, int size);
 // __declspec(dllimport) int GetBeamlineName(char* result, int size);
 __declspec(dllimport) int GetActualPhase(unsigned int channel, unsigned int* result);
-__declspec(dllimport) int GetActualPhaseError(unsigned int channel, unsigned int* result);
+__declspec(dllimport) int GetActualPhaseError(unsigned int channel, int* result);
 __declspec(dllimport) int GetChopperName(unsigned int channel, char* result, int size);
 // __declspec(dllimport) int GetChopperType(unsigned int channel, char* result, int size);
 // __declspec(dllimport) int GetComputerMode(bool* result);
@@ -44,7 +44,7 @@ class mk3Interface
         int getNominalFreq(unsigned int channel, double* result);
         int getActualPhase(int channel, unsigned int* result);
         int getNominalPhase(unsigned int channel, unsigned int* result);
-        int getActualPhaseError(unsigned int channel, unsigned int* result);
+        int getActualPhaseError(unsigned int channel, int* result);
         int getNominalPhaseError(unsigned int channel, unsigned int* result);
         int getNominalDirection(unsigned int channel, bool* result);
         int getAllowedFrequencies(unsigned int channel, double* result, int size);   

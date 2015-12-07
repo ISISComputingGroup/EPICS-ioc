@@ -82,7 +82,7 @@ asynStatus mk3Driver::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
     }
     else if (function == P_ActualPhaseError)
     {
-        unsigned int result;
+        int result;
         errCode = m_interface->getActualPhaseError(1, &result);
         *value = result;
         checkErrorCode(errCode);

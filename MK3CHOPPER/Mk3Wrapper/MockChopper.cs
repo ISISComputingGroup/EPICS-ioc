@@ -11,146 +11,181 @@ namespace Mk3Wrapper
         double freq = 10;
         uint phase = 100;
         uint phaseError = 5;
-        bool[] status = new bool[] { true, true, true, true, true, true, true, true, true, true, true };
+        List<bool> status = new List<bool> { true, true, true, true, true, true, true, true, true, true, true };
 
         public MockChopper(string configFile)
         {
         }
 
-        public double GetActualFreq(uint channel)
+        public void Initialise()
         {
-            return freq;
         }
 
-        public uint GetActualPhase(uint channel)
+        public int GetActualFreq(uint channel, ref double result)
         {
-            return phase;
+            result = freq;
+            return 0;
         }
 
-        public int GetActualPhaseError(uint channel)
+        public int GetActualPhase(uint channel, ref uint result)
         {
-            return (int) phaseError;
+            result = phase;
+            return 0;
         }
 
-        public double[] GetAllowedFrequencies(uint channel)
+        public int GetActualPhaseError(uint channel, ref int result)
         {
-            return new double[] { 1, 5, 10 };
+            result = (int)phaseError;
+            return 0;
         }
 
-        public string GetBeamlineName()
+        public int GetAllowedFrequencies(uint channel, ref List<double> result)
         {
-            return "TestBeamline";
+            result = new List<double> { 1, 5, 10 };
+            return 0;
         }
 
-        public string GetChannelsCurrentSettings()
+        public int GetBeamlineName(ref string result)
         {
-            return "Test Chopper Current Settings";
+            result = "TestBeamline";
+            return 0;
         }
 
-        public string GetChopperName(uint channel)
+        public int GetChannelsCurrentSettings(ref string result)
         {
-            return "TestChopper";
+            result = "Test Chopper Current Settings";
+            return 0;
         }
 
-        public string GetChopperType(uint channel)
+        public int GetChopperName(uint channel, ref string result)
         {
-            return "TestChopper";
+            result = "TestChopper";
+            return 0;
         }
 
-        public bool GetComputerMode()
+        public int GetChopperType(uint channel, ref string result)
         {
-            return true;
+            result = "TestChopper";
+            return 0;
         }
 
-        public int GetFirmwareVersion(uint channel)
+        public int GetComputerMode(ref bool result)
         {
-            return 1;
+            result = true;
+            return 0;
         }
 
-        public int GetMPPeriod(uint channel)
+        public int GetFirmwareVersion(uint channel, ref int result)
         {
-            return 2;
+            result = 1;
+            return 0;
         }
 
-        public double GetNominalAngle(uint channel)
+        public int GetMPPeriod(uint channel, ref int result)
         {
-            return 123;
+            result = 2;
+            return 0;
         }
 
-        public bool GetNominalDirection(uint channel)
+        public int GetNominalAngle(uint channel, ref double result)
         {
-            return true;
+            result = 123;
+            return 0;
         }
 
-        public double GetNominalFreq(uint channel)
+        public int GetNominalDirection(uint channel, ref bool result)
         {
-            return freq;
+            result = true;
+            return 0;
         }
 
-        public uint GetNominalPhaseError(uint channel)
+        public int GetNominalFreq(uint channel, ref double result)
         {
-            return phaseError;
+            result = freq;
+            return 0;
         }
 
-        public uint GetNominalPhase(uint channel)
+        public int GetNominalPhaseError(uint channel, ref uint result)
         {
-            return phase;
+            result = phaseError;
+            return 0;
         }
 
-        public uint GetNumberEnabledChannels()
+        public int GetNominalPhase(uint channel, ref uint result)
         {
-            return 1;
+            result = phase;
+            return 0;
         }
 
-        public int GetSoftwareVersion(uint channel)
+        public int GetNumberEnabledChannels(ref uint result)
         {
-            return 1;
+            result = 1;
+            return 0;
         }
 
-        public bool[] GetStatusRegister(uint channel)
+        public int GetSoftwareVersion(uint channel, ref int result)
         {
-            return new bool[] { true, true, true, true, true, true, true, true, true, true, true };
+            result = 1;
+            return 0;
         }
 
-        public int GetNumberChannels()
+        public int GetStatusRegister(uint channel, ref List<bool> result)
         {
-            return 1;
+            result = status;
+            return 0;
         }
 
-        public int PutNominalDirection(uint channel, bool cw)
+        public int GetNumberChannels(ref int result)
+        {
+            result = 1;
+            return 0;
+        }
+
+        public int PutNominalDirection(uint channel, bool cw, ref int result)
         {
             status[10] = cw;
             if (status[10])
             {
-                return 1;
+                result = 1;
             }
             else
             {
-                return 0;
+                result = 0;
             }
+            return 0;
         }
 
-        public double PutNominalFreq(uint channel, double speed)
+        public int PutNominalFreq(uint channel, double speed, ref double result)
         {
             freq = speed;
-            return freq;
+            result = freq;
+            return 0;
         }
 
-        public uint PutNominalPhaseErrorWindow(uint channel, uint error)
+        public int PutNominalPhaseErrorWindow(uint channel, uint error, ref uint result)
         {
             phaseError = error;
-            return phaseError;
+            result = phaseError;
+            return 0;
         }
 
-        public uint PutNominalPhase(uint channel, uint phase)
+        public int PutNominalPhase(uint channel, uint phase, ref uint result)
         {
             this.phase = phase;
-            return this.phase;
+            result = this.phase;
+            return 0;
         }
 
-        public bool GetChangeDirectionEnabled(uint channel)
+        public int GetChangeDirectionEnabled(uint channel, ref bool result)
         {
-            return true;
+            result = true;
+            return 0;
         }
+
+        public string ResolveErrorCode(int code)
+        {
+            return "OK";
+        }
+
     }
 }

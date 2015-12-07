@@ -5,6 +5,8 @@
 
 #include "Mk3BridgeLib.h"
 
+using namespace System::Collections::Generic;
+
 namespace Mk3BridgeLib
 {
 	int Mk3Chopper::Initialise(char* configFile, bool useMock)
@@ -28,8 +30,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->GetActualFreq(channel);
+		System::Double temp;
 
+		int err = chopper->GetActualFreq(channel, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = double(temp);
 		return 0;
 	}
 
@@ -39,10 +48,16 @@ namespace Mk3BridgeLib
 		{
 			return -1;
 		}
-		else
+
+		System::String^ ans = "";
+		
+		int err = chopper->GetChannelsCurrentSettings(ans);
+		if (err != 0)
 		{
-			StringToCharArray(chopper->GetChannelsCurrentSettings(), result, size);
+			return err;
 		}
+
+		StringToCharArray(ans, result, size);
 
 		return 0;
 	}
@@ -54,20 +69,34 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->GetActualPhase(channel);
+		System::UInt32 temp;
 
+		int err = chopper->GetActualPhase(channel, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = unsigned int(temp);
 		return 0;
 	}
 
-    int Mk3Chopper::GetActualPhaseError(unsigned int channel, unsigned int* result)
+    int Mk3Chopper::GetActualPhaseError(unsigned int channel, int* result)
 	{
 		if (chopper == nullptr)
 		{
 			return -1;
 		}
 
-		*result = chopper->GetActualPhaseError(channel);
+		System::Int32 temp;
 
+		int err = chopper->GetActualPhaseError(channel, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = int(temp);
 		return 0;
 	}
 
@@ -78,16 +107,23 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		array<double>^ allowed = chopper->GetAllowedFrequencies(channel);
+		List<double>^ allowed = gcnew List<double>();
+		
+		int err = chopper->GetAllowedFrequencies(channel, allowed);
 
-		if (size < allowed->Length)
+		if (err != 0)
+		{
+			return err;
+		}
+
+		if (size < allowed->Count)
 		{
 			return -2;
 		}
 
 		for(int i = 0; i < size; ++i)
 		{
-			if (i < allowed->Length)
+			if (i < allowed->Count)
 			{
 				result[i] = allowed[i];
 			}
@@ -108,7 +144,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		StringToCharArray(chopper->GetBeamlineName(), result, size);
+		System::String^ ans = "";
+		
+		int err = chopper->GetBeamlineName(ans);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		StringToCharArray(ans, result, size);
 
 		return 0;
 	}
@@ -120,7 +164,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		StringToCharArray(chopper->GetChopperName(channel), result, size);
+		System::String^ ans = "";
+		
+		int err = chopper->GetChopperName(channel, ans);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		StringToCharArray(ans, result, size);
 
 		return 0;
 	}
@@ -132,7 +184,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		StringToCharArray(chopper->GetChopperType(channel), result, size);
+		System::String^ ans = "";
+		
+		int err = chopper->GetChopperType(channel, ans);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		StringToCharArray(ans, result, size);
 
 		return 0;
 	}
@@ -144,8 +204,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->GetComputerMode();
+		System::Boolean temp;
 
+		int err = chopper->GetComputerMode(temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = bool(temp);
 		return 0;
 	}
 
@@ -156,8 +223,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->GetFirmwareVersion(channel);
+		System::Int32 temp;
 
+		int err = chopper->GetFirmwareVersion(channel, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = int(temp);
 		return 0;
 	}
 
@@ -167,9 +241,16 @@ namespace Mk3BridgeLib
 		{
 			return -1;
 		}
+		
+		System::Int32 temp;
 
-		*result = chopper->GetMPPeriod(channel);
+		int err = chopper->GetMPPeriod(channel, temp);
+		if (err != 0)
+		{
+			return err;
+		}
 
+		*result = int(temp);
 		return 0;
 	}
 
@@ -180,8 +261,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->GetNominalAngle(channel);
+		System::Double temp;
 
+		int err = chopper->GetNominalAngle(channel, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = double(temp);
 		return 0;
 	}
 
@@ -192,8 +280,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->GetNominalDirection(channel);
+		System::Boolean temp;
 
+		int err = chopper->GetNominalDirection(channel, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = bool(temp);
 		return 0;
 	}
 
@@ -204,8 +299,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->GetNominalFreq(channel);
+		System::Double temp;
 
+		int err = chopper->GetNominalFreq(channel, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = double(temp);
 		return 0;
 	}
 
@@ -216,8 +318,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->GetNominalPhaseError(channel);
+		System::UInt32 temp;
 
+		int err = chopper->GetNominalPhaseError(channel, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = unsigned int(temp);
 		return 0;
 	}
 
@@ -228,8 +337,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->GetNominalPhase(channel);
+		System::UInt32 temp;
 
+		int err = chopper->GetNominalPhase(channel, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = unsigned int(temp);
 		return 0;
 	}
 
@@ -240,8 +356,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->GetNumberEnabledChannels();
+		System::UInt32 temp;
 
+		int err = chopper->GetNumberEnabledChannels(temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = unsigned int(temp);
 		return 0;
 	}
 
@@ -252,8 +375,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->GetSoftwareVersion(channel);
+		System::Int32 temp;
 
+		int err = chopper->GetSoftwareVersion(channel, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = int(temp);
 		return 0;
 	}
 
@@ -264,8 +394,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->GetNumberChannels();
+		System::Int32 temp;
 
+		int err = chopper->GetNumberChannels(temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = int(temp);
 		return 0;
 	}
 
@@ -276,8 +413,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->PutNominalDirection(channel, cw);
+		System::Int32 temp;
 
+		int err = chopper->PutNominalDirection(channel, cw, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = int(temp);
 		return 0;
 	}
 
@@ -288,8 +432,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->PutNominalFreq(channel, speed);
+		System::Double temp;
 
+		int err = chopper->PutNominalFreq(channel, speed, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = double(temp);
 		return 0;
 	}
 
@@ -300,8 +451,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->PutNominalPhaseErrorWindow(channel, error);
+		System::UInt32 temp;
 
+		int err = chopper->PutNominalPhaseErrorWindow(channel, error, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = unsigned int(temp);
 		return 0;
 	}
 
@@ -312,8 +470,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->PutNominalPhase(channel, phase);
+		System::UInt32 temp;
 
+		int err = chopper->PutNominalPhase(channel, phase, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = unsigned int(temp);
 		return 0;
 	}
 
@@ -324,8 +489,15 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		*result = chopper->GetChangeDirectionEnabled(channel);
+		System::Boolean temp;
 
+		int err = chopper->GetChangeDirectionEnabled(channel, temp);
+		if (err != 0)
+		{
+			return err;
+		}
+
+		*result = bool(temp);
 		return 0;
 	}
 
@@ -336,16 +508,21 @@ namespace Mk3BridgeLib
 			return -1;
 		}
 
-		array<bool>^ allowed = chopper->GetStatusRegister(channel);
+		List<bool>^ allowed = gcnew List<bool>();
+		int err = chopper->GetStatusRegister(channel, allowed);
+		if (err != 0)
+		{
+			return err;
+		}
 
-		if (size < allowed->Length)
+		if (size < allowed->Count)
 		{
 			return -2;
 		}
 
 		for(int i = 0; i < size; ++i)
 		{
-			if (i < allowed->Length)
+			if (i < allowed->Count)
 			{
 				result[i] = allowed[i];
 			}
@@ -361,21 +538,36 @@ namespace Mk3BridgeLib
 
 	void Mk3Chopper::CheckErrorCode(int code, char* result, int size)
 	{
-		switch(code)
+		if (code <= 0)
 		{
-			case 0  :
-				StringToCharArray("OK", result, size);
-				break; 
-			case -1  :
-				StringToCharArray("Chopper connection not initialised", result, size);
-				break; 
-			case -2  :
-				StringToCharArray("Specified array size too small", result, size);
-				break; 
-  
-			// you can have any number of case statements.
-			//default : 
-       
+			// Error code supplied by wrapper
+			switch(code)
+			{
+				case 0  :
+					StringToCharArray("OK", result, size);
+					break; 
+				case -1  :
+					StringToCharArray("Chopper connection not initialised", result, size);
+					break; 
+				case -2  :
+					StringToCharArray("Specified array size too small", result, size);
+					break; 
+				case -3  :
+					StringToCharArray("Remoting timeout", result, size);
+					break; 
+				case -4  :
+					StringToCharArray("Unknown .NET error", result, size);
+					break; 
+
+				default : 
+					StringToCharArray("Unknown error", result, size);
+			}
+		}
+		else
+		{
+			// Error code supplied by underlying MK3Chopper software/hardware
+			System::String^ errorMsg = chopper->ResolveErrorCode(code);
+			StringToCharArray(errorMsg, result, size);
 		}
 	}
 
@@ -417,7 +609,7 @@ __declspec(dllexport) int GetActualPhase(unsigned int channel, unsigned int* res
 	return Mk3BridgeLib::Mk3Chopper::GetActualPhase(channel, result);
 }
 
-__declspec(dllexport) int GetActualPhaseError(unsigned int channel, unsigned int* result)
+__declspec(dllexport) int GetActualPhaseError(unsigned int channel, int* result)
 {
 	return Mk3BridgeLib::Mk3Chopper::GetActualPhaseError(channel, result);
 }
