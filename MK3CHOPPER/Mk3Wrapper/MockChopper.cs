@@ -104,7 +104,7 @@ namespace Mk3Wrapper
 
         public bool[] GetStatusRegister(uint channel)
         {
-            return new bool[] { true, false, true, false };
+            return new bool[] { true, true, true, true, true, true, true, true, true, true, true };
         }
 
         public int GetNumberChannels()

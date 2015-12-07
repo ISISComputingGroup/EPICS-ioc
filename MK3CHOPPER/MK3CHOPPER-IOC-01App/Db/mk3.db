@@ -1,3 +1,12 @@
+record(ai, "$(P)CHANNELS")
+{
+    field(DESC, "Number of channels")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(mk3,0,0)CHANNELS")
+    field(SCAN, "10 second")
+    info(INTEREST, "MEDIUM")
+}
+
 record(ai, "$(P)FREQ")
 {
     field(DESC, "The actual frequency")
@@ -7,3 +16,135 @@ record(ai, "$(P)FREQ")
 	field(EGU, "Hz")
     info(INTEREST, "HIGH")
 }
+
+record(ai, "$(P)FREQ:SP:RBV")
+{
+    field(DESC, "The nominal frequency")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(mk3,0,0)NOMFREQ")
+    field(SCAN, "1 second")
+	field(EGU, "Hz")
+    info(INTEREST, "MEDIUM")
+}
+
+record(ai, "$(P)PHAS")
+{
+    field(DESC, "The actual phase")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(mk3,0,0)PHASE")
+    field(SCAN, "1 second")
+	field(EGU, "")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)PHAS:SP:RBV")
+{
+    field(DESC, "The nominal phase")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(mk3,0,0)NOMPHASE")
+    field(SCAN, "1 second")
+	field(EGU, "")
+    info(INTEREST, "MEDIUM")
+}
+
+record(ai, "$(P)PHAS_ERR")
+{
+    field(DESC, "The actual phase error")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(mk3,0,0)PHASEERROR")
+    field(SCAN, "1 second")
+	field(EGU, "")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)PHAS_ERR:SP:RBV")
+{
+    field(DESC, "The nominal phase error")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(mk3,0,0)NOMPHASEERROR")
+    field(SCAN, "1 second")
+	field(EGU, "")
+    info(INTEREST, "MEDIUM")
+}
+
+record(bi, "$(P)DIR")
+{
+    field(DESC, "The direction")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(mk3,0,0)DIR")
+    field(SCAN, "1 second")
+    field(ZNAM, "CCW")
+    field(ONAM, "CW")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)DIR:SP:RBV")
+{
+    field(DESC, "The nominal direction")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(mk3,0,0)NOMDIR")
+    field(SCAN, "1 second")
+    field(ZNAM, "CCW")
+    field(ONAM, "CW")
+    info(INTEREST, "MEDIUM")
+}
+
+record(bi, "$(P)DIR:ENABLED")
+{
+    field(DESC, "Whether the direction can be changed")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(mk3,0,0)DIRENABLED")
+    field(SCAN, "10 second")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bi, "$(P)VETO")
+{
+    field(DESC, "Whether it is vetoing")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(mk3,0,0)VETO")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)READY")
+{
+    field(DESC, "Whether it is ready")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(mk3,0,0)READY")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    info(INTEREST, "MEDIUM")
+}
+
+record(bi, "$(P)INSYNC")
+{
+    field(DESC, "Whether it is synchronised")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(mk3,0,0)INSYNC")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    info(INTEREST, "MEDIUM")
+}
+
+record(stringin, "$(P)VALIDFREQS")
+{
+    field(DESC, "The frequencies allowed")
+    field(DTYP, "asynOctetRead")
+    field(INP,  "@asyn(mk3,0,0)VALIDFREQS")
+    field(SCAN, "5 second")
+}
+
+record(stringin, "$(P)NAME")
+{
+    field(DESC, "The name of the chopper")
+    field(DTYP, "asynOctetRead")
+    field(INP,  "@asyn(mk3,0,0)CHOPNAME")
+    field(SCAN, "5 second")
+}
+
