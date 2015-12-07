@@ -8,23 +8,28 @@ namespace Mk3Wrapper
 {
     public class MockChopper : IChopper
     {
+        double freq = 10;
+        uint phase = 100;
+        uint phaseError = 5;
+        bool[] status = new bool[] { true, true, true, true, true, true, true, true, true, true, true };
+
         public MockChopper(string configFile)
         {
         }
 
         public double GetActualFreq(uint channel)
         {
-            return 123;
+            return freq;
         }
 
         public uint GetActualPhase(uint channel)
         {
-            return 456;
+            return phase;
         }
 
         public int GetActualPhaseError(uint channel)
         {
-            return 10;
+            return (int) phaseError;
         }
 
         public double[] GetAllowedFrequencies(uint channel)
@@ -79,17 +84,17 @@ namespace Mk3Wrapper
 
         public double GetNominalFreq(uint channel)
         {
-            return 456;
+            return freq;
         }
 
         public uint GetNominalPhaseError(uint channel)
         {
-            return 10;
+            return phaseError;
         }
 
         public uint GetNominalPhase(uint channel)
         {
-            return 123;
+            return phase;
         }
 
         public uint GetNumberEnabledChannels()
@@ -114,22 +119,33 @@ namespace Mk3Wrapper
 
         public int PutNominalDirection(uint channel, bool cw)
         {
-            return 1;
+            status[10] = cw;
+            if (status[10])
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public double PutNominalFreq(uint channel, double speed)
         {
-            return speed;
+            freq = speed;
+            return freq;
         }
 
         public uint PutNominalPhaseErrorWindow(uint channel, uint error)
         {
-            return error;
+            phaseError = error;
+            return phaseError;
         }
 
         public uint PutNominalPhase(uint channel, uint phase)
         {
-            return phase;
+            this.phase = phase;
+            return this.phase;
         }
 
         public bool GetChangeDirectionEnabled(uint channel)
