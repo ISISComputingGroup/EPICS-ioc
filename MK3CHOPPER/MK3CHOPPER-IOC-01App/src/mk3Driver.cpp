@@ -24,11 +24,11 @@ static const char *driverName="mk3Driver";
 
 mk3Driver::mk3Driver(const char *portName, const char *configFilePath, int mockChopper) 
    : asynPortDriver(portName, 
-                    1, /* maxAddr */ 
+                    5, /* maxAddr */ 
                     (int)NUM_MK3_PARAMS,
                     asynInt32Mask | asynFloat64Mask | asynFloat64ArrayMask | asynEnumMask | asynOctetMask | asynDrvUserMask, /* Interface mask */
                     asynInt32Mask | asynFloat64Mask | asynFloat64ArrayMask | asynEnumMask  | asynOctetMask,  /* Interrupt mask */
-                    0, /* asynFlags.  This driver does not block and it is not multi-device, so flag is 0 */
+                    ASYN_MULTIDEVICE,
                     1, /* Autoconnect */
                     0, /* Default priority */
                     0) /* Default stack size*/    
@@ -78,40 +78,43 @@ asynStatus mk3Driver::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
     static const char *functionName = "readFloat64"; 
     getParamName(function, &paramName);
     
+    int channel;
+    getAddress(pasynUser, &channel);
+
     int errCode;
     
     if (function == P_ActualFreq)
     {
         double result;
-        errCode = m_interface->getActualFreq(1, &result);
+        errCode = m_interface->getActualFreq(channel, &result);
         *value = result;
         checkErrorCode(errCode);
     }
     else if (function == P_ActualPhase)
     {
         unsigned int result;
-        errCode = m_interface->getActualPhase(1, &result);
+        errCode = m_interface->getActualPhase(channel, &result);
         *value = result;
         checkErrorCode(errCode);
     }
     else if (function == P_ActualPhaseError)
     {
         int result;
-        errCode = m_interface->getActualPhaseError(1, &result);
+        errCode = m_interface->getActualPhaseError(channel, &result);
         *value = result;
         checkErrorCode(errCode);
     }
     else if (function == P_NominalFreq)
     {
         double result;
-        errCode = m_interface->getNominalFreq(1, &result);
+        errCode = m_interface->getNominalFreq(channel, &result);
         *value = result;
         checkErrorCode(errCode);
     }
     else if (function == P_NominalPhaseError)
     {
         unsigned int result;
-        errCode = m_interface->getNominalPhaseError(1, &result);
+        errCode = m_interface->getNominalPhaseError(channel, &result);
         *value = result;
         checkErrorCode(errCode);
     }
@@ -128,13 +131,16 @@ asynStatus mk3Driver::readOctet(asynUser *pasynUser, char *value, size_t maxChar
     static const char *functionName = "readOctet"; 
     getParamName(function, &paramName);
     
+    int channel;
+    getAddress(pasynUser, &channel);
+    
     int errCode;
     
     if (function == P_ValidFreqs)
     {
         const int size = 10;
         double result[size];
-        errCode = m_interface->getAllowedFrequencies(1, result, size);
+        errCode = m_interface->getAllowedFrequencies(channel, result, size);
         checkErrorCode(errCode);
         
         if (errCode == 0)
@@ -179,7 +185,7 @@ asynStatus mk3Driver::readOctet(asynUser *pasynUser, char *value, size_t maxChar
     {
         const int size = 50;
         char result[size];
-        errCode = m_interface->getChopperName(1, result, size);
+        errCode = m_interface->getChopperName(channel, result, size);
         checkErrorCode(errCode);
         
         if (errCode == 0)
@@ -216,13 +222,16 @@ asynStatus mk3Driver::readInt32(asynUser *pasynUser, epicsInt32 *value)
     static const char *functionName = "readInt32"; 
     getParamName(function, &paramName);
     
+    int channel;
+    getAddress(pasynUser, &channel);
+    
     int errCode;
     
     if (function == P_Direction)
     {
         // Need to obtain the status register first       
         bool result[32];
-        errCode = m_interface->getStatusRegister(1, result, 32); 
+        errCode = m_interface->getStatusRegister(channel, result, 32); 
         checkErrorCode(errCode);       
         *value = (int) result[10];
         
@@ -235,7 +244,7 @@ asynStatus mk3Driver::readInt32(asynUser *pasynUser, epicsInt32 *value)
     else if (function == P_NominalDirection)
     {
         bool result;
-        errCode = m_interface->getNominalDirection(1, &result);
+        errCode = m_interface->getNominalDirection(channel, &result);
         
         *value = (int) result;
         checkErrorCode(errCode);
@@ -243,7 +252,7 @@ asynStatus mk3Driver::readInt32(asynUser *pasynUser, epicsInt32 *value)
     else if (function == P_DirectionEnabled)
     {
         bool result;
-        errCode = m_interface->getChangeDirectionEnabled(1, &result);
+        errCode = m_interface->getChangeDirectionEnabled(channel, &result);
         
         *value = (int) result;
         checkErrorCode(errCode);
@@ -270,12 +279,15 @@ asynStatus mk3Driver::writeInt32(asynUser *pasynUser, epicsInt32 value)
     static const char *functionName = "writeInt32"; 
     getParamName(function, &paramName);
     
+    int channel;
+    getAddress(pasynUser, &channel);
+    
     int errCode;
     
     if (function == P_NominalDirection)
     {
         int result;
-        errCode = m_interface->putNominalDirection(1, (bool) value, &result);
+        errCode = m_interface->putNominalDirection(channel, (bool) value, &result);
         checkErrorCode(errCode);
     }
     
@@ -291,24 +303,27 @@ asynStatus mk3Driver::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
     static const char *functionName = "writeFloat64"; 
     getParamName(function, &paramName);
     
+    int channel;
+    getAddress(pasynUser, &channel);
+    
     int errCode;
     
     if (function == P_NominalFreq)
     {
         double result;
-        errCode = m_interface->putNominalFreq(1, (double) value, &result);
+        errCode = m_interface->putNominalFreq(channel, (double) value, &result);
         checkErrorCode(errCode);
     }
     else if (function == P_NominalPhase)
     {
         unsigned int result;
-        errCode = m_interface->putNominalPhase(1, (unsigned int) value, &result);
+        errCode = m_interface->putNominalPhase(channel, (unsigned int) value, &result);
         checkErrorCode(errCode);
     }
     else if (function == P_NominalPhaseError)
     {
         unsigned int result;
-        errCode = m_interface->putNominalPhaseErrorWindow(1, (unsigned int) value, &result);
+        errCode = m_interface->putNominalPhaseErrorWindow(channel, (unsigned int) value, &result);
         checkErrorCode(errCode);
     }
     

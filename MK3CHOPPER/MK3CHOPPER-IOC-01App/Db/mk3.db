@@ -16,21 +16,21 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-#record(ai, "$(P)CHANNELS")
-#{
-#    field(DESC, "Number of channels")
-#    field(DTYP, "asynInt32")
-#    field(INP,  "@asyn(mk3,0,0)CHANNELS")
-#    field(SCAN, "10 second")
-#    field(SDIS, "$(P)DISABLE")
-#    info(INTEREST, "MEDIUM")
-#}
+record(ai, "$(P)CHANNELS")
+{
+    field(DESC, "Number of channels")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)CHANNELS")
+    field(SCAN, "10 second")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "MEDIUM")
+}
 
-record(ai, "$(P)FREQ")
+record(ai, "$(P)CH$(CHANNEL):FREQ")
 {
     field(DESC, "The actual frequency")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(mk3,0,0)FREQ")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)FREQ")
     field(SCAN, "1 second")
 	field(EGU, "Hz")
     info(INTEREST, "HIGH")
@@ -39,290 +39,290 @@ record(ai, "$(P)FREQ")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ao, "$(P)FREQ:SP")
+record(ao, "$(P)CH$(CHANNEL):FREQ:SP")
 {
     field(DESC, "Sets the nominal frequency")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(mk3,0,0)NOMFREQ")
+    field(OUT,  "@asyn($(PORT),$(CHANNEL),0)NOMFREQ")
 	field(EGU, "Hz")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:FREQ:SP")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):FREQ:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)FREQ:SP:RBV")
+record(ai, "$(P)CH$(CHANNEL):FREQ:SP:RBV")
 {
     field(DESC, "The nominal frequency")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(mk3,0,0)NOMFREQ")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)NOMFREQ")
     field(SCAN, "1 second")
 	field(EGU, "Hz")
     info(INTEREST, "MEDIUM")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:FREQ:SP:RBV")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):FREQ:SP:RBV")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)PHAS")
+record(ai, "$(P)CH$(CHANNEL):PHAS")
 {
     field(DESC, "The actual phase")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(mk3,0,0)PHASE")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)PHASE")
     field(SCAN, "1 second")
 	field(EGU, "")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:PHAS")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):PHAS")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ao, "$(P)PHAS:SP")
+record(ao, "$(P)CH$(CHANNEL):PHAS:SP")
 {
     field(DESC, "Sets the nominal phase")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(mk3,0,0)NOMPHASE")
+    field(OUT,  "@asyn($(PORT),$(CHANNEL),0)NOMPHASE")
 	field(EGU, "")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:PHAS:SP")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):PHAS:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)PHAS:SP:RBV")
+record(ai, "$(P)CH$(CHANNEL):PHAS:SP:RBV")
 {
     field(DESC, "The nominal phase")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(mk3,0,0)NOMPHASE")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)NOMPHASE")
     field(SCAN, "1 second")
 	field(EGU, "")
     info(INTEREST, "MEDIUM")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:PHAS:SP:RBV")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):PHAS:SP:RBV")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)PHAS_ERR")
+record(ai, "$(P)CH$(CHANNEL):PHAS_ERR")
 {
     field(DESC, "The actual phase error")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(mk3,0,0)PHASEERROR")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)PHASEERROR")
     field(SCAN, "1 second")
 	field(EGU, "")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:PHAS_ERR")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):PHAS_ERR")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ao, "$(P)PHAS_ERR:SP")
+record(ao, "$(P)CH$(CHANNEL):PHAS_ERR:SP")
 {
     field(DESC, "Sets the nominal phase error")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(mk3,0,0)NOMPHASEERROR")
+    field(OUT,  "@asyn($(PORT),$(CHANNEL),0)NOMPHASEERROR")
 	field(EGU, "")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:PHAS_ERR:SP")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):PHAS_ERR:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)PHAS_ERR:SP:RBV")
+record(ai, "$(P)CH$(CHANNEL):PHAS_ERR:SP:RBV")
 {
     field(DESC, "The nominal phase error")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(mk3,0,0)NOMPHASEERROR")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)NOMPHASEERROR")
     field(SCAN, "1 second")
 	field(EGU, "")
     info(INTEREST, "MEDIUM")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:PHAS_ERR:SP:RBV")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):PHAS_ERR:SP:RBV")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bi, "$(P)DIR")
+record(bi, "$(P)CH$(CHANNEL):DIR")
 {
     field(DESC, "The direction")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(mk3,0,0)DIR")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)DIR")
     field(SCAN, "1 second")
     field(ZNAM, "CCW")
     field(ONAM, "CW")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:DIR")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):DIR")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bo, "$(P)DIR:SP")
+record(bo, "$(P)CH$(CHANNEL):DIR:SP")
 {
     field(DESC, "Sets the nominal direction")
     field(DTYP, "asynInt32")
-    field(OUT,  "@asyn(mk3,0,0)NOMDIR")
+    field(OUT,  "@asyn($(PORT),$(CHANNEL),0)NOMDIR")
     field(ZNAM, "CCW")
     field(ONAM, "CW")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:DIR:SP")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):DIR:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bi, "$(P)DIR:SP:RBV")
+record(bi, "$(P)CH$(CHANNEL):DIR:SP:RBV")
 {
     field(DESC, "The nominal direction")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(mk3,0,0)NOMDIR")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)NOMDIR")
     field(SCAN, "1 second")
     field(ZNAM, "CCW")
     field(ONAM, "CW")
     info(INTEREST, "MEDIUM")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:DIR:SP:RBV")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):DIR:SP:RBV")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bi, "$(P)DIR:ENABLED")
+record(bi, "$(P)CH$(CHANNEL):DIR:ENABLED")
 {
     field(DESC, "Whether the direction can be changed")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(mk3,0,0)DIRENABLED")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)DIRENABLED")
     field(SCAN, "10 second")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:DIR:ENABLED")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):DIR:ENABLED")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bi, "$(P)VETO")
+record(bi, "$(P)CH$(CHANNEL):VETO")
 {
     field(DESC, "Whether it is vetoing")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(mk3,0,0)VETO")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)VETO")
     field(SCAN, "I/O Intr")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:VETO")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):VETO")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bi, "$(P)READY")
+record(bi, "$(P)CH$(CHANNEL):READY")
 {
     field(DESC, "Whether it is ready")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(mk3,0,0)READY")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)READY")
     field(SCAN, "I/O Intr")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     info(INTEREST, "MEDIUM")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:READY")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):READY")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bi, "$(P)INSYNC")
+record(bi, "$(P)CH$(CHANNEL):INSYNC")
 {
     field(DESC, "Whether it is synchronised")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(mk3,0,0)INSYNC")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)INSYNC")
     field(SCAN, "I/O Intr")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     info(INTEREST, "MEDIUM")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:INSYNC")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):INSYNC")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(stringin, "$(P)VALIDFREQS")
+record(stringin, "$(P)CH$(CHANNEL):VALIDFREQS")
 {
     field(DESC, "The frequencies allowed")
     field(DTYP, "asynOctetRead")
-    field(INP,  "@asyn(mk3,0,0)VALIDFREQS")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)VALIDFREQS")
     field(SCAN, "5 second")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:VALIDFREQS")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):VALIDFREQS")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(stringin, "$(P)NAME")
+record(stringin, "$(P)CH$(CHANNEL):NAME")
 {
     field(DESC, "The name of the chopper")
     field(DTYP, "asynOctetRead")
-    field(INP,  "@asyn(mk3,0,0)CHOPNAME")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)CHOPNAME")
     field(SCAN, "5 second")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:NAME")
+	field(SIOL, "$(P)SIM:CH$(CHANNEL):NAME")
     field(SDIS, "$(P)DISABLE")
 }
 
 ### SIMULATION RECORDS ###
 
-record(ai, "$(P)SIM:FREQ")
+record(ai, "$(P)SIM:CH$(CHANNEL):FREQ")
 {
     field(DTYP, "Soft Channel")
     field(VAL, "0")
 }
 
-alias("$(P)SIM:FREQ","$(P)SIM:FREQ:SP")
-alias("$(P)SIM:FREQ","$(P)SIM:FREQ:SP:RBV")
+alias("$(P)SIM:CH$(CHANNEL):FREQ","$(P)SIM:CH$(CHANNEL):FREQ:SP")
+alias("$(P)SIM:CH$(CHANNEL):FREQ","$(P)SIM:CH$(CHANNEL):FREQ:SP:RBV")
 
-record(ai, "$(P)SIM:PHAS")
+record(ai, "$(P)SIM:CH$(CHANNEL):PHAS")
 {
     field(DTYP, "Soft Channel")
     field(VAL, "0")
 }
 
-alias("$(P)SIM:PHAS","$(P)SIM:PHAS:SP")
-alias("$(P)SIM:PHAS","$(P)SIM:PHAS:SP:RBV")
+alias("$(P)SIM:CH$(CHANNEL):PHAS","$(P)SIM:CH$(CHANNEL):PHAS:SP")
+alias("$(P)SIM:CH$(CHANNEL):PHAS","$(P)SIM:CH$(CHANNEL):PHAS:SP:RBV")
 
-record(ai, "$(P)SIM:PHAS_ERR")
+record(ai, "$(P)SIM:CH$(CHANNEL):PHAS_ERR")
 {
     field(DTYP, "Soft Channel")
     field(VAL, "0")
 }
 
-alias("$(P)SIM:PHAS_ERR","$(P)SIM:PHAS_ERR:SP")
-alias("$(P)SIM:PHAS_ERR","$(P)SIM:PHAS_ERR:SP:RBV")
+alias("$(P)SIM:CH$(CHANNEL):PHAS_ERR","$(P)SIM:CH$(CHANNEL):PHAS_ERR:SP")
+alias("$(P)SIM:CH$(CHANNEL):PHAS_ERR","$(P)SIM:CH$(CHANNEL):PHAS_ERR:SP:RBV")
 
-record(bi, "$(P)SIM:DIR")
+record(bi, "$(P)SIM:CH$(CHANNEL):DIR")
 {
     field(DTYP, "Soft Channel")
     field(VAL, "0")
 }
 
-alias("$(P)SIM:DIR","$(P)SIM:DIR:SP")
-alias("$(P)SIM:DIR","$(P)SIM:DIR:SP:RBV")
+alias("$(P)SIM:CH$(CHANNEL):DIR","$(P)SIM:CH$(CHANNEL):DIR:SP")
+alias("$(P)SIM:CH$(CHANNEL):DIR","$(P)SIM:CH$(CHANNEL):DIR:SP:RBV")
 
-record(bi, "$(P)SIM:DIR:ENABLED")
+record(bi, "$(P)SIM:CH$(CHANNEL):DIR:ENABLED")
 {
     field(DTYP, "Soft Channel")
     field(VAL, "1")
 }
 
-record(bi, "$(P)SIM:VETO")
+record(bi, "$(P)SIM:CH$(CHANNEL):VETO")
 {
     field(DTYP, "Soft Channel")
     field(VAL, "1")
 }
 
-record(bi, "$(P)SIM:READY")
+record(bi, "$(P)SIM:CH$(CHANNEL):READY")
 {
     field(DTYP, "Soft Channel")
     field(VAL, "1")
 }
 
-record(bi, "$(P)SIM:INSYNC")
+record(bi, "$(P)SIM:CH$(CHANNEL):INSYNC")
 {
     field(DTYP, "Soft Channel")
     field(VAL, "1")
 }
 
-record(stringin, "$(P)SIM:VALIDFREQS")
+record(stringin, "$(P)SIM:CH$(CHANNEL):VALIDFREQS")
 {
     field(DTYP, "Soft Channel")
     field(VAL, "1|5|10|100")
 }
 
-record(stringin, "$(P)NAME")
+record(stringin, "$(P)CH$(CHANNEL):NAME")
 {
     field(DTYP, "Soft Channel")
     field(VAL, "Simulated Chopper")
