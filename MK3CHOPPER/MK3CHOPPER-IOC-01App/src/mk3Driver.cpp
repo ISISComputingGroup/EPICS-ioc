@@ -14,7 +14,7 @@
 #include <epicsMutex.h>
 #include <epicsEvent.h>
 #include <iocsh.h>
-
+#include "errlog.h"
 #include "mk3Driver.h"
 #include <epicsExport.h>
 #include <asynOctetSyncIO.h>
@@ -337,12 +337,12 @@ void mk3Driver::checkErrorCode(int code)
     {
         char answer[50];
         m_interface->checkErrorCode(code, answer, 50);
-        std::cout << answer << std::endl;
+        errlogSevPrintf(errlogMajor, "%s", answer);
         
         // If .net timout try to re-intialise
         if (code == -3)
         {
-            std::cout << "Trying to re-establish .NET connection" << std::endl;
+            errlogSevPrintf(errlogMajor, "%s","Trying to re-establish .NET connection");
             m_interface->initialise();
         }
     }
