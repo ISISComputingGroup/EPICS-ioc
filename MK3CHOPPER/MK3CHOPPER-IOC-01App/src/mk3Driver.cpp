@@ -24,7 +24,7 @@ static const char *driverName="mk3Driver";
 
 mk3Driver::mk3Driver(const char *portName, const char *configFilePath, int mockChopper) 
    : asynPortDriver(portName, 
-                    5, /* maxAddr */ 
+                    6, /* maxAddr */ 
                     (int)NUM_MK3_PARAMS,
                     asynInt32Mask | asynFloat64Mask | asynFloat64ArrayMask | asynEnumMask | asynOctetMask | asynDrvUserMask, /* Interface mask */
                     asynInt32Mask | asynFloat64Mask | asynFloat64ArrayMask | asynEnumMask  | asynOctetMask,  /* Interrupt mask */
@@ -35,6 +35,7 @@ mk3Driver::mk3Driver(const char *portName, const char *configFilePath, int mockC
 {
     const char *functionName = "mk3Driver";
     
+    //epicsPrintf?
     std::cout << "*** Initialising MK3 Interface ***" << std::endl;
     
     if (mockChopper != 0)
