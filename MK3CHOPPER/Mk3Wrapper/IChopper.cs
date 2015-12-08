@@ -26,7 +26,7 @@ namespace Mk3Wrapper
         int GetNumberEnabledChannels(ref uint result);
         int GetSoftwareVersion(uint channel, ref int result);
         int GetStatusRegister(uint channel, ref List<bool> result);
-        void Initialise();
+        int Initialise();
         int PutNominalDirection(uint channel, bool cw, ref int result);
         int PutNominalFreq(uint channel, double speed, ref double result);
         int PutNominalPhase(uint channel, uint phase, ref uint result);

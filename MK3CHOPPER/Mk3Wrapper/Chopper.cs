@@ -2,6 +2,7 @@
 using System.Runtime.Remoting;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Mk3Wrapper
 {
@@ -16,12 +17,27 @@ namespace Mk3Wrapper
             this.configFile = configFile;
         }
 
-        public void Initialise()
+        public int Initialise()
         {
-            RemotingConfiguration.Configure(configFile, false);
+            // Does file exist?
+            if (!File.Exists(this.configFile))
+            {
+                return -5;
+            }
 
-            _helper = new MK3ChopperSkeleton.RemotingHelper();
-            _beamline = (MK3ChopperSkeleton.IBeamLine)MK3ChopperSkeleton.RemotingHelper.CreateProxy();
+            try
+            {
+                RemotingConfiguration.Configure(configFile, false);
+
+                _helper = new MK3ChopperSkeleton.RemotingHelper();
+                _beamline = (MK3ChopperSkeleton.IBeamLine)MK3ChopperSkeleton.RemotingHelper.CreateProxy();
+            }
+            catch
+            {
+                return -6;
+            }
+
+            return 0;
         }
 
         public int GetActualFreq(uint channel, ref double result)

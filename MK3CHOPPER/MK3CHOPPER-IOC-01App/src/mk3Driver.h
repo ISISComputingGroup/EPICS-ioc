@@ -6,7 +6,7 @@
 
 class mk3Driver : public asynPortDriver {
 public:
-    mk3Driver(const char *portName, const char *configFilePath);
+    mk3Driver(const char *portName, const char *configFilePath, int mockChopper);
                  
     /* These are the methods that we override from asynPortDriver */
     virtual asynStatus readFloat64(asynUser *pasynUser, epicsFloat64 *value);

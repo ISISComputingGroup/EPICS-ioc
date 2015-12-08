@@ -22,7 +22,7 @@
 
 static const char *driverName="mk3Driver";
 
-mk3Driver::mk3Driver(const char *portName, const char *configFilePath) 
+mk3Driver::mk3Driver(const char *portName, const char *configFilePath, int mockChopper) 
    : asynPortDriver(portName, 
                     1, /* maxAddr */ 
                     (int)NUM_MK3_PARAMS,
@@ -35,8 +35,22 @@ mk3Driver::mk3Driver(const char *portName, const char *configFilePath)
 {
     const char *functionName = "mk3Driver";
     
-    m_interface = new mk3Interface(configFilePath, true);
-    m_interface->initialise();
+    std::cout << "*** Initialising MK3 Interface ***" << std::endl;
+    
+    if (mockChopper != 0)
+    {
+        std::cout << "Using mock chopper" << std::endl;
+        m_interface = new mk3Interface(configFilePath, true);
+    }
+    else
+    {
+        std::cout << "Using real chopper" << std::endl;
+        std::cout << "Config file = " << configFilePath << std::endl;
+        m_interface = new mk3Interface(configFilePath, false);
+    }
+    
+    int errCode = m_interface->initialise();
+    checkErrorCode(errCode);
     
     createParam(P_ActualFreqString, asynParamFloat64, &P_ActualFreq);
     createParam(P_ValidFreqsString, asynParamOctet, &P_ValidFreqs);
@@ -317,9 +331,9 @@ void mk3Driver::checkErrorCode(int code)
 extern "C" {
 
 // EPICS iocsh callable function to call constructor for the class.
-int mk3DriverConfigure(const char *portName, const char *configFilePath)
+int mk3DriverConfigure(const char *portName, const char *configFilePath, int mockChopper)
 {
-    new mk3Driver(portName, configFilePath);
+    new mk3Driver(portName, configFilePath, mockChopper);
     return(asynSuccess);
 }
 
@@ -327,11 +341,12 @@ int mk3DriverConfigure(const char *portName, const char *configFilePath)
 /* EPICS iocsh shell commands */
 static const iocshArg initArg0 = { "portName", iocshArgString};
 static const iocshArg initArg1 = { "configFilePath", iocshArgString};
-static const iocshArg * const initArgs[] = {&initArg0, &initArg1};
-static const iocshFuncDef initFuncDef = {"mk3DriverConfigure", 2, initArgs};
+static const iocshArg initArg2 = { "mockChopper", iocshArgInt};
+static const iocshArg * const initArgs[] = {&initArg0, &initArg1, &initArg2};
+static const iocshFuncDef initFuncDef = {"mk3DriverConfigure", 3, initArgs};
 static void initCallFunc(const iocshArgBuf *args)
 {
-    mk3DriverConfigure(args[0].sval, args[1].sval);
+    mk3DriverConfigure(args[0].sval, args[1].sval, args[2].ival);
 }
 
 void mk3DriverRegister(void)

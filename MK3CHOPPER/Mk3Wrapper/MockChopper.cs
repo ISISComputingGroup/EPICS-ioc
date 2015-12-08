@@ -17,8 +17,9 @@ namespace Mk3Wrapper
         {
         }
 
-        public void Initialise()
+        public int Initialise()
         {
+            return 0;
         }
 
         public int GetActualFreq(uint channel, ref double result)

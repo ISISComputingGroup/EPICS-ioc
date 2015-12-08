@@ -11,16 +11,20 @@ namespace Mk3BridgeLib
 {
 	int Mk3Chopper::Initialise(char* configFile, bool useMock)
 	{
+		int errCode = 0;
+
 		if (useMock)
 		{
 			chopper = gcnew Mk3Wrapper::MockChopper(gcnew System::String(configFile));
+			errCode = chopper->Initialise();
 		}
 		else
 		{
 			chopper = gcnew Mk3Wrapper::Chopper(gcnew System::String(configFile));
+			errCode = chopper->Initialise();
 		}
 
-		return 0;
+		return errCode;
 	}
 
 	int Mk3Chopper::GetActualFreq(unsigned int channel, double* result)
@@ -557,6 +561,12 @@ namespace Mk3BridgeLib
 					break; 
 				case -4  :
 					StringToCharArray("Unknown .NET error", result, size);
+					break; 
+				case -5  :
+					StringToCharArray("Configuration file not found", result, size);
+					break; 
+				case -6  :
+					StringToCharArray("Chopper initialisation failed", result, size);
 					break; 
 
 				default : 
