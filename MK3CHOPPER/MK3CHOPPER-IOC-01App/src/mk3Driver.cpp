@@ -338,6 +338,13 @@ void mk3Driver::checkErrorCode(int code)
         char answer[50];
         m_interface->checkErrorCode(code, answer, 50);
         std::cout << answer << std::endl;
+        
+        // If .net timout try to re-intialise
+        if (code == -3)
+        {
+            std::cout << "Trying to re-establish .NET connection" << std::endl;
+            m_interface->initialise();
+        }
     }
 }
 
