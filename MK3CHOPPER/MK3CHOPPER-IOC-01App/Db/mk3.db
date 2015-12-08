@@ -241,6 +241,7 @@ record(stringin, "$(P)$(Q)VALIDFREQS")
     field(SIML, "$(P):SIM")
 	field(SIOL, "$(P)$(Q)SIM:VALIDFREQS")
     field(SDIS, "$(P):DISABLE")
+    field(PINI, "YES")
 }
 
 record(stringin, "$(P)$(Q)NAME")

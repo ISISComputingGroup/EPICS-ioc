@@ -53,6 +53,8 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
+BIN_INSTALLS_WIN32 += $(wildcard $(SUPPORT)/mk3Chopper/master/bin/$(EPICS_HOST_ARCH)/*.dll)
+
 #===========================
 
 include $(TOP)/configure/RULES

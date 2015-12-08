@@ -34,8 +34,7 @@ mk3Driver::mk3Driver(const char *portName, const char *configFilePath, int mockC
                     0) /* Default stack size*/    
 {
     const char *functionName = "mk3Driver";
-    
-    //epicsPrintf?
+
     std::cout << "*** Initialising MK3 Interface ***" << std::endl;
     
     if (mockChopper != 0)
@@ -340,7 +339,7 @@ void mk3Driver::checkErrorCode(int code)
         m_interface->checkErrorCode(code, answer, 50);
         errlogSevPrintf(errlogMajor, "%s", answer);
         
-        // If .net timout try to re-intialise
+        // If .net timeout try to re-intialise
         if (code == -3)
         {
             errlogSevPrintf(errlogMajor, "%s","Trying to re-establish .NET connection");
