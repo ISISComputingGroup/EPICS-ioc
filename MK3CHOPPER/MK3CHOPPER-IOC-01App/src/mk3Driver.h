@@ -19,6 +19,9 @@ private:
     asynUser* pasynUser;
     mk3Interface* m_interface;
     void checkErrorCode(int code);
+    int vetoStatus;
+    int readyStatus;
+    int insyncStatus;
 
     int P_ActualFreq;           // double
     int P_NominalFreq;          // double

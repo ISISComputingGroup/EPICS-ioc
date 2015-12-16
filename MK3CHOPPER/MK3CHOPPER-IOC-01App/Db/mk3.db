@@ -149,6 +149,7 @@ record(bi, "$(P)$(Q)DIR")
     field(SIML, "$(P):SIM")
 	field(SIOL, "$(P)$(Q)SIM:DIR")
     field(SDIS, "$(P):DISABLE")
+    field(FLNK, "$(P)$(Q)VETO")
 }
 
 record(bo, "$(P)$(Q)DIR:SP")
@@ -192,38 +193,40 @@ record(bi, "$(P)$(Q)DIR:ENABLED")
 
 record(bi, "$(P)$(Q)VETO")
 {
+    # Update triggered by DIR
     field(DESC, "Whether it is vetoing")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)VETO")
-    field(SCAN, "I/O Intr")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     info(INTEREST, "HIGH")
     field(SIML, "$(P):SIM")
 	field(SIOL, "$(P)$(Q)SIM:VETO")
     field(SDIS, "$(P):DISABLE")
+    field(FLNK, "$(P)$(Q)READY")
 }
 
 record(bi, "$(P)$(Q)READY")
 {
+    # Update triggered by VETO
     field(DESC, "Whether it is ready")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)READY")
-    field(SCAN, "I/O Intr")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     info(INTEREST, "MEDIUM")
     field(SIML, "$(P):SIM")
 	field(SIOL, "$(P)$(Q)SIM:READY")
     field(SDIS, "$(P):DISABLE")
+    field(FLNK, "$(P)$(Q)INSYNC")
 }
 
 record(bi, "$(P)$(Q)INSYNC")
 {
+    # Update triggered by READY
     field(DESC, "Whether it is synchronised")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)INSYNC")
-    field(SCAN, "I/O Intr")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     info(INTEREST, "MEDIUM")

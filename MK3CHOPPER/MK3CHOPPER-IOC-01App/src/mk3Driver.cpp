@@ -229,17 +229,16 @@ asynStatus mk3Driver::readInt32(asynUser *pasynUser, epicsInt32 *value)
     
     if (function == P_Direction)
     {
-        // Need to obtain the status register first       
+        // Need to obtain the status register      
         bool result[32];
         errCode = m_interface->getStatusRegister(channel, result, 32); 
         checkErrorCode(errCode);       
         *value = (int) result[10];
         
-        // Update everything else that depends on the register
-        setIntegerParam(P_Veto, (int) result[5]);
-        setIntegerParam(P_Ready, (int) result[3]);
-        setIntegerParam(P_InSync, (int) result[6]);
-        callParamCallbacks();
+        // Update other values that depends on the register
+        vetoStatus = (int) result[5];
+        readyStatus = (int) result[3];
+        insyncStatus = (int) result[6];
     }
     else if (function == P_NominalDirection)
     {
@@ -264,6 +263,18 @@ asynStatus mk3Driver::readInt32(asynUser *pasynUser, epicsInt32 *value)
         
         *value = result;
         checkErrorCode(errCode);
+    }
+    else if (function == P_Veto)
+    {
+        *value = vetoStatus;
+    }
+    else if (function == P_Ready)
+    {
+        *value = readyStatus;
+    }
+    else if (function == P_InSync)
+    {
+        *value = insyncStatus;
     }
 
     return status;
