@@ -259,8 +259,8 @@ asynStatus mk3Driver::readInt32(asynUser *pasynUser, epicsInt32 *value)
     }
     else if (function == P_NumChannels)
     {
-        int result;
-        errCode = m_interface->getNumberChannels(&result);
+        unsigned int result;
+        errCode = m_interface->getNumberEnabledChannels(&result);
         
         *value = result;
         checkErrorCode(errCode);

@@ -66,9 +66,9 @@ int mk3Interface::getChangeDirectionEnabled(unsigned int channel, bool* result)
     return GetChangeDirectionEnabled(channel, result);
 }
 
-int mk3Interface::getNumberChannels(int* result)
+int mk3Interface::getNumberEnabledChannels(unsigned int* result)
 {
-    return GetNumberChannels(result);
+    return GetNumberEnabledChannels(result);
 }
 
 int mk3Interface::putNominalDirection(unsigned int channel, bool cw, int* result)
