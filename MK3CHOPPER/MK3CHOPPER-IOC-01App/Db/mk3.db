@@ -23,6 +23,7 @@ record(ai, "$(P):NUM_ENABLED")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)CHANNELS")
     field(SCAN, "10 second")
     field(SDIS, "$(P):DISABLE")
+	field(EGU, "")
     info(INTEREST, "MEDIUM")
 }
 
