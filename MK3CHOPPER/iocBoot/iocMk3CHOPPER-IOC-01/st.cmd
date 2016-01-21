@@ -17,7 +17,7 @@ MK3CHOPPER_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-# Portname, path to config file, use mock (1 for mock)
+# Portname, path to config file, use mock (=1 for mock)
 mk3DriverConfigure("MK3", "C:/MK3_Chopper.config", 0)
 
 ## Load record instances
