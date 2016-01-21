@@ -47,6 +47,7 @@ iocInit
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
+sqlexec "$(IOCSTARTUP)/facility_pvs.sql"
 
 # only log value changes
 # this command does not seem to be implemented!
