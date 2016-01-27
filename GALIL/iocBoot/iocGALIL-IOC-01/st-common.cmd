@@ -33,7 +33,7 @@ stringtest("IFDMC08", "$(GALILADDR08=)")
 
 epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 
-## uncomment to see every command sent to galil
+## uncomment to see every command sent to every galil, of define in st.cmd for just one galil
 #epicsEnvSet("GALIL_DEBUG_FILE", "galil_debug.txt")
 
 # configure galil and motors
