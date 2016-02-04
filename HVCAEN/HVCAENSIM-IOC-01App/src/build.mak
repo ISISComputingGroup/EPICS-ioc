@@ -32,7 +32,7 @@ $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += HVCAENx527.dbd
 
 # Add all the support libraries needed by this IOC
-$(APPNAME)_LIBS += HVCAENx527SimSupport CAENHVWrapperSim
+$(APPNAME)_LIBS += HVCAENx527Sim HVCAENx527Summary CAENHVWrapperSim
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += seqDev seq pv
