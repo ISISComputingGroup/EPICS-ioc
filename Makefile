@@ -8,6 +8,7 @@ DIRS_NOTBUILD += NULL # this file seems to get created occasionally
 # modules not to build on linux
 ifneq ($(findstring linux,$(EPICS_HOST_ARCH)),)
 DIRS_NOTBUILD += ISISDAE MK3CHOPPER STPS350 AG53220A STSR400 ECLAB
+DIRS_NOTBUILD += DELFTARDUSTEP DELFTDCMAG
 endif
 # modules not to build on windows 64bit
 ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
