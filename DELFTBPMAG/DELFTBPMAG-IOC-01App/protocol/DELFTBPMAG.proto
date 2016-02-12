@@ -1,0 +1,161 @@
+InTerminator = ';';
+OutTerminator = '*';
+ReplyTimeout = 10000;
+
+#     ExtraInput = Ignore;
+
+startControlling {
+    out "CTRL";
+	in "#";
+}
+
+holdDigitalControl {
+    out "HOLD";
+	in "#";
+}
+
+stopControlling {
+    out "STOP";
+	in "#";
+}
+
+readStatus {
+    out "?CTR";
+	in "%{CTRL|STOP|HOLD}";
+}
+
+readNumOfControllers {
+    out "#CTR";
+	in "%d";
+}
+
+readFieldMeasurementX {
+    out "ALLF";
+	in "%f,%*f";
+}
+
+readFieldMeasurementY {
+    out "ALLF";
+	in "%*f,%f";
+}
+
+setPGain {
+    out "KP %d";
+	in "#";
+}
+
+setIGain {
+    out "KI %d";
+	in "#";
+}
+
+setDGain {
+    out "KD %d";
+	in "#";
+}
+
+readPGain {
+    out "?KP";
+	in "%d";
+}
+
+readIGain {
+    out "?KI";
+	in "%d";
+}
+
+readDGain {
+    out "?KD";
+	in "%d";
+}
+
+setMaxField {
+    out "MAXB %d";
+	in "#";
+}
+
+readMaxField {
+    out "?MXB";
+	in "%f";
+}
+
+setRange {
+    out "TOL %d";
+	in "#";
+}
+
+readRange {
+    out "?TOL";
+	in "%d";
+}
+
+setpointReached {
+    out "?SPR";
+	in "%d";
+}
+
+restoreControlDefaults {
+    out "RSTR";
+	in "READY";
+}
+
+readControllerNumber {
+    out "?ID";
+	in "%d";
+}
+
+readDetectedAlarms {
+    out "?ALM";
+	in "%d";
+}
+
+readRange {
+    out "?TOL";
+	in "%d";
+}
+
+setSetpoint {
+    out "SP\$1 %d";
+	in "#";
+}
+
+readSetpoint {
+    out "?SP\$1";
+	in "%f";
+}
+
+resetController {
+    out "RST";
+	in "READY";
+}
+
+testConnection {
+    out "TEST";
+	int "DC MAGNET CONTROL";
+}
+
+readMode {
+    out "?MOD";
+	in "%{LOCAL|REMOTE}";
+}
+
+toggleDAC {
+    out "STEP";
+	in "#";
+}
+
+control {
+    out "ACTV %d";
+	in "#";
+}
+
+readAlarmThreshold {
+    out "?ATH";
+	in "%d";
+}
+
+setAlarmThreshold {
+    out "ATH %d";
+	in "#";
+}
+

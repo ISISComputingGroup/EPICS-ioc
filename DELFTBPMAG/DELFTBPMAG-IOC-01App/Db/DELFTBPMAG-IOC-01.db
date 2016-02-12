@@ -1,0 +1,246 @@
+record(bo, "$(P)CONTROL:START")
+{
+    field(DTYP, "stream")
+    field(DESC, "Start Controlling")
+    field(OUT,  "@DELFTBPMAG.proto startControlling $(PORT)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(bo, "$(P)CONTROL:STOP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Stop Controlling")
+    field(OUT,  "@DELFTBPMAG.proto stopControlling $(PORT)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(bo, "$(P)CONTROL:HOLD")
+{
+    field(DTYP, "stream")
+    field(DESC, "Hold digital control")
+    field(OUT,  "@DELFTBPMAG.proto holdDigitalControl $(PORT)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(bo, "$(P)RESET")
+{
+    field(DTYP, "stream")
+    field(DESC, "Reset")
+    field(OUT,  "@DELFTBPMAG.proto resetController $(PORT)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(bo, "$(P)CONTROL:SETDEF")
+{
+    field(DTYP, "stream")
+    field(DESC, "Restore control defaults")
+    field(OUT,  "@DELFTBPMAG.proto restoreControlDefaults $(PORT)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(bo, "$(P)DAC:TOGGLE")
+{
+    field(DTYP, "stream")
+    field(DESC, "Toggle DAC")
+    field(OUT,  "@DELFTBPMAG.proto toggleDAC $(PORT)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(mbbi, "$(P)STATUS")
+{
+    field(DTYP, "stream")
+    field(DESC, "Status")
+    field(INP,  "@DELFTBPMAG.proto readStatus $(PORT)")
+	field(ZRVL, 0)
+	field(ZRST, "Control")
+	field(ONVL, 1)
+	field(ONST, "Stop")
+	field(TWVL, 2)
+	field(TWST, "Hold")
+    field(SCAN, "1 second")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(mbbi, "$(P)MODE")
+{
+    field(DTYP, "stream")
+    field(DESC, "Mode")
+    field(INP,  "@DELFTBPMAG.proto readStatus $(PORT)")
+	field(ZRVL, 0)
+	field(ZRST, "Local")
+	field(ONVL, 1)
+	field(ONST, "Remote")
+    field(SCAN, "1 second")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)FIELD:X")
+{
+    field(DTYP, "stream")
+    field(DESC, "Read field measurement X")
+    field(INP,  "@DELFTBPMAG.proto readFieldMeasurementX $(PORT)")
+	field(EGU, "mT")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SCAN, "1 second")
+}	
+    
+record(ai, "$(P)FIELD:Y")
+{
+    field(DTYP, "stream")
+    field(DESC, "Read field measurement Y")
+    field(INP,  "@DELFTBPMAG.proto readFieldMeasurementY $(PORT)")
+	field(EGU, "mT")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SCAN, "1 second")
+}	
+
+record(longout, "$(P)KP:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Set P gain")
+    field(OUT,  "@DELFTBPMAG.proto setPGain $(PORT)")
+}
+
+record(longin, "$(P)KP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Read P gain")
+    field(INP,  "@DELFTBPMAG.proto readPGain $(PORT)")
+    field(SCAN, "1 second")
+}
+
+record(longout, "$(P)KI:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Set I gain")
+    field(OUT,  "@DELFTBPMAG.proto setIGain $(PORT)")
+}
+
+record(longin, "$(P)KI")
+{
+    field(DTYP, "stream")
+    field(DESC, "Read I gain")
+    field(INP,  "@DELFTBPMAG.proto readIGain $(PORT)")
+    field(SCAN, "1 second")
+}
+
+record(longout, "$(P)KD:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Set D gain")
+    field(OUT,  "@DELFTBPMAG.proto setDGain $(PORT)")
+}
+
+record(longin, "$(P)KD")
+{
+    field(DTYP, "stream")
+    field(DESC, "Read D gain")
+    field(INP,  "@DELFTBPMAG.proto readDGain $(PORT)")
+    field(SCAN, "1 second")
+}
+
+record(longout, "$(P)SP1:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Set setpoint 1")
+    field(OUT,  "@DELFTBPMAG.proto setSetpoint(1) $(PORT)")
+	field(EGU, "uT")
+}
+
+record(ai, "$(P)SP1")
+{
+    field(DTYP, "stream")
+    field(DESC, "Read setpoint 1")
+    field(INP,  "@DELFTBPMAG.proto readSetpoint(1) $(PORT)")
+	field(EGU, "mT")
+    field(SCAN, "1 second")
+}
+
+record(longout, "$(P)SP2:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Set setpoint 2")
+    field(OUT,  "@DELFTBPMAG.proto setSetpoint(2) $(PORT)")
+	field(EGU, "uT")
+}
+
+record(ai, "$(P)SP2")
+{
+    field(DTYP, "stream")
+    field(DESC, "Read setpoint 2")
+    field(INP,  "@DELFTBPMAG.proto readSetpoint(2) $(PORT)")
+	field(EGU, "mT")
+    field(SCAN, "1 second")
+}
+
+record(longout, "$(P)SP3:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Set setpoint 3")
+    field(OUT,  "@DELFTBPMAG.proto setSetpoint(3) $(PORT)")
+	field(EGU, "uT")
+}
+
+record(ai, "$(P)SP3")
+{
+    field(DTYP, "stream")
+    field(DESC, "Read setpoint 3")
+    field(INP,  "@DELFTBPMAG.proto readSetpoint(3) $(PORT)")
+	field(EGU, "mT")
+    field(SCAN, "1 second")
+}
+
+record(longout, "$(P)SP4:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Set setpoint 4")
+    field(OUT,  "@DELFTBPMAG.proto setSetpoint(4) $(PORT)")
+	field(EGU, "uT")
+}
+
+record(ai, "$(P)SP4")
+{
+    field(DTYP, "stream")
+    field(DESC, "Read setpoint 4")
+    field(INP,  "@DELFTBPMAG.proto readSetpoint(4) $(PORT)")
+	field(EGU, "mT")
+    field(SCAN, "1 second")
+}
+
+record(longout, "$(P)MAXB:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Set maxb")
+    field(OUT,  "@DELFTBPMAG.proto setMaxField $(PORT)")
+	field(EGU, "uT")
+}
+
+record(ai, "$(P)MAXB")
+{
+    field(DTYP, "stream")
+    field(DESC, "Read maxb")
+    field(INP,  "@DELFTBPMAG.proto readMaxField $(PORT)")
+	field(EGU, "mT")
+    field(SCAN, "1 second")
+}
+
+record(longin, "$(P)SPR")
+{
+    field(DTYP, "stream")
+    field(DESC, "Read maxb")
+    field(INP,  "@DELFTBPMAG.proto setpointReached $(PORT)")
+	field(EGU, "mT")
+    field(SCAN, "1 second")
+}
+
+
