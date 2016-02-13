@@ -27,6 +27,7 @@ $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += NetShrVar.dbd
+$(APPNAME)_DBD += lvDCOM.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -38,7 +39,7 @@ $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
-$(APPNAME)_LIBS += NetShrVar asyn
+$(APPNAME)_LIBS += NetShrVar lvDCOM asyn
 
 # DELFTDCMAG-IOC-01_registerRecordDeviceDriver.cpp derives from DELFTDCMAG-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
@@ -56,6 +57,7 @@ else
 CVILIB = $(NETSHRVAR)/NetShrVarApp/src/O.$(EPICS_HOST_ARCH)/CVI/extlib/msvc
 endif
 $(APPNAME)_SYS_LIBS_WIN32 += $(CVILIB)/cvinetv $(CVILIB)/cvisupp $(CVILIB)/cvirt
+$(APPNAME)_SYS_LIBS_WIN32 += msxml2
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)

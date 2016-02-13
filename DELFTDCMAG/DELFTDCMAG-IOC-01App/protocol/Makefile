@@ -3,7 +3,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-DATA += DELFTDCMAG.xml
+DATA += DELFTDCMAG_nv.xml DELFTDCMAG_lv.xml
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

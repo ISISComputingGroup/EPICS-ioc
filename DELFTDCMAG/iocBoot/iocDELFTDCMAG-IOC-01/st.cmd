@@ -24,7 +24,9 @@ DELFTDCMAG_IOC_01_registerRecordDeviceDriver pdbbase
 ## configFile is the path to the main configuration file (netvarconfig.xml)
 ## pollPeriod (100) is the interval (ms) at which the driver will pull values from variables accessed via a BufferedReader connection 
 ## options (0 below) is currently unused but would map to values in #NetShrVarOptions    
-NetShrVarConfigure("nsv", "sec1", "$(TOP)/data/DELFTDCMAG.xml", 100, 0)
+NetShrVarConfigure("nsv", "sec1", "$(TOP)/data/DELFTDCMAG_nv.xml", 100, 0)
+
+lvDCOMConfigure("lvfp", "frontpanel", "$(TOP)/data/DELFTDCMAG_lv.xml", "", 1, "")
 
 ## Load record instances
 

@@ -31,19 +31,15 @@
 		  "fval" and "tval" are only used for boolean type, they are the strings to be displayed for false and true values
 		  "field" is only used for a structure type network shared variable, it indicates the structure element to access. Structures are read-only.
 	  -->
-	  <param name="cont1" type="float64" access="BR,BW" netvar="//localhost/example/some_control" /> 
+	  <param name="PVM1" type="float64" access="BR,BW" netvar="//localhost/PVM1" /> 
+	  <param name="PVM2" type="float64" access="BR,BW" netvar="//localhost/PVM2" /> 
+	  <param name="PVM3" type="float64" access="BR,BW" netvar="//localhost/PVM3" /> 
+	  <param name="PVM4" type="float64" access="BR,BW" netvar="//localhost/PVM4" /> 
 	
-	  <param name="icont1" type="int32" access="R,W" netvar="//localhost/example/some_control" /> 
-
-      <param name="ind1" type="int32" access="BR,BW" netvar="//localhost/example/some_indicator" />
-
-	  <param name="strcont1" type="string" access="BR,BW" netvar="//localhost/example/some_string" /> 
-	 
-	  <param name="bool1" type="boolean" fval="off" tval="on" access="BR,BW" netvar="//localhost/example/some_bool" /> 
-	  
-	  <param name="array1" type="float64array" access="BR,BW" netvar="//localhost/example/some_array" /> 
-
-	  <param name="struct1" type="float64" access="BR,BW" netvar="//localhost/example/some_struct" field="1" /> 
+	  <param name="SPM1" type="float64" access="BR,BW" netvar="//localhost/SPM1" /> 
+	  <param name="SPM2" type="float64" access="BR,BW" netvar="//localhost/SPM2" /> 
+	  <param name="SPM3" type="float64" access="BR,BW" netvar="//localhost/SPM3" /> 
+	  <param name="SPM4" type="float64" access="BR,BW" netvar="//localhost/SPM4" /> 
 
 	</section>
   
