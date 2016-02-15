@@ -82,27 +82,28 @@ record(mbbi, "$(P)MODE")
     info(archive, "VAL")
 }
 
+# x and y fields are returned by device read, so this updates FIELD:Y too
 record(ai, "$(P)FIELD:X")
 {
     field(DTYP, "stream")
-    field(DESC, "Read field measurement X")
-    field(INP,  "@DELFTBPMAG.proto readFieldMeasurementX $(PORT)")
+    field(DESC, "X field")
+    field(INP,  "@DELFTBPMAG.proto readFieldMeasurement($(P)FIELD:Y) $(PORT)")
 	field(EGU, "mT")
+    field(SCAN, "1 second")
+	field(PREC, 3)
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
-    field(SCAN, "1 second")
-}	
-    
+}
+
+# updated by FIELD:X via protocol file
 record(ai, "$(P)FIELD:Y")
 {
-    field(DTYP, "stream")
-    field(DESC, "Read field measurement Y")
-    field(INP,  "@DELFTBPMAG.proto readFieldMeasurementY $(PORT)")
+    field(DESC, "Y field")
 	field(EGU, "mT")
+	field(PREC, 3)
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
-    field(SCAN, "1 second")
-}	
+}
 
 record(longout, "$(P)KP:SP")
 {
@@ -163,6 +164,7 @@ record(ai, "$(P)SP1")
     field(DESC, "Read setpoint 1")
     field(INP,  "@DELFTBPMAG.proto readSetpoint(1) $(PORT)")
 	field(EGU, "mT")
+	field(PREC, 3)
     field(SCAN, "1 second")
 }
 
@@ -180,6 +182,7 @@ record(ai, "$(P)SP2")
     field(DESC, "Read setpoint 2")
     field(INP,  "@DELFTBPMAG.proto readSetpoint(2) $(PORT)")
 	field(EGU, "mT")
+	field(PREC, 3)
     field(SCAN, "1 second")
 }
 
@@ -197,6 +200,7 @@ record(ai, "$(P)SP3")
     field(DESC, "Read setpoint 3")
     field(INP,  "@DELFTBPMAG.proto readSetpoint(3) $(PORT)")
 	field(EGU, "mT")
+	field(PREC, 3)
     field(SCAN, "1 second")
 }
 
@@ -213,6 +217,7 @@ record(ai, "$(P)SP4")
     field(DTYP, "stream")
     field(DESC, "Read setpoint 4")
     field(INP,  "@DELFTBPMAG.proto readSetpoint(4) $(PORT)")
+	field(PREC, 3)
 	field(EGU, "mT")
     field(SCAN, "1 second")
 }
@@ -231,15 +236,15 @@ record(ai, "$(P)MAXB")
     field(DESC, "Read maxb")
     field(INP,  "@DELFTBPMAG.proto readMaxField $(PORT)")
 	field(EGU, "mT")
+	field(PREC, 3)
     field(SCAN, "1 second")
 }
 
 record(longin, "$(P)SPR")
 {
     field(DTYP, "stream")
-    field(DESC, "Read maxb")
+    field(DESC, "Set point reached")
     field(INP,  "@DELFTBPMAG.proto setpointReached $(PORT)")
-	field(EGU, "mT")
     field(SCAN, "1 second")
 }
 

@@ -29,14 +29,10 @@ readNumOfControllers {
 	in "%d";
 }
 
-readFieldMeasurementX {
+# returns x and y values, writes y into PV specified by $1 protocol argument
+readFieldMeasurement {
     out "ALLF";
-	in "%f,%*f";
-}
-
-readFieldMeasurementY {
-    out "ALLF";
-	in "%*f,%f";
+	in "%f,%(\$1)f";
 }
 
 setPGain {
@@ -109,16 +105,13 @@ readDetectedAlarms {
 	in "%d";
 }
 
-readRange {
-    out "?TOL";
-	in "%d";
-}
-
+# SP1, SP2 etc. number specified as protocol argument
 setSetpoint {
     out "SP\$1 %d";
 	in "#";
 }
 
+# SP1, SP2 etc. number specified as protocol argument
 readSetpoint {
     out "?SP\$1";
 	in "%f";
