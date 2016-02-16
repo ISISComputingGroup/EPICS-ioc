@@ -31,15 +31,15 @@
 		  "fval" and "tval" are only used for boolean type, they are the strings to be displayed for false and true values
 		  "field" is only used for a structure type network shared variable, it indicates the structure element to access. Structures are read-only.
 	  -->
-	  <param name="PVM1" type="float64" access="BR,BW" netvar="//localhost/PVM1" /> 
-	  <param name="PVM2" type="float64" access="BR,BW" netvar="//localhost/PVM2" /> 
-	  <param name="PVM3" type="float64" access="BR,BW" netvar="//localhost/PVM3" /> 
-	  <param name="PVM4" type="float64" access="BR,BW" netvar="//localhost/PVM4" /> 
+	  <param name="PVM1" type="float64" access="BR,BW" netvar="//localhost/Magnets/PVM1" /> 
+	  <param name="PVM2" type="float64" access="BR,BW" netvar="//localhost/Magnets/PVM2" /> 
+	  <param name="PVM3" type="float64" access="BR,BW" netvar="//localhost/Magnets/PVM3" /> 
+	  <param name="PVM4" type="float64" access="BR,BW" netvar="//localhost/Magnets/PVM4" /> 
 	
-	  <param name="SPM1" type="float64" access="BR,BW" netvar="//localhost/SPM1" /> 
-	  <param name="SPM2" type="float64" access="BR,BW" netvar="//localhost/SPM2" /> 
-	  <param name="SPM3" type="float64" access="BR,BW" netvar="//localhost/SPM3" /> 
-	  <param name="SPM4" type="float64" access="BR,BW" netvar="//localhost/SPM4" /> 
+	  <param name="SPM1" type="float64" access="BR,BW" netvar="//localhost/Magnets/SPM1" /> 
+	  <param name="SPM2" type="float64" access="BR,BW" netvar="//localhost/Magnets/SPM2" /> 
+	  <param name="SPM3" type="float64" access="BR,BW" netvar="//localhost/Magnets/SPM3" /> 
+	  <param name="SPM4" type="float64" access="BR,BW" netvar="//localhost/Magnets/SPM4" /> 
 
 	</section>
   
