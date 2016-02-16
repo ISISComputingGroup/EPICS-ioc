@@ -133,42 +133,42 @@ record(ao, "$(P)Range(muT)")
 }
 
 
-# Read LabVIEW control/indicator "Process value M1" on "Test application DC_MC 2 controlllers.vi"
-record(ai, "$(P)Process_value_M1_RBV")
+# Read LabVIEW control/indicator "Process value (mT) 1" on "Test application DC_MC 2 controlllers.vi"
+record(ai, "$(P)Process_value_(mT)_1_RBV")
 {
-	field(DESC, "LabVIEW 'Process value M1'")
+	field(DESC, "LabVIEW 'Process value (mT) 1'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Process_value_M1")
+    field(INP,  "@asyn(lvfp,0,0)Process_value_(mT)_1")
     field(PREC, "3")
     field(SCAN, ".1 second")
 }
 
-# Write to LabVIEW control "Process value M1" on "Test application DC_MC 2 controlllers.vi"
-record(ao, "$(P)Process_value_M1")
+# Write to LabVIEW control "Process value (mT) 1" on "Test application DC_MC 2 controlllers.vi"
+record(ao, "$(P)Process_value_(mT)_1")
 {
-	field(DESC, "LabVIEW 'Process value M1'")
+	field(DESC, "LabVIEW 'Process value (mT) 1'")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)Process_value_M1")
+    field(OUT,  "@asyn(lvfp,0,0)Process_value_(mT)_1")
     field(PREC, "3")
 }
 
 
-# Read LabVIEW control/indicator "Process value M2" on "Test application DC_MC 2 controlllers.vi"
-record(ai, "$(P)Process_value_M2_RBV")
+# Read LabVIEW control/indicator "Process value (mT) 2" on "Test application DC_MC 2 controlllers.vi"
+record(ai, "$(P)Process_value_(mT)_2_RBV")
 {
-	field(DESC, "LabVIEW 'Process value M2'")
+	field(DESC, "LabVIEW 'Process value (mT) 2'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Process_value_M2")
+    field(INP,  "@asyn(lvfp,0,0)Process_value_(mT)_2")
     field(PREC, "3")
     field(SCAN, ".1 second")
 }
 
-# Write to LabVIEW control "Process value M2" on "Test application DC_MC 2 controlllers.vi"
-record(ao, "$(P)Process_value_M2")
+# Write to LabVIEW control "Process value (mT) 2" on "Test application DC_MC 2 controlllers.vi"
+record(ao, "$(P)Process_value_(mT)_2")
 {
-	field(DESC, "LabVIEW 'Process value M2'")
+	field(DESC, "LabVIEW 'Process value (mT) 2'")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)Process_value_M2")
+    field(OUT,  "@asyn(lvfp,0,0)Process_value_(mT)_2")
     field(PREC, "3")
 }
 
@@ -312,8 +312,8 @@ record(bi, "$(P)SP_reached_all_RBV")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(lvfp,0,0)SP_reached_all")
     field(SCAN, ".1 second")
-    field(ZNAM, "")
-    field(ONAM, "")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
 }
 
 # Write to LabVIEW control "SP reached all" on "Test application DC_MC 2 controlllers.vi"
@@ -322,8 +322,8 @@ record(bo, "$(P)SP_reached_all")
 	field(DESC, "LabVIEW 'SP reached all'")
     field(DTYP, "asynInt32")
     field(OUT,  "@asyn(lvfp,0,0)SP_reached_all")
-    field(ZNAM, "")
-    field(ONAM, "")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
 }
 
 
@@ -334,8 +334,8 @@ record(bi, "$(P)SP_reached_M1_RBV")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(lvfp,0,0)SP_reached_M1")
     field(SCAN, ".1 second")
-    field(ZNAM, "")
-    field(ONAM, "")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
 }
 
 # Write to LabVIEW control "SP reached M1" on "Test application DC_MC 2 controlllers.vi"
@@ -344,8 +344,8 @@ record(bo, "$(P)SP_reached_M1")
 	field(DESC, "LabVIEW 'SP reached M1'")
     field(DTYP, "asynInt32")
     field(OUT,  "@asyn(lvfp,0,0)SP_reached_M1")
-    field(ZNAM, "")
-    field(ONAM, "")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
 }
 
 
@@ -356,8 +356,8 @@ record(bi, "$(P)SP_reached_M2_RBV")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(lvfp,0,0)SP_reached_M2")
     field(SCAN, ".1 second")
-    field(ZNAM, "")
-    field(ONAM, "")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
 }
 
 # Write to LabVIEW control "SP reached M2" on "Test application DC_MC 2 controlllers.vi"
@@ -366,47 +366,47 @@ record(bo, "$(P)SP_reached_M2")
 	field(DESC, "LabVIEW 'SP reached M2'")
     field(DTYP, "asynInt32")
     field(OUT,  "@asyn(lvfp,0,0)SP_reached_M2")
-    field(ZNAM, "")
-    field(ONAM, "")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
 }
 
 
-# Read LabVIEW control/indicator "Setpoint M1" on "Test application DC_MC 2 controlllers.vi"
-record(ai, "$(P)Setpoint_M1_RBV")
+# Read LabVIEW control/indicator "Setpoint (mT) 1" on "Test application DC_MC 2 controlllers.vi"
+record(ai, "$(P)Setpoint_(mT)_1_RBV")
 {
-	field(DESC, "LabVIEW 'Setpoint M1'")
+	field(DESC, "LabVIEW 'Setpoint (mT) 1'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Setpoint_M1")
+    field(INP,  "@asyn(lvfp,0,0)Setpoint_(mT)_1")
     field(PREC, "3")
     field(SCAN, ".1 second")
 }
 
-# Write to LabVIEW control "Setpoint M1" on "Test application DC_MC 2 controlllers.vi"
-record(ao, "$(P)Setpoint_M1")
+# Write to LabVIEW control "Setpoint (mT) 1" on "Test application DC_MC 2 controlllers.vi"
+record(ao, "$(P)Setpoint_(mT)_1")
 {
-	field(DESC, "LabVIEW 'Setpoint M1'")
+	field(DESC, "LabVIEW 'Setpoint (mT) 1'")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)Setpoint_M1")
+    field(OUT,  "@asyn(lvfp,0,0)Setpoint_(mT)_1")
     field(PREC, "3")
 }
 
 
-# Read LabVIEW control/indicator "Setpoint M2" on "Test application DC_MC 2 controlllers.vi"
-record(ai, "$(P)Setpoint_M2_RBV")
+# Read LabVIEW control/indicator "Setpoint (mT) 2" on "Test application DC_MC 2 controlllers.vi"
+record(ai, "$(P)Setpoint_(mT)_2_RBV")
 {
-	field(DESC, "LabVIEW 'Setpoint M2'")
+	field(DESC, "LabVIEW 'Setpoint (mT) 2'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Setpoint_M2")
+    field(INP,  "@asyn(lvfp,0,0)Setpoint_(mT)_2")
     field(PREC, "3")
     field(SCAN, ".1 second")
 }
 
-# Write to LabVIEW control "Setpoint M2" on "Test application DC_MC 2 controlllers.vi"
-record(ao, "$(P)Setpoint_M2")
+# Write to LabVIEW control "Setpoint (mT) 2" on "Test application DC_MC 2 controlllers.vi"
+record(ao, "$(P)Setpoint_(mT)_2")
 {
-	field(DESC, "LabVIEW 'Setpoint M2'")
+	field(DESC, "LabVIEW 'Setpoint (mT) 2'")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)Setpoint_M2")
+    field(OUT,  "@asyn(lvfp,0,0)Setpoint_(mT)_2")
     field(PREC, "3")
 }
 
@@ -685,42 +685,42 @@ record(waveform, "$(P)status_2WF")
 }
 
 
-# Read LabVIEW control/indicator "Process value M3" on "Test application DC_MC 2 controlllers.vi"
-record(ai, "$(P)Process_value_M3_RBV")
+# Read LabVIEW control/indicator "Process value (mT) 3" on "Test application DC_MC 2 controlllers.vi"
+record(ai, "$(P)Process_value_(mT)_3_RBV")
 {
-	field(DESC, "LabVIEW 'Process value M3'")
+	field(DESC, "LabVIEW 'Process value (mT) 3'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Process_value_M3")
+    field(INP,  "@asyn(lvfp,0,0)Process_value_(mT)_3")
     field(PREC, "3")
     field(SCAN, ".1 second")
 }
 
-# Write to LabVIEW control "Process value M3" on "Test application DC_MC 2 controlllers.vi"
-record(ao, "$(P)Process_value_M3")
+# Write to LabVIEW control "Process value (mT) 3" on "Test application DC_MC 2 controlllers.vi"
+record(ao, "$(P)Process_value_(mT)_3")
 {
-	field(DESC, "LabVIEW 'Process value M3'")
+	field(DESC, "LabVIEW 'Process value (mT) 3'")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)Process_value_M3")
+    field(OUT,  "@asyn(lvfp,0,0)Process_value_(mT)_3")
     field(PREC, "3")
 }
 
 
-# Read LabVIEW control/indicator "Process value M4" on "Test application DC_MC 2 controlllers.vi"
-record(ai, "$(P)Process_value_M4_RBV")
+# Read LabVIEW control/indicator "Process value (mT) 4" on "Test application DC_MC 2 controlllers.vi"
+record(ai, "$(P)Process_value_(mT)_4_RBV")
 {
-	field(DESC, "LabVIEW 'Process value M4'")
+	field(DESC, "LabVIEW 'Process value (mT) 4'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Process_value_M4")
+    field(INP,  "@asyn(lvfp,0,0)Process_value_(mT)_4")
     field(PREC, "3")
     field(SCAN, ".1 second")
 }
 
-# Write to LabVIEW control "Process value M4" on "Test application DC_MC 2 controlllers.vi"
-record(ao, "$(P)Process_value_M4")
+# Write to LabVIEW control "Process value (mT) 4" on "Test application DC_MC 2 controlllers.vi"
+record(ao, "$(P)Process_value_(mT)_4")
 {
-	field(DESC, "LabVIEW 'Process value M4'")
+	field(DESC, "LabVIEW 'Process value (mT) 4'")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)Process_value_M4")
+    field(OUT,  "@asyn(lvfp,0,0)Process_value_(mT)_4")
     field(PREC, "3")
 }
 
@@ -776,8 +776,8 @@ record(bi, "$(P)SP_reached_M3_RBV")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(lvfp,0,0)SP_reached_M3")
     field(SCAN, ".1 second")
-    field(ZNAM, "")
-    field(ONAM, "")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
 }
 
 # Write to LabVIEW control "SP reached M3" on "Test application DC_MC 2 controlllers.vi"
@@ -786,8 +786,8 @@ record(bo, "$(P)SP_reached_M3")
 	field(DESC, "LabVIEW 'SP reached M3'")
     field(DTYP, "asynInt32")
     field(OUT,  "@asyn(lvfp,0,0)SP_reached_M3")
-    field(ZNAM, "")
-    field(ONAM, "")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
 }
 
 
@@ -798,8 +798,8 @@ record(bi, "$(P)SP_reached_M4_RBV")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(lvfp,0,0)SP_reached_M4")
     field(SCAN, ".1 second")
-    field(ZNAM, "")
-    field(ONAM, "")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
 }
 
 # Write to LabVIEW control "SP reached M4" on "Test application DC_MC 2 controlllers.vi"
@@ -808,47 +808,47 @@ record(bo, "$(P)SP_reached_M4")
 	field(DESC, "LabVIEW 'SP reached M4'")
     field(DTYP, "asynInt32")
     field(OUT,  "@asyn(lvfp,0,0)SP_reached_M4")
-    field(ZNAM, "")
-    field(ONAM, "")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
 }
 
 
-# Read LabVIEW control/indicator "Setpoint M3" on "Test application DC_MC 2 controlllers.vi"
-record(ai, "$(P)Setpoint_M3_RBV")
+# Read LabVIEW control/indicator "Setpoint (mT) 3" on "Test application DC_MC 2 controlllers.vi"
+record(ai, "$(P)Setpoint_(mT)_3_RBV")
 {
-	field(DESC, "LabVIEW 'Setpoint M3'")
+	field(DESC, "LabVIEW 'Setpoint (mT) 3'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Setpoint_M3")
+    field(INP,  "@asyn(lvfp,0,0)Setpoint_(mT)_3")
     field(PREC, "3")
     field(SCAN, ".1 second")
 }
 
-# Write to LabVIEW control "Setpoint M3" on "Test application DC_MC 2 controlllers.vi"
-record(ao, "$(P)Setpoint_M3")
+# Write to LabVIEW control "Setpoint (mT) 3" on "Test application DC_MC 2 controlllers.vi"
+record(ao, "$(P)Setpoint_(mT)_3")
 {
-	field(DESC, "LabVIEW 'Setpoint M3'")
+	field(DESC, "LabVIEW 'Setpoint (mT) 3'")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)Setpoint_M3")
+    field(OUT,  "@asyn(lvfp,0,0)Setpoint_(mT)_3")
     field(PREC, "3")
 }
 
 
-# Read LabVIEW control/indicator "Setpoint M4" on "Test application DC_MC 2 controlllers.vi"
-record(ai, "$(P)Setpoint_M4_RBV")
+# Read LabVIEW control/indicator "Setpoint (mT) 4" on "Test application DC_MC 2 controlllers.vi"
+record(ai, "$(P)Setpoint_(mT)_4_RBV")
 {
-	field(DESC, "LabVIEW 'Setpoint M4'")
+	field(DESC, "LabVIEW 'Setpoint (mT) 4'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Setpoint_M4")
+    field(INP,  "@asyn(lvfp,0,0)Setpoint_(mT)_4")
     field(PREC, "3")
     field(SCAN, ".1 second")
 }
 
-# Write to LabVIEW control "Setpoint M4" on "Test application DC_MC 2 controlllers.vi"
-record(ao, "$(P)Setpoint_M4")
+# Write to LabVIEW control "Setpoint (mT) 4" on "Test application DC_MC 2 controlllers.vi"
+record(ao, "$(P)Setpoint_(mT)_4")
 {
-	field(DESC, "LabVIEW 'Setpoint M4'")
+	field(DESC, "LabVIEW 'Setpoint (mT) 4'")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)Setpoint_M4")
+    field(OUT,  "@asyn(lvfp,0,0)Setpoint_(mT)_4")
     field(PREC, "3")
 }
 

@@ -1,9 +1,33 @@
 # % macro, P, device prefix
 
-record(ai, "$(P)ANGLE")
+record(ai, "$(P)POSITION:SP:RBV")
 {
-   field(DTYP, "asynInt32")
-   field(INP,  "@asyn(lvfp,0,0)Angle")
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn(lvfp,0,0)SetPosition")
    field(PREC, "3")
    field(SCAN, "1 second")
+}
+
+record(ao, "$(P)POSITION:SP")
+{
+   field(DTYP, "asynFloat64")
+   field(OUT,  "@asyn(lvfp,0,0)SetPosition")
+   field(PREC, "3")
+}
+
+record(ai, "$(P)POSITION")
+{
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn(lvfp,0,0)Position")
+   field(PREC, "3")
+   field(SCAN, "1 second")
+}
+
+record(bi, "$(P)RUNNING")
+{
+   field(DTYP, "asynInt32")
+   field(INP,  "@asyn(lvfp,0,0)Running")
+   field(SCAN, ".1 second")
+   field(ZNAM, "NO")
+   field(ONAM, "YES")
 }

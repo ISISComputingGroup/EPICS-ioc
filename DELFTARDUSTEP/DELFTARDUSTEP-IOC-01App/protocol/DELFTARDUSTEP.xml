@@ -35,7 +35,7 @@
    <section name="frontpanel"> 
 
     <!-- path to LabVIEW vi file we are using, which is parsed using EPICS macEnvExpand() and so can contain EPICS environment variables -->
-    <vi path="D:/tud275856/Desktop/arduino stepper control/arduino stepper control/arduino stepper control.vi"> 
+    <vi path="D:\tud275856\Desktop\arduino stepper control\arduino stepper control.vi"> 
 
 	<!--
 	      <param> defines as asyn driver parameter that can be specified in an epics record to access data on the labview Vi. The <set>
@@ -48,9 +48,15 @@
 				  otherwise use extint="false"
 	  -->
 	
-      <param name="Angle" type="float64"> 
-        <read method="GCV" target="Angle" />
-        <!--set method="SCV" extint="false" target="Some Indicator" /-->
+      <param name="SetPosition" type="float64"> 
+        <read method="GCV" target="ToPosition" />
+        <set method="SCV" extint="true" target="ToPosition" post_button="Start" />
+      </param>
+      <param name="Position" type="float64"> 
+        <read method="GCV" target="Position [mm]" />
+      </param>
+      <param name="Running" type="boolean"> 
+        <read method="GCV" target="Running" />
       </param>
 
   </vi>

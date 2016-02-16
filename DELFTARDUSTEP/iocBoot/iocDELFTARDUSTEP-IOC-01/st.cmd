@@ -25,7 +25,7 @@ lvDCOMConfigure("lvfp", "frontpanel", "$(TOP)/data/DELFTARDUSTEP.xml", "", 1, ""
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/DELFTARDUSTEP-IOC-01.db","P=$(MYPVPREFIX)$(IOCNAME)")
+dbLoadRecords("db/DELFTARDUSTEP-IOC-01.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
