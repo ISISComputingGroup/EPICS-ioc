@@ -27,7 +27,7 @@ CAENx527ConfigureCreate "hv0", "127.0.0.1"
 
 ## Load our record instances
 #dbLoadRecords("db/xxx.db","user=faa59Host")
-CAENx527DbLoadRecords("P=$(MYPVPREFIX)")
+CAENx527DbLoadRecords("P=$(MYPVPREFIX)CAEN")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
