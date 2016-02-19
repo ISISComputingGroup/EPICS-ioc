@@ -44,7 +44,7 @@ $(APPNAME)_DBD += HVCAENx527.dbd
 
 # Add all the support libraries needed by this IOC
 ## Add other libraries here ##
-$(APPNAME)_LIBS += HVCAENx527Support
+$(APPNAME)_LIBS += HVCAENx527 HVCAENx527Summary
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += seqDev seq pv
