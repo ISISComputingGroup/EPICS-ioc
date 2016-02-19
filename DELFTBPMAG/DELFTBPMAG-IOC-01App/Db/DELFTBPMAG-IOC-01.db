@@ -1,4 +1,14 @@
-record(bo, "$(P)CONTROL:START")
+## asyn record for debugging etc.
+record(asyn, "$(P)$(Q)ASYNREC")
+{
+    field(DTYP, "asynRecordDevice")
+    field(PORT, "$(PORT)")
+## may need to set these?
+#	field(IEOS, ";")
+#	field(OEOS, "*")
+}
+
+record(bo, "$(P)$(Q)CONTROL:START")
 {
     field(DTYP, "stream")
     field(DESC, "Start Controlling")
@@ -7,7 +17,7 @@ record(bo, "$(P)CONTROL:START")
     info(archive, "VAL")
 }
 
-record(bo, "$(P)CONTROL:STOP")
+record(bo, "$(P)$(Q)CONTROL:STOP")
 {
     field(DTYP, "stream")
     field(DESC, "Stop Controlling")
@@ -16,7 +26,7 @@ record(bo, "$(P)CONTROL:STOP")
     info(archive, "VAL")
 }
 
-record(bo, "$(P)CONTROL:HOLD")
+record(bo, "$(P)$(Q)CONTROL:HOLD")
 {
     field(DTYP, "stream")
     field(DESC, "Hold digital control")
@@ -25,7 +35,7 @@ record(bo, "$(P)CONTROL:HOLD")
     info(archive, "VAL")
 }
 
-record(bo, "$(P)RESET")
+record(bo, "$(P)$(Q)RESET")
 {
     field(DTYP, "stream")
     field(DESC, "Reset")
@@ -34,7 +44,7 @@ record(bo, "$(P)RESET")
     info(archive, "VAL")
 }
 
-record(bo, "$(P)CONTROL:SETDEF")
+record(bo, "$(P)$(Q)CONTROL:SETDEF")
 {
     field(DTYP, "stream")
     field(DESC, "Restore control defaults")
@@ -43,7 +53,7 @@ record(bo, "$(P)CONTROL:SETDEF")
     info(archive, "VAL")
 }
 
-record(bo, "$(P)DAC:TOGGLE")
+record(bo, "$(P)$(Q)DAC:TOGGLE")
 {
     field(DTYP, "stream")
     field(DESC, "Toggle DAC")
@@ -52,7 +62,7 @@ record(bo, "$(P)DAC:TOGGLE")
     info(archive, "VAL")
 }
 
-record(mbbi, "$(P)STATUS")
+record(mbbi, "$(P)$(Q)STATUS")
 {
     field(DTYP, "stream")
     field(DESC, "Status")
@@ -68,7 +78,7 @@ record(mbbi, "$(P)STATUS")
     info(archive, "VAL")
 }
 
-record(mbbi, "$(P)MODE")
+record(mbbi, "$(P)$(Q)MODE")
 {
     field(DTYP, "stream")
     field(DESC, "Mode")
@@ -83,11 +93,11 @@ record(mbbi, "$(P)MODE")
 }
 
 # x and y fields are returned by device read, so this updates FIELD:Y too
-record(ai, "$(P)FIELD:X")
+record(ai, "$(P)$(Q)FIELD:X")
 {
     field(DTYP, "stream")
     field(DESC, "X field")
-    field(INP,  "@DELFTBPMAG.proto readFieldMeasurement($(P)FIELD:Y) $(PORT)")
+    field(INP,  "@DELFTBPMAG.proto readFieldMeasurement($(P)$(Q)FIELD:Y) $(PORT)")
 	field(EGU, "mT")
     field(SCAN, "1 second")
 	field(PREC, 3)
@@ -96,7 +106,7 @@ record(ai, "$(P)FIELD:X")
 }
 
 # updated by FIELD:X via protocol file
-record(ai, "$(P)FIELD:Y")
+record(ai, "$(P)$(Q)FIELD:Y")
 {
     field(DESC, "Y field")
 	field(EGU, "mT")
@@ -105,14 +115,14 @@ record(ai, "$(P)FIELD:Y")
     info(archive, "VAL")
 }
 
-record(longout, "$(P)KP:SP")
+record(longout, "$(P)$(Q)KP:SP")
 {
     field(DTYP, "stream")
     field(DESC, "Set P gain")
     field(OUT,  "@DELFTBPMAG.proto setPGain $(PORT)")
 }
 
-record(longin, "$(P)KP")
+record(longin, "$(P)$(Q)KP")
 {
     field(DTYP, "stream")
     field(DESC, "Read P gain")
@@ -120,14 +130,14 @@ record(longin, "$(P)KP")
     field(SCAN, "1 second")
 }
 
-record(longout, "$(P)KI:SP")
+record(longout, "$(P)$(Q)KI:SP")
 {
     field(DTYP, "stream")
     field(DESC, "Set I gain")
     field(OUT,  "@DELFTBPMAG.proto setIGain $(PORT)")
 }
 
-record(longin, "$(P)KI")
+record(longin, "$(P)$(Q)KI")
 {
     field(DTYP, "stream")
     field(DESC, "Read I gain")
@@ -135,14 +145,14 @@ record(longin, "$(P)KI")
     field(SCAN, "1 second")
 }
 
-record(longout, "$(P)KD:SP")
+record(longout, "$(P)$(Q)KD:SP")
 {
     field(DTYP, "stream")
     field(DESC, "Set D gain")
     field(OUT,  "@DELFTBPMAG.proto setDGain $(PORT)")
 }
 
-record(longin, "$(P)KD")
+record(longin, "$(P)$(Q)KD")
 {
     field(DTYP, "stream")
     field(DESC, "Read D gain")
@@ -150,7 +160,7 @@ record(longin, "$(P)KD")
     field(SCAN, "1 second")
 }
 
-record(longout, "$(P)SP1:SP")
+record(longout, "$(P)$(Q)SP1:SP")
 {
     field(DTYP, "stream")
     field(DESC, "Set setpoint 1")
@@ -158,7 +168,7 @@ record(longout, "$(P)SP1:SP")
 	field(EGU, "uT")
 }
 
-record(ai, "$(P)SP1")
+record(ai, "$(P)$(Q)SP1")
 {
     field(DTYP, "stream")
     field(DESC, "Read setpoint 1")
@@ -168,7 +178,7 @@ record(ai, "$(P)SP1")
     field(SCAN, "1 second")
 }
 
-record(longout, "$(P)SP2:SP")
+record(longout, "$(P)$(Q)SP2:SP")
 {
     field(DTYP, "stream")
     field(DESC, "Set setpoint 2")
@@ -176,7 +186,7 @@ record(longout, "$(P)SP2:SP")
 	field(EGU, "uT")
 }
 
-record(ai, "$(P)SP2")
+record(ai, "$(P)$(Q)SP2")
 {
     field(DTYP, "stream")
     field(DESC, "Read setpoint 2")
@@ -186,7 +196,7 @@ record(ai, "$(P)SP2")
     field(SCAN, "1 second")
 }
 
-record(longout, "$(P)SP3:SP")
+record(longout, "$(P)$(Q)SP3:SP")
 {
     field(DTYP, "stream")
     field(DESC, "Set setpoint 3")
@@ -194,7 +204,7 @@ record(longout, "$(P)SP3:SP")
 	field(EGU, "uT")
 }
 
-record(ai, "$(P)SP3")
+record(ai, "$(P)$(Q)SP3")
 {
     field(DTYP, "stream")
     field(DESC, "Read setpoint 3")
@@ -204,7 +214,7 @@ record(ai, "$(P)SP3")
     field(SCAN, "1 second")
 }
 
-record(longout, "$(P)SP4:SP")
+record(longout, "$(P)$(Q)SP4:SP")
 {
     field(DTYP, "stream")
     field(DESC, "Set setpoint 4")
@@ -212,7 +222,7 @@ record(longout, "$(P)SP4:SP")
 	field(EGU, "uT")
 }
 
-record(ai, "$(P)SP4")
+record(ai, "$(P)$(Q)SP4")
 {
     field(DTYP, "stream")
     field(DESC, "Read setpoint 4")
@@ -222,7 +232,7 @@ record(ai, "$(P)SP4")
     field(SCAN, "1 second")
 }
 
-record(longout, "$(P)MAXB:SP")
+record(longout, "$(P)$(Q)MAXB:SP")
 {
     field(DTYP, "stream")
     field(DESC, "Set maxb")
@@ -230,7 +240,7 @@ record(longout, "$(P)MAXB:SP")
 	field(EGU, "uT")
 }
 
-record(ai, "$(P)MAXB")
+record(ai, "$(P)$(Q)MAXB")
 {
     field(DTYP, "stream")
     field(DESC, "Read maxb")
@@ -240,7 +250,7 @@ record(ai, "$(P)MAXB")
     field(SCAN, "1 second")
 }
 
-record(longin, "$(P)SPR")
+record(longin, "$(P)$(Q)SPR")
 {
     field(DTYP, "stream")
     field(DESC, "Set point reached")

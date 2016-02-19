@@ -25,6 +25,10 @@ asynSetOption("L0", -1, "baud", "9600")
 asynSetOption("L0", -1, "bits", "8")
 asynSetOption("L0", -1, "parity", "none")
 asynSetOption("L0", -1, "stop", "1")
+asynOctetSetInputEos("L0", -1, ";") 
+asynOctetSetOutputEos("L0", -1, "*") 
+#asynSetTraceIOMask("L0",-1,0x2) 
+#asynSetTraceMask("L0",-1,0x9) 
 
 ## Load record instances
 
@@ -32,7 +36,7 @@ asynSetOption("L0", -1, "stop", "1")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/DELFTBPMAG-IOC-01.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0")
+dbLoadRecords("db/DELFTBPMAG-IOC-01.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,PORT=L0")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

@@ -1,6 +1,7 @@
-InTerminator = ';';
-OutTerminator = '*';
-ReplyTimeout = 10000;
+# termination done by asyn
+#InTerminator = ';';
+#OutTerminator = '*';
+#ReplyTimeout = 10000;
 
 #     ExtraInput = Ignore;
 
