@@ -1,0 +1,354 @@
+# Activities needed and their associated PVs
+# Reset				Write	$(P)RESET, uses the protocol file
+# Interlock Status	Read	$(P)ILK
+# Power				Read	$(P)POWER directly, and alias to $(P)POWER:RBV
+#					Write	$(P)POWER:SP, and alias to $(P)POWER:SP:RBV
+# Voltage			Read	$(P)VOLT, and alias to $(P)VOLT:RBV
+# Current Out		Read	$(P)CURR, and alias to $(P)CURR:RBV
+# Remote Mode		Write	(P)REMOTE, there is a PINI to set to REMOTE
+# Polarity			Read	$(P)POL, and alias to $(P)POL:RBV
+#					Write	$(P)POL:SP, and alias to $(P)POL:SP:RBV
+# Field Unit		Read	The unit currently being displayed, Oersted, Tesla or Gauss, $(P):FIELD:UNIT aliased to $(P)
+# 					Write	$(P)FIELD:UNIT:SP aliased to $(P)FIELD:UNIT:SP:RBV
+# Field				Read	Converted raw current value to field value, $(P)FIELD aliased to $(P)FIELD:RBV
+#					Write	$(P)FIELD:SP aliased to $(P)FIELD:SP:RBV, this is converted and sent to $(P)SETIRAW for writing to the device
+
+# Records copied so that they can be simmed, disabled, etc.
+record(bo, "$(P)RESET")
+{
+    field(DESC, "Reset")
+    field(DTYP, "stream")
+    field(OUT, "@mps8000-232.proto reset $(port) 0")
+    field(ZNAM, "Reset")
+    field(ONAM, "Reset")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RESET")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)ILK")
+{
+    field(DESC, "Interlocks")
+    field(INP,  "$(P)STA2.BE MS")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(mbbiDirect, "$(P)STA2")
+{
+    field(DESC, "Status")
+}
+
+record(calcout, "$(P)CALSTA2")
+{
+    field(DESC, "Status bits 9-24")
+    field(OUT,  "$(P)STA2 PP MS")
+    field(CALC, "A&B")
+    field(INPA, "$(P)STA MS")
+    field(INPB, "65535")
+    field(FLNK, "$(P)CALPOWER")
+    field(EGU, "")
+}
+
+record(ai, "$(P)STA")
+{
+    field(DESC, "Status")
+    field(DTYP, "stream")
+    field(INP,  "@mps8000-232.proto status(1) $(port) 0")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)CALSTA1")
+    field(PREC, "0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STA")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "")
+}
+
+record(calcout, "$(P)CALPOWER")
+{
+    field(DESC, "Status bit1")
+    field(OUT,  "$(P)POWER PP MS")
+    field(CALC, "A?0:1")
+    field(INPA, "$(P)STA1.B7 MS")
+    field(FLNK, "$(P)ILK")
+    field(EGU, "")
+}
+
+record(calcout, "$(P)CALSTA1")
+{
+    field(DESC, "Status bits 1-8")
+    field(OUT,  "$(P)STA1 PP MS")
+    field(CALC, "(A>>B)&C")
+    field(INPA, "$(P)STA MS")
+    field(INPB, "16")
+    field(INPC, "255")
+    field(FLNK, "$(P)CALSTA2")
+    field(EGU, "")
+}
+
+record(bi, "$(P)POWER")
+{
+    field(DESC, "Power")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)POWER", "$(P)POWER:RBV")
+
+record(mbbiDirect, "$(P)STA1")
+{
+    field(DESC, "Status")
+    field(NOBT, "8")
+}
+
+record(bo, "$(P)POWER:SP")
+{
+    field(DESC, "Main Power")
+    field(DTYP, "stream")
+    field(OUT, "@mps8000-232.proto power $(port) 0")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POWER:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+alias("$(P)POWER:SP", "$(P)POWER:SP:RBV")
+
+record(ai, "$(P)VOLT")
+{
+    field(DESC, "ADC Channel 2 - VOTLAGE")
+    field(DTYP, "stream")
+    field(INP,  "@mps8000-232.proto adc(2) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOLO, "-0.5")
+    field(HIHI, "999.5")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+    field(HOPR, "1000")
+    field(LOPR, "0")
+    field(PREC, "0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "V")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)VOLT", "$(P)VOLT:RBV")
+
+record(ai, "$(P)CURR")
+{
+    field(DESC, "ADC Channel 8")
+    field(DTYP, "stream")
+    field(INP,  "@mps8000-232.proto adc(8) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOLO, "-99999.5")
+    field(HIHI, "99999.5")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+    field(HOPR, "100000")
+    field(LOPR, "0")
+    field(PREC, "0")
+    field(FLNK, "$(P)FIELD:PRECALIB")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURR")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "A")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)CURR", "$(P)CURR:RBV")
+
+record(bo, "$(P)REMOTE")
+{
+    field(DESC, "Command Line")
+    field(DTYP, "stream")
+    field(OUT, "@mps8000-232.proto setcmd $(port) 0")
+    field(ZNAM, "Local")
+    field(ONAM, "Remote")
+    field(DOL, "1")
+    field(PINI, "YES")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:REMOTE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)POL")
+{
+    field(DESC, "Polarity")
+    field(DTYP, "stream")
+    field(INP, "@mps8000-232.proto getpol $(port) 0")
+    field(ZNAM, "+")
+    field(ONAM, "-")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POL")
+    field(SDIS, "$(P)DISABLE")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)POL", "$(P)POL:RBV")
+
+record(bo, "$(P)POL:SP")
+{
+    field(DESC, "Polarity")
+    field(DTYP, "stream")
+    field(OUT, "@mps8000-232.proto setpol $(port) 0")
+    field(ZNAM, "+")
+    field(ONAM, "-")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POL:SP")
+    field(EGU, "")
+}
+alias("$(P)POL:SP", "$(P)POL:SP:RBV")
+
+record(ao, "$(P)SETIRAW")
+{
+    field(DESC, "Set Output Current")
+    field(EGU,  "mA")
+    field(DTYP, "stream")
+    field(OUT,  "@mps8000-232.proto wrdac(0) $(port) 0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SETIRAW)
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "")
+}
+
+record(mbbo, "$(P)FIELD:UNIT") {
+    field(DESC, "Field Unit to Display")
+    field(ZRVL, 0)
+    field(ONVL, 1)
+    field(TWVL, 2)
+    field(ZRST, "Oersted")
+    field(ONST, "Gauss")
+    field(TWST, "Tesla")
+    field(FLNK, "$(P)FIELD:TOUNIT")
+    field(EGU, "")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)FIELD:UNIT", "$(P)FIELD:UNIT:RBV")
+alias("$(P)FIELD:UNIT", "$(P)FIELD:UNIT:SP")
+alias("$(P)FIELD:UNIT:SP", "$(P)FIELD:UNIT:SP:RBV")
+
+record(ai, "$(P)FIELD"){
+    field(INP, "$(P)FIELD:TOUNIT PP MS")
+    field(EGU, "$(P)FIELD:UNIT")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)FIELD", "$(P)FIELD:RBV")
+
+record(calc, "$(P)FIELD:TOUNIT"){
+    field(INPA, "$(P)FIELD:UNIT PP")
+    field(INPB, "$(P)FIELD:CALIB PP")
+    field(CALC, "A==2?B/10000:B")
+    field(FLNK, "$(P)FIELD")
+    field(EGU, "$(P)FIELD:UNIT")
+}
+
+record(cvt, "$(P)FIELD:CALIB"){
+    field(INPX, "$(P)CURR")
+    field(Y, 1)
+    field(METH, "1D TABLE")
+    field(DRVL, 0)
+    field(DRVH, 50000000000)
+    field(SPEC, "$(CFILE)")
+    field(TDIR, "$(CDIR)")
+    field(FLNK, "$(P)FIELD:TOUNIT")
+    field(EGU, "")
+}
+
+record(calc, "$(P)FIELD:PRECALIB"){
+    field(INPA, "$(P)CURR")
+    field(CALC, "A*1000000")
+    field(FLNK, "$(P)FIELD:CALIB")
+    field(EGU, "")
+}
+
+record(ao, "$(P)FIELD:SP") {
+    field(FLNK, "$(P)FIELD:SP:FROMUNIT")
+    field(EGU, "$(P)FIELD:UNIT")
+}
+alias("$(P)FIELD:SP", "$(P)FIELD:SP:RBV")
+
+record(calc, "$(P)FIELD:SP:FROMUNIT"){
+    field(INPA, "$(P)FIELD:UNIT PP")
+    field(INPB, "$(P)FIELD:SP PP")
+    field(CALC, "A==2?B*10000:B")
+    field(FLNK, "$(P)FIELD:SP:CALIB")
+    field(EGU, "Oersted")
+}
+
+record(cvt, "$(P)FIELD:SP:CALIB"){
+    field(INPY, "$(P)FIELD:SP:FROMUNIT")
+    field(X, 1)
+    field(METH, "1D TABLE INVERTED")
+    field(DRVL, 0)
+    field(DRVH, 50000000000)
+    field(SPEC, "$(CFILE)")
+    field(TDIR, "$(CDIR)")
+    field(OUT, "$(P)SETIRAW")
+    field(FLNK, "$(P)SETIRAW")
+    field(EGU, "")
+}
+
+record(bo, "$(P)SIM") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bo, "$(P)SIM:RESET"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "")
+}
+
+record(ao, "$(P)SIM:STA"){
+    field(DTYP, "Soft Channel")
+    field(VAL, 0)
+    field(EGU, "")
+}
+#The STA SIM and POWER:SP SIM could do with linking, but hey, it's a difficult relationship
+record(bo, "$(P)SIM:POWER:SP"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "")
+}
+
+record(ao, "$(P)SIM:VOLT"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "V")
+}
+
+record(ao, "$(P)SIM:CURR"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "A")
+}
+alias("$(P)SIM:CURR", "$(P)SIM:SETIRAW")
+
+record(bo, "$(P)SIM:REMOTE"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "")
+}
+
+record(bo, "$(P)SIM:POL"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "")
+}
+alias("$(P)SIM:POL", "$(P)SIM:POL:SP")
+
+record(bo, "$(P)DISABLE") 
+{
+  field(DESC, "Disable comms")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(OMSL, "supervisory")
+  field(ZNAM, "COMMS ENABLED")
+  field(ONAM, "COMMS DISABLED")
+}
