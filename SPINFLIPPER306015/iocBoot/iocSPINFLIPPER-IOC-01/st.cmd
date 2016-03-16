@@ -11,7 +11,7 @@ errlogInit2(65536, 256)
 cd ${TOP}
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/SPINFLIPPER-IOC-01App/protocol"
-epicsEnvSet "TTY" "$(TTY=COM17)"
+epicsEnvSet "TTY" "$(TTY=COM19)"
 
 ## Register all support components
 dbLoadDatabase "dbd/SPINFLIPPER-IOC-01.dbd"
@@ -25,6 +25,12 @@ asynSetOption("L0", -1, "baud", "9600")
 asynSetOption("L0", -1, "bits", "8")
 asynSetOption("L0", -1, "parity", "none")
 asynSetOption("L0", -1, "stop", "1")
+asynSetOption("L0", -1, "crtscts", "N")
+
+asynOctetSetInputEos("L0", -1, ";")
+asynOctetSetOutputEos("L0", -1, "*")
+
+#asynSetTraceMask("L0",-1,0x9) 
 
 ## Load record instances
 

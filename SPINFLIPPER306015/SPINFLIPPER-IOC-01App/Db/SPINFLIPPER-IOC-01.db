@@ -1,105 +1,145 @@
 record(ai, "$(P)TGUI")
 {
-    field (DTYP, "stream")
+    field(DTYP, "stream")
     field(DESC, "The guide temperature")
     field(INP,  "@SPINFLIPPER.proto readGuideTemp $(PORT)")
     field(EGU, "C")
-    field(SCAN, "5")
+    field(SCAN, "1 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
 
 record(ai, "$(P)MAXTGUI")
 {
-    field (DTYP, "stream")
+    field(DTYP, "stream")
     field(DESC, "The maximum guide temperature")
     field(INP,  "@SPINFLIPPER.proto readMaxGuideTemp $(PORT)")
     field(EGU, "C")
-    field(SCAN, "5")
+    field(SCAN, "2 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
 
+record(ao, "$(P)MAXTGUI:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Set the max guide temperature")
+    field(OUT,  "@SPINFLIPPER.proto writeMaxGuideTemp $(PORT)")
+    field(EGU, "C")
+    info(INTEREST, "MEDIUM")
+}
+
 record(ai, "$(P)TCOIL")
 {
-    field (DTYP, "stream")
+    field(DTYP, "stream")
     field(DESC, "The coil temperature")
     field(INP,  "@SPINFLIPPER.proto readCoilTemp $(PORT)")
     field(EGU, "C")
-    field(SCAN, "5")
+    field(SCAN, "1 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
 
 record(ai, "$(P)MAXTCOIL")
 {
-    field (DTYP, "stream")
+    field(DTYP, "stream")
     field(DESC, "The maximum coil temperature")
     field(INP,  "@SPINFLIPPER.proto readMaxCoilTemp $(PORT)")
     field(EGU, "C")
-    field(SCAN, "5")
+    field(SCAN, "2 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
 
-record(stringin, "$(P)FLIPSTATE")
+record(ao, "$(P)MAXTCOIL:SP")
 {
-    field (DTYP, "stream")
-    field(DESC, "The current status of the flipper")
+    field(DTYP, "stream")
+    field(DESC, "Set the max coil temperature")
+    field(OUT,  "@SPINFLIPPER.proto writeMaxCoilTemp $(PORT)")
+    field(EGU, "C")
+    info(INTEREST, "MEDIUM")
+}
+
+record(bi, "$(P)FLIPSTATE")
+{
+    field(DTYP, "stream")
+    field(DESC, "Whether the flipper is on or off")
     field(INP,  "@SPINFLIPPER.proto readFlipState $(PORT)")
-    field(SCAN, "5")
+    field(SCAN, "1 second")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+}
+
+record(bo, "$(P)FLIPSTATE:SP") 
+{
+    field(DTYP, "stream")
+    field(DESC, "Sets whether the flipper is on or off")
+    field(OUT,  "@SPINFLIPPER.proto toggleFlipState $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(INTEREST, "MEDIUM")  
 }
 
 record(ai, "$(P)FLIPCURR")
 {
-    field (DTYP, "stream")
+    field(DTYP, "stream")
     field(DESC, "The flip current")
     field(INP,  "@SPINFLIPPER.proto readFlipCurrent $(PORT)")
     field(EGU, "I")
-    field(SCAN, "5")
+    field(SCAN, "1 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
 
+record(ao, "$(P)FLIPCURR:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Set the RMS flip current")
+    field(OUT,  "@SPINFLIPPER.proto writeRmsFlipCurrent $(PORT)")
+    field(EGU, "I")
+    info(INTEREST, "MEDIUM")
+}
+
 record(ai, "$(P)FLIPCURR:SP:RB")
 {
-    field (DTYP, "stream")
+    field(DTYP, "stream")
     field(DESC, "The flip current setpoint")
     field(INP,  "@SPINFLIPPER.proto readFlipCurrentSetpoint $(PORT)")
     field(EGU, "I")
-    field(SCAN, "5")
+    field(SCAN, "2 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
 
 record(ai, "$(P)FLIPFREQ")
 {
-    field (DTYP, "stream")
+    field(DTYP, "stream")
     field(DESC, "The flip frequency")
     field(INP,  "@SPINFLIPPER.proto readFlipFreq $(PORT)")
     field(EGU, "Hz")
-    field(SCAN, "5")
+    field(SCAN, "2 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
 
 record(stringin, "$(P)ALARM")
 {
-    field (DTYP, "stream")
+    field(DTYP, "stream")
     field(DESC, "The current alarm status of the flipper")
     field(INP,  "@SPINFLIPPER.proto readAlarmState $(PORT)")
-    field(SCAN, "5")
+    field(SCAN, "2 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
 
 record(stringin, "$(P)MODE")
 {
-    field (DTYP, "stream")
+    field(DTYP, "stream")
     field(DESC, "The current mode of the flipper")
     field(INP,  "@SPINFLIPPER.proto readMode $(PORT)")
-    field(SCAN, "5")
+    field(SCAN, "2 second")
 }
+
 
