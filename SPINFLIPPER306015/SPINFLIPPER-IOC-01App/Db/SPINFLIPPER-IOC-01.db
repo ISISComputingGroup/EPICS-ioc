@@ -124,22 +124,37 @@ record(ai, "$(P)FLIPFREQ")
     info(archive, "VAL")
 }
 
-record(stringin, "$(P)ALARM")
+record(mbbi, "$(P)ALARM")
 {
     field(DTYP, "stream")
     field(DESC, "The current alarm status of the flipper")
     field(INP,  "@SPINFLIPPER.proto readAlarmState $(PORT)")
     field(SCAN, "2 second")
+    field(ZRST, "NO ALARM")
+    field(ONST, "EMERGENCY STOP")
+    field(TWST, "MAX COIL TEMP")
+    field(THST, "MAX GUID TEMP")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
 
-record(stringin, "$(P)MODE")
+record(bi, "$(P)MODE")
 {
     field(DTYP, "stream")
-    field(DESC, "The current mode of the flipper")
+    field(DESC, "Whether the flipper is in local or remote mode")
     field(INP,  "@SPINFLIPPER.proto readMode $(PORT)")
     field(SCAN, "2 second")
+    field(ZNAM, "LOCAL")
+    field(ONAM, "REMOTE")
+}
+
+record(bo, "$(P)RESET:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Resets the flipper")
+    field(OUT,  "@SPINFLIPPER.proto reset $(PORT)")
+    field(ZNAM, "READY")
+    field(ONAM, "YES")
 }
 
 

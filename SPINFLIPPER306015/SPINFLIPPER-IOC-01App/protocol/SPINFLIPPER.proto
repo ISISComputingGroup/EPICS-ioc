@@ -52,13 +52,13 @@ readFlipFreq {
 
 readAlarmState {
     out "ALRM";
-    in "%s";
+    in "%{-|S|C|G}";
     ExtraInput = Ignore;
 }
 
 readMode {
     out "MODE";
-    in "%s";
+    in "%{LOCAL|REMOTE}";
     ExtraInput = Ignore;
 }
 
@@ -88,6 +88,6 @@ toggleFlipState {
 
 reset {
     out "RSET";
-    in "READY";
+    in "%{READY|YES}";
     ExtraInput = Ignore;
 }
