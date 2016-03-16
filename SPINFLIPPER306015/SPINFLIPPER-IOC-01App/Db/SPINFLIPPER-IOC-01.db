@@ -1,3 +1,21 @@
+record(bo, "$(P)SIM")
+{
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(FLNK, "$(P)VERSION")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
 record(ai, "$(P)TGUI")
 {
     field(DTYP, "stream")
@@ -7,6 +25,9 @@ record(ai, "$(P)TGUI")
     field(SCAN, "1 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:TGUI")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)MAXTGUI")
@@ -18,6 +39,9 @@ record(ai, "$(P)MAXTGUI")
     field(SCAN, "2 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:MAXTGUI")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)MAXTGUI:SP")
@@ -27,7 +51,12 @@ record(ao, "$(P)MAXTGUI:SP")
     field(OUT,  "@SPINFLIPPER.proto writeMaxGuideTemp $(PORT)")
     field(EGU, "C")
     info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:MAXTGUI:SP")
+    field(SDIS, "$(P)DISABLE")
 }
+
+alias("$(P)MAXTGUI:SP","$(P)MAXTGUI:SP:RBV")
 
 record(ai, "$(P)TCOIL")
 {
@@ -38,6 +67,9 @@ record(ai, "$(P)TCOIL")
     field(SCAN, "1 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:TCOIL")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)MAXTCOIL")
@@ -49,6 +81,9 @@ record(ai, "$(P)MAXTCOIL")
     field(SCAN, "2 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:MAXTCOIL")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)MAXTCOIL:SP")
@@ -58,7 +93,12 @@ record(ao, "$(P)MAXTCOIL:SP")
     field(OUT,  "@SPINFLIPPER.proto writeMaxCoilTemp $(PORT)")
     field(EGU, "C")
     info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:MAXTCOIL:SP")
+    field(SDIS, "$(P)DISABLE")
 }
+
+alias("$(P)MAXTCOIL:SP","$(P)MAXTCOIL:SP:RBV")
 
 record(bi, "$(P)FLIPSTATE")
 {
@@ -70,6 +110,9 @@ record(bi, "$(P)FLIPSTATE")
     field(ONAM, "ON")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:FLIPSTATE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)FLIPSTATE:SP") 
@@ -79,8 +122,13 @@ record(bo, "$(P)FLIPSTATE:SP")
     field(OUT,  "@SPINFLIPPER.proto toggleFlipState $(PORT)")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-    info(INTEREST, "MEDIUM")  
+    info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:FLIPSTATE:SP")
+    field(SDIS, "$(P)DISABLE")    
 }
+
+alias("$(P)FLIPSTATE:SP","$(P)FLIPSTATE:SP:RBV")
 
 record(ai, "$(P)FLIPCURR")
 {
@@ -91,6 +139,9 @@ record(ai, "$(P)FLIPCURR")
     field(SCAN, "1 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:FLIPCURR")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)FLIPCURR:SP")
@@ -100,9 +151,12 @@ record(ao, "$(P)FLIPCURR:SP")
     field(OUT,  "@SPINFLIPPER.proto writeRmsFlipCurrent $(PORT)")
     field(EGU, "I")
     info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:FLIPCURR:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)FLIPCURR:SP:RB")
+record(ai, "$(P)FLIPCURR:SP:RBV")
 {
     field(DTYP, "stream")
     field(DESC, "The flip current setpoint")
@@ -111,6 +165,9 @@ record(ai, "$(P)FLIPCURR:SP:RB")
     field(SCAN, "2 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:FLIPCURR:SP:RB")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)FLIPFREQ")
@@ -122,6 +179,9 @@ record(ai, "$(P)FLIPFREQ")
     field(SCAN, "2 second")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:FLIPFREQ")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbi, "$(P)ALARM")
@@ -136,6 +196,9 @@ record(mbbi, "$(P)ALARM")
     field(THST, "MAX GUID TEMP")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:ALARM")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bi, "$(P)MODE")
@@ -146,6 +209,9 @@ record(bi, "$(P)MODE")
     field(SCAN, "2 second")
     field(ZNAM, "LOCAL")
     field(ONAM, "REMOTE")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:MODE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)RESET:SP")
@@ -155,6 +221,91 @@ record(bo, "$(P)RESET:SP")
     field(OUT,  "@SPINFLIPPER.proto reset $(PORT)")
     field(ZNAM, "READY")
     field(ONAM, "YES")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:RESET:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
+### SIMULATION RECORDS ###
 
+record(ai, "$(P)SIM:TGUI")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "21")
+}
+
+record(ai, "$(P)SIM:MAXTGUI")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "50")
+}
+
+alias("$(P)SIM:MAXTGUI","$(P)SIM:MAXTGUI:SP")
+
+alias("$(P)SIM:MAXTGUI","$(P)SIM:MAXTGUI:SP:RBV")
+
+record(ai, "$(P)SIM:TCOIL")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "31")
+}
+
+record(ai, "$(P)SIM:MAXTCOIL")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "49")
+}
+
+alias("$(P)SIM:MAXTCOIL","$(P)SIM:MAXTCOIL:SP")
+
+alias("$(P)SIM:MAXTCOIL","$(P)SIM:MAXTCOIL:SP:RBV")
+
+record(bi, "$(P)SIM:FLIPSTATE")
+{
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+alias("$(P)SIM:FLIPSTATE","$(P)SIM:FLIPSTATE:SP")
+
+alias("$(P)SIM:FLIPSTATE","$(P)SIM:FLIPSTATE:SP:RBV")
+
+record(ai, "$(P)SIM:FLIPCURR")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "6")
+}
+
+alias("$(P)SIM:FLIPCURR","$(P)SIM:FLIPCURR:SP")
+
+alias("$(P)SIM:FLIPCURR","$(P)SIM:FLIPCURR:SP:RBV")
+
+record(ai, "$(P)SIM:FLIPFREQ")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "0")
+}
+
+record(mbbi, "$(P)SIM:ALARM")
+{
+    field(DTYP, "Soft Channel")
+    field(ZRST, "NO ALARM")
+    field(ONST, "EMERGENCY STOP")
+    field(TWST, "MAX COIL TEMP")
+    field(THST, "MAX GUID TEMP")
+}
+
+record(bi, "$(P)SIM:MODE")
+{
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "LOCAL")
+    field(ONAM, "REMOTE")
+}
+
+record(bo, "$(P)SIM:RESET:SP")
+{
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "READY")
+    field(ONAM, "YES")
+}
