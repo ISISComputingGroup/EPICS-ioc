@@ -1,0 +1,174 @@
+record(bo, "$(P)SIM") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+  field(DESC, "Disable comms")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(OMSL, "supervisory")
+  field(ZNAM, "COMMS ENABLED")
+  field(ONAM, "COMMS DISABLED")
+}
+
+record(bo, "$(P)RESET")
+{
+    field(DESC, "Reset")
+    field(DTYP, "stream")
+    field(OUT, "@TDK_Lambda_Genesys.proto reset $(port)")
+    field(ZNAM, "Reset")
+    field(ONAM, "Reset")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RESET")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)SIM:RESET"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "")
+}
+
+record(bo, "$(P)REMOTE")
+{
+    field(DESC, "Command Line")
+    field(DTYP, "stream")
+    field(OUT, "@TDK_Lambda_Genesys.proto remote $(port)")
+    field(ZNAM, "Local")
+    field(ONAM, "Remote")
+    field(DOL, "1")
+    field(PINI, "YES")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:REMOTE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)SIM:REMOTE"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "")
+}
+
+record(ai, "$(P)VOLT") {
+    field(SCAN, "1 second")
+    field(DESC, "Actual voltage out")
+    field(DTYP, "stream")
+    field(OUT, "@TDK_Lambda_Genesys.proto volt $(port)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "V")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")    
+}
+
+record(ao, "$(P)VOLT:SP") {
+    field(SCAN, "Passive")
+    field(DESC, "Set voltage out")
+    field(DTYP, "stream")
+    field(OUT, "@TDK_Lambda_Genesys.proto voltsp $(port)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:SP")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "V")
+}
+
+record(ai, "$(P)VOLT:SP:RBV") {
+    field(SCAN, "1 second")
+    field(DESC, "Voltage out setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@TDK_Lambda_Genesys.proto voltsprbv $(port)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "V")
+}
+
+record(ao, "$(P)SIM:VOLT"){
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:VOLT", "$(P)SIM:VOLT:SP")
+alias("$(P)SIM:VOLT", "$(P)SIM:VOLT:SP:RBV")
+
+record(ai, "$(P)CURRENT") {
+    field(SCAN, "1 second")
+    field(DESC, "Actual current out")
+    field(DTYP, "stream")
+    field(OUT, "@TDK_Lambda_Genesys.proto current $(port)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURRENT")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "V")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")    
+}
+
+record(ao, "$(P)CURRENT:SP") {
+    field(SCAN, "Passive")
+    field(DESC, "Set current out")
+    field(DTYP, "stream")
+    field(OUT, "@TDK_Lambda_Genesys.proto currentsp $(port)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURRENT:SP")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "V")
+}
+
+record(ai, "$(P)CURRENT:SP:RBV") {
+    field(SCAN, "1 second")
+    field(DESC, "Current out setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@TDK_Lambda_Genesys.proto currentsprbv $(port)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURRENT:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "V")
+}
+
+record(ao, "$(P)SIM:CURRENT"){
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:CURRENT", "$(P)SIM:CURRENT:SP")
+alias("$(P)SIM:CURRENT", "$(P)SIM:CURRENT:SP:RBV")
+
+
+record(bi, "$(P)POWER")
+{
+    field(SCAN, "1 second")
+    field(DESC, "Power")
+    field(DTYP, "stream")
+    field(OUT, "@TDK_Lambda_Genesys.proto power $(port)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POWER:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)POWER", "$(P)POWER:RBV")
+
+record(bo, "$(P)POWER:SP")
+{
+    field(SCAN, "Passive")
+    field(DESC, "Main Power")
+    field(DTYP, "stream")
+    field(OUT, "@TDK_Lambda_Genesys.proto powersp $(port)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POWER:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+alias("$(P)POWER:SP", "$(P)POWER:SP:RBV")
+
+record(bo, "$(P)SIM:POWER"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "")
+}
+alias("$(P)SIM:POWER", "$(P)SIM:POWER:SP")
