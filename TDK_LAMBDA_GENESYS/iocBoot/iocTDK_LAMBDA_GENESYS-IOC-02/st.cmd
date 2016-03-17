@@ -35,7 +35,7 @@ asynOctetSetOutputEos("L0", -1, "\r")
 
 ## Load our record instances
 #dbLoadRecords("db/xxx.db","user=kvlb23Host")
-
+dbLoadRecords("db/TDK_Lambda_Genesys.db", "P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
