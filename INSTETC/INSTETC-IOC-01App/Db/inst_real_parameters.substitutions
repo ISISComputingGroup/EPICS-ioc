@@ -34,20 +34,20 @@
 #10,Sample Detector Distance,Real,m,sdd
 #11,Journal Blocks,String,,jblocks
 
-pattern { P, Q, DESC, UNITS, OUT }
-    { "\$(P)", "PARS:SAMPLE:WIDTH", "Sample Width", "mm", "DAE:SAMPLEPAR:SP" }
-    { "\$(P)", "PARS:SAMPLE:HEIGHT", "Sample Height", "mm", "DAE:SAMPLEPAR:SP" }
-    { "\$(P)", "PARS:SAMPLE:THICK", "Sample Thickness", "mm", "DAE:SAMPLEPAR:SP" }
-    { "\$(P)", "PARS:SAMPLE:PHI", "Sample Phi Angle", "", "DAE:SAMPLEPAR:SP" }
-    { "\$(P)", "PARS:SAMPLE:AOI", "Angle of Incidence", "", "DAE:SAMPLEPAR:SP" }
-    { "\$(P)", "PARS:BL:L1", "Primary Flight Path (L1)", "m", "DAE:BEAMLINEPAR:SP" }
-    { "\$(P)", "PARS:BL:A1", "Aperture 1 Diameter", "mm", "DAE:BEAMLINEPAR:SP" }
-    { "\$(P)", "PARS:BL:A2", "Aperture 2 Diameter", "mm", "DAE:BEAMLINEPAR:SP" }
-    { "\$(P)", "PARS:BL:A3", "Aperture 3 Diameter", "mm", "DAE:BEAMLINEPAR:SP" }
-    { "\$(P)", "PARS:BL:FOEMIRROR", "FOE Mirror Angle", "", "DAE:BEAMLINEPAR:SP" }
-    { "\$(P)", "PARS:BL:BCX", "Beam Centre X", "mm", "DAE:BEAMLINEPAR:SP" }
-    { "\$(P)", "PARS:BL:BCY", "Beam Centre Y", "mm", "DAE:BEAMLINEPAR:SP" }
-    { "\$(P)", "PARS:BL:SDD", "Sample Detector Distance", "m", "DAE:BEAMLINEPAR:SP" }
-    { "\$(P)", "PARS:BL:CHOPEN:ANG", "Chopper Opening Angle", "", "DAE:BEAMLINEPAR:SP" }
+pattern { P, Q, DESC, CATEGORY, UNITS, OUT }
+    { "\$(P)", "PARS:SAMPLE:WIDTH", "Sample Width", "SAMPLEPAR", "mm", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:SAMPLE:HEIGHT", "Sample Height", "SAMPLEPAR", "mm", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:SAMPLE:THICK", "Sample Thickness", "SAMPLEPAR", "mm", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:SAMPLE:PHI", "Sample Phi Angle", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:SAMPLE:AOI", "Angle of Incidence", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:BL:L1", "Primary Flight Path (L1)", "BEAMLINEPAR", "m", "DAE:BEAMLINEPAR:SP" }
+    { "\$(P)", "PARS:BL:A1", "Aperture 1 Diameter", "BEAMLINEPAR", "mm", "DAE:BEAMLINEPAR:SP" }
+    { "\$(P)", "PARS:BL:A2", "Aperture 2 Diameter", "BEAMLINEPAR", "mm", "DAE:BEAMLINEPAR:SP" }
+    { "\$(P)", "PARS:BL:A3", "Aperture 3 Diameter", "BEAMLINEPAR", "mm", "DAE:BEAMLINEPAR:SP" }
+    { "\$(P)", "PARS:BL:FOEMIRROR", "FOE Mirror Angle", "BEAMLINEPAR", "", "DAE:BEAMLINEPAR:SP" }
+    { "\$(P)", "PARS:BL:BCX", "Beam Centre X", "BEAMLINEPAR", "mm", "DAE:BEAMLINEPAR:SP" }
+    { "\$(P)", "PARS:BL:BCY", "Beam Centre Y", "BEAMLINEPAR", "mm", "DAE:BEAMLINEPAR:SP" }
+    { "\$(P)", "PARS:BL:SDD", "Sample Detector Distance", "BEAMLINEPAR", "m", "DAE:BEAMLINEPAR:SP" }
+    { "\$(P)", "PARS:BL:CHOPEN:ANG", "Chopper Opening Angle", "BEAMLINEPAR", "", "DAE:BEAMLINEPAR:SP" }
 
     

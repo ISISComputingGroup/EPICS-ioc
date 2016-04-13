@@ -12,7 +12,9 @@ record (longin, "$(P)PARS:USER:I$(INDEX)")
     info(archive, "VAL")
     info(autosaveFields, "VAL EGU DESC")
 	info(INTEREST, "MEDIUM")
+    info(PVCATEGORY, "USERPAR")
 }
+alias("$(P)PARS:USER:I$(INDEX)", "$(P)PARS:USER:I$(INDEX):SP")
 
 ## User settable real
 ## Units, value and description are autosaved
@@ -26,7 +28,9 @@ record (ai, "$(P)PARS:USER:R$(INDEX)")
     info(archive, "VAL")
     info(autosaveFields, "VAL EGU DESC")
 	info(INTEREST, "MEDIUM")
+    info(PVCATEGORY, "USERPAR")
 }
+alias("$(P)PARS:USER:R$(INDEX)", "$(P)PARS:USER:R$(INDEX):SP")
 
 ## User settable string
 ## Value and description are autosaved
@@ -38,4 +42,6 @@ record (stringin, "$(P)PARS:USER:S$(INDEX)")
     info(archive, "VAL")
     info(autosaveFields, "VAL DESC")
 	info(INTEREST, "MEDIUM")
+    info(PVCATEGORY, "USERPAR")
 }
+alias("$(P)PARS:USER:S$(INDEX)", "$(P)PARS:USER:S$(INDEX):SP")
