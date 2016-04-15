@@ -1,4 +1,4 @@
-record(waveform, "$(P)$(Q):SP")
+record(waveform, "$(P)$(Q)")
 {
    field(DESC, "$(DESC)")  
    field(NELM, "256")
@@ -7,8 +7,9 @@ record(waveform, "$(P)$(Q):SP")
    field(FLNK, "$(P)$(Q):SEND")
    field(EGU, "$(UNITS)")
    info(autosaveFields, "VAL")
+   info(PVCATEGORY, "$(CATEGORY)")
 }
-alias("$(P)$(Q):SP", "$(P)$(Q)")
+alias("$(P)$(Q)", "$(P)$(Q):SP")
 
 # force periodic update of values in case we get out of sync with DAE e.g. program restarts 
 # we use this rather than PINI in above as DAE may not be running when we start this ioc
