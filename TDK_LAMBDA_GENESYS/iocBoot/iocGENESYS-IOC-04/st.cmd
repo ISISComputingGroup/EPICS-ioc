@@ -1,6 +1,6 @@
-#!../../bin/windows-x64/TDK_LAMBDA_GENESYS-IOC-01
+#!../../bin/windows-x64/GENESYS-IOC-01
 
-## You may have to change TDK_LAMBDA_GENESYS-IOC-01 to something else
+## You may have to change GENESYS-IOC-01 to something else
 ## everywhere it appears in this file
 
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
@@ -14,8 +14,8 @@ epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM20)"
 cd ${TOP}
 
 ## Register all support components
-dbLoadDatabase "dbd/TDK_LAMBDA_GENESYS-IOC-01.dbd"
-TDK_LAMBDA_GENESYS_IOC_01_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/GENESYS-IOC-04.dbd"
+GENESYS_IOC_01_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
@@ -35,7 +35,7 @@ asynOctetSetOutputEos("L0", -1, "\r")
 
 ## Load our record instances
 #dbLoadRecords("db/xxx.db","user=kvlb23Host")
-dbLoadRecords("db/TDK_Lambda_Genesys.db", "P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0")
+dbLoadRecords("db/GENESYS.db", "P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

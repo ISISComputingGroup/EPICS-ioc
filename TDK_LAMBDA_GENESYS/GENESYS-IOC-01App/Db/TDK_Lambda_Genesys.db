@@ -92,47 +92,47 @@ record(ao, "$(P)SIM:VOLT"){
 alias("$(P)SIM:VOLT", "$(P)SIM:VOLT:SP")
 alias("$(P)SIM:VOLT", "$(P)SIM:VOLT:SP:RBV")
 
-record(ai, "$(P)CURRENT") {
+record(ai, "$(P)CURR") {
     field(SCAN, "1 second")
-    field(DESC, "Actual current out")
+    field(DESC, "Actual CURR out")
     field(DTYP, "stream")
-    field(INP, "@TDK_Lambda_Genesys.proto current $(PORT)")
+    field(INP, "@TDK_Lambda_Genesys.proto CURR $(PORT)")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CURRENT")
+    field(SIOL, "$(P)SIM:CURR")
     field(SDIS, "$(P)DISABLE")
     field(EGU, "V")
     info(INTEREST, "HIGH")
     info(archive, "VAL")    
 }
 
-record(ao, "$(P)CURRENT:SP") {
+record(ao, "$(P)CURR:SP") {
     field(SCAN, "Passive")
-    field(DESC, "Set current out")
+    field(DESC, "Set CURR out")
     field(DTYP, "stream")
-    field(OUT, "@TDK_Lambda_Genesys.proto currentsp $(PORT)")
+    field(OUT, "@TDK_Lambda_Genesys.proto CURRsp $(PORT)")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CURRENT:SP")
+    field(SIOL, "$(P)SIM:CURR:SP")
     field(SDIS, "$(P)DISABLE")
     field(EGU, "V")
 }
 
-record(ai, "$(P)CURRENT:SP:RBV") {
+record(ai, "$(P)CURR:SP:RBV") {
     field(SCAN, "1 second")
-    field(DESC, "Current out setpoint")
+    field(DESC, "CURR out setpoint")
     field(DTYP, "stream")
-    field(INP, "@TDK_Lambda_Genesys.proto currentsprbv $(PORT)")
+    field(INP, "@TDK_Lambda_Genesys.proto CURRsprbv $(PORT)")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CURRENT:SP:RBV")
+    field(SIOL, "$(P)SIM:CURR:SP:RBV")
     field(SDIS, "$(P)DISABLE")
     field(EGU, "V")
 }
 
-record(ao, "$(P)SIM:CURRENT"){
+record(ao, "$(P)SIM:CURR"){
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
-alias("$(P)SIM:CURRENT", "$(P)SIM:CURRENT:SP")
-alias("$(P)SIM:CURRENT", "$(P)SIM:CURRENT:SP:RBV")
+alias("$(P)SIM:CURR", "$(P)SIM:CURR:SP")
+alias("$(P)SIM:CURR", "$(P)SIM:CURR:SP:RBV")
 
 
 record(bi, "$(P)POWER")

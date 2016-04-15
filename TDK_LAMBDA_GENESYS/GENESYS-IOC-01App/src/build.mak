@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application TDK_LAMBDA_GENESYS-IOC-01
+# Build the IOC application GENESYS-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# TDK_LAMBDA_GENESYS-IOC-01.dbd will be created and installed
+# GENESYS-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# TDK_LAMBDA_GENESYS-IOC-01.dbd will be made up from these files:
+# GENESYS-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += devSequencer.dbd
@@ -47,7 +47,7 @@ $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 
-# TDK_LAMBDA_GENESYS-IOC-01_registerRecordDeviceDriver.cpp derives from TDK_LAMBDA_GENESYS-IOC-01.dbd
+# GENESYS-IOC-01_registerRecordDeviceDriver.cpp derives from GENESYS-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.

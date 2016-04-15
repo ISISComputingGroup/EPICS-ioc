@@ -1,4 +1,4 @@
-/* TDK_LAMBDA_GENESYS-IOC-04Main.cpp */
+/* GENESYS-IOC-03Main.cpp */
 /* Author:  Marty Kraimer Date:    17MAR2000 */
 
 #include <stddef.h>
