@@ -1,0 +1,311 @@
+record(bo, "$(P)SIM")
+{
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(FLNK, "$(P)VERSION")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(ai, "$(P)TGUI")
+{
+    field(DTYP, "stream")
+    field(DESC, "The guide temperature")
+    field(INP,  "@SPINFLIPPER.proto readGuideTemp $(PORT)")
+    field(EGU, "C")
+    field(SCAN, "1 second")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:TGUI")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)MAXTGUI")
+{
+    field(DTYP, "stream")
+    field(DESC, "The maximum guide temperature")
+    field(INP,  "@SPINFLIPPER.proto readMaxGuideTemp $(PORT)")
+    field(EGU, "C")
+    field(SCAN, "2 second")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:MAXTGUI")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)MAXTGUI:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Set the max guide temperature")
+    field(OUT,  "@SPINFLIPPER.proto writeMaxGuideTemp $(PORT)")
+    field(EGU, "C")
+    info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:MAXTGUI:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)MAXTGUI:SP","$(P)MAXTGUI:SP:RBV")
+
+record(ai, "$(P)TCOIL")
+{
+    field(DTYP, "stream")
+    field(DESC, "The coil temperature")
+    field(INP,  "@SPINFLIPPER.proto readCoilTemp $(PORT)")
+    field(EGU, "C")
+    field(SCAN, "1 second")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:TCOIL")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)MAXTCOIL")
+{
+    field(DTYP, "stream")
+    field(DESC, "The maximum coil temperature")
+    field(INP,  "@SPINFLIPPER.proto readMaxCoilTemp $(PORT)")
+    field(EGU, "C")
+    field(SCAN, "2 second")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:MAXTCOIL")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)MAXTCOIL:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Set the max coil temperature")
+    field(OUT,  "@SPINFLIPPER.proto writeMaxCoilTemp $(PORT)")
+    field(EGU, "C")
+    info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:MAXTCOIL:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)MAXTCOIL:SP","$(P)MAXTCOIL:SP:RBV")
+
+record(bi, "$(P)FLIPSTATE")
+{
+    field(DTYP, "stream")
+    field(DESC, "Whether the flipper is on or off")
+    field(INP,  "@SPINFLIPPER.proto readFlipState $(PORT)")
+    field(SCAN, "1 second")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:FLIPSTATE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)FLIPSTATE:SP") 
+{
+    field(DTYP, "stream")
+    field(DESC, "Sets whether the flipper is on or off")
+    field(OUT,  "@SPINFLIPPER.proto toggleFlipState $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:FLIPSTATE:SP")
+    field(SDIS, "$(P)DISABLE")    
+}
+
+alias("$(P)FLIPSTATE:SP","$(P)FLIPSTATE:SP:RBV")
+
+record(ai, "$(P)FLIPCURR")
+{
+    field(DTYP, "stream")
+    field(DESC, "The flip current")
+    field(INP,  "@SPINFLIPPER.proto readFlipCurrent $(PORT)")
+    field(EGU, "A")
+    field(SCAN, "1 second")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:FLIPCURR")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)FLIPCURR:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Set the RMS flip current")
+    field(OUT,  "@SPINFLIPPER.proto writeRmsFlipCurrent $(PORT)")
+    field(EGU, "A")
+    info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:FLIPCURR:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)FLIPCURR:SP:RBV")
+{
+    field(DTYP, "stream")
+    field(DESC, "The flip current setpoint")
+    field(INP,  "@SPINFLIPPER.proto readFlipCurrentSetpoint $(PORT)")
+    field(EGU, "A")
+    field(SCAN, "2 second")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:FLIPCURR:SP:RB")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)FLIPFREQ")
+{
+    field(DTYP, "stream")
+    field(DESC, "The flip frequency")
+    field(INP,  "@SPINFLIPPER.proto readFlipFreq $(PORT)")
+    field(EGU, "Hz")
+    field(SCAN, "2 second")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:FLIPFREQ")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbi, "$(P)ALARM")
+{
+    field(DTYP, "stream")
+    field(DESC, "The current alarm status of the flipper")
+    field(INP,  "@SPINFLIPPER.proto readAlarmState $(PORT)")
+    field(SCAN, "2 second")
+    field(ZRST, "NO ALARM")
+    field(ONST, "EMERGENCY STOP")
+    field(TWST, "MAX COIL TEMP")
+    field(THST, "MAX GUID TEMP")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:ALARM")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)MODE")
+{
+    field(DTYP, "stream")
+    field(DESC, "Whether the flipper is in local or remote mode")
+    field(INP,  "@SPINFLIPPER.proto readMode $(PORT)")
+    field(SCAN, "2 second")
+    field(ZNAM, "LOCAL")
+    field(ONAM, "REMOTE")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:MODE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)RESET:SP")
+{
+    field(DTYP, "stream")
+    field(DESC, "Resets the flipper")
+    field(OUT,  "@SPINFLIPPER.proto reset $(PORT)")
+    field(ZNAM, "READY")
+    field(ONAM, "YES")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:RESET:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+### SIMULATION RECORDS ###
+
+record(ai, "$(P)SIM:TGUI")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "21")
+}
+
+record(ai, "$(P)SIM:MAXTGUI")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "50")
+}
+
+alias("$(P)SIM:MAXTGUI","$(P)SIM:MAXTGUI:SP")
+
+alias("$(P)SIM:MAXTGUI","$(P)SIM:MAXTGUI:SP:RBV")
+
+record(ai, "$(P)SIM:TCOIL")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "31")
+}
+
+record(ai, "$(P)SIM:MAXTCOIL")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "49")
+}
+
+alias("$(P)SIM:MAXTCOIL","$(P)SIM:MAXTCOIL:SP")
+
+alias("$(P)SIM:MAXTCOIL","$(P)SIM:MAXTCOIL:SP:RBV")
+
+record(bi, "$(P)SIM:FLIPSTATE")
+{
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+alias("$(P)SIM:FLIPSTATE","$(P)SIM:FLIPSTATE:SP")
+
+alias("$(P)SIM:FLIPSTATE","$(P)SIM:FLIPSTATE:SP:RBV")
+
+record(ai, "$(P)SIM:FLIPCURR")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "6")
+}
+
+alias("$(P)SIM:FLIPCURR","$(P)SIM:FLIPCURR:SP")
+
+alias("$(P)SIM:FLIPCURR","$(P)SIM:FLIPCURR:SP:RBV")
+
+record(ai, "$(P)SIM:FLIPFREQ")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "0")
+}
+
+record(mbbi, "$(P)SIM:ALARM")
+{
+    field(DTYP, "Soft Channel")
+    field(ZRST, "NO ALARM")
+    field(ONST, "EMERGENCY STOP")
+    field(TWST, "MAX COIL TEMP")
+    field(THST, "MAX GUID TEMP")
+}
+
+record(bi, "$(P)SIM:MODE")
+{
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "LOCAL")
+    field(ONAM, "REMOTE")
+}
+
+record(bo, "$(P)SIM:RESET:SP")
+{
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "READY")
+    field(ONAM, "YES")
+}

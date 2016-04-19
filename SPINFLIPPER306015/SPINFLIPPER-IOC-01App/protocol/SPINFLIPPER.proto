@@ -1,0 +1,93 @@
+#InTerminator = ';';
+#OutTerminator = '*';
+ReplyTimeout = 2000;
+
+readGuideTemp {
+    out "TGUI";
+    in "%f";
+    ExtraInput = Ignore;
+}
+
+readMaxGuideTemp {
+    out "GLIM";
+    in "%f";
+    ExtraInput = Ignore;
+}
+
+readFlipState {
+    out "FLIP";
+    in "%{OFF|ON}";
+    ExtraInput = Ignore;
+}
+
+readCoilTemp {
+    out "TCOI";
+    in "%f";
+    ExtraInput = Ignore;
+}
+
+readMaxCoilTemp {
+    out "CLIM";
+    in "%f";
+    ExtraInput = Ignore;
+}
+
+readFlipCurrentSetpoint {
+    out "SETI";
+    in "%f";
+    ExtraInput = Ignore;
+}
+
+readFlipCurrent {
+    out "IRMS";
+    in "%f";
+    ExtraInput = Ignore;
+}
+
+readFlipFreq {
+    out "FREQ";
+    in "%f";
+    ExtraInput = Ignore;
+}
+
+readAlarmState {
+    out "ALRM";
+    in "%{-|S|C|G}";
+    ExtraInput = Ignore;
+}
+
+readMode {
+    out "MODE";
+    in "%{LOCAL|REMOTE}";
+    ExtraInput = Ignore;
+}
+
+writeMaxCoilTemp {
+    out "LIMC %f";
+    in "#";
+    ExtraInput = Ignore;
+}
+
+writeMaxGuideTemp {
+    out "LIMG %f";
+    in "#";
+    ExtraInput = Ignore;
+}
+
+writeRmsFlipCurrent {
+    out "ISET %f";
+    in "#";
+    ExtraInput = Ignore;
+}
+
+toggleFlipState {
+    out "FL%{OF|ON}";
+    in "%{-|~}";
+    ExtraInput = Ignore;
+}
+
+reset {
+    out "RSET";
+    in "%{READY|YES}";
+    ExtraInput = Ignore;
+}
