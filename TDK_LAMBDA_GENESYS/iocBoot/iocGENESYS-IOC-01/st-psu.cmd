@@ -3,22 +3,22 @@
 
 
 # this defines macros we can use for conditional loading later
-stringiftest("PORT", "$(PORT$(PN)=)")
+stringiftest("PORT", "$(PORT$(PS)=)")
 
 # create a real serial port, unless in simulation mode then crreate an unconnected asyn port 
-$(IFPORT)$(IFSIM)    drvAsynSerialPortConfigure ("L$(PN)", "NUL", 0, 1)
+$(IFPORT)$(IFSIM)    drvAsynSerialPortConfigure ("L$(PS)", "NUL", 0, 1)
 
-$(IFPORT)$(IFNOTSIM) drvAsynSerialPortConfigure ("L$(PN)", "$(PORT$(PN)=)")
-$(IFPORT)$(IFNOTSIM) asynSetOption ("L$(PN)", 0, "baud", "$(BAUD$(PN)=9600)")
-$(IFPORT)$(IFNOTSIM) asynSetOption ("L$(PN)", 0, "bits", "$(BITS$(PN)=8)")
-$(IFPORT)$(IFNOTSIM) asynSetOption ("L$(PN)", 0, "parity", "$(PARITY$(PN)=none)")
-$(IFPORT)$(IFNOTSIM) asynSetOption ("L$(PN)", 0, "stop", "$(STOP$(PN)=1)")
-$(IFPORT)$(IFNOTSIM) asynOctetSetInputEos("L$(PN)",0,"$(IEOS$(PN)=\\r)")
-$(IFPORT)$(IFNOTSIM) asynOctetSetOutputEos("L$(PN)",0,"$(OEOS$(PN)=\\r)")
+$(IFPORT)$(IFNOTSIM) drvAsynSerialPortConfigure ("L$(PS)", "$(PORT$(PS)=)")
+$(IFPORT)$(IFNOTSIM) asynSetOption ("L$(PS)", 0, "baud", "$(BAUD$(PS)=9600)")
+$(IFPORT)$(IFNOTSIM) asynSetOption ("L$(PS)", 0, "bits", "$(BITS$(PS)=8)")
+$(IFPORT)$(IFNOTSIM) asynSetOption ("L$(PS)", 0, "parity", "$(PARITY$(PS)=none)")
+$(IFPORT)$(IFNOTSIM) asynSetOption ("L$(PS)", 0, "stop", "$(STOP$(PS)=1)")
+$(IFPORT)$(IFNOTSIM) asynOctetSetInputEos("L$(PS)",0,"$(IEOS$(PS)=\\r)")
+$(IFPORT)$(IFNOTSIM) asynOctetSetOutputEos("L$(PS)",0,"$(OEOS$(PS)=\\r)")
 
 ## Initialise the comms with the PSU
-$(IFPORT)$(IFNOTSIM) asynOctetConnect L$(PN) GENESYS_01$(PN)
-$(IFPORT)$(IFNOTSIM) asynOctetWrite GENESYS_01$(PN) “ADR $(ADDR$(PN))”
+$(IFPORT)$(IFNOTSIM) asynOctetConnect L$(PS) GENESYS_01$(PS)
+$(IFPORT)$(IFNOTSIM) asynOctetWrite GENESYS_01$(PS) “ADR $(ADDR$(PS))”
 
 ## Load record instances for connected psu
-$(IFPORT)  dbLoadRecords("db/GENESYS.db", "P=$(MYPVPREFIX)$(IOCNAME):$(PN):, PORT=L$(PN), ADR=$(ADDR$(PN))")
+$(IFPORT)  dbLoadRecords("$(TOP)/db/TDK_LAMBDA_GENESYS.db", "P=$(MYPVPREFIX)$(IOCNAME):$(PS):, PORT=L$(PS), ADR=$(ADDR$(PS))")

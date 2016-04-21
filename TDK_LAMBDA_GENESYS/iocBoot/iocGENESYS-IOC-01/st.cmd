@@ -9,7 +9,7 @@ errlogInit2(65536, 256)
 < envPaths
 
 ## Register all support components
-dbLoadDatabase "dbd/GENESYS-IOC-01.dbd"
+dbLoadDatabase ("$(TOP)/dbd/GENESYS-IOC-01.dbd",0,0)
 GENESYS_IOC_01_registerRecordDeviceDriver pdbbase
 
 < st-common.cmd
