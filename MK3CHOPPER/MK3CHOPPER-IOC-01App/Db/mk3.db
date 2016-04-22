@@ -327,7 +327,7 @@ record(stringin, "$(P)$(Q)SIM:VALIDFREQS")
     field(VAL, "1|5|10|100")
 }
 
-record(stringin, "$(P)$(Q):NAME")
+record(stringin, "$(P)$(Q)SIM:NAME")
 {
     field(DTYP, "Soft Channel")
     field(VAL, "Simulated Chopper")
