@@ -235,9 +235,11 @@ alias("$(P)FIELD:UNIT", "$(P)FIELD:UNIT:RBV")
 alias("$(P)FIELD:UNIT", "$(P)FIELD:UNIT:SP")
 alias("$(P)FIELD:UNIT:SP", "$(P)FIELD:UNIT:SP:RBV")
 
+# units are $(P)FIELD:UNIT
 record(ai, "$(P)FIELD"){
+    field(DESC, "Field")
     field(INP, "$(P)FIELD:TOUNIT PP MS")
-    field(EGU, "$(P)FIELD:UNIT")
+    field(EGU, "")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -248,7 +250,7 @@ record(calc, "$(P)FIELD:TOUNIT"){
     field(INPB, "$(P)FIELD:CALIB PP")
     field(CALC, "A==2?B/10000:B")
     field(FLNK, "$(P)FIELD")
-    field(EGU, "$(P)FIELD:UNIT")
+    field(EGU, "")
 }
 
 record(cvt, "$(P)FIELD:CALIB"){
@@ -270,9 +272,10 @@ record(calc, "$(P)FIELD:PRECALIB"){
     field(EGU, "")
 }
 
+# units are $(P)FIELD:UNIT
 record(ao, "$(P)FIELD:SP") {
     field(FLNK, "$(P)FIELD:SP:FROMUNIT")
-    field(EGU, "$(P)FIELD:UNIT")
+    field(EGU, "")
 }
 alias("$(P)FIELD:SP", "$(P)FIELD:SP:RBV")
 
