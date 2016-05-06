@@ -3,7 +3,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-#DATA += Lakeshore_218-01.proto
+DATA += Lakeshore_218.proto
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
