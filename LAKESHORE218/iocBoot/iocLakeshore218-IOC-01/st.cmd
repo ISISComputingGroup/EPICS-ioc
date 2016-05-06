@@ -1,4 +1,4 @@
-#!../../bin/windows-x64/Lakeshore_218-01
+#!../../bin/windows-x64/Lakeshore218-IOC-01
 
 ## You may have to change Lakeshore_218-01 to something else
 ## everywhere it appears in this file
@@ -7,14 +7,14 @@
 errlogInit2(65536, 256)
 
 < envPaths
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(SUPPORT)/lakeshore218/1-0/Lakeshore218Sup"    
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/Lakeshore218-IOC-01App/protocol"    
 epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM4)"                                   
 
 cd ${TOP}
 
 ## Register all support components
-dbLoadDatabase "dbd/Lakeshore_218-01.dbd"
-Lakeshore_218_01_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/Lakeshore218-IOC-01.dbd"
+Lakeshore218_IOC_01_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
@@ -33,7 +33,7 @@ asynSetOption("L0", -1, "stop", "1")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/Lakeshore_218.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0")
+dbLoadRecords("db/Lakeshore218.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
