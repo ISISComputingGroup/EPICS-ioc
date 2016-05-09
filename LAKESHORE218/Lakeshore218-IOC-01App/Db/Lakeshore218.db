@@ -29,7 +29,7 @@ record(stringin, "$(P)TEMPALL")
 
 record(stringin, "$(P)SIM:TEMPALL")
 {
-    field(SCAN, "passive")
+    field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
@@ -46,12 +46,13 @@ record(stringin, "$(P)SENSORALL")
 
 record(stringin, "$(P)SIM:SENSORALL")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)TEMP1")
 {
+    field(DESC, "Temperature readback")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readTemp(1) $(PORT)")
@@ -59,17 +60,19 @@ record(ai, "$(P)TEMP1")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:TEMP1")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:TEMP1")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)SENSOR1")
 {
+    field(DESC, "Sensor readback")
 	field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readSensor(1) $(PORT)")
@@ -77,17 +80,19 @@ record(ai, "$(P)SENSOR1")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SENSOR1")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:SENSOR1")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)TEMP2")
 {
+    field(DESC, "Temperature readback")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readTemp(2) $(PORT)")
@@ -95,17 +100,19 @@ record(ai, "$(P)TEMP2")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:TEMP2")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:TEMP2")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)SENSOR2")
 {
+    field(DESC, "Sensor readback")
 	field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readSensor(2) $(PORT)")
@@ -113,17 +120,19 @@ record(ai, "$(P)SENSOR2")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SENSOR2")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:SENSOR2")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)TEMP3")
 {
+    field(DESC, "Temperature readback")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readTemp(3) $(PORT)")
@@ -131,17 +140,19 @@ record(ai, "$(P)TEMP3")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:TEMP3")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:TEMP3")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)SENSOR3")
 {
+    field(DESC, "Sensor readback")
 	field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readSensor(3) $(PORT)")
@@ -149,16 +160,18 @@ record(ai, "$(P)SENSOR3")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SENSOR3")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:SENSOR3")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 record(ai, "$(P)TEMP4")
 {
+    field(DESC, "Temperature readback")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readTemp(4) $(PORT)")
@@ -166,17 +179,19 @@ record(ai, "$(P)TEMP4")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:TEMP4")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:TEMP4")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)SENSOR4")
 {
+    field(DESC, "Sensor readback")
 	field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readSensor(4) $(PORT)")
@@ -184,17 +199,19 @@ record(ai, "$(P)SENSOR4")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SENSOR4")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:SENSOR4")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)TEMP5")
 {
+    field(DESC, "Temperature readback")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readTemp(5) $(PORT)")
@@ -202,17 +219,19 @@ record(ai, "$(P)TEMP5")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:TEMP5")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:TEMP5")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)SENSOR5")
 {
+    field(DESC, "Sensor readback")
 	field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readSensor(5) $(PORT)")
@@ -220,17 +239,19 @@ record(ai, "$(P)SENSOR5")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SENSOR5")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:SENSOR5")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)TEMP6")
 {
+    field(DESC, "Temperature readback")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readTemp(6) $(PORT)")
@@ -238,17 +259,19 @@ record(ai, "$(P)TEMP6")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:TEMP6")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:TEMP6")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)SENSOR6")
 {
+    field(DESC, "Sensor readback")
 	field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readSensor(6) $(PORT)")
@@ -256,17 +279,19 @@ record(ai, "$(P)SENSOR6")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SENSOR6")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:SENSOR6")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)TEMP7")
 {
+    field(DESC, "Temperature readback")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readTemp(7) $(PORT)")
@@ -274,17 +299,19 @@ record(ai, "$(P)TEMP7")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:TEMP7")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:TEMP7")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)SENSOR7")
 {
+    field(DESC, "Sensor readback")
 	field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readSensor(7) $(PORT)")
@@ -292,17 +319,19 @@ record(ai, "$(P)SENSOR7")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SENSOR7")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:SENSOR7")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)TEMP8")
 {
+    field(DESC, "Temperature readback")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readTemp(8) $(PORT)")
@@ -310,17 +339,19 @@ record(ai, "$(P)TEMP8")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:TEMP8")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:TEMP8")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 record(ai, "$(P)SENSOR8")
 {
+    field(DESC, "Sensor readback")
 	field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@Lakeshore_218.proto readSensor(8) $(PORT)")
@@ -328,12 +359,13 @@ record(ai, "$(P)SENSOR8")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SENSOR8")
-    
+    field(EGU, "")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:SENSOR8")
 {
-	field(SCAN, "passive")
+	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
