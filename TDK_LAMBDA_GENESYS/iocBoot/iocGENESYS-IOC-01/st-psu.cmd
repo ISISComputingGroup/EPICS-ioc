@@ -17,7 +17,7 @@ $(IFPORT)$(IFNOTSIM) asynOctetSetInputEos("L$(PS)",0,"$(IEOS$(PS)=\\r)")
 $(IFPORT)$(IFNOTSIM) asynOctetSetOutputEos("L$(PS)",0,"$(OEOS$(PS)=\\r)")
 
 ## Initialise the comms with the PSU
-$(IFPORT)$(IFNOTSIM) asynOctetConnect L$(PS) GENESYS_01$(PS)
+$(IFPORT)$(IFNOTSIM) asynOctetConnect("GENESYS_01$(PS)","L$(PS)")
 $(IFPORT)$(IFNOTSIM) asynOctetWrite GENESYS_01$(PS) “ADR $(ADDR$(PS))”
 
 ## Load record instances for connected psu
