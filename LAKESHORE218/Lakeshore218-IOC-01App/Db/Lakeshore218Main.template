@@ -1,0 +1,52 @@
+record(bo, "$(P)SIM") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(stringin, "$(P)TEMPALL")
+{
+    # This record is for debug - it returns the whole response string
+    #field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@Lakeshore_218.proto readTempALL $(PORT)")
+	field(SDIS, "$(P)DISABLE")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:TEMPALL")
+}
+
+record(stringin, "$(P)SIM:TEMPALL")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringin, "$(P)SENSORALL")
+{
+    # This record is for debug - it returns the whole response string
+	#field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@Lakeshore_218.proto readSensorALL $(PORT)")
+	field(SDIS, "$(P)DISABLE")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SENSORALL")
+}
+
+record(stringin, "$(P)SIM:SENSORALL")
+{
+	field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
