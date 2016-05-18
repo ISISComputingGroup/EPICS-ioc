@@ -1,4 +1,5 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/data"    
+cd ${TOP}
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
