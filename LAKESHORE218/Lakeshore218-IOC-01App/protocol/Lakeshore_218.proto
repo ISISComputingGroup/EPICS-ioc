@@ -1,0 +1,47 @@
+terminator = CR LF;
+ReplyTimeout = 2000;
+
+getIDN {
+    out "*IDN?";
+    #Read no more that 39 chars (EPICS limit)
+    in "%/(.{0,39})/";
+    ExtraInput = Ignore;
+}
+
+getTriggerLevel {
+    out "LV\$1?";
+    in "%s";
+    ExtraInput = Ignore;
+}
+
+setTriggerLevel {
+    out "LV\$1%s?";
+}
+
+resetCounts {
+    out "RES";
+}
+
+readSensor {
+	out "SRDG? \$1";
+	ExtraInput = Ignore;
+	in "%f"; 
+}
+
+readTemp {
+	out "KRDG? \$1" ;
+	ExtraInput = Ignore;
+	in "%f";
+}
+
+readSensorALL{
+	out "SRDG? 0";
+	ExtraInput = Ignore;
+	in "%s";  
+}
+
+readTempALL{
+	out "KRDG? 0" ;
+	ExtraInput = Ignore;
+	in "%s";
+}

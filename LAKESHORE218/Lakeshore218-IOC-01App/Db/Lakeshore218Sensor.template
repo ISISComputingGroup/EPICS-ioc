@@ -1,0 +1,41 @@
+
+record(ai, "$(P)TEMP$(SN)")
+{
+    field(DESC, "Temp$(SN) readback")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@Lakeshore_218.proto readTemp($(SN)) $(PORT)")
+    field(PREC, "3")
+	field(SDIS, "$(P)DISABLE")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:TEMP$(SN)")
+    field(EGU, "")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)SIM:TEMP$(SN)")
+{
+	field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SENSOR$(SN)")
+{
+    field(DESC, "Sensor$(SN) readback")
+	field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@Lakeshore_218.proto readSensor($(SN)) $(PORT)")
+    field(PREC, "3")
+	field(SDIS, "$(P)DISABLE")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SENSOR$(SN)")
+    field(EGU, "")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)SIM:SENSOR$(SN)")
+{
+	field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
