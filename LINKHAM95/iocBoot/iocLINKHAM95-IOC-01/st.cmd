@@ -28,13 +28,13 @@ asynSetOption("$(PORT)", -1, "stop", "1")
 # ASK: asynOctetSetInputEos("$(PORT)", -1, "\r")
 # ASK: asynOctetSetOutputEos("$(PORT)", -1, "\r")
 
-
 ## Load record instances
 
 ##ISIS## Load common DB records
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
+dbLoadRecords("db/LINKHAM95.db","P=$(MYPVPREFIX)T95")
 #dbLoadRecords("db/xxx.db","user=iew83206Host")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
