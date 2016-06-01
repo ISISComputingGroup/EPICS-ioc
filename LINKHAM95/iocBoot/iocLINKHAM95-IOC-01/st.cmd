@@ -8,8 +8,9 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM19)"
-epicsEnvSet "PORT" "L0"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(LINKHAM95)/linkham95Sup"
+##epicsEnvSet "LINKAM_PORT" "$(TTY=\\\\\\\\.\\\\COM19)"
+epicsEnvSet "DEVICE" "L0"
 
 cd ${TOP}
 
@@ -20,13 +21,13 @@ LINKHAM95_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynSerialPortConfigure("$(PORT)", "$(TTY)", 0, 0, 0, 0)
-asynSetOption("$(PORT)", -1, "baud", "19200")
-asynSetOption("$(PORT)", -1, "bits", "8")
-asynSetOption("$(PORT)", -1, "parity", "none")
-asynSetOption("$(PORT)", -1, "stop", "1")
-# ASK: asynOctetSetInputEos("$(PORT)", -1, "\r")
-# ASK: asynOctetSetOutputEos("$(PORT)", -1, "\r")
+drvAsynSerialPortConfigure("$(DEVICE)", "$(LINKAM_PORT)", 0, 0, 0, 0)
+asynSetOption("$(DEVICE)", -1, "baud", "19200")
+asynSetOption("$(DEVICE)", -1, "bits", "8")
+asynSetOption("$(DEVICE)", -1, "parity", "none")
+asynSetOption("$(DEVICE)", -1, "stop", "1")
+asynOctetSetInputEos("$(DEVICE)", -1, "\r")
+asynOctetSetOutputEos("$(DEVICE)", -1, "\r")
 
 ## Load record instances
 
@@ -34,7 +35,7 @@ asynSetOption("$(PORT)", -1, "stop", "1")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/LINKHAM95.db","P=$(MYPVPREFIX)T95")
+dbLoadRecords("db/LINKHAM95.db","P=$(MYPVPREFIX)T95, port=$(DEVICE)")
 #dbLoadRecords("db/xxx.db","user=iew83206Host")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called

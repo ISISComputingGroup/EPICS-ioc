@@ -51,7 +51,6 @@ $(APPNAME)_LIBS += asyn
 
 # LINKHAM95-IOC-01_registerRecordDeviceDriver.cpp derives from LINKHAM95-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
-#$(APPNAME)_SRCS += printTest.c
 
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp
