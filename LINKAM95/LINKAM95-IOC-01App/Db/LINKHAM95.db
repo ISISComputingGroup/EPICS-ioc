@@ -39,7 +39,7 @@ record(stringin, "$(P)RAW_STAT")
 {
 	field(SCAN, "1 second")
 	field(DTYP, "stream")
-	field(INP, "@devlinkham95.proto getStatus $(port)")
+	field(INP, "@devlinkam95.proto getStatus $(port)")
 	field(FLNK, "$(P)FAN_STAT")
 }
 
@@ -258,7 +258,7 @@ record(ai, "$(P)TEMP:RBV")
 record(ao, "$(P)RATE_SP") {
   field(DESC, "Set ramp rate")
   field(DTYP, "stream")
-  field(OUT, "@devlinkham95.proto setRate $(port)")
+  field(OUT, "@devlinkam95.proto setRate $(port)")
   field(PREC, "2")
   field(LINR, "LINEAR")
   field(ESLO, "0.01")
@@ -274,7 +274,7 @@ record(ao, "$(P)RATE_SP") {
 record(ao, "$(P)LIMIT_SP") {
   field(DESC, "Set ramp limit")
   field(DTYP, "stream")
-  field(OUT, "@devlinkham95.proto setLimit $(port)")
+  field(OUT, "@devlinkam95.proto setLimit $(port)")
   field(PREC, "1")
   field(LINR, "LINEAR")
   field(ESLO, "0.1")
@@ -290,7 +290,7 @@ record(ao, "$(P)LIMIT_SP") {
 record(bo, "$(P)RAMP_ACTIVE_CMD") {
   field(DESC, "Ramp stop/start control")
   field(DTYP, "stream")
-  field(OUT, "@devlinkham95.proto setRampControl $(port)")
+  field(OUT, "@devlinkam95.proto setRampControl $(port)")
   field(ZNAM, "Stop")
   field(ONAM, "Start")
 }
@@ -302,7 +302,7 @@ record(bo, "$(P)RAMP_ACTIVE_CMD") {
 record(mbbo, "$(P)RAMP_CONTROL_CMD") {
   field(DESC, "Start ramp heating, cooling or hold")
   field(DTYP, "stream")
-  field(OUT, "@devlinkham95.proto setForceRamp $(port)")
+  field(OUT, "@devlinkam95.proto setForceRamp $(port)")
   field(ZRVL, "0")
   field(ONVL, "1")
   field(TWVL, "2")
@@ -318,7 +318,7 @@ record(mbbo, "$(P)RAMP_CONTROL_CMD") {
 record(bo, "$(P)SET_PUMP_MODE") {
   field(DESC, "Set pump mode")
   field(DTYP, "stream")
-  field(OUT, "@devlinkham95.proto setPumpMode $(port)")
+  field(OUT, "@devlinkam95.proto setPumpMode $(port)")
   field(ZNAM, "Manual")
   field(ONAM, "Auto")
 }
@@ -326,7 +326,7 @@ record(bo, "$(P)SET_PUMP_MODE") {
 record(longout, "$(P)SET_PUMP_SPEED") {
   field(DESC, "Set pump speed")
   field(DTYP, "stream")
-  field(OUT, "@devlinkham95.proto setPumpSpeed $(port)")
+  field(OUT, "@devlinkam95.proto setPumpSpeed $(port)")
   field(DRVH, "30")
   field(DRVL, "0")
   field(HOPR, "30")

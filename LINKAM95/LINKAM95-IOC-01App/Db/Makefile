@@ -11,7 +11,7 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
-DB += LINKHAM95.db
+DB += LINKAM95.db
 DB += TEST.db
 
 #----------------------------------------------------
