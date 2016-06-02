@@ -21,7 +21,7 @@ LINKHAM95_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynSerialPortConfigure("$(DEVICE)", "$(LINKAM_PORT)", 0, 0, 0, 0)
+drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
 asynSetOption("$(DEVICE)", -1, "baud", "19200")
 asynSetOption("$(DEVICE)", -1, "bits", "8")
 asynSetOption("$(DEVICE)", -1, "parity", "none")
@@ -35,7 +35,7 @@ asynOctetSetOutputEos("$(DEVICE)", -1, "\r")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/LINKHAM95.db","P=$(MYPVPREFIX)T95, port=$(DEVICE)")
+dbLoadRecords("db/LINKHAM95.db","P=T95:, port=$(DEVICE)")
 #dbLoadRecords("db/xxx.db","user=iew83206Host")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
