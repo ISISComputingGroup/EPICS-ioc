@@ -12,7 +12,6 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 DB += LINKAM95.db
-DB += TEST.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
