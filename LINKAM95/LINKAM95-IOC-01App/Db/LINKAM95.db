@@ -61,7 +61,7 @@ record(scalcout, "$(P)CALC_STAT")
 {
     field(CALC, "BYTE(AA[0,0])")
     field(INAA, "$(P)RAW_STAT")
-    ## field(OUT, "$(P)STATUS PP")
+    field(OUT, "$(P)STATUS.RVAL")
     field(FLNK, "$(P)STATUS")
 }
 
@@ -69,7 +69,6 @@ record(mbbi, "$(P)STATUS")
 {
     field(DESC, "Device status description")
     field(DTYP, "Raw Soft Channel")
-    field(INP, "$(P)CALC_STAT")
     
     field(ZRVL, "1")
     field(ONVL, "16")
