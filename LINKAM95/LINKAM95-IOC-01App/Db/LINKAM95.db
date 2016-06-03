@@ -42,6 +42,12 @@ record(stringin, "$(P)RAW_STAT")
     field(INP, "@devlinkam95.proto getStatus $(port)")
     field(FLNK, "$(P)FAN_STAT")
     field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAW_STAT")
+}
+
+record(stringout, "$(P)SIM:RAW_STAT")
+{
 }
 
 record(fanout, "$(P)FAN_STAT")
@@ -62,7 +68,6 @@ record(scalcout, "$(P)CALC_STAT")
     field(CALC, "BYTE(AA[0,0])")
     field(INAA, "$(P)RAW_STAT")
     field(OUT, "$(P)STATUS.RVAL")
-    field(FLNK, "$(P)STATUS")
 }
 
 record(mbbi, "$(P)STATUS")
@@ -177,10 +182,10 @@ record(calcout, "$(P)CALC_PUMP_STAT")
     field(DESC,"Gets a numeric value for pump status")
     field(CALC,"(A>1&&A<30)?-1:A")
     field(INPA,"$(P)PUMP_SPEED")
-    field(OUT,"$(P)PUMP_STAT.RVAL")
+    field(OUT,"$(P)PUMP:STAT.RVAL")
 }
 
-record(mbbi, "$(P)PUMP_STAT")
+record(mbbi, "$(P)PUMP:STAT")
 {
     field(DESC, "Pump status description")
     field(DTYP, "Raw Soft Channel")
@@ -255,7 +260,7 @@ record(ai, "$(P)TEMP:RBV")
 #### Rate command ####
 ######################
 
-record(ao, "$(P)RATE_SP") {
+record(ao, "$(P)RATE:SP") {
     field(DESC, "Set ramp rate")
     field(DTYP, "stream")
     field(OUT, "@devlinkam95.proto setRate $(port)")
@@ -266,13 +271,19 @@ record(ao, "$(P)RATE_SP") {
     field(DRVL, "0")
     field(EGU, "C/min")
     field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RATE:SP")
+}
+
+record(ao, "$(P)SIM:RATE:SP")
+{
 }
 
 #######################
 #### Limit command ####
 #######################
 
-record(ao, "$(P)LIMIT_SP") {
+record(ao, "$(P)LIMIT:SP") {
     field(DESC, "Set ramp limit")
     field(DTYP, "stream")
     field(OUT, "@devlinkam95.proto setLimit $(port)")
@@ -283,26 +294,40 @@ record(ao, "$(P)LIMIT_SP") {
     field(DRVL, "-196")
     field(EGU, "C")
     field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:LIMIT:SP")
+}
+
+record(ao, "$(P)SIM:LIMIT:SP")
+{
 }
 
 #############################
 #### Start/stop commands ####
 #############################
 
-record(bo, "$(P)RAMP_ACTIVE_CMD") {
+record(bo, "$(P)RAMP:ACTIVE:CMD") {
     field(DESC, "Ramp stop/start control")
     field(DTYP, "stream")
     field(OUT, "@devlinkam95.proto setRampControl $(port)")
     field(ZNAM, "Stop")
     field(ONAM, "Start")
     field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMP:ACTIVE:CMD")
+}
+
+record(bo, "$(P)SIM:RAMP:ACTIVE:CMD")
+{
+	field(ONAM, "Stop")
+	field(ZNAM, "Start")
 }
 
 ########################################
 #### Force heating/cooling commands ####
 ########################################
 
-record(mbbo, "$(P)RAMP_CONTROL_CMD") {
+record(mbbo, "$(P)RAMP:CONTROL:CMD") {
     field(DESC, "Start ramp heating, cooling or hold")
     field(DTYP, "stream")
     field(OUT, "@devlinkam95.proto setForceRamp $(port)")
@@ -313,22 +338,42 @@ record(mbbo, "$(P)RAMP_CONTROL_CMD") {
     field(ONST, "Cool")
     field(TWST, "Hold")
     field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMP:CONTROL:CMD")
+}
+
+record(mbbo, "$(P)SIM:RAMP:CONTROL:CMD")
+{
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(ZRST, "Heat")
+    field(ONST, "Cool")
+    field(TWST, "Hold")
 }
 
 ###########################
 #### LNP pump commands ####
 ###########################
 
-record(bo, "$(P)SET_PUMP_MODE") {
+record(bo, "$(P)PUMP:MODE:SP") {
     field(DESC, "Set pump mode")
     field(DTYP, "stream")
     field(OUT, "@devlinkam95.proto setPumpMode $(port)")
     field(ZNAM, "Manual")
     field(ONAM, "Auto")
     field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PUMP_MODE:SP")
 }
 
-record(longout, "$(P)SET_PUMP_SPEED") {
+record(bo, "$(P)SIM:PUMP:MODE:SP")
+{
+	field(ONAM, "Manual")
+	field(ZNAM, "Auto")
+}
+
+record(longout, "$(P)PUMP:SPEED:SP") {
     field(DESC, "Set pump speed")
     field(DTYP, "stream")
     field(OUT, "@devlinkam95.proto setPumpSpeed $(port)")
@@ -337,4 +382,10 @@ record(longout, "$(P)SET_PUMP_SPEED") {
     field(HOPR, "30")
     field(LOPR, "0")
     field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PUMP:SPEED:SP")
+}
+
+record(longout, "$(P)SIM:PUMP:SPEED:SP")
+{
 }
