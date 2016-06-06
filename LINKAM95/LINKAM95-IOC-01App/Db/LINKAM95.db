@@ -85,9 +85,9 @@ record(mbbi, "$(P)STATUS")
     field(ZRST, "Stopped")
     field(ONST, "Heating")
     field(TWST, "Cooling")
-    field(THST, "Holding limit or end of ramp")
+    field(THST, "Holding limit/end of ramp")
     field(FRST, "Holding the limit time")
-    field(FVST, "Holding current temperature")
+    field(FVST, "Holding temperature")
 }
 
 #############
@@ -109,7 +109,7 @@ record(mbbiDirect, "$(P)IN_ERROR")
 
 record(bi, "$(P)FAST_COOL_RATE")
 {
-    field(DESC, "Cooling rate too fast to maintain")
+    field(DESC, "Cooling rate too fast")
     field(INP, "$(P)IN_ERROR.B0")
     field(SCAN, ".1 second")
     field(ZNAM, "OK")
@@ -118,7 +118,7 @@ record(bi, "$(P)FAST_COOL_RATE")
 
 record(bi, "$(P)OPEN_CIRCUIT")
 {
-    field(DESC, "Stage not connected or sensor is open circuit")
+    field(DESC, "Open circuit")
     field(INP, "$(P)IN_ERROR.B1")
     field(SCAN, ".1 second")
     field(ZNAM, "OK")
@@ -127,7 +127,7 @@ record(bi, "$(P)OPEN_CIRCUIT")
 
 record(bi, "$(P)POWER_SURGE")
 {
-    field(DESC, "Current protection was set due to overload")
+    field(DESC, "Protection set, overload")
     field(INP, "$(P)IN_ERROR.B2")
     field(SCAN, ".1 second")
     field(ZNAM, "OK")
@@ -136,7 +136,7 @@ record(bi, "$(P)POWER_SURGE")
 
 record(bi, "$(P)NO_EXIT_300")
 {
-    field(DESC, "TS1500 tried to exit profile at T>300deg")
+    field(DESC, "Tried to exit at T>300C")
     field(INP, "$(P)IN_ERROR.B3")
     field(SCAN, ".1 second")
     field(ZNAM, "OK")
@@ -145,7 +145,7 @@ record(bi, "$(P)NO_EXIT_300")
 
 record(bi, "$(P)LINK_ERROR")
 {
-    field(DESC, "RS232 data transmission error")
+    field(DESC, "Data transmission error")
     field(INP, "$(P)IN_ERROR.B5")
     field(SCAN, ".1 second")
     field(ZNAM, "OK")
@@ -166,7 +166,7 @@ record(scalcout, "$(P)CALC_PUMP")
 
 record(calcout, "$(P)CALC_PUMP_SPEED")
 {
-    field(DESC, "Calculate pump speed from byte")
+    field(DESC, "Calc pump speed from byte")
     field(CALC, "A&31")
     field(OUT, "$(P)PUMP_SPEED PP")
     field(FLNK, "$(P)CALC_PUMP_STAT")
@@ -179,7 +179,7 @@ record(longin, "$(P)PUMP_SPEED")
 
 record(calcout, "$(P)CALC_PUMP_STAT")
 {
-    field(DESC,"Gets a numeric value for pump status")
+    field(DESC,"Gets num val for pump stat")
     field(CALC,"(A>1&&A<30)?-1:A")
     field(INPA,"$(P)PUMP_SPEED")
     field(OUT,"$(P)PUMP:STAT.RVAL")
@@ -328,7 +328,7 @@ record(bo, "$(P)SIM:RAMP:ACTIVE:CMD")
 ########################################
 
 record(mbbo, "$(P)RAMP:CONTROL:CMD") {
-    field(DESC, "Start ramp heating, cooling or hold")
+    field(DESC, "Start ramp heat/cool/hold")
     field(DTYP, "stream")
     field(OUT, "@devlinkam95.proto setForceRamp $(port)")
     field(ZRVL, "0")
