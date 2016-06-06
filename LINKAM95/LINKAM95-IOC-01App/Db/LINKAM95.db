@@ -44,6 +44,7 @@ record(stringin, "$(P)RAW_STAT")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAW_STAT")
+    info(archive, "VAL")
 }
 
 record(stringout, "$(P)SIM:RAW_STAT")
@@ -88,6 +89,9 @@ record(mbbi, "$(P)STATUS")
     field(THST, "Holding limit/end of ramp")
     field(FRST, "Holding the limit time")
     field(FVST, "Holding temperature")
+	
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 #############
@@ -114,6 +118,8 @@ record(bi, "$(P)FAST_COOL_RATE")
     field(SCAN, ".1 second")
     field(ZNAM, "OK")
     field(ONAM, "Error")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(bi, "$(P)OPEN_CIRCUIT")
@@ -123,6 +129,8 @@ record(bi, "$(P)OPEN_CIRCUIT")
     field(SCAN, ".1 second")
     field(ZNAM, "OK")
     field(ONAM, "Error")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(bi, "$(P)POWER_SURGE")
@@ -132,6 +140,8 @@ record(bi, "$(P)POWER_SURGE")
     field(SCAN, ".1 second")
     field(ZNAM, "OK")
     field(ONAM, "Error")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(bi, "$(P)NO_EXIT_300")
@@ -141,6 +151,8 @@ record(bi, "$(P)NO_EXIT_300")
     field(SCAN, ".1 second")
     field(ZNAM, "OK")
     field(ONAM, "Error")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(bi, "$(P)LINK_ERROR")
@@ -150,6 +162,8 @@ record(bi, "$(P)LINK_ERROR")
     field(SCAN, ".1 second")
     field(ZNAM, "OK")
     field(ONAM, "Error")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 ###################
@@ -175,6 +189,8 @@ record(calcout, "$(P)CALC_PUMP_SPEED")
 record(longin, "$(P)PUMP_SPEED")
 {
     field(DESC, "Pump speed, 0-30")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(calcout, "$(P)CALC_PUMP_STAT")
@@ -200,6 +216,9 @@ record(mbbi, "$(P)PUMP:STAT")
     field(ONST, "Minimum speed")
     field(TWST, "Maximum speed")
     field(THST, "OK")
+	
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 ##################################
@@ -221,6 +240,7 @@ record(scalcout, "$(P)PARSE_TEMP")
     field(CALC, "SSCANF(AA[6,9],'%X')")
     field(INAA, "$(P)RAW_STAT")
     field(OUT, "$(P)CALC_TEMP.A PP")
+    info(archive, "VAL")
 }
 
 record(calcout, "$(P)CALC_TEMP")
@@ -254,6 +274,8 @@ record(ai, "$(P)TEMP:RBV")
     field(DESC, "Temperature RBV")
     field(EGU, "C")
     field(PREC, "1")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 ######################
@@ -273,6 +295,8 @@ record(ao, "$(P)RATE:SP") {
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RATE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(ao, "$(P)SIM:RATE:SP")
@@ -296,6 +320,8 @@ record(ao, "$(P)LIMIT:SP") {
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:LIMIT:SP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(ao, "$(P)SIM:LIMIT:SP")
@@ -315,6 +341,8 @@ record(bo, "$(P)RAMP:ACTIVE:CMD") {
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAMP:ACTIVE:CMD")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(bo, "$(P)SIM:RAMP:ACTIVE:CMD")
@@ -340,6 +368,8 @@ record(mbbo, "$(P)RAMP:CONTROL:CMD") {
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAMP:CONTROL:CMD")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(mbbo, "$(P)SIM:RAMP:CONTROL:CMD")
@@ -365,6 +395,8 @@ record(bo, "$(P)PUMP:MODE:SP") {
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PUMP_MODE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(bo, "$(P)SIM:PUMP:MODE:SP")
@@ -384,6 +416,8 @@ record(longout, "$(P)PUMP:SPEED:SP") {
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PUMP:SPEED:SP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(longout, "$(P)SIM:PUMP:SPEED:SP")
