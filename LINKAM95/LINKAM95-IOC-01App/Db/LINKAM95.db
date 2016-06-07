@@ -181,14 +181,16 @@ record(scalcout, "$(P)CALC_PUMP")
 record(calcout, "$(P)CALC_PUMP_SPEED")
 {
     field(DESC, "Calc pump speed from byte")
-    field(CALC, "A&31")
+    field(CALC, "(A&31)*100/30")
     field(OUT, "$(P)PUMP:SPEED PP")
     field(FLNK, "$(P)CALC_PUMP_STAT")
 }
 
-record(longin, "$(P)PUMP:SPEED")
+record(ai, "$(P)PUMP:SPEED")
 {
-    field(DESC, "Pump speed, 0-30")
+    field(DESC, "Pump speed, percentage")
+	field(EGU, "%")
+	field(PREC, "1")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
@@ -339,13 +341,15 @@ record(bo, "$(P)RAMP:ACTIVE:CMD") {
     field(ONAM, "Start")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RAMP:ACTIVE:CMD")
+    field(SIOL, "$(P)SIM:RAMP:ACTIVE:CMD PP")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
 record(bo, "$(P)SIM:RAMP:ACTIVE:CMD")
 {
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
 	field(ZNAM, "Stop")
 	field(ONAM, "Start")
 }
@@ -385,6 +389,7 @@ record(mbbo, "$(P)SIM:RAMP:CONTROL:CMD")
 #### LNP pump commands ####
 ###########################
 
+# Force the pump mode to be on AUTO when IOC is running
 record(bo, "$(P)PUMP:MODE:SP") {
     field(DESC, "Set pump mode")
     field(DTYP, "stream")
@@ -393,7 +398,10 @@ record(bo, "$(P)PUMP:MODE:SP") {
     field(ONAM, "Auto")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:PUMP_MODE:SP")
+    field(SIOL, "$(P)SIM:PUMP:MODE:SP")
+	field(PINI, "YES")
+	field(VAL, "1")
+	field(SCAN, "10 second")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
