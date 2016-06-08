@@ -40,7 +40,7 @@ record(stringin, "$(P)RAW_STAT")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@devlinkam95.proto getStatus $(port)")
-    field(FLNK, "$(P)FAN_STAT")
+    field(FLNK, "$(P)STAT_FILTER")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAW_STAT")
@@ -49,6 +49,15 @@ record(stringin, "$(P)RAW_STAT")
 
 record(stringout, "$(P)SIM:RAW_STAT")
 {
+}
+
+record(scalcout, "$(P)STAT_FILTER")
+{
+	field(DESC, "Filters empty strings")
+    field(INAA, "$(P)RAW_STAT")
+    field(CALC, "AA==''")
+	field(OUT, "$(P)FAN_STAT.PROC")
+	field(OOPT, "When Zero")
 }
 
 record(fanout, "$(P)FAN_STAT")
