@@ -222,16 +222,6 @@ record(mbbi, "$(P)PUMP:STAT")
     info(INTEREST, "HIGH")
 }
 
-##################################
-# Dummy PV to consume extra bytes
-##################################
-
-#record(ai, "$(P)IN_DUMMY")
-#{
-#   field(DESC, "Dummy PV to consume extra info")
-#   field(FLNK, "$(P)IN_TEMP")
-#}
-
 ##################
 # Temperature RBV
 ##################
@@ -249,26 +239,6 @@ record(calcout, "$(P)CALC_TEMP")
     field(CALC, "((A<32767)?A:A-65536)*0.1")
     field(OUT, "$(P)TEMP:RBV PP")
 }
-
-#record(waveform, "$(P)IN_TEMP")
-#{
-#   field(DESC, "Raw temperature 4-byte value")
-#   field(NELM, "4")
-#   field(FTVL, "CHAR")
-#   field(FLNK, "$(P)TEMP_CONVERTER")
-#}
-#
-#record(asub, "$(P)TEMP_CONVERTER")
-#{
-#   field(DESC, "Convert raw temperature byte values to double")
-#   field(SNAM, "convertLinkam95TempToDouble")
-#   field(INPA, "$(P)IN_TEMP")
-#   field(NOA, "4")
-#   field(NEA, "4")
-#   field(FTA, "CHAR")
-#   field(OUTA, "$(P)TEMP:RBV PP")
-#   field(FTVA, "DOUBLE")
-#}
 
 record(ai, "$(P)TEMP:RBV")
 {
