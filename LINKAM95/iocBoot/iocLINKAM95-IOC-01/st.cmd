@@ -9,7 +9,6 @@ errlogInit2(65536, 256)
 < envPaths
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(LINKAM95)/linkam95Sup"
-##epicsEnvSet "LINKAM_PORT" "$(TTY=\\\\\\\\.\\\\COM19)"
 epicsEnvSet "DEVICE" "L0"
 
 cd ${TOP}
