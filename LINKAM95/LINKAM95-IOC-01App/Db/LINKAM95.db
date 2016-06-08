@@ -40,7 +40,7 @@ record(stringin, "$(P)RAW_STAT")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@devlinkam95.proto getStatus $(port)")
-    field(FLNK, "$(P)STAT_FILTER")
+    field(FLNK, "$(P)STAT_FILTER.SVAL")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAW_STAT")
@@ -54,10 +54,10 @@ record(stringout, "$(P)SIM:RAW_STAT")
 record(scalcout, "$(P)STAT_FILTER")
 {
 	field(DESC, "Filters empty strings")
-    field(INAA, "$(P)RAW_STAT")
-    field(CALC, "AA==''")
+    field(INAA, "$(P)RAW_STAT MS")
+	field(INBB, "$(P)STAT_FILTER.SVAL")
+    field(CALC, "AA=='' ? BB : AA")
 	field(OUT, "$(P)FAN_STAT.PROC")
-	field(OOPT, "When Zero")
 }
 
 record(fanout, "$(P)FAN_STAT")
@@ -76,8 +76,8 @@ record(fanout, "$(P)FAN_STAT")
 record(scalcout, "$(P)CALC_STAT")
 {
     field(CALC, "BYTE(AA[0,0])")
-    field(INAA, "$(P)RAW_STAT")
-    field(OUT, "$(P)STATUS.RVAL PP")
+    field(INAA, "$(P)STAT_FILTER.SVAL.SVAL MS")
+    field(OUT, "$(P)STATUS.RVAL PP MS")
 }
 
 record(mbbi, "$(P)STATUS")
@@ -110,7 +110,7 @@ record(mbbi, "$(P)STATUS")
 record(scalcout, "$(P)CALC_ERR")
 {
     field(CALC, "BYTE(AA[1,1])")
-    field(INAA, "$(P)RAW_STAT")
+    field(INAA, "$(P)STAT_FILTER.SVAL")
     field(OUT, "$(P)IN_ERROR PP")
 }
 
@@ -183,15 +183,15 @@ record(scalcout, "$(P)CALC_PUMP")
 {
     field(DESC, "Raw pump status byte")
     field(CALC, "BYTE(AA[2,2])")
-    field(INAA, "$(P)RAW_STAT")
-    field(OUT, "$(P)CALC_PUMP_SPEED.A PP")
+    field(INAA, "$(P)STAT_FILTER.SVAL MS")
+    field(OUT, "$(P)CALC_PUMP_SPEED.A PP MS")
 }
 
 record(calcout, "$(P)CALC_PUMP_SPEED")
 {
     field(DESC, "Calc pump speed from byte")
     field(CALC, "(A&31)*100/30")
-    field(OUT, "$(P)PUMP:SPEED PP")
+    field(OUT, "$(P)PUMP:SPEED PP MS")
     field(FLNK, "$(P)CALC_PUMP_STAT")
 }
 
@@ -238,15 +238,15 @@ record(mbbi, "$(P)PUMP:STAT")
 record(scalcout, "$(P)PARSE_TEMP")
 {
     field(CALC, "SSCANF(AA[6,9],'%X')")
-    field(INAA, "$(P)RAW_STAT")
-    field(OUT, "$(P)CALC_TEMP.A PP")
+    field(INAA, "$(P)STAT_FILTER.SVAL MS")
+    field(OUT, "$(P)CALC_TEMP.A PP MS")
     info(archive, "VAL")
 }
 
 record(calcout, "$(P)CALC_TEMP")
 {
     field(CALC, "((A<32767)?A:A-65536)*0.1")
-    field(OUT, "$(P)TEMP:RBV PP")
+    field(OUT, "$(P)TEMP:RBV PP MS")
 }
 
 record(ai, "$(P)TEMP:RBV")
@@ -264,17 +264,11 @@ record(ai, "$(P)TEMP:RBV")
 
 record(ao, "$(P)RATE:SP") {
     field(DESC, "Set ramp rate")
-    field(DTYP, "stream")
-    field(OUT, "@devlinkam95.proto setRate $(port)")
     field(PREC, "2")
-    field(LINR, "LINEAR")
-    field(ESLO, "0.01")
     field(DRVH, "99.99")
     field(DRVL, "0")
     field(EGU, "C/min")
-    field(SDIS, "$(P)DISABLE")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RATE:SP")
+	field(PINI, "YES")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
@@ -283,29 +277,57 @@ record(ao, "$(P)SIM:RATE:SP")
 {
 }
 
-#######################
-#### Limit command ####
-#######################
-
-record(ao, "$(P)LIMIT:SP") {
-    field(DESC, "Set ramp limit")
+# Needed for the OPI as there is no RBV to detect initial value
+record(ao, "$(P)RATE:SP:APPLY")
+{
+	field(DESC, "Target rate to push")
     field(DTYP, "stream")
-    field(OUT, "@devlinkam95.proto setLimit $(port)")
-    field(PREC, "1")
     field(LINR, "LINEAR")
-    field(ESLO, "0.1")
-    field(DRVH, "1500")
-    field(DRVL, "-196")
-    field(EGU, "C")
-    field(SDIS, "$(P)DISABLE")
+    field(ESLO, "0.01")
+    field(PREC, "2")
+    field(EGU, "C/min")
+	field(DOL, "$(P)RATE:SP")
+	field(OMSL, "closed_loop")
+    field(OUT, "@devlinkam95.proto setRate $(port)")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:LIMIT:SP")
-    info(archive, "VAL")
-    info(INTEREST, "HIGH")
+    field(SIOL, "$(P)SIM:RATE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
-record(ao, "$(P)SIM:LIMIT:SP")
+#####################################################
+#### Limit command - Sets the target temperature ####
+#####################################################
+
+record(ao, "$(P)TEMP:SP") {
+    field(DESC, "Set target temp")
+    field(DRVH, "1500")
+    field(DRVL, "-196")
+    field(PREC, "1")
+    field(EGU, "C")
+	field(PINI, "YES")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ao, "$(P)SIM:TEMP:SP")
 {
+}
+
+# Needed for the OPI as there is no RBV to detect initial value
+record(ao, "$(P)TEMP:SP:APPLY")
+{
+	field(DESC, "Target temp to push")
+    field(DTYP, "stream")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.1")
+    field(PREC, "1")
+    field(EGU, "C")
+	field(DOL, "$(P)TEMP:SP")
+	field(OMSL, "closed_loop")
+    field(OUT, "@devlinkam95.proto setLimit $(port)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:TEMP:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 #############################
@@ -380,7 +402,6 @@ record(bo, "$(P)PUMP:MODE:SP") {
     field(SIOL, "$(P)SIM:PUMP:MODE:SP")
 	field(PINI, "YES")
 	field(VAL, "1")
-	field(SCAN, "10 second")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
