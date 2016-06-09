@@ -1,17 +1,29 @@
+#######################################################
+#
+# DB file for LINKAM95 temperature controller
+#
+#######################################################
+#
 # Activities needed and their associated PVs
-# Reset             Write   $(P)RESET, uses the protocol file
-# Interlock Status  Read    $(P)ILK
-# Power             Read    $(P)POWER directly, and alias to $(P)POWER:RBV
-#                   Write   $(P)POWER:SP, and alias to $(P)POWER:SP:RBV
-# Voltage           Read    $(P)VOLT, and alias to $(P)VOLT:RBV
-# Current Out       Read    $(P)CURR, and alias to $(P)CURR:RBV
-# Remote Mode       Write   (P)REMOTE, there is a PINI to set to REMOTE
-# Polarity          Read    $(P)POL, and alias to $(P)POL:RBV
-#                   Write   $(P)POL:SP, and alias to $(P)POL:SP:RBV
-# Field Unit        Read    The unit currently being displayed, Oersted, Tesla or Gauss, $(P):FIELD:UNIT aliased to $(P)
-#                   Write   $(P)FIELD:UNIT:SP aliased to $(P)FIELD:UNIT:SP:RBV
-# Field             Read    Converted raw current value to field value, $(P)FIELD aliased to $(P)FIELD:RBV
-#                   Write   $(P)FIELD:SP aliased to $(P)FIELD:SP:RBV, this is converted and sent to $(P)SETIRAW for writing to the device
+# Ramp rate              Write   $(P)RATE:SP
+# Ramp start/stop        Write   $(P)RAMP:ACTIVE:CMD
+# Ramp mode (force)      Write   $(P)RAMP:CONTROL:CMD"
+# Pump mode              Write   $(P)PUMP:MODE:SP
+# Pump speed             Write   $(P)PUMP:SPEED:SP
+# Target temperature     Wrtie   $(P)TEMP:SP
+#                        
+# Device status          Read    $(P)STATUS
+# Error states           Read    $(P)FAST_COOL_RATE
+#                                $(P)FAST_COOL_RATE
+#                                $(P)OPEN_CIRCUIT
+#                                $(P)POWER_SURGE
+#                                $(P)NO_EXIT_300
+#                                $(P)LINK_ERROR
+# Pump speed             Read    $(P)PUMP:SPEED
+# Pump status            Read    $(P)PUMP:STAT
+# Current temperature    Read    $(P)TEMP:RBV
+#
+
 
 record(bo, "$(P)SIM") 
 {
