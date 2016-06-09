@@ -7,7 +7,7 @@
 # Activities needed and their associated PVs
 # Ramp rate              Write   $(P)RATE:SP
 # Ramp start/stop        Write   $(P)RAMP:ACTIVE:CMD
-# Ramp mode (force)      Write   $(P)RAMP:CONTROL:CMD"
+# Ramp mode (force)      Write   $(P)RAMP:CONTROL:CMD
 # Pump mode              Write   $(P)PUMP:MODE:SP
 # Pump speed             Write   $(P)PUMP:SPEED:SP
 # Target temperature     Wrtie   $(P)TEMP:SP
