@@ -1,0 +1,462 @@
+#######################################################
+#
+# DB file for LINKAM95 temperature controller
+#
+#######################################################
+#
+# Activities needed and their associated PVs
+# Ramp rate              Write   $(P)RATE:SP
+# Ramp start/stop        Write   $(P)RAMP:ACTIVE:CMD
+# Ramp mode (force)      Write   $(P)RAMP:CONTROL:CMD
+# Pump mode              Write   $(P)PUMP:MODE:SP
+# Pump speed             Write   $(P)PUMP:SPEED:SP
+# Target temperature     Wrtie   $(P)TEMP:SP
+#
+# Device status          Read    $(P)STATUS
+# Error states           Read    $(P)FAST_COOL_RATE
+#                                $(P)FAST_COOL_RATE
+#                                $(P)OPEN_CIRCUIT
+#                                $(P)POWER_SURGE
+#                                $(P)NO_EXIT_300
+#                                $(P)LINK_ERROR
+# Pump speed             Read    $(P)PUMP:SPEED
+# Pump status            Read    $(P)PUMP:STAT
+# Current temperature    Read    $(P)TEMP
+#
+
+
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+###################
+#### T command ####
+###################
+
+record(stringin, "$(P)RAW_STAT")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devlinkam95.proto getStatus $(port)")
+    field(FLNK, "$(P)STAT_FILTER.SVAL")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAW_STAT")
+    info(archive, "VAL")
+}
+
+record(stringout, "$(P)SIM:RAW_STAT")
+{
+}
+
+record(scalcout, "$(P)STAT_FILTER")
+{
+    field(DESC, "Filters empty strings")
+    field(INAA, "$(P)RAW_STAT MS")
+    field(INBB, "$(P)STAT_FILTER.SVAL")
+    field(CALC, "AA=='' ? BB : AA")
+    field(OUT, "$(P)FAN_STAT.PROC")
+}
+
+record(fanout, "$(P)FAN_STAT")
+{
+    field(LNK1, "$(P)CALC_STAT")
+    field(LNK2, "$(P)CALC_ERR")
+    field(LNK3, "$(P)CALC_PUMP")
+    field(LNK4, "$(P)PARSE_TEMP")
+}
+
+
+##############
+# Status byte
+##############
+
+record(scalcout, "$(P)CALC_STAT")
+{
+    field(CALC, "BYTE(AA[0,0])")
+    field(INAA, "$(P)STAT_FILTER.SVAL.SVAL MS")
+    field(OUT, "$(P)STATUS.RVAL PP MS")
+}
+
+record(mbbi, "$(P)STATUS")
+{
+    field(DESC, "Device status description")
+    field(DTYP, "Raw Soft Channel")
+
+    field(ZRVL, "1")
+    field(ONVL, "16")
+    field(TWVL, "32")
+    field(THVL, "48")
+    field(FRVL, "64")
+    field(FVVL, "80")
+
+    field(ZRST, "Stopped")
+    field(ONST, "Heating")
+    field(TWST, "Cooling")
+    field(THST, "Holding limit/end of ramp")
+    field(FRST, "Holding the limit time")
+    field(FVST, "Holding temperature")
+
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+#############
+# Error byte
+#############
+
+record(scalcout, "$(P)CALC_ERR")
+{
+    field(CALC, "BYTE(AA[1,1])")
+    field(INAA, "$(P)STAT_FILTER.SVAL")
+    field(OUT, "$(P)IN_ERROR PP")
+}
+
+record(mbbiDirect, "$(P)IN_ERROR")
+{
+    field(DESC, "Raw error status byte")
+    field(NOBT, "8")
+}
+
+record(bi, "$(P)FAST_COOL_RATE")
+{
+    field(DESC, "Cooling rate too fast")
+    field(INP, "$(P)IN_ERROR.B0")
+    field(SCAN, ".1 second")
+    field(ZNAM, "OK")
+    field(ONAM, "Error")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)OPEN_CIRCUIT")
+{
+    field(DESC, "Open circuit")
+    field(INP, "$(P)IN_ERROR.B1")
+    field(SCAN, ".1 second")
+    field(ZNAM, "OK")
+    field(ONAM, "Error")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)POWER_SURGE")
+{
+    field(DESC, "Protection set, overload")
+    field(INP, "$(P)IN_ERROR.B2")
+    field(SCAN, ".1 second")
+    field(ZNAM, "OK")
+    field(ONAM, "Error")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)NO_EXIT_300")
+{
+    field(DESC, "Tried to exit at T>300C")
+    field(INP, "$(P)IN_ERROR.B3")
+    field(SCAN, ".1 second")
+    field(ZNAM, "OK")
+    field(ONAM, "Error")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)LINK_ERROR")
+{
+    field(DESC, "Data transmission error")
+    field(INP, "$(P)IN_ERROR.B5")
+    field(SCAN, ".1 second")
+    field(ZNAM, "OK")
+    field(ONAM, "Error")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+###################
+# Pump status byte
+###################
+
+record(scalcout, "$(P)CALC_PUMP")
+{
+    field(DESC, "Raw pump status byte")
+    field(CALC, "BYTE(AA[2,2])")
+    field(INAA, "$(P)STAT_FILTER.SVAL MS")
+    field(OUT, "$(P)CALC_PUMP_SPEED.A PP MS")
+}
+
+record(calcout, "$(P)CALC_PUMP_SPEED")
+{
+    field(DESC, "Calc pump speed from byte")
+    field(CALC, "(A&31)*100/30")
+    field(OUT, "$(P)PUMP:SPEED PP MS")
+    field(FLNK, "$(P)CALC_PUMP_STAT")
+}
+
+record(ai, "$(P)PUMP:SPEED")
+{
+    field(DESC, "Pump speed, percentage")
+    field(EGU, "%")
+    field(PREC, "1")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(calcout, "$(P)CALC_PUMP_STAT")
+{
+    field(DESC,"Gets num val for pump stat")
+    field(CALC,"(A>1&&A<30)?-1:A")
+    field(INPA,"$(P)PUMP:SPEED")
+    field(OUT,"$(P)PUMP:STAT.RVAL PP")
+}
+
+record(mbbi, "$(P)PUMP:STAT")
+{
+    field(DESC, "Pump status description")
+    field(DTYP, "Raw Soft Channel")
+
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "30")
+    field(THVL, "-1")
+
+    field(ZRST, "Stopped")
+    field(ONST, "Minimum speed")
+    field(TWST, "Maximum speed")
+    field(THST, "OK")
+
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+##################
+# Temperature RBV
+##################
+
+record(scalcout, "$(P)PARSE_TEMP")
+{
+    field(CALC, "SSCANF(AA[6,9],'%X')")
+    field(INAA, "$(P)STAT_FILTER.SVAL MS")
+    field(OUT, "$(P)CALC_TEMP.A PP MS")
+    info(archive, "VAL")
+}
+
+record(calcout, "$(P)CALC_TEMP")
+{
+    field(CALC, "((A<32767)?A:A-65536)*0.1")
+    field(OUT, "$(P)TEMP PP MS")
+}
+
+record(ai, "$(P)TEMP")
+{
+    field(DESC, "Temperature RBV")
+    field(EGU, "C")
+    field(PREC, "1")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+alias("$(P)TEMP","$(P)TEMP:RBV")
+
+######################
+#### Rate command ####
+######################
+
+# Needed for the OPI as there is no RBV to detect initial value
+record(ao, "$(P)RATE:SP:_DISPLAY")
+{
+    field(DESC, "Rate displayed in OPI")
+    field(PREC, "2")
+    field(DRVH, "99.99")
+    field(DRVL, "0")
+    field(EGU, "C/min")
+    field(PINI, "YES")
+}
+
+record(dfanout, "$(P)RATE:SP:_APPLY")
+{
+    field(DOL, "$(P)RATE:SP:_DISPLAY")
+    field(OMSL, "closed_loop")
+    field(OUTA, "$(P)RATE:SP PP")
+}
+
+record(ao, "$(P)SIM:RATE:SP")
+{
+}
+
+record(ao, "$(P)RATE:SP")
+{
+    field(DESC, "Target rate to push")
+    field(DTYP, "stream")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.01")
+    field(PREC, "2")
+    field(DRVH, "99.99")
+    field(DRVL, "0")
+    field(EGU, "C/min")
+    field(OUT, "@devlinkam95.proto setRate $(port)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RATE:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+#####################################################
+#### Limit command - Sets the target temperature ####
+#####################################################
+
+# Needed for the OPI as there is no RBV to detect initial value
+record(ao, "$(P)TEMP:SP:_DISPLAY")
+{
+    field(DESC, "Temp buffer for OPI")
+    field(DRVH, "1500")
+    field(DRVL, "-196")
+    field(PREC, "1")
+    field(EGU, "C")
+    field(PINI, "YES")
+}
+
+record(dfanout, "$(P)TEMP:SP:_APPLY")
+{
+    field(DOL, "$(P)TEMP:SP:_DISPLAY")
+    field(OMSL, "closed_loop")
+    field(OUTA, "$(P)TEMP:SP PP")
+}
+
+record(ao, "$(P)SIM:TEMP:SP")
+{
+}
+
+record(ao, "$(P)TEMP:SP")
+{
+    field(DESC, "Target temperature")
+    field(DTYP, "stream")
+    field(LINR, "LINEAR")
+    field(DRVH, "1500")
+    field(DRVL, "-196")
+    field(ESLO, "0.1")
+    field(PREC, "1")
+    field(EGU, "C")
+    field(OUT, "@devlinkam95.proto setLimit $(port)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:TEMP:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+#############################
+#### Start/stop commands ####
+#############################
+
+record(bo, "$(P)RAMP:ACTIVE:CMD") {
+    field(DESC, "Ramp stop/start control")
+    field(DTYP, "stream")
+    field(OUT, "@devlinkam95.proto setRampControl $(port)")
+    field(ZNAM, "Stop")
+    field(ONAM, "Start")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMP:ACTIVE:CMD PP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)SIM:RAMP:ACTIVE:CMD")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Stop")
+    field(ONAM, "Start")
+}
+
+########################################
+#### Force heating/cooling commands ####
+########################################
+
+record(mbbo, "$(P)RAMP:CONTROL:CMD") {
+    field(DESC, "Start ramp heat/cool/hold")
+    field(DTYP, "stream")
+    field(OUT, "@devlinkam95.proto setForceRamp $(port)")
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(ZRST, "Heat")
+    field(ONST, "Cool")
+    field(TWST, "Hold")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMP:CONTROL:CMD")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(mbbo, "$(P)SIM:RAMP:CONTROL:CMD")
+{
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(ZRST, "Heat")
+    field(ONST, "Cool")
+    field(TWST, "Hold")
+}
+
+###########################
+#### LNP pump commands ####
+###########################
+
+# Force the pump mode to be on AUTO when IOC is running
+record(bo, "$(P)PUMP:MODE:SP") {
+    field(DESC, "Set pump mode")
+    field(DTYP, "stream")
+    field(OUT, "@devlinkam95.proto setPumpMode $(port)")
+    field(ZNAM, "Manual")
+    field(ONAM, "Auto")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PUMP:MODE:SP")
+    field(PINI, "YES")
+    field(VAL, "1")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)SIM:PUMP:MODE:SP")
+{
+    field(ZNAM, "Manual")
+    field(ONAM, "Auto")
+}
+
+record(longout, "$(P)PUMP:SPEED:SP") {
+    field(DESC, "Set pump speed")
+    field(DTYP, "stream")
+    field(OUT, "@devlinkam95.proto setPumpSpeed $(port)")
+    field(DRVH, "30")
+    field(DRVL, "0")
+    field(HOPR, "30")
+    field(LOPR, "0")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PUMP:SPEED:SP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(longout, "$(P)SIM:PUMP:SPEED:SP")
+{
+}
