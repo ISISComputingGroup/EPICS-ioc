@@ -21,12 +21,12 @@ LINKAM95_IOC_02_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
-asynSetOption("$(DEVICE)", -1, "baud", "19200")
-asynSetOption("$(DEVICE)", -1, "bits", "8")
-asynSetOption("$(DEVICE)", -1, "parity", "none")
-asynSetOption("$(DEVICE)", -1, "stop", "1")
-asynOctetSetInputEos("$(DEVICE)", -1, "\r")
-asynOctetSetOutputEos("$(DEVICE)", -1, "\r")
+asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=19200)")
+asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
+asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
+asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
+asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r)")
+asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
 
 ## Load record instances
 
