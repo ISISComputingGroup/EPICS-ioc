@@ -21,7 +21,7 @@
 #                                $(P)LINK_ERROR
 # Pump speed             Read    $(P)PUMP:SPEED
 # Pump status            Read    $(P)PUMP:STAT
-# Current temperature    Read    $(P)TEMP:RBV
+# Current temperature    Read    $(P)TEMP
 #
 
 
@@ -258,10 +258,10 @@ record(scalcout, "$(P)PARSE_TEMP")
 record(calcout, "$(P)CALC_TEMP")
 {
     field(CALC, "((A<32767)?A:A-65536)*0.1")
-    field(OUT, "$(P)TEMP:RBV PP MS")
+    field(OUT, "$(P)TEMP PP MS")
 }
 
-record(ai, "$(P)TEMP:RBV")
+record(ai, "$(P)TEMP")
 {
     field(DESC, "Temperature RBV")
     field(EGU, "C")
@@ -269,6 +269,8 @@ record(ai, "$(P)TEMP:RBV")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
+
+alias("$(P)TEMP","$(P)TEMP:RBV")
 
 ######################
 #### Rate command ####
