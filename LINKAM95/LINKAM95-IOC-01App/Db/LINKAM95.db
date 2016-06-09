@@ -329,7 +329,7 @@ record(ao, "$(P)TEMP:SP:_DISPLAY")
     field(PINI, "YES")
 }
 
-record(dfanout, "(P)TEMP:SP:_APPLY")
+record(dfanout, "$(P)TEMP:SP:_APPLY")
 {
     field(DOL, "$(P)TEMP:SP:_DISPLAY")
     field(OMSL, "closed_loop")
