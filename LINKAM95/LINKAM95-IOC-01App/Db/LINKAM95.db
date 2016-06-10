@@ -449,6 +449,7 @@ record(longout, "$(P)PUMP:SPEED:SP") {
     field(DRVH, "30")
     field(DRVL, "0")
     field(HOPR, "30")
+	field(EGU, "") # Device units 0-30 unspecified
     field(LOPR, "0")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
