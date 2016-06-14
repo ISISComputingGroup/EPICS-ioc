@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "IOCNAME" "DFKPS_02"
+epicsEnvSet "IOCNAME" "DFKPS_03"
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DANFYSIK8000)/master/danfysikMps8000App/protocol"
 epicsEnvSet "CALIB_PATH" "C:/"
 epicsEnvSet "CALIB_FILE" "CRISP - magnet - calibration.dat"
