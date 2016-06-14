@@ -13,6 +13,12 @@ endif
 # modules not to build on windows 64bit
 ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
 DIRS_NOTBUILD += 
+# don't build the mk3chopper if not using VS2010
+ifneq ($(findstring 10.0,$(VCVERSION)),)
+DIRS_NOTBUILD += 
+else
+DIRS_NOTBUILD += MK3CHOPPER
+endif
 endif
 # modules not to build on windows 32bit
 ifneq ($(findstring win32,$(EPICS_HOST_ARCH)),)
