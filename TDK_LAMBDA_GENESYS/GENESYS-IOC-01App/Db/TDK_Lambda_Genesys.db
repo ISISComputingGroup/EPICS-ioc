@@ -111,7 +111,7 @@ record(ai, "$(P)CURR") {
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR")
     field(SDIS, "$(P)DISABLE")
-    field(EGU,  "V")
+    field(EGU,  "A")
     info(INTEREST, "HIGH")
     info(archive, "VAL")    
 }
@@ -124,7 +124,7 @@ record(ao, "$(P)CURR:SP") {
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR:SP")
     field(SDIS, "$(P)DISABLE")
-    field(EGU,  "V")
+    field(EGU,  "A")
 }
 
 record(ai, "$(P)CURR:SP:RBV") {
@@ -135,7 +135,7 @@ record(ai, "$(P)CURR:SP:RBV") {
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR:SP:RBV")
     field(SDIS, "$(P)DISABLE")
-    field(EGU,  "V")
+    field(EGU,  "A")
 }
 
 record(ao, "$(P)SIM:CURR"){
@@ -178,6 +178,5 @@ alias("$(P)POWER:SP", "$(P)POWER:SP:RBV")
 
 record(bo, "$(P)SIM:POWER"){
     field(DTYP, "Soft Channel")
-    field(EGU,  "")
 }
 alias("$(P)SIM:POWER", "$(P)SIM:POWER:SP")

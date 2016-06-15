@@ -176,6 +176,19 @@ record(bo, "$(P)REMOTE")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(bi, "$(P)REMOTE:RBV")
+{
+    field(DESC, "Command Line")
+    field(DTYP, "stream")
+    field(INP, "@mps8000-232.proto getcmd $(port) 0")
+    field(ZNAM, "Local")
+    field(ONAM, "Remote")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:REMOTE")
+    field(SDIS, "$(P)DISABLE")
+}
+
 record(bi, "$(P)POL")
 {
     field(DESC, "Polarity")
@@ -202,7 +215,6 @@ record(bo, "$(P)POL:SP")
     field(ONAM, "-")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:POL:SP")
-    field(EGU, "")
 }
 alias("$(P)POL:SP", "$(P)POL:SP:RBV")
 
@@ -213,7 +225,7 @@ record(ao, "$(P)SETIRAW")
     field(DTYP, "stream")
     field(OUT,  "@mps8000-232.proto wrdac(0) $(port) 0")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:SETIRAW)
+    field(SIOL, "$(P)SIM:SETIRAW")
     field(SDIS, "$(P)DISABLE")
     field(EGU, "")
 }
@@ -227,7 +239,6 @@ record(mbbo, "$(P)FIELD:UNIT") {
     field(ONST, "Gauss")
     field(TWST, "Tesla")
     field(FLNK, "$(P)FIELD:TOUNIT")
-    field(EGU, "")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -310,7 +321,6 @@ record(bo, "$(P)SIM")
 
 record(bo, "$(P)SIM:RESET"){
     field(DTYP, "Soft Channel")
-    field(EGU, "")
 }
 
 record(ao, "$(P)SIM:STA"){
@@ -321,7 +331,6 @@ record(ao, "$(P)SIM:STA"){
 #The STA SIM and POWER:SP SIM could do with linking, but hey, it's a difficult relationship
 record(bo, "$(P)SIM:POWER:SP"){
     field(DTYP, "Soft Channel")
-    field(EGU, "")
 }
 
 record(ao, "$(P)SIM:VOLT"){
@@ -337,12 +346,10 @@ alias("$(P)SIM:CURR", "$(P)SIM:SETIRAW")
 
 record(bo, "$(P)SIM:REMOTE"){
     field(DTYP, "Soft Channel")
-    field(EGU, "")
 }
 
 record(bo, "$(P)SIM:POL"){
     field(DTYP, "Soft Channel")
-    field(EGU, "")
 }
 alias("$(P)SIM:POL", "$(P)SIM:POL:SP")
 
