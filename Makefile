@@ -14,9 +14,7 @@ endif
 ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
 DIRS_NOTBUILD += 
 # don't build the mk3chopper if not using VS2010
-ifneq ($(findstring 10.0,$(VCVERSION)),)
-DIRS_NOTBUILD += 
-else
+ifeq ($(findstring 10.0,$(VCVERSION)),)
 DIRS_NOTBUILD += MK3CHOPPER
 endif
 endif
