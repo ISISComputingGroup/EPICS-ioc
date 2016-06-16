@@ -11,7 +11,6 @@ errlogInit2(65536, 256)
 cd ${TOP}
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/SPINFLIPPER-IOC-01App/protocol"
-epicsEnvSet "TTY" "$(TTY=COM19)"
 
 ## Register all support components
 dbLoadDatabase "dbd/SPINFLIPPER-IOC-01.dbd"
@@ -20,7 +19,7 @@ SPINFLIPPER_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynSerialPortConfigure("L0", "$(TTY)", 0, 0, 0, 0)
+drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
 asynSetOption("L0", -1, "baud", "9600")
 asynSetOption("L0", -1, "bits", "8")
 asynSetOption("L0", -1, "parity", "none")
