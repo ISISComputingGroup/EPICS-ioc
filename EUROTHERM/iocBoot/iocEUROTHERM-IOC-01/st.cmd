@@ -7,7 +7,6 @@
 
 epicsEnvSet "IOCNAME" "EUROTHERM_01"
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(EUROTHERM2K)/eurotherm2kApp/protocol"
-epicsEnvSet "TTY" "$(TTY=COM21)"
 epicsEnvSet "SENS_DIR" "C:/Instrument/Settings/calib/sensors"
 epicsEnvSet "SENS_PAT" "^C.*"
 epicsEnvSet "RAMP_DIR" "C:/Instrument/Settings"
@@ -21,7 +20,7 @@ EUROTHERM_IOC_01_registerRecordDeviceDriver pdbbase
 
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynSerialPortConfigure("L0", "$(TTY)", 0, 0, 0, 0)
+drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
 asynSetOption("L0", -1, "baud", "9600")
 asynSetOption("L0", -1, "bits", "7")
 asynSetOption("L0", -1, "parity", "even")
