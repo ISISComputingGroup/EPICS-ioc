@@ -34,7 +34,7 @@ set_requestfile_path("${TOP}/iocBoot/iocPIMOT-IOC-01", "")
 epicsEnvSet("ASERIAL", "serial1")
 epicsEnvSet("PN", "1")
 epicsEnvSet("AMOTOR", "motor1")
-epicsEnvSet("MTRCTRL", "10")
+# The macro MTRCTRL must be set in globals.txt
 # PN is 1->8 so we can safely add a 0
 epicsEnvSet("AMOTORPV", "MOT:MTR$(MTRCTRL)0$(PN)")
 
