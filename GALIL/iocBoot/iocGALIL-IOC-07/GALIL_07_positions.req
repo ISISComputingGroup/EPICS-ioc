@@ -5,3 +5,6 @@ $(IFDMC04)file "GALIL_controller_positions.req" P=$(P),CCP=04
 $(IFDMC05)file "GALIL_controller_positions.req" P=$(P),CCP=05
 $(IFDMC06)file "GALIL_controller_positions.req" P=$(P),CCP=06
 $(IFDMC07)file "GALIL_controller_positions.req" P=$(P),CCP=07
+$(IFDMC08)file "GALIL_controller_positions.req" P=$(P),CCP=08
+$(IFDMC09)file "GALIL_controller_positions.req" P=$(P),CCP=09
+$(IFDMC10)file "GALIL_controller_positions.req" P=$(P),CCP=10
