@@ -10,7 +10,6 @@ errlogInit2(65536, 256)
 
 epicsEnvSet "IOCNAME" "DFKPS_02"
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DANFYSIK8000)/master/danfysikMps8000App/protocol"
-#epicsEnvSet "TTY" "$(TTY=COM5)"
 epicsEnvSet "CALIB_PATH" "C:/"
 epicsEnvSet "CALIB_FILE" "CRISP - magnet - calibration.dat"
 
@@ -23,7 +22,7 @@ DFKPS_IOC_02_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynSerialPortConfigure("L0", "$(TTY)", 0, 0, 0, 0)
+drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
 asynSetOption("L0", -1, "baud", "9600")
 asynSetOption("L0", -1, "bits", "8")
 asynSetOption("L0", -1, "parity", "none")
@@ -39,6 +38,10 @@ epicsEnvSet "RAMP_PAT" ".*"
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
+
+## Initialise the comms with the PSU
+asynOctetConnect("DFKINIT","L0")
+asynOctetWrite DFKINIT "UNLOCK\r"
 
 ## Load our record instances
 #dbLoadRecords("db/xxx.db","user=faa59Host")
