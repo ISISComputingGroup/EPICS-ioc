@@ -10,6 +10,8 @@ errlogInit2(65536, 256)
 
 cd ${TOP}
 
+epicsEnvSet(IOC_NUM,2)
+
 ## Register all support components
 dbLoadDatabase "dbd/MERCURY-IOC-02.dbd"
 MERCURY_IOC_02_registerRecordDeviceDriver pdbbase
@@ -22,8 +24,17 @@ MERCURY_IOC_02_registerRecordDeviceDriver pdbbase
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-## Load our record instances
-#dbLoadRecords("db/xxx.db","user=hgv27692Host")
+epicsEnvSet(TEMP_NUM,1)
+< $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-temp.cmd
+
+epicsEnvSet(TEMP_NUM,2)
+< $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-temp.cmd
+
+epicsEnvSet(TEMP_NUM,3)
+< $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-temp.cmd
+
+epicsEnvSet(TEMP_NUM,4)
+< $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-temp.cmd
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

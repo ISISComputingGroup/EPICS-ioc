@@ -1,6 +1,0 @@
-
-file $(MERCURY_ITC)/db/MercuryiTC-SCPI.template
-{
-pattern {P, Q, PORT}
-	{\$(P):MERCURY, 01, \$(PORT)}
-}

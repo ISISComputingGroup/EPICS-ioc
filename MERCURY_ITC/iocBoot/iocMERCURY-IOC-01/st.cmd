@@ -1,5 +1,4 @@
 #!../../bin/windows-x64/MERCURY-IOC-01
-
 ## You may have to change MERCURY-IOC-01 to something else
 ## everywhere it appears in this file
 
@@ -8,10 +7,9 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(MERCURY_ITC)/data"
-
 cd ${TOP}
 
+epicsEnvSet(IOC_NUM,1)
 ## Register all support components
 dbLoadDatabase "dbd/MERCURY-IOC-01.dbd"
 MERCURY_IOC_01_registerRecordDeviceDriver pdbbase
@@ -19,26 +17,22 @@ MERCURY_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-#drvAsynSerialPortConfigure("L0", "$(TTY)", 0, 0, 0, 0)
-#asynSetOption("L0", -1, "baud", "9600")               
-#asynSetOption("L0", -1, "bits", "8")                  
-#asynSetOption("L0", -1, "parity", "none")             
-#asynSetOption("L0", -1, "stop", "1")                  
-#asynOctetSetInputEos("L0", -1, "\r")                  
-#asynOctetSetOutputEos("L0", -1, "\r")
-
-drvAsynIPPortConfigure("L0","localhost:51234",0,0,0)
-                 
-
 ## Load record instances
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-## Load our record instances
-#dbLoadRecords("db/xxx.db","user=hgv27692Host")
-dbLoadRecords("db/main_unit.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0")
+epicsEnvSet(TEMP_NUM,1)
+< $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-temp.cmd
 
+epicsEnvSet(TEMP_NUM,2)
+< $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-temp.cmd
+
+epicsEnvSet(TEMP_NUM,3)
+< $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-temp.cmd
+
+epicsEnvSet(TEMP_NUM,4)
+< $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-temp.cmd
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
