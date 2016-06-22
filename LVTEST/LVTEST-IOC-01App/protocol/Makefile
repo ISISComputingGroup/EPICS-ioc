@@ -3,7 +3,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-#DATA += LVTEST-IOC-01.proto
+DATA += lvtest.xml
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

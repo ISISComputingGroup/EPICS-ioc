@@ -1,0 +1,39 @@
+# % macro, P, device prefix
+
+record(ao, "$(P)FCONT1:SP")
+{
+   field(DTYP, "asynFloat64")
+   field(OUT,  "@asyn(lvfp,0,0)fcont1")
+   field(PREC, "3")
+}
+
+record(ai, "$(P)FCONT1")
+{
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn(lvfp,0,0)fcont1")
+   field(PREC, "3")
+   field(SCAN, "$(FCONT1_SCAN=Passive)")
+}
+
+record(ai, "$(P)FIND1")
+{
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn(lvfp,0,0)find1")
+   field(PREC, "3")
+   field(SCAN, "$(FIND1_SCAN=Passive)")
+}
+
+
+record(stringin, "$(P)SCONT1")
+{
+   field(DTYP, "asynOctetRead")
+   field(INP,  "@asyn(lvfp,0,0)scont1")
+   field(SCAN, "$(SCONT1_SCAN=Passive)")
+}
+
+record(stringout, "$(P)SCONT1:SP")
+{
+   field(DTYP, "asynOctetWrite")
+   field(OUT,  "@asyn(lvfp,0,0)scont1")
+}
+

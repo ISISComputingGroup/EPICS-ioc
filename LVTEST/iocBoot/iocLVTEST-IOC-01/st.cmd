@@ -8,31 +8,19 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-cd ${TOP}
-
 ## Register all support components
-dbLoadDatabase "dbd/LVTEST-IOC-01.dbd"
+dbLoadDatabase "$(TOP)/dbd/LVTEST-IOC-01.dbd"
 LVTEST_IOC_01_registerRecordDeviceDriver pdbbase
 
-##ISIS## Run IOC initialisation 
-< $(IOCSTARTUP)/init.cmd
+## main args are:  portName, configSection, configFile, host, options (see lvDCOMConfigure() documentation in lvDCOMDriver.cpp)
+##
+## portName ("lvfp" below) refers to the asyn driver port name - it is the extrenal name used in epics DB files to refer to the driver instance
+## configSection ("frontpanel" below) refers to the section of configFile ("lvinput.xml" below) where settings are read from
+##    
+## there are additional optional args to specify a DCOM ProgID for a compiled LabVIEW application 
+## and a different username + password for remote host if that is required 
+##
+## the "options" argument is a combination of the following flags (as per the #lvDCOMOptions enum in lvDCOMInterface.h)
+##    viWarnIfIdle=1, viStartIfIdle=2, viStopOnExitIfStarted=4, viAlwaysStopOnExit=8
 
-## Load record instances
-
-##ISIS## Load common DB records 
-< $(IOCSTARTUP)/dbload.cmd
-
-## Load our record instances
-#dbLoadRecords("db/xxx.db","user=faa59Host")
-
-##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
-< $(IOCSTARTUP)/preiocinit.cmd
-
-cd ${TOP}/iocBoot/${IOC}
-iocInit
-
-## Start any sequence programs
-#seq sncxxx,"user=faa59Host"
-
-##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
-< $(IOCSTARTUP)/postiocinit.cmd
+lvDCOMConfigure("lvfp", "frontpanel", "$(TOP)/data/lvtest.xml", "", 6)

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml-stylesheet type="text/xsl" href="lvinput_format.xsl" ?> -->
+
+<!--
+    @file lvinput.xml Example lvDCOM driver configuration file. Loaded at IOC boot time in @link st.cmd @endlink via e.g.
+	
+	    lvDCOMConfigure("ex1", "frontpanel", "$(TOP)/exampleApp/src/lvinput.xml", "", 6)
+
+    @author Freddie Akeroyd, STFC ISIS facility, UK (freddie.akeroyd at stfc.ac.uk)
+	
+    $LastChangedRevision$: 
+    $LastChangedBy$: 
+    $LastChangedDate$:  
+    $HeadURL$:
+	
+	Note: you can generate an initial version of one of these configuartion files, and associated EPICS DB records,
+	      using the supplied xslt files - see README.txt for details
+-->
+<lvinput 
+  xmlns="http://epics.isis.rl.ac.uk/lvDCOMinput/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://epics.isis.rl.ac.uk/lvDCOMinput/1.0 ../../lvDCOMApp/src/lvDCOMinput.xsd">
+
+   <!--
+        the exint Vi is an ISIS Vi that is used as a proxy for "set" operations when extint="true" is specified below.
+		If your labview front panels are not "labview event driven" then you do not need to worry about this.
+		If, however, they are (i.e. you would require the "signalling" version of the setControlValue() method) then you
+		need to set the extint attribute to "true" on the relevant <set /> tags
+				
+		The path is parsed using EPICS macEnvExpand() and so can contain EPICS environment variables
+   -->
+   <extint path="$(LVDCOM)/lvDCOMApp/src/extint/Main/Library/External Interface - Set Value.vi" />
+   
+   <!-- this name will be mapped (via lvDCOMConfigure()) to an asyn driver port name that can then be specified in an EPICS record -->
+   <section name="frontpanel"> 
+
+    <!-- path to LabVIEW vi file we are using, which is parsed using EPICS macEnvExpand() and so can contain EPICS environment variables -->
+    <vi path="$(VIPATH")> 
+
+	<!--
+	      <param> defines as asyn driver parameter that can be specified in an epics record to access data on the labview Vi. The <set>
+                  and <read> items specify the name of the appropriate control/indicator on the LabVIEW Vi to access for these
+                  operations. The "method" attribute controls the underlying method by which the new value is communicated, 
+				  currently only "GCV" for reads (use DCOM exposed getControlValue()) and "SCV" for sets (use DCOM exposed setControlValue()) 
+				  are supported. The meaning and use of the extint attribute has been covered earlier above.
+				  
+				  If you need a LabVIEW event triggered when the control is written to, use extint="true" with <set />, 
+				  otherwise use extint="false"
+	  -->
+	  <param name="fcont1" type="float64"> 
+        <read method="GCV" target="$(FCONT1=)" />  
+        <set method="SCV" extint="true" target="$(FCONT1=)" post_button="$(FBUT1=)" post_button_wait="$(FBUTW1=)" /> 
+	  </param>
+	
+	  <param name="icont1" type="int32"> 
+        <read method="GCV" target="$(ICONT1=)" />  
+        <set method="SCV" extint="true" target="$(ICONT1=)" post_button="$(IBUT1=)" post_button_wait="$(IBUTW1=)" /> 
+	  </param>
+
+	  <param name="scont1" type="string"> 
+        <read method="GCV" target="$(SCONT1=)" />  
+        <set method="SCV" extint="true" target="$(SCONT1=)" post_button="$(SBUT1=)" post_button_wait="$(SBUTW1=)" /> 
+	  </param>
+
+	  <param name="find1" type="float64"> 
+        <read method="GCV" target="$(FIND1=)" />
+      </param>
+
+	  <param name="iind1" type="int32"> 
+        <read method="GCV" target="$(IIND1=)" />
+      </param>
+
+	  <param name="sind1" type="string"> 
+        <read method="GCV" target="$(SIND1=)" />
+      </param>
+
+  </vi>
+	 
+  </section>
+  
+</lvinput>
