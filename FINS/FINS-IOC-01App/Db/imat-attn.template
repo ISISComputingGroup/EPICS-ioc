@@ -35,7 +35,7 @@ record(bi, "$(P)$(Q)CLOSED")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:CLOSE")
 }
-record(bo, "$(P)$(Q)OPEN_SP")
+record(bo, "$(P)$(Q)OPEN:SP")
 {
 	field(DESC, "Open Attenuator")
 	field(DTYP, "asynInt32")
@@ -45,7 +45,7 @@ record(bo, "$(P)$(Q)OPEN_SP")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:OPEN")
 }
-record(bo, "$(P)$(Q)CLOSE_SP")
+record(bo, "$(P)$(Q)CLOSE:SP")
 {
 	field(DESC, "Close Attenuator")
 	field(DTYP, "asynInt32")
