@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<macros>
+<macro name="PORT1" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD1" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
+<macro name="BITS1" pattern="^[7-8]$" description="port data bits (default: 8)" />
+<macro name="PARITY1" pattern="^(even|odd|none)$" description="port parity (default: none)" />
+<macro name="STOP1" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="OEOS1" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
+<macro name="IEOS1" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
+
+<macro name="PORT2" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD2" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
+<macro name="BITS2" pattern="^[7-8]$" description="port data bits (default: 8)" />
+<macro name="PARITY2" pattern="^(even|odd|none)$" description="port parity (default: none)" />
+<macro name="STOP2" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="OEOS2" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
+<macro name="IEOS2" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
+<macro name="PORT3" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD3" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
+<macro name="BITS3" pattern="^[7-8]$" description="port data bits (default: 8)" />
+<macro name="PARITY3" pattern="^(even|odd|none)$" description="port parity (default: none)" />
+<macro name="STOP3" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="OEOS3" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
+<macro name="IEOS3" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
+<macro name="PORT4" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD4" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
+<macro name="BITS4" pattern="^[7-8]$" description="port data bits (default: 8)" />
+<macro name="PARITY4" pattern="^(even|odd|none)$" description="port parity (default: none)" />
+<macro name="STOP4" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="OEOS4" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
+<macro name="IEOS4" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
+<macro name="PORT5" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD5" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
+<macro name="BITS5" pattern="^[7-8]$" description="port data bits (default: 8)" />
+<macro name="PARITY5" pattern="^(even|odd|none)$" description="port parity (default: none)" />
+<macro name="STOP5" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="OEOS5" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
+<macro name="IEOS5" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
+<macro name="PORT6" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD6" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
+<macro name="BITS6" pattern="^[7-8]$" description="port data bits (default: 8)" />
+<macro name="PARITY6" pattern="^(even|odd|none)$" description="port parity (default: none)" />
+<macro name="STOP6" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="OEOS6" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
+<macro name="IEOS6" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
+<macro name="PORT7" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD7" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
+<macro name="BITS7" pattern="^[7-8]$" description="port data bits (default: 8)" />
+<macro name="PARITY7" pattern="^(even|odd|none)$" description="port parity (default: none)" />
+<macro name="STOP7" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="OEOS7" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
+<macro name="IEOS7" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
+<macro name="PORT8" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD8" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
+<macro name="BITS8" pattern="^[7-8]$" description="port data bits (default: 8)" />
+<macro name="PARITY8" pattern="^(even|odd|none)$" description="port parity (default: none)" />
+<macro name="STOP8" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="OEOS8" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
+<macro name="IEOS8" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
+<macro name="PORT9" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD9" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
+<macro name="BITS9" pattern="^[7-8]$" description="port data bits (default: 8)" />
+<macro name="PARITY9" pattern="^(even|odd|none)$" description="port parity (default: none)" />
+<macro name="STOP9" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="OEOS9" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
+<macro name="IEOS9" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
+<macro name="PORT10" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD10" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
+<macro name="BITS10" pattern="^[7-8]$" description="port data bits (default: 8)" />
+<macro name="PARITY10" pattern="^(even|odd|none)$" description="port parity (default: none)" />
+<macro name="STOP10" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="OEOS10" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
+<macro name="IEOS10" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
+</macros>
+</config_part>
+</ioc_config>
