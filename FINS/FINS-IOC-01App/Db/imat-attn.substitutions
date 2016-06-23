@@ -1,0 +1,14 @@
+# Control Word: W510       (This word will self-reset to 0)
+#                 W510.00               set true to request Sample Attenuator to Open
+#                 W510.01               set true to request Sample Attenuator to Close
+#
+#Status Word: W511
+#                 W511.00               true when Sample Attenuator requested to open via HMI or EPICS
+#                 W511.01               true when Sample Attenuator is OPEN
+#                 W511.02               true when Sample Attenuator is CLOSED
+#
+# 
+
+file "$(TOP)/FINS-IOC-01App/Db/imat-attn.template" {
+	{ P=\$(P), Q=\$(Q) }
+}

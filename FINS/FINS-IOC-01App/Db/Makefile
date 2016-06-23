@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 DB += larmor-air.db
 DB += wish-vacuum.db
+DB += imat-attn.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
