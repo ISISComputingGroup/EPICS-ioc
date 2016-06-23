@@ -8,6 +8,7 @@ record(longin, "$(P)$(Q)STATUS")
 	info(alarm, "Attenuator")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:STATUS")
+	field(EGU, "")
 }
 record(bi, "$(P)$(Q)OPEN")
 {
