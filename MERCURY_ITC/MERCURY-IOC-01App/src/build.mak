@@ -26,7 +26,7 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
-$(APPNAME)_DBD += MercuryiTC.dbd
+$(APPNAME)_DBD += lvDCOM.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
