@@ -1,21 +1,44 @@
-record(longin, "$(P)$(Q)STATUS")
+#record(longin, "$(P)$(Q)STATUS")
+#{
+#    field(DESC, "Attenuator Status")
+#    field(DTYP, "asynInt32")
+#    field(INP,  "@asyn(PLC, 511, 5.0) FINS_WR_READ")
+#    field(SCAN, "1 second")
+#    info(INTEREST, "HIGH")
+#    info(alarm, "Attenuator")
+#    field(SIML, "$(P)$(Q)SIM")
+#    field(SIOL, "$(P)$(Q)SIM:STATUS")
+#    field(EGU, "")
+#}
+
+record(mbbi, "$(P)$(Q)STATUS")
 {
     field(DESC, "Attenuator Status")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn(PLC, 511, 5.0) FINS_WR_READ")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask(PLC, 511, 0xff, 5.0) FINS_WR_READ")
     field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    info(alarm, "Attenuator")
+	# we right shift by 1 to drop the "open request" status bit 
+	field(SHFT, 1)
+	field(ZRVL, 0)
+	field(ZRST, "UNKNOWN")
+	field(ONVL, 1)
+	field(ONST, "OPEN")
+	field(TWVL, 2)
+	field(TWST, "CLOSED")
+	field(UNSV, "MINOR")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:STATUS")
-    field(EGU, "")
+    info(INTEREST, "HIGH")
+    info(alarm, "Attenuator")
+	info(archive, "VAL")
 }
+
 record(bi, "$(P)$(Q)OPEN")
 {
     field(DESC, "Attenuator Open")
     field(DTYP, "asynInt32")
-    field(ZNAM, "0")
-    field(ONAM, "1")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
     field(INP,  "@asyn(PLC, 511, 5.0) FINS_WR_READ_B1")
     field(SCAN, "1 second")
     info(INTEREST, "HIGH")
@@ -23,12 +46,13 @@ record(bi, "$(P)$(Q)OPEN")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:OPEN")
 }
+
 record(bi, "$(P)$(Q)CLOSED")
 {
     field(DESC, "Attenuator Closed")
     field(DTYP, "asynInt32")
-    field(ZNAM, "0")
-    field(ONAM, "1")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
     field(INP,  "@asyn(PLC, 511, 5.0) FINS_WR_READ_B2")
     field(SCAN, "1 second")
     info(INTEREST, "HIGH")
@@ -36,6 +60,21 @@ record(bi, "$(P)$(Q)CLOSED")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:CLOSE")
 }
+
+## write 0 to CLOSE, 1 to OPEN
+record(mbbo, "$(P)$(Q)MOVE:SP")
+{
+    field(DESC, "Move Attenuator")
+    field(DTYP, "asynInt32")
+    field(ZRST, "CLOSE")
+	field(ONST, "OPEN")
+    field(ZRVL, 2)
+ 	field(ONVL, 1)
+    field(OUT,  "@asyn(PLC, 510, 5.0) FINS_WR_WRITE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:MOVE")
+}
+
 record(bo, "$(P)$(Q)OPEN:SP")
 {
     field(DESC, "Open Attenuator")
@@ -46,6 +85,7 @@ record(bo, "$(P)$(Q)OPEN:SP")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:OPEN")
 }
+
 record(bo, "$(P)$(Q)CLOSED:SP")
 {
     field(DESC, "Close Attenuator")
@@ -83,6 +123,13 @@ record(bi, "$(P)$(Q)SIM:OPEN")
 }
 
 record(longin, "$(P)$(Q)SIM:STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(VAL, "1")
+}
+
+record(longin, "$(P)$(Q)SIM:MOVE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
