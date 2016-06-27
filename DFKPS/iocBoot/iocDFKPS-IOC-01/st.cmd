@@ -30,9 +30,9 @@ asynSetOption("L0", -1, "stop", "2")
 
 ## Load FileList
 ## A seperate instance must be created for each danfysik
-FileListConfigure("RAMPFILELIST1", $(RAMP_DIR), $(RAMP_PAT)) 
 epicsEnvSet "RAMP_DIR" "C:/Instrument/Settings"
 epicsEnvSet "RAMP_PAT" ".*"
+FileListConfigure("RAMPFILELIST1", $(RAMP_DIR), $(RAMP_PAT)) 
 
 ## Load record instances
 
