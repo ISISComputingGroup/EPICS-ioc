@@ -1,26 +1,14 @@
-#record(longin, "$(P)$(Q)STATUS")
-#{
-#    field(DESC, "Attenuator Status")
-#    field(DTYP, "asynInt32")
-#    field(INP,  "@asyn(PLC, 511, 5.0) FINS_WR_READ")
-#    field(SCAN, "1 second")
-#    info(INTEREST, "HIGH")
-#    info(alarm, "Attenuator")
-#    field(SIML, "$(P)$(Q)SIM")
-#    field(SIOL, "$(P)$(Q)SIM:STATUS")
-#    field(EGU, "")
-#}
 
 record(mbbi, "$(P)$(Q)STATUS")
 {
     field(DESC, "Attenuator Status")
-    field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask(PLC, 511, 0xffff, 5.0) FINS_WR_READ")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asynMask(PLC, 511, 16, 5.0) FINS_WR_READ")
     field(SCAN, "1 second")
 	# we right shift by 1 to drop the "open request" status bit 
 	field(SHFT, 1)
 	field(ZRVL, 0)
-	field(ZRST, "UNKNOWN")
+	field(ZRST, "MOVING")
 	field(ONVL, 1)
 	field(ONST, "OPEN")
 	field(TWVL, 2)
