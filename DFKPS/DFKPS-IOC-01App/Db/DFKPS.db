@@ -229,6 +229,7 @@ record(ao, "$(P)SETIRAW")
     field(SDIS, "$(P)DISABLE")
     field(EGU, "")
 }
+alias("$(P)SETIRAW", "$(P)SETIRAW:SP")
 
 record(mbbo, "$(P)FIELD:UNIT") {
     field(DESC, "Field Unit to Display")
