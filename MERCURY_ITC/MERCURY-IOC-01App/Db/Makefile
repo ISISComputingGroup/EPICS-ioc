@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 DB += $(MERCURY_ITC)/db/MercuryTemp.db
+DB += $(MERCURY_ITC)/db/MercuryGlobal.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
