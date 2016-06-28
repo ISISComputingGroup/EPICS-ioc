@@ -64,7 +64,7 @@ iocInit
 #seq sncxxx,"user=faa59Host"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
-#< $(IOCSTARTUP)/postiocinit.cmd
+< $(IOCSTARTUP)/postiocinit.cmd
 
 # Save motor positions every 5 seconds
 create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)DAE:")
