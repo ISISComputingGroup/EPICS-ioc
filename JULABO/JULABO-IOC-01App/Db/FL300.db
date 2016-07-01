@@ -4,13 +4,14 @@ record(bo, "$(P)SIM")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     field(FLNK, "$(P)VERSION")
+	field(VAL, "$(RECSIM=0)")
 }
 
 record(bo, "$(P)DISABLE") 
 {
     field(DESC, "Disable comms")
     field(PINI, "YES")
-    field(VAL, "0")
+    field(VAL, "$(DISABLE=0)")
     field(OMSL, "supervisory")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")

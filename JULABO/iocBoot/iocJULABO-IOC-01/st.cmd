@@ -31,7 +31,7 @@ asynSetOption("L0", -1, "stop", "1")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/FP50_MH.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0")
+dbLoadRecords("db/FP50_MH.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
