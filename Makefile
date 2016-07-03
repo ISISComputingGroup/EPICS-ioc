@@ -30,9 +30,9 @@ endif
 ifeq ($(SHARED_LIBRARIES),YES)
 DIRS_NOTBUILD += 
 endif
-# modules not to build if no ATL
+# modules not to build if no Microsoft ATL (such as Visual Studio Express)
 ifneq ($(HAVE_ATL),YES)  
-DIRS_NOTBUILD += ISISDAE STPS350 AG53220A STSR400
+DIRS_NOTBUILD += ISISDAE STPS350 AG53220A STSR400 DELFTARDUSTEP DELFTDCMAG MERCURY_ITC
 endif
 
 DIRS := $(DIRS) $(filter-out $(DIRS_NOTBUILD), $(wildcard *))
