@@ -14,7 +14,7 @@ epicsEnvSet "DETECTOR_PATTERN" ".*det.*"
 epicsEnvSet "SPECTRA_DIR" "$(ICPCONFIGROOT)/tables"
 epicsEnvSet "SPECTRA_PATTERN" ".*spec.*"
 epicsEnvSet "PERIOD_DIR" "$(ICPCONFIGROOT)/tables"
-epicsEnvSet "PERIOD_PATTERN" ".*"
+epicsEnvSet "PERIOD_PATTERN" ".*period.*"
 epicsEnvSet "TCB_DIR" "$(ICPCONFIGROOT)/tcb"
 epicsEnvSet "TCB_PATTERN" ".*tcb.*"
 

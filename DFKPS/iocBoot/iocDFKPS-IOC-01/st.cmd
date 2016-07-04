@@ -23,16 +23,16 @@ DFKPS_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
-asynSetOption("L0", -1, "baud", "9600")
+asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
 asynSetOption("L0", -1, "bits", "8")
 asynSetOption("L0", -1, "parity", "none")
 asynSetOption("L0", -1, "stop", "2")
 
 ## Load FileList
 ## A seperate instance must be created for each danfysik
-FileListConfigure("RAMPFILELIST1", $(RAMP_DIR), $(RAMP_PAT)) 
 epicsEnvSet "RAMP_DIR" "C:/Instrument/Settings"
 epicsEnvSet "RAMP_PAT" ".*"
+FileListConfigure("RAMPFILELIST1", $(RAMP_DIR), $(RAMP_PAT)) 
 
 ## Load record instances
 

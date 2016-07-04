@@ -27,8 +27,8 @@ mk3DriverConfigure("MK3", "C:/LabVIEW Modules/Drivers/ISIS MK3 Disc Chopper/MK3_
 
 ## Load our record instances
 dbLoadRecords("db/mk3.db","P=$(MYPVPREFIX)$(IOCNAME):, Q=CH1:, PORT=MK3, CHANNEL=1")
-#dbLoadRecords("db/mk3.db","P=$(MYPVPREFIX)$(IOCNAME):, Q=CH2:, PORT=MK3, CHANNEL=2")
-#dbLoadRecords("db/mk3.db","P=$(MYPVPREFIX)$(IOCNAME):, Q=CH3:, PORT=MK3, CHANNEL=3")
+dbLoadRecords("db/mk3.db","P=$(MYPVPREFIX)$(IOCNAME):, Q=CH2:, PORT=MK3, CHANNEL=2")
+dbLoadRecords("db/mk3.db","P=$(MYPVPREFIX)$(IOCNAME):, Q=CH3:, PORT=MK3, CHANNEL=3")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
