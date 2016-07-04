@@ -15,12 +15,11 @@ dbLoadDatabase "dbd/DELFTBPMAG-IOC-01.dbd"
 DELFTBPMAG_IOC_01_registerRecordDeviceDriver pdbbase
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/data"
-epicsEnvSet "TTY" "$(TTY=COM17)"
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynSerialPortConfigure("L0", "$(TTY)", 0, 0, 0, 0)
+drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
 asynSetOption("L0", -1, "baud", "9600")
 asynSetOption("L0", -1, "bits", "8")
 asynSetOption("L0", -1, "parity", "none")

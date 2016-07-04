@@ -1,0 +1,90 @@
+record(longin, "$(P)$(Q)STATUS")
+{
+    field(DESC, "Attenuator Status")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, 511, 5.0) FINS_WR_READ")
+	field(SCAN, "1 second")
+    info(INTEREST, "HIGH")
+	info(alarm, "Attenuator")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:STATUS")
+	field(EGU, "")
+}
+record(bi, "$(P)$(Q)OPEN")
+{
+    field(DESC, "Attenuator Open")
+	field(DTYP, "asynInt32")
+	field(ZNAM, "0")
+    field(ONAM, "1")
+	field(INP,  "@asyn(PLC, 511, 5.0) FINS_WR_READ_B1")
+	field(SCAN, "1 second")
+    info(INTEREST, "HIGH")
+	info(alarm, "Attenuator Open")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:OPEN")
+}
+record(bi, "$(P)$(Q)CLOSED")
+{
+    field(DESC, "Attenuator Closed")
+	field(DTYP, "asynInt32")
+	field(ZNAM, "0")
+    field(ONAM, "1")
+	field(INP,  "@asyn(PLC, 511, 5.0) FINS_WR_READ_B2")
+	field(SCAN, "1 second")
+    info(INTEREST, "HIGH")
+	info(alarm, "Attenuator Open")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:CLOSE")
+}
+record(bo, "$(P)$(Q)OPEN:SP")
+{
+	field(DESC, "Open Attenuator")
+	field(DTYP, "asynInt32")
+	field(ZNAM, "...")
+    field(ONAM, "OPEN")
+	field(OUT,  "@asyn(PLC, 510, 5.0) FINS_WR_WRITE_B0")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:OPEN")
+}
+record(bo, "$(P)$(Q)CLOSE:SP")
+{
+	field(DESC, "Close Attenuator")
+	field(DTYP, "asynInt32")
+	field(ZNAM, "...")
+    field(ONAM, "CLOSE")
+	field(OUT,  "@asyn(PLC, 510, 5.0) FINS_WR_WRITE_B1")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:CLOSE")
+}
+
+
+### SIMULATION RECORDS ###
+
+record(bo, "$(P)$(Q)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bi, "$(P)$(Q)SIM:CLOSE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(VAL, "1")
+}
+
+record(bi, "$(P)$(Q)SIM:OPEN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(VAL, "1")
+}
+
+record(longin, "$(P)$(Q)SIM:STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(VAL, "1")
+}

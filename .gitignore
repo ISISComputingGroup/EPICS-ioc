@@ -13,6 +13,8 @@ dllPath.bat
 runIOC.bat
 runIOC.sh
 relPaths.sh
+.project
+.cproject
 *.tags
 *.tag
 #/MK3CHOPPER/Mk3Wrapper/bin/

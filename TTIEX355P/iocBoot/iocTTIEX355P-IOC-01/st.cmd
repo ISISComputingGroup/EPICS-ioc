@@ -9,7 +9,6 @@ errlogInit2(65536, 256)
 < envPaths
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TTIEX355P)/ttiEX355PApp/protocol"
-epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM18)"
 
 cd ${TOP}
 
@@ -20,7 +19,7 @@ TTIEX355P_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynSerialPortConfigure("L0", "$(TTY)", 0, 0, 0, 0)
+drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
 asynSetOption("L0", -1, "baud", "9600")
 asynSetOption("L0", -1, "bits", "8")
 asynSetOption("L0", -1, "parity", "none")

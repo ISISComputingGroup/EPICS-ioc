@@ -11,7 +11,6 @@ errlogInit2(65536, 256)
 cd ${TOP}
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(JULABO)/julaboApp/protocol"
-epicsEnvSet "TTY" "$(TTY=COM18)"
 
 ## Register all support components
 dbLoadDatabase "dbd/JULABO-IOC-02.dbd"
@@ -20,7 +19,7 @@ JULABO_IOC_02_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynSerialPortConfigure("L0", "$(TTY)", 0, 0, 0, 0)
+drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
 asynSetOption("L0", -1, "baud", "4800")
 asynSetOption("L0", -1, "bits", "7")
 asynSetOption("L0", -1, "parity", "even")

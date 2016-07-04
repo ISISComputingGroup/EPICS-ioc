@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM5)"                                   
+epicsEnvSet "TTY" "$(PORT)"                                   
 
 cd ${TOP}
 

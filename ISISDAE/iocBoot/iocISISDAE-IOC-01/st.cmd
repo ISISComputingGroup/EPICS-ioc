@@ -34,7 +34,7 @@ webgetConfigure("web")
 #epicsEnvSet("NOCHECKFUAMP","1")
 
 ## local dae, no dcom/labview
-isisdaeConfigure("icp", $(DAEDCOM=0), $(DAEHOST=localhost), "spudulike", "reliablebeam")
+isisdaeConfigure("icp", $(DAEDCOM=1), $(DAEHOST=localhost), "spudulike", "reliablebeam")
 ## pass 1 as second arg to signify DCOM to either local or remote dae
 #isisdaeConfigure("icp", 1, "localhost")
 #isisdaeConfigure("icp", 1, "ndxchipir", "spudulike", "reliablebeam")
