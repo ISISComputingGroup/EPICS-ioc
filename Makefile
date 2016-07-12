@@ -5,10 +5,12 @@ include $(TOP)/configure/CONFIG
 
 DIRS_NOTBUILD = Makefile README.txt icp_config.xml icp_config.template.xml isisicp.properties isisicp.default.properties 
 DIRS_NOTBUILD += NULL # this file seems to get created occasionally 
+DIRS_NOTBUILD += LVTEST 
 # modules not to build on linux
 ifneq ($(findstring linux,$(EPICS_HOST_ARCH)),)
 DIRS_NOTBUILD += ISISDAE MK3CHOPPER STPS350 AG53220A STSR400 ECLAB
 DIRS_NOTBUILD += DELFTARDUSTEP DELFTDCMAG GALIL MERCURY_ITC
+DIRS_NOTBUILD += DELFTSHEAR
 endif
 # modules not to build on windows 64bit
 ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
