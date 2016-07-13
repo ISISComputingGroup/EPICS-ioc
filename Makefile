@@ -5,12 +5,9 @@ include $(TOP)/configure/CONFIG
 
 DIRS_NOTBUILD = Makefile README.txt icp_config.xml icp_config.template.xml isisicp.properties isisicp.default.properties 
 DIRS_NOTBUILD += NULL # this file seems to get created occasionally 
-DIRS_NOTBUILD += LVTEST 
 # modules not to build on linux
 ifneq ($(findstring linux,$(EPICS_HOST_ARCH)),)
-DIRS_NOTBUILD += ISISDAE MK3CHOPPER STPS350 AG53220A STSR400 ECLAB
-DIRS_NOTBUILD += DELFTARDUSTEP DELFTDCMAG GALIL MERCURY_ITC
-DIRS_NOTBUILD += DELFTSHEAR
+DIRS_NOTBUILD += MK3CHOPPER ECLAB GALIL 
 endif
 # modules not to build on windows 64bit
 ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
@@ -32,9 +29,9 @@ endif
 ifeq ($(SHARED_LIBRARIES),YES)
 DIRS_NOTBUILD += 
 endif
-# modules not to build if no Microsoft ATL (such as Visual Studio Express)
+# modules not to build if no ATL
 ifneq ($(HAVE_ATL),YES)  
-DIRS_NOTBUILD += ISISDAE STPS350 AG53220A STSR400 DELFTARDUSTEP DELFTDCMAG MERCURY_ITC
+DIRS_NOTBUILD += ISISDAE MERCURY_ITC STPS350 AG53220A STSR400 DELFTSHEAR DELFTDCMAG DELFTARDUSTEP LVTEST
 endif
 
 DIRS := $(DIRS) $(filter-out $(DIRS_NOTBUILD), $(wildcard *))
