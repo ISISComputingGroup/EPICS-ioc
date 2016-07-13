@@ -20,9 +20,12 @@
 - [ ] Have suitable [simulation records](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Record-Simulation) been added?
 - [ ] Have the [finishing touches](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/IOC-Finishing-Touches) been applied?
 - [ ] Have the changes been documented in the [release notes](https://github.com/ISISComputingGroup/IBEX/wiki/ReleaseNotes_Dev). If so, do they describe the changes appropriately?
-- [ ] Has the submodule been updated for the main EPICS repo? See **Reviewing work for the subModules of EPICS** in the [Git workflow](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Git-workflow) page for details.
 
 ### Functional Tests
 
 - [ ] Do changes function as described? Add comments below that describe the tests performed.
 - [ ] Does the IOC respond correctly both in full and simulation mode, where it's possible to test both?
+
+### Final steps
+
+- [ ] Reviewer has updated the submodule in the main EPICS repo? See **Reviewing work for the subModules of EPICS** in the [Git workflow](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Git-workflow) page for details.
