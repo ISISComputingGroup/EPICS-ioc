@@ -9,9 +9,7 @@ errlogInit2(65536, 256)
 < envPaths
 
 epicsEnvSet "IOCNAME" "DFKPS_01"
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DANFYSIK8000)/master/danfysikMps8000App/protocol"
-epicsEnvSet "CALIB_PATH" "C:/"
-epicsEnvSet "CALIB_FILE" "CRISP - magnet - calibration.dat"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DANFYSIK8000)/master/danfysikMps8000App/protocol/DFK$(DEV_TYPE=8000)/"
 
 cd ${TOP}
 
@@ -24,9 +22,12 @@ DFKPS_IOC_01_registerRecordDeviceDriver pdbbase
 
 drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
 asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
-asynSetOption("L0", -1, "bits", "8")
-asynSetOption("L0", -1, "parity", "none")
-asynSetOption("L0", -1, "stop", "2")
+asynSetOption("L0", -1, "bits", "$(BITS=8)")
+asynSetOption("L0", -1, "parity", "$(PARITY="none")")
+asynSetOption("L0", -1, "stop", "$(STOP=2)")
+
+## check for polarity type
+stringiftest("POL", "$(POLARITY=BIPOLAR)")
 
 ## Load FileList
 ## A seperate instance must be created for each danfysik
@@ -34,27 +35,12 @@ epicsEnvSet "RAMP_DIR" "C:/Instrument/Settings"
 epicsEnvSet "RAMP_PAT" ".*"
 FileListConfigure("RAMPFILELIST1", $(RAMP_DIR), $(RAMP_PAT)) 
 
-## Load record instances
-
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-## Initialise the comms with the PSU
-asynOctetConnect("DFKINIT","L0")
-asynOctetWrite DFKINIT "UNLOCK\r"
+## Load record instances
+dbLoadRecords("$(TOP)/Db/DFKPS_common.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME): port=L0")
+$(POL)dbLoadRecords("$(TOP)/Db/DFKPS_polarity.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME): port=L0")
 
-## Load our record instances
-#dbLoadRecords("db/xxx.db","user=faa59Host")
-dbLoadRecords("$(TOP)/Db/DFKPS.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, CDIR=$(CALIB_PATH), CFILE=$(CALIB_FILE), port=L0")
-
-##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
-< $(IOCSTARTUP)/preiocinit.cmd
-
-cd ${TOP}/iocBoot/${IOC}
-iocInit
-
-## Start any sequence programs
-#seq sncxxx,"user=faa59Host"
-
-##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
-< $(IOCSTARTUP)/postiocinit.cmd
+## Load device type specific st.cmd
+<iocBoot/iocDFKPS-IOC-01/st-$(DEV_TYPE=8000).cmd
