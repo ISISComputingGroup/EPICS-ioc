@@ -1,0 +1,31 @@
+
+record(mbbo, "$(P)FIELD:UNIT") {
+    field(DESC, "Field Unit to Display")
+    field(ZRVL, 0)
+    field(ONVL, 1)
+    field(TWVL, 2)
+    field(ZRST, "Oersted")
+    field(ONST, "Gauss")
+    field(TWST, "Tesla")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)FIELD:UNIT", "$(P)FIELD:UNIT:RBV")
+alias("$(P)FIELD:UNIT", "$(P)FIELD:UNIT:SP")
+alias("$(P)FIELD:UNIT:SP", "$(P)FIELD:UNIT:SP:RBV")
+
+# units are $(P)FIELD:UNIT
+record(ai, "$(P)FIELD"){
+    field(DESC, "Field")
+    field(INP, "$(P)FIELD:TOUNIT PP MS")
+    field(EGU, "")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)FIELD", "$(P)FIELD:RBV")
+
+record(ao, "$(P)FIELD:SP") {
+    field(FLNK, "$(P)FIELD:SP:FROMUNIT")
+    field(EGU, "")
+}
+alias("$(P)FIELD:SP", "$(P)FIELD:SP:RBV")

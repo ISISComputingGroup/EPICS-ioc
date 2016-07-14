@@ -1,0 +1,40 @@
+
+record(bi, "$(P)ILK")
+{
+    field(DESC, "Interlocks")
+    field(INP,  "$(P)STA2.BE MS")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)POWER")
+{
+    field(DESC, "Power")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)POWER", "$(P)POWER:RBV")
+
+
+record(ai, "$(P)STATUS")
+{
+    field(DESC, "Status")
+    field(DTYP, "stream")
+    field(INP,  "@dfkps.proto status $(port) 0")
+    field(SCAN, "1 second")
+    field(PREC, "0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STATUS")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "")
+}
+
+record(ao, "$(P)SIM:STATUS"){
+    field(DTYP, "Soft Channel")
+    field(VAL, 0)
+    field(EGU, "")
+}

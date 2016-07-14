@@ -1,0 +1,33 @@
+
+record(bi, "$(P)POL")
+{
+    field(DESC, "Polarity")
+    field(DTYP, "stream")
+    field(INP, "@dfkps_common.proto getpol $(port) 0")
+    field(ZNAM, "+")
+    field(ONAM, "-")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POL")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)POL", "$(P)POL:RBV")
+
+record(bo, "$(P)POL:SP")
+{
+    field(DESC, "Polarity")
+    field(DTYP, "stream")
+    field(OUT, "@dfkps_common.proto setpol $(port) 0")
+    field(ZNAM, "+")
+    field(ONAM, "-")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POL:SP")
+}
+alias("$(P)POL:SP", "$(P)POL:SP:RBV")
+
+record(bo, "$(P)SIM:POL"){
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:POL", "$(P)SIM:POL:SP")
