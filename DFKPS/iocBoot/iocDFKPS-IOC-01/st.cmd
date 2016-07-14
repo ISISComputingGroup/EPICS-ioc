@@ -39,8 +39,8 @@ FileListConfigure("RAMPFILELIST1", $(RAMP_DIR), $(RAMP_PAT))
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load record instances
-dbLoadRecords("$(TOP)/Db/DFKPS_common.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME): port=L0")
-$(POL)dbLoadRecords("$(TOP)/Db/DFKPS_polarity.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME): port=L0")
+dbLoadRecords("$(TOP)/db/DFKPS_common.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0")
+$(POL)dbLoadRecords("$(TOP)/db/DFKPS_polarity.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0")
 
 ## Load device type specific st.cmd
-<iocBoot/iocDFKPS-IOC-01/st-$(DEV_TYPE=8000).cmd
+< iocBoot/iocDFKPS-IOC-01/st-$(DEV_TYPE=8000).cmd
