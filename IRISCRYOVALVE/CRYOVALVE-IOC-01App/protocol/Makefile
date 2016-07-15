@@ -3,7 +3,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-#DATA += IRISCRYOVALVE-IOC-01.proto
+#DATA += CRYOVALVE-IOC-01.proto
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

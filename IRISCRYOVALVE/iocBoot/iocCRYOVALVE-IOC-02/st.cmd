@@ -1,6 +1,6 @@
-#!../../bin/windows-x64/IRISCRYOVALVE-IOC-01
+#!../../bin/windows-x64/CRYOVALVE-IOC-02
 
-## You may have to change IRISCRYOVALVE-IOC-01 to something else
+## You may have to change CRYOVALVE-IOC-02 to something else
 ## everywhere it appears in this file
 
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
@@ -8,20 +8,20 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(IRISCRYOVALVE)/IrisCryoValveSup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(CRYOVALVE)/IrisCryoValveSup"
 epicsEnvSet "DEVICE" "L0"
 
 cd ${TOP}
 
 ## Register all support components
-dbLoadDatabase "dbd/IRISCRYOVALVE-IOC-01.dbd"
-IRISCRYOVALVE_IOC_01_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/CRYOVALVE-IOC-02.dbd"
+CRYOVALVE_IOC_02_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
 
 drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
-asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
+asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=19200)")
 asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
 asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
 asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
@@ -34,7 +34,7 @@ asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/IrisCryoValveSup.db","P=$(MYPVPREFIX)$(IOCNAME):, port=$(DEVICE)")
+dbLoadRecords("db/CRYOVALVE.db","P=$(MYPVPREFIX)$(IOCNAME):, port=$(DEVICE)")
 #dbLoadRecords("db/xxx.db","user=iew83206Host")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
