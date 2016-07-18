@@ -15,7 +15,7 @@ cd ${TOP}
 
 ## Register all support components
 dbLoadDatabase "dbd/CRYOVALVE-IOC-02.dbd"
-CRYOVALVE_IOC_01_registerRecordDeviceDriver pdbbase
+CRYOVALVE_IOC_02_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
