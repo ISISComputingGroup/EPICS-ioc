@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(CRYOVALVE)/IrisCryoValveSup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(IRISCRYOVALVE)/IrisCryoValveSup"
 epicsEnvSet "DEVICE" "L0"
 
 cd ${TOP}
@@ -21,7 +21,7 @@ CRYOVALVE_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
-asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=19200)")
+asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
 asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
 asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
 asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
