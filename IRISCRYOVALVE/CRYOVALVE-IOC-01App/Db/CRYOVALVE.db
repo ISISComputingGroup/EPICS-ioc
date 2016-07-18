@@ -62,15 +62,13 @@ record(bo, "$(P)OPEN:CMD") {
     field(ONAM, "OPEN")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:OPEN:CMD PP")
+    field(SIOL, "$(P)SIM:OPEN:CMD")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
 record(bo, "$(P)SIM:OPEN:CMD")
 {
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
     field(ZNAM, "CLOSE")
     field(ONAM, "OPEN")
 }
