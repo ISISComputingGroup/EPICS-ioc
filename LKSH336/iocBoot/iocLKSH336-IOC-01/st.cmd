@@ -8,6 +8,8 @@ errlogInit2(65536, 256)
 
 < envPaths
 
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(LKSH336)/protocol"
+
 cd ${TOP}
 
 ## Register all support components
@@ -17,6 +19,8 @@ LKSH336_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
+drvAsynIPPortConfigure ("IP", "ls336-1:7777")
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
@@ -24,6 +28,8 @@ LKSH336_IOC_01_registerRecordDeviceDriver pdbbase
 
 ## Load our record instances
 #dbLoadRecords("db/xxx.db","user=iew83206Host")
+#dbLoadRecords("db/test.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=IP")
+#dbLoadRecords("db/test.db","P=LK:, PORT=IP, ADDR=0")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
