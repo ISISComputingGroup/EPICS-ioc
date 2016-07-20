@@ -21,12 +21,12 @@ MKSPDR2000_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
-asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=19200)")
+asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
 asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
 asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
 asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
-asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r)")
-asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
+asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\n)")
+## asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\n)")
 
 ## Load record instances
 
