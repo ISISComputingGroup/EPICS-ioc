@@ -20,15 +20,16 @@ MKSPDR2000_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation
 #< $(IOCSTARTUP)/init.cmd
 
-drvAsynIPPortConfigure("$(DEVICE)", "localhost:51891")
+## For running emulator
+#drvAsynIPPortConfigure("$(DEVICE)", "localhost:51891")
 
-##drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
-##asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
-##asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
-##asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
-##asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
-##asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\n)")
-#### asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\n)")
+drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
+asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
+asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
+asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
+asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
+asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\n)")
+## asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\n)")
 
 ## Load record instances
 
