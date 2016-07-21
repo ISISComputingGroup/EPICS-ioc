@@ -1,0 +1,327 @@
+record(ai, "$(P)STATUS")
+{
+    field(DESC, "Device Status Flags")
+    field(DTYP, "stream")
+    field(INP,  "@dfkps.proto status $(port) 0")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)CALSTA1")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STATUS")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "")
+}
+
+
+record(calcout, "$(P)CALSTA1")
+{
+    field(DESC, "Get Status Flags 1-16")
+    field(OUT,  "$(P)STA1 PP MS")
+    field(CALC, "(A>>B)&C")
+    field(INPA, "$(P)STATUS MS")
+    field(INPB, "16")
+    field(INPC, "65535")
+    field(FLNK, "$(P)CALSTA2")
+    field(EGU, "")
+}
+
+record(mbbiDirect, "$(P)STA1")
+{
+	field(DESC, "Status Flags 1-16")
+}
+
+record(calcout, "$(P)CALSTA2")
+{
+    field(DESC, "Get Status Flags 16-32")
+    field(OUT,  "$(P)STA2 PP MS")
+    field(CALC, "A&B")
+    field(INPA, "$(P)STATUS MS")
+    field(INPB, "65535")
+    field(FLNK, "$(P)PROCALL1")
+    field(EGU, "")
+}
+
+record(mbbiDirect, "$(P)STA2")
+{
+	field(DESC, "Status Flags 16-32")
+}
+
+record(seq, "$(P)PROCALL1")
+{
+	field(DESC, "Update Individual Status Records")
+	field(DOL1, "$(P)STA1.BE")
+	field(DOL2, "$(P)STA1.BD")
+	field(DOL3, "$(P)STA1.BC")
+	field(DOL4, "$(P)STA1.BB")
+	field(DOL5, "$(P)STA1.BA")
+	field(DOL6, "$(P)STA1.B9")
+	field(DOL7, "$(P)STA1.B8")
+	field(DOL8, "$(P)STA1.B7")
+	field(DOL9, "$(P)STA1.B6")
+	field(DOLA, "$(P)STA2.BF")
+	field(LNK1, "$(P)ILK:USER1")
+	field(LNK2, "$(P)ILK:USER2")
+	field(LNK3, "$(P)ILK:USER3")
+	field(LNK4, "$(P)ILK:USER4")
+	field(LNK5, "$(P)ILK:USER5")
+	field(LNK6, "$(P)ILK:USER6")
+	field(LNK7, "$(P)ILK:FWDI")
+	field(LNK8, "$(P)ILK:WATER")
+	field(LNK9, "$(P)ILK:DOOR")
+	field(LNKA, "$(P)ILK:HSDI")
+	field(FLNK, "$(P)PROCALL2")
+}
+
+record(seq, "$(P)PROCALL2")
+{
+	field(DESC, "Update Individual Status Records")
+	field(DOL1, "$(P)STA2.BE")
+	field(DOL2, "$(P)STA2.BD")
+	field(DOL3, "$(P)STA2.BC")
+	field(DOL4, "$(P)STA2.BB")
+	field(DOL5, "$(P)STA2.BA")
+	field(DOL6, "$(P)STA2.B9")
+	field(DOL7, "$(P)STA2.B2")
+	field(DOL8, "$(P)STA2.B1")
+	field(DOL9, "$(P)STA1.B5")
+	field(DOLA, "$(P)STA1.B4")
+	field(LNK1, "$(P)ILK:CHASSIS")
+	field(LNK2, "$(P)ILK:IGBTHS")
+	field(LNK3, "$(P)ILK:HFDI")
+	field(LNK4, "$(P)ILK:DCCT")
+	field(LNK5, "$(P)ILK:REGSUP")
+	field(LNK6, "$(P)ILK:IGBT")
+	field(LNK7, "$(P)ILK:OVERC")
+	field(LNK8, "$(P)POWER PP")
+	field(LNK9, "$(P)CALCNEUT.A")
+	field(LNKA, "$(P)CALCNEUT.B")
+	field(FLNK, "$(P)CALCNEUT")
+}
+
+record(calcout, "$(P)CALCNEUT")
+{
+	field(DESC, "Check for Neutral Polarity (ILK)")
+	field(CALC, "A&&B")
+	field(OUT, "$(P)ILK:NEUTRAL")
+	field(FLNK, "$(P)CALCILK1")
+}
+
+record(calcout, "$(P)CALCILK1")
+{
+	field(DESC, "Check for Overall Interlock")
+	field(INPA, "$(P)ILK:USER1")
+	field(INPB, "$(P)ILK:USER2")
+	field(INPC, "$(P)ILK:USER3")
+	field(INPD, "$(P)ILK:USER4")
+	field(INPE, "$(P)ILK:USER5")
+	field(INPF, "$(P)ILK:USER6")
+	field(INPG, "$(P)ILK:FWDI")
+	field(INPH, "$(P)ILK:WATER")
+	field(INPI, "$(P)ILK:DOOR")
+	field(INPJ, "$(P)ILK:HSDI")
+	field(CALC, "A||B||C||D||E||F||G||H||I||J")
+	field(OUT, "$(P)CALCILK.A")
+	field(FLNK, "$(P)CALCILK2")
+}
+
+record(calcout, "$(P)CALCILK2")
+{
+	field(DESC, "Check for Overall Interlock")
+	field(INPA, "$(P)ILK:CHASSIS")
+	field(INPB, "$(P)ILK:IGBTHS")
+	field(INPC, "$(P)ILK:HFDI")
+	field(INPD, "$(P)ILK:DCCT")
+	field(INPE, "$(P)ILK:REGSUP")
+	field(INPF, "$(P)ILK:IGBT")
+	field(INPG, "$(P)ILK:OVERC")
+	field(INPH, "$(P)ILK:NEUTRAL")
+	field(CALC, "A||B||C||D||E||F||G||H")
+	field(OUT, "$(P)CALCILK.B")
+	field(FLNK, "$(P)CALCILK")
+}
+
+record(calcout, "$(P)CALCILK")
+{
+	field(DESC, "Check for Overall Interlock")
+	field(CALC, "A||B")
+	field(OUT, "$(P)ILK PP MS")
+}
+
+record(bi, "$(P)ILK")
+{
+    field(DESC, "Overall Interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:USER1")
+{
+    field(DESC, "User Interlock 1")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:USER2")
+{
+    field(DESC, "User Interlock 2")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:USER3")
+{
+    field(DESC, "User Interlock 3")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:USER4")
+{
+    field(DESC, "User Interlock 4")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:USER5")
+{
+    field(DESC, "User Interlock 5")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:USER6")
+{
+    field(DESC, "User Interlock 6")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:FWDI")
+{
+    field(DESC, "Freewheel Diode Overtemp")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:WATER")
+{
+    field(DESC, "Low Water Flow")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:DOOR")
+{
+    field(DESC, "Door Open")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:HSDI")
+{
+    field(DESC, "Heatsink Diode Overtemp")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:CHASSIS")
+{
+    field(DESC, "Chassis Overtemp")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:IGBTHS")
+{
+    field(DESC, "IGBT Heatsink Overtemp")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:HFDI")
+{
+    field(DESC, "HF Diode Overtemp")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:DCCT")
+{
+    field(DESC, "Switch Reg DCCT Fail")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:REGSUP")
+{
+    field(DESC, "Switch Reg Supply Fail")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:IGBT")
+{
+    field(DESC, "IGBT Driver Failure")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:OVERC")
+{
+    field(DESC, "Overcurrent")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:NEUTRAL")
+{
+	field(DESC, "Neutral Polarity")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)POWER")
+{
+    field(DESC, "Power")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)POWER", "$(P)POWER:RBV")
