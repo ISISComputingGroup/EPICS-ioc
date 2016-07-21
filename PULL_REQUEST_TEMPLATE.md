@@ -19,6 +19,7 @@
 - [ ] Have suitable [disable records](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Disable-records) been added?
 - [ ] Have suitable [simulation records](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Record-Simulation) been added?
 - [ ] Have the [finishing touches](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/IOC-Finishing-Touches) been applied?
+- [ ] Is there an [emulator](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Emulating-Devices) for the device?
 - [ ] Have the changes been documented in the [release notes](https://github.com/ISISComputingGroup/IBEX/wiki/ReleaseNotes_Dev). If so, do they describe the changes appropriately?
 
 ### Functional Tests
