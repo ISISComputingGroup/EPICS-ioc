@@ -18,7 +18,7 @@ dbLoadDatabase "dbd/MKSPDR2000-IOC-01.dbd"
 MKSPDR2000_IOC_01_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation
-#< $(IOCSTARTUP)/init.cmd
+< $(IOCSTARTUP)/init.cmd
 
 ## For running emulator
 #drvAsynIPPortConfigure("$(DEVICE)", "localhost:51891")
@@ -34,14 +34,14 @@ asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\n)")
 ## Load record instances
 
 ##ISIS## Load common DB records
-#< $(IOCSTARTUP)/dbload.cmd
+< $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/MKSPDR2000.db","P=$(MYPVPREFIX)MKSPDR2000_01:, port=$(DEVICE)")
+dbLoadRecords("db/MKSPDR2000.db","P=$(MYPVPREFIX)$(MKSPDR2000):, port=$(DEVICE)")
 #dbLoadRecords("db/xxx.db","user=iew83206Host")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
-#< $(IOCSTARTUP)/preiocinit.cmd
+< $(IOCSTARTUP)/preiocinit.cmd
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit
@@ -50,4 +50,4 @@ iocInit
 #seq sncxxx,"user=iew83206Host"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs
-#< $(IOCSTARTUP)/postiocinit.cmd
+< $(IOCSTARTUP)/postiocinit.cmd
