@@ -58,7 +58,7 @@ record(stringin, "$(P)UNITS")
 {
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP, "@devmkspdr2000.proto getUnits $(port)")
+    field(INP, "@devmkspdr2000.proto getUnits() $(port)")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:UNITS")
@@ -74,124 +74,70 @@ record(stringout, "$(P)SIM:UNITS")
 #### p command ####
 ###################
 
-# The scales are received as 2 strings separated with a space
-record(stringin, "$(P)RAW_PRES")
+record(ai, "$(P)PRES:1")
 {
-    field(DESC, "Raw pressure string from device")
+    field(DESC, "Pressure, channel 1")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP, "@devmkspdr2000.proto getPressures $(port)")
-    field(FLNK, "$(P)FAN_PRES")
+    field(INP, "@devmkspdr2000.proto getPressures($(P)PRES:2) $(port)")
+    field(PREC, "2")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RAW_PRES")
+    field(SIOL, "$(P)SIM:PRES:1")
     info(archive, "VAL")
 }
 
-record(stringout, "$(P)SIM:RAW_PRES")
+record(ao, "$(P)SIM:PRES:1")
 {
 }
 
-record(fanout, "$(P)FAN_PRES")
+record(ai, "$(P)PRES:2")
 {
-	field(SCAN, "Passive")
-    field(LNK1, "$(P)CALC_P1")
-    field(LNK2, "$(P)CALC_P2")
-}
-
-# Get the substring before the first space
-record(scalcout, "$(P)CALC_P1")
-{
-    field(DESC, "Takes substring before space")
-    field(CALC, "AA[0,' ']")
-    field(INAA, "$(P)RAW_PRES.SVAL")
-    field(OUT, "$(P)PRES:1 PP MS")
-}
-
-record(stringin, "$(P)PRES:1")
-{
-    field(DESC, "Pressure reading, channel 1")
-    field(DTYP, "Raw Soft Channel")
+    field(DESC, "Pressure, channel 2")
+    field(DTYP, "Soft Channel")
+    field(PREC, "2")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PRES:2")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
-# Get the substring after the first space
-record(scalcout, "$(P)CALC_P2")
+record(ao, "$(P)SIM:PRES:2")
 {
-    field(DESC, "Takes substring after space")
-    field(CALC, "AA[' ',-1]")
-    field(INAA, "$(P)RAW_PRES.SVAL")
-    field(OUT, "$(P)PRES:2 PP MS")
-}
-
-record(stringin, "$(P)PRES:2")
-{
-    field(DESC, "Pressure reading, channel 2")
-    field(DTYP, "Raw Soft Channel")
-    info(archive, "VAL")
-    info(INTEREST, "HIGH")
 }
 
 ###################
 #### f command ####
 ###################
 
-# The scales are received as 2 strings separated with a space
-record(stringin, "$(P)RAW_SCALES")
+record(ai, "$(P)SCALE:1")
 {
-    field(DESC, "Raw scales string from device")
+    field(DESC, "Scale, channel 1")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP, "@devmkspdr2000.proto getScales $(port)")
-    field(FLNK, "$(P)FAN_SCALES")
+    field(INP, "@devmkspdr2000.proto getScales($(P)SCALE:2) $(port)")
+    field(PREC, "2")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RAW_SCALES")
+    field(SIOL, "$(P)SIM:SCALE:1")
     info(archive, "VAL")
 }
 
-record(stringout, "$(P)SIM:RAW_SCALES")
+record(ao, "$(P)SIM:SCALE:1")
 {
 }
 
-record(fanout, "$(P)FAN_SCALES")
+record(ai, "$(P)SCALE:2")
 {
-	field(SCAN, "Passive")
-    field(LNK1, "$(P)CALC_S1")
-    field(LNK2, "$(P)CALC_S2")
-}
-
-# Get the substring before the first space
-record(scalcout, "$(P)CALC_S1")
-{
-    field(DESC, "Takes substring before space")
-    field(CALC, "AA[0,' ']")
-    field(INAA, "$(P)RAW_SCALES.SVAL")
-    field(OUT, "$(P)SCALE:1 PP MS")
-}
-
-record(stringin, "$(P)SCALE:1")
-{
-    field(DESC, "Scale reading, channel 1")
-    field(DTYP, "Raw Soft Channel")
+    field(DESC, "Scale, channel 2")
+    field(DTYP, "Soft Channel")
+    field(PREC, "2")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SCALE:2")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
-# Get the substring after the first space
-record(scalcout, "$(P)CALC_S2")
+record(ao, "$(P)SIM:SCALE:2")
 {
-    field(DESC, "Takes substring after space")
-    field(CALC, "AA[' ',-1]")
-    field(INAA, "$(P)RAW_SCALES.SVAL")
-    field(OUT, "$(P)SCALE:2 PP MS")
-}
-
-record(stringin, "$(P)SCALE:2")
-{
-    field(DESC, "Scale reading, channel 2")
-    field(DTYP, "Raw Soft Channel")
-    info(archive, "VAL")
-    info(INTEREST, "HIGH")
 }
