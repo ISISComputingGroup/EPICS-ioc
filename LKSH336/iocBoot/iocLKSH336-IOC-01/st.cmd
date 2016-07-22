@@ -17,22 +17,23 @@ dbLoadDatabase "dbd/LKSH336-IOC-01.dbd"
 LKSH336_IOC_01_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation 
-< $(IOCSTARTUP)/init.cmd
+##]##< $(IOCSTARTUP)/init.cmd
 
 drvAsynIPPortConfigure ("IP", "ls336-1:7777")
 
 ## Load record instances
 
 ##ISIS## Load common DB records 
-< $(IOCSTARTUP)/dbload.cmd
+##]##< $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
 #dbLoadRecords("db/xxx.db","user=iew83206Host")
 #dbLoadRecords("db/test.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=IP")
-#dbLoadRecords("db/test.db","P=LK:, PORT=IP, ADDR=0")
+##dbLoadRecords("db/lakeshore336.db", "P=LK, PORT=IP")
+dbLoadRecords("db/lakeshore336.db", "P=$(MYPVPREFIX)LKSH336, PORT=IP")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
-< $(IOCSTARTUP)/preiocinit.cmd
+##]##< $(IOCSTARTUP)/preiocinit.cmd
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit
@@ -41,4 +42,4 @@ iocInit
 #seq sncxxx,"user=iew83206Host"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
-< $(IOCSTARTUP)/postiocinit.cmd
+##]##< $(IOCSTARTUP)/postiocinit.cmd

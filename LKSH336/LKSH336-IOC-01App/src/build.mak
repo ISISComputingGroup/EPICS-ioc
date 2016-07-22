@@ -31,6 +31,7 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += busySupport.dbd
 #$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
@@ -47,6 +48,7 @@ $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += busy
 #$(APPNAME)_LIBS += xxx
 
 # LKSH336-IOC-01_registerRecordDeviceDriver.cpp derives from LKSH336-IOC-01.dbd

@@ -1,0 +1,7 @@
+
+file $(LKSH336)/db/lakeshore336.template
+{
+pattern {P, PORT, ADDR, TEMPSCAN, SCAN}
+	{"\$(P)", "\$(PORT)", 0, 1, 5}
+}
+
