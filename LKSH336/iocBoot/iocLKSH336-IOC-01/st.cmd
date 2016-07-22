@@ -28,8 +28,6 @@ drvAsynIPPortConfigure ("IP", "ls336-1:7777")
 
 ## Load our record instances
 #dbLoadRecords("db/xxx.db","user=iew83206Host")
-#dbLoadRecords("db/test.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=IP")
-##dbLoadRecords("db/lakeshore336.db", "P=LK, PORT=IP")
 dbLoadRecords("db/lakeshore336.db", "P=$(MYPVPREFIX)LKSH336, PORT=IP")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
