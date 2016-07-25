@@ -3,7 +3,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-#DATA += TPG268x-IOC-02.proto
+#DATA += TPG26x-IOC-01.proto
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

@@ -1,4 +1,4 @@
-/* TPG268x-IOC-01Main.cpp */
+/* TPG26x-IOC-01Main.cpp */
 /* Author:  Marty Kraimer Date:    17MAR2000 */
 
 #include <stddef.h>

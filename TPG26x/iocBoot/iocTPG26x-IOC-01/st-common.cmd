@@ -3,14 +3,16 @@
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TPG)/data"
 
-drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
+drvAsynIPPortConfigure("L0", "localhost:64081")
 
-asynSetOption("L0", -1, "baud", "$(BAUD=9600)")  
-asynSetOption("L0", -1, "bits", "8")
-asynSetOption("L0", -1, "parity", "none")   
-asynSetOption("L0", -1, "stop", "1")
-asynOctetSetInputEos("L0", -1, "\r\n")
-asynOctetSetOutputEos("L0", -1, "\r\n")
+#drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
+
+#asynSetOption("L0", -1, "baud", "$(BAUD=9600)")  
+#asynSetOption("L0", -1, "bits", "8")
+#asynSetOption("L0", -1, "parity", "none")   
+#asynSetOption("L0", -1, "stop", "1")
+#asynOctetSetInputEos("L0", -1, "\r\n")
+#asynOctetSetOutputEos("L0", -1, "\r\n")
 
 #asynSetTraceMask("L0",-1,0x9) 
 #asynSetTraceIOMask("L0",-1,0x2)
