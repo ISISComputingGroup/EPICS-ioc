@@ -33,9 +33,9 @@ asynSetOption("L0", -1, "parity", "$(PARITY="none")")
 asynSetOption("L0", -1, "stop", "$(STOP=2)")
 
 ## checks used for loading db files
-stringiftest  "POLAR"  "$(POLARITY)"  5  "BIPOLAR"
-stringiftest  "CALIB"  "$(CALIBRATED)"  5  "1"
-stringiftest  "SLEW"  "$(USE_SLEW)"  5  "1"
+stringiftest  "POLAR"  "$(POLARITY="BIPOLAR")"  5  "BIPOLAR"
+stringiftest  "CALIB"  "$(CALIBRATED=1)"  5  "1"
+stringiftest  "SLEW"  "$(USE_SLEW=0)"  5  "1"
 
 ## Load FileList
 ## A seperate instance must be created for each danfysik
@@ -47,7 +47,7 @@ FileListConfigure("RAMPFILELIST1", $(RAMP_DIR), $(RAMP_PAT))
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load record instances
-dbLoadRecords("$(TOP)/db/DFKPS_common.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0")
+dbLoadRecords("$(TOP)/db/DFKPS_common.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, FAC=$(FACTOR=1000), port=L0")
 $(IFPOLAR) dbLoadRecords("$(TOP)/db/DFKPS_polarity.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0")
 $(IFCALIB) dbLoadRecords("$(TOP)/db/DFKPS_calibrated.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, CALIB_FILE=$(CFILE=$(DEFAULT_CFILE)), CALIB_PATH=$(CPATH=$(DEFAULT_CPATH)), port=L0")
 $(IFSLEW) dbLoadRecords("$(TOP)/db/DFKPS_slew.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0")
