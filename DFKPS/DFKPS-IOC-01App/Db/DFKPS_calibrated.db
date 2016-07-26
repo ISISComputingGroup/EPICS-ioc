@@ -1,0 +1,101 @@
+
+record(calcout, "$(P)FIELD:PRECALIB"){
+    field(INPA, "$(P)CURR")
+    field(CALC, "A*1000000")
+    field(OUT, "$(P)CURR PP MS")
+    field(EGU, "")
+}
+
+record(cvt, "$(P)FIELD:CALIB"){
+    field(INPX, "$(P)FIELD:PRECALIB")
+    field(Y, 1)
+    field(METH, "1D TABLE")
+    field(DRVL, 0)
+    field(DRVH, 50000000000)
+    field(SPEC, "$(P)CALIB:FILE")
+    field(TDIR, "$(P)CALIB:PATH")
+    field(FLNK, "$(P)FIELD:TOUNIT")
+    field(EGU, "")
+}
+
+record(calc, "$(P)FIELD:TOUNIT"){
+    field(INPA, "$(P)FIELD:UNIT PP")
+    field(INPB, "$(P)FIELD:CALIB PP")
+    field(CALC, "A==2?B/10000:B")
+    field(FLNK, "$(P)FIELD")
+    field(EGU, "")
+}
+
+record(ai, "$(P)FIELD"){
+    field(DESC, "Field")
+    field(INP, "$(P)FIELD:TOUNIT PP MS")
+    field(EGU, "")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)FIELD", "$(P)FIELD:RBV")
+
+record(ao, "$(P)FIELD:SP") {
+    field(FLNK, "$(P)FIELD:SP:FROMUNIT")
+    field(EGU, "")
+}
+alias("$(P)FIELD:SP", "$(P)FIELD:SP:RBV")
+
+record(calc, "$(P)FIELD:SP:FROMUNIT"){
+    field(INPA, "$(P)FIELD:UNIT PP")
+    field(INPB, "$(P)FIELD:SP PP")
+    field(CALC, "A==2?B*10000:B")
+    field(FLNK, "$(P)FIELD:SP:CALIB")
+    field(EGU, "Oersted")
+}
+
+record(cvt, "$(P)FIELD:SP:CALIB"){
+    field(INPY, "$(P)FIELD:SP:FROMUNIT")
+    field(X, 1)
+    field(METH, "1D TABLE INVERTED")
+    field(DRVL, 0)
+    field(DRVH, 50000000000)
+    field(SPEC, "$(P)CALIB:FILE")
+    field(TDIR, "$(P)CALIB:PATH")
+    field(OUT, "$(P)RAW:SP")
+    field(FLNK, "$(P)RAW:SP")
+    field(EGU, "")
+}
+
+record(calcout, "$(P)FIELD:SP:PRECALIB"){
+    field(INPA, "$(P)CURR")
+    field(CALC, "A/1000000")
+    field(OUT, "$(P)CURR PP MS")
+    field(EGU, "")
+}
+
+record(mbbi, "$(P)FIELD:UNIT") {
+    field(DESC, "Field Unit to Display")
+    field(ZRVL, 0)
+    field(ONVL, 1)
+    field(TWVL, 2)
+    field(ZRST, "Oersted")
+    field(ONST, "Gauss")
+    field(TWST, "Tesla")
+    field(FLNK, "$(P)FIELD:TOUNIT")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)FIELD:UNIT", "$(P)FIELD:UNIT:RBV")
+alias("$(P)FIELD:UNIT", "$(P)FIELD:UNIT:SP")
+alias("$(P)FIELD:UNIT:SP", "$(P)FIELD:UNIT:SP:RBV")
+
+record(stringin "$(P)CALIB:FILE")
+{
+	field(DESC, "Calibration File Name")
+	field(DTYP, "Soft Channel")
+	field(VAL, "$(CALIB_FILE)")
+}
+
+record(stringin "$(P)CALIB:PATH")
+{
+	field(DESC, "Calibration File Path")
+	field(DTYP, "Soft Channel")
+	field(VAL, "$(CALIB_PATH)")
+}
+

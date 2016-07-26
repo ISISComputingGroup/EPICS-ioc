@@ -1,0 +1,75 @@
+
+record(ai, "$(P)SLEW1")
+{
+    field(DESC, "Slew DAC 1")
+    field(DTYP, "stream")
+    field(INP,  "@mps8000-232.proto rslew(1) $(port) 0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SLEW1")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)SLEW1:SP")
+{
+    field(DESC, "Set Slew DAC 1")
+    field(DTYP, "stream")
+    field(OUT,  "@mps8000-232.proto wslew(1) $(port) 0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SLEW1:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)SLEW2")
+{
+    field(DESC, "Slew DAC 2")
+    field(DTYP, "stream")
+    field(INP,  "@mps8000-232.proto rslew(2) $(port) 0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SLEW2")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)SLEW2:SP")
+{
+    field(DESC, "Set Slew DAC 2")
+    field(DTYP, "stream")
+    field(OUT,  "@mps8000-232.proto wslew(2) $(port) 0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SLEW2:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)SLEWABS")
+{
+    field(DESC, "Slew Absolute")
+    field(DTYP, "stream")
+    field(INP,  "@mps8000-232.proto rslewa $(port) 0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SLEWABS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)SLEWABS:SP")
+{
+    field(DESC, "Set Slew Absolute")
+    field(DTYP, "stream")
+    field(INP,  "@mps8000-232.proto wslewa $(port) 0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SLEWABS:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)SIM:SLEW1"){
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:SLEW1", "$(P)SIM:SLEW1:SP")
+
+record(ao, "$(P)SIM:SLEW2"){
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:SLEW2", "$(P)SIM:SLEW2:SP")
+
+record(ao, "$(P)SIM:SLEWABS"){
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:SLEWABS", "$(P)SIM:SLEWABS:SP")
