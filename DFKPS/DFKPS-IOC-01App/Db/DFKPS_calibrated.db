@@ -2,7 +2,7 @@
 record(calcout, "$(P)FIELD:PRECALIB"){
     field(INPA, "$(P)CURR")
     field(CALC, "A*1000000")
-    field(OUT, "$(P)CURR PP MS")
+	field(FLNK, "$(P)FIELD:CALIB")
     field(EGU, "")
 }
 
@@ -10,10 +10,10 @@ record(cvt, "$(P)FIELD:CALIB"){
     field(INPX, "$(P)FIELD:PRECALIB")
     field(Y, 1)
     field(METH, "1D TABLE")
-    field(DRVL, 0)
-    field(DRVH, 50000000000)
-    field(SPEC, "$(P)CALIB:FILE")
-    field(TDIR, "$(P)CALIB:PATH")
+    field(DRVL, "$(DRVLO)")
+    field(DRVH, "$(DRVHI)")
+    field(SPEC, "$(CALIB_FILE)")
+    field(TDIR, "$(CALIB_PATH)")
     field(FLNK, "$(P)FIELD:TOUNIT")
     field(EGU, "")
 }
@@ -53,23 +53,24 @@ record(cvt, "$(P)FIELD:SP:CALIB"){
     field(INPY, "$(P)FIELD:SP:FROMUNIT")
     field(X, 1)
     field(METH, "1D TABLE INVERTED")
-    field(DRVL, 0)
-    field(DRVH, 50000000000)
-    field(SPEC, "$(P)CALIB:FILE")
-    field(TDIR, "$(P)CALIB:PATH")
-    field(OUT, "$(P)RAW:SP")
-    field(FLNK, "$(P)RAW:SP")
+    field(DRVL, "$(DRVLO)")
+    field(DRVH, "$(DRVHI)")
+    field(SPEC, "$(CALIB_FILE)")
+    field(TDIR, "$(CALIB_PATH)")
+	field(NSPE, "$(P)CFILE")
+	field(NTDI, "$(P)CPATH")
+    field(OUT, "$(P)FIELD:SP:PRECALIB.A")
+    field(FLNK, "$(P)FIELD:SP:PRECALIB")
     field(EGU, "")
 }
 
 record(calcout, "$(P)FIELD:SP:PRECALIB"){
-    field(INPA, "$(P)CURR")
     field(CALC, "A/1000000")
-    field(OUT, "$(P)CURR PP MS")
+    field(OUT, "$(P)RAW:SP PP MS")
     field(EGU, "")
 }
 
-record(mbbi, "$(P)FIELD:UNIT") {
+record(mbbi, "$(P)FIELD:UNIT"){
     field(DESC, "Field Unit to Display")
     field(ZRVL, 0)
     field(ONVL, 1)
@@ -85,17 +86,53 @@ alias("$(P)FIELD:UNIT", "$(P)FIELD:UNIT:RBV")
 alias("$(P)FIELD:UNIT", "$(P)FIELD:UNIT:SP")
 alias("$(P)FIELD:UNIT:SP", "$(P)FIELD:UNIT:SP:RBV")
 
-record(stringin "$(P)CALIB:FILE")
-{
+record(stringin, "$(P)CFILE"){
 	field(DESC, "Calibration File Name")
-	field(DTYP, "Soft Channel")
 	field(VAL, "$(CALIB_FILE)")
 }
 
-record(stringin "$(P)CALIB:PATH")
-{
+record(stringout, "$(P)CFILE:UPD1"){
+	field(DOL, "$(P)CFILE CP")
+    field(OMSL, "closed_loop")
+	field(OUT, "$(P)FIELD:CALIB.NSPE PP")
+	field(FLNK, "$(P)CINIT1")
+}
+
+record(stringout, "$(P)CFILE:UPD2"){
+	field(DOL, "$(P)CFILE CP")
+    field(OMSL, "closed_loop")
+	field(OUT, "$(P)FIELD:SP:CALIB.NSPE PP")
+	field(FLNK, "$(P)CINIT2")
+}
+
+record(stringin, "$(P)CPATH"){
 	field(DESC, "Calibration File Path")
-	field(DTYP, "Soft Channel")
 	field(VAL, "$(CALIB_PATH)")
 }
 
+record(stringout, "$(P)CPATH:UPD1"){
+	field(DOL, "$(P)CPATH CP")
+    field(OMSL, "closed_loop")
+	field(OUT, "$(P)FIELD:CALIB.NTDI")
+	field(FLNK, "$(P)CINIT1")
+}
+
+record(stringout, "$(P)CPATH:UPD2"){
+	field(DOL, "$(P)CPATH CP")
+    field(OMSL, "closed_loop")
+	field(OUT, "$(P)FIELD:SP:CALIB.NTDI")
+	field(FLNK, "$(P)CINIT2")
+}
+
+record(bo, "$(P)CINIT1"){
+	field(DESC, "Re-initialise Calibration Record")
+	field(VAL, 1)
+	field(OUT, "$(P)FIELD:CALIB.INIT")
+}
+
+record(bo, "$(P)CINIT2"){
+	field(DESC, "Re-initialise Calibration Record")
+	field(VAL, 1)
+	field(OUT, "$(P)FIELD:SP:CALIB.INIT")
+	field(FLNK, "$(P)FIELD:TOUNIT")
+}

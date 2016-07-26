@@ -57,3 +57,21 @@ record(scalcout, "$(P)CALILK")
 record(stringin, "$(P)SIM:STATUS"){
     field(DTYP, "Soft Channel")
 }
+
+record(ao, "$(P)RAW:SP")
+{
+    field(DESC, "Set Output Current")
+    field(EGU,  "mA")
+    field(DTYP, "stream")
+    field(OUT,  "@dfkps.proto dac(0) $(port) 0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAW:SP")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "")
+}
+
+record(ao, "$(P)SIM:CURR"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "A")
+}
+alias("$(P)SIM:CURR", "$(P)SIM:SETIRAW")

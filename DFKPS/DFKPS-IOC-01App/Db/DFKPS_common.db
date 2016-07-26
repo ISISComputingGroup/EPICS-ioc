@@ -61,6 +61,7 @@ record(ai, "$(P)CURR")
     field(HOPR, "100000")
     field(LOPR, "0")
     field(PREC, "0")
+    field(FLNK, "$(P)FIELD:PRECALIB")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR")
     field(SDIS, "$(P)DISABLE")
@@ -70,9 +71,18 @@ record(ai, "$(P)CURR")
 }
 alias("$(P)CURR", "$(P)CURR:RBV")
 
-
-record(ao, "$(P)CURR:SP")
+record(longout, "$(P)CURR:SP")
 {
+	field(DESC, "Set Current")
+	field(DTYP, "Soft Channel")
+	field(OUT, "$(P)CURR:TORAW.A PP MS")
+}
+
+record(calcout, "$(P)CURR:TORAW")
+{
+	field(DESC, "Convert Current to Raw Val")
+	field(CALC, "A * $(FAC)")
+	field(OUT, "$(P)RAW:SP PP MS")
 }
 
 record(bo, "$(P)REMOTE")
@@ -87,18 +97,6 @@ record(bo, "$(P)REMOTE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:REMOTE")
     field(SDIS, "$(P)DISABLE")
-}
-
-record(ao, "$(P)RAW:SP")
-{
-    field(DESC, "Set Output Current")
-    field(EGU,  "mA")
-    field(DTYP, "stream")
-    field(OUT,  "@dfkps.proto dacsp(0) $(port) 0")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RAW:SP")
-    field(SDIS, "$(P)DISABLE")
-    field(EGU, "")
 }
 
 record(bo, "$(P)SIM:RESET"){

@@ -49,7 +49,7 @@ FileListConfigure("RAMPFILELIST1", $(RAMP_DIR), $(RAMP_PAT))
 ## Load record instances
 dbLoadRecords("$(TOP)/db/DFKPS_common.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, FAC=$(FACTOR=1000), port=L0")
 $(IFPOLAR) dbLoadRecords("$(TOP)/db/DFKPS_polarity.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0")
-$(IFCALIB) dbLoadRecords("$(TOP)/db/DFKPS_calibrated.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, CALIB_FILE=$(CFILE=$(DEFAULT_CFILE)), CALIB_PATH=$(CPATH=$(DEFAULT_CPATH)), port=L0")
+$(IFCALIB) dbLoadRecords("$(TOP)/db/DFKPS_calibrated.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, CALIB_FILE=$(CFILE=$(DEFAULT_CFILE)), CALIB_PATH=$(CPATH=$(DEFAULT_CPATH)),DRVHI=$(DRIVE_HIGH=5000000),DRVLO=$(DRIVE_LOW=-5000000), port=L0")
 $(IFSLEW) dbLoadRecords("$(TOP)/db/DFKPS_slew.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0")
 
 ## Load device type specific st.cmd
