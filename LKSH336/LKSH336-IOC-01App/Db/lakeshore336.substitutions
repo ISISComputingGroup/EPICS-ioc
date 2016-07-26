@@ -5,3 +5,9 @@ pattern {P, PORT, ADDR, TEMPSCAN, SCAN}
 	{"\$(P)", "\$(PORT)", 0, 1, 5}
 }
 
+file $(LKSH336)/db/lakeshore336_SIM.template
+{
+pattern {P}
+	{"\$(P)"}
+}
+
