@@ -1,12 +1,12 @@
-###Description of work
+### Description of work
 
 *Add your own description here*
 
-###To test
+### To test
 
 *Which ticket does this PR fix?*
 
-###Acceptance criteria
+### Acceptance criteria
 
 *List the acceptance criteria for the PR*
 
