@@ -1,13 +1,63 @@
 
 file $(LKSH336)/db/lakeshore336.template
 {
-pattern {P, PORT, ADDR, TEMPSCAN, SCAN}
-	{"\$(P)", "\$(PORT)", 0, 1, 5}
+	pattern {P, PORT, ADDR}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)"}
 }
+
+file $(LKSH336)/db/lakeshore_input.template
+{
+	pattern {P, PORT, ADDR, TEMPSCAN, SCAN, INPUT}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "A"}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "B"}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "C"}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "D"}
+}
+
+file $(LKSH336)/db/lakeshore336output.template
+{
+	pattern {P, PORT, ADDR, TEMPSCAN, SCAN, TOLERANCE, OUT, INPUTA, INPUTB, INPUTC, INPUTD}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "\$(TOLERANCE)", 1, "\$(P):TEMP_A", "\$(P):TEMP_B", "\$(P):TEMP_C", "\$(P):TEMP_D"}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "\$(TOLERANCE)", 2, "\$(P):TEMP_A", "\$(P):TEMP_B", "\$(P):TEMP_C", "\$(P):TEMP_D"}
+}
+
+file $(LKSH336)/db/lakeshore336loop.template
+{
+	pattern {P, PORT, ADDR, SCAN, OUT}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 1}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 2}
+}
+
+
 
 file $(LKSH336)/db/lakeshore336_SIM.template
 {
-pattern {P}
+	pattern {P}
 	{"\$(P)"}
 }
+
+file $(LKSH336)/db/lakeshore_input_SIM.template
+{
+	pattern {P, INPUT}
+	{"\$(P)", "A"}
+	{"\$(P)", "B"}
+	{"\$(P)", "C"}
+	{"\$(P)", "D"}
+}
+
+file $(LKSH336)/db/lakeshore336output_SIM.template
+{
+	pattern {P, OUT}
+	{"\$(P)", 1}
+	{"\$(P)", 2}
+}
+
+file $(LKSH336)/db/lakeshore336loop_SIM.template
+{
+	pattern {P, OUT}
+	{"\$(P)", 1}
+	{"\$(P)", 2}
+}
+
+
 
