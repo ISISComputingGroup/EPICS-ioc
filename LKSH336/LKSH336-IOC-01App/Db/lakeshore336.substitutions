@@ -16,9 +16,9 @@ file $(LKSH336)/db/lakeshore_input.template
 
 file $(LKSH336)/db/lakeshore336output.template
 {
-	pattern {P, PORT, ADDR, TEMPSCAN, SCAN, TOLERANCE, OUT, INPUTA, INPUTB, INPUTC, INPUTD}
-	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "\$(TOLERANCE)", 1, "\$(P):TEMP_A", "\$(P):TEMP_B", "\$(P):TEMP_C", "\$(P):TEMP_D"}
-	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "\$(TOLERANCE)", 2, "\$(P):TEMP_A", "\$(P):TEMP_B", "\$(P):TEMP_C", "\$(P):TEMP_D"}
+	pattern {P, PORT, ADDR, TEMPSCAN, SCAN, TOLERANCE, OUT}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "\$(TOLERANCE)", 1}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "\$(TOLERANCE)", 2}
 }
 
 file $(LKSH336)/db/lakeshore336loop.template
