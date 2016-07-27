@@ -1,5 +1,5 @@
 # used for access security on the fly changes
-record (bo, "$(P)CS:EXCLUSIVE:$(ID)") 
+record (bo, "$(P)CS:EXCLUSIVE$(ID)") 
 {
 	field(DESC, "Restrict access to localhost")
 	field(SCAN, "Passive")
