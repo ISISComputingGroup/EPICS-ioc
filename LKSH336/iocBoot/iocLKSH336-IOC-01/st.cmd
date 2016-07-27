@@ -20,7 +20,7 @@ LKSH336_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynIPPortConfigure ("$(DEVICE)", "$(IP):7777")
+drvAsynIPPortConfigure ("$(DEVICE)", "$(ADDR):7777")
 
 ## Load record instances
 
