@@ -21,12 +21,6 @@ stringiftest  "POLAR"  "$(POLARITY="BIPOLAR")"  5  "BIPOLAR"
 stringiftest  "CALIB"  "$(CALIBRATED=1)"  5  "1"
 stringiftest  "SLEW"  "$(USE_SLEW=0)"  5  "1"
 
-## Load FileList
-## A seperate instance must be created for each danfysik
-epicsEnvSet "RAMP_DIR" "C:/Instrument/Settings"
-epicsEnvSet "RAMP_PAT" ".*"
-FileListConfigure("RAMPFILELIST1", $(RAMP_DIR), $(RAMP_PAT)) 
-
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 

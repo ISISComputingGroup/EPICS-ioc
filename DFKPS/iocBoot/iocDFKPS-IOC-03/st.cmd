@@ -16,5 +16,11 @@ cd ${TOP}
 dbLoadDatabase "dbd/DFKPS-IOC-03.dbd"
 DFKPS_IOC_03_registerRecordDeviceDriver pdbbase
 
+## Load FileList
+## A seperate instance must be created for each danfysik
+epicsEnvSet "RAMP_DIR" "C:/Instrument/Settings"
+epicsEnvSet "RAMP_PAT" ".*"
+FileListConfigure("RAMPFILELIST3", $(RAMP_DIR), $(RAMP_PAT)) 
+
 ## Load common st.cmd
 < iocBoot/iocDFKPS-IOC-01/st-common.cmd
