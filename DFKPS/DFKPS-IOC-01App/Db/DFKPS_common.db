@@ -1,0 +1,142 @@
+
+# Records copied so that they can be simmed, disabled, etc.
+record(bo, "$(P)RESET")
+{
+    field(DESC, "Reset")
+    field(DTYP, "stream")
+    field(OUT, "@dfkps_common.proto reset $(port) 0")
+    field(ZNAM, "Reset")
+    field(ONAM, "Reset")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RESET")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)POWER:SP")
+{
+    field(DESC, "Main Power")
+    field(DTYP, "stream")
+    field(OUT, "@dfkps_common.proto powersp $(port) 0")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POWER:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+alias("$(P)POWER:SP", "$(P)POWER:SP:RBV")
+
+record(ai, "$(P)VOLT")
+{
+    field(DESC, "ADC Channel 2 - VOLTAGE")
+    field(DTYP, "stream")
+    field(INP,  "@dfkps_common.proto adc(2) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOLO, "-0.5")
+    field(HIHI, "999.5")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+    field(HOPR, "1000")
+    field(LOPR, "0")
+    field(PREC, "0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "V")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)VOLT", "$(P)VOLT:RBV")
+
+
+record(ai, "$(P)CURR")
+{
+    field(DESC, "ADC Channel 8")
+    field(DTYP, "stream")
+    field(INP,  "@dfkps_common.proto adc(8) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOLO, "-99999.5")
+    field(HIHI, "99999.5")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+    field(HOPR, "100000")
+    field(LOPR, "0")
+    field(PREC, "0")
+    field(FLNK, "$(P)FIELD:PRECALIB")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURR")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "A")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)CURR", "$(P)CURR:RBV")
+
+record(longout, "$(P)CURR:SP")
+{
+	field(DESC, "Set Current")
+	field(DTYP, "Soft Channel")
+	field(OUT, "$(P)CURR:TORAW.A PP MS")
+}
+
+record(calcout, "$(P)CURR:TORAW")
+{
+	field(DESC, "Convert Current to Raw Val")
+	field(CALC, "A * $(FAC)")
+	field(OUT, "$(P)RAW:SP PP MS")
+}
+
+record(bo, "$(P)REMOTE")
+{
+    field(DESC, "Command Line")
+    field(DTYP, "stream")
+    field(OUT, "@dfkps_common.proto cmdsp $(port) 0")
+    field(ZNAM, "Local")
+    field(ONAM, "Remote")
+    field(DOL, "1")
+    field(PINI, "YES")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:REMOTE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)SIM:RESET"){
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:POWER:SP"){
+    field(DTYP, "Soft Channel")
+}
+
+record(ao, "$(P)SIM:VOLT"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "V")
+}
+
+record(ao, "$(P)SIM:CURR"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "A")
+}
+alias("$(P)SIM:CURR", "$(P)SIM:RAW:SP")
+
+record(bo, "$(P)SIM:REMOTE"){
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+  field(DESC, "Disable comms")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(OMSL, "supervisory")
+  field(ZNAM, "COMMS ENABLED")
+  field(ONAM, "COMMS DISABLED")
+}
+
