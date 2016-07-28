@@ -23,7 +23,7 @@ DIRS_NOTBUILD += ISISDAE MK3CHOPPER
 endif
 # modules not to build if static
 ifeq ($(STATIC_BUILD),YES)
-DIRS_NOTBUILD += ISISDAE
+DIRS_NOTBUILD += ISISDAE GALIL
 endif
 # modules not to build if shared
 ifeq ($(SHARED_LIBRARIES),YES)
