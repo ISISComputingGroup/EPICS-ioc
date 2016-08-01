@@ -1,0 +1,10 @@
+record(bi, "$(P)ACTIVE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(DESC, "Eurotherm is active, i.e. LADDR_X has been set for it")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    $(IFNOTACTIVE) field(VAL, 0)
+    $(IFACTIVE) field(VAL, 1)
+}
