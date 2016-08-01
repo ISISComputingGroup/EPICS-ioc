@@ -20,25 +20,25 @@ asynSetOption("L0", -1, "stop", "$(STOP=1)")
 dbLoadRecords("$(TOP)/db/devSimDis.db","Q=$(MYPVPREFIX)$(IOCPVPREFIX):")
 
 epicsEnvSet(EURO_NUM,1)
-< st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
 
 epicsEnvSet(EURO_NUM,2)
-< st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
 
 epicsEnvSet(EURO_NUM,3)
-< st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
 
 epicsEnvSet(EURO_NUM,4)
-< st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
 
 epicsEnvSet(EURO_NUM,5)
-< st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
 
 epicsEnvSet(EURO_NUM,6)
-< st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
 
 epicsEnvSet(EURO_NUM,7)
-< st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
 
 
 < $(IOCSTARTUP)/preiocinit.cmd
