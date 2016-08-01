@@ -459,7 +459,7 @@ record(stringin, "$(P)CAL:SEL:RBV") {
     info(INTEREST, "MEDIUM")
     field(DESC, "Calibration file")
     field(DTYP, "Soft Channel")
-	field(INP, "$(P)TEMP.NSPE")
+	field(INP, "$(P)TEMP.NSPE MS")
 	field(PINI, "YES")
 	field(SCAN, "1 second")
     info(archive, "VAL")
