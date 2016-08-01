@@ -6,7 +6,7 @@ cd ${TOP}
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynIPPortConfigure ("$(DEVICE)", "$(ADDR):7777")
+drvAsynIPPortConfigure ("$(DEVICE)", "$(IPADDR):7777")
 
 ## Load record instances
 
