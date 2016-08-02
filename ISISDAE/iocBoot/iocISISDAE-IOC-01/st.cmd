@@ -15,6 +15,8 @@ epicsEnvSet "SPECTRA_DIR" "$(ICPCONFIGROOT)/tables"
 epicsEnvSet "SPECTRA_PATTERN" ".*spec.*"
 epicsEnvSet "PERIOD_DIR" "$(ICPCONFIGROOT)/tables"
 epicsEnvSet "PERIOD_PATTERN" ".*period.*"
+epicsEnvSet "TCB_DIR" "$(ICPCONFIGROOT)/tcb"
+epicsEnvSet "TCB_PATTERN" ".*tcb.*"
 
 cd ${TOP}
 
@@ -42,6 +44,7 @@ FileListConfigure("WLIST", "$(WIRING_DIR)", "$(WIRING_PATTERN)", 1)
 FileListConfigure("DLIST", "$(DETECTOR_DIR)", "$(DETECTOR_PATTERN)", 1)
 FileListConfigure("SLIST", "$(SPECTRA_DIR)", "$(SPECTRA_PATTERN)", 1)
 FileListConfigure("PLIST", "$(PERIOD_DIR)", "$(PERIOD_PATTERN)", 1)
+FileListConfigure("TLIST", "$(TCB_DIR)", "$(TCB_PATTERN)", 1)
 
 ## Load record instances
 
@@ -49,7 +52,7 @@ FileListConfigure("PLIST", "$(PERIOD_DIR)", "$(PERIOD_PATTERN)", 1)
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(ISISDAE)/db/isisdae.db","S=$(MYPVPREFIX), P=$(MYPVPREFIX)DAE:, WIRINGLIST=WLIST, DETECTORLIST=DLIST, SPECTRALIST=SLIST, PERIODLIST=PLIST")
+dbLoadRecords("$(ISISDAE)/db/isisdae.db","S=$(MYPVPREFIX), P=$(MYPVPREFIX)DAE:, WIRINGLIST=WLIST, DETECTORLIST=DLIST, SPECTRALIST=SLIST, PERIODLIST=PLIST, TCBLIST = TLIST")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
