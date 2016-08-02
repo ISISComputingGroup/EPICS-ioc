@@ -282,6 +282,14 @@ record(fanout, "$(P)READ1") {
 }
 
 ####
+record(stringin, "$(P)ADDRESS") {
+    field(DTYP, "Soft Channel")
+    field(DESC, "Eurotherm address")
+    field(SCAN, "Passive")
+    field(PINI, "YES")
+    field(VAL, "$(GAD)$(LAD)")
+}
+
 
 record(ai, "$(P)OUTPUT") {
     info(INTEREST, "MEDIUM")
