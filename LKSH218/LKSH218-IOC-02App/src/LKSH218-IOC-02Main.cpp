@@ -1,4 +1,4 @@
-/* Lakeshore218-IOC-01Main.cpp */
+/* LKSH218-IOC-02Main.cpp */
 /* Author:  Marty Kraimer Date:    17MAR2000 */
 
 #include <stddef.h>
