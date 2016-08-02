@@ -3,17 +3,20 @@
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TPG)/data"
 
-drvAsynIPPortConfigure("L0", "localhost:64081")
+## For emulator use this:
+# drvAsynIPPortConfigure("L0", "localhost:64081")
 
-#drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
+## For real device use this:
+drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
 
-#asynSetOption("L0", -1, "baud", "$(BAUD=9600)")  
-#asynSetOption("L0", -1, "bits", "8")
-#asynSetOption("L0", -1, "parity", "none")   
-#asynSetOption("L0", -1, "stop", "1")
-#asynOctetSetInputEos("L0", -1, "\r\n")
-#asynOctetSetOutputEos("L0", -1, "\r\n")
+asynSetOption("L0", -1, "baud", "$(BAUD=9600)")  
+asynSetOption("L0", -1, "bits", "8")
+asynSetOption("L0", -1, "parity", "none")   
+asynSetOption("L0", -1, "stop", "1")
+asynOctetSetInputEos("L0", -1, "\r\n")
+asynOctetSetOutputEos("L0", -1, "\r\n")
 
+## For debugging:
 #asynSetTraceMask("L0",-1,0x9) 
 #asynSetTraceIOMask("L0",-1,0x2)
 
