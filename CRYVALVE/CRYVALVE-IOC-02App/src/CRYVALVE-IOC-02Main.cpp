@@ -1,4 +1,4 @@
-/* CRYOVALVE-IOC-02Main.cpp */
+/* CRYVALVE-IOC-02Main.cpp */
 /* Author:  Marty Kraimer Date:    17MAR2000 */
 
 #include <stddef.h>

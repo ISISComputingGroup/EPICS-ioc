@@ -1,6 +1,6 @@
-#!../../bin/windows-x64/CRYOVALVE-IOC-01
+#!../../bin/windows-x64/CRYVALVE-IOC-01
 
-## You may have to change CRYOVALVE-IOC-01 to something else
+## You may have to change CRYVALVE-IOC-01 to something else
 ## everywhere it appears in this file
 
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
@@ -8,14 +8,14 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(IRISCRYOVALVE)/IrisCryoValveSup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(CRYVALVE)/CryValveSup"
 epicsEnvSet "DEVICE" "L0"
 
 cd ${TOP}
 
 ## Register all support components
-dbLoadDatabase "dbd/CRYOVALVE-IOC-01.dbd"
-CRYOVALVE_IOC_01_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/CRYVALVE-IOC-01.dbd"
+CRYVALVE_IOC_01_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
@@ -34,7 +34,7 @@ asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/CRYOVALVE.db","P=$(MYPVPREFIX)$(IOCNAME):, port=$(DEVICE)")
+dbLoadRecords("db/CRYVALVE.db","P=$(MYPVPREFIX)$(IOCNAME):, port=$(DEVICE)")
 #dbLoadRecords("db/xxx.db","user=iew83206Host")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
