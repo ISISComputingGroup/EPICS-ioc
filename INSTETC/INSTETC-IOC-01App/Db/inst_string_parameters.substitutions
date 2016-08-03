@@ -38,7 +38,6 @@ pattern { P, Q, DESC, CATEGORY, UNITS, OUT }
     { "\$(P)", "PARS:SAMPLE:NAME", "Sample Name", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
     { "\$(P)", "PARS:SAMPLE:TYPE", "Sample Type", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
     { "\$(P)", "PARS:SAMPLE:GEOMETRY", "Sample Geometry", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
-    { "\$(P)", "PARS:SCRIPT:NAME", "Script Name", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
-    { "\$(P)", "PARS:BL:BEAMSTOP:POS", "Beamstop Position", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
-    { "\$(P)", "PARS:BL:JOURNAL:BLOCKS", "Journal Blocks", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
-    
+    { "\$(P)", "PARS:SAMPLE:SCRIPT:NAME", "Script Name", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:BL:BEAMSTOP:POS", "Beamstop Position", "BEAMLINEPAR", "", "DAE:BEAMLINEPAR:SP" }
+    { "\$(P)", "PARS:BL:JOURNAL:BLOCKS", "Journal Blocks", "BEAMLINEPAR", "", "DAE:BEAMLINEPAR:SP" }

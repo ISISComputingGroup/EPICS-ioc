@@ -111,6 +111,13 @@ asynStatus mk3Driver::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
         *value = result;
         checkErrorCode(errCode);
     }
+    else if (function == P_NominalPhase)
+    {
+        unsigned int result;
+        errCode = m_interface->getNominalPhase(channel, &result);
+        *value = result;
+        checkErrorCode(errCode);
+    }
     else if (function == P_NominalPhaseError)
     {
         unsigned int result;

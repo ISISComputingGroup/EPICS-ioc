@@ -3,7 +3,7 @@ include $(TOP)/configure/CONFIG
 
 ## by default we build all IOCs, but we can remove some here if needed
 
-DIRS_NOTBUILD = Makefile README.txt icp_config.xml icp_config.template.xml isisicp.properties isisicp.default.properties 
+DIRS_NOTBUILD = Makefile README.txt icp_config.xml icp_config.template.xml isisicp.properties isisicp.default.properties PULL_REQUEST_TEMPLATE.md
 DIRS_NOTBUILD += NULL # this file seems to get created occasionally 
 # modules not to build on linux
 ifneq ($(findstring linux,$(EPICS_HOST_ARCH)),)
@@ -23,7 +23,7 @@ DIRS_NOTBUILD += ISISDAE MK3CHOPPER
 endif
 # modules not to build if static
 ifeq ($(STATIC_BUILD),YES)
-DIRS_NOTBUILD += ISISDAE
+DIRS_NOTBUILD += ISISDAE GALIL
 endif
 # modules not to build if shared
 ifeq ($(SHARED_LIBRARIES),YES)

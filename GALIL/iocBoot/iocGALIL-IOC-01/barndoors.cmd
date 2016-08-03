@@ -1,0 +1,1 @@
+< $(GALILCONFIG)/barndoors.cmd

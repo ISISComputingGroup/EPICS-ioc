@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application Lakeshore_218-01
+# Build the IOC application LKSH218-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# Lakeshore_218-01.dbd will be created and installed
+# LKSH218-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# Lakeshore_218-01.dbd will be made up from these files:
+# LKSH218-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += devSequencer.dbd
@@ -45,7 +45,7 @@ $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 
-# Lakeshore_218-01_registerRecordDeviceDriver.cpp derives from Lakeshore_218-01.dbd
+# LKSH218-IOC-01_registerRecordDeviceDriver.cpp derives from LKSH218-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.

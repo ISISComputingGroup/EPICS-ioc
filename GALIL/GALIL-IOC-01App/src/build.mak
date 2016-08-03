@@ -40,6 +40,9 @@ $(APPNAME)_DBD += motionSetPoints.dbd
 $(APPNAME)_DBD += sampleChanger.dbd 
 $(APPNAME)_DBD += stdSupport.dbd 
 $(APPNAME)_DBD += asubFunctions.dbd 
+## dbd for barndoors
+$(APPNAME)_DBD += cvtRecord.dbd
+
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -63,6 +66,8 @@ $(APPNAME)_LIBS += busy asyn
 $(APPNAME)_LIBS += std
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += TinyXML
+#libs for barndoors
+$(APPNAME)_LIBS += cvtRecord csmbase
 
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 

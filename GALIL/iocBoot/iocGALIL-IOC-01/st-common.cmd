@@ -45,6 +45,9 @@ epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 # configure jaws
 < jaws.cmd
 
+# configure barndoors
+< barndoors.cmd
+
 # configure axes
 < axes.cmd
 

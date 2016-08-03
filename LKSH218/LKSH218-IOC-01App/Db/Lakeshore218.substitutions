@@ -1,10 +1,10 @@
-file "$(TOP)/Lakeshore218-IOC-01App/Db/Lakeshore218Main.template"
+file "$(TOP)/LKSH218-IOC-01App/Db/Lakeshore218Main.template"
 {
     pattern { P, PORT }
 	{ "\$(P)", "\$(PORT)"}
 }
 
-file "$(TOP)/Lakeshore218-IOC-01App/Db/Lakeshore218Sensor.template"
+file "$(TOP)/LKSH218-IOC-01App/Db/Lakeshore218Sensor.template"
 {
     pattern { P, PORT, SN }
 	{ "\$(P)", "\$(PORT)", 1 }
