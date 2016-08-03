@@ -4,17 +4,17 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TPG)/data"
 
 ## For emulator use this:
-# drvAsynIPPortConfigure("L0", "localhost:64081")
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:55626")
 
 ## For real device use this:
-drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
 
-asynSetOption("L0", -1, "baud", "$(BAUD=9600)")  
-asynSetOption("L0", -1, "bits", "8")
-asynSetOption("L0", -1, "parity", "none")   
-asynSetOption("L0", -1, "stop", "1")
-asynOctetSetInputEos("L0", -1, "\r\n")
-asynOctetSetOutputEos("L0", -1, "\r\n")
+$(IFNOTDEVSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")  
+$(IFNOTDEVSIM) asynSetOption("L0", -1, "bits", "8")
+$(IFNOTDEVSIM) asynSetOption("L0", -1, "parity", "none")   
+$(IFNOTDEVSIM) asynSetOption("L0", -1, "stop", "1")
+$(IFNOTDEVSIM) asynOctetSetInputEos("L0", -1, "\r\n")
+$(IFNOTDEVSIM) asynOctetSetOutputEos("L0", -1, "\r\n")
 
 ## For debugging:
 #asynSetTraceMask("L0",-1,0x9) 
@@ -23,7 +23,7 @@ asynOctetSetOutputEos("L0", -1, "\r\n")
 #####################
 ## Load record instances
 
-dbLoadRecords("$(TPG)/db/tpg26x.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0")
+dbLoadRecords("$(TPG)/db/tpg26x.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
 
 ## Finished loading record instances
 #########################
