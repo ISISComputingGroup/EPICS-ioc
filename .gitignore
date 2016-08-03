@@ -10,6 +10,7 @@ O.*/
 envPaths
 cdCommands
 dllPath.bat
+dllCopy.bat
 runIOC.bat
 runIOC.sh
 relPaths.sh
