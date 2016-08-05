@@ -3,7 +3,7 @@
 	<config_part>
 	  <macros>
 	    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
-	    <macro name="BAUD" pattern="^9600|19200|38400$" description="Baud rate, must be either 9600, 19200 or 38400" />
+	    <macro name="BAUD" pattern="^9600|19200|38400$" description="Baud rate, must be either 9600, 19200 or 38400 (default: 9600)" />
 	  </macros>
 	</config_part>
 </ioc_config>
