@@ -17,7 +17,7 @@ asynSetOption("L0", -1, "stop", "$(STOP=1)")
 
 ## Load the sim and disable records
 ## These are loaded separately to allow one SIM and DISABLE to be used for ALL eurotherms
-dbLoadRecords("$(TOP)/db/devSimDis.db","Q=$(MYPVPREFIX)$(IOCPVPREFIX):")
+dbLoadRecords("$(TOP)/db/devSimDis.db","Q=$(MYPVPREFIX)$(IOCPVPREFIX):,DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0)")
 
 epicsEnvSet(EURO_NUM,1)
 < ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd

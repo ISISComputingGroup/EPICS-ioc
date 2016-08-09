@@ -7,7 +7,6 @@ record(waveform, "$(P)RAMP_DIRBASE:SP")
    field(DTYP, "asynOctetWrite")
    field(PINI, "NO")
    field(INP, "@asyn($(RAMPLIST),0,1)DIRBASE")
-   field(FLNK, "$(P)READ_RAMP_DIRBASE:SP")
    field(FTVL, "CHAR")
    field(NELM, 256)
 }
@@ -61,6 +60,17 @@ record(waveform, "$(P)READ_RAMP_DIRBASE:SP")
    field(PINI, "NO")
    field(FTVL, "CHAR")
    field(NELM, 256)
+   
+}
+
+record(waveform, "$(P)READ_RAMP_DIRBASE")
+{
+   field(DTYP, "asynOctetRead")
+   field(INP, "@asyn($(READ),0,1)DIRBASE")
+   field(PINI, "YES")
+   field(FTVL, "CHAR")
+   field(NELM, 256)
+   field(SCAN, "I/O Intr")
 }
 
 record(stringin, "$(P)RAMP_FILE")
@@ -74,6 +84,7 @@ record(stringout, "$(P)RAMP_FILE:SP")
 {
    field(DTYP, "asynOctetWrite")
    field(OUT,  "@asyn($(READ),0,1)DIR")
+   field(SCAN, "I/O Intr")
 }
 
 record(ao, "$(P)TEMP:SP")
@@ -477,7 +488,7 @@ record(stringin, "$(P)CAL:RBV")
 {
     field(DESC, "Current Calibration file")
     field(DTYP, "Soft Channel")
-	field(INP, "$(P)TEMP.SPEC")
+	field(INP, "$(P)TEMP.SPEC MS")
 	field(PINI, "YES")
 	field(SCAN, "1 second")
     info(archive, "VAL")

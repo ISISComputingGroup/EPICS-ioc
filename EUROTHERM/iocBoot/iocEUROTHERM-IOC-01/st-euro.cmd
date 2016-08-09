@@ -1,4 +1,6 @@
 
+########## EUROTHERM 
+
 stringiftest("ACTIVE", "$(LADDR_$(EURO_NUM)=)")
 
 ## Load FileList
@@ -8,7 +10,7 @@ $(IFACTIVE) FileListConfigure("SENSORFILELIST$(EURO_NUM)", "$(SENS_DIR)", "$(SEN
 
 ## Load ReadASCII
 ## A seperate instance must be created for each eurotherm
-$(IFACTIVE) ReadASCIIConfigure("READASCII$(EURO_NUM)")
+$(IFACTIVE) ReadASCIIConfigure("READASCII$(EURO_NUM)", $(RAMP_DIR))
 
 ## Load record instances
 ## GAD = Greater Eurtotherm address part
