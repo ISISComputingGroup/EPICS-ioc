@@ -1,0 +1,5 @@
+# Alias PVs from inst_string_parameters that have been renamed to avoid breaking changes
+
+alias("$(P)$(NEW)","$(P)$(OLD)")
+alias("$(P)$(NEW):SP","$(P)$(OLD):SP")
+alias("$(P)$(NEW):SEND","$(P)$(OLD):SEND")

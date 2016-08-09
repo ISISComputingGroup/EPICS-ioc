@@ -1,12 +1,12 @@
-###Description of work
+### Description of work
 
 *Add your own description here*
 
-###To test
+### To test
 
 *Which ticket does this PR fix?*
 
-###Acceptance criteria
+### Acceptance criteria
 
 *List the acceptance criteria for the PR*
 
@@ -26,6 +26,7 @@
 
 - [ ] Do changes function as described? Add comments below that describe the tests performed.
 - [ ] Does the IOC respond correctly both in full and simulation mode, where it's possible to test both?
+- [ ] If there are multiple _0n IOCs, do they run correctly?
 
 ### Final steps
 

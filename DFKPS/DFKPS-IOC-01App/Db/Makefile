@@ -11,7 +11,12 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
-DB += DFKPS.db
+DB += DFKPS_8000_status.db
+DB += DFKPS_8800_status.db
+DB += DFKPS_calibrated.db
+DB += DFKPS_common.db
+DB += DFKPS_polarity.db
+DB += DFKPS_slew.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
