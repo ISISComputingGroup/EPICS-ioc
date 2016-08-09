@@ -1,4 +1,4 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(LKSH336)/protocol"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(LKSH336)/data"
 epicsEnvSet "DEVICE" "L0"
 
 cd ${TOP}
@@ -6,6 +6,10 @@ cd ${TOP}
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
+## For emulator use:
+#drvAsynIPPortConfigure("$(DEVICE)", "localhost:55626")
+
+## For real device use:
 drvAsynIPPortConfigure ("$(DEVICE)", "$(IPADDR):7777")
 
 ## Load record instances
