@@ -20,6 +20,9 @@ PDR2000_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
 
+## For running emulator
+#drvAsynIPPortConfigure("$(DEVICE)", "localhost:51891")
+
 drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
 asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
 asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
@@ -34,7 +37,7 @@ asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\n)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/PDR2000.db","P=$(MYPVPREFIX)$(IOCNAME):, port=$(DEVICE)")
+dbLoadRecords("db/PDR2000.db","P=$(MYPVPREFIX)$(IOCNAME):, port=$(DEVICE), RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
 #dbLoadRecords("db/xxx.db","user=iew83206Host")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
