@@ -1,6 +1,6 @@
 file $(MOTOR)/motorApp/Db/motor.db {
 
 pattern {P,    N,   M,         DTYP,        PORT, ADDR,         DESC,   EGU,  DIR,  VELO,  VBAS, ACCL, BDST, BVEL, BACC,    MRES,    ERES, PREC, DHLM, DLLM, INIT}
-{"\$(P)", 1, "\$(M)", "Mclennan PM304",  "\$(PORT)",    "\$(ADDR)", "\$(M) (MCLEN)",    deg,  "Pos",    1,   0.5,  2,    0,    1,   0,   .0025,   .000244,    3,   360,   0,   ""}
+{"\$(P)", 1, "\$(M)", "Mclennan PM304",  "\$(PORT)",    "\$(ADDR)", "\$(M) (MCLEN)",    "degree",  "Pos",    1,   0.5,  2,    0,    1,   0,   .0025,   .000244,    3,   360,   0,   ""}
 
 }
