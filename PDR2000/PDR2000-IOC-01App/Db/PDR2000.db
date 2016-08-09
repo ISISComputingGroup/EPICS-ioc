@@ -18,7 +18,7 @@ record(bo, "$(P)SIM")
     field(DTYP, "Soft Channel")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-	field(VAL, "$(RECSIM=0)")
+    field(VAL, "$(RECSIM=0)")
 }
 
 record(bo, "$(P)DISABLE")
