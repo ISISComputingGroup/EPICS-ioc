@@ -31,6 +31,10 @@ $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","Y") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","Y") 
 
+## Initialise closed loop mode
+$(IFNOTSIM) asynOctetConnect("MKINIT","$(ASERIAL)")
+$(IFNOTSIM) asynOctetWrite("MKINIT","1CM14")
+
 # Test for Mclennan PM600 stepper motor controller
 # PM304Setup(controller count, poll rate (1 to 60Hz))
 $(IFNOTSIM) PM304Setup(1,5)
