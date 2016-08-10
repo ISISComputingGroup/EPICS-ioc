@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(PDR2000)/data/PDR2000Sup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(PDR2000)/data"
 epicsEnvSet "DEVICE" "L0"
 
 cd ${TOP}

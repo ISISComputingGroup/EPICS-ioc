@@ -8,14 +8,14 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(PDR2000)/data/PDR2000Sup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(PDR2000)/data"
 epicsEnvSet "DEVICE" "L0"
 
 cd ${TOP}
 
 ## Register all support components
 dbLoadDatabase "dbd/PDR2000-IOC-02.dbd"
-PDR2000_IOC_01_registerRecordDeviceDriver pdbbase
+PDR2000_IOC_02_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
