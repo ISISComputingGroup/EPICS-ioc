@@ -1,0 +1,12 @@
+# used for access security on the fly changes
+record (bo, "$(P)CS:EXCLUSIVE$(ID=)") 
+{
+	field(DESC, "Restrict access to localhost")
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "All access")
+    field(ONAM, "Restricted access")
+}
