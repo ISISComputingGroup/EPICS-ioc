@@ -219,7 +219,7 @@ record(ai, "$(P)PUMP:SPEED")
 record(calcout, "$(P)CALC_PUMP_STAT")
 {
     field(DESC,"Gets num val for pump stat")
-    field(CALC,"(A>1&&A<30)?-1:A")
+    field(CALC,"(A>1&&A<100)?-1:A")
     field(INPA,"$(P)PUMP:SPEED")
     field(OUT,"$(P)PUMP:STAT.RVAL PP")
 }
@@ -231,7 +231,7 @@ record(mbbi, "$(P)PUMP:STAT")
 
     field(ZRVL, "0")
     field(ONVL, "1")
-    field(TWVL, "30")
+    field(TWVL, "100")
     field(THVL, "-1")
 
     field(ZRST, "Stopped")
