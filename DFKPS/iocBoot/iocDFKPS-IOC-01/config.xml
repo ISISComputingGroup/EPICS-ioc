@@ -3,9 +3,9 @@
 <config_part>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
-<macro name="CALIBRATED" pattern="^(0|1)$" description="Name of Calibration File" />
-<macro name="CFILE" description="Name of Calibration File" />
-<macro name="CPATH" description="Location of Calibration File" />
+<macro name="CALIBRATED" pattern="^(0|1)$" description="Toggle calibration" />
+<macro name="CFILE" description="Name of calibration file" />
+<macro name="CPATH" description="Location of calibration file" />
 </macros>
 </config_part>
 </ioc_config>
