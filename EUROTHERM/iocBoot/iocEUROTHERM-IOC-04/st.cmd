@@ -4,10 +4,10 @@
 ## everywhere it appears in this file
 
 < envPaths
-epicsEnvSet "IOCPVPREFIX" "EUROTHERM2"
+epicsEnvSet "IOCPVPREFIX" "EUROTHERM4"
 
 ## Register all support components
-dbLoadDatabase "${TOP}/dbd/EUROTHERM-IOC-02.dbd"
-EUROTHERM_IOC_02_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "${TOP}/dbd/EUROTHERM-IOC-04.dbd"
+EUROTHERM_IOC_04_registerRecordDeviceDriver pdbbase
 
 < ../iocEUROTHERM-IOC-01/st-common.cmd

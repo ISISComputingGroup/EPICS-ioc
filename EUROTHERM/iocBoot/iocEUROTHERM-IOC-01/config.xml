@@ -3,6 +3,25 @@
 <config_part>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 9600." />
+<macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 7." />
+<macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to even." />
+<macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." />
+
+<macro name="LADDR_1" pattern="^[0-9]$" description="Lesser address for the eurotherm 1, unit e.g. 2 in the address 12. Blank for do not use." />
+<macro name="GADDR_1" pattern="^[0-9]$" description="Greater address for the eurotherm 1, unit e.g. 1 in the address 12. Defaults to 0." />
+<macro name="LADDR_2" pattern="^[0-9]$" description="Lesser address for the eurotherm 2, unit e.g. 2 in the address 12. Blank for do not use." />
+<macro name="GADDR_2" pattern="^[0-9]$" description="Greater address for the eurotherm 2, unit e.g. 1 in the address 12. Defaults to 0." />
+<macro name="LADDR_3" pattern="^[0-9]$" description="Lesser address for the eurotherm 3, unit e.g. 2 in the address 12. Blank for do not use." />
+<macro name="GADDR_3" pattern="^[0-9]$" description="Greater address for the eurotherm 3, unit e.g. 1 in the address 12. Defaults to 0." />
+<macro name="LADDR_4" pattern="^[0-9]$" description="Lesser address for the eurotherm 4, unit e.g. 2 in the address 12. Blank for do not use." />
+<macro name="GADDR_4" pattern="^[0-9]$" description="Greater address for the eurotherm 4, unit e.g. 1 in the address 12. Defaults to 0." />
+<macro name="LADDR_5" pattern="^[0-9]$" description="Lesser address for the eurotherm 5, unit e.g. 2 in the address 12. Blank for do not use." />
+<macro name="GADDR_5" pattern="^[0-9]$" description="Greater address for the eurotherm 5, unit e.g. 1 in the address 12. Defaults to 0." />
+<macro name="LADDR_6" pattern="^[0-9]$" description="Lesser address for the eurotherm 6, unit e.g. 2 in the address 12. Blank for do not use." />
+<macro name="GADDR_6" pattern="^[0-9]$" description="Greater address for the eurotherm 6, unit e.g. 1 in the address 12. Defaults to 0." />
+<macro name="LADDR_7" pattern="^[0-9]$" description="Lesser address for the eurotherm 7, unit e.g. 2 in the address 12. Blank for do not use." />
+<macro name="GADDR_7" pattern="^[0-9]$" description="Greater address for the eurotherm 7, unit e.g. 1 in the address 12. Defaults to 0." />
 </macros>
 </config_part>
 </ioc_config>
