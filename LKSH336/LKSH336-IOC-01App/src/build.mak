@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application LAKESHORE-IOC-01
+# Build the IOC application LKSH336-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# LAKESHORE-IOC-01.dbd will be created and installed
+# LKSH336-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# LAKESHORE-IOC-01.dbd will be made up from these files:
+# LKSH336-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += devSequencer.dbd
@@ -26,11 +26,13 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
-$(APPNAME)_DBD += asyn.dbd
-$(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += stream.dbd
-$(APPNAME)_DBD += stdSupport.dbd
-$(APPNAME)_DBD += ipSupport.dbd
+$(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += drvAsynSerialPort.dbd
+$(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += busySupport.dbd
+#$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -40,15 +42,16 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities
+$(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
+$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
-$(APPNAME)_LIBS += ip
-$(APPNAME)_LIBS += std
 $(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += busy
+#$(APPNAME)_LIBS += xxx
 
-# LAKESHORE-IOC-01_registerRecordDeviceDriver.cpp derives from LAKESHORE-IOC-01.dbd
+# LKSH336-IOC-01_registerRecordDeviceDriver.cpp derives from LKSH336-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.

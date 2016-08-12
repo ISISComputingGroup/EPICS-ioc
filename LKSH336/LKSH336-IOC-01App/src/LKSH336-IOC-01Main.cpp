@@ -1,4 +1,4 @@
-/* LS336-IOC-01Main.cpp */
+/* LKSH336-IOC-01Main.cpp */
 /* Author:  Marty Kraimer Date:    17MAR2000 */
 
 #include <stddef.h>
