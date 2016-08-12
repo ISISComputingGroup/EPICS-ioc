@@ -53,7 +53,7 @@ record(ao, "$(P)SLEWABS:SP")
 {
     field(DESC, "Set Slew Absolute")
     field(DTYP, "stream")
-    field(INP,  "@mps8000-232.proto wslewa $(port) 0")
+    field(OUT,  "@mps8000-232.proto wslewa $(port) 0")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SLEWABS:SP")
     field(SDIS, "$(P)DISABLE")
