@@ -369,7 +369,8 @@ void mk3Driver::checkErrorCode(int code)
 
 void mk3Driver::getNumberEnabledChannels(unsigned int* result)
 {
-    m_interface->getNumberEnabledChannels(result);
+    int errCode = m_interface->getNumberEnabledChannels(result);
+    checkErrorCode(errCode);
 }
 
 /* Configuration routine.  Called directly, or from the iocsh function below */
