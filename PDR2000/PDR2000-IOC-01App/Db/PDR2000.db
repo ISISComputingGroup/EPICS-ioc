@@ -1,0 +1,152 @@
+#######################################################
+#
+# DB file for PDR2000 temperature controller
+#
+#######################################################
+#
+# Activities needed and their associated PVs
+# Pressure 1 READ $(P)PRESSURE:1
+# Pressure 2 READ $(P)PRESSURE:2
+# Units      READ $(P)UNITS
+# Scale 1    READ $(P)SCALE:1
+# Scale 2    READ $(P)SCALE:2
+# Version    READ $(P)VERSION
+
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+###################
+#### v command ####
+###################
+
+record(stringin, "$(P)VERSION")
+{
+    field(SCAN, "1 second")
+	field(DESC, "Firmware version for device")
+    field(DTYP, "stream")
+    field(INP, "@devpdr2000.proto getVersion $(port)")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VERSION")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(stringout, "$(P)SIM:VERSION")
+{
+}
+
+###################
+#### u command ####
+###################
+
+record(stringin, "$(P)UNITS")
+{
+    field(SCAN, "1 second")
+	field(DESC, "Current output units")
+    field(DTYP, "stream")
+    field(INP, "@devpdr2000.proto getUnits() $(port)")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UNITS")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(stringout, "$(P)SIM:UNITS")
+{
+}
+
+###################
+#### p command ####
+###################
+
+record(ai, "$(P)PRES:1")
+{
+    field(DESC, "Pressure, channel 1")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devpdr2000.proto getPressures($(P)PRES:2) $(port)")
+    field(PREC, "2")
+	field(EGU, "")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PRES:1")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ao, "$(P)SIM:PRES:1")
+{
+}
+
+record(ai, "$(P)PRES:2")
+{
+    field(DESC, "Pressure, channel 2")
+    field(DTYP, "Soft Channel")
+    field(PREC, "2")
+	field(EGU, "")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PRES:2 CP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ao, "$(P)SIM:PRES:2")
+{
+}
+
+###################
+#### f command ####
+###################
+
+record(ai, "$(P)SCALE:1")
+{
+    field(DESC, "Scale, channel 1")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devpdr2000.proto getScales($(P)SCALE:2) $(port)")
+    field(PREC, "2")
+	field(EGU, "")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SCALE:1")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ao, "$(P)SIM:SCALE:1")
+{
+}
+
+record(ai, "$(P)SCALE:2")
+{
+    field(DESC, "Scale, channel 2")
+    field(DTYP, "Soft Channel")
+    field(PREC, "2")
+	field(EGU, "")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SCALE:2 CP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ao, "$(P)SIM:SCALE:2")
+{
+}
