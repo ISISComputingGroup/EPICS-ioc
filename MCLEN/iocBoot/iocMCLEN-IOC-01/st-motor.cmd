@@ -31,9 +31,13 @@ $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","Y") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","Y") 
 
-## Initialise closed loop mode
+## Check if open loop mode has been requested
+stringtest("IFCMOPEN","$(MODE$(PN))==OPEN")
+$(IFCMOPEN) epicsEnvSet("MODE",CM11)
+
+## Initialise control mode. Defaults to CM14, closed
 $(IFNOTSIM) asynOctetConnect("MKINIT","$(ASERIAL)")
-$(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)CM14")
+$(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=CM14)")
 
 # Test for Mclennan PM600 stepper motor controller
 # PM304Setup(controller count, poll rate (1 to 60Hz))
