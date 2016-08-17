@@ -31,6 +31,8 @@ $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","Y") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","Y") 
 
+
+
 ## Check if open loop mode has been requested
 stringtest("IFCMOPEN","$(MODE$(PN))==OPEN")
 $(IFCMOPEN) epicsEnvSet("MODE",CM11)
@@ -50,9 +52,15 @@ $(IFNOTSIM) PM304Config(0, "$(ASERIAL)", 1)
 
 ## Load record instances
 
+# Set motor specific initial conditions
+epicsEnvSet("VELI",$(VEL$(PN)=1))
+epicsEnvSet("ACCI",$(ACC$(PN)=1))
+epicsEnvSet("MRESI",$(MRES$(PN)=0.0025))
+epicsEnvSet("ERESI",$(ERES$(PN)=0.000244140625))
+
 # Load asyn record 
-dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(AMOTORPV):ASYN,PORT=$(ASERIAL),ADDR=0,OMAX=256,IMAX=256") 
-dbLoadRecords("$(TOP)/db/motor.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),PORT=$(AMOTOR),ADDR=0") 
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(AMOTORPV):ASYN,PORT=$(ASERIAL),ADDR=0,OMAX=256,IMAX=256")
+dbLoadRecords("$(TOP)/db/motor.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),PORT=$(AMOTOR),ADDR=0,VEL=$(VELI),ACC=$(ACCI),MRES=$(MRESI),ERES=$(ERESI)") 
 dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(PN),mAXIS=$(AMOTORPV)") 
 
 autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 0)
