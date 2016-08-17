@@ -17,6 +17,7 @@ DB += inst_string_parameters.db
 DB += inst_real_parameters.db
 DB += user_parameters.db
 DB += experiment_data.db
+DB += inst_exclusive.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

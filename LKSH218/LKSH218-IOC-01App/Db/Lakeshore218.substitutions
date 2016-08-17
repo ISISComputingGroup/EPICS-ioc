@@ -1,0 +1,18 @@
+file "$(TOP)/LKSH218-IOC-01App/Db/Lakeshore218Main.template"
+{
+    pattern { P, PORT }
+	{ "\$(P)", "\$(PORT)"}
+}
+
+file "$(TOP)/LKSH218-IOC-01App/Db/Lakeshore218Sensor.template"
+{
+    pattern { P, PORT, SN }
+	{ "\$(P)", "\$(PORT)", 1 }
+	{ "\$(P)", "\$(PORT)", 2 }
+	{ "\$(P)", "\$(PORT)", 3 }
+	{ "\$(P)", "\$(PORT)", 4 }
+	{ "\$(P)", "\$(PORT)", 5 }
+	{ "\$(P)", "\$(PORT)", 6 }
+	{ "\$(P)", "\$(PORT)", 7 }
+	{ "\$(P)", "\$(PORT)", 8 }
+}

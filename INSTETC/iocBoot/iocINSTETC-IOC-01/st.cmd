@@ -26,6 +26,12 @@ instetcConfigure("daelog", "${ICPVARDIR}/logs/ioc/ISISDAE_01-%Y%m%d.log", 100, 3
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+## Check for extra exclusive records
+stringtest("IFEX1", "$(EXCLUSIVE1=)")
+stringtest("IFEX2", "$(EXCLUSIVE2=)")
+stringtest("IFEX3", "$(EXCLUSIVE3=)")
+stringtest("IFEX4", "$(EXCLUSIVE4=)")
+
 ## Load our record instances
 dbLoadRecords("db/INSTETC.db","P=$(MYPVPREFIX),IOC=$(IOCNAME)")
 dbLoadRecords("db/svn-revision.db","P=$(MYPVPREFIX)")
@@ -36,6 +42,10 @@ dbLoadRecords("db/inst_real_parameters.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/user_parameters.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/runcontrol.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/experiment_data.db","P=$(MYPVPREFIX)")
+$(IFEX1) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE1=)")
+$(IFEX2) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE2=)")
+$(IFEX3) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE3=)")
+$(IFEX4) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE4=)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

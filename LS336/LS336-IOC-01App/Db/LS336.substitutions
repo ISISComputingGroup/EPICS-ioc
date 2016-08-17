@@ -1,7 +1,0 @@
-
-file $(LAKESHORE336)/db/lakeshore336.template
-{
-pattern {P, PORT, ADDR, TEMPSCAN, SCAN}
-	{\$(P):LS01, L0, 0, 1, 5}
-}
-

@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TPG300)/TPG300Sup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TPG)/data"
 
 cd ${TOP}
 
