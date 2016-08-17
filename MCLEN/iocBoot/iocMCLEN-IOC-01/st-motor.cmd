@@ -6,9 +6,9 @@
 ## asyn serial port internal device name and motor name 
 epicsEnvSet("ASERIAL", "serial$(PN)")
 epicsEnvSet("AMOTOR", "motor$(PN)")
-# PN is 1->8 so we can safely add a 0
-# epicsEnvSet("AMOTORPV", "MOT:MTR$(MTRCTRL)0$(PN)")
-epicsEnvSet("AMOTORPV", "MOT:MTR0$(PN)")
+# Make sure controller number is 2 digits long
+calc("MTRCTRL", "$(MTRCTRL)", 2, 2)
+epicsEnvSet("AMOTORPV", "MOT:MTR$(MTRCTRL)0$(PN)")
 
 autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 1)
 set_pass0_restoreFile("$(IOCNAME)_$(PN)_built_settings.sav")
@@ -33,7 +33,7 @@ $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","Y")
 
 ## Initialise closed loop mode
 $(IFNOTSIM) asynOctetConnect("MKINIT","$(ASERIAL)")
-$(IFNOTSIM) asynOctetWrite("MKINIT","1CM14")
+$(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)CM14")
 
 # Test for Mclennan PM600 stepper motor controller
 # PM304Setup(controller count, poll rate (1 to 60Hz))

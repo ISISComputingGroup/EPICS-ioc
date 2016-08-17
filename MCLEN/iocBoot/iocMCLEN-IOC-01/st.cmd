@@ -8,8 +8,6 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "PORT1" "COM7"
-
 ## Register all support components
 dbLoadDatabase "$(TOP)/dbd/MCLEN-IOC-01.dbd"
 MCLEN_IOC_01_registerRecordDeviceDriver pdbbase
