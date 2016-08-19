@@ -45,10 +45,10 @@ $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=DM00001000)")
 
 # Test for Mclennan PM600 stepper motor controller
 # PM304Setup(controller count, poll rate (1 to 60Hz))
-$(IFNOTSIM) PM304Setup(1,5)
+PM304Setup(1,5)
 
 # PM304Config(card being configured, asyn port name,  number of axes)
-$(IFNOTSIM) PM304Config(0, "$(ASERIAL)", 1)
+PM304Config(0, "$(ASERIAL)", 1)
 
 asynSetTraceIOMask("$(AMOTOR)", 0, 2)
 
