@@ -7,8 +7,8 @@
 epicsEnvSet("ASERIAL", "McLennan$(PN)_serial")
 epicsEnvSet("AMOTOR", "McLennan$(PN)")
 # Make sure controller number is 2 digits long
-calc("CTRLNUM", "$(CTRLNUM)", 2, 2)
-epicsEnvSet("AMOTORNAME", "MTR$(CTRLNUM)0$(PN)")
+calc("CRATENUM", "$(CRATENUM)", 2, 2)
+epicsEnvSet("AMOTORNAME", "MTR$(CRATENUM)0$(PN)")
 epicsEnvSet("AMOTORPV", "MOT:$(AMOTORNAME)")
 
 autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 1)
@@ -16,8 +16,8 @@ set_pass0_restoreFile("$(IOCNAME)_$(PN)_built_settings.sav")
 set_pass1_restoreFile("$(IOCNAME)_$(PN)_built_settings.sav")
 
 $(IFSIM) motorSimCreateController("$(AMOTOR)", 1) 
-$(IFSIM) motorSimConfigAxis("$(AMOTOR)", 0, 32000, -32000,  0, 0) 
-$(IFSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
+$(IFSIM) motorSimConfigAxis("$(AMOTOR)", 0, 32000, -32000,  0, 0)
+$(IFSIM) drvAsynMotorConfigure("$(ASERIAL)", "motorSim",0, 1)
 
 $(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT$(PN)=NUL)", 0, 0, 0)
 $(IFNOTSIM) asynSetTraceIOMask("$(ASERIAL)", -1, 0xFF )
@@ -33,7 +33,7 @@ $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","Y")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","Y") 
 
 ## Check if open loop mode has been requested
-stringtest("IFCMOPEN","$(MODE$(PN))==OPEN")
+stringtest("IFCMOPEN","$(MODE$(PN)="")==OPEN")
 $(IFCMOPEN) epicsEnvSet("MODE",CM11)
 
 ## Initialise control mode. Defaults to CM14, closed
