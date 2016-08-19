@@ -7,8 +7,8 @@
 epicsEnvSet("ASERIAL", "serial$(PN)")
 epicsEnvSet("AMOTOR", "motor$(PN)")
 # Make sure controller number is 2 digits long
-calc("MTRCTRL", "$(MTRCTRL)", 2, 2)
-epicsEnvSet("AMOTORNAME", "MTR$(MTRCTRL)0$(PN)")
+calc("CTRLNUM", "$(CTRLNUM)", 2, 2)
+epicsEnvSet("AMOTORNAME", "MTR$(CTRLNUM)0$(PN)")
 epicsEnvSet("AMOTORPV", "MOT:$(AMOTORNAME)")
 
 autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 1)
@@ -24,15 +24,13 @@ $(IFNOTSIM) asynSetTraceIOMask("$(ASERIAL)", -1, 0xFF )
 $(IFNOTSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\r\n") 
 $(IFNOTSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"baud","$(BAUD$(PN)=9600)") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"bits","7") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"stop","1") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"parity","even") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"bits","$(BITS$(PN)=7)") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"stop","$(STOP$(PN)=1") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"parity","$(PARITY$(PN)=even)") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"clocal","Y") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","Y") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","Y") 
-
-
 
 ## Check if open loop mode has been requested
 stringtest("IFCMOPEN","$(MODE$(PN))==OPEN")
