@@ -25,7 +25,8 @@ stringiftest  "SLEW"  "$(USE_SLEW=0)"  5  "1"
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load record instances
-dbLoadRecords("$(TOP)/db/DFKPS_common.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, FAC=$(FACTOR=1000), port=L0")
+epicsEnvSet "SP_PINI" "$(SP_AT_STARTUP=NO)"
+dbLoadRecords("$(TOP)/db/DFKPS_common.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, FAC=$(FACTOR=1000), port=L0, SP_PINI=$(SP_PINI)")
 $(IFPOLAR) dbLoadRecords("$(TOP)/db/DFKPS_polarity.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0")
 $(IFCALIB) dbLoadRecords("$(TOP)/db/DFKPS_calibrated.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, CALIB_FILE=$(CFILE=$(DEFAULT_CFILE)), CALIB_PATH=$(CPATH=$(DEFAULT_CPATH)),DRVHI=$(DRIVE_HIGH=5000000),DRVLO=$(DRIVE_LOW=-5000000), port=L0")
 $(IFSLEW) dbLoadRecords("$(TOP)/db/DFKPS_slew.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0")
