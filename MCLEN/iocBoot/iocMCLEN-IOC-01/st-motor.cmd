@@ -40,6 +40,9 @@ $(IFCMOPEN) epicsEnvSet("MODE",CM11)
 $(IFNOTSIM) asynOctetConnect("MKINIT","$(ASERIAL)")
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=CM14)")
 
+## Set home mode
+$(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=DM00001000)")
+
 # Test for Mclennan PM600 stepper motor controller
 # PM304Setup(controller count, poll rate (1 to 60Hz))
 $(IFNOTSIM) PM304Setup(1,5)
