@@ -56,10 +56,12 @@ epicsEnvSet("VELI",$(VEL$(PN)=1))
 epicsEnvSet("ACCI",$(ACC$(PN)=1))
 epicsEnvSet("MRESI",$(MRES$(PN)=0.0025))
 epicsEnvSet("ERESI",$(ERES$(PN)=0.000244140625))
+epicsEnvSet("HLMI",$(HLM$(PN)=200))
+epicsEnvSet("LLMI",$(LLM$(PN)=-200))
 
 # Load asyn record 
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(AMOTORPV):ASYN,PORT=$(ASERIAL),ADDR=0,OMAX=256,IMAX=256")
-dbLoadRecords("$(TOP)/db/motor.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),PORT=$(AMOTOR),ADDR=0,VEL=$(VELI),ACC=$(ACCI),MRES=$(MRESI),ERES=$(ERESI),NAME=$(AMOTORNAME)") 
+dbLoadRecords("$(TOP)/db/motor.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),PORT=$(AMOTOR),ADDR=0,VEL=$(VELI),ACC=$(ACCI),MRES=$(MRESI),ERES=$(ERESI),HLM=$(HLMI),LLM=$(LLMI),NAME=$(AMOTORNAME)") 
 dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(PN),mAXIS=$(AMOTORPV)") 
 
 autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 0)
