@@ -4,11 +4,11 @@
 
 
 ## asyn serial port internal device name and motor name 
-epicsEnvSet("ASERIAL", "McLennan$(PN)_serial")
-epicsEnvSet("AMOTOR", "McLennan$(PN)")
+epicsEnvSet("ASERIAL", "serial$(PN)")
+epicsEnvSet("AMOTOR", "motor$(PN)")
 # Make sure controller number is 2 digits long
-calc("CRATENUM", "$(CRATENUM)", 2, 2)
-epicsEnvSet("AMOTORNAME", "MTR$(CRATENUM)0$(PN)")
+calc("MTRCTRL", "$(MTRCTRL)", 2, 2)
+epicsEnvSet("AMOTORNAME", "MTR$(MTRCTRL)0$(PN)")
 epicsEnvSet("AMOTORPV", "MOT:$(AMOTORNAME)")
 
 autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 1)
@@ -16,8 +16,8 @@ set_pass0_restoreFile("$(IOCNAME)_$(PN)_built_settings.sav")
 set_pass1_restoreFile("$(IOCNAME)_$(PN)_built_settings.sav")
 
 $(IFSIM) motorSimCreateController("$(AMOTOR)", 1) 
-$(IFSIM) motorSimConfigAxis("$(AMOTOR)", 0, 32000, -32000,  0, 0)
-$(IFSIM) drvAsynMotorConfigure("$(ASERIAL)", "motorSim",0, 1)
+$(IFSIM) motorSimConfigAxis("$(AMOTOR)", 0, 32000, -32000,  0, 0) 
+$(IFSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
 
 $(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT$(PN)=NUL)", 0, 0, 0)
 $(IFNOTSIM) asynSetTraceIOMask("$(ASERIAL)", -1, 0xFF )
@@ -45,12 +45,12 @@ $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=DM00001000)")
 
 # Test for Mclennan PM600 stepper motor controller
 # PM304Setup(controller count, poll rate (1 to 60Hz))
-PM304Setup(1,5)
+$(IFNOTSIM) PM304Setup(1,5)
 
 # PM304Config(card being configured, asyn port name,  number of axes)
-PM304Config(0, "$(ASERIAL)", 1)
+$(IFNOTSIM) PM304Config(0, "$(ASERIAL)", 1)
 
-# asynSetTraceIOMask("$(AMOTOR)", 0, 2)
+asynSetTraceIOMask("$(AMOTOR)", 0, 2)
 
 ## Load record instances
 
@@ -64,7 +64,7 @@ epicsEnvSet("LLMI",$(LLM$(PN)=-200))
 
 # Load asyn record 
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(AMOTORPV):ASYN,PORT=$(ASERIAL),ADDR=0,OMAX=256,IMAX=256")
-dbLoadRecords("$(TOP)/db/motor.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),PORT=$(ASERIAL),ADDR=0,VEL=$(VELI),ACC=$(ACCI),MRES=$(MRESI),ERES=$(ERESI),HLM=$(HLMI),LLM=$(LLMI),NAME=$(AMOTORNAME)") 
+dbLoadRecords("$(TOP)/db/motor.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),PORT=$(AMOTOR),ADDR=0,VEL=$(VELI),ACC=$(ACCI),MRES=$(MRESI),ERES=$(ERESI),HLM=$(HLMI),LLM=$(LLMI),NAME=$(AMOTORNAME)") 
 dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(PN),mAXIS=$(AMOTORPV)") 
 
 autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 0)
