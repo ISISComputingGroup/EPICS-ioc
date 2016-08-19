@@ -7,4 +7,4 @@ asynOctetConnect("DFKINIT","L0")
 asynOctetWrite DFKINIT "UNLOCK\r"
 
 ## Load our record instances
-dbLoadRecords("$(TOP)/Db/DFKPS_8000_status.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0, powpos=$(POWER_FLAG_POSITION), ilkpos=$(INTERLOCK_FLAG_POSITION)")
+dbLoadRecords("$(TOP)/Db/DFKPS_8000_status.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0, powpos=$(POWER_FLAG_POSITION), ilkpos=$(INTERLOCK_FLAG_POSITION), SP_PINI=$(SP_PINI)")
