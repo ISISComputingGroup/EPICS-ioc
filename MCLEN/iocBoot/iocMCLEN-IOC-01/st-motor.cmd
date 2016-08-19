@@ -33,7 +33,7 @@ $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","Y")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","Y") 
 
 ## Check if open loop mode has been requested
-stringtest("IFCMOPEN","$(MODE$(PN)="")==OPEN")
+stringtest("IFCMOPEN","$(MODE$(PN)=)",4,"OPEN")
 $(IFCMOPEN) epicsEnvSet("MODE",CM11)
 
 ## Initialise control mode. Defaults to CM14, closed
