@@ -31,3 +31,4 @@
 ### Final steps
 
 - [ ] Reviewer has updated the submodule in the main EPICS repo? See **Reviewing work for the subModules of EPICS** in the [Git workflow](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Git-workflow) page for details.
+- [ ] Reviewer has moved the [release notes](https://github.com/ISISComputingGroup/IBEX/wiki/ReleaseNotes_Dev) entry for this ticket in the "Changes merged into master" section
