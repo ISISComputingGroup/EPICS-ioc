@@ -202,12 +202,29 @@ record(scalcout, "$(P)CALC_PUMP")
 record(calcout, "$(P)CALC_PUMP_SPEED")
 {
     field(DESC, "Calc pump speed from byte")
-    field(CALC, "(A&31)*100/30")
+    field(CALC, "A&31")
     field(OUT, "$(P)PUMP:SPEED PP MS")
+    field(FLNK, "$(P)CALC_PUMP_SPEED_PC")
+}
+
+record(calcout, "$(P)CALC_PUMP_SPEED_PC")
+{
+    field(DESC, "Calc pump speed from byte as percentage")
+    field(CALC, "(A&31)*100/30")
+    field(OUT, "$(P)PUMP:SPEED:PC PP MS")
     field(FLNK, "$(P)CALC_PUMP_STAT")
 }
 
 record(ai, "$(P)PUMP:SPEED")
+{
+    field(DESC, "Pump speed, percentage")
+    field(EGU, "")
+    field(PREC, "0")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)PUMP:SPEED:PC")
 {
     field(DESC, "Pump speed, percentage")
     field(EGU, "%")
@@ -219,7 +236,7 @@ record(ai, "$(P)PUMP:SPEED")
 record(calcout, "$(P)CALC_PUMP_STAT")
 {
     field(DESC,"Gets num val for pump stat")
-    field(CALC,"(A>1&&A<100)?-1:A")
+    field(CALC,"(A>1&&A<30)?-1:A")
     field(INPA,"$(P)PUMP:SPEED")
     field(OUT,"$(P)PUMP:STAT.RVAL PP")
 }
@@ -231,7 +248,7 @@ record(mbbi, "$(P)PUMP:STAT")
 
     field(ZRVL, "0")
     field(ONVL, "1")
-    field(TWVL, "100")
+    field(TWVL, "30")
     field(THVL, "-1")
 
     field(ZRST, "Stopped")
