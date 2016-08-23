@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 DB += devEurotherm.db
 DB += devSimDis.db
+DB += isActiveEurotherm.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

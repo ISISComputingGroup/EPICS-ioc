@@ -1,6 +1,8 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
+<ioc_desc>GALIL Motor Controller</ioc_desc>
+<ioc_details>GALIL Motor Details</ioc_details>
 <macros>
 <macro name="GALILADDR01" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 1 (MTR01* PVs)" />
 <macro name="GALILADDR02" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 2 (MTR02* PVs)" />

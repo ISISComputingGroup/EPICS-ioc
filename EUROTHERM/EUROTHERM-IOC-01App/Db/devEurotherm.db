@@ -5,10 +5,8 @@ record(waveform, "$(P)RAMP_DIRBASE:SP")
 {
    field(DESC, "Set directory of ramp files")
    field(DTYP, "asynOctetWrite")
-   field(VAL, "$(LDIR)")
-   field(PINI, "1")
+   field(PINI, "NO")
    field(INP, "@asyn($(RAMPLIST),0,1)DIRBASE")
-   field(FLNK, "$(P)READ_RAMP_DIRBASE:SP")
    field(FTVL, "CHAR")
    field(NELM, 256)
 }
@@ -38,6 +36,7 @@ record(waveform, "$(P)RAMP_PATTERN:SP")
    field(DESC, "Set regex search of ramp files")  
    field(DTYP, "asynOctetWrite")
    field(INP, "@asyn($(RAMPLIST),0,1)SEARCH")
+   field(PINI, "NO")
    field(FTVL, "CHAR")
    field(NELM, 256)
 }
@@ -46,8 +45,7 @@ record(waveform, "$(P)RAMP_PATTERN")
    field(DESC, "Get regex search of ramp files")
    field(DTYP, "asynOctetRead")
    field(INP, "@asyn($(RAMPLIST),0,1)SEARCH")
-   field(VAL, "$(RAMPSEARCH)")
-   field(PINI, "YES")
+   field(PINI, "NO")
    field(SCAN, "I/O Intr")
    field(FTVL, "CHAR")
    field(NELM, 256)
@@ -58,13 +56,21 @@ record(waveform, "$(P)RAMP_PATTERN")
 record(waveform, "$(P)READ_RAMP_DIRBASE:SP")
 {
    field(DTYP, "asynOctetWrite")
-   field(VAL, "$(LDIR)")
-   field(DOL, "$(P)RAMP_DIRBASE:SP")
    field(INP, "@asyn($(READ),0,1)DIRBASE")
-   field(PINI, "1")
-   field(OMSL, "closed_loop")
+   field(PINI, "NO")
    field(FTVL, "CHAR")
    field(NELM, 256)
+   
+}
+
+record(waveform, "$(P)READ_RAMP_DIRBASE")
+{
+   field(DTYP, "asynOctetRead")
+   field(INP, "@asyn($(READ),0,1)DIRBASE")
+   field(PINI, "YES")
+   field(FTVL, "CHAR")
+   field(NELM, 256)
+   field(SCAN, "I/O Intr")
 }
 
 record(stringin, "$(P)RAMP_FILE")
@@ -78,6 +84,7 @@ record(stringout, "$(P)RAMP_FILE:SP")
 {
    field(DTYP, "asynOctetWrite")
    field(OUT,  "@asyn($(READ),0,1)DIR")
+   field(SCAN, "I/O Intr")
 }
 
 record(ao, "$(P)TEMP:SP")
@@ -286,6 +293,14 @@ record(fanout, "$(P)READ1") {
 }
 
 ####
+record(stringin, "$(P)ADDRESS") {
+    field(DTYP, "Soft Channel")
+    field(DESC, "Eurotherm address")
+    field(SCAN, "Passive")
+    field(PINI, "YES")
+    field(VAL, "$(GAD)$(LAD)")
+}
+
 
 record(ai, "$(P)OUTPUT") {
     info(INTEREST, "MEDIUM")
@@ -463,7 +478,7 @@ record(stringin, "$(P)CAL:SEL:RBV") {
     info(INTEREST, "MEDIUM")
     field(DESC, "Calibration file")
     field(DTYP, "Soft Channel")
-	field(INP, "$(P)TEMP.NSPE")
+	field(INP, "$(P)TEMP.NSPE MS")
 	field(PINI, "YES")
 	field(SCAN, "1 second")
     info(archive, "VAL")
@@ -473,7 +488,7 @@ record(stringin, "$(P)CAL:RBV")
 {
     field(DESC, "Current Calibration file")
     field(DTYP, "Soft Channel")
-	field(INP, "$(P)TEMP.SPEC")
+	field(INP, "$(P)TEMP.SPEC MS")
 	field(PINI, "YES")
 	field(SCAN, "1 second")
     info(archive, "VAL")
@@ -561,10 +576,8 @@ record(waveform, "$(P)SENSOR_DIRBASE:SP")
 {
    field(DESC, "Set directory of sensor calib files")
    field(DTYP, "asynOctetWrite")
-   field(VAL, "$(SDIR)")
-   field(PINI, "1")
+   field(PINI, "NO")
    field(INP, "@asyn($(SENSORLIST),0,1)DIRBASE")
-   field(OMSL, "supervisory")
    field(FTVL, "CHAR")
    field(NELM, 256)
 }
@@ -602,8 +615,7 @@ record(waveform, "$(P)SENSOR_PATTERN")
    field(DESC, "Get regex search of sensor calib files")
    field(DTYP, "asynOctetRead")
    field(INP, "@asyn($(SENSORLIST),0,1)SEARCH")
-   field(VAL, "$(SENSORSEARCH)")
-   field(PINI, "YES")
+   field(PINI, "NO")
    field(SCAN, "I/O Intr")
    field(FTVL, "CHAR")
    field(NELM, 256)

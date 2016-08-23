@@ -13,6 +13,7 @@
 #include <epicsTimer.h>
 #include <epicsMutex.h>
 #include <epicsEvent.h>
+#include "envDefs.h"
 #include <iocsh.h>
 #include "errlog.h"
 #include "mk3Driver.h"
@@ -366,6 +367,12 @@ void mk3Driver::checkErrorCode(int code)
     }
 }
 
+void mk3Driver::getNumberEnabledChannels(unsigned int* result)
+{
+    int errCode = m_interface->getNumberEnabledChannels(result);
+    checkErrorCode(errCode);
+}
+
 /* Configuration routine.  Called directly, or from the iocsh function below */
 
 extern "C" {
@@ -373,7 +380,23 @@ extern "C" {
 // EPICS iocsh callable function to call constructor for the class.
 int mk3DriverConfigure(const char *portName, const char *configFilePath, int mockChopper)
 {
-    new mk3Driver(portName, configFilePath, mockChopper);
+    mk3Driver* driver = new mk3Driver(portName, configFilePath, mockChopper);
+    
+    // Check to see how many choppers we have
+    if (driver)
+    {
+        unsigned int result;
+        driver->getNumberEnabledChannels(&result);
+        std::cout << "There are " << result << " choppers on this controller" << std::endl;
+        for (unsigned int i = 0; i < result; ++i)
+        {
+            // Set a macro for iocsh to use
+            std::ostringstream oss;
+            oss << "CHOPPER_" << i + 1 << "_PRESENT";           
+            epicsEnvSet(oss.str().c_str(), " ");
+        }
+    }
+    
     return(asynSuccess);
 }
 
