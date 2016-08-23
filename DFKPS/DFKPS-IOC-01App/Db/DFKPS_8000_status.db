@@ -22,7 +22,7 @@ alias("$(P)POWER", "$(P)POWER:RBV")
 record(stringin, "$(P)STATUS")
 {
     field(DESC, "Device Status Flags")
-	field(DTYP, "stream")
+    field(DTYP, "stream")
     field(INP,  "@dfkps.proto status $(port) 0")
     field(SCAN, "Passive")
     field(FLNK, "$(P)CALPOWER")
@@ -38,8 +38,8 @@ record(scalcout, "$(P)CALPOWER")
     field(CALC, "BB==AA[$(powpos),$(powpos)] ? CC : DD")
     field(INAA, "$(P)STATUS MS")
     field(BB, "!")
-	field(CC, "Off")
-	field(DD, "On")
+    field(CC, "Off")
+    field(DD, "On")
     field(FLNK, "$(P)CALILK")
 }
 
@@ -50,8 +50,8 @@ record(scalcout, "$(P)CALILK")
     field(CALC, "BB==AA[$(ilkpos),$(ilkpos)] ? CC : DD")
     field(INAA, "$(P)STATUS MS")
     field(BB, "!")
-	field(CC, "Interlock")
-	field(DD, "OK")
+    field(CC, "Interlock")
+    field(DD, "OK")
 }
 
 record(stringin, "$(P)SIM:STATUS"){
@@ -68,6 +68,8 @@ record(ao, "$(P)RAW:SP")
     field(SIOL, "$(P)SIM:RAW:SP")
     field(SDIS, "$(P)DISABLE")
     field(EGU, "")
+    field(PINI, "$(SP_PINI)")
+    info(autosaveFields, "VAL")
 }
 
 record(ao, "$(P)SIM:CURR"){

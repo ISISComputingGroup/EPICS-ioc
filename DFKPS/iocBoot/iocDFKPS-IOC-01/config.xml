@@ -6,6 +6,7 @@
 <macro name="CALIBRATED" pattern="^(0|1)$" description="Toggle calibration" />
 <macro name="CFILE" description="Name of calibration file" />
 <macro name="CPATH" description="Location of calibration file" />
+<macro name="SP_AT_STARTUP" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" />
 </macros>
 </config_part>
 </ioc_config>
