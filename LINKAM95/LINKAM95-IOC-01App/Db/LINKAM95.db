@@ -210,9 +210,18 @@ record(calcout, "$(P)CALC_PUMP_SPEED")
 record(calcout, "$(P)CALC_PUMP_SPEED_PC")
 {
     field(DESC, "Calc pump speed from byte as percentage")
-    field(CALC, "(A&31)*100/30")
+    field(CALC, "A*100/30")
+    field(INPA,"$(P)PUMP:SPEED")
     field(OUT, "$(P)PUMP:SPEED:PC PP MS")
     field(FLNK, "$(P)CALC_PUMP_STAT")
+}
+
+record(calcout, "$(P)CALC_PUMP_STAT")
+{
+    field(DESC,"Gets num val for pump stat")
+    field(CALC,"(A>1&&A<30)?-1:A")
+    field(INPA,"$(P)PUMP:SPEED")
+    field(OUT,"$(P)PUMP:STAT.RVAL PP")
 }
 
 record(ai, "$(P)PUMP:SPEED")
@@ -231,14 +240,6 @@ record(ai, "$(P)PUMP:SPEED:PC")
     field(PREC, "1")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
-}
-
-record(calcout, "$(P)CALC_PUMP_STAT")
-{
-    field(DESC,"Gets num val for pump stat")
-    field(CALC,"(A>1&&A<30)?-1:A")
-    field(INPA,"$(P)PUMP:SPEED")
-    field(OUT,"$(P)PUMP:STAT.RVAL PP")
 }
 
 record(mbbi, "$(P)PUMP:STAT")
