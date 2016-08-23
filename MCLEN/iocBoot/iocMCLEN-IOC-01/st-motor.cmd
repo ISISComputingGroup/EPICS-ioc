@@ -44,6 +44,7 @@ $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=CM14)")
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=DM00001000)")
 
 # Test for Mclennan PM600 stepper motor controller
+# Note that setup must be done in sim mode too or unconfigured card will crash at first caput
 # PM304Setup(controller count, poll rate (1 to 60Hz))
 PM304Setup(1,5)
 
