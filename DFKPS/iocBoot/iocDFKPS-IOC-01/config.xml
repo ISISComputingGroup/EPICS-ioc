@@ -2,12 +2,12 @@
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
-<macro name="CALIBRATED" pattern="^(0|1)$" description="1 to use calibration file, 0 otherwise; defaults to 1" />
-<macro name="CALIB_FILE" description="Name of calibration File; defaults to default_calib.dat" />
-<macro name="CALIB_DIR" description="Calibration directory for magnets; defaults to " />
-<macro name="CALIB_BASE_DIR" description="Common calibrations directory; defaults to C:/Instrument/Settings/config/common" />
-<macro name="SP_AT_STARTUP" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" />
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
+    <macro name="CALIBRATED" pattern="^(0|1)$" description="1 to use calibration file, 0 otherwise; defaults to 1" />
+    <macro name="CALIB_FILE" description="Name of calibration File; defaults to default_calib.dat" />
+    <macro name="CALIB_DIR" description="Calibration directory for magnets; defaults to " />
+    <macro name="CALIB_BASE_DIR" description="Common calibrations directory; defaults to C:/Instrument/Settings/config/common" />
+    <macro name="SP_AT_STARTUP" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" />
 </macros>
 </config_part>
 </ioc_config>
