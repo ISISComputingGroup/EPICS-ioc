@@ -47,9 +47,11 @@ DIRS := $(filter-out $(DIRS_NOTBUILD), $(IOCDIRS))
 
 include $(TOP)/configure/RULES_DIRS_INT
 
-install : checkiocdirs
+install : checkdirs
 
-checkiocdirs :
+checkdirs :
 ifneq ($(MISSIOCDIRS),)
 	$(error Unlisted IOC directories: $(MISSIOCDIRS))
+else
+	@echo OK - No unlisted IOC directories
 endif
