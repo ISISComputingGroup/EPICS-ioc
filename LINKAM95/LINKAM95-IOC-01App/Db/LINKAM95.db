@@ -226,7 +226,7 @@ record(calcout, "$(P)CALC_PUMP_STAT")
 
 record(ai, "$(P)PUMP:SPEED")
 {
-    field(DESC, "Pump speed, percentage")
+    field(DESC, "Pump speed, device value")
     field(EGU, "")
     field(PREC, "0")
     info(archive, "VAL")
