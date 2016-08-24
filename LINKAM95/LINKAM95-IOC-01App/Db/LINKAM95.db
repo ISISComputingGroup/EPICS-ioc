@@ -52,11 +52,17 @@ record(stringin, "$(P)RAW_STAT")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@devlinkam95.proto getStatus $(port)")
-    field(FLNK, "$(P)STAT_FILTER.SVAL")
+	field(FLNK, "$(P)STAT_FAN")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAW_STAT")
     info(archive, "VAL")
+}
+
+record(fanout, "$(P)STAT_FAN")
+{
+	field(LNK1, "$(P)START_TRIGGER")
+    field(LNK2, "$(P)STAT_FILTER.SVAL")
 }
 
 record(stringout, "$(P)SIM:RAW_STAT")
@@ -202,18 +208,18 @@ record(scalcout, "$(P)CALC_PUMP")
 record(calcout, "$(P)CALC_PUMP_SPEED")
 {
     field(DESC, "Calc pump speed from byte")
-    field(CALC, "(A&31)*100/30")
+    field(CALC, "A&31")
     field(OUT, "$(P)PUMP:SPEED PP MS")
-    field(FLNK, "$(P)CALC_PUMP_STAT")
+    field(FLNK, "$(P)CALC_PUMP_SPEED_PC")
 }
 
-record(ai, "$(P)PUMP:SPEED")
+record(calcout, "$(P)CALC_PUMP_SPEED_PC")
 {
-    field(DESC, "Pump speed, percentage")
-    field(EGU, "%")
-    field(PREC, "1")
-    info(archive, "VAL")
-    info(INTEREST, "HIGH")
+    field(DESC, "Calc pump speed from byte as percentage")
+    field(CALC, "A*100/30")
+    field(INPA,"$(P)PUMP:SPEED")
+    field(OUT, "$(P)PUMP:SPEED:PC PP MS")
+    field(FLNK, "$(P)CALC_PUMP_STAT")
 }
 
 record(calcout, "$(P)CALC_PUMP_STAT")
@@ -222,6 +228,24 @@ record(calcout, "$(P)CALC_PUMP_STAT")
     field(CALC,"(A>1&&A<30)?-1:A")
     field(INPA,"$(P)PUMP:SPEED")
     field(OUT,"$(P)PUMP:STAT.RVAL PP")
+}
+
+record(ai, "$(P)PUMP:SPEED")
+{
+    field(DESC, "Pump speed, percentage")
+    field(EGU, "")
+    field(PREC, "0")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)PUMP:SPEED:PC")
+{
+    field(DESC, "Pump speed, percentage")
+    field(EGU, "%")
+    field(PREC, "1")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(mbbi, "$(P)PUMP:STAT")
@@ -427,11 +451,10 @@ record(bo, "$(P)PUMP:MODE:SP") {
     field(OUT, "@devlinkam95.proto setPumpMode $(port)")
     field(ZNAM, "Manual")
     field(ONAM, "Auto")
+	field(VAL, "1")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PUMP:MODE:SP")
-    field(PINI, "YES")
-    field(VAL, "1")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
@@ -460,4 +483,21 @@ record(longout, "$(P)PUMP:SPEED:SP") {
 
 record(longout, "$(P)SIM:PUMP:SPEED:SP")
 {
+}
+
+####################################
+#### Stuff to set initial state ####
+####################################
+
+record(calc, "$(P)START_TRIGGER") {
+	field(INPA, "$(P)START_TRIGGER")
+	field(CALC, "A==0 ? A+1 : A")
+	field(FLNK, "$(P)START_ACTION")
+}
+
+record(calcout, "$(P)START_ACTION") {
+	field(INPA, "$(P)START_TRIGGER")
+	field(CALC, "A")
+	field(OOPT, "Transition To Non-zero")
+	field(OUT, "$(P)PUMP:MODE:SP.PROC")
 }
