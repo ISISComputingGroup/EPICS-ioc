@@ -296,6 +296,7 @@ record(fanout, "$(P)READ1") {
 record(ai, "$(P)ADDRESS") {
     field(DTYP, "Soft Channel")
     field(DESC, "Eurotherm address")
+	field(PREC, "0")
     field(SCAN, "Passive")
     field(PINI, "YES")
     field(VAL, "$(ADDR)")
