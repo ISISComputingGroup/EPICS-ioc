@@ -115,7 +115,7 @@ record(stringout, "$(P)CFILE:UPD2"){
 }
 
 record(stringin, "$(P)CPATH"){
-	field(DESC, "Calibration File Path within the base path.")
+	field(DESC, "Calibration File Path wrt path.")
 	field(VAL, "$(CALIB_DIR)")
 }
 
