@@ -1,3 +1,10 @@
+# MACROS
+#
+# P - PV Prefix
+# CALIB_FILE - calibration file name
+# CALIB_DIR - file for magnets within calibartion 
+# CALIB_BASE_DIR - path for calibration base directory
+
 
 record(calcout, "$(P)FIELD:PRECALIB"){
     field(INPA, "$(P)CURR")
@@ -13,7 +20,8 @@ record(cvt, "$(P)FIELD:CALIB"){
     field(DRVL, "$(DRVLO)")
     field(DRVH, "$(DRVHI)")
     field(SPEC, "$(CALIB_FILE)")
-    field(TDIR, "$(CALIB_PATH)")
+	field(TDIR, "$(CALIB_DIR)")
+    field(BDIR, "$(CALIB_BASE_DIR)")
     field(FLNK, "$(P)FIELD:TOUNIT")
     field(EGU, "")
 }
@@ -56,7 +64,8 @@ record(cvt, "$(P)FIELD:SP:CALIB"){
     field(DRVL, "$(DRVLO)")
     field(DRVH, "$(DRVHI)")
     field(SPEC, "$(CALIB_FILE)")
-    field(TDIR, "$(CALIB_PATH)")
+	field(TDIR, "$(CALIB_DIR)")
+    field(BDIR, "$(CALIB_BASE_DIR)")
 	field(NSPE, "$(P)CFILE")
 	field(NTDI, "$(P)CPATH")
     field(OUT, "$(P)FIELD:SP:PRECALIB.A")
@@ -106,8 +115,13 @@ record(stringout, "$(P)CFILE:UPD2"){
 }
 
 record(stringin, "$(P)CPATH"){
-	field(DESC, "Calibration File Path")
-	field(VAL, "$(CALIB_PATH)")
+	field(DESC, "Calibration File Path within the base path.")
+	field(VAL, "$(CALIB_DIR)")
+}
+
+record(stringin, "$(P)CBASEPATH"){
+	field(DESC, "Calibration Base File Path")
+	field(VAL, "$(CALIB_BASE_DIR)")
 }
 
 record(stringout, "$(P)CPATH:UPD1"){
@@ -117,10 +131,24 @@ record(stringout, "$(P)CPATH:UPD1"){
 	field(FLNK, "$(P)CINIT1")
 }
 
+record(stringout, "$(P)CBASEPATH:UPD1"){
+	field(DOL, "$(P)CBASEPATH CP")
+    field(OMSL, "closed_loop")
+	field(OUT, "$(P)FIELD:CALIB.NBDI")
+	field(FLNK, "$(P)CINIT1")
+}
+
 record(stringout, "$(P)CPATH:UPD2"){
 	field(DOL, "$(P)CPATH CP")
     field(OMSL, "closed_loop")
 	field(OUT, "$(P)FIELD:SP:CALIB.NTDI")
+	field(FLNK, "$(P)CINIT2")
+}
+
+record(stringout, "$(P)CBASEPATH:UPD2"){
+	field(DOL, "$(P)CBASEPATH CP")
+    field(OMSL, "closed_loop")
+	field(OUT, "$(P)FIELD:SP:CALIB.NBDI")
 	field(FLNK, "$(P)CINIT2")
 }
 

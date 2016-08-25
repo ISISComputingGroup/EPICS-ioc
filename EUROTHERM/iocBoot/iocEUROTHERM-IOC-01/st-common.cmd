@@ -1,8 +1,9 @@
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(EUROTHERM2K)/eurotherm2kApp/protocol"
-epicsEnvSet "SENS_DIR" "C:/Instrument/Settings/calib/sensors"
+epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
+epicsEnvSet "SENS_DIR" "temp_sensors"
 epicsEnvSet "SENS_PAT" "^C.*"
-epicsEnvSet "RAMP_DIR" "C:/Instrument/Settings"
+epicsEnvSet "RAMP_DIR" "ramps"
 epicsEnvSet "RAMP_PAT" ".*"
 
 < $(IOCSTARTUP)/init.cmd

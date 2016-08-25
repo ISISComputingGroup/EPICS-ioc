@@ -8,20 +8,14 @@
 <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to even." />
 <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." />
 
-<macro name="LADDR_1" pattern="^[0-9]$" description="Lesser address for the eurotherm 1, unit e.g. 2 in the address 12. Blank for do not use." />
-<macro name="GADDR_1" pattern="^[0-9]$" description="Greater address for the eurotherm 1, unit e.g. 1 in the address 12. Defaults to 0." />
-<macro name="LADDR_2" pattern="^[0-9]$" description="Lesser address for the eurotherm 2, unit e.g. 2 in the address 12. Blank for do not use." />
-<macro name="GADDR_2" pattern="^[0-9]$" description="Greater address for the eurotherm 2, unit e.g. 1 in the address 12. Defaults to 0." />
-<macro name="LADDR_3" pattern="^[0-9]$" description="Lesser address for the eurotherm 3, unit e.g. 2 in the address 12. Blank for do not use." />
-<macro name="GADDR_3" pattern="^[0-9]$" description="Greater address for the eurotherm 3, unit e.g. 1 in the address 12. Defaults to 0." />
-<macro name="LADDR_4" pattern="^[0-9]$" description="Lesser address for the eurotherm 4, unit e.g. 2 in the address 12. Blank for do not use." />
-<macro name="GADDR_4" pattern="^[0-9]$" description="Greater address for the eurotherm 4, unit e.g. 1 in the address 12. Defaults to 0." />
-<macro name="LADDR_5" pattern="^[0-9]$" description="Lesser address for the eurotherm 5, unit e.g. 2 in the address 12. Blank for do not use." />
-<macro name="GADDR_5" pattern="^[0-9]$" description="Greater address for the eurotherm 5, unit e.g. 1 in the address 12. Defaults to 0." />
-<macro name="LADDR_6" pattern="^[0-9]$" description="Lesser address for the eurotherm 6, unit e.g. 2 in the address 12. Blank for do not use." />
-<macro name="GADDR_6" pattern="^[0-9]$" description="Greater address for the eurotherm 6, unit e.g. 1 in the address 12. Defaults to 0." />
-<macro name="LADDR_7" pattern="^[0-9]$" description="Lesser address for the eurotherm 7, unit e.g. 2 in the address 12. Blank for do not use." />
-<macro name="GADDR_7" pattern="^[0-9]$" description="Greater address for the eurotherm 7, unit e.g. 1 in the address 12. Defaults to 0." />
+<macro name="ADDR_1" pattern="^[0-9]$" description="Address for the 1st eurotherm on this port e.g. 01. Blank for do not use." />
+<macro name="ADDR_2" pattern="^[0-9]$" description="Address for the 2nd eurotherm on this port e.g. 01. Blank for do not use." />
+<macro name="ADDR_3" pattern="^[0-9]$" description="Address for the 3rd eurotherm on this port e.g. 01. Blank for do not use." />
+<macro name="ADDR_4" pattern="^[0-9]$" description="Address for the 4th eurotherm on this port e.g. 01. Blank for do not use." />
+<macro name="ADDR_5" pattern="^[0-9]$" description="Address for the 5th eurotherm on this port e.g. 01. Blank for do not use." />
+<macro name="ADDR_6" pattern="^[0-9]$" description="Address for the 6th eurotherm on this port e.g. 01. Blank for do not use." />
+<macro name="ADDR_7" pattern="^[0-9]$" description="Address for the 7th eurotherm on this port e.g. 01. Blank for do not use." />
+
 </macros>
 </config_part>
 </ioc_config>
