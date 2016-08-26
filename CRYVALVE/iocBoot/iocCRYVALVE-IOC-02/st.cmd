@@ -34,7 +34,7 @@ asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/CRYVALVE.db","P=$(MYPVPREFIX)$(IOCNAME):, port=$(DEVICE)")
+dbLoadRecords("db/CRYVALVE.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0)")
 #dbLoadRecords("db/xxx.db","user=iew83206Host")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
