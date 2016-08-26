@@ -20,7 +20,7 @@ DFKPS_IOC_11_registerRecordDeviceDriver pdbbase
 ## A seperate instance must be created for each danfysik
 epicsEnvSet "RAMP_DIR" "C:/Instrument/Settings"
 epicsEnvSet "RAMP_PAT" ".*"
-FileListConfigure("RAMPFILELIST9", $(RAMP_DIR), $(RAMP_PAT)) 
+FileListConfigure("RAMPFILELIST11", $(RAMP_DIR), $(RAMP_PAT)) 
 
 ## Load common st.cmd
 < iocBoot/iocDFKPS-IOC-01/st-common.cmd
