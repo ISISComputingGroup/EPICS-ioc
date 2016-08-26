@@ -83,6 +83,8 @@ record(ao, "$(P)VOLT:SP") {
     field(SIOL, "$(P)SIM:VOLT:SP")
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "V")
+	field(PINI, "$(SP_PINI)")
+	info(autosaveFields, "VAL")
 }
 
 record(ai, "$(P)VOLT:SP:RBV") {
@@ -125,6 +127,8 @@ record(ao, "$(P)CURR:SP") {
     field(SIOL, "$(P)SIM:CURR:SP")
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "A")
+    field(PINI, "$(SP_PINI)")
+    info(autosaveFields, "VAL")
 }
 
 record(ai, "$(P)CURR:SP:RBV") {
@@ -171,12 +175,16 @@ record(bo, "$(P)POWER:SP")
     field(ZNAM, "Off")
     field(ONAM, "On")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:POWER:SP")
+    field(SIOL, "$(P)SIM:POWER:SP PP")
     field(SDIS, "$(P)DISABLE")
+    field(PINI, "$(SP_PINI)")
+    info(autosaveFields, "VAL")
 }
 alias("$(P)POWER:SP", "$(P)POWER:SP:RBV")
 
 record(bo, "$(P)SIM:POWER"){
     field(DTYP, "Soft Channel")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
 }
 alias("$(P)SIM:POWER", "$(P)SIM:POWER:SP")

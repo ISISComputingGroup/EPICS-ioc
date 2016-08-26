@@ -20,8 +20,10 @@ record(bo, "$(P)POWER:SP")
     field(ZNAM, "Off")
     field(ONAM, "On")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:POWER:SP")
+    field(SIOL, "$(P)SIM:POWER:SP PP")
     field(SDIS, "$(P)DISABLE")
+    field(PINI, "$(SP_PINI)")
+    info(autosaveFields, "VAL")
 }
 alias("$(P)POWER:SP", "$(P)POWER:SP:RBV")
 
@@ -73,16 +75,16 @@ alias("$(P)CURR", "$(P)CURR:RBV")
 
 record(longout, "$(P)CURR:SP")
 {
-	field(DESC, "Set Current")
-	field(DTYP, "Soft Channel")
-	field(OUT, "$(P)CURR:TORAW.A PP MS")
+    field(DESC, "Set Current")
+    field(DTYP, "Soft Channel")
+    field(OUT, "$(P)CURR:TORAW.A PP MS")
 }
 
 record(calcout, "$(P)CURR:TORAW")
 {
-	field(DESC, "Convert Current to Raw Val")
-	field(CALC, "A * $(FAC)")
-	field(OUT, "$(P)RAW:SP PP MS")
+    field(DESC, "Convert Current to Raw Val")
+    field(CALC, "A * $(FAC)")
+    field(OUT, "$(P)RAW:SP PP MS")
 }
 
 record(bo, "$(P)REMOTE")
@@ -105,6 +107,8 @@ record(bo, "$(P)SIM:RESET"){
 
 record(bo, "$(P)SIM:POWER:SP"){
     field(DTYP, "Soft Channel")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
 }
 
 record(ao, "$(P)SIM:VOLT"){
@@ -128,6 +132,7 @@ record(bo, "$(P)SIM")
     field(DTYP, "Soft Channel")
     field(ZNAM, "NO")
     field(ONAM, "YES")
+	field(VAL, "$(RECSIM=0)")
 }
 
 record(bo, "$(P)DISABLE") 
@@ -138,5 +143,6 @@ record(bo, "$(P)DISABLE")
   field(OMSL, "supervisory")
   field(ZNAM, "COMMS ENABLED")
   field(ONAM, "COMMS DISABLED")
+  field(VAL, "$(DISABLE=0)")
 }
 
