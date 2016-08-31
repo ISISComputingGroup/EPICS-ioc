@@ -27,6 +27,7 @@ $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += lvDCOM.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -40,6 +41,7 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 $(APPNAME)_LIBS += lvDCOM 
 $(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += calc
 
 # SCIMAG3D-IOC-01_registerRecordDeviceDriver.cpp derives from SCIMAG3D-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
