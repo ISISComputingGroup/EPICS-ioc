@@ -15,10 +15,14 @@ epicsEnvSet("AMOTORPV", "MOT:$(AMOTORNAME)")
 #set_pass0_restoreFile("$(IOCNAME)_$(PN)_built_settings.sav")
 #set_pass1_restoreFile("$(IOCNAME)_$(PN)_built_settings.sav")
 
-# Create simulated motors: ( start card , start axis , low limit, high limit, home posn, # cards, # axes to setup)
-$(IFSIM) motorSimCreate( 0, 0, -32000, 32000, 0, 1, 1 )
-# Setup the Asyn layer (portname, low-level driver drvet name, card, number of axes on card)
-#$(IFSIM) drvAsynMotorConfigure("sim1", "motorSim", 0, 1)
+## Create simulated motors: ( start card , start axis , low limit, high limit, home posn, # cards, # axes to setup)
+#$(IFSIM) motorSimCreate( 0, 0, -32000, 32000, 0, 1, 1 )
+## Setup the Asyn layer (portname, low-level driver drvet name, card, number of axes on card)
+##$(IFSIM) drvAsynMotorConfigure("sim1", "motorSim", 0, 1)
+$(IFSIM) motorSimCreateController("motorSim", 1)
+$(IFSIM) motorSimConfigAxis("motorSim", 0, 20000, -20000,  500, 0)
+
+
 $(IFSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
 $(IFSIM) epicsEnvSet "SIMSFX" "Sim"
  
