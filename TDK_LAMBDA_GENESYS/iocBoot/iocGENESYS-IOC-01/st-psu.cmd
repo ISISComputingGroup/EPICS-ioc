@@ -5,7 +5,7 @@
 # this defines macros we can use for conditional loading later
 stringiftest("PORT", "$(PORT$(PS)=)")
 
-# create a real serial port, unless in simulation mode then crreate an unconnected asyn port 
+# create a real serial port, unless in simulation mode then create an unconnected asyn port 
 $(IFPORT)$(IFSIM)    drvAsynSerialPortConfigure ("L$(PS)", "NUL", 0, 1)
 
 $(IFPORT)$(IFNOTSIM) drvAsynSerialPortConfigure ("L$(PS)", "$(PORT$(PS)=)")
@@ -21,4 +21,4 @@ $(IFPORT)$(IFNOTSIM) asynOctetConnect("GENESYS_01$(PS)","L$(PS)")
 $(IFPORT)$(IFNOTSIM) asynOctetWrite GENESYS_01$(PS) “ADR $(ADDR$(PS))”
 
 ## Load record instances for connected psu
-$(IFPORT)  dbLoadRecords("$(TOP)/db/TDK_LAMBDA_GENESYS.db", "P=$(MYPVPREFIX)$(IOCNAME):$(PS):, PORT=L$(PS), ADR=$(ADDR$(PS))")
+$(IFPORT)  dbLoadRecords("$(TOP)/db/TDK_LAMBDA_GENESYS.db", "P=$(MYPVPREFIX)$(IOCNAME):$(PS):, PORT=L$(PS), ADR=$(ADDR$(PS)), SP_PINI=$(SP_AT_STARTUP$(PS)=NO)")
