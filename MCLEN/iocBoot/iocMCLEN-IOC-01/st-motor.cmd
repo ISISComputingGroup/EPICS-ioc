@@ -46,6 +46,7 @@ $(IFCMOPEN) epicsEnvSet("MODE",CM11)
 ## Initialise control mode. Defaults to CM14, closed
 $(IFNOTSIM) asynOctetConnect("MKINIT","$(ASERIAL)")
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=CM14)")
+$(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)ER$(ERES$(PN)=400/4096)")
 
 ## Set home mode
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=DM00001000)")
@@ -66,13 +67,14 @@ asynSetTraceIOMask("$(AMOTOR)", 0, 2)
 epicsEnvSet("VELOI",$(VELO$(PN)=1))
 epicsEnvSet("ACCLI",$(ACCL$(PN)=1))
 epicsEnvSet("MRESI",$(MRES$(PN)=0.0025))
-epicsEnvSet("ERESI",$(ERES$(PN)=0.000244140625))
+#epicsEnvSet("ERESI",$(ERES$(PN)=0.000244140625))
 epicsEnvSet("DHLMI",$(DHLM$(PN)=200))
 epicsEnvSet("DLLMI",$(DLLM$(PN)=-200))
 
 # Load asyn record 
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(AMOTORPV):ASYN,PORT=$(ASERIAL),ADDR=0,OMAX=256,IMAX=256")
-dbLoadRecords("$(TOP)/db/motor$(SIMSFX=).db", "P=$(MYPVPREFIX),M=$(AMOTORPV),VELO=$(VELOI),ACCL=$(ACCLI),MRES=$(MRESI),ERES=$(ERESI),DHLM=$(DHLMI),DLLM=$(DLLMI),NAME=$(AMOTORNAME),S=0,C=0,UEIP=1") 
+# Note that ERES is set to 0 because the driver does not support setting the encoder ratio. We do it only at startup
+dbLoadRecords("$(TOP)/db/motor$(SIMSFX=).db", "P=$(MYPVPREFIX),M=$(AMOTORPV),VELO=$(VELOI),ACCL=$(ACCLI),MRES=$(MRESI),ERES=0,DHLM=$(DHLMI),DLLM=$(DLLMI),NAME=$(AMOTORNAME),S=0,C=0,UEIP=1") 
 dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(PN),mAXIS=$(AMOTORPV)") 
 
 #autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 0)
