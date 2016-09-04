@@ -41,7 +41,7 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 $(APPNAME)_LIBS += lvDCOM 
 $(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += calc sscan
 
 # SCIMAG3D-IOC-01_registerRecordDeviceDriver.cpp derives from SCIMAG3D-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
