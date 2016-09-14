@@ -11,104 +11,104 @@
 <macro name="BAUD1" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS1" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY1" pattern="^(even|odd|none)$" description="port parity (default: even)" />
-<macro name="STOP1" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="STOP1" pattern="^[0-9]+$" description="port stop bits (default: 1)" />
 <macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL1" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES1" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES1" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
-<macro name="DHLM1" pattern="[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
-<macro name="DLLM1" pattern="[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
+<macro name="DHLM1" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
+<macro name="DLLM1" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE1" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
 
 <macro name="PORT2" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD2" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS2" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY2" pattern="^(even|odd|none)$" description="port parity (default: even)" />
-<macro name="STOP2" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="STOP2" pattern="^[0-9]+$" description="port stop bits (default: 1)" />
 <macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL2" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES2" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES2" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
-<macro name="DHLM2" pattern="[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
-<macro name="DLLM2" pattern="[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
+<macro name="DHLM2" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
+<macro name="DLLM2" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE2" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
 
 <macro name="PORT3" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD3" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS3" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY3" pattern="^(even|odd|none)$" description="port parity (default: even)" />
-<macro name="STOP3" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="STOP3" pattern="^[0-9]+$" description="port stop bits (default: 1)" />
 <macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL3" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES3" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES3" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
-<macro name="DHLM3" pattern="[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
-<macro name="DLLM3" pattern="[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
+<macro name="DHLM3" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
+<macro name="DLLM3" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE3" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
 
 <macro name="PORT4" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD4" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS4" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY4" pattern="^(even|odd|none)$" description="port parity (default: even)" />
-<macro name="STOP4" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="STOP4" pattern="^[0-9]+$" description="port stop bits (default: 1)" />
 <macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL4" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES4" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES4" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
-<macro name="DHLM4" pattern="[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
-<macro name="DLLM4" pattern="[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
+<macro name="DHLM4" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
+<macro name="DLLM4" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE4" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
 
 <macro name="PORT5" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD5" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS5" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY5" pattern="^(even|odd|none)$" description="port parity (default: even)" />
-<macro name="STOP5" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="STOP5" pattern="^[0-9]+$" description="port stop bits (default: 1)" />
 <macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL5" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES5" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES5" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
-<macro name="DHLM5" pattern="[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
-<macro name="DLLM5" pattern="[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
+<macro name="DHLM5" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
+<macro name="DLLM5" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE5" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
 
 <macro name="PORT6" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD6" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS6" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY6" pattern="^(even|odd|none)$" description="port parity (default: even)" />
-<macro name="STOP6" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="STOP6" pattern="^[0-9]+$" description="port stop bits (default: 1)" />
 <macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL6" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES6" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES6" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
-<macro name="DHLM6" pattern="[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
-<macro name="DLLM6" pattern="[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
+<macro name="DHLM6" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
+<macro name="DLLM6" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE6" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
 
 <macro name="PORT7" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD7" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS7" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY7" pattern="^(even|odd|none)$" description="port parity (default: even)" />
-<macro name="STOP7" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="STOP7" pattern="^[0-9]+$" description="port stop bits (default: 1)" />
 <macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL7" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES7" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES7" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
-<macro name="DHLM7" pattern="[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
-<macro name="DLLM7" pattern="[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
+<macro name="DHLM7" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
+<macro name="DLLM7" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE7" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
 
 <macro name="PORT8" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD8" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS8" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY8" pattern="^(even|odd|none)$" description="port parity (default: even)" />
-<macro name="STOP8" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+<macro name="STOP8" pattern="^[0-9]+$" description="port stop bits (default: 1)" />
 <macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL8" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES8" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES8" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
-<macro name="DHLM8" pattern="[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
-<macro name="DLLM8" pattern="[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
+<macro name="DHLM8" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
+<macro name="DLLM8" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE8" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
 
 </macros>
