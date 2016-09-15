@@ -20,8 +20,9 @@ RUNCTRL_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-#dbLoadRecords("db/xxx.db","user=faa59Host")
+dbLoadRecords("$(RUNCONTROL)/db/runcontrolMgr.db","P=$(MYPVPREFIX)")
 
+## load run control settings written by blockserver
 < ${ICPCONFIGROOT}/rc_settings.cmd
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 

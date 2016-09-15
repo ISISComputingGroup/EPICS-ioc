@@ -3,18 +3,11 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-#----------------------------------------------------
-#  Optimization of db files using dbst (DEFAULT: NO)
-#DB_OPT = YES
-
-#----------------------------------------------------
-# Create and install (or just install) into <top>/db
-# databases, templates, substitutions like this
-DB += motor.db motorSim.db
+#DATA += SCIMAG3D-IOC-01.proto
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
-# <anyname>_template = <templatename>
+# <anyname>_TEMPLATE = <templatename>
 
 include $(TOP)/configure/RULES
 #----------------------------------------

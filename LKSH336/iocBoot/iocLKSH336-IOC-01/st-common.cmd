@@ -10,7 +10,7 @@ cd ${TOP}
 $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:55626")
 
 ## For real device use:
-$(IFNOTDEVSIM) drvAsynIPPortConfigure ("$(DEVICE)", "$(IPADDR):7777")
+$(IFNOTDEVSIM) drvAsynIPPortConfigure ("$(DEVICE)", "$(HOST):7777")
 
 ## Load record instances
 
