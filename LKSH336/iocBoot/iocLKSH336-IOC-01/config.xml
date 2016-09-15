@@ -2,7 +2,7 @@
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
 <macros>
-<macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]$" description="IP address of Lakeshore 336 controller" />
+<macro name="HOST" description="Host name of Lakeshore 336 controller" />
 </macros>
 </config_part>
 </ioc_config>
