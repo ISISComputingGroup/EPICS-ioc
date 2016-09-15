@@ -77,3 +77,45 @@ record(ao, "$(P)SIM:CURR"){
     field(EGU, "A")
 }
 alias("$(P)SIM:CURR", "$(P)SIM:SETIRAW")
+
+record(ao, "$(P)SIM:RAW"){
+field(DTYP, "Soft Channel")
+field(EGU, "A")
+}
+alias("$(P)SIM:CURR", "$(P)SIM:RAW:SP")
+alias("$(P)SIM:CURR", "$(P)SIM:RAW")
+
+record(ai, "$(P)RAW")
+{
+field(DESC, "ADC Channel 8")
+field(DTYP, "stream")
+field(INP, "@dfkps_common.proto adc(8) $(port) 0")
+field(SCAN, "1 second")
+field(LOLO, "-999999.5")
+field(HIHI, "99999.5")
+field(LLSV, "MAJOR")
+field(HHSV, "MAJOR")
+field(HOPR, "100000")
+field(LOPR, "0")
+field(PREC, "0")
+field(FLNK, "$(P)CURR")
+field(SIML, "$(P)SIM")
+field(SIOL, "$(P)SIM:RAW")
+field(SDIS, "$(P)DISABLE")
+field(EGU, "A")
+info(INTEREST, "HIGH")
+info(archive, "VAL")
+}
+
+record(calcout, "$(P)CURR")
+{
+field(DESC, "Convert Raw Val to Current")
+field(CALC, "A * $(FRI)")
+field(INPA, "$(P)RAW")
+field(FLNK, "$(P)FIELD:PRECALIB")
+field(EGU, "A")
+info(INTEREST, "HIGH")
+info(archive, "VAL")
+}
+alias("$(P)CURR", "$(P)CURR:RBV")
+

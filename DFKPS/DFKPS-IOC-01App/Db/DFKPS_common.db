@@ -1,4 +1,3 @@
-
 # Records copied so that they can be simmed, disabled, etc.
 record(bo, "$(P)RESET")
 {
@@ -27,11 +26,11 @@ record(bo, "$(P)POWER:SP")
 }
 alias("$(P)POWER:SP", "$(P)POWER:SP:RBV")
 
-record(ai, "$(P)VOLT")
+record(ai, "$(P)VRAW")
 {
     field(DESC, "ADC Channel 2 - VOLTAGE")
     field(DTYP, "stream")
-    field(INP,  "@dfkps_common.proto adc(2) $(port) 0")
+    field(INP,  "@dfkps_common.proto adc($(VADC)) $(port) 0")
     field(SCAN, "1 second")
     field(LOLO, "-0.5")
     field(HIHI, "999.5")
@@ -40,6 +39,7 @@ record(ai, "$(P)VOLT")
     field(HOPR, "1000")
     field(LOPR, "0")
     field(PREC, "0")
+    field(FLNK, "$(P)VOLT")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLT")
     field(SDIS, "$(P)DISABLE")
@@ -47,33 +47,20 @@ record(ai, "$(P)VOLT")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-alias("$(P)VOLT", "$(P)VOLT:RBV")
 
-
-record(ai, "$(P)CURR")
+record(calcout, "$(P)VOLT")
 {
-    field(DESC, "ADC Channel 8")
-    field(DTYP, "stream")
-    field(INP,  "@dfkps_common.proto adc(8) $(port) 0")
-    field(SCAN, "1 second")
-    field(LOLO, "-99999.5")
-    field(HIHI, "99999.5")
-    field(LLSV, "MAJOR")
-    field(HHSV, "MAJOR")
-    field(HOPR, "100000")
-    field(LOPR, "0")
-    field(PREC, "0")
-    field(FLNK, "$(P)FIELD:PRECALIB")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CURR")
-    field(SDIS, "$(P)DISABLE")
-    field(EGU, "A")
+    field(DESC, "Convert Raw Val to VOLTAGE")
+    field(CALC, "A * $(FRV)")
+    field(INPA, "$(P)VRAW")
+    field(EGU, "V")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-alias("$(P)CURR", "$(P)CURR:RBV")
 
-record(longout, "$(P)CURR:SP")
+alias("$(P)VOLT", "$(P)VOLT:RBV")
+
+record(ao, "$(P)CURR:SP")
 {
     field(DESC, "Set Current")
     field(DTYP, "Soft Channel")
@@ -83,7 +70,7 @@ record(longout, "$(P)CURR:SP")
 record(calcout, "$(P)CURR:TORAW")
 {
     field(DESC, "Convert Current to Raw Val")
-    field(CALC, "A * $(FAC)")
+    field(CALC, "A * $(FWI)")
     field(OUT, "$(P)RAW:SP PP MS")
 }
 
