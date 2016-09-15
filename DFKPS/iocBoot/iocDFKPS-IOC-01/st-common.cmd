@@ -4,10 +4,10 @@ epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
 epicsEnvSet "CALIB_DIR" "magnets"
 epicsEnvSet "CALIB_FILE" "default_calib.dat"
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DANFYSIK8000)/master/danfysikMps8000App/protocol/:$(DANFYSIK8000)/master/danfysikMps8000App/protocol/DFK$(DEV_TYPE=8000)/"
-
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
+
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DANFYSIK8000)/master/danfysikMps8000App/protocol/:$(DANFYSIK8000)/master/danfysikMps8000App/protocol/DFK$(DEV_TYPE=8000)/"
 
 ## use with emulator
 #drvAsynIPPortConfigure("L0", "localhost:xxxxx")
@@ -18,6 +18,8 @@ asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
 asynSetOption("L0", -1, "bits", "$(BITS=8)")
 asynSetOption("L0", -1, "parity", "$(PARITY="none")")
 asynSetOption("L0", -1, "stop", "$(STOP=2)")
+asynOctetSetInputEos("L0",0,"$(IEOS=\\n\\r)")
+asynOctetSetOutputEos("L0",0,"$(OEOS=\\r)")
 
 ## checks used for loading db files
 stringiftest  "POLAR"  "$(POLARITY="BIPOLAR")"  5  "BIPOLAR"
