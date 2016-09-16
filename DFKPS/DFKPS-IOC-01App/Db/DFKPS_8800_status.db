@@ -332,10 +332,27 @@ record(ao, "$(P)RAW:SP")
     field(EGU,  "mA")
     field(DTYP, "stream")
     field(OUT,  "@dfkps.proto dac $(port) 0")
+    field(FLNK, "$(P)START")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAW:SP")
     field(SDIS, "$(P)DISABLE")
     field(EGU, "")
     field(PINI, "$(SP_PINI)")
     info(autosaveFields, "VAL")
+}
+
+record(bo, "$(P)START")
+{
+    field(DESC, "Reset")
+    field(DTYP, "stream")
+    field(OUT, "@dfkps.proto start $(port) 0")
+    field(ZNAM, "Start")
+    field(ONAM, "Start")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:START")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)SIM:START"){
+    field(DTYP, "Soft Channel")
 }
