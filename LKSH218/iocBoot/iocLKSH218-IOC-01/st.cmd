@@ -8,8 +8,6 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "TTY" "$(PORT)"                                   
-
 cd ${TOP}
 
 ## Register all support components
