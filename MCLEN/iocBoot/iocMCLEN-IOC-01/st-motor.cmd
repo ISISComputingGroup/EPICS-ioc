@@ -19,12 +19,12 @@ epicsEnvSet("AMOTORPV", "MOT:$(AMOTORNAME)")
 #$(IFSIM) motorSimCreate( 0, 0, -32000, 32000, 0, 1, 1 )
 ## Setup the Asyn layer (portname, low-level driver drvet name, card, number of axes on card)
 ##$(IFSIM) drvAsynMotorConfigure("sim1", "motorSim", 0, 1)
-$(IFSIM) motorSimCreateController("motorSim", 1)
-$(IFSIM) motorSimConfigAxis("motorSim", 0, 20000, -20000,  500, 0)
+$(IFSIM) motorSimCreateController("$(AMOTOR)", 1)
+$(IFSIM) motorSimConfigAxis("$(AMOTOR)", 0, 20000, -20000,  500, 0)
 
 
 $(IFSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
-$(IFSIM) epicsEnvSet "SIMSFX" "Sim"
+$(IFSIM) epicsEnvSet("SIMSFX","Sim")
  
 $(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT$(PN)=NUL)", 0, 0, 0)
 $(IFNOTSIM) asynSetTraceIOMask("$(ASERIAL)", -1, 0xFF )
