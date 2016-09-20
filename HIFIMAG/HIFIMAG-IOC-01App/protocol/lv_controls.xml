@@ -27,19 +27,19 @@
       </param>
       <param name="Setpoint_1" type="float64">
         <read method="GCV" target="Setpoint 1"/>
-        <set method="SCV" extint="true" target="Setpoint 1" post_button="Set_1" post_button_wait="true"/>
+        <set method="SCV" extint="true" target="Setpoint 1" post_button="Set_1"/>
       </param>
       <param name="Setpoint_2" type="float64">
         <read method="GCV" target="Setpoint 2"/>
-        <set method="SCV" extint="true" target="Setpoint 2" post_button="Set_2" post_button_wait="true"/>
+        <set method="SCV" extint="true" target="Setpoint 2" post_button="Set_2"/>
       </param>
       <param name="Setpoint_3" type="float64">
         <read method="GCV" target="Setpoint 3"/>
-        <set method="SCV" extint="true" target="Setpoint 3" post_button="Set_3" post_button_wait="true"/>
+        <set method="SCV" extint="true" target="Setpoint 3" post_button="Set_3"/>
       </param>
       <param name="Setpoint_4" type="float64">
         <read method="GCV" target="Setpoint 4"/>
-        <set method="SCV" extint="true" target="Setpoint 4" post_button="Set_4" post_button_wait="true"/>
+        <set method="SCV" extint="true" target="Setpoint 4" post_button="Set_4"/>
       </param>
       <param name="Current_1" type="float64">
         <read method="GCV" target="Current 1"/>
