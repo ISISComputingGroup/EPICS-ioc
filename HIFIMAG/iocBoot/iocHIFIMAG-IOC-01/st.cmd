@@ -18,6 +18,7 @@ HIFIMAG_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 lvDCOMConfigure("lvfp", "frontpanel", "${TOP}/data/lv_controls.xml")
+#lvDCOMConfigure("lvfp", "frontpanel", "${TOP}/data/lv_controls.xml", "ndxicap", 6, "", "spudulike", "reliablebeam")
 
 ## Load record instances
 
