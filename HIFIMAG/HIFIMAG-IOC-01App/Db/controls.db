@@ -312,7 +312,7 @@ alias("$(P)SETPOINT4:SP","$(P)SETPOINT4:SP:RBV")
 
 
 # Read LabVIEW control/indicator "Current 1" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
-record(ai, "$(P)CURRENT1")
+record(ai, "$(P)CURR1")
 {
 	field(DESC, "LabVIEW 'Current 1'")
     field(DTYP, "asynFloat64")
@@ -321,7 +321,7 @@ record(ai, "$(P)CURRENT1")
     field(EGU,  "A")
     field(SCAN, "1 second")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CURRENT1")
+    field(SIOL, "$(P)SIM:CURR1")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -329,7 +329,7 @@ record(ai, "$(P)CURRENT1")
 
 
 # Read LabVIEW control/indicator "Current 2" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
-record(ai, "$(P)CURRENT2")
+record(ai, "$(P)CURR2")
 {
 	field(DESC, "LabVIEW 'Current 2'")
     field(DTYP, "asynFloat64")
@@ -338,7 +338,7 @@ record(ai, "$(P)CURRENT2")
     field(EGU,  "A")
     field(SCAN, "1 second")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CURRENT2")
+    field(SIOL, "$(P)SIM:CURR2")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -346,7 +346,7 @@ record(ai, "$(P)CURRENT2")
 
 
 # Read LabVIEW control/indicator "Current 3" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
-record(ai, "$(P)CURRENT3")
+record(ai, "$(P)CURR3")
 {
 	field(DESC, "LabVIEW 'Current 3'")
     field(DTYP, "asynFloat64")
@@ -355,7 +355,7 @@ record(ai, "$(P)CURRENT3")
     field(EGU,  "A")
     field(SCAN, "1 second")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CURRENT3")
+    field(SIOL, "$(P)SIM:CURR3")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -363,7 +363,7 @@ record(ai, "$(P)CURRENT3")
 
 
 # Read LabVIEW control/indicator "Current 4" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
-record(ai, "$(P)CURRENT4")
+record(ai, "$(P)CURR4")
 {
 	field(DESC, "LabVIEW 'Current 4'")
     field(DTYP, "asynFloat64")
@@ -372,7 +372,7 @@ record(ai, "$(P)CURRENT4")
     field(EGU,  "A")
     field(SCAN, "1 second")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CURRENT4")
+    field(SIOL, "$(P)SIM:CURR4")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -380,7 +380,7 @@ record(ai, "$(P)CURRENT4")
 
 
 # Read LabVIEW control/indicator "Voltage 1" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
-record(ai, "$(P)VOLTAGE1")
+record(ai, "$(P)VOLT1")
 {
 	field(DESC, "LabVIEW 'Voltage 1'")
     field(DTYP, "asynFloat64")
@@ -389,7 +389,7 @@ record(ai, "$(P)VOLTAGE1")
     field(EGU,  "V")
     field(SCAN, "1 second")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:VOLTAGE1")
+    field(SIOL, "$(P)SIM:VOLT1")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -397,7 +397,7 @@ record(ai, "$(P)VOLTAGE1")
 
 
 # Read LabVIEW control/indicator "Voltage 2" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
-record(ai, "$(P)VOLTAGE2")
+record(ai, "$(P)VOLT2")
 {
 	field(DESC, "LabVIEW 'Voltage 2'")
     field(DTYP, "asynFloat64")
@@ -406,7 +406,7 @@ record(ai, "$(P)VOLTAGE2")
     field(EGU,  "V")
     field(SCAN, "1 second")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:VOLTAGE2")
+    field(SIOL, "$(P)SIM:VOLT2")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -414,7 +414,7 @@ record(ai, "$(P)VOLTAGE2")
 
 
 # Read LabVIEW control/indicator "Voltage 3" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
-record(ai, "$(P)VOLTAGE3")
+record(ai, "$(P)VOLT3")
 {
 	field(DESC, "LabVIEW 'Voltage 3'")
     field(DTYP, "asynFloat64")
@@ -423,7 +423,7 @@ record(ai, "$(P)VOLTAGE3")
     field(EGU,  "V")
     field(SCAN, "1 second")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:VOLTAGE3")
+    field(SIOL, "$(P)SIM:VOLT3")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -431,7 +431,7 @@ record(ai, "$(P)VOLTAGE3")
 
 
 # Read LabVIEW control/indicator "Voltage 4" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
-record(ai, "$(P)VOLTAGE4")
+record(ai, "$(P)VOLT4")
 {
 	field(DESC, "LabVIEW 'Voltage 4'")
     field(DTYP, "asynFloat64")
@@ -440,7 +440,7 @@ record(ai, "$(P)VOLTAGE4")
     field(EGU,  "V")
     field(SCAN, "1 second")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:VOLTAGE4")
+    field(SIOL, "$(P)SIM:VOLT4")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -513,50 +513,50 @@ record(ai, "$(P)SIM:SETPOINT4")
 alias("$(P)SIM:SETPOINT4","$(P)SIM:SETPOINT4:SP")
 alias("$(P)SIM:SETPOINT4","$(P)SIM:SETPOINT4:SP:RBV")
 
-record(ai, "$(P)CURRENT1")
+record(ai, "$(P)CURR1")
 {
-    ield(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)CURRENT2")
+record(ai, "$(P)CURR2")
 {
-    ield(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)CURRENT3")
+record(ai, "$(P)CURR3")
 {
-    ield(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)CURRENT4")
+record(ai, "$(P)CURR4")
 {
-    ield(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)VOLTAGE1")
+record(ai, "$(P)VOLT1")
 {
-    ield(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)VOLTAGE2")
+record(ai, "$(P)VOLT2")
 {
-    ield(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)VOLTAGE3")
+record(ai, "$(P)VOLT3")
 {
-    ield(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)VOLTAGE4")
+record(ai, "$(P)VOLT4")
 {
-    ield(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
