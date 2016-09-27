@@ -44,6 +44,7 @@ record(stringin, "$(P)MESSAGE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MESSAGE")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
 }
 
 # Read LabVIEW control/indicator "Message" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
@@ -58,6 +59,7 @@ record(waveform, "$(P)MESSAGE:WF")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MESSAGE")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
 }
 
 ## Creating both stringout/stringin and waveform records for "Label 1" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
@@ -74,6 +76,7 @@ record(stringin, "$(P)1:LABEL")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:1:LABEL")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
 }
 
 # Read LabVIEW control/indicator "Label 1" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
@@ -88,6 +91,7 @@ record(waveform, "$(P)1:LABEL:WF")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:1:LABEL")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
 }
 
 ## Creating both stringout/stringin and waveform records for "Label 2" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
@@ -104,6 +108,7 @@ record(stringin, "$(P)2:LABEL")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:2:LABEL")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
 }
 
 # Read LabVIEW control/indicator "Label 2" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
@@ -118,6 +123,7 @@ record(waveform, "$(P)2:LABEL:WF")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:2:LABEL")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
 }
 
 ## Creating both stringout/stringin and waveform records for "Label 3" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
@@ -134,6 +140,7 @@ record(stringin, "$(P)3:LABEL")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:3:LABEL")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
 }
 
 # Read LabVIEW control/indicator "Label 3" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
@@ -148,8 +155,8 @@ record(waveform, "$(P)3:LABEL:WF")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:3:LABEL")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
 }
-
 
 ## Creating both stringout/stringin and waveform records for "Label 4" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
 ## EPICS strings are restricted to 40 characters in length, if your strings are
@@ -165,8 +172,8 @@ record(stringin, "$(P)4:LABEL")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:4:LABEL")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
 }
-
 
 # Read LabVIEW control/indicator "Label 4" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
 record(waveform, "$(P)4:LABEL:WF")
@@ -180,8 +187,8 @@ record(waveform, "$(P)4:LABEL:WF")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:4:LABEL")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
 }
-
 
 # Read LabVIEW control/indicator "Setpoint 1" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
 record(ai, "$(P)1:SETPOINT")
@@ -212,9 +219,7 @@ record(ao, "$(P)1:SETPOINT:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-
 alias("$(P)1:SETPOINT:SP","$(P)1:SETPOINT:SP:RBV")
-
 
 # Read LabVIEW control/indicator "Setpoint 2" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
 record(ai, "$(P)2:SETPOINT")
@@ -231,7 +236,6 @@ record(ai, "$(P)2:SETPOINT")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-
 
 # Write to LabVIEW control "Setpoint 2" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
 record(ao, "$(P)2:SETPOINT:SP")
@@ -310,7 +314,6 @@ record(ao, "$(P)4:SETPOINT:SP")
 
 alias("$(P)4:SETPOINT:SP","$(P)4:SETPOINT:SP:RBV")
 
-
 # Read LabVIEW control/indicator "Current 1" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
 record(ai, "$(P)1:CURR")
 {
@@ -326,7 +329,6 @@ record(ai, "$(P)1:CURR")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-
 
 # Read LabVIEW control/indicator "Current 2" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
 record(ai, "$(P)2:CURR")
@@ -344,7 +346,6 @@ record(ai, "$(P)2:CURR")
     info(archive, "VAL")
 }
 
-
 # Read LabVIEW control/indicator "Current 3" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
 record(ai, "$(P)3:CURR")
 {
@@ -360,7 +361,6 @@ record(ai, "$(P)3:CURR")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-
 
 # Read LabVIEW control/indicator "Current 4" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
 record(ai, "$(P)4:CURR")
@@ -378,7 +378,6 @@ record(ai, "$(P)4:CURR")
     info(archive, "VAL")
 }
 
-
 # Read LabVIEW control/indicator "Voltage 1" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
 record(ai, "$(P)1:VOLT")
 {
@@ -394,7 +393,6 @@ record(ai, "$(P)1:VOLT")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-
 
 # Read LabVIEW control/indicator "Voltage 2" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
 record(ai, "$(P)2:VOLT")
@@ -412,7 +410,6 @@ record(ai, "$(P)2:VOLT")
     info(archive, "VAL")
 }
 
-
 # Read LabVIEW control/indicator "Voltage 3" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
 record(ai, "$(P)3:VOLT")
 {
@@ -428,7 +425,6 @@ record(ai, "$(P)3:VOLT")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-
 
 # Read LabVIEW control/indicator "Voltage 4" on "C:/LabVIEW Modules/Instruments/HIFI/MagnetsHIFI - Magnets - System - Front Panel.vi"
 record(ai, "$(P)4:VOLT")
