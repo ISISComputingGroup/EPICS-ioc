@@ -103,12 +103,6 @@ record(ao, "$(P)SIM:VOLT"){
     field(EGU, "V")
 }
 
-record(ao, "$(P)SIM:CURR"){
-    field(DTYP, "Soft Channel")
-    field(EGU, "A")
-}
-alias("$(P)SIM:CURR", "$(P)SIM:RAW:SP")
-
 record(bo, "$(P)SIM:REMOTE"){
     field(DTYP, "Soft Channel")
 }
