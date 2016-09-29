@@ -344,8 +344,8 @@ record(ao, "$(P)SIM:RAW"){
     field(DTYP, "Soft Channel")
     field(EGU, "A")
 }
-alias("$(P)SIM:CURR", "$(P)SIM:RAW:SP")
-alias("$(P)SIM:CURR", "$(P)SIM:RAW")
+alias("$(P)SIM:RAW", "$(P)SIM:RAW:SP")
+alias("$(P)SIM:RAW", "$(P)SIM:CURR")
 
 record(ai, "$(P)RAW")
 {
