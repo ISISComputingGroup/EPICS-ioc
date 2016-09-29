@@ -107,15 +107,3 @@ info(INTEREST, "HIGH")
 info(archive, "VAL")
 }
 
-record(calcout, "$(P)CURR")
-{
-field(DESC, "Convert Raw Val to Current")
-field(CALC, "A * $(FRI)")
-field(INPA, "$(P)RAW")
-field(FLNK, "$(P)FIELD:PRECALIB")
-field(EGU, "A")
-info(INTEREST, "HIGH")
-info(archive, "VAL")
-}
-alias("$(P)CURR", "$(P)CURR:RBV")
-
