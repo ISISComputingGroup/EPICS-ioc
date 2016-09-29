@@ -83,7 +83,7 @@ field(DTYP, "Soft Channel")
 field(EGU, "A")
 }
 alias("$(P)SIM:RAW", "$(P)SIM:RAW:SP")
-alias("$(P)SIM:RWA", "$(P)SIM:CURR")
+alias("$(P)SIM:RAW", "$(P)SIM:CURR")
 
 record(ai, "$(P)RAW")
 {
