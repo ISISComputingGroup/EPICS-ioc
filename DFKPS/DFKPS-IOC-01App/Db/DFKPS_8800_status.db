@@ -319,8 +319,8 @@ record(bi, "$(P)ILK:NEUTRAL")
 record(bi, "$(P)POWER")
 {
     field(DESC, "Power")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
+    field(ZNAM, "On")
+    field(ONAM, "Off")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
