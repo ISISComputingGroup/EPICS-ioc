@@ -345,7 +345,6 @@ record(ao, "$(P)SIM:RAW"){
     field(EGU, "A")
 }
 alias("$(P)SIM:RAW", "$(P)SIM:RAW:SP")
-alias("$(P)SIM:RAW", "$(P)SIM:CURR")
 
 record(ai, "$(P)RAW")
 {
