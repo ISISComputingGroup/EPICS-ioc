@@ -5,9 +5,9 @@
 ################################################################
 #
 # Activities needed and their associated PVs
-# open       Write  Opens the valve                $(P)OPEN
-# close      Write  Closes the valve               $(P)CLOSE
-# getStatus  Read   Queries the state of the valve $(P)STATUS
+# open       Write  Opens the valve                $(P)STAT:SP [1]
+# close      Write  Closes the valve               $(P)STAT:SP [0]
+# getStatus  Read   Queries the state of the valve $(P)STAT
 
 record(bo, "$(P)SIM")
 {
@@ -32,12 +32,12 @@ record(bo, "$(P)DISABLE")
 #### getStatus command ####
 ###########################
 
-record(stringin, "$(P)STATUS")
+record(stringin, "$(P)STAT")
 {
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@cryValve.proto getStatus $(PORT)")
-	field(SIOL, "$(P)SIM:STATUS")
+	field(SIOL, "$(P)SIM:STAT")
 	field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
@@ -45,10 +45,10 @@ record(stringin, "$(P)STATUS")
     field(DESC, "Iris cryo valve status")
 }
 
-# Stat fits in with PV naming conventions
-alias("$(P)STATUS","$(P)STAT")
+# Preserve old PV for backwards-compatibility
+alias("$(P)STAT","$(P)STATUS")
 
-record(stringout, "$(P)SIM:STATUS")
+record(stringout, "$(P)SIM:STAT")
 {
 	field(DTYP, "Soft Channel")
 	field(VAL, "Simulated")
@@ -58,7 +58,7 @@ record(stringout, "$(P)SIM:STATUS")
 #### Open command ####
 #####################################################
 
-record(bo, "$(P)OPEN:CMD") {
+record(bo, "$(P)STAT:SP") {
     field(DESC, "Solenoid open/close control")
     field(DTYP, "stream")
     field(OUT, "@cryValve.proto setOpen $(PORT)")
@@ -66,16 +66,16 @@ record(bo, "$(P)OPEN:CMD") {
     field(ONAM, "OPEN")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:OPEN:CMD PP")
+    field(SIOL, "$(P)SIM:STAT:SP PP")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
 # Need PVs of form [VALUE]:SP to work with blockserver cset
-alias("$(P)OPEN:CMD","$(P)STAT:SP")
-alias("$(P)OPEN:CMD","$(P)STATUS:SP")
+alias("$(P)STAT:SP","$(P)OPEN:CMD")
+alias("$(P)STAT:SP","$(P)STATUS:SP")
 
-record(bo, "$(P)SIM:OPEN:CMD")
+record(bo, "$(P)SIM:STAT:SP")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
