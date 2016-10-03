@@ -45,6 +45,9 @@ record(stringin, "$(P)STATUS")
     field(DESC, "Iris cryo valve status")
 }
 
+# Stat fits in with PV naming conventions
+alias("$(P)STATUS","$(P)STAT")
+
 record(stringout, "$(P)SIM:STATUS")
 {
 	field(DTYP, "Soft Channel")
@@ -67,6 +70,10 @@ record(bo, "$(P)OPEN:CMD") {
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
+
+# Need PVs of form [VALUE]:SP to work with blockserver cset
+alias("$(P)OPEN:CMD","$(P)STAT:SP")
+alias("$(P)OPEN:CMD","$(P)STATUS:SP")
 
 record(bo, "$(P)SIM:OPEN:CMD")
 {
