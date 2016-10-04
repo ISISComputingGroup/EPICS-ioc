@@ -26,8 +26,12 @@ DELFTDCMAG_IOC_01_registerRecordDeviceDriver pdbbase
 ## options (0 below) is currently unused but would map to values in #NetShrVarOptions    
 #NetShrVarConfigure("nsv", "sec1", "$(TOP)/data/DELFTDCMAG_nv.xml", 100, 0)
 
-#lvDCOMConfigure("lvfp", "frontpanel", "$(TOP)/data/mag1.xml", "", 1, "")
-lvDCOMConfigure("lvfp", "frontpanel", "$(TOP)/data/mag2.xml", "", 1, "")
+lvDCOMConfigure("lvfp", "frontpanel", "$(TOP)/data/mag1.xml", "", 1, "")
+#lvDCOMConfigure("lvfp", "frontpanel", "$(TOP)/data/mag2.xml", "", 1, "")
+
+lvDCOMConfigure("polrev", "frontpanel", "$(TOP)/data/polarity_reverser.xml", "", 1, "")
+lvDCOMConfigure("arduino", "frontpanel", "$(TOP)/data/arduino_stepper.xml", "", 1, "")
+
 
 ## Load record instances
 
@@ -35,10 +39,14 @@ lvDCOMConfigure("lvfp", "frontpanel", "$(TOP)/data/mag2.xml", "", 1, "")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-#dbLoadRecords("db/NSV.db","P=$(MYPVPREFIX)$(IOCNAME):")
+#dbLoadRecords("db/NSV.db","P=$(MYPVPREFIX)DCMAG:")
 
-#dbLoadRecords("db/mag1.db","P=$(MYPVPREFIX)$(IOCNAME):")
-dbLoadRecords("db/mag2.db","P=$(MYPVPREFIX)$(IOCNAME):")
+dbLoadRecords("db/mag1.db","P=$(MYPVPREFIX)DCMAG:")
+#dbLoadRecords("db/mag2.db","P=$(MYPVPREFIX)DCMAG:")
+
+dbLoadRecords("db/polarity_reverser.db","P=$(MYPVPREFIX)POLREV:,PORT=polrev")
+dbLoadRecords("db/arduino_stepper.db","P=$(MYPVPREFIX)ARDSTEP:,PORT=arduino")
+
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

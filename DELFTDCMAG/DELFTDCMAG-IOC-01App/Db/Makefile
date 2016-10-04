@@ -10,7 +10,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-DB += DELFTDCMAG-IOC-01.db NSV.db mag1.db mag2.db  
+DB += DELFTDCMAG-IOC-01.db NSV.db mag1.db mag2.db arduino_stepper.db polarity_reverser.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

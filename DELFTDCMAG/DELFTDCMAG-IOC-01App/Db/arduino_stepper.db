@@ -1,0 +1,226 @@
+record(ai, "$(P)POS")
+{
+	field(DESC, "Position")
+	field(EGU, "")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT),0,0)Position")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+record(ao, "$(P)POS:SP")
+{
+	field(DESC, "Position Setpoint")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn($(PORT),0,0)ToPosition")
+    field(EGU, "")
+    field(PREC, "3")
+}
+
+record(ai, "$(P)POS:SP:RBV")
+{
+	field(DESC, "Position Setpoint RBV")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT),0,0)ToPosition")
+    field(EGU, "")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+record(bi, "$(P)STOP")
+{
+	field(DESC, "LabVIEW 'Stop'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),0,0)Stop")
+    field(SCAN, ".1 second")
+    field(ZNAM, "Stop Program")
+    field(ONAM, "")
+}
+
+record(bo, "$(P)STOP:SP")
+{
+	field(DESC, "LabVIEW 'Stop'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),0,0)Stop")
+    field(ZNAM, "Stop Program")
+    field(ONAM, "")
+}
+
+record(bi, "$(P)START")
+{
+	field(DESC, "LabVIEW 'Stop'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),0,0)Start")
+    field(SCAN, ".1 second")
+    field(ZNAM, "Stop Program")
+    field(ONAM, "")
+}
+
+record(bo, "$(P)START:SP")
+{
+	field(DESC, "LabVIEW 'Stop'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),0,0)Start")
+    field(ZNAM, "Stop Program")
+    field(ONAM, "")
+}
+
+record(bi, "$(P)AXIS1SEL")
+{
+	field(DESC, "LabVIEW 'Stop'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),0,0)Axis1Sel")
+    field(SCAN, ".1 second")
+    field(ZNAM, "Stop Program")
+    field(ONAM, "")
+}
+
+record(bo, "$(P)AXIS1SEL:SP")
+{
+	field(DESC, "LabVIEW 'Stop'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),0,0)Axis1Sel")
+    field(ZNAM, "Stop Program")
+    field(ONAM, "")
+}
+
+record(bi, "$(P)AXIS2SEL")
+{
+	field(DESC, "LabVIEW 'Stop'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),0,0)Axis2Sel")
+    field(SCAN, ".1 second")
+    field(ZNAM, "Stop Program")
+    field(ONAM, "")
+}
+
+record(bo, "$(P)AXIS2SEL:SP")
+{
+	field(DESC, "LabVIEW 'Stop'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),0,0)Axis2Sel")
+    field(ZNAM, "Stop Program")
+    field(ONAM, "")
+}
+
+record(mbbi, "$(P)AXIS1")
+{
+    field(INP, "@asyn($(PORT),0,0)Axis1")
+    field(SCAN, ".1 second")
+    field(DTYP, "asynInt32")
+   field(ZRVL, 0)
+   field(ONVL, 1)
+   field(TWVL, 2)
+   field(THVL, 3)
+   field(FRVL, 4)
+   field(FVVL, 5)
+   field(SXVL, 6)
+   field(SVVL, 7)
+   field(EIVL, 8)
+   field(NIVL, 9)
+   field(TEVL, 10)
+   field(ELVL, 11)
+   field(ZRST, "1TX0")
+   field(ONST, "1RZ0")
+   field(TWST, "1TY1")
+   field(THST, "1RZ1")
+   field(FRST, "1TY2")
+   field(FVST, "1RZ2")
+   field(SXST, "2TX0")
+   field(SVST, "2RZ0")
+   field(EIST, "2TY1")
+   field(NIST, "2RZ1")
+   field(TEST, "2TY2")
+   field(ELST, "2RZ2")
+}
+
+record(mbbo, "$(P)AXIS1:SP")
+{
+    field(OUT, "@asyn($(PORT),0,0)Axis1")
+    field(DTYP, "asynInt32")
+   field(ZRVL, 0)
+   field(ONVL, 1)
+   field(TWVL, 2)
+   field(THVL, 3)
+   field(FRVL, 4)
+   field(FVVL, 5)
+   field(SXVL, 6)
+   field(SVVL, 7)
+   field(EIVL, 8)
+   field(NIVL, 9)
+   field(TEVL, 10)
+   field(ELVL, 11)
+   field(ZRST, "1TX0")
+   field(ONST, "1RZ0")
+   field(TWST, "1TY1")
+   field(THST, "1RZ1")
+   field(FRST, "1TY2")
+   field(FVST, "1RZ2")
+   field(SXST, "2TX0")
+   field(SVST, "2RZ0")
+   field(EIST, "2TY1")
+   field(NIST, "2RZ1")
+   field(TEST, "2TY2")
+   field(ELST, "2RZ2")
+}
+
+record(mbbi, "$(P)AXIS2")
+{
+    field(INP, "@asyn($(PORT),0,0)Axis2")
+    field(SCAN, ".1 second")
+    field(DTYP, "asynInt32")
+   field(ZRVL, 0)
+   field(ONVL, 1)
+   field(TWVL, 2)
+   field(THVL, 3)
+   field(FRVL, 4)
+   field(FVVL, 5)
+   field(SXVL, 6)
+   field(SVVL, 7)
+   field(EIVL, 8)
+   field(NIVL, 9)
+   field(TEVL, 10)
+   field(ELVL, 11)
+   field(ZRST, "1TX0")
+   field(ONST, "1RZ0")
+   field(TWST, "1TY1")
+   field(THST, "1RZ1")
+   field(FRST, "1TY2")
+   field(FVST, "1RZ2")
+   field(SXST, "2TX0")
+   field(SVST, "2RZ0")
+   field(EIST, "2TY1")
+   field(NIST, "2RZ1")
+   field(TEST, "2TY2")
+   field(ELST, "2RZ2")
+}
+
+record(mbbo, "$(P)AXIS2:SP")
+{
+    field(OUT, "@asyn($(PORT),0,0)Axis2")
+    field(DTYP, "asynInt32")
+   field(ZRVL, 0)
+   field(ONVL, 1)
+   field(TWVL, 2)
+   field(THVL, 3)
+   field(FRVL, 4)
+   field(FVVL, 5)
+   field(SXVL, 6)
+   field(SVVL, 7)
+   field(EIVL, 8)
+   field(NIVL, 9)
+   field(TEVL, 10)
+   field(ELVL, 11)
+   field(ZRST, "1TX0")
+   field(ONST, "1RZ0")
+   field(TWST, "1TY1")
+   field(THST, "1RZ1")
+   field(FRST, "1TY2")
+   field(FVST, "1RZ2")
+   field(SXST, "2TX0")
+   field(SVST, "2RZ0")
+   field(EIST, "2TY1")
+   field(NIST, "2RZ1")
+   field(TEST, "2TY2")
+   field(ELST, "2RZ2")
+}

@@ -1,0 +1,52 @@
+
+record(ai, "$(P)CURR1")
+{
+	field(DESC, "Current Measured")
+	field(EGU, "A")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT),0,0)RBVI1")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+record(ai, "$(P)CURR2")
+{
+	field(DESC, "Current Measured")
+	field(EGU, "A")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT),0,0)RBVI2")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+record(longout, "$(P)CURR1:SP")
+{
+	field(DESC, "Current Setpoint")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),0,0)SPI1")
+    field(EGU, "mA")
+}
+
+record(longin, "$(P)CURR1:SP:RBV")
+{
+	field(DESC, "Current Setpoint RBV")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),0,0)SPI1")
+    field(EGU, "mA")
+}
+
+record(longout, "$(P)CURR2:SP")
+{
+	field(DESC, "Current Setpoint")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),0,0)SPI2")
+    field(EGU, "mA")
+}
+
+record(longin, "$(P)CURR2:SP:RBV")
+{
+	field(DESC, "Current Setpoint RBV")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),0,0)SPI2")
+    field(EGU, "mA")
+}
