@@ -780,6 +780,10 @@ record(calcout, "$(P)_CHECKSP") {
 	field(CALC, "ABS(A-B) > C ? 1 : 0")
 	field(OOPT, "When Non-zero")
 	field(OUT, "$(P)_RESENDSP.PROC PP")
+	field(HIGH, "0.5")
+	field(HSV, "MINOR")
+    info(archive, "VAL")
+	info(alarm, "Euro")
 }
 
 ## request resend setpoint after a 1 second delay
