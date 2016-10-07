@@ -768,7 +768,7 @@ record(fanout, "$(P)_CHECKSPFAN") {
 ## note this is a tolerance on the raw value sent to the eurotherm via the stream device command
 record(ai, "$(P)SP:CHKTOL") {
     field(DESC, "Setpoint check tolerance")
-    field(VAL, "0.01")
+    field(VAL, "0.001")
 }
 
 ## check difference between sent and readback SP and re-issue send if necessary
