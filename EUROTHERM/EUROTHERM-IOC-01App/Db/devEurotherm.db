@@ -383,6 +383,7 @@ record(mbbi, "$(P)ERR") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:ERR")
     field(SDIS, "$(Q)DISABLE")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)P") {
@@ -750,8 +751,43 @@ record(ao, "$(P)SP") {
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
     field(PREC, "3")
-	field(FLNK, "$(P)SP:RBV.PROC PP")
+	field(FLNK, "$(P)_CHECKSPFAN.PROC PP")
     info(archive, "VAL")
+}
+
+record(fanout, "$(P)_CHECKSPFAN") {
+	field(SELM, "All")
+	field(LNK1, "$(P)SP:RBV.PROC PP")
+	field(LNK2, "$(P)_CHECKSP.PROC PP")
+}
+
+## difference between sent SP and readback SP to trigger a resend of SP
+## note this is a tolerance on the raw value sent to the eurotherm via the stream device command
+record(ai, "$(P)SP:CHKTOL") {
+    field(DESC, "Setpoint check tolerance")
+    field(VAL, "0.01")
+}
+
+## check difference between sent and readback SP and re-issue send if necessary
+record(calcout, "$(P)_CHECKSP") {
+    field(DESC, "Check SP received or resend")
+    field(INPA, "$(P)SP NPP")
+    field(INPB, "$(P)SP:RBV NPP")
+    field(INPC, "$(P)SP:CHKTOL NPP")
+	field(CALC, "ABS(A-B) > C ? 1 : 0")
+	field(OOPT, "When Non-zero")
+	field(OUT, "$(P)_RESENDSP.PROC PP")
+}
+
+## request resend setpoint after a 1 second delay
+## Use delay in case we get caught in an infinite retry loop
+record(seq, "$(P)_RESENDSP") {
+    field(DESC, "Resend setpoint")
+	field(SELM, "All")
+    field(DOL1, "1")
+	field(DLY1, "1")
+	# we need to use CA as otherwise SP will not reprocess as we are currently part of its existing processing chain
+	field(LNK1, "$(P)SP.PROC CA")
 }
 
 record(ai, "$(P)HILIM") {
