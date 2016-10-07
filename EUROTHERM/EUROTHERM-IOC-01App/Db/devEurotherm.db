@@ -293,26 +293,23 @@ record(fanout, "$(P)READ1") {
 }
 
 ####
-record(ai, "$(P)ADDRESS") {
+record(longin, "$(P)ADDRESS") {
     field(DTYP, "Soft Channel")
     field(DESC, "Eurotherm address")
-	field(PREC, "0")
     field(SCAN, "Passive")
     field(PINI, "YES")
     field(VAL, "$(ADDR)")
 }
 
-record(ai, "$(P)GAD") {
+record(longin, "$(P)GAD") {
     field(DESC, "Eurotherm greater address")
-	field(PREC, "0")
     field(SCAN, "Passive")
     field(PINI, "YES")
     field(VAL, "$(GAD)")
 }
 
-record(calcout, "$(P)LAD") {
+record(longin, "$(P)LAD") {
     field(DESC, "Eurotherm lesser address")
-	field(PREC, "0")
     field(SCAN, "Passive")
     field(PINI, "YES")
     field(VAL, "$(LAD)")
