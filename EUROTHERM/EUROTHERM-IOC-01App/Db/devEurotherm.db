@@ -725,6 +725,7 @@ record(ai, "$(P)RBV") {
     field(PREC, "3")
 	field(FLNK, "$(P)TEMP.PROC PP")
     info(archive, "VAL")
+	info(alarm, "Euro")
 }
 
 record(ai, "$(P)SP:RBV") {
@@ -739,6 +740,7 @@ record(ai, "$(P)SP:RBV") {
 	field(EGU, "")
     field(PREC, "3")
     info(archive, "VAL")
+	info(alarm, "Euro")
 }
 
 record(ao, "$(P)SP") {
@@ -753,6 +755,7 @@ record(ao, "$(P)SP") {
     field(PREC, "3")
 	field(FLNK, "$(P)_CHECKSPFAN.PROC PP")
     info(archive, "VAL")
+	info(alarm, "Euro")
 }
 
 record(fanout, "$(P)_CHECKSPFAN") {
