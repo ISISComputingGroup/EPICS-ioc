@@ -746,6 +746,20 @@ record(ai, "$(P)SP:RBV") {
 record(ao, "$(P)SP") {
     info(INTEREST, "MEDIUM")
     field(DESC, "Temperature Setpoint")
+    field(OUT, "$(P)_SP NPP")
+	field(EGU, "")
+    field(PREC, "3")
+    info(archive, "VAL")
+	field(FLNK, "$(P)_DOSP.PROC PP")
+}
+
+record(longout, "$(P)_DOSP") {
+    field(VAL, "0")
+	field(OUT, "$(P)SP:RETRYCNT PP")
+	field(FLNK, "$(P)_SP.PROC PP")
+}
+
+record(ao, "$(P)_SP") {
     field(DTYP, "stream")
     field(OUT, "@eurotherm2k.proto write($(P),SL) $(PORT)")
 	field(SIML, "$(Q)SIM")
@@ -753,15 +767,24 @@ record(ao, "$(P)SP") {
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
     field(PREC, "3")
-	field(FLNK, "$(P)_CHECKSPFAN.PROC PP")
+	field(FLNK, "$(P)_CHECKSP.PROC PP")
     info(archive, "VAL")
 	info(alarm, "Euro")
 }
 
-record(fanout, "$(P)_CHECKSPFAN") {
-	field(SELM, "All")
-	field(LNK1, "$(P)SP:RBV.PROC PP")
-	field(LNK2, "$(P)_CHECKSP.PROC PP")
+## how many times to resend a setpoint if it doesn't match readback
+record(longout, "$(P)SP:NRETRY") {
+    field(VAL, "5")
+}
+
+## current setpoint retry number
+record(longout, "$(P)SP:RETRYCNT") {
+    field(DESC, "Last setpoint retry count")
+    field(VAL, "0")
+	field(HIGH, "1")
+	field(HSV, "MINOR")
+    info(archive, "VAL")
+	info(alarm, "Euro")
 }
 
 ## difference between sent SP and readback SP to trigger a resend of SP
@@ -772,29 +795,33 @@ record(ai, "$(P)SP:CHKTOL") {
 }
 
 ## check difference between sent and readback SP and re-issue send if necessary
+## the PP on INPB forces a setpoint readback
+## request resend setpoint after a 1 second delay
 record(calcout, "$(P)_CHECKSP") {
     field(DESC, "Check SP received or resend")
-    field(INPA, "$(P)SP NPP")
-    field(INPB, "$(P)SP:RBV NPP")
+    field(INPA, "$(P)_SP NPP")
+    field(INPB, "$(P)SP:RBV PP")
     field(INPC, "$(P)SP:CHKTOL NPP")
-	field(CALC, "ABS(A-B) > C ? 1 : 0")
+    field(INPD, "$(P)SP:NRETRY NPP")
+    field(INPE, "$(P)SP:RETRYCNT NPP")
+	field(CALC, "(ABS(A-B)>C)&&(E<D)?1:0")
 	field(OOPT, "When Non-zero")
-	field(OUT, "$(P)_RESENDSP.PROC PP")
+	# we need to use CA on OUT as otherwise SP will not reprocess as we are currently part of its existing processing chain
+	field(OUT, "$(P)_DORETRY.PROC PP")
 	field(HIGH, "0.5")
 	field(HSV, "MINOR")
+	field(ODLY, 1)
     info(archive, "VAL")
 	info(alarm, "Euro")
 }
 
-## request resend setpoint after a 1 second delay
-## Use delay in case we get caught in an infinite retry loop
-record(seq, "$(P)_RESENDSP") {
-    field(DESC, "Resend setpoint")
-	field(SELM, "All")
-    field(DOL1, "1")
-	field(DLY1, "1")
-	# we need to use CA as otherwise SP will not reprocess as we are currently part of its existing processing chain
-	field(LNK1, "$(P)SP.PROC CA")
+record(calcout, "$(P)_DORETRY") {
+    field(INPA, "$(P)SP:RETRYCNT NPP")
+	field(CALC, "A+1")
+	field(OOPT, "Every Time")
+	field(OUT, "$(P)SP:RETRYCNT PP")
+	# we need to use CA on OUT as otherwise SP will not reprocess as we are currently part of its existing processing chain
+	field(FLNK, "$(P)_SP.PROC CA")
 }
 
 record(ai, "$(P)HILIM") {
