@@ -775,13 +775,15 @@ record(ao, "$(P)_SP") {
 ## how many times to resend a setpoint if it doesn't match readback
 record(longout, "$(P)SP:NRETRY") {
     field(VAL, "5")
+	field(OUT, "$(P)SP:RETRYCNT.HIGH")
+	field(PINI, "YES")
 }
 
 ## current setpoint retry number
 record(longout, "$(P)SP:RETRYCNT") {
     field(DESC, "Last setpoint retry count")
     field(VAL, "0")
-	field(HIGH, "1")
+	field(HIGH, "5")
 	field(HSV, "MINOR")
     info(archive, "VAL")
 	info(alarm, "Euro")
