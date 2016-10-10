@@ -383,6 +383,7 @@ record(mbbi, "$(P)ERR") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:ERR")
     field(SDIS, "$(Q)DISABLE")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)P") {
@@ -724,6 +725,7 @@ record(ai, "$(P)RBV") {
     field(PREC, "3")
 	field(FLNK, "$(P)TEMP.PROC PP")
     info(archive, "VAL")
+	info(alarm, "Euro")
 }
 
 record(ai, "$(P)SP:RBV") {
@@ -738,11 +740,26 @@ record(ai, "$(P)SP:RBV") {
 	field(EGU, "")
     field(PREC, "3")
     info(archive, "VAL")
+	info(alarm, "Euro")
 }
 
 record(ao, "$(P)SP") {
     info(INTEREST, "MEDIUM")
     field(DESC, "Temperature Setpoint")
+    field(OUT, "$(P)_SP NPP")
+	field(EGU, "")
+    field(PREC, "3")
+    info(archive, "VAL")
+	field(FLNK, "$(P)_DOSP.PROC PP")
+}
+
+record(longout, "$(P)_DOSP") {
+    field(VAL, "0")
+	field(OUT, "$(P)SP:RETRYCNT PP")
+	field(FLNK, "$(P)_SP.PROC PP")
+}
+
+record(ao, "$(P)_SP") {
     field(DTYP, "stream")
     field(OUT, "@eurotherm2k.proto write($(P),SL) $(PORT)")
 	field(SIML, "$(Q)SIM")
@@ -750,8 +767,63 @@ record(ao, "$(P)SP") {
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
     field(PREC, "3")
-	field(FLNK, "$(P)SP:RBV.PROC PP")
+	field(FLNK, "$(P)_CHECKSP.PROC PP")
     info(archive, "VAL")
+	info(alarm, "Euro")
+}
+
+## how many times to resend a setpoint if it doesn't match readback
+record(longout, "$(P)SP:NRETRY") {
+    field(VAL, "5")
+	field(OUT, "$(P)SP:RETRYCNT.HIGH")
+	field(PINI, "YES")
+}
+
+## current setpoint retry number
+record(longout, "$(P)SP:RETRYCNT") {
+    field(DESC, "Last setpoint retry count")
+    field(VAL, "0")
+	field(HIGH, "5")
+	field(HSV, "MINOR")
+    info(archive, "VAL")
+	info(alarm, "Euro")
+}
+
+## difference between sent SP and readback SP to trigger a resend of SP
+## note this is a tolerance on the raw value sent to the eurotherm via the stream device command
+record(ai, "$(P)SP:CHKTOL") {
+    field(DESC, "Setpoint check tolerance")
+    field(VAL, "0.001")
+}
+
+## check difference between sent and readback SP and re-issue send if necessary
+## the PP on INPB forces a setpoint readback
+## request resend setpoint after a 1 second delay
+record(calcout, "$(P)_CHECKSP") {
+    field(DESC, "Check SP received or resend")
+    field(INPA, "$(P)_SP NPP")
+    field(INPB, "$(P)SP:RBV PP")
+    field(INPC, "$(P)SP:CHKTOL NPP")
+    field(INPD, "$(P)SP:NRETRY NPP")
+    field(INPE, "$(P)SP:RETRYCNT NPP")
+	field(CALC, "(ABS(A-B)>C)&&(E<D)?1:0")
+	field(OOPT, "When Non-zero")
+	# we need to use CA on OUT as otherwise SP will not reprocess as we are currently part of its existing processing chain
+	field(OUT, "$(P)_DORETRY.PROC PP")
+	field(HIGH, "0.5")
+	field(HSV, "MINOR")
+	field(ODLY, 1)
+    info(archive, "VAL")
+	info(alarm, "Euro")
+}
+
+record(calcout, "$(P)_DORETRY") {
+    field(INPA, "$(P)SP:RETRYCNT NPP")
+	field(CALC, "A+1")
+	field(OOPT, "Every Time")
+	field(OUT, "$(P)SP:RETRYCNT PP")
+	# we need to use CA on OUT as otherwise SP will not reprocess as we are currently part of its existing processing chain
+	field(FLNK, "$(P)_SP.PROC CA")
 }
 
 record(ai, "$(P)HILIM") {
