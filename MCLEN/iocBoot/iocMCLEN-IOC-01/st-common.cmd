@@ -34,6 +34,9 @@ epicsEnvSet(PN,8)
 
 epicsEnvSet("MCLENCONFIG","$(ICPCONFIGROOT)/mclennan")
 
+# configure axes
+< axes.cmd
+
 # motion set points
 < motionsetpoints.cmd
 < sampleChanger.cmd
