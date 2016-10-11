@@ -18,7 +18,7 @@
 <macro name="ERES1" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM1" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM1" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
-<macro name="MODE1" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
+<macro name="MODE1" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
 <macro name="PORT2" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD2" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -31,7 +31,7 @@
 <macro name="ERES2" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM2" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM2" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
-<macro name="MODE2" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
+<macro name="MODE2" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
 <macro name="PORT3" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD3" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -44,7 +44,7 @@
 <macro name="ERES3" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM3" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM3" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
-<macro name="MODE3" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
+<macro name="MODE3" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
 <macro name="PORT4" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD4" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -57,7 +57,7 @@
 <macro name="ERES4" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM4" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM4" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
-<macro name="MODE4" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
+<macro name="MODE4" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
 <macro name="PORT5" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD5" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -70,7 +70,7 @@
 <macro name="ERES5" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM5" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM5" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
-<macro name="MODE5" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
+<macro name="MODE5" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
 <macro name="PORT6" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD6" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -83,7 +83,7 @@
 <macro name="ERES6" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM6" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM6" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
-<macro name="MODE6" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
+<macro name="MODE6" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
 <macro name="PORT7" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD7" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -96,7 +96,7 @@
 <macro name="ERES7" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM7" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM7" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
-<macro name="MODE7" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
+<macro name="MODE7" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
 <macro name="PORT8" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD8" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -109,7 +109,7 @@
 <macro name="ERES8" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM8" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM8" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
-<macro name="MODE8" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
+<macro name="MODE8" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
 </macros>
 <pvsets>
