@@ -319,8 +319,8 @@ record(bi, "$(P)ILK:NEUTRAL")
 record(bi, "$(P)POWER")
 {
     field(DESC, "Power")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
+    field(ZNAM, "On")
+    field(ONAM, "Off")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -354,4 +354,32 @@ record(bo, "$(P)START")
 
 record(bo, "$(P)SIM:START"){
     field(DTYP, "Soft Channel")
+}
+
+record(ao, "$(P)SIM:RAW"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "A")
+}
+alias("$(P)SIM:RAW", "$(P)SIM:RAW:SP")
+
+record(ai, "$(P)RAW")
+{
+    field(DESC, "ADC Channel 8")
+    field(DTYP, "stream")
+    field(INP,  "@dfkps.proto adcv $(port) 0")
+    field(SCAN, "1 second")
+    field(LOLO, "-999999.5")
+    field(HIHI, "99999.5")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+    field(HOPR, "100000")
+    field(LOPR, "0")
+    field(PREC, "0")
+    field(FLNK, "$(P)CURR")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAW")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "A")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }

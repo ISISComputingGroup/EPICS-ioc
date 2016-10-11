@@ -4,6 +4,11 @@
 #
 #######################################################
 #
+# IMPORTANT: THIS DB IS A PROTOTYPE AND HAS NOT BEEN
+# TESTED ON A REAL DEVICE
+#
+#######################################################
+#
 # Activities needed and their associated PVs
 # Pressure 1 READ $(P)PRESSURE:1
 # Pressure 2 READ $(P)PRESSURE:2

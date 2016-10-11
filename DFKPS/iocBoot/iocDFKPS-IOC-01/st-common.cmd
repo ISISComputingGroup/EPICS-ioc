@@ -4,10 +4,10 @@ epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
 epicsEnvSet "CALIB_DIR" "magnets"
 epicsEnvSet "CALIB_FILE" "default_calib.dat"
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DANFYSIK8000)/master/danfysikMps8000App/protocol/:$(DANFYSIK8000)/master/danfysikMps8000App/protocol/DFK$(DEV_TYPE=8000)/"
-
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
+
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DANFYSIK8000)/master/danfysikMps8000App/protocol/:$(DANFYSIK8000)/master/danfysikMps8000App/protocol/DFK$(DEV_TYPE=8000)/"
 
 ## use with emulator
 #drvAsynIPPortConfigure("L0", "localhost:xxxxx")
@@ -18,6 +18,8 @@ asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
 asynSetOption("L0", -1, "bits", "$(BITS=8)")
 asynSetOption("L0", -1, "parity", "$(PARITY="none")")
 asynSetOption("L0", -1, "stop", "$(STOP=2)")
+asynOctetSetInputEos("L0",0,"$(IEOS=\\n\\r)")
+asynOctetSetOutputEos("L0",0,"$(OEOS=\\r)")
 
 ## checks used for loading db files
 stringiftest  "POLAR"  "$(POLARITY="BIPOLAR")"  5  "BIPOLAR"
@@ -30,7 +32,7 @@ stringiftest  "SLEW"  "$(USE_SLEW=0)"  5  "1"
 epicsEnvSet "SP_PINI" "$(SP_AT_STARTUP=NO)"
 
 ## Load record instances
-dbLoadRecords("$(TOP)/db/DFKPS_common.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, FAC=$(FACTOR=1000), port=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),SP_PINI=$(SP_PINI)")
+dbLoadRecords("$(TOP)/db/DFKPS_common.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, FWI=$(FACTOR_WRITE_I=1000), FRI=$(FACTOR_READ_I=1), FRV=$(FACTOR_READ_V=1), port=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),SP_PINI=$(SP_PINI), VADC=$(VADC=2)")
 $(IFPOLAR) dbLoadRecords("$(TOP)/db/DFKPS_polarity.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0")
 $(IFCALIB) dbLoadRecords("$(TOP)/db/DFKPS_calibrated.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, CALIB_BASE_DIR=$(CALIB_BASE_DIR),CALIB_DIR=$(CALIB_DIR),CALIB_FILE=$(CALIB_FILE),DRVHI=$(DRIVE_HIGH=5000000),DRVLO=$(DRIVE_LOW=-5000000), port=L0")
 $(IFSLEW) dbLoadRecords("$(TOP)/db/DFKPS_slew.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0")
