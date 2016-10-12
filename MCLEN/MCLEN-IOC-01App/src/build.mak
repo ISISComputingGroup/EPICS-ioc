@@ -60,6 +60,7 @@ $(APPNAME)_LIBS += motionSetPoints
 $(APPNAME)_LIBS += sampleChanger
 $(APPNAME)_LIBS += busy asyn
 $(APPNAME)_LIBS += std sscan
+$(APPNAME)_LIBS += TinyXML
 
 # MCLEN-IOC-01_registerRecordDeviceDriver.cpp derives from MCLEN-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
