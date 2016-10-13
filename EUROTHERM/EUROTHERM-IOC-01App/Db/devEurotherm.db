@@ -355,8 +355,8 @@ record(ao, "$(P)MAX_OUTPUT:SP") {
 
 alias("$(P)MAX_OUTPUT", "$(P)MAX_OUTPUT:SP:RBV")
 
-record(mbbi, "$(P)ERR") {
-    field(DESC, "Error message")
+record(mbbi, "$(P)ERR_READ") {
+    field(DESC, "Error message read from the hardware")
     field(DTYP, "stream")
     field(INP, "@eurotherm2k.proto readhex($(P),EE,$(GAD),$(LAD)) $(PORT)")
     field(ZRVL, "0")
@@ -365,16 +365,40 @@ record(mbbi, "$(P)ERR") {
     field(ONST, "Invalid Param")
     field(TWVL, "2")
     field(TWST, "Read Only")
-    field(THVL, "7")
-    field(THST, "Incorrect Msg")
-    field(FRVL, "8")
-    field(FRST, "Limit Error")
+    field(SVVL, "7")
+    field(SVST, "Incorrect Msg")
+    field(EIVL, "8")
+    field(EIST, "Limit Error")
     field(PINI, "YES")
+	field(FLNK, "$(P)ERR_READ_PUSH")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:ERR")
     field(SDIS, "$(Q)DISABLE")
 }
 
+# This error record is usually written to by an error that happens during writting to the device 
+#  However when err_read is processed this also write to here.
+record(mbbi, "$(P)ERR") {
+    field(DESC, "Error message, usually written by protocol")
+    field(ZRVL, "0")
+    field(ZRST, "No Error")
+    field(ONVL, "1")
+    field(ONST, "Invalid Param")
+    field(TWVL, "2")
+    field(TWST, "Read Only")
+    field(SVVL, "7")
+    field(SVST, "Incorrect Msg")
+    field(EIVL, "8")
+    field(EIST, "Limit Error")
+    field(PINI, "YES")
+}
+
+record(mbbo, "$(P)ERR_READ_PUSH") {
+    field(DESC, "Push error from device to error record")
+	field(DOL, "$(P)ERR_READ")
+	field(OUT, "$(P)ERR")
+	field(OMSL, "closed_loop")
+}
 record(ai, "$(P)P") {
     info(INTEREST, "MEDIUM")
     field(DESC, "P Param Readback")
