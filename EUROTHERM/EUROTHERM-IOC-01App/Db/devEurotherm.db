@@ -178,7 +178,7 @@ record(ai, "$(P)OUT_SP")
    field(DTYP, "asynFloat64")
    field(INP,  "@asyn($(READ),0,1)SP")
    field(PREC, "5")
-#   field(SCAN, "I/O Intr")
+   field(SCAN, "I/O Intr")
    field(FLNK, "$(P)RAMP_SP.PROC PP")
 }
 
