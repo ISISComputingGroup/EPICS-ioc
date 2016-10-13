@@ -356,7 +356,7 @@ record(ao, "$(P)MAX_OUTPUT:SP") {
 alias("$(P)MAX_OUTPUT", "$(P)MAX_OUTPUT:SP:RBV")
 
 record(mbbi, "$(P)ERR_READ") {
-    field(DESC, "Error message read from the hardware")
+    field(DESC, "Current error message")
     field(DTYP, "stream")
     field(INP, "@eurotherm2k.proto readhex($(P),EE,$(GAD),$(LAD)) $(PORT)")
     field(ZRVL, "0")
@@ -380,7 +380,7 @@ record(mbbi, "$(P)ERR_READ") {
 # This error record is usually written to by an error that happens during writting to the device 
 #  However when err_read is processed this also write to here.
 record(mbbi, "$(P)ERR") {
-    field(DESC, "Error message, usually written by protocol")
+    field(DESC, "Last error message")
     field(ZRVL, "0")
     field(ZRST, "No Error")
     field(ONVL, "1")
