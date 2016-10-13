@@ -3,6 +3,11 @@
 ## You may have to change PDR2000-IOC-01 to something else
 ## everywhere it appears in this file
 
+#
+## WARNING
+## This IOC is a prototype and has not yet been tested on a real device.
+#
+
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
 errlogInit2(65536, 256)
 
@@ -19,6 +24,12 @@ PDR2000_IOC_01_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
+
+
+#
+## WARNING
+## This IOC is a prototype and has not yet been tested on a real device.
+#
 
 ## For running emulator
 #drvAsynIPPortConfigure("$(DEVICE)", "localhost:51891")
@@ -48,6 +59,11 @@ iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=iew83206Host"
+
+#
+## WARNING
+## This IOC is a prototype and has not yet been tested on a real device.
+#
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs
 < $(IOCSTARTUP)/postiocinit.cmd
