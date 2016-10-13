@@ -340,6 +340,22 @@ record(ao, "$(P)RAW:SP")
     info(autosaveFields, "VAL")
 }
 
+record(bo, "$(P)START")
+{
+    field(DESC, "Reset")
+    field(DTYP, "stream")
+    field(OUT, "@dfkps.proto start $(port) 0")
+    field(ZNAM, "Start")
+    field(ONAM, "Start")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:START")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)SIM:START"){
+    field(DTYP, "Soft Channel")
+}
+
 record(ao, "$(P)SIM:RAW"){
     field(DTYP, "Soft Channel")
     field(EGU, "A")
