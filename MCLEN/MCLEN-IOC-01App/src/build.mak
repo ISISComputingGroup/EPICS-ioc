@@ -36,6 +36,7 @@ $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += busySupport.dbd
 $(APPNAME)_DBD += motionSetPoints.dbd
+$(APPNAME)_DBD += sampleChanger.dbd 
 $(APPNAME)_DBD += stdSupport.dbd
 $(APPNAME)_DBD += asubFunctions.dbd 
 
@@ -56,8 +57,10 @@ $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += motionSetPoints
+$(APPNAME)_LIBS += sampleChanger
 $(APPNAME)_LIBS += busy asyn
 $(APPNAME)_LIBS += std sscan
+$(APPNAME)_LIBS += TinyXML
 
 # MCLEN-IOC-01_registerRecordDeviceDriver.cpp derives from MCLEN-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

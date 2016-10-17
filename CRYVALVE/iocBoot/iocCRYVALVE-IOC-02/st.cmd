@@ -20,13 +20,14 @@ CRYVALVE_IOC_02_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
-asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
-asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
-asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
-asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
-asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r)")
-asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
+$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:57678")
+$(IFNOTDEVSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
+$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
+$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
+$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
+$(IFNOTDEVSIM) asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r)")
+$(IFNOTDEVSIM) asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
 
 ## Load record instances
 

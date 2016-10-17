@@ -15,7 +15,7 @@
 <macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL1" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES1" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
-<macro name="ERES1" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
+<macro name="ERES1" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM1" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
 <macro name="DLLM1" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE1" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
@@ -28,7 +28,7 @@
 <macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL2" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES2" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
-<macro name="ERES2" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
+<macro name="ERES2" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM2" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
 <macro name="DLLM2" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE2" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
@@ -41,7 +41,7 @@
 <macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL3" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES3" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
-<macro name="ERES3" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
+<macro name="ERES3" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM3" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
 <macro name="DLLM3" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE3" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
@@ -54,7 +54,7 @@
 <macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL4" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES4" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
-<macro name="ERES4" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
+<macro name="ERES4" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM4" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
 <macro name="DLLM4" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE4" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
@@ -67,7 +67,7 @@
 <macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL5" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES5" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
-<macro name="ERES5" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
+<macro name="ERES5" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM5" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
 <macro name="DLLM5" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE5" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
@@ -80,7 +80,7 @@
 <macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL6" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES6" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
-<macro name="ERES6" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
+<macro name="ERES6" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM6" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
 <macro name="DLLM6" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE6" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
@@ -93,7 +93,7 @@
 <macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL7" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES7" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
-<macro name="ERES7" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
+<macro name="ERES7" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM7" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
 <macro name="DLLM7" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE7" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
@@ -106,7 +106,7 @@
 <macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="motor velocity (default: 1)" />
 <macro name="ACCL8" pattern="[0-9]*\.?[0-9]*$" description="motor acceleration (default: 1)" />
 <macro name="MRES8" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
-<macro name="ERES8" pattern="[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
+<macro name="ERES8" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM8" pattern="-?[0-9]*\.?[0-9]*$" description="motor upper limit (default: 200)" />
 <macro name="DLLM8" pattern="-?[0-9]*\.?[0-9]*$" description="motor lower limit (default: -200)" />
 <macro name="MODE8" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: OPEN)" />
