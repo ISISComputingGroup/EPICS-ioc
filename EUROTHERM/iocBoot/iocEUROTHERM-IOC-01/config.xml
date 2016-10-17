@@ -8,13 +8,13 @@
 <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to even." />
 <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." />
 
-<macro name="ADDR_1" pattern="^[0-9]$" description="Address for the 1st eurotherm on this port e.g. 01. Blank for do not use." />
-<macro name="ADDR_2" pattern="^[0-9]$" description="Address for the 2nd eurotherm on this port e.g. 01. Blank for do not use." />
-<macro name="ADDR_3" pattern="^[0-9]$" description="Address for the 3rd eurotherm on this port e.g. 01. Blank for do not use." />
-<macro name="ADDR_4" pattern="^[0-9]$" description="Address for the 4th eurotherm on this port e.g. 01. Blank for do not use." />
-<macro name="ADDR_5" pattern="^[0-9]$" description="Address for the 5th eurotherm on this port e.g. 01. Blank for do not use." />
-<macro name="ADDR_6" pattern="^[0-9]$" description="Address for the 6th eurotherm on this port e.g. 01. Blank for do not use." />
-<macro name="ADDR_7" pattern="^[0-9]$" description="Address for the 7th eurotherm on this port e.g. 01. Blank for do not use." />
+<macro name="ADDR_1" pattern="^[0-9]{1,2}$" description="Address for the 1st eurotherm on this port e.g. 01. Blank for do not use." />
+<macro name="ADDR_2" pattern="^[0-9]{1,2}$" description="Address for the 2nd eurotherm on this port e.g. 02. Blank for do not use." />
+<macro name="ADDR_3" pattern="^[0-9]{1,2}$" description="Address for the 3rd eurotherm on this port e.g. 03. Blank for do not use." />
+<macro name="ADDR_4" pattern="^[0-9]{1,2}$" description="Address for the 4th eurotherm on this port e.g. 04. Blank for do not use." />
+<macro name="ADDR_5" pattern="^[0-9]{1,2}$" description="Address for the 5th eurotherm on this port e.g. 05. Blank for do not use." />
+<macro name="ADDR_6" pattern="^[0-9]{1,2}$" description="Address for the 6th eurotherm on this port e.g. 06. Blank for do not use." />
+<macro name="ADDR_7" pattern="^[0-9]{1,2}$" description="Address for the 7th eurotherm on this port e.g. 07. Blank for do not use." />
 
 </macros>
 </config_part>
