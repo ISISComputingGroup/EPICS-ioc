@@ -377,8 +377,8 @@ record(mbbi, "$(P)ERR_READ") {
     info(archive, "VAL")
 }
 
-# This error record is usually written to by an error that happens during writting to the device 
-#  However when err_read is processed this also write to here.
+# This error record is usually written to by an error that happens during writing to the device 
+# However when err_read is processed this also write to here.
 record(mbbi, "$(P)ERR") {
     field(DESC, "Last error message")
     field(ZRVL, "0")
@@ -392,6 +392,8 @@ record(mbbi, "$(P)ERR") {
     field(EIVL, "8")
     field(EIST, "Limit Error")
     field(PINI, "YES")
+    info(archive, "VAL")
+    info(INTEREST, "MEDIUM")
 }
 
 record(mbbo, "$(P)ERR_READ_PUSH") {
@@ -400,6 +402,7 @@ record(mbbo, "$(P)ERR_READ_PUSH") {
 	field(OUT, "$(P)ERR")
 	field(OMSL, "closed_loop")
 }
+
 record(ai, "$(P)P") {
     info(INTEREST, "MEDIUM")
     field(DESC, "P Param Readback")
@@ -798,6 +801,7 @@ record(longout, "$(P)SP:NRETRY") {
 record(longout, "$(P)SP:RETRYCNT") {
     field(DESC, "Last setpoint retry count")
     field(VAL, "0")
+	field(PINI, "YES")
 	field(HIGH, "5")
 	field(HSV, "MINOR")
     info(archive, "VAL")
