@@ -832,6 +832,7 @@ record(calcout, "$(P)_CHECKSP") {
 	field(HIGH, "0.5")
 	field(HSV, "MINOR")
 	field(ODLY, 1)
+	field(UDF, 0)
     info(archive, "VAL")
 	info(alarm, "Euro")
 }
