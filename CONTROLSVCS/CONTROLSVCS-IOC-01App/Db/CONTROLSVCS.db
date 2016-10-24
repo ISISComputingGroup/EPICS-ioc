@@ -2,6 +2,6 @@ record(waveform, "$(P)CS:INSTLIST")
 {
    field(DTYP, "Soft Channel")
    field(FTVL, "CHAR")
-   field(NELM, "512")
+   field(NELM, "8092")
    info(autosaveFields, "VAL")
 }
