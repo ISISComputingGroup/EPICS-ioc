@@ -67,7 +67,6 @@ record(ao, "$(P)RAW:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAW:SP")
     field(SDIS, "$(P)DISABLE")
-    field(EGU, "")
     field(PINI, "$(SP_PINI)")
     info(autosaveFields, "VAL")
 }
