@@ -374,16 +374,6 @@ record(bo, "$(P)CHAN_A:SLOPE:SP")
 
 alias("$(P)CHAN_A:SLOPE", "$(P)CHAN_A:SLOPE:SP:RBV")
 
-record(bo, "$(P)START_COUNTING:SP") 
-{
-    field(DTYP, "stream")
-    field(OUT,  "@devHameg_8123.proto startCounting $(PORT)")
-    field(ZNAM, "TRUE")
-    field(ONAM, "OK")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:START_COUNTING:SP")
-    field(SDIS, "$(P)DISABLE")
-}
 
 ### CHANNEL B ###
 

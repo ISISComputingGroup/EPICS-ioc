@@ -509,49 +509,49 @@ record(ai, "$(P)SIM:4:SETPOINT")
 alias("$(P)SIM:4:SETPOINT","$(P)SIM:4:SETPOINT:SP")
 alias("$(P)SIM:4:SETPOINT","$(P)SIM:4:SETPOINT:SP:RBV")
 
-record(ai, "$(P)1:CURR")
+record(ai, "$(P)SIM:1:CURR")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)2:CURR")
+record(ai, "$(P)SIM:2:CURR")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)3:CURR")
+record(ai, "$(P)SIM:3:CURR")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)4:CURR")
+record(ai, "$(P)SIM:4:CURR")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)1:VOLT")
+record(ai, "$(P)SIM:1:VOLT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)2:VOLT")
+record(ai, "$(P)SIM:2:VOLT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)3:VOLT")
+record(ai, "$(P)SIM:3:VOLT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)4:VOLT")
+record(ai, "$(P)SIM:4:VOLT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
