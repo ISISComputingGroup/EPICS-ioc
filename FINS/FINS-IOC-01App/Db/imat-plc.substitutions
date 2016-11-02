@@ -1,0 +1,22 @@
+
+file "$(TOP)/FINS-IOC-01App/Db/imat-plc-header.template" {
+	{ P=\$(P), Q="ATTEN:" }
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/imat-plc-attn.template" {
+	{ P=\$(P), Q="ATTEN:" }
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/imat-plc-press.template" {
+	{ P=\$(P), Q="PLCPRESS:", TPG=TPG300-1, GAUGE=A1 , ADDRP=100, ADDREXP=101, DESC="Section 1 Pressure", PVALIAS=SECTION_1}
+	{ P=\$(P), Q="PLCPRESS:", TPG=TPG300-1, GAUGE=A2 , ADDRP=102, ADDREXP=103, DESC="Section 2 Pressure", PVALIAS=SECTION_2}
+	{ P=\$(P), Q="PLCPRESS:", TPG=TPG300-1, GAUGE=B1 , ADDRP=104, ADDREXP=105, DESC="Section 3 Pressure", PVALIAS=SECTION_3}
+	{ P=\$(P), Q="PLCPRESS:", TPG=TPG300-1, GAUGE=B2 , ADDRP=106, ADDREXP=107, DESC="Spare 1", PVALIAS=SPARE_1}
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/imat-plc-press.template" {
+	{ P=\$(P), Q="PLCPRESS:", TPG=TPG300-2, GAUGE=A1 , ADDRP=108, ADDREXP=109, DESC="Section 4 Pressure", PVALIAS=SECTION_4}
+	{ P=\$(P), Q="PLCPRESS:", TPG=TPG300-2, GAUGE=A2 , ADDRP=110, ADDREXP=111, DESC="Section 5 Pressure", PVALIAS=SECTION_5}
+	{ P=\$(P), Q="PLCPRESS:", TPG=TPG300-2, GAUGE=B1 , ADDRP=112, ADDREXP=113, DESC="Section 6 Pressure", PVALIAS=SECTION_6}
+	{ P=\$(P), Q="PLCPRESS:", TPG=TPG300-2, GAUGE=B2 , ADDRP=114, ADDREXP=115, DESC="Spare 2", PVALIAS=SPARE_2}
+}

@@ -1,0 +1,103 @@
+
+record(longin, "$(P)$(Q)$(TPG):$(GAUGE):MEAS1")
+{
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, $(ADDRP), 5.0) FINS_DM_READ")
+	field(SCAN, ".5 second")
+	field(FLNK, "$(P)$(Q)$(TPG):$(GAUGE):MEAS1EXP")
+	field(SIML, "$(P)ATTEN:SIM")
+	field(SIOL, "$(P)$(Q)$(TPG):$(GAUGE):MEAS1:SIM")
+}
+
+record(longin, "$(P)$(Q)$(TPG):$(GAUGE):MEAS1EXP")
+{
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, $(ADDREXP), 5.0) FINS_DM_READ")
+	field(FLNK, "$(P)$(Q)$(TPG):$(GAUGE):MEAS2")
+	field(SIML, "$(P)ATTEN:SIM")
+	field(SIOL, "$(P)$(Q)$(TPG):$(GAUGE):MEAS1EXP:SIM")
+}
+
+record(longin, "$(P)$(Q)$(TPG):$(GAUGE):MEAS2")
+{
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, $(ADDRP), 5.0) FINS_DM_READ")
+	field(SCAN, "1 second")
+	field(FLNK, "$(P)$(Q)$(TPG):$(GAUGE):MEAS2EXP")
+	field(SIML, "$(P)ATTEN:SIM")
+	field(SIOL, "$(P)$(Q)$(TPG):$(GAUGE):MEAS2:SIM")
+}
+
+record(longin, "$(P)$(Q)$(TPG):$(GAUGE):MEAS2EXP")
+{
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, $(ADDREXP), 5.0) FINS_DM_READ")
+	field(FLNK, "$(P)$(Q)$(TPG):$(GAUGE)CHECK")
+	field(SIML, "$(P)ATTEN:SIM")
+	field(SIOL, "$(P)$(Q)$(TPG):$(GAUGE):MEAS2EXP:SIM")
+}
+
+record(calcout, "$(P)$(Q)$(TPG):$(GAUGE)CHECK")
+{
+	field(DESC, "Check Field")
+	field(INPA, "$(P)$(Q)$(TPG):$(GAUGE):MEAS1EXP")
+	field(INPB, "$(P)$(Q)$(TPG):$(GAUGE):MEAS1")
+	field(INPC, "$(P)$(Q)$(TPG):$(GAUGE):MEAS2EXP")
+	field(INPD, "$(P)$(Q)$(TPG):$(GAUGE):MEAS2")
+	field(EGU, "mbar")
+	field(CALC, "(A=C && B=D)?(B * 10^(A-65536)):0")
+	field(DOPT, "Use CALC")
+	field(OOPT, "When Non-zero")
+	field(OUT,"$(P)$(Q)$(TPG):$(GAUGE)")
+}
+
+record(calc, "$(P)$(Q)$(TPG):$(GAUGE)")
+{
+	field(INPA, "$(P)$(Q)$(TPG):$(GAUGE)CHECK")
+	field(CALC, "A")
+	alias("$(P)$(Q)$(PVALIAS)")
+}
+
+#record(calc, "$(P)$(Q)$(TPG):$(GAUGE)")
+#{
+#    field(DESC, "$(DESC)")
+#	field(INPA, "$(P)$(Q)$(TPG):$(GAUGE):MEAS")
+#	field(INPB, "$(P)$(Q)$(TPG):$(GAUGE):MEASEXP")
+#	field(EGU, "mbar")
+#	field(CALC, "(A * 10^(B-65536))")
+#	info(INTEREST, "HIGH")
+#	info(archive, "VAL")
+#	alias("$(P)$(Q)$(PVALIAS)")
+#}
+
+### SIMULATION RECORDS ###
+
+record(ai, "$(P)$(Q)$(TPG):$(GAUGE):MEAS1:SIM")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(VAL, "1.23")
+	field(FLNK, "$(P)$(Q)$(TPG):$(GAUGE):MEAS1EXP:SIM")
+}
+record(ai, "$(P)$(Q)$(TPG):$(GAUGE):MEAS1EXP:SIM")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(VAL, "65532")
+	field(FLNK, "$(P)$(Q)$(TPG):$(GAUGE):MEAS2:SIM")
+}
+record(ai, "$(P)$(Q)$(TPG):$(GAUGE):MEAS2:SIM")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(VAL, "1.23")
+	field(FLNK, "$(P)$(Q)$(TPG):$(GAUGE):MEAS2EXP:SIM")
+}
+record(ai, "$(P)$(Q)$(TPG):$(GAUGE):MEAS2EXP:SIM")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(VAL, "65532")
+	field(FLNK, "$(P)$(Q)$(TPG):$(GAUGE)")
+}
+
