@@ -48,7 +48,7 @@ $(IFNOTSIM) asynOctetConnect("MKINIT","$(ASERIAL)")
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=CM14)")
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)ER$(ERES$(PN)=400/4096)")
 
-## Reset home mode
+## Reset home mode. Currently will have no effect since driver uses CV command, not HD
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=DM00000000)")
 
 # Test for Mclennan PM600 stepper motor controller
