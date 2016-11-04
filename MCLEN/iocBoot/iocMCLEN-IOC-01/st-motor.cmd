@@ -48,8 +48,8 @@ $(IFNOTSIM) asynOctetConnect("MKINIT","$(ASERIAL)")
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=CM14)")
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)ER$(ERES$(PN)=400/4096)")
 
-## Set home mode
-$(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=DM00001000)")
+## Reset home mode
+$(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=DM00000000)")
 
 # Test for Mclennan PM600 stepper motor controller
 # Note that setup must be done in sim mode too or unconfigured card will crash at first caput
