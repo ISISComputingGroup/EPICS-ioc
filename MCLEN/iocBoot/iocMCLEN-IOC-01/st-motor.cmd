@@ -59,7 +59,7 @@ $(IFNOTSIM) PM304Setup(1,5)
 # PM304Config(card being configured, asyn port name,  number of axes)
 $(IFNOTSIM) PM304Config(0, "$(ASERIAL)", 1)
 
-asynSetTraceIOMask("$(AMOTOR)", 0, 2)
+asynSetTraceIOMask("$(ASERIAL)", 0, 2)
 
 ## Load record instances
 
