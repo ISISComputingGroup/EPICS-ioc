@@ -74,7 +74,7 @@ epicsEnvSet("DLLMI",$(DLLM$(PN)=-200))
 # Load asyn record 
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(AMOTORPV):ASYN,PORT=$(ASERIAL),ADDR=0,OMAX=256,IMAX=256")
 # Note that ERES is set to 0 because the driver does not support setting the encoder ratio. We do it only at startup
-dbLoadRecords("$(TOP)/db/motor$(SIMSFX=).db", "P=$(MYPVPREFIX),M=$(AMOTORPV),VELO=$(VELOI),ACCL=$(ACCLI),MRES=$(MRESI),ERES=0,DHLM=$(DHLMI),DLLM=$(DLLMI),NAME=$(AMOTORNAME),S=0,C=0,UEIP=1") 
+dbLoadRecords("$(TOP)/db/motor$(SIMSFX=).db", "P=$(MYPVPREFIX),M=$(AMOTORPV),VELO=$(VELOI),VBAS=$(VELOI),ACCL=$(ACCLI),MRES=$(MRESI),ERES=0,DHLM=$(DHLMI),DLLM=$(DLLMI),NAME=$(AMOTORNAME),S=0,C=0,UEIP=1") 
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=$(AMOTORPV)") 
 dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(PN),mAXIS=$(AMOTORPV)") 
 
