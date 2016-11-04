@@ -32,7 +32,7 @@ $(IFNOTSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\r\n")
 $(IFNOTSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"baud","$(BAUD$(PN)=9600)") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"bits","$(BITS$(PN)=7)") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"stop","$(STOP$(PN)=1") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"stop","$(STOP$(PN)=1)") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"parity","$(PARITY$(PN)=even)") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"clocal","Y") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N") 
@@ -48,8 +48,8 @@ $(IFNOTSIM) asynOctetConnect("MKINIT","$(ASERIAL)")
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=CM14)")
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)ER$(ERES$(PN)=400/4096)")
 
-## Set home mode
-$(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=DM00001000)")
+## Reset home mode. Currently will have no effect since driver uses CV command, not HD
+# $(IFNOTSIM) asynOctetWrite("MKINIT","$(PN)$(MODE=DM00000000)")
 
 # Test for Mclennan PM600 stepper motor controller
 # Note that setup must be done in sim mode too or unconfigured card will crash at first caput
@@ -59,7 +59,7 @@ $(IFNOTSIM) PM304Setup(1,5)
 # PM304Config(card being configured, asyn port name,  number of axes)
 $(IFNOTSIM) PM304Config(0, "$(ASERIAL)", 1)
 
-asynSetTraceIOMask("$(AMOTOR)", 0, 2)
+asynSetTraceIOMask("$(ASERIAL)", 0, 2)
 
 ## Load record instances
 
@@ -74,7 +74,7 @@ epicsEnvSet("DLLMI",$(DLLM$(PN)=-200))
 # Load asyn record 
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(AMOTORPV):ASYN,PORT=$(ASERIAL),ADDR=0,OMAX=256,IMAX=256")
 # Note that ERES is set to 0 because the driver does not support setting the encoder ratio. We do it only at startup
-dbLoadRecords("$(TOP)/db/motor$(SIMSFX=).db", "P=$(MYPVPREFIX),M=$(AMOTORPV),VELO=$(VELOI),ACCL=$(ACCLI),MRES=$(MRESI),ERES=0,DHLM=$(DHLMI),DLLM=$(DLLMI),NAME=$(AMOTORNAME),S=0,C=0,UEIP=1") 
+dbLoadRecords("$(TOP)/db/motor$(SIMSFX=).db", "P=$(MYPVPREFIX),M=$(AMOTORPV),VELO=$(VELOI),VBAS=$(VELOI),ACCL=$(ACCLI),MRES=$(MRESI),ERES=0,DHLM=$(DHLMI),DLLM=$(DLLMI),NAME=$(AMOTORNAME),S=0,C=0,UEIP=1") 
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=$(AMOTORPV)") 
 dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(PN),mAXIS=$(AMOTORPV)") 
 
