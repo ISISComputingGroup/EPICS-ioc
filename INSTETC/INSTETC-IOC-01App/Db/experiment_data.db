@@ -1,3 +1,120 @@
+## RB number
+
+## PV ED:RBNUMBER:SP is served by database server
+## which then writes to ED:RBNUMBER:DAE:SP  
+
+record(stringin, "$(P)ED:RBNUMBER")
+{
+    field(DESC, "Experiment (RB) Number")
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+    field(INP, "$(P)DAE:_RBNUMBER CP")
+    info(INTEREST, "HIGH")
+	field(SIML, "$(P)ED:SIM")
+	field(SIOL, "$(P)ED:SIM:RBNUMBER")
+	field(SDIS, "$(P)ED:DISABLE")
+	info(archive, "VAL")
+}
+
+record(stringout, "$(P)ED:RBNUMBER:DAE:SP")
+{
+    field(DESC, "Set Experiment (RB) Number")
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+    field(OUT, "$(P)DAE:_RBNUMBER:SP PP")
+	field(SDIS, "$(P)ED:DISABLE")
+	field(SIML, "$(P)ED:SIM")
+	field(SIOL, "$(P)ED:SIM:RBNUMBER")
+	info(autosaveFields, "VAL")
+}
+
+alias("$(P)ED:RBNUMBER", "$(P)ED:RBNUMBER:SP:RBV")
+
+## username
+
+## ED:USERNAME:SP is served by database server, 
+
+# DAE username is just a list of surnames
+# and it is not forwarded to DAE. See SURNAME PVs
+# this pv contains bin-hex-json
+record(waveform, "$(P)ED:USERNAME")
+{
+    field(DESC, "Experiment User names")
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+    field(NELM, "4096")
+    field(FTVL, "CHAR")
+	field(INP, "$(P)ED:SIM:USERNAME CP")
+    info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+alias("$(P)ED:USERNAME", "$(P)ED:USERNAME:SP:RBV")
+
+## set by DBSVR, maybe better to read back from DAE?
+## pv contains bin-hex-json
+record(waveform, "$(P)ED:SURNAME")
+{
+    field(DESC, "Experiment User Surnames")
+    field(NELM, "4096")
+    field(FTVL, "CHAR")
+	field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    info(INTEREST, "HIGH")
+	field(SIML, "$(P)ED:SIM")
+	field(SDIS, "$(P)ED:DISABLE")
+    field(SIOL, "$(P)ED:SIM:SURNAME")
+	info(archive, "VAL")
+	info(autosaveFields, "VAL")
+}
+
+alias("$(P)ED:SURNAME", "$(P)ED:SURNAME:SP:RBV")
+
+# set by DBSVR, comma separated list of surnames
+record(waveform, "$(P)ED:USERNAME:DAE:SP")
+{
+    field(DESC, "Experiment User Surnames")
+    field(NELM, "1024")
+    field(FTVL, "CHAR")
+	field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    info(INTEREST, "HIGH")
+	field(SIML, "$(P)ED:SIM")
+	field(SDIS, "$(P)ED:DISABLE")
+	field(FLNK, "$(P)ED:USERNAME:_TODAE.PROC")
+	info(autosaveFields, "VAL")
+}
+
+record(aSub, "$(P)ED:USERNAME:_TODAE")
+{
+	field(INPA, "$(P)ED:USERNAME:DAE:SP NPP")
+	field(OUTA, "$(P)DAE:_USERNAME:SP PP")
+	field(FTA, "CHAR")
+	field(FTVA, "CHAR")
+	field(NOA, "1024")
+	field(NOVA, "1024")
+	field(SNAM, "copyArgA")
+}
+
+## organisation
+
+## set by dbsvr, bin-hex-json
+record(waveform, "$(P)ED:ORGS")
+{
+    field(DESC, "Experiment User Organisations")
+    field(NELM, "1024")
+    field(FTVL, "CHAR")
+	field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    info(INTEREST, "HIGH")
+	info(autosaveFields, "VAL")
+	info(archive, "VAL")
+}
+alias("$(P)ED:ORGS", "$(P)ED:ORGS:SP")
+alias("$(P)ED:ORGS", "$(P)ED:ORGS:SP:RBV")
+
+## simulation and disable records
+
 record(bo, "$(P)ED:SIM")
 {
     field(SCAN, "Passive")
@@ -17,107 +134,26 @@ record(bo, "$(P)ED:DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-record(stringin, "$(P)ED:RBNUMBER")
+record(waveform, "$(P)ED:SIM:USERNAME")
 {
-    field(DESC, "Experiment (RB) Number")
-	field(DTYP, "Soft Channel")
-	field(SCAN, "Passive")
-    field(INP, "$(P)DAE:_RBNUMBER")
-    info(INTEREST, "HIGH")
-	field(SIML, "$(P)ED:SIM")
-	field(SIOL, "$(P)ED:SIM:RBNUMBER")
-	field(SDIS, "$(P)ED:DISABLE")
+    field(DESC, "Simulated Experiment Username")
+    field(NELM, "4096")
+    field(FTVL, "CHAR")
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
 }
 
-record(stringout, "$(P)ED:RBNUMBER:DAE:SP")
+record(waveform, "$(P)ED:SIM:SURNAME")
 {
-    field(DESC, "Set Experiment (RB) Number")
-	field(DTYP, "Soft Channel")
-	field(SCAN, "Passive")
-    field(OUT, "$(P)DAE:_RBNUMBER:SP")
-	info(autosaveFields, "VAL")
-	field(SDIS, "$(P)ED:DISABLE")
+    field(DESC, "Simulated Experiment Surname")
+    field(NELM, "4096")
+    field(FTVL, "CHAR")
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
 }
-
-alias("$(P)ED:RBNUMBER", "$(P)ED:RBNUMBER:SP:RBV")
 
 record(stringin, "$(P)ED:SIM:RBNUMBER")
 {
 	field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
-}
-
-record(waveform, "$(P)ED:USERNAME")
-{
-    field(DESC, "Experiment User names")
-	field(DTYP, "Soft Channel")
-	field(SCAN, "Passive")
-    field(NELM, "1024")
-    field(FTVL, "CHAR")
-	#field(INP, "$(P)DAE:_USERNAME")
-	#Using SIM as DAE_USERNAME does not contain all appropriate information
-	field(INP, "$(P)ED:SIM:USERNAME")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)ED:SIM")
-    field(SIOL, "$(P)ED:SIM:USERNAME")
-	field(SDIS, "$(P)ED:DISABLE")
-}
-
-record(waveform, "$(P)ED:SURNAME")
-{
-    field(DESC, "Experiment User Surnames")
-    field(NELM, "1024")
-    field(FTVL, "CHAR")
-	field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-    info(INTEREST, "HIGH")
-	info(autosaveFields, "VAL")
-	field(SIML, "$(P)ED:SIM")
-	field(SDIS, "$(P)ED:DISABLE")
-}
-
-record(waveform, "$(P)ED:ORGS")
-{
-    field(DESC, "Experiment User Organisations")
-    field(NELM, "1024")
-    field(FTVL, "CHAR")
-	field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-    info(INTEREST, "HIGH")
-	info(autosaveFields, "VAL")
-}
-
-record(waveform, "$(P)ED:USERNAME:DAE:SP")
-{
-    field(DESC, "Set Experiment User names")
-	field(DTYP, "Soft Channel")
-	field(SCAN, "Passive")
-    field(NELM, "1024")
-    field(FTVL, "CHAR")
-	field(FLNK, "$(P)ED:USERNAME:TODAE")
-    info(autosaveFields, "VAL")
-	field(SDIS, "$(P)ED:DISABLE")
-}
-
-record(aSub, "$(P)ED:USERNAME:TODAE")
-{
-	field(INPA, "$(P)ED:USERNAME:DAE:SP")
-	field(OUTA, "$(P)DAE:_USERNAME:SP")
-	field(FTA, "CHAR")
-	field(FTVA, "CHAR")
-	field(NOA, "1024")
-	field(NOVA, "1024")
-	field(SNAM, "copyArgA")
-}
-
-alias("$(P)ED:USERNAME", "$(P)ED:USERNAME:SP:RBV")
-
-record(waveform, "$(P)ED:SIM:USERNAME")
-{
-    field(DESC, "Simulated Experiment User Name")
-    field(NELM, "1024")
-    field(FTVL, "CHAR")
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-	field(FLNK, "$(P)ED:USERNAME PP")
 }

@@ -798,6 +798,7 @@ record(longout, "$(P)SP:NRETRY") {
 }
 
 ## current setpoint retry number
+## HIGH alarm value should be same as retry count NRETRY  
 record(longout, "$(P)SP:RETRYCNT") {
     field(DESC, "Last setpoint retry count")
     field(VAL, "0")
@@ -832,8 +833,7 @@ record(calcout, "$(P)_CHECKSP") {
 	field(HIGH, "0.5")
 	field(HSV, "MINOR")
 	field(ODLY, 1)
-    info(archive, "VAL")
-	info(alarm, "Euro")
+   info(archive, "VAL")
 }
 
 record(calcout, "$(P)_DORETRY") {
