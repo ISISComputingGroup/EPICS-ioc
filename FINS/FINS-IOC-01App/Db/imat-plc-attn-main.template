@@ -88,13 +88,7 @@ record(bo, "$(P)$(Q)CLOSED:SP")
 
 ### SIMULATION RECORDS ###
 
-record(bo, "$(P)$(Q)SIM")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-    field(ZNAM, "NO")
-    field(ONAM, "YES")
-}
+# $(P)$(Q)SIM is in header file
 
 record(bi, "$(P)$(Q)SIM:CLOSE")
 {

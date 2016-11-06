@@ -21,7 +21,11 @@
 # TPG300-2	B1	D112	D113	Section 6 pirani
 # TPG300-2	B2	D114	D115	Spare
 
-record(bi, "$(P)PLCPRESS:SIM")
+record(bo, "$(P)$(Q)SIM")
 {
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
 }
 
