@@ -1,0 +1,31 @@
+# Control Word: W510       (This word will self-reset to 0)
+# W510.00               set true to request Sample Attenuator to Open
+# W510.01               set true to request Sample Attenuator to Close
+#
+# Status Word: W511
+# W511.00               true when Sample Attenuator requested to open via HMI or EPICS
+# W511.01               true when Sample Attenuator is OPEN
+# W511.02               true when Sample Attenuator is CLOSED
+#
+# 
+# Pressures
+# The pressure value will be in range 10 to 99 corresponding to 1.0 to 9.9
+# The exponent will be something like -3 encoded in two's complement and read back as e.g. 65533 (unsigned) 
+# Gauge		Pressure	x10_E	description
+# TPG300-1	A1	D100	D101	Section 1 pirani
+# TPG300-1	A2	D102	D103	Section 2 pirani
+# TPG300-1	B1	D104	D105	Section 3 pirani
+# TPG300-1	B2	D106	D107	Spare
+# TPG300-2	A1	D108	D109	Section 4 pirani
+# TPG300-2	A2	D110	D111	Section 5 pirani
+# TPG300-2	B1	D112	D113	Section 6 pirani
+# TPG300-2	B2	D114	D115	Spare
+
+record(bo, "$(P)$(Q)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
