@@ -9,30 +9,7 @@ set_requestfile_path("${MOTOR}/motorApp/Db", "")
 set_requestfile_path("${TOP}/iocBoot/iocMCLEN-IOC-01", "")
 
 iocshCmdLoop("< st-ctrl.cmd", "CNUM=\$(I)", "I", 1, 24)
-
-epicsEnvSet(MN,1)
-< st-ifmotor.cmd
-
-epicsEnvSet(MN,2)
-< st-ifmotor.cmd
-
-epicsEnvSet(MN,3)
-< st-ifmotor.cmd
-
-epicsEnvSet(MN,4)
-< st-ifmotor.cmd
-
-epicsEnvSet(MN,5)
-< st-ifmotor.cmd
-
-epicsEnvSet(MN,6)
-< st-ifmotor.cmd
-
-epicsEnvSet(MN,7)
-< st-ifmotor.cmd
-
-epicsEnvSet(MN,8)
-< st-ifmotor.cmd
+iocshCmdLoop("< st-ifmotor.cmd", "MN=\$(I)", "I", 1, 8)
 
 epicsEnvSet("MCLENCONFIG","$(ICPCONFIGROOT)/mclennan")
 
