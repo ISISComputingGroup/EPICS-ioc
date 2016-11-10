@@ -5,9 +5,10 @@
 <ioc_details>McLennan Motor Details</ioc_details>
 <macros>
 
-<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Crate number used in motor address assignment" />
+<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" />
+<macro name="MTR" pattern="^COM[0-9]+$" description="Serial COM port" />
 
-<macro name="PORT1" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="MTR1" pattern="^(yes|no)$" description="Motor attached to axis 1 (default: no)" />
 <macro name="BAUD1" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS1" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY1" pattern="^(even|odd|none)$" description="port parity (default: even)" />
@@ -20,7 +21,7 @@
 <macro name="DLLM1" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE1" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
-<macro name="PORT2" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="MTR2" pattern="^(yes|no)$" description="Motor attached to axis 2 (default: no)" />
 <macro name="BAUD2" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS2" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY2" pattern="^(even|odd|none)$" description="port parity (default: even)" />
@@ -33,7 +34,7 @@
 <macro name="DLLM2" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE2" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
-<macro name="PORT3" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="MTR3" pattern="^(yes|no)$" description="Motor attached to axis 3 (default: no)" />
 <macro name="BAUD3" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS3" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY3" pattern="^(even|odd|none)$" description="port parity (default: even)" />
@@ -46,7 +47,7 @@
 <macro name="DLLM3" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE3" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
-<macro name="PORT4" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="MTR4" pattern="^(yes|no)$" description="Motor attached to axis 4 (default: no)" />
 <macro name="BAUD4" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS4" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY4" pattern="^(even|odd|none)$" description="port parity (default: even)" />
@@ -59,7 +60,7 @@
 <macro name="DLLM4" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE4" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
-<macro name="PORT5" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="MTR5" pattern="^(yes|no)$" description="Motor attached to axis 5 (default: no)" />
 <macro name="BAUD5" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS5" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY5" pattern="^(even|odd|none)$" description="port parity (default: even)" />
@@ -72,7 +73,7 @@
 <macro name="DLLM5" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE5" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
-<macro name="PORT6" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="MTR6" pattern="^(yes|no)$" description="Motor attached to axis 6 (default: no)" />
 <macro name="BAUD6" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS6" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY6" pattern="^(even|odd|none)$" description="port parity (default: even)" />
@@ -85,7 +86,7 @@
 <macro name="DLLM6" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE6" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
-<macro name="PORT7" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="MTR7" pattern="^(yes|no)$" description="Motor attached to axis 7 (default: no)" />
 <macro name="BAUD7" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS7" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY7" pattern="^(even|odd|none)$" description="port parity (default: even)" />
@@ -98,7 +99,7 @@
 <macro name="DLLM7" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE7" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
 
-<macro name="PORT8" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="MTR8" pattern="^(yes|no)$" description="Motor attached to axis 8 (default: no)" />
 <macro name="BAUD8" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BITS8" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY8" pattern="^(even|odd|none)$" description="port parity (default: even)" />
