@@ -3,11 +3,11 @@
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TPG)/data"
 
-drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
-asynSetOption("L0", -1, "baud", "9600")
-asynSetOption("L0", -1, "bits", "8")
-asynSetOption("L0", -1, "parity", "none")
-asynSetOption("L0", -1, "stop", "1")
+$(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
+$(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "9600")
+$(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "8")
+$(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "none")
+$(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "1")
 
 ## Load record instances
 
@@ -19,6 +19,7 @@ asynSetOption("L0", -1, "stop", "1")
 
 
 dbLoadRecords("db/devTPG300.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+dbLoadRecords("db/unit_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ## Finished loading record instances
 #########################
