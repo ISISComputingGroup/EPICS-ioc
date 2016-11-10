@@ -26,7 +26,7 @@ $(IFSIM) motorSimConfigAxis("$(AMOTOR)", 0, 20000, -20000,  500, 0)
 $(IFSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
 $(IFSIM) epicsEnvSet("SIMSFX","Sim")
  
-$(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT$(MN)=NUL)", 0, 0, 0)
+$(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT=NUL)", 0, 0, 0)
 $(IFNOTSIM) asynSetTraceIOMask("$(ASERIAL)", -1, 0xFF )
 $(IFNOTSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\r\n") 
 $(IFNOTSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r") 
