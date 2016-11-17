@@ -81,4 +81,4 @@ dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(PN),m
 #autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 0)
 
 ## Start homing sequencer
-seq homing, "MOTPV=$(MYPVPREFIX)$(AMOTORPV)"
+seq homing, "MOTPV=$(MYPVPREFIX)$(AMOTORPV),MODE='Constant_velocity'"
