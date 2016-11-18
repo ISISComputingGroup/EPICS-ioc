@@ -19,7 +19,7 @@ $(IFNOTDEVSIM) drvAsynIPPortConfigure ("$(DEVICE)", "$(HOST):7777")
 
 ## Load our record instances
 #dbLoadRecords("db/xxx.db","user=iew83206Host")
-dbLoadRecords("db/lakeshore336.db", "P=$(MYPVPREFIX)$(IOCNAME), PORT=$(DEVICE), ADDR=0, TEMPSCAN=1, SCAN=2, TOLERANCE=1, RECSIM=$(RECSIM=0)")
+dbLoadRecords("db/lakeshore336.db", "P=$(MYPVPREFIX)$(IOCNAME), PORT=$(DEVICE), ADDR=0, TEMPSCAN=1, SCAN=2, TOLERANCE=1, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
