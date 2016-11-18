@@ -145,7 +145,7 @@ record(stringin, "$(P)DEV_TYPE")
 	field(PINI, "YES")
 }
 
-record(bi, "$(P)IS_CALIBRATED")
+record(bi, "$(P)IS_CALIB")
 {
 	field(DESC, "Is this device calibrated?")
     field(ZNAM, "Calibrated")
