@@ -80,4 +80,7 @@ dbLoadRecords("$(TOP)/db/motor$(SIMSFX=).db", "P=$(MYPVPREFIX),M=$(AMOTORPV),VEL
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=$(AMOTORPV)") 
 dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(MN),mAXIS=$(AMOTORPV)") 
 
-#autosaveBuild("$(IOCNAME)_$(MN)_built_settings.req", "_settings.req", 0)
+#autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 0)
+
+## Start homing sequencer
+seq homing, "MOTPV=$(MYPVPREFIX)$(AMOTORPV),MODE='Constant_velocity'"
