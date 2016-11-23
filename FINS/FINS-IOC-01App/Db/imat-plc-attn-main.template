@@ -16,37 +16,39 @@ record(mbbi, "$(P)$(Q)STATUS")
 	field(UNSV, "MINOR")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:STATUS")
+	field(FLNK, "$(P)$(Q)_STATUSD.PROC")
     info(INTEREST, "HIGH")
     info(alarm, "Attenuator")
 	info(archive, "VAL")
 }
 
+record(mbbiDirect, "$(P)$(Q)_STATUSD")
+{
+    field(DESC, "Attenuator Bits")
+    field(DTYP, "Soft Channel")
+    field(INP,  "$(P)$(Q)STATUS NPP")
+	field(FLNK, "$(P)$(Q)OPEN.PROC")
+}
+
 record(bi, "$(P)$(Q)OPEN")
 {
     field(DESC, "Attenuator Open")
-    field(DTYP, "asynInt32")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "@asyn(PLC, 511, 5.0) FINS_WR_READ_B1")
-    field(SCAN, ".1 second")
+    field(INP,  "$(P)$(Q)_STATUSD.B0 NPP")
     info(INTEREST, "HIGH")
     info(alarm, "Attenuator Open")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:OPEN")
+	field(FLNK, "$(P)$(Q)CLOSED.PROC")
 }
 
 record(bi, "$(P)$(Q)CLOSED")
 {
     field(DESC, "Attenuator Closed")
-    field(DTYP, "asynInt32")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "@asyn(PLC, 511, 5.0) FINS_WR_READ_B2")
-    field(SCAN, ".1 second")
+    field(INP,  "$(P)$(Q)_STATUSD.B1 NPP")
     info(INTEREST, "HIGH")
     info(alarm, "Attenuator Open")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:CLOSE")
 }
 
 ## write 0 to CLOSE, 1 to OPEN
