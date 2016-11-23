@@ -64,7 +64,7 @@ record(ai, "$(P)$(Q)FREQ:SP:RBV")
     info(INTEREST, "MEDIUM")
     field(SIML, "$(P)SIM")
 	field(SIOL, "$(P)$(Q)SIM:FREQ:SP:RBV")
-    field(SDIS, "$(P))DISABLE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)$(Q)PHAS")
