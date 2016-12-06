@@ -1,5 +1,5 @@
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(EUROTHRM2K)/data"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(EUROTHERM2K)/data"
 epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
 epicsEnvSet "SENS_DIR" "temp_sensors"
 epicsEnvSet "SENS_PAT" "^C.*"
