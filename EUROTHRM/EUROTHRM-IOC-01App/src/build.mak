@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application EUROTHERM-IOC-01
+# Build the IOC application EUROTHRM-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# EUROTHERM-IOC-01.dbd will be created and installed
+# EUROTHRM-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# EUROTHERM-IOC-01.dbd will be made up from these files:
+# EUROTHRM-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += devSequencer.dbd
@@ -52,7 +52,7 @@ $(APPNAME)_LIBS += $(MYSQLLIB) easySQLite sqlite
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 
-# EUROTHERM-IOC-01_registerRecordDeviceDriver.cpp derives from EUROTHERM-IOC-01.dbd
+# EUROTHRM-IOC-01_registerRecordDeviceDriver.cpp derives from EUROTHRM-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.

@@ -1,5 +1,5 @@
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(EUROTHERM2K)/data"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(EUROTHRM2K)/data"
 epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
 epicsEnvSet "SENS_DIR" "temp_sensors"
 epicsEnvSet "SENS_PAT" "^C.*"
@@ -17,29 +17,29 @@ asynSetOption("L0", -1, "stop", "$(STOP=1)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load the sim and disable records
-## These are loaded separately to allow one SIM and DISABLE to be used for ALL eurotherms
+## These are loaded separately to allow one SIM and DISABLE to be used for ALL EUROTHRMs
 dbLoadRecords("$(TOP)/db/devSimDis.db","Q=$(MYPVPREFIX)$(IOCPVPREFIX):,DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0)")
 
 epicsEnvSet(EURO_NUM,1)
-< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHRM-IOC-01/st-euro.cmd
 
 epicsEnvSet(EURO_NUM,2)
-< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHRM-IOC-01/st-euro.cmd
 
 epicsEnvSet(EURO_NUM,3)
-< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHRM-IOC-01/st-euro.cmd
 
 epicsEnvSet(EURO_NUM,4)
-< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHRM-IOC-01/st-euro.cmd
 
 epicsEnvSet(EURO_NUM,5)
-< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHRM-IOC-01/st-euro.cmd
 
 epicsEnvSet(EURO_NUM,6)
-< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHRM-IOC-01/st-euro.cmd
 
 epicsEnvSet(EURO_NUM,7)
-< ${TOP}/iocBoot/iocEUROTHERM-IOC-01/st-euro.cmd
+< ${TOP}/iocBoot/iocEUROTHRM-IOC-01/st-euro.cmd
 
 
 < $(IOCSTARTUP)/preiocinit.cmd

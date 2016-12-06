@@ -1,13 +1,13 @@
-#!../../bin/windows-x64/eurotherm
+#!../../bin/windows-x64/EUROTHRM
 
-## You may have to change eurotherm to something else
+## You may have to change EUROTHRM to something else
 ## everywhere it appears in this file
 
 < envPaths
-epicsEnvSet "IOCPVPREFIX" "EUROTHERM_02"
+epicsEnvSet "IOCPVPREFIX" "EUROTHRM_02"
 
 ## Register all support components
-dbLoadDatabase "${TOP}/dbd/EUROTHERM-IOC-02.dbd"
-EUROTHERM_IOC_02_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "${TOP}/dbd/EUROTHRM-IOC-02.dbd"
+EUROTHRM_IOC_02_registerRecordDeviceDriver pdbbase
 
-< ../iocEUROTHERM-IOC-01/st-common.cmd
+< ../iocEUROTHRM-IOC-01/st-common.cmd

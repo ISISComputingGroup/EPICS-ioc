@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns="http://epics.isis.rl.ac.uk/schema/ioc_config/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
-<xi:include href="../iocEUROTHERM-IOC-01/config.xml"  />
+<xi:include href="../iocEUROTHRM-IOC-01/config.xml"  />
 
 </ioc_config>

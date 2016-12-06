@@ -1,4 +1,4 @@
-/* EUROTHERM-IOC-03Main.cpp */
+/* EUROTHRM-IOC-03Main.cpp */
 /* Author:  Marty Kraimer Date:    17MAR2000 */
 
 #include <stddef.h>
