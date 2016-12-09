@@ -4,7 +4,6 @@
 ## everywhere it appears in this file
 
 < envPaths
-epicsEnvSet "IOCPVPREFIX" "EUROTHRM_04"
 
 ## Register all support components
 dbLoadDatabase "${TOP}/dbd/EUROTHRM-IOC-04.dbd"

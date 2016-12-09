@@ -5,8 +5,6 @@
 
 < envPaths
 
-epicsEnvSet "IOCPVPREFIX" "EUROTHRM_01"
-
 ## Register all support components
 dbLoadDatabase "${TOP}/dbd/EUROTHRM-IOC-01.dbd"
 EUROTHRM_IOC_01_registerRecordDeviceDriver pdbbase
