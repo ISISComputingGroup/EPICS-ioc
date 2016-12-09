@@ -10,9 +10,9 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-DB += devEUROTHRM.db
+DB += devEurothrm.db
 DB += devSimDis.db
-DB += isActiveEUROTHRM.db
+DB += isActiveEurothrm.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
