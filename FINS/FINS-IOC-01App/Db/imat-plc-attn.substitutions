@@ -1,8 +1,8 @@
 
 file "$(TOP)/FINS-IOC-01App/Db/imat-plc-header.template" {
-	{ P=\$(P), Q=\$(Q) }
+	{ P=\$(P), Q=\$(Q), PORT=\$(PORT=PLC) }
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/imat-plc-attn-main.template" {
-	{ P=\$(P), Q=\$(Q) }
+	{ P=\$(P), Q=\$(Q), PORT=\$(PORT=PLC) }
 }
