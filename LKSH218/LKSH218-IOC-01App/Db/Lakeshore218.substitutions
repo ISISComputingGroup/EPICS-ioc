@@ -1,7 +1,7 @@
 file "$(TOP)/LKSH218-IOC-01App/Db/Lakeshore218Main.template"
 {
-    pattern { P, PORT }
-	{ "\$(P)", "\$(PORT)"}
+    pattern { P, PORT, RECSIM, DISABLE }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)"}
 }
 
 file "$(TOP)/LKSH218-IOC-01App/Db/Lakeshore218Sensor.template"
