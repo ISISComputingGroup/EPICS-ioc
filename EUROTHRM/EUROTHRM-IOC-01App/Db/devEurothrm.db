@@ -271,7 +271,7 @@ record(ao, "$(P)RAMP_MAXOUT")
 #Fanout reads so that they can be interrupted
 
 record(fanout, "$(P)READ") {
-	field(SCAN, "5 second")
+	field(SCAN, "10 second")
 	field(LNK1, "$(P)P PP")
 	field(LNK2, "$(P)I PP")
 	field(LNK3, "$(P)D PP")
@@ -295,21 +295,21 @@ record(fanout, "$(P)READ1") {
 ####
 record(longin, "$(P)ADDRESS") {
     field(DTYP, "Soft Channel")
-    field(DESC, "EUROTHRM address")
+    field(DESC, "Eurotherm address")
     field(SCAN, "Passive")
     field(PINI, "YES")
     field(VAL, "$(ADDR)")
 }
 
 record(longin, "$(P)GAD") {
-    field(DESC, "EUROTHRM greater address")
+    field(DESC, "Eurotherm greater address")
     field(SCAN, "Passive")
     field(PINI, "YES")
     field(VAL, "$(GAD)")
 }
 
 record(longin, "$(P)LAD") {
-    field(DESC, "EUROTHRM lesser address")
+    field(DESC, "Eurotherm lesser address")
     field(SCAN, "Passive")
     field(PINI, "YES")
     field(VAL, "$(LAD)")
@@ -521,7 +521,7 @@ record(stringin, "$(P)CAL:SEL:RBV") {
     field(DTYP, "Soft Channel")
 	field(INP, "$(P)TEMP.NSPE MS")
 	field(PINI, "YES")
-	field(SCAN, "1 second")
+	field(SCAN, "5 second")
     info(archive, "VAL")
 }
 
@@ -531,7 +531,7 @@ record(stringin, "$(P)CAL:RBV")
     field(DTYP, "Soft Channel")
 	field(INP, "$(P)TEMP.SPEC MS")
 	field(PINI, "YES")
-	field(SCAN, "1 second")
+	field(SCAN, "5 second")
     info(archive, "VAL")
 }
 
@@ -668,7 +668,7 @@ record(cvt, "$(P)TEMP")
 	field(SCAN, "1 second")
     field(DESC, "Temperature")
     info(INTEREST, "HIGH")
-	field(INPY, "$(P)RBV")
+	field(INPY, "$(P)RBV PP")
     field(YSLO, 1)
 	field(METH, "1D TABLE INVERTED")
 	field(SPEC, "None.txt")
@@ -694,7 +694,7 @@ record(cvt, "$(P)TEMP:SP:RBV:CONV")
 
 record(cvt, "$(P)TEMP:HIGHLIMIT")
 {
-	field(SCAN, "1 second")
+	field(SCAN, "10 second")
 	field(INPY, "$(P)HILIM PP")
     field(YSLO, 1)
 	field(METH, "1D TABLE INVERTED")
@@ -707,7 +707,7 @@ record(cvt, "$(P)TEMP:HIGHLIMIT")
 
 record(cvt, "$(P)TEMP:LOWLIMIT")
 {
-	field(SCAN, "1 second")
+	field(SCAN, "10 second")
 	field(INPY, "$(P)LOWLIM PP")
     field(YSLO, 1)
 	field(METH, "1D TABLE INVERTED")
@@ -810,7 +810,7 @@ record(longout, "$(P)SP:RETRYCNT") {
 }
 
 ## difference between sent SP and readback SP to trigger a resend of SP
-## note this is a tolerance on the raw value sent to the EUROTHRM via the stream device command
+## note this is a tolerance on the raw value sent to the eurotherm via the stream device command
 record(ai, "$(P)SP:CHKTOL") {
     field(DESC, "Setpoint check tolerance")
     field(VAL, "0.001")
@@ -958,4 +958,5 @@ record(ai, "$(P)SIM:TEMP:HIGHLIMIT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
+
 }
