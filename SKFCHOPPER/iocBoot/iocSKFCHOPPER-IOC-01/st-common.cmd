@@ -1,9 +1,6 @@
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-# set name of chopper port for use later
-epicsEnvSet("CHOP", "c1")
-
 #drvAsynIPPortConfigure(const char *portName,
 #                       const char *hostInfo,
 #                       unsigned int priority,
