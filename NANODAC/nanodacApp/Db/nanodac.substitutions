@@ -1,0 +1,22 @@
+
+file save_restoreStatus.db
+{
+pattern {P}
+        {BL99:CS:NanoDAC:}
+}
+
+file ioc_sns.db
+{
+pattern {IOCNAME}
+        {BL99:CS:NanoDAC}
+}
+
+file nanodac.db
+{
+pattern {S, ND, NI}
+	{BL99:, SE:ND1:, 1}
+}
+
+
+
+
