@@ -9,12 +9,12 @@ cd ${TOP}
 
 ## Register all support components
 dbLoadDatabase "dbd/nanodac.dbd"
-nanodac_registerRecordDeviceDriver pdbbase
+NANODAC_registerRecordDeviceDriver pdbbase
 
 ####################################################
 # TCP to Eurotherm
 
-epicsEnvSet("IP_ADDR","192.168.200.177:502")
+epicsEnvSet("IP_ADDR","127.0.0.0:9999")
 
 ####################################################
 
@@ -23,15 +23,15 @@ epicsEnvSet("IP_ADDR","192.168.200.177:502")
 
 epicsEnvSet("NI","1")
 
-< $(EUROTHERM)/st.cmd.main
+< $(NANODAC)/st.cmd.main
 
-< $(EUROTHERM)/st.cmd.loop1
+< $(NANODAC)/st.cmd.loop1
 
-< $(EUROTHERM)/st.cmd.loop2
+< $(NANODAC)/st.cmd.loop2
 
-< $(EUROTHERM)/st.cmd.user
+< $(NANODAC)/st.cmd.user
 
-< $(EUROTHERM)/st.cmd.alarm
+< $(NANODAC)/st.cmd.alarm
 
 ####################################################################
 
