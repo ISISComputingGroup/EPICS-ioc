@@ -270,25 +270,69 @@ record(ao, "$(P)RAMP_MAXOUT")
 
 #Fanout reads so that they can be interrupted
 
-record(fanout, "$(P)READ") {
+record(seq, "$(P)SLOWREAD") {
 	field(SCAN, "10 second")
-	field(LNK1, "$(P)P PP")
-	field(LNK2, "$(P)I PP")
-	field(LNK3, "$(P)D PP")
-	field(LNK4, "$(P)OUTPUT PP")	
-	field(LNK5, "$(P)MAX_OUTPUT PP")
-	field(LNK6, "$(P)READ1 PP")
+	field(DO1, "1")
+	field(DO2, "1")
+	field(DO3, "1")
+	field(DO4, "1")
+	field(DO5, "1")
+	field(DO6, "1")
+	field(DO7, "1")
+	field(DO8, "1")
+	field(DO9, "1")
+	field(DOA, "1")
+	
+	field(DLY1, "0")
+	field(DLY2, "0.7")
+	field(DLY3, "0.7")
+	field(DLY4, "0.7")
+	field(DLY5, "0.7")
+	field(DLY6, "0.7")
+	field(DLY7, "0.7")
+	field(DLY8, "0.7")
+	field(DLY9, "0.7")
+	field(DLYA, "0.7")
+	
+	field(LNK1, "$(P)P.PROC")
+	field(LNK2, "$(P)I.PROC")
+	field(LNK3, "$(P)D.PROC")
+	field(LNK5, "$(P)MAX_OUTPUT.PROC")
+	field(LNK5, "$(P)HILIM.PROC")
+	field(LNK6, "$(P)LOWLIM.PROC")	
+	field(LNK7, "$(P)AUTOTUNE.PROC")
 	field(SELM, "All")
 }
 
-record(fanout, "$(P)READ1") {
-	field(SCAN, "Passive")
-	field(LNK1, "$(P)AUTOTUNE PP")
-	field(LNK2, "$(P)SENSOR PP")
-	field(LNK3, "$(P)RBV PP")
-	field(LNK4, "$(P)SP:RBV PP")
-	field(LNK5, "$(P)HILIM PP")
-	field(LNK6, "$(P)LOWLIM PP")	
+record(seq, "$(P)FASTREAD") {
+	field(SCAN, "1 second")
+	field(DO1, "1")
+	field(DO2, "1")
+	field(DO3, "1")
+	field(DO4, "1")
+	field(DO5, "1")
+	field(DO6, "1")
+	field(DO7, "1")
+	field(DO8, "1")
+	field(DO9, "1")
+	field(DOA, "1")
+	
+	field(DLY1, "0")
+	field(DLY2, "0.3")
+	field(DLY3, "0.3")
+	field(DLY4, "0")
+	field(DLY5, "0")
+	field(DLY6, "0")
+	field(DLY7, "0")
+	field(DLY8, "0")
+	field(DLY9, "0")
+	field(DLYA, "0")
+
+	field(LNK1, "$(P)RBV.PROC")
+	field(LNK2, "$(P)SP:RBV.PROC")
+	field(LNK3, "$(P)OUTPUT.PROC")		
+	field(LNK4, "$(P)SENSOR.PROC")
+
 	field(SELM, "All")
 }
 
@@ -521,7 +565,7 @@ record(stringin, "$(P)CAL:SEL:RBV") {
     field(DTYP, "Soft Channel")
 	field(INP, "$(P)TEMP.NSPE MS")
 	field(PINI, "YES")
-	field(SCAN, "5 second")
+	field(SCAN, "1 second")
     info(archive, "VAL")
 }
 
@@ -531,7 +575,7 @@ record(stringin, "$(P)CAL:RBV")
     field(DTYP, "Soft Channel")
 	field(INP, "$(P)TEMP.SPEC MS")
 	field(PINI, "YES")
-	field(SCAN, "5 second")
+	field(SCAN, "1 second")
     info(archive, "VAL")
 }
 
@@ -668,7 +712,7 @@ record(cvt, "$(P)TEMP")
 	field(SCAN, "1 second")
     field(DESC, "Temperature")
     info(INTEREST, "HIGH")
-	field(INPY, "$(P)RBV PP")
+	field(INPY, "$(P)RBV")
     field(YSLO, 1)
 	field(METH, "1D TABLE INVERTED")
 	field(SPEC, "None.txt")
@@ -694,7 +738,7 @@ record(cvt, "$(P)TEMP:SP:RBV:CONV")
 
 record(cvt, "$(P)TEMP:HIGHLIMIT")
 {
-	field(SCAN, "10 second")
+	field(SCAN, "1 second")
 	field(INPY, "$(P)HILIM PP")
     field(YSLO, 1)
 	field(METH, "1D TABLE INVERTED")
@@ -707,7 +751,7 @@ record(cvt, "$(P)TEMP:HIGHLIMIT")
 
 record(cvt, "$(P)TEMP:LOWLIMIT")
 {
-	field(SCAN, "10 second")
+	field(SCAN, "1 second")
 	field(INPY, "$(P)LOWLIM PP")
     field(YSLO, 1)
 	field(METH, "1D TABLE INVERTED")
@@ -810,7 +854,7 @@ record(longout, "$(P)SP:RETRYCNT") {
 }
 
 ## difference between sent SP and readback SP to trigger a resend of SP
-## note this is a tolerance on the raw value sent to the eurotherm via the stream device command
+## note this is a tolerance on the raw value sent to the Eurotherm via the stream device command
 record(ai, "$(P)SP:CHKTOL") {
     field(DESC, "Setpoint check tolerance")
     field(VAL, "0.001")
@@ -958,5 +1002,4 @@ record(ai, "$(P)SIM:TEMP:HIGHLIMIT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
-
 }

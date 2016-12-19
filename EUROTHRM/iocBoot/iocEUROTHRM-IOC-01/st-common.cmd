@@ -14,6 +14,9 @@ asynSetOption("L0", -1, "bits", "$(BITS=7)")
 asynSetOption("L0", -1, "parity", "$(PARITY=even)")
 asynSetOption("L0", -1, "stop", "$(STOP=1)")
 
+asynSetTraceMask("L0",-1,0x9) 
+asynSetTraceIOMask("L0",-1,0x2)
+
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load the sim and disable records
