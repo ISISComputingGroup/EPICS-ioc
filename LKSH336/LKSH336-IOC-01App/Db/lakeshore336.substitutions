@@ -1,8 +1,8 @@
 
 file $(LKSH336)/db/lakeshore336.template
 {
-	pattern {P, PORT, ADDR, RECSIM, DISABLE}
-	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(RECSIM)", "\$(DISABLE)"}
+	pattern {P, PORT, ADDR, RECSIM}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(RECSIM)"}
 }
 
 file $(LKSH336)/db/lakeshore_input.template

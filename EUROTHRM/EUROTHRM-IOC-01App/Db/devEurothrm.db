@@ -677,7 +677,6 @@ record(cvt, "$(P)TEMP")
     field(PREC, "3")
 	field(FLNK, "$(P)CURRENT_TEMP PP")
     info(archive, "VAL")
-	field(EGU, "K")
 }
 
 record(cvt, "$(P)TEMP:SP:RBV:CONV")
@@ -704,7 +703,6 @@ record(cvt, "$(P)TEMP:HIGHLIMIT")
 	field(BDIR, "$(CALIB_BASE_DIR)")
     field(PREC, "3")
     info(archive, "VAL")
-	field(EGU, "K")
 }
 
 record(cvt, "$(P)TEMP:LOWLIMIT")
@@ -718,7 +716,6 @@ record(cvt, "$(P)TEMP:LOWLIMIT")
 	field(BDIR, "$(CALIB_BASE_DIR)")
     field(PREC, "3")
     info(archive, "VAL")
-	field(EGU, "K")
 }
 
 record(cvt, "$(P)TEMP:SP:CONV")
