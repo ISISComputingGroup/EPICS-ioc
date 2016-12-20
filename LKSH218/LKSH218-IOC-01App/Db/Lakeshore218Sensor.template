@@ -9,7 +9,7 @@ record(ai, "$(P)TEMP$(SN)")
 	field(SDIS, "$(P)DISABLE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:TEMP$(SN)")
-    field(EGU, "K")
+    field(EGU, "")
     info(INTEREST, "HIGH")
 }
 

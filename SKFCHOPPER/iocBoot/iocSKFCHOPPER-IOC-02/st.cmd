@@ -16,7 +16,4 @@ SKFCHOPPER_IOC_02_registerRecordDeviceDriver pdbbase
 
 cd ${TOP}/iocBoot/${IOC}
 
-# set name of chopper port for use later
-epicsEnvSet("CHOP", "c2")
-
-< ../iocSKFCHOPPER-IOC-01/st-common.cmd
+< st-common.cmd
