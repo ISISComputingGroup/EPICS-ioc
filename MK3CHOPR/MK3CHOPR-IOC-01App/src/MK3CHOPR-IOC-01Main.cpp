@@ -1,4 +1,4 @@
-/* MK3CHOPPER-IOC-01Main.cpp */
+/* MK3CHOPR-IOC-01Main.cpp */
 /* Author:  Marty Kraimer Date:    17MAR2000 */
 
 #include <stddef.h>

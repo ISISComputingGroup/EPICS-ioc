@@ -1,6 +1,6 @@
-#!../../bin/windows-x64-debug/MK3CHOPPER-IOC-01
+#!../../bin/windows-x64-debug/MK3CHOPR-IOC-01
 
-## You may have to change MK3CHOPPER-IOC-01 to something else
+## You may have to change MK3CHOPR-IOC-01 to something else
 ## everywhere it appears in this file
 
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
@@ -11,8 +11,8 @@ errlogInit2(65536, 256)
 cd ${TOP}
 
 ## Register all support components
-dbLoadDatabase "dbd/MK3CHOPPER-IOC-01.dbd"
-MK3CHOPPER_IOC_01_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/MK3CHOPR-IOC-01.dbd"
+MK3CHOPR_IOC_01_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
