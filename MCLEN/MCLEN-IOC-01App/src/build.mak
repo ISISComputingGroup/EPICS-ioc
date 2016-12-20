@@ -31,7 +31,6 @@ $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += motorSupport.dbd
 $(APPNAME)_DBD += motorSimSupport.dbd
 $(APPNAME)_DBD += devMclennanMotor.dbd
-$(APPNAME)_DBD += homing.dbd
 $(APPNAME)_DBD += devSoftMotor.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd

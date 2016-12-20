@@ -2,7 +2,7 @@
 < $(IOCSTARTUP)/init.cmd
 
 # set name of chopper port for use later
-epicsEnvSet("CHOP", "c1")
+epicsEnvSet("CHOP", "c3")
 
 #drvAsynIPPortConfigure(const char *portName,
 #                       const char *hostInfo,

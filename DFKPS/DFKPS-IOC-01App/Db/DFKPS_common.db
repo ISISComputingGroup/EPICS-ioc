@@ -137,26 +137,3 @@ info(INTEREST, "HIGH")
 info(archive, "VAL")
 }
 alias("$(P)CURR", "$(P)CURR:RBV")
-
-record(stringin, "$(P)DEV_TYPE")
-{
-	field(DESC, "Device type, e.g. 8800")
-	field(VAL, "$(DEV_TYPE)")
-	field(PINI, "YES")
-}
-
-record(bi, "$(P)IS_CALIB")
-{
-	field(DESC, "Is this device calibrated?")
-    field(ZNAM, "Calibrated")
-    field(ONAM, "Uncalibrated")
-	field(VAL, "$(CALIBRATED)")
-	field(PINI, "YES")
-}
-
-record(stringin, "$(P)POL_TYPE")
-{
-	field(DESC, "Polarity type, eg BIPOLAR")
-	field(VAL, "$(POLARITY)")
-	field(PINI, "YES")
-}
