@@ -3,7 +3,7 @@ record(mbbi, "$(P)$(Q)STATUS")
 {
     field(DESC, "Attenuator Status")
     field(DTYP, "asynInt32")
-    field(INP,  "@asynMask(PLC, 511, 16, 5.0) FINS_WR_READ")
+    field(INP,  "@asynMask($(PORT), 511, 16, 5.0) FINS_WR_READ")
     field(SCAN, ".1 second")
 	# we right shift by 1 to drop the "open request" status bit 
 	field(SHFT, 1)
@@ -16,37 +16,39 @@ record(mbbi, "$(P)$(Q)STATUS")
 	field(UNSV, "MINOR")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:STATUS")
+	field(FLNK, "$(P)$(Q)_STATUSD.PROC")
     info(INTEREST, "HIGH")
     info(alarm, "Attenuator")
 	info(archive, "VAL")
 }
 
+record(mbbiDirect, "$(P)$(Q)_STATUSD")
+{
+    field(DESC, "Attenuator Bits")
+    field(DTYP, "Soft Channel")
+    field(INP,  "$(P)$(Q)STATUS NPP")
+	field(FLNK, "$(P)$(Q)OPEN.PROC")
+}
+
 record(bi, "$(P)$(Q)OPEN")
 {
     field(DESC, "Attenuator Open")
-    field(DTYP, "asynInt32")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "@asyn(PLC, 511, 5.0) FINS_WR_READ_B1")
-    field(SCAN, ".1 second")
+    field(INP,  "$(P)$(Q)_STATUSD.B0 NPP")
     info(INTEREST, "HIGH")
     info(alarm, "Attenuator Open")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:OPEN")
+	field(FLNK, "$(P)$(Q)CLOSED.PROC")
 }
 
 record(bi, "$(P)$(Q)CLOSED")
 {
     field(DESC, "Attenuator Closed")
-    field(DTYP, "asynInt32")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "@asyn(PLC, 511, 5.0) FINS_WR_READ_B2")
-    field(SCAN, ".1 second")
+    field(INP,  "$(P)$(Q)_STATUSD.B1 NPP")
     info(INTEREST, "HIGH")
     info(alarm, "Attenuator Open")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:CLOSE")
 }
 
 ## write 0 to CLOSE, 1 to OPEN
@@ -58,7 +60,7 @@ record(mbbo, "$(P)$(Q)MOVE:SP")
 	field(ONST, "OPEN")
     field(ZRVL, 2)
  	field(ONVL, 1)
-    field(OUT,  "@asyn(PLC, 510, 5.0) FINS_WR_WRITE")
+    field(OUT,  "@asyn($(PORT), 510, 5.0) FINS_WR_WRITE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:MOVE")
 }
@@ -69,7 +71,7 @@ record(bo, "$(P)$(Q)OPEN:SP")
     field(DTYP, "asynInt32")
     field(ZNAM, "...")
     field(ONAM, "OPEN")
-    field(OUT,  "@asyn(PLC, 510, 5.0) FINS_WR_WRITE_B0")
+    field(OUT,  "@asyn($(PORT), 510, 5.0) FINS_WR_WRITE_B0")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:OPEN")
 }
@@ -80,7 +82,7 @@ record(bo, "$(P)$(Q)CLOSED:SP")
     field(DTYP, "asynInt32")
     field(ZNAM, "...")
     field(ONAM, "CLOSE")
-    field(OUT,  "@asyn(PLC, 510, 5.0) FINS_WR_WRITE_B1")
+    field(OUT,  "@asyn($(PORT), 510, 5.0) FINS_WR_WRITE_B1")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:CLOSE")
 }
