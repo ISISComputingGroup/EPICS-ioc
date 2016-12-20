@@ -18,10 +18,10 @@ relPaths.sh
 .cproject
 *.tags
 *.tag
-#/MK3CHOPPER/Mk3Wrapper/bin/
-#/MK3CHOPPER/Mk3Wrapper/obj/
-#/MK3CHOPPER/iocBoot/
-#/MK3CHOPPER/src/obj/
+#/MK3CHOPR/Mk3Wrapper/bin/
+#/MK3CHOPR/Mk3Wrapper/obj/
+#/MK3CHOPR/iocBoot/
+#/MK3CHOPR/src/obj/
 *_info_positions.req
 *_info_settings.req
 *_built_positions.req
