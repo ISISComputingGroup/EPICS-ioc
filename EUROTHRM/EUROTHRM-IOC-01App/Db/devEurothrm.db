@@ -331,7 +331,6 @@ record(seq, "$(P)READ_MISC") {
 	field(DLY2, "0.5")
 	field(DLY3, "0.5")
 		
-	field(LNK1, "$(P)TEMP.PROC")
 	field(LNK2, "$(P)MAX_OUTPUT.PROC")
 	field(LNK3, "$(P)AUTOTUNE.PROC")
 	
