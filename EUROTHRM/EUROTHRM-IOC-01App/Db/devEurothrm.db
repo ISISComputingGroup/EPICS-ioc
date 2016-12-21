@@ -271,7 +271,8 @@ record(ao, "$(P)RAMP_MAXOUT")
 #Fanout reads so that they can be interrupted
 
 record(seq, "$(P)READ") {
-	field(SCAN, "10 second")
+
+	field(SCAN, "Passive")
 	field(DO1, "1")
 	field(DO2, "1")
 	field(DO3, "1")
@@ -279,12 +280,13 @@ record(seq, "$(P)READ") {
 	field(DO5, "1")
 	field(DO6, "1")
 	
-	field(DLY1, "2.5")
-	field(DLY2, "1")
-	field(DLY3, "2.5")
-	field(DLY4, "1")
+	field(DLY1, "2")
+	field(DLY2, "1.33")
+	field(DLY3, "2")
+	field(DLY4, "1.33")
 	field(DLY5, "2")
-	field(DLY6, "1")
+	field(DLY6, "1.33")
+	field(DLY7, "5")
 	
 	field(LNK1, "$(P)READ_FAST.PROC")
 	field(LNK2, "$(P)READ_SLOW1.PROC")
@@ -292,8 +294,16 @@ record(seq, "$(P)READ") {
 	field(LNK4, "$(P)READ_SLOW2.PROC")
 	field(LNK5, "$(P)READ_FAST.PROC")
 	field(LNK6, "$(P)READ_SLOW3.PROC")
+	field(LNK7, "$(P)READ_RESTART.PROC")
 	
 	field(SELM, "All")
+}
+
+record(seq, "$(P)READ_RESTART"){
+	field(SCAN, "Passive")
+	field(DO1, "1")
+	field(DLY1, "0.5")
+	field(LNK1, "$(P)READ.PROC")
 }
 
 record(seq, "$(P)READ_FAST") {
@@ -315,14 +325,17 @@ record(seq, "$(P)READ_SLOW1") {
 	field(DO1, "1")
 	field(DO2, "1")
 	field(DO3, "1")
+	field(DO4, "1")
 	
 	field(DLY1, "0.5")
 	field(DLY2, "0.5")
 	field(DLY3, "0.5")
-		
-	field(LNK1, "$(P)MAX_OUTPUT.PROC")
-	field(LNK2, "$(P)AUTOTUNE.PROC")
-	field(LNK3, "$(P)TEMP:SP:RBV:CONV.PROC")	
+	field(DLY4, "0.5")
+	
+	field(LNK1, "$(P)P.PROC")	
+	field(LNK2, "$(P)I.PROC")	
+	field(LNK3, "$(P)D.PROC")	
+	field(LNK4, "$(P)TEMP:LOWLIMIT.PROC")		
 	
 	field(SELM, "All")
 }
@@ -352,17 +365,14 @@ record(seq, "$(P)READ_SLOW3") {
 	field(DO1, "1")
 	field(DO2, "1")
 	field(DO3, "1")
-	field(DO4, "1")
 	
 	field(DLY1, "0.5")
 	field(DLY2, "0.5")
 	field(DLY3, "0.5")
-	field(DLY4, "0.5")
-	
-	field(LNK1, "$(P)P.PROC")	
-	field(LNK2, "$(P)I.PROC")	
-	field(LNK3, "$(P)D.PROC")	
-	#field(LNK4, "$(P)TEMP:LOWLIMIT.PROC")		
+		
+	field(LNK1, "$(P)MAX_OUTPUT.PROC")
+	field(LNK2, "$(P)AUTOTUNE.PROC")
+	field(LNK3, "$(P)TEMP:SP:RBV:CONV.PROC")	
 	
 	field(SELM, "All")
 }
@@ -374,6 +384,7 @@ record(longin, "$(P)ADDRESS") {
     field(SCAN, "Passive")
     field(PINI, "YES")
     field(VAL, "$(ADDR)")
+	field(FLNK, "$(P)READ.PROC PP")
 }
 
 record(longin, "$(P)GAD") {
