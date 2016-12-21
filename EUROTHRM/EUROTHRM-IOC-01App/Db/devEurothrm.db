@@ -278,30 +278,20 @@ record(seq, "$(P)READ") {
 	field(DO4, "1")
 	field(DO5, "1")
 	field(DO6, "1")
-	field(DO7, "1")
-	field(DO8, "1")
-	field(DO9, "1")
-	field(DOA, "1")
 	
-	field(DLY1, "1.5")
+	field(DLY1, "2.5")
 	field(DLY2, "1")
-	field(DLY3, "1.5")
-	field(DLY4, "1.5")
-	field(DLY5, "1")
-	field(DLY6, "1.5")
-	field(DLY7, "1.5")
-	field(DLY8, "1")
-	field(DLY9, "0")
-	field(DLYA, "0")
+	field(DLY3, "2.5")
+	field(DLY4, "1")
+	field(DLY5, "2")
+	field(DLY6, "1")
 	
 	field(LNK1, "$(P)READ_FAST.PROC")
-	field(LNK2, "$(P)READ_PID.PROC")
-	field(LNK3, "$(P)READ_LIMS.PROC")
-	field(LNK4, "$(P)READ_FAST.PROC")
-	field(LNK5, "$(P)READ_TEMPS.PROC")
-	field(LNK6, "$(P)READ_RBVS.PROC")
-	field(LNK7, "$(P)READ_FAST.PROC")
-	field(LNK8, "$(P)READ_MISC.PROC")
+	field(LNK2, "$(P)READ_SLOW1.PROC")
+	field(LNK3, "$(P)READ_FAST.PROC")
+	field(LNK4, "$(P)READ_SLOW2.PROC")
+	field(LNK5, "$(P)READ_FAST.PROC")
+	field(LNK6, "$(P)READ_SLOW3.PROC")
 	
 	field(SELM, "All")
 }
@@ -316,12 +306,11 @@ record(seq, "$(P)READ_FAST") {
 
 	field(LNK1, "$(P)RBV.PROC")
 	field(LNK2, "$(P)OUTPUT.PROC")
-	#field(LNK3, "$(P)SENSOR.PROC")	
 	
 	field(SELM, "All")
 }
 
-record(seq, "$(P)READ_MISC") {
+record(seq, "$(P)READ_SLOW1") {
 	field(SCAN, "Passive")
 	field(DO1, "1")
 	field(DO2, "1")
@@ -331,59 +320,49 @@ record(seq, "$(P)READ_MISC") {
 	field(DLY2, "0.5")
 	field(DLY3, "0.5")
 		
-	field(LNK2, "$(P)MAX_OUTPUT.PROC")
-	field(LNK3, "$(P)AUTOTUNE.PROC")
+	field(LNK1, "$(P)MAX_OUTPUT.PROC")
+	field(LNK2, "$(P)AUTOTUNE.PROC")
+	field(LNK3, "$(P)TEMP:SP:RBV:CONV.PROC")	
 	
 	field(SELM, "All")
 }
 
-record(seq, "$(P)READ_RBVS") {
+record(seq, "$(P)READ_SLOW2") {
 	field(SCAN, "Passive")
 	field(DO1, "1")
 	field(DO2, "1")
 	field(DO3, "1")
+	field(DO4, "1")
 	
 	field(DLY1, "0.5")
 	field(DLY2, "0.5")
 	field(DLY3, "0.5")
+	field(DLY4, "0.5")
 	
 	field(LNK1, "$(P)CAL:SEL:RBV.PROC")
 	field(LNK2, "$(P)SP:RBV.PROC")
 	field(LNK3, "$(P)CAL:RBV.PROC")	
+	field(LNK4, "$(P)TEMP:HIGHLIMIT.PROC")	
 	
 	field(SELM, "All")
 }
 
-record(seq, "$(P)READ_PID") {
+record(seq, "$(P)READ_SLOW3") {
 	field(SCAN, "Passive")
 	field(DO1, "1")
 	field(DO2, "1")
 	field(DO3, "1")
+	field(DO4, "1")
 	
 	field(DLY1, "0.5")
 	field(DLY2, "0.5")
 	field(DLY3, "0.5")
+	field(DLY4, "0.5")
 	
 	field(LNK1, "$(P)P.PROC")	
 	field(LNK2, "$(P)I.PROC")	
 	field(LNK3, "$(P)D.PROC")	
-	
-	field(SELM, "All")
-}
-
-record(seq, "$(P)READ_TEMPS") {
-	field(SCAN, "Passive")
-	field(DO1, "1")
-	field(DO2, "1")
-	field(DO3, "1")
-	
-	field(DLY1, "0.5")
-	field(DLY2, "0.5")
-	field(DLY3, "0.5")
-	
-	field(LNK1, "$(P)TEMP:SP:RBV:CONV.PROC")	
-	field(LNK2, "$(P)TEMP:HIGHLIMIT.PROC")	
-	field(LNK3, "$(P)TEMP:LOWLIMIT.PROC")		
+	#field(LNK4, "$(P)TEMP:LOWLIMIT.PROC")		
 	
 	field(SELM, "All")
 }
@@ -936,7 +915,6 @@ record(ai, "$(P)HILIM") {
 	field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@eurotherm2k.proto read($(P),HS,$(GAD),$(LAD)) $(PORT)")
-	field(FLNK, "$(P)LOWLIM.PROC")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:HIGHLIMIT")
     field(SDIS, "$(Q)DISABLE")
