@@ -588,8 +588,6 @@ record(ao, "$(P)AUTOTUNE:SP") {
 
 alias("$(P)AUTOTUNE", "$(P)AUTOTUNE:SP:RBV")
 
-alias("$(P)SENSOR", "$(P)RBV")
-
 record(stringin, "$(P)CAL:SEL:RBV") {
     info(INTEREST, "MEDIUM")
     field(DESC, "Calibration file")
@@ -821,6 +819,8 @@ record(ai, "$(P)RBV") {
 	info(alarm, "Euro")
 }
 
+alias("$(P)RBV", "$(P)SENSOR")
+
 record(ai, "$(P)SP:RBV") {
     info(INTEREST, "MEDIUM")
     field(DESC, "Temperature Setpoint Readback")
@@ -1006,7 +1006,7 @@ alias("$(P)SIM:AUTOTUNE","$(P)SIM:AUTOTUNE:SP")
 
 alias("$(P)SIM:AUTOTUNE","$(P)SIM:AUTOTUNE:SP:RBV")
 
-alias("$(P)SIM:SENSOR","$(P)SIM:TEMP")
+alias("$(P)SIM:TEMP","$(P)SIM:SENSOR")
 
 record(ai, "$(P)SIM:P")
 {
