@@ -3,7 +3,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-#DATA += MK3CHOPPER-IOC-01.proto
+#DATA += MK3CHOPR-IOC-01.proto
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
