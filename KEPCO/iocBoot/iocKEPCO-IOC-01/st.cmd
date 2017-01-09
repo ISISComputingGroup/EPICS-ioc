@@ -26,7 +26,7 @@ asynSetOption("L0", -1, "ixoff", "Y")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load record instances
-dbLoadRecords("$(KEPCO)/db/kepco.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RESET=NO")
+dbLoadRecords("$(KEPCO)/db/kepco.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RESET=NO, DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0)")
 
 < $(IOCSTARTUP)/preiocinit.cmd
 
