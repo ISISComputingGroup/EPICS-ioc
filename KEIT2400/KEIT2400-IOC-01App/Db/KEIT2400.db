@@ -35,6 +35,7 @@ record(fanout, "$(P)READ") {
 	field(LNK3, "$(P)R PP")
 	field(SELM, "All")
 }
+
 record(ao, "$(P)I")
 {
     field(DESC, "Current")
