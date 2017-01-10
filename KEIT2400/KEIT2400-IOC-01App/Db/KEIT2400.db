@@ -20,6 +20,7 @@ record(bo, "$(P)DISABLE")
     field(OMSL, "supervisory")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
+}
 
 ######################################
 #### Current, Voltage, Resistance ####
