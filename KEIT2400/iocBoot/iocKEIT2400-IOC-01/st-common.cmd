@@ -7,7 +7,7 @@ epicsEnvSet "DEVICE" "L0"
 ## For emulator use:
 $(IFDEVSIM) freeIPPort("FREEPORT")  
 $(IFDEVSIM) epicsEnvShow("FREEPORT") 
-$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(FREEPORT)")
+$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(FREEPORT)")
 
 $(IFNOTDEVSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
 $(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=19200)")
@@ -30,9 +30,6 @@ dbLoadRecords("db/KEIT2400.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), DISA
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit
-
-## Start any sequence programs
-#seq sncxxx,"user=iew83206Host"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs
 < $(IOCSTARTUP)/postiocinit.cmd
