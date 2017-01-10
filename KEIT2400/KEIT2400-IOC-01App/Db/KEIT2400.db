@@ -1,6 +1,6 @@
 #######################################################
 #
-# DB file for Keitherley 2400 Source Meter
+# DB file for Keithley 2400 Source Meter
 #
 #######################################################
 
@@ -31,7 +31,7 @@ record(ao, "$(P)I")
     field(DESC, "Current")
     field(DTYP, "stream")
     field(EGU, "A")
-    field(OUT, "@Keitherley2400.proto getI $(PORT)")
+    field(OUT, "@Keithley2400.proto getI $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:I")
     field(SDIS, "$(P)DISABLE")
@@ -48,7 +48,7 @@ record(ao, "$(P)V")
     field(DESC, "Voltage")
     field(DTYP, "stream")
     field(EGU, "V")
-    field(OUT, "@Keitherley2400.proto getV $(PORT)")
+    field(OUT, "@Keithley2400.proto getV $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:V")
     field(SDIS, "$(P)DISABLE")
@@ -65,7 +65,7 @@ record(ao, "$(P)R")
     field(DESC, "Resistance")
     field(DTYP, "stream")
     field(EGU, "Ohm")
-    field(OUT, "@Keitherley2400.proto getR $(PORT)")
+    field(OUT, "@Keithley2400.proto getR $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:R")
     field(SDIS, "$(P)DISABLE")
