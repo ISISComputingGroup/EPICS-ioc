@@ -26,6 +26,15 @@ record(bo, "$(P)DISABLE")
 #### Current, Voltage, Resistance ####
 ######################################
 
+#Fanout reads so that they can be interrupted
+
+record(fanout, "$(P)READ") {
+	field(SCAN, "1 second")
+	field(LNK1, "$(P)V PP")
+	field(LNK2, "$(P)I PP")
+	field(LNK3, "$(P)R PP")
+	field(SELM, "All")
+}
 record(ao, "$(P)I")
 {
     field(DESC, "Current")
