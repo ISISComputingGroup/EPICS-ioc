@@ -1,4 +1,4 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(KEIT2400)/Keithley2400Sup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(KEIT2400)/data"
 epicsEnvSet "DEVICE" "L0"
 
 ##ISIS## Run IOC initialisation
