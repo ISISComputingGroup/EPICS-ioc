@@ -3,3 +3,75 @@
 # DB file for Keitherley 2400 Source Meter
 #
 #######################################################
+
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+
+######################################
+#### Current, Voltage, Resistance ####
+######################################
+
+record(ao, "$(P)I")
+{
+    field(DESC, "Current")
+    field(DTYP, "stream")
+    field(EGU, "A")
+    field(OUT, "@Keitherley2400.proto getI $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:I")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ao, "$(P)SIM:I")
+{
+}
+
+record(ao, "$(P)V")
+{
+    field(DESC, "Voltage")
+    field(DTYP, "stream")
+    field(EGU, "V")
+    field(OUT, "@Keitherley2400.proto getV $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:V")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ao, "$(P)SIM:V")
+{
+}
+
+record(ao, "$(P)R")
+{
+    field(DESC, "Resistance")
+    field(DTYP, "stream")
+    field(EGU, "Ohm")
+    field(OUT, "@Keitherley2400.proto getR $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:R")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ao, "$(P)SIM:R")
+{
+}
