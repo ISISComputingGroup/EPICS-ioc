@@ -8,8 +8,10 @@ errlogInit2(65536, 256)
 
 < envPaths
 
+cd ${TOP}
+
 ## Register all support components
 dbLoadDatabase "dbd/KEIT2400-IOC-01.dbd"
 KEIT2400_IOC_01_registerRecordDeviceDriver pdbbase
 
-< st-common.cmd
+< iocBoot/iocKEIT2400-IOC-01/st-common.cmd
