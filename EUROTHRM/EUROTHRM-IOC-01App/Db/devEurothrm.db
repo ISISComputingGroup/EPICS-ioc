@@ -270,46 +270,137 @@ record(ao, "$(P)RAMP_MAXOUT")
 
 #Fanout reads so that they can be interrupted
 
-record(fanout, "$(P)READ") {
-	field(SCAN, "5 second")
-	field(LNK1, "$(P)P PP")
-	field(LNK2, "$(P)I PP")
-	field(LNK3, "$(P)D PP")
-	field(LNK4, "$(P)OUTPUT PP")	
-	field(LNK5, "$(P)MAX_OUTPUT PP")
-	field(LNK6, "$(P)READ1 PP")
+record(seq, "$(P)READ") {
+
+	field(SCAN, "Passive")
+	field(DO1, "1")
+	field(DO2, "1")
+	field(DO3, "1")
+	field(DO4, "1")
+	field(DO5, "1")
+	field(DO6, "1")
+	field(DO7, "1")
+	field(DO8, "1")
+	field(DO9, "1")
+	field(DOA, "1")
+	
+	field(DLY1, "$(TREAD)")
+	field(DLY2, "$(TREAD)")
+	field(DLY3, "$(TREAD)")
+	field(DLY4, "$(TREAD)")
+	field(DLY5, "$(TREAD)")
+	field(DLY6, "$(TREAD)")
+	field(DLY7, "$(TREAD)")
+	field(DLY8, "$(TREAD)")
+	field(DLY9, "$(TREAD)")
+	field(DLYA, "$(TREAD)")
+	
+	field(LNK1, "$(P)READ_FAST.PROC")
+	field(LNK2, "$(P)READ_SLOW1.PROC")
+	field(LNK3, "$(P)READ_FAST.PROC")
+	field(LNK4, "$(P)READ_SLOW2.PROC")
+	field(LNK5, "$(P)READ_FAST.PROC")
+	field(LNK6, "$(P)READ_SLOW3.PROC")
+	field(LNK7, "$(P)READ_FAST.PROC")
+	field(LNK8, "$(P)READ_SLOW4.PROC")
+	field(LNK9, "$(P)READ_FAST.PROC")
+	field(LNKA, "$(P)READ_SLOW5.PROC")
+	
 	field(SELM, "All")
 }
 
-record(fanout, "$(P)READ1") {
+record(seq, "$(P)READ_RESTART"){
+	field(SCAN, "1 second")
+	field(LNK1, "$(P)READ.PROC")
+}
+
+record(seq, "$(P)READ_FAST") {
 	field(SCAN, "Passive")
-	field(LNK1, "$(P)AUTOTUNE PP")
-	field(LNK2, "$(P)SENSOR PP")
-	field(LNK3, "$(P)RBV PP")
-	field(LNK4, "$(P)SP:RBV PP")
-	field(LNK5, "$(P)HILIM PP")
-	field(LNK6, "$(P)LOWLIM PP")	
+	field(DO1, "1")
+	field(DO2, "1")
+	field(DLY1, "$(TDLY)")
+	field(DLY2, "$(TDLY)")
 	field(SELM, "All")
+	field(LNK1, "$(P)RBV.PROC")
+	field(LNK2, "$(P)OUTPUT.PROC")
+}
+
+record(seq, "$(P)READ_SLOW1") {
+	field(SCAN, "Passive")
+	field(DO1, "1")
+	field(DO2, "1")	
+	field(DLY1, "$(TDLY)")
+	field(DLY2, "$(TDLY)")
+	field(SELM, "All")
+	field(LNK1, "$(P)TEMP:HIGHLIMIT.PROC")	
+	field(LNK2, "$(P)TEMP:LOWLIMIT.PROC")		
+}
+
+record(seq, "$(P)READ_SLOW2") {
+	field(SCAN, "Passive")
+	field(DO1, "1")
+	field(DO2, "1")
+	field(DLY1, "$(TDLY)")
+	field(DLY2, "$(TDLY)")
+	field(SELM, "All")	
+	field(LNK1, "$(P)TEMP:SP:RBV:CONV.PROC")	
+	field(LNK2, "$(P)SP:RBV.PROC")
+}
+
+record(seq, "$(P)READ_SLOW3") {
+	field(SCAN, "Passive")
+	field(DO1, "1")
+	field(DO2, "1")
+	field(DLY1, "$(TDLY)")
+	field(DLY2, "$(TDLY)")
+	field(SELM, "All")
+	field(LNK1, "$(P)MAX_OUTPUT.PROC")
+	field(LNK2, "$(P)AUTOTUNE.PROC")
+}
+
+record(seq, "$(P)READ_SLOW4") {
+	field(SCAN, "Passive")
+	field(DO1, "1")
+	field(DO2, "1")	
+	field(DLY1, "$(TDLY)")
+	field(DLY2, "$(TDLY)")
+	field(SELM, "All")
+	field(LNK1, "$(P)CAL:SEL:RBV.PROC")
+	field(LNK2, "$(P)CAL:RBV.PROC")	
+}
+
+record(seq, "$(P)READ_SLOW5") {
+	field(SCAN, "Passive")
+	field(DO1, "1")
+	field(DO2, "1")	
+	field(DO3, "1")	
+	field(DLY1, "$(TDLY)")
+	field(DLY2, "$(TDLY)")	
+	field(DLY3, "$(TDLY)")
+	field(SELM, "All")
+	field(LNK1, "$(P)P.PROC")	
+	field(LNK2, "$(P)I.PROC")	
+	field(LNK3, "$(P)D.PROC")		
 }
 
 ####
 record(longin, "$(P)ADDRESS") {
     field(DTYP, "Soft Channel")
-    field(DESC, "EUROTHRM address")
+    field(DESC, "Eurotherm address")
     field(SCAN, "Passive")
     field(PINI, "YES")
     field(VAL, "$(ADDR)")
 }
 
 record(longin, "$(P)GAD") {
-    field(DESC, "EUROTHRM greater address")
+    field(DESC, "Eurotherm greater address")
     field(SCAN, "Passive")
     field(PINI, "YES")
     field(VAL, "$(GAD)")
 }
 
 record(longin, "$(P)LAD") {
-    field(DESC, "EUROTHRM lesser address")
+    field(DESC, "Eurotherm lesser address")
     field(SCAN, "Passive")
     field(PINI, "YES")
     field(VAL, "$(LAD)")
@@ -503,25 +594,13 @@ record(ao, "$(P)AUTOTUNE:SP") {
 
 alias("$(P)AUTOTUNE", "$(P)AUTOTUNE:SP:RBV")
 
-record(ai, "$(P)SENSOR") {
-    info(INTEREST, "MEDIUM")
-    field(DESC, "Sensor Readback")
-	field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(INP, "@eurotherm2k.proto read($(P),PV,$(GAD),$(LAD)) $(PORT)")
-    field(SIML, "$(Q)SIM")
-    field(SIOL, "$(P)SIM:SENSOR")
-    field(SDIS, "$(Q)DISABLE")
-	field(EGU, "")
-}
-
 record(stringin, "$(P)CAL:SEL:RBV") {
     info(INTEREST, "MEDIUM")
     field(DESC, "Calibration file")
     field(DTYP, "Soft Channel")
 	field(INP, "$(P)TEMP.NSPE MS")
 	field(PINI, "YES")
-	field(SCAN, "1 second")
+	field(SCAN, "Passive")
     info(archive, "VAL")
 }
 
@@ -531,7 +610,7 @@ record(stringin, "$(P)CAL:RBV")
     field(DTYP, "Soft Channel")
 	field(INP, "$(P)TEMP.SPEC MS")
 	field(PINI, "YES")
-	field(SCAN, "1 second")
+	field(SCAN, "Passive")
     info(archive, "VAL")
 }
 
@@ -665,7 +744,7 @@ record(waveform, "$(P)SENSOR_PATTERN")
 
 record(cvt, "$(P)TEMP")
 {
-	field(SCAN, "1 second")
+	field(SCAN, "Passive")
     field(DESC, "Temperature")
     info(INTEREST, "HIGH")
 	field(INPY, "$(P)RBV")
@@ -681,7 +760,7 @@ record(cvt, "$(P)TEMP")
 
 record(cvt, "$(P)TEMP:SP:RBV:CONV")
 {
-	field(SCAN, "1 second")
+	field(SCAN, "Passive")
 	field(INPY, "$(P)SP:RBV PP")
 	field(OUT, "$(P)TEMP:SP:RBV PP")
     field(YSLO, 1)
@@ -694,7 +773,7 @@ record(cvt, "$(P)TEMP:SP:RBV:CONV")
 
 record(cvt, "$(P)TEMP:HIGHLIMIT")
 {
-	field(SCAN, "1 second")
+	field(SCAN, "Passive")
 	field(INPY, "$(P)HILIM PP")
     field(YSLO, 1)
 	field(METH, "1D TABLE INVERTED")
@@ -707,7 +786,7 @@ record(cvt, "$(P)TEMP:HIGHLIMIT")
 
 record(cvt, "$(P)TEMP:LOWLIMIT")
 {
-	field(SCAN, "1 second")
+	field(SCAN, "Passive")
 	field(INPY, "$(P)LOWLIM PP")
     field(YSLO, 1)
 	field(METH, "1D TABLE INVERTED")
@@ -745,6 +824,8 @@ record(ai, "$(P)RBV") {
     info(archive, "VAL")
 	info(alarm, "Euro")
 }
+
+alias("$(P)RBV", "$(P)SENSOR")
 
 record(ai, "$(P)SP:RBV") {
     info(INTEREST, "MEDIUM")
@@ -810,7 +891,7 @@ record(longout, "$(P)SP:RETRYCNT") {
 }
 
 ## difference between sent SP and readback SP to trigger a resend of SP
-## note this is a tolerance on the raw value sent to the EUROTHRM via the stream device command
+## note this is a tolerance on the raw value sent to the Eurotherm via the stream device command
 record(ai, "$(P)SP:CHKTOL") {
     field(DESC, "Setpoint check tolerance")
     field(VAL, "0.001")
@@ -850,7 +931,6 @@ record(ai, "$(P)HILIM") {
 	field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@eurotherm2k.proto read($(P),HS,$(GAD),$(LAD)) $(PORT)")
-	field(FLNK, "$(P)LOWLIM.PROC")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:HIGHLIMIT")
     field(SDIS, "$(Q)DISABLE")
@@ -932,11 +1012,7 @@ alias("$(P)SIM:AUTOTUNE","$(P)SIM:AUTOTUNE:SP")
 
 alias("$(P)SIM:AUTOTUNE","$(P)SIM:AUTOTUNE:SP:RBV")
 
-record(ai, "$(P)SIM:SENSOR")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
+alias("$(P)SIM:TEMP","$(P)SIM:SENSOR")
 
 record(ai, "$(P)SIM:P")
 {
