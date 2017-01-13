@@ -158,6 +158,18 @@ record(bo, "$(P)OUTPUT:MODE:SP") {
     info(INTEREST, "HIGH")
 }
 
+record(bo, "$(P)OUTPUT:MODE") {
+    field(DESC, "Output mode on/off")
+    field(DTYP, "stream")
+	field(SCAN, ".5 second")
+    field(OUT, "@Keithley2400.proto getOUTP $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
 record(bo, "$(P)SIM:OUTPUT:MODE:SP")
 {
     field(SCAN, "Passive")
@@ -166,7 +178,6 @@ record(bo, "$(P)SIM:OUTPUT:MODE:SP")
     field(ONAM, "On")
 }
 
-alias("$(P)OUTPUT:MODE:SP", "$(P)OUTPUT:MODE")
 alias("$(P)OUTPUT:MODE", "$(P)OUTPUT:MODE:SP:RBV")
 alias("$(P)OUTPUT:MODE:SP", "$(P)SIM:OUTPUT:MODE")
 alias("$(P)OUTPUT:MODE", "$(P)SIM:OUTPUT:MODE:SP:RBV")
