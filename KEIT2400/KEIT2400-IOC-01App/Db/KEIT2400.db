@@ -149,7 +149,7 @@ record(bo, "$(P)OUTPUT:MODE:SP") {
     field(OUT, "@Keithley2400.proto setOUTP $(PORT)")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-	field(VAL, "ON")
+	field(VAL, "1")
 	field(PINI, "YES")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
@@ -193,7 +193,7 @@ record(bo, "$(P)OCOM:SP") {
     field(OUT, "@Keithley2400.proto setOCOM $(PORT)")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-	field(VAL, "OFF")
+	field(VAL, "0")
 	field(PINI, "YES")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
@@ -226,3 +226,87 @@ alias("$(P)OCOM", "$(P)OCOM:SP:RBV")
 alias("$(P)OCOM:SP", "$(P)SIM:OCOM")
 alias("$(P)OCOM", "$(P)SIM:OCOM:SP:RBV")
 alias("$(P)OCOM:SP", "$(P)SIM:OCOM")
+
+#########################
+#### Resistance mode ####
+#########################
+
+record(bo, "$(P)RES:MODE:SP") {
+    field(DESC, "Set Ohms mode auto/manual")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto setRMODE $(PORT)")
+    field(ZNAM, "AUTO")
+    field(ONAM, "MANUAL")
+	field(VAL, "0")
+	field(PINI, "YES")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RES:MODE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)RES:MODE") {
+    field(DESC, "Ohms mode auto/manual")
+    field(DTYP, "stream")
+	field(SCAN, ".5 second")
+    field(OUT, "@Keithley2400.proto getRMODE $(PORT)")
+    field(ZNAM, "AUTO")
+    field(ONAM, "MANUAL")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)SIM:RES:MODE:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+alias("$(P)RES:MODE", "$(P)RES:MODE:SP:RBV")
+alias("$(P)RES:MODE:SP", "$(P)SIM:RES:MODE")
+alias("$(P)RES:MODE", "$(P)SIM:RES:MODE:SP:RBV")
+alias("$(P)RES:MODE:SP", "$(P)SIM:RES:MODE")
+
+record(bo, "$(P)RSENS:MODE:SP") {
+    field(DESC, "Set remote sensing mode ON(4-wire)/OFF(2-wire)")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto setRSENS $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+	field(VAL, "0")
+	field(PINI, "YES")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RSENS:MODE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)RSENS:MODE") {
+    field(DESC, "Get remote sensing mode ON(4-wire)/OFF(2-wire)")
+    field(DTYP, "stream")
+	field(SCAN, ".5 second")
+    field(OUT, "@Keithley2400.proto getRSENS $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)SIM:RSENS:MODE:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+alias("$(P)RSENS:MODE", "$(P)RSENS:MODE:SP:RBV")
+alias("$(P)RSENS:MODE:SP", "$(P)SIM:RSENS:MODE")
+alias("$(P)RSENS:MODE", "$(P)SIM:RSENS:MODE:SP:RBV")
+alias("$(P)RSENS:MODE:SP", "$(P)SIM:RSENS:MODE")
