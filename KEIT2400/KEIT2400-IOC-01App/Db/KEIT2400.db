@@ -149,7 +149,7 @@ record(bo, "$(P)OUTPUT:MODE:SP") {
     field(OUT, "@Keithley2400.proto setOUTP $(PORT)")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-	field(VAL, "1")
+	field(VAL, "ON")
 	field(PINI, "YES")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
@@ -183,4 +183,46 @@ alias("$(P)OUTPUT:MODE:SP", "$(P)SIM:OUTPUT:MODE")
 alias("$(P)OUTPUT:MODE", "$(P)SIM:OUTPUT:MODE:SP:RBV")
 alias("$(P)OUTPUT:MODE:SP", "$(P)SIM:OUTPUT:MODE")
 
+#############################
+#### Offset compensation ####
+#############################
 
+record(bo, "$(P)OCOM:SP") {
+    field(DESC, "Set offset compensation on/off")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto setOCOM $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+	field(VAL, "OFF")
+	field(PINI, "YES")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OCOM:SP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)OCOM") {
+    field(DESC, "Output mode on/off")
+    field(DTYP, "stream")
+	field(SCAN, ".5 second")
+    field(OUT, "@Keithley2400.proto getOCOM $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)SIM:OCOM:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+alias("$(P)OCOM", "$(P)OCOM:SP:RBV")
+alias("$(P)OCOM:SP", "$(P)SIM:OCOM")
+alias("$(P)OCOM", "$(P)SIM:OCOM:SP:RBV")
+alias("$(P)OCOM:SP", "$(P)SIM:OCOM")
