@@ -126,3 +126,50 @@ record(stringout, "$(P)SIM:GEN")
 alias("$(P)GEN", "$(P)GEN:SP:RBV")
 alias("$(P)SIM:GEN", "$(P)SIM:GEN:SP")
 alias("$(P)SIM:GEN", "$(P)SIM:GEN:SP:RBV")
+
+###############
+#### Reset ####
+###############
+
+record(ao, "$(P)RESET")
+{
+    field(DESC, "Reset the device")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto setRST $(PORT)")
+    field(SDIS, "$(P)DISABLE")
+}
+
+#####################
+#### Output mode ####
+#####################
+
+record(bo, "$(P)OUTPUT:MODE:SP") {
+    field(DESC, "Set output mode on/off")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto setOUTP $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+	field(VAL, "1")
+	field(PINI, "YES")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OUTPUT:MODE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)SIM:OUTPUT:MODE:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+alias("$(P)OUTPUT:MODE:SP", "$(P)OUTPUT:MODE")
+alias("$(P)OUTPUT:MODE", "$(P)OUTPUT:MODE:SP:RBV")
+alias("$(P)OUTPUT:MODE:SP", "$(P)SIM:OUTPUT:MODE")
+alias("$(P)OUTPUT:MODE", "$(P)SIM:OUTPUT:MODE:SP:RBV")
+alias("$(P)OUTPUT:MODE:SP", "$(P)SIM:OUTPUT:MODE")
+
+
