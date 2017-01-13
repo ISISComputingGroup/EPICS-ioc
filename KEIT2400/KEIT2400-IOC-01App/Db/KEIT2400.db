@@ -89,3 +89,39 @@ record(ao, "$(P)R")
 record(ao, "$(P)SIM:R")
 {
 }
+
+#######################
+#### General input ####
+#######################
+
+record(stringout, "$(P)GEN:SP")
+{
+	field(DESC, "General input command")
+	field(FLNK, "$(P)GEN PP")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:GEN:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(stringin, "$(P)GEN")
+{
+   field(DESC, "General input command response")
+   field(DTYP, "stream")
+   field(INP, "@Keithley2400.proto gen($(P)GEN:SP) $(PORT)")
+   field(SCAN, "Passive")
+   field(SIML, "$(P)SIM")
+   field(SDIS, "$(P)DISABLE")
+   info(archive, "VAL")
+   info(INTEREST, "HIGH")
+}
+
+record(stringout, "$(P)SIM:GEN")
+{
+}
+
+alias("$(P)GEN", "$(P)GEN:SP:RBV")
+alias("$(P)SIM:GEN", "$(P)SIM:GEN:SP")
+
+
