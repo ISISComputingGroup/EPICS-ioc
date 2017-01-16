@@ -310,3 +310,47 @@ alias("$(P)RSENS:MODE", "$(P)RSENS:MODE:SP:RBV")
 alias("$(P)RSENS:MODE:SP", "$(P)SIM:RSENS:MODE")
 alias("$(P)RSENS:MODE", "$(P)SIM:RSENS:MODE:SP:RBV")
 alias("$(P)RSENS:MODE:SP", "$(P)SIM:RSENS:MODE")
+
+##############################
+#### Auto resistance mode ####
+##############################
+
+record(bo, "$(P)RSENS:RANGE:AUTO:SP") {
+    field(DESC, "Set Ohms mode auto/manual")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto setRSENSAUTO $(PORT)")
+    field(ZNAM, "AUTO")
+    field(ONAM, "MANUAL")
+	field(VAL, "AUTO")
+	field(PINI, "YES")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RSENS:RANGE:AUTO:SP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)RSENS:RANGE:AUTO") {
+    field(DESC, "Ohms mode auto/manual")
+    field(DTYP, "stream")
+	field(SCAN, ".5 second")
+    field(OUT, "@Keithley2400.proto getRSENSAUTO $(PORT)")
+    field(ZNAM, "AUTO")
+    field(ONAM, "MANUAL")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)SIM:RSENS:RANGE:AUTO:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+alias("$(P)SIM:RSENS:RANGE:AUTO", "$(P)RSENS:RANGE:AUTO:SP:RBV")
+alias("$(P)RSENS:RANGE:AUTO:SP", "$(P)SIM:RSENS:RANGE:AUTO")
+alias("$(P)SIM:RSENS:RANGE:AUTO", "$(P)SIM:RSENS:RANGE:AUTO:SP:RBV")
+alias("$(P)RSENS:RANGE:AUTO:SP", "$(P)SIM:SIM:RSENS:RANGE:AUTO")
