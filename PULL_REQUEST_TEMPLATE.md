@@ -21,6 +21,7 @@
 - [ ] Have the [finishing touches](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/IOC-Finishing-Touches) been applied?
 - [ ] Is there an [emulator](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Emulating-Devices) for the device?
 - [ ] Have the changes been documented in the [release notes](https://github.com/ISISComputingGroup/IBEX/wiki/ReleaseNotes_Dev). If so, do they describe the changes appropriately?
+- [ ] If an OPI has been modified, does it conform to the [style guidelines](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/OPI-Creation)? There is a script called `check_opi_format.py` to help with this.
 
 ### Functional Tests
 
