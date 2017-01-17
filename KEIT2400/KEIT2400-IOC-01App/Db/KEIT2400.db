@@ -30,20 +30,20 @@ record(bo, "$(P)DISABLE")
 #Fanout reads so that they can be interrupted
 
 record(fanout, "$(P)READ") {
-	field(SCAN, "1 second")
+	field(SCAN, ".5 second")
 	field(LNK1, "$(P)V PP")
 	field(LNK2, "$(P)I PP")
 	field(LNK3, "$(P)R PP")
 	field(SELM, "All")
 }
 
-record(ao, "$(P)I")
+record(ai, "$(P)I")
 {
     field(DESC, "Current")
     field(DTYP, "stream")
     field(EGU, "A")
 	field(PREC, "2")
-    field(OUT, "@Keithley2400.proto getI $(PORT)")
+    field(INP, "@Keithley2400.proto get_I $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:I")
     field(SDIS, "$(P)DISABLE")
@@ -51,17 +51,17 @@ record(ao, "$(P)I")
     info(INTEREST, "HIGH")
 }
 
-record(ao, "$(P)SIM:I")
+record(ai, "$(P)SIM:I")
 {
 }
 
-record(ao, "$(P)V")
+record(ai, "$(P)V")
 {
     field(DESC, "Voltage")
     field(DTYP, "stream")
     field(EGU, "V")
 	field(PREC, "2")
-    field(OUT, "@Keithley2400.proto getV $(PORT)")
+    field(INP, "@Keithley2400.proto get_V $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:V")
     field(SDIS, "$(P)DISABLE")
@@ -69,17 +69,17 @@ record(ao, "$(P)V")
     info(INTEREST, "HIGH")
 }
 
-record(ao, "$(P)SIM:V")
+record(ai, "$(P)SIM:V")
 {
 }
 
-record(ao, "$(P)R")
+record(ai, "$(P)R")
 {
     field(DESC, "Resistance")
     field(DTYP, "stream")
     field(EGU, "Ohm")
 	field(PREC, "2")
-    field(OUT, "@Keithley2400.proto getR $(PORT)")
+    field(INP, "@Keithley2400.proto get_R $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:R")
     field(SDIS, "$(P)DISABLE")
@@ -87,7 +87,7 @@ record(ao, "$(P)R")
     info(INTEREST, "HIGH")
 }
 
-record(ao, "$(P)SIM:R")
+record(ai, "$(P)SIM:R")
 {
 }
 
@@ -111,6 +111,7 @@ record(stringin, "$(P)GEN")
     field(DESC, "General input command response")
     field(DTYP, "stream")
     field(INP, "@Keithley2400.proto gen($(P)GEN:SP) $(PORT)")
+	field(VAL, " ")
     field(SCAN, "Passive")
     field(SIOL, "$(P)SIM:GEN")
     field(SIML, "$(P)SIM")
@@ -119,8 +120,10 @@ record(stringin, "$(P)GEN")
     info(INTEREST, "HIGH")
 }
 
-record(stringout, "$(P)SIM:GEN")
+record(stringin, "$(P)SIM:GEN")
 {
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
 }
 
 alias("$(P)GEN", "$(P)GEN:SP:RBV")
@@ -135,7 +138,7 @@ record(ao, "$(P)RESET")
 {
     field(DESC, "Reset the device")
     field(DTYP, "stream")
-    field(OUT, "@Keithley2400.proto setRST $(PORT)")
+    field(OUT, "@Keithley2400.proto set_RESET $(PORT)")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -143,14 +146,25 @@ record(ao, "$(P)RESET")
 #### Output mode ####
 #####################
 
-record(bo, "$(P)OUTPUT:MODE:SP") {
-    field(DESC, "Set output mode on/off")
+record(bi, "$(P)OUTPUT:MODE") {
+    field(DESC, "Output mode Off/On")
     field(DTYP, "stream")
-    field(OUT, "@Keithley2400.proto setOUTP $(PORT)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
+	field(SCAN, ".5 second")
+    field(INP, "@Keithley2400.proto get_OUTPUT_MODE $(PORT)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)OUTPUT:MODE:SP") {
+    field(DESC, "Set output mode Off/On")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto set_OUTPUT_MODE $(PORT)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
 	field(VAL, "1")
-	field(PINI, "YES")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OUTPUT:MODE:SP")
@@ -158,19 +172,7 @@ record(bo, "$(P)OUTPUT:MODE:SP") {
     info(INTEREST, "HIGH")
 }
 
-record(bo, "$(P)OUTPUT:MODE") {
-    field(DESC, "Output mode on/off")
-    field(DTYP, "stream")
-	field(SCAN, ".5 second")
-    field(OUT, "@Keithley2400.proto getOUTP $(PORT)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
-    field(SDIS, "$(P)DISABLE")
-    info(archive, "VAL")
-    info(INTEREST, "HIGH")
-}
-
-record(bo, "$(P)SIM:OUTPUT:MODE:SP")
+record(bi, "$(P)SIM:OUTPUT:MODE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -179,22 +181,32 @@ record(bo, "$(P)SIM:OUTPUT:MODE:SP")
 }
 
 alias("$(P)OUTPUT:MODE", "$(P)OUTPUT:MODE:SP:RBV")
-alias("$(P)OUTPUT:MODE:SP", "$(P)SIM:OUTPUT:MODE")
-alias("$(P)OUTPUT:MODE", "$(P)SIM:OUTPUT:MODE:SP:RBV")
-alias("$(P)OUTPUT:MODE:SP", "$(P)SIM:OUTPUT:MODE")
+alias("$(P)SIM:OUTPUT:MODE", "$(P)SIM:OUTPUT:MODE:SP")
+alias("$(P)SIM:OUTPUT:MODE", "$(P)SIM:OUTPUT:MODE:SP:RBV")
 
 #############################
 #### Offset compensation ####
 #############################
 
-record(bo, "$(P)OCOM:SP") {
-    field(DESC, "Set offset compensation on/off")
+record(bi, "$(P)OCOM") {
+    field(DESC, "Output mode Off/On")
     field(DTYP, "stream")
-    field(OUT, "@Keithley2400.proto setOCOM $(PORT)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
-	field(VAL, "0")
-	field(PINI, "YES")
+	field(SCAN, ".5 second")
+    field(INP, "@Keithley2400.proto get_OFFSET_MODE $(PORT)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)OCOM:SP") {
+    field(DESC, "Set offset compensation Off/On")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto set_OffSET_MODE $(PORT)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+	field(VAL, "1")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OCOM:SP")
@@ -202,19 +214,7 @@ record(bo, "$(P)OCOM:SP") {
     info(INTEREST, "HIGH")
 }
 
-record(bo, "$(P)OCOM") {
-    field(DESC, "Output mode on/off")
-    field(DTYP, "stream")
-	field(SCAN, ".5 second")
-    field(OUT, "@Keithley2400.proto getOCOM $(PORT)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
-    field(SDIS, "$(P)DISABLE")
-    info(archive, "VAL")
-    info(INTEREST, "HIGH")
-}
-
-record(bo, "$(P)SIM:OCOM:SP")
+record(bi, "$(P)SIM:OCOM")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -223,21 +223,32 @@ record(bo, "$(P)SIM:OCOM:SP")
 }
 
 alias("$(P)OCOM", "$(P)OCOM:SP:RBV")
-alias("$(P)OCOM:SP", "$(P)SIM:OCOM")
-alias("$(P)OCOM", "$(P)SIM:OCOM:SP:RBV")
-alias("$(P)OCOM:SP", "$(P)SIM:OCOM")
+alias("$(P)SIM:OCOM", "$(P)SIM:OCOM:SP")
+alias("$(P)SIM:OCOM", "$(P)SIM:OCOM:SP:RBV")
 
-#########################
-#### Resistance mode ####
-#########################
+##########################
+#### Resistance modes ####
+##########################
+
+record(bi, "$(P)RES:MODE") {
+    field(DESC, "resistance mode Manual/Auto")
+    field(DTYP, "stream")
+	field(SCAN, ".5 second")
+    field(INP, "@Keithley2400.proto get_RES_MODE $(PORT)")
+    field(ZNAM, "Manual")
+    field(ONAM, "Auto")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
 
 record(bo, "$(P)RES:MODE:SP") {
-    field(DESC, "Set Ohms mode auto/manual")
+    field(DESC, "Set resistance mode Manual/Auto")
     field(DTYP, "stream")
-    field(OUT, "@Keithley2400.proto setRMODE $(PORT)")
-    field(ZNAM, "AUTO")
-    field(ONAM, "MANUAL")
-	field(VAL, "0")
+    field(OUT, "@Keithley2400.proto set_RES_MODE $(PORT)")
+    field(ZNAM, "Manual")
+    field(ONAM, "Auto")
+	field(VAL, "1")
 	field(PINI, "YES")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
@@ -246,145 +257,103 @@ record(bo, "$(P)RES:MODE:SP") {
     info(INTEREST, "HIGH")
 }
 
-record(bo, "$(P)RES:MODE") {
-    field(DESC, "Ohms mode auto/manual")
-    field(DTYP, "stream")
-	field(SCAN, ".5 second")
-    field(OUT, "@Keithley2400.proto getRMODE $(PORT)")
-    field(ZNAM, "AUTO")
-    field(ONAM, "MANUAL")
-    field(SDIS, "$(P)DISABLE")
-    info(archive, "VAL")
-    info(INTEREST, "HIGH")
-}
-
-record(bo, "$(P)SIM:RES:MODE:SP")
+record(bi, "$(P)SIM:RES:MODE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
+    field(ZNAM, "Manual")
+    field(ONAM, "Auto")
 }
 
 alias("$(P)RES:MODE", "$(P)RES:MODE:SP:RBV")
-alias("$(P)RES:MODE:SP", "$(P)SIM:RES:MODE")
-alias("$(P)RES:MODE", "$(P)SIM:RES:MODE:SP:RBV")
-alias("$(P)RES:MODE:SP", "$(P)SIM:RES:MODE")
+alias("$(P)SIM:RES:MODE", "$(P)SIM:RES:MODE:SP")
+alias("$(P)SIM:RES:MODE", "$(P)SIM:RES:MODE:SP:RBV")
 
-record(bo, "$(P)RSENS:MODE:SP") {
-    field(DESC, "Set remote sensing mode ON(4-wire)/OFF(2-wire)")
-    field(DTYP, "stream")
-    field(OUT, "@Keithley2400.proto setRSENS $(PORT)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
-	field(VAL, "0")
-	field(PINI, "YES")
-    field(SDIS, "$(P)DISABLE")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RSENS:MODE:SP")
-    info(archive, "VAL")
-    info(INTEREST, "HIGH")
-}
+#############################
+#### Remote sensing mode ####
+#############################
 
-record(bo, "$(P)RSENS:MODE") {
-    field(DESC, "Get remote sensing mode ON(4-wire)/OFF(2-wire)")
+record(bi, "$(P)SENS:MODE") {
+    field(DESC, "Get remote sensing mode Off/On")
     field(DTYP, "stream")
 	field(SCAN, ".5 second")
-    field(OUT, "@Keithley2400.proto getRSENS $(PORT)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
+    field(INP, "@Keithley2400.proto get_SENSING_MODE $(PORT)")
+    field(ZNAM, "On")
+    field(ONAM, "Off")
     field(SDIS, "$(P)DISABLE")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
-record(bo, "$(P)SIM:RSENS:MODE:SP")
+record(bo, "$(P)SENS:MODE:SP") {
+    field(DESC, "Set remote sensing mode Off/On")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto set_SENSING_MODE $(PORT)")
+    field(ZNAM, "On")
+    field(ONAM, "Off")
+	field(VAL, "0")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SENS:MODE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)SIM:SENS:MODE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
+    field(ZNAM, "On")
+    field(ONAM, "Off")
 }
 
-alias("$(P)RSENS:MODE", "$(P)RSENS:MODE:SP:RBV")
-alias("$(P)RSENS:MODE:SP", "$(P)SIM:RSENS:MODE")
-alias("$(P)RSENS:MODE", "$(P)SIM:RSENS:MODE:SP:RBV")
-alias("$(P)RSENS:MODE:SP", "$(P)SIM:RSENS:MODE")
+alias("$(P)SENS:MODE", "$(P)SENS:MODE:SP:RBV")
+alias("$(P)SIM:SENS:MODE", "$(P)SIM:SENS:MODE:SP")
+alias("$(P)SIM:SENS:MODE", "$(P)SIM:SENS:MODE:SP:RBV")
 
 ##############################
 #### Auto resistance mode ####
 ##############################
 
-record(bo, "$(P)RSENS:RANGE:AUTO:SP") {
-    field(DESC, "Set Ohms mode auto/manual")
-    field(DTYP, "stream")
-    field(OUT, "@Keithley2400.proto setRSENSAUTO $(PORT)")
-    field(ZNAM, "AUTO")
-    field(ONAM, "MANUAL")
-	field(VAL, "AUTO")
-	field(PINI, "YES")
-    field(SDIS, "$(P)DISABLE")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RSENS:RANGE:AUTO:SP")
-    info(archive, "VAL")
-    info(INTEREST, "HIGH")
-}
-
-record(bo, "$(P)RSENS:RANGE:AUTO") {
-    field(DESC, "Ohms mode auto/manual")
+record(bi, "$(P)RES:RANGE:AUTO") {
+    field(DESC, "Resistance range mode Manual/Auto")
     field(DTYP, "stream")
 	field(SCAN, ".5 second")
-    field(OUT, "@Keithley2400.proto getRSENSAUTO $(PORT)")
-    field(ZNAM, "AUTO")
-    field(ONAM, "MANUAL")
+    field(INP, "@Keithley2400.proto get_RES_RANGE_MODE $(PORT)")
+    field(ZNAM, "Manual")
+    field(ONAM, "Auto")
     field(SDIS, "$(P)DISABLE")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
-record(bo, "$(P)SIM:RSENS:RANGE:AUTO:SP")
+record(bo, "$(P)RES:RANGE:AUTO:SP") {
+    field(DESC, "Set resistance range mode Manual/Auto")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto set_RES_RANGE_MODE $(PORT)")
+    field(ZNAM, "Manual")
+    field(ONAM, "Auto")
+	field(VAL, "1")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RES:RANGE:AUTO:SP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)SIM:RES:RANGE:AUTO")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
+    field(ZNAM, "Manual")
+    field(ONAM, "Auto")
 }
 
-alias("$(P)SIM:RSENS:RANGE:AUTO", "$(P)RSENS:RANGE:AUTO:SP:RBV")
-alias("$(P)RSENS:RANGE:AUTO:SP", "$(P)SIM:RSENS:RANGE:AUTO")
-alias("$(P)SIM:RSENS:RANGE:AUTO", "$(P)SIM:RSENS:RANGE:AUTO:SP:RBV")
-alias("$(P)RSENS:RANGE:AUTO:SP", "$(P)SIM:SIM:RSENS:RANGE:AUTO")
+alias("$(P)RES:RANGE:AUTO", "$(P)RES:RANGE:AUTO:SP:RBV")
+alias("$(P)SIM:RES:RANGE:AUTO", "$(P)SIM:RES:RANGE:AUTO:SP")
+alias("$(P)SIM:RES:RANGE:AUTO", "$(P)SIM:RES:RANGE:AUTO:SP:RBV")
 
-record(mbbo, "$(P)RES:RANGE:SP") {
-    field(DESC, "Set resistance measurement range")
-	field(VAL, "8")
-    field(DTYP, "stream")
-	field(PINI, "YES")
-    field(ZRVL, "2")
-    field(ONVL, "20")
-    field(TWVL, "200")
-    field(THVL, "2000")
-    field(FRVL, "20000")
-    field(FVVL, "200000")
-    field(SXVL, "2000000")
-    field(SVVL, "20000000")
-    field(EIVL, "200000000")
-    field(ZRST, "2 Ohms")
-    field(ONST, "20 Ohms")
-    field(TWST, "200 Ohms")
-    field(THST, "2 K-Ohms")
-    field(FRST, "20 K-Ohms")
-    field(FVST, "200 K-Ohms")
-    field(SXST, "2 M-Ohms")
-    field(SVST, "20 M-Ohms")
-    field(EIST, "200 M-Ohms")
-    field(SDIS, "$(P)DISABLE")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RES:RANGE:SP")
-    field(OUT, "@Keithley2400.proto set_RES_RANGE $(PORT)")
-    info(archive, "VAL")
-    info(INTEREST, "HIGH")
-}
+##############################
 
 record(mbbi, "$(P)RES:RANGE") {
     field(DESC, "Resistance measurement range")
@@ -416,14 +385,182 @@ record(mbbi, "$(P)RES:RANGE") {
     info(INTEREST, "HIGH")
 }
 
-record(ao, "$(P)RES:RANGE2") {
-    field(DESC, "Resistance measurement range")
+record(mbbo, "$(P)RES:RANGE:SP") {
+    field(DESC, "Set resistance measurement range")
     field(DTYP, "stream")
-	field(SCAN, ".5 second")
-    field(OUT, "@Keithley2400.proto get_RES_RANGE $(PORT)")
+    field(OUT, "@Keithley2400.proto set_RES_RANGE $(PORT)")
+    field(ZRVL, "2")
+    field(ONVL, "20")
+    field(TWVL, "200")
+    field(THVL, "2000")
+    field(FRVL, "20000")
+    field(FVVL, "200000")
+    field(SXVL, "2000000")
+    field(SVVL, "20000000")
+    field(EIVL, "200000000")
+    field(ZRST, "2 Ohms")
+    field(ONST, "20 Ohms")
+    field(TWST, "200 Ohms")
+    field(THST, "2 K-Ohms")
+    field(FRST, "20 K-Ohms")
+    field(FVST, "200 K-Ohms")
+    field(SXST, "2 M-Ohms")
+    field(SVST, "20 M-Ohms")
+    field(EIST, "200 M-Ohms")
+	field(VAL, "8")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RES:RANGE:SP")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
+record(mbbi, "$(P)SIM:RES:RANGE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZRVL, "2")
+    field(ONVL, "20")
+    field(TWVL, "200")
+    field(THVL, "2000")
+    field(FRVL, "20000")
+    field(FVVL, "200000")
+    field(SXVL, "2000000")
+    field(SVVL, "20000000")
+    field(EIVL, "200000000")
+    field(ZRST, "2 Ohms")
+    field(ONST, "20 Ohms")
+    field(TWST, "200 Ohms")
+    field(THST, "2 K-Ohms")
+    field(FRST, "20 K-Ohms")
+    field(FVST, "200 K-Ohms")
+    field(SXST, "2 M-Ohms")
+    field(SVST, "20 M-Ohms")
+    field(EIST, "200 M-Ohms")
+}
+
 alias("$(P)RES:RANGE", "$(P)RES:RANGE:SP:RBV")
+alias("$(P)SIM:RES:RANGE", "$(P)SIM:RES:RANGE:SP")
 alias("$(P)SIM:RES:RANGE", "$(P)SIM:RES:RANGE:SP:RBV")
+
+################################
+#### Manual resistance mode ####
+################################
+
+record(bi, "$(P)SOURCE:MODE") {
+    field(DESC, "Manual resisance mode Current/Voltage")
+    field(DTYP, "stream")
+	field(SCAN, ".5 second")
+    field(INP, "@Keithley2400.proto get_SOURCE_MODE $(PORT)")
+    field(ZNAM, "Current")
+    field(ONAM, "Voltage")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SOURCE:MODE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)SOURCE:MODE:SP") {
+    field(DESC, "Set manual res. mode Current/Voltage")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto set_SOURCE_MODE $(PORT)")
+    field(ZNAM, "Current")
+    field(ONAM, "Voltage")
+	field(VAL, "1")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SOURCE:MODE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)SIM:SOURCE:MODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Current")
+    field(ONAM, "Voltage")
+}
+
+alias("$(P)SOURCE:MODE", "$(P)SOURCE:MODE:SP:RBV")
+alias("$(P)SIM:SOURCE:MODE", "$(P)SIM:SOURCE:MODE:SP")
+alias("$(P)SIM:SOURCE:MODE", "$(P)SIM:SOURCE:MODE:SP:RBV")
+
+################################
+
+record(ai, "$(P)I:COMPLIANCE")
+{
+    field(DESC, "Current compliance")
+    field(DTYP, "stream")
+	field(SCAN, ".5 second")
+    field(EGU, "A")
+	field(PREC, "2")
+    field(INP, "@Keithley2400.proto get_I_COMPLIANCE $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:I:COMPLIANCE")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ao, "$(P)I:COMPLIANCE:SP")
+{
+    field(DESC, "Set current compliance")
+    field(DTYP, "stream")
+    field(EGU, "A")
+	field(PREC, "2")
+    field(OUT, "@Keithley2400.proto set_I_COMPLIANCE $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:I:COMPLIANCE:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)SIM:I:COMPLIANCE")
+{
+}
+
+alias("$(P)I:COMPLIANCE", "$(P)I:COMPLIANCE:SP:RBV")
+alias("$(P)SIM:I:COMPLIANCE", "$(P)SIM:I:COMPLIANCE:SP")
+alias("$(P)SIM:I:COMPLIANCE", "$(P)SIM:I:COMPLIANCE:SP:RBV")
+
+################################
+
+record(ai, "$(P)V:COMPLIANCE")
+{
+    field(DESC, "Voltage compliance")
+    field(DTYP, "stream")
+	field(SCAN, ".5 second")
+    field(EGU, "V")
+	field(PREC, "2")
+    field(INP, "@Keithley2400.proto get_V_COMPLIANCE $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:V:COMPLIANCE")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ao, "$(P)V:COMPLIANCE:SP")
+{
+    field(DESC, "Set voltage compliance")
+    field(DTYP, "stream")
+    field(EGU, "V")
+	field(PREC, "2")
+    field(OUT, "@Keithley2400.proto set_V_COMPLIANCE $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:V:COMPLIANCE:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)SIM:V:COMPLIANCE")
+{
+}
+
+alias("$(P)V:COMPLIANCE", "$(P)V:COMPLIANCE:SP:RBV")
+alias("$(P)SIM:V:COMPLIANCE", "$(P)SIM:V:COMPLIANCE:SP")
+alias("$(P)SIM:V:COMPLIANCE", "$(P)SIM:V:COMPLIANCE:SP:RBV")
