@@ -17,6 +17,7 @@ calc("MTRCTRL", "$(MTRCTRL=11)", 2, 2)
 epicsEnvSet("ASERIAL", "serial$(MTRCTRL)")
 
 $(IFSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
+$(IFSIM) motorSimCreateController("motorSim", $(NAXES))
 $(IFSIM) epicsEnvSet("SIMSFX","Sim")
  
 $(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT=NUL)", 0, 0, 0)

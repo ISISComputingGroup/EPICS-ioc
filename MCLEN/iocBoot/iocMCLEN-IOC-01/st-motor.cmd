@@ -2,9 +2,6 @@ epicsEnvSet("AMOTOR", "motor$(MN)")
 epicsEnvSet("AMOTORNAME", "MTR$(MTRCTRL)0$(MN)")
 epicsEnvSet("AMOTORPV", "MOT:$(AMOTORNAME)")
 
-$(IFSIM) motorSimCreateController("$(AMOTOR)", 1)
-$(IFSIM) motorSimConfigAxis("$(AMOTOR)", 0, 20000, -20000,  500, 0)
-
 ## Check if open loop mode has been requested
 $(IFNOTSIM) stringtest("IFCMOPEN","$(MODE$(MN)=)",4,"OPEN")
 $(IFNOTSIM) $(IFCMOPEN) epicsEnvSet("MODE",CM11)
@@ -13,9 +10,6 @@ $(IFNOTSIM) $(IFCMOPEN) epicsEnvSet("MODE",CM11)
 $(IFNOTSIM) asynOctetConnect("MKINIT","$(ASERIAL)")
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(MN)$(MODE=CM14)")
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(MN)ER$(ERES$(MN)=400/4096)")
-
-# If you want debug output
-# asynSetTraceIOMask("$(ASERIAL)", 0, 2)
 
 ## Load record instances
 
@@ -31,6 +25,8 @@ epicsEnvSet("DLLMI",$(DLLM$(MN)=-200))
 
 # The signal number is the axis-1
 calc("SN", "$(MN)-1", 2, 2)
+
+$(IFSIM) motorSimConfigAxis("motorSim", $(SN), $(DHLMI), $(DLLMI),  $(DLLMI), 0)
 
 # Load asyn record 
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(AMOTORPV):ASYN,PORT=$(ASERIAL),ADDR=0,OMAX=256,IMAX=256")
