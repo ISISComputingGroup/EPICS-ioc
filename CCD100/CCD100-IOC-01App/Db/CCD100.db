@@ -1,0 +1,8 @@
+record(ai, "$(P)CHAN_A:TRIG_LVL")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devCCD100.proto getSP(A) $(PORT)")
+    field(PREC, "3")
+    field(EGU,  "V")
+}
