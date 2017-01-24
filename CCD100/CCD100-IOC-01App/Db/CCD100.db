@@ -1,3 +1,22 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
 record(ai, "$(P)READING")
 {
     field(DESC, "The reading of the input channel")
@@ -8,6 +27,9 @@ record(ai, "$(P)READING")
 	field(EGU, "") #Set from device
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:READING")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)SP")
@@ -18,6 +40,9 @@ record(ao, "$(P)SP")
 	field(PREC, "3")
 	field(EGU, "") #Set from device
 	info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)SP:RBV")
@@ -29,6 +54,9 @@ record(ai, "$(P)SP:RBV")
 	field(PREC, "3")
 	field(EGU, "") #Set from device
 	info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(stringin, "$(P)UNITS") 
@@ -39,6 +67,9 @@ record(stringin, "$(P)UNITS")
     field(INP,  "@devCCD100.proto getUnits $(PORT)")
 	info(archive, "VAL")
 	info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UNITS")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(stringout, "$(P)UNITS:SP") 
@@ -47,4 +78,31 @@ record(stringout, "$(P)UNITS:SP")
     field(DESC, "Units of reading and SP")
     field(OUT,  "@devCCD100.proto setUnits $(PORT)")
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UNITS:SP")
+    field(SDIS, "$(P)DISABLE")
 }
+### SIMULATION RECORDS ###
+
+record(ao, "$(P)SIM:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:READING")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:SP","$(P)SIM:SP:RBV")
+
+record(stringin, "$(P)SIM:UNITS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:UNITS","$(P)SIM:UNITS:SP")
+
