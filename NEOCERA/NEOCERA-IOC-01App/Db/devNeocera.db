@@ -1,0 +1,16 @@
+record(ai, "$(P)CHAN_A:TRIG_LVL")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devHameg_8123.proto getTriggerLevel(A) $(PORT)")
+    field(PREC, "3")
+    field(EGU,  "V")
+}
+
+record(ao, "$(P)CHAN_A:TRIG_LVL:SP")
+{
+    field(DTYP, "stream")
+    field(OUT,  "@devHameg_8123.proto setTriggerLevel(A) $(PORT)")
+    field(PREC, "3")
+    field(EGU, "V")
+}
