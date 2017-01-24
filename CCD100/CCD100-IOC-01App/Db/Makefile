@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 DB += CCD100.db
+DB += unit_setter.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

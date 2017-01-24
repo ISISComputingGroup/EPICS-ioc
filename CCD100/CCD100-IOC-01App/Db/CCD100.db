@@ -1,8 +1,50 @@
-record(ai, "$(P)CHAN_A:TRIG_LVL")
+record(ai, "$(P)READING")
 {
+    field(DESC, "The reading of the input channel")
+    field(DTYP, "stream")
+    field(INP,  "@devCCD100.proto getCurrentRead $(PORT)")
+	field(SCAN, "1 second")
+	field(PREC, "3")
+	field(EGU, "") #Set from device
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+record(ao, "$(P)SP")
+{
+    field(DESC, "The setpoint for the input channel")
+    field(DTYP, "stream")
+    field(OUT,  "@devCCD100.proto setSP $(PORT)")
+	field(PREC, "3")
+	field(EGU, "") #Set from device
+	info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)SP:RBV")
+{
+    field(DESC, "The readback for the setpoint for the input channel")
+    field(DTYP, "stream")
+    field(INP,  "@devCCD100.proto getSP $(PORT)")
+	field(SCAN, "1 second")
+	field(PREC, "3")
+	field(EGU, "") #Set from device
+	info(INTEREST, "HIGH")
+}
+
+record(stringin, "$(P)UNITS") 
+{
+    field(DESC, "Units of reading and SP")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@devCCD100.proto getSP(A) $(PORT)")
-    field(PREC, "3")
-    field(EGU,  "V")
+    field(INP,  "@devCCD100.proto getUnits $(PORT)")
+	info(archive, "VAL")
+	info(INTEREST, "HIGH")
+}
+
+record(stringout, "$(P)UNITS:SP") 
+{
+    field(DTYP, "stream")
+    field(DESC, "Units of reading and SP")
+    field(OUT,  "@devCCD100.proto setUnits $(PORT)")
+	info(archive, "VAL")
 }

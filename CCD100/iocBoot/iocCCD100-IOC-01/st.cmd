@@ -21,7 +21,7 @@ CCD100_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 drvAsynSerialPortConfigure("L0", "$(TTY)", 0, 0, 0, 0)                        
-asynSetOption("L0", -1, "baud", "9600")                                   
+asynSetOption("L0", -1, "baud", "57600")                                   
 asynSetOption("L0", -1, "bits", "8")                                           
 asynSetOption("L0", -1, "parity", "none")                                      
 asynSetOption("L0", -1, "stop", "1")                                            
@@ -35,6 +35,7 @@ asynOctetSetOutputEos("L0", -1, "\r\n")
 
 ## Load our record instances
 dbLoadRecords("db/CCD100.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0")
+dbLoadRecords("db/unit_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
