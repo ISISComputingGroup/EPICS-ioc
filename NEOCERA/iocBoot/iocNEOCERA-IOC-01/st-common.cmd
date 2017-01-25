@@ -3,11 +3,14 @@ epicsEnvSet "STREAM_PROTOCOL_PATH" "$(NEOCERA)/data"
 
 < $(IOCSTARTUP)/init.cmd
 
-$(IFRECSIM) $(IFDEVSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
-$(IFRECSIM) $(IFDEVSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
-$(IFRECSIM) $(IFDEVSIM) asynSetOption("L0", -1, "bits", "8")
-$(IFRECSIM) $(IFDEVSIM) asynSetOption("L0", -1, "parity", "none")
-$(IFRECSIM) $(IFDEVSIM) asynSetOption("L0", -1, "stop", "1")
+$(IFNOTRECSIM) $(IFNOTDEVSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
+$(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
+$(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "bits", "8")
+$(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "parity", "none")
+$(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "stop", "1")
+
+#asynSetTraceMask("L0",-1,0x9) 
+#asynSetTraceIOMask("L0",-1,0x2)
 
 < $(IOCSTARTUP)/dbload.cmd
 
@@ -16,7 +19,7 @@ $(IFRECSIM) $(IFDEVSIM) asynSetOption("L0", -1, "stop", "1")
 ##
 ##
 ##
-dbLoadRecords("$(TOP)/db/devNeocera.db","P=$(MYPVPREFIX)$(IOCNAME):,DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0)")
+dbLoadRecords("$(TOP)/db/devNeocera.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0)")
 
 < $(IOCSTARTUP)/preiocinit.cmd
 

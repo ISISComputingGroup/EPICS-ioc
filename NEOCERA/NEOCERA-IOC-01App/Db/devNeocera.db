@@ -1,16 +1,17 @@
-record(ai, "$(P)CHAN_A:TRIG_LVL")
+record(mbbi, "$(P)MODE")
 {
+	field(DESC, "Mode")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@devHameg_8123.proto getTriggerLevel(A) $(PORT)")
-    field(PREC, "3")
-    field(EGU,  "V")
+    field(INP,  "@devneocera.proto getMode() $(PORT)")
+	
+	field(ZRVL, 0)
+	field(ZRST, "Monitor")
+	field(ONVL, 1)
+	field(ONST, "Control")
+	field(TWVL, 2)
+	field(TWST, "Auto Tune")
+	field(THVL, 3)
+	field(THST, "Off")    
 }
 
-record(ao, "$(P)CHAN_A:TRIG_LVL:SP")
-{
-    field(DTYP, "stream")
-    field(OUT,  "@devHameg_8123.proto setTriggerLevel(A) $(PORT)")
-    field(PREC, "3")
-    field(EGU, "V")
-}
