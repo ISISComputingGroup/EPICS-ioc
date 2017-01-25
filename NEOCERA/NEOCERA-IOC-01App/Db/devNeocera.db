@@ -15,3 +15,14 @@ record(mbbi, "$(P)MODE")
 	field(THST, "Off")    
 }
 
+record(mbbo, "$(P)MODE:SP")
+{
+	field(DESC, "Set mode")
+    field(DTYP, "stream")
+    field(OUT,  "@devneocera.proto setMode() $(PORT)")
+	
+	field(ZRVL, 0)
+	field(ZRST, "Monitor")
+	field(ONVL, 1)
+	field(ONST, "Control")
+}
