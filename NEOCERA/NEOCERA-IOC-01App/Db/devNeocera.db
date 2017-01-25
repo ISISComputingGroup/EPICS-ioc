@@ -12,7 +12,10 @@ record(mbbi, "$(P)MODE")
 	field(TWVL, 2)
 	field(TWST, "Auto Tune")
 	field(THVL, 3)
-	field(THST, "Off")    
+	field(THST, "Off")
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 
 record(mbbo, "$(P)MODE:SP")
@@ -25,4 +28,6 @@ record(mbbo, "$(P)MODE:SP")
 	field(ZRST, "Monitor")
 	field(ONVL, 1)
 	field(ONST, "Control")
+	
+	info(archive, "VAL")
 }
