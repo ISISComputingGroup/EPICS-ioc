@@ -31,3 +31,5 @@ record(mbbo, "$(P)MODE:SP")
 	
 	info(archive, "VAL")
 }
+
+alias("$(P)MODE:SP", "$(P)MODE:SP:RBV")
