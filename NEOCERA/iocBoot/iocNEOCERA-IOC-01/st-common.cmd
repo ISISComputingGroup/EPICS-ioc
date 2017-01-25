@@ -21,6 +21,8 @@ $(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "stop", "1")
 ##
 dbLoadRecords("$(TOP)/db/devNeocera.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0)")
 
+dbLoadRecords("$(TOP)/db/unit_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
+
 < $(IOCSTARTUP)/preiocinit.cmd
 
 cd ${TOP}/iocBoot/${IOC}

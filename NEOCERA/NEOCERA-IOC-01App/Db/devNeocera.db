@@ -33,3 +33,19 @@ record(mbbo, "$(P)MODE:SP")
 }
 
 alias("$(P)MODE:SP", "$(P)MODE:SP:RBV")
+
+record(ai, "$(P)1:TEMP")
+{
+	field(DESC, "Temperature 1")
+	field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devneocera.proto getTemp1($(P)1:TEMP:UNITS) $(PORT)")
+	
+	info(archive, "VAL")
+}
+
+record(stringin, "$(P)1:TEMP:UNITS")
+{
+	field(DESC, "Temperature 1 units")
+	field(SCAN, "Passive")
+}
