@@ -34,18 +34,89 @@ record(mbbo, "$(P)MODE:SP")
 
 alias("$(P)MODE:SP", "$(P)MODE:SP:RBV")
 
-record(ai, "$(P)1:TEMP")
+# Temperature reading for sensor 1
+
+record(ai, "$(P)1:SENSOR")
 {
-	field(DESC, "Temperature 1")
+	field(DESC, "Temperature of sensor 1")
 	field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@devneocera.proto getTemp1($(P)1:TEMP:UNITS) $(PORT)")
+    field(INP,  "@devneocera.proto getTemp(1,$(P)1:SENSOR:UNITS) $(PORT)")
 	
 	info(archive, "VAL")
 }
-
-record(stringin, "$(P)1:TEMP:UNITS")
+record(stringin, "$(P)1:SENSOR:UNITS")
 {
-	field(DESC, "Temperature 1 units")
+	field(DESC, "Temperature sensor 2 units")
 	field(SCAN, "Passive")
 }
+
+# Temperature reading for sensor 2
+record(ai, "$(P)2:SENSOR")
+{
+	field(DESC, "Temperature of sensor 2")
+	field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devneocera.proto getTemp(2,$(P)2:SENSOR:UNITS) $(PORT)")
+	
+	info(archive, "VAL")
+}
+record(stringin, "$(P)2:SENSOR:UNITS")
+{
+	field(DESC, "Temperature sensor 2 units")
+	field(SCAN, "Passive")
+}
+
+# Temperature Setpoint 1
+
+record(ao, "$(P)1:TEMP:SP")
+{
+	field(DESC, "Temperature 1 setpoint")
+	field(DTYP, "stream")
+	field(OUT,  "@devneocera.proto setTemp(1) $(PORT)")
+}
+
+record(ai, "$(P)1:TEMP:SP:RBV")
+{
+	field(DESC, "Temp 1 setpoint readback")
+	field(DTYP, "stream")
+	field(SCAN, "1 second")
+	field(INP,  "@devneocera.proto getSpRbv(1,$(P)1:TEMP:SP:UNITS) $(PORT)")
+}
+
+record(stringin, "$(P)1:TEMP:SP:UNITS")
+{
+	field(DESC, "Temp 1 setpoint readback units")
+	field(SCAN, "Passive")
+}
+
+
+# Temperature Setpoint 2
+
+record(ao, "$(P)2:TEMP:SP")
+{
+	field(DESC, "Temperature 2 setpoint")
+	field(DTYP, "stream")
+	field(OUT,  "@devneocera.proto setTemp(2) $(PORT)")
+}
+
+record(ai, "$(P)2:TEMP:SP:RBV")
+{
+	field(DESC, "Temp 2 setpoint readback")
+	field(DTYP, "stream")
+	field(SCAN, "1 second")
+	field(INP,  "@devneocera.proto getSpRbv(2,$(P)2:TEMP:SP:UNITS) $(PORT)")
+}
+
+
+record(stringin, "$(P)2:TEMP:SP:UNITS")
+{
+	field(DESC, "Temp 2 setpoint readback units")
+	field(SCAN, "Passive")
+}
+
+
+
+
+
+

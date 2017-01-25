@@ -7,5 +7,8 @@ file $(UTILITIES)/db/unit_setter.template {
     {P,    FROM, TO}
     
     {"\$(P)", "1:TEMP:UNITS", "1:TEMP"}
+	{"\$(P)", "2:TEMP:UNITS", "2:TEMP"}
+	{"\$(P)", "1:TEMP:SP:UNITS", "1:TEMP:SP:RBV"}
+	{"\$(P)", "2:TEMP:SP:UNITS", "2:TEMP:SP:RBV"}
 }
 
