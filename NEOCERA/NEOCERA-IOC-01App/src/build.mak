@@ -40,11 +40,9 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
+$(APPNAME)_LIBS += stream cvtRecord csmbase std calc sscan asyn 
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
-$(APPNAME)_LIBS += stream
-$(APPNAME)_LIBS += pcre
-$(APPNAME)_LIBS += asyn
 #$(APPNAME)_LIBS += xxx
 
 # NEOCERA-IOC-01_registerRecordDeviceDriver.cpp derives from NEOCERA-IOC-01.dbd
