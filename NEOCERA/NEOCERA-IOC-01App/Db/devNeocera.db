@@ -1,7 +1,40 @@
+
+record(seq, "$(P)READ") {
+	field(DESC, "Initiator for all items needing read")
+	field(SCAN, "1 second")
+	
+	field(DO1, "1")
+	field(DO2, "1")
+	field(DO3, "1")
+	field(DO4, "1")
+	field(DO5, "1")
+	field(DO6, "1")
+	field(DO7, "1")
+	field(DO8, "1")
+	field(DO9, "1")
+	field(DOA, "1")
+
+	field(LNK1, "$(P)MODE.PROC")
+	field(LNK2, "$(P)1:SENSOR.PROC")
+	field(LNK3, "$(P)2:SENSOR.PROC")
+	field(LNK4, "$(P)1:TEMP:SP:RBV.PROC")
+	field(LNK5, "$(P)2:TEMP:SP:RBV.PROC")
+	field(LNK6, "$(P)1:TEMP:SENSOR_NO.PROC")
+	field(LNK7, "$(P)2:TEMP:SENSOR_NO.PROC")
+#	field(LNK8, "$(P)READ_SLOW4.PROC")
+#	field(LNK9, "$(P)READ_FAST.PROC")
+#	field(LNKA, "$(P)READ_SLOW5.PROC")
+	
+	field(SELM, "All")
+
+}
+
+
+
 record(mbbi, "$(P)MODE")
 {
 	field(DESC, "Mode")
-    field(SCAN, "1 second")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP,  "@devneocera.proto getMode() $(PORT)")
 	
@@ -39,10 +72,10 @@ alias("$(P)MODE:SP", "$(P)MODE:SP:RBV")
 record(ai, "$(P)1:SENSOR")
 {
 	field(DESC, "Temperature of sensor 1")
-	field(SCAN, "1 second")
+	field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP,  "@devneocera.proto getTemp(1,$(P)1:SENSOR:UNITS) $(PORT)")
-	
+
 	info(archive, "VAL")
 }
 record(stringin, "$(P)1:SENSOR:UNITS")
@@ -55,7 +88,7 @@ record(stringin, "$(P)1:SENSOR:UNITS")
 record(ai, "$(P)2:SENSOR")
 {
 	field(DESC, "Temperature of sensor 2")
-	field(SCAN, "1 second")
+	field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP,  "@devneocera.proto getTemp(2,$(P)2:SENSOR:UNITS) $(PORT)")
 	
@@ -80,7 +113,7 @@ record(ai, "$(P)1:TEMP:SP:RBV")
 {
 	field(DESC, "Temp 1 setpoint readback")
 	field(DTYP, "stream")
-	field(SCAN, "1 second")
+	field(SCAN, "Passive")
 	field(INP,  "@devneocera.proto getSpRbv(1,$(P)1:TEMP:SP:UNITS) $(PORT)")
 }
 
@@ -104,7 +137,7 @@ record(ai, "$(P)2:TEMP:SP:RBV")
 {
 	field(DESC, "Temp 2 setpoint readback")
 	field(DTYP, "stream")
-	field(SCAN, "1 second")
+	field(SCAN, "Passive")
 	field(INP,  "@devneocera.proto getSpRbv(2,$(P)2:TEMP:SP:UNITS) $(PORT)")
 }
 
@@ -121,7 +154,7 @@ record(mbbi, "$(P)1:TEMP:SENSOR_NO")
 {
 	field(DESC, "Temperature 1 sensor")
 	field(DTYP, "stream")
-	field(SCAN, "1 second")
+	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(INP,  "@devneocera.proto getCon1($(P)1:TEMP:,CTL,HEAT) $(PORT)")
 
@@ -163,7 +196,7 @@ record(mbbi, "$(P)2:TEMP:SENSOR_NO")
 {
 	field(DESC, "Temperature 2 sensor")
 	field(DTYP, "stream")
-	field(SCAN, "1 second")
+	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(INP,  "@devneocera.proto getCon2($(P)2:TEMP:CTL) $(PORT)")
 
