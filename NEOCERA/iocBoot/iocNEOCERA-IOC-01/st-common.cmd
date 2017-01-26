@@ -9,6 +9,8 @@ $(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "bits", "8")
 $(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "parity", "none")
 $(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "stop", "1")
 
+$(IFDEVSIM)  drvAsynIPPortConfigure("L0", "localhost:57677")
+
 #asynSetTraceMask("L0",-1,0x9) 
 #asynSetTraceIOMask("L0",-1,0x2)
 

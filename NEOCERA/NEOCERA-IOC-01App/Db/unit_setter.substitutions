@@ -6,8 +6,8 @@ file $(UTILITIES)/db/unit_setter.template {
   pattern 
     {P,    FROM, TO}
     
-    {"\$(P)", "1:TEMP:UNITS", "1:TEMP"}
-	{"\$(P)", "2:TEMP:UNITS", "2:TEMP"}
+    {"\$(P)", "1:SENSOR:UNITS", "1:SENSOR"}
+	{"\$(P)", "2:SENSOR:UNITS", "2:SENSOR"}
 	{"\$(P)", "1:TEMP:SP:UNITS", "1:TEMP:SP:RBV"}
 	{"\$(P)", "2:TEMP:SP:UNITS", "2:TEMP:SP:RBV"}
 }

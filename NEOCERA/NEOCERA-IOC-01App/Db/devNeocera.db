@@ -1,4 +1,8 @@
 
+############
+# General records
+# 
+
 record(seq, "$(P)READ") {
 	field(DESC, "Initiator for all items needing read")
 	field(SCAN, "1 second")
@@ -29,7 +33,9 @@ record(seq, "$(P)READ") {
 
 }
 
-
+############
+# Units Mode
+# 
 
 record(mbbi, "$(P)MODE")
 {
@@ -67,7 +73,9 @@ record(mbbo, "$(P)MODE:SP")
 
 alias("$(P)MODE:SP", "$(P)MODE:SP:RBV")
 
-# Temperature reading for sensor 1
+############
+# Temperature Sensor 1
+# 
 
 record(ai, "$(P)1:SENSOR")
 {
@@ -84,7 +92,10 @@ record(stringin, "$(P)1:SENSOR:UNITS")
 	field(SCAN, "Passive")
 }
 
-# Temperature reading for sensor 2
+############
+# Temperature Sensor 2
+# 
+
 record(ai, "$(P)2:SENSOR")
 {
 	field(DESC, "Temperature of sensor 2")
@@ -100,18 +111,48 @@ record(stringin, "$(P)2:SENSOR:UNITS")
 	field(SCAN, "Passive")
 }
 
-# Temperature Setpoint 1
+######################
+# Temperature Output 1
+# 
+# The output 1 is the heater which can have a setpoint and is connected to a sensor (or not)
+
+record(calcout, "$(P)1:TEMP_CALC")
+{
+	field(DESC, "Temperature calc for output 1")
+	field(SCAN, "Passive")
+	field(INPA, "$(P)1:SENSOR CP MS")
+	field(INPB, "$(P)2:SENSOR CP MS")
+	field(INPC, "$(P)1:TEMP:SENSOR_NO CP MS")
+	field(CALC, "C==1?A:(C==2?B:0)")
+	field(OUT, "$(P)1:TEMP PP")
+}
+
+record(scalcout, "$(P)1:TEMP_UNITS_CALC")
+{
+	field(DESC, "Temperature units for output 1")
+	field(SCAN, "Passive")
+	field(INAA, "$(P)1:SENSOR.EGU CP MS")
+	field(INBB, "$(P)2:SENSOR.EGU CP MS")
+	field(INPC, "$(P)1:TEMP:SENSOR_NO CP MS")
+	field(CALC, "C==1?AA:(C==2?BB:0)")
+	field(OUT, "$(P)1:TEMP.EGU PP")
+}
+
+record(ai, "$(P)1:TEMP") {
+	field(DESC, "Temperature output 1")
+	field(EGU, "")  # EGU set by scalc	
+}
 
 record(ao, "$(P)1:TEMP:SP")
 {
-	field(DESC, "Temperature 1 setpoint")
+	field(DESC, "setpoint for output 1")
 	field(DTYP, "stream")
 	field(OUT,  "@devneocera.proto setTemp(1) $(PORT)")
 }
 
 record(ai, "$(P)1:TEMP:SP:RBV")
 {
-	field(DESC, "Temp 1 setpoint readback")
+	field(DESC, "setpoint readback for output 1")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
 	field(INP,  "@devneocera.proto getSpRbv(1,$(P)1:TEMP:SP:UNITS) $(PORT)")
@@ -119,23 +160,54 @@ record(ai, "$(P)1:TEMP:SP:RBV")
 
 record(stringin, "$(P)1:TEMP:SP:UNITS")
 {
-	field(DESC, "Temp 1 setpoint readback units")
+	field(DESC, "setpoint readback units for output 1")
 	field(SCAN, "Passive")
 }
 
 
-# Temperature Setpoint 2
+######################
+# Temperature Output 2
+# 
+# The output 2 is the analog which can have a setpoint and is connected to a sensor (or not)
 
+record(calcout, "$(P)2:TEMP_CALC")
+{
+	field(DESC, "Temperature calc for output 2")
+	field(SCAN, "Passive")
+	field(INPA, "$(P)1:SENSOR CP MS")
+	field(INPB, "$(P)2:SENSOR CP MS")
+	field(INPC, "$(P)2:TEMP:SENSOR_NO CP MS")
+	field(CALC, "C==1?A:(C==2?B:0)")
+	field(OUT, "$(P)2:TEMP PP")
+}
+
+record(scalcout, "$(P)2:TEMP_UNITS_CALC")
+{
+	field(DESC, "Temperature units for output 2")
+	field(SCAN, "Passive")
+	field(INAA, "$(P)1:SENSOR.EGU CP MS")
+	field(INBB, "$(P)2:SENSOR.EGU CP MS")
+	field(INPC, "$(P)2:TEMP:SENSOR_NO CP MS")
+	field(CALC, "C==1?AA:(C==2?BB:0)")
+	field(OUT, "$(P)2:TEMP.EGU PP")
+}
+
+record(ai, "$(P)2:TEMP") {
+	field(DESC, "Temperature for output 2")
+	field(EGU, "")  # EGU set by scalc	
+}
+
+# Output setpoints
 record(ao, "$(P)2:TEMP:SP")
 {
-	field(DESC, "Temperature 2 setpoint")
+	field(DESC, "setpoint for output 1")
 	field(DTYP, "stream")
 	field(OUT,  "@devneocera.proto setTemp(2) $(PORT)")
 }
 
 record(ai, "$(P)2:TEMP:SP:RBV")
 {
-	field(DESC, "Temp 2 setpoint readback")
+	field(DESC, "setpoint readback for output 1")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
 	field(INP,  "@devneocera.proto getSpRbv(2,$(P)2:TEMP:SP:UNITS) $(PORT)")
@@ -144,11 +216,13 @@ record(ai, "$(P)2:TEMP:SP:RBV")
 
 record(stringin, "$(P)2:TEMP:SP:UNITS")
 {
-	field(DESC, "Temp 2 setpoint readback units")
+	field(DESC, "setpoint readback units for output 1")
 	field(SCAN, "Passive")
 }
 
-# Get Output configuration for heater
+#####################################
+# Configuration for Output 1 (heater)
+# 
 
 record(mbbi, "$(P)1:TEMP:SENSOR_NO")
 {
@@ -189,8 +263,9 @@ record(mbbi, "$(P)1:TEMP:HEAT")
 	field(FRST, "50W")
 }
 
-
-# Get Output configuration for analog
+#####################################
+# Configuration for Output 2 (analog)
+# 
 
 record(mbbi, "$(P)2:TEMP:SENSOR_NO")
 {
