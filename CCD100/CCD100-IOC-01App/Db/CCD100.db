@@ -17,6 +17,13 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
+record(stringin, "$(P)NAME") 
+{
+	field(DESC, "The user friendly name of the device")
+	field(VAL, "$(DEV_NAME)")
+	info(INTEREST, "HIGH")
+}
+
 record(ai, "$(P)READING")
 {
     field(DESC, "The reading of the input channel")
