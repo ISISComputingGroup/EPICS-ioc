@@ -23,9 +23,9 @@ record(seq, "$(P)READ") {
 	field(LNK3, "$(P)2:SENSOR.PROC")
 	field(LNK4, "$(P)1:TEMP:SP:RBV.PROC")
 	field(LNK5, "$(P)2:TEMP:SP:RBV.PROC")
-	field(LNK6, "$(P)1:TEMP:SENSOR_NO.PROC")
-	field(LNK7, "$(P)2:TEMP:SENSOR_NO.PROC")
-#	field(LNK8, "$(P)READ_SLOW4.PROC")
+	field(LNK6, "$(P)1:TEMP:SENSOR.PROC")
+	field(LNK7, "$(P)2:TEMP:SENSOR.PROC")
+	field(LNK8, "$(P)1:HEAT.PROC")
 #	field(LNK9, "$(P)READ_FAST.PROC")
 #	field(LNKA, "$(P)READ_SLOW5.PROC")
 	
@@ -42,7 +42,7 @@ record(mbbi, "$(P)MODE")
 	field(DESC, "Mode")
     field(SCAN, "Passive")
     field(DTYP, "stream")
-    field(INP,  "@devneocera.proto getMode() $(PORT)")
+    field(INP,  "@main.proto getMode() $(PORT)")
 	
 	field(ZRVL, 0)
 	field(ZRST, "Monitor")
@@ -61,7 +61,7 @@ record(mbbo, "$(P)MODE:SP")
 {
 	field(DESC, "Set mode")
     field(DTYP, "stream")
-    field(OUT,  "@devneocera.proto setMode() $(PORT)")
+    field(OUT,  "@main.proto setMode() $(PORT)")
 	
 	field(ZRVL, 0)
 	field(ZRST, "Monitor")
@@ -82,7 +82,7 @@ record(ai, "$(P)1:SENSOR")
 	field(DESC, "Temperature of sensor 1")
 	field(SCAN, "Passive")
     field(DTYP, "stream")
-    field(INP,  "@devneocera.proto getTemp(1,$(P)1:SENSOR:UNITS) $(PORT)")
+    field(INP,  "@main.proto getTemp(1,$(P)1:SENSOR:UNITS) $(PORT)")
 
 	info(archive, "VAL")
 }
@@ -101,7 +101,7 @@ record(ai, "$(P)2:SENSOR")
 	field(DESC, "Temperature of sensor 2")
 	field(SCAN, "Passive")
     field(DTYP, "stream")
-    field(INP,  "@devneocera.proto getTemp(2,$(P)2:SENSOR:UNITS) $(PORT)")
+    field(INP,  "@main.proto getTemp(2,$(P)2:SENSOR:UNITS) $(PORT)")
 	
 	info(archive, "VAL")
 }
@@ -122,7 +122,7 @@ record(calcout, "$(P)1:TEMP_CALC")
 	field(SCAN, "Passive")
 	field(INPA, "$(P)1:SENSOR CP MS")
 	field(INPB, "$(P)2:SENSOR CP MS")
-	field(INPC, "$(P)1:TEMP:SENSOR_NO CP MS")
+	field(INPC, "$(P)1:TEMP:SENSOR CP MS")
 	field(CALC, "C==1?A:(C==2?B:0)")
 	field(OUT, "$(P)1:TEMP PP")
 }
@@ -133,7 +133,7 @@ record(scalcout, "$(P)1:TEMP_UNITS_CALC")
 	field(SCAN, "Passive")
 	field(INAA, "$(P)1:SENSOR.EGU CP MS")
 	field(INBB, "$(P)2:SENSOR.EGU CP MS")
-	field(INPC, "$(P)1:TEMP:SENSOR_NO CP MS")
+	field(INPC, "$(P)1:TEMP:SENSOR CP MS")
 	field(CALC, "C==1?AA:(C==2?BB:0)")
 	field(OUT, "$(P)1:TEMP.EGU PP")
 }
@@ -147,7 +147,7 @@ record(ao, "$(P)1:TEMP:SP")
 {
 	field(DESC, "setpoint for output 1")
 	field(DTYP, "stream")
-	field(OUT,  "@devneocera.proto setTemp(1) $(PORT)")
+	field(OUT,  "@main.proto setTemp(1) $(PORT)")
 }
 
 record(ai, "$(P)1:TEMP:SP:RBV")
@@ -155,7 +155,7 @@ record(ai, "$(P)1:TEMP:SP:RBV")
 	field(DESC, "setpoint readback for output 1")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
-	field(INP,  "@devneocera.proto getSpRbv(1,$(P)1:TEMP:SP:UNITS) $(PORT)")
+	field(INP,  "@main.proto getSpRbv(1,$(P)1:TEMP:SP:UNITS) $(PORT)")
 }
 
 record(stringin, "$(P)1:TEMP:SP:UNITS")
@@ -176,7 +176,7 @@ record(calcout, "$(P)2:TEMP_CALC")
 	field(SCAN, "Passive")
 	field(INPA, "$(P)1:SENSOR CP MS")
 	field(INPB, "$(P)2:SENSOR CP MS")
-	field(INPC, "$(P)2:TEMP:SENSOR_NO CP MS")
+	field(INPC, "$(P)2:TEMP:SENSOR CP MS")
 	field(CALC, "C==1?A:(C==2?B:0)")
 	field(OUT, "$(P)2:TEMP PP")
 }
@@ -187,7 +187,7 @@ record(scalcout, "$(P)2:TEMP_UNITS_CALC")
 	field(SCAN, "Passive")
 	field(INAA, "$(P)1:SENSOR.EGU CP MS")
 	field(INBB, "$(P)2:SENSOR.EGU CP MS")
-	field(INPC, "$(P)2:TEMP:SENSOR_NO CP MS")
+	field(INPC, "$(P)2:TEMP:SENSOR CP MS")
 	field(CALC, "C==1?AA:(C==2?BB:0)")
 	field(OUT, "$(P)2:TEMP.EGU PP")
 }
@@ -202,7 +202,7 @@ record(ao, "$(P)2:TEMP:SP")
 {
 	field(DESC, "setpoint for output 1")
 	field(DTYP, "stream")
-	field(OUT,  "@devneocera.proto setTemp(2) $(PORT)")
+	field(OUT,  "@main.proto setTemp(2) $(PORT)")
 }
 
 record(ai, "$(P)2:TEMP:SP:RBV")
@@ -210,7 +210,7 @@ record(ai, "$(P)2:TEMP:SP:RBV")
 	field(DESC, "setpoint readback for output 1")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
-	field(INP,  "@devneocera.proto getSpRbv(2,$(P)2:TEMP:SP:UNITS) $(PORT)")
+	field(INP,  "@main.proto getSpRbv(2,$(P)2:TEMP:SP:UNITS) $(PORT)")
 }
 
 
@@ -224,13 +224,13 @@ record(stringin, "$(P)2:TEMP:SP:UNITS")
 # Configuration for Output 1 (heater)
 # 
 
-record(mbbi, "$(P)1:TEMP:SENSOR_NO")
+record(mbbi, "$(P)1:TEMP:SENSOR")
 {
 	field(DESC, "Temperature 1 sensor")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
 	field(PINI, "YES")
-	field(INP,  "@devneocera.proto getCon1($(P)1:TEMP:,CTL,HEAT) $(PORT)")
+	field(INP,  "@main.proto getCon1($(P)1:,TEMP:CTL,HEAT:MAX) $(PORT)")
 
 	field(ZRST, "Unknown")
 	field(ONST, "Sensor 1")
@@ -252,9 +252,24 @@ record(mbbi, "$(P)1:TEMP:CTL")
 	field(SXST, "MONITOR")
 }
 
-record(mbbi, "$(P)1:TEMP:HEAT")
+record(mbbo, "$(P)1:TEMP:CTL:SP")
 {
-	field(DESC, "Temperature 1 control")
+	field(DESC, "Temperature 1 control setting")
+	field(DTYP, "stream")
+	field(OUT,  "@main.proto setCtl1() $(PORT)")
+
+	field(ZRST, "AUTO P")
+	field(ONST, "AUTO PI")
+	field(TWST, "AUTO PID")
+	field(THST, "PID")
+	field(FRST, "TABLE")
+	field(FVST, "DEFAULT")
+}
+alias("$(P)1:TEMP:CTL", "$(P)1:TEMP:CTL:SP:RBV")
+
+record(mbbi, "$(P)1:HEAT:MAX")
+{
+	field(DESC, "Temperature 1 heater maximum")
 	
 	field(ZRST, "Off")
 	field(ONST, "0.05W")
@@ -263,23 +278,32 @@ record(mbbi, "$(P)1:TEMP:HEAT")
 	field(FRST, "50W")
 }
 
+record(ai, "$(P)1:HEAT")
+{
+	field(DESC, "Heater value")
+	field(EGU, "%")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(INP,  "@main.proto getHeat() $(PORT)")
+}
+
+
 #####################################
 # Configuration for Output 2 (analog)
 # 
 
-record(mbbi, "$(P)2:TEMP:SENSOR_NO")
+record(mbbi, "$(P)2:TEMP:SENSOR")
 {
 	field(DESC, "Temperature 2 sensor")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
 	field(PINI, "YES")
-	field(INP,  "@devneocera.proto getCon2($(P)2:TEMP:CTL) $(PORT)")
+	field(INP,  "@main.proto getCon2($(P)2:TEMP:CTL) $(PORT)")
 
 	field(ZRST, "Unknown")
 	field(ONST, "Sensor 1")
 	field(TWST, "Sensor 2")
 	field(THST, "No sensor")
-
 }
 
 record(mbbi, "$(P)2:TEMP:CTL")
@@ -295,3 +319,15 @@ record(mbbi, "$(P)2:TEMP:CTL")
 	field(SXST, "MONITOR")
 }
 
+record(mbbo, "$(P)2:TEMP:CTL:SP")
+{
+	field(DESC, "Temperature 2 control setting")
+	field(DTYP, "stream")
+	field(OUT,  "@main.proto setCtl2() $(PORT)")
+
+	field(THST, "PID")
+	field(FRST, "TABLE")
+	field(FVST, "DEFAULT")
+	field(SXST, "MONITOR")
+}
+alias("$(P)2:TEMP:CTL", "$(P)2:TEMP:CTL:SP:RBV")
