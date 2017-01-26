@@ -26,8 +26,8 @@ record(seq, "$(P)READ") {
 	field(LNK6, "$(P)1:TEMP:SENSOR.PROC")
 	field(LNK7, "$(P)2:TEMP:SENSOR.PROC")
 	field(LNK8, "$(P)1:HEAT.PROC")
-#	field(LNK9, "$(P)READ_FAST.PROC")
-#	field(LNKA, "$(P)READ_SLOW5.PROC")
+	field(LNK9, "$(P)1:P.PROC")
+	field(LNKA, "$(P)2:P.PROC")
 	
 	field(SELM, "All")
 
@@ -331,3 +331,93 @@ record(mbbo, "$(P)2:TEMP:CTL:SP")
 	field(SXST, "MONITOR")
 }
 alias("$(P)2:TEMP:CTL", "$(P)2:TEMP:CTL:SP:RBV")
+
+#####################################
+# PID for Output 1 (heater)
+# 
+
+record(ai, "$(P)1:P")
+{
+	field(DESC, "P for output 1")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(INP,  "@main.proto getPID1($(P)1:,I,D,FIXED,HEAT:LIMIT) $(PORT)")
+}
+
+record(ai, "$(P)1:I")
+{
+	field(DESC, "I for output 1")
+	field(EGU, "")
+	field(SCAN, "Passive")
+}
+
+record(ai, "$(P)1:D")
+{
+	field(DESC, "D for output 1")
+	field(EGU, "")
+	field(SCAN, "Passive")
+}
+
+record(ai, "$(P)1:FIXED")
+{
+	field(DESC, "Fixed power reset term for output 1")
+	field(EGU, "")
+	field(SCAN, "Passive")
+}
+
+record(ai, "$(P)1:HEAT:LIMIT")
+{
+	field(DESC, "Maximum heater limit")
+	field(EGU, "%")
+	field(SCAN, "Passive")
+}
+
+#####################################
+# PID for Output 2 (analog)
+# 
+
+record(ai, "$(P)2:P")
+{
+	field(DESC, "P for output 2")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(INP,  "@main.proto getPID2($(P)2:,I,D,FIXED,GAIN,OFFSET) $(PORT)")
+}
+
+record(ai, "$(P)2:I")
+{
+	field(DESC, "I for output 2")
+	field(EGU, "")
+	field(SCAN, "Passive")
+}
+
+record(ai, "$(P)2:D")
+{
+	field(DESC, "D for output 2")
+	field(EGU, "")
+	field(SCAN, "Passive")
+}
+
+record(ai, "$(P)2:FIXED")
+{
+	field(DESC, "Fixed power reset term for output 2")
+	field(EGU, "")
+	field(SCAN, "Passive")
+}
+
+record(ai, "$(P)2:GAIN")
+{
+	field(DESC, "Gain on analog")
+	field(EGU, "%")
+	field(SCAN, "Passive")
+}
+
+record(ai, "$(P)2:OFFSET")
+{
+	field(DESC, "Offset of analog")
+	field(EGU, "%")
+	field(SCAN, "Passive")
+}
+
