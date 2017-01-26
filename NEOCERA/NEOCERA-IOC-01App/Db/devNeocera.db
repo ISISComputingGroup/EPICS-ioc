@@ -115,8 +115,75 @@ record(stringin, "$(P)2:TEMP:SP:UNITS")
 	field(SCAN, "Passive")
 }
 
+# Get Output configuration for heater
+
+record(mbbi, "$(P)1:TEMP:SENSOR_NO")
+{
+	field(DESC, "Temperature 1 sensor")
+	field(DTYP, "stream")
+	field(SCAN, "1 second")
+	field(PINI, "YES")
+	field(INP,  "@devneocera.proto getCon1($(P)1:TEMP:,CTL,HEAT) $(PORT)")
+
+	field(ZRST, "Unknown")
+	field(ONST, "Sensor 1")
+	field(TWST, "Sensor 2")
+	field(THST, "No sensor")
+
+}
+
+record(mbbi, "$(P)1:TEMP:CTL")
+{
+	field(DESC, "Temperature 1 control")
+	
+	field(ZRST, "AUTO P")
+	field(ONST, "AUTO PI")
+	field(TWST, "AUTO PID")
+	field(THST, "PID")
+	field(FRST, "TABLE")
+	field(FVST, "DEFAULT")
+	field(SXST, "MONITOR")
+}
+
+record(mbbi, "$(P)1:TEMP:HEAT")
+{
+	field(DESC, "Temperature 1 control")
+	
+	field(ZRST, "Off")
+	field(ONST, "0.05W")
+	field(TWST, "0.5W")
+	field(THST, "5W")
+	field(FRST, "50W")
+}
 
 
+# Get Output configuration for analog
 
+record(mbbi, "$(P)2:TEMP:SENSOR_NO")
+{
+	field(DESC, "Temperature 2 sensor")
+	field(DTYP, "stream")
+	field(SCAN, "1 second")
+	field(PINI, "YES")
+	field(INP,  "@devneocera.proto getCon2($(P)2:TEMP:CTL) $(PORT)")
 
+	field(ZRST, "Unknown")
+	field(ONST, "Sensor 1")
+	field(TWST, "Sensor 2")
+	field(THST, "No sensor")
+
+}
+
+record(mbbi, "$(P)2:TEMP:CTL")
+{
+	field(DESC, "Temperature 2 control")
+	
+	field(ZRST, "AUTO P")
+	field(ONST, "AUTO PI")
+	field(TWST, "AUTO PID")
+	field(THST, "PID")
+	field(FRST, "TABLE")
+	field(FVST, "DEFAULT")
+	field(SXST, "MONITOR")
+}
 
