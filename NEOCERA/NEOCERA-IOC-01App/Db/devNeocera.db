@@ -127,32 +127,29 @@ record(stringin, "$(P)2:SENSOR:UNITS")
 # 
 # The output 1 is the heater which can have a setpoint and is connected to a sensor (or not)
 
-record(calcout, "$(P)1:TEMP_CALC")
-{
-	field(DESC, "Temperature calc for output 1")
-	field(SCAN, "Passive")
-	field(INPA, "$(P)1:SENSOR CP MS")
-	field(INPB, "$(P)2:SENSOR CP MS")
-	field(INPC, "$(P)1:TEMP:SENSOR CP MS")
-	field(CALC, "C==1?A:(C==2?B:0)")
-	field(OUT, "$(P)1:TEMP PP MS")
-}
-
 record(scalcout, "$(P)1:TEMP_UNITS_CALC")
 {
 	field(DESC, "Temperature units for output 1")
 	field(SCAN, "Passive")
-	field(INAA, "$(P)1:SENSOR.EGU CP MS")
-	field(INBB, "$(P)2:SENSOR.EGU CP MS")
-	field(INPC, "$(P)1:TEMP:SENSOR CP MS")
-	field(CALC, "C==1?AA:(C==2?BB:0)")
-	field(OUT, "$(P)1:TEMP.EGU PP MS")
+	field(INAA, "$(P)1:SENSOR.EGU CP")
+	field(INBB, "$(P)2:SENSOR.EGU CP")
+	field(INPC, "$(P)1:TEMP:SENSOR CP")
+	field(CALC, "C==1?AA:(C==2?BB:' ')")
+	field(OUT, "$(P)1:TEMP.EGU PP")
 }
 
-record(ai, "$(P)1:TEMP") {
+record(sel, "$(P)1:TEMP") {
 	field(DESC, "Temperature output 1")
 	field(EGU, "")  # EGU set by scalc
 	field(PREC, 3)
+	
+	field(INPA, "0")
+	field(INPB, "$(P)1:SENSOR CP MS")
+	field(INPC, "$(P)2:SENSOR CP MS")
+	field(INPD, "0")
+	field(SELM, "Specified")
+	field(NVL, "$(P)1:TEMP:SENSOR")
+
 }
 
 record(ao, "$(P)1:TEMP:SP")
@@ -184,33 +181,31 @@ record(stringin, "$(P)1:TEMP:SP:UNITS")
 # 
 # The output 2 is the analog which can have a setpoint and is connected to a sensor (or not)
 
-record(calcout, "$(P)2:TEMP_CALC")
-{
-	field(DESC, "Temperature calc for output 2")
-	field(SCAN, "Passive")
-	field(INPA, "$(P)1:SENSOR CP MS")
-	field(INPB, "$(P)2:SENSOR CP MS")
-	field(INPC, "$(P)2:TEMP:SENSOR CP MS")
-	field(CALC, "C==1?A:(C==2?B:0)")
-	field(OUT, "$(P)2:TEMP PP MS")
-}
-
 record(scalcout, "$(P)2:TEMP_UNITS_CALC")
 {
 	field(DESC, "Temperature units for output 2")
 	field(SCAN, "Passive")
-	field(INAA, "$(P)1:SENSOR.EGU CP MS")
-	field(INBB, "$(P)2:SENSOR.EGU CP MS")
-	field(INPC, "$(P)2:TEMP:SENSOR CP MS")
-	field(CALC, "C==1?AA:(C==2?BB:0)")
-	field(OUT, "$(P)2:TEMP.EGU PP MS")
+	field(INAA, "$(P)1:SENSOR.EGU CP")
+	field(INBB, "$(P)2:SENSOR.EGU CP")
+	field(INPC, "$(P)2:TEMP:SENSOR CP")
+	field(CALC, "C==1?AA:(C==2?BB:' ')")
+	field(OUT, "$(P)2:TEMP.EGU PP")
 }
 
-record(ai, "$(P)2:TEMP") {
-	field(DESC, "Temperature for output 2")
-	field(EGU, "")  # EGU set by scalc	
+record(sel, "$(P)2:TEMP") {
+	field(DESC, "Temperature output 2")
+	field(EGU, "")  # EGU set by scalc
 	field(PREC, 3)
+	
+	field(INPA, "0")
+	field(INPB, "$(P)1:SENSOR CP MS")
+	field(INPC, "$(P)2:SENSOR CP MS")
+	field(INPD, "0")
+	field(SELM, "Specified")
+	field(NVL, "$(P)2:TEMP:SENSOR")
+
 }
+
 
 # Output setpoints
 record(ao, "$(P)2:TEMP:SP")
@@ -362,13 +357,13 @@ record(ai, "$(P)1:P")
 	field(INP,  "@main.proto getPID1($(P)1:,I,D,FIXED,HEAT:LIMIT) $(PORT)")
 	field(PREC, 2)
 }
-record(ai, "$(P)1:P:SP")
+record(ao, "$(P)1:P:SP")
 {
 	field(DESC, "Set P for output 1")
 	field(EGU, "")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
-	field(INP,  "@main.proto setP1($(P)1:,I,D,FIXED,HEAT:LIMIT) $(PORT)")
+	field(OUT,  "@main.proto setP1($(P)1:,I,D,FIXED,HEAT:LIMIT) $(PORT)")
 	field(PREC, 2)
 }
 
@@ -379,13 +374,13 @@ record(ai, "$(P)1:I")
 	field(SCAN, "Passive")
 	field(PREC, 2)
 }
-record(ai, "$(P)1:I:SP")
+record(ao, "$(P)1:I:SP")
 {
 	field(DESC, "Set I for output 1")
 	field(EGU, "")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
-	field(INP,  "@main.proto setI1($(P)1:,P,D,FIXED,HEAT:LIMIT) $(PORT)")
+	field(OUT,  "@main.proto setI1($(P)1:,P,D,FIXED,HEAT:LIMIT) $(PORT)")
 	field(PREC, 2)
 }
 
@@ -396,13 +391,13 @@ record(ai, "$(P)1:D")
 	field(SCAN, "Passive")
 	field(PREC, 2)
 }
-record(ai, "$(P)1:D:SP")
+record(ao, "$(P)1:D:SP")
 {
 	field(DESC, "Set D for output 1")
 	field(EGU, "")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
-	field(INP,  "@main.proto setD1($(P)1:,P,I,FIXED,HEAT:LIMIT) $(PORT)")
+	field(OUT,  "@main.proto setD1($(P)1:,P,I,FIXED,HEAT:LIMIT) $(PORT)")
 	field(PREC, 2)
 }
 
@@ -413,13 +408,13 @@ record(ai, "$(P)1:FIXED")
 	field(SCAN, "Passive")
 	field(PREC, 2)
 }
-record(ai, "$(P)1:FIXED:SP")
+record(ao, "$(P)1:FIXED:SP")
 {
 	field(DESC, "Set fixed power reset for output 1")
 	field(EGU, "")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
-	field(INP,  "@main.proto setFixed1($(P)1:,P,I,D,HEAT:LIMIT) $(PORT)")
+	field(OUT,  "@main.proto setFixed1($(P)1:,P,I,D,HEAT:LIMIT) $(PORT)")
 	field(PREC, 2)
 }
 
@@ -430,13 +425,13 @@ record(ai, "$(P)1:HEAT:LIMIT")
 	field(SCAN, "Passive")
 	field(PREC, 2)
 }
-record(ai, "$(P)1:HEAT:LIMIT:SP")
+record(ao, "$(P)1:HEAT:LIMIT:SP")
 {
 	field(DESC, "Set Heater Limit")
 	field(EGU, "")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
-	field(INP,  "@main.proto setLimit1($(P)1:,P,I,D,FIXED) $(PORT)")
+	field(OUT,  "@main.proto setLimit1($(P)1:,P,I,D,FIXED) $(PORT)")
 	field(PREC, 2)
 }
 
@@ -454,13 +449,13 @@ record(ai, "$(P)2:P")
 	field(PREC, 2)
 }
 
-record(ai, "$(P)2:P:SP")
+record(ao, "$(P)2:P:SP")
 {
 	field(DESC, "Set P for output 2")
 	field(EGU, "")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
-	field(INP,  "@main.proto setP2($(P)2:,I,D,FIXED,GAIN,OFFSET) $(PORT)")
+	field(OUT,  "@main.proto setP2($(P)2:,I,D,FIXED,GAIN,OFFSET) $(PORT)")
 	field(PREC, 2)
 }
 
@@ -471,13 +466,13 @@ record(ai, "$(P)2:I")
 	field(SCAN, "Passive")
 	field(PREC, 2)
 }
-record(ai, "$(P)2:I:SP")
+record(ao, "$(P)2:I:SP")
 {
 	field(DESC, "Set I for output 2")
 	field(EGU, "")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
-	field(INP,  "@main.proto setI2($(P)2:,P,D,FIXED,GAIN,OFFSET) $(PORT)")
+	field(OUT,  "@main.proto setI2($(P)2:,P,D,FIXED,GAIN,OFFSET) $(PORT)")
 	field(PREC, 2)
 }
 
@@ -488,13 +483,13 @@ record(ai, "$(P)2:D")
 	field(SCAN, "Passive")
 	field(PREC, 2)
 }
-record(ai, "$(P)2:D:SP")
+record(ao, "$(P)2:D:SP")
 {
 	field(DESC, "Set D for output 2")
 	field(EGU, "")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
-	field(INP,  "@main.proto setD2($(P)2:,P,I,FIXED,GAIN,OFFSET) $(PORT)")
+	field(OUT,  "@main.proto setD2($(P)2:,P,I,FIXED,GAIN,OFFSET) $(PORT)")
 	field(PREC, 2)
 }
 
@@ -506,13 +501,13 @@ record(ai, "$(P)2:FIXED")
 	field(SCAN, "Passive")
 	field(PREC, 2)
 }
-record(ai, "$(P)2:FIXED:SP")
+record(ao, "$(P)2:FIXED:SP")
 {
 	field(DESC, "Set fixed power reset for output 2")
 	field(EGU, "")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
-	field(INP,  "@main.proto setFixed2($(P)2:,P,I,D,GAIN,OFFSET) $(PORT)")
+	field(OUT,  "@main.proto setFixed2($(P)2:,P,I,D,GAIN,OFFSET) $(PORT)")
 	field(PREC, 2)
 }
 
@@ -523,13 +518,13 @@ record(ai, "$(P)2:GAIN")
 	field(SCAN, "Passive")
 	field(PREC, 2)
 }
-record(ai, "$(P)2:GAIN:SP")
+record(ao, "$(P)2:GAIN:SP")
 {
 	field(DESC, "Set gain for output 2")
 	field(EGU, "")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
-	field(INP,  "@main.proto setGain2($(P)2:,P,I,D,FIXED,OFFSET) $(PORT)")
+	field(OUT,  "@main.proto setGain2($(P)2:,P,I,D,FIXED,OFFSET) $(PORT)")
 	field(PREC, 2)
 }
 
@@ -540,12 +535,12 @@ record(ai, "$(P)2:OFFSET")
 	field(SCAN, "Passive")
 	field(PREC, 2)
 }
-record(ai, "$(P)2:OFFSET:SP")
+record(ao, "$(P)2:OFFSET:SP")
 {
 	field(DESC, "Set offset for output 2")
 	field(EGU, "")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
-	field(INP,  "@main.proto setOffset2($(P)2:,P,I,D,FIXED,GAIN) $(PORT)")
+	field(OUT,  "@main.proto setOffset2($(P)2:,P,I,D,FIXED,GAIN) $(PORT)")
 	field(PREC, 2)
 }
