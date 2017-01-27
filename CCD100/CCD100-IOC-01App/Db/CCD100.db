@@ -54,7 +54,7 @@ record(ao, "$(P)SP")
 
 record(ai, "$(P)SP:RBV")
 {
-    field(DESC, "The readback for the setpoint for the input channel")
+    field(DESC, "The SP readback for the input channel")
     field(DTYP, "stream")
     field(INP,  "@devCCD100.proto getSP $(PORT)")
 	field(SCAN, "1 second")
