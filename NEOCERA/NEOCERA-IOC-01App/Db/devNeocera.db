@@ -124,7 +124,7 @@ record(calcout, "$(P)1:TEMP_CALC")
 	field(INPB, "$(P)2:SENSOR CP MS")
 	field(INPC, "$(P)1:TEMP:SENSOR CP MS")
 	field(CALC, "C==1?A:(C==2?B:0)")
-	field(OUT, "$(P)1:TEMP PP")
+	field(OUT, "$(P)1:TEMP PP MS")
 }
 
 record(scalcout, "$(P)1:TEMP_UNITS_CALC")
@@ -135,7 +135,7 @@ record(scalcout, "$(P)1:TEMP_UNITS_CALC")
 	field(INBB, "$(P)2:SENSOR.EGU CP MS")
 	field(INPC, "$(P)1:TEMP:SENSOR CP MS")
 	field(CALC, "C==1?AA:(C==2?BB:0)")
-	field(OUT, "$(P)1:TEMP.EGU PP")
+	field(OUT, "$(P)1:TEMP.EGU PP MS")
 }
 
 record(ai, "$(P)1:TEMP") {
@@ -178,7 +178,7 @@ record(calcout, "$(P)2:TEMP_CALC")
 	field(INPB, "$(P)2:SENSOR CP MS")
 	field(INPC, "$(P)2:TEMP:SENSOR CP MS")
 	field(CALC, "C==1?A:(C==2?B:0)")
-	field(OUT, "$(P)2:TEMP PP")
+	field(OUT, "$(P)2:TEMP PP MS")
 }
 
 record(scalcout, "$(P)2:TEMP_UNITS_CALC")
@@ -189,7 +189,7 @@ record(scalcout, "$(P)2:TEMP_UNITS_CALC")
 	field(INBB, "$(P)2:SENSOR.EGU CP MS")
 	field(INPC, "$(P)2:TEMP:SENSOR CP MS")
 	field(CALC, "C==1?AA:(C==2?BB:0)")
-	field(OUT, "$(P)2:TEMP.EGU PP")
+	field(OUT, "$(P)2:TEMP.EGU PP MS")
 }
 
 record(ai, "$(P)2:TEMP") {
