@@ -21,6 +21,7 @@ record(stringin, "$(P)NAME")
 {
 	field(DESC, "The user friendly name of the device")
 	field(VAL, "$(DEV_NAME)")
+	field(PINI, "1")
 	info(INTEREST, "HIGH")
 }
 
