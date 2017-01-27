@@ -344,12 +344,28 @@ record(ai, "$(P)1:P")
 	field(SCAN, "Passive")
 	field(INP,  "@main.proto getPID1($(P)1:,I,D,FIXED,HEAT:LIMIT) $(PORT)")
 }
+record(ai, "$(P)1:P:SP")
+{
+	field(DESC, "Set P for output 1")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(INP,  "@main.proto setP1($(P)1:,I,D,FIXED,HEAT:LIMIT) $(PORT)")
+}
 
 record(ai, "$(P)1:I")
 {
 	field(DESC, "I for output 1")
 	field(EGU, "")
 	field(SCAN, "Passive")
+}
+record(ai, "$(P)1:I:SP")
+{
+	field(DESC, "Set I for output 1")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(INP,  "@main.proto setP1($(P)1:,P,D,FIXED,HEAT:LIMIT) $(PORT)")
 }
 
 record(ai, "$(P)1:D")
@@ -358,6 +374,14 @@ record(ai, "$(P)1:D")
 	field(EGU, "")
 	field(SCAN, "Passive")
 }
+record(ai, "$(P)1:D:SP")
+{
+	field(DESC, "Set D for output 1")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(INP,  "@main.proto setP1($(P)1:,P,I,FIXED,HEAT:LIMIT) $(PORT)")
+}
 
 record(ai, "$(P)1:FIXED")
 {
@@ -365,12 +389,28 @@ record(ai, "$(P)1:FIXED")
 	field(EGU, "")
 	field(SCAN, "Passive")
 }
+record(ai, "$(P)1:FIXED:SP")
+{
+	field(DESC, "Set fixed power reset for output 1")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(INP,  "@main.proto setP1($(P)1:,P,I,D,HEAT:LIMIT) $(PORT)")
+}
 
 record(ai, "$(P)1:HEAT:LIMIT")
 {
 	field(DESC, "Maximum heater limit")
 	field(EGU, "%")
 	field(SCAN, "Passive")
+}
+record(ai, "$(P)1:HEAT:LIMIT:SP")
+{
+	field(DESC, "Set Heat Limit for output 1")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(INP,  "@main.proto setP1($(P)1:,P,I,D,FIXED) $(PORT)")
 }
 
 #####################################
