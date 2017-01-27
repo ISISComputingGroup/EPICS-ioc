@@ -24,4 +24,5 @@
 <String>  <Name>InstSettingsDir</Name>              <Val>c:\Instrument\Settings</Val>      </String>
 <!--DBL>     <Name>MinTCBWidth</Name>                <Val>0.09</Val>           </DBL-->  <!-- In microseconds -->
 <String>     <Name>AlertEmail</Name>         <Val>freddie.akeroyd@stfc.ac.uk</Val>   </String>  <!-- comma separated list  --> 
+<I32>     <Name>PerCycleJournal</Name>         <Val>1</Val>           </I32> 
 </ISISICP>
