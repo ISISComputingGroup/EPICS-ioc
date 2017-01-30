@@ -57,7 +57,7 @@ $(IFNOTSIM) asynOctetWrite("MKINIT","$(MN)ER$(ERES$(MN)=400/4096)")
 $(IFNOTSIM) PM304Setup(1,5)
 
 # PM304Config(card being configured, asyn port name,  number of axes)
-$(IFNOTSIM) PM304Config(0, "$(ASERIAL)", 3)
+$(IFNOTSIM) PM304Config(0, "$(ASERIAL)", 1)
 
 asynSetTraceIOMask("$(ASERIAL)", 0, 2)
 
