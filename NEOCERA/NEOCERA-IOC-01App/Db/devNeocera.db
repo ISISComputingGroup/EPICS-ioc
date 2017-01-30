@@ -100,6 +100,9 @@ record(stringin, "$(P)1:SENSOR:UNITS")
 {
 	field(DESC, "Temperature sensor 2 units")
 	field(SCAN, "Passive")
+
+	info(archive, "VAL")
+	
 }
 
 ############
@@ -120,6 +123,8 @@ record(stringin, "$(P)2:SENSOR:UNITS")
 {
 	field(DESC, "Temperature sensor 2 units")
 	field(SCAN, "Passive")
+	
+	info(archive, "VAL")
 }
 
 ######################
@@ -149,7 +154,9 @@ record(sel, "$(P)1:TEMP") {
 	field(INPD, "0")
 	field(SELM, "Specified")
 	field(NVL, "$(P)1:TEMP:SENSOR")
-
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
 record(ao, "$(P)1:TEMP:SP")
@@ -158,6 +165,8 @@ record(ao, "$(P)1:TEMP:SP")
 	field(DTYP, "stream")
 	field(OUT,  "@main.proto setTemp(1) $(PORT)")
 	field(PREC, 3)
+	
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)1:TEMP:SP:RBV")
@@ -167,6 +176,8 @@ record(ai, "$(P)1:TEMP:SP:RBV")
 	field(SCAN, "Passive")
 	field(INP,  "@main.proto getSpRbv(1,$(P)1:TEMP:SP:UNITS) $(PORT)")
 	field(PREC, 3)
+	
+	info(archive, "VAL")
 }
 
 record(stringin, "$(P)1:TEMP:SP:UNITS")
@@ -204,6 +215,8 @@ record(sel, "$(P)2:TEMP") {
 	field(SELM, "Specified")
 	field(NVL, "$(P)2:TEMP:SENSOR")
 
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
 
@@ -214,6 +227,8 @@ record(ao, "$(P)2:TEMP:SP")
 	field(DTYP, "stream")
 	field(OUT,  "@main.proto setTemp(2) $(PORT)")
 	field(PREC, 3)
+	
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)2:TEMP:SP:RBV")
@@ -223,6 +238,8 @@ record(ai, "$(P)2:TEMP:SP:RBV")
 	field(SCAN, "Passive")
 	field(INP,  "@main.proto getSpRbv(2,$(P)2:TEMP:SP:UNITS) $(PORT)")
 	field(PREC, 3)
+	
+	info(archive, "VAL")	
 }
 
 
@@ -248,7 +265,9 @@ record(mbbi, "$(P)1:TEMP:SENSOR")
 	field(ONST, "Sensor 1")
 	field(TWST, "Sensor 2")
 	field(THST, "No sensor")
-
+	
+	info(INTEREST, "LOW")
+	info(archive, "VAL")
 }
 
 record(mbbi, "$(P)1:TEMP:CTL")
@@ -262,6 +281,9 @@ record(mbbi, "$(P)1:TEMP:CTL")
 	field(FRST, "Table")
 	field(FVST, "Default")
 	field(SXST, "Monitor")
+
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")	
 }
 
 record(mbbo, "$(P)1:TEMP:CTL:SP")
@@ -276,6 +298,8 @@ record(mbbo, "$(P)1:TEMP:CTL:SP")
 	field(THST, "PID")
 	field(FRST, "Table")
 	field(FVST, "Default")
+	
+	info(archive, "VAL")
 }
 alias("$(P)1:TEMP:CTL", "$(P)1:TEMP:CTL:SP:RBV")
 
@@ -288,6 +312,9 @@ record(mbbi, "$(P)1:HEAT:RANGE")
 	field(TWST, "0.5W")
 	field(THST, "5W")
 	field(FRST, "50W")
+	
+	info(INTEREST, "low")
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)1:HEAT")
@@ -297,6 +324,9 @@ record(ai, "$(P)1:HEAT")
 	field(DTYP, "stream")
 	field(SCAN, "Passive")
 	field(INP,  "@main.proto getHeat() $(PORT)")
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
 
@@ -316,6 +346,9 @@ record(mbbi, "$(P)2:TEMP:SENSOR")
 	field(ONST, "Sensor 1")
 	field(TWST, "Sensor 2")
 	field(THST, "No sensor")
+	
+	info(archive, "VAL")
+
 }
 
 record(mbbi, "$(P)2:TEMP:CTL")
@@ -329,6 +362,9 @@ record(mbbi, "$(P)2:TEMP:CTL")
 	field(FRST, "Table")
 	field(FVST, "Default")
 	field(SXST, "Monitor")
+
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")	
 }
 
 record(mbbo, "$(P)2:TEMP:CTL:SP")
@@ -345,6 +381,8 @@ record(mbbo, "$(P)2:TEMP:CTL:SP")
 	field(TWVL, 5)
 	field(THST, "Monitor")
 	field(THVL, 6)
+	
+	info(archive, "VAL")
 }
 alias("$(P)2:TEMP:CTL", "$(P)2:TEMP:CTL:SP:RBV")
 
@@ -360,6 +398,9 @@ record(ai, "$(P)1:P")
 	field(SCAN, "Passive")
 	field(INP,  "@main.proto getPID1($(P)1:,I,D,FIXED,HEAT:LIMIT) $(PORT)")
 	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 record(ao, "$(P)1:P:SP")
 {
@@ -369,6 +410,8 @@ record(ao, "$(P)1:P:SP")
 	field(SCAN, "Passive")
 	field(OUT,  "@main.proto setP1($(P)1:,I,D,FIXED,HEAT:LIMIT) $(PORT)")
 	field(PREC, 2)
+	
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)1:I")
@@ -377,6 +420,9 @@ record(ai, "$(P)1:I")
 	field(EGU, "")
 	field(SCAN, "Passive")
 	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 record(ao, "$(P)1:I:SP")
 {
@@ -386,6 +432,8 @@ record(ao, "$(P)1:I:SP")
 	field(SCAN, "Passive")
 	field(OUT,  "@main.proto setI1($(P)1:,P,D,FIXED,HEAT:LIMIT) $(PORT)")
 	field(PREC, 2)
+	
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)1:D")
@@ -394,6 +442,9 @@ record(ai, "$(P)1:D")
 	field(EGU, "")
 	field(SCAN, "Passive")
 	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 record(ao, "$(P)1:D:SP")
 {
@@ -403,6 +454,8 @@ record(ao, "$(P)1:D:SP")
 	field(SCAN, "Passive")
 	field(OUT,  "@main.proto setD1($(P)1:,P,I,FIXED,HEAT:LIMIT) $(PORT)")
 	field(PREC, 2)
+	
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)1:FIXED")
@@ -411,6 +464,9 @@ record(ai, "$(P)1:FIXED")
 	field(EGU, "")
 	field(SCAN, "Passive")
 	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 record(ao, "$(P)1:FIXED:SP")
 {
@@ -420,6 +476,8 @@ record(ao, "$(P)1:FIXED:SP")
 	field(SCAN, "Passive")
 	field(OUT,  "@main.proto setFixed1($(P)1:,P,I,D,HEAT:LIMIT) $(PORT)")
 	field(PREC, 2)
+	
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)1:HEAT:LIMIT")
@@ -428,6 +486,9 @@ record(ai, "$(P)1:HEAT:LIMIT")
 	field(EGU, "%")
 	field(SCAN, "Passive")
 	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 record(ao, "$(P)1:HEAT:LIMIT:SP")
 {
@@ -437,6 +498,8 @@ record(ao, "$(P)1:HEAT:LIMIT:SP")
 	field(SCAN, "Passive")
 	field(OUT,  "@main.proto setLimit1($(P)1:,P,I,D,FIXED) $(PORT)")
 	field(PREC, 2)
+	
+	info(archive, "VAL")
 }
 
 #####################################
@@ -451,6 +514,9 @@ record(ai, "$(P)2:P")
 	field(SCAN, "Passive")
 	field(INP,  "@main.proto getPID2($(P)2:,I,D,FIXED,GAIN,OFFSET) $(PORT)")
 	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 
 record(ao, "$(P)2:P:SP")
@@ -461,6 +527,8 @@ record(ao, "$(P)2:P:SP")
 	field(SCAN, "Passive")
 	field(OUT,  "@main.proto setP2($(P)2:,I,D,FIXED,GAIN,OFFSET) $(PORT)")
 	field(PREC, 2)
+	
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)2:I")
@@ -469,6 +537,9 @@ record(ai, "$(P)2:I")
 	field(EGU, "")
 	field(SCAN, "Passive")
 	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 record(ao, "$(P)2:I:SP")
 {
@@ -478,6 +549,8 @@ record(ao, "$(P)2:I:SP")
 	field(SCAN, "Passive")
 	field(OUT,  "@main.proto setI2($(P)2:,P,D,FIXED,GAIN,OFFSET) $(PORT)")
 	field(PREC, 2)
+	
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)2:D")
@@ -486,6 +559,9 @@ record(ai, "$(P)2:D")
 	field(EGU, "")
 	field(SCAN, "Passive")
 	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 record(ao, "$(P)2:D:SP")
 {
@@ -495,8 +571,9 @@ record(ao, "$(P)2:D:SP")
 	field(SCAN, "Passive")
 	field(OUT,  "@main.proto setD2($(P)2:,P,I,FIXED,GAIN,OFFSET) $(PORT)")
 	field(PREC, 2)
+	
+	info(archive, "VAL")
 }
-
 
 record(ai, "$(P)2:FIXED")
 {
@@ -504,6 +581,9 @@ record(ai, "$(P)2:FIXED")
 	field(EGU, "")
 	field(SCAN, "Passive")
 	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 record(ao, "$(P)2:FIXED:SP")
 {
@@ -513,6 +593,8 @@ record(ao, "$(P)2:FIXED:SP")
 	field(SCAN, "Passive")
 	field(OUT,  "@main.proto setFixed2($(P)2:,P,I,D,GAIN,OFFSET) $(PORT)")
 	field(PREC, 2)
+	
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)2:GAIN")
@@ -521,7 +603,11 @@ record(ai, "$(P)2:GAIN")
 	field(EGU, "%")
 	field(SCAN, "Passive")
 	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
+
 record(ao, "$(P)2:GAIN:SP")
 {
 	field(DESC, "Set gain for output 2")
@@ -530,6 +616,8 @@ record(ao, "$(P)2:GAIN:SP")
 	field(SCAN, "Passive")
 	field(OUT,  "@main.proto setGain2($(P)2:,P,I,D,FIXED,OFFSET) $(PORT)")
 	field(PREC, 2)
+	
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)2:OFFSET")
@@ -538,6 +626,9 @@ record(ai, "$(P)2:OFFSET")
 	field(EGU, "%")
 	field(SCAN, "Passive")
 	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 record(ao, "$(P)2:OFFSET:SP")
 {
@@ -547,4 +638,6 @@ record(ao, "$(P)2:OFFSET:SP")
 	field(SCAN, "Passive")
 	field(OUT,  "@main.proto setOffset2($(P)2:,P,I,D,FIXED,GAIN) $(PORT)")
 	field(PREC, 2)
+	
+	info(archive, "VAL")
 }
