@@ -1,7 +1,25 @@
-
 ############
 # General records
 # 
+
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
 
 record(seq, "$(P)READ") {
 	field(DESC, "Initiator for all items needing read")
@@ -64,6 +82,9 @@ record(mbbi, "$(P)MODE")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MODE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbo, "$(P)MODE:SP")
@@ -78,6 +99,9 @@ record(mbbo, "$(P)MODE:SP")
 	field(ONST, "Control")
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MODE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 alias("$(P)MODE:SP", "$(P)MODE:SP:RBV")
@@ -95,6 +119,9 @@ record(ai, "$(P)1:SENSOR")
 	field(PREC, 3)
 
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:SENSOR")
+    field(SDIS, "$(P)DISABLE")
 }
 record(stringin, "$(P)1:SENSOR:UNITS")
 {
@@ -103,6 +130,9 @@ record(stringin, "$(P)1:SENSOR:UNITS")
 
 	info(archive, "VAL")
 	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:SENSOR:UNITS")
+    field(SDIS, "$(P)DISABLE")
 }
 
 ############
@@ -118,13 +148,20 @@ record(ai, "$(P)2:SENSOR")
 	field(PREC, 3)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:SENSOR")
+    field(SDIS, "$(P)DISABLE")
 }
 record(stringin, "$(P)2:SENSOR:UNITS")
 {
 	field(DESC, "Temperature sensor 2 units")
 	field(SCAN, "Passive")
-	
+
 	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:SENSOR:UNITS")
+    field(SDIS, "$(P)DISABLE")
 }
 
 ######################
@@ -167,6 +204,9 @@ record(ao, "$(P)1:TEMP:SP")
 	field(PREC, 3)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:TEMP:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)1:TEMP:SP:RBV")
@@ -178,6 +218,9 @@ record(ai, "$(P)1:TEMP:SP:RBV")
 	field(PREC, 3)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:TEMP:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(stringin, "$(P)1:TEMP:SP:UNITS")
@@ -229,6 +272,9 @@ record(ao, "$(P)2:TEMP:SP")
 	field(PREC, 3)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:TEMP:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)2:TEMP:SP:RBV")
@@ -240,6 +286,9 @@ record(ai, "$(P)2:TEMP:SP:RBV")
 	field(PREC, 3)
 	
 	info(archive, "VAL")	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:TEMP:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
 }
 
 
@@ -268,6 +317,9 @@ record(mbbi, "$(P)1:TEMP:SENSOR")
 	
 	info(INTEREST, "LOW")
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:TEMP:SENSOR")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbi, "$(P)1:TEMP:CTL")
@@ -284,6 +336,11 @@ record(mbbi, "$(P)1:TEMP:CTL")
 
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")	
+	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:TEMP:CTL")
+    field(SDIS, "$(P)DISABLE")
+
 }
 
 record(mbbo, "$(P)1:TEMP:CTL:SP")
@@ -300,6 +357,9 @@ record(mbbo, "$(P)1:TEMP:CTL:SP")
 	field(FVST, "Default")
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:TEMP:CTL:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)1:TEMP:CTL", "$(P)1:TEMP:CTL:SP:RBV")
 
@@ -315,6 +375,10 @@ record(mbbi, "$(P)1:HEAT:RANGE")
 	
 	info(INTEREST, "low")
 	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:HEAT:RANGE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)1:HEAT")
@@ -327,6 +391,9 @@ record(ai, "$(P)1:HEAT")
 	
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:HEAT")
+    field(SDIS, "$(P)DISABLE")
 }
 
 
@@ -349,6 +416,9 @@ record(mbbi, "$(P)2:TEMP:SENSOR")
 	
 	info(archive, "VAL")
 
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:TEMP:SENSOR")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbi, "$(P)2:TEMP:CTL")
@@ -383,6 +453,9 @@ record(mbbo, "$(P)2:TEMP:CTL:SP")
 	field(THVL, 6)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:TEMP:CTL:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)2:TEMP:CTL", "$(P)2:TEMP:CTL:SP:RBV")
 
@@ -401,6 +474,9 @@ record(ai, "$(P)1:P")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:P")
+    field(SDIS, "$(P)DISABLE")
 }
 record(ao, "$(P)1:P:SP")
 {
@@ -412,6 +488,9 @@ record(ao, "$(P)1:P:SP")
 	field(PREC, 2)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:P:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)1:I")
@@ -423,6 +502,10 @@ record(ai, "$(P)1:I")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:I")
+    field(SDIS, "$(P)DISABLE")
 }
 record(ao, "$(P)1:I:SP")
 {
@@ -434,6 +517,9 @@ record(ao, "$(P)1:I:SP")
 	field(PREC, 2)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:I:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)1:D")
@@ -445,6 +531,10 @@ record(ai, "$(P)1:D")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:D")
+    field(SDIS, "$(P)DISABLE")
 }
 record(ao, "$(P)1:D:SP")
 {
@@ -456,6 +546,9 @@ record(ao, "$(P)1:D:SP")
 	field(PREC, 2)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:D:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)1:FIXED")
@@ -467,6 +560,10 @@ record(ai, "$(P)1:FIXED")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:FIXED")
+    field(SDIS, "$(P)DISABLE")
 }
 record(ao, "$(P)1:FIXED:SP")
 {
@@ -478,6 +575,9 @@ record(ao, "$(P)1:FIXED:SP")
 	field(PREC, 2)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:FIXED:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)1:HEAT:LIMIT")
@@ -489,6 +589,10 @@ record(ai, "$(P)1:HEAT:LIMIT")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:LIMIT")
+    field(SDIS, "$(P)DISABLE")
 }
 record(ao, "$(P)1:HEAT:LIMIT:SP")
 {
@@ -500,6 +604,9 @@ record(ao, "$(P)1:HEAT:LIMIT:SP")
 	field(PREC, 2)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:HEAT:LIMIT:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 #####################################
@@ -517,6 +624,9 @@ record(ai, "$(P)2:P")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:P")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)2:P:SP")
@@ -529,6 +639,9 @@ record(ao, "$(P)2:P:SP")
 	field(PREC, 2)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:P:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)2:I")
@@ -551,6 +664,9 @@ record(ao, "$(P)2:I:SP")
 	field(PREC, 2)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:I:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)2:D")
@@ -573,6 +689,9 @@ record(ao, "$(P)2:D:SP")
 	field(PREC, 2)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:D:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)2:FIXED")
@@ -595,6 +714,9 @@ record(ao, "$(P)2:FIXED:SP")
 	field(PREC, 2)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:FIXED:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)2:GAIN")
@@ -618,6 +740,9 @@ record(ao, "$(P)2:GAIN:SP")
 	field(PREC, 2)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:GAIN:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)2:OFFSET")
@@ -640,4 +765,232 @@ record(ao, "$(P)2:OFFSET:SP")
 	field(PREC, 2)
 	
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:OFFSET:SP")
+    field(SDIS, "$(P)DISABLE")
 }
+
+### SIMULATION RECORDS ###
+
+record(mbbi, "$(P)SIM:MODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 1)
+}
+
+alias("$(P)SIM:MODE","$(P)SIM:MODE:SP")
+
+alias("$(P)SIM:MODE","$(P)SIM:MODE:SP:RBV")
+
+record(ai, "$(P)SIM:1:SENSOR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringin, "$(P)SIM:1:SENSOR:UNITS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(VAL, "K")
+	field(PINI, "YES")
+	field(FLNK, "$(P)1:SENSOR:UNITS")
+}
+
+record(ai, "$(P)SIM:2:SENSOR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+}
+
+record(stringin, "$(P)SIM:2:SENSOR:UNITS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(VAL, "K")
+	field(PINI, "YES")
+	field(FLNK, "$(P)2:SENSOR:UNITS")
+}
+
+record(ai, "$(P)SIM:1:TEMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:1:TEMP","$(P)SIM:1:TEMP:SP")
+alias("$(P)SIM:1:TEMP","$(P)SIM:1:TEMP:SP:RBV")
+
+record(ai, "$(P)SIM:2:TEMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:2:TEMP","$(P)SIM:2:TEMP:SP")
+alias("$(P)SIM:2:TEMP","$(P)SIM:2:TEMP:SP:RBV")
+
+record(mbbi, "$(P)SIM:1:TEMP:SENSOR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 1)
+
+}
+
+record(mbbi, "$(P)SIM:1:TEMP:CTL")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 1)
+	field(FLNK, "$(P)1:TEMP:CTL")
+}
+alias("$(P)SIM:1:TEMP:CTL","$(P)SIM:1:TEMP:CTL:SP")
+
+record(mbbi, "$(P)SIM:1:HEAT:RANGE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 4)
+	field(FLNK, "$(P)1:HEAT:RANGE")
+}
+
+record(ai, "$(P)SIM:1:HEAT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+}
+
+
+record(mbbi, "$(P)SIM:2:TEMP:SENSOR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 2)
+}
+
+record(mbbi, "$(P)SIM:2:TEMP:CTL")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 4)
+	field(FLNK, "$(P)2:TEMP:CTL")
+}
+alias("$(P)SIM:2:TEMP:CTL","$(P)SIM:2:TEMP:CTL:SP")
+
+
+record(ai, "$(P)SIM:1:P")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+}
+
+alias("$(P)SIM:1:P","$(P)SIM:1:P:SP")
+
+record(ai, "$(P)SIM:1:I")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)1:I")
+}
+
+alias("$(P)SIM:1:I","$(P)SIM:1:I:SP")
+
+record(ai, "$(P)SIM:1:D")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)1:D")
+}
+
+alias("$(P)SIM:1:D","$(P)SIM:1:D:SP")
+
+record(ai, "$(P)SIM:1:FIXED")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)1:FIXED")
+}
+
+alias("$(P)SIM:1:FIXED","$(P)SIM:1:FIXED:SP")
+
+record(ai, "$(P)SIM:1:LIMIT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)1:LIMIT.PROC")
+}
+
+alias("$(P)SIM:1:LIMIT","$(P)SIM:1:LIMIT:SP")
+
+record(ai, "$(P)SIM:2:P")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:2:P","$(P)SIM:2:P:SP")
+
+record(ai, "$(P)SIM:2:I")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)2:I")
+}
+
+alias("$(P)SIM:2:I","$(P)SIM:2:I:SP")
+
+record(ai, "$(P)SIM:2:D")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)2:D")
+}
+
+alias("$(P)SIM:2:D","$(P)SIM:2:D:SP")
+
+record(ai, "$(P)SIM:2:FIXED")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)2:FIXED")
+}
+
+alias("$(P)SIM:2:FIXED","$(P)SIM:2:FIXED:SP")
+
+record(ai, "$(P)SIM:2:GAIN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)2:GAIN.PROC")
+}
+
+alias("$(P)SIM:2:GAIN","$(P)SIM:2:GAIN:SP")
+
+record(ai, "$(P)SIM:2:OFFSET")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)2:OFFSET.PROC")
+}
+
+alias("$(P)SIM:2:OFFSET","$(P)SIM:2:OFFSET:SP")

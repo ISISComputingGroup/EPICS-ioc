@@ -9,7 +9,7 @@
 errlogInit2(65536, 256)
 
 ## Register all support components
-dbLoadDatabase "{TOP}/dbd/NEOCERA-IOC-02.dbd"
+dbLoadDatabase "${TOP}/dbd/NEOCERA-IOC-02.dbd"
 NEOCERA_IOC_02_registerRecordDeviceDriver pdbbase
 
-< st-common.cmd
+< ../iocNeocera-IOC-01/st-common.cmd
