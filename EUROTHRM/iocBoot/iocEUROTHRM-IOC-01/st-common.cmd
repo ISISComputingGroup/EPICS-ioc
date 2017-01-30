@@ -20,6 +20,8 @@ asynSetOption("L0", -1, "stop", "$(STOP=1)")
 ## These are loaded separately to allow one SIM and DISABLE to be used for ALL EUROTHRMs
 dbLoadRecords("$(TOP)/db/devSimDis.db","Q=$(MYPVPREFIX)$(IOCNAME):,DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0)")
 
+< ${TOP}/iocBoot/iocEUROTHRM-IOC-01/st-timing.cmd
+
 epicsEnvSet(EURO_NUM,1)
 < ${TOP}/iocBoot/iocEUROTHRM-IOC-01/st-euro.cmd
 
