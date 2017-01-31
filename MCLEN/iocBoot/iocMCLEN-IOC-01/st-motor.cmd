@@ -25,7 +25,6 @@ epicsEnvSet("DLLMI",$(DLLM$(MN)=-200))
 
 # The signal number is the axis-1
 calc("SN", "$(MN)-1", 2, 2)
-
 $(IFSIM) motorSimConfigAxis("motorSim", $(SN), $(DHLMI), $(DLLMI),  $(DLLMI), 0)
 
 # Load asyn record 
