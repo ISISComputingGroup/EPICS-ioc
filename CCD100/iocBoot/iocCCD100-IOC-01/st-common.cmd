@@ -22,7 +22,7 @@ $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(FREEPORT=0)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("${TOP}/db/CCD100.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, DEV_NAME=$(DEV_NAME=)")
+dbLoadRecords("${TOP}/db/CCD100.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, DEV_NAME=$(DEV_NAME=), RECSIM=$(RECSIM), DEVSIM=$(DEVSIM)")
 dbLoadRecords("${TOP}/db/unit_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
