@@ -3,12 +3,12 @@ epicsEnvSet("AMOTORNAME", "MTR$(MTRCTRL)0$(MN)")
 epicsEnvSet("AMOTORPV", "MOT:$(AMOTORNAME)")
 
 ## Check if open loop mode has been requested
-$(IFNOTSIM) stringtest("IFCMOPEN","$(MODE$(MN)=)",4,"OPEN")
-$(IFNOTSIM) $(IFCMOPEN) epicsEnvSet("MODE",CM11)
+$(IFNOTSIM) stringiftest("CMOPEN", "$(MODE$(MN)=)",4,"OPEN")
 
 ## Initialise control mode. Defaults to CM14, closed
 $(IFNOTSIM) asynOctetConnect("MKINIT","$(ASERIAL)")
-$(IFNOTSIM) asynOctetWrite("MKINIT","$(MN)$(MODE=CM14)")
+$(IFNOTSIM) $(IFCMOPEN) asynOctetWrite("MKINIT","$(MN)CM11")
+$(IFNOTSIM) $(IFNOTCMOPEN) asynOctetWrite("MKINIT","$(MN)CM14")
 $(IFNOTSIM) asynOctetWrite("MKINIT","$(MN)ER$(ERES$(MN)=400/4096)")
 
 ## Load record instances
