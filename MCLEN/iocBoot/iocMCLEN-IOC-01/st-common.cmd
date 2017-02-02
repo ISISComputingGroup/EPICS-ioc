@@ -39,7 +39,7 @@ $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","Y")
 $(IFNOTSIM) PM304Setup(1,5)
 
 # PM304Config(card being configured, asyn port name,  number of axes)
-$(IFNOTSIM) PM304Config(0, "$(ASERIAL)", "$(NAXES=1)")
+$(IFNOTSIM) PM304Config(0, "$(ASERIAL)", "$(NAXES=1)", 128)
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 
