@@ -15,7 +15,7 @@
 <macro name="AXIS1" pattern="^(yes|no)$" description="Motor is attached to axis 1 (default: no)" />
 <macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
 <macro name="ACCL1" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
-<macro name="MRES1" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
+<macro name="MSTP1" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
 <macro name="ERES1" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM1" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM1" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
@@ -25,7 +25,7 @@
 <macro name="AXIS2" pattern="^(yes|no)$" description="Motor is attached to axis 2 (default: no)" />
 <macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
 <macro name="ACCL2" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
-<macro name="MRES2" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
+<macro name="MSTP2" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
 <macro name="ERES2" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM2" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM2" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
@@ -35,7 +35,7 @@
 <macro name="AXIS3" pattern="^(yes|no)$" description="Motor is attached to axis 3 (default: no)" />
 <macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
 <macro name="ACCL3" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
-<macro name="MRES3" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
+<macro name="MSTP3" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
 <macro name="ERES3" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM3" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM3" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
@@ -45,7 +45,7 @@
 <macro name="AXIS4" pattern="^(yes|no)$" description="Motor is attached to axis 4 (default: no)" />
 <macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
 <macro name="ACCL4" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
-<macro name="MRES4" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
+<macro name="MSTP4" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
 <macro name="ERES4" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM4" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM4" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
@@ -55,7 +55,7 @@
 <macro name="AXIS5" pattern="^(yes|no)$" description="Motor is attached to axis 5 (default: no)" />
 <macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
 <macro name="ACCL5" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
-<macro name="MRES5" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
+<macro name="MSTP5" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
 <macro name="ERES5" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM5" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM5" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
@@ -65,7 +65,7 @@
 <macro name="AXIS6" pattern="^(yes|no)$" description="Motor is attached to axis 6 (default: no)" />
 <macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
 <macro name="ACCL6" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
-<macro name="MRES6" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
+<macro name="MSTP6" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
 <macro name="ERES6" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM6" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM6" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
@@ -75,7 +75,7 @@
 <macro name="AXIS7" pattern="^(yes|no)$" description="Motor is attached to axis 7 (default: no)" />
 <macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
 <macro name="ACCL7" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
-<macro name="MRES7" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
+<macro name="MSTP7" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
 <macro name="ERES7" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM7" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM7" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
@@ -85,7 +85,7 @@
 <macro name="AXIS8" pattern="^(yes|no)$" description="Motor is attached to axis 8 (default: no)" />
 <macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
 <macro name="ACCL8" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
-<macro name="MRES8" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
+<macro name="MSTP8" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
 <macro name="ERES8" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
 <macro name="DHLM8" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM8" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />

@@ -2,24 +2,16 @@ epicsEnvSet("AMOTOR", "motor$(MN)")
 epicsEnvSet("AMOTORNAME", "MTR$(MTRCTRL)0$(MN)")
 epicsEnvSet("AMOTORPV", "MOT:$(AMOTORNAME)")
 
-## Check if open loop mode has been requested
-$(IFNOTSIM) stringiftest("CMOPEN", "$(MODE$(MN)=)",4,"OPEN")
-
-## Initialise control mode. Defaults to CM14, closed
-$(IFNOTSIM) asynOctetConnect("MKINIT","$(ASERIAL)")
-$(IFNOTSIM) $(IFCMOPEN) asynOctetWrite("MKINIT","$(MN)CM11")
-$(IFNOTSIM) $(IFNOTCMOPEN) asynOctetWrite("MKINIT","$(MN)CM14")
-$(IFNOTSIM) asynOctetWrite("MKINIT","$(MN)ER$(ERES$(MN)=400/4096)")
-
 ## Load record instances
 
 # Set motor specific initial conditions
 epicsEnvSet("VELOI",$(VELO$(MN)=1))
 epicsEnvSet("ACCLI",$(ACCL$(MN)=1))
-epicsEnvSet("MRESI",$(MRES$(MN)=0.0025))
-$(IFSIM) epicsEnvSet("ERESI",$(ERES$(MN)=0.000244140625))
+epicsEnvSet("MSTPI",$(MSTP$(MN)=1))
+dcalc("MRESI", "1.0/$(MSTPI)", 1, 12)
 # Need a non-zero encoder resolution for sim mode
-$(IFNOTSIM) epicsEnvSet("ERESI",$(ERES$(MN)=0.00025))
+$(IFSIM) epicsEnvSet("ERESI",1)
+$(IFNOTSIM) epicsEnvSet("ERESI",0)
 epicsEnvSet("DHLMI",$(DHLM$(MN)=200))
 epicsEnvSet("DLLMI",$(DLLM$(MN)=-200))
 
@@ -35,7 +27,7 @@ dbLoadRecords("$(TOP)/db/motor$(SIMSFX=).db", "P=$(MYPVPREFIX),M=$(AMOTORPV),VEL
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=$(AMOTORPV)") 
 dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(MN),mAXIS=$(AMOTORPV)") 
 
-#autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 0)
-
 ## Start homing sequencer
 seq homing, "MOTPV=$(MYPVPREFIX)$(AMOTORPV),MODE=$(HOME$(MN)=1),AXIS=$(MN)"
+
+$(IFNOTSIM) < st-motor-init.cmd
