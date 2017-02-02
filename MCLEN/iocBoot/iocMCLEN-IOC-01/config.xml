@@ -20,6 +20,7 @@
 <macro name="DHLM1" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM1" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE1" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
+<macro name="HOME1" pattern="^([0-2])$" description="Homing mode (0: Motor default, 1: Constant velocity move, 2: Reverse home and zero" />
 
 <macro name="AXIS2" pattern="^(yes|no)$" description="Motor is attached to axis 2 (default: no)" />
 <macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
@@ -29,6 +30,7 @@
 <macro name="DHLM2" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM2" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE2" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
+<macro name="HOME2" pattern="^([0-2])$" description="Homing mode (0: Motor default, 1: Constant velocity move, 2: Reverse home and zero" />
 
 <macro name="AXIS3" pattern="^(yes|no)$" description="Motor is attached to axis 3 (default: no)" />
 <macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
@@ -38,6 +40,7 @@
 <macro name="DHLM3" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM3" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE3" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
+<macro name="HOME3" pattern="^([0-2])$" description="Homing mode (0: Motor default, 1: Constant velocity move, 2: Reverse home and zero" />
 
 <macro name="AXIS4" pattern="^(yes|no)$" description="Motor is attached to axis 4 (default: no)" />
 <macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
@@ -47,6 +50,7 @@
 <macro name="DHLM4" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM4" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE4" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
+<macro name="HOME4" pattern="^([0-2])$" description="Homing mode (0: Motor default, 1: Constant velocity move, 2: Reverse home and zero" />
 
 <macro name="AXIS5" pattern="^(yes|no)$" description="Motor is attached to axis 5 (default: no)" />
 <macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
@@ -56,6 +60,7 @@
 <macro name="DHLM5" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM5" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE5" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
+<macro name="HOME5" pattern="^([0-2])$" description="Homing mode (0: Motor default, 1: Constant velocity move, 2: Reverse home and zero" />
 
 <macro name="AXIS6" pattern="^(yes|no)$" description="Motor is attached to axis 6 (default: no)" />
 <macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
@@ -65,6 +70,7 @@
 <macro name="DHLM6" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM6" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE6" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
+<macro name="HOME6" pattern="^([0-2])$" description="Homing mode (0: Motor default, 1: Constant velocity move, 2: Reverse home and zero" />
 
 <macro name="AXIS7" pattern="^(yes|no)$" description="Motor is attached to axis 7 (default: no)" />
 <macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
@@ -74,6 +80,7 @@
 <macro name="DHLM7" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM7" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE7" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
+<macro name="HOME7" pattern="^([0-2])$" description="Homing mode (0: Motor default, 1: Constant velocity move, 2: Reverse home and zero" />
 
 <macro name="AXIS8" pattern="^(yes|no)$" description="Motor is attached to axis 8 (default: no)" />
 <macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
@@ -83,6 +90,7 @@
 <macro name="DHLM8" pattern="-?[0-9]*\.?[0-9]*$" description="position upper limit (default: 200)" />
 <macro name="DLLM8" pattern="-?[0-9]*\.?[0-9]*$" description="position lower limit (default: -200)" />
 <macro name="MODE8" pattern="^(OPEN|CLOSED)$" description="motor control mode (default: CLOSED)" />
+<macro name="HOME8" pattern="^([0-2])$" description="Homing mode (0: Motor default, 1: Constant velocity move, 2: Reverse home and zero" />
 
 </macros>
 <pvsets>
