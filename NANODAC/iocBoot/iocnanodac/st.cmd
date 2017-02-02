@@ -14,7 +14,12 @@ NANODAC_registerRecordDeviceDriver pdbbase
 ####################################################
 # TCP to Eurotherm
 
-epicsEnvSet("IP_ADDR","127.0.0.0:9999")
+$(IFNOTDEVSIM) epicsEnvSet("IP_ADDR","$(IP):502")
+
+## For emulator use:
+$(IFDEVSIM) freeIPPort("FREEPORT")  
+$(IFDEVSIM) epicsEnvShow("FREEPORT") 
+$(IFDEVSIM) epicsEnvSet("IP_ADDR","localhost:$(FREEPORT=0)")
 
 ####################################################
 
