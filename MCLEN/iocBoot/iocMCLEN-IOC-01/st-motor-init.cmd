@@ -16,12 +16,13 @@ $(IFNOTCMOPEN) asynOctetWrite("MKINIT","$(MN)CM14")
 ## Initialise the encoder ratio using the exact string of ERES$
 asynOctetWrite("MKINIT","$(MN)ER$(ERES$(MN)=400/4096)")
 
-## Initialise values. Need to convert to motor units
-dcalc("VELOM", "$(VELOI)$(MSTPI)", 1, 0)
-dcalc("ACCLM", "$(VELOD)/$(ACCLI)", 1, 0)
-
-asynOctetWrite("MKINIT","$(MN)SV$(VELOM)")
-asynOctetWrite("MKINIT","$(MN)SJ$(VELOM)")
-asynOctetWrite("MKINIT","$(MN)SA$(ACCLM)")
-asynOctetWrite("MKINIT","$(MN)SD$(ACCLM)")
-asynOctetWrite("MKINIT","$(MN)LD$(ACCLM)")
+#### I'd rather these not go into production yet, it might change everyone's motor velocities/acceleration
+### Initialise values. Need to convert to motor units
+#dcalc("VELOM", "$(VELOI)$(MSTPI)", 1, 0)
+#dcalc("ACCLM", "$(VELOD)/$(ACCLI)", 1, 0)
+#
+#asynOctetWrite("MKINIT","$(MN)SV$(VELOM)")
+#asynOctetWrite("MKINIT","$(MN)SJ$(VELOM)")
+#asynOctetWrite("MKINIT","$(MN)SA$(ACCLM)")
+#asynOctetWrite("MKINIT","$(MN)SD$(ACCLM)")
+#asynOctetWrite("MKINIT","$(MN)LD$(ACCLM)")
