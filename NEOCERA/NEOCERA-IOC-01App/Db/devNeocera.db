@@ -602,6 +602,8 @@ record(ao, "$(P)1:HEAT:LIMIT:SP")
 	field(SCAN, "Passive")
 	field(OUT,  "@main.proto setLimit1($(P)1:,P,I,D,FIXED) $(PORT)")
 	field(PREC, 2)
+	field(DRVH, 100)
+	field(DRVL, 0)
 	
 	info(archive, "VAL")
     field(SIML, "$(P)SIM")
