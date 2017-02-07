@@ -47,17 +47,7 @@ record(seq, "$(P)READ") {
 	field(LNK9, "$(P)1:P.PROC")
 	field(LNKA, "$(P)2:P.PROC")
 	
-	field(FLNK, "$(P)ACTIVITY")
-	
 	field(SELM, "All")
-}
-
-record(calc,"$(P)ACTIVITY") {
-   field(DESC, "Activity record")
-   field(INPA, "$(P)ACTIVITY")
-   field(CALC, "A!=0?0:1")
-   field(VAL, 0)
-   field(PINI, "YES")
 }
 
 ############
