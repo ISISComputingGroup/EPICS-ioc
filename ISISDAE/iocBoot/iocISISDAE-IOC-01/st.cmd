@@ -51,8 +51,12 @@ FileListConfigure("TLIST", "$(TCB_DIR)", "$(TCB_PATTERN)", 1)
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+#epicsEnvSet("DAE3","$(MYPVPREFIX)TEST_01:")
+#epicsEnvSet("VETO_1","$(MYPVPREFIX)TEST_01:VETO_1")
+#epicsEnvSet("VETO_2","$(MYPVPREFIX)TEST_01:VETO_2")
+
 ## Load our record instances
-dbLoadRecords("$(ISISDAE)/db/isisdae.db","S=$(MYPVPREFIX), P=$(MYPVPREFIX),Q=DAE:, WIRINGLIST=WLIST, DETECTORLIST=DLIST, SPECTRALIST=SLIST, PERIODLIST=PLIST, TCBLIST=TLIST")
+dbLoadRecords("$(ISISDAE)/db/isisdae.db","S=$(MYPVPREFIX), P=$(MYPVPREFIX),Q=DAE:, WIRINGLIST=WLIST, DETECTORLIST=DLIST, SPECTRALIST=SLIST, PERIODLIST=PLIST, TCBLIST=TLIST, DAE3=$(DAE3=), VETO_1=$(VETO_1=), VETO_2=$(VETO_2=)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
