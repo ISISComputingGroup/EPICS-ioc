@@ -13,7 +13,7 @@
 <macro name="BITS1" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY1" pattern="^(even|odd|none)$" description="port parity (default: even)" />
 <macro name="STOP1" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
+<macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s (default: 1)" />
 <macro name="ACCL1" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MRES1" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES1" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
@@ -26,7 +26,7 @@
 <macro name="BITS2" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY2" pattern="^(even|odd|none)$" description="port parity (default: even)" />
 <macro name="STOP2" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
+<macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s (default: 1)" />
 <macro name="ACCL2" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MRES2" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES2" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
@@ -39,7 +39,7 @@
 <macro name="BITS3" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY3" pattern="^(even|odd|none)$" description="port parity (default: even)" />
 <macro name="STOP3" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
+<macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s (default: 1)" />
 <macro name="ACCL3" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MRES3" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES3" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
@@ -52,7 +52,7 @@
 <macro name="BITS4" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY4" pattern="^(even|odd|none)$" description="port parity (default: even)" />
 <macro name="STOP4" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
+<macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s (default: 1)" />
 <macro name="ACCL4" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MRES4" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES4" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
@@ -65,7 +65,7 @@
 <macro name="BITS5" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY5" pattern="^(even|odd|none)$" description="port parity (default: even)" />
 <macro name="STOP5" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
+<macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s (default: 1)" />
 <macro name="ACCL5" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MRES5" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES5" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
@@ -78,7 +78,7 @@
 <macro name="BITS6" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY6" pattern="^(even|odd|none)$" description="port parity (default: even)" />
 <macro name="STOP6" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
+<macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s (default: 1)" />
 <macro name="ACCL6" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MRES6" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES6" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
@@ -91,7 +91,7 @@
 <macro name="BITS7" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY7" pattern="^(even|odd|none)$" description="port parity (default: even)" />
 <macro name="STOP7" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
+<macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s (default: 1)" />
 <macro name="ACCL7" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MRES7" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES7" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
@@ -104,7 +104,7 @@
 <macro name="BITS8" pattern="^[7-8]$" description="port data bits (default: 7)" />
 <macro name="PARITY8" pattern="^(even|odd|none)$" description="port parity (default: even)" />
 <macro name="STOP8" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="velocity, mm/s (default: 1)" />
+<macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s (default: 1)" />
 <macro name="ACCL8" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MRES8" pattern="[0-9]*\.?[0-9]*$" description="motor pulses per revolution (default: 0.0025)" />
 <macro name="ERES8" pattern="-?[0-9]+/[0-9]+$" description="encoder ratio (default: 400/4096)" />
