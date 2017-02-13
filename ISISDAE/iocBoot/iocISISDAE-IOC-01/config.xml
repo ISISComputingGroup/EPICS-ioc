@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
+<ioc_desc>Instrument DAE information</ioc_desc>
 <macros>
 <macro name="DAEDCOM" description="Use DCOM to connect to ISISICP" />
 <macro name="DAEHOST" description="If using DCOM, host to connect to" />
