@@ -281,8 +281,6 @@ record(seq, "$(P)READ") {
 	field(DO6, "1")
 	field(DO7, "1")
 	field(DO8, "1")
-	field(DO9, "1")
-	field(DOA, "1")
 	
 	field(DLY1, "$(TREAD)")
 	field(DLY2, "$(TREAD)")
@@ -292,8 +290,6 @@ record(seq, "$(P)READ") {
 	field(DLY6, "$(TREAD)")
 	field(DLY7, "$(TREAD)")
 	field(DLY8, "$(TREAD)")
-	field(DLY9, "$(TREAD)")
-	field(DLYA, "$(TREAD)")
 	
 	field(LNK1, "$(P)READ_FAST.PROC")
 	field(LNK2, "$(P)READ_SLOW1.PROC")
@@ -303,8 +299,6 @@ record(seq, "$(P)READ") {
 	field(LNK6, "$(P)READ_SLOW3.PROC")
 	field(LNK7, "$(P)READ_FAST.PROC")
 	field(LNK8, "$(P)READ_SLOW4.PROC")
-	field(LNK9, "$(P)READ_FAST.PROC")
-	field(LNKA, "$(P)READ_SLOW5.PROC")
 	
 	field(SELM, "All")
 }
@@ -340,11 +334,14 @@ record(seq, "$(P)READ_SLOW2") {
 	field(SCAN, "Passive")
 	field(DO1, "1")
 	field(DO2, "1")
+	field(DO3, "1")
 	field(DLY1, "$(TDLY)")
 	field(DLY2, "$(TDLY)")
+	field(DLY3, "$(TDLY)")
 	field(SELM, "All")	
-	field(LNK1, "$(P)TEMP:SP:RBV:CONV.PROC")	
+	field(LNK1, "$(P)CAL:SEL:RBV.PROC")
 	field(LNK2, "$(P)SP:RBV.PROC")
+	field(LNK3, "$(P)CAL:RBV.PROC")	
 }
 
 record(seq, "$(P)READ_SLOW3") {
@@ -359,17 +356,6 @@ record(seq, "$(P)READ_SLOW3") {
 }
 
 record(seq, "$(P)READ_SLOW4") {
-	field(SCAN, "Passive")
-	field(DO1, "1")
-	field(DO2, "1")	
-	field(DLY1, "$(TDLY)")
-	field(DLY2, "$(TDLY)")
-	field(SELM, "All")
-	field(LNK1, "$(P)CAL:SEL:RBV.PROC")
-	field(LNK2, "$(P)CAL:RBV.PROC")	
-}
-
-record(seq, "$(P)READ_SLOW5") {
 	field(SCAN, "Passive")
 	field(DO1, "1")
 	field(DO2, "1")	
@@ -762,7 +748,7 @@ record(cvt, "$(P)TEMP")
 record(cvt, "$(P)TEMP:SP:RBV:CONV")
 {
 	field(SCAN, "Passive")
-	field(INPY, "$(P)SP:RBV PP")
+	field(INPY, "$(P)SP:RBV")
 	field(OUT, "$(P)TEMP:SP:RBV PP")
     field(YSLO, 1)
 	field(METH, "1D TABLE INVERTED")
@@ -841,6 +827,7 @@ record(ai, "$(P)SP:RBV") {
     field(SDIS, "$(Q)DISABLE")
 	field(EGU, "")
     field(PREC, "3")
+	field(FLNK, "$(P)TEMP:SP:RBV:CONV")
     info(archive, "VAL")
 	info(alarm, "Euro")
 }
