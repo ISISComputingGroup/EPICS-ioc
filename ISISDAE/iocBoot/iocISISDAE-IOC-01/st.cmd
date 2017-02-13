@@ -51,13 +51,22 @@ FileListConfigure("TLIST", "$(TCB_DIR)", "$(TCB_PATTERN)", 1)
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+## Set PARALLEL=# to enable parallel DAE3
+$(PARALLEL=)epicsEnvSet("IFPARALLEL","#")
+
+epicsEnvSet("Q","DAE:")
+
 epicsEnvSet("VETO_DELAY","1")
 epicsEnvSet("OTHER_DAE","$(MYPVPREFIX)TEST_01:")
 epicsEnvSet("VETO_1","$(MYPVPREFIX)TEKAFG3XXX_01:OUTPUT1:STATUS:SP")
 epicsEnvSet("VETO_2","$(MYPVPREFIX)TEKAFG3XXX_01:OUTPUT2:STATUS:SP")
+$(IFPARALLEL=) epicsEnvSet("ENDRUN_DAE3","$(MYPVPREFIX)DAE:ENDRUN_DAE3")
+$(IFPARALLEL=) epicsEnvSet("BEGINRUN_DAE3","$(MYPVPREFIX)DAE:BEGINRUN_DAE3")
 
 ## Load our record instances
-dbLoadRecords("$(ISISDAE)/db/isisdae.db","S=$(MYPVPREFIX), P=$(MYPVPREFIX),Q=DAE:, WIRINGLIST=WLIST, DETECTORLIST=DLIST, SPECTRALIST=SLIST, PERIODLIST=PLIST, TCBLIST=TLIST, OTHER_DAE=$(OTHER_DAE=), VETO_1=$(VETO_1=), VETO_2=$(VETO_2=), VETO_DELAY=$(VETO_DELAY=0)")
+$(IFPARALLEL=) dbLoadRecords("$(ISISDAE)/db/dae3_parallel.db","P=$(MYPVPREFIX), Q=$(Q), OTHER_DAE=$(OTHER_DAE), VETO_1=$(VETO_1), VETO_2=$(VETO_2), VETO_DELAY=$(VETO_DELAY)")
+
+dbLoadRecords("$(ISISDAE)/db/isisdae.db","S=$(MYPVPREFIX), P=$(MYPVPREFIX), Q=$(Q), WIRINGLIST=WLIST, DETECTORLIST=DLIST, SPECTRALIST=SLIST, PERIODLIST=PLIST, TCBLIST=TLIST, BEGINRUNA=$(BEGINRUN_DAE3=$(MYPVPREFIX)$(Q)_BEGINRUN1), ENDRUNA=$(ENDRUN_DAE3=$(MYPVPREFIX)$(Q)_ENDRUN1)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -72,7 +81,7 @@ iocInit
 < $(IOCSTARTUP)/postiocinit.cmd
 
 # Save motor positions every 5 seconds
-create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)DAE:")
+create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)$(Q)")
 
 # Save motor settings every 30 seconds
-create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)DAE:")
+create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)$(Q)")
