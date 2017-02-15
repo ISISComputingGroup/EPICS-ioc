@@ -3,7 +3,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-#DATA += KEIT2400-IOC-01.proto
+#DATA += KHLY2400-IOC-02.proto
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
