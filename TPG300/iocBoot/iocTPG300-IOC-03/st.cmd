@@ -12,6 +12,6 @@ cd ${TOP}
 
 ## Register all support components
 dbLoadDatabase "dbd/TPG300-IOC-03.dbd"
-TPG300_IOC_02_registerRecordDeviceDriver pdbbase
+TPG300_IOC_03_registerRecordDeviceDriver pdbbase
 
 < ${TOP}/iocBoot/iocTPG300-IOC-01/st-common.cmd
