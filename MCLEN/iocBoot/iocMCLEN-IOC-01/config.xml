@@ -53,7 +53,6 @@
 <macro name="HOME4" pattern="^([0-2])$" description="Homing mode (0: Motor default, 1: Constant velocity move, 2: Reverse home and zero" />
 
 <macro name="AXIS5" pattern="^(yes|no)$" description="Motor is attached to axis 5 (default: no)" />
-<<<<<<< HEAD
 <macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
 <macro name="ACCL5" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MSTP5" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
