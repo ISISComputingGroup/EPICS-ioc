@@ -1,0 +1,116 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(stringin, "$(P)NAME") 
+{
+	field(DESC, "The user friendly name of the device")
+	field(VAL, "$(DEV_NAME)")
+	field(PINI, "1")
+	info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)READING")
+{
+    field(DESC, "The reading of the input channel")
+    field(DTYP, "stream")
+    field(INP,  "@devCCD100.proto getCurrentRead $(PORT)")
+	field(SCAN, "1 second")
+	field(PREC, "3")
+	field(EGU, "") #Set from device
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:READING")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)SP")
+{
+    field(DESC, "The setpoint for the input channel")
+    field(DTYP, "stream")
+    field(OUT,  "@devCCD100.proto setSP $(PORT)")
+	field(PREC, "3")
+	field(EGU, "") #Set from device
+	info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)SP:RBV")
+{
+    field(DESC, "The SP readback for the input channel")
+    field(DTYP, "stream")
+    field(INP,  "@devCCD100.proto getSP $(PORT)")
+	field(SCAN, "1 second")
+	field(PREC, "3")
+	field(EGU, "") #Set from device
+	info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(stringin, "$(P)UNITS") 
+{
+    field(DESC, "Units of reading and SP")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devCCD100.proto getUnits $(PORT)")
+	info(archive, "VAL")
+	info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UNITS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(stringout, "$(P)UNITS:SP") 
+{
+    field(DTYP, "stream")
+    field(DESC, "Units of reading and SP")
+    field(OUT,  "@devCCD100.proto setUnits $(PORT)")
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UNITS:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+### SIMULATION RECORDS ###
+
+record(ao, "$(P)SIM:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:READING")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:SP","$(P)SIM:SP:RBV")
+
+record(stringin, "$(P)SIM:UNITS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:UNITS","$(P)SIM:UNITS:SP")
+
