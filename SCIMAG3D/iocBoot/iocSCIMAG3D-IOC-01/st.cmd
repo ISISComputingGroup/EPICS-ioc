@@ -17,7 +17,7 @@ SCIMAG3D_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-lvDCOMConfigure("lvfp", "frontpanel", "$(MAGNET3D)/data/lv_controls.xml")
+lvDCOMConfigure("lvfp", "frontpanel", "$(MAGNET3D)/data/lv_controls.xml", "$(LVDCOM_HOST=)", $(LVDCOM_OPTIONS=1), "$(LVDCOM_PROGID=)", "$(LVDCOM_USER=)", "$(LVDCOM_PASS=)")
 ## Load record instances
 
 
