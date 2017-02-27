@@ -7,7 +7,7 @@ epicsEnvSet("AMOTORPV", "MOT:$(AMOTORNAME)")
 # Set motor specific initial conditions
 epicsEnvSet("VELOI",$(VELO$(MN)=1))
 epicsEnvSet("ACCLI",$(ACCL$(MN)=1))
-epicsEnvSet("MSTPI",$(MSTP$(MN)=1))
+epicsEnvSet("MSTPI",$(MSTP$(MN)=4000))
 dcalc("MRESI", "1.0/$(MSTPI)", 1, 12)
 # Need a non-zero encoder resolution for sim mode
 $(IFSIM) epicsEnvSet("ERESI",1)
