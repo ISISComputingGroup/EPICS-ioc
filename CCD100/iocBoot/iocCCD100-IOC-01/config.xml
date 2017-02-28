@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Chell CCD 100 pressure transducer</ioc_desc>
+<macros>
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 57600." />
+<macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." />
+<macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." />
+<macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." />
+
+<macro name="DEV_NAME" pattern="^\w*$" description="A user friendly name for the device, defaults to blank." />
+
+</macros>
+</config_part>
+</ioc_config>

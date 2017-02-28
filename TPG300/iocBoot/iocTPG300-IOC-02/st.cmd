@@ -14,4 +14,4 @@ cd ${TOP}
 dbLoadDatabase "dbd/TPG300-IOC-02.dbd"
 TPG300_IOC_02_registerRecordDeviceDriver pdbbase
 
-< ${TOP}/iocBoot/${IOC}/st-common.cmd
+< ${TOP}/iocBoot/iocTPG300-IOC-01/st-common.cmd
