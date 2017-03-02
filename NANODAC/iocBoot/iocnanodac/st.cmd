@@ -12,8 +12,8 @@ dbLoadDatabase "dbd/nanodac.dbd"
 NANODAC_registerRecordDeviceDriver pdbbase
 
 ####################################################
-# TCP to Eurotherm
-
+# TCP to Nanodac
+< $(IOCSTARTUP)/init.cmd
 $(IFNOTDEVSIM) epicsEnvSet("IP_ADDR","$(IP):502")
 
 ## For emulator use:
@@ -24,7 +24,7 @@ $(IFDEVSIM) epicsEnvSet("IP_ADDR","localhost:$(FREEPORT=0)")
 ####################################################
 
 ####################################################################
-# Set up modbus TCP support for Eurotherm
+# Set up modbus TCP support for Nanodac
 
 epicsEnvSet("NI","1")
 
