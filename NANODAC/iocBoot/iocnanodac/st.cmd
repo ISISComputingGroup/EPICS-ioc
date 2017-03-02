@@ -41,7 +41,7 @@ epicsEnvSet("NI","1")
 ####################################################################
 
 ## Load record instances
-dbLoadRecords "db/nanodac.db"
+dbLoadRecords("db/nanodac.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit

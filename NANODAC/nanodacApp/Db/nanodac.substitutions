@@ -2,7 +2,7 @@
 file nanodac.db
 {
 pattern {S, ND, NI}
-	{BL99:, SE:ND1:, 1}
+	{$(P),  "", 1}
 }
 
 
