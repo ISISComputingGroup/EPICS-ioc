@@ -9,3 +9,7 @@ include $(TOP)/../../../configure/MASTER_RELEASE
 
 include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
+
+include $(AREA_DETECTOR)/configure/RELEASE_LIBS.local
+include $(AREA_DETECTOR)/configure/RELEASE.local
+-include $(AREA_DETECTOR)/configure/RELEASE.local.$(EPICS_HOST_ARCH)

@@ -1,4 +1,6 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
-<xi:include href="../iocMERCURY-IOC-01/config.xml"  />
+<config_part>
+<ioc_desc>Test IOC</ioc_desc>
+</config_part>
 </ioc_config>

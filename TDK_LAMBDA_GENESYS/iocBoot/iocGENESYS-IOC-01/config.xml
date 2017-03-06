@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
+<ioc_desc>TDK Lambda Genesys power supply</ioc_desc>
 <macros>
 <macro name="PORT1" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD1" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />

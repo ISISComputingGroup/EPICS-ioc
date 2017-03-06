@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>McLennan Motor Controller</ioc_desc>
+<ioc_desc>McLennan motor controller</ioc_desc>
 <ioc_details>McLennan Motor Details</ioc_details>
 <macros>
 
