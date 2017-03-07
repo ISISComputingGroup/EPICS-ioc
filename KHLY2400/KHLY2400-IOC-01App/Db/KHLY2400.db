@@ -200,41 +200,79 @@ record(ai, "$(P)SIM:R")
 #### General input ####
 #######################
 
-record(stringout, "$(P)GEN:SP")
+record(stringout, "$(P)READ:SP")
 {
-	field(DESC, "General input command")
-	field(FLNK, "$(P)GEN PP")
-	field(PINI, "YES")
+	field(DESC, "General read command")
 	field(VAL, "*IDN?")
+	field(PINI, "YES")
+	field(FLNK, "$(P)READ PP")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:GEN")
+    field(SIOL, "$(P)SIM:READ")
     field(SDIS, "$(P)DISABLE")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
-record(stringin, "$(P)GEN")
+record(stringin, "$(P)READ")
 {
     field(DESC, "General input command response")
     field(DTYP, "stream")
-    field(INP, "@Keithley2400.proto gen($(P)GEN:SP) $(PORT)")
+    field(INP, "@Keithley2400.proto gen($(P)READ:SP) $(PORT)")
     field(SCAN, "Passive")
-    field(SIOL, "$(P)SIM:GEN")
+    field(SIOL, "$(P)SIM:READ")
     field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
-record(stringin, "$(P)SIM:GEN")
+record(stringin, "$(P)SIM:READ")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-alias("$(P)GEN", "$(P)GEN:SP:RBV")
-alias("$(P)SIM:GEN", "$(P)SIM:GEN:SP")
-alias("$(P)SIM:GEN", "$(P)SIM:GEN:SP:RBV")
+alias("$(P)READ", "$(P)READ:SP:RBV")
+alias("$(P)SIM:READ", "$(P)SIM:READ:SP")
+alias("$(P)SIM:READ", "$(P)SIM:READ:SP:RBV")
+
+# Write is identical to read except that the return value isn't printed
+# by the UI. This is handled as two separate PV blocks so the controls can
+# act independently.
+
+record(stringout, "$(P)WRITE:SP")
+{
+	field(DESC, "General write command")
+	field(FLNK, "$(P)WRITE PP")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WRITE")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(stringin, "$(P)WRITE")
+{
+    field(DESC, "General input command response")
+    field(DTYP, "stream")
+    field(INP, "@Keithley2400.proto gen($(P)WRITE:SP) $(PORT)")
+    field(SCAN, "Passive")
+    field(SIOL, "$(P)SIM:WRITE")
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(stringin, "$(P)SIM:WRITE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)WRITE", "$(P)WRITE:SP:RBV")
+alias("$(P)SIM:WRITE", "$(P)SIM:WRITE:SP")
+alias("$(P)SIM:WRITE", "$(P)SIM:WRITE:SP:RBV")
 
 ###############
 #### Reset ####
