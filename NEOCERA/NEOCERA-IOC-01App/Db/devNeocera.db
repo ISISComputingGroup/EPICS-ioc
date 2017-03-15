@@ -348,7 +348,7 @@ record(mbbo, "$(P)1:TEMP:CTL:SP")
 	
 	info(archive, "VAL")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:1:TEMP:CTL:SP")
+    field(SIOL, "$(P)SIM:1:TEMP:CTL:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)1:TEMP:CTL", "$(P)1:TEMP:CTL:SP:RBV")
@@ -415,16 +415,21 @@ record(mbbi, "$(P)2:TEMP:CTL")
 {
 	field(DESC, "Temperature 2 control")
 	
-	field(ZRST, "Auto P")
-	field(ONST, "Auto PI")
-	field(TWST, "Auto PID")
-	field(THST, "PID")
-	field(FRST, "Table")
-	field(FVST, "Default")
-	field(SXST, "Monitor")
+	field(ZRST, "PID")
+	field(ZRVL, 3)
+	field(ONST, "Table")
+	field(ONVL, 4)
+	field(TWST, "Default")
+	field(TWVL, 5)
+	field(THST, "Monitor")
+	field(THVL, 6)
 
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")	
+	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:TEMP:CTL")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbo, "$(P)2:TEMP:CTL:SP")
@@ -444,7 +449,7 @@ record(mbbo, "$(P)2:TEMP:CTL:SP")
 	
 	info(archive, "VAL")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:2:TEMP:CTL:SP")
+    field(SIOL, "$(P)SIM:2:TEMP:CTL:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)2:TEMP:CTL", "$(P)2:TEMP:CTL:SP:RBV")
@@ -508,7 +513,7 @@ record(ao, "$(P)1:I:SP")
 	
 	info(archive, "VAL")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:1:I:SP")
+    field(SIOL, "$(P)SIM:1:I:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -537,7 +542,7 @@ record(ao, "$(P)1:D:SP")
 	
 	info(archive, "VAL")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:1:D:SP")
+    field(SIOL, "$(P)SIM:1:D:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -566,7 +571,7 @@ record(ao, "$(P)1:FIXED:SP")
 	
 	info(archive, "VAL")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:1:FIXED:SP")
+    field(SIOL, "$(P)SIM:1:FIXED:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -581,7 +586,7 @@ record(ai, "$(P)1:HEAT:LIMIT")
 	info(archive, "VAL")
 	
 	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:1:LIMIT")
+    field(SIOL, "$(P)SIM:1:HEAT:LIMIT")
     field(SDIS, "$(P)DISABLE")
 }
 record(ao, "$(P)1:HEAT:LIMIT:SP")
@@ -597,7 +602,7 @@ record(ao, "$(P)1:HEAT:LIMIT:SP")
 	
 	info(archive, "VAL")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:1:HEAT:LIMIT:SP")
+    field(SIOL, "$(P)SIM:1:HEAT:LIMIT:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -645,6 +650,10 @@ record(ai, "$(P)2:I")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+		
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:I")
+    field(SDIS, "$(P)DISABLE")
 }
 record(ao, "$(P)2:I:SP")
 {
@@ -657,7 +666,7 @@ record(ao, "$(P)2:I:SP")
 	
 	info(archive, "VAL")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:2:I:SP")
+    field(SIOL, "$(P)SIM:2:I:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -670,6 +679,9 @@ record(ai, "$(P)2:D")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:D")
+    field(SDIS, "$(P)DISABLE")
 }
 record(ao, "$(P)2:D:SP")
 {
@@ -682,7 +694,7 @@ record(ao, "$(P)2:D:SP")
 	
 	info(archive, "VAL")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:2:D:SP")
+    field(SIOL, "$(P)SIM:2:D:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -695,7 +707,13 @@ record(ai, "$(P)2:FIXED")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:FIXED")
+    field(SDIS, "$(P)DISABLE")
+
 }
+
 record(ao, "$(P)2:FIXED:SP")
 {
 	field(DESC, "Set fixed power reset for output 2")
@@ -707,7 +725,7 @@ record(ao, "$(P)2:FIXED:SP")
 	
 	info(archive, "VAL")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:2:FIXED:SP")
+    field(SIOL, "$(P)SIM:2:FIXED:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -720,6 +738,9 @@ record(ai, "$(P)2:GAIN")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:GAIN")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)2:GAIN:SP")
@@ -733,7 +754,7 @@ record(ao, "$(P)2:GAIN:SP")
 	
 	info(archive, "VAL")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:2:GAIN:SP")
+    field(SIOL, "$(P)SIM:2:GAIN:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -746,6 +767,9 @@ record(ai, "$(P)2:OFFSET")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:OFFSET")
+    field(SDIS, "$(P)DISABLE")
 }
 record(ao, "$(P)2:OFFSET:SP")
 {
@@ -758,7 +782,7 @@ record(ao, "$(P)2:OFFSET:SP")
 	
 	info(archive, "VAL")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:2:OFFSET:SP")
+    field(SIOL, "$(P)SIM:2:OFFSET:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -919,15 +943,15 @@ record(ai, "$(P)SIM:1:FIXED")
 
 alias("$(P)SIM:1:FIXED","$(P)SIM:1:FIXED:SP")
 
-record(ai, "$(P)SIM:1:LIMIT")
+record(ai, "$(P)SIM:1:HEAT:LIMIT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 	field(PINI, "YES")
-	field(FLNK, "$(P)1:LIMIT.PROC")
+	field(FLNK, "$(P)1:HEAT:LIMIT")
 }
 
-alias("$(P)SIM:1:LIMIT","$(P)SIM:1:LIMIT:SP")
+alias("$(P)SIM:1:HEAT:LIMIT","$(P)SIM:1:HEAT:LIMIT:SP")
 
 record(ai, "$(P)SIM:2:P")
 {
