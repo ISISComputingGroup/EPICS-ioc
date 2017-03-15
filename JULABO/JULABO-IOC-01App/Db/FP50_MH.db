@@ -382,7 +382,7 @@ record(stringout, "$(P)SIM:STATUS")
 	field(VAL, "Simulated")
 }
 
-record(calc, "$(P)SIM:TEMP")
+record(ao, "$(P)SIM:TEMP")
 {
     field(DTYP, "Soft Channel")
 	field(VAL, "75")
@@ -406,7 +406,7 @@ record(ao, "$(P)SIM:POWER")
 	field(VAL, "75")
 }
 
-record(calc, "$(P)SIM:EXTTEMP")
+record(ao, "$(P)SIM:EXTTEMP")
 {
     field(DTYP, "Soft Channel")
 	field(VAL, "75")
