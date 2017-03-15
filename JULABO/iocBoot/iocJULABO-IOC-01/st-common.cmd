@@ -2,13 +2,12 @@ epicsEnvSet "STREAM_PROTOCOL_PATH" "$(JULABO)/julaboApp/protocol"
 
 cd ${TOP}
 
-##ISIS## Run IOC initialisation 
+##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
 
 ## For emulator use:
-$(IFDEVSIM) freeIPPort("FREEPORT")  
-$(IFDEVSIM) epicsEnvShow("FREEPORT") 
-$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(FREEPORT)")
+$(IFDEVSIM) epicsEnvShow("EMULATOR_PORT") 
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT)")
 
 ## For real device use:
 $(IFNOTDEVSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
@@ -23,7 +22,7 @@ $(IFNOTDEVSIM) asynSetOption("L0", -1, "stop", "1")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(DB_FILE)","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0")
+dbLoadRecords("$(DB_FILE)","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
