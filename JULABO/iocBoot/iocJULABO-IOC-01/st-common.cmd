@@ -5,6 +5,14 @@ cd ${TOP}
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
 
+## For testing framework only:
+$(TESTDEVSIM) epicsEnvSet "IFDEVSIM" " "
+$(TESTDEVSIM) epicsEnvSet "IFNOTDEVSIM" "#" 
+$(TESTDEVSIM) epicsEnvSet "RECSIM" "0"
+$(TESTRECSIM) epicsEnvSet "IFDEVSIM" "#"
+$(TESTRECSIM) epicsEnvSet "IFNOTDEVSIM" " " 
+$(TESTRECSIM) epicsEnvSet "RECSIM" "1"
+
 ## For emulator use:
 $(IFDEVSIM) epicsEnvShow("EMULATOR_PORT") 
 $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT)")
