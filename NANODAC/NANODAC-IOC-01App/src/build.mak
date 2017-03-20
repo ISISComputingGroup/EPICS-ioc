@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application NANODAC
+# Build the IOC application NANODAC-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# NANODAC.dbd will be created and installed
+# NANODAC-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# NANODAC.dbd will be made up from these files:
+# NANODAC-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += devSequencer.dbd
@@ -49,7 +49,7 @@ $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += modbus
 #$(APPNAME)_LIBS += xxx
 
-# NANODAC_registerRecordDeviceDriver.cpp derives from NANODAC.dbd
+# NANODAC-IOC-01_registerRecordDeviceDriver.cpp derives from NANODAC-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.

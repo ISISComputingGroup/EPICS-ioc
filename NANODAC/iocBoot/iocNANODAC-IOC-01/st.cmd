@@ -1,6 +1,6 @@
 #!../../bin/linux-x86_64/nanodac
 
-## You may have to change nanodac to something else
+## You may have to change NANODAC-IOC-01 to something else
 ## everywhere it appears in this file
 
 < envPaths
@@ -8,8 +8,8 @@
 cd ${TOP}
 
 ## Register all support components
-dbLoadDatabase "dbd/nanodac.dbd"
-NANODAC_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/NANODAC-IOC-01.dbd"
+NANODAC_IOC_01_registerRecordDeviceDriver pdbbase
 
 ####################################################
 # TCP to Nanodac
