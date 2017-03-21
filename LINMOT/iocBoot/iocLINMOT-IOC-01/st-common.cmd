@@ -14,11 +14,11 @@ iocshCmdLoop("< st-max-axis.cmd", "MN=\$(I)", "I", 1, 8)
 # Make sure controller number is 2 digits long
 calc("MTRCTRL", "$(MTRCTRL=11)", 2, 2)
 ## asyn serial port internal device name and motor name 
-LINMOT("ASERIAL", "serial$(MTRCTRL)")
+epicsEnvSet("ASERIAL", "serial$(MTRCTRL)")
 
 $(IFSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
 $(IFSIM) motorSimCreateController("motorSim", $(NAXES))
-$(IFSIM) LINMOT("SIMSFX","Sim")
+$(IFSIM) epicsEnvSet("SIMSFX","Sim")
  
 $(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT=NUL)", 0, 0, 0)
 $(IFNOTSIM) asynSetTraceIOMask("$(ASERIAL)", -1, 0xFF )
@@ -41,7 +41,7 @@ $(IFNOTSIM) LinMotConfig(0, "$(ASERIAL)", "$(NAXES=1)")
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 
-LINMOT("LINMOTCONFIG","$(ICPCONFIGROOT)/linmot")
+epicsEnvSet("LINMOTCONFIG","$(ICPCONFIGROOT)/linmot")
 
 # Special configurations
 < axes.cmd

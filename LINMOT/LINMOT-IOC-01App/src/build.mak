@@ -1,6 +1,6 @@
-LINMOT=../..
+TOP=../..
 
-include $(LINMOT)/configure/CONFIG
+include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
@@ -8,14 +8,14 @@ include $(LINMOT)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application LINMOT-IOC-01
+# Build the IOC application MCLEN-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# LINMOT-IOC-01.dbd will be created and installed
+# MCLEN-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# LINMOT-IOC-01.dbd will be made up from these files:
+# MCLEN-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += devSequencer.dbd
@@ -31,7 +31,6 @@ $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += motorSupport.dbd
 $(APPNAME)_DBD += motorSimSupport.dbd
 $(APPNAME)_DBD += devLinMotMotor.dbd
-$(APPNAME)_DBD += homing.dbd
 $(APPNAME)_DBD += devSoftMotor.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
@@ -63,7 +62,7 @@ $(APPNAME)_LIBS += busy asyn
 $(APPNAME)_LIBS += std sscan
 $(APPNAME)_LIBS += TinyXML
 
-# LINMOT-IOC-01_registerRecordDeviceDriver.cpp derives from LINMOT-IOC-01.dbd
+# MCLEN-IOC-01_registerRecordDeviceDriver.cpp derives from MCLEN-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
@@ -78,7 +77,7 @@ $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
 
-include $(LINMOT)/configure/RULES
+include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
 
