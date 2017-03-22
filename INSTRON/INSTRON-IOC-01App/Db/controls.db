@@ -23,7 +23,8 @@ record(bo, "$(P)SIM")
     field(ONAM, "YES")
     field(VAL, "$(RECSIM=0)")
 	field(PINI, "YES")
-
+}
+    
 record(bo, "$(P)DISABLE") 
 {
     field(DESC, "Disable comms")
@@ -32,6 +33,7 @@ record(bo, "$(P)DISABLE")
     field(OMSL, "supervisory")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
+}
 
 # Read LabVIEW control/indicator "Reading Interval (seconds)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
 record(ai, "$(P)READ:ALL:SCAN")
@@ -348,20 +350,6 @@ record(ai, "$(P)STRESS")
     field(SDIS, "$(P)DISABLE")
 }
 
-#TODO
-# Write to LabVIEW control "load value" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)load_value")
-{
-	field(DESC, "LabVIEW 'load value'")
-    field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)load_value")
-    field(PREC, "3")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:load_value")
-    field(SDIS, "$(P)DISABLE")
-}
-
-
 # Read LabVIEW control/indicator "strain 1 value" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
 record(ai, "$(P)STRAIN")
 {
@@ -375,20 +363,6 @@ record(ai, "$(P)STRAIN")
     field(SDIS, "$(P)DISABLE")
 }
 
-#TODO
-# Write to LabVIEW control "strain 1 value" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)strain_1_value")
-{
-	field(DESC, "LabVIEW 'strain 1 value'")
-    field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)strain_1_value")
-    field(PREC, "3")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:strain_1_value")
-    field(SDIS, "$(P)DISABLE")
-}
-
-
 # Read LabVIEW control/indicator "position value" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
 record(ai, "$(P)POS")
 {
@@ -399,19 +373,6 @@ record(ai, "$(P)POS")
     field(SCAN, ".1 second")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:POS")
-    field(SDIS, "$(P)DISABLE")
-}
-
-# TODO 
-# Write to LabVIEW control "position value" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)position_value")
-{
-	field(DESC, "LabVIEW 'position value'")
-    field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)position_value")
-    field(PREC, "3")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:position_value")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -669,7 +630,7 @@ record(bi, "$(P)WAVE:STOP")
 {
 	field(DESC, "LabVIEW 'Stop Waveform '")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(lvfp,0,0)Stop_Waveform_")
+    field(INP,  "@asyn(lvfp,0,0)Stop_Waveform")
     field(SCAN, ".1 second")
     field(ZNAM, "Stop Waveform")
     field(ONAM, "")
@@ -683,7 +644,7 @@ record(bo, "$(P)WAVE:STOP:SP")
 {
 	field(DESC, "LabVIEW 'Stop Waveform '")
     field(DTYP, "asynInt32")
-    field(OUT,  "@asyn(lvfp,0,0)Stop_Waveform_")
+    field(OUT,  "@asyn(lvfp,0,0)Stop_Waveform")
     field(ZNAM, "Stop Waveform")
     field(ONAM, "")
     field(SIML, "$(P)SIM")
@@ -711,7 +672,7 @@ record(bi, "$(P)GOING")
 {
 	field(DESC, "LabVIEW 'Going to  Setpoint'")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(lvfp,0,0)Going_to__Setpoint")
+    field(INP,  "@asyn(lvfp,0,0)Going_to_Setpoint")
     field(SCAN, ".1 second")
     field(ZNAM, "")
     field(ONAM, "")
@@ -819,7 +780,6 @@ record(bi, "$(P)STRESS:AREA:SP:SET")
     field(SDIS, "$(P)DISABLE")
 }
 
-#TODO
 # Write to LabVIEW control "Set Area" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
 record(bo, "$(P)STRESS:AREA:SP:SET:SP")
 {
