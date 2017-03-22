@@ -1,0 +1,10 @@
+
+file nanodac.db
+{
+pattern {S, ND, NI}
+	{$(P),  "", 1}
+}
+
+
+
+
