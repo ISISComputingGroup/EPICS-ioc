@@ -10,7 +10,7 @@ epicsEnvSet("MRESI",$(MSTP$(MN)=0.01))
 epicsEnvSet("OFSTI",$(OFST$(MN)=0))
 $(IFSIM) epicsEnvSet("ERESI",1)
 $(IFNOTSIM) epicsEnvSet("ERESI",0)
-epicsEnvSet("DHLMI",$(DHLM$(MN)=10))
+epicsEnvSet("DHLMI",$(DHLM$(MN)=100))
 epicsEnvSet("DLLMI",$(DLLM$(MN)=0))
 epicsEnvSet("ACCLI",$(ACCL$(MN)=1))
 
