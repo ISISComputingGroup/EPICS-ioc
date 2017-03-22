@@ -25,6 +25,7 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += lvDCOM.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -37,8 +38,13 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += lvDCOM 
+$(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
+$(APPNAME)_SYS_LIBS_WIN32 += msxml2
 #$(APPNAME)_LIBS += xxx
+
+
 
 # INSTRON-IOC-01_registerRecordDeviceDriver.cpp derives from INSTRON-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
