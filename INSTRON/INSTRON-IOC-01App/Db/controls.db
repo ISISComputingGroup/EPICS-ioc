@@ -79,9 +79,9 @@ record(waveform, "$(P)Reply_From_Stress_Rig")
 
 
 # Read LabVIEW control/indicator "Reading Interval (seconds)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)Reading_Interval:RBV")
+record(ai, "$(P)READ:ALL:SCAN")
 {
-	field(DESC, "LabVIEW 'Reading Interval (seconds)'")
+	field(DESC, "LabVIEW 'Reading Interval'")
     field(DTYP, "asynFloat64")
     field(EGU, "Seconds")
     field(INP,  "@asyn(lvfp,0,0)Reading_Interval_(seconds)")
@@ -90,9 +90,9 @@ record(ai, "$(P)Reading_Interval:RBV")
 }
 
 # Write to LabVIEW control "Reading Interval (seconds)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)Reading_Interval")
+record(ao, "$(P)READ:ALL:SCAN:SP")
 {
-	field(DESC, "LabVIEW 'Reading Interval (seconds)'")
+	field(DESC, "LabVIEW 'Reading Interval  '")
     field(DTYP, "asynFloat64")
     field(EGU, "Seconds")
     field(OUT,  "@asyn(lvfp,0,0)Reading_Interval_(seconds)")
@@ -101,7 +101,7 @@ record(ao, "$(P)Reading_Interval")
 
 
 # Read LabVIEW control/indicator "Stop" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bi, "$(P)Stop:RBV")
+record(bi, "$(P)STOP")
 {
 	field(DESC, "LabVIEW 'Stop'")
     field(DTYP, "asynInt32")
@@ -112,7 +112,7 @@ record(bi, "$(P)Stop:RBV")
 }
 
 # Write to LabVIEW control "Stop" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bo, "$(P)Stop")
+record(bo, "$(P)STOP:SP")
 {
 	field(DESC, "LabVIEW 'Stop'")
     field(DTYP, "asynInt32")
@@ -122,7 +122,7 @@ record(bo, "$(P)Stop")
 }
 
 # Read LabVIEW control/indicator "Panic stop" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bi, "$(P)Panic_stop:RBV")
+record(bi, "$(P)PANIC")
 {
 	field(DESC, "LabVIEW 'Panic stop'")
     field(DTYP, "asynInt32")
@@ -133,7 +133,7 @@ record(bi, "$(P)Panic_stop:RBV")
 }
 
 # Write to LabVIEW control "Panic stop" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bo, "$(P)Panic_stop")
+record(bo, "$(P)PANIC:SP")
 {
 	field(DESC, "LabVIEW 'Panic stop'")
     field(DTYP, "asynInt32")
@@ -144,7 +144,7 @@ record(bo, "$(P)Panic_stop")
 
 
 # Read LabVIEW control/indicator "Logging On/Off" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bi, "$(P)Logging_State:RBV")
+record(bi, "$(P)LOG:RECORD")
 {
 	field(DESC, "LabVIEW 'Logging On/Off'")
     field(DTYP, "asynInt32")
@@ -155,7 +155,7 @@ record(bi, "$(P)Logging_State:RBV")
 }
 
 # Write to LabVIEW control "Logging On/Off" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bo, "$(P)Logging_State")
+record(bo, "$(P)LOG:RECORD:SP")
 {
 	field(DESC, "LabVIEW 'Logging On/Off'")
     field(DTYP, "asynInt32")
@@ -168,7 +168,7 @@ record(bo, "$(P)Logging_State")
 # Read LabVIEW control/indicator "Data Logging Interval (seconds)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
 record(ai, "$(P)Data_Logging_Interval:RBV")
 {
-	field(DESC, "LabVIEW 'Data Logging Interval (seconds)'")
+	field(DESC, "LabVIEW 'Data Logging Interval '")
     field(DTYP, "asynFloat64")
     field(EGU, "Seconds")
     field(INP,  "@asyn(lvfp,0,0)Data_Logging_Interval_(seconds)")
@@ -179,7 +179,7 @@ record(ai, "$(P)Data_Logging_Interval:RBV")
 # Write to LabVIEW control "Data Logging Interval (seconds)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
 record(ao, "$(P)Data_Logging_Interval")
 {
-	field(DESC, "LabVIEW 'Data Logging Interval (seconds)'")
+	field(DESC, "LabVIEW 'Data Logging Interval '")
     field(DTYP, "asynFloat64")
     field(EGU, "Seconds")
     field(OUT,  "@asyn(lvfp,0,0)Data_Logging_Interval_(seconds)")
@@ -224,7 +224,7 @@ record(ao, "$(P)Number_of_points_to_average")
 ## longer than this choose the character waveform records and adjust NELM if necessary
 
 # Read LabVIEW control/indicator "Instron status" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(waveform, "$(P)Instron_status:RBV")
+record(waveform, "$(P)STATUS:DISP")
 {
 	field(DESC, "LabVIEW 'Instron status'")
     field(DTYP, "asynOctetRead")
@@ -235,7 +235,7 @@ record(waveform, "$(P)Instron_status:RBV")
 }
 
 # Read LabVIEW control/indicator "Position Step Time" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)Position_Step_Time:RBV")
+record(ai, "$(P)POS:STEP:TIME")
 {
 	field(DESC, "LabVIEW 'Position Step Time'")
     field(DTYP, "asynFloat64")
@@ -245,7 +245,7 @@ record(ai, "$(P)Position_Step_Time:RBV")
 }
 
 # Write to LabVIEW control "Position Step Time" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)Position_Step_Time")
+record(ao, "$(P)POS:STEP:TIME:SP")
 {
 	field(DESC, "LabVIEW 'Position Step Time'")
     field(DTYP, "asynFloat64")
@@ -255,7 +255,7 @@ record(ao, "$(P)Position_Step_Time")
 
 
 # Read LabVIEW control/indicator "Position setpoint" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)Position_setpoint:RBV")
+record(ai, "$(P)POS")
 {
 	field(DESC, "LabVIEW 'Position setpoint'")
     field(DTYP, "asynFloat64")
@@ -265,7 +265,7 @@ record(ai, "$(P)Position_setpoint:RBV")
 }
 
 # Write to LabVIEW control "Position setpoint" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)Position_setpoint")
+record(ao, "$(P)POS:SP")
 {
 	field(DESC, "LabVIEW 'Position setpoint'")
     field(DTYP, "asynFloat64")
@@ -275,7 +275,7 @@ record(ao, "$(P)Position_setpoint")
 
 
 # Read LabVIEW control/indicator "Stress setpoint" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)Stress_setpoint:RBV")
+record(ai, "$(P)STRESS:SP:RBV")
 {
 	field(DESC, "LabVIEW 'Stress setpoint'")
     field(DTYP, "asynFloat64")
@@ -285,7 +285,7 @@ record(ai, "$(P)Stress_setpoint:RBV")
 }
 
 # Write to LabVIEW control "Stress setpoint" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)Stress_setpoint")
+record(ao, "$(P)STRESS:SP")
 {
 	field(DESC, "LabVIEW 'Stress setpoint'")
     field(DTYP, "asynFloat64")
@@ -295,7 +295,7 @@ record(ao, "$(P)Stress_setpoint")
 
 
 # Read LabVIEW control/indicator "Strain setpoint" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)Strain_setpoint:RBV")
+record(ai, "$(P)STRAIN:SP:RBV")
 {
 	field(DESC, "LabVIEW 'Strain setpoint'")
     field(DTYP, "asynFloat64")
@@ -305,7 +305,7 @@ record(ai, "$(P)Strain_setpoint:RBV")
 }
 
 # Write to LabVIEW control "Strain setpoint" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)Strain_setpoint")
+record(ao, "$(P)STRAIN:SP")
 {
 	field(DESC, "LabVIEW 'Strain setpoint'")
     field(DTYP, "asynFloat64")
@@ -315,7 +315,7 @@ record(ao, "$(P)Strain_setpoint")
 
 
 # Read LabVIEW control/indicator "Control channel" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(mbbi, "$(P)Control_channel:RBV")
+record(mbbi, "$(P)CHANNEL")
 {
 	field(DESC, "LabVIEW 'Control channel'")
     field(DTYP, "asynInt32")
@@ -334,7 +334,7 @@ record(mbbi, "$(P)Control_channel:RBV")
 }
 
 # Write to LabVIEW control "Control channel" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(mbbo, "$(P)Control_channel")
+record(mbbo, "$(P)CHANNEL:SP")
 {
 	field(DESC, "LabVIEW 'Control channel'")
     field(DTYP, "asynInt32")
@@ -375,7 +375,7 @@ record(bo, "$(P)Position_State")
 
 
 # Read LabVIEW control/indicator "Strain On/Off" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bi, "$(P)Strain_State:RBV")
+record(bi, "$(P)STRAIN:LOG")
 {
 	field(DESC, "LabVIEW 'Strain On/Off'")
     field(DTYP, "asynInt32")
@@ -419,7 +419,7 @@ record(bo, "$(P)Load_State")
 
 
 # Read LabVIEW control/indicator "load value" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)load_value:RBV")
+record(ai, "$(P)STRESS")
 {
 	field(DESC, "LabVIEW 'load value'")
     field(DTYP, "asynFloat64")
@@ -428,6 +428,7 @@ record(ai, "$(P)load_value:RBV")
     field(SCAN, ".1 second")
 }
 
+#TODO
 # Write to LabVIEW control "load value" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
 record(ao, "$(P)load_value")
 {
@@ -439,7 +440,7 @@ record(ao, "$(P)load_value")
 
 
 # Read LabVIEW control/indicator "strain 1 value" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)strain_1_value:RBV")
+record(ai, "$(P)STRAIN")
 {
 	field(DESC, "LabVIEW 'strain 1 value'")
     field(DTYP, "asynFloat64")
@@ -448,6 +449,7 @@ record(ai, "$(P)strain_1_value:RBV")
     field(SCAN, ".1 second")
 }
 
+#TODO
 # Write to LabVIEW control "strain 1 value" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
 record(ao, "$(P)strain_1_value")
 {
@@ -459,7 +461,7 @@ record(ao, "$(P)strain_1_value")
 
 
 # Read LabVIEW control/indicator "position value" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)position_value:RBV")
+record(ai, "$(P)POS")
 {
 	field(DESC, "LabVIEW 'position value'")
     field(DTYP, "asynFloat64")
@@ -468,6 +470,7 @@ record(ai, "$(P)position_value:RBV")
     field(SCAN, ".1 second")
 }
 
+# TODO 
 # Write to LabVIEW control "position value" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
 record(ao, "$(P)position_value")
 {
@@ -559,7 +562,7 @@ record(ao, "$(P)Timebase")
 
 
 # Read LabVIEW control/indicator "Load Step Time" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)Load_Step_Time:RBV")
+record(ai, "$(P)STRESS:STEP:TIME")
 {
 	field(DESC, "LabVIEW 'Load Step Time'")
     field(DTYP, "asynFloat64")
@@ -569,7 +572,7 @@ record(ai, "$(P)Load_Step_Time:RBV")
 }
 
 # Write to LabVIEW control "Load Step Time" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)Load_Step_Time")
+record(ao, "$(P)STRESS:STEP:TIME:SP")
 {
 	field(DESC, "LabVIEW 'Load Step Time'")
     field(DTYP, "asynFloat64")
@@ -579,7 +582,7 @@ record(ao, "$(P)Load_Step_Time")
 
 
 # Read LabVIEW control/indicator "Strain Step Time" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)Strain_Step_Time:RBV")
+record(ai, "$(P)STRAIN:STEP:TIME")
 {
 	field(DESC, "LabVIEW 'Strain Step Time'")
     field(DTYP, "asynFloat64")
@@ -589,7 +592,7 @@ record(ai, "$(P)Strain_Step_Time:RBV")
 }
 
 # Write to LabVIEW control "Strain Step Time" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)Strain_Step_Time")
+record(ao, "$(P)STRAIN:STEP:TIME:SP")
 {
 	field(DESC, "LabVIEW 'Strain Step Time'")
     field(DTYP, "asynFloat64")
@@ -599,7 +602,7 @@ record(ao, "$(P)Strain_Step_Time")
 
 
 # Read LabVIEW control/indicator "Go to setpoint" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bi, "$(P)Go_to_setpoint:RBV")
+record(bi, "$(P)MOVE:GO")
 {
 	field(DESC, "LabVIEW 'Go to setpoint'")
     field(DTYP, "asynInt32")
@@ -620,7 +623,7 @@ record(bo, "$(P)Go_to_setpoint")
 }
 
 # Read LabVIEW control/indicator "Waveform Type" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(mbbi, "$(P)Waveform_Type:RBV")
+record(mbbi, "$(P)WAVE:TYPE")
 {
 	field(DESC, "LabVIEW 'Waveform Type'")
     field(DTYP, "asynInt32")
@@ -648,7 +651,7 @@ record(mbbi, "$(P)Waveform_Type:RBV")
 }
 
 # Write to LabVIEW control "Waveform Type" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(mbbo, "$(P)Waveform_Type")
+record(mbbo, "$(P)WAVE:TYPE:SP")
 {
 	field(DESC, "LabVIEW 'Waveform Type'")
     field(DTYP, "asynInt32")
@@ -676,7 +679,7 @@ record(mbbo, "$(P)Waveform_Type")
 
 
 # Read LabVIEW control/indicator "Frequency (Hz)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)Frequency:RBV")
+record(ai, "$(P)WAVE:FREQ")
 {
 	field(DESC, "LabVIEW 'Frequency (Hz)'")
     field(DTYP, "asynFloat64")
@@ -687,7 +690,7 @@ record(ai, "$(P)Frequency:RBV")
 }
 
 # Write to LabVIEW control "Frequency (Hz)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)Frequency")
+record(ao, "$(P)WAVE:FREQ:SP")
 {
 	field(DESC, "LabVIEW 'Frequency (Hz)'")
     field(DTYP, "asynFloat64")
@@ -698,7 +701,7 @@ record(ao, "$(P)Frequency")
 
 
 # Read LabVIEW control/indicator "Amplitude" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)Amplitude:RBV")
+record(ai, "$(P)WAVE:AMP")
 {
 	field(DESC, "LabVIEW 'Amplitude'")
     field(DTYP, "asynFloat64")
@@ -708,7 +711,7 @@ record(ai, "$(P)Amplitude:RBV")
 }
 
 # Write to LabVIEW control "Amplitude" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)Amplitude")
+record(ao, "$(P)WAVE:AMP:SP")
 {
 	field(DESC, "LabVIEW 'Amplitude'")
     field(DTYP, "asynFloat64")
@@ -718,7 +721,7 @@ record(ao, "$(P)Amplitude")
 
 
 # Read LabVIEW control/indicator "Cycles" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)Cycles:RBV")
+record(ai, "$(P)WAVE:QUART")
 {
 	field(DESC, "LabVIEW 'Cycles'")
     field(DTYP, "asynFloat64")
@@ -728,7 +731,7 @@ record(ai, "$(P)Cycles:RBV")
 }
 
 # Write to LabVIEW control "Cycles" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)Cycles")
+record(ao, "$(P)WAVE:QUART:SP")
 {
 	field(DESC, "LabVIEW 'Cycles'")
     field(DTYP, "asynFloat64")
@@ -738,55 +741,51 @@ record(ao, "$(P)Cycles")
 
 
 # Read LabVIEW control/indicator "Start Waveform" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bi, "$(P)Start_Waveform:RBV")
+record(bi, "$(P)WAVE:START")
 {
 	field(DESC, "LabVIEW 'Start Waveform'")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(lvfp,0,0)Start_Waveform")
     field(SCAN, ".1 second")
-    field(ZNAM, "Start
-Waveform")
+    field(ZNAM, "Start Waveform")
     field(ONAM, "")
 }
 
 # Write to LabVIEW control "Start Waveform" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bo, "$(P)Start_Waveform")
+record(bo, "$(P)WAVE:START:SP")
 {
 	field(DESC, "LabVIEW 'Start Waveform'")
     field(DTYP, "asynInt32")
     field(OUT,  "@asyn(lvfp,0,0)Start_Waveform")
-    field(ZNAM, "Start
-Waveform")
+    field(ZNAM, "Start Waveform")
     field(ONAM, "")
 }
 
 
 # Read LabVIEW control/indicator "Stop Waveform " on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bi, "$(P)Stop_Waveform:RBV")
+record(bi, "$(P)WAVE:STOP")
 {
 	field(DESC, "LabVIEW 'Stop Waveform '")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(lvfp,0,0)Stop_Waveform_")
     field(SCAN, ".1 second")
-    field(ZNAM, "Stop
-Waveform")
+    field(ZNAM, "Stop Waveform")
     field(ONAM, "")
 }
 
 # Write to LabVIEW control "Stop Waveform " on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bo, "$(P)Stop_Waveform")
+record(bo, "$(P)WAVE:STOP:SP")
 {
 	field(DESC, "LabVIEW 'Stop Waveform '")
     field(DTYP, "asynInt32")
     field(OUT,  "@asyn(lvfp,0,0)Stop_Waveform_")
-    field(ZNAM, "Stop
-Waveform")
+    field(ZNAM, "Stop Waveform")
     field(ONAM, "")
 }
 
 
 # Read LabVIEW control/indicator "Waveform Running" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bi, "$(P)Waveform_Running:RBV")
+record(bi, "$(P)WAVE:RUNNING")
 {
 	field(DESC, "LabVIEW 'Waveform Running'")
     field(DTYP, "asynInt32")
@@ -807,7 +806,7 @@ record(ai, "$(P)GPIB_device_number:RBV")
 }
 
 # Read LabVIEW control/indicator "Going to  Setpoint" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bi, "$(P)Going_to_Setpoint:RBV")
+record(bi, "$(P)GOING")
 {
 	field(DESC, "LabVIEW 'Going to  Setpoint'")
     field(DTYP, "asynInt32")
@@ -819,7 +818,7 @@ record(bi, "$(P)Going_to_Setpoint:RBV")
 
 
 # Read LabVIEW control/indicator "Cross Sectional Area (mm^2)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)Cross_Sectional_Area:RBV")
+record(ai, "$(P)STRESS:AREA")
 {
 	field(DESC, "LabVIEW 'Cross Sectional Area (mm^2)'")
     field(DTYP, "asynFloat64")
@@ -830,7 +829,7 @@ record(ai, "$(P)Cross_Sectional_Area:RBV")
 }
 
 # Write to LabVIEW control "Cross Sectional Area (mm^2)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)Cross_Sectional_Area")
+record(ao, "$(P)STRESS:AREA:SP")
 {
 	field(DESC, "LabVIEW 'Cross Sectional Area (mm^2)'")
     field(DTYP, "asynFloat64")
@@ -841,7 +840,7 @@ record(ao, "$(P)Cross_Sectional_Area")
 
 
 # Read LabVIEW control/indicator "Diameter (mm)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)Diameter:RBV")
+record(ai, "$(P)STRESS:DIAMETER")
 {
 	field(DESC, "LabVIEW 'Diameter (mm)'")
     field(DTYP, "asynFloat64")
@@ -852,7 +851,7 @@ record(ai, "$(P)Diameter:RBV")
 }
 
 # Write to LabVIEW control "Diameter (mm)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ao, "$(P)Diameter")
+record(ao, "$(P)STRESS:DIAMETER:SP")
 {
 	field(DESC, "LabVIEW 'Diameter (mm)'")
     field(DTYP, "asynFloat64")
@@ -863,31 +862,29 @@ record(ao, "$(P)Diameter")
 
 
 # Read LabVIEW control/indicator "Calculate" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bi, "$(P)Calculate:RBV")
+record(bi, "$(P)STRESS:AREA:SP:CALC")
 {
 	field(DESC, "LabVIEW 'Calculate'")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(lvfp,0,0)Calculate")
     field(SCAN, ".1 second")
-    field(ZNAM, "Calculate
-& Set")
+    field(ZNAM, "Calculate & Set")
     field(ONAM, "")
 }
 
 # Write to LabVIEW control "Calculate" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bo, "$(P)Calculate")
+record(bo, "$(P)STRESS:AREA:SP:CALC:SP")
 {
 	field(DESC, "LabVIEW 'Calculate'")
     field(DTYP, "asynInt32")
     field(OUT,  "@asyn(lvfp,0,0)Calculate")
-    field(ZNAM, "Calculate
-& Set")
+    field(ZNAM, "Calculate & Set")
     field(ONAM, "")
 }
 
 
 # Read LabVIEW control/indicator "Set Area" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bi, "$(P)Set_Area:RBV")
+record(bi, "$(P)STRESS:AREA:SP:SET")
 {
 	field(DESC, "LabVIEW 'Set Area'")
     field(DTYP, "asynInt32")
@@ -897,8 +894,9 @@ record(bi, "$(P)Set_Area:RBV")
     field(ONAM, "")
 }
 
+#TODO
 # Write to LabVIEW control "Set Area" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(bo, "$(P)Set_Area")
+record(bo, "$(P)STRESS:AREA:SP:SET:SP")
 {
 	field(DESC, "LabVIEW 'Set Area'")
     field(DTYP, "asynInt32")
@@ -1005,9 +1003,7 @@ record(bi, "$(P)Stress_vrs_Strain:RBV")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(lvfp,0,0)Stress_vrs_Strain")
     field(SCAN, ".1 second")
-    field(ZNAM, "Stress 
-vrs 
-Strain Graph")
+    field(ZNAM, "Stress vrs Strain Graph")
     field(ONAM, "")
 }
 
