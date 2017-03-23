@@ -1,6 +1,0 @@
-record(stringin, "$(P)ID")
-{
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(INP,  "@rot_sample_changer.proto getID() $(PORT)")
-}
