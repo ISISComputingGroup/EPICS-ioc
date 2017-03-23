@@ -45,8 +45,8 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
-$(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += modbus
+$(APPNAME)_LIBS += asyn
 #$(APPNAME)_LIBS += xxx
 
 # NANODAC-IOC-01_registerRecordDeviceDriver.cpp derives from NANODAC-IOC-01.dbd
