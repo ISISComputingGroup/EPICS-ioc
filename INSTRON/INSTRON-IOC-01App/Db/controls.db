@@ -130,6 +130,7 @@ record(bi, "$(P)LOG:RECORD")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:LOG:RECORD")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Logging On/Off" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -161,6 +162,7 @@ record(waveform, "$(P)STATUS:DISP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STATUS:DISP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Read LabVIEW control/indicator "Position Step Time" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -174,6 +176,7 @@ record(ai, "$(P)POS:STEP:TIME")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:POS:STEP:TIME")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Position Step Time" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -190,7 +193,7 @@ record(ao, "$(P)POS:STEP:TIME:SP")
 
 
 # Read LabVIEW control/indicator "Position setpoint" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)POS")
+record(ai, "$(P)POS:SP:RBV")
 {
 	field(DESC, "LabVIEW 'Position setpoint'")
     field(DTYP, "asynFloat64")
@@ -200,6 +203,7 @@ record(ai, "$(P)POS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:POS")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Position setpoint" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -226,6 +230,7 @@ record(ai, "$(P)STRESS:SP:RBV")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STRESS:SP:RBV")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Stress setpoint" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -252,6 +257,7 @@ record(ai, "$(P)STRAIN:SP:RBV")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STRAIN:SP:RBV")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Strain setpoint" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -287,6 +293,7 @@ record(mbbi, "$(P)CHANNEL")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CHANNEL")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Control channel" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -322,6 +329,7 @@ record(bi, "$(P)STRAIN:LOG")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STRAIN:LOG")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Strain On/Off" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -348,6 +356,7 @@ record(ai, "$(P)STRESS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STRESS")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Read LabVIEW control/indicator "strain 1 value" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -361,6 +370,7 @@ record(ai, "$(P)STRAIN")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STRAIN")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Read LabVIEW control/indicator "position value" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -374,6 +384,7 @@ record(ai, "$(P)POS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:POS")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Read LabVIEW control/indicator "Load Step Time" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -387,6 +398,7 @@ record(ai, "$(P)STRESS:STEP:TIME")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STRESS:STEP:TIME")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Load Step Time" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -413,6 +425,7 @@ record(ai, "$(P)STRAIN:STEP:TIME")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STRAIN:STEP:TIME")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Strain Step Time" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -484,6 +497,7 @@ record(mbbi, "$(P)WAVE:TYPE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAVE:TYPE")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Waveform Type" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -529,6 +543,7 @@ record(ai, "$(P)WAVE:FREQ")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAVE:FREQ")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Frequency (Hz)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -556,6 +571,7 @@ record(ai, "$(P)WAVE:AMP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAVE:AMP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Amplitude" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -582,6 +598,7 @@ record(ai, "$(P)WAVE:QUART")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAVE:QUART")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Cycles" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -665,6 +682,7 @@ record(bi, "$(P)WAVE:RUNNING")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAVE:RUNNING")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Read LabVIEW control/indicator "Going to  Setpoint" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -679,6 +697,7 @@ record(bi, "$(P)GOING")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:GOING")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 
@@ -694,6 +713,7 @@ record(ai, "$(P)STRESS:AREA")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STRESS:AREA")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Cross Sectional Area (mm^2)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -722,6 +742,7 @@ record(ai, "$(P)STRESS:DIAMETER")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STRESS:DIAMETER")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Diameter (mm)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
@@ -750,6 +771,7 @@ record(bi, "$(P)STRESS:AREA:SP:CALC")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STRESS:AREA:SP:CALC")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
 }
 
 # Write to LabVIEW control "Calculate" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
