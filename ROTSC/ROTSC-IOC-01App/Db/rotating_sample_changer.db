@@ -2,5 +2,258 @@ record(stringin, "$(P)ID")
 {
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@rot_sample_changer.proto getID() $(PORT)")
+    field(INP,  "@rotsc.proto getID() $(PORT)")
+}
+
+record(stringin, "$(P)RAW_STATUS")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@rotsc.proto getStat($(P),RAW_MTR_STAT,ERR,POSN) $(PORT)")
+	field(FLNK, "$(P)STAT_FAN")
+}
+
+record(fanout, "$(P)STAT_FAN")
+{
+	field(LNK1, "$(P)CALC_MTR_1_ENB")
+    field(LNK2, "$(P)CALC_MTR_0_ENB")
+    field(LNK3, "$(P)CALC_ACTUATOR_ARM_POSN")
+	field(LNK4, "$(P)CALC_CAR_AT_IDX")
+    field(LNK5, "$(P)CALC_CAR_AT_POS_1")	
+	field(LNK6, "$(P)STAT_FAN_01")
+}
+
+record(fanout, "$(P)STAT_FAN_01")
+{
+	field(LNK1, "$(P)CALC_SAMPLE_ARM_UP")
+	field(LNK2, "$(P)CALC_SAMPLE_ARM_DOWN")
+	field(LNK3, "$(P)CALC_MTR_1_DIRECTION")
+	field(LNK4, "$(P)CALC_MTR_1_STATUS")
+	field(LNK5, "$(P)CALC_MTR_0_STATUS")
+	field(LNK6, "$(P)CALC_MTR_0_DIRECTION")	
+}
+
+record(stringin, "$(P)RAW_MTR_STAT")
+{
+	field(FLNK, "$(P)STAT_FAN")
+}
+
+record(fanout, "$(P)MTR_STAT_FAN")
+{
+	field(LNK1, "$(P)CALC_MTR_0_ACTIVE")
+	field(LNK2, "$(P)CALC_MTR_1_ACTIVE")
+}
+
+record(ai, "$(P)ERR")
+{
+}
+
+record(ai, "$(P)POSN")
+{
+}
+
+record(scalcout, "$(P)CALC_MTR_1_ENB")
+{
+    field(CALC, "AA[0,0]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MTR_1_ENABLED PP MS")
+}
+
+record(bo, "$(P)MTR_1_ENABLED")
+{
+	field(ONAM, "ENABLED")
+	field(ZNAM, "DISABLED")
+}
+
+record(scalcout, "$(P)CALC_MTR_0_ENB")
+{
+    field(CALC, "AA[1,1]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MTR_0_ENABLED PP MS")
+}
+
+record(bo, "$(P)MTR_0_ENABLED")
+{
+	field(ONAM, "ENABLED")
+	field(ZNAM, "DISABLED")
+}
+
+record(scalcout, "$(P)CALC_ACTUATOR_ARM_POSN")
+{
+    field(CALC, "AA[5,5]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)ACTUATOR_ARM_POSITION PP MS")
+}
+
+record(bo, "$(P)ACTUATOR_ARM_POSITION")
+{
+	field(ONAM, "RAISED")
+	field(ZNAM, "LOWERED")
+}
+
+record(scalcout, "$(P)CALC_CAR_AT_IDX")
+{
+    field(CALC, "AA[7,7]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)CARROUSEL_AT_IDX PP MS")
+}
+
+record(bo, "$(P)CARROUSEL_AT_IDX")
+{
+	field(ONAM, "AT INDEX")
+	field(ZNAM, "OFF INDEX")
+}
+
+record(scalcout, "$(P)CALC_CAR_AT_POS_1")
+{
+    field(CALC, "AA[8,8]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)CARROUSEL_AT_POS_1 PP MS")
+}
+
+record(bo, "$(P)CARROUSEL_AT_POS_1")
+{
+	field(ONAM, "AT POSITION 1")
+	field(ZNAM, "OFF POSITION 1")
+}
+
+record(scalcout, "$(P)CALC_SAMPLE_ARM_UP")
+{
+    field(CALC, "AA[9,9]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)SAMPLE_ARM_UP PP MS")
+}
+
+record(bo, "$(P)SAMPLE_ARM_UP")
+{
+	field(ONAM, "UP")
+	field(ZNAM, "NOT UP")
+}
+
+record(scalcout, "$(P)CALC_SAMPLE_ARM_DOWN")
+{
+    field(CALC, "AA[10,10]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)SAMPLE_ARM_DOWN PP MS")
+}
+
+record(bo, "$(P)SAMPLE_ARM_DOWN")
+{
+	field(ONAM, "DOWN")
+	field(ZNAM, "NOT DOWN")
+}
+
+record(scalcout, "$(P)CALC_MTR_1_DIRECTION")
+{
+    field(CALC, "AA[12,12]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MOTOR_1_DIRECTION PP MS")
+}
+
+record(bo, "$(P)MOTOR_1_DIRECTION")
+{
+	field(ONAM, "RAISE")
+	field(ZNAM, "LOWER")
+}
+
+record(scalcout, "$(P)CALC_MTR_1_STATUS")
+{
+    field(CALC, "AA[13,13]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MOTOR_1_STATUS PP MS")
+}
+
+record(bo, "$(P)MOTOR_1_STATUS")
+{
+	field(ONAM, "ERROR")
+	field(ZNAM, "WORKING")
+}
+
+record(scalcout, "$(P)CALC_MTR_0_STATUS")
+{
+    field(CALC, "AA[6,6]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MOTOR_0_STATUS PP MS")
+}
+
+record(bo, "$(P)MOTOR_0_STATUS")
+{
+	field(ONAM, "ERROR")
+	field(ZNAM, "WORKING")
+}
+
+record(scalcout, "$(P)CALC_MTR_0_DIRECTION")
+{
+    field(CALC, "AA[15,15]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MOTOR_0_DIRECTION PP MS")
+}
+
+record(bo, "$(P)MOTOR_0_DIRECTION")
+{
+#	field(DESC, "The direction in which the rotating arm is set top move")
+	field(ONAM, "BACKWARD")
+	field(ZNAM, "FORWARD")
+}
+
+record(scalcout, "$(P)CALC_MTR_1_ACTIVE")
+{
+    field(CALC, "AA[0,0]")
+    field(INAA, "$(P)RAW_MTR_STAT PP MS")
+    field(OUT, "$(P)MOTOR_1_ACTIVE PP MS")
+}
+
+record(bo, "$(P)MOTOR_1_ACTIVE")
+{
+	field(DESC, "The active/idle state of the arm motor")
+	field(ONAM, "ACTIVE")
+	field(ZNAM, "IDLE")
+}
+
+record(scalcout, "$(P)CALC_MTR_0_ACTIVE")
+{
+    field(CALC, "AA[1,1]")
+    field(INAA, "$(P)RAW_MTR_STAT PP MS")
+    field(OUT, "$(P)MOTOR_0_ACTIVE PP MS")
+}
+
+record(bo, "$(P)MOTOR_0_ACTIVE")
+{
+	field(DESC, "The active/idle state of the rotating motor")
+	field(ONAM, "ACTIVE")
+	field(ZNAM, "IDLE")
+}
+
+record(ao, "$(P)GET_VR:SP")
+{
+	field(DESC, "Set for which variable to get from GET_VR") 
+	field(FLNK, "$(P)GET_VR_MAG")
+}
+
+record(bi, "$(P)GET_VR:POLARITY")
+{
+	field(ZNAM, "+")
+	field(ONAM, "-")
+	field(FLNK, "$(P)CALC_GET_VR")
+}
+
+record(ai, "$(P)GET_VR_MAG")
+{
+	field(DTYP, "stream")
+	field(INP, "@rotsc.proto getVR($(P),GET_VR:SP,GET_VR:POLARITY) $(PORT)")
+	field(FLNK, "$(P)GET_VR:POLARITY")
+}
+
+record(scalcout, "$(P)CALC_GET_VR")
+{
+    field(INAA, "$(P)GET_VR:POLARITY PP MS")
+    field(INBB, "$(P)GET_VR_MAG PP MS") 
+	field(CALC, "AA+BB")
+	field(OUT, "$(P)GET_VR")
+	field(FLNK, "$(P)GET_VR")
+}
+
+record(ai, "$(P)GET_VR")
+{
+	field(DESC, "Get the value of the specified variable")
 }
