@@ -11,10 +11,6 @@
 #     lvDCOMConfigure("lvfp", "frontpanel", "/path/to/lvinput.xml")
 # 
 
-## Creating both stringout/stringin and waveform records for "Enter Stress Rig Command" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-## EPICS strings are restricted to 40 characters in length, if your strings are
-## longer than this choose the character waveform records and adjust NELM if necessary
-
 record(bo, "$(P)SIM")
 {
     field(SCAN, "Passive")
@@ -61,7 +57,6 @@ record(ao, "$(P)READ:ALL:SCAN:SP")
     field(SIOL, "$(P)SIM:READ:ALL:SCAN:SP")
     field(SDIS, "$(P)DISABLE")
 }
-
 
 # Read LabVIEW control/indicator "Stop" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
 record(bi, "$(P)STOP")
@@ -147,9 +142,32 @@ record(bo, "$(P)LOG:RECORD:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-## Creating both stringout/stringin and waveform records for "Instron status" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-## EPICS strings are restricted to 40 characters in length, if your strings are
-## longer than this choose the character waveform records and adjust NELM if necessary
+# Read LabVIEW control/indicator "Data Logging Interval (seconds)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
+record(ai, "$(P)LOG:SCAN")
+{
+	field(DESC, "LabVIEW 'Data Logging Interval'")
+    field(DTYP, "asynFloat64")
+    field(EGU, "Seconds")
+    field(INP,  "@asyn(lvfp,0,0)Data_Logging_Interval_(seconds)")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:LOG:SCAN")
+    field(SDIS, "$(P)DISABLE")
+}
+
+# Write to LabVIEW control "Reading Interval (seconds)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
+record(ao, "$(P)LOG:SCAN:SP")
+{
+	field(DESC, "LabVIEW 'Data Logging Interval'")
+    field(DTYP, "asynFloat64")
+    field(EGU, "Seconds")
+    field(OUT,  "@asyn(lvfp,0,0)Data_Logging_Interval_(seconds)")
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:LOG:SCAN:SP")
+    field(SDIS, "$(P)DISABLE")
+}
 
 # Read LabVIEW control/indicator "Instron status" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
 record(waveform, "$(P)STATUS:DISP")
@@ -919,6 +937,14 @@ record(ai, "$(P)SIM:READ:ALL:SCAN")
 }
 
 alias("$(P)SIM:READ:ALL:SCAN","$(P)SIM:READ:ALL:SCAN:SP")
+
+record(ai, "$(P)SIM:LOG:SCAN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:LOG:SCAN","$(P)SIM:LOG:SCAN:SP")
 
 record(bi, "$(P)SIM:PANIC")
 {
