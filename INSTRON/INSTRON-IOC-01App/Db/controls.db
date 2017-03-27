@@ -853,6 +853,23 @@ record(bo, "$(P)STRESS:AREA:SP:SET:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
+# Write to LabVIEW control "Enter Stress Rig Command" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
+record(stringout, "$(P)ARBITRARY:SP")
+{
+	field(DESC, "LabVIEW 'Enter Stress Rig Command'")
+    field(DTYP, "asynOctetWrite")
+    field(OUT,  "@asyn(lvfp,0,0)Enter_Stress_Rig_Command")
+}
+
+# Read LabVIEW control/indicator "Reply From Stress Rig" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
+record(stringin, "$(P)ARBITRARY")
+{
+	field(DESC, "LabVIEW 'Reply From Stress Rig'")
+    field(DTYP, "asynOctetRead")
+    field(INP,  "@asyn(lvfp,0,0)Reply_From_Stress_Rig")
+    field(SCAN, ".1 second")
+}
+
 ### SIMULATION RECORDS ###
 
 record(bi, "$(P)SIM:STRESS:AREA:SP:SET")
