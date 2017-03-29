@@ -21,3 +21,13 @@ record(bo, "$(P)DISABLE")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
 }
+
+record(ai, "$(P)FREQ:SP")
+{
+    field(DESC, "Demanded frequency")
+    field(DTYP, "stream")
+	field(SCAN, "Passive")
+    field(EGU, "Hz")
+	field(PREC, "2")
+    field(INP, "@devmk2chopr.proto get_demanded_frequency $(PORT)")
+}
