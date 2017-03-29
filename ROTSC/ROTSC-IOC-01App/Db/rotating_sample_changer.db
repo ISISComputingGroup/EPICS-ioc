@@ -257,3 +257,9 @@ record(ai, "$(P)GET_VR")
 {
 	field(DESC, "Get the value of the specified variable")
 }
+
+record(bo, "$(P)GO_FORWARD")
+{
+	#field(DESC, "Writing to this field causes a 1 step forward move")
+	field(OUT, "@rotsc.proto sendCommand(fk,$(P)ERR) $(PORT)")	
+}
