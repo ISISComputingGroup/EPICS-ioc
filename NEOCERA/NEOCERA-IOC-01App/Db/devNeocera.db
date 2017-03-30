@@ -1,0 +1,1012 @@
+############
+# General records
+# 
+
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(seq, "$(P)READ") {
+	field(DESC, "Initiator for all items needing read")
+	field(SCAN, "1 second")
+	
+	field(DO1, "1")
+	field(DO2, "1")
+	field(DO3, "1")
+	field(DO4, "1")
+	field(DO5, "1")
+	field(DO6, "1")
+	field(DO7, "1")
+	field(DO8, "1")
+	field(DO9, "1")
+	field(DOA, "1")
+
+	field(LNK1, "$(P)MODE.PROC")
+	field(LNK2, "$(P)1:SENSOR.PROC")
+	field(LNK3, "$(P)2:SENSOR.PROC")
+	field(LNK4, "$(P)1:TEMP:SP:RBV.PROC")
+	field(LNK5, "$(P)2:TEMP:SP:RBV.PROC")
+	field(LNK6, "$(P)1:TEMP:SENSOR.PROC")
+	field(LNK7, "$(P)2:TEMP:SENSOR.PROC")
+	field(LNK8, "$(P)1:HEAT.PROC")
+	field(LNK9, "$(P)1:P.PROC")
+	field(LNKA, "$(P)2:P.PROC")
+	
+	field(SELM, "All")
+}
+
+############
+# Units Mode
+# 
+
+record(mbbi, "$(P)MODE")
+{
+	field(DESC, "Mode")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(INP,  "@main.proto getMode() $(PORT)")
+	
+	field(ZRVL, 0)
+	field(ZRST, "Monitor")
+	field(ONVL, 1)
+	field(ONST, "Control")
+	field(TWVL, 2)
+	field(TWST, "Auto Tune")
+	field(THVL, 3)
+	field(THST, "Off")
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MODE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbo, "$(P)MODE:SP")
+{
+	field(DESC, "Set mode")
+    field(DTYP, "stream")
+    field(OUT,  "@main.proto setMode() $(PORT)")
+	
+	field(ZRVL, 0)
+	field(ZRST, "Monitor")
+	field(ONVL, 1)
+	field(ONST, "Control")
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MODE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)MODE:SP", "$(P)MODE:SP:RBV")
+
+############
+# Temperature Sensor 1
+# 
+
+record(ai, "$(P)1:SENSOR")
+{
+	field(DESC, "Temperature of sensor 1")
+	field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(INP,  "@main.proto getTemp(1,$(P)1:SENSOR:UNITS) $(PORT)")
+	field(PREC, 3)
+
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:SENSOR")
+    field(SDIS, "$(P)DISABLE")
+}
+record(stringin, "$(P)1:SENSOR:UNITS")
+{
+	field(DESC, "Temperature sensor 2 units")
+	field(SCAN, "Passive")
+
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:SENSOR:UNITS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+############
+# Temperature Sensor 2
+# 
+
+record(ai, "$(P)2:SENSOR")
+{
+	field(DESC, "Temperature of sensor 2")
+	field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(INP,  "@main.proto getTemp(2,$(P)2:SENSOR:UNITS) $(PORT)")
+	field(PREC, 3)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:SENSOR")
+    field(SDIS, "$(P)DISABLE")
+}
+record(stringin, "$(P)2:SENSOR:UNITS")
+{
+	field(DESC, "Temperature sensor 2 units")
+	field(SCAN, "Passive")
+
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:SENSOR:UNITS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+######################
+# Temperature Output 1
+# 
+# The output 1 is the heater which can have a setpoint and is connected to a sensor (or not)
+
+record(scalcout, "$(P)1:TEMP_UNITS_CALC")
+{
+	field(DESC, "Temperature units for output 1")
+	field(SCAN, "Passive")
+	field(INAA, "$(P)1:SENSOR.EGU CP")
+	field(INBB, "$(P)2:SENSOR.EGU CP")
+	field(INPC, "$(P)1:TEMP:SENSOR CP")
+	field(CALC, "C==1?AA:(C==2?BB:' ')")
+	field(OUT, "$(P)1:TEMP.EGU PP")
+}
+
+record(sel, "$(P)1:TEMP") {
+	field(DESC, "Temperature output 1")
+	field(EGU, "")  # EGU set by scalc
+	field(PREC, 3)
+	
+	field(INPA, "0")
+	field(INPB, "$(P)1:SENSOR CP MS")
+	field(INPC, "$(P)2:SENSOR CP MS")
+	field(INPD, "0")
+	field(SELM, "Specified")
+	field(NVL, "$(P)1:TEMP:SENSOR")
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+record(ao, "$(P)1:TEMP:SP")
+{
+	field(DESC, "setpoint for output 1")
+	field(DTYP, "stream")
+	field(OUT,  "@main.proto setTemp(1) $(PORT)")
+	field(PREC, 3)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:TEMP:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)1:TEMP:SP:RBV")
+{
+	field(DESC, "setpoint readback for output 1")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(INP,  "@main.proto getSpRbv(1,$(P)1:TEMP:SP:UNITS) $(PORT)")
+	field(PREC, 3)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:TEMP:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(stringin, "$(P)1:TEMP:SP:UNITS")
+{
+	field(DESC, "setpoint readback units for output 1")
+	field(SCAN, "Passive")
+}
+
+
+######################
+# Temperature Output 2
+# 
+# The output 2 is the analog which can have a setpoint and is connected to a sensor (or not)
+
+record(scalcout, "$(P)2:TEMP_UNITS_CALC")
+{
+	field(DESC, "Temperature units for output 2")
+	field(SCAN, "Passive")
+	field(INAA, "$(P)1:SENSOR.EGU CP")
+	field(INBB, "$(P)2:SENSOR.EGU CP")
+	field(INPC, "$(P)2:TEMP:SENSOR CP")
+	field(CALC, "C==1?AA:(C==2?BB:' ')")
+	field(OUT, "$(P)2:TEMP.EGU PP")
+}
+
+record(sel, "$(P)2:TEMP") {
+	field(DESC, "Temperature output 2")
+	field(EGU, "")  # EGU set by scalc
+	field(PREC, 3)
+	
+	field(INPA, "0")
+	field(INPB, "$(P)1:SENSOR CP MS")
+	field(INPC, "$(P)2:SENSOR CP MS")
+	field(INPD, "0")
+	field(SELM, "Specified")
+	field(NVL, "$(P)2:TEMP:SENSOR")
+
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+
+# Output setpoints
+record(ao, "$(P)2:TEMP:SP")
+{
+	field(DESC, "setpoint for output 1")
+	field(DTYP, "stream")
+	field(OUT,  "@main.proto setTemp(2) $(PORT)")
+	field(PREC, 3)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:TEMP:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)2:TEMP:SP:RBV")
+{
+	field(DESC, "setpoint readback for output 1")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(INP,  "@main.proto getSpRbv(2,$(P)2:TEMP:SP:UNITS) $(PORT)")
+	field(PREC, 3)
+	
+	info(archive, "VAL")	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:TEMP:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
+record(stringin, "$(P)2:TEMP:SP:UNITS")
+{
+	field(DESC, "setpoint readback units for output 1")
+	field(SCAN, "Passive")
+}
+
+#####################################
+# Configuration for Output 1 (heater)
+# 
+
+record(mbbi, "$(P)1:TEMP:SENSOR")
+{
+	field(DESC, "Temperature 1 sensor")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(INP,  "@main.proto getCon1($(P)1:,TEMP:CTL,HEAT:RANGE) $(PORT)")
+
+	field(ZRST, "Unknown")
+	field(ONST, "Sensor 1")
+	field(TWST, "Sensor 2")
+	field(THST, "No sensor")
+	
+	info(INTEREST, "LOW")
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:TEMP:SENSOR")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbi, "$(P)1:TEMP:CTL")
+{
+	field(DESC, "Temperature 1 control")
+	
+	field(ZRST, "Auto P")
+	field(ONST, "Auto PI")
+	field(TWST, "Auto PID")
+	field(THST, "PID")
+	field(FRST, "Table")
+	field(FVST, "Default")
+	field(SXST, "Monitor")
+
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")	
+	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:TEMP:CTL")
+    field(SDIS, "$(P)DISABLE")
+
+}
+
+record(mbbo, "$(P)1:TEMP:CTL:SP")
+{
+	field(DESC, "Temperature 1 control setting")
+	field(DTYP, "stream")
+	field(OUT,  "@main.proto setCtl1() $(PORT)")
+
+	field(ZRST, "Auto P")
+	field(ONST, "Auto PI")
+	field(TWST, "Auto PID")
+	field(THST, "PID")
+	field(FRST, "Table")
+	field(FVST, "Default")
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:TEMP:CTL:SP PP")
+    field(SDIS, "$(P)DISABLE")
+}
+alias("$(P)1:TEMP:CTL", "$(P)1:TEMP:CTL:SP:RBV")
+
+record(mbbi, "$(P)1:HEAT:RANGE")
+{
+	field(DESC, "Temperature 1 heater range")
+	
+	field(ZRST, "Off")
+	field(ONST, "0.05W")
+	field(TWST, "0.5W")
+	field(THST, "5W")
+	field(FRST, "50W")
+	
+	info(INTEREST, "low")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:HEAT:RANGE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)1:HEAT")
+{
+	field(DESC, "Heater value")
+	field(EGU, "%")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(INP,  "@main.proto getHeat() $(PORT)")
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:HEAT")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
+#####################################
+# Configuration for Output 2 (analog)
+# 
+
+record(mbbi, "$(P)2:TEMP:SENSOR")
+{
+	field(DESC, "Temperature 2 sensor")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(INP,  "@main.proto getCon2($(P)2:TEMP:CTL) $(PORT)")
+
+	field(ZRST, "Unknown")
+	field(ONST, "Sensor 1")
+	field(TWST, "Sensor 2")
+	field(THST, "No sensor")
+	
+	info(archive, "VAL")
+
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:TEMP:SENSOR")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbi, "$(P)2:TEMP:CTL")
+{
+	field(DESC, "Temperature 2 control")
+	
+	field(ZRST, "PID")
+	field(ZRVL, 3)
+	field(ONST, "Table")
+	field(ONVL, 4)
+	field(TWST, "Default")
+	field(TWVL, 5)
+	field(THST, "Monitor")
+	field(THVL, 6)
+
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")	
+	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:TEMP:CTL")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbo, "$(P)2:TEMP:CTL:SP")
+{
+	field(DESC, "Temperature 2 control setting")
+	field(DTYP, "stream")
+	field(OUT,  "@main.proto setCtl2() $(PORT)")
+
+	field(ZRST, "PID")
+	field(ZRVL, 3)
+	field(ONST, "Table")
+	field(ONVL, 4)
+	field(TWST, "Default")
+	field(TWVL, 5)
+	field(THST, "Monitor")
+	field(THVL, 6)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:TEMP:CTL:SP PP")
+    field(SDIS, "$(P)DISABLE")
+}
+alias("$(P)2:TEMP:CTL", "$(P)2:TEMP:CTL:SP:RBV")
+
+#####################################
+# PID for Output 1 (heater)
+# 
+
+record(ai, "$(P)1:P")
+{
+	field(DESC, "P for output 1")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(INP,  "@main.proto getPID1($(P)1:,I,D,FIXED,HEAT:LIMIT) $(PORT)")
+	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:P")
+    field(SDIS, "$(P)DISABLE")
+}
+record(ao, "$(P)1:P:SP")
+{
+	field(DESC, "Set P for output 1")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(OUT,  "@main.proto setP1($(P)1:,I,D,FIXED,HEAT:LIMIT) $(PORT)")
+	field(PREC, 2)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:P:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)1:I")
+{
+	field(DESC, "I for output 1")
+	field(EGU, "")
+	field(SCAN, "Passive")
+	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:I")
+    field(SDIS, "$(P)DISABLE")
+}
+record(ao, "$(P)1:I:SP")
+{
+	field(DESC, "Set I for output 1")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(OUT,  "@main.proto setI1($(P)1:,P,D,FIXED,HEAT:LIMIT) $(PORT)")
+	field(PREC, 2)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:I:SP PP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)1:D")
+{
+	field(DESC, "D for output 1")
+	field(EGU, "")
+	field(SCAN, "Passive")
+	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:D")
+    field(SDIS, "$(P)DISABLE")
+}
+record(ao, "$(P)1:D:SP")
+{
+	field(DESC, "Set D for output 1")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(OUT,  "@main.proto setD1($(P)1:,P,I,FIXED,HEAT:LIMIT) $(PORT)")
+	field(PREC, 2)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:D:SP PP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)1:FIXED")
+{
+	field(DESC, "Fixed power reset term for output 1")
+	field(EGU, "")
+	field(SCAN, "Passive")
+	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:FIXED")
+    field(SDIS, "$(P)DISABLE")
+}
+record(ao, "$(P)1:FIXED:SP")
+{
+	field(DESC, "Set fixed power reset for output 1")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(OUT,  "@main.proto setFixed1($(P)1:,P,I,D,HEAT:LIMIT) $(PORT)")
+	field(PREC, 2)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:FIXED:SP PP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)1:HEAT:LIMIT")
+{
+	field(DESC, "Maximum heater limit")
+	field(EGU, "%")
+	field(SCAN, "Passive")
+	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:HEAT:LIMIT")
+    field(SDIS, "$(P)DISABLE")
+}
+record(ao, "$(P)1:HEAT:LIMIT:SP")
+{
+	field(DESC, "Set Heater Limit")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(OUT,  "@main.proto setLimit1($(P)1:,P,I,D,FIXED) $(PORT)")
+	field(PREC, 2)
+	field(DRVH, 100)
+	field(DRVL, 0)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:HEAT:LIMIT:SP PP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+#####################################
+# PID for Output 2 (analog)
+# 
+
+record(ai, "$(P)2:P")
+{
+	field(DESC, "P for output 2")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(INP,  "@main.proto getPID2($(P)2:,I,D,FIXED,GAIN,OFFSET) $(PORT)")
+	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:P")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)2:P:SP")
+{
+	field(DESC, "Set P for output 2")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(OUT,  "@main.proto setP2($(P)2:,I,D,FIXED,GAIN,OFFSET) $(PORT)")
+	field(PREC, 2)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:P:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)2:I")
+{
+	field(DESC, "I for output 2")
+	field(EGU, "")
+	field(SCAN, "Passive")
+	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+		
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:I")
+    field(SDIS, "$(P)DISABLE")
+}
+record(ao, "$(P)2:I:SP")
+{
+	field(DESC, "Set I for output 2")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(OUT,  "@main.proto setI2($(P)2:,P,D,FIXED,GAIN,OFFSET) $(PORT)")
+	field(PREC, 2)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:I:SP PP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)2:D")
+{
+	field(DESC, "D for output 2")
+	field(EGU, "")
+	field(SCAN, "Passive")
+	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:D")
+    field(SDIS, "$(P)DISABLE")
+}
+record(ao, "$(P)2:D:SP")
+{
+	field(DESC, "Set D for output 2")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(OUT,  "@main.proto setD2($(P)2:,P,I,FIXED,GAIN,OFFSET) $(PORT)")
+	field(PREC, 2)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:D:SP PP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)2:FIXED")
+{
+	field(DESC, "Fixed power reset term for output 2")
+	field(EGU, "")
+	field(SCAN, "Passive")
+	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:FIXED")
+    field(SDIS, "$(P)DISABLE")
+
+}
+
+record(ao, "$(P)2:FIXED:SP")
+{
+	field(DESC, "Set fixed power reset for output 2")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(OUT,  "@main.proto setFixed2($(P)2:,P,I,D,GAIN,OFFSET) $(PORT)")
+	field(PREC, 2)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:FIXED:SP PP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)2:GAIN")
+{
+	field(DESC, "Gain on analog")
+	field(EGU, "")
+	field(SCAN, "Passive")
+	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:GAIN")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)2:GAIN:SP")
+{
+	field(DESC, "Set gain for output 2")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(OUT,  "@main.proto setGain2($(P)2:,P,I,D,FIXED,OFFSET) $(PORT)")
+	field(PREC, 2)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:GAIN:SP PP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)2:OFFSET")
+{
+	field(DESC, "Offset of analog")
+	field(EGU, "")
+	field(SCAN, "Passive")
+	field(PREC, 2)
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:OFFSET")
+    field(SDIS, "$(P)DISABLE")
+}
+record(ao, "$(P)2:OFFSET:SP")
+{
+	field(DESC, "Set offset for output 2")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(SCAN, "Passive")
+	field(OUT,  "@main.proto setOffset2($(P)2:,P,I,D,FIXED,GAIN) $(PORT)")
+	field(PREC, 2)
+	
+	info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:OFFSET:SP PP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+### SIMULATION RECORDS ###
+
+record(mbbi, "$(P)SIM:MODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 1)
+}
+
+alias("$(P)SIM:MODE","$(P)SIM:MODE:SP")
+
+alias("$(P)SIM:MODE","$(P)SIM:MODE:SP:RBV")
+
+record(ai, "$(P)SIM:1:SENSOR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringin, "$(P)SIM:1:SENSOR:UNITS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(VAL, "K")
+	field(PINI, "YES")
+	field(FLNK, "$(P)1:SENSOR:UNITS")
+}
+
+record(ai, "$(P)SIM:2:SENSOR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+}
+
+record(stringin, "$(P)SIM:2:SENSOR:UNITS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(VAL, "K")
+	field(PINI, "YES")
+	field(FLNK, "$(P)2:SENSOR:UNITS")
+}
+
+record(ai, "$(P)SIM:1:TEMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:1:TEMP","$(P)SIM:1:TEMP:SP")
+alias("$(P)SIM:1:TEMP","$(P)SIM:1:TEMP:SP:RBV")
+
+record(ai, "$(P)SIM:2:TEMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:2:TEMP","$(P)SIM:2:TEMP:SP")
+alias("$(P)SIM:2:TEMP","$(P)SIM:2:TEMP:SP:RBV")
+
+record(mbbi, "$(P)SIM:1:TEMP:SENSOR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 1)
+
+}
+
+record(mbbi, "$(P)SIM:1:TEMP:CTL")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 1)
+	field(FLNK, "$(P)1:TEMP:CTL")
+}
+alias("$(P)SIM:1:TEMP:CTL","$(P)SIM:1:TEMP:CTL:SP")
+
+record(mbbi, "$(P)SIM:1:HEAT:RANGE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 4)
+	field(FLNK, "$(P)1:HEAT:RANGE")
+}
+
+record(ai, "$(P)SIM:1:HEAT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+}
+
+
+record(mbbi, "$(P)SIM:2:TEMP:SENSOR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 2)
+}
+
+record(mbbi, "$(P)SIM:2:TEMP:CTL")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 4)
+	field(FLNK, "$(P)2:TEMP:CTL")
+}
+alias("$(P)SIM:2:TEMP:CTL","$(P)SIM:2:TEMP:CTL:SP")
+
+
+record(ai, "$(P)SIM:1:P")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+}
+
+alias("$(P)SIM:1:P","$(P)SIM:1:P:SP")
+
+record(ai, "$(P)SIM:1:I")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)1:I")
+}
+
+alias("$(P)SIM:1:I","$(P)SIM:1:I:SP")
+
+record(ai, "$(P)SIM:1:D")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)1:D")
+}
+
+alias("$(P)SIM:1:D","$(P)SIM:1:D:SP")
+
+record(ai, "$(P)SIM:1:FIXED")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)1:FIXED")
+}
+
+alias("$(P)SIM:1:FIXED","$(P)SIM:1:FIXED:SP")
+
+record(ai, "$(P)SIM:1:HEAT:LIMIT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)1:HEAT:LIMIT")
+}
+
+alias("$(P)SIM:1:HEAT:LIMIT","$(P)SIM:1:HEAT:LIMIT:SP")
+
+record(ai, "$(P)SIM:2:P")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:2:P","$(P)SIM:2:P:SP")
+
+record(ai, "$(P)SIM:2:I")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)2:I")
+}
+
+alias("$(P)SIM:2:I","$(P)SIM:2:I:SP")
+
+record(ai, "$(P)SIM:2:D")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)2:D")
+}
+
+alias("$(P)SIM:2:D","$(P)SIM:2:D:SP")
+
+record(ai, "$(P)SIM:2:FIXED")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)2:FIXED")
+}
+
+alias("$(P)SIM:2:FIXED","$(P)SIM:2:FIXED:SP")
+
+record(ai, "$(P)SIM:2:GAIN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)2:GAIN.PROC")
+}
+
+alias("$(P)SIM:2:GAIN","$(P)SIM:2:GAIN:SP")
+
+record(ai, "$(P)SIM:2:OFFSET")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(FLNK, "$(P)2:OFFSET.PROC")
+}
+
+alias("$(P)SIM:2:OFFSET","$(P)SIM:2:OFFSET:SP")
