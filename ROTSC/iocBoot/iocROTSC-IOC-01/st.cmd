@@ -9,7 +9,6 @@ errlogInit2(65536, 256)
 < envPaths
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(ROTSC)/data"
-epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM11)"
 
 cd "${TOP}"
 
@@ -20,13 +19,17 @@ ROTSC_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynSerialPortConfigure("L0", "$(TTY)", 0, 0, 0, 0)
-asynSetOption("L0", -1, "baud", "9600")
-asynSetOption("L0", -1, "bits", "8")
-asynSetOption("L0", -1, "parity", "none") 
-asynSetOption("L0", -1, "stop", "1")     
-asynOctetSetInputEos("L0", -1, "\r")          
-asynOctetSetOutputEos("L0", -1, "\r")         
+$(IFDEVSIM) freeIPPort("FREEPORT")  
+$(IFDEVSIM) epicsEnvShow("FREEPORT") 
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:57677")
+
+$(IFNOTDEVSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) asynSetOption("L0", -1, "baud", "$(BAUD=38400)")
+$(IFNOTDEVSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
+$(IFNOTDEVSIM) asynSetOption("L0", -1, "parity", "$(PARITY=none)") 
+$(IFNOTDEVSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")     
+$(IFNOTDEVSIM) asynOctetSetInputEos("L0", -1, "\r")          
+$(IFNOTDEVSIM) asynOctetSetOutputEos("L0", -1, "\r")         
 
 ## Load record instances
 
@@ -34,7 +37,7 @@ asynOctetSetOutputEos("L0", -1, "\r")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/rotating_sample_changer.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0")
+dbLoadRecords("db/rotating_sample_changer.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM), DEVSIM=$(DEVSIM)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

@@ -46,10 +46,17 @@ record(fanout, "$(P)MTR_STAT_FAN")
 
 record(ai, "$(P)ERR")
 {
+	field(DESC, "The enum of the device's error")
+	info(INTEREST, "HIGH")
+	field(EGU, "") # Enum
 }
 
 record(ai, "$(P)POSN")
 {
+	field(DESC, "The position of the rotation")	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+	field(EGU, "") # Fixed positions of 1-20
 }
 
 record(scalcout, "$(P)CALC_MTR_1_ENB")
@@ -87,8 +94,11 @@ record(scalcout, "$(P)CALC_ACTUATOR_ARM_POSN")
 
 record(bo, "$(P)ACTUATOR_ARM_POSITION")
 {
+	field(DESC, "The position of the arm")
 	field(ONAM, "RAISED")
 	field(ZNAM, "LOWERED")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
 record(scalcout, "$(P)CALC_CAR_AT_IDX")
@@ -191,7 +201,7 @@ record(scalcout, "$(P)CALC_MTR_0_DIRECTION")
 
 record(bo, "$(P)MOTOR_0_DIRECTION")
 {
-#	field(DESC, "The direction in which the rotating arm is set top move")
+	field(DESC, "The direction it is set to rotate")
 	field(ONAM, "BACKWARD")
 	field(ZNAM, "FORWARD")
 }
@@ -219,15 +229,17 @@ record(scalcout, "$(P)CALC_MTR_0_ACTIVE")
 
 record(bo, "$(P)MOTOR_0_ACTIVE")
 {
-	field(DESC, "The active/idle state of the rotating motor")
+	field(DESC, "The active/idle state of rotating motor")
 	field(ONAM, "ACTIVE")
 	field(ZNAM, "IDLE")
 }
 
 record(ao, "$(P)GET_VR:SP")
 {
-	field(DESC, "Set for which variable to get from GET_VR") 
+	field(DESC, "Set which variable to get from GET_VR") 
 	field(FLNK, "$(P)GET_VR_MAG")
+	info(INTEREST, "MEDIUM")
+	field(EGU, "") # Setting a memory location
 }
 
 record(bi, "$(P)GET_VR:POLARITY")
@@ -256,10 +268,92 @@ record(scalcout, "$(P)CALC_GET_VR")
 record(ai, "$(P)GET_VR")
 {
 	field(DESC, "Get the value of the specified variable")
+	info(INTEREST, "MEDIUM")
+	field(EGU, "") # Only known at runtime
 }
 
 record(bo, "$(P)GO_FORWARD")
 {
-	#field(DESC, "Writing to this field causes a 1 step forward move")
-	field(OUT, "@rotsc.proto sendCommand(fk,$(P)ERR) $(PORT)")	
+	field(DTYP, "stream")
+	field(DESC, "Move carousel one step forward")
+	field(OUT, "@rotsc.proto sendCommand(fw,$(P)ERR) $(PORT)")
+	info(INTEREST, "MEDIUM")
+}
+
+record(bo, "$(P)GO_BACKWARD")
+{
+	field(DTYP, "stream")
+	field(DESC, "Move carousel one step backward")
+	field(OUT, "@rotsc.proto sendCommand(bk,$(P)ERR) $(PORT)")
+	info(INTEREST, "MEDIUM")	
+}
+
+record(bo, "$(P)HALT")
+{
+	field(DTYP, "stream")
+	field(DESC, "Halt all motors")
+	field(OUT, "@rotsc.proto sendCommand(ht,$(P)ERR) $(PORT)")	
+}
+
+record(bo, "$(P)RESET_0")
+{
+	field(DTYP, "stream")
+	field(DESC, "Reset the rotating drive")
+	field(OUT, "@rotsc.proto sendCommand(r0,$(P)ERR) $(PORT)")	
+}
+
+record(bo, "$(P)RESET_1")
+{
+	field(DTYP, "stream")
+	field(DESC, "Reset the arm drive")
+	field(OUT, "@rotsc.proto sendCommand(r1,$(P)ERR) $(PORT)")
+}
+
+record(bo, "$(P)INIT")
+{
+	field(DTYP, "stream")
+	field(DESC, "Initialise the device")
+	field(OUT, "@rotsc.proto sendCommand(in,$(P)ERR) $(PORT)")
+	info(INTEREST, "MEDIUM")	
+}
+
+record(bo, "$(P)LOWER_ARM")
+{
+	field(DTYP, "stream")
+	field(DESC, "Lower the sample arm")
+	field(OUT, "@rotsc.proto sendCommand(lo,$(P)ERR) $(PORT)")
+	info(INTEREST, "MEDIUM")
+}
+
+record(bo, "$(P)RAISE_ARM")
+{
+	field(DTYP, "stream")
+	field(DESC, "Raise the sample arm")
+	field(OUT, "@rotsc.proto sendCommand(ra,$(P)ERR) $(PORT)")
+	info(INTEREST, "MEDIUM")
+}
+
+record(bo, "$(P)RETRIEVE_DROPPED")
+{
+	field(DTYP, "stream")
+	field(DESC, "Retrieve a dropped sample")
+	field(OUT, "@rotsc.proto sendCommand(rt,$(P)ERR) $(PORT)")	
+}
+
+record(ao, "$(P)MOVE_TO_POSN")
+{
+	field(DTYP, "stream")
+	field(DESC, "Move to the position and lower the arm")
+	field(OUT, "@rotsc.proto moveWithLower($(P)ERR) $(PORT)")
+	info(INTEREST, "HIGH")
+	field(EGU, "")
+}
+
+record(ao, "$(P)MOVE_TO_POSN:NO_LOWER")
+{
+	field(DTYP, "stream")
+	field(DESC, "Move to the given position")
+	field(OUT, "@rotsc.proto moveNoLower($(P)ERR) $(PORT)")
+	info(INTEREST, "MEDIUM")
+	field(EGU, "")
 }
