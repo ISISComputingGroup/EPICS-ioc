@@ -6,6 +6,7 @@
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
 <macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 9600)" />
 <macro name="PARITY" pattern="^(even|odd)$" description="Parity (default: even)" />
+<macro name="NCHAN" pattern="^[0-9]+$" description="Number of channels (default: 1)" />
 </macros>
 </config_part>
 </ioc_config>

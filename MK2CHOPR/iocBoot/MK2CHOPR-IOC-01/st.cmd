@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(MK2CHOPR)/mk2chopperSup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(MK2CHOPR)/data"
 epicsEnvSet "DEVICE" "L0"
 
 cd ${TOP}
@@ -34,17 +34,13 @@ asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/MK2CHOPR.db","P=$(MYPVPREFIX)$(IOCNAME):, port=$(DEVICE)")
-#dbLoadRecords("db/xxx.db","user=iew83206Host")
+iocshCmdLoop("< st-channel.cmd", "CH=\$(I)", "I", 1, $(NCHAN=1))
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
 < $(IOCSTARTUP)/preiocinit.cmd
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit
-
-## Start any sequence programs
-#seq sncxxx,"user=iew83206Host"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs
 < $(IOCSTARTUP)/postiocinit.cmd

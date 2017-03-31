@@ -31,3 +31,155 @@ record(ai, "$(P)FREQ:SP")
 	field(PREC, "2")
     field(INP, "@devmk2chopr.proto get_demanded_frequency $(PORT)")
 }
+
+#######################################################
+# Frequencies
+#######################################################
+
+record(ai, "$(P)$(Q)FREQ")
+{
+    field(DESC, "Actual frequency")
+    field(DTYP, "stream")
+	field(INP, "@devmk2chopr.proto getTrueFreq $(PORT)")
+    field(SCAN, "1 second")
+	field(EGU, "Hz")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)$(Q)SIM:FREQ")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ao, "$(P)$(Q)FREQ:SP")
+{
+    field(DESC, "Set the demanded frequency")
+    field(DTYP, "stream")
+    field(OUT,  "@devmk2chopr.proto setDemFreq $(PORT)")
+	field(EGU, "Hz")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)$(Q)SIM:FREQ:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)$(Q)FREQ:SP:RBV")
+{
+    field(DESC, "Readback of demanded frequency")
+    field(DTYP, "stream")
+	field(INP, "@devmk2chopr.proto getDemFreq $(PORT)")
+    field(SCAN, "1 second")
+	field(EGU, "Hz")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)$(Q)SIM:FREQ")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)$(Q)SIM:FREQ")
+{
+}
+
+alias("$(P)$(Q)SIM:FREQ","$(P)$(Q)SIM:FREQ:SP")
+alias("$(P)$(Q)SIM:FREQ","$(P)$(Q)SIM:FREQ:SP:RBV")
+
+
+#######################################################
+# Phase delays
+#######################################################
+
+record(ai, "$(P)$(Q)PHASE")
+{
+    field(DESC, "Actual phase delay")
+    field(DTYP, "stream")
+	field(INP, "@devmk2chopr.proto getTruePhase $(PORT)")
+    field(SCAN, "1 second")
+	field(EGU, "us")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)$(Q)SIM:PHASE")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ao, "$(P)$(Q)PHASE:SP")
+{
+    field(DESC, "Set the demanded phase delay")
+    field(DTYP, "stream")
+    field(OUT,  "@devmk2chopr.proto setDemPhase $(PORT)")
+	field(EGU, "us")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)$(Q)SIM:PHASE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)$(Q)PHASE:SP:RBV")
+{
+    field(DESC, "Readback of demanded phase delay")
+    field(DTYP, "stream")
+	field(INP, "@devmk2chopr.proto getDemPhase $(PORT)")
+    field(SCAN, "1 second")
+	field(EGU, "us")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)$(Q)SIM:PHASE")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)$(Q)SIM:PHASE")
+{
+}
+
+alias("$(P)$(Q)SIM:PHASE","$(P)$(Q)SIM:PHASE:SP")
+alias("$(P)$(Q)SIM:PHASE","$(P)$(Q)SIM:PHASE:SP:RBV")
+
+
+#######################################################
+# Phase errors
+#######################################################
+
+record(ai, "$(P)$(Q)PHASE:ERR")
+{
+    field(DESC, "Actual phase delay error")
+    field(DTYP, "stream")
+	field(INP, "@devmk2chopr.proto getTruePhaseErr $(PORT)")
+    field(SCAN, "1 second")
+	field(EGU, "us")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)$(Q)SIM:PHASE:ERR")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ao, "$(P)$(Q)PHASE:ERR:SP")
+{
+    field(DESC, "Set the demanded phase delay error window")
+    field(DTYP, "stream")
+    field(OUT,  "@devmk2chopr.proto setDemPhaseErr $(PORT)")
+	field(EGU, "us")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)$(Q)SIM:PHASE:ERR:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)$(Q)PHASE:SP:RBV")
+{
+    field(DESC, "Readback of demanded phase delay error window")
+    field(DTYP, "stream")
+	field(INP, "@devmk2chopr.proto getDemPhaseErr $(PORT)")
+    field(SCAN, "1 second")
+	field(EGU, "us")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)$(Q)SIM:PHASE:ERR")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)$(Q)SIM:PHASE:ERR")
+{
+}
+
+alias("$(P)$(Q)SIM:PHASE:ERR","$(P)$(Q)SIM:PHASE:ERR:SP")
+alias("$(P)$(Q)SIM:PHASE:ERR","$(P)$(Q)SIM:PHASE:ERR:SP:RBV")
