@@ -20,13 +20,19 @@ MK2CHOPR_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
-asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
-asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=7)")
-asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=even)")
-asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
-asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r)")
-asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
+## For emulator use:
+$(IFDEVSIM) freeIPPort("FREEPORT")  
+$(IFDEVSIM) epicsEnvShow("FREEPORT") 
+#$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(FREEPORT=0)")
+$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:56436")
+
+$(IFNOTDEVSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
+$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=7)")
+$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=even)")
+$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
+$(IFNOTDEVSIM) asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r)")
+$(IFNOTDEVSIM) asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
 
 ## Load record instances
 
@@ -34,7 +40,7 @@ asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-iocshCmdLoop("< st-channel.cmd", "CH=\$(I)", "I", 1, $(NCHAN=1))
+dbLoadRecords("db/MK2CHOPR.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
 < $(IOCSTARTUP)/preiocinit.cmd

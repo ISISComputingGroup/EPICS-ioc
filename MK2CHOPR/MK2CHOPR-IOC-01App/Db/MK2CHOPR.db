@@ -22,21 +22,11 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-record(ai, "$(P)FREQ:SP")
-{
-    field(DESC, "Demanded frequency")
-    field(DTYP, "stream")
-	field(SCAN, "Passive")
-    field(EGU, "Hz")
-	field(PREC, "2")
-    field(INP, "@mk2chopper.proto get_demanded_frequency $(PORT)")
-}
-
 #######################################################
 # Frequencies
 #######################################################
 
-record(ai, "$(P)$(Q)FREQ")
+record(ai, "$(P)FREQ")
 {
     field(DESC, "Actual frequency")
     field(DTYP, "stream")
@@ -44,24 +34,24 @@ record(ai, "$(P)$(Q)FREQ")
     field(SCAN, "1 second")
 	field(EGU, "Hz")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)$(Q)SIM:FREQ")
+	field(SIOL, "$(P)SIM:FREQ")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 
-record(ao, "$(P)$(Q)FREQ:SP")
+record(ao, "$(P)FREQ:SP")
 {
     field(DESC, "Set the demanded frequency")
     field(DTYP, "stream")
-    field(OUT,  "@mk2chopper.proto setDemFreq $(PORT)")
+    field(OUT,  "@mk2chopper.proto setFreq $(PORT)")
 	field(EGU, "Hz")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)$(Q)SIM:FREQ:SP")
+	field(SIOL, "$(P)SIM:FREQ:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)$(Q)FREQ:SP:RBV")
+record(ai, "$(P)FREQ:SP:RBV")
 {
     field(DESC, "Readback of demanded frequency")
     field(DTYP, "stream")
@@ -69,25 +59,25 @@ record(ai, "$(P)$(Q)FREQ:SP:RBV")
     field(SCAN, "1 second")
 	field(EGU, "Hz")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)$(Q)SIM:FREQ")
+	field(SIOL, "$(P)SIM:FREQ")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 
-record(ai, "$(P)$(Q)SIM:FREQ")
+record(ai, "$(P)SIM:FREQ")
 {
 }
 
-alias("$(P)$(Q)SIM:FREQ","$(P)$(Q)SIM:FREQ:SP")
-alias("$(P)$(Q)SIM:FREQ","$(P)$(Q)SIM:FREQ:SP:RBV")
+alias("$(P)SIM:FREQ","$(P)SIM:FREQ:SP")
+alias("$(P)SIM:FREQ","$(P)SIM:FREQ:SP:RBV")
 
 
 #######################################################
 # Phase delays
 #######################################################
 
-record(ai, "$(P)$(Q)PHASE")
+record(ai, "$(P)PHASE")
 {
     field(DESC, "Actual phase delay")
     field(DTYP, "stream")
@@ -95,24 +85,24 @@ record(ai, "$(P)$(Q)PHASE")
     field(SCAN, "1 second")
 	field(EGU, "us")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)$(Q)SIM:PHASE")
+	field(SIOL, "$(P)SIM:PHASE")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 
-record(ao, "$(P)$(Q)PHASE:SP")
+record(ao, "$(P)PHASE:SP")
 {
     field(DESC, "Set the demanded phase delay")
     field(DTYP, "stream")
-    field(OUT,  "@mk2chopper.proto setDemPhase $(PORT)")
+    field(OUT,  "@mk2chopper.proto setPhase $(PORT)")
 	field(EGU, "us")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)$(Q)SIM:PHASE:SP")
+	field(SIOL, "$(P)SIM:PHASE:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)$(Q)PHASE:SP:RBV")
+record(ai, "$(P)PHASE:SP:RBV")
 {
     field(DESC, "Readback of demanded phase delay")
     field(DTYP, "stream")
@@ -120,25 +110,25 @@ record(ai, "$(P)$(Q)PHASE:SP:RBV")
     field(SCAN, "1 second")
 	field(EGU, "us")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)$(Q)SIM:PHASE")
+	field(SIOL, "$(P)SIM:PHASE")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 
-record(ai, "$(P)$(Q)SIM:PHASE")
+record(ai, "$(P)SIM:PHASE")
 {
 }
 
-alias("$(P)$(Q)SIM:PHASE","$(P)$(Q)SIM:PHASE:SP")
-alias("$(P)$(Q)SIM:PHASE","$(P)$(Q)SIM:PHASE:SP:RBV")
+alias("$(P)SIM:PHASE","$(P)SIM:PHASE:SP")
+alias("$(P)SIM:PHASE","$(P)SIM:PHASE:SP:RBV")
 
 
 #######################################################
 # Phase errors
 #######################################################
 
-record(ai, "$(P)$(Q)PHASE:ERR")
+record(ai, "$(P)PHASE:ERR")
 {
     field(DESC, "Actual phase delay error")
     field(DTYP, "stream")
@@ -146,40 +136,57 @@ record(ai, "$(P)$(Q)PHASE:ERR")
     field(SCAN, "1 second")
 	field(EGU, "us")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)$(Q)SIM:PHASE:ERR")
+	field(SIOL, "$(P)SIM:PHASE:ERR")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 
-record(ao, "$(P)$(Q)PHASE:ERR:SP")
+record(ao, "$(P)PHASE:ERR:SP")
 {
-    field(DESC, "Set the demanded phase delay error window")
+    field(DESC, "Set the demanded PD error window")
     field(DTYP, "stream")
-    field(OUT,  "@mk2chopper.proto setDemPhaseErr $(PORT)")
+    field(OUT,  "@mk2chopper.proto setPhaseErr $(PORT)")
 	field(EGU, "us")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)$(Q)SIM:PHASE:ERR:SP")
+	field(SIOL, "$(P)SIM:PHASE:ERR:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)$(Q)PHASE:SP:RBV")
+record(ai, "$(P)PHASE:SP:RBV")
 {
-    field(DESC, "Readback of demanded phase delay error window")
+    field(DESC, "Readback of demanded PD error window")
     field(DTYP, "stream")
 	field(INP, "@mk2chopper.proto getDemPhaseErr $(PORT)")
     field(SCAN, "1 second")
 	field(EGU, "us")
     field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)$(Q)SIM:PHASE:ERR")
+	field(SIOL, "$(P)SIM:PHASE:ERR")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 
-record(ai, "$(P)$(Q)SIM:PHASE:ERR")
+record(ai, "$(P)SIM:PHASE:ERR")
 {
 }
 
-alias("$(P)$(Q)SIM:PHASE:ERR","$(P)$(Q)SIM:PHASE:ERR:SP")
-alias("$(P)$(Q)SIM:PHASE:ERR","$(P)$(Q)SIM:PHASE:ERR:SP:RBV")
+alias("$(P)SIM:PHASE:ERR","$(P)SIM:PHASE:ERR:SP")
+alias("$(P)SIM:PHASE:ERR","$(P)SIM:PHASE:ERR:SP:RBV")
+
+
+#######################################################
+# Start/stop
+#######################################################
+
+record(bo, "$(P)ON")
+{
+    field(DESC, "Starts (1) or stops (2) the device")
+    field(DTYP, "stream")
+    field(OUT,  "@mk2chopper.proto setChopperStarted $(PORT)")
+	field(EGU, "")
+    field(SIML, "$(P)SIM")
+}
+
+alias("$(P)START","$(P)START:SP")
+alias("$(P)START","$(P)START:SP:RBV")
