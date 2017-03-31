@@ -37,7 +37,11 @@ $(IFNOTDEVSIM) asynOctetSetOutputEos("L0", -1, "\r")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/rotating_sample_changer.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM), DEVSIM=$(DEVSIM)")
+epicsEnvSet "ERR" "ERR"
+epicsEnvSet "CMD_ERR" "CMD_ERR"
+dbLoadRecords("db/rotating_sample_changer.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0), ERR=$(ERR), CMD_ERR=$(CMD_ERR)")
+dbLoadRecords("db/error_calculator.db","P=$(MYPVPREFIX)$(IOCNAME):, ERR=$(ERR), DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0)")
+dbLoadRecords("db/error_calculator.db","P=$(MYPVPREFIX)$(IOCNAME):, ERR=$(CMD_ERR), DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

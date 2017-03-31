@@ -11,6 +11,7 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 DB += rotating_sample_changer.db
+DB += error_calculator.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
