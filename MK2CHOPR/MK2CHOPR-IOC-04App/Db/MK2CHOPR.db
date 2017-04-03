@@ -1,0 +1,390 @@
+#######################################################
+#
+# DB file for ISIS MK2 Chopper
+#
+#######################################################
+
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+#######################################################
+# Frequencies
+#######################################################
+
+record(ai, "$(P)FREQ")
+{
+    field(DESC, "Actual frequency")
+    field(DTYP, "stream")
+    field(INP, "@mk2chopper.proto getTrueFreq $(PORT)")
+    field(SCAN, "1 second")
+    field(EGU, "Hz")
+    field(PREC, "2")
+    field(FLNK, "$(P)ON:CALC")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FREQ")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ao, "$(P)FREQ:SP")
+{
+    field(DESC, "Set the demanded frequency")
+    field(DTYP, "stream")
+    field(OUT,  "@mk2chopper.proto setFreq $(PORT)")
+    field(EGU, "Hz")
+    field(PREC, "2")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FREQ:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)FREQ:SP:RBV")
+{
+    field(DESC, "Readback of demanded frequency")
+    field(DTYP, "stream")
+    field(INP, "@mk2chopper.proto getDemFreq $(PORT)")
+    field(SCAN, "1 second")
+    field(EGU, "Hz")
+    field(PREC, "2")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FREQ")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)SIM:FREQ")
+{
+}
+
+alias("$(P)SIM:FREQ","$(P)SIM:FREQ:SP")
+alias("$(P)SIM:FREQ","$(P)SIM:FREQ:SP:RBV")
+
+
+#######################################################
+# Phase delays
+#######################################################
+
+record(ai, "$(P)PHASE")
+{
+    field(DESC, "Actual phase delay")
+    field(DTYP, "stream")
+    field(INP, "@mk2chopper.proto getTruePhase $(PORT)")
+    field(SCAN, "1 second")
+    field(EGU, "us")
+    field(PREC, "2")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHASE")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ao, "$(P)PHASE:SP")
+{
+    field(DESC, "Set the demanded phase delay")
+    field(DTYP, "stream")
+    field(OUT,  "@mk2chopper.proto setPhase $(PORT)")
+    field(EGU, "us")
+    field(PREC, "2")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHASE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)PHASE:SP:RBV")
+{
+    field(DESC, "Readback of demanded phase delay")
+    field(DTYP, "stream")
+    field(INP, "@mk2chopper.proto getDemPhase $(PORT)")
+    field(SCAN, "1 second")
+    field(EGU, "us")
+    field(PREC, "2")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHASE")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)SIM:PHASE")
+{
+}
+
+alias("$(P)SIM:PHASE","$(P)SIM:PHASE:SP")
+alias("$(P)SIM:PHASE","$(P)SIM:PHASE:SP:RBV")
+
+
+#######################################################
+# Phase errors
+#######################################################
+
+record(ai, "$(P)PHASE:ERR")
+{
+    field(DESC, "Actual phase delay error")
+    field(DTYP, "stream")
+    field(INP, "@mk2chopper.proto getTruePhaseErr $(PORT)")
+    field(SCAN, "1 second")
+    field(EGU, "us")
+    field(PREC, "2")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHASE:ERR")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ao, "$(P)PHASE:ERR:SP")
+{
+    field(DESC, "Set the demanded PD error window")
+    field(DTYP, "stream")
+    field(OUT,  "@mk2chopper.proto setPhaseErr $(PORT)")
+    field(EGU, "us")
+    field(PREC, "2")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHASE:ERR:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)PHASE:ERR:SP:RBV")
+{
+    field(DESC, "Readback of demanded PD error window")
+    field(DTYP, "stream")
+    field(INP, "@mk2chopper.proto getDemPhaseErr $(PORT)")
+    field(SCAN, "1 second")
+    field(EGU, "us")
+    field(PREC, "2")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHASE:ERR")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)SIM:PHASE:ERR")
+{
+}
+
+alias("$(P)SIM:PHASE:ERR","$(P)SIM:PHASE:ERR:SP")
+alias("$(P)SIM:PHASE:ERR","$(P)SIM:PHASE:ERR:SP:RBV")
+
+#######################################################
+# Start/stop
+#######################################################
+
+record(bo, "$(P)ON:SP")
+{
+    field(DESC, "Set the chopper off(0)/on(1)")
+    field(DTYP, "stream")
+    field(OUT,  "@mk2chopper.proto setChopperStarted $(PORT)")
+    field(EGU, "")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ON:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(calcout, "$(P)ON:CALC") {
+  field(INPA, "$(P)FREQ")
+  field(CALC, "A>0?1:0")
+  field(DOPT, "Use CALC")
+  field(OOPT, "Every Time")
+  field(OUT, "$(P)ON PP")
+}
+
+record(bi, "$(P)ON")
+{
+  field(DESC, "Chopper is on/off")
+  field(EGU, "")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)SIM:ON")
+{
+}
+
+alias("$(P)ON","$(P)ON:SP:RBV")
+alias("$(P)SIM:ON","$(P)SIM:ON:SP")
+alias("$(P)SIM:ON","$(P)SIM:ON:SP:RBV")
+
+#######################################################
+# Chopper locks
+#######################################################
+
+record(mbbiDirect, "$(P)CHOP:STAT") {
+  field(DESC, "Chopper interlock status")
+  field(SDIS, "$(P):DISABLE")
+  field(SCAN, "1 second")  
+  field(DTYP, "stream")
+  field(INP, "@mk2chopper.proto getChopperLocks $(PORT)")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:CHOP:STAT")
+}
+
+record(mbbiDirect, "$(P)SIM:CHOP:STAT")
+{
+}
+
+record(bi, "$(P)CHOP:STAT:SYS:FREQ") {
+  field(DESC, "System type frequency 500/100Hz")
+  field(INP, "$(P)CHOP:STAT.B0 CP")
+  field(ZNAM, "100Hz")
+  field(ONAM, "50Hz")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)CHOP:STAT:CLOCK") {
+  field(DESC, "Main clock loss")
+  field(INP, "$(P)CHOP:STAT.B1 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Clock loss")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)CHOP:STAT:B1:OVERHEAT") {
+  field(DESC, "Bearing 1 is overheating")
+  field(INP, "$(P)CHOP:STAT.B2 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Overheat")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)CHOP:STAT:B2:OVERHEAT") {
+  field(DESC, "Bearing 2 is overheating")
+  field(INP, "$(P)CHOP:STAT.B3 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Overheat")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)CHOP:STAT:MOT:OVERHEAT") {
+  field(DESC, "Motor is overheating")
+  field(INP, "$(P)CHOP:STAT.B4 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Overheat")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)CHOP:STAT:SPEED") {
+  field(DESC, "Chopper is overspeed")
+  field(INP, "$(P)CHOP:STAT.B5 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Overspeed")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+#######################################################
+# Spectral locks
+#
+# Note that this varies with chopper type. The protocol
+# is for an INDRA* type chopper
+#######################################################
+
+record(mbbiDirect, "$(P)SPEC:STAT") {
+  field(DESC, "Spectral interlock status")
+  field(SDIS, "$(P):DISABLE")
+  field(SCAN, "1 second")  
+  field(DTYP, "stream")
+  field(INP, "@mk2chopper.proto getSpectralLocks $(PORT)")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:SPEC:STAT")
+}
+
+record(mbbiDirect, "$(P)SIM:SPEC:STAT")
+{
+}
+
+record(bi, "$(P)SPEC:STAT:DRIVE") {
+  field(DESC, "Wheter the drive is running")
+  field(INP, "$(P)SPEC:STAT.B0 CP")
+  field(ZNAM, "Not running")
+  field(ONAM, "Running")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)SPEC:STAT:REG") {
+  field(DESC, "Wheter the system is in reg. mode")
+  field(INP, "$(P)SPEC:STAT.B1 CP")
+  field(ZNAM, "Not Reg. mode")
+  field(ONAM, "Reg. mode")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)SPEC:STAT:SYNC") {
+  field(DESC, "Wheter the system is in sync")
+  field(INP, "$(P)SPEC:STAT.B2 CP")
+  field(ZNAM, "No sync")
+  field(ONAM, "Sync")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+#######################################################
+# Error flags
+#######################################################
+
+record(mbbiDirect, "$(P)ERR:STAT") {
+  field(DESC, "Error states")
+  field(SDIS, "$(P):DISABLE")
+  field(SCAN, "1 second")  
+  field(DTYP, "stream")
+  field(INP, "@mk2chopper.proto getErrors $(PORT)")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:ERR:STAT")
+}
+
+record(mbbiDirect, "$(P)SIM:ERR:STAT")
+{
+}
+
+record(bi, "$(P)ERR:PHASE:DELAY") {
+  field(DESC, "The phase delay is wrong for the current speed")
+  field(INP, "$(P)ERR:STAT.B0 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Error")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)ERR:PHASE:CORR") {
+  field(DESC, "The phase delay hasn't been reached")
+  field(INP, "$(P)ERR:STAT.B1 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Error")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)ERR:PHASE:ACC") {
+  field(DESC, "The phase error is outside the accuracy window")
+  field(INP, "$(P)ERR:STAT.B2 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Error")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
