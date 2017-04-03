@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 DB += larmor-air.db
 DB += wish-vacuum.db
+DB += zoom-vacuum.db
 DB += imat-plc-attn.db
 DB += imat-plc-press.db
 
