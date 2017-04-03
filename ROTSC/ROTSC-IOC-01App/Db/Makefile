@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 DB += rotating_sample_changer.db
 DB += error_calculator.db
+DB += HRPD_specific.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
