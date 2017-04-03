@@ -174,19 +174,191 @@ record(ai, "$(P)SIM:PHASE:ERR")
 alias("$(P)SIM:PHASE:ERR","$(P)SIM:PHASE:ERR:SP")
 alias("$(P)SIM:PHASE:ERR","$(P)SIM:PHASE:ERR:SP:RBV")
 
-
 #######################################################
 # Start/stop
 #######################################################
 
 record(bo, "$(P)ON")
 {
-    field(DESC, "Starts (1) or stops (2) the device")
+    field(DESC, "Set the chopper off(0)/on(1)")
     field(DTYP, "stream")
     field(OUT,  "@mk2chopper.proto setChopperStarted $(PORT)")
 	field(EGU, "")
     field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:ON")
+    field(SDIS, "$(P)DISABLE")
 }
 
-alias("$(P)START","$(P)START:SP")
-alias("$(P)START","$(P)START:SP:RBV")
+record(bo, "$(P)SIM:ON")
+{
+}
+
+alias("$(P)ON","$(P)ON:SP")
+alias("$(P)ON","$(P)ON:SP:RBV")
+alias("$(P)SIM:ON","$(P)SIM:ON:SP")
+alias("$(P)SIM:ON","$(P)SIM:ON:SP:RBV")
+
+#######################################################
+# Chopper locks
+#######################################################
+
+record(mbbiDirect, "$(P)CHOP:STAT") {
+  field(DESC, "Chopper interlock status")
+  field(SDIS, "$(P):DISABLE")
+  field(SCAN, "1 second")  
+  field(DTYP, "stream")
+  field(INP, "@mk2chopper.proto getChopperLocks $(PORT)")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:CHOP:STAT")
+}
+
+record(mbbiDirect, "$(P)SIM:CHOP:STAT")
+{
+}
+
+record(bi, "$(P)CHOP:STAT:SYS:FREQ") {
+  field(DESC, "System type frequency 500/100Hz")
+  field(INP, "$(P)CHOP:STAT.B0 CP")
+  field(ZNAM, "100Hz")
+  field(ONAM, "50Hz")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)CHOP:STAT:CLOCK") {
+  field(DESC, "Main clock loss")
+  field(INP, "$(P)CHOP:STAT.B1 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Clock loss")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)CHOP:STAT:B1:OVERHEAT") {
+  field(DESC, "Bearing 1 is overheating")
+  field(INP, "$(P)CHOP:STAT.B2 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Overheat")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)CHOP:STAT:B2:OVERHEAT") {
+  field(DESC, "Bearing 2 is overheating")
+  field(INP, "$(P)CHOP:STAT.B3 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Overheat")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)CHOP:STAT:MOT:OVERHEAT") {
+  field(DESC, "Motor is overheating")
+  field(INP, "$(P)CHOP:STAT.B4 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Overheat")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)CHOP:STAT:SPEED") {
+  field(DESC, "Chopper is overspeed")
+  field(INP, "$(P)CHOP:STAT.B5 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Overspeed")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+#######################################################
+# Spectral locks
+#
+# Note that this varies with chopper type. The protocol
+# is for an INDRA* type chopper
+#######################################################
+
+record(mbbiDirect, "$(P)SPEC:STAT") {
+  field(DESC, "Spectral interlock status")
+  field(SDIS, "$(P):DISABLE")
+  field(SCAN, "1 second")  
+  field(DTYP, "stream")
+  field(INP, "@mk2chopper.proto getSpectralLocks $(PORT)")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:SPEC:STAT")
+}
+
+record(mbbiDirect, "$(P)SIM:SPEC:STAT")
+{
+}
+
+record(bi, "$(P)SPEC:STAT:DRIVE") {
+  field(DESC, "Wheter the drive is running")
+  field(INP, "$(P)SPEC:STAT.B0 CP")
+  field(ZNAM, "Not running")
+  field(ONAM, "Running")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)SPEC:STAT:REG") {
+  field(DESC, "Wheter the system is in reg. mode")
+  field(INP, "$(P)SPEC:STAT.B1 CP")
+  field(ZNAM, "Not Reg. mode")
+  field(ONAM, "Reg. mode")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)SPEC:STAT:SYNC") {
+  field(DESC, "Wheter the system is in sync")
+  field(INP, "$(P)SPEC:STAT.B2 CP")
+  field(ZNAM, "No sync")
+  field(ONAM, "Sync")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+#######################################################
+# Error flags
+#######################################################
+
+record(mbbiDirect, "$(P)ERR:STAT") {
+  field(DESC, "Error states")
+  field(SDIS, "$(P):DISABLE")
+  field(SCAN, "1 second")  
+  field(DTYP, "stream")
+  field(INP, "@mk2chopper.proto getErrors $(PORT)")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:ERR:STAT")
+}
+
+record(mbbiDirect, "$(P)SIM:ERR:STAT")
+{
+}
+
+record(bi, "$(P)ERR:PHASE:DELAY") {
+  field(DESC, "The phase delay is wrong for the current speed")
+  field(INP, "$(P)ERR:STAT.B0 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Error")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)ERR:PHASE:CORR") {
+  field(DESC, "The phase delay hasn't been reached")
+  field(INP, "$(P)ERR:STAT.B1 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Error")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)ERR:PHASE:ACC") {
+  field(DESC, "The phase error is outside the accuracy window")
+  field(INP, "$(P)ERR:STAT.B2 CP")
+  field(ZNAM, "OK")
+  field(ONAM, "Error")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
