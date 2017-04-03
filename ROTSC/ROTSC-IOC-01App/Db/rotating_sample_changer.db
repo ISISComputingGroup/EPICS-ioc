@@ -1,8 +1,30 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
 record(stringin, "$(P)ID")
 {
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@rotsc.proto getID() $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ID")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(stringin, "$(P)RAW_STATUS")
@@ -11,6 +33,9 @@ record(stringin, "$(P)RAW_STATUS")
     field(DTYP, "stream")
     field(INP,  "@rotsc.proto getStat($(P),RAW_MTR_STAT,$(ERR)_NUMBER,POSN) $(PORT)")
 	field(FLNK, "$(P)STAT_FAN")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAW_STATUS")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(fanout, "$(P)STAT_FAN")
@@ -50,6 +75,9 @@ record(ai, "$(P)POSN")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 	field(EGU, "") # Fixed positions of 1-20
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MOVE_TO_POSN")
+	field(SDIS, "$(P)DISABLE")
 }
 
 record(scalcout, "$(P)CALC_MTR_1_ENB")
@@ -227,50 +255,15 @@ record(bo, "$(P)MOTOR_0_ACTIVE")
 	field(ZNAM, "IDLE")
 }
 
-record(ao, "$(P)GET_VR:SP")
-{
-	field(DESC, "Set which variable to get from GET_VR") 
-	field(FLNK, "$(P)GET_VR_MAG")
-	info(INTEREST, "MEDIUM")
-	field(EGU, "") # Setting a memory location
-}
-
-record(bi, "$(P)GET_VR:POLARITY")
-{
-	field(ZNAM, "+")
-	field(ONAM, "-")
-	field(FLNK, "$(P)CALC_GET_VR")
-}
-
-record(ai, "$(P)GET_VR_MAG")
-{
-	field(DTYP, "stream")
-	field(INP, "@rotsc.proto getVR($(P),GET_VR:SP,GET_VR:POLARITY) $(PORT)")
-	field(FLNK, "$(P)GET_VR:POLARITY")
-}
-
-record(scalcout, "$(P)CALC_GET_VR")
-{
-    field(INAA, "$(P)GET_VR:POLARITY PP MS")
-    field(INBB, "$(P)GET_VR_MAG PP MS") 
-	field(CALC, "AA+BB")
-	field(OUT, "$(P)GET_VR")
-	field(FLNK, "$(P)GET_VR")
-}
-
-record(ai, "$(P)GET_VR")
-{
-	field(DESC, "Get the value of the specified variable")
-	info(INTEREST, "MEDIUM")
-	field(EGU, "") # Only known at runtime
-}
-
 record(bo, "$(P)GO_FORWARD")
 {
 	field(DTYP, "stream")
 	field(DESC, "Move carousel one step forward")
 	field(OUT, "@rotsc.proto sendCommand(fw,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
 	info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:GO_FORWARD")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)GO_BACKWARD")
@@ -279,6 +272,9 @@ record(bo, "$(P)GO_BACKWARD")
 	field(DESC, "Move carousel one step backward")
 	field(OUT, "@rotsc.proto sendCommand(bk,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
 	info(INTEREST, "MEDIUM")	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:GO_BACKWARD")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)HALT")
@@ -286,6 +282,9 @@ record(bo, "$(P)HALT")
 	field(DTYP, "stream")
 	field(DESC, "Halt all motors")
 	field(OUT, "@rotsc.proto sendCommand(ht,$(P)$(CMD_ERR)_NUMBER) $(PORT)")	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HALT")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)RESET_0")
@@ -293,6 +292,9 @@ record(bo, "$(P)RESET_0")
 	field(DTYP, "stream")
 	field(DESC, "Reset the rotating drive")
 	field(OUT, "@rotsc.proto sendCommand(r0,$(P)$(CMD_ERR)_NUMBER) $(PORT)")	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RESET_0")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)RESET_1")
@@ -300,6 +302,9 @@ record(bo, "$(P)RESET_1")
 	field(DTYP, "stream")
 	field(DESC, "Reset the arm drive")
 	field(OUT, "@rotsc.proto sendCommand(r1,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RESET_1")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)INIT")
@@ -308,6 +313,9 @@ record(bo, "$(P)INIT")
 	field(DESC, "Initialise the device")
 	field(OUT, "@rotsc.proto sendCommand(in,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
 	info(INTEREST, "MEDIUM")	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:INIT")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)LOWER_ARM")
@@ -316,6 +324,9 @@ record(bo, "$(P)LOWER_ARM")
 	field(DESC, "Lower the sample arm")
 	field(OUT, "@rotsc.proto sendCommand(lo,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
 	info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:LOWER_ARM")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)RAISE_ARM")
@@ -324,6 +335,9 @@ record(bo, "$(P)RAISE_ARM")
 	field(DESC, "Raise the sample arm")
 	field(OUT, "@rotsc.proto sendCommand(ra,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
 	info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAISE_ARM")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)RETRIEVE_DROPPED")
@@ -331,6 +345,9 @@ record(bo, "$(P)RETRIEVE_DROPPED")
 	field(DTYP, "stream")
 	field(DESC, "Retrieve a dropped sample")
 	field(OUT, "@rotsc.proto sendCommand(rt,$(P)$(CMD_ERR)_NUMBER) $(PORT)")	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RETRIEVE_DROPPED")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)MOVE_TO_POSN")
@@ -340,6 +357,9 @@ record(ao, "$(P)MOVE_TO_POSN")
 	field(OUT, "@rotsc.proto moveWithLower($(P)$(CMD_ERR)_NUMBER) $(PORT)")
 	info(INTEREST, "HIGH")
 	field(EGU, "")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MOVE_TO_POSN")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)MOVE_TO_POSN:NO_LOWER")
@@ -349,4 +369,87 @@ record(ao, "$(P)MOVE_TO_POSN:NO_LOWER")
 	field(OUT, "@rotsc.proto moveNoLower($(P)$(CMD_ERR)_NUMBER) $(PORT)")
 	info(INTEREST, "MEDIUM")
 	field(EGU, "")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MOVE_TO_POSN:NO_LOWER")
+    field(SDIS, "$(P)DISABLE")
 }
+### SIMULATION RECORDS ###
+
+record(bo, "$(P)SIM:RESET_0")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:RESET_1")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ao, "$(P)SIM:MOVE_TO_POSN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:RETRIEVE_DROPPED")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringin, "$(P)SIM:ID")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:GO_BACKWARD")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringin, "$(P)SIM:RAW_STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:GO_FORWARD")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ao, "$(P)SIM:MOVE_TO_POSN:NO_LOWER")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:INIT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:RAISE_ARM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:HALT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:LOWER_ARM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+

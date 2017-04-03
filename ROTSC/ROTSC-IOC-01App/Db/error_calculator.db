@@ -27,6 +27,9 @@ record(mbbi, "$(P)$(ERR)_LOWER")
 	field(TTVL, "0")	field(TTST, "No Error")	
 	
 	field(FLNK, "$(P)$(ERR)_UPPER")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(ERR)SIM:_LOWER")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbi, "$(P)$(ERR)_UPPER")
@@ -51,6 +54,9 @@ record(mbbi, "$(P)$(ERR)_UPPER")
 	field(FTVL, "44")	field(FTST, "Moveabs Basic Error")
 	
 	field(FLNK, "$(P)$(ERR)_STRING")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(ERR)SIM:_UPPER")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(scalcout, "$(P)$(ERR)_STRING")
@@ -60,3 +66,18 @@ record(scalcout, "$(P)$(ERR)_STRING")
 	field(INBB, "$(P)$(ERR)_UPPER PP")
 	field(CALC, "A<14 ? AA : BB")
 }
+### SIMULATION RECORDS ###
+
+record(mbbi, "$(P)$(ERR)SIM:_LOWER")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)$(ERR)SIM:_UPPER")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(FTVL, "44")
+}
+
