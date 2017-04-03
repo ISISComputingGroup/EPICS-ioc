@@ -1,6 +1,6 @@
-#!../../bin/windows-x64/MK2CHOPR-IOC-01
+#!../../bin/windows-x64/MK2CHOPR-IOC-02
 
-## You may have to change MK2CHOPR-IOC-01 to something else
+## You may have to change MK2CHOPR-IOC-02 to something else
 ## everywhere it appears in this file
 
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
@@ -14,8 +14,8 @@ epicsEnvSet "DEVICE" "L0"
 cd ${TOP}
 
 ## Register all support components
-dbLoadDatabase "dbd/MK2CHOPR-IOC-01.dbd"
-MK2CHOPR_IOC_01_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/MK2CHOPR-IOC-02.dbd"
+MK2CHOPR_IOC_02_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
@@ -23,7 +23,8 @@ MK2CHOPR_IOC_01_registerRecordDeviceDriver pdbbase
 ## For emulator use:
 $(IFDEVSIM) freeIPPort("FREEPORT")  
 $(IFDEVSIM) epicsEnvShow("FREEPORT") 
-$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(FREEPORT=0)")
+#$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(FREEPORT=0)")
+$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:56436")
 
 $(IFNOTDEVSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
 $(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
