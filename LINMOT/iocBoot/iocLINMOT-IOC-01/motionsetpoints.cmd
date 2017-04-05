@@ -1,0 +1,1 @@
+< $(LINMOTCONFIG)/motionsetpoints.cmd
