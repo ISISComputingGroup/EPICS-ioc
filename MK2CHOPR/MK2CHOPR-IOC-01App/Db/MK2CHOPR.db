@@ -317,7 +317,7 @@ record(mbbiDirect, "$(P)SIM:SPEC:STAT")
 }
 
 record(bi, "$(P)SPEC:STAT:DRIVE") {
-  field(DESC, "Wheter the drive is running")
+  field(DESC, "Whether the drive is running")
   field(INP, "$(P)SPEC:STAT.B0 CP")
   field(ZNAM, "Not running")
   field(ONAM, "Running")
