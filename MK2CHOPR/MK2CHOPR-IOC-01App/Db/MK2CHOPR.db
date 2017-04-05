@@ -362,7 +362,7 @@ record(mbbiDirect, "$(P)SIM:ERR:STAT")
 }
 
 record(bi, "$(P)ERR:PHASE:DELAY") {
-  field(DESC, "The phase delay is wrong for the current speed")
+  field(DESC, "Phase delay wrong for current speed")
   field(INP, "$(P)ERR:STAT.B0 CP")
   field(ZNAM, "OK")
   field(ONAM, "Error")
@@ -380,7 +380,7 @@ record(bi, "$(P)ERR:PHASE:CORR") {
 }
 
 record(bi, "$(P)ERR:PHASE:ACC") {
-  field(DESC, "The phase error is outside the accuracy window")
+  field(DESC, "Phase error outside the accuracy window")
   field(INP, "$(P)ERR:STAT.B2 CP")
   field(ZNAM, "OK")
   field(ONAM, "Error")
