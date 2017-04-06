@@ -108,3 +108,15 @@ record (bo, "$(P)CS:CONTROL:LOCKED")
 	field(VAL, "0")
 }
 
+record (bo, "$(P)CS:MANAGER") 
+{
+	field(DESC, "Manager access")
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
