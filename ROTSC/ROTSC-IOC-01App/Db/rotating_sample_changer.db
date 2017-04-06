@@ -55,12 +55,19 @@ record(fanout, "$(P)STAT_FAN_01")
 	field(LNK3, "$(P)CALC_MTR_1_DIRECTION")
 	field(LNK4, "$(P)CALC_MTR_1_STATUS")
 	field(LNK5, "$(P)CALC_MTR_0_STATUS")
-	field(LNK6, "$(P)CALC_MTR_0_DIRECTION")	
+	field(LNK6, "$(P)STAT_FAN_02")
+}
+
+record(fanout, "$(P)STAT_FAN_02")
+{
+	field(LNK1, "$(P)CALC_MTR_0_DIRECTION")
+	field(LNK2, "$(P)POSN")
+	field(LNK3, "$(P)$(ERR)_NUMBER")
 }
 
 record(stringin, "$(P)RAW_MTR_STAT")
 {
-	field(FLNK, "$(P)STAT_FAN")
+	field(FLNK, "$(P)MTR_STAT_FAN")
 }
 
 record(fanout, "$(P)MTR_STAT_FAN")
@@ -260,6 +267,7 @@ record(bo, "$(P)GO_FORWARD")
 	field(DTYP, "stream")
 	field(DESC, "Move carousel one step forward")
 	field(OUT, "@rotsc.proto sendCommand(fw,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
+	field(FLNK, "$(P)$(CMD_ERR)_NUMBER")
 	info(INTEREST, "MEDIUM")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:GO_FORWARD")
@@ -271,6 +279,7 @@ record(bo, "$(P)GO_BACKWARD")
 	field(DTYP, "stream")
 	field(DESC, "Move carousel one step backward")
 	field(OUT, "@rotsc.proto sendCommand(bk,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
+	field(FLNK, "$(P)$(CMD_ERR)_NUMBER")
 	info(INTEREST, "MEDIUM")	
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:GO_BACKWARD")
@@ -282,6 +291,7 @@ record(bo, "$(P)HALT")
 	field(DTYP, "stream")
 	field(DESC, "Halt all motors")
 	field(OUT, "@rotsc.proto sendCommand(ht,$(P)$(CMD_ERR)_NUMBER) $(PORT)")	
+	field(FLNK, "$(P)$(CMD_ERR)_NUMBER")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:HALT")
     field(SDIS, "$(P)DISABLE")
@@ -292,6 +302,7 @@ record(bo, "$(P)RESET_0")
 	field(DTYP, "stream")
 	field(DESC, "Reset the rotating drive")
 	field(OUT, "@rotsc.proto sendCommand(r0,$(P)$(CMD_ERR)_NUMBER) $(PORT)")	
+	field(FLNK, "$(P)$(CMD_ERR)_NUMBER")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RESET_0")
     field(SDIS, "$(P)DISABLE")
@@ -302,6 +313,7 @@ record(bo, "$(P)RESET_1")
 	field(DTYP, "stream")
 	field(DESC, "Reset the arm drive")
 	field(OUT, "@rotsc.proto sendCommand(r1,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
+	field(FLNK, "$(P)$(CMD_ERR)_NUMBER")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RESET_1")
     field(SDIS, "$(P)DISABLE")
@@ -309,9 +321,11 @@ record(bo, "$(P)RESET_1")
 
 record(bo, "$(P)INIT")
 {
+	field(VAL, "0")
 	field(DTYP, "stream")
 	field(DESC, "Initialise the device")
 	field(OUT, "@rotsc.proto sendCommand(in,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
+	field(FLNK, "$(P)$(CMD_ERR)_NUMBER")
 	info(INTEREST, "MEDIUM")	
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:INIT")
@@ -323,6 +337,7 @@ record(bo, "$(P)LOWER_ARM")
 	field(DTYP, "stream")
 	field(DESC, "Lower the sample arm")
 	field(OUT, "@rotsc.proto sendCommand(lo,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
+	field(FLNK, "$(P)$(CMD_ERR)_NUMBER")
 	info(INTEREST, "MEDIUM")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:LOWER_ARM")
@@ -334,6 +349,7 @@ record(bo, "$(P)RAISE_ARM")
 	field(DTYP, "stream")
 	field(DESC, "Raise the sample arm")
 	field(OUT, "@rotsc.proto sendCommand(ra,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
+	field(FLNK, "$(P)$(CMD_ERR)_NUMBER")
 	info(INTEREST, "MEDIUM")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAISE_ARM")
@@ -344,17 +360,20 @@ record(bo, "$(P)RETRIEVE_DROPPED")
 {
 	field(DTYP, "stream")
 	field(DESC, "Retrieve a dropped sample")
-	field(OUT, "@rotsc.proto sendCommand(rt,$(P)$(CMD_ERR)_NUMBER) $(PORT)")	
+	field(OUT, "@rotsc.proto sendCommand(rt,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
+	field(FLNK, "$(P)$(CMD_ERR)_NUMBER")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RETRIEVE_DROPPED")
     field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)MOVE_TO_POSN")
-{
+{	
+	field(SCAN, "Passive")
 	field(DTYP, "stream")
 	field(DESC, "Move to the position and lower the arm")
 	field(OUT, "@rotsc.proto moveWithLower($(P)$(CMD_ERR)_NUMBER) $(PORT)")
+	field(FLNK, "$(P)$(CMD_ERR)_NUMBER")
 	info(INTEREST, "HIGH")
 	field(EGU, "")
     field(SIML, "$(P)SIM")
@@ -367,12 +386,54 @@ record(ao, "$(P)MOVE_TO_POSN:NO_LOWER")
 	field(DTYP, "stream")
 	field(DESC, "Move to the given position")
 	field(OUT, "@rotsc.proto moveNoLower($(P)$(CMD_ERR)_NUMBER) $(PORT)")
+	field(FLNK, "$(P)$(CMD_ERR)_NUMBER")
 	info(INTEREST, "MEDIUM")
 	field(EGU, "")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MOVE_TO_POSN:NO_LOWER")
     field(SDIS, "$(P)DISABLE")
 }
+
+record(calc, "$(P)CALC_MOVE_FINISHED")
+{
+	field(SCAN, "Passive")
+	field(INPA, "$(P)MOVE_TO_POSN.VAL CP")
+	field(INPB, "$(P)POSN.VAL CP")
+	field(INPC, "$(P)SAMPLE_ARM_DOWN.RVAL CP")
+	field(CALC, "(A=B)&&C")
+}
+
+record(calc, "$(P)IS_INITIALISED")
+{
+	field(INPA, "$(P)POSN.VAL CP")
+	field(CALC, "A#0")
+}
+
+record(calcout, "$(P)CALC_STATUS_STRING")
+{
+	field(INPA, "$(P)IS_INITIALISED CP")
+	field(INPB, "$(P)INIT CP")
+	field(INPC, "$(P)CALC_MOVE_FINISHED CP")
+	field(INPD, "$(P)POSN.VAL CP")
+	### The following is an annoying bit of logic to recreate the VI:
+	### If the instrument is not initialised we display uninitialised until INIT is set
+	### Otherwise if the move is not finished we are moving except when we've just been initialised
+	field(CALC, "(!A)?(B?1:0):(C?2:((D=0)?2:3))")
+	field(OUT, "$(P)STATUS_STRING PP")
+}
+
+record(mbbi, "$(P)STATUS_STRING")
+{
+	field(ZRVL, "0")
+	field(ZRST, "Uninitialised")
+	field(ONVL, "1")
+	field(ONST, "Initialising")
+	field(TWVL, "2")
+	field(TWST, "Idle")
+	field(THVL, "3")
+	field(THST, "Moving")
+}
+
 ### SIMULATION RECORDS ###
 
 record(bo, "$(P)SIM:RESET_0")
