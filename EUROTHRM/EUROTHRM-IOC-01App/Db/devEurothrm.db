@@ -571,7 +571,7 @@ record(ai, "$(P)AUTOTUNE") {
 
 record(ao, "$(P)AUTOTUNE:SP") {
     info(INTEREST, "MEDIUM")
-    field(DESC, "D Setpoint")
+    field(DESC, "Autotune Setpoint")
     field(DTYP, "stream")
     field(OUT, "@eurotherm2k.proto write($(P),AT,$(GAD),$(LAD)) $(PORT)")
     field(SIML, "$(Q)SIM")
