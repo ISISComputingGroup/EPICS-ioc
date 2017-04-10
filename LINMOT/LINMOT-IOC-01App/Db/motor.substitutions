@@ -1,6 +1,9 @@
-file $(MOTOR)/db/linmot_motor.db {
-
+file $(MOTOR)/db/motor.db {
 pattern {P,    M,         DTYP,      DESC,   EGU,  DIR,  VELO,  VBAS, ACCL, BDST, BVEL, BACC,    MRES,    ERES, UEIP, PREC, DHLM, DLLM, INIT, C, S, OFF }
-{"\$(P)", "\$(M)", "LinMot", "\$(NAME) (LINMOT)",    "degree",  "Pos",  "\$(VELO)",   "\$(VBAS)",  "\$(ACCL)",    0,    1,   0,   "\$(MRES)",   "\$(ERES)", "\$(UEIP)",    3,   "\$(DHLM)",   "\$(DLLM)",  "", "\$(C)", "\$(S)", "\$(OFF)"}
+{"\$(P)", "\$(M)", "LinMot", "\$(NAME) (LINMOT)",    "degree",  "Pos",  "\$(VELO)",   "\$(VBAS)",  "\$(ACCL)",    0,    1,   0,   "\$(MRES)",   "\$(ERES)", "\$(UEIP)",    3,   "\$(DHLM)",   "\$(DLLM)",  "", "\$(C)", "\$(S)"}
+}
 
+file $(MOTOR)/db/linmot_extra.db {
+pattern {P, M, OFF}
+{"\$(P)", "\$(M)", "\$(OFF)"}
 }
