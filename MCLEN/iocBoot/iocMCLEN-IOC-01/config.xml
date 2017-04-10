@@ -13,6 +13,7 @@
 <macro name="STOP" pattern="^[0-2]$" description="Stop bits (default: 1)" />
 
 <macro name="AXIS1" pattern="^(yes|no)$" description="Motor is attached to axis 1 (default: no)" />
+<macro name="EGU1" pattern="[A-Za-z]*$" description="Units (default: blank)"/>
 <macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
 <macro name="ACCL1" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MSTP1" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
@@ -23,6 +24,7 @@
 <macro name="HOME1" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
 
 <macro name="AXIS2" pattern="^(yes|no)$" description="Motor is attached to axis 2 (default: no)" />
+<macro name="EGU2" pattern="[A-Za-z]*$" description="Units (default: blank)"/>
 <macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
 <macro name="ACCL2" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MSTP2" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
@@ -33,6 +35,7 @@
 <macro name="HOME2" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
 
 <macro name="AXIS3" pattern="^(yes|no)$" description="Motor is attached to axis 3 (default: no)" />
+<macro name="EGU3" pattern="[A-Za-z]*$" description="Units (default: blank)"/>
 <macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
 <macro name="ACCL3" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MSTP3" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
@@ -43,6 +46,7 @@
 <macro name="HOME3" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
 
 <macro name="AXIS4" pattern="^(yes|no)$" description="Motor is attached to axis 4 (default: no)" />
+<macro name="EGU4" pattern="[A-Za-z]*$" description="Units (default: blank)"/>
 <macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
 <macro name="ACCL4" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MSTP4" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
@@ -53,6 +57,7 @@
 <macro name="HOME4" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
 
 <macro name="AXIS5" pattern="^(yes|no)$" description="Motor is attached to axis 5 (default: no)" />
+<macro name="EGU5" pattern="[A-Za-z]*$" description="Units (default: blank)"/>
 <macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
 <macro name="ACCL5" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MSTP5" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
@@ -63,6 +68,7 @@
 <macro name="HOME5" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
 
 <macro name="AXIS6" pattern="^(yes|no)$" description="Motor is attached to axis 6 (default: no)" />
+<macro name="EGU6" pattern="[A-Za-z]*$" description="Units (default: blank)"/>
 <macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
 <macro name="ACCL6" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MSTP6" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
@@ -73,6 +79,7 @@
 <macro name="HOME6" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
 
 <macro name="AXIS7" pattern="^(yes|no)$" description="Motor is attached to axis 7 (default: no)" />
+<macro name="EGU7" pattern="[A-Za-z]*$" description="Units (default: blank)"/>
 <macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
 <macro name="ACCL7" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MSTP7" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
@@ -83,6 +90,7 @@
 <macro name="HOME7" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
 
 <macro name="AXIS8" pattern="^(yes|no)$" description="Motor is attached to axis 8 (default: no)" />
+<macro name="EGU8" pattern="[A-Za-z]*$" description="Units (default: blank)"/>
 <macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
 <macro name="ACCL8" pattern="[0-9]*\.?[0-9]*$" description="seconds to max speed (default: 1)" />
 <macro name="MSTP8" pattern="[0-9]*\.?[0-9]*$" description="motor resolution in steps/unit (default: 4000)" />
