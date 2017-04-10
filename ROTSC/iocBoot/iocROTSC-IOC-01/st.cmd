@@ -18,18 +18,19 @@ ROTSC_IOC_01_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
+epicsEnvSet("DEVICE", "L0")
 
 $(IFDEVSIM) freeIPPort("FREEPORT")  
 $(IFDEVSIM) epicsEnvShow("FREEPORT") 
-$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:57677")
+$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(FREEPORT=0)")
 
-$(IFNOTDEVSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
-$(IFNOTDEVSIM) asynSetOption("L0", -1, "baud", "$(BAUD=38400)")
-$(IFNOTDEVSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
-$(IFNOTDEVSIM) asynSetOption("L0", -1, "parity", "$(PARITY=none)") 
-$(IFNOTDEVSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")     
-$(IFNOTDEVSIM) asynOctetSetInputEos("L0", -1, "\r")          
-$(IFNOTDEVSIM) asynOctetSetOutputEos("L0", -1, "\r")         
+$(IFNOTDEVSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=38400)")
+$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
+$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)") 
+$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")     
+$(IFNOTDEVSIM) asynOctetSetInputEos("$(DEVICE)", -1, "\r")          
+$(IFNOTDEVSIM) asynOctetSetOutputEos("$(DEVICE)", -1, "\r")         
 
 ## Load record instances
 
@@ -39,10 +40,10 @@ $(IFNOTDEVSIM) asynOctetSetOutputEos("L0", -1, "\r")
 ## Load our record instances
 epicsEnvSet "ERR" "ERR"
 epicsEnvSet "CMD_ERR" "CMD_ERR"
-dbLoadRecords("db/rotating_sample_changer.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0), ERR=$(ERR), CMD_ERR=$(CMD_ERR)")
+dbLoadRecords("db/rotating_sample_changer.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0), ERR=$(ERR), CMD_ERR=$(CMD_ERR)")
 dbLoadRecords("db/error_calculator.db","P=$(MYPVPREFIX)$(IOCNAME):, ERR=$(ERR), DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0)")
 dbLoadRecords("db/error_calculator.db","P=$(MYPVPREFIX)$(IOCNAME):, ERR=$(CMD_ERR), DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0)")
-$(IS_HRPD=##) dbLoadRecords("db/HRPD_specific.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0)")
+$(IS_HRPD=##) dbLoadRecords("db/HRPD_specific.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
