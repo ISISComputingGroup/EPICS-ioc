@@ -5,17 +5,19 @@ epicsEnvSet "DEVICE" "L0"
 < $(IOCSTARTUP)/init.cmd
 
 ## For emulator use:
-$(IFNOTRECSIM) $(IFDEVSIM) freeIPPort("FREEPORT")  
-$(IFNOTRECSIM) $(IFDEVSIM) epicsEnvShow("FREEPORT") 
-$(IFNOTRECSIM) $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(FREEPORT=0)")
+#$(IFNOTRECSIM) $(IFDEVSIM) freeIPPort("FREEPORT")  
+#$(IFNOTRECSIM) $(IFDEVSIM) epicsEnvShow("FREEPORT") 
+#$(IFNOTRECSIM) $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(FREEPORT=0)")
+#
+#$(IFNOTDEVSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
+#$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
+#$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=7)")
+#$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=even)")
+#$(IFNOTDEVSIM) asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
+#$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
+#$(IFNOTDEVSIM) asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r)")
 
-$(IFNOTDEVSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
-$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
-$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=7)")
-$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=even)")
-$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
-$(IFNOTDEVSIM) asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r)")
-$(IFNOTDEVSIM) asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
+drvAsynIPPortConfigure("$(DEVICE)", "localhost:57677")
 
 ## Load record instances
 
