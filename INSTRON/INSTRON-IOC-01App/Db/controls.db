@@ -296,6 +296,21 @@ record(ao, "$(P)STRAIN:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
+# Read LabVIEW control/indicator "Waveform Running" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
+record(bi, "$(P)STRAIN:CONNECTED")
+{
+	field(DESC, "LabVIEW 'Strain Sensor Connected'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Strain_connected")
+    field(SCAN, ".1 second")
+    field(ZNAM, "")
+    field(ONAM, "")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STRAIN:CONNECTED")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
 
 # Read LabVIEW control/indicator "Control channel" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
 record(mbbi, "$(P)CHANNEL")
@@ -979,6 +994,13 @@ record(ai, "$(P)SIM:STRESS:STEP:TIME")
 
 alias("$(P)SIM:STRESS:STEP:TIME","$(P)SIM:STRESS:STEP:TIME:SP")
 
+
+record(bi, "$(P)SIM:STRAIN:CONNECTED")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
 record(mbbi, "$(P)SIM:CHANNEL")
 {
     field(SCAN, "Passive")
@@ -986,12 +1008,6 @@ record(mbbi, "$(P)SIM:CHANNEL")
 }
 
 alias("$(P)SIM:CHANNEL","$(P)SIM:CHANNEL:SP")
-
-record(ao, "$(P)SIM:strain_1_value")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
 
 record(ai, "$(P)SIM:WAVE:AMP")
 {
