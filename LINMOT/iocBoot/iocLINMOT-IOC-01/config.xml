@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>LinMot motor controller</ioc_desc>
+<ioc_details>LinMot Motor Details</ioc_details>
+<macros>
+
+<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+
+<macro name="AXIS1" pattern="^(yes|no)$" description="Motor is attached to axis 1 (default: no)" />
+<macro name="OFST1" pattern="[1-9][0-9]*$" description="Motor offset in steps (default: 0)"/>
+<macro name="MRES1" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/mm (default: 0.01)"/>
+<macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="Motor speed in mm/s (default: 1)"/>
+
+<macro name="AXIS2" pattern="^(yes|no)$" description="Motor is attached to axis 2 (default: no)" />
+<macro name="OFST2" pattern="[1-9][0-9]*$" description="Motor offset in steps (default: 0)"/>
+<macro name="MRES2" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/mm (default: 0.01)"/>
+<macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="Motor speed in mm/s (default: 1)"/>
+
+<macro name="AXIS3" pattern="^(yes|no)$" description="Motor is attached to axis 3 (default: no)" />
+<macro name="OFST3" pattern="[1-9][0-9]*$" description="Motor offset in steps (default: 0)"/>
+<macro name="MRES3" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/mm (default: 0.01)"/>
+<macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="Motor speed in mm/s (default: 1)"/>
+
+<macro name="AXIS4" pattern="^(yes|no)$" description="Motor is attached to axis 4 (default: no)" />
+<macro name="OFST4" pattern="[1-9][0-9]*$" description="Motor offset in steps (default: 0)"/>
+<macro name="MRES4" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/mm (default: 0.01)"/>
+<macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="Motor speed in mm/s (default: 1)"/>
+
+<macro name="AXIS5" pattern="^(yes|no)$" description="Motor is attached to axis 5 (default: no)" />
+<macro name="OFST5" pattern="[1-9][0-9]*$" description="Motor offset in steps (default: 0)"/>
+<macro name="MRES5" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/mm (default: 0.01)"/>
+<macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="Motor speed in mm/s (default: 1)"/>
+
+<macro name="AXIS6" pattern="^(yes|no)$" description="Motor is attached to axis 6 (default: no)" />
+<macro name="OFST6" pattern="[1-9][0-9]*$" description="Motor offset in steps (default: 0)"/>
+<macro name="MRES6" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/mm (default: 0.01)"/>
+<macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="Motor speed in mm/s (default: 1)"/>
+
+<macro name="AXIS7" pattern="^(yes|no)$" description="Motor is attached to axis 7 (default: no)" />
+<macro name="OFST7" pattern="[1-9][0-9]*$" description="Motor offset in steps (default: 0)"/>
+<macro name="MRES7" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/mm (default: 0.01)"/>
+<macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="Motor speed in mm/s (default: 1)"/>
+
+<macro name="AXIS8" pattern="^(yes|no)$" description="Motor is attached to axis 8 (default: no)" />
+<macro name="OFST8" pattern="[1-9][0-9]*$" description="Motor offset in steps (default: 0)"/>
+<macro name="MRES8" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/mm (default: 0.01)"/>
+<macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="Motor speed in mm/s (default: 1)"/>
+
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>

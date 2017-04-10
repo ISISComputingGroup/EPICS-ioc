@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application NANODAC-IOC-01
+# Build the IOC application MK2CHOPR-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# NANODAC-IOC-01.dbd will be created and installed
+# MK2CHOPR-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# NANODAC-IOC-01.dbd will be made up from these files:
+# MK2CHOPR-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += devSequencer.dbd
@@ -29,12 +29,13 @@ $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
-$(APPNAME)_DBD += drvAsynIPPort.dbd 
-$(APPNAME)_DBD += modbusSupport.dbd
+$(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 #$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
+$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
@@ -45,11 +46,10 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
-$(APPNAME)_LIBS += modbus
 $(APPNAME)_LIBS += asyn
 #$(APPNAME)_LIBS += xxx
 
-# NANODAC-IOC-01_registerRecordDeviceDriver.cpp derives from NANODAC-IOC-01.dbd
+# MK2CHOPR-IOC-01_registerRecordDeviceDriver.cpp derives from MK2CHOPR-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.

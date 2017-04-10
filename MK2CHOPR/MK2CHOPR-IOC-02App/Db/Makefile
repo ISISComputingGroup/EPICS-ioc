@@ -10,11 +10,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-DB += larmor-air.db
-DB += wish-vacuum.db
-DB += zoom-vacuum.db
-DB += imat-plc-attn.db
-DB += imat-plc-press.db
+#DB += xxx.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
