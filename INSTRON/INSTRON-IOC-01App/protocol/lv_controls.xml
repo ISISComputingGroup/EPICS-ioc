@@ -232,10 +232,15 @@
         <read method="GCV" target="GPIB device number"/>
         <set method="SCV" extint="true" target="GPIB device number"/>
       </param>
-      <param name="Going_to__Setpoint" type="boolean">
+      <param name="Going_to_Setpoint" type="boolean">
         <items/>
-        <read method="GCV" target="Going to  Setpoint"/>
-        <set method="SCV" extint="true" target="Going to  Setpoint"/>
+        <read method="GCV" target="Going to Setpoint"/>
+        <set method="SCV" extint="true" target="Going to Setpoint"/>
+      </param>
+      <param name="Strain_Sensor_Attached" type="boolean">
+        <items/>
+        <read method="GCV" target="Strain Sensor Attached"/>
+        <set method="SCV" extint="true" target="Strain Sensor Attached"/>
       </param>
       <param name="Cross_Sectional_Area_(mm^2)" type="float64">
         <read method="GCV" target="Cross Sectional Area (mm^2)"/>
