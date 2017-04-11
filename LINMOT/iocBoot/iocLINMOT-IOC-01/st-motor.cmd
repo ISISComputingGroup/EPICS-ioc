@@ -11,7 +11,7 @@ epicsEnvSet("OFSTI",$(OFST$(MN)=0))
 epicsEnvSet("MRESI",$(MRES$(MN)=0.01))
 # LinMots set velocity always in C*mm/s where C is internal to the motor.
 # The motor record adds in a factor of 1/MRES so we need to take that out
-dcalc("VELOI", "$(VELOI)*$(MRESI)", 1, 0)
+dcalc("VELOI", "abs($(VELOI)*$(MRESI))", 1, 0)
 $(IFSIM) epicsEnvSet("ERESI",1)
 $(IFNOTSIM) epicsEnvSet("ERESI",0)
 epicsEnvSet("DHLMI",$(DHLM$(MN)=100))
