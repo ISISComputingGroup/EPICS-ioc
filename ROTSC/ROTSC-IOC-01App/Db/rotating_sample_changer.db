@@ -397,10 +397,9 @@ record(ao, "$(P)MOVE_TO_POSN:NO_LOWER")
 record(calc, "$(P)CALC_MOVE_FINISHED")
 {
 	field(SCAN, "Passive")
-	field(INPA, "$(P)MOVE_TO_POSN.VAL CP")
-	field(INPB, "$(P)POSN.VAL CP")
-	field(INPC, "$(P)SAMPLE_ARM_DOWN.RVAL CP")
-	field(CALC, "(A=B)&&C")
+	field(INPA, "$(P)MOTOR_0_ACTIVE CP")
+	field(INPB, "$(P)MOTOR_1_ACTIVE CP")
+	field(CALC, "(!A)&&(!B)")
 }
 
 record(calc, "$(P)IS_INITIALISED")
@@ -412,13 +411,8 @@ record(calc, "$(P)IS_INITIALISED")
 record(calcout, "$(P)CALC_STATUS_STRING")
 {
 	field(INPA, "$(P)IS_INITIALISED CP")
-	field(INPB, "$(P)INIT CP")
-	field(INPC, "$(P)CALC_MOVE_FINISHED CP")
-	field(INPD, "$(P)POSN.VAL CP")
-	### The following is an annoying bit of logic to recreate the VI:
-	### If the instrument is not initialised we display uninitialised until INIT is set
-	### Otherwise if the move is not finished we are moving except when we've just been initialised
-	field(CALC, "(!A)?(B?1:0):(C?2:((D=0)?2:3))")
+	field(INPB, "$(P)CALC_MOVE_FINISHED CP")
+	field(CALC, "(!A)?0:B?1:2")
 	field(OUT, "$(P)STATUS_STRING PP")
 }
 
@@ -427,11 +421,9 @@ record(mbbi, "$(P)STATUS_STRING")
 	field(ZRVL, "0")
 	field(ZRST, "Uninitialised")
 	field(ONVL, "1")
-	field(ONST, "Initialising")
+	field(ONST, "Idle")
 	field(TWVL, "2")
-	field(TWST, "Idle")
-	field(THVL, "3")
-	field(THST, "Moving")
+	field(TWST, "Moving")
 }
 
 ### SIMULATION RECORDS ###
