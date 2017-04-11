@@ -357,6 +357,24 @@ record(mbbo, "$(P)CHANNEL:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
+# Write to LabVIEW control "Control channel" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
+record(mbbo, "$(P)CHANNEL:SP:NOSTRAIN")
+{
+	field(DESC, "LabVIEW 'Control channel'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Control_channel")
+
+    field(ZRVL, 0)
+    field(ZRST, "Position")
+        
+    field(ONVL, 1)
+    field(ONST, "Stress")
+        
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CHANNEL:SP:NOSTRAIN")
+    field(SDIS, "$(P)DISABLE")
+}
+
 # Read LabVIEW control/indicator "Strain On/Off" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
 record(bi, "$(P)STRAIN:LOG")
 {
@@ -1007,7 +1025,7 @@ record(mbbi, "$(P)SIM:CHANNEL")
     field(DTYP, "Soft Channel")
 }
 
-alias("$(P)SIM:CHANNEL","$(P)SIM:CHANNEL:SP")
+alias("$(P)SIM:CHANNEL","$(P)SIM:CHANNEL:SP", "$(P)SIM:CHANNEL:SP:NOSTRAIN")
 
 record(ai, "$(P)SIM:WAVE:AMP")
 {
