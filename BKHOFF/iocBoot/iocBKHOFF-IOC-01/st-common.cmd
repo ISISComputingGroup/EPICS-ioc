@@ -53,7 +53,7 @@ eemcuCreateAxis("MCU1", "2", "1", "")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/IMAT.db")
+dbLoadRecords("db/IMAT.db","P=$(MYPVPREFIX),M1=MOT:MTR0901,M2=MOT:MTR0902")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
