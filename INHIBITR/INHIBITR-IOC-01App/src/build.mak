@@ -25,6 +25,7 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += inhibitor.dbd 
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
