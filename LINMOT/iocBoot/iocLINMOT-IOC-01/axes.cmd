@@ -1,0 +1,1 @@
+< $(LINMOTCONFIG)/axes.cmd
