@@ -15,13 +15,6 @@ PV(int, motor2pv, "TE:NDW1298:MOT:MTR0202", Monitor);
 
 ss inhibitor
 {
-  state init
-  {
-	when ()
-	{
-	  printf("Sequencer started successfully.\n");
-	} state unknown
-  }
 
   state unknown
   {
@@ -74,15 +67,27 @@ ss inhibitor
   
   state det_off_motors_moving
   {
-    when()
+    when(motor1pv != 0)
 	{
-	} state unknown
+	  printf("Detectors on, motors moving.\n");
+	} state det_on_motors_moving
+	
+	when(motor2pv == 0)
+	{
+	  printf("Detectors off, motors stationary.\n");
+	} state det_off_motors_stationary
   }
   
   state det_on_motors_moving
   {
-    when()
+    when(motor1pv == 0)
 	{
-	} state unknown
+	  printf("Detectors off, motors moving.\n");
+	} state det_off_motors_moving
+	
+	when(motor2pv == 0)
+	{
+	  printf("Detectors on, motors stationary.\n");
+	} state det_on_motors_stationary
   }
 }
