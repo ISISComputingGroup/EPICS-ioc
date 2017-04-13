@@ -42,6 +42,7 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 
 # INHIBITR-IOC-01_registerRecordDeviceDriver.cpp derives from INHIBITR-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
+$(APPNAME)_SRCS += inhibitor.st
 
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp
