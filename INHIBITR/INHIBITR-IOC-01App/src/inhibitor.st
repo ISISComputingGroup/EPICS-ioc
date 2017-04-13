@@ -18,6 +18,11 @@ PV(int, motor2_state, "TE:NDW1298:MOT:MTR0408", Monitor);
   {
     printf("Detectors %d, motors %d.\n", motor1_state, motor2_state);
   } 
+  
+  void print_invalid_transition_warning()
+  {
+    printf("WARNING: A transition occured that should not have been possible.");
+  }
 }%
 
 
@@ -78,6 +83,7 @@ ss inhibitor
 	{
 	  /* This transition should not happen, motor2 should have been disabled */
 	  print_status();
+	  print_invalid_transition_warning();
 	} state det_on_motors_moving
   }
   
@@ -87,6 +93,7 @@ ss inhibitor
 	{
 	  /* This transition should not happen, motor1 should have been disabled */
 	  print_status();
+	  print_invalid_transition_warning();
 	} state det_on_motors_moving
 	
 	when(motor2_state == 0)
