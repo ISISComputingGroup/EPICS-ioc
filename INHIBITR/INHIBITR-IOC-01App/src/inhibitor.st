@@ -14,7 +14,7 @@ PV(int, motor1_state, "TE:NDW1298:MOT:MTR0407", Monitor);
 PV(int, motor2_state, "TE:NDW1298:MOT:MTR0408", Monitor);
 
 %{
-  void print_status_of_motors()
+  void print_status()
   {
     printf("Detectors %d, motors %d.\n", motor1_state, motor2_state);
   } 
@@ -24,26 +24,27 @@ PV(int, motor2_state, "TE:NDW1298:MOT:MTR0408", Monitor);
 ss inhibitor
 {
 
+  /* Initial state. Find the current state and move into it. */
   state unknown
   {
     when(motor1_state == 0 && motor2_state == 0)
 	{	  
-	  print_status_of_motors();
+	  print_status();
 	} state det_off_motors_stationary
 	
 	when(motor1_state == 0 && motor2_state != 0)
 	{
-	  print_status_of_motors();
+	  print_status();
 	} state det_off_motors_moving
 	
 	when(motor1_state != 0 && motor2_state == 0)
 	{
-	  print_status_of_motors();
+	  print_status();
 	} state det_on_motors_stationary
 	
 	when(motor1_state != 0 && motor2_state != 0)
 	{
-	  print_status_of_motors();
+	  print_status();
 	} state det_on_motors_moving
   }
   
@@ -51,7 +52,7 @@ ss inhibitor
   {
     when(motor1_state != 0)
 	{
-	  print_status_of_motors();
+	  print_status();
 	  motor2_disable = 1;
 	  pvPut(motor2_disable);
 	} state det_on_motors_stationary
@@ -60,7 +61,7 @@ ss inhibitor
 	{
 	  motor1_disable = 1;
 	  pvPut(motor1_disable);
-	  print_status_of_motors();
+	  print_status();
 	} state det_off_motors_moving
   }
   
@@ -70,12 +71,13 @@ ss inhibitor
 	{
 	  motor2_disable = 0;
 	  pvPut(motor2_disable);
-	  print_status_of_motors();
+	  print_status();
 	} state det_off_motors_stationary
 	
 	when(motor2_state != 0)
 	{
-	  print_status_of_motors();
+	  /* This transition should not happen, motor2 should have been disabled */
+	  print_status();
 	} state det_on_motors_moving
   }
   
@@ -83,31 +85,37 @@ ss inhibitor
   {
     when(motor1_state != 0)
 	{
-	  print_status_of_motors();
+	  /* This transition should not happen, motor1 should have been disabled */
+	  print_status();
 	} state det_on_motors_moving
 	
 	when(motor2_state == 0)
 	{
 	  motor1_disable = 0;
 	  pvPut(motor1_disable);
-	  print_status_of_motors();
+	  print_status();
 	} state det_off_motors_stationary
   }
   
   state det_on_motors_moving
   {
+    /* 
+	 * This state should only ever occur on startup. 
+	 * It is assumed that if the inhibitor is started in this state then the instrument scientists know what they are doing.
+	 * Therefore we dont need to do anything special in this state - just go back to one of the "normal" states when either the detectors or the motors stop.
+	 */
     when(motor1_state == 0)
 	{
 	  motor2_disable = 0;
 	  pvPut(motor2_disable);
-	  print_status_of_motors();
+	  print_status();
 	} state det_off_motors_moving
 	
 	when(motor2_state == 0)
 	{
 	  motor1_disable = 0;
 	  pvPut(motor1_disable);
-	  print_status_of_motors();
+	  print_status();
 	} state det_on_motors_stationary
   }
 }
