@@ -216,12 +216,12 @@
         <read method="GCV" target="Start Waveform"/>
         <set method="SCV" extint="true" target="Start Waveform"/>
       </param>
-      <param name="Stop_Waveform_" type="boolean">
+      <param name="Stop_Waveform" type="boolean">
         <items>
           <item name="Stop&#10;Waveform" value="0"/>
         </items>
-        <read method="GCV" target="Stop Waveform "/>
-        <set method="SCV" extint="true" target="Stop Waveform "/>
+        <read method="GCV" target="Stop Waveform"/>
+        <set method="SCV" extint="true" target="Stop Waveform"/>
       </param>
       <param name="Waveform_Running" type="boolean">
         <items/>
