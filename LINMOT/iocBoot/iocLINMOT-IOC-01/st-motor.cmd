@@ -5,9 +5,13 @@ epicsEnvSet("AMOTORPV", "MOT:$(AMOTORNAME)")
 ## Load record instances
 
 # Set motor specific initial conditions
-epicsEnvSet("VELOI",$(VELO$(MN)=1))
-epicsEnvSet("MRESI",$(MSTP$(MN)=0.01))
+epicsEnvSet("EGUI",$(UNIT$(MN)=mm))
+epicsEnvSet("VELOI",$(VELO$(MN)=10))
 epicsEnvSet("OFSTI",$(OFST$(MN)=0))
+epicsEnvSet("MRESI",$(MRES$(MN)=0.01))
+# LinMots set velocity always in C*mm/s where C is internal to the motor.
+# The motor record adds in a factor of 1/MRES so we need to take that out
+dcalc("VELOI", "abs($(VELOI)*$(MRESI))", 1, 0)
 $(IFSIM) epicsEnvSet("ERESI",1)
 $(IFNOTSIM) epicsEnvSet("ERESI",0)
 epicsEnvSet("DHLMI",$(DHLM$(MN)=100))
@@ -26,6 +30,7 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(AMOTORPV):ASYN,PO
 # Set the VBAS, the base speed, to 0.0 as it has no effect (that I know of) on the motor except that the acceleration won't be set
 # on an absolute move unless the speed and base speed are different
 #
-dbLoadRecords("$(TOP)/db/motor$(SIMSFX=).db", "P=$(MYPVPREFIX),M=$(AMOTORPV),VELO=$(VELOI),VBAS=0.0,ACCL=$(ACCLI),MRES=$(MRESI),ERES=$(ERESI),DHLM=$(DHLMI),DLLM=$(DLLMI),NAME=$(AMOTORNAME),S=$(SN),C=0,UEIP=0") 
+dbLoadRecords("$(TOP)/db/motor$(SIMSFX=).db", "P=$(MYPVPREFIX),M=$(AMOTORPV),VELO=$(VELOI),VBAS=0.0,ACCL=$(ACCLI),MRES=$(MRESI),ERES=$(ERESI),DHLM=$(DHLMI),DLLM=$(DLLMI),NAME=$(AMOTORNAME),S=$(SN),C=0,UEIP=0,OFF=$(OFSTI),EGU=$(EGUI)") 
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=$(AMOTORPV)") 
 dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(MN),mAXIS=$(AMOTORPV)") 
+

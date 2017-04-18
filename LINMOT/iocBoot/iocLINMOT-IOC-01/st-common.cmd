@@ -61,5 +61,11 @@ iocInit()
 #var motorUtil_debug 1
 motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
+# Save motor positions every 5 seconds
+create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:")
+
+# Save motor settings every 30 seconds
+create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
+
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
