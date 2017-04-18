@@ -466,6 +466,8 @@ record(bo, "$(P)SIM:GO_BACKWARD")
 
 record(stringin, "$(P)SIM:RAW_STATUS")
 {
+	field(DESC, "Series of status bits")
+	field(VAL, "1110011111001100 000 01")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
