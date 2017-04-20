@@ -250,7 +250,7 @@ record(bo, "$(P)MOTOR_1_ACTIVE")
 
 record(scalcout, "$(P)CALC_MTR_0_ACTIVE")
 {
-    field(CALC, "AA[1,1]")
+    field(CALC, "AA[2,2]")
     field(INAA, "$(P)RAW_MTR_STAT PP MS")
     field(OUT, "$(P)MOTOR_0_ACTIVE PP MS")
 }
