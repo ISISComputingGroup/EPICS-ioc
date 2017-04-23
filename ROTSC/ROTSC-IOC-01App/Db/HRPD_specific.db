@@ -1,0 +1,48 @@
+record(ao, "$(P)GET_VR:SP")
+{
+	field(DESC, "Set which variable to get from GET_VR") 
+	field(FLNK, "$(P)GET_VR_MAG")
+	info(INTEREST, "MEDIUM")
+	field(EGU, "") # Setting a memory location
+}
+
+record(bi, "$(P)GET_VR:POLARITY")
+{
+	field(ZNAM, "+")
+	field(ONAM, "-")
+	field(FLNK, "$(P)CALC_GET_VR")
+}
+
+record(ai, "$(P)GET_VR_MAG")
+{
+	field(DTYP, "stream")
+	field(INP, "@rotsc.proto getVR($(P),GET_VR:SP,GET_VR:POLARITY) $(PORT)")
+	field(FLNK, "$(P)GET_VR:POLARITY")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:GET_VR_MAG")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(scalcout, "$(P)CALC_GET_VR")
+{
+    field(INAA, "$(P)GET_VR:POLARITY PP MS")
+    field(INBB, "$(P)GET_VR_MAG PP MS") 
+	field(CALC, "AA+BB")
+	field(OUT, "$(P)GET_VR")
+	field(FLNK, "$(P)GET_VR")
+}
+
+record(ai, "$(P)GET_VR")
+{
+	field(DESC, "Get the value of the specified variable")
+	info(INTEREST, "MEDIUM")
+	field(EGU, "") # Only known at runtime
+}
+### SIMULATION RECORDS ###
+
+record(ai, "$(P)SIM:GET_VR_MAG")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+

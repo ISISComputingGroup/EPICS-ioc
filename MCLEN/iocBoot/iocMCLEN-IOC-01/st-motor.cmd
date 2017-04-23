@@ -5,7 +5,7 @@ epicsEnvSet("AMOTORPV", "MOT:$(AMOTORNAME)")
 ## Load record instances
 
 # Set motor specific initial conditions
-epicsEnvSet("EGUI",$(UNIT$(MN)=))
+epicsEnvSet("EGUI",$(UNIT$(MN)="mm"))
 epicsEnvSet("VELOI",$(VELO$(MN)=1))
 epicsEnvSet("ACCLI",$(ACCL$(MN)=1))
 epicsEnvSet("MSTPI",$(MSTP$(MN)=4000))

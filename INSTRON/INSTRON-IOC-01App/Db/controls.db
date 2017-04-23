@@ -787,7 +787,7 @@ record(ai, "$(P)STRESS:AREA")
 {
 	field(DESC, "LabVIEW 'Cross Sectional Area (mm^[2])'")
     field(DTYP, "asynFloat64")
-    field(EGU, "m^2")
+    field(EGU, "mm^2")
     field(INP,  "@asyn(lvfp,0,0)Cross_Sectional_Area_(mm^2)")
     field(PREC, "3")
     field(SCAN, ".1 second")
