@@ -35,4 +35,4 @@ iocInit
 < $(IOCSTARTUP)/postiocinit.cmd
 
 ## Start any sequence programs
-seq inhibitor
+seq inhibitor, "PVONE=$(MYPVPREFIX)MOT:MTR0407,PVTWO=$(MYPVPREFIX)MOT:MTR0408"

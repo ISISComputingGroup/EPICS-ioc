@@ -1,18 +1,18 @@
-program inhibitor
+program inhibitor("PVONE,PVTWO")
 
 #include "seqPVmacros.h"
 
 int motor1_disp, motor2_disp;
 
-assign motor1_disp to "TE:NDW1298:MOT:MTR0407.DISP"; /* Index = 0 */
-assign motor2_disp to "TE:NDW1298:MOT:MTR0408.DISP"; /* Index = 1 */
+assign motor1_disp to "{PVONE}.DISP"; /* Index = 0 */
+assign motor2_disp to "{PVTWO}.DISP"; /* Index = 1 */
 
 /* Turn on run-time debug messages */
 option +d;
 
 /* PV definitions */
-PV(int, motor1_state, "TE:NDW1298:MOT:MTR0407", Monitor);
-PV(int, motor2_state, "TE:NDW1298:MOT:MTR0408", Monitor);
+PV(int, motor1_state, "{PVONE}", Monitor);
+PV(int, motor2_state, "{PVTWO}", Monitor);
 
 %{
 
@@ -92,66 +92,66 @@ ss inhibitor
     when(motor1_state == 0 && motor2_state == 0)
 	{	  
 	  print_status();
-	} state det_off_motors_stationary
+	} state pv_one_off_pv_two_off
 	
 	when(motor1_state == 0 && motor2_state != 0)
 	{
 	  print_status();
-	} state det_off_motors_moving
+	} state pv_one_off_pv_two_on
 	
 	when(motor1_state != 0 && motor2_state == 0)
 	{
 	  print_status();
-	} state det_on_motors_stationary
+	} state pv_one_on_pv_two_off
 	
 	when(motor1_state != 0 && motor2_state != 0)
 	{
 	  print_status();
-	} state det_on_motors_moving
+	} state pv_one_on_pv_two_on
   }
   
-  state det_off_motors_stationary
+  state pv_one_off_pv_two_off
   {
     when(motor1_state != 0)
 	{
 	  set_motor_disabled(ssId, 1, 1);
-	} state det_on_motors_stationary
+	} state pv_one_on_pv_two_off
 	
 	when(motor2_state != 0)
 	{
 	  set_motor_disabled(ssId, 0, 1);
-	} state det_off_motors_moving
+	} state pv_one_off_pv_two_on
   }
   
-  state det_on_motors_stationary
+  state pv_one_on_pv_two_off
   {
 	when(motor1_state == 0)
 	{
 	  set_motor_disabled(ssId, 1, 0);
-	} state det_off_motors_stationary
+	} state pv_one_off_pv_two_off
 	
 	when(motor2_state != 0)
 	{
 	  /* This transition should not happen, motor2 should have been disabled */
 	  invalid_transition(ssId);
-	} state det_on_motors_moving
+	} state pv_one_on_pv_two_on
   }
   
-  state det_off_motors_moving
+  state pv_one_off_pv_two_on
   {
     when(motor1_state != 0)
 	{
 	  /* This transition should not happen, motor1 should have been disabled */
 	  invalid_transition(ssId);
-	} state det_on_motors_moving
+	} state pv_one_on_pv_two_on
 	
 	when(motor2_state == 0)
 	{
 	  set_motor_disabled(ssId, 0, 0);
-	} state det_off_motors_stationary
+	} state pv_one_off_pv_two_off
   }
   
-  state det_on_motors_moving
+  state pv_one_on_pv_two_on
   {
     /* 
 	 * This state should only ever occur on startup. 
@@ -161,11 +161,11 @@ ss inhibitor
     when(motor1_state == 0)
 	{
 	  set_motor_disabled(ssId, 1, 0);
-	} state det_off_motors_moving
+	} state pv_one_off_pv_two_on
 	
 	when(motor2_state == 0)
 	{
 	  set_motor_disabled(ssId, 0, 0);
-	} state det_on_motors_stationary
+	} state pv_one_on_pv_two_off
   }
 }
