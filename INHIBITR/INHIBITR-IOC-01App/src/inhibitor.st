@@ -1,11 +1,11 @@
-program inhibitor("PVONE,PVTWO")
+program inhibitor("PVONE,PVTWO,PVONE_DISP,PVTWO_DISP")
 
 #include "seqPVmacros.h"
 
 int motor1_disp, motor2_disp;
 
-assign motor1_disp to "{PVONE}.DISP"; /* Index = 0 */
-assign motor2_disp to "{PVTWO}.DISP"; /* Index = 1 */
+assign motor1_disp to "{PVONE_DISP}"; /* Index = 0 */
+assign motor2_disp to "{PVTWO_DISP}"; /* Index = 1 */
 
 /* Turn on run-time debug messages */
 option +d;
@@ -56,7 +56,7 @@ PV(int, motor2_state, "{PVTWO}", Monitor);
 	}
 	
 	seq_pvPut(ssId, index, SYNC);
-	printf("Assigned a value of %i to pv with index %i.\n", disabled, index);
+	printf("Assigned a value of %i to DISP pv with index %i.\n", disabled, index);
   }
   
   /*
