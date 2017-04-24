@@ -25,26 +25,6 @@ PV(int, motor2_state, "TE:NDW1298:MOT:MTR0408", Monitor);
   } 
   
   /*
-   * This function is called if an invalid transition occurs 
-   * (one which should not have been possible). 
-   *
-   * This could happen in theory if both values get pvPuts before the inhibitor 
-   * manages to set the .DISP field
-   *
-   * In this case we just print a warning and ensure both motors get enabled so that * users can always get out of this state.
-   *
-   * Args: ssId - The ID of the calling state set.
-   */
-  static void invalid_transition(SS_ID ssId)
-  {
-    print_status();
-    puts("WARNING: A transition occured that should not have been possible.");
-	
-	set_motor_disabled(SS_ID, 0, 0);
-	set_motor_disabled(SS_ID, 1, 0);
-  }
-  
-  /*
    * Enables or disables puts to the PV by setting its DISP field.
    *
    * This could happen in theory if both values get pvPuts before the inhibitor 
@@ -60,23 +40,43 @@ PV(int, motor2_state, "TE:NDW1298:MOT:MTR0408", Monitor);
   {
     print_status();
 	
-    if (motor_number == 0)
+    if (index == 0)
 	{
-	  motor1_disp = enabled;
+	  motor1_disp = disabled;
 	}
-	else if(motor_number == 1)
+	else if(index == 1)
 	{
-	  motor2_disp = enabled;
+	  motor2_disp = disabled;
 	}
 	else 
 	{
-	  /* The inhibitor only looks at two PVs. If an index out of range is given, fail fast and in an obvious way.
+	  /* The inhibitor only looks at two PVs. If an index out of range is given, print a warning and do nothing. */
 	  puts("Invalid argument for set_motor_enabled: expected 0 or 1");
-	  exit(1);
+	  return;
 	}
 	
 	seq_pvPut(ssId, index, SYNC);
-	printf("Assigned a value of %i to pv with index %i.\n", disabled, index)
+	printf("Assigned a value of %i to pv with index %i.\n", disabled, index);
+  }
+  
+  /*
+   * This function is called if an invalid transition occurs 
+   * (one which should not have been possible). 
+   *
+   * This could happen in theory if both values get pvPuts before the inhibitor 
+   * manages to set the .DISP field
+   *
+   * In this case we just print a warning and ensure both motors get enabled so that * users can always get out of this state.
+   *
+   * Args: ssId - The ID of the calling state set.
+   */
+  static void invalid_transition(SS_ID ssId)
+  {
+    print_status();
+    puts("WARNING: A transition occured that should not have been possible.");
+	
+	set_motor_disabled(ssId, 0, 0);
+	set_motor_disabled(ssId, 1, 0);
   }
   
 }%
@@ -127,7 +127,7 @@ ss inhibitor
   {
 	when(motor1_state == 0)
 	{
-	  set_motor_disabled(ssId, 1, 1);
+	  set_motor_disabled(ssId, 1, 0);
 	} state det_off_motors_stationary
 	
 	when(motor2_state != 0)
