@@ -38,6 +38,92 @@ record(ai, "$(P)GET_VR")
 	info(INTEREST, "MEDIUM")
 	field(EGU, "") # Only known at runtime
 }
+
+record(scalcout, "$(P)CALC_MTR_1_ENB")
+{
+    field(CALC, "AA[0,0]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MTR_1_ENABLED PP MS")
+}
+
+record(bo, "$(P)MTR_1_ENABLED")
+{
+	field(ONAM, "ENABLED")
+	field(ZNAM, "DISABLED")
+	info(INTEREST, "MEDIUM")
+}
+
+record(scalcout, "$(P)CALC_MTR_0_ENB")
+{
+    field(CALC, "AA[1,1]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MTR_0_ENABLED PP MS")
+}
+
+record(bo, "$(P)MTR_0_ENABLED")
+{
+	field(ONAM, "ENABLED")
+	field(ZNAM, "DISABLED")
+	info(INTEREST, "MEDIUM")
+}
+
+record(scalcout, "$(P)CALC_MTR_1_DIRECTION")
+{
+    field(CALC, "AA[12,12]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MOTOR_1_DIRECTION PP MS")
+}
+
+record(bo, "$(P)MOTOR_1_DIRECTION")
+{
+	field(ONAM, "RAISE")
+	field(ZNAM, "LOWER")
+	info(INTEREST, "MEDIUM")
+}
+
+record(scalcout, "$(P)CALC_MTR_1_STATUS")
+{
+    field(CALC, "AA[13,13]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MOTOR_1_STATUS PP MS")
+}
+
+record(bo, "$(P)MOTOR_1_STATUS")
+{
+	field(ONAM, "ERROR")
+	field(ZNAM, "WORKING")
+	info(INTEREST, "MEDIUM")
+}
+
+record(scalcout, "$(P)CALC_MTR_0_STATUS")
+{
+    field(CALC, "AA[6,6]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MOTOR_0_STATUS PP MS")
+}
+
+record(bo, "$(P)MOTOR_0_STATUS")
+{
+	field(ONAM, "ERROR")
+	field(ZNAM, "WORKING")
+	info(INTEREST, "MEDIUM")
+}
+
+record(scalcout, "$(P)CALC_MTR_0_DIRECTION")
+{
+    field(CALC, "AA[15,15]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MOTOR_0_DIRECTION PP MS")
+}
+
+record(bo, "$(P)MOTOR_0_DIRECTION")
+{
+	field(DESC, "The direction it is set to rotate")
+	field(ONAM, "BACKWARD")
+	field(ZNAM, "FORWARD")
+	info(INTEREST, "MEDIUM")
+}
+
 ### SIMULATION RECORDS ###
 
 record(ai, "$(P)SIM:GET_VR_MAG")
