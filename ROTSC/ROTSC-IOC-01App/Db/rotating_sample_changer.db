@@ -322,19 +322,6 @@ record(ao, "$(P)MOVE_TO_POSN")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ao, "$(P)MOVE_TO_POSN:NO_LOWER")
-{
-	field(DTYP, "stream")
-	field(DESC, "Move to the given position")
-	field(OUT, "@rotsc_$(VERSION).proto moveNoLower($(P)$(CMD_ERR)_NUMBER) $(PORT)")
-	field(FLNK, "$(P)$(CMD_ERR)_NUMBER.PROC")
-	info(INTEREST, "MEDIUM")
-	field(EGU, "")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:MOVE_TO_POSN:NO_LOWER")
-    field(SDIS, "$(P)DISABLE")
-}
-
 record(calc, "$(P)CALC_MOVE_FINISHED")
 {
 	field(SCAN, "Passive")
@@ -417,12 +404,6 @@ record(stringin, "$(P)SIM:RAW_STATUS")
 }
 
 record(bo, "$(P)SIM:GO_FORWARD")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(ao, "$(P)SIM:MOVE_TO_POSN:NO_LOWER")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")

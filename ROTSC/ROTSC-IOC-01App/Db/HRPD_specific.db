@@ -16,7 +16,7 @@ record(bi, "$(P)GET_VR:POLARITY")
 record(ai, "$(P)GET_VR_MAG")
 {
 	field(DTYP, "stream")
-	field(INP, "@rotsc.proto getVR($(P),GET_VR:SP,GET_VR:POLARITY) $(PORT)")
+	field(INP, "@rotsc_1.proto getVR($(P),GET_VR:SP,GET_VR:POLARITY) $(PORT)")
 	field(FLNK, "$(P)GET_VR:POLARITY")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:GET_VR_MAG")
@@ -124,6 +124,19 @@ record(bo, "$(P)MOTOR_0_DIRECTION")
 	info(INTEREST, "MEDIUM")
 }
 
+record(ao, "$(P)MOVE_TO_POSN:NO_LOWER")
+{
+	field(DTYP, "stream")
+	field(DESC, "Move to the given position")
+	field(OUT, "@rotsc_1.proto moveNoLower($(P)$(CMD_ERR)_NUMBER) $(PORT)")
+	field(FLNK, "$(P)$(CMD_ERR)_NUMBER.PROC")
+	info(INTEREST, "MEDIUM")
+	field(EGU, "")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MOVE_TO_POSN:NO_LOWER")
+    field(SDIS, "$(P)DISABLE")
+}
+
 ### SIMULATION RECORDS ###
 
 record(ai, "$(P)SIM:GET_VR_MAG")
@@ -132,3 +145,8 @@ record(ai, "$(P)SIM:GET_VR_MAG")
     field(DTYP, "Soft Channel")
 }
 
+record(ao, "$(P)SIM:MOVE_TO_POSN:NO_LOWER")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
