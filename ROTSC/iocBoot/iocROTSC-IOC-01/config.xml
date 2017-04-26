@@ -5,11 +5,11 @@
 <ioc_details>The HRPD/GEM/POLARIS sample changer</ioc_details>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
-<macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate (Default: 57600)." />
+<macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate (Default: 38400)." />
 <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits (Default: 8)." />
 <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity (Default: None)." />
 <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit (Default: 1)." />
-<macro name="VERSION" pattern="^[0-9]$" description="The version of sample changer. HRPD: 1; others: 0 (Default:0)" />
+<macro name="VERSION" pattern="^[01]$" description="The version of sample changer. HRPD: 1; others: 0 (Default:0)" />
 </macros>
 </config_part>
 </ioc_config>
