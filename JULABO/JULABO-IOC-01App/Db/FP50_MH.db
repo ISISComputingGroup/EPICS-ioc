@@ -4,6 +4,7 @@ record(bo, "$(P)SIM")
 	field(ZNAM, "No")
     field(ONAM, "Yes")
 	field(FLNK, "$(P)VERSION")
+    field(VAL, "$(RECSIM=0)")
 }
 
 record(bo, "$(P)DISABLE") 
@@ -14,6 +15,7 @@ record(bo, "$(P)DISABLE")
     field(OMSL, "supervisory")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
+    field(VAL, "$(DISABLE=0)")
 }
 
 record(stringin, "$(P)VERSION")
@@ -380,17 +382,14 @@ record(stringout, "$(P)SIM:STATUS")
 	field(VAL, "Simulated")
 }
 
-
-record(ao, "$(P)SIM:TEMP:SP")
+record(ao, "$(P)SIM:TEMP")
 {
-	field(DTYP, "Soft Channel")
+    field(DTYP, "Soft Channel")
+	field(VAL, "75")
 }
 
-record(calc, "$(P)SIM:TEMP")
-{
-	field(INPA, "$(P)SIM:TEMP:SP PP")
-	field(CALC, "A + 0.2")
-}
+alias ("$(P)SIM:TEMP","$(P)SIM:TEMP:SP")
+alias ("$(P)SIM:TEMP:SP","$(P)SIM:TEMP:SP:RBV")
 
 record(bo, "$(P)SIM:MODE")
 {
@@ -399,16 +398,18 @@ record(bo, "$(P)SIM:MODE")
     field(ONAM, "ON")
 }
 
+alias ("$(P)SIM:MODE","$(P)SIM:MODE:SP")
+
 record(ao, "$(P)SIM:POWER")
 {
 	field(DTYP, "Soft Channel")
 	field(VAL, "75")
 }
 
-record(calc, "$(P)SIM:EXTTEMP")
+record(ao, "$(P)SIM:EXTTEMP")
 {
-	field(INPA, "$(P)SIM:TEMP PP")
-	field(CALC, "25 + A")
+    field(DTYP, "Soft Channel")
+	field(VAL, "75")
 }
 
 record(ao, "$(P)SIM:HIGHLIMIT")
@@ -423,5 +424,56 @@ record(ao, "$(P)SIM:LOWLIMIT")
 	field(VAL, "0")
 }
 
-alias ("$(P)SIM:TEMP:SP","$(P)SIM:TEMP:SP:RBV")
-alias ("$(P)SIM:MODE","$(P)SIM:MODE:SP")
+record(ao, "$(P)SIM:INTP")
+{
+	field(DTYP, "Soft Channel")
+	field(VAL, "0")
+}
+
+alias ("$(P)SIM:INTP","$(P)SIM:INTP:SP")
+alias ("$(P)SIM:INTP:SP","$(P)SIM:INTP:SP:RBV")
+
+record(ao, "$(P)SIM:INTI")
+{
+	field(DTYP, "Soft Channel")
+	field(VAL, "0")
+}
+
+alias ("$(P)SIM:INTI","$(P)SIM:INTI:SP")
+alias ("$(P)SIM:INTI:SP","$(P)SIM:INTI:SP:RBV")
+
+record(ao, "$(P)SIM:INTD")
+{
+	field(DTYP, "Soft Channel")
+	field(VAL, "0")
+}
+
+alias ("$(P)SIM:INTD","$(P)SIM:INTD:SP")
+alias ("$(P)SIM:INTD:SP","$(P)SIM:INTD:SP:RBV")
+
+record(ao, "$(P)SIM:EXTP")
+{
+	field(DTYP, "Soft Channel")
+	field(VAL, "0")
+}
+
+alias ("$(P)SIM:EXTP","$(P)SIM:EXTP:SP")
+alias ("$(P)SIM:EXTP:SP","$(P)SIM:EXTP:SP:RBV")
+
+record(ao, "$(P)SIM:EXTI")
+{
+	field(DTYP, "Soft Channel")
+	field(VAL, "0")
+}
+
+alias ("$(P)SIM:EXTI","$(P)SIM:EXTI:SP")
+alias ("$(P)SIM:EXTI:SP","$(P)SIM:EXTI:SP:RBV")
+
+record(ao, "$(P)SIM:EXTD")
+{
+	field(DTYP, "Soft Channel")
+	field(VAL, "0")
+}
+
+alias ("$(P)SIM:EXTD","$(P)SIM:EXTD:SP")
+alias ("$(P)SIM:EXTD:SP","$(P)SIM:EXTD:SP:RBV")

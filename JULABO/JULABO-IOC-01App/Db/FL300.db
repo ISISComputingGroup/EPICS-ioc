@@ -4,6 +4,7 @@ record(bo, "$(P)SIM")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     field(FLNK, "$(P)VERSION")
+    field(VAL, "$(RECSIM=0)")
 }
 
 record(bo, "$(P)DISABLE") 
@@ -14,6 +15,7 @@ record(bo, "$(P)DISABLE")
     field(OMSL, "supervisory")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
+    field(VAL, "$(DISABLE=0)")
 }
 
 record(stringin, "$(P)VERSION")
