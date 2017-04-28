@@ -44,6 +44,7 @@ record(scalcout, "$(P)CALC_MTR_1_ENB")
     field(CALC, "AA[0,0]")
     field(INAA, "$(P)RAW_STATUS PP MS")
     field(OUT, "$(P)MTR_1_ENABLED PP MS")
+	field(IVOA, "Don't drive outputs")
 }
 
 record(bo, "$(P)MTR_1_ENABLED")
@@ -58,6 +59,7 @@ record(scalcout, "$(P)CALC_MTR_0_ENB")
     field(CALC, "AA[1,1]")
     field(INAA, "$(P)RAW_STATUS PP MS")
     field(OUT, "$(P)MTR_0_ENABLED PP MS")
+	field(IVOA, "Don't drive outputs")
 }
 
 record(bo, "$(P)MTR_0_ENABLED")
@@ -72,6 +74,7 @@ record(scalcout, "$(P)CALC_MTR_1_DIRECTION")
     field(CALC, "AA[12,12]")
     field(INAA, "$(P)RAW_STATUS PP MS")
     field(OUT, "$(P)MOTOR_1_DIRECTION PP MS")
+	field(IVOA, "Don't drive outputs")
 }
 
 record(bo, "$(P)MOTOR_1_DIRECTION")
@@ -86,6 +89,7 @@ record(scalcout, "$(P)CALC_MTR_1_STATUS")
     field(CALC, "AA[13,13]")
     field(INAA, "$(P)RAW_STATUS PP MS")
     field(OUT, "$(P)MOTOR_1_STATUS PP MS")
+	field(IVOA, "Don't drive outputs")
 }
 
 record(bo, "$(P)MOTOR_1_STATUS")
@@ -100,6 +104,7 @@ record(scalcout, "$(P)CALC_MTR_0_STATUS")
     field(CALC, "AA[6,6]")
     field(INAA, "$(P)RAW_STATUS PP MS")
     field(OUT, "$(P)MOTOR_0_STATUS PP MS")
+	field(IVOA, "Don't drive outputs")
 }
 
 record(bo, "$(P)MOTOR_0_STATUS")
@@ -114,6 +119,7 @@ record(scalcout, "$(P)CALC_MTR_0_DIRECTION")
     field(CALC, "AA[15,15]")
     field(INAA, "$(P)RAW_STATUS PP MS")
     field(OUT, "$(P)MOTOR_0_DIRECTION PP MS")
+	field(IVOA, "Don't drive outputs")
 }
 
 record(bo, "$(P)MOTOR_0_DIRECTION")
