@@ -19,7 +19,7 @@ TEKAFG3XXX_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-vxi11Configure("GPIB0", "130.246.50.169", 0, 0.0,"inst0", 0, 0)
+vxi11Configure("GPIB0", $(IP), 0, 0.0,"inst0", 0, 0)
 #asynSetTraceIOMask("GPIB0",0,2)
 #asynSetTraceMask("GPIB0",0,255)
 

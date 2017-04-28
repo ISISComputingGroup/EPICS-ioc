@@ -2,5 +2,9 @@
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
 <ioc_desc>Tektronix function generator</ioc_desc>
+<ioc_details>Tektronix function generator</ioc_details>
+<macros>
+<macro description="IP address of the function generator" name="IP" pattern="^[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}$"/>
+</macros>
 </config_part>
 </ioc_config>
