@@ -107,7 +107,7 @@ ss inhibitor
 	
 	when(pvone != 0 && pvtwo != 0)
 	{
-	  print_status();
+	  invalid_transition(ssId);
 	} state pv_one_on_pv_two_on
   }
   
@@ -161,12 +161,14 @@ ss inhibitor
 	 */
     when(pvone == 0)
 	{
+	  set_pv_disabled(ssId, 0, 1);
 	  set_pv_disabled(ssId, 1, 0);
 	} state pv_one_off_pv_two_on
 	
 	when(pvtwo == 0)
 	{
 	  set_pv_disabled(ssId, 0, 0);
+	  set_pv_disabled(ssId, 1, 1);
 	} state pv_one_on_pv_two_off
   }
 }
