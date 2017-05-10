@@ -39,3 +39,22 @@ record(ao, "$(P)CHANNEL:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(ai, "$(P)WATCHDOG:ENABLED")
+{
+	field(DESC, "Current control channel")
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getWatchdogStatus $(PORT)")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)WATCHDOG:ENABLED:SP")
+{
+	field(DESC, "Watchdog on/off")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWatchdogStatus $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")	
+}
+
