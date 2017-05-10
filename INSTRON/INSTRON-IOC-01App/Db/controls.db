@@ -18,24 +18,24 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-record(ao, "$(P)CHANNEL")
+record(ai, "$(P)CHANNEL")
 {
 	field(DESC, "Current control channel")
     field(DTYP, "stream")
-    field(EGU, "s")
-    field(INP,  "@devInstron.proto getCurrentControlChannel ")
-    field(SCAN, ".1 second")
+    field(EGU, "")
+    field(INP,  "@devInstron.proto getCurrentControlChannel $(PORT)")
+    field(SCAN, "1 second")
     field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
 }
 
-# Write to LabVIEW control "Reading Interval (seconds)" on "C:\LabVIEW Modules\Instruments\Enginx\Stress Rig\Stress Rig - System Functions.llb\Stress Rig - 100 kN Stress Rig.vi"
-record(ai, "$(P)CHANNEL:SP")
+record(ao, "$(P)CHANNEL:SP")
 {
 	field(DESC, "Control channel setpoint")
     field(DTYP, "stream")
-    field(EGU, "s")
-    field(OUT,  "@devInstron.proto setCurrentControlChannel 2")
+    field(EGU, "")
+    field(OUT,  "@devInstron.proto setCurrentControlChannel $(PORT)")
     field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
 }
+
