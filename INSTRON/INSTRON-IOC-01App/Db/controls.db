@@ -5,7 +5,7 @@ record(bo, "$(P)SIM")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     field(VAL, "$(RECSIM=0)")
-	field(PINI, "YES")
+    field(PINI, "YES")
 }
     
 record(bo, "$(P)DISABLE") 
@@ -18,43 +18,86 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-record(ai, "$(P)CHANNEL")
+record(mbbi, "$(P)CHANNEL")
 {
-	field(DESC, "Current control channel")
+    field(DESC, "Current control channel")
     field(DTYP, "stream")
-    field(EGU, "")
     field(INP,  "@devInstron.proto getCurrentControlChannel $(PORT)")
     field(SCAN, "1 second")
+    
+    field(ZRVL, 0)
+    field(ZRST, "Position")    
+    field(ONVL, 1)
+    field(ONST, "Stress")       
+    field(TWVL, 2)
+    field(TWST, "Strain")
+    
     field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ao, "$(P)CHANNEL:SP")
+record(mbbo, "$(P)CHANNEL:SP")
 {
-	field(DESC, "Control channel setpoint")
+    field(DESC, "Control channel setpoint")
     field(DTYP, "stream")
-    field(EGU, "")
+    
+    field(ZRVL, 0)
+    field(ZRST, "Position")    
+    field(ONVL, 1)
+    field(ONST, "Stress")       
+    field(TWVL, 2)
+    field(TWST, "Strain")
+    
     field(OUT,  "@devInstron.proto setCurrentControlChannel $(PORT)")
     field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)WATCHDOG:ENABLED")
+record(bi, "$(P)WATCHDOG:STATUS")
 {
-	field(DESC, "Current control channel")
+    field(DESC, "Watchdog on/off")
     field(DTYP, "stream")
     field(INP,  "@devInstron.proto getWatchdogStatus $(PORT)")
     field(SCAN, "1 second")
     field(SIML, "$(P)SIM")
+    field(ZNAM, "DISABLED")
+    field(ONAM, "ENABLED")
     field(SDIS, "$(P)DISABLE")
 }
-
-record(ao, "$(P)WATCHDOG:ENABLED:SP")
+    
+record(bo, "$(P)WATCHDOG:STATUS:SP")
 {
-	field(DESC, "Watchdog on/off")
+    field(DESC, "Watchdog on/off setpoint")
     field(DTYP, "stream")
     field(OUT,  "@devInstron.proto setWatchdogStatus $(PORT)")
+    field(ZNAM, "DISABLED")
+    field(ONAM, "ENABLED")
     field(SIML, "$(P)SIM")
-    field(SDIS, "$(P)DISABLE")	
+    field(SDIS, "$(P)DISABLE")  
 }
+
+record(bi, "$(P)CONTROLMODE")
+{
+    field(DESC, "Control mode")
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getControlMode $(PORT)")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(ZNAM, "FRONTPANEL")
+    field(ONAM, "COMPUTER")
+    field(SDIS, "$(P)DISABLE")
+}
+    
+record(bo, "$(P)CONTROLMODE:SP")
+{
+    field(DESC, "Watchdog on/off setpoint")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setControlMode $(PORT)")
+    field(ZNAM, "FRONTPANEL")
+    field(ONAM, "COMPUTER")
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")  
+}
+
+
 
