@@ -25,11 +25,11 @@ record(mbbi, "$(P)CHANNEL")
     field(INP,  "@devInstron.proto getCurrentControlChannel $(PORT)")
     field(SCAN, "1 second")
     
-    field(ZRVL, 0)
+    field(ZRVL, 1)
     field(ZRST, "Position")    
-    field(ONVL, 1)
+    field(ONVL, 2)
     field(ONST, "Stress")       
-    field(TWVL, 2)
+    field(TWVL, 3)
     field(TWST, "Strain")
     
     field(SIML, "$(P)SIM")
@@ -41,11 +41,11 @@ record(mbbo, "$(P)CHANNEL:SP")
     field(DESC, "Control channel setpoint")
     field(DTYP, "stream")
     
-    field(ZRVL, 0)
+    field(ZRVL, 1)
     field(ZRST, "Position")    
-    field(ONVL, 1)
+    field(ONVL, 2)
     field(ONST, "Stress")       
-    field(TWVL, 2)
+    field(TWVL, 3)
     field(TWST, "Strain")
     
     field(OUT,  "@devInstron.proto setCurrentControlChannel $(PORT)")
@@ -182,5 +182,64 @@ record(calc, "$(P)ACTUATOR:STATUS")
     field(ONAM, "ON")
 }
 
+record(stringout, "$(P)ARBITRARY:SP")
+{
+	field(DESC, "General write command")
+	field(FLNK, "$(P)ARBITRARY")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
 
+record(stringin, "$(P)ARBITRARY")
+{
+    field(DESC, "General input command response")
+    field(DTYP, "stream")
+    field(INP, "@devInstron.proto arbRW($(P)ARBITRARY:SP) $(PORT)")
+    field(SCAN, "Passive")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
 
+record(bi, "$(P)PANIC")
+{
+	field(DESC, "Panic stop")
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getActuatorStatus $(PORT)")
+    field(SCAN, "1 second")
+    field(ZNAM, "STOPPED")
+    field(ONAM, "PANIC STOP")
+}
+
+record(bo, "$(P)PANIC:RAW")
+{
+	field(DESC, "Panic stop")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setActuatorStatus($P:PANIC:SP) $(PORT)")
+    field(ZNAM, "STOPPED")
+    field(ONAM, "PANIC STOP")
+}
+
+record(bo, "$(P)PANIC:SP"){
+    field(ZNAM, "STOPPED")
+    field(ONAM, "PANIC STOP")
+    field(FLNK, "$(P)PANIC:_SEQ")
+}
+
+record(seq, "$(P)PANIC:_SEQ")
+{
+	field(DESC, "Panic stop sequence")
+    
+    # Set control mode to COMPUTER
+    field(DO1, "1")
+    field(LNK1, "$(P)CONTROLMODE:SP PP")
+    
+    field(LNK2, "$(P)PANIC:RAW PP")
+    
+    # Set control mode to LOCAL
+    field(DO3, "0")
+    field(LNK3, "$(P)CONTROLMODE:SP PP")
+    
+    field(SELM, "All")
+}
