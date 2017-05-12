@@ -99,5 +99,39 @@ record(bo, "$(P)CONTROLMODE:SP")
     field(SDIS, "$(P)DISABLE")  
 }
 
+record(seq, "$(P)INIT")
+{
+    field(DESC, "Initialize comms")
+    
+    # Set control mode to COMPUTER
+    field(DO1, "1")
+    field(LNK1, "$(P)CONTROLMODE:SP PP")
+    
+    # Disable Watchdog
+    field(DO2, "0")
+    field(LNK2, "$(P)WATCHDOG:STATUS:SP PP")
+    
+    field(SELM, "All")
+    field(PINI, "TRUE")
+}
+
+record(mbbiDirect, "$(P)STATUS:FRAME")
+{
+    field(DESC, "Status bits")
+    field(DTYP, "stream")
+    field(INP, "@devInstron.proto getStatus $(PORT)")
+    field(SCAN, "1 second")
+    field(ZRVL, "0")
+    field(ONVL, "1")
+}
+
+record(calc, "$(P)ACTUATOR:STATUS")
+{
+    field(INPA, "$(P)STATUS:FRAME.B3 CP")
+    field(CALC, "A=0?1:0")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
 
 
