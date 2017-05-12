@@ -123,6 +123,55 @@ record(mbbiDirect, "$(P)STATUS:FRAME")
     field(SCAN, "1 second")
     field(ZRVL, "0")
     field(ONVL, "1")
+    field(FLNK, "$(P)STATUS:_FANOUT")
+}
+
+record(fanout, "$(P)STATUS:_FANOUT")
+{
+    field(LNK1, "$(P)STATUS:_CALC")
+    field(LNK2, "$(P)ACTUATOR:STATUS")
+    field(SELM, "All")
+}
+
+record(mbbi, "$(P)STATUS:DISP")
+{
+    field(DESC, "Display string for rig status")
+    field(INP, "$(P)STATUS:_CALC")
+
+    field(SXVL, "6")
+    field(SVVL, "7")
+    field(EIVL, "8")
+    field(NIVL, "9")
+    field(TEVL, "10")
+    field(ELVL, "11")
+    field(TVVL, "12")
+    field(TTVL, "13")
+    field(FTVL, "14")
+    field(FFVL, "15")
+
+    field(SXST, "Emergency stop pushed")
+    field(SVST, "Oil too hot")
+    field(EIST, "Oil level too low")
+    field(NIST, "Motor too hot")
+    field(TEST, "Oil pressure too high")
+    field(ELST, "Oil pressure too low")     
+    field(TVST, "Manifold or pump filter blocked")
+    field(TTST, "Oil level going too low")
+    field(FTST, "Manifold low pressure switch")
+    field(FFST, "System OK")
+}
+
+record(calc, "$(P)STATUS:_CALC")
+{
+    field(DESC, "Calculation for finding display string")
+    
+    field(INPA, "$(P)STATUS:FRAME.B9 CP")
+    field(INPB, "$(P)STATUS:FRAME.BA CP")
+    field(INPC, "$(P)STATUS:FRAME.BB CP")
+    field(INPD, "$(P)STATUS:FRAME.BC CP")
+    
+    field(CALC, "A+(2*B)+(4*C)+(8*D)") 
+    field(FLNK, "$(P)STATUS:DISP")
 }
 
 record(calc, "$(P)ACTUATOR:STATUS")
