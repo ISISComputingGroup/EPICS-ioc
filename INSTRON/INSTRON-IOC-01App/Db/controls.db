@@ -23,7 +23,7 @@ record(mbbi, "$(P)CHANNEL")
     field(DESC, "Current control channel")
     field(DTYP, "stream")
     field(INP,  "@devInstron.proto getCurrentControlChannel $(PORT)")
-    field(SCAN, "1 second")
+    field(SCAN, "Passive")
     
     field(ZRVL, 1)
     field(ZRST, "Position")    
@@ -58,7 +58,7 @@ record(bi, "$(P)WATCHDOG:STATUS")
     field(DESC, "Watchdog on/off")
     field(DTYP, "stream")
     field(INP,  "@devInstron.proto getWatchdogStatus $(PORT)")
-    field(SCAN, "1 second")
+    field(SCAN, "Passive")
     field(SIML, "$(P)SIM")
     field(ZNAM, "DISABLED")
     field(ONAM, "ENABLED")
@@ -81,7 +81,7 @@ record(bi, "$(P)CONTROLMODE")
     field(DESC, "Control mode")
     field(DTYP, "stream")
     field(INP,  "@devInstron.proto getControlMode $(PORT)")
-    field(SCAN, "1 second")
+    field(SCAN, "Passive")
     field(SIML, "$(P)SIM")
     field(ZNAM, "FRONTPANEL")
     field(ONAM, "COMPUTER")
@@ -112,7 +112,7 @@ record(seq, "$(P)INIT")
     field(LNK2, "$(P)WATCHDOG:STATUS:SP PP")
     
     field(SELM, "All")
-    field(PINI, "TRUE")
+    field(PINI, "YES")
 }
 
 record(mbbiDirect, "$(P)STATUS:FRAME")
@@ -120,9 +120,9 @@ record(mbbiDirect, "$(P)STATUS:FRAME")
     field(DESC, "Status bits")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getStatus $(PORT)")
-    field(SCAN, "1 second")
-    field(ZRVL, "0")
-    field(ONVL, "1")
+    field(SCAN, "Passive")
+    #field(ZRVL, "0")
+    #field(ONVL, "1")
     field(FLNK, "$(P)STATUS:_FANOUT")
 }
 
@@ -155,9 +155,9 @@ record(mbbi, "$(P)STATUS:DISP")
     field(NIST, "Motor too hot")
     field(TEST, "Oil pressure too high")
     field(ELST, "Oil pressure too low")     
-    field(TVST, "Manifold or pump filter blocked")
+    field(TVST, "Manifold/pump blocked")
     field(TTST, "Oil level going too low")
-    field(FTST, "Manifold low pressure switch")
+    field(FTST, "Manifold low pressure")
     field(FFST, "System OK")
 }
 
@@ -178,8 +178,6 @@ record(calc, "$(P)ACTUATOR:STATUS")
 {
     field(INPA, "$(P)STATUS:FRAME.B3 CP")
     field(CALC, "A=0?1:0")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
 }
 
 record(stringout, "$(P)ARBITRARY:SP")
@@ -207,7 +205,7 @@ record(bi, "$(P)PANIC")
 	field(DESC, "Panic stop")
     field(DTYP, "stream")
     field(INP,  "@devInstron.proto getActuatorStatus $(PORT)")
-    field(SCAN, "1 second")
+    field(SCAN, "Passive")
     field(ZNAM, "STOPPED")
     field(ONAM, "PANIC STOP")
 }
@@ -216,7 +214,8 @@ record(bo, "$(P)PANIC:RAW")
 {
 	field(DESC, "Panic stop")
     field(DTYP, "stream")
-    field(OUT,  "@devInstron.proto setActuatorStatus $(PORT)")
+    # Always disable the actuator, don't re-enable it.
+    field(OUT,  "@devInstron.proto setActuatorStatus(0) $(PORT)")
     field(ZNAM, "STOPPED")
     field(ONAM, "PANIC STOP")
 }
@@ -235,12 +234,134 @@ record(seq, "$(P)PANIC:_SEQ")
     field(DO1, "1")
     field(LNK1, "$(P)CONTROLMODE:SP PP")
     
-    field(DOL2, "$(P)PANIC:SP")
+    field(DO2, "0")
     field(LNK2, "$(P)PANIC:RAW PP")
     
     # Set control mode to LOCAL
+    # Need to have a delay otherwise this write gets ignored
+    field(DLY3, ".1")
     field(DO3, "0")
     field(LNK3, "$(P)CONTROLMODE:SP PP")
     
+    field(SELM, "All")
+}
+
+record(bi, "$(P)PANIC")
+{
+	field(DESC, "Panic stop")
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getActuatorStatus $(PORT)")
+    field(SCAN, "Passive")
+    field(ZNAM, "STOPPED")
+    field(ONAM, "PANIC STOP")
+}
+
+record(mbbo, "$(P)MOVE:SP")
+{
+    field(DESC, "Rig movement type")
+
+    field(ZRVL, "0")
+    field(TWVL, "2")
+    field(THVL, "3")
+    field(ZRST, "STOP")
+    field(TWST, "HOLD")
+    field(THST, "CONTINUE")
+    
+    field(FLNK, "$(P)MOVE:_SEQ")
+}
+
+record(seq, "$(P)MOVE:_SEQ")
+{
+	field(DESC, "Movement type sequence")
+    
+    # Set control mode to COMPUTER
+    field(DO1, "1")
+    field(LNK1, "$(P)CONTROLMODE:SP PP")
+    
+    field(DOL2, "$(P)MOVE:SP")
+    field(LNK2, "$(P)MOVE:RAW PP")
+    
+    # Set control mode to LOCAL
+    # Need to have a delay otherwise this write gets ignored
+    field(DLY3, ".1")
+    field(DO3, "0")
+    field(LNK3, "$(P)CONTROLMODE:SP PP")
+    
+    field(SELM, "All")
+}
+
+record(mbbo, "$(P)MOVE:RAW")
+{
+	field(DESC, "Raw movement type")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setMovementType $(PORT)")
+    
+    field(ZRVL, "0")
+    field(TWVL, "2")
+    field(THVL, "3")
+    field(ZRST, "STOP")
+    field(TWST, "HOLD")
+    field(THST, "CONTINUE")
+}
+
+record(mbbi, "$(P)MOVE")
+{
+	field(DESC, "Current movement type")
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getMovementType $(PORT)")
+    field(SCAN, "Passive")
+    
+    field(ZRVL, "0")
+    field(TWVL, "2")
+    field(FVVL, "5")
+    field(ZRST, "STOPED")
+    field(TWST, "HOLD_RAMP")
+    field(FVST, "HOLD_RAND")
+    
+    field(FLNK, "$(P)MOVE:_STOPIFHOLDING")
+}
+
+record(calcout, "$(P)MOVE:_STOPIFHOLDING")
+{
+    field(INPA, "$(P)MOVE")
+    field(CALC, "A = 2 || A = 5")
+    field(OOPT, "When Non-zero")
+	field(OUT, "$(P)MOVE:END PP")
+}
+
+record(seq, "$(P)MOVE:END")
+{
+	field(DESC, "End movement")
+    
+    # Set control mode to COMPUTER
+    field(DO1, "1")
+    field(LNK1, "$(P)CONTROLMODE:SP PP")
+    
+    field(DO2, "0")
+    field(LNK2, "$(P)MOVE:SP PP")
+    
+    # Set control mode to LOCAL
+    # Need to have a delay otherwise this write gets ignored
+    field(DLY3, ".1")
+    field(DO3, "0")
+    field(LNK3, "$(P)CONTROLMODE:SP PP")
+    
+    field(SELM, "All")
+}
+
+record(seq, "$(P)READALL")
+{
+	field(DESC, "Read all data from rig")
+    
+    # Disable watchdog
+    field(DO1, "0")
+    field(LNK1, "$(P)WATCHDOG:STATUS:SP PP")
+    
+    field(LNK2, "$(P)PANIC PP")
+    field(LNK3, "$(P)MOVE PP")
+    field(LNK4, "$(P)STATUS:FRAME PP")
+    field(LNK5, "$(P)CHANNEL PP")
+    
+    field(SCAN, "1 second")
     field(SELM, "All")
 }
