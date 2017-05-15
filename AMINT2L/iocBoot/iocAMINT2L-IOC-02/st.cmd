@@ -10,4 +10,4 @@ dbLoadDatabase "${TOP}/dbd/AMINT2L-IOC-02.dbd"
 AMINT2L_IOC_02_registerRecordDeviceDriver pdbbase
 
 ## calling common command file in ioc 01 boot dir
-< ${TOP}/iocAMINT2L-IOC-01/st-common.cmd
+< ${TOP}/iocBoot/iocAMINT2L-IOC-01/st-common.cmd
