@@ -216,7 +216,7 @@ record(bo, "$(P)PANIC:RAW")
 {
 	field(DESC, "Panic stop")
     field(DTYP, "stream")
-    field(OUT,  "@devInstron.proto setActuatorStatus($P:PANIC:SP) $(PORT)")
+    field(OUT,  "@devInstron.proto setActuatorStatus $(PORT)")
     field(ZNAM, "STOPPED")
     field(ONAM, "PANIC STOP")
 }
@@ -235,6 +235,7 @@ record(seq, "$(P)PANIC:_SEQ")
     field(DO1, "1")
     field(LNK1, "$(P)CONTROLMODE:SP PP")
     
+    field(DOL2, "$(P)PANIC:SP")
     field(LNK2, "$(P)PANIC:RAW PP")
     
     # Set control mode to LOCAL
