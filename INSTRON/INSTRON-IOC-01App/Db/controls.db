@@ -87,17 +87,6 @@ record(bi, "$(P)CONTROLMODE")
     field(ONAM, "COMPUTER")
     field(SDIS, "$(P)DISABLE")
 }
-    
-#record(bo, "$(P)CONTROLMODE:SP")
-#{
-#    field(DESC, "Watchdog on/off setpoint")
-#    field(DTYP, "stream")
-#    field(OUT,  "@devInstron.proto setControlMode $(PORT)")
-#    field(ZNAM, "FRONTPANEL")
-#    field(ONAM, "COMPUTER")
-#    field(SIML, "$(P)SIM")
-#    field(SDIS, "$(P)DISABLE")  
-#}
 
 record(bo, "$(P)CONTROLMODE:COM")
 {
@@ -124,8 +113,7 @@ record(seq, "$(P)INIT")
     field(DESC, "Initialize comms")
     
     # Set control mode to COMPUTER
-    field(DO1, "1")
-    field(LNK1, "$(P)CONTROLMODE:SP PP")
+    field(LNK1, "$(P)CONTROLMODE:COM PP")
     
     # Disable Watchdog
     field(DO2, "0")
@@ -235,7 +223,7 @@ record(bo, "$(P)PANIC:RAW")
 	field(DESC, "Panic stop")
     field(DTYP, "stream")
     # Always disable the actuator, don't re-enable it.
-    field(OUT,  "@devInstron.proto setActuatorStatus(0) $(PORT)")
+    field(OUT,  "@devInstron.proto panicStop $(PORT)")
     field(ZNAM, "STOPPED")
     field(ONAM, "PANIC STOP")
 }
@@ -243,21 +231,7 @@ record(bo, "$(P)PANIC:RAW")
 record(bo, "$(P)PANIC:SP"){
     field(ZNAM, "STOPPED")
     field(ONAM, "PANIC STOP")
-    field(FLNK, "$(P)PANIC:_SEQ")
-}
-
-record(seq, "$(P)PANIC:_SEQ")
-{
-	field(DESC, "Panic stop sequence")
-    
-    field(LNK1, "$(P)CONTROLMODE:COM PP")
-    
-    field(DO2, "0")
-    field(LNK2, "$(P)PANIC:RAW PP")
-    
-    field(LNK3, "$(P)CONTROLMODE:FP PP")
-    
-    field(SELM, "All")
+    field(FLNK, "$(P)PANIC:RAW")
 }
 
 record(bi, "$(P)PANIC")
@@ -273,37 +247,9 @@ record(bi, "$(P)PANIC")
 record(mbbo, "$(P)MOVE:SP")
 {
     field(DESC, "Rig movement type")
-
-    field(ZRVL, "0")
-    field(TWVL, "2")
-    field(THVL, "3")
-    field(ZRST, "STOP")
-    field(TWST, "HOLD")
-    field(THST, "CONTINUE")
     
-    field(FLNK, "$(P)MOVE:_SEQ")
-}
-
-record(seq, "$(P)MOVE:_SEQ")
-{
-	field(DESC, "Movement type sequence")
-    
-    field(LNK1, "$(P)CONTROLMODE:COM PP")
-    
-    field(DOL2, "$(P)MOVE:SP")
-    field(LNK2, "$(P)MOVE:RAW PP")
-    
-    field(LNK3, "$(P)CONTROLMODE:FP PP")
-    
-    field(SELM, "All")
-}
-
-record(mbbo, "$(P)MOVE:RAW")
-{
-	field(DESC, "Raw movement type")
-    field(DTYP, "stream")
     field(OUT,  "@devInstron.proto setMovementType $(PORT)")
-    
+
     field(ZRVL, "0")
     field(TWVL, "2")
     field(THVL, "3")
@@ -339,15 +285,9 @@ record(calcout, "$(P)MOVE:_STOPIFHOLDING")
 
 record(seq, "$(P)MOVE:END")
 {
-	field(DESC, "End movement")
-    
-    field(LNK1, "$(P)CONTROLMODE:COM PP")
-    
-    field(DO2, "0")
-    field(LNK2, "$(P)MOVE:SP PP")
-    
-    field(LNK3, "$(P)CONTROLMODE:FP PP")
-    
+	field(DESC, "End movement")   
+    field(DO1, "0")
+    field(LNK1, "$(P)MOVE:SP PP")    
     field(SELM, "All")
 }
 
