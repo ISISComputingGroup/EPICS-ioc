@@ -55,7 +55,7 @@ record(mbbo, "$(P)CHANNEL:SP")
 
 record(bi, "$(P)WATCHDOG:STATUS")
 {
-    field(DESC, "Watchdog on/off")
+    field(DESC, "Watchdog status")
     field(DTYP, "stream")
     field(INP,  "@devInstron.proto getWatchdogStatus $(PORT)")
     field(SCAN, "Passive")
@@ -67,9 +67,9 @@ record(bi, "$(P)WATCHDOG:STATUS")
     
 record(bo, "$(P)WATCHDOG:STATUS:SP")
 {
-    field(DESC, "Watchdog on/off setpoint")
+    field(DESC, "Disable the watchdog")
     field(DTYP, "stream")
-    field(OUT,  "@devInstron.proto setWatchdogStatus $(PORT)")
+    field(OUT,  "@devInstron.proto disableWatchdog $(PORT)")
     field(ZNAM, "DISABLED")
     field(ONAM, "ENABLED")
     field(SIML, "$(P)SIM")
@@ -88,38 +88,13 @@ record(bi, "$(P)CONTROLMODE")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bo, "$(P)CONTROLMODE:COM")
-{
-    field(DESC, "Enter computer control mode")
-    field(DTYP, "stream")
-    field(VAL, "1")
-    field(OUT,  "@devInstron.proto setControlModeCom $(PORT)")
-    field(SIML, "$(P)SIM")
-    field(SDIS, "$(P)DISABLE")  
-}
-
-record(bo, "$(P)CONTROLMODE:FP")
-{
-    field(DESC, "Enter front panel control mode")
-    field(DTYP, "stream")
-    field(VAL, "0")
-    field(OUT,  "@devInstron.proto setControlModeFp $(PORT)")
-    field(SIML, "$(P)SIM")
-    field(SDIS, "$(P)DISABLE")  
-}
-
-record(seq, "$(P)INIT")
+record(bo, "$(P)INIT")
 {
     field(DESC, "Initialize comms")
+    field(DTYP, "stream")
+    field(VAL, "0")
+    field(OUT,  "@devInstron.proto initRoutine $(PORT)")
     
-    # Set control mode to COMPUTER
-    field(LNK1, "$(P)CONTROLMODE:COM PP")
-    
-    # Disable Watchdog
-    field(DO2, "0")
-    field(LNK2, "$(P)WATCHDOG:STATUS:SP PP")
-    
-    field(SELM, "All")
     field(PINI, "YES")
 }
 
@@ -218,28 +193,11 @@ record(bi, "$(P)PANIC")
     field(ONAM, "PANIC STOP")
 }
 
-record(bo, "$(P)PANIC:RAW")
+record(bo, "$(P)PANIC:SP")
 {
 	field(DESC, "Panic stop")
     field(DTYP, "stream")
-    # Always disable the actuator, don't re-enable it.
     field(OUT,  "@devInstron.proto panicStop $(PORT)")
-    field(ZNAM, "STOPPED")
-    field(ONAM, "PANIC STOP")
-}
-
-record(bo, "$(P)PANIC:SP"){
-    field(ZNAM, "STOPPED")
-    field(ONAM, "PANIC STOP")
-    field(FLNK, "$(P)PANIC:RAW")
-}
-
-record(bi, "$(P)PANIC")
-{
-	field(DESC, "Panic stop")
-    field(DTYP, "stream")
-    field(INP,  "@devInstron.proto getActuatorStatus $(PORT)")
-    field(SCAN, "Passive")
     field(ZNAM, "STOPPED")
     field(ONAM, "PANIC STOP")
 }
@@ -247,13 +205,15 @@ record(bi, "$(P)PANIC")
 record(mbbo, "$(P)MOVE:SP")
 {
     field(DESC, "Rig movement type")
-    
+    field(DTYP, "stream")
     field(OUT,  "@devInstron.proto setMovementType $(PORT)")
 
     field(ZRVL, "0")
+    field(ONVL, "1")
     field(TWVL, "2")
     field(THVL, "3")
     field(ZRST, "STOP")
+    field(ONST, "START")
     field(TWST, "HOLD")
     field(THST, "CONTINUE")
 }
@@ -280,10 +240,10 @@ record(calcout, "$(P)MOVE:_STOPIFHOLDING")
     field(INPA, "$(P)MOVE")
     field(CALC, "A = 2 || A = 5")
     field(OOPT, "When Non-zero")
-	field(OUT, "$(P)MOVE:END PP")
+	field(OUT, "$(P)MOVE:_END PP")
 }
 
-record(seq, "$(P)MOVE:END")
+record(seq, "$(P)MOVE:_END")
 {
 	field(DESC, "End movement")   
     field(DO1, "0")
