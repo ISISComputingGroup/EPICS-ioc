@@ -17,7 +17,7 @@ $(IFNOTSIM) epicsEnvSet("ERESI",0)
 epicsEnvSet("DHLMI",$(DHLM$(MN)=100))
 epicsEnvSet("DLLMI",$(DLLM$(MN)=0))
 epicsEnvSet("ACCLI",$(ACCL$(MN)=1))
-epicsEnvSet("NAMEI",$(NAME$(MN)=$(AMOTORNAME)))
+epicsEnvSet("NAMEI","$(NAME$(MN)=$(AMOTORNAME))")
 
 # The signal number is the axis-1
 calc("SN", "$(MN)-1", 2, 2)
