@@ -104,8 +104,6 @@ record(mbbiDirect, "$(P)STATUS:FRAME")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getStatus $(PORT)")
     field(SCAN, "Passive")
-    #field(ZRVL, "0")
-    #field(ONVL, "1")
     field(FLNK, "$(P)STATUS:_FANOUT")
 }
 
@@ -183,23 +181,15 @@ record(stringin, "$(P)ARBITRARY")
     info(INTEREST, "HIGH")
 }
 
-record(bi, "$(P)PANIC")
-{
-	field(DESC, "Panic stop")
-    field(DTYP, "stream")
-    field(INP,  "@devInstron.proto getActuatorStatus $(PORT)")
-    field(SCAN, "Passive")
-    field(ZNAM, "STOPPED")
-    field(ONAM, "PANIC STOP")
-}
-
 record(bo, "$(P)PANIC:SP")
 {
-	field(DESC, "Panic stop")
+	field(DESC, "Panic stop setpoint")
     field(DTYP, "stream")
     field(OUT,  "@devInstron.proto panicStop $(PORT)")
     field(ZNAM, "STOPPED")
     field(ONAM, "PANIC STOP")
+    # Initial value.
+    field(VAL, "1")
 }
 
 record(mbbo, "$(P)MOVE:SP")
@@ -265,5 +255,54 @@ record(seq, "$(P)READALL")
     field(LNK5, "$(P)CHANNEL PP")
     
     field(SCAN, "10 second")
+    field(SELM, "All")
+}
+
+record(bo, "$(P)STOP:SP")
+{
+	field(DESC, "Stop rig")
+    field(ZNAM, "STOPPED")
+    field(ONAM, "STOP RIG")
+    # Initial value.
+    field(VAL, "1")
+    field(FLNK, "$(P)STOP:_FANOUT")
+}
+
+record(fanout, "$(P)STOP:_FANOUT")
+{
+    field(LNK1, "$(P)STOP:_CALC_WAVEFORM")
+    field(LNK2, "$(P)STOP:_CALC_RAMP")
+    field(SELM, "All")
+}
+
+record(calcout, "$(P)STOP:_CALC_RAMP")
+{
+    field(INPA, "$(P)WAVE:RUN")
+    field(CALC, "A = 1")
+    field(OOPT, "When Non-zero")
+	field(OUT, "$(P)STOP:_STOP_RAMP PP")
+}
+
+record(calcout, "$(P)STOP:_CALC_WAVEFORM")
+{
+    field(INPA, "$(P)WAVE:RUN")
+    field(CALC, "A = 0")
+    field(OOPT, "When Non-zero")
+	field(OUT, "$(P)STOP:_STOP_WAVEFORM PP")
+}
+
+record(seq, "$(P)STOP:_STOP_RAMP")
+{
+	field(DESC, "Stop ramp")   
+    field(DO1, "0")
+    field(LNK1, "$(P)MOVE:SP PP")    
+    field(SELM, "All")
+}
+
+record(seq, "$(P)STOP:_STOP_WAVEFORM")
+{
+	field(DESC, "TODO: Insert actual PV")   
+    field(DO1, "0")
+    field(LNK1, "$(P)WAVE:STOP:RAW PP")    
     field(SELM, "All")
 }
