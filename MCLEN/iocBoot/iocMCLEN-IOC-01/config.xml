@@ -21,68 +21,68 @@
 <macro name="AXIS7" pattern="^(yes|no)$" description="Motor is attached to axis 7 (default: no)" />
 <macro name="AXIS8" pattern="^(yes|no)$" description="Motor is attached to axis 8 (default: no)" />
 
-<macro name="UNIT1" pattern="[A-Za-z]*$" description="Units (default: mm)"/>
-<macro name="UNIT2" pattern="[A-Za-z]*$" description="Units (default: mm)"/>
-<macro name="UNIT3" pattern="[A-Za-z]*$" description="Units (default: mm)"/>
-<macro name="UNIT4" pattern="[A-Za-z]*$" description="Units (default: mm)"/>
-<macro name="UNIT5" pattern="[A-Za-z]*$" description="Units (default: mm)"/>
-<macro name="UNIT6" pattern="[A-Za-z]*$" description="Units (default: mm)"/>
-<macro name="UNIT7" pattern="[A-Za-z]*$" description="Units (default: mm)"/>
-<macro name="UNIT8" pattern="[A-Za-z]*$" description="Units (default: mm)"/>
+<macro name="UNIT1" pattern="^[A-Za-z]*$" description="Units (default: mm)"/>
+<macro name="UNIT2" pattern="^[A-Za-z]*$" description="Units (default: mm)"/>
+<macro name="UNIT3" pattern="^[A-Za-z]*$" description="Units (default: mm)"/>
+<macro name="UNIT4" pattern="^[A-Za-z]*$" description="Units (default: mm)"/>
+<macro name="UNIT5" pattern="^[A-Za-z]*$" description="Units (default: mm)"/>
+<macro name="UNIT6" pattern="^[A-Za-z]*$" description="Units (default: mm)"/>
+<macro name="UNIT7" pattern="^[A-Za-z]*$" description="Units (default: mm)"/>
+<macro name="UNIT8" pattern="^[A-Za-z]*$" description="Units (default: mm)"/>
 
-<macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
-<macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
-<macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
-<macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
-<macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
-<macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
-<macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
-<macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
+<macro name="VELO1" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
+<macro name="VELO2" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
+<macro name="VELO3" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
+<macro name="VELO4" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
+<macro name="VELO5" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
+<macro name="VELO6" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
+<macro name="VELO7" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
+<macro name="VELO8" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
 
-<macro name="ACCL1" pattern="[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
-<macro name="ACCL2" pattern="[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
-<macro name="ACCL3" pattern="[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
-<macro name="ACCL4" pattern="[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
-<macro name="ACCL5" pattern="[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
-<macro name="ACCL6" pattern="[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
-<macro name="ACCL7" pattern="[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
-<macro name="ACCL8" pattern="[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
+<macro name="ACCL1" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
+<macro name="ACCL2" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
+<macro name="ACCL3" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
+<macro name="ACCL4" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
+<macro name="ACCL5" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
+<macro name="ACCL6" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
+<macro name="ACCL7" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
+<macro name="ACCL8" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
 
-<macro name="MSTP1" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
-<macro name="MSTP2" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
-<macro name="MSTP3" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
-<macro name="MSTP4" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
-<macro name="MSTP5" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
-<macro name="MSTP6" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
-<macro name="MSTP7" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
-<macro name="MSTP8" pattern="[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
+<macro name="MSTP1" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
+<macro name="MSTP2" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
+<macro name="MSTP3" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
+<macro name="MSTP4" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
+<macro name="MSTP5" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
+<macro name="MSTP6" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
+<macro name="MSTP7" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
+<macro name="MSTP8" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" />
 
-<macro name="ERES1" pattern="-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
-<macro name="ERES2" pattern="-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
-<macro name="ERES3" pattern="-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
-<macro name="ERES4" pattern="-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
-<macro name="ERES5" pattern="-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
-<macro name="ERES6" pattern="-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
-<macro name="ERES7" pattern="-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
-<macro name="ERES8" pattern="-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
+<macro name="ERES1" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
+<macro name="ERES2" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
+<macro name="ERES3" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
+<macro name="ERES4" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
+<macro name="ERES5" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
+<macro name="ERES6" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
+<macro name="ERES7" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
+<macro name="ERES8" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" />
 
-<macro name="DHLM1" pattern="-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
-<macro name="DHLM2" pattern="-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
-<macro name="DHLM3" pattern="-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
-<macro name="DHLM4" pattern="-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
-<macro name="DHLM5" pattern="-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
-<macro name="DHLM6" pattern="-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
-<macro name="DHLM7" pattern="-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
-<macro name="DHLM8" pattern="-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
+<macro name="DHLM1" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
+<macro name="DHLM2" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
+<macro name="DHLM3" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
+<macro name="DHLM4" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
+<macro name="DHLM5" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
+<macro name="DHLM6" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
+<macro name="DHLM7" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
+<macro name="DHLM8" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" />
 
-<macro name="DLLM1" pattern="-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
-<macro name="DLLM2" pattern="-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
-<macro name="DLLM3" pattern="-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
-<macro name="DLLM4" pattern="-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
-<macro name="DLLM5" pattern="-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
-<macro name="DLLM6" pattern="-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
-<macro name="DLLM7" pattern="-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
-<macro name="DLLM8" pattern="-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
+<macro name="DLLM1" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
+<macro name="DLLM2" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
+<macro name="DLLM3" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
+<macro name="DLLM4" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
+<macro name="DLLM5" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
+<macro name="DLLM6" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
+<macro name="DLLM7" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
+<macro name="DLLM8" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" />
 
 <macro name="CMOD1" pattern="^(OPEN|CLOSED)$" description="Loop control mode (default: CLOSED)" />
 <macro name="CMOD2" pattern="^(OPEN|CLOSED)$" description="Loop control mode (default: CLOSED)" />
