@@ -173,7 +173,9 @@ record(calc, "$(P)ACTUATOR:STAT")
 record(stringout, "$(P)ARBITRARY:SP")
 {
 	field(DESC, "General write command")
-	field(FLNK, "$(P)ARBITRARY")
+	field(FLNK, "$(P)ARBITRARY PP")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ARBITRARY")
     field(SDIS, "$(P)DISABLE")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
@@ -185,13 +187,13 @@ record(stringin, "$(P)ARBITRARY")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto arbRW($(P)ARBITRARY:SP) $(PORT)")
     field(SCAN, "Passive")
+    field(SIOL, "$(P)SIM:ARBITRARY")
+    field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:ARBITRARY")
 }
-
+    
 record(bo, "$(P)PANIC:SP")
 {
 	field(DESC, "Panic stop setpoint")
