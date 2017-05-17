@@ -179,12 +179,21 @@ record(stringin, "$(P)ARBITRARY")
 record(bo, "$(P)PANIC:SP")
 {
 	field(DESC, "Panic stop setpoint")
-    field(DTYP, "stream")
-    field(OUT,  "@devInstron.proto panicStop $(PORT)")
+    field(DTYP, "Soft Channel")
     field(ZNAM, "STOPPED")
     field(ONAM, "PANIC STOP")
     # Initial value.
     field(VAL, "1")
+    field(FLNK, "$(P)PANIC:RAW")
+}
+
+record(calcout, "$(P)PANIC:RAW")
+{
+    field(DTYP, "stream")
+    field(INPA, "$(P)PANIC:SP")
+    field(CALC, "A=0")
+    field(OOPT, "When Non-zero")
+	field(OUT, "@devInstron.proto panicStop $(PORT)")
 }
 
 record(mbbo, "$(P)MOVE:SP")
