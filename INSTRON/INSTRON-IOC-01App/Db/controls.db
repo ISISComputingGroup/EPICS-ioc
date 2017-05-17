@@ -119,23 +119,6 @@ record(mbbi, "$(P)STATUS:DISP")
     field(DESC, "Display string for rig status")
     field(INP, "$(P)STATUS:_CALC")
 
-    field(ZRVL, "0")
-    field(ONVL, "1")
-    field(TWVL, "2")
-    field(THVL, "3")
-    field(FRVL, "4")
-    field(FVVL, "5")
-    field(SXVL, "6")
-    field(SVVL, "7")
-    field(EIVL, "8")
-    field(NIVL, "9")
-    field(TEVL, "10")
-    field(ELVL, "11")
-    field(TVVL, "12")
-    field(TTVL, "13")
-    field(FTVL, "14")
-    field(FFVL, "15")
-
     field(ZRST, "System OK")
     field(ONST, "Travel limit exceeded")
     field(TWST, "Power amplifier too hot")
@@ -210,10 +193,6 @@ record(mbbo, "$(P)MOVE:SP")
     field(DTYP, "stream")
     field(OUT,  "@devInstron.proto setMovementType $(PORT)")
 
-    field(ZRVL, "0")
-    field(ONVL, "1")
-    field(TWVL, "2")
-    field(THVL, "3")
     field(ZRST, "STOP")
     field(ONST, "START")
     field(TWST, "HOLD")
@@ -227,14 +206,26 @@ record(mbbi, "$(P)MOVE")
     field(INP,  "@devInstron.proto getMovementType $(PORT)")
     field(SCAN, "Passive")
     
-    field(ZRVL, "0")
-    field(TWVL, "2")
-    field(FVVL, "5")
-    field(ZRST, "STOPED")
-    field(TWST, "HOLD_RAMP")
-    field(FVST, "HOLD_RAND")
+    #field(ZRVL, "0")
+    #field(ONVL, "1")
+    #field(TWVL, "2")
+    #field(FVVL, "5")
+    #field(SXVL, "6")
     
-    field(FLNK, "$(P)MOVE:_STOPIFHOLDING")
+    field(ZRST, "STOPPED")
+    field(ONST, "RAMP_RUNNING")
+    field(TWST, "RAMP_HOLDING")
+    field(FVST, "RAND_HOLDING")
+    field(SXST, "RAND_RUNNING")
+    
+    field(FLNK, "$(P)MOVE:_FAN")
+}
+
+record(fanout, "$(P)MOVE:_FAN")
+{
+    field(LNK1, "$(P)MOVE:_STOPIFHOLDING")
+    field(LNK2, "$(P)GOING:_CALC")
+    field(SELM, "All") 
 }
 
 record(calcout, "$(P)MOVE:_STOPIFHOLDING")
@@ -253,6 +244,21 @@ record(seq, "$(P)MOVE:_END")
     field(SELM, "All")
 }
 
+record(calcout, "$(P)GOING:_CALC")
+{
+    field(INPA, "$(P)MOVE")
+    field(CALC, "A=1 || A=6")
+    field(OOPT, "Every Time")
+	field(OUT, "$(P)GOING PP")
+}
+
+record(bi, "$(P)GOING")
+{
+    field(VAL, "0")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
 record(seq, "$(P)READALL")
 {
 	field(DESC, "Read all data from rig")
@@ -266,8 +272,34 @@ record(seq, "$(P)READALL")
     field(LNK4, "$(P)STATUS:FRAME PP")
     field(LNK5, "$(P)CHANNEL PP")
     
-    field(SCAN, "10 second")
+    field(SCAN, "1 second")
     field(SELM, "All")
+}
+
+record(mbbo, "$(P)READALL:SCAN:SP")
+{
+    field(OUT, "$(P)READALL.SCAN PP")
+    field(DTYP, "Raw Soft Channel")
+    
+    field(ZRVL, "3")
+    field(ONVL, "4")
+    field(TWVL, "5")
+    field(THVL, "6")
+    field(FRVL, "7")
+    field(FVVL, "8")
+    field(SXVL, "9")
+    
+    field(ZRST, "10 second")
+    field(ONST, "5 second")
+    field(TWST, "2 second")
+    field(THST, "1 second")
+    field(FRST, ".5 second")
+    field(FVST, ".2 second")
+    field(SXST, ".1 second")
+    
+    field(VAL, "3")
+    field(PINI, "YES")
+    
 }
 
 record(bo, "$(P)STOP:SP")
