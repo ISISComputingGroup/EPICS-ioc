@@ -35,6 +35,16 @@ record(mbbi, "$(P)CHANNEL")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CHANNEL")
     field(SDIS, "$(P)DISABLE")
+    
+    field(FLNK, "$(P)CHANNEL:_UPDATE_SP")
+}
+
+record(seq, "$(P)CHANNEL:_UPDATE_SP")
+{
+    field(DOL1, "$(P)CHANNEL")
+    # Don't process the record, just update it's value.
+    field(LNK1, "$(P)CHANNEL:SP")
+    field(SELM, "All")
 }
 
 record(mbbo, "$(P)CHANNEL:SP")
