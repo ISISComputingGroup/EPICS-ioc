@@ -1,7 +1,5 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(AMINT2L)/data"
 
-$(IOCNAME)
-
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
@@ -18,9 +16,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-#
-#
-#
+############################
 ## Load our record instances
 ############################
 
