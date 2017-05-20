@@ -45,7 +45,7 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += std calc
+$(APPNAME)_LIBS += std calc sscan
 
 # AMINT2L-IOC-01_registerRecordDeviceDriver.cpp derives from AMINT2L-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
