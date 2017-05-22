@@ -1,12 +1,14 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
  <config_part>
-  <ioc_desc>Instron 8800 Stress Rig</ioc_desc>
-  <ioc_details>Instron 8800 Stress Rig</ioc_details>
-  <macros>
-    <macro name="LVDCOM_OPTIONS" pattern="^\d?\d?$" description="Options that define how the VI is started. Add selected options together to make the final value. 1 - warn if idle, 2 - start if idle, 4 - stop VIs if started on exit, 8 - stop VI on exit. (Default 1)" />
-    <macro name="LVDCOM_HOST" pattern="^.*$" description="Host on which the vi is running, blank for localhost (Default '')" />
-    <macro name="LVDCOM_PROGID" pattern="^.*$" description="DCOM ProgID, required if connecting to a compiled LabVIEW application (Default '')" />
+ <ioc_desc>Instron 8800 Stress Rig</ioc_desc>
+ <ioc_details>Instron 8800 Stress Rig</ioc_details>
+  <macros>  
+   <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
+   <macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 9600." />
+   <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." />
+   <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." />
+   <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." /> 
   </macros>
  </config_part>
 </ioc_config>
