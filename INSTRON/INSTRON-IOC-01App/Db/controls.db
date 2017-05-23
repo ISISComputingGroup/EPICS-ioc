@@ -203,36 +203,6 @@ record(stringin, "$(P)ARBITRARY")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
-    
-record(bo, "$(P)PANIC:SP")
-{
-	field(DESC, "Panic stop setpoint")
-    field(DTYP, "stream")
-    field(OUT, "@devInstron.proto panicStop $(PORT)")
-    field(ZNAM, "STOPPED")
-    field(ONAM, "PANIC STOP")
-    # Initial value.
-    field(VAL, "1")
-    field(FLNK, "$(P)PANIC:_SEQ")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:PANIC:SP")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(seq, "$(P)PANIC:_SEQ")
-{
-    field(DESC, "Reset panic stop button")
-    
-    # Reset panic stop button.
-    field(DO1, "1")
-    field(LNK1, "$(P)PANIC:SP")
-
-    # End move.
-    field(DO2, "0")
-    field(LNK2, "$(P)STOP:SP PP")
-    
-    field(SELM, "All") 
-}
 
 record(mbbo, "$(P)MOVE:SP")
 {
@@ -288,8 +258,6 @@ record(seq, "$(P)MOVE:GO:SP")
     field(DESC, "Start movement")   
     field(DO1, "1")
     field(LNK1, "$(P)MOVE:SP PP")
-    field(DO2, "1")
-    field(LNK2, "$(P)STOP:SP PP")   
     field(SELM, "All") 
 }
 
@@ -362,21 +330,58 @@ record(mbbo, "$(P)READALL:SCAN:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(bo, "$(P)PANIC:SP")
+{
+	field(DESC, "Panic stop setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@devInstron.proto panicStop $(PORT)")
+    field(ZNAM, "READY")
+    field(ONAM, "STOPPING")
+    # Initial value.
+    field(VAL, "0")
+    field(FLNK, "$(P)PANIC:_SEQ")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PANIC:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(seq, "$(P)PANIC:_SEQ")
+{
+    field(DESC, "Reset panic stop button")
+    
+    # Reset panic stop button.
+    field(DO1, "0")
+    field(LNK1, "$(P)PANIC:SP")
+
+    # End move.
+    field(DO2, "0")
+    field(LNK2, "$(P)STOP:SP PP")
+    
+    field(SELM, "All") 
+}
+
 record(bo, "$(P)STOP:SP")
 {
 	field(DESC, "Stop rig")
-    field(ZNAM, "STOPPED")
-    field(ONAM, "STOP RIG")
+    field(ZNAM, "READY")
+    field(ONAM, "STOPPING")
     # Initial value.
-    field(VAL, "1")
-    field(FLNK, "$(P)STOP:_FANOUT")
+    field(VAL, "0")
+    field(FLNK, "$(P)STOP:_FAN")
 }
 
-record(fanout, "$(P)STOP:_FANOUT")
+record(seq, "$(P)STOP:_RESET")
 {
-    field(LNK1, "$(P)STOP:_CALC_WAVEFORM")
-    field(LNK2, "$(P)STOP:_CALC_RAMP")
+    field(DO1, "0")
+    field(LNK1, "$(P)STOP:SP")
     field(SELM, "All")
+}
+
+record(fanout, "$(P)STOP:_FAN")
+{
+    field(LNK1, "$(P)STOP:_CALC_WAVEFORM PP")
+    field(LNK2, "$(P)STOP:_CALC_RAMP PP")
+    field(SELM, "All") 
 }
 
 record(calcout, "$(P)STOP:_CALC_RAMP")
@@ -384,9 +389,10 @@ record(calcout, "$(P)STOP:_CALC_RAMP")
     # TODO: Replace with $(P)WAVE:RUN once that PV has been implemented.
     field(INPA, "0")
     field(INPB, "$(P)STOP:SP")
-    field(CALC, "A = 0 && B = 0")
+    field(CALC, "A = 0 && B = 1")
     field(OOPT, "When Non-zero")
 	field(OUT, "$(P)STOP:_STOP_RAMP PP")
+    field(FLNK, "$(P)STOP:_RESET")
 }
 
 record(calcout, "$(P)STOP:_CALC_WAVEFORM")
@@ -394,9 +400,10 @@ record(calcout, "$(P)STOP:_CALC_WAVEFORM")
     # TODO: Replace with $(P)WAVE:RUN once that PV has been implemented.
     field(INPA, "0")
     field(INPB, "$(P)STOP:SP")
-    field(CALC, "A = 1 && B = 0")
+    field(CALC, "A = 1 && B = 1")
     field(OOPT, "When Non-zero")
 	field(OUT, "$(P)STOP:_STOP_WAVEFORM PP")
+    field(FLNK, "$(P)STOP:_RESET")
 }
 
 record(seq, "$(P)STOP:_STOP_RAMP")
