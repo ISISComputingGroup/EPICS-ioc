@@ -37,6 +37,9 @@ record(mbbi, "$(P)CHANNEL")
     field(SDIS, "$(P)DISABLE")
     
     field(FLNK, "$(P)CHANNEL:_UPDATE_SP")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(seq, "$(P)CHANNEL:_UPDATE_SP")
@@ -159,6 +162,9 @@ record(mbbi, "$(P)STAT:DISP")
     field(TTST, "Oil level going too low")
     field(FTST, "Manifold low pressure")
     field(FFST, "System OK")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(calc, "$(P)STAT:_CALC")
@@ -236,6 +242,9 @@ record(mbbi, "$(P)MOVE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MOVE")
     field(SDIS, "$(P)DISABLE")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(fanout, "$(P)MOVE:_FAN")
@@ -282,6 +291,9 @@ record(bi, "$(P)GOING")
     field(VAL, "0")
     field(ZNAM, "NO")
     field(ONAM, "YES")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(seq, "$(P)READALL")
