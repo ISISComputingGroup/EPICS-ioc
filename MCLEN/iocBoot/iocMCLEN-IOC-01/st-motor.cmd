@@ -34,6 +34,6 @@ dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=$(AMOTORPV)")
 dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(MN),mAXIS=$(AMOTORPV)") 
 
 ## Start homing sequencer
-seq homing, "MOTPV=$(MYPVPREFIX)$(AMOTORPV),MODE=$(HOME$(MN)=1),AXIS=$(MN)"
+seq homing, "MOTPV=$(MYPVPREFIX)$(AMOTORPV),MODE=$(HOME$(MN)=1),AXIS=$(MN),DEBUG=0"
 
 $(IFNOTSIM) < st-motor-init.cmd
