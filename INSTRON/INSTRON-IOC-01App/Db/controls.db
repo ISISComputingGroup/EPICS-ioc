@@ -302,10 +302,9 @@ record(seq, "$(P)READALL")
     field(DO1, "0")
     field(LNK1, "$(P)WATCHDOG:STAT:SP PP")
     
-    field(LNK2, "$(P)PANIC PP")
-    field(LNK3, "$(P)MOVE PP")
-    field(LNK4, "$(P)STAT:FRAME PP")
-    field(LNK5, "$(P)CHANNEL PP")
+    field(LNK2, "$(P)MOVE PP")
+    field(LNK3, "$(P)STAT:FRAME PP")
+    field(LNK4, "$(P)CHANNEL PP")
     
     field(SCAN, "1 second")
     field(SELM, "All")

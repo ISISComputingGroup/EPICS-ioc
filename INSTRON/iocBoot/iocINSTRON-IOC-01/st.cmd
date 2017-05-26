@@ -22,17 +22,19 @@ INSTRON_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-# $(IFNOTRECSIM) $(IFDEVSIM) freeIPPort("FREEPORT")  
-# $(IFNOTRECSIM) $(IFDEVSIM) epicsEnvShow("FREEPORT") 
-# $(IFNOTRECSIM) $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(FREEPORT=0)")
-$(IFNOTRECSIM) $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:57677")
+# For unit testing:
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
 
-$(IFNOTDEVSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=$(FREEPORT=0))", 0, 0, 0, 0)
-$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
-$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
-$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
-$(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
-$(IFNOTDEVSIM) asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r\n)")
+# For normal devsim:
+# $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:57677")
+
+## For real device use:
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=none)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
+# $(IFNOTDEVSIM) asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r\n)")
 
 ## Load record instances
 
