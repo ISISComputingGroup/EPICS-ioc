@@ -473,6 +473,7 @@ record(bi, "$(P)SIM:CONTROLMODE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
+    field(VAL, "1")
 }
 
 record(bo, "$(P)SIM:INIT")
