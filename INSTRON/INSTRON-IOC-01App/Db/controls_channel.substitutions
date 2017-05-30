@@ -1,0 +1,7 @@
+file controls_channel.template {
+
+pattern {P,    CHAN,         CHAN_NUM,      CHAN_TOL,   CHAN_EXP_TYPE }
+{"\$(P)", "POS", 1, 1, 0}
+{"\$(P)", "STRESS", 2, 0.1, 0}
+{"\$(P)", "STRAIN", 3, 0.1, 4}
+}
