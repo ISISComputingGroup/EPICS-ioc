@@ -13,3 +13,43 @@ record(ai, "$(P)$(CHAN):STEP:TIME")
     field(PREC, "3")
 }
 
+record(mbbo, "$(P)$(CHAN):ABS:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@devInstron.proto setChanWaveType($(CHAN_NUM)) $(PORT)")
+    field(ZRST, "Ramp")
+    field(ONST, "Dual ramp")
+    field(TWST, "Trapezium")
+    field(THST, "Absolute ramp")
+    field(FRST, "Absolute hold ramp")
+    field(FVST, "Absolute rate ramp")
+}
+
+record(mbbi, "$(P)$(CHAN):ABS")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devInstron.proto getChanWaveType($(CHAN_NUM)) $(PORT)")
+    field(ZRST, "Ramp")
+    field(ONST, "Dual ramp")
+    field(TWST, "Trapezium")
+    field(THST, "Absolute ramp")
+    field(FRST, "Absolute hold ramp")
+    field(FVST, "Absolute rate ramp")    
+}
+
+record(ao, "$(P)$(CHAN):RAW:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@devInstron.proto setRampAmpSP($(CHAN_NUM)) $(PORT)")
+    field(PREC, "3")
+}
+
+record(ai, "$(P)$(CHAN):RAW:SP:RBV")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devInstron.proto getRampAmpSP($(CHAN_NUM)) $(PORT)")
+    field(PREC, "3")
+}
+
