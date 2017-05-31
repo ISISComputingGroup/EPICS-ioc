@@ -1,10 +1,15 @@
-record(bo, "$(P):$(CHAN)")
+record(ao, "$(P)$(CHAN):STEP:TIME:SP")
 {
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-    field(ZNAM, "NO")
-    field(ONAM, "YES")
-    field(VAL, "$(RECSIM=0)")
-    field(PINI, "YES")
+    field(DTYP, "stream")
+    field(OUT, "@devInstron.proto setStepTime($(CHAN_NUM)) $(PORT)")
+    field(PREC, "3")
+}
+
+record(ai, "$(P)$(CHAN):STEP:TIME")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devInstron.proto getStepTime($(CHAN_NUM)) $(PORT)")
+    field(PREC, "3")
 }
 
