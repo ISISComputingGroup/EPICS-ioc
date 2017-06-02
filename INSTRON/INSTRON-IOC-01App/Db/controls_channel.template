@@ -87,6 +87,11 @@ record(ai, "$(P)$(CHAN):SP:RBV")
     field(LSV, "MINOR")
 }
 
+record(ai, "$(P)$(CHAN)")
+{
+
+}
+
 record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
 {
   field(INPA, "$(P)$(CHAN):TOLERANCE")

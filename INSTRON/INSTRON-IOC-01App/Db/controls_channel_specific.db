@@ -1,0 +1,48 @@
+record(calc, "$(P)POS:TO")
+{
+    field(INPA,  "$(P)POS:RAW")
+    # field(INPB,  "$(P)POS:CHAN:SCALE")    
+    field(CALC, "A*1000*1")
+    field(OUT, "$(P)POS PP")
+}
+
+record(calc, "$(P)POS:FROM")
+{
+    field(INPA,  "$(P)POS:SP")
+    # field(INPB,  "$(P)POS:CHAN:SCALE")  
+    field(CALC, "A*1000*1")
+    field(OUT, "$(P)POS:RAW:SP PP")
+}
+
+record(calc, "$(P)STRESS:TO")
+{
+    field(INPA,  "$(P)STRESS:RAW")
+    # field(INPB,  "$(P)STRESS:CHAN:SCALE")    
+    field(CALC, "A*1000*1")
+    field(OUT, "$(P)STRESS PP")
+}
+
+record(calc, "$(P)STRESS:FROM")
+{
+    field(INPA,  "$(P)STRESS:SP")
+    # field(INPB,  "$(P)STRESS:CHAN:SCALE")  
+    field(CALC, "A*1000*1")
+    field(OUT, "$(P)STRESS:RAW:SP PP")
+}
+
+record(calc, "$(P)STRAIN:TO")
+{
+    field(INPA,  "$(P)STRAIN:RAW")
+    # field(INPB,  "$(P)STRAIN:CHAN:SCALE")    
+    field(CALC, "A*1000*1")
+    field(OUT, "$(P)STRAIN PP")
+}
+
+record(calc, "$(P)STRAIN:FROM")
+{
+    field(INPA,  "$(P)STRAIN:SP")
+    # field(INPB,  "$(P)STRAIN:CHAN:SCALE")  
+    field(CALC, "A*1000*1")
+    field(OUT, "$(P)STRAIN:RAW:SP PP")
+}
+
