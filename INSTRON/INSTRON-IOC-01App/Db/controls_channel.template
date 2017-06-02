@@ -53,3 +53,49 @@ record(ai, "$(P)$(CHAN):RAW:SP:RBV")
     field(PREC, "3")
 }
 
+record(ai, "$(P)$(CHAN):RAW")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devInstron.proto getCurrentFeedback($(CHAN_NUM)) $(PORT)")
+    field(PREC, "3")
+}
+
+record(ao, "$(P)$(CHAN):TOLERANCE")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "$(CHAN_TOL)")
+    field(PREC, "3")
+    field(FLNK, "$(P)$(CHAN):SP:_UPDATELIMITS")
+    field(PINI, "YES")
+}
+
+record(ao, "$(P)$(CHAN):SP")
+{
+    field(VAL, "1")
+    field(FLNK, "$(P)$(CHAN):SP:_UPDATELIMITS")
+}
+
+record(ai, "$(P)$(CHAN):SP:RBV")
+{
+    field(VAL, "1")
+    field(FLNK, "$(P)$(CHAN):SP:_UPDATELIMITS")
+    # Limits will be updated by $(P)$(CHAN):SP:_UPDATELIMITS
+    field(HIGH, "0")
+    field(LOW, "0")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")
+}
+
+record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
+{
+  field(INPA, "$(P)$(CHAN):TOLERANCE")
+  field(INPB, "$(P)$(CHAN):SP")
+  
+  field(CLCC, "B+A")
+  field(CLCD, "B-A")
+  
+  field(OUTC, "$(P)$(CHAN):SP:RBV.HIGH PP")
+  field(OUTD, "$(P)$(CHAN):SP:RBV.LOW PP")
+  
+}
