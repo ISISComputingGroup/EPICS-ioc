@@ -17,8 +17,8 @@ $(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "\r\n")
 $(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "\r\n")
 
 ## For debugging:
-asynSetTraceMask("L0",-1,0x9) 
-asynSetTraceIOMask("L0",-1,0x2)
+#asynSetTraceMask("L0",-1,0x9) 
+#asynSetTraceIOMask("L0",-1,0x2)
 
 #####################
 ## Load record instances
