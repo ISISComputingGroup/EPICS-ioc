@@ -59,6 +59,7 @@ record(ai, "$(P)$(CHAN):RAW")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getCurrentFeedback($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
+    field(FLNK, "$(P)$(CHAN):TO PP")
 }
 
 record(ao, "$(P)$(CHAN):TOLERANCE")
@@ -73,7 +74,14 @@ record(ao, "$(P)$(CHAN):TOLERANCE")
 record(ao, "$(P)$(CHAN):SP")
 {
     field(VAL, "1")
-    field(FLNK, "$(P)$(CHAN):SP:_UPDATELIMITS")
+    field(FLNK, "$(P)$(CHAN):SP:_NEWDATA PP")
+}
+
+record(fanout, "$(P)$(CHAN):SP:_NEWDATA")
+{
+    field(LNK1, "$(P)$(CHAN):FROM PP")
+    field(LNK2, "$(P)$(CHAN):SP:_UPDATELIMITS PP")
+    field(SELM, "All")
 }
 
 record(ai, "$(P)$(CHAN):SP:RBV")
@@ -103,4 +111,12 @@ record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
   field(OUTC, "$(P)$(CHAN):SP:RBV.HIGH PP")
   field(OUTD, "$(P)$(CHAN):SP:RBV.LOW PP")
   
+}
+
+record(ai, "$(P)$(CHAN):SCALE")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devInstron.proto getChanScale($(CHAN_NUM)) $(PORT)")
+    field(PREC, "3")
 }
