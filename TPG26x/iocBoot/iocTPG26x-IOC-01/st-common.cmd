@@ -3,22 +3,22 @@
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TPG)/data"
 
-## For emulator use this:
-$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:55626")
+# For dev sim devices
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
 
-## For real device use this:
-$(IFNOTDEVSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
+## For real device use:
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")  
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "8")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "none")   
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "1")
 
-$(IFNOTDEVSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")  
-$(IFNOTDEVSIM) asynSetOption("L0", -1, "bits", "8")
-$(IFNOTDEVSIM) asynSetOption("L0", -1, "parity", "none")   
-$(IFNOTDEVSIM) asynSetOption("L0", -1, "stop", "1")
-$(IFNOTDEVSIM) asynOctetSetInputEos("L0", -1, "\r\n")
-$(IFNOTDEVSIM) asynOctetSetOutputEos("L0", -1, "\r\n")
+$(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "\r\n")
+$(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "\r\n")
 
 ## For debugging:
-#asynSetTraceMask("L0",-1,0x9) 
-#asynSetTraceIOMask("L0",-1,0x2)
+asynSetTraceMask("L0",-1,0x9) 
+asynSetTraceIOMask("L0",-1,0x2)
 
 #####################
 ## Load record instances
