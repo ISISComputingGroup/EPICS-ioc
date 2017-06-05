@@ -1,8 +1,12 @@
+###
+### Conversion records
+### 
+
 record(calcout, "$(P)POS:TO")
 {
     field(INPA, "$(P)POS:RAW")
     field(INPB, "$(P)POS:SCALE")    
-    field(CALC, "A*1000*1")
+    field(CALC, "A*B*1000")
     field(OUT, "$(P)POS PP")
     field(OOPT, "Every Time")
 }
@@ -11,7 +15,7 @@ record(calcout, "$(P)POS:FROM")
 {
     field(INPA, "$(P)POS:SP")
     field(INPB, "$(P)POS:SCALE")  
-    field(CALC, "A*1000*1")
+    field(CALC, "A*(1/1000)*(1/B)")
     field(OUT, "$(P)POS:RAW:SP PP")
     field(OOPT, "Every Time")
 }
@@ -51,4 +55,18 @@ record(calcout, "$(P)STRAIN:FROM")
     field(OUT, "$(P)STRAIN:RAW:SP PP")
     field(OOPT, "Every Time")
 }
+
+###
+### Position channel-specific records
+###
+
+
+###
+### Stress channel-specific records
+###
+
+
+###
+### Strain channel-specific records
+###
 
