@@ -59,7 +59,7 @@ record(ai, "$(P)$(CHAN):RAW")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getCurrentFeedback($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
-    field(FLNK, "$(P)$(CHAN):TO PP")
+    field(FLNK, "$(P)$(CHAN):TO")
 }
 
 record(ao, "$(P)$(CHAN):TOLERANCE")
@@ -97,19 +97,19 @@ record(ai, "$(P)$(CHAN):SP:RBV")
 
 record(ai, "$(P)$(CHAN)")
 {
-
+    field(DTYP, "Soft Channel")
 }
 
 record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
 {
-  field(INPA, "$(P)$(CHAN):TOLERANCE")
-  field(INPB, "$(P)$(CHAN):SP")
+    field(INPA, "$(P)$(CHAN):TOLERANCE")
+    field(INPB, "$(P)$(CHAN):SP")
   
-  field(CLCC, "B+A")
-  field(CLCD, "B-A")
+    field(CLCC, "B+A")
+    field(CLCD, "B-A")
   
-  field(OUTC, "$(P)$(CHAN):SP:RBV.HIGH PP")
-  field(OUTD, "$(P)$(CHAN):SP:RBV.LOW PP")
+    field(OUTC, "$(P)$(CHAN):SP:RBV.HIGH PP")
+    field(OUTD, "$(P)$(CHAN):SP:RBV.LOW PP")
   
 }
 
