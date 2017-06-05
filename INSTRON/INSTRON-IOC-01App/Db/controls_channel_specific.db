@@ -41,8 +41,9 @@ record(calcout, "$(P)STRESS:FROM")
 record(calcout, "$(P)STRAIN:TO")
 {
     field(INPA, "$(P)STRAIN:RAW")
-    field(INPB, "$(P)STRAIN:SCALE")    
-    field(CALC, "A*1000*1")
+    field(INPB, "$(P)STRAIN:SCALE")  
+    field(INPC, "$(P)STRAIN:LENGTH")
+    field(CALC, "A*100000*B*(1/C)")
     field(OUT, "$(P)STRAIN PP")
     field(OOPT, "Every Time")
 }
@@ -69,4 +70,12 @@ record(calcout, "$(P)STRAIN:FROM")
 ###
 ### Strain channel-specific records
 ###
+
+record(ai, "$(P)STRAIN:LENGTH")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devInstron.proto getStrainLength $(PORT)")
+    field(PREC, "3")
+}
 
