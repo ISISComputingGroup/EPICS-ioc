@@ -1,0 +1,18 @@
+file $(SPRLG)/db/base.template
+{
+	pattern {P, PORT, ADDR, COUNT}
+	{"\$(P)", "\$(PORT)", "01", 1}
+	{"\$(P)", "\$(PORT)", "02", 8}
+}
+
+file $(SPRLG)/db/channel.template
+{
+	pattern {P, PORT, ADDR, CHAN}
+	{"\$(P)", "\$(PORT)", "02", 2}
+	{"\$(P)", "\$(PORT)", "02", 3}
+	{"\$(P)", "\$(PORT)", "02", 4}
+	{"\$(P)", "\$(PORT)", "02", 5}
+	{"\$(P)", "\$(PORT)", "02", 6}
+	{"\$(P)", "\$(PORT)", "02", 7}
+	{"\$(P)", "\$(PORT)", "02", 8}
+}
