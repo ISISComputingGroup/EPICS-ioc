@@ -72,6 +72,7 @@ record(ai, "$(P)STRESS:AREA")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getArea(2) $(PORT)")
     field(PREC, "3")
+    field(FLNK, "$(P)STRESS:DIAMETER:CALC")
 }
 
 record(ao, "$(P)STRESS:AREA:SP")
@@ -79,6 +80,37 @@ record(ao, "$(P)STRESS:AREA:SP")
     field(DTYP, "stream")
     field(OUT, "@devInstron.proto setArea(2) $(PORT)")
     field(PREC, "3")
+}
+
+record(calcout, "$(P)STRESS:DIAMETER:SP:CALC")
+{
+    field(INPA, "$(P)STRESS:DIAMETER:SP")
+    # 4*ATAN(1) = PI
+    field(CALC, "2*(SQR(A/(4*ATAN(1))))")
+    field(OUT, "$(P)STRESS:AREA:SP PP")
+    field(OOPT, "Every Time")
+}
+
+record(calcout, "$(P)STRESS:DIAMETER:CALC")
+{
+    field(INPA, "$(P)STRESS:AREA")
+    # 4*ATAN(1) = PI
+    field(CALC, "((A/2)^2)*(4*ATAN(1))")
+    field(OUT, "$(P)STRESS:DIAMETER PP")
+    field(OOPT, "Every Time")
+}
+
+record(ai, "$(P)STRESS:DIAMETER")
+{
+    field(DTYP, "Soft Channel")
+    field(PREC, "3")
+}
+
+record(ao, "$(P)STRESS:DIAMETER:SP")
+{
+    field(DTYP, "Soft Channel")
+    field(PREC, "3")
+    field(OUT, "$(P)STRESS:DIAMETER:SP:CALC PP")
 }
 
 ###
