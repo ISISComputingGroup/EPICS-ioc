@@ -3,7 +3,43 @@ record(ai, "$(P)$(ADDR):1:VALUE")
 {
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP, "@sprlg.proto get_val1($(P),$(ADDR)) $(PORT)")
+    field(INP, "@sprlg.proto get_values($(P),$(ADDR)) $(PORT)")
     field(PREC, "3")
     field(EGU,  "V")
 }
+
+# This record is set from 1:VALUE
+record(ai, "$(P)$(ADDR):2:VALUE")
+{
+}
+
+# This record is set from 1:VALUE
+record(ai, "$(P)$(ADDR):3:VALUE")
+{
+}
+
+# This record is set from 1:VALUE
+record(ai, "$(P)$(ADDR):4:VALUE")
+{
+}
+
+# This record is set from 1:VALUE
+record(ai, "$(P)$(ADDR):5:VALUE")
+{
+}
+
+# This record is set from 1:VALUE
+record(ai, "$(P)$(ADDR):6:VALUE")
+{
+}
+
+# This record is set from 1:VALUE
+record(ai, "$(P)$(ADDR):7:VALUE")
+{
+}
+
+# This record is set from 1:VALUE
+record(ai, "$(P)$(ADDR):8:VALUE")
+{
+}
+
