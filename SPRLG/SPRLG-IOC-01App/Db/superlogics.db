@@ -1,9 +1,9 @@
 
-record(ai, "$(P):$(ADDRESS):1:VALUE")
+record(ai, "$(P)$(ADDR):1:VALUE")
 {
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@devsuperlogics.proto get_val1(A) $(PORT)")
+    field(INP, "@sprlg.proto get_val1($(P),$(ADDR)) $(PORT)")
     field(PREC, "3")
     field(EGU,  "V")
 }
