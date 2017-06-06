@@ -77,7 +77,7 @@ record(ai, "$(P)STRESS:AREA")
 record(ao, "$(P)STRESS:AREA:SP")
 {
     field(DTYP, "stream")
-    field(INP, "@devInstron.proto setArea(2) $(PORT)")
+    field(OUT, "@devInstron.proto setArea(2) $(PORT)")
     field(PREC, "3")
 }
 
