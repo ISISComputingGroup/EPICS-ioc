@@ -89,7 +89,7 @@ record(calcout, "$(P)STRESS:DIAMETER:SP:CALC")
 {
     field(INPA, "$(P)STRESS:DIAMETER:SP")
     # 4*ATAN(1) = PI
-    field(CALC, "2*(SQR(A/(4*ATAN(1))))")
+    field(CALC, "((A/2)^2)*(4*ATAN(1))")
     field(OUT, "$(P)STRESS:AREA:SP PP")
     field(OOPT, "Every Time")
 }
@@ -98,7 +98,7 @@ record(calcout, "$(P)STRESS:DIAMETER:CALC")
 {
     field(INPA, "$(P)STRESS:AREA")
     # 4*ATAN(1) = PI
-    field(CALC, "((A/2)^2)*(4*ATAN(1))")
+    field(CALC, "2*(SQR(A/(4*ATAN(1))))")
     field(OUT, "$(P)STRESS:DIAMETER PP")
     field(OOPT, "Every Time")
 }
