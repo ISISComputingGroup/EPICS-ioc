@@ -120,3 +120,17 @@ record(ai, "$(P)$(CHAN):SCALE")
     field(INP, "@devInstron.proto getChanScale($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
 }
+
+record(ai, "$(P)$(CHAN):TYPE")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devInstron.proto getType($(CHAN_NUM),$(P)$(CHAN)) $(PORT)")
+    field(PREC, "3")
+}
+
+record(ai, "$(P)$(CHAN):TYPE:STANDARD")
+{
+    field(DTYP, "Soft Channel")
+    field(PREC, "3")
+}
