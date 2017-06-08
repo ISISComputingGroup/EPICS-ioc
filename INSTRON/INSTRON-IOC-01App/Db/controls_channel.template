@@ -98,6 +98,7 @@ record(ai, "$(P)$(CHAN):SP:RBV")
 record(ai, "$(P)$(CHAN)")
 {
     field(DTYP, "Soft Channel")
+    field(PREC, "3")
 }
 
 record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
