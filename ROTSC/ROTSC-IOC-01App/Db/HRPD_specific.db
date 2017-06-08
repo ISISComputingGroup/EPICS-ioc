@@ -16,7 +16,7 @@ record(bi, "$(P)GET_VR:POLARITY")
 record(ai, "$(P)GET_VR_MAG")
 {
 	field(DTYP, "stream")
-	field(INP, "@rotsc.proto getVR($(P),GET_VR:SP,GET_VR:POLARITY) $(PORT)")
+	field(INP, "@rotsc_1.proto getVR($(P),GET_VR:SP,GET_VR:POLARITY) $(PORT)")
 	field(FLNK, "$(P)GET_VR:POLARITY")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:GET_VR_MAG")
@@ -38,6 +38,111 @@ record(ai, "$(P)GET_VR")
 	info(INTEREST, "MEDIUM")
 	field(EGU, "") # Only known at runtime
 }
+
+record(scalcout, "$(P)CALC_MTR_1_ENB")
+{
+    field(CALC, "AA[0,0]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MTR_1_ENABLED PP MS")
+	field(IVOA, "Don't drive outputs")
+}
+
+record(bo, "$(P)MTR_1_ENABLED")
+{
+	field(ONAM, "ENABLED")
+	field(ZNAM, "DISABLED")
+	info(INTEREST, "MEDIUM")
+}
+
+record(scalcout, "$(P)CALC_MTR_0_ENB")
+{
+    field(CALC, "AA[1,1]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MTR_0_ENABLED PP MS")
+	field(IVOA, "Don't drive outputs")
+}
+
+record(bo, "$(P)MTR_0_ENABLED")
+{
+	field(ONAM, "ENABLED")
+	field(ZNAM, "DISABLED")
+	info(INTEREST, "MEDIUM")
+}
+
+record(scalcout, "$(P)CALC_MTR_1_DIRECTION")
+{
+    field(CALC, "AA[12,12]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MOTOR_1_DIRECTION PP MS")
+	field(IVOA, "Don't drive outputs")
+}
+
+record(bo, "$(P)MOTOR_1_DIRECTION")
+{
+	field(ONAM, "RAISE")
+	field(ZNAM, "LOWER")
+	info(INTEREST, "MEDIUM")
+}
+
+record(scalcout, "$(P)CALC_MTR_1_STATUS")
+{
+    field(CALC, "AA[13,13]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MOTOR_1_STATUS PP MS")
+	field(IVOA, "Don't drive outputs")
+}
+
+record(bo, "$(P)MOTOR_1_STATUS")
+{
+	field(ONAM, "ERROR")
+	field(ZNAM, "WORKING")
+	info(INTEREST, "MEDIUM")
+}
+
+record(scalcout, "$(P)CALC_MTR_0_STATUS")
+{
+    field(CALC, "AA[6,6]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MOTOR_0_STATUS PP MS")
+	field(IVOA, "Don't drive outputs")
+}
+
+record(bo, "$(P)MOTOR_0_STATUS")
+{
+	field(ONAM, "ERROR")
+	field(ZNAM, "WORKING")
+	info(INTEREST, "MEDIUM")
+}
+
+record(scalcout, "$(P)CALC_MTR_0_DIRECTION")
+{
+    field(CALC, "AA[15,15]")
+    field(INAA, "$(P)RAW_STATUS PP MS")
+    field(OUT, "$(P)MOTOR_0_DIRECTION PP MS")
+	field(IVOA, "Don't drive outputs")
+}
+
+record(bo, "$(P)MOTOR_0_DIRECTION")
+{
+	field(DESC, "The direction it is set to rotate")
+	field(ONAM, "BACKWARD")
+	field(ZNAM, "FORWARD")
+	info(INTEREST, "MEDIUM")
+}
+
+record(ao, "$(P)MOVE_TO_POSN:NO_LOWER")
+{
+	field(DTYP, "stream")
+	field(DESC, "Move to the given position")
+	field(OUT, "@rotsc_1.proto moveNoLower($(P)$(CMD_ERR)_NUMBER) $(PORT)")
+	field(FLNK, "$(P)$(CMD_ERR)_NUMBER.PROC")
+	info(INTEREST, "MEDIUM")
+	field(EGU, "")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MOVE_TO_POSN:NO_LOWER")
+    field(SDIS, "$(P)DISABLE")
+}
+
 ### SIMULATION RECORDS ###
 
 record(ai, "$(P)SIM:GET_VR_MAG")
@@ -46,3 +151,8 @@ record(ai, "$(P)SIM:GET_VR_MAG")
     field(DTYP, "Soft Channel")
 }
 
+record(ao, "$(P)SIM:MOVE_TO_POSN:NO_LOWER")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
