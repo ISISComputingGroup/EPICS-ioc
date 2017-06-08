@@ -28,6 +28,7 @@
 - [ ] Do changes function as described? Add comments below that describe the tests performed.
 - [ ] Does the IOC respond correctly both in full and simulation mode, where it's possible to test both?
 - [ ] If there are multiple _0n IOCs, do they run correctly?
+- [ ] Ensure that the log files do not contain undefined macros, ie serach for `macLib: macro` full text is `macLib: macro XXXXX is undefined (expanding string XXXX)`
 
 ### Final steps
 
