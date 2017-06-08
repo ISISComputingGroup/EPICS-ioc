@@ -1,3 +1,22 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
 ###
 ### Conversion records
 ### 
@@ -80,6 +99,9 @@ record(ai, "$(P)STRESS:AREA")
     field(EGU, "mm^2")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STRESS:AREA")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)STRESS:AREA:SP")
@@ -88,6 +110,9 @@ record(ao, "$(P)STRESS:AREA:SP")
     field(OUT, "@devInstron.proto setArea(2) $(PORT)")
     field(PREC, "3")
     field(EGU, "mm^2")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STRESS:AREA:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(calcout, "$(P)STRESS:DIAMETER:SP:CALC")
@@ -140,5 +165,25 @@ record(ai, "$(P)STRAIN:LENGTH")
     field(EGU, "mm")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STRAIN:LENGTH")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
+### SIMULATION RECORDS ###
+
+record(ai, "$(P)SIM:STRESS:AREA")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:STRESS:AREA","$(P)SIM:STRESS:AREA:SP")
+
+record(ai, "$(P)SIM:STRAIN:LENGTH")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
 }
 
