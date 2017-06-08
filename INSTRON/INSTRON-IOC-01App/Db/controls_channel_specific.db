@@ -71,11 +71,15 @@ record(calcout, "$(P)STRAIN:FROM")
 
 record(ai, "$(P)STRESS:AREA")
 {
+    field(DESC, "The stress channel area")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getArea(2) $(PORT)")
     field(PREC, "3")
     field(FLNK, "$(P)STRESS:DIAMETER:CALC")
+    field(EGU, "mm^2")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)STRESS:AREA:SP")
@@ -83,6 +87,7 @@ record(ao, "$(P)STRESS:AREA:SP")
     field(DTYP, "stream")
     field(OUT, "@devInstron.proto setArea(2) $(PORT)")
     field(PREC, "3")
+    field(EGU, "mm^2")
 }
 
 record(calcout, "$(P)STRESS:DIAMETER:SP:CALC")
@@ -105,8 +110,12 @@ record(calcout, "$(P)STRESS:DIAMETER:CALC")
 
 record(ai, "$(P)STRESS:DIAMETER")
 {
+    field(DESC, "The stress channel diameter")
     field(DTYP, "Soft Channel")
     field(PREC, "3")
+    field(EGU, "mm")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)STRESS:DIAMETER:SP")
@@ -114,6 +123,7 @@ record(ao, "$(P)STRESS:DIAMETER:SP")
     field(DTYP, "Soft Channel")
     field(PREC, "3")
     field(OUT, "$(P)STRESS:DIAMETER:SP:CALC PP")
+    field(EGU, "mm")
 }
 
 ###
@@ -122,9 +132,13 @@ record(ao, "$(P)STRESS:DIAMETER:SP")
 
 record(ai, "$(P)STRAIN:LENGTH")
 {
+    field(DESC, "The strain channel length")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getStrainLength(3) $(PORT)")
     field(PREC, "3")
+    field(EGU, "mm")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 

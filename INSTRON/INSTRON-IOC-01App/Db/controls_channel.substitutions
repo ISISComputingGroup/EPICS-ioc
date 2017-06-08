@@ -1,7 +1,7 @@
 file controls_channel.template {
 
-pattern {PORT, P, CHAN, CHAN_NUM, CHAN_TOL, CHAN_EXP_TYPE }
-{"\$(PORT)", "\$(P)", "POS", 1, 1, 0}
-{"\$(PORT)", "\$(P)", "STRESS", 2, 0.1, 0}
-{"\$(PORT)", "\$(P)", "STRAIN", 3, 0.1, 4}
+pattern {PORT, P, CHAN, CHAN_UNITS, CHAN_NUM, CHAN_TOL, CHAN_EXP_TYPE }
+{"\$(PORT)", "\$(P)", "POS", "mm", 1, 1, 0}
+{"\$(PORT)", "\$(P)", "STRESS", "MPa", 2, 0.1, 0}
+{"\$(PORT)", "\$(P)", "STRAIN", "%", 3, 0.1, 4}
 }

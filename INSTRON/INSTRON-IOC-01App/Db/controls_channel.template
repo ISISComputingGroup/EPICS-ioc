@@ -3,14 +3,19 @@ record(ao, "$(P)$(CHAN):STEP:TIME:SP")
     field(DTYP, "stream")
     field(OUT, "@devInstron.proto setStepTime($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
+    field(EGU, "s")
 }
 
 record(ai, "$(P)$(CHAN):STEP:TIME")
 {
+    field(DESC, "The step time of the $(CHAN) channel")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getStepTime($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
+    field(EGU, "s")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbo, "$(P)$(CHAN):ABS:SP")
@@ -27,6 +32,7 @@ record(mbbo, "$(P)$(CHAN):ABS:SP")
 
 record(mbbi, "$(P)$(CHAN):ABS")
 {
+    field(DESC, "The waveform type of the $(CHAN) channel")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getChanWaveType($(CHAN_NUM)) $(PORT)")
@@ -35,7 +41,9 @@ record(mbbi, "$(P)$(CHAN):ABS")
     field(TWST, "Trapezium")
     field(THST, "Absolute ramp")
     field(FRST, "Absolute hold ramp")
-    field(FVST, "Absolute rate ramp")    
+    field(FVST, "Absolute rate ramp")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")    
 }
 
 record(ao, "$(P)$(CHAN):RAW:SP")
@@ -64,17 +72,22 @@ record(ai, "$(P)$(CHAN):RAW")
 
 record(ao, "$(P)$(CHAN):TOLERANCE")
 {
+    field(DESC, "The tolerance of the $(CHAN) channel")
     field(DTYP, "Soft Channel")
     field(VAL, "$(CHAN_TOL)")
     field(PREC, "3")
     field(FLNK, "$(P)$(CHAN):SP:_UPDATELIMITS")
     field(PINI, "YES")
+    field(EGU, "$(CHAN_UNITS)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)$(CHAN):SP")
 {
     field(VAL, "1")
     field(FLNK, "$(P)$(CHAN):SP:_NEWDATA PP")
+    field(EGU, "$(CHAN_UNITS)")
 }
 
 record(fanout, "$(P)$(CHAN):SP:_NEWDATA")
@@ -93,12 +106,17 @@ record(ai, "$(P)$(CHAN):SP:RBV")
     field(LOW, "0")
     field(HSV, "MINOR")
     field(LSV, "MINOR")
+    field(EGU, "$(CHAN_UNITS)")
 }
 
 record(ai, "$(P)$(CHAN)")
 {
+    field(DESC, "The current value of the $(CHAN) channel")
     field(DTYP, "Soft Channel")
     field(PREC, "3")
+    field(EGU, "$(CHAN_UNITS)")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
@@ -116,10 +134,15 @@ record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
 
 record(ai, "$(P)$(CHAN):SCALE")
 {
+    field(DESC, "The scale of the $(CHAN) channel")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getChanScale($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
+    # Dimensionless
+    field(EGU, "")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)$(CHAN):TYPE")
