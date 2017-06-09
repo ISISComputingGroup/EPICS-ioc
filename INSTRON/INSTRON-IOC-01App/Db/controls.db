@@ -134,7 +134,7 @@ record(mbbiDirect, "$(P)STAT:FRAME")
 record(fanout, "$(P)STAT:_FANOUT")
 {
     field(LNK1, "$(P)STAT:_CALC")
-    field(LNK2, "$(P)ACTUATOR:STAT")
+    field(LNK2, "$(P)ACTUATOR:STAT:CALC")
     field(SELM, "All")
 }
 
@@ -177,10 +177,19 @@ record(calc, "$(P)STAT:_CALC")
     field(FLNK, "$(P)STAT:DISP")
 }
 
-record(calc, "$(P)ACTUATOR:STAT")
+record(calcout, "$(P)ACTUATOR:STAT:CALC")
 {
     field(INPA, "$(P)STAT:FRAME.B3 CP")
     field(CALC, "A=0?1:0")
+	field(OOPT, "Every Time")
+	field(OUT, "$(P)ACTUATOR:STAT PP")
+}
+
+record(bi, "$(P)ACTUATOR:STAT")
+{
+    field(DTYP, "Soft Channel")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
 }
 
 record(stringout, "$(P)ARBITRARY:SP")
