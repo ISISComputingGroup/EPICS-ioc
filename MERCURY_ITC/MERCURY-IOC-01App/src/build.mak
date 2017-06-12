@@ -26,6 +26,7 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += asubFunctions.dbd
+$(APPNAME)_DBD += asyn.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += lvDCOM.dbd
 

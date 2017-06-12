@@ -32,6 +32,7 @@ $(APPNAME)_DBD += isisdae.dbd
 $(APPNAME)_DBD += webget.dbd
 $(APPNAME)_DBD += FileList.dbd
 $(APPNAME)_DBD += asubFunctions.dbd 
+$(APPNAME)_DBD += asyn.dbd 
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##

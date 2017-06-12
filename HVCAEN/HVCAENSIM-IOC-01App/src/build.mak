@@ -29,7 +29,7 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
-$(APPNAME)_DBD += HVCAENx527.dbd
+$(APPNAME)_DBD += HVCAENx527Support.dbd
 
 # Add all the support libraries needed by this IOC
 $(APPNAME)_LIBS += HVCAENx527Sim HVCAENx527Summary CAENHVWrapperSim

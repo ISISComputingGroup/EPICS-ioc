@@ -31,7 +31,6 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += drvVxi11.dbd
-$(APPNAME)_DBD += aCalcoutRecord.dbd 
 $(APPNAME)_DBD += calcSupport.dbd 
 $(APPNAME)_DBD += asubFunctions.dbd
 
