@@ -124,7 +124,7 @@ record(scalcout, "$(P)CALC_CAR_AT_IDX")
 
 record(bo, "$(P)CAROUSEL_AT_IDX")
 {
-	field(DESC, "If the carousel has reached the index posn")
+	field(DESC, "The carousel has reached the index?")
 	field(ONAM, "AT INDEX")
 	field(ZNAM, "OFF INDEX")
 	info(INTEREST, "MEDIUM")
@@ -334,7 +334,7 @@ record(ao, "$(P)MOVE_TO_POSN")
 
 record(calc, "$(P)CALC_MOVE_FINISHED")
 {
-	field(DESC, "Calculate if the device has finished moving")	
+	field(DESC, "Has the device has finished moving")	
 	field(SCAN, "Passive")
 	field(INPA, "$(P)MOTOR_0_ACTIVE CP")
 	field(INPB, "$(P)MOTOR_1_ACTIVE CP")
@@ -344,7 +344,7 @@ record(calc, "$(P)CALC_MOVE_FINISHED")
 
 record(calc, "$(P)IS_INITIALISED")
 {
-	field(DESC, "Calculate if the device has been initialised")	
+	field(DESC, "Has the device has been initialised")	
 	field(INPA, "$(P)POSN.VAL CP")
 	field(CALC, "A>0")
 	info(INTEREST, "MEDIUM")
@@ -352,7 +352,7 @@ record(calc, "$(P)IS_INITIALISED")
 
 record(calcout, "$(P)CALC_STATUS_STRING")
 {
-	field(DESC, "A text representation of the device status")	
+	field(DESC, "Make text version of status")	
 	field(INPA, "$(P)IS_INITIALISED CP")
 	field(INPB, "$(P)CALC_MOVE_FINISHED CP")
 	field(CALC, "(!A)?0:B?1:2")
@@ -361,6 +361,7 @@ record(calcout, "$(P)CALC_STATUS_STRING")
 
 record(mbbi, "$(P)STATUS_STRING")
 {
+	field(DESC, "Text version of the device status")	
 	field(ZRVL, "0")
 	field(ZRST, "Uninitialised")
 	field(ONVL, "1")
