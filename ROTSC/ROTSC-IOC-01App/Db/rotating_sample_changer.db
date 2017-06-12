@@ -118,12 +118,13 @@ record(scalcout, "$(P)CALC_CAR_AT_IDX")
     field(CALC, "AA[2+BB,2+BB]")
     field(INAA, "$(P)RAW_STATUS PP MS")
 	field(INBB, "$(P)CALC_STATUS_OFFSET")
-    field(OUT, "$(P)CARROUSEL_AT_IDX PP MS")
+    field(OUT, "$(P)CAROUSEL_AT_IDX PP MS")
 	field(IVOA, "Don't drive outputs")
 }
 
-record(bo, "$(P)CARROUSEL_AT_IDX")
+record(bo, "$(P)CAROUSEL_AT_IDX")
 {
+	field(DESC, "If the carousel has reached the index posn")
 	field(ONAM, "AT INDEX")
 	field(ZNAM, "OFF INDEX")
 	info(INTEREST, "MEDIUM")
@@ -134,11 +135,11 @@ record(scalcout, "$(P)CALC_CAR_AT_POS_1")
     field(CALC, "AA[3+BB,3+BB]")
     field(INAA, "$(P)RAW_STATUS PP MS")
 	field(INBB, "$(P)CALC_STATUS_OFFSET")
-    field(OUT, "$(P)CARROUSEL_AT_POS_1 PP MS")
+    field(OUT, "$(P)CAROUSEL_AT_POS_1 PP MS")
 	field(IVOA, "Don't drive outputs")
 }
 
-record(bo, "$(P)CARROUSEL_AT_POS_1")
+record(bo, "$(P)CAROUSEL_AT_POS_1")
 {
 	field(ONAM, "AT POSITION 1")
 	field(ZNAM, "OFF POSITION 1")
