@@ -32,6 +32,7 @@ $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += transformRecord.dbd
 #$(APPNAME)_DBD += xxx.dbd
+$(APPNAME)_DBD += VISAdrv.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -47,10 +48,11 @@ $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += VISAdrv 
 
 #$(APPNAME)_LIBS += xxx
 
-
+include $(VISADRV)/visa_lib.mak
 
 # INSTRON-IOC-01_registerRecordDeviceDriver.cpp derives from INSTRON-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
