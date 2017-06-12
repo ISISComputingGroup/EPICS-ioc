@@ -45,6 +45,7 @@ record(ai, "$(P)FREQ")
 
 record(ao, "$(P)FREQ:SP")
 {
+    field(ASG, "$(ASG=DEFAULT)")
     field(DESC, "Set the demanded frequency")
     field(DTYP, "stream")
     field(OUT,  "@mk2chopper.proto setFreq $(PORT)")
@@ -99,6 +100,7 @@ record(ai, "$(P)PHASE")
 
 record(ao, "$(P)PHASE:SP")
 {
+    field(ASG, "$(ASG=DEFAULT)")
     field(DESC, "Set the demanded phase delay")
     field(DTYP, "stream")
     field(OUT,  "@mk2chopper.proto setPhase $(PORT)")
@@ -153,6 +155,7 @@ record(ai, "$(P)PHASE:ERR")
 
 record(ao, "$(P)PHASE:ERR:SP")
 {
+    field(ASG, "$(ASG=DEFAULT)")
     field(DESC, "Set the demanded PD error window")
     field(DTYP, "stream")
     field(OUT,  "@mk2chopper.proto setPhaseErr $(PORT)")
@@ -191,6 +194,7 @@ alias("$(P)SIM:PHASE:ERR","$(P)SIM:PHASE:ERR:SP:RBV")
 
 record(bo, "$(P)ON:SP")
 {
+    field(ASG, "$(ASG=DEFAULT)")
     field(DESC, "Set the chopper off(0)/on(1)")
     field(DTYP, "stream")
     field(OUT,  "@mk2chopper.proto setChopperStarted $(PORT)")
@@ -200,6 +204,7 @@ record(bo, "$(P)ON:SP")
 }
 
 record(calcout, "$(P)ON:CALC") {
+  field(ASG, "$(ASG=DEFAULT)")
   field(INPA, "$(P)FREQ")
   field(CALC, "A>0?1:0")
   field(DOPT, "Use CALC")
