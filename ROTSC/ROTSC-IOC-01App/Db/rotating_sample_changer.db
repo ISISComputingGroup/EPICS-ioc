@@ -350,18 +350,18 @@ record(calc, "$(P)IS_INITIALISED")
 	info(INTEREST, "MEDIUM")
 }
 
-record(calcout, "$(P)CALC_STATUS_STRING")
+record(calcout, "$(P)CALC_STAT")
 {
 	field(DESC, "Make text version of status")	
 	field(INPA, "$(P)IS_INITIALISED CP")
 	field(INPB, "$(P)CALC_MOVE_FINISHED CP")
 	field(CALC, "(!A)?0:B?1:2")
-	field(OUT, "$(P)STATUS_STRING PP")
+	field(OUT, "$(P)STAT PP")
 }
 
-record(mbbi, "$(P)STATUS_STRING")
+record(mbbi, "$(P)STAT")
 {
-	field(DESC, "Text version of the device status")	
+	field(DESC, "Device status")	
 	field(ZRVL, "0")
 	field(ZRST, "Uninitialised")
 	field(ONVL, "1")
