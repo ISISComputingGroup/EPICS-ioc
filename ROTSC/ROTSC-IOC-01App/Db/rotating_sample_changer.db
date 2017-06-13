@@ -118,12 +118,13 @@ record(scalcout, "$(P)CALC_CAR_AT_IDX")
     field(CALC, "AA[2+BB,2+BB]")
     field(INAA, "$(P)RAW_STATUS PP MS")
 	field(INBB, "$(P)CALC_STATUS_OFFSET")
-    field(OUT, "$(P)CARROUSEL_AT_IDX PP MS")
+    field(OUT, "$(P)CAROUSEL_AT_IDX PP MS")
 	field(IVOA, "Don't drive outputs")
 }
 
-record(bo, "$(P)CARROUSEL_AT_IDX")
+record(bo, "$(P)CAROUSEL_AT_IDX")
 {
+	field(DESC, "The carousel has reached the index?")
 	field(ONAM, "AT INDEX")
 	field(ZNAM, "OFF INDEX")
 	info(INTEREST, "MEDIUM")
@@ -134,12 +135,13 @@ record(scalcout, "$(P)CALC_CAR_AT_POS_1")
     field(CALC, "AA[3+BB,3+BB]")
     field(INAA, "$(P)RAW_STATUS PP MS")
 	field(INBB, "$(P)CALC_STATUS_OFFSET")
-    field(OUT, "$(P)CARROUSEL_AT_POS_1 PP MS")
+    field(OUT, "$(P)CAROUSEL_AT_POS_1 PP MS")
 	field(IVOA, "Don't drive outputs")
 }
 
-record(bo, "$(P)CARROUSEL_AT_POS_1")
+record(bo, "$(P)CAROUSEL_AT_POS_1")
 {
+	field(DESC, "Is the carousel at position 1")
 	field(ONAM, "AT POSITION 1")
 	field(ZNAM, "OFF POSITION 1")
 	info(INTEREST, "MEDIUM")
@@ -156,6 +158,7 @@ record(scalcout, "$(P)CALC_SAMPLE_ARM_UP")
 
 record(bo, "$(P)SAMPLE_ARM_UP")
 {
+	field(DESC, "Whether the sample arm is up")	
 	field(ONAM, "UP")
 	field(ZNAM, "NOT UP")
 }
@@ -171,6 +174,7 @@ record(scalcout, "$(P)CALC_SAMPLE_ARM_DOWN")
 
 record(bo, "$(P)SAMPLE_ARM_DOWN")
 {
+	field(DESC, "Whether the sample arm is down")	
 	field(ONAM, "DOWN")
 	field(ZNAM, "NOT DOWN")
 	info(INTEREST, "MEDIUM")
@@ -330,6 +334,7 @@ record(ao, "$(P)MOVE_TO_POSN")
 
 record(calc, "$(P)CALC_MOVE_FINISHED")
 {
+	field(DESC, "Has the device has finished moving")	
 	field(SCAN, "Passive")
 	field(INPA, "$(P)MOTOR_0_ACTIVE CP")
 	field(INPB, "$(P)MOTOR_1_ACTIVE CP")
@@ -339,21 +344,24 @@ record(calc, "$(P)CALC_MOVE_FINISHED")
 
 record(calc, "$(P)IS_INITIALISED")
 {
+	field(DESC, "Has the device has been initialised")	
 	field(INPA, "$(P)POSN.VAL CP")
 	field(CALC, "A>0")
 	info(INTEREST, "MEDIUM")
 }
 
-record(calcout, "$(P)CALC_STATUS_STRING")
+record(calcout, "$(P)CALC_STAT")
 {
+	field(DESC, "Make text version of status")	
 	field(INPA, "$(P)IS_INITIALISED CP")
 	field(INPB, "$(P)CALC_MOVE_FINISHED CP")
 	field(CALC, "(!A)?0:B?1:2")
-	field(OUT, "$(P)STATUS_STRING PP")
+	field(OUT, "$(P)STAT PP")
 }
 
-record(mbbi, "$(P)STATUS_STRING")
+record(mbbi, "$(P)STAT")
 {
+	field(DESC, "Device status")	
 	field(ZRVL, "0")
 	field(ZRST, "Uninitialised")
 	field(ONVL, "1")
