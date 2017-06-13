@@ -356,10 +356,10 @@ record(calcout, "$(P)CALC_STATUS_STRING")
 	field(INPA, "$(P)IS_INITIALISED CP")
 	field(INPB, "$(P)CALC_MOVE_FINISHED CP")
 	field(CALC, "(!A)?0:B?1:2")
-	field(OUT, "$(P)STATUS_STRING PP")
+	field(OUT, "$(P)STAT PP")
 }
 
-record(mbbi, "$(P)STATUS_STRING")
+record(mbbi, "$(P)STAT")
 {
 	field(DESC, "Text version of the device status")	
 	field(ZRVL, "0")
