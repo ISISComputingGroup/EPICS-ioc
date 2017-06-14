@@ -33,9 +33,9 @@ $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 
 ## For real device use:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","GPIB0::3::INSTR")
-asynOctetSetOutputEos("$(DEVICE)",0,"\\r")
-asynOctetSetInputEos("$(DEVICE)",0,"\\r")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","GPIB0::3::INSTR", 0, 0, 0, 500, "\\r")
+# asynOctetSetOutputEos("$(DEVICE)",0,"\\r")
+# asynOctetSetInputEos("$(DEVICE)",0,"\\r")
 
 ## Load record instances
 
