@@ -17,9 +17,6 @@ cd ${TOP}
 dbLoadDatabase "dbd/INSTRON-IOC-01.dbd"
 INSTRON_IOC_01_registerRecordDeviceDriver pdbbase
 
-dbLoadDatabase "dbd/VISAdrvTest.dbd"
-VISAdrvTest_registerRecordDeviceDriver pdbbase
-
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
@@ -32,11 +29,15 @@ $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 
-## For real device use:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","GPIB0::3::INSTR", 0, 0, 0, 500, "\r")
+## For real device:
+## we need to set a 10ms internal read timeout as calls with 0 timeout (such as clearing input buffer)
+## can cause the GPIB to error  
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","GPIB0::3::INSTR", 0, 0, 0, 10)
 #asynSetTraceMask("$(DEVICE)",0,0x11)
-asynOctetSetOutputEos("$(DEVICE)",0,"\r")
-asynOctetSetInputEos("$(DEVICE)",0,"\r")
+
+## there is no input EOS, on output multiple command sequences can be separated by \n but we don't 
+## need that on GPIB-ENET as each network packet gets an EOM to terminate it.  
+#asynOctetSetOutputEos("$(DEVICE)",0,"\n")
 
 ## Load record instances
 
