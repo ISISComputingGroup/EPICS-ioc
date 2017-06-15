@@ -44,11 +44,11 @@ $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
+$(APPNAME)_LIBS += VISAdrv 
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += calc
-$(APPNAME)_LIBS += VISAdrv 
 
 #$(APPNAME)_LIBS += xxx
 
