@@ -5,24 +5,15 @@ cd ${TOP}
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
 
-## For testing framework only:
-$(TESTDEVSIM) epicsEnvSet "IFDEVSIM" " "
-$(TESTDEVSIM) epicsEnvSet "IFNOTDEVSIM" "#" 
-$(TESTDEVSIM) epicsEnvSet "RECSIM" "0"
-$(TESTRECSIM) epicsEnvSet "IFDEVSIM" "#"
-$(TESTRECSIM) epicsEnvSet "IFNOTDEVSIM" " " 
-$(TESTRECSIM) epicsEnvSet "RECSIM" "1"
-
-## For emulator use:
-$(IFDEVSIM) epicsEnvShow("EMULATOR_PORT") 
-$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT)")
+# For dev sim devices
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
 
 ## For real device use:
-$(IFNOTDEVSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
-$(IFNOTDEVSIM) asynSetOption("L0", -1, "baud", "4800")
-$(IFNOTDEVSIM) asynSetOption("L0", -1, "bits", "7")
-$(IFNOTDEVSIM) asynSetOption("L0", -1, "parity", "even")
-$(IFNOTDEVSIM) asynSetOption("L0", -1, "stop", "1")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "4800")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "7")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "even")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "1")
 
 ## Load record instances
 
