@@ -84,7 +84,7 @@ record(ai, "$(P)POSN")
 	info(archive, "VAL")
 	field(EGU, "") # Fixed positions of 1-20
 	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:MOVE_TO_POSN")
+    field(SIOL, "$(P)SIM:POSN:SP")
 	field(SDIS, "$(P)DISABLE")
 }
 
@@ -318,7 +318,7 @@ record(bo, "$(P)RETRIEVE_DROPPED")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ao, "$(P)MOVE_TO_POSN")
+record(ao, "$(P)POSN:SP")
 {	
 	field(SCAN, "Passive")
 	field(DTYP, "stream")
@@ -328,7 +328,7 @@ record(ao, "$(P)MOVE_TO_POSN")
 	info(INTEREST, "HIGH")
 	field(EGU, "")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:MOVE_TO_POSN")
+    field(SIOL, "$(P)SIM:POSN:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -385,7 +385,7 @@ record(bo, "$(P)SIM:RESET_1")
     field(DTYP, "Soft Channel")
 }
 
-record(ao, "$(P)SIM:MOVE_TO_POSN")
+record(ao, "$(P)SIM:POSN:SP")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
