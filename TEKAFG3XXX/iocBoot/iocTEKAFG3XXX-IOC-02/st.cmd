@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TEKAFG3XXX)/AFG3XXXSup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TEKAFG3XXX)/data"
 
 cd ${TOP}
 

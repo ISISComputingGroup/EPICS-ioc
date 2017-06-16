@@ -2,7 +2,7 @@
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(INSTRON)\db"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(INSTRON)/data"
 epicsEnvSet "DEVICE" "L0"
 
 ## You may have to change INSTRON-IOC-01 to something else

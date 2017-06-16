@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TEKDMM40X0)/DMM40X0Sup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TEKDMM40X0)/data"
 
 cd ${TOP}
 

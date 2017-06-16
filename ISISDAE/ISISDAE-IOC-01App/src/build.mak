@@ -11,7 +11,9 @@ include $(TOP)/configure/CONFIG
 # Build the IOC application ISISDAE-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
-PROD_IOC = $(APPNAME)
+ifeq ($(STATIC_BUILD),NO)
+PROD_IOC_WIN32 = $(APPNAME)
+endif
 # ISISDAE-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
@@ -30,6 +32,7 @@ $(APPNAME)_DBD += isisdae.dbd
 $(APPNAME)_DBD += webget.dbd
 $(APPNAME)_DBD += FileList.dbd
 $(APPNAME)_DBD += asubFunctions.dbd 
+$(APPNAME)_DBD += asyn.dbd 
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##

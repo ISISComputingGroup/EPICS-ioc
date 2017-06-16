@@ -26,7 +26,7 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
-$(APPNAME)_DBD += random.dbd
+$(APPNAME)_DBD += randomSupport.dbd
 $(APPNAME)_DBD += dbPv.dbd
 $(APPNAME)_DBD += PVAServerRegister.dbd
 
