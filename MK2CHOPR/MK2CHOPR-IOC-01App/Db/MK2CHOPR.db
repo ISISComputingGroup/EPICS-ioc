@@ -26,7 +26,7 @@ record(bo, "$(P)DISABLE")
 record(scalcout, "$(P)MANAGERMODE")
 {
 	field(ASG, "READONLY")
-    field(DESC, "Non-zero if manager is required for this IOC")
+    field(DESC, "Non-zero if manager mode needed")
     field(PINI, "YES")
 	field(INPA, "$(PVPREFIX)CS:MANAGER CP")
 	field(BB, "$(ASG)")
