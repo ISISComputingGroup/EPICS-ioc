@@ -44,10 +44,10 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += ECLab
 $(APPNAME)_LIBS += asyn
 ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),) 
-$(APPNAME)_LIBS += eclib64
+$(APPNAME)_LIBS += EClib64
 endif
 ifneq ($(findstring win32,$(EPICS_HOST_ARCH)),) 
-$(APPNAME)_LIBS += eclib
+$(APPNAME)_LIBS += EClib
 endif
 
 # ECLabTest_registerRecordDeviceDriver.cpp derives from ECLabTest.dbd
