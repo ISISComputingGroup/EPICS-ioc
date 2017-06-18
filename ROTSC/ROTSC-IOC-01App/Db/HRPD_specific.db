@@ -135,7 +135,7 @@ record(bo, "$(P)MOTOR_0_DIRECTION")
 	info(INTEREST, "MEDIUM")
 }
 
-record(ao, "$(P)MOVE_TO_POSN:NO_LOWER")
+record(ao, "$(P)POSN:NO_LOWER:SP")
 {
 	field(DTYP, "stream")
 	field(DESC, "Move to the given position")
@@ -144,7 +144,7 @@ record(ao, "$(P)MOVE_TO_POSN:NO_LOWER")
 	info(INTEREST, "MEDIUM")
 	field(EGU, "")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:MOVE_TO_POSN:NO_LOWER")
+    field(SIOL, "$(P)SIM:POSN:NO_LOWER:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -156,7 +156,7 @@ record(ai, "$(P)SIM:GET_VR_MAG")
     field(DTYP, "Soft Channel")
 }
 
-record(ao, "$(P)SIM:MOVE_TO_POSN:NO_LOWER")
+record(ao, "$(P)SIM:POSN:NO_LOWER:SP")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
