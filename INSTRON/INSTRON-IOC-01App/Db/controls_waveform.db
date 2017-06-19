@@ -1,87 +1,104 @@
 record(seq, "$(P)WAVE:START")
 {
+	field(DESC, "Start the waveform generator")
 }
 
 record(bi, "$(P)WAVE:RUNNING")
 {
+	field(DESC, "Waveform generator is running/finishing?")
 }
 
 record(bi, "$(P)WAVE:CONTINUING")
 {
+	field(DESC, "Waveform generator is running?")
 }
 
 record(bi, "$(P)WAVE:STATUS")
 {
+	field(DESC, "Status of the waveform generator")
 }
 
 record(bo, "$(P)WAVE:ABORT")
 {
+	field(DESC, "Abort the waveform generator")
 }
 
 record(ao, "$(P)WAVE:AMP:SP:RAW")
 {
+	field(DESC, "Set the amplitude of the waveform generator")
 }
 
 record(ao, "$(P)WAVE:FREQ:SP")
 {
+	field(DESC, "Set the frequency of the waveform generator")
 }
 
 record(mbbo, "$(P)WAVE:TYPE:SP")
 {
+	field(DESC, "Set the wave type of the waveform generator")
 }
 
 record(bo, "$(P)WAVE:QUART:OFF")
 {
+	field(DESC, "Switch off quarter cycle control")
 }
 
 record(ao, "$(P)WAVE:QUART:SP")
 {
+	field(DESC, "Set quarter cycle event detector")
 }
 
 record(ai, "$(P)WAVE:QUART")
 {
+	field(DESC, "Elapsed quarter cycle counter")
 }
 
 record(bo, "$(P)WAVE:HOLD")
 {
+	field(DESC, "Hold quarter cycle event detection")
 }
 
 record(bo, "$(P)WAVE:LOG:MAINTAIN")
 {
+	field(DESC, "No action on quarter cycle event detection")
 }
 
 record(bo, "$(P)WAVE:QUART:ARM")
 {
+	field(DESC, "Arm quarter cycle event detection")
 }
 
 record(bo, "$(P)WAVE:START:RAW")
 {
+	field(DESC, "Start the waveform generator")
 }
 
 record(ao, "$(P)WAVE:AMP:SP")
 {
-}
-
-record(calcout, "$(P)WAVE:AMP:SP")
-{
+	field(DESC, "Set the waveform generator amplitude")
 }
 
 record(calcout, "$(P)WAVE:AMP:POS")
 {
+	field(DESC, "Position-based wave amplitude")
 }
 
 record(calcout, "$(P)WAVE:AMP:STRESS")
 {
+	field(DESC, "Stress-based wave amplitude")
 }
 
 record(calcout, "$(P)WAVE:AMP:STRAIN")
 {
+	field(DESC, "Strain-based wave amplitude")
 }
 
-record(calcout, "$(P)WAVE:STOP:RAW")
+record(bo, "$(P)WAVE:STOP:RAW")
 {
+	field(DESC, "Stop the waveform generator")
 }
 
 record(calcout, "$(P)WAVE:STOP")
 {
+	field(DESC, "Stop the waveform generator")
 }
