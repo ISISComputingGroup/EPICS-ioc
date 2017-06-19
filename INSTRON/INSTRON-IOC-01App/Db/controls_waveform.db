@@ -1,0 +1,507 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+    field(PINI, "YES")
+}
+    
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(mbbi, "$(P)CHANNEL")
+{
+    field(DESC, "Current control channel")
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getCurrentControlChannel $(PORT)")
+    field(SCAN, "Passive")
+    
+    field(ZRVL, 1)
+    field(ZRST, "Position")    
+    field(ONVL, 2)
+    field(ONST, "Stress")       
+    field(TWVL, 3)
+    field(TWST, "Strain")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CHANNEL")
+    field(SDIS, "$(P)DISABLE")
+    
+    field(FLNK, "$(P)CHANNEL:_UPDATE_SP")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(seq, "$(P)CHANNEL:_UPDATE_SP")
+{
+    field(DOL1, "$(P)CHANNEL")
+    # Don't process the record, just update it's value.
+    field(LNK1, "$(P)CHANNEL:SP")
+    field(SELM, "All")
+}
+
+record(mbbo, "$(P)CHANNEL:SP")
+{
+    field(DESC, "Control channel setpoint")
+    field(DTYP, "stream")
+    
+    field(ZRVL, 1)
+    field(ZRST, "Position")    
+    field(ONVL, 2)
+    field(ONST, "Stress")       
+    field(TWVL, 3)
+    field(TWST, "Strain")
+    
+    field(OUT,  "@devInstron.proto setCurrentControlChannel $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CHANNEL:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)WATCHDOG:STAT")
+{
+    field(DESC, "Watchdog STAT")
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getWatchdogStatus $(PORT)")
+    field(SCAN, "Passive")
+    field(ZNAM, "DISABLED")
+    field(ONAM, "ENABLED")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WATCHDOG:STAT")
+    field(SDIS, "$(P)DISABLE")
+}
+    
+record(bo, "$(P)WATCHDOG:STAT:SP")
+{
+    field(DESC, "Disable the watchdog")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto disableWatchdog $(PORT)")
+    field(ZNAM, "DISABLED")
+    field(ONAM, "ENABLED")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WATCHDOG:STAT:SP")
+    field(SDIS, "$(P)DISABLE")  
+}
+
+record(bi, "$(P)CONTROLMODE")
+{
+    field(DESC, "Control mode")
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getControlMode $(PORT)")
+    field(SCAN, "Passive")
+    field(ZNAM, "FRONTPANEL")
+    field(ONAM, "COMPUTER")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CONTROLMODE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)INIT")
+{
+    field(DESC, "Initialize comms")
+    field(DTYP, "stream")
+    field(VAL, "0")
+    field(OUT,  "@devInstron.proto initRoutine $(PORT)")
+    
+    field(PINI, "YES")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:INIT")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbiDirect, "$(P)STAT:FRAME")
+{
+    field(DESC, "Status bits")
+    field(DTYP, "stream")
+    field(INP, "@devInstron.proto getStatus $(PORT)")
+    field(SCAN, "Passive")
+    field(FLNK, "$(P)STAT:_FANOUT")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STAT:FRAME")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(fanout, "$(P)STAT:_FANOUT")
+{
+    field(LNK1, "$(P)STAT:_CALC")
+    field(LNK2, "$(P)ACTUATOR:STAT:_CALC")
+    field(SELM, "All")
+}
+
+record(mbbi, "$(P)STAT:DISP")
+{
+    field(DESC, "Display string for rig status")
+    field(INP, "$(P)STAT:_CALC")
+
+    field(ZRST, "System OK")
+    field(ONST, "Travel limit exceeded")
+    field(TWST, "Power amplifier too hot")
+    field(THST, "Emergency stop pushed")
+    field(FRST, "Invalid status from rig")
+    field(FVST, "Invalid status from rig")
+    field(SXST, "Emergency stop pushed")
+    field(SVST, "Oil too hot")
+    field(EIST, "Oil level too low")
+    field(NIST, "Motor too hot")
+    field(TEST, "Oil pressure too high")
+    field(ELST, "Oil pressure too low")     
+    field(TVST, "Manifold/pump blocked")
+    field(TTST, "Oil level going too low")
+    field(FTST, "Manifold low pressure")
+    field(FFST, "System OK")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(calc, "$(P)STAT:_CALC")
+{
+    field(DESC, "Calculation for finding display string")
+    
+    field(INPA, "$(P)STAT:FRAME.B9 CP")
+    field(INPB, "$(P)STAT:FRAME.BA CP")
+    field(INPC, "$(P)STAT:FRAME.BB CP")
+    field(INPD, "$(P)STAT:FRAME.BC CP")
+    
+    field(CALC, "A+(2*B)+(4*C)+(8*D)") 
+    field(FLNK, "$(P)STAT:DISP")
+}
+
+record(calcout, "$(P)ACTUATOR:STAT:_CALC")
+{
+    field(INPA, "$(P)STAT:FRAME.B3 CP")
+    field(CALC, "A=0?1:0")
+	field(OOPT, "Every Time")
+	field(OUT, "$(P)ACTUATOR:STAT PP")
+}
+
+record(bi, "$(P)ACTUATOR:STAT")
+{
+    field(DTYP, "Soft Channel")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+
+record(stringout, "$(P)ARBITRARY:SP")
+{
+	field(DESC, "General write command")
+	field(FLNK, "$(P)ARBITRARY PP")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ARBITRARY")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(stringin, "$(P)ARBITRARY")
+{
+    field(DESC, "General input command response")
+    field(DTYP, "stream")
+    field(INP, "@devInstron.proto arbRW($(P)ARBITRARY:SP) $(PORT)")
+    field(SCAN, "Passive")
+    field(SIOL, "$(P)SIM:ARBITRARY")
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(mbbo, "$(P)MOVE:SP")
+{
+    field(DESC, "Rig movement type")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setMovementType $(PORT)")
+
+    field(ZRST, "STOP")
+    field(ONST, "START")
+    field(TWST, "HOLD")
+    field(THST, "CONTINUE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MOVE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbi, "$(P)MOVE")
+{
+	field(DESC, "Current movement type")
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getMovementType $(PORT)")
+    field(SCAN, "Passive")
+    
+    field(ZRST, "STOPPED")
+    field(ONST, "RAMP_RUNNING")
+    field(TWST, "RAMP_HOLDING")
+    field(FVST, "RAND_HOLDING")
+    field(SXST, "RAND_RUNNING")
+    
+    field(FLNK, "$(P)MOVE:_FAN")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MOVE")
+    field(SDIS, "$(P)DISABLE")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(fanout, "$(P)MOVE:_FAN")
+{
+    field(LNK1, "$(P)MOVE:_STOPIFHOLDING")
+    field(LNK2, "$(P)GOING:_CALC")
+    field(SELM, "All") 
+}
+
+record(calcout, "$(P)MOVE:_STOPIFHOLDING")
+{
+    field(INPA, "$(P)MOVE")
+    field(CALC, "A = 2 || A = 5")
+    field(OOPT, "When Non-zero")
+	field(OUT, "$(P)MOVE:_END PP")
+}
+
+record(seq, "$(P)MOVE:GO:SP")
+{
+    field(DESC, "Start movement")   
+    field(DO1, "1")
+    field(LNK1, "$(P)MOVE:SP PP")
+    field(SELM, "All") 
+}
+
+record(seq, "$(P)MOVE:_END")
+{
+	field(DESC, "End movement")   
+    field(DO1, "0")
+    field(LNK1, "$(P)MOVE:SP PP")    
+    field(SELM, "All")
+}
+
+record(calcout, "$(P)GOING:_CALC")
+{
+    field(INPA, "$(P)MOVE")
+    field(CALC, "A=1 || A=6")
+    field(OOPT, "Every Time")
+	field(OUT, "$(P)GOING PP")
+}
+
+record(bi, "$(P)GOING")
+{
+    field(DESC, "Whether the rig is going to SP")
+    field(VAL, "0")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(seq, "$(P)READALL")
+{
+	field(DESC, "Read all data from rig")
+    
+    # Disable watchdog
+    field(DO1, "0")
+    field(LNK1, "$(P)WATCHDOG:STAT:SP PP")
+    
+    field(LNK2, "$(P)MOVE PP")
+    field(LNK3, "$(P)STAT:FRAME PP")
+    field(LNK4, "$(P)CHANNEL PP")
+    
+    field(SCAN, "1 second")
+    field(SELM, "All")
+}
+
+record(mbbo, "$(P)READALL:SCAN:SP")
+{
+    field(OUT, "$(P)READALL.SCAN PP")
+    field(DTYP, "Raw Soft Channel")
+    
+    field(ZRVL, "3")
+    field(ONVL, "4")
+    field(TWVL, "5")
+    field(THVL, "6")
+    field(FRVL, "7")
+    field(FVVL, "8")
+    field(SXVL, "9")
+    
+    field(ZRST, "10 second")
+    field(ONST, "5 second")
+    field(TWST, "2 second")
+    field(THST, "1 second")
+    field(FRST, ".5 second")
+    field(FVST, ".2 second")
+    field(SXST, ".1 second")
+    
+    field(VAL, "3")
+    field(PINI, "YES")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:READALL:SCAN:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)PANIC:SP")
+{
+	field(DESC, "Panic stop setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@devInstron.proto panicStop $(PORT)")
+    field(ZNAM, "READY")
+    field(ONAM, "STOPPING")
+    # Initial value.
+    field(VAL, "0")
+    field(FLNK, "$(P)PANIC:_SEQ")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PANIC:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(seq, "$(P)PANIC:_SEQ")
+{
+    field(DESC, "Reset panic stop button")
+    
+    # Reset panic stop button.
+    field(DO1, "0")
+    field(LNK1, "$(P)PANIC:SP")
+
+    # End move.
+    field(DO2, "0")
+    field(LNK2, "$(P)STOP:SP PP")
+    
+    field(SELM, "All") 
+}
+
+record(bo, "$(P)STOP:SP")
+{
+	field(DESC, "Stop rig")
+    field(ZNAM, "READY")
+    field(ONAM, "STOPPING")
+    # Initial value.
+    field(VAL, "0")
+    field(FLNK, "$(P)STOP:_FAN")
+}
+
+record(seq, "$(P)STOP:_RESET")
+{
+    field(DO1, "0")
+    field(LNK1, "$(P)STOP:SP")
+    field(SELM, "All")
+}
+
+record(fanout, "$(P)STOP:_FAN")
+{
+    field(LNK1, "$(P)STOP:_CALC_WAVEFORM PP")
+    field(LNK2, "$(P)STOP:_CALC_RAMP PP")
+    field(SELM, "All") 
+}
+
+record(calcout, "$(P)STOP:_CALC_RAMP")
+{
+    # TODO: Replace with $(P)WAVE:RUN once that PV has been implemented.
+    field(INPA, "0")
+    field(INPB, "$(P)STOP:SP")
+    field(CALC, "A = 0 && B = 1")
+    field(OOPT, "When Non-zero")
+	field(OUT, "$(P)STOP:_STOP_RAMP PP")
+    field(FLNK, "$(P)STOP:_RESET")
+}
+
+record(calcout, "$(P)STOP:_CALC_WAVEFORM")
+{
+    # TODO: Replace with $(P)WAVE:RUN once that PV has been implemented.
+    field(INPA, "0")
+    field(INPB, "$(P)STOP:SP")
+    field(CALC, "A = 1 && B = 1")
+    field(OOPT, "When Non-zero")
+	field(OUT, "$(P)STOP:_STOP_WAVEFORM PP")
+    field(FLNK, "$(P)STOP:_RESET")
+}
+
+record(seq, "$(P)STOP:_STOP_RAMP")
+{
+	field(DESC, "Stop ramp")   
+    field(DO1, "0")
+    field(LNK1, "$(P)MOVE:SP PP")    
+    field(SELM, "All")
+}
+
+record(seq, "$(P)STOP:_STOP_WAVEFORM")
+{
+	field(DESC, "TODO: Insert actual PV")   
+    field(DO1, "0")
+    field(LNK1, "$(P)WAVE:STOP:RAW PP")    
+    field(SELM, "All")
+}
+
+### SIMULATION RECORDS ###
+
+record(bi, "$(P)SIM:WATCHDOG:STAT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:WATCHDOG:STAT","$(P)SIM:WATCHDOG:STAT:SP")
+
+record(stringin, "$(P)SIM:ARBITRARY")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:ARBITRARY","$(P)SIM:ARBITRARY:SP")
+
+record(bo, "$(P)SIM:PANIC:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)SIM:CHANNEL")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:CHANNEL","$(P)SIM:CHANNEL:SP")
+
+record(mbbo, "$(P)SIM:READALL:SCAN:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(P)SIM:CONTROLMODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(VAL, "1")
+}
+
+record(bo, "$(P)SIM:INIT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)SIM:MOVE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:MOVE","$(P)SIM:MOVE:SP")
+
+record(mbbiDirect, "$(P)SIM:STAT:FRAME")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
