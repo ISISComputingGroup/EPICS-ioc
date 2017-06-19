@@ -1,8 +1,8 @@
 file $(SPRLG)/db/base.template
 {
 	pattern {P, PORT, ADDR, COUNT, UNITS, RECSIM, DISABLE}
-	{"\$(P)", "\$(PORT)", "01", 1, "C", "\$(RECSIM=0)", "\$(DISABLE=0)"}
-	{"\$(P)", "\$(PORT)", "02", 8, "V", "\$(RECSIM=0)", "\$(DISABLE=0)"}
+	{"\$(P)", "\$(PORT)", "01", 1, "V", "\$(RECSIM=0)", "\$(DISABLE=0)"}
+	{"\$(P)", "\$(PORT)", "02", 8, "C", "\$(RECSIM=0)", "\$(DISABLE=0)"}
 }
 
 file $(SPRLG)/db/channel.template
