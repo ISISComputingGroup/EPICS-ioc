@@ -38,11 +38,15 @@ record(calcout,"$(P)WAVE:_CONT_CALC") {
 record(bi, "$(P)WAVE:RUNNING")
 {
 	field(DESC, "Waveform generator is running/finishing?")
+	field(ZNAM, "Not running")
+    field(ONAM, "Running")
 }
 
 record(bi, "$(P)WAVE:CONTINUING")
 {
 	field(DESC, "Waveform generator is running?")
+	field(ZNAM, "Not continuing")
+    field(ONAM, "Continuing")
 }
 
 record(bo, "$(P)WAVE:ABORT")
