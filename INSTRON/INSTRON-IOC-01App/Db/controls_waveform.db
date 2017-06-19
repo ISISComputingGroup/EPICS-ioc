@@ -1,8 +1,3 @@
-record(seq, "$(P)WAVE:START")
-{
-	field(DESC, "Start the waveform generator")
-}
-
 record(ai, "$(P)WAVE:STATUS")
 {
 	field(DESC, "Status of the waveform generator")
@@ -54,6 +49,23 @@ record(bo, "$(P)WAVE:ABORT")
 	field(DESC, "Abort the waveform generator")
 	field(DTYP, "stream")
 	field(OUT,  "@devInstron.proto setWaveformAbort $(PORT)")
+}
+
+record(bo, "$(P)WAVE:STOP:RAW")
+{
+	field(DESC, "Stop the waveform generator")
+	field(DTYP, "stream")
+	field(OUT,  "@devInstron.proto setWaveformStop $(PORT)")
+}
+
+record(calcout, "$(P)WAVE:STOP")
+{
+	field(DESC, "Stop the waveform generator")
+}
+
+record(seq, "$(P)WAVE:START")
+{
+	field(DESC, "Start the waveform generator")
 }
 
 record(ao, "$(P)WAVE:AMP:SP:RAW")
@@ -124,14 +136,4 @@ record(calcout, "$(P)WAVE:AMP:STRESS")
 record(calcout, "$(P)WAVE:AMP:STRAIN")
 {
 	field(DESC, "Strain-based wave amplitude")
-}
-
-record(bo, "$(P)WAVE:STOP:RAW")
-{
-	field(DESC, "Stop the waveform generator")
-}
-
-record(calcout, "$(P)WAVE:STOP")
-{
-	field(DESC, "Stop the waveform generator")
 }
