@@ -3,6 +3,38 @@ record(seq, "$(P)WAVE:START")
 	field(DESC, "Start the waveform generator")
 }
 
+record(ai, "$(P)WAVE:STATUS")
+{
+	field(DESC, "Status of the waveform generator")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devInstron.proto getWaveformStatus $(PORT)")
+    field(PREC, "0")
+    field(FLNK, "$(P)WAVE:_STAT_FAN")
+    field(EGU, "")
+    info(archive, "VAL")
+}
+
+record(fanout,"$(P)WAVE:_STAT_FAN") {
+    field(LNK1, "$(P)WAVE:_RUN_CALC PP")
+    field(LNK2, "$(P)WAVE:_CONT_CALC PP")
+    field(SELM, "All")
+}
+
+record(calcout,"$(P)WAVE:_RUN_CALC") {
+    field(INPA, "$(P)WAVE:STATUS")
+    field(CALC, "A==1 || A==3")
+    field(OOPT, "On Change")
+	field(OUT, "$(P)WAVE:RUNNING PP")
+}
+
+record(calcout,"$(P)WAVE:_CONT_CALC") {
+    field(INPA, "$(P)WAVE:STATUS")
+    field(CALC, "A==1")
+    field(OOPT, "On Change")
+	field(OUT, "$(P)WAVE:CONTINUING PP")
+}
+
 record(bi, "$(P)WAVE:RUNNING")
 {
 	field(DESC, "Waveform generator is running/finishing?")
@@ -11,11 +43,6 @@ record(bi, "$(P)WAVE:RUNNING")
 record(bi, "$(P)WAVE:CONTINUING")
 {
 	field(DESC, "Waveform generator is running?")
-}
-
-record(bi, "$(P)WAVE:STATUS")
-{
-	field(DESC, "Status of the waveform generator")
 }
 
 record(bo, "$(P)WAVE:ABORT")
