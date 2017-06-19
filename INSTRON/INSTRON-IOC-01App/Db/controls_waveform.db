@@ -52,6 +52,8 @@ record(bi, "$(P)WAVE:CONTINUING")
 record(bo, "$(P)WAVE:ABORT")
 {
 	field(DESC, "Abort the waveform generator")
+	field(DTYP, "stream")
+	field(OUT,  "@devInstron.proto setWaveformAbort $(PORT)")
 }
 
 record(ao, "$(P)WAVE:AMP:SP:RAW")
