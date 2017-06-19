@@ -33,7 +33,7 @@ $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 ## we need to set a 10ms internal read timeout as calls with 0 timeout (such as clearing input buffer)
 ## can cause the GPIB to error  
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","GPIB0::3::INSTR", 0, 0, 1, 5, "", 1)
-# asynSetTraceMask("$(DEVICE)",0,0x11)
+asynSetTraceMask("$(DEVICE)",0,0x11)
 
 ## there is no input EOS, on output multiple command sequences can be separated by \n but we don't 
 ## need that on GPIB-ENET as each network packet gets an EOM to terminate it.  
