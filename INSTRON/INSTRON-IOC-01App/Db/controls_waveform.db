@@ -58,6 +58,13 @@ record(bo, "$(P)WAVE:STOP:RAW")
 	field(OUT,  "@devInstron.proto setWaveformStop $(PORT)")
 }
 
+record(bo, "$(P)WAVE:START:RAW")
+{
+	field(DESC, "Start the waveform generator")
+	field(DTYP, "stream")
+	field(OUT,  "@devInstron.proto setWaveformStart $(PORT)")
+}
+
 record(calcout, "$(P)WAVE:STOP")
 {
 	field(DESC, "Stop the waveform generator")
@@ -111,11 +118,6 @@ record(bo, "$(P)WAVE:LOG:MAINTAIN")
 record(bo, "$(P)WAVE:QUART:ARM")
 {
 	field(DESC, "Arm quarter cycle event detection")
-}
-
-record(bo, "$(P)WAVE:START:RAW")
-{
-	field(DESC, "Start the waveform generator")
 }
 
 record(ao, "$(P)WAVE:AMP:SP")
