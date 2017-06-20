@@ -1,10 +1,19 @@
-record(ai, "$(P)WAVE:STATUS")
+record(mbbi, "$(P)WAVE:STATUS")
 {
 	field(DESC, "Status of the waveform generator")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getWaveformStatus $(PORT)")
-    field(PREC, "0")
+    field(ZRST, "Stopped")
+    field(ONST, "Running")
+    field(TWST, "Holding")
+    field(THST, "Finishing")
+    field(FRST, "Aborted")
+    field(FVST, "Disabled")
+    field(SXST, "Slaved")
+    field(SVST, "Slave Locked")
+    field(EIST, "Sweeping")
+    field(NIST, "Dwelling")
     field(FLNK, "$(P)WAVE:_STAT_FAN")
     field(EGU, "")
     info(archive, "VAL")
@@ -19,14 +28,14 @@ record(fanout,"$(P)WAVE:_STAT_FAN") {
 record(calcout,"$(P)WAVE:_RUN_CALC") {
     field(INPA, "$(P)WAVE:STATUS")
     field(CALC, "A==1 || A==3")
-    field(OOPT, "On Change")
+    field(OOPT, "Every Time")
 	field(OUT, "$(P)WAVE:RUNNING PP")
 }
 
 record(calcout,"$(P)WAVE:_CONT_CALC") {
     field(INPA, "$(P)WAVE:STATUS")
     field(CALC, "A==1")
-    field(OOPT, "On Change")
+    field(OOPT, "Every Time")
 	field(OUT, "$(P)WAVE:CONTINUING PP")
 }
 
@@ -44,12 +53,26 @@ record(bi, "$(P)WAVE:CONTINUING")
     field(ONAM, "Continuing")
 }
 
-record(bo, "$(P)WAVE:ABORT")
+record(bo, "$(P)WAVE:START:RAW")
 {
-	field(DESC, "Abort the waveform generator")
+	field(DESC, "Start the waveform generator")
 	field(DTYP, "stream")
-	field(OUT,  "@devInstron.proto setWaveformAbort $(PORT)")
+	field(OUT,  "@devInstron.proto setWaveformStart $(PORT)")
 }
+
+record(seq, "$(P)WAVE:START:_SEQ")
+{
+	field(DESC, "Start the waveform generator")
+    
+    # Send the start command
+    field(DO1, "1")
+    field(LNK1, "$(P)WAVE:START:RAW.PROC")
+    
+    field(SELM, "All") 
+}
+
+alias("$(P)WAVE:START:_SEQ", "$(P)WAVE:START:SP")
+alias("$(P)WAVE:START:_SEQ", "$(P)WAVE:START")
 
 record(bo, "$(P)WAVE:STOP:RAW")
 {
@@ -58,22 +81,40 @@ record(bo, "$(P)WAVE:STOP:RAW")
 	field(OUT,  "@devInstron.proto setWaveformStop $(PORT)")
 }
 
-record(bo, "$(P)WAVE:START:RAW")
-{
-	field(DESC, "Start the waveform generator")
-	field(DTYP, "stream")
-	field(OUT,  "@devInstron.proto setWaveformStart $(PORT)")
-}
-
-record(calcout, "$(P)WAVE:STOP")
+record(seq, "$(P)WAVE:STOP:_SEQ")
 {
 	field(DESC, "Stop the waveform generator")
+    
+    # Send the stop command
+    field(DO1, "1")
+    field(LNK1, "$(P)WAVE:STOP:RAW.PROC")
+    
+    field(SELM, "All") 
 }
 
-record(seq, "$(P)WAVE:START")
+alias("$(P)WAVE:STOP:_SEQ", "$(P)WAVE:STOP:SP")
+alias("$(P)WAVE:STOP:_SEQ", "$(P)WAVE:STOP")
+
+record(bo, "$(P)WAVE:ABORT:RAW")
 {
-	field(DESC, "Start the waveform generator")
+	field(DESC, "Abort the waveform generator")
+	field(DTYP, "stream")
+	field(OUT,  "@devInstron.proto setWaveformAbort $(PORT)")
 }
+
+record(seq, "$(P)WAVE:ABORT:_SEQ")
+{
+	field(DESC, "Abort the waveform generator")
+    
+    # Send the abort command
+    field(DO1, "1")
+    field(LNK1, "$(P)WAVE:ABORT:RAW.PROC")
+    
+    field(SELM, "All") 
+}
+
+alias("$(P)WAVE:ABORT:_SEQ", "$(P)WAVE:ABORT:SP")
+alias("$(P)WAVE:ABORT:_SEQ", "$(P)WAVE:ABORT")
 
 record(ao, "$(P)WAVE:AMP:SP:RAW")
 {
