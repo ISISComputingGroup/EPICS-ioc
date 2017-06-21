@@ -33,6 +33,8 @@ $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 ## we need to set a 10ms internal read timeout as calls with 0 timeout (such as clearing input buffer)
 ## can cause the GPIB to error  
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","GPIB0::3::INSTR", 0, 0, 1, -1, "", 1)
+
+# Uncomment the following line to get some debug output
 # asynSetTraceMask("$(DEVICE)",0,0x11)
 
 ## there is no input EOS, on output multiple command sequences can be separated by \n but we don't 
@@ -52,6 +54,7 @@ dbLoadRecords("db/controls_channel_specific.db", "P=$(MYPVPREFIX)$(IOCNAME):,REC
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
+# Uncomment the following line to get an excesive amount of debug information
 # var streamDebug 1
 
 cd ${TOP}/iocBoot/${IOC}
