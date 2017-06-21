@@ -19,6 +19,7 @@ record(calc, "$(P)$(Q)$(NAME)")
     field(HOPR, "100")
     field(LOPR, "0")
     field(CALC, "A * 100 / 6000")
+    field(ASG, "READONLY")
 	info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
