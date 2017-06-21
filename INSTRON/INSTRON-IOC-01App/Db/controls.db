@@ -505,3 +505,10 @@ record(mbbiDirect, "$(P)SIM:STAT:FRAME")
     field(DTYP, "Soft Channel")
 }
 
+record(bi, "$(P)WATCHDOG:_DISABLE")
+{
+    field(DESC, "Disables the watchdog")
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto disableWatchdog $(PORT)")
+    field(SCAN, "1 second")
+}

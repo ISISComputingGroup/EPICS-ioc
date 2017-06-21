@@ -52,6 +52,8 @@ dbLoadRecords("db/controls_channel_specific.db", "P=$(MYPVPREFIX)$(IOCNAME):,REC
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
+# var streamDebug 1
+
 cd ${TOP}/iocBoot/${IOC}
 iocInit
 
