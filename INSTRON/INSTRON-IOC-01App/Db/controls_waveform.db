@@ -1,6 +1,10 @@
+#
+# STATE CONTROLS
+#
+
 record(mbbi, "$(P)WAVE:STATUS")
 {
-	field(DESC, "Status of the waveform generator")
+	field(DESC, "Status of the wave generator")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getWaveformStatus $(PORT)")
@@ -15,24 +19,25 @@ record(mbbi, "$(P)WAVE:STATUS")
     field(EIST, "Sweeping")
     field(NIST, "Dwelling")
     field(FLNK, "$(P)WAVE:_STAT_FAN")
-    field(EGU, "")
-    info(archive, "VAL")
 }
 
-record(fanout,"$(P)WAVE:_STAT_FAN") {
+record(fanout,"$(P)WAVE:_STAT_FAN") 
+{
     field(LNK1, "$(P)WAVE:_RUN_CALC PP")
     field(LNK2, "$(P)WAVE:_CONT_CALC PP")
     field(SELM, "All")
 }
 
-record(calcout,"$(P)WAVE:_RUN_CALC") {
+record(calcout,"$(P)WAVE:_RUN_CALC") 
+{
     field(INPA, "$(P)WAVE:STATUS")
     field(CALC, "A==1 || A==3")
     field(OOPT, "Every Time")
 	field(OUT, "$(P)WAVE:RUNNING PP")
 }
 
-record(calcout,"$(P)WAVE:_CONT_CALC") {
+record(calcout,"$(P)WAVE:_CONT_CALC") 
+{
     field(INPA, "$(P)WAVE:STATUS")
     field(CALC, "A==1")
     field(OOPT, "Every Time")
@@ -62,6 +67,10 @@ record(bo, "$(P)WAVE:START:RAW")
 
 record(seq, "$(P)WAVE:START:_SEQ")
 {
+    ###
+	###	NEEDS ADDITIONAL SEQUENCE ITEMS!!!
+	###
+	
 	field(DESC, "Start the waveform generator")
     
     # Send the start command
@@ -83,6 +92,9 @@ record(bo, "$(P)WAVE:STOP:RAW")
 
 record(seq, "$(P)WAVE:STOP:_SEQ")
 {
+    ###
+	###	NEEDS ADDITIONAL SEQUENCE ITEMS!!!
+	###
 	field(DESC, "Stop the waveform generator")
     
     # Send the stop command
@@ -116,67 +128,175 @@ record(seq, "$(P)WAVE:ABORT:_SEQ")
 alias("$(P)WAVE:ABORT:_SEQ", "$(P)WAVE:ABORT:SP")
 alias("$(P)WAVE:ABORT:_SEQ", "$(P)WAVE:ABORT")
 
-record(ao, "$(P)WAVE:AMP:SP:RAW")
-{
-	field(DESC, "Set the amplitude of the waveform generator")
-}
-
-record(ao, "$(P)WAVE:FREQ:SP")
-{
-	field(DESC, "Set the frequency of the waveform generator")
-}
+#
+# GENERATOR SETTINGS
+#
 
 record(mbbo, "$(P)WAVE:TYPE:SP")
 {
-	field(DESC, "Set the wave type of the waveform generator")
+	field(DESC, "Set the wave type of the wave generator")
+	field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformType($(P)CHANNEL:SP) $(PORT)")
+    
+    field(ZRST, "Sine")    
+    field(ONST, "Triangle")       
+    field(TWST, "Square")
+    field(THST, "Haversine")
+	field(FRST, "Havetriangle")
+	field(FVST, "Haversquare")
+	field(SXST, "Sensor")
+	field(SVST, "Aux")
+	field(EIST, "Sawtooth")
 }
 
-record(bo, "$(P)WAVE:QUART:OFF")
+record(mbbi, "$(P)WAVE:TYPE")
 {
-	field(DESC, "Switch off quarter cycle control")
-}
-
-record(ao, "$(P)WAVE:QUART:SP")
-{
-	field(DESC, "Set quarter cycle event detector")
-}
-
-record(ai, "$(P)WAVE:QUART")
-{
-	field(DESC, "Elapsed quarter cycle counter")
-}
-
-record(bo, "$(P)WAVE:HOLD")
-{
-	field(DESC, "Hold quarter cycle event detection")
-}
-
-record(bo, "$(P)WAVE:LOG:MAINTAIN")
-{
-	field(DESC, "No action on quarter cycle event detection")
-}
-
-record(bo, "$(P)WAVE:QUART:ARM")
-{
-	field(DESC, "Arm quarter cycle event detection")
+	field(DESC, "Set the wave type of the wave generator")
+	field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(INP,  "@devInstron.proto getWaveformType($(P)CHANNEL) $(PORT)")
+    
+    field(ZRST, "Sine")    
+    field(ONST, "Triangle")       
+    field(TWST, "Square")
+    field(THST, "Haversine")
+	field(FRST, "Havetriangle")
+	field(FVST, "Haversquare")
+	field(SXST, "Sensor")
+	field(SVST, "Aux")
+	field(EIST, "Sawtooth")
+    
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+	field(FRVL, "4")
+	field(FVVL, "5")
+	field(SXVL, "6")
+	field(SVVL, "7")
+	field(EIVL, "8")
 }
 
 record(ao, "$(P)WAVE:AMP:SP")
 {
 	field(DESC, "Set the waveform generator amplitude")
+	field(PREC, "3")
+	field(EGU, "m")
+	field(FLNK, "$(P)WAVE:AMP:SP:_FAN")
 }
 
-record(calcout, "$(P)WAVE:AMP:POS")
+record(fanout, "$(P)WAVE:AMP:SP:_FAN")
+{
+	field(LNK1, "$(P)WAVE:AMP:SP:_POS")
+	field(LNK2, "$(P)WAVE:AMP:SP:_STRESS")
+	field(LNK3, "$(P)WAVE:AMP:SP:_STRAIN")
+	field(LNK4, "$(P)WAVE:AMP:SP:_FWD")
+}
+
+record(calc, "$(P)WAVE:AMP:SP:_POS")
 {
 	field(DESC, "Position-based wave amplitude")
+    field(INPA, "$(P)WAVE:AMP:SP")
+	field(INPB, "$(P)POS:SCALE")
+	field(INPC, "1000")
+    field(CALC, "A/(B*C)")
 }
 
-record(calcout, "$(P)WAVE:AMP:STRESS")
+record(calc, "$(P)WAVE:AMP:SP:_STRESS")
 {
 	field(DESC, "Stress-based wave amplitude")
+    field(INPA, "$(P)WAVE:AMP:SP")
+	field(INPB, "$(P)STRESS:SCALE")
+	field(INPC, "$(P)STRESS:AREA")
+    field(CALC, "(A*C)/B")
 }
 
-record(calcout, "$(P)WAVE:AMP:STRAIN")
+record(calc, "$(P)WAVE:AMP:SP:_STRAIN")
 {
 	field(DESC, "Strain-based wave amplitude")
+    field(INPA, "$(P)WAVE:AMP:SP")
+	field(INPB, "$(P)STRAIN:SCALE")
+	field(INPC, "$(P)STRAIN:LENGTH")
+    field(CALC, "A/(B*C*100000)")
 }
+
+record(calcout, "$(P)WAVE:AMP:SP:_FWD")
+{
+    field(OOPT, "Every Time")
+	field(INPA, "$(P)WAVE:AMP:SP:_POS")
+	field(INPB, "$(P)WAVE:AMP:SP:_STRESS")
+	field(INPC, "$(P)WAVE:AMP:SP:_STRAIN")
+	field(INPD, "$(P)CHANNEL:SP.RVAL")
+	field(CALC, "D=1 ? A : (D=2 ? B : (D=3 ? C : -1.0))")
+	field(OUT, "$(P)WAVE:AMP:SP:_RAW PP")
+}
+
+record(ao, "$(P)WAVE:AMP:SP:_RAW")
+{
+	field(DESC, "Set the amp of the wave generator")
+	field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformAmplitude($(P)CHANNEL:SP) $(PORT)")
+}
+
+record(ai, "$(P)WAVE:AMP")
+{
+	field(DESC, "Get the amp of the wave generator")
+	field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(INP,  "@devInstron.proto getWaveformAmplitude($(P)CHANNEL) $(PORT)")
+	field(PREC, "3")
+	field(EGU, "m")
+}
+
+record(ao, "$(P)WAVE:FREQ:SP")
+{
+	field(DESC, "Set the wave generator freq")
+	field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformFrequency($(P)CHANNEL:SP) $(PORT)")
+	field(PREC, "3")
+	field(EGU, "Hz")
+}
+
+record(ai, "$(P)WAVE:FREQ")
+{
+	field(DESC, "Get the freq of the wave generator")
+	field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(INP,  "@devInstron.proto getWaveformFrequency($(P)CHANNEL) $(PORT)")
+	field(PREC, "3")
+	field(EGU, "Hz")
+}
+
+##
+## QUARTER CYCLE COUNTER EVENT DETECTOR CONTROLS
+##
+#
+#record(bo, "$(P)WAVE:QUART:OFF")
+#{
+#	field(DESC, "Switch off quarter cycle control")
+#}
+#
+#record(ao, "$(P)WAVE:QUART:SP")
+#{
+#	field(DESC, "Set quarter cycle event detector")
+#}
+#
+#record(ai, "$(P)WAVE:QUART")
+#{
+#	field(DESC, "Elapsed quarter cycle counter")
+#}
+#
+#record(bo, "$(P)WAVE:HOLD")
+#{
+#	field(DESC, "Hold quarter cycle event detection")
+#}
+#
+#record(bo, "$(P)WAVE:LOG:MAINTAIN")
+#{
+#	field(DESC, "No action on quar event detection")
+#}
+#
+#record(bo, "$(P)WAVE:QUART:ARM")
+#{
+#	field(DESC, "Arm quarter cycle event detection")
+#}

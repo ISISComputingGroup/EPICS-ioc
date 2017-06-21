@@ -37,6 +37,9 @@ record(mbbi, "$(P)CHANNEL")
     field(SDIS, "$(P)DISABLE")
     
     field(FLNK, "$(P)CHANNEL:_UPDATE_SP")
+	
+	field(VAL, "1")
+	field(PINI, "YES")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
