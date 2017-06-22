@@ -128,6 +128,19 @@ record(seq, "$(P)WAVE:ABORT:_SEQ")
 alias("$(P)WAVE:ABORT:_SEQ", "$(P)WAVE:ABORT:SP")
 alias("$(P)WAVE:ABORT:_SEQ", "$(P)WAVE:ABORT")
 
+record(bo, "$(P)WAVE:HOLD")
+{
+	field(DESC, "Hold quarter cycle event detection")
+	field(DESC, "Set quarter cycle event detector")
+	field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformQuart $(PORT)")
+}
+
+record(bo, "$(P)WAVE:LOG:MAINTAIN")
+{
+	field(DESC, "No action on quart event detection")
+}
+
 #
 # GENERATOR SETTINGS
 #
@@ -270,33 +283,98 @@ record(ai, "$(P)WAVE:FREQ")
 ##
 ## QUARTER CYCLE COUNTER EVENT DETECTOR CONTROLS
 ##
-#
-#record(bo, "$(P)WAVE:QUART:OFF")
-#{
-#	field(DESC, "Switch off quarter cycle control")
-#}
-#
-#record(ao, "$(P)WAVE:QUART:SP")
-#{
-#	field(DESC, "Set quarter cycle event detector")
-#}
-#
-#record(ai, "$(P)WAVE:QUART")
-#{
-#	field(DESC, "Elapsed quarter cycle counter")
-#}
-#
-#record(bo, "$(P)WAVE:HOLD")
-#{
-#	field(DESC, "Hold quarter cycle event detection")
-#}
-#
-#record(bo, "$(P)WAVE:LOG:MAINTAIN")
-#{
-#	field(DESC, "No action on quar event detection")
-#}
-#
-#record(bo, "$(P)WAVE:QUART:ARM")
-#{
-#	field(DESC, "Arm quarter cycle event detection")
-#}
+
+record(mbbi, "$(P)QUART:STATUS")
+{
+	field(DESC, "Switch off quarter cycle control")
+	field(DTYP, "stream")
+	field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(INP,  "@devInstron.proto getWaveformQuartStatus $(PORT)")
+    
+    field(ZRST, "Off")    
+    field(ONST, "Prepared")       
+    field(TWST, "Armed")
+    field(THST, "INVALID")
+	field(FRST, "Tripped")
+	field(FVST, "INVALID")
+	field(SXST, "Prepared (GDI)")
+	field(SVST, "Armed (GDI)")
+	field(EIST, "INVALID")
+	field(NIST, "Tripped (GDI)")
+    
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+	field(FRVL, "4")
+	field(FVVL, "5")
+	field(SXVL, "6")
+	field(SVVL, "7")
+	field(EIVL, "8")
+	field(NIVL, "9")
+}
+
+record(bo, "$(P)QUART:OFF:SP")
+{
+	field(DESC, "Switch off quarter cycle control")
+	field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformQuartOff $(PORT)")
+}
+
+alias("$(P)QUART:OFF:SP", "$(P)QUART:OFF")
+
+record(ao, "$(P)QUART:CYCLE:SP")
+{
+	field(DESC, "Set the required number of cycles")
+	field(PREC, "0")
+	field(EGU, "")
+	field(FLNK, "$(P)QUART:SP:_CALC")
+}
+
+record(calcout, "$(P)QUART:SP:_CALC")
+{
+	field(DESC, "Turns cycles into quarters")
+    field(OOPT, "Every Time")
+	field(INPA, "$(P)QUART:CYCLE:SP")
+	field(CALC, "4*A")
+	field(OUT, "$(P)QUART:SP PP")
+}
+
+record(ao, "$(P)QUART:SP")
+{
+	field(DESC, "Set quarter cycle event detector")
+	field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformQuart $(PORT)")
+	field(PREC, "0")
+	field(EGU, "")
+}
+
+record(ai, "$(P)QUART")
+{
+	field(DESC, "Elapsed quarter cycle counter")
+	field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(INP,  "@devInstron.proto getWaveformQuart $(PORT)")
+	field(PREC, "0")
+	field(EGU, "")
+	field(FLNK, "$(P)QUART:_STOP")
+}
+
+record(calcout, "$(P)QUART:_STOP")
+{
+    field(OOPT, "When Non-zero")
+	field(INPA, "$(P)QUART")
+	field(INPB, "$(P)QUART:SP")
+	field(CALC, "A%4=0 && A>=B")
+	field(OUT, "$(P)WAVE:STOP PP")
+}
+
+record(bo, "$(P)QUART:ARM:SP")
+{
+	field(DESC, "Arm quarter cycle event detection")
+	field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformQuartArm $(PORT)")
+}
+
+alias("$(P)QUART:ARM:SP", "$(P)QUART:ARM")
