@@ -121,7 +121,7 @@ record(ao, "$(P)$(CHAN):TOLERANCE")
 record(ao, "$(P)$(CHAN):SP")
 {
 	field(PREC, "3")
-    field(VAL, "1")
+    field(VAL, "0")
     field(FLNK, "$(P)$(CHAN):SP:_NEWDATA PP")
     field(EGU, "$(CHAN_UNITS)")
     field(SIML, "$(P)SIM")
@@ -138,7 +138,7 @@ record(fanout, "$(P)$(CHAN):SP:_NEWDATA")
 
 record(ai, "$(P)$(CHAN):SP:RBV")
 {
-    field(VAL, "1")
+    field(VAL, "0")
     field(FLNK, "$(P)$(CHAN):SP:_UPDATELIMITS")
     # Limits will be updated by $(P)$(CHAN):SP:_UPDATELIMITS
     field(HIGH, "0")
