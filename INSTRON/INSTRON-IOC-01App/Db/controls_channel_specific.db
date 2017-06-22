@@ -4,8 +4,8 @@
 
 record(transform, "$(P)POS:TO")
 {
-    field(INPA, "$(P)POS:RAW")
-    field(INPB, "$(P)POS:SCALE")
+    field(INPA, "$(P)POS:RAW CP")
+    field(INPB, "$(P)POS:SCALE CP")
     field(INPC, "$(P)POS:RAW:SP:RBV CP") 
 	
     field(CLCD, "A*B*1000")
@@ -26,9 +26,9 @@ record(calcout, "$(P)POS:FROM")
 
 record(transform, "$(P)STRESS:TO")
 {
-    field(INPA, "$(P)STRESS:RAW")
-    field(INPB, "$(P)STRESS:SCALE") 
-    field(INPC, "$(P)STRESS:AREA")
+    field(INPA, "$(P)STRESS:RAW CP")
+    field(INPB, "$(P)STRESS:SCALE CP") 
+    field(INPC, "$(P)STRESS:AREA CP")
 	field(INPD, "$(P)STRESS:RAW:SP:RBV CP")
 	
     field(CLCE, "A*B*(1/C)")
@@ -50,9 +50,9 @@ record(calcout, "$(P)STRESS:FROM")
 
 record(transform, "$(P)STRAIN:TO")
 {
-    field(INPA, "$(P)STRAIN:RAW")
-    field(INPB, "$(P)STRAIN:SCALE")  
-    field(INPC, "$(P)STRAIN:LENGTH")
+    field(INPA, "$(P)STRAIN:RAW CP")
+    field(INPB, "$(P)STRAIN:SCALE CP")  
+    field(INPC, "$(P)STRAIN:LENGTH CP")
 	field(INPD, "$(P)STRAIN:RAW:SP:RBV CP")
 	
     field(CLCE, "A*100000*B*(1/C)")
@@ -103,6 +103,7 @@ record(ao, "$(P)STRESS:AREA:SP")
     field(OUT, "@devInstron.proto setArea(2) $(PORT)")
     field(PREC, "3")
     field(EGU, "mm^2")
+	field(FLNK, "$(P)STRESS:AREA:SP:CALC")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STRESS:AREA:SP")
     field(SDIS, "$(P)DISABLE")
@@ -114,6 +115,15 @@ record(calcout, "$(P)STRESS:DIAMETER:SP:CALC")
     # 4*ATAN(1) = PI
     field(CALC, "((A/2)^2)*(4*ATAN(1))")
     field(OUT, "$(P)STRESS:AREA:SP PP")
+    field(OOPT, "Every Time")
+}
+
+record(calcout, "$(P)STRESS:AREA:SP:CALC")
+{
+    field(INPA, "$(P)STRESS:AREA:SP")
+    # 4*ATAN(1) = PI
+	field(CALC, "2*SQR(A/(4*ATAN(1)))")
+    field(OUT, "$(P)STRESS:DIAMETER:SP PP")
     field(OOPT, "Every Time")
 }
 
