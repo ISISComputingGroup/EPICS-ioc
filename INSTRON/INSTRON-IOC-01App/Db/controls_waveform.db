@@ -131,14 +131,15 @@ alias("$(P)WAVE:ABORT:_SEQ", "$(P)WAVE:ABORT")
 record(bo, "$(P)WAVE:HOLD")
 {
 	field(DESC, "Hold quarter cycle event detection")
-	field(DESC, "Set quarter cycle event detector")
 	field(DTYP, "stream")
-    field(OUT,  "@devInstron.proto setWaveformQuart $(PORT)")
+    field(OUT,  "@devInstron.proto setWaveformHold $(PORT)")
 }
 
 record(bo, "$(P)WAVE:LOG:MAINTAIN")
 {
 	field(DESC, "No action on quart event detection")
+	field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setLogMaintain $(PORT)")
 }
 
 #
@@ -366,7 +367,9 @@ record(calcout, "$(P)QUART:_STOP")
     field(OOPT, "When Non-zero")
 	field(INPA, "$(P)QUART")
 	field(INPB, "$(P)QUART:SP")
-	field(CALC, "A%4=0 && A>=B")
+	field(INPC, "$(P)WAVE:CONTINUING.RAW")
+	field(INPD, "$(P)QUART:STATUS.RAW")
+	field(CALC, "A%4=0 && A>=B && C=1 && D>0")
 	field(OUT, "$(P)WAVE:STOP PP")
 }
 
