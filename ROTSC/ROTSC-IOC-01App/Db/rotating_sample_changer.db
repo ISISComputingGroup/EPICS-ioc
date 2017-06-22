@@ -359,6 +359,7 @@ record(calcout, "$(P)CALC_STAT")
 	field(INPB, "$(P)CALC_MOVE_FINISHED CP")
 	field(CALC, "(!A)?0:B?1:2")
 	field(OUT, "$(P)STAT PP")
+    field(ASG, "READONLY")
 }
 
 record(mbbi, "$(P)STAT")
