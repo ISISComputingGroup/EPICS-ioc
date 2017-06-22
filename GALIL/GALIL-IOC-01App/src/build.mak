@@ -11,7 +11,9 @@ include $(TOP)/configure/CONFIG
 # Build the IOC application GALIL-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
-PROD_IOC = $(APPNAME)
+ifeq ($(STATIC_BUILD),NO)
+PROD_IOC_WIN32 = $(APPNAME)
+endif
 # GALIL-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
@@ -40,6 +42,7 @@ $(APPNAME)_DBD += motionSetPoints.dbd
 $(APPNAME)_DBD += sampleChanger.dbd 
 $(APPNAME)_DBD += stdSupport.dbd 
 $(APPNAME)_DBD += asubFunctions.dbd 
+$(APPNAME)_DBD += asyn.dbd 
 ## dbd for barndoors
 $(APPNAME)_DBD += cvtRecord.dbd
 

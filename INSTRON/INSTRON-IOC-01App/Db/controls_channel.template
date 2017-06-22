@@ -1,3 +1,17 @@
+record(seq, "$(P)$(CHAN):READALL")
+{
+	field(DESC, "Read data from $(CHAN) channel")
+    
+    field(LNK1, "$(P)$(CHAN):STEP:TIME PP")
+	field(LNK2, "$(P)$(CHAN):ABS PP")
+	field(LNK3, "$(P)$(CHAN):RAW:SP:RBV PP")
+	field(LNK4, "$(P)$(CHAN):RAW PP")
+	field(LNK5, "$(P)$(CHAN):SCALE PP")
+	field(LNK6, "$(P)$(CHAN):TYPE PP")
+    
+    field(SELM, "All")
+}
+
 record(ao, "$(P)$(CHAN):STEP:TIME:SP")
 {
     field(DTYP, "stream")
@@ -12,7 +26,7 @@ record(ao, "$(P)$(CHAN):STEP:TIME:SP")
 record(ai, "$(P)$(CHAN):STEP:TIME")
 {
     field(DESC, "The step time of the $(CHAN) channel")
-    field(SCAN, "1 second")
+    field(SCAN, "passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getStepTime($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
@@ -42,7 +56,7 @@ record(mbbo, "$(P)$(CHAN):ABS:SP")
 record(mbbi, "$(P)$(CHAN):ABS")
 {
     field(DESC, "The waveform type of the $(CHAN) channel")
-    field(SCAN, "1 second")
+    field(SCAN, "passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getChanWaveType($(CHAN_NUM)) $(PORT)")
     field(ZRST, "Ramp")
@@ -70,7 +84,7 @@ record(ao, "$(P)$(CHAN):RAW:SP")
 
 record(ai, "$(P)$(CHAN):RAW:SP:RBV")
 {
-    field(SCAN, "1 second")
+    field(SCAN, "passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getRampAmpSP($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
@@ -81,7 +95,7 @@ record(ai, "$(P)$(CHAN):RAW:SP:RBV")
 
 record(ai, "$(P)$(CHAN):RAW")
 {
-    field(SCAN, "1 second")
+    field(SCAN, "passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getCurrentFeedback($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
@@ -106,6 +120,7 @@ record(ao, "$(P)$(CHAN):TOLERANCE")
 
 record(ao, "$(P)$(CHAN):SP")
 {
+	field(PREC, "3")
     field(VAL, "1")
     field(FLNK, "$(P)$(CHAN):SP:_NEWDATA PP")
     field(EGU, "$(CHAN_UNITS)")
@@ -131,6 +146,8 @@ record(ai, "$(P)$(CHAN):SP:RBV")
     field(HSV, "MINOR")
     field(LSV, "MINOR")
     field(EGU, "$(CHAN_UNITS)")
+	info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)$(CHAN)")
@@ -138,12 +155,12 @@ record(ai, "$(P)$(CHAN)")
     field(DESC, "The current value of the $(CHAN) channel")
     field(DTYP, "Soft Channel")
     field(PREC, "3")
-    field(EGU, "$(CHAN_UNITS)")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    field(EGU, "$(CHAN_UNITS)")    
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)$(CHAN):SIM:VALUE")
     field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
@@ -162,7 +179,7 @@ record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
 record(ai, "$(P)$(CHAN):SCALE")
 {
     field(DESC, "The scale of the $(CHAN) channel")
-    field(SCAN, "1 second")
+    field(SCAN, "passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getChanScale($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
@@ -177,7 +194,7 @@ record(ai, "$(P)$(CHAN):SCALE")
 
 record(mbbi, "$(P)$(CHAN):TYPE")
 {
-    field(SCAN, "1 second")
+    field(SCAN, "passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getType($(CHAN_NUM),$(P)$(CHAN)) $(PORT)")
     field(ZRVL, "0")

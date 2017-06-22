@@ -2,13 +2,17 @@
 ### Conversion records
 ### 
 
-record(calcout, "$(P)POS:TO")
+record(transform, "$(P)POS:TO")
 {
     field(INPA, "$(P)POS:RAW")
-    field(INPB, "$(P)POS:SCALE")    
-    field(CALC, "A*B*1000")
-    field(OUT, "$(P)POS PP")
-    field(OOPT, "Every Time")
+    field(INPB, "$(P)POS:SCALE")
+    field(INPC, "$(P)POS:RAW:SP:RBV CP") 
+	
+    field(CLCD, "A*B*1000")
+	field(CLCE, "C*B*1000")
+	
+    field(OUTD, "$(P)POS PP")
+    field(OUTE, "$(P)POS:SP:RBV PP")
 }
 
 record(calcout, "$(P)POS:FROM")
@@ -20,14 +24,18 @@ record(calcout, "$(P)POS:FROM")
     field(OOPT, "Every Time")
 }
 
-record(calcout, "$(P)STRESS:TO")
+record(transform, "$(P)STRESS:TO")
 {
     field(INPA, "$(P)STRESS:RAW")
     field(INPB, "$(P)STRESS:SCALE") 
     field(INPC, "$(P)STRESS:AREA")
-    field(CALC, "A*B*(1/C)")
-    field(OUT, "$(P)STRESS PP")
-    field(OOPT, "Every Time")
+	field(INPD, "$(P)STRESS:RAW:SP:RBV CP")
+	
+    field(CLCE, "A*B*(1/C)")
+	field(CLCF, "D*B*(1/C)")
+	
+    field(OUTE, "$(P)STRESS PP")
+	field(OUTF, "$(P)STRESS:SP:RBV PP")
 }
 
 record(calcout, "$(P)STRESS:FROM")
@@ -40,14 +48,18 @@ record(calcout, "$(P)STRESS:FROM")
     field(OOPT, "Every Time")
 }
 
-record(calcout, "$(P)STRAIN:TO")
+record(transform, "$(P)STRAIN:TO")
 {
     field(INPA, "$(P)STRAIN:RAW")
     field(INPB, "$(P)STRAIN:SCALE")  
     field(INPC, "$(P)STRAIN:LENGTH")
-    field(CALC, "A*100000*B*(1/C)")
-    field(OUT, "$(P)STRAIN PP")
-    field(OOPT, "Every Time")
+	field(INPD, "$(P)STRAIN:RAW:SP:RBV CP")
+	
+    field(CLCE, "A*100000*B*(1/C)")
+	field(CLCF, "D*100000*B*(1/C)")
+	
+    field(OUTE, "$(P)STRAIN PP")
+	field(OUTF, "$(P)STRAIN:SP:RBV PP")
 }
 
 record(calcout, "$(P)STRAIN:FROM")

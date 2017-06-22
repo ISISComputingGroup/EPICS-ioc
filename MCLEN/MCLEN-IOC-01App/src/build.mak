@@ -40,6 +40,7 @@ $(APPNAME)_DBD += motionSetPoints.dbd
 $(APPNAME)_DBD += sampleChanger.dbd 
 $(APPNAME)_DBD += stdSupport.dbd
 $(APPNAME)_DBD += asubFunctions.dbd 
+$(APPNAME)_DBD += asyn.dbd 
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##

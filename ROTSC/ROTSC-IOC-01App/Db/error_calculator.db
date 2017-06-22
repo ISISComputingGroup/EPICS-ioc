@@ -7,6 +7,8 @@ record(ai, "$(P)$(ERR)_NUMBER")
 
 record(mbbi, "$(P)$(ERR)_LOWER")
 {
+	field(DESC, "Dictionary of error numbers")	
+	
 	field(DTYP, "Raw Soft Channel")
 	field(INP, "$(P)$(ERR)_NUMBER CP")
 	
@@ -32,6 +34,8 @@ record(mbbi, "$(P)$(ERR)_LOWER")
 
 record(mbbi, "$(P)$(ERR)_UPPER")
 {
+	field(DESC, "Dictionary of error numbers")	
+	
 	field(DTYP, "Raw Soft Channel")
 	field(INP, "$(P)$(ERR)_NUMBER CP")
 
@@ -58,6 +62,7 @@ record(mbbi, "$(P)$(ERR)_UPPER")
 
 record(scalcout, "$(P)$(ERR)_STRING")
 {
+	field(DESC, "Device error as text")	
 	field(SVAL, "")
 	field(INPA, "$(P)$(ERR)_NUMBER CP")
 	field(INAA, "$(P)$(ERR)_LOWER CP")
