@@ -293,6 +293,9 @@ record(ao, "$(P)WAVE:AMP:SP")
 	field(PREC, "3")
 	field(EGU, "")
 	field(FLNK, "$(P)WAVE:AMP:SP:_FAN")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:AMP:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(fanout, "$(P)WAVE:AMP:SP:_FAN")
@@ -584,19 +587,17 @@ record(ai, "$(P)SIM:WAVE:AMP")
 
 alias("$(P)SIM:WAVE:AMP","$(P)SIM:WAVE:AMP:SP")
 
-record(mbbi, "$(P)SIM:QUART:STATUS")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
 record(ao, "$(P)SIM:WAVE:AMP:SP:_RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-alias("$(P)SIM:WAVE:AMP","$(P)SIM:WAVE:AMP:SP:_RAW")
+record(mbbi, "$(P)SIM:QUART:STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
 
 record(bo, "$(P)SIM:WAVE:LOG:MAINTAIN")
 {
