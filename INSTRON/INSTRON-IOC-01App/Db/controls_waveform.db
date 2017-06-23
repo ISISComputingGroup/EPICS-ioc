@@ -268,9 +268,6 @@ record(mbbi, "$(P)WAVE:TYPE")
 	field(SXVL, "6")
 	field(SVVL, "7")
 	field(EIVL, "8")
-	
-	field(VAL, "0")
-    field(PINI, "YES")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
