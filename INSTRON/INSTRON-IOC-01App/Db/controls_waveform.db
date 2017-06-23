@@ -33,6 +33,7 @@ record(fanout,"$(P)WAVE:_STAT_FAN")
     field(LNK1, "$(P)WAVE:_RUN_CALC PP")
     field(LNK2, "$(P)WAVE:_CONT_CALC PP")
     field(SELM, "All")
+}
 
 record(calcout,"$(P)WAVE:_RUN_CALC") 
 {
@@ -40,6 +41,7 @@ record(calcout,"$(P)WAVE:_RUN_CALC")
     field(CALC, "A==1 || A==3")
     field(OOPT, "Every Time")
 	field(OUT, "$(P)WAVE:RUNNING PP")
+}
 
 record(calcout,"$(P)WAVE:_CONT_CALC") 
 {
@@ -47,6 +49,7 @@ record(calcout,"$(P)WAVE:_CONT_CALC")
     field(CALC, "A==1")
     field(OOPT, "Every Time")
 	field(OUT, "$(P)WAVE:CONTINUING PP")
+}
 
 record(bi, "$(P)WAVE:RUNNING")
 {
@@ -56,6 +59,7 @@ record(bi, "$(P)WAVE:RUNNING")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+}
 
 record(bi, "$(P)WAVE:CONTINUING")
 {
@@ -65,6 +69,7 @@ record(bi, "$(P)WAVE:CONTINUING")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+}
 
 record(bo, "$(P)WAVE:START:RAW")
 {
@@ -113,11 +118,13 @@ record(seq, "$(P)WAVE:START:_SEQ")
     field(LNK8, "$(P)WAVE:START")
     
     field(SELM, "All") 
+}
 
 record(bo, "$(P)WAVE:START:SP") 
 {
 	field(DESC, "Start the waveform generator")
 	field(FLNK, "$(P)WAVE:START:_SEQ")
+}
 
 alias("$(P)WAVE:START:SP", "$(P)WAVE:START")
 
@@ -148,11 +155,13 @@ record(seq, "$(P)WAVE:STOP:_SEQ")
     field(LNK3, "$(P)WAVE:START")
     
     field(SELM, "All") 
+}
 
 record(bo, "$(P)WAVE:STOP:SP") 
 {
 	field(DESC, "Stop the waveform generator")
 	field(FLNK, "$(P)WAVE:STOP:_SEQ")
+}
 
 alias("$(P)WAVE:STOP:SP", "$(P)WAVE:STOP")
 
@@ -175,11 +184,13 @@ record(seq, "$(P)WAVE:ABORT:_SEQ")
     field(LNK1, "$(P)WAVE:ABORT:RAW.PROC")
     
     field(SELM, "All") 
+}
 
 record(bo, "$(P)WAVE:ABORT:SP") 
 {
 	field(DESC, "Abort the waveform generator")
 	field(FLNK, "$(P)WAVE:ABORT:_SEQ")
+}
 
 alias("$(P)WAVE:ABORT:SP", "$(P)WAVE:ABORT")
 
@@ -267,6 +278,7 @@ record(ao, "$(P)WAVE:AMP:SP")
 	field(PREC, "3")
 	field(EGU, "m")
 	field(FLNK, "$(P)WAVE:AMP:SP:_FAN")
+}
 
 record(fanout, "$(P)WAVE:AMP:SP:_FAN")
 {
@@ -274,6 +286,7 @@ record(fanout, "$(P)WAVE:AMP:SP:_FAN")
 	field(LNK2, "$(P)WAVE:AMP:SP:_STRESS")
 	field(LNK3, "$(P)WAVE:AMP:SP:_STRAIN")
 	field(LNK4, "$(P)WAVE:AMP:SP:_FWD")
+}
 
 record(calc, "$(P)WAVE:AMP:SP:_POS")
 {
@@ -282,6 +295,7 @@ record(calc, "$(P)WAVE:AMP:SP:_POS")
 	field(INPB, "$(P)POS:SCALE")
 	field(INPC, "1000")
     field(CALC, "A/(B*C)")
+}
 
 record(calc, "$(P)WAVE:AMP:SP:_STRESS")
 {
@@ -290,6 +304,7 @@ record(calc, "$(P)WAVE:AMP:SP:_STRESS")
 	field(INPB, "$(P)STRESS:SCALE")
 	field(INPC, "$(P)STRESS:AREA")
     field(CALC, "(A*C)/B")
+}
 
 record(calc, "$(P)WAVE:AMP:SP:_STRAIN")
 {
@@ -298,6 +313,7 @@ record(calc, "$(P)WAVE:AMP:SP:_STRAIN")
 	field(INPB, "$(P)STRAIN:SCALE")
 	field(INPC, "$(P)STRAIN:LENGTH")
     field(CALC, "A/(B*C*100000)")
+}
 
 record(calcout, "$(P)WAVE:AMP:SP:_FWD")
 {
@@ -308,6 +324,7 @@ record(calcout, "$(P)WAVE:AMP:SP:_FWD")
 	field(INPD, "$(P)CHANNEL:SP.RVAL")
 	field(CALC, "D=1 ? A : (D=2 ? B : (D=3 ? C : -1.0))")
 	field(OUT, "$(P)WAVE:AMP:SP:_RAW PP")
+}
 
 record(ao, "$(P)WAVE:AMP:SP:_RAW")
 {
@@ -422,6 +439,7 @@ record(ao, "$(P)QUART:CYCLE:SP")
 	field(PREC, "0")
 	field(EGU, "")
 	field(FLNK, "$(P)QUART:SP:_CALC")
+}
 
 record(calcout, "$(P)QUART:SP:_CALC")
 {
@@ -430,6 +448,7 @@ record(calcout, "$(P)QUART:SP:_CALC")
 	field(INPA, "$(P)QUART:CYCLE:SP")
 	field(CALC, "4*A")
 	field(OUT, "$(P)QUART:SP PP")
+}
 
 record(ao, "$(P)QUART:SP")
 {
@@ -469,6 +488,7 @@ record(calcout, "$(P)QUART:_STOP")
 	field(INPD, "$(P)QUART:STATUS.RAW")
 	field(CALC, "A%4=0 && A>=B && C=1 && D>0")
 	field(OUT, "$(P)WAVE:STOP PP")
+}
 
 record(bo, "$(P)QUART:ARM:SP")
 {
@@ -579,4 +599,3 @@ record(bo, "$(P)SIM:WAVE:STOP:RAW")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
-
