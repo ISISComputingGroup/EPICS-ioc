@@ -19,6 +19,9 @@ record(mbbi, "$(P)WAVE:STATUS")
     field(EIST, "Sweeping")
     field(NIST, "Dwelling")
     field(FLNK, "$(P)WAVE:_STAT_FAN")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(fanout,"$(P)WAVE:_STAT_FAN") 
@@ -49,6 +52,9 @@ record(bi, "$(P)WAVE:RUNNING")
 	field(DESC, "Waveform generator is running/finishing?")
 	field(ZNAM, "Not running")
     field(ONAM, "Running")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bi, "$(P)WAVE:CONTINUING")
@@ -56,6 +62,9 @@ record(bi, "$(P)WAVE:CONTINUING")
 	field(DESC, "Waveform generator is running?")
 	field(ZNAM, "Not continuing")
     field(ONAM, "Continuing")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)WAVE:START:RAW")
@@ -233,6 +242,9 @@ record(mbbi, "$(P)WAVE:TYPE")
 	field(SXVL, "6")
 	field(SVVL, "7")
 	field(EIVL, "8")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)WAVE:AMP:SP")
@@ -304,6 +316,9 @@ record(ai, "$(P)WAVE:AMP")
     field(INP,  "@devInstron.proto getWaveformAmplitude($(P)CHANNEL) $(PORT)")
 	field(PREC, "3")
 	field(EGU, "m")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)WAVE:FREQ:SP")
@@ -323,6 +338,9 @@ record(ai, "$(P)WAVE:FREQ")
     field(INP,  "@devInstron.proto getWaveformFrequency($(P)CHANNEL) $(PORT)")
 	field(PREC, "3")
 	field(EGU, "Hz")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 ##
@@ -358,6 +376,9 @@ record(mbbi, "$(P)QUART:STATUS")
 	field(SVVL, "7")
 	field(EIVL, "8")
 	field(NIVL, "9")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)QUART:OFF:SP")
@@ -404,6 +425,9 @@ record(ai, "$(P)QUART")
 	field(PREC, "0")
 	field(EGU, "")
 	field(FLNK, "$(P)QUART:_STOP")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(calcout, "$(P)QUART:_STOP")
