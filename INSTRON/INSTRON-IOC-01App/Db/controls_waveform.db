@@ -489,7 +489,7 @@ record(calcout, "$(P)QUART:_STOP")
 	field(INPA, "$(P)QUART")
 	field(INPB, "$(P)QUART:SP")
 	field(INPC, "$(P)WAVE:CONTINUING.RVAL")
-	field(INPD, "$(P)QUART:STATUS.RAW")
+	field(INPD, "$(P)QUART:STATUS.RVAL")
 	field(CALC, "A%4=0 && A>=B && C=1 && D>0")
 	field(OUT, "$(P)WAVE:STOP PP")
 }
