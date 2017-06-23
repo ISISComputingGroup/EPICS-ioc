@@ -8,6 +8,7 @@ record(mbbi, "$(P)WAVE:STATUS")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getWaveformStatus $(PORT)")
+	
     field(ZRST, "Stopped")
     field(ONST, "Running")
     field(TWST, "Holding")
@@ -18,6 +19,18 @@ record(mbbi, "$(P)WAVE:STATUS")
     field(SVST, "Slave Locked")
     field(EIST, "Sweeping")
     field(NIST, "Dwelling")
+    
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+	field(FRVL, "4")
+	field(FVVL, "5")
+	field(SXVL, "6")
+	field(SVVL, "7")
+	field(EIVL, "8")
+	field(NIVL, "9")
+	
     field(FLNK, "$(P)WAVE:_STAT_FAN")
     
     info(INTEREST, "HIGH")
@@ -280,7 +293,7 @@ record(ao, "$(P)WAVE:AMP:SP")
 {
 	field(DESC, "Set the waveform generator amplitude")
 	field(PREC, "3")
-	field(EGU, "m")
+	field(EGU, "")
 	field(FLNK, "$(P)WAVE:AMP:SP:_FAN")
 }
 
@@ -474,7 +487,7 @@ record(ai, "$(P)QUART")
     field(INP,  "@devInstron.proto getWaveformQuart $(PORT)")
 	field(PREC, "0")
 	field(EGU, "")
-	field(FLNK, "$(P)QUART:_STOP")
+	field(FLNK, "$(P)QUART:CYCLE:_CALC")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -483,14 +496,33 @@ record(ai, "$(P)QUART")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(calcout, "$(P)QUART:CYCLE:_CALC")
+{
+	field(DESC, "Turns quarters into complete cycles")
+    field(OOPT, "Every Time")
+	field(INPA, "$(P)QUART")
+	field(CALC, "FLOOR(A/4)")
+	field(OUT, "$(P)QUART:CYCLE PP")
+}
+
+record(ai, "$(P)QUART:CYCLE")
+{
+	field(DESC, "Elapsed complete cycles")
+	field(PREC, "0")
+	field(EGU, "")
+	field(FLNK, "$(P)QUART:_STOP")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
 record(calcout, "$(P)QUART:_STOP")
 {
     field(OOPT, "When Non-zero")
-	field(INPA, "$(P)QUART")
-	field(INPB, "$(P)QUART:SP")
-	field(INPC, "$(P)WAVE:CONTINUING.RVAL")
-	field(INPD, "$(P)QUART:STATUS.RVAL")
-	field(CALC, "A%4=0 && A>=B && C=1 && D>0")
+	field(INPA, "$(P)QUART:CYCLE")
+	field(INPB, "$(P)QUART:CYCLE:SP")
+	field(INPC, "$(P)WAVE:STATUS.RVAL")
+	field(CALC, "A>=B && C=1")
 	field(OUT, "$(P)WAVE:STOP PP")
 }
 
