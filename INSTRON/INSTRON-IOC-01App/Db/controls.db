@@ -355,9 +355,40 @@ record(seq, "$(P)READALL")
     field(LNK2, "$(P)MOVE PP")
     field(LNK3, "$(P)STAT:FRAME PP")
     field(LNK4, "$(P)CHANNEL PP")
+	
+	field(LNK5, "$(P)READALL:WAVEFORM PP")
+	
+    field(LNK6, "$(P)READALL:COUNT:_CALC PP")
     
     field(SCAN, "1 second")
     field(SELM, "All")
+}
+
+record(seq, "$(P)READALL:WAVEFORM") 
+{
+	field(DESC, "Read all waveform data")
+	
+    field(LNK1, "$(P)WAVE:STATUS PP")
+    field(LNK2, "$(P)WAVE:TYPE PP")
+    field(LNK3, "$(P)WAVE:AMP PP")
+    field(LNK4, "$(P)WAVE:FREQ PP")
+    field(LNK5, "$(P)QUART:STATUS PP")
+    field(LNK6, "$(P)QUART PP")	
+	
+    field(SELM, "All")
+}
+
+record(calcout, "$(P)READALL:COUNT:_CALC") {
+	field(INPA, "$(P)READALL:COUNT")
+    field(CALC, "A+1")
+    field(OOPT, "Every Time")
+	field(OUT, "$(P)READALL:COUNT PP")
+}
+
+record(ai, "$(P)READALL:COUNT") {
+	field(DESC, "Heartbeat for reader")
+	field(VAL, "0")
+	field(PINI, "YES")
 }
 
 record(mbbo, "$(P)READALL:SCAN:SP")

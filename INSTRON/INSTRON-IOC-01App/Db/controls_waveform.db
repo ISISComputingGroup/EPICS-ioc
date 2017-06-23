@@ -5,7 +5,6 @@
 record(mbbi, "$(P)WAVE:STATUS")
 {
 	field(DESC, "Status of the wave generator")
-    field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getWaveformStatus $(PORT)")
 	
@@ -259,7 +258,6 @@ record(mbbi, "$(P)WAVE:TYPE")
 {
 	field(DESC, "Set the wave type of the wave generator")
 	field(DTYP, "stream")
-    field(SCAN, "1 second")
     field(INP,  "@devInstron.proto getWaveformType($(P)CHANNEL) $(PORT)")
     
     field(ZRST, "Sine")    
@@ -357,7 +355,6 @@ record(ai, "$(P)WAVE:AMP")
 {
 	field(DESC, "Get the amp of the wave generator")
 	field(DTYP, "stream")
-    field(SCAN, "1 second")
     field(INP,  "@devInstron.proto getWaveformAmplitude($(P)CHANNEL) $(PORT)")
 	field(PREC, "3")
 	field(EGU, "m")
@@ -385,7 +382,6 @@ record(ai, "$(P)WAVE:FREQ")
 {
 	field(DESC, "Get the freq of the wave generator")
 	field(DTYP, "stream")
-    field(SCAN, "1 second")
     field(INP,  "@devInstron.proto getWaveformFrequency($(P)CHANNEL) $(PORT)")
 	field(PREC, "3")
 	field(EGU, "Hz")
@@ -406,7 +402,6 @@ record(mbbi, "$(P)QUART:STATUS")
 	field(DESC, "Switch off quarter cycle control")
 	field(DTYP, "stream")
 	field(DTYP, "stream")
-    field(SCAN, "1 second")
     field(INP,  "@devInstron.proto getWaveformQuartStatus $(PORT)")
     
     field(ZRST, "Off")    
@@ -483,7 +478,6 @@ record(ai, "$(P)QUART")
 {
 	field(DESC, "Elapsed quarter cycle counter")
 	field(DTYP, "stream")
-    field(SCAN, "1 second")
     field(INP,  "@devInstron.proto getWaveformQuart $(PORT)")
 	field(PREC, "0")
 	field(EGU, "")
