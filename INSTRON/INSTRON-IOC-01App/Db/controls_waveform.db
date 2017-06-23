@@ -596,6 +596,8 @@ record(ao, "$(P)SIM:WAVE:AMP:SP:_RAW")
     field(DTYP, "Soft Channel")
 }
 
+alias("$(P)SIM:WAVE:AMP","$(P)SIM:WAVE:AMP:SP:_RAW")
+
 record(bo, "$(P)SIM:WAVE:LOG:MAINTAIN")
 {
     field(SCAN, "Passive")
