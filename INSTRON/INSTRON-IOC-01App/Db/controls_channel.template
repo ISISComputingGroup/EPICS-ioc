@@ -172,8 +172,8 @@ record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
     field(CLCC, "B+A")
     field(CLCD, "B-A")
   
-    field(OUTC, "$(P)$(CHAN):SP:RBV.HIGH PP")
-    field(OUTD, "$(P)$(CHAN):SP:RBV.LOW PP")
+    field(OUTC, "$(P)$(CHAN):SP:RBV.HIGH")
+    field(OUTD, "$(P)$(CHAN):SP:RBV.LOW")
   
 }
 
