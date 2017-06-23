@@ -233,6 +233,10 @@ record(mbbo, "$(P)WAVE:TYPE:SP")
 	field(SXST, "Sensor")
 	field(SVST, "Aux")
 	field(EIST, "Sawtooth")
+	
+	field(VAL, "0")
+    field(PINI, "YES")
+	
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAVE:TYPE:SP")
     field(SDIS, "$(P)DISABLE")
@@ -264,6 +268,9 @@ record(mbbi, "$(P)WAVE:TYPE")
 	field(SXVL, "6")
 	field(SVVL, "7")
 	field(EIVL, "8")
+	
+	field(VAL, "0")
+    field(PINI, "YES")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
