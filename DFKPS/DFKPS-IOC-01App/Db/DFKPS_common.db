@@ -54,7 +54,7 @@ record(calcout, "$(P)VOLT")
     field(CALC, "A * $(FRV)")
     field(INPA, "$(P)VRAW")
     field(EGU, "V")
-    field(ASG "READONLY")
+    field(ASG, "READONLY")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
