@@ -139,6 +139,7 @@ record(fanout, "$(P)$(CHAN):SP:_NEWDATA")
 record(ai, "$(P)$(CHAN):SP:RBV")
 {
     field(VAL, "0")
+	field(PREC, "3")
     field(FLNK, "$(P)$(CHAN):SP:_UPDATELIMITS")
     # Limits will be updated by $(P)$(CHAN):SP:_UPDATELIMITS
     field(HIGH, "0")
