@@ -599,6 +599,12 @@ record(mbbi, "$(P)SIM:QUART:STATUS")
     field(DTYP, "Soft Channel")
 }
 
+record(ai, "$(P)SIM:WAVE:AMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
 record(bo, "$(P)SIM:WAVE:LOG:MAINTAIN")
 {
     field(SCAN, "Passive")
