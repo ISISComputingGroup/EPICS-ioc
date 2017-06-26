@@ -149,6 +149,9 @@ record(ai, "$(P)$(CHAN):SP:RBV")
     field(EGU, "$(CHAN_UNITS)")
 	info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(CHAN):SIM:VALUE:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)$(CHAN)")
@@ -303,4 +306,5 @@ record(ai, "$(P)$(CHAN):SIM:VALUE")
 }
 
 alias("$(P)$(CHAN):SIM:VALUE","$(P)$(CHAN):SIM:VALUE:SP")
+alias("$(P)$(CHAN):SIM:VALUE","$(P)$(CHAN):SIM:VALUE:SP:RBV")
 
