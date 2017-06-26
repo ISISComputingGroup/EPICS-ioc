@@ -139,6 +139,7 @@ record(fanout, "$(P)$(CHAN):SP:_NEWDATA")
 record(ai, "$(P)$(CHAN):SP:RBV")
 {
     field(VAL, "0")
+	field(PREC, "3")
     field(FLNK, "$(P)$(CHAN):SP:_UPDATELIMITS")
     # Limits will be updated by $(P)$(CHAN):SP:_UPDATELIMITS
     field(HIGH, "0")
@@ -148,6 +149,9 @@ record(ai, "$(P)$(CHAN):SP:RBV")
     field(EGU, "$(CHAN_UNITS)")
 	info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(CHAN):SIM:VALUE:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)$(CHAN)")
@@ -171,8 +175,8 @@ record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
     field(CLCC, "B+A")
     field(CLCD, "B-A")
   
-    field(OUTC, "$(P)$(CHAN):SP:RBV.HIGH PP")
-    field(OUTD, "$(P)$(CHAN):SP:RBV.LOW PP")
+    field(OUTC, "$(P)$(CHAN):SP:RBV.HIGH")
+    field(OUTD, "$(P)$(CHAN):SP:RBV.LOW")
   
 }
 
@@ -302,4 +306,5 @@ record(ai, "$(P)$(CHAN):SIM:VALUE")
 }
 
 alias("$(P)$(CHAN):SIM:VALUE","$(P)$(CHAN):SIM:VALUE:SP")
+alias("$(P)$(CHAN):SIM:VALUE","$(P)$(CHAN):SIM:VALUE:SP:RBV")
 
