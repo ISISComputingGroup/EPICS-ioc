@@ -21,10 +21,10 @@ INSTRON_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 ## For unit testing:
-$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
+# $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
 
 ## For normal devsim:
-# $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:57677")
+$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:57677")
 
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
@@ -34,8 +34,13 @@ $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 ## can cause the GPIB to error  
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","GPIB0::3::INSTR", 0, 0, 1, -1, "", 1)
 
-# Uncomment the following line to get some debug output
-# asynSetTraceMask("$(DEVICE)",0,0x11)
+# Uncomment the following lines to get some debug output
+#asynSetTraceMask("L0",-1,0x9) 
+#asynSetTraceIOMask("L0",-1,0x2)
+
+# Need to set these for DEVSIM mode as lewis can't handle not having termination characters.
+$(IFDEVSIM) asynOctetSetOutputEos("$(DEVICE)",0,"\r\n")
+$(IFDEVSIM) asynOctetSetInputEos("$(DEVICE)",0,"\r\n")
 
 ## there is no input EOS, on output multiple command sequences can be separated by \n but we don't 
 ## need that on GPIB-ENET as each network packet gets an EOM to terminate it.  
