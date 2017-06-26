@@ -112,11 +112,27 @@ record(bo, "$(P)INIT")
     field(DTYP, "stream")
     field(VAL, "0")
     field(OUT,  "@devInstron.proto initRoutine $(PORT)")
+	field(FLNK, "$(P)INITSEQ")
     
     field(PINI, "YES")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:INIT")
     field(SDIS, "$(P)DISABLE")
+}
+
+record(seq, "$(P)INITSEQ")
+{
+    field(DESC, "Initialize comms")   
+    field(LNK1, "$(P)READALL PP")
+	
+	# TODO: Link to AXES:ABS
+	# field(DO2, "1")
+	# field(LNK2, "$(P)AXES:ABS PP")
+	
+	field(DO3, "1")
+	field(LNK3, "$(P)AXES:ABS PP")
+	
+    field(SELM, "All") 
 }
 
 record(mbbiDirect, "$(P)STAT:FRAME")
