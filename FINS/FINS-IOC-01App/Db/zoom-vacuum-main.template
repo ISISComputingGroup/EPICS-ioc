@@ -3,7 +3,7 @@ record(bi, "$(P)$(Q)$(NAME)") {
 	field(DESC, "$(DESC)")
 	field(DTYP, "asynInt32")
 	field(INP,  "@asyn(PLC, $(ADDRP), 5.0) $(BIT)")
-	field(SCAN, "1 second")
+	field(SCAN, "2 second")
 	field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(NAME)")
     field(SDIS, "$(P)$(Q)DISABLE")
