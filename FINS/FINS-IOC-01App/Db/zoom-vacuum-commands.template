@@ -1,0 +1,16 @@
+record(longout, "$(P)$(Q)$(NAME)")
+{
+	field(DTYP, "asynInt32")
+	field(DESC, "$(DESC)")
+	field(OUT,  "@asyn(PLC, $(ADDRP), 5.0) FINS_WR_WRITE")
+	field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(NAME)")
+}
+
+### Simulation Records ###
+
+record(longout, "$(P)$(Q)$(NAME)")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}

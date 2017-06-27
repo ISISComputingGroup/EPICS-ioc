@@ -17,74 +17,6 @@ record(bo, "$(P)$(Q)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-
-# Monitor 2
-record(longin, "$(P)$(Q)MONITOR2_STATUS") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B4")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:MONITOR2_STATUS")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-record(longin, "$(P)$(Q)MONITOR2_ERROR") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B3")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:MONITOR2_ERROR")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-# Monitor 4
-record(longin, "$(P)$(Q)MONITOR4_STATUS") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B6")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:MONITOR4_STATUS")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-record(longin, "$(P)$(Q)MONITOR4_ERROR") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B5")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:MONITOR4_ERROR")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-# Detector Overcount Shutter
-record(longin, "$(P)$(Q)DOS_STATUS") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B1")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:DOS_STATUS")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-record(longin, "$(P)$(Q)DOS_ERROR") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B0")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:DOS_ERROR")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-
-# Valve Status
-
-# Heartbeat
 record(longin, "$(P)$(Q)HEARTBEAT")
 {
 	field(DTYP, "asynInt32")
@@ -96,215 +28,93 @@ record(longin, "$(P)$(Q)HEARTBEAT")
     field(SDIS, "$(P)$(Q)DISABLE")
 }
 
-
-# Pump 1a
-record(longin, "$(P)$(Q)PUMP1A_RUNNING") {
+# Monitor 2
+record(bi, "$(P)$(Q)MONITOR:2:IN") {
 	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 518, 5.0) FINS_DM_READ_B10")
+	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B4")
 	field(SCAN, "1 second")
+	field(FLNK, "$(P)$(Q)MONITOR:2:OUT")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:PUMP1A_RUNNING")
+    field(SIOL, "$(P)$(Q)SIM:MONITOR:2:IN")
     field(SDIS, "$(P)$(Q)DISABLE")
 }
 
-record(longin, "$(P)$(Q)PUMP1A_WARNING") {
+record(calc, "$(P)$(Q)MONITOR:2:OUT")
+{
+	field(DESC, "Value from monitor 2")
+	field(INPA, "$(P)$(Q)MONITOR:2:IN CP")
+	field(CALC, "A!=0?0:1")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+
+record(bi, "$(P)$(Q)MONITOR:2:ERROR") {
 	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 518, 5.0) FINS_DM_READ_B11")
+	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B3")
 	field(SCAN, "1 second")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:PUMP1A_WARNING")
+    field(SIOL, "$(P)$(Q)SIM:MONITOR:2:ERROR")
     field(SDIS, "$(P)$(Q)DISABLE")
 }
 
-record(longin, "$(P)$(Q)PUMP1A_FAULT") {
+# Monitor 4
+record(bi, "$(P)$(Q)MONITOR:4:IN") {
 	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 518, 5.0) FINS_DM_READ_B12")
+	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B6")
 	field(SCAN, "1 second")
+	field(FLNK, "$(P)$(Q)MONITOR:4:OUT")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:PUMP1A_FAULT")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-record(longin, "$(P)$(Q)PUMP1A_OVERLOAD") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 518, 5.0) FINS_DM_READ_B13")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:PUMP1A_OVERLOAD")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-# Pump 1b
-record(longin, "$(P)$(Q)PUMP1B_RUNNING") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 518, 5.0) FINS_DM_READ_B14")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:PUMP1B_RUNNING")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-record(longin, "$(P)$(Q)PUMP1B_OVERLOAD") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 518, 5.0) FINS_DM_READ_B15")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:PUMP1B_OVERLOAD")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-# Pump 2
-record(longin, "$(P)$(Q)PUMP2_RUNNING") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 519, 5.0) FINS_DM_READ_B2")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:PUMP2_RUNNING")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-record(longin, "$(P)$(Q)PUMP2_WARNING") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 519, 5.0) FINS_DM_READ_B3")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:PUMP2_WARNING")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-record(longin, "$(P)$(Q)PUMP2_FAULT") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 519, 5.0) FINS_DM_READ_B4")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:PUMP2_FAULT")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-record(longin, "$(P)$(Q)PUMP2_OVERLOAD") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 519, 5.0) FINS_DM_READ_B5")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:PUMP2_OVERLOAD")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-# Misc
-
-record(longin, "$(P)$(Q)EMSTOP") {
-	field(DESC, "Emergency Stop Pressed")
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 519, 5.0) FINS_DM_READ_B6")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:EMSTOP")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-record(longin, "$(P)$(Q)DAE") {
-	field(DESC, "Data Acquisition Electronics")
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B2")
-	field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:DAE")
+    field(SIOL, "$(P)$(Q)SIM:MONITOR:4:IN")
     field(SDIS, "$(P)$(Q)DISABLE")
 }
 
 
+record(calc, "$(P)$(Q)MONITOR:4:OUT")
+{
+	field(DESC, "Value from monitor 2")
+	field(INPA, "$(P)$(Q)MONITOR:4:IN CP")
+	field(CALC, "A!=0?0:1")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+
+record(bi, "$(P)$(Q)MONITOR:4:ERROR") {
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B5")
+	field(SCAN, "1 second")
+    info(INTEREST, "HIGH")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:MONITOR:4:ERROR")
+    field(SDIS, "$(P)$(Q)DISABLE")
+}
 
 ### SIMULATION RECORDS ###
 
-record(longin, "$(P)$(Q)SIM:DAE")
+record(longin, "$(P)$(Q)SIM:MONITOR:4:ERROR")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(longin, "$(P)$(Q)SIM:DOS_ERROR")
+record(longin, "$(P)$(Q)SIM:MONITOR:4:IN")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 0)
 }
 
-record(longin, "$(P)$(Q)SIM:EMSTOP")
+record(longin, "$(P)$(Q)SIM:MONITOR:2:IN")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
-}
-
-record(longin, "$(P)$(Q)SIM:MONITOR4_ERROR")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(longin, "$(P)$(Q)SIM:PUMP1B_RUNNING")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(longin, "$(P)$(Q)SIM:PUMP2_RUNNING")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(longin, "$(P)$(Q)SIM:PUMP2_OVERLOAD")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(longin, "$(P)$(Q)SIM:PUMP1A_RUNNING")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(longin, "$(P)$(Q)SIM:DOS_STATUS")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(longin, "$(P)$(Q)SIM:PUMP2_WARNING")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(longin, "$(P)$(Q)SIM:MONITOR4_STATUS")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(longin, "$(P)$(Q)SIM:PUMP1A_FAULT")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(longin, "$(P)$(Q)SIM:MONITOR2_STATUS")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 0)
 }
 
 record(longin, "$(P)$(Q)SIM:HEARTBEAT")
@@ -313,33 +123,11 @@ record(longin, "$(P)$(Q)SIM:HEARTBEAT")
     field(DTYP, "Soft Channel")
 }
 
-record(longin, "$(P)$(Q)SIM:PUMP1A_WARNING")
+record(longin, "$(P)$(Q)SIM:MONITOR:2:ERROR")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(longin, "$(P)$(Q)SIM:MONITOR2_ERROR")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
 
-record(longin, "$(P)$(Q)SIM:PUMP2_FAULT")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(longin, "$(P)$(Q)SIM:PUMP1B_OVERLOAD")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(longin, "$(P)$(Q)SIM:PUMP1A_OVERLOAD")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
 
