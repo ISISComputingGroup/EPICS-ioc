@@ -97,35 +97,35 @@ record(bi, "$(P)$(Q)MONITOR:4:ERROR") {
 
 ### SIMULATION RECORDS ###
 
-record(longin, "$(P)$(Q)SIM:MONITOR:4:ERROR")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(longin, "$(P)$(Q)SIM:MONITOR:4:IN")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-	field(PINI, "YES")
-	field(VAL, 0)
-}
-
-record(longin, "$(P)$(Q)SIM:MONITOR:2:IN")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-	field(PINI, "YES")
-	field(VAL, 0)
-}
-
 record(longin, "$(P)$(Q)SIM:HEARTBEAT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(longin, "$(P)$(Q)SIM:MONITOR:2:ERROR")
+record(bi, "$(P)$(Q)SIM:MONITOR:4:ERROR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(P)$(Q)SIM:MONITOR:4:IN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 0)
+}
+
+record(bi, "$(P)$(Q)SIM:MONITOR:2:IN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL, 0)
+}
+
+record(bi, "$(P)$(Q)SIM:MONITOR:2:ERROR")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
