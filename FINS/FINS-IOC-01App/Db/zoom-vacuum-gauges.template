@@ -1,21 +1,3 @@
-record(bo, "$(P)$(Q)GAUGE:$(GAUGE):SIM")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-    field(ZNAM, "NO")
-    field(ONAM, "YES")
-    field(VAL, "$(RECSIM=0)")
-}
-
-record(bo, "$(P)$(Q)GAUGE:$(GAUGE):DISABLE") 
-{
-    field(DESC, "Disable comms")
-    field(PINI, "YES")
-    field(VAL, "$(DISABLE=0)")
-    field(OMSL, "supervisory")
-    field(ZNAM, "COMMS ENABLED")
-    field(ONAM, "COMMS DISABLED")
-}
 
 # Gauge $(GAUGE)
 
@@ -26,7 +8,8 @@ record(longin, "$(P)$(Q)GAUGE:$(GAUGE):MEAS1EXP")
 	field(INP,  "@asyn(PLC, $(ADDREXP), 5.0) FINS_DM_READ")
 	field(FLNK, "$(P)$(Q)GAUGE:$(GAUGE):MEAS1")
 	field(SIML, "$(P)$(Q)SIM")
-	field(SIOL, "$(P)$(Q)GAUGE:$(GAUGE):SIM:MEAS1EXP")
+	field(SIOL, "$(P)$(Q)SIM:GAUGE:$(GAUGE):MEAS1EXP")
+	field(SDIS, "$(P)$(Q)DISABLE")
 }
 
 
@@ -35,9 +18,9 @@ record(longin, "$(P)$(Q)GAUGE:$(GAUGE):MEAS1")
 	field(DTYP, "asynInt32")
 	field(INP,  "@asyn(PLC, $(ADDRP), 5.0) FINS_DM_READ")
 	field(FLNK, "$(P)$(Q)GAUGE:$(GAUGE):MEAS2EXP")
-    field(SIOL, "$(P)$(Q)GAUGE:$(GAUGE):SIM:MEAS1")
+    field(SIOL, "$(P)$(Q)SIM:GAUGE:$(GAUGE):MEAS1")
 	field(SIML, "$(P)$(Q)SIM")
-    field(SDIS, "$(P)$(Q)GAUGE:$(GAUGE):DISABLE")
+    field(SDIS, "$(P)$(Q)DISABLE")
 }
 
 record(longin, "$(P)$(Q)GAUGE:$(GAUGE):MEAS2EXP")
@@ -46,8 +29,8 @@ record(longin, "$(P)$(Q)GAUGE:$(GAUGE):MEAS2EXP")
 	field(INP,  "@asyn(PLC, $(ADDREXP), 5.0) FINS_DM_READ")
 	field(FLNK, "$(P)$(Q)GAUGE:$(GAUGE):CHECK")
 	field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)GAUGE:$(GAUGE):SIM:MEAS2EXP")
-    field(SDIS, "$(P)$(Q)GAUGE:$(GAUGE):DISABLE")
+    field(SIOL, "$(P)$(Q)SIM:GAUGE:$(GAUGE):MEAS2EXP")
+	field(SDIS, "$(P)$(Q)DISABLE")
 }
 
 
@@ -78,20 +61,20 @@ record(ai, "$(P)$(Q)GAUGE:$(GAUGE)")
 
 ### SIMULATION RECORDS ###
 
-record(longin, "$(P)$(Q)GAUGE:$(GAUGE):SIM:MEAS1EXP")
+record(longin, "$(P)$(Q)SIM:GAUGE:$(GAUGE):MEAS1EXP")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
 
-record(longin, "$(P)$(Q)GAUGE:$(GAUGE):SIM:MEAS2EXP")
+record(longin, "$(P)$(Q)SIM:GAUGE:$(GAUGE):MEAS2EXP")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(longin, "$(P)$(Q)GAUGE:$(GAUGE):SIM:MEAS1")
+record(longin, "$(P)$(Q)SIM:GAUGE:$(GAUGE):MEAS1")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
