@@ -34,6 +34,9 @@ $(IFNOTDEVSIM) asynOctetSetOutputEos("$(DEVICE)", -1, "\r")
 
 ## Load record instances
 
+#asynSetTraceIOMask("$(DEVICE)",0,2)
+#asynSetTraceMask("$(DEVICE)",0,255)
+
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
@@ -42,10 +45,11 @@ stringiftest  "HRPD_VERSION"  "$(VERSION=0)"  5  "1"
 ## Load our record instances
 epicsEnvSet "ERR" "ERR"
 epicsEnvSet "CMD_ERR" "CMD_ERR"
-dbLoadRecords("db/rotating_sample_changer.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0), ERR=$(ERR), CMD_ERR=$(CMD_ERR)")
+
+dbLoadRecords("db/rotating_sample_changer.db","P=$(MYPVPREFIX)$(IOCNAME):, VERSION=$(VERSION=0), PORT=$(DEVICE), DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0), ERR=$(ERR), CMD_ERR=$(CMD_ERR)")
 dbLoadRecords("db/error_calculator.db","P=$(MYPVPREFIX)$(IOCNAME):, ERR=$(ERR), DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0)")
-dbLoadRecords("db/error_calculator.db","P=$(MYPVPREFIX)$(IOCNAME):, ERR=$(CMD_ERR), DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0)")
-$(IFHRPD_VERSION) dbLoadRecords("db/HRPD_specific.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0)")
+$(IFHRPD_VERSION) dbLoadRecords("db/error_calculator.db","P=$(MYPVPREFIX)$(IOCNAME):, ERR=$(CMD_ERR), DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0)")
+$(IFHRPD_VERSION) dbLoadRecords("db/HRPD_specific.db","P=$(MYPVPREFIX)$(IOCNAME):, CMD_ERR=$(CMD_ERR), PORT=$(DEVICE), DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

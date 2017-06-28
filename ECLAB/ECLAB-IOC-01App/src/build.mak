@@ -26,6 +26,7 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += asubFunctions.dbd 
+$(APPNAME)_DBD += asyn.dbd 
 ## add other dbd here ##
 $(APPNAME)_DBD += ECLab.dbd
 
@@ -43,10 +44,10 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += ECLab
 $(APPNAME)_LIBS += asyn
 ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),) 
-$(APPNAME)_LIBS += eclib64
+$(APPNAME)_LIBS += EClib64
 endif
 ifneq ($(findstring win32,$(EPICS_HOST_ARCH)),) 
-$(APPNAME)_LIBS += eclib
+$(APPNAME)_LIBS += EClib
 endif
 
 # ECLabTest_registerRecordDeviceDriver.cpp derives from ECLabTest.dbd
