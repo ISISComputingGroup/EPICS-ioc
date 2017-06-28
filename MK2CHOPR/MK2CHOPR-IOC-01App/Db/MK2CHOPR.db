@@ -82,6 +82,40 @@ record(ai, "$(P)FREQ:SP:RBV")
     info(archive, "VAL")
 }
 
+record(mbbo, "$(P)FREQ:CHOICES")
+{
+    # Because mbbo's value is a ulong the values are 100x the required
+    # value. A calcout record is then used to divide by 100 before
+    # setting the FREQ:SP
+    field(DESC, "Possible frequencies that can be set")
+    field(DTYP, "Raw Soft Channel")
+    field(ZRVL, "0")
+    field(ZRST, "")
+    field(ONVL, "500")
+    field(ONST, "5")
+    field(TWVL, "1000")
+    field(TWST, "10")
+    field(THVL, "1250")
+    field(THST, "12.5")
+    field(FRVL, "1667")
+    field(FRST, "16.67")
+    field(FVVL, "2500")
+    field(FVST, "25")
+    field(SXVL, "5000")
+    field(SXST, "50")
+    field(OUT, "$(P)FREQ:SP:CALC")
+    field(FLNK, "$(P)FREQ:SP:CALC")
+}
+
+record(calcout, "$(P)FREQ:SP:CALC") {
+    field(DESC, "Divides the choice frequency by 100")
+    field(INPA, "$(P)FREQ:CHOICES.RVAL")
+    field(CALC, "A/100")
+    field(DOPT, "Use CALC")
+    field(OOPT, "When Non-zero")
+    field(OUT, "$(P)FREQ:SP PP")
+}
+
 record(ai, "$(P)SIM:FREQ")
 {
 }
