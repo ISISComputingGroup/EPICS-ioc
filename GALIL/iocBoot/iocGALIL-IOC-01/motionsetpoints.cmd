@@ -1,1 +1,0 @@
-< $(GALILCONFIG)/motionsetpoints.cmd

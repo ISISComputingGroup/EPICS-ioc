@@ -43,17 +43,19 @@ epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 < galil.cmd
 
 # configure jaws
-< jaws.cmd
+< $(GALILCONFIG)/jaws.cmd
 
 # configure barndoors
-< barndoors.cmd
+< $(GALILCONFIG)/barndoors.cmd
 
 # configure axes
-< axes.cmd
+< $(GALILCONFIG)/axes.cmd
 
 # motion set points
-< motionsetpoints.cmd
-< sampleChanger.cmd
+< $(GALILCONFIG)/motionsetpoints.cmd
+
+# sample changer
+< $(GALILCONFIG)/sampleChanger.cmd
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,PVPREFIX=$(MYPVPREFIX),IFDMC01=$(IFDMC01),IFDMC02=$(IFDMC02),IFDMC03=$(IFDMC03),IFDMC04=$(IFDMC04),IFDMC05=$(IFDMC05),IFDMC06=$(IFDMC06),IFDMC07=$(IFDMC07),IFDMC08=$(IFDMC08),IFDMC09=$(IFDMC09),IFDMC10=$(IFDMC10)")
