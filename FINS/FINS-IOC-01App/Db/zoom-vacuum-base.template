@@ -19,80 +19,33 @@ record(bo, "$(P)$(Q)DISABLE")
 
 record(longin, "$(P)$(Q)HEARTBEAT")
 {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 500, 5.0) FINS_WR_READ")
-	field(SCAN, "1 second")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, 500, 5.0) FINS_WR_READ")
+    field(SCAN, "1 second")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:HEARTBEAT")
     field(SDIS, "$(P)$(Q)DISABLE")
 }
 
-# Monitor 2
-record(bi, "$(P)$(Q)MONITOR:2:IN") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B4")
-	field(SCAN, "2 second")
-	field(FLNK, "$(P)$(Q)MONITOR:2:OUT")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:MONITOR:2:IN")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
+# Reset DAE
 
-record(calc, "$(P)$(Q)MONITOR:2:OUT")
+record(bo, "$(P)$(Q)DAE:RESET:SP")
 {
-	field(DESC, "Value from monitor 2")
-	field(INPA, "$(P)$(Q)MONITOR:2:IN CP")
-	field(CALC, "A!=0?0:1")
-	field(ASG, "READONLY")
-	info(INTEREST, "HIGH")
-	info(archive, "VAL")
+    field(ZNAM, "RESET")
+    field(ONAM, "RESET")
+    field(DESC, "Reset the DAE")
+    field(FLNK, "$(P)$(Q)DAE:RESET:RAW:SP")
 }
 
-
-record(bi, "$(P)$(Q)MONITOR:2:ERROR") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B3")
-	field(SCAN, "2 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:MONITOR:2:ERROR")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-# Monitor 4
-record(bi, "$(P)$(Q)MONITOR:4:IN") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B6")
-	field(SCAN, "2 second")
-	field(FLNK, "$(P)$(Q)MONITOR:4:OUT")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:MONITOR:4:IN")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
-
-record(calc, "$(P)$(Q)MONITOR:4:OUT")
+record(longout, "$(P)$(Q)DAE:RESET:RAW:SP")
 {
-	field(DESC, "Value from monitor 2")
-	field(INPA, "$(P)$(Q)MONITOR:4:IN CP")
-	field(CALC, "A!=0?0:1")
-	field(ASG, "READONLY")
-	info(INTEREST, "HIGH")
-	info(archive, "VAL")
-}
-
-
-record(bi, "$(P)$(Q)MONITOR:4:ERROR") {
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 517, 5.0) FINS_DM_READ_B5")
-	field(SCAN, "2 second")
-    info(INTEREST, "HIGH")
+    field(VAL, "1")
+    field(DTYP, "asynInt32")
+    field(DESC, "Reset the DAE")
+    field(OUT,  "@asyn(PLC, 550, 5.0) FINS_WR_WRITE")
     field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:MONITOR:4:ERROR")
-    field(SDIS, "$(P)$(Q)DISABLE")
+    field(SIOL, "$(P)$(Q)SIM:DAE:RESET:RAW:SP")
 }
 
 ### SIMULATION RECORDS ###
@@ -102,34 +55,4 @@ record(longin, "$(P)$(Q)SIM:HEARTBEAT")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
-
-record(bi, "$(P)$(Q)SIM:MONITOR:4:ERROR")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(bi, "$(P)$(Q)SIM:MONITOR:4:IN")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-	field(PINI, "YES")
-	field(VAL, 0)
-}
-
-record(bi, "$(P)$(Q)SIM:MONITOR:2:IN")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-	field(PINI, "YES")
-	field(VAL, 0)
-}
-
-record(bi, "$(P)$(Q)SIM:MONITOR:2:ERROR")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-
 

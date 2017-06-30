@@ -1,16 +1,145 @@
-record(longout, "$(P)$(Q)$(NAME)")
-{
-	field(DTYP, "asynInt32")
-	field(DESC, "$(DESC)")
-	field(OUT,  "@asyn(PLC, $(ADDRP), 5.0) FINS_WR_WRITE")
-	field(SIML, "$(P)$(Q)SIM")
+# Zoom Vacuum Commands
+# 
+# This is a template for generating a set of PVs which have commands which
+# can be toggled by buttons. E.g. Monitor 2 can be inserted and extracted.
+#
+# Each command has a SP and a command that can be directly used by the button
+# on the OPI 
+#
+# Macros:
+# - P = Instrument name prefix
+# - Q = Name for this piece of equipment
+# - NAME = Name of the thing we're controlling (e.g. MONITOR:2)
+# - ZPV = Name to call the action when $(NAME):SP is ZERO (e.g. EXTARCT)
+# - OPV = Name to call the action when $(NAME):SP is ONE (e.g. INSERT)
+# - RADDR = The address to read status from
+# - EADDR = The address to read error state from
+# - RBIT = The bit to read state from
+# - EBIT = The bit to read error state from
+# - EBIT = The bit to read error state from
+# - ZADDR = The address to write to when $(NAME):SP is ZERO
+# - OADDR = The address to write to when $(NAME):SP is ONE
+# - ZDESC = Description for the ZERO action
+# - ODESC = Description for the ONE action
+# - ZSP = Description for when the SP is ZERO
+# - OSP = Description for when the SP is ONE
+
+record(bi, "$(P)$(Q)$(NAME)") {
+    field(ZNAM, "$(ZSP)")
+    field(ONAM, "$(OSP)")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, $(RADDR), 5.0) FINS_DM_READ_B$(RBIT)")
+    field(SCAN, "2 second")
+    field(FLNK, "$(P)$(Q)$(NAME):INV")
+    info(INTEREST, "HIGH")
+    field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(NAME)")
+    field(SDIS, "$(P)$(Q)DISABLE")
+}
+
+# Inverse of the value read from the PV
+# Useful for LEDs on the OPI
+record(calc, "$(P)$(Q)$(NAME):INV")
+{
+    field(INPA, "$(P)$(Q)$(NAME) CP")
+    field(CALC, "A!=0?0:1")
+    field(ASG, "READONLY")
+}
+
+record(bi, "$(P)$(Q)$(NAME):ERROR") {
+    field(ZNAM, "OK")
+    field(ONAM, "ERROR")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, $(EADDR), 5.0) FINS_DM_READ_B$(EBIT)")
+    field(SCAN, "2 second")
+    info(INTEREST, "HIGH")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(NAME):ERROR")
+    field(SDIS, "$(P)$(Q)DISABLE")
+}
+
+record(mbbo, "$(P)$(Q)$(NAME):SP") {
+    field(DTYP, "Raw Soft Channel")
+    field(FLNK, "$(P)$(Q)$(NAME):CALC")
+    field(ZRVL, "0x1") 
+    field(ZRST, "$(ZSP)") 
+    field(ONVL, "0x2") 
+    field(ONST, "$(OSP)") 
+}
+
+record(seq,"$(P)$(Q)$(NAME):CALC") {
+    field(SELM, "Mask")
+    field(SELL, "$(P)$(Q)$(NAME):SP.RVAL NPP NMS")
+    field(DLY1, "0")
+    field(DOL1, "0")
+    field(LNK1, "$(P)$(Q):$(NAME):$(ZPV).VAL PP NMS")
+    field(DLY1, "0")
+    field(DOL2, "1")
+    field(LNK2, "$(P)$(Q):$(NAME):$(OPV).VAL PP NMS")
+}
+
+record(bo, "$(P)$(Q)$(NAME):$(ZPV)")
+{
+    field(ZNAM, "$(ZPV)")
+    field(ONAM, "$(ZPV)")
+    field(DTYP, "asynInt32")
+    field(DESC, "$(ZDESC)")
+    field(FLNK, "$(P)$(Q)$(NAME):$(ZPV):RAW:SP")
+}
+
+record(bo, "$(P)$(Q)$(NAME):$(OPV)")
+{
+    field(ZNAM, "$(OPV)")
+    field(ONAM, "$(OPV)")
+    field(DTYP, "asynInt32")
+    field(DESC, "$(ODESC)")
+    field(FLNK, "$(P)$(Q)$(NAME):$(OPV):RAW:SP")
+}
+
+record(longout, "$(P)$(Q)$(NAME):$(ZPV):RAW:SP")
+{
+    field(VAL, "1")
+    field(DTYP, "asynInt32")
+    field(DESC, "$(ZDESC)")
+    field(OUT,  "@asyn(PLC, $(ZADDR), 5.0) FINS_WR_WRITE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(NAME):$(ZPV):RAW:SP")
+}
+
+record(longout, "$(P)$(Q)$(NAME):$(OPV):RAW:SP")
+{
+    field(VAL, "1")
+    field(DTYP, "asynInt32")
+    field(DESC, "$(ODESC)")
+    field(OUT,  "@asyn(PLC, $(OADDR), 5.0) FINS_WR_WRITE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(NAME):$(OPV):RAW:SP")
 }
 
 ### Simulation Records ###
 
-record(longout, "$(P)$(Q)$(NAME)")
+record(bi, "$(P)$(Q)SIM:$(NAME)")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
+
+record(bi, "$(P)$(Q)SIM:$(NAME):ERROR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(longout, "$(P)$(Q)SIM:$(NAME):$(ZPV):RAW:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(longout, "$(P)$(Q)SIM:$(NAME):$(OPV):RAW:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+
