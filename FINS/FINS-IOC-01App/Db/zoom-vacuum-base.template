@@ -19,9 +19,11 @@ record(bo, "$(P)$(Q)DISABLE")
 
 record(longin, "$(P)$(Q)HEARTBEAT")
 {
+    field(DESC, "Heartbeat of the FINS PLC")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(PLC, 500, 5.0) FINS_WR_READ")
     field(SCAN, "1 second")
+    field(EGU, "")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:HEARTBEAT")

@@ -25,6 +25,7 @@
 # - OSP = Description for when the SP is ONE
 
 record(bi, "$(P)$(Q)$(NAME)") {
+    field(DESC, "$(DESC)")
     field(ZNAM, "$(ZSP)")
     field(ONAM, "$(OSP)")
     field(DTYP, "asynInt32")
@@ -47,6 +48,7 @@ record(calc, "$(P)$(Q)$(NAME):INV")
 }
 
 record(bi, "$(P)$(Q)$(NAME):ERROR") {
+    field(DESC, "$(DESC) error")
     field(ZNAM, "OK")
     field(ONAM, "ERROR")
     field(DTYP, "asynInt32")
@@ -73,7 +75,7 @@ record(seq,"$(P)$(Q)$(NAME):CALC") {
     field(DLY1, "0")
     field(DOL1, "0")
     field(LNK1, "$(P)$(Q):$(NAME):$(ZPV).VAL PP NMS")
-    field(DLY1, "0")
+    field(DLY2, "0")
     field(DOL2, "1")
     field(LNK2, "$(P)$(Q):$(NAME):$(OPV).VAL PP NMS")
 }

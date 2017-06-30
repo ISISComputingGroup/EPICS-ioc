@@ -54,7 +54,6 @@ file "$(TOP)/FINS-IOC-01App/Db/zoom-vacuum-main.template" {
 
 file "$(TOP)/FINS-IOC-01App/Db/zoom-vacuum-main-error.template" {
 	pattern{ P, Q, PV, DESC, ADDRP, BIT, BIT_ERROR }
-	{ "\$(P)", "\$(Q)", "DOS", "Detector overcount shutter status", "517", "FINS_DM_READ_B1", "FINS_DM_READ_B0" }
 	
 	{ "\$(P)", "\$(Q)", "SNOUT:BYPASS", "Snout bypass valve", "517", "FINS_DM_READ_B11", "FINS_DM_READ_B10" }
 	{ "\$(P)", "\$(Q)", "SNOUT:LINE", "Snout line valve", "517", "FINS_DM_READ_B13", "FINS_DM_READ_B12" }
@@ -71,9 +70,9 @@ file "$(TOP)/FINS-IOC-01App/Db/zoom-vacuum-main-error.template" {
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/zoom-vacuum-commands.template" {
-	pattern{ P, Q, NAME, ZPV, OPV, ZSP, OSP, RADDR, RBIT, EADDR, EBIT, ZADDR, OADDR, ZDESC, ODESC }
-	{ "\$(P)", "\$(Q)", "DOS", "CLOSE", "OPEN", "CLOSED", "OPEN", "517", "1", "517", "0", "552", "551", "Close the detector overcount shutter", "Open the detector overcount shutter"}
-	{ "\$(P)", "\$(Q)", "MONITOR:2", "EXTRACT", "INSERT", "EXTRACTED", "INSERTED", "517", "4", "517", "3", "554", "553", "Extract monitor 2", "Insert monitor 2"}
-	{ "\$(P)", "\$(Q)", "MONITOR:4", "EXTRACT", "INSERT", "EXTRACTED", "INSERTED", "517", "6", "517", "5", "556", "555", "Extract monitor 4", "Insert monitor 4"}
+	pattern{ P, Q, NAME, ZPV, OPV, ZSP, OSP, RADDR, RBIT, EADDR, EBIT, ZADDR, OADDR, DESC, ZDESC, ODESC }
+	{ "\$(P)", "\$(Q)", "DOS", "CLOSE", "OPEN", "CLOSED", "OPEN", "517", "1", "517", "0", "552", "551", "Detector overcount shutter", "Close the detector overcount shutter", "Open the detector overcount shutter"}
+	{ "\$(P)", "\$(Q)", "MONITOR:2", "EXTRACT", "INSERT", "EXTRACTED", "INSERTED", "517", "4", "517", "3", "554", "553", "Monitor 2", "Extract monitor 2", "Insert monitor 2"}
+	{ "\$(P)", "\$(Q)", "MONITOR:4", "EXTRACT", "INSERT", "EXTRACTED", "INSERTED", "517", "6", "517", "5", "556", "555", "Monitor 4", "Extract monitor 4", "Insert monitor 4"}
 }
 
