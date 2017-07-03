@@ -24,20 +24,6 @@
 # - ZSP = Description for when the SP is ZERO
 # - OSP = Description for when the SP is ONE
 
-record(bi, "$(P)$(Q)$(NAME)") {
-    field(DESC, "$(DESC)")
-    field(ZNAM, "$(ZSP)")
-    field(ONAM, "$(OSP)")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn(PLC, $(RADDR), 5.0) FINS_DM_READ_B$(RBIT)")
-    field(SCAN, "2 second")
-    field(FLNK, "$(P)$(Q)$(NAME):INV")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:$(NAME)")
-    field(SDIS, "$(P)$(Q)DISABLE")
-}
-
 # Inverse of the value read from the PV
 # Useful for LEDs on the OPI
 record(calc, "$(P)$(Q)$(NAME):INV")
@@ -45,19 +31,6 @@ record(calc, "$(P)$(Q)$(NAME):INV")
     field(INPA, "$(P)$(Q)$(NAME) CP")
     field(CALC, "A!=0?0:1")
     field(ASG, "READONLY")
-}
-
-record(bi, "$(P)$(Q)$(NAME):ERROR") {
-    field(DESC, "$(DESC) error")
-    field(ZNAM, "OK")
-    field(ONAM, "ERROR")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn(PLC, $(EADDR), 5.0) FINS_DM_READ_B$(EBIT)")
-    field(SCAN, "2 second")
-    info(INTEREST, "HIGH")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:$(NAME):ERROR")
-    field(SDIS, "$(P)$(Q)DISABLE")
 }
 
 record(mbbo, "$(P)$(Q)$(NAME):SP") {
@@ -84,7 +57,7 @@ record(bo, "$(P)$(Q)$(NAME):$(ZPV)")
 {
     field(ZNAM, "$(ZPV)")
     field(ONAM, "$(ZPV)")
-    field(DTYP, "asynInt32")
+    field(DTYP, "Soft Channel")
     field(DESC, "$(ZDESC)")
     field(FLNK, "$(P)$(Q)$(NAME):$(ZPV):RAW:SP")
 }
@@ -93,7 +66,7 @@ record(bo, "$(P)$(Q)$(NAME):$(OPV)")
 {
     field(ZNAM, "$(OPV)")
     field(ONAM, "$(OPV)")
-    field(DTYP, "asynInt32")
+    field(DTYP, "Soft Channel")
     field(DESC, "$(ODESC)")
     field(FLNK, "$(P)$(Q)$(NAME):$(OPV):RAW:SP")
 }
@@ -119,18 +92,6 @@ record(longout, "$(P)$(Q)$(NAME):$(OPV):RAW:SP")
 }
 
 ### Simulation Records ###
-
-record(bi, "$(P)$(Q)SIM:$(NAME)")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(bi, "$(P)$(Q)SIM:$(NAME):ERROR")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
 
 record(longout, "$(P)$(Q)SIM:$(NAME):$(ZPV):RAW:SP")
 {
