@@ -5,16 +5,16 @@ file "$(TOP)/FINS-IOC-01App/Db/zoom-vacuum-base.template" {
 	{ "\$(P)", "\$(Q)", "\$(RECSIM)", "\$(DISABLE)" }
 }
 
-file "$(TOP)/FINS-IOC-01App/Db/zoom-vacuum-gauges.template" {
-	pattern{ P, Q, GAUGE, ADDRP, ADDREXP }
-	{ "\$(P)", "\$(Q)", "1", "502", "501" }
-	{ "\$(P)", "\$(Q)", "2", "504", "503" }
-	{ "\$(P)", "\$(Q)", "3", "506", "505" }
-	{ "\$(P)", "\$(Q)", "4", "508", "507" }
-	{ "\$(P)", "\$(Q)", "5", "510", "509" }
-	{ "\$(P)", "\$(Q)", "6", "512", "511" }
-	{ "\$(P)", "\$(Q)", "7", "514", "513" }
-	{ "\$(P)", "\$(Q)", "8", "516", "515" }
+file "$(TOP)/FINS-IOC-01App/Db/press-main.template" {
+	pattern{ P, Q, NAME, GAUGE, ADDRP, ADDREXP }
+	{ "\$(P)", "\$(Q)", "GAUGE", "1", "502", "501" }
+	{ "\$(P)", "\$(Q)", "GAUGE", "2", "504", "503" }
+	{ "\$(P)", "\$(Q)", "GAUGE", "3", "506", "505" }
+	{ "\$(P)", "\$(Q)", "GAUGE", "4", "508", "507" }
+	{ "\$(P)", "\$(Q)", "GAUGE", "5", "510", "509" }
+	{ "\$(P)", "\$(Q)", "GAUGE", "6", "512", "511" }
+	{ "\$(P)", "\$(Q)", "GAUGE", "7", "514", "513" }
+	{ "\$(P)", "\$(Q)", "GAUGE", "8", "516", "515" }
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/zoom-vacuum-main.template" {
