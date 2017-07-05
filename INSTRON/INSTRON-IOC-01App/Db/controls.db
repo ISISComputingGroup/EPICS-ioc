@@ -459,6 +459,26 @@ record(seq, "$(P)STOP:_STOP_WAVEFORM")
     field(SELM, "All")
 }
 
+record(mbbo, "$(P)AXES:RAMP:WFTYP:SP")
+{
+    field(DESC, "Set all ramp waveform types")
+    field(ZRST, "Ramp")
+    field(ONST, "Dual ramp")
+    field(TWST, "Trapezium")
+    field(THST, "Absolute ramp")
+    field(FRST, "Absolute hold ramp")
+    field(FVST, "Absolute rate ramp")
+    field(OUT, "${P}AXES:RAMP:WFTYP:SP:_FAN PP")
+}
+
+record(dfanout, "${P}AXES:RAMP:WFTYP:SP:_FAN") {
+  field(DESC, "Fan out the axes WFTYP pv")
+  field(OUTA, "$(P)POS:RAMP:WFTYP:SP PP")
+  field(OUTB, "$(P)STRESS:RAMP:WFTYP:SP PP")
+  field(OUTC, "$(P)STRAIN:RAMP:WFTYP:SP PP")
+}
+
+
 ### SIMULATION RECORDS ###
 
 record(bi, "$(P)SIM:WATCHDOG:STAT")

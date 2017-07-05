@@ -3,7 +3,7 @@ record(seq, "$(P)$(CHAN):READALL")
 	field(DESC, "Read data from $(CHAN) channel")
     
     field(LNK1, "$(P)$(CHAN):STEP:TIME PP")
-	field(LNK2, "$(P)$(CHAN):ABS PP")
+	field(LNK2, "$(P)$(CHAN):RAMP:WFTYP PP")
 	field(LNK3, "$(P)$(CHAN):RAW:SP:RBV PP")
 	field(LNK4, "$(P)$(CHAN):RAW PP")
 	field(LNK5, "$(P)$(CHAN):SCALE PP")
@@ -38,8 +38,9 @@ record(ai, "$(P)$(CHAN):STEP:TIME")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(mbbo, "$(P)$(CHAN):ABS:SP")
+record(mbbo, "$(P)$(CHAN):RAMP:WFTYP:SP")
 {
+    field(DESC, "Set the ramp waveform type of $(CHAN)")
     field(DTYP, "stream")
     field(OUT, "@devInstron.proto setChanWaveType($(CHAN_NUM)) $(PORT)")
     field(ZRST, "Ramp")
@@ -49,13 +50,13 @@ record(mbbo, "$(P)$(CHAN):ABS:SP")
     field(FRST, "Absolute hold ramp")
     field(FVST, "Absolute rate ramp")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)$(CHAN):SIM:ABS:SP")
+    field(SIOL, "$(P)$(CHAN):SIM:RAMP:WFTYP:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(mbbi, "$(P)$(CHAN):ABS")
+record(mbbi, "$(P)$(CHAN):RAMP:WFTYP")
 {
-    field(DESC, "The waveform type of the $(CHAN) channel")
+    field(DESC, "Ramp waveform type of the $(CHAN) channel")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getChanWaveType($(CHAN_NUM)) $(PORT)")
@@ -68,7 +69,7 @@ record(mbbi, "$(P)$(CHAN):ABS")
     info(INTEREST, "HIGH")
     info(archive, "VAL")    
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)$(CHAN):SIM:ABS")
+    field(SIOL, "$(P)$(CHAN):SIM:RAMP:WFTYP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -284,7 +285,7 @@ record(ai, "$(P)$(CHAN):SIM:STEP:TIME")
 
 alias("$(P)$(CHAN):SIM:STEP:TIME","$(P)$(CHAN):SIM:STEP:TIME:SP")
 
-record(mbbi, "$(P)$(CHAN):SIM:ABS")
+record(mbbi, "$(P)$(CHAN):SIM:RAMP:WFTYP")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -296,7 +297,7 @@ record(mbbi, "$(P)$(CHAN):SIM:ABS")
     field(FVST, "Absolute rate ramp")
 }
 
-alias("$(P)$(CHAN):SIM:ABS","$(P)$(CHAN):SIM:ABS:SP")
+alias("$(P)$(CHAN):SIM:RAMP:WFTYP","$(P)$(CHAN):SIM:RAMP:WFTYP:SP")
 
 record(ai, "$(P)$(CHAN):SIM:VALUE")
 {
