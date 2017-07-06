@@ -1,13 +1,13 @@
 record(seq, "$(P)$(CHAN):READALL")
 {
-	field(DESC, "Read data from $(CHAN) channel")
+    field(DESC, "Read data from $(CHAN) channel")
     
     field(LNK1, "$(P)$(CHAN):STEP:TIME PP")
-	field(LNK2, "$(P)$(CHAN):RAMP:WFTYP PP")
-	field(LNK3, "$(P)$(CHAN):RAW:SP:RBV PP")
-	field(LNK4, "$(P)$(CHAN):RAW PP")
-	field(LNK5, "$(P)$(CHAN):SCALE PP")
-	field(LNK6, "$(P)$(CHAN):TYPE PP")
+    field(LNK2, "$(P)$(CHAN):RAMP:WFTYP PP")
+    field(LNK3, "$(P)$(CHAN):RAW:SP:RBV PP")
+    field(LNK4, "$(P)$(CHAN):RAW PP")
+    field(LNK5, "$(P)$(CHAN):SCALE PP")
+    field(LNK6, "$(P)$(CHAN):TYPE PP")
     
     field(SELM, "All")
 }
@@ -121,7 +121,7 @@ record(ao, "$(P)$(CHAN):TOLERANCE")
 
 record(ao, "$(P)$(CHAN):SP")
 {
-	field(PREC, "3")
+    field(PREC, "3")
     field(VAL, "0")
     field(FLNK, "$(P)$(CHAN):SP:_NEWDATA PP")
     field(EGU, "$(CHAN_UNITS)")
@@ -140,7 +140,7 @@ record(fanout, "$(P)$(CHAN):SP:_NEWDATA")
 record(ai, "$(P)$(CHAN):SP:RBV")
 {
     field(VAL, "0")
-	field(PREC, "3")
+    field(PREC, "3")
     field(FLNK, "$(P)$(CHAN):SP:_UPDATELIMITS")
     # Limits will be updated by $(P)$(CHAN):SP:_UPDATELIMITS
     field(HIGH, "0")
@@ -148,9 +148,9 @@ record(ai, "$(P)$(CHAN):SP:RBV")
     field(HSV, "MINOR")
     field(LSV, "MINOR")
     field(EGU, "$(CHAN_UNITS)")
-	info(INTEREST, "MEDIUM")
+    info(INTEREST, "MEDIUM")
     info(archive, "VAL")
-	field(SIML, "$(P)SIM")
+    field(SIML, "$(P)SIM")
     field(SIOL, "$(P)$(CHAN):SIM:VALUE:SP:RBV")
     field(SDIS, "$(P)DISABLE")
 }
@@ -164,7 +164,7 @@ record(ai, "$(P)$(CHAN)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)$(CHAN):SIM:VALUE")
     field(SDIS, "$(P)DISABLE")
-	info(INTEREST, "HIGH")
+    info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 

@@ -1,4 +1,21 @@
 ###
+### General records
+###
+
+record(seq, "$(P)CONTROLS:SPECIFIC:READALL")
+{
+    # Watchdog must already be disabled
+    # Called from main read all
+    field(DESC, "Read all data for this db file")
+    
+    field(LNK1, "$(P)STRESS:AREA PP")
+    field(LNK2, "$(P)STRAIN:LENGTH PP")
+    
+    field(SCAN, "1 second")
+    field(SELM, "All")
+}
+
+###
 ### Conversion records
 ### 
 
@@ -7,10 +24,10 @@ record(transform, "$(P)POS:TO")
     field(INPA, "$(P)POS:RAW CP")
     field(INPB, "$(P)POS:SCALE CP")
     field(INPC, "$(P)POS:RAW:SP:RBV CP") 
-	
+
     field(CLCD, "A*B*1000")
-	field(CLCE, "C*B*1000")
-	
+    field(CLCE, "C*B*1000")
+
     field(OUTD, "$(P)POS PP")
     field(OUTE, "$(P)POS:SP:RBV PP")
 }
@@ -29,13 +46,13 @@ record(transform, "$(P)STRESS:TO")
     field(INPA, "$(P)STRESS:RAW CP")
     field(INPB, "$(P)STRESS:SCALE CP") 
     field(INPC, "$(P)STRESS:AREA CP")
-	field(INPD, "$(P)STRESS:RAW:SP:RBV CP")
-	
+    field(INPD, "$(P)STRESS:RAW:SP:RBV CP")
+    
     field(CLCE, "A*B*(1/C)")
-	field(CLCF, "D*B*(1/C)")
-	
+    field(CLCF, "D*B*(1/C)")
+    
     field(OUTE, "$(P)STRESS PP")
-	field(OUTF, "$(P)STRESS:SP:RBV PP")
+    field(OUTF, "$(P)STRESS:SP:RBV PP")
 }
 
 record(calcout, "$(P)STRESS:FROM")
@@ -53,13 +70,13 @@ record(transform, "$(P)STRAIN:TO")
     field(INPA, "$(P)STRAIN:RAW CP")
     field(INPB, "$(P)STRAIN:SCALE CP")  
     field(INPC, "$(P)STRAIN:LENGTH CP")
-	field(INPD, "$(P)STRAIN:RAW:SP:RBV CP")
-	
+    field(INPD, "$(P)STRAIN:RAW:SP:RBV CP")
+    
     field(CLCE, "A*100000*B*(1/C)")
-	field(CLCF, "D*100000*B*(1/C)")
-	
+    field(CLCF, "D*100000*B*(1/C)")
+    
     field(OUTE, "$(P)STRAIN PP")
-	field(OUTF, "$(P)STRAIN:SP:RBV PP")
+    field(OUTF, "$(P)STRAIN:SP:RBV PP")
 }
 
 record(calcout, "$(P)STRAIN:FROM")
@@ -84,7 +101,7 @@ record(calcout, "$(P)STRAIN:FROM")
 record(ai, "$(P)STRESS:AREA")
 {
     field(DESC, "The stress channel area")
-    field(SCAN, "1 second")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getArea(2) $(PORT)")
     field(PREC, "3")
@@ -103,7 +120,7 @@ record(ao, "$(P)STRESS:AREA:SP")
     field(OUT, "@devInstron.proto setArea(2) $(PORT)")
     field(PREC, "3")
     field(EGU, "mm^2")
-	field(FLNK, "$(P)STRESS:AREA:SP:CALC")
+    field(FLNK, "$(P)STRESS:AREA:SP:CALC")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STRESS:AREA:SP")
     field(SDIS, "$(P)DISABLE")
@@ -122,7 +139,7 @@ record(calcout, "$(P)STRESS:AREA:SP:CALC")
 {
     field(INPA, "$(P)STRESS:AREA:SP")
     # 4*ATAN(1) = PI
-	field(CALC, "2*SQR(A/(4*ATAN(1)))")
+    field(CALC, "2*SQR(A/(4*ATAN(1)))")
     field(OUT, "$(P)STRESS:DIAMETER:SP PP")
     field(OOPT, "Every Time")
 }
@@ -161,7 +178,7 @@ record(ao, "$(P)STRESS:DIAMETER:SP")
 record(ai, "$(P)STRAIN:LENGTH")
 {
     field(DESC, "The strain channel length")
-    field(SCAN, "1 second")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getStrainLength(3) $(PORT)")
     field(PREC, "3")

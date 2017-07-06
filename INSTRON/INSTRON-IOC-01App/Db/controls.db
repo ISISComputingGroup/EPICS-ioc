@@ -112,7 +112,7 @@ record(bo, "$(P)INIT")
     field(DTYP, "stream")
     field(VAL, "0")
     field(OUT,  "@devInstron.proto initRoutine $(PORT)")
-	field(FLNK, "$(P)INITSEQ")
+    field(FLNK, "$(P)INITSEQ")
     
     field(PINI, "YES")
     field(SIML, "$(P)SIM")
@@ -124,14 +124,10 @@ record(seq, "$(P)INITSEQ")
 {
     field(DESC, "Initialize comms")   
     field(LNK1, "$(P)READALL PP")
-	
-	# TODO: Link to AXES:ABS
-	# field(DO2, "1")
-	# field(LNK2, "$(P)AXES:ABS PP")
-	
-	field(DO3, "1")
-	field(LNK3, "$(P)AXES:ABS PP")
-	
+    
+    field(DO2, "3")
+    field(LNK2, "$(P)AXES:RAMP:WFTYP:SP PP")
+    
     field(SELM, "All") 
 }
 
@@ -197,21 +193,21 @@ record(calcout, "$(P)ACTUATOR:STAT:_CALC")
 {
     field(INPA, "$(P)STAT:FRAME.B3 CP")
     field(CALC, "A=0?1:0")
-	field(OOPT, "Every Time")
-	field(OUT, "$(P)ACTUATOR:STAT PP")
+    field(OOPT, "Every Time")
+    field(OUT, "$(P)ACTUATOR:STAT PP")
 }
 
 record(bi, "$(P)ACTUATOR:STAT")
 {
     field(DTYP, "Soft Channel")
-	field(ZNAM, "OFF")
-	field(ONAM, "ON")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
 }
 
 record(stringout, "$(P)ARBITRARY:SP")
 {
-	field(DESC, "General write command")
-	field(FLNK, "$(P)ARBITRARY PP")
+    field(DESC, "General write command")
+    field(FLNK, "$(P)ARBITRARY PP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:ARBITRARY")
     field(SDIS, "$(P)DISABLE")
@@ -249,7 +245,7 @@ record(mbbo, "$(P)MOVE:SP")
 
 record(mbbi, "$(P)MOVE")
 {
-	field(DESC, "Current movement type")
+    field(DESC, "Current movement type")
     field(DTYP, "stream")
     field(INP,  "@devInstron.proto getMovementType $(PORT)")
     field(SCAN, "Passive")
@@ -281,7 +277,7 @@ record(calcout, "$(P)MOVE:_STOPIFHOLDING")
     field(INPA, "$(P)MOVE")
     field(CALC, "A = 2 || A = 5")
     field(OOPT, "When Non-zero")
-	field(OUT, "$(P)MOVE:_END PP")
+    field(OUT, "$(P)MOVE:_END PP")
 }
 
 record(seq, "$(P)MOVE:GO:SP")
@@ -294,7 +290,7 @@ record(seq, "$(P)MOVE:GO:SP")
 
 record(seq, "$(P)MOVE:_END")
 {
-	field(DESC, "End movement")   
+    field(DESC, "End movement")   
     field(DO1, "0")
     field(LNK1, "$(P)MOVE:SP PP")    
     field(SELM, "All")
@@ -305,7 +301,7 @@ record(calcout, "$(P)GOING:_CALC")
     field(INPA, "$(P)MOVE")
     field(CALC, "A=1 || A=6")
     field(OOPT, "Every Time")
-	field(OUT, "$(P)GOING PP")
+    field(OUT, "$(P)GOING PP")
 }
 
 record(bi, "$(P)GOING")
@@ -321,7 +317,7 @@ record(bi, "$(P)GOING")
 
 record(seq, "$(P)READALL")
 {
-	field(DESC, "Read all data from rig")
+    field(DESC, "Read all data from rig")
     
     # Disable watchdog
     field(DO1, "0")
@@ -330,9 +326,11 @@ record(seq, "$(P)READALL")
     field(LNK2, "$(P)MOVE PP")
     field(LNK3, "$(P)STAT:FRAME PP")
     field(LNK4, "$(P)CHANNEL PP")
-	field(LNK5, "$(P)POS:READALL PP")
-	field(LNK6, "$(P)STRESS:READALL PP")
-	field(LNK7, "$(P)STRAIN:READALL PP")
+    field(LNK5, "$(P)POS:READALL PP")
+    field(LNK6, "$(P)STRESS:READALL PP")
+    field(LNK7, "$(P)STRAIN:READALL PP")
+
+    field(LNK8, "$(P)CONTROLS:SPECIFIC:READALL PP")
     
     field(SCAN, "1 second")
     field(SELM, "All")
@@ -369,7 +367,7 @@ record(mbbo, "$(P)READALL:SCAN:SP")
 
 record(bo, "$(P)PANIC:SP")
 {
-	field(DESC, "Panic stop setpoint")
+    field(DESC, "Panic stop setpoint")
     field(DTYP, "stream")
     field(OUT, "@devInstron.proto panicStop $(PORT)")
     field(ZNAM, "READY")
@@ -399,7 +397,7 @@ record(seq, "$(P)PANIC:_SEQ")
 
 record(bo, "$(P)STOP:SP")
 {
-	field(DESC, "Stop rig")
+    field(DESC, "Stop rig")
     field(ZNAM, "READY")
     field(ONAM, "STOPPING")
     # Initial value.
@@ -428,7 +426,7 @@ record(calcout, "$(P)STOP:_CALC_RAMP")
     field(INPB, "$(P)STOP:SP")
     field(CALC, "A = 0 && B = 1")
     field(OOPT, "When Non-zero")
-	field(OUT, "$(P)STOP:_STOP_RAMP PP")
+    field(OUT, "$(P)STOP:_STOP_RAMP PP")
     field(FLNK, "$(P)STOP:_RESET")
 }
 
@@ -439,13 +437,13 @@ record(calcout, "$(P)STOP:_CALC_WAVEFORM")
     field(INPB, "$(P)STOP:SP")
     field(CALC, "A = 1 && B = 1")
     field(OOPT, "When Non-zero")
-	field(OUT, "$(P)STOP:_STOP_WAVEFORM PP")
+    field(OUT, "$(P)STOP:_STOP_WAVEFORM PP")
     field(FLNK, "$(P)STOP:_RESET")
 }
 
 record(seq, "$(P)STOP:_STOP_RAMP")
 {
-	field(DESC, "Stop ramp")   
+    field(DESC, "Stop ramp")   
     field(DO1, "0")
     field(LNK1, "$(P)MOVE:SP PP")    
     field(SELM, "All")
@@ -453,7 +451,7 @@ record(seq, "$(P)STOP:_STOP_RAMP")
 
 record(seq, "$(P)STOP:_STOP_WAVEFORM")
 {
-	field(DESC, "TODO: Insert actual PV")   
+    field(DESC, "TODO: Insert actual PV")   
     field(DO1, "0")
     field(LNK1, "$(P)WAVE:STOP:RAW PP")    
     field(SELM, "All")
