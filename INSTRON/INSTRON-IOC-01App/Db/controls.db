@@ -56,11 +56,14 @@ record(mbbo, "$(P)CHANNEL:SP")
     field(DTYP, "stream")
     
     field(ZRVL, 1)
-    field(ZRST, "Position")    
+    field(ZRST, "Position")
     field(ONVL, 2)
-    field(ONST, "Stress")       
+    field(ONST, "Stress")
+
     field(TWVL, 3)
     field(TWST, "Strain")
+    
+    field(IVOA, "Don't drive outputs")
     
     field(OUT,  "@devInstron.proto setCurrentControlChannel $(PORT)")
     field(SIML, "$(P)SIM")

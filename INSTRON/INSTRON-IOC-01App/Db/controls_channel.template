@@ -1,3 +1,14 @@
+# Macros
+# 
+# PORT - asyn port name
+# P - pv prefix for device
+# CHAN - the channel POS, STRESS, STRAIN
+# CHAN_UNITS - units of the channel
+# CHAN_TOL - default channel tolerance
+# CHAN_EXP_TYPE - expected channel type
+# ST_PREFIX - prefix of mbbi record in channel pv for this channel
+
+
 record(seq, "$(P)$(CHAN):READALL")
 {
     field(DESC, "Read data from $(CHAN) channel")
@@ -200,7 +211,7 @@ record(ai, "$(P)$(CHAN):SCALE")
 record(mbbi, "$(P)$(CHAN):TYPE")
 {
     field(SCAN, "Passive")
-    field(DTYP, "stream")
+    field(DTYP, "stream") 
     field(INP, "@devInstron.proto getType($(CHAN_NUM),$(P)$(CHAN)) $(PORT)")
     field(ZRVL, "0")
     field(ZRST, "Disconnected")
@@ -236,6 +247,46 @@ record(mbbi, "$(P)$(CHAN):TYPE:STANDARD")
     field(ZRST, "Standard transducer")
     field(ONVL, "1")
     field(ONST, "User transducer")
+}
+
+record(calc, "$(P)$(CHAN):TYPE:_CHECK")
+{
+    field(DESC, "1 if type is as expected")
+    field(INPA, "$(P)$(CHAN):TYPE CP")
+    field(INPB, "$(CHAN_EXP_TYPE)")
+    
+    field(CALC, "A==B?1:0")
+}
+
+record(bi, "$(P)$(CHAN):TYPE:CHECK")
+{
+    field(DESC, "Check channel is expected type")
+    field(INP, "$(P)$(CHAN):TYPE:_CHECK CP")
+        
+    field(ZNAM, "FAIL")
+    field(ONAM, "PASS")
+}
+
+record(scalcout, "$(P)$(CHAN):TYPE:_CHANNEL_LABEL")
+{
+    field(DESC, "Set channel label include or not disable")
+    field(INPA, "$(P)$(CHAN):TYPE:_CHECK CP")
+    field(INBB, "$(P)CHANNEL.$(ST_PREFIX)ST")
+    
+    field(CALC, "A?BB:BB + ' - disabled'")
+    field(OUT, "$(P)CHANNEL:SP.$(ST_PREFIX)ST")
+    
+}
+
+record(calcout, "$(P)$(CHAN):TYPE:_CHANNEL_ERROR")
+{
+    field(DESC, "Set channel to invalid or not")
+    field(INPA, "$(P)$(CHAN):TYPE:_CHECK CP")
+    
+    # result is no_alarm (0) or invalid (3)
+    field(CALC, "A?0:3")
+    field(OUT, "$(P)CHANNEL:SP.$(ST_PREFIX)SV")
+    
 }
 
 ### SIMULATION RECORDS ###
