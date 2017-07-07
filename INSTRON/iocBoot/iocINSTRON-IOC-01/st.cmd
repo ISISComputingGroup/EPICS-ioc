@@ -21,21 +21,21 @@ INSTRON_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 ## For unit testing:
-$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
+$(IFTESTDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
 
 ## For normal devsim:
-# $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:57677")
+# $(IFTESTDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:57677")
 
 ## For recsim:
-$(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
+$(IFTESTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 
 ## For real device use:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
-# $(IFNOTDEVSIM) asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r\n)")
+$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
+$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
+$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
+$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
+$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
+# $(IFNOTTESTDEVSIM) asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r\n)")
 
 ## Load record instances
 
