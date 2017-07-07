@@ -98,8 +98,8 @@ record(seq, "$(P)WAVE:START:_SEQ")
 	field(DESC, "Start the waveform generator")
 	
     # Reset axes to non-absolute ramp
-    field(DO1, "1")
-    field(LNK1, "$(P)AXES:ABS:FALSE PP")
+    field(DO1, "0")
+    field(LNK1, "$(P)AXES:RAMP:WFTYP:SP PP")
 	
     # Abort the waveform generator
     field(DO2, "1")
@@ -159,8 +159,8 @@ record(seq, "$(P)WAVE:STOP:_SEQ")
     field(LNK1, "$(P)WAVE:STOP:RAW.PROC")
 	
     # Set axes to absolute
-    field(DO2, "1")
-    field(LNK2, "$(P)AXES:ABS:TRUE PP")
+    field(DO2, "3")
+    field(LNK2, "$(P)AXES:RAMP:WFTYP:SP PP")
 	
 	# Finish
     field(DO3, "0")

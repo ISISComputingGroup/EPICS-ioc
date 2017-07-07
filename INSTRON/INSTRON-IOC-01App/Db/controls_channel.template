@@ -1,3 +1,28 @@
+# Macros
+# 
+# PORT - asyn port name
+# P - pv prefix for device
+# CHAN - the channel POS, STRESS, STRAIN
+# CHAN_UNITS - units of the channel
+# CHAN_TOL - default channel tolerance
+# CHAN_EXP_TYPE - expected channel type
+# ST_PREFIX - prefix of mbbi record in channel pv for this channel
+
+
+record(seq, "$(P)$(CHAN):READALL")
+{
+    field(DESC, "Read data from $(CHAN) channel")
+    
+    field(LNK1, "$(P)$(CHAN):STEP:TIME PP")
+    field(LNK2, "$(P)$(CHAN):RAMP:WFTYP PP")
+    field(LNK3, "$(P)$(CHAN):RAW:SP:RBV PP")
+    field(LNK4, "$(P)$(CHAN):RAW PP")
+    field(LNK5, "$(P)$(CHAN):SCALE PP")
+    field(LNK6, "$(P)$(CHAN):TYPE PP")
+    
+    field(SELM, "All")
+}
+
 record(ao, "$(P)$(CHAN):STEP:TIME:SP")
 {
     field(DTYP, "stream")
@@ -12,7 +37,7 @@ record(ao, "$(P)$(CHAN):STEP:TIME:SP")
 record(ai, "$(P)$(CHAN):STEP:TIME")
 {
     field(DESC, "The step time of the $(CHAN) channel")
-    field(SCAN, "1 second")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getStepTime($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
@@ -24,8 +49,9 @@ record(ai, "$(P)$(CHAN):STEP:TIME")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(mbbo, "$(P)$(CHAN):ABS:SP")
+record(mbbo, "$(P)$(CHAN):RAMP:WFTYP:SP")
 {
+    field(DESC, "Set the ramp waveform type of $(CHAN)")
     field(DTYP, "stream")
     field(OUT, "@devInstron.proto setChanWaveType($(CHAN_NUM)) $(PORT)")
     field(ZRST, "Ramp")
@@ -35,14 +61,14 @@ record(mbbo, "$(P)$(CHAN):ABS:SP")
     field(FRST, "Absolute hold ramp")
     field(FVST, "Absolute rate ramp")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)$(CHAN):SIM:ABS:SP")
+    field(SIOL, "$(P)$(CHAN):SIM:RAMP:WFTYP:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(mbbi, "$(P)$(CHAN):ABS")
+record(mbbi, "$(P)$(CHAN):RAMP:WFTYP")
 {
-    field(DESC, "The waveform type of the $(CHAN) channel")
-    field(SCAN, "1 second")
+    field(DESC, "Ramp waveform type of the $(CHAN) channel")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getChanWaveType($(CHAN_NUM)) $(PORT)")
     field(ZRST, "Ramp")
@@ -54,7 +80,7 @@ record(mbbi, "$(P)$(CHAN):ABS")
     info(INTEREST, "HIGH")
     info(archive, "VAL")    
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)$(CHAN):SIM:ABS")
+    field(SIOL, "$(P)$(CHAN):SIM:RAMP:WFTYP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -70,7 +96,7 @@ record(ao, "$(P)$(CHAN):RAW:SP")
 
 record(ai, "$(P)$(CHAN):RAW:SP:RBV")
 {
-    field(SCAN, "1 second")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getRampAmpSP($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
@@ -81,7 +107,7 @@ record(ai, "$(P)$(CHAN):RAW:SP:RBV")
 
 record(ai, "$(P)$(CHAN):RAW")
 {
-    field(SCAN, "1 second")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getCurrentFeedback($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
@@ -106,7 +132,8 @@ record(ao, "$(P)$(CHAN):TOLERANCE")
 
 record(ao, "$(P)$(CHAN):SP")
 {
-    field(VAL, "1")
+    field(PREC, "3")
+    field(VAL, "0")
     field(FLNK, "$(P)$(CHAN):SP:_NEWDATA PP")
     field(EGU, "$(CHAN_UNITS)")
     field(SIML, "$(P)SIM")
@@ -123,7 +150,8 @@ record(fanout, "$(P)$(CHAN):SP:_NEWDATA")
 
 record(ai, "$(P)$(CHAN):SP:RBV")
 {
-    field(VAL, "1")
+    field(VAL, "0")
+    field(PREC, "3")
     field(FLNK, "$(P)$(CHAN):SP:_UPDATELIMITS")
     # Limits will be updated by $(P)$(CHAN):SP:_UPDATELIMITS
     field(HIGH, "0")
@@ -131,6 +159,11 @@ record(ai, "$(P)$(CHAN):SP:RBV")
     field(HSV, "MINOR")
     field(LSV, "MINOR")
     field(EGU, "$(CHAN_UNITS)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(CHAN):SIM:VALUE:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)$(CHAN)")
@@ -138,12 +171,12 @@ record(ai, "$(P)$(CHAN)")
     field(DESC, "The current value of the $(CHAN) channel")
     field(DTYP, "Soft Channel")
     field(PREC, "3")
-    field(EGU, "$(CHAN_UNITS)")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    field(EGU, "$(CHAN_UNITS)")    
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)$(CHAN):SIM:VALUE")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
@@ -154,15 +187,15 @@ record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
     field(CLCC, "B+A")
     field(CLCD, "B-A")
   
-    field(OUTC, "$(P)$(CHAN):SP:RBV.HIGH PP")
-    field(OUTD, "$(P)$(CHAN):SP:RBV.LOW PP")
+    field(OUTC, "$(P)$(CHAN):SP:RBV.HIGH")
+    field(OUTD, "$(P)$(CHAN):SP:RBV.LOW")
   
 }
 
 record(ai, "$(P)$(CHAN):SCALE")
 {
     field(DESC, "The scale of the $(CHAN) channel")
-    field(SCAN, "1 second")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getChanScale($(CHAN_NUM)) $(PORT)")
     field(PREC, "3")
@@ -177,8 +210,8 @@ record(ai, "$(P)$(CHAN):SCALE")
 
 record(mbbi, "$(P)$(CHAN):TYPE")
 {
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
+    field(SCAN, "Passive")
+    field(DTYP, "stream") 
     field(INP, "@devInstron.proto getType($(CHAN_NUM),$(P)$(CHAN)) $(PORT)")
     field(ZRVL, "0")
     field(ZRST, "Disconnected")
@@ -214,6 +247,46 @@ record(mbbi, "$(P)$(CHAN):TYPE:STANDARD")
     field(ZRST, "Standard transducer")
     field(ONVL, "1")
     field(ONST, "User transducer")
+}
+
+record(calc, "$(P)$(CHAN):TYPE:_CHECK")
+{
+    field(DESC, "1 if type is as expected")
+    field(INPA, "$(P)$(CHAN):TYPE CP")
+    field(INPB, "$(CHAN_EXP_TYPE)")
+    
+    field(CALC, "A==B?1:0")
+}
+
+record(bi, "$(P)$(CHAN):TYPE:CHECK")
+{
+    field(DESC, "Check channel is expected type")
+    field(INP, "$(P)$(CHAN):TYPE:_CHECK CP")
+        
+    field(ZNAM, "FAIL")
+    field(ONAM, "PASS")
+}
+
+record(scalcout, "$(P)$(CHAN):TYPE:_CHANNEL_LABEL")
+{
+    field(DESC, "Set channel label include or not disable")
+    field(INPA, "$(P)$(CHAN):TYPE:_CHECK CP")
+    field(INBB, "$(P)CHANNEL.$(ST_PREFIX)ST")
+    
+    field(CALC, "A?BB:BB + ' - disabled'")
+    field(OUT, "$(P)CHANNEL:SP.$(ST_PREFIX)ST")
+    
+}
+
+record(calcout, "$(P)$(CHAN):TYPE:_CHANNEL_ERROR")
+{
+    field(DESC, "Set channel to invalid or not")
+    field(INPA, "$(P)$(CHAN):TYPE:_CHECK CP")
+    
+    # result is no_alarm (0) or invalid (3)
+    field(CALC, "A?0:3")
+    field(OUT, "$(P)CHANNEL:SP.$(ST_PREFIX)SV")
+    
 }
 
 ### SIMULATION RECORDS ###
@@ -263,7 +336,7 @@ record(ai, "$(P)$(CHAN):SIM:STEP:TIME")
 
 alias("$(P)$(CHAN):SIM:STEP:TIME","$(P)$(CHAN):SIM:STEP:TIME:SP")
 
-record(mbbi, "$(P)$(CHAN):SIM:ABS")
+record(mbbi, "$(P)$(CHAN):SIM:RAMP:WFTYP")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -275,7 +348,7 @@ record(mbbi, "$(P)$(CHAN):SIM:ABS")
     field(FVST, "Absolute rate ramp")
 }
 
-alias("$(P)$(CHAN):SIM:ABS","$(P)$(CHAN):SIM:ABS:SP")
+alias("$(P)$(CHAN):SIM:RAMP:WFTYP","$(P)$(CHAN):SIM:RAMP:WFTYP:SP")
 
 record(ai, "$(P)$(CHAN):SIM:VALUE")
 {
@@ -285,4 +358,5 @@ record(ai, "$(P)$(CHAN):SIM:VALUE")
 }
 
 alias("$(P)$(CHAN):SIM:VALUE","$(P)$(CHAN):SIM:VALUE:SP")
+alias("$(P)$(CHAN):SIM:VALUE","$(P)$(CHAN):SIM:VALUE:SP:RBV")
 

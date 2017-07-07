@@ -37,6 +37,10 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
 # $(IFNOTDEVSIM) asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r\n)")
 
+# Need to set these for DEVSIM mode as lewis can't handle not having termination characters.
+$(IFDEVSIM) asynOctetSetOutputEos("$(DEVICE)",0,"\r\n")
+$(IFDEVSIM) asynOctetSetInputEos("$(DEVICE)",0,"\r\n")
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
