@@ -12,7 +12,7 @@ cd ${TOP}
 
 ## Register all support components
 dbLoadDatabase "dbd/LINMOT-IOC-03.dbd"
-LINMOT_IOC_02_registerRecordDeviceDriver pdbbase
+LINMOT_IOC_03_registerRecordDeviceDriver pdbbase
 
 cd ${TOP}/iocBoot/iocLINMOT-IOC-01
 
