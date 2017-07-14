@@ -311,6 +311,7 @@ record(bi, "$(P)GOING")
 {
     field(DESC, "Whether the rig is going to SP")
     field(VAL, "0")
+	field(PINI, "YES")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     
