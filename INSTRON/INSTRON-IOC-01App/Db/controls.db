@@ -42,6 +42,19 @@ record(mbbi, "$(P)CHANNEL")
     info(archive, "VAL")
 }
 
+# This is used by $(P)$(CHAN):TYPE:_CHANNEL_LABEL
+# It is just a clean list of the original unmodified channel names
+# otherwise it recursively appends " - disabled" which we don't want.
+record(mbbi, "$(P)_CHANNELSLIST_CLEAN")
+{
+    field(ZRVL, 1)
+    field(ZRST, "Position")    
+    field(ONVL, 2)
+    field(ONST, "Stress")       
+    field(TWVL, 3)
+    field(TWST, "Strain")
+}
+
 record(seq, "$(P)CHANNEL:_UPDATE_SP")
 {
     field(DOL1, "$(P)CHANNEL")
@@ -59,11 +72,8 @@ record(mbbo, "$(P)CHANNEL:SP")
     field(ZRST, "Position")
     field(ONVL, 2)
     field(ONST, "Stress")
-
     field(TWVL, 3)
     field(TWST, "Strain")
-    
-    field(IVOA, "Don't drive outputs")
     
     field(OUT,  "@devInstron.proto setCurrentControlChannel $(PORT)")
     field(SIML, "$(P)SIM")
