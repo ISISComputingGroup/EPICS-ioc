@@ -85,6 +85,27 @@ record(bo, "$(P)W:GOING:SP")
     field(ONAM, "")
 }
 
+# Read LabVIEW control/indicator "Go S" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+record(bi, "$(P)S:GOING")
+{
+	field(DESC, "LabVIEW 'Go S'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Go_S")
+    field(SCAN, ".1 second")
+    field(ZNAM, "")
+    field(ONAM, "")
+}
+
+# Write to LabVIEW control "Go S" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+record(bo, "$(P)S:GOING:SP")
+{
+	field(DESC, "LabVIEW 'Go S'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Go_S")
+    field(ZNAM, "")
+    field(ONAM, "")
+}
+
 
 # Read LabVIEW control/indicator "Current X" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ai, "$(P)X")
