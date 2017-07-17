@@ -285,3 +285,13 @@ record(ai, "$(P)S:SP:RBV")
     field(SCAN, ".1 second")
 }
 
+# Write to LabVIEW control "Stop" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+record(bo, "$(P)STOP:SP")
+{
+	field(DESC, "LabVIEW 'Stop'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Stop")
+    field(ZNAM, "STOP")
+    field(ONAM, "Stopping")
+}
+
