@@ -38,7 +38,8 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
-$(APPNAME)_LIBS += lvDCOM asyn
+$(APPNAME)_LIBS += lvDCOM
+$(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 $(APPNAME)_SYS_LIBS_WIN32 += msxml2

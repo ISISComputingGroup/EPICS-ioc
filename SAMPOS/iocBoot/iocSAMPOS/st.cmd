@@ -19,11 +19,13 @@ SAMPOS_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
 
+lvDCOMConfigure("lvfp", "frontpanel", "${TOP}/data/lv_controls.xml", "$(LVDCOM_HOST=)", $(LVDCOM_OPTIONS=1), "$(LVDCOM_PROGID=)", "$(LVDCOM_USER=)", "$(LVDCOM_PASS=)")
+
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-#dbLoadRecords("db/xxx.db","user=ynq66733Host")
+dbLoadRecords("db/controls.db","user=ynq66733Host,P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
