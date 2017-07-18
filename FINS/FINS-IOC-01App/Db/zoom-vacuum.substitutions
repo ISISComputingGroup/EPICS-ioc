@@ -7,14 +7,14 @@ file "$(TOP)/FINS-IOC-01App/Db/zoom-vacuum-base.template" {
 
 file "$(TOP)/FINS-IOC-01App/Db/press-main.template" {
 	pattern{ P, Q, PORT, NAME, GAUGE, ADDRP, ADDREXP, PVALIAS}
-	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "1", "502", "501", "GAUGE1" }
-	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "2", "504", "503", "GAUGE2" }
-	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "3", "506", "505", "GAUGE3" }
-	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "4", "508", "507", "GAUGE4" }
-	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "5", "510", "509", "GAUGE5" }
-	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "6", "512", "511", "GAUGE6" }
-	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "7", "514", "513", "GAUGE7" }
-	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "8", "516", "515", "GAUGE8" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "1", "501", "502", "GAUGE1" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "2", "503", "504", "GAUGE2" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "3", "505", "506", "GAUGE3" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "4", "507", "508", "GAUGE4" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "5", "509", "510", "GAUGE5" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "6", "511", "512", "GAUGE6" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "7", "513", "514", "GAUGE7" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "8", "515", "516", "GAUGE8" }
 }
 
 
