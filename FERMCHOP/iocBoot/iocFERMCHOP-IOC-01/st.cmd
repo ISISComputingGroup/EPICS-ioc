@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(INSTRON)/data"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(FERMCHOP)/data"
 epicsEnvSet "DEVICE" "L0"
 
 cd "${TOP}"

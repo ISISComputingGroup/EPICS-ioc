@@ -17,3 +17,10 @@ record(bo, "$(P)DISABLE")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
 }
+
+record(ai, "$(P)THING")
+{
+    field(DTYP, "stream")
+    field(INP,  "@devfc.proto getStatus $(PORT)")
+    field(SCAN, "1 second")
+}
