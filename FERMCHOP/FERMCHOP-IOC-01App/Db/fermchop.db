@@ -24,3 +24,10 @@ record(ai, "$(P)THING")
     field(INP,  "@devfc.proto getStatus $(PORT)")
     field(SCAN, "1 second")
 }
+
+record(ai, "$(P)SENDTHING")
+{
+    field(DTYP, "stream")
+    field(INP,  "@devfc.proto sendThing $(PORT)")
+	field(SCAN, "1 second")
+}
