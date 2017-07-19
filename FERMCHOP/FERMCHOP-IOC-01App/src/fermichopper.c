@@ -7,6 +7,30 @@
 #include <epicsString.h>
 
 #include <epicsExport.h>
+
+
+/**
+  *  	Strips out the leading byte from the given input.
+  *
+  *		The input data is modified so that it no longer contains the first character.
+  */
+static char parseInput(char* input)
+{
+	char firstChar = input[0];
+	int i;
+	for(i=0; i<4; i++){
+		input[i] = input[i+1];
+	}
+	// Null terminator
+	input[4] = '\0';
+	return firstChar;
+}
+
+static epicsOldString* outputPv(aSubRecord *prec, int firstChar)
+{
+	if (firstChar == 49) return (epicsOldString*) prec->a;
+}
+
 /**
  *  Do stuff.
  */
@@ -17,16 +41,12 @@ static long fermichopper(aSubRecord *prec)
 	
 	puts("Asub: fermichopper: Input A");
 	prec->vala = (epicsOldString*)(prec->a);
-	tmp = *(epicsOldString*)(prec->a);
 	
-	int i;
-	for(i=0; i<4; i++){
-		tmp[i] = tmp[i+1];
-	}
-	// Null terminator
-	tmp[4] = '\0';
+	char firstCharInpA = parseInput(*(epicsOldString*)(prec->a));
 	
-	printf("Asub: fermichopper: Input A %s\n", tmp);
+	(epicsOldString*)(prec->vala) = outputPv(prec, firstCharInpA);
+	
+	printf("Asub: fermichopper: Parsed output %i %s\n", firstCharInpA, *(epicsOldString*)(prec->vala));
     return 0; /* process output links */
 }
 
