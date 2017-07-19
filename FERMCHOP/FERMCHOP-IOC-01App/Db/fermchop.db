@@ -18,16 +18,15 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-record(ai, "$(P)THING")
+record(stringin, "$(P)THING")
 {
     field(DTYP, "stream")
     field(INP,  "@devfc.proto getStatus $(PORT)")
     field(SCAN, "1 second")
 }
 
-record(ai, "$(P)SENDTHING")
+record(stringout, "$(P)SENDTHING")
 {
     field(DTYP, "stream")
-    field(INP,  "@devfc.proto sendThing $(PORT)")
-	field(SCAN, "1 second")
+    field(OUT,  "@devfc.proto sendThing $(PORT)")
 }
