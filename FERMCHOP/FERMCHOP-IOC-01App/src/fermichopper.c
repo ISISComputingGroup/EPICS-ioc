@@ -12,11 +12,21 @@
  */
 static long fermichopper(aSubRecord *prec) 
 {
+	char* tmp;
 	puts("IN ASUB FUNCTION");	
 	
 	puts("Asub: fermichopper: Input A");
-	prec->vala = prec->a;
+	prec->vala = (epicsOldString*)(prec->a);
+	tmp = *(epicsOldString*)(prec->a);
 	
+	int i;
+	for(i=0; i<4; i++){
+		tmp[i] = tmp[i+1];
+	}
+	// Null terminator
+	tmp[4] = '\0';
+	
+	printf("Asub: fermichopper: Input A %s\n", tmp);
     return 0; /* process output links */
 }
 
