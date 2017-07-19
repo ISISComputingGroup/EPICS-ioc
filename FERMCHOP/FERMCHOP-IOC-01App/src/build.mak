@@ -30,6 +30,7 @@ $(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += fermichopper.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -50,6 +51,7 @@ $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp
+$(APPNAME)_SRCS_DEFAULT += fermichopper.c
 $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Add support from base/src/vxWorks if needed

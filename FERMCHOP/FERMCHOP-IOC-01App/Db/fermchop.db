@@ -18,12 +18,29 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-record(stringin, "$(P)THING")
+record(stringin, "$(P)THING:RAW")
 {
     field(DTYP, "stream")
     field(INP,  "@devfc.proto getStatus $(PORT)")
     field(SCAN, "1 second")
+	field(FLNK, "$(P)THING:PARSE")
 }
+
+record(aSub, "$(P)THING:PARSE")
+{
+  field(SNAM, "fermichopper")
+  field(INPA, "$(P)THING:RAW")
+  field(FTA, "STRING")
+  field(NOA, "1")
+  field(OUTA, "$(P)THING")
+  field(FTVA, "STRING")
+  field(NOVA, "1")
+}
+
+record(stringin, "$(P)THING")
+{
+    field(SCAN, "Passive")
+} 
 
 record(stringout, "$(P)SENDTHING")
 {
