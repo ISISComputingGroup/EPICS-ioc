@@ -26,9 +26,9 @@ static char parseInput(char* input)
 	return firstChar;
 }
 
-static epicsOldString* outputPv(aSubRecord *prec, int firstChar)
+static void outputToPv(aSubRecord *prec, int firstChar, epicsOldString* data)
 {
-	if (firstChar == 49) return (epicsOldString*) prec->a;
+	if (firstChar == 49) prec->vala = *(epicsOldString*) data;
 }
 
 /**
@@ -44,7 +44,7 @@ static long fermichopper(aSubRecord *prec)
 	
 	char firstCharInpA = parseInput(*(epicsOldString*)(prec->a));
 	
-	(epicsOldString*)(prec->vala) = outputPv(prec, firstCharInpA);
+	outputToPv(prec, firstCharInpA, (epicsOldString*)(prec->a));
 	
 	printf("Asub: fermichopper: Parsed output %i %s\n", firstCharInpA, *(epicsOldString*)(prec->vala));
     return 0; /* process output links */
