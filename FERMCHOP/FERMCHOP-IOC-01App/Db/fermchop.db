@@ -39,34 +39,34 @@ record(aSub, "$(P)STATUS:PARSE")
   field(FTVA, "STRING")
   field(NOVA, "1")
   
-  field(OUTC, "$(P)SPEED:SP:RBV")
+  field(OUTC, "$(P)SPEED:SP:RBV PP")
   field(FTVC, "LONG")
   
-  field(OUTD, "$(P)SPEED")
+  field(OUTD, "$(P)SPEED PP")
   field(FTVD, "LONG")
   
-  field(OUTE, "$(P)DELAY:SP:RBV")
+  field(OUTE, "$(P)DELAY:SP:RBV PP")
   field(FTVE, "DOUBLE")
   
-  field(OUTF, "$(P)DELAY")
+  field(OUTF, "$(P)DELAY PP")
   field(FTVF, "DOUBLE") 
   
-  field(OUTG, "$(P)GATEWIDTH")
+  field(OUTG, "$(P)GATEWIDTH PP")
   field(FTVG, "DOUBLE")
   
-  field(OUTH, "$(P)DRIVECURRENT")
+  field(OUTH, "$(P)DRIVECURRENT PP")
   field(FTVH, "DOUBLE")
   
-  field(OUTI, "$(P)AUTOZERO:1:UPPER")
+  field(OUTI, "$(P)AUTOZERO:1:UPPER PP")
   field(FTVI, "DOUBLE")
   
-  field(OUTJ, "$(P)AUTOZERO:2:UPPER")
+  field(OUTJ, "$(P)AUTOZERO:2:UPPER PP")
   field(FTVJ, "DOUBLE")
   
-  field(OUTK, "$(P)AUTOZERO:1:LOWER")
+  field(OUTK, "$(P)AUTOZERO:1:LOWER PP")
   field(FTVK, "DOUBLE")
   
-  field(OUTL, "$(P)AUTOZERO:2:LOWER")
+  field(OUTL, "$(P)AUTOZERO:2:LOWER PP")
   field(FTVL, "DOUBLE")
 
 }
@@ -79,51 +79,61 @@ record(stringin, "$(P)LASTCOMMAND")
 record(ai, "$(P)SPEED:SP:RBV")
 {
     field(SCAN, "Passive")
+	field(EGU, "rpm")
 } 
 
 record(ai, "$(P)SPEED")
 {
     field(SCAN, "Passive")
+	field(EGU, "rpm")
 } 
 
 record(ai, "$(P)DELAY:SP:RBV")
 {
     field(SCAN, "Passive")
+	field(EGU, "us")
 } 
 
 record(ai, "$(P)DELAY")
 {
     field(SCAN, "Passive")
+	field(EGU, "us")
 } 
 
 record(ai, "$(P)GATEWIDTH")
 {
     field(SCAN, "Passive")
+	field(EGU, "us")
 } 
 
 record(ai, "$(P)DRIVECURRENT")
 {
     field(SCAN, "Passive")
+	field(EGU, "A")
 } 
 
 record(ai, "$(P)AUTOZERO:1:UPPER")
 {
     field(SCAN, "Passive")
+	field(EGU, "V")
 } 
 
 record(ai, "$(P)AUTOZERO:2:UPPER")
 {
     field(SCAN, "Passive")
+	field(EGU, "V")
 } 
 
 record(ai, "$(P)AUTOZERO:1:LOWER")
 {
     field(SCAN, "Passive")
+	field(EGU, "V")
 } 
 
 record(ai, "$(P)AUTOZERO:2:LOWER")
 {
     field(SCAN, "Passive")
+	field(EGU, "V")
 } 
 
 record(stringout, "$(P)COMMAND:SP")
