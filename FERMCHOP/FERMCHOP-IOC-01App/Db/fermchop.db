@@ -34,12 +34,25 @@ record(aSub, "$(P)STATUS:PARSE")
   field(INPA, "$(P)STATUS:RAW")
   field(FTA, "STRING")
   field(NOA, "20")
+  
   field(OUTA, "$(P)LASTCOMMAND")
   field(FTVA, "STRING")
   field(NOVA, "1")
   
   field(OUTC, "$(P)SPEED:SP:RBV")
   field(FTVC, "LONG")
+  
+  field(OUTD, "$(P)SPEED")
+  field(FTVD, "LONG")
+  
+  field(OUTE, "$(P)DELAY:SP:RBV")
+  field(FTVE, "DOUBLE")
+  
+  field(OUTF, "$(P)DELAY")
+  field(FTVF, "DOUBLE") 
+  
+  field(OUTG, "$(P)GATEWIDTH")
+  field(FTVG, "DOUBLE")
 
 }
 
@@ -49,6 +62,26 @@ record(stringin, "$(P)LASTCOMMAND")
 } 
 
 record(ai, "$(P)SPEED:SP:RBV")
+{
+    field(SCAN, "Passive")
+} 
+
+record(ai, "$(P)SPEED")
+{
+    field(SCAN, "Passive")
+} 
+
+record(ai, "$(P)DELAY:SP:RBV")
+{
+    field(SCAN, "Passive")
+} 
+
+record(ai, "$(P)DELAY")
+{
+    field(SCAN, "Passive")
+} 
+
+record(ai, "$(P)GATEWIDTH")
 {
     field(SCAN, "Passive")
 } 
