@@ -53,6 +53,21 @@ record(aSub, "$(P)STATUS:PARSE")
   
   field(OUTG, "$(P)GATEWIDTH")
   field(FTVG, "DOUBLE")
+  
+  field(OUTH, "$(P)DRIVECURRENT")
+  field(FTVH, "DOUBLE")
+  
+  field(OUTI, "$(P)AUTOZERO:1:UPPER")
+  field(FTVI, "DOUBLE")
+  
+  field(OUTJ, "$(P)AUTOZERO:2:UPPER")
+  field(FTVJ, "DOUBLE")
+  
+  field(OUTK, "$(P)AUTOZERO:1:LOWER")
+  field(FTVK, "DOUBLE")
+  
+  field(OUTL, "$(P)AUTOZERO:2:LOWER")
+  field(FTVL, "DOUBLE")
 
 }
 
@@ -82,6 +97,31 @@ record(ai, "$(P)DELAY")
 } 
 
 record(ai, "$(P)GATEWIDTH")
+{
+    field(SCAN, "Passive")
+} 
+
+record(ai, "$(P)DRIVECURRENT")
+{
+    field(SCAN, "Passive")
+} 
+
+record(ai, "$(P)AUTOZERO:1:UPPER")
+{
+    field(SCAN, "Passive")
+} 
+
+record(ai, "$(P)AUTOZERO:2:UPPER")
+{
+    field(SCAN, "Passive")
+} 
+
+record(ai, "$(P)AUTOZERO:1:LOWER")
+{
+    field(SCAN, "Passive")
+} 
+
+record(ai, "$(P)AUTOZERO:2:LOWER")
 {
     field(SCAN, "Passive")
 } 

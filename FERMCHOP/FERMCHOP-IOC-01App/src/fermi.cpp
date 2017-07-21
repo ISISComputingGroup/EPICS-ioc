@@ -82,6 +82,16 @@ double delayFromHex(const std::string& hex)
 	return ((double) longFromHex(hex))/50.4;
 }
 
+double driveCurrentFromHex(const std::string& hex)
+{	
+	return ((double) longFromHex(hex))*0.002016;
+}
+
+double azVoltageFromHex(const std::string& hex)
+{	
+	return (((double) longFromHex(hex))*0.04486) - 22.86647;
+}
+
 /**
   *		Maps the first character in a data packet to an output link of the asub record.
   */
@@ -115,62 +125,88 @@ static void outputToPv(aSubRecord *prec, int firstChar, const std::string& data)
 			if (packet6data == "")
 			{
 				packet5data = data;
-				break;
 			}
 			else
 			{
 				double delay;
 				delay = delayFrom2HexWords(data.c_str(), packet6data.c_str());
 				*(double*)prec->vale = delay;
-				break;
 			}
+			break;
 		case '6':
 			// output E: $(P)DELAY:SP:RBV (high word)
 			if (packet5data == "")
 			{
 				packet6data = data;
-				break;
 			}
 			else
 			{
 				double delay;
 				delay = delayFrom2HexWords(packet7data.c_str(), data.c_str());
 				*(double*)prec->vale = delay;
-				break;
 			}
+			break;
 		case '7':
 			// output F: $(P)DELAY (low word)
 			if (packet8data == "")
 			{
 				packet7data = data;
-				break;
 			}
 			else
 			{
 				double delay;
 				delay = delayFrom2HexWords(data.c_str(), packet8data.c_str());
 				*(double*)prec->valf = delay;
-				break;
 			}
+			break;
 		case '8':
 			// output F: $(P)DELAY (high word)
 			if (packet7data == "")
 			{
 				packet8data = data;
-				break;
 			}
 			else
 			{
 				double delay;
 				delay = delayFrom2HexWords(packet7data.c_str(), data.c_str());
 				*(double*)prec->valf = delay;
-				break;
 			}
+			break;
 		case '9':
 			// output G: $(P)GATEWIDTH
 			double delay;
 			delay = delayFromHex(data.c_str());
 			*(double*)prec->valg = delay;
+			break;
+		case 'A':
+			// output H: $(P)DRIVECURRENT
+			double current;
+			current = driveCurrentFromHex(data.c_str());
+			*(double*)prec->valh = current;
+			break;
+		case 'B':
+			// output I: $(P)AUTOZERO:1:UPPER
+			double azVolt1Upper;
+			azVolt1Upper = azVoltageFromHex(data.c_str());
+			*(double*)prec->vali = azVolt1Upper;
+			break;
+		case 'C':
+			// output J: $(P)AUTOZERO:2:UPPER
+			double azVolt2Upper;
+			azVolt2Upper = azVoltageFromHex(data.c_str());
+			*(double*)prec->valj = azVolt2Upper;
+			break;
+		case 'D':
+			// output K: $(P)AUTOZERO:1:LOWER
+			double azVolt1Lower;
+			azVolt1Lower = azVoltageFromHex(data.c_str());
+			*(double*)prec->valk = azVolt1Lower;
+			break;
+		case 'E':
+			// output L: $(P)AUTOZERO:2:LOWER
+			double azVolt2Lower;
+			azVolt2Lower = azVoltageFromHex(data.c_str());
+			*(double*)prec->vall = azVolt2Lower;
 			break;
 	}
 }
