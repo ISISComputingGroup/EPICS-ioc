@@ -142,7 +142,7 @@ static void outputToPv(aSubRecord *prec, int firstChar, const std::string& data)
 			else
 			{
 				double delay;
-				delay = delayFrom2HexWords(packet7data.c_str(), data.c_str());
+				delay = delayFrom2HexWords(packet5data.c_str(), data.c_str());
 				*(double*)prec->vale = delay;
 			}
 			break;
@@ -235,10 +235,10 @@ long fermi(aSubRecord *prec)
 	// printf("Asub: fermichopper: Parsed output %s\n", *(epicsOldString*)(prec->valb));
 	
 	// Reset data from packets now that the whole thing should be adequately processed.
-	std::string packet5data = "";
-	std::string packet6data = "";
-	std::string packet7data = "";
-	std::string packet8data = "";
+	packet5data = "";
+	packet6data = "";
+	packet7data = "";
+	packet8data = "";
 	
     return 0; /* process output links */
 }
