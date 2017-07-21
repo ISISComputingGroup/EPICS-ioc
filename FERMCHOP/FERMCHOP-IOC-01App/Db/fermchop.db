@@ -37,9 +37,18 @@ record(aSub, "$(P)STATUS:PARSE")
   field(OUTA, "$(P)LASTCOMMAND")
   field(FTVA, "STRING")
   field(NOVA, "1")
+  
+  field(OUTC, "$(P)SPEED:SP:RBV")
+  field(FTVC, "LONG")
+
 }
 
 record(stringin, "$(P)LASTCOMMAND")
+{
+    field(SCAN, "Passive")
+} 
+
+record(ai, "$(P)SPEED:SP:RBV")
 {
     field(SCAN, "Passive")
 } 
