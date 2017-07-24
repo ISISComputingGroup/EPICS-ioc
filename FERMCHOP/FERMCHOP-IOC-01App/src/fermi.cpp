@@ -121,7 +121,9 @@ static void outputToPv(aSubRecord *prec, int firstChar, const std::string& data)
 			break;
 		case '2':
 		    // -> output B
-		    strcpy(*(epicsOldString*)prec->valb, data.c_str());
+			long status;
+			status = longFromHex(data.c_str());
+		    *(long*)prec->valb = status;
 			break;
 		case '3':
 		    // output C: $(P)SPEED:SP:RBV

@@ -39,6 +39,9 @@ record(aSub, "$(P)STATUS:PARSE")
   field(FTVA, "STRING")
   field(NOVA, "1")
   
+  field(OUTB, "$(P)STATUS PP")
+  field(FTVB, "LONG")
+  
   field(OUTC, "$(P)SPEED:SP:RBV PP")
   field(FTVC, "LONG")
   
@@ -83,6 +86,27 @@ record(aSub, "$(P)STATUS:PARSE")
 record(stringin, "$(P)LASTCOMMAND")
 {
     field(SCAN, "Passive")
+} 
+
+record(mbbiDirect, "$(P)STATUS")
+{
+	field(DTYP, "Soft Channel")
+    field(SCAN, "Passive")
+	# Fields that will be set:
+	# B0 = Controller OK
+	# B1 = nominal speed achieved
+	# B2 = actual delay within gate
+	# B3 = magnetic bearing on
+	# B4 = DC supply voltage on
+	# B5 = drive converter on
+	# B6 = not used
+	# B7 = interlock open
+	# B8 = not used
+	# B9 = not used
+	# BA = speed limit exceeded
+	# BB = magnetic bearing off at speed
+	# BC = autozero voltage off limit 
+	# BD = Speed limit exceeded
 } 
 
 record(ai, "$(P)SPEED:SP:RBV")
