@@ -92,6 +92,21 @@ double azVoltageFromHex(const std::string& hex)
 	return (((double) longFromHex(hex))*0.04486) - 22.86647;
 }
 
+double supplyVoltageFromHex(const std::string& hex)
+{
+	return ((double) longFromHex(hex))*0.4274;
+}
+
+double electronicsTemperatureFromHex(const std::string& hex)
+{
+	return (((double) longFromHex(hex))*0.14663) - 25.0;
+}
+
+double motorTemperatureFromHex(const std::string& hex)
+{
+	return (((double) longFromHex(hex))*0.1263) - 12.124;
+}
+
 /**
   *		Maps the first character in a data packet to an output link of the asub record.
   */
@@ -207,6 +222,24 @@ static void outputToPv(aSubRecord *prec, int firstChar, const std::string& data)
 			double azVolt2Lower;
 			azVolt2Lower = azVoltageFromHex(data.c_str());
 			*(double*)prec->vall = azVolt2Lower;
+			break;
+		case 'F':
+			// output M: $(P)VOLTAGE
+			double voltage;
+			voltage = supplyVoltageFromHex(data.c_str());
+			*(double*)prec->valm = voltage;
+			break;		
+		case 'G':
+			// output N: $(P)TEMPERATURE:ELECTRONICS
+			double electronicsTemp;
+			electronicsTemp = electronicsTemperatureFromHex(data.c_str());
+			*(double*)prec->valn = electronicsTemp;
+			break;		
+		case 'H':
+			// output O: $(P)TEMPERATURE:MOTOR
+			double motorTemp;
+			motorTemp = motorTemperatureFromHex(data.c_str());
+			*(double*)prec->valo = motorTemp;
 			break;
 	}
 }

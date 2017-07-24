@@ -67,7 +67,16 @@ record(aSub, "$(P)STATUS:PARSE")
   field(FTVK, "DOUBLE")
   
   field(OUTL, "$(P)AUTOZERO:2:LOWER PP")
-  field(FTVL, "DOUBLE")
+  field(FTVL, "DOUBLE") 
+  
+  field(OUTM, "$(P)VOLTAGE PP")
+  field(FTVM, "DOUBLE") 
+  
+  field(OUTN, "$(P)TEMPERATURE:ELECTRONICS PP")
+  field(FTVN, "DOUBLE") 
+  
+  field(OUTO, "$(P)TEMPERATURE:MOTOR PP")
+  field(FTVO, "DOUBLE")
 
 }
 
@@ -134,6 +143,24 @@ record(ai, "$(P)AUTOZERO:2:LOWER")
 {
     field(SCAN, "Passive")
 	field(EGU, "V")
+}
+
+record(ai, "$(P)VOLTAGE")
+{
+    field(SCAN, "Passive")
+	field(EGU, "V")
+} 
+
+record(ai, "$(P)TEMPERATURE:ELECTRONICS")
+{
+    field(SCAN, "Passive")
+	field(EGU, "C")
+} 
+
+record(ai, "$(P)TEMPERATURE:MOTOR")
+{
+    field(SCAN, "Passive")
+	field(EGU, "C")
 } 
 
 record(stringout, "$(P)COMMAND:SP")
