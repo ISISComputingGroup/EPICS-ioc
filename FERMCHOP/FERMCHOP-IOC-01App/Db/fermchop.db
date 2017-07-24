@@ -31,7 +31,6 @@ record(waveform, "$(P)STATUS:RAW")
 
 record(aSub, "$(P)STATUS:PARSE")
 {
-
     field(DESC, "Parses the response from chopper")
 
     field(SNAM, "fermichopper")
@@ -84,7 +83,6 @@ record(aSub, "$(P)STATUS:PARSE")
       
     field(OUTO, "$(P)TEMPERATURE:MOTOR PP")
     field(FTVO, "DOUBLE")
-
 }
 
 record(stringin, "$(P)LASTCOMMAND")
@@ -226,4 +224,72 @@ record(mbbo, "$(P)COMMAND:SP")
 	field(FVVL, "5")
 	field(FVST, "Switch drive on/stop mode")
 	
+}
+
+record(ao, "$(P)SPEED:SP:RAW")
+{
+	field(DTYP, "stream")
+    field(OUT,  "@devfc.proto setSpeed $(PORT)")
+}
+
+record(aSub, "$(P)SPEED:SP:CALC")
+{
+    field(DESC, "stuff")
+
+    field(SNAM, "speedSpSend")
+	
+    field(INPA, "$(P)SPEED:SP")
+    field(FTA, "LONG")
+      
+    field(OUTA, "$(P)SPEED:SP:RAW PP")
+    field(FTVA, "LONG")
+}
+
+record(ao, "$(P)SPEED:SP")
+{
+	field(DTYP, "Soft Channel")
+	field(FLNK, "$(P)SPEED:SP:CALC")
+}
+
+record(mbbo, "$(P)SPEED:SP:MBBO")
+{	
+	field(DTYP, "Raw Soft Channel")
+
+	field(ZRVL, "600")
+	field(ZRST, "600")
+	
+	field(ONVL, "550")
+	field(ONST, "550")
+	
+	field(TWVL, "500")
+	field(TWST, "500")
+	
+	field(THVL, "450")
+	field(THST, "450")
+	
+	field(FRVL, "400")
+	field(FRST, "400")
+	
+	field(FVVL, "350")
+	field(FVST, "350")
+	
+	field(SXVL, "300")
+	field(SXST, "300")
+	
+	field(SVVL, "250")
+	field(SVST, "250")
+	
+	field(EIVL, "200")
+	field(EIST, "200")
+	
+	field(NIVL, "150")
+	field(NIST, "150")
+	
+	field(TEVL, "100")
+	field(TEST, "100")
+	
+	field(ELVL, "50")
+	field(ELST, "50")
+	
+	field(FLNK, "$(P)SPEED:SP:CALC")
 }

@@ -51,12 +51,15 @@ static long hexCodeToChopperSpeedHz(const std::string& data)
 	else if (data.c_str()[3] == '2') return 500;
 	else if (data.c_str()[3] == '1') return 550;
 	else if (data.c_str()[3] == '0') return 600;	
-	else return 0;
+	else {
+		// printf("Got an unexpected character, %c\n", data.c_str()[3]);
+		return 0;
+	}
 }
 
-static long hertzToRpm(const long speedHz)
+static long rpmToHz(const long rpm)
 {
-	return speedHz * 60;
+	return rpm / 60;
 }
 
 static unsigned long longFromHex(const std::string& data)
@@ -127,15 +130,15 @@ static void outputToPv(aSubRecord *prec, int firstChar, const std::string& data)
 			break;
 		case '3':
 		    // output C: $(P)SPEED:SP:RBV
-			long setpointRpm;
-			setpointRpm = hertzToRpm(hexCodeToChopperSpeedHz(data.c_str()));
-		    *(long*)prec->valc = setpointRpm;
+			long setpointSpeed;
+			setpointSpeed = hexCodeToChopperSpeedHz(data.c_str());
+		    *(long*)prec->valc = setpointSpeed;
 			break;
 		case '4':
 			// output D: $(P)SPEED
-			unsigned long actualRpm;
-			actualRpm = longFromHex(data.c_str());
-		    *(unsigned long*)prec->vald = actualRpm;
+			unsigned long actualSpeed;
+			actualSpeed = rpmToHz(longFromHex(data.c_str()));
+		    *(unsigned long*)prec->vald = actualSpeed;
 			break;
 		case '5':
 			// output E: $(P)DELAY:SP:RBV (low word)
@@ -276,4 +279,26 @@ long fermi(aSubRecord *prec)
 	packet8data = "";
 	
     return 0; /* process output links */
+}
+
+long speedSetpointSend(aSubRecord *prec)
+{
+	
+	printf("Parsing a thing, it is %i\n", *(long*)(prec->a));
+	
+	if (*(int*)(prec->a) == 50) *(long*)prec->vala = 11;
+	else if (*(int*)(prec->a) == 100) *(long*)prec->vala = 10;
+	else if (*(int*)(prec->a) == 150) *(long*)prec->vala = 9;
+	else if (*(int*)(prec->a) == 200) *(long*)prec->vala = 8;
+	else if (*(int*)(prec->a) == 250) *(long*)prec->vala = 7;
+	else if (*(int*)(prec->a) == 300) *(long*)prec->vala = 6;
+	else if (*(int*)(prec->a) == 350) *(long*)prec->vala = 5;
+	else if (*(int*)(prec->a) == 400) *(long*)prec->vala = 4;
+	else if (*(int*)(prec->a) == 450) *(long*)prec->vala = 3;
+	else if (*(int*)(prec->a) == 500) *(long*)prec->vala = 2;
+	else if (*(int*)(prec->a) == 550) *(long*)prec->vala = 1;
+	else if (*(int*)(prec->a) == 600) *(long*)prec->vala = 0;
+	else puts("EVERYTHING IS BROKEN!!!!11!");
+	
+	return 0;
 }

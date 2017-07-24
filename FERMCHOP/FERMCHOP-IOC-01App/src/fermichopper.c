@@ -13,4 +13,13 @@ static long fermichopper(aSubRecord *prec)
 	return fermi(prec);	
 }
 
+/**
+ *  	Do stuff.
+ */
+static long speedSpSend(aSubRecord *prec) 
+{
+	return speedSetpointSend(prec);	
+}
+
 epicsRegisterFunction(fermichopper); /* must also be mentioned in asubFunctions.dbd */
+epicsRegisterFunction(speedSpSend); /* must also be mentioned in asubFunctions.dbd */
