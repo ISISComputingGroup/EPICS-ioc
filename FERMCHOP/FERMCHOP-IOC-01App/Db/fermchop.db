@@ -20,194 +20,210 @@ record(bo, "$(P)DISABLE")
 
 record(waveform, "$(P)STATUS:RAW")
 {
-	field(DESC, "Raw response from chopper")
+    field(DESC, "Raw response from chopper")
     field(DTYP, "stream")
-	field(NELM, "20")
-	field(FTVL, "STRING")
+    field(NELM, "20")
+    field(FTVL, "STRING")
     field(INP,  "@devfc.proto getStatus $(PORT)")
     field(SCAN, "1 second")
-	field(FLNK, "$(P)STATUS:PARSE")
+    field(FLNK, "$(P)STATUS:PARSE")
 }
 
 record(aSub, "$(P)STATUS:PARSE")
 {
 
-	field(DESC, "Parses the response from chopper")
+    field(DESC, "Parses the response from chopper")
 
-  field(SNAM, "fermichopper")
-  field(INPA, "$(P)STATUS:RAW")
-  field(FTA, "STRING")
-  field(NOA, "20")
-  
-  field(OUTA, "$(P)LASTCOMMAND")
-  field(FTVA, "STRING")
-  field(NOVA, "1")
-  
-  field(OUTB, "$(P)STATUS PP")
-  field(FTVB, "LONG")
-  
-  field(OUTC, "$(P)SPEED:SP:RBV PP")
-  field(FTVC, "LONG")
-  
-  field(OUTD, "$(P)SPEED PP")
-  field(FTVD, "LONG")
-  
-  field(OUTE, "$(P)DELAY:SP:RBV PP")
-  field(FTVE, "DOUBLE")
-  
-  field(OUTF, "$(P)DELAY PP")
-  field(FTVF, "DOUBLE") 
-  
-  field(OUTG, "$(P)GATEWIDTH PP")
-  field(FTVG, "DOUBLE")
-  
-  field(OUTH, "$(P)DRIVECURRENT PP")
-  field(FTVH, "DOUBLE")
-  
-  field(OUTI, "$(P)AUTOZERO:1:UPPER PP")
-  field(FTVI, "DOUBLE")
-  
-  field(OUTJ, "$(P)AUTOZERO:2:UPPER PP")
-  field(FTVJ, "DOUBLE")
-  
-  field(OUTK, "$(P)AUTOZERO:1:LOWER PP")
-  field(FTVK, "DOUBLE")
-  
-  field(OUTL, "$(P)AUTOZERO:2:LOWER PP")
-  field(FTVL, "DOUBLE") 
-  
-  field(OUTM, "$(P)VOLTAGE PP")
-  field(FTVM, "DOUBLE") 
-  
-  field(OUTN, "$(P)TEMPERATURE:ELECTRONICS PP")
-  field(FTVN, "DOUBLE") 
-  
-  field(OUTO, "$(P)TEMPERATURE:MOTOR PP")
-  field(FTVO, "DOUBLE")
+    field(SNAM, "fermichopper")
+    field(INPA, "$(P)STATUS:RAW")
+    field(FTA, "STRING")
+    field(NOA, "20")
+      
+    field(OUTA, "$(P)LASTCOMMAND")
+    field(FTVA, "STRING")
+    field(NOVA, "1")
+      
+    field(OUTB, "$(P)STATUS PP")
+    field(FTVB, "LONG")
+      
+    field(OUTC, "$(P)SPEED:SP:RBV PP")
+    field(FTVC, "LONG")
+      
+    field(OUTD, "$(P)SPEED PP")
+    field(FTVD, "LONG")
+      
+    field(OUTE, "$(P)DELAY:SP:RBV PP")
+    field(FTVE, "DOUBLE")
+      
+    field(OUTF, "$(P)DELAY PP")
+    field(FTVF, "DOUBLE") 
+      
+    field(OUTG, "$(P)GATEWIDTH PP")
+    field(FTVG, "DOUBLE")
+      
+    field(OUTH, "$(P)DRIVECURRENT PP")
+    field(FTVH, "DOUBLE")
+      
+    field(OUTI, "$(P)AUTOZERO:1:UPPER PP")
+    field(FTVI, "DOUBLE")
+      
+    field(OUTJ, "$(P)AUTOZERO:2:UPPER PP")
+    field(FTVJ, "DOUBLE")
+      
+    field(OUTK, "$(P)AUTOZERO:1:LOWER PP")
+    field(FTVK, "DOUBLE")
+      
+    field(OUTL, "$(P)AUTOZERO:2:LOWER PP")
+    field(FTVL, "DOUBLE") 
+      
+    field(OUTM, "$(P)VOLTAGE PP")
+    field(FTVM, "DOUBLE") 
+      
+    field(OUTN, "$(P)TEMPERATURE:ELECTRONICS PP")
+    field(FTVN, "DOUBLE") 
+      
+    field(OUTO, "$(P)TEMPERATURE:MOTOR PP")
+    field(FTVO, "DOUBLE")
 
 }
 
 record(stringin, "$(P)LASTCOMMAND")
 {
-	field(DESC, "The last command received")
+    field(DESC, "The last command received")
     field(SCAN, "Passive")
 } 
 
 record(mbbiDirect, "$(P)STATUS")
 {
-	field(DESC, "Status of the chopper")
-	field(DTYP, "Soft Channel")
+    field(DESC, "Status of the chopper")
+    field(DTYP, "Soft Channel")
     field(SCAN, "Passive")
-	# Fields that will be set (1 = Yes, 0 = No)
-	# B0 = Controller OK
-	# B1 = nominal speed achieved
-	# B2 = actual delay within gate
-	# B3 = magnetic bearing on
-	# B4 = DC supply voltage on
-	# B5 = drive converter on
-	# B6 = not used
-	# B7 = interlock open
-	# B8 = not used
-	# B9 = not used
-	# BA = speed limit exceeded
-	# BB = magnetic bearing off at speed
-	# BC = autozero voltage off limit 
-	# BD = Speed limit exceeded
+    # Fields that will be set (1 = Yes, 0 = No)
+    # B0 = Controller OK
+    # B1 = nominal speed achieved
+    # B2 = actual delay within gate
+    # B3 = magnetic bearing on
+    # B4 = DC supply voltage on
+    # B5 = drive converter on
+    # B6 = not used
+    # B7 = interlock open
+    # B8 = not used
+    # B9 = not used
+    # BA = speed limit exceeded
+    # BB = magnetic bearing off at speed
+    # BC = autozero voltage off limit 
+    # BD = Speed limit exceeded
 } 
 
 record(ai, "$(P)SPEED:SP:RBV")
 {
-	field(DESC, "Chopper speed setpoint")
+    field(DESC, "Chopper speed setpoint")
     field(SCAN, "Passive")
-	field(EGU, "rpm")
+    field(EGU, "rpm")
 } 
 
 record(ai, "$(P)SPEED")
 {
-	field(DESC, "Chopper speed")
+    field(DESC, "Chopper speed")
     field(SCAN, "Passive")
-	field(EGU, "rpm")
+    field(EGU, "rpm")
 } 
 
 record(ai, "$(P)DELAY:SP:RBV")
 {
-	field(DESC, "Chopper phase delay setpoint")
+    field(DESC, "Chopper phase delay setpoint")
     field(SCAN, "Passive")
-	field(EGU, "us")
+    field(EGU, "us")
 } 
 
 record(ai, "$(P)DELAY")
 {
-	field(DESC, "Chopper phase delay")
+    field(DESC, "Chopper phase delay")
     field(SCAN, "Passive")
-	field(EGU, "us")
+    field(EGU, "us")
 } 
 
 record(ai, "$(P)GATEWIDTH")
 {
-	field(DESC, "Gate width")
+    field(DESC, "Gate width")
     field(SCAN, "Passive")
-	field(EGU, "us")
+    field(EGU, "us")
 } 
 
 record(ai, "$(P)DRIVECURRENT")
 {
-	field(DESC, "Drive current")
+    field(DESC, "Drive current")
     field(SCAN, "Passive")
-	field(EGU, "A")
+    field(EGU, "A")
 } 
 
 record(ai, "$(P)AUTOZERO:1:UPPER")
 {
-	field(DESC, "Upper autozero voltage 1")
+    field(DESC, "Upper autozero voltage 1")
     field(SCAN, "Passive")
-	field(EGU, "V")
+    field(EGU, "V")
 } 
 
 record(ai, "$(P)AUTOZERO:2:UPPER")
 {
-	field(DESC, "Upper autozero voltage 2")
+    field(DESC, "Upper autozero voltage 2")
     field(SCAN, "Passive")
-	field(EGU, "V")
+    field(EGU, "V")
 } 
 
 record(ai, "$(P)AUTOZERO:1:LOWER")
 {
-	field(DESC, "Lower autozero voltage 1")
+    field(DESC, "Lower autozero voltage 1")
     field(SCAN, "Passive")
-	field(EGU, "V")
+    field(EGU, "V")
 } 
 
 record(ai, "$(P)AUTOZERO:2:LOWER")
 {
-	field(DESC, "Lower autozero voltage 2")
+    field(DESC, "Lower autozero voltage 2")
     field(SCAN, "Passive")
-	field(EGU, "V")
+    field(EGU, "V")
 }
 
 record(ai, "$(P)VOLTAGE")
 {
-	field(DESC, "Drive voltage")
+    field(DESC, "Drive voltage")
     field(SCAN, "Passive")
-	field(EGU, "V")
+    field(EGU, "V")
 } 
 
 record(ai, "$(P)TEMPERATURE:ELECTRONICS")
 {
-	field(DESC, "Temperature of the electronics")
+    field(DESC, "Temperature of the electronics")
     field(SCAN, "Passive")
-	field(EGU, "C")
+    field(EGU, "C")
 } 
 
 record(ai, "$(P)TEMPERATURE:MOTOR")
 {
-	field(DESC, "Temperature of the motor")
+    field(DESC, "Temperature of the motor")
     field(SCAN, "Passive")
-	field(EGU, "C")
+    field(EGU, "C")
 } 
 
-record(stringout, "$(P)COMMAND:SP")
+record(mbbo, "$(P)COMMAND:SP")
 {
     field(DTYP, "stream")
     field(OUT,  "@devfc.proto sendCommand $(PORT)")
+	
+	field(ONVL, "1")
+	field(ONST, "Switch drive on/stop mode")
+	
+	field(TWVL, "2")
+	field(TWST, "Switch drive on/stop mode")
+	
+	field(THVL, "3")
+	field(THST, "Switch drive on/stop mode")
+	
+	field(FRVL, "4")
+	field(FRST, "Switch drive on/stop mode")
+	
+	field(FVVL, "5")
+	field(FVST, "Switch drive on/stop mode")
+	
 }
