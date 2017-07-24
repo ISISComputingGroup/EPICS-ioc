@@ -20,6 +20,7 @@ record(bo, "$(P)DISABLE")
 
 record(waveform, "$(P)STATUS:RAW")
 {
+	field(DESC, "Raw response from chopper")
     field(DTYP, "stream")
 	field(NELM, "20")
 	field(FTVL, "STRING")
@@ -30,6 +31,9 @@ record(waveform, "$(P)STATUS:RAW")
 
 record(aSub, "$(P)STATUS:PARSE")
 {
+
+	field(DESC, "Parses the response from chopper")
+
   field(SNAM, "fermichopper")
   field(INPA, "$(P)STATUS:RAW")
   field(FTA, "STRING")
@@ -85,14 +89,16 @@ record(aSub, "$(P)STATUS:PARSE")
 
 record(stringin, "$(P)LASTCOMMAND")
 {
+	field(DESC, "The last command received")
     field(SCAN, "Passive")
 } 
 
 record(mbbiDirect, "$(P)STATUS")
 {
+	field(DESC, "Status of the chopper")
 	field(DTYP, "Soft Channel")
     field(SCAN, "Passive")
-	# Fields that will be set:
+	# Fields that will be set (1 = Yes, 0 = No)
 	# B0 = Controller OK
 	# B1 = nominal speed achieved
 	# B2 = actual delay within gate
@@ -111,78 +117,91 @@ record(mbbiDirect, "$(P)STATUS")
 
 record(ai, "$(P)SPEED:SP:RBV")
 {
+	field(DESC, "Chopper speed setpoint")
     field(SCAN, "Passive")
 	field(EGU, "rpm")
 } 
 
 record(ai, "$(P)SPEED")
 {
+	field(DESC, "Chopper speed")
     field(SCAN, "Passive")
 	field(EGU, "rpm")
 } 
 
 record(ai, "$(P)DELAY:SP:RBV")
 {
+	field(DESC, "Chopper phase delay setpoint")
     field(SCAN, "Passive")
 	field(EGU, "us")
 } 
 
 record(ai, "$(P)DELAY")
 {
+	field(DESC, "Chopper phase delay")
     field(SCAN, "Passive")
 	field(EGU, "us")
 } 
 
 record(ai, "$(P)GATEWIDTH")
 {
+	field(DESC, "Gate width")
     field(SCAN, "Passive")
 	field(EGU, "us")
 } 
 
 record(ai, "$(P)DRIVECURRENT")
 {
+	field(DESC, "Drive current")
     field(SCAN, "Passive")
 	field(EGU, "A")
 } 
 
 record(ai, "$(P)AUTOZERO:1:UPPER")
 {
+	field(DESC, "Upper autozero voltage 1")
     field(SCAN, "Passive")
 	field(EGU, "V")
 } 
 
 record(ai, "$(P)AUTOZERO:2:UPPER")
 {
+	field(DESC, "Upper autozero voltage 2")
     field(SCAN, "Passive")
 	field(EGU, "V")
 } 
 
 record(ai, "$(P)AUTOZERO:1:LOWER")
 {
+	field(DESC, "Lower autozero voltage 1")
     field(SCAN, "Passive")
 	field(EGU, "V")
 } 
 
 record(ai, "$(P)AUTOZERO:2:LOWER")
 {
+	field(DESC, "Lower autozero voltage 2")
     field(SCAN, "Passive")
 	field(EGU, "V")
 }
 
 record(ai, "$(P)VOLTAGE")
 {
+	field(DESC, "Drive voltage")
     field(SCAN, "Passive")
 	field(EGU, "V")
 } 
 
 record(ai, "$(P)TEMPERATURE:ELECTRONICS")
 {
+	field(DESC, "Temperature of the electronics")
     field(SCAN, "Passive")
 	field(EGU, "C")
 } 
 
 record(ai, "$(P)TEMPERATURE:MOTOR")
 {
+	field(DESC, "Temperature of the motor")
     field(SCAN, "Passive")
 	field(EGU, "C")
 } 
