@@ -283,8 +283,28 @@ record(seq, "$(P)DELAY:SP:_SEQ")
 	
 	field(DOL2, "$(P)DELAY:SP:_CALC.B")
     field(LNK2, "$(P)DELAY:SP:_LOWWORD PP")
-    field(DLY2, "0.1")
+    # Must have some delay between the two commands according to the documentation
+	field(DLY2, "0.1") 
 	
     field(SELM, "All")
+}
+
+record(ao, "$(P)GATEWIDTH:SP")
+{
+	field(FLNK, "$(P)GATEWIDTH:SP:_CALC")
+}
+
+record(calcout, "$(P)GATEWIDTH:SP:_CALC")
+{
+	field(INPA, "$(P)GATEWIDTH:SP")
+	field(CALC, "FLOOR(A*50.4)")
+	field(OUT, "$(P)GATEWIDTH:SP:_RAW PP")
+	field(OOPT, "Every Time")
+}
+
+record(ao, "$(P)GATEWIDTH:SP:_RAW")
+{
+	field(DTYP, "stream")
+	field(OUT,  "@devfc.proto setGateWidth $(PORT)")
 }
 
