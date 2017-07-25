@@ -282,10 +282,7 @@ long fermi(aSubRecord *prec)
 }
 
 long speedSetpointSend(aSubRecord *prec)
-{
-	
-	printf("Parsing a thing, it is %i\n", *(long*)(prec->a));
-	
+{	
 	if (*(int*)(prec->a) == 50) *(long*)prec->vala = 11;
 	else if (*(int*)(prec->a) == 100) *(long*)prec->vala = 10;
 	else if (*(int*)(prec->a) == 150) *(long*)prec->vala = 9;
@@ -298,7 +295,6 @@ long speedSetpointSend(aSubRecord *prec)
 	else if (*(int*)(prec->a) == 500) *(long*)prec->vala = 2;
 	else if (*(int*)(prec->a) == 550) *(long*)prec->vala = 1;
 	else if (*(int*)(prec->a) == 600) *(long*)prec->vala = 0;
-	else puts("EVERYTHING IS BROKEN!!!!11!");
 	
 	return 0;
 }
