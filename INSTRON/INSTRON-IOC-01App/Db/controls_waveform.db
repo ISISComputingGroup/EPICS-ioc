@@ -287,11 +287,13 @@ record(mbbi, "$(P)WAVE:TYPE")
     field(SDIS, "$(P)DISABLE")
 }
 
+alias("$(P)WAVE:TYPE", "$(P)WAVE:TYPE:SP:RBV")
+
 record(ao, "$(P)WAVE:AMP:SP")
 {
 	field(DESC, "Set the waveform generator amplitude")
 	field(PREC, "3")
-	field(EGU, "")
+	field(EGU, "mm")
 	field(FLNK, "$(P)WAVE:AMP:SP:_FAN")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAVE:AMP:SP")
@@ -311,8 +313,7 @@ record(calc, "$(P)WAVE:AMP:SP:_POS")
 	field(DESC, "Position-based wave amplitude")
     field(INPA, "$(P)WAVE:AMP:SP")
 	field(INPB, "$(P)POS:SCALE")
-	field(INPC, "1000")
-    field(CALC, "A/(B*C)")
+    field(CALC, "A/B")
 }
 
 record(calc, "$(P)WAVE:AMP:SP:_STRESS")
@@ -354,19 +355,83 @@ record(ao, "$(P)WAVE:AMP:SP:_RAW")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(scalcout, "$(P)WAVE:AMP:_UNITS")
+{
+    field(DESC, "Calculate units of the current channel")
+	field(INPA, "$(P)CHANNEL:SP.RVAL")
+	field(INAA, "$(P)POS.EGU CP")
+	field(INBB, "$(P)STRESS.EGU CP")
+	field(INCC, "$(P)STRAIN.EGU CP")
+	field(CALC, "A==1 ? AA : (A==2 ? BB : (A==3 ? CC : 'X'))")
+	field(OUT, "$(P)WAVE:AMP.EGU")
+}
+
 record(ai, "$(P)WAVE:AMP")
 {
 	field(DESC, "Get the amp of the wave generator")
 	field(DTYP, "stream")
     field(INP,  "@devInstron.proto getWaveformAmplitude($(P)CHANNEL) $(PORT)")
 	field(PREC, "3")
-	field(EGU, "m")
+	field(FLNK, "$(P)WAVE:AMP:REV:_FAN")
+	field(VAL, "0")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAVE:AMP")
     field(SDIS, "$(P)DISABLE")
+}
+
+record(fanout, "$(P)WAVE:AMP:REV:_FAN")
+{
+	field(LNK1, "$(P)WAVE:AMP:REV:_POS")
+	field(LNK2, "$(P)WAVE:AMP:REV:_STRESS")
+	field(LNK3, "$(P)WAVE:AMP:REV:_STRAIN")
+	field(LNK4, "$(P)WAVE:AMP:REV:_FWD")
+}
+
+record(calc, "$(P)WAVE:AMP:REV:_POS")
+{
+	field(DESC, "Position-based wave amplitude (reverse)")
+    field(INPA, "$(P)WAVE:AMP")
+	field(INPB, "$(P)POS:SCALE")
+    field(CALC, "A*B")
+}
+
+record(calc, "$(P)WAVE:AMP:REV:_STRESS")
+{
+	field(DESC, "Stress-based wave amplitude (reverse)")
+    field(INPA, "$(P)WAVE:AMP")
+	field(INPB, "$(P)STRESS:SCALE")
+	field(INPC, "$(P)STRESS:AREA")
+    field(CALC, "(A*B)/C")
+}
+
+record(calc, "$(P)WAVE:AMP:REV:_STRAIN")
+{
+	field(DESC, "Strain-based wave amplitude (reverse)")
+    field(INPA, "$(P)WAVE:AMP")
+	field(INPB, "$(P)STRAIN:SCALE")
+	field(INPC, "$(P)STRAIN:LENGTH")
+    field(CALC, "A*(B*C*100000)")
+}
+
+record(calcout, "$(P)WAVE:AMP:REV:_FWD")
+{
+    field(OOPT, "Every Time")
+	field(INPA, "$(P)WAVE:AMP:REV:_POS")
+	field(INPB, "$(P)WAVE:AMP:REV:_STRESS")
+	field(INPC, "$(P)WAVE:AMP:REV:_STRAIN")
+	field(INPD, "$(P)CHANNEL:SP.RVAL")
+	field(CALC, "D=1 ? A : (D=2 ? B : (D=3 ? C : -1.0))")
+	field(OUT, "$(P)WAVE:AMP:SP:RBV PP")
+}
+
+record(ai, "$(P)WAVE:AMP:SP:RBV")
+{
+	field(DESC, "The raw amplitude of the wave generator")
+	field(PREC, "3")
+	field(EGU, "mm")
 }
 
 record(ao, "$(P)WAVE:FREQ:SP")
@@ -394,7 +459,10 @@ record(ai, "$(P)WAVE:FREQ")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAVE:FREQ")
     field(SDIS, "$(P)DISABLE")
+	
 }
+
+alias("$(P)WAVE:FREQ", "$(P)WAVE:FREQ:SP:RBV")
 
 ##
 ## QUARTER CYCLE COUNTER EVENT DETECTOR CONTROLS
@@ -454,7 +522,11 @@ record(ao, "$(P)QUART:CYCLE:SP")
 	field(PREC, "0")
 	field(EGU, "")
 	field(FLNK, "$(P)QUART:SP:_CALC")
+	field(VAL, "0")
+	field(PINI, "YES")
 }
+
+alias("$(P)QUART:CYCLE:SP", "$(P)QUART:CYCLE:SP:RBV")
 
 record(calcout, "$(P)QUART:SP:_CALC")
 {
