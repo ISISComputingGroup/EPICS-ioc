@@ -253,41 +253,37 @@ record(ao, "$(P)SPEED:SP")
 
 record(ao, "$(P)DELAY:SP")
 {
-    field(FLNK, "$(P)DELAY:SP:CALC")
+    field(FLNK, "$(P)DELAY:SP:_CALC")
 }
 
-record(transform, "$(P)DELAY:SP:CALC")
+record(transform, "$(P)DELAY:SP:_CALC")
 {
 	field(INPA, "$(P)DELAY:SP")
 	field(CLCB, "(A*50400)%65536")
 	field(CLCC, "FLOOR((A*50400)/65536)")
-  
-    # field(OUTB, "$(P)DELAY:SP:LOWWORD")
-    # field(OUTC, "$(P)DELAY:SP:HIGHWORD")
-	
-	field(FLNK, "$(P)DELAY:SP:SEQ")
+	field(FLNK, "$(P)DELAY:SP:_SEQ")
 }
 
-record(ao, "$(P)DELAY:SP:HIGHWORD")
+record(ao, "$(P)DELAY:SP:_HIGHWORD")
 {
 	field(DTYP, "stream")
 	field(OUT,  "@devfc.proto setDelayHighWord $(PORT)")
 }
 
-record(ao, "$(P)DELAY:SP:LOWWORD")
+record(ao, "$(P)DELAY:SP:_LOWWORD")
 {
 	field(DTYP, "stream")
 	field(OUT,  "@devfc.proto setDelayLowWord $(PORT)")
 }
 
-record(seq, "$(P)DELAY:SP:SEQ")
+record(seq, "$(P)DELAY:SP:_SEQ")
 {
-	field(DOL1, "$(P)DELAY:SP:CALC.C")
-	field(LNK1, "$(P)DELAY:SP:HIGHWORD PP")
+	field(DOL1, "$(P)DELAY:SP:_CALC.C")
+	field(LNK1, "$(P)DELAY:SP:_HIGHWORD PP")
 	
-	field(DOL2, "$(P)DELAY:SP:CALC.B")
-    field(LNK2, "$(P)DELAY:SP:LOWWORD PP")
-    # field(DLY2, "0.1")
+	field(DOL2, "$(P)DELAY:SP:_CALC.B")
+    field(LNK2, "$(P)DELAY:SP:_LOWWORD PP")
+    field(DLY2, "0.1")
 	
     field(SELM, "All")
 }
