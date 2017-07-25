@@ -271,11 +271,20 @@ record(scalcout, "$(P)$(CHAN):TYPE:_CHANNEL_LABEL")
 {
     field(DESC, "Set channel label include or not disable")
     field(INPA, "$(P)$(CHAN):TYPE:_CHECK CP")
-    field(INBB, "$(P)CHANNEL.$(ST_PREFIX)ST")
+    field(INBB, "$(P)_CHANNELSLIST_CLEAN.$(ST_PREFIX)ST")
     
     field(CALC, "A?BB:BB + ' - disabled'")
-    field(OUT, "$(P)CHANNEL:SP.$(ST_PREFIX)ST")
+    field(FLNK, "$(P)$(CHAN):TYPE:_UPDATE_LABELS")
     
+}
+
+record(sseq, "$(P)$(CHAN):TYPE:_UPDATE_LABELS")
+{
+    field(DOL1, "$(P)$(CHAN):TYPE:_CHANNEL_LABEL.SVAL")
+    field(LNK1, "$(P)CHANNEL:SP.$(ST_PREFIX)ST ")
+	field(DOL2, "$(P)$(CHAN):TYPE:_CHANNEL_LABEL.SVAL")
+    field(LNK2, "$(P)CHANNEL.$(ST_PREFIX)ST")
+    field(SELM, "All")
 }
 
 record(calcout, "$(P)$(CHAN):TYPE:_CHANNEL_ERROR")
@@ -285,8 +294,16 @@ record(calcout, "$(P)$(CHAN):TYPE:_CHANNEL_ERROR")
     
     # result is no_alarm (0) or invalid (3)
     field(CALC, "A?0:3")
-    field(OUT, "$(P)CHANNEL:SP.$(ST_PREFIX)SV")
-    
+    field(FLNK, "$(P)$(CHAN):TYPE:_UPDATE_ALARMS")
+}
+
+record(seq, "$(P)$(CHAN):TYPE:_UPDATE_ALARMS")
+{
+    field(DOL1, "$(P)$(CHAN):TYPE:_CHANNEL_ERROR")
+    field(LNK1, "$(P)CHANNEL:SP.$(ST_PREFIX)SV PP")
+	field(DOL2, "$(P)$(CHAN):TYPE:_CHANNEL_ERROR")
+    field(LNK2, "$(P)CHANNEL.$(ST_PREFIX)SV PP")
+    field(SELM, "All")
 }
 
 ### SIMULATION RECORDS ###
