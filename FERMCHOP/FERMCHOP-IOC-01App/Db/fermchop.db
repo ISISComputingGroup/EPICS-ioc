@@ -60,7 +60,7 @@ record(aSub, "$(P)STATUS:PARSE")
     field(OUTG, "$(P)GATEWIDTH PP")
     field(FTVG, "DOUBLE")
       
-    field(OUTH, "$(P)DRIVECURRENT PP")
+    field(OUTH, "$(P)CURRENT PP")
     field(FTVH, "DOUBLE")
       
     field(OUTI, "$(P)AUTOZERO:1:UPPER PP")
@@ -148,7 +148,7 @@ record(ai, "$(P)GATEWIDTH")
     field(EGU, "us")
 } 
 
-record(ai, "$(P)DRIVECURRENT")
+record(ai, "$(P)CURRENT")
 {
     field(DESC, "Drive current")
     field(SCAN, "Passive")
