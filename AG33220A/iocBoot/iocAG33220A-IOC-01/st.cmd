@@ -19,7 +19,9 @@ AG33220A_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynIPPortConfigure ("IP", "130.246.49.196:5025")
+$(IFDEVSIM) drvAsynIPPortConfigure("IP", "localhost:$(EMULATOR_PORT=)")
+
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure ("IP","$(IP_ADDRESS):5025")
 
 ## Load record instances
 
