@@ -1,3 +1,17 @@
+record(seq, "$(P)WAVE:READALL") 
+{
+	field(DESC, "Read all waveform data")
+	
+    field(LNK1, "$(P)WAVE:STATUS PP")
+    field(LNK2, "$(P)WAVE:TYPE PP")
+    field(LNK3, "$(P)WAVE:AMP PP")
+    field(LNK4, "$(P)WAVE:FREQ PP")
+    field(LNK5, "$(P)QUART:STATUS PP")
+    field(LNK6, "$(P)QUART PP")	
+	
+    field(SELM, "All")
+}
+
 #
 # STATE CONTROLS
 #
@@ -300,38 +314,39 @@ record(ao, "$(P)WAVE:AMP:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(fanout, "$(P)WAVE:AMP:SP:_FAN")
+record(seq, "$(P)WAVE:AMP:SP:_FAN")
 {
-	field(LNK1, "$(P)WAVE:AMP:SP:_POS")
-	field(LNK2, "$(P)WAVE:AMP:SP:_STRESS")
-	field(LNK3, "$(P)WAVE:AMP:SP:_STRAIN")
-	field(LNK4, "$(P)WAVE:AMP:SP:_FWD")
+	field(LNK1, "$(P)WAVE:AMP:SP:_POS PP")
+	field(LNK2, "$(P)WAVE:AMP:SP:_STRESS PP")
+	field(LNK3, "$(P)WAVE:AMP:SP:_STRAIN PP")
+	field(LNK4, "$(P)WAVE:AMP:SP:_FWD PP")
+    field(SELM, "All")
 }
 
 record(calc, "$(P)WAVE:AMP:SP:_POS")
 {
 	field(DESC, "Position-based wave amplitude")
-    field(INPA, "$(P)WAVE:AMP:SP")
-	field(INPB, "$(P)POS:SCALE")
-    field(CALC, "A/B")
+    field(INPA, "$(P)WAVE:AMP:SP CA")
+	field(INPB, "$(P)POS:SCALE CA")
+    field(CALC, "A/(B*1000)")
 }
 
 record(calc, "$(P)WAVE:AMP:SP:_STRESS")
 {
 	field(DESC, "Stress-based wave amplitude")
-    field(INPA, "$(P)WAVE:AMP:SP")
-	field(INPB, "$(P)STRESS:SCALE")
-	field(INPC, "$(P)STRESS:AREA")
+    field(INPA, "$(P)WAVE:AMP:SP CA")
+	field(INPB, "$(P)STRESS:SCALE CA")
+	field(INPC, "$(P)STRESS:AREA CA")
     field(CALC, "(A*C)/B")
 }
 
 record(calc, "$(P)WAVE:AMP:SP:_STRAIN")
 {
 	field(DESC, "Strain-based wave amplitude")
-    field(INPA, "$(P)WAVE:AMP:SP")
-	field(INPB, "$(P)STRAIN:SCALE")
-	field(INPC, "$(P)STRAIN:LENGTH")
-    field(CALC, "A/(B*C*1000000)")
+    field(INPA, "$(P)WAVE:AMP:SP CA")
+	field(INPB, "$(P)STRAIN:SCALE CA")
+	field(INPC, "$(P)STRAIN:LENGTH CA")
+    field(CALC, "A/(B*C*100000)")
 }
 
 record(calcout, "$(P)WAVE:AMP:SP:_FWD")
@@ -340,7 +355,7 @@ record(calcout, "$(P)WAVE:AMP:SP:_FWD")
 	field(INPA, "$(P)WAVE:AMP:SP:_POS")
 	field(INPB, "$(P)WAVE:AMP:SP:_STRESS")
 	field(INPC, "$(P)WAVE:AMP:SP:_STRAIN")
-	field(INPD, "$(P)CHANNEL:SP.RVAL")
+	field(INPD, "$(P)CHANNEL:SP.RVAL CA")
 	field(CALC, "D=1 ? A : (D=2 ? B : (D=3 ? C : -1.0))")
 	field(OUT, "$(P)WAVE:AMP:SP:_RAW PP")
 }
@@ -355,7 +370,7 @@ record(ao, "$(P)WAVE:AMP:SP:_RAW")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(scalcout, "$(P)WAVE:AMP:_UNITS")
+record(scalcout, "$(P)WAVE:AMP:_CALC_UNITS")
 {
     field(DESC, "Calculate units of the current channel")
 	field(INPA, "$(P)CHANNEL:SP.RVAL")
@@ -364,6 +379,20 @@ record(scalcout, "$(P)WAVE:AMP:_UNITS")
 	field(INCC, "$(P)STRAIN.EGU CP")
 	field(CALC, "A==1 ? AA : (A==2 ? BB : (A==3 ? CC : 'X'))")
 	field(OUT, "$(P)WAVE:AMP.EGU")
+    field(FLNK, "$(P)WAVE:AMP:_PUSH_UNITS PP")
+}
+
+record(scalcout, "$(P)WAVE:AMP:_PUSH_UNITS") {
+	field(INAA, "$(P)WAVE:AMP.EGU CP")
+	field(CALC, "AA")
+	field(OUT, "$(P)WAVE:AMP:SP.EGU")
+    field(FLNK, "$(P)WAVE:AMP:_PUSH_UNITS_2 PP")
+}
+
+record(scalcout, "$(P)WAVE:AMP:_PUSH_UNITS_2") {
+	field(INAA, "$(P)WAVE:AMP.EGU CP")
+	field(CALC, "AA")
+	field(OUT, "$(P)WAVE:AMP:SP:RBV.EGU")
 }
 
 record(ai, "$(P)WAVE:AMP")
@@ -382,38 +411,39 @@ record(ai, "$(P)WAVE:AMP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(fanout, "$(P)WAVE:AMP:REV:_FAN")
+record(seq, "$(P)WAVE:AMP:REV:_FAN")
 {
-	field(LNK1, "$(P)WAVE:AMP:REV:_POS")
-	field(LNK2, "$(P)WAVE:AMP:REV:_STRESS")
-	field(LNK3, "$(P)WAVE:AMP:REV:_STRAIN")
-	field(LNK4, "$(P)WAVE:AMP:REV:_FWD")
+	field(LNK1, "$(P)WAVE:AMP:REV:_POS PP")
+	field(LNK2, "$(P)WAVE:AMP:REV:_STRESS PP")
+	field(LNK3, "$(P)WAVE:AMP:REV:_STRAIN PP")
+	field(LNK4, "$(P)WAVE:AMP:REV:_FWD PP")
+    field(SELM, "All")
 }
 
 record(calc, "$(P)WAVE:AMP:REV:_POS")
 {
 	field(DESC, "Position-based wave amplitude (reverse)")
-    field(INPA, "$(P)WAVE:AMP")
-	field(INPB, "$(P)POS:SCALE")
-    field(CALC, "A*B")
+    field(INPA, "$(P)WAVE:AMP CA")
+	field(INPB, "$(P)POS:SCALE CA")
+    field(CALC, "A*(B*1000)")
 }
 
 record(calc, "$(P)WAVE:AMP:REV:_STRESS")
 {
 	field(DESC, "Stress-based wave amplitude (reverse)")
-    field(INPA, "$(P)WAVE:AMP")
-	field(INPB, "$(P)STRESS:SCALE")
-	field(INPC, "$(P)STRESS:AREA")
+    field(INPA, "$(P)WAVE:AMP CA")
+	field(INPB, "$(P)STRESS:SCALE CA")
+	field(INPC, "$(P)STRESS:AREA CA")
     field(CALC, "(A*B)/C")
 }
 
 record(calc, "$(P)WAVE:AMP:REV:_STRAIN")
 {
 	field(DESC, "Strain-based wave amplitude (reverse)")
-    field(INPA, "$(P)WAVE:AMP")
-	field(INPB, "$(P)STRAIN:SCALE")
-	field(INPC, "$(P)STRAIN:LENGTH")
-    field(CALC, "A*(B*C*1000000)")
+    field(INPA, "$(P)WAVE:AMP CA")
+	field(INPB, "$(P)STRAIN:SCALE CA")
+	field(INPC, "$(P)STRAIN:LENGTH CA")
+    field(CALC, "A*(B*C*100000)")
 }
 
 record(calcout, "$(P)WAVE:AMP:REV:_FWD")
@@ -432,6 +462,7 @@ record(ai, "$(P)WAVE:AMP:SP:RBV")
 	field(DESC, "The raw amplitude of the wave generator")
 	field(PREC, "3")
 	field(EGU, "mm")
+    field(FLNK, "$(P)WAVE:AMP:_CALC_UNITS")	
 }
 
 record(ao, "$(P)WAVE:FREQ:SP")
@@ -461,8 +492,6 @@ record(ai, "$(P)WAVE:FREQ")
     field(SDIS, "$(P)DISABLE")
 	
 }
-
-alias("$(P)WAVE:FREQ", "$(P)WAVE:FREQ:SP:RBV")
 
 ##
 ## QUARTER CYCLE COUNTER EVENT DETECTOR CONTROLS
@@ -525,8 +554,6 @@ record(ao, "$(P)QUART:CYCLE:SP")
 	field(VAL, "0")
 	field(PINI, "YES")
 }
-
-alias("$(P)QUART:CYCLE:SP", "$(P)QUART:CYCLE:SP:RBV")
 
 record(calcout, "$(P)QUART:SP:_CALC")
 {

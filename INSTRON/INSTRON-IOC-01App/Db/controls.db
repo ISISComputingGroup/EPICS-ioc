@@ -140,7 +140,7 @@ record(bo, "$(P)INIT")
 record(seq, "$(P)INITSEQ")
 {
     field(DESC, "Initialize comms")   
-    field(LNK1, "$(P)READALL PP")
+    field(LNK1, "$(P)READ_VAR PP")
     
     field(DO2, "3")
     field(LNK2, "$(P)AXES:RAMP:WFTYP:SP PP")
@@ -333,9 +333,9 @@ record(bi, "$(P)GOING")
     info(archive, "VAL")
 }
 
-record(seq, "$(P)READALL")
+record(seq, "$(P)READ_SLOW")
 {
-    field(DESC, "Read all data from rig")
+    field(DESC, "Read data from rig (slow scan)")
     
     # Disable watchdog
     field(DO1, "0")
@@ -344,51 +344,48 @@ record(seq, "$(P)READALL")
     field(LNK2, "$(P)MOVE PP")
     field(LNK3, "$(P)STAT:FRAME PP")
     field(LNK4, "$(P)CHANNEL PP")
-	
-    field(LNK5, "$(P)POS:READALL PP")
-    field(LNK6, "$(P)STRESS:READALL PP")
-    field(LNK7, "$(P)STRAIN:READALL PP")
 
-    field(LNK8, "$(P)CONTROLS:SPECIFIC:READALL PP")
-	field(LNK9, "$(P)READALL:WAVEFORM PP")
-	
-    field(LNKA, "$(P)READALL:COUNT:_CALC PP")
+    field(LNK5, "$(P)CONTROLS:SPECIFIC:READALL PP")
+	field(LNK6, "$(P)WAVE:READALL PP")
     
     field(SCAN, "1 second")
     field(SELM, "All")
 }
 
-record(seq, "$(P)READALL:WAVEFORM") 
+record(seq, "$(P)READ_VAR")
 {
-	field(DESC, "Read all waveform data")
+    field(DESC, "Read data from rig (variable scan)")
+    
+    # Disable watchdog
+    field(DO1, "0")
+    field(LNK1, "$(P)WATCHDOG:STAT:SP PP")
 	
-    field(LNK1, "$(P)WAVE:STATUS PP")
-    field(LNK2, "$(P)WAVE:TYPE PP")
-    field(LNK3, "$(P)WAVE:AMP PP")
-    field(LNK4, "$(P)WAVE:FREQ PP")
-    field(LNK5, "$(P)QUART:STATUS PP")
-    field(LNK6, "$(P)QUART PP")	
-    field(LNK7, "$(P)WAVE:AMP:_UNITS PP")	
+    field(LNK2, "$(P)POS:READALL PP")
+    field(LNK3, "$(P)STRESS:READALL PP")
+    field(LNK4, "$(P)STRAIN:READALL PP")
 	
+    field(LNK5, "$(P)READ_VAR:COUNT:_CALC PP")
+    
+    field(SCAN, "1 second")
     field(SELM, "All")
 }
 
-record(calcout, "$(P)READALL:COUNT:_CALC") {
-	field(INPA, "$(P)READALL:COUNT")
+record(calcout, "$(P)READ_VAR:COUNT:_CALC") {
+	field(INPA, "$(P)READ_VAR:COUNT")
     field(CALC, "A+1")
     field(OOPT, "Every Time")
-	field(OUT, "$(P)READALL:COUNT PP")
+	field(OUT, "$(P)READ_VAR:COUNT PP")
 }
 
-record(ai, "$(P)READALL:COUNT") {
+record(ai, "$(P)READ_VAR:COUNT") {
 	field(DESC, "Heartbeat for reader")
 	field(VAL, "0")
 	field(PINI, "YES")
 }
 
-record(mbbo, "$(P)READALL:SCAN:SP")
+record(mbbo, "$(P)READ_VAR:SCAN:SP")
 {
-    field(OUT, "$(P)READALL.SCAN PP")
+    field(OUT, "$(P)READ_VAR.SCAN PP")
     field(DTYP, "Raw Soft Channel")
     
     field(ZRVL, "3")
@@ -411,7 +408,7 @@ record(mbbo, "$(P)READALL:SCAN:SP")
     field(PINI, "YES")
     
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:READALL:SCAN:SP")
+    field(SIOL, "$(P)SIM:READ_VAR:SCAN:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -559,7 +556,7 @@ record(mbbi, "$(P)SIM:CHANNEL")
 
 alias("$(P)SIM:CHANNEL","$(P)SIM:CHANNEL:SP")
 
-record(mbbo, "$(P)SIM:READALL:SCAN:SP")
+record(mbbo, "$(P)SIM:READ_VAR:SCAN:SP")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
