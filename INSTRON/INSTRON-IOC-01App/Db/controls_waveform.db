@@ -331,7 +331,7 @@ record(calc, "$(P)WAVE:AMP:SP:_STRAIN")
     field(INPA, "$(P)WAVE:AMP:SP")
 	field(INPB, "$(P)STRAIN:SCALE")
 	field(INPC, "$(P)STRAIN:LENGTH")
-    field(CALC, "A/(B*C*100000)")
+    field(CALC, "A/(B*C*1000000)")
 }
 
 record(calcout, "$(P)WAVE:AMP:SP:_FWD")
@@ -413,7 +413,7 @@ record(calc, "$(P)WAVE:AMP:REV:_STRAIN")
     field(INPA, "$(P)WAVE:AMP")
 	field(INPB, "$(P)STRAIN:SCALE")
 	field(INPC, "$(P)STRAIN:LENGTH")
-    field(CALC, "A*(B*C*100000)")
+    field(CALC, "A*(B*C*1000000)")
 }
 
 record(calcout, "$(P)WAVE:AMP:REV:_FWD")
