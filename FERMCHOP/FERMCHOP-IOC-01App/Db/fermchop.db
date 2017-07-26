@@ -205,25 +205,40 @@ record(ai, "$(P)TEMPERATURE:MOTOR")
 } 
 
 record(mbbo, "$(P)COMMAND:SP")
-{
-    field(DTYP, "stream")
-    field(OUT,  "@devfc.proto sendCommand $(PORT)")
-	
+{	
 	field(ONVL, "1")
 	field(ONST, "Switch drive on/stop mode")
 	
 	field(TWVL, "2")
-	field(TWST, "Switch drive on/stop mode")
+	field(TWST, "Switch drive off")
 	
 	field(THVL, "3")
-	field(THST, "Switch drive on/stop mode")
+	field(THST, "Switch drive on/run mode")
 	
 	field(FRVL, "4")
-	field(FRST, "Switch drive on/stop mode")
+	field(FRST, "Switch mag bearings on")
 	
 	field(FVVL, "5")
-	field(FVST, "Switch drive on/stop mode")
+	field(FVST, "Switch mag bearings off")
 	
+	field(FLNK, "$(P)COMMAND:SP:_CHECK")	
+}
+
+record(calcout, "$(P)COMMAND:SP:_CHECK")
+{
+	field(INPA, "$(P)COMMAND:SP.RVAL")
+	field(INPB, "$(P)STATUS.B3")
+	field(INPC, "$(P)SPEED")
+	field(CALC, "A=3?(B=1?3:0):((A=5 && C>10)?0:A)")
+	
+	field(OUT, "$(P)COMMAND:SP:_RAW PP")
+	field(OOPT, "When Non-zero")
+}
+
+record(ao, "$(P)COMMAND:SP:_RAW")
+{
+    field(DTYP, "stream")
+    field(OUT,  "@devfc.proto sendCommand $(PORT)")	
 }
 
 record(ao, "$(P)SPEED:SP:RAW")
