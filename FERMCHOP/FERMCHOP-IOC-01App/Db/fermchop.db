@@ -111,7 +111,74 @@ record(mbbiDirect, "$(P)STATUS")
     # BB = magnetic bearing off at speed
     # BC = autozero voltage off limit 
     # BD = Speed limit exceeded
+	field(FLNK, "$(P)STATUS:_SAFETYCHECKS")
 } 
+
+record(seq, "$(P)STATUS:_SAFETYCHECKS")
+{
+	field(LNK1, "$(P)STATUS:_SAFETYCHECKS:CHOPSPEED PP")
+	field(LNK2, "$(P)STATUS:_SAFETYCHECKS:BEARING PP")
+	field(LNK3, "$(P)STATUS:_SAFETYCHECKS:AUTOZERO PP")
+	field(LNK4, "$(P)STATUS:_SAFETYCHECKS:MOTORTEMP PP")
+	field(LNK5, "$(P)STATUS:_SAFETYCHECKS:ELECTRONICSTEMP PP")
+	
+    field(SELM, "All")
+}
+
+record(calcout, "$(P)STATUS:_SAFETYCHECKS:CHOPSPEED")
+{
+	field(INPA, "$(P)SPEED")
+	# Command 2 = Switch drive off
+	field(CALC, "A>606?2:0") 
+	# Use raw because otherwise our command could get blocked by the other checks
+	field(OUT, "$(P)COMMAND:SP:_RAW PP")
+	field(OOPT, "When Non-zero")
+}
+
+record(calcout, "$(P)STATUS:_SAFETYCHECKS:BEARING")
+{
+	field(INPA, "$(P)SPEED")
+	field(INPB, "$(P)STATUS.B3")
+	# Command 1 = Switch drive on / stop mode
+	field(CALC, "(A>5 && B=0)?1:0") 
+	# Use raw because otherwise our command could get blocked by the other checks
+	field(OUT, "$(P)COMMAND:SP:_RAW PP")
+	field(OOPT, "When Non-zero")
+}
+
+record(calcout, "$(P)STATUS:_SAFETYCHECKS:AUTOZERO")
+{
+	field(INPA, "$(P)AUTOZERO:1:UPPER")
+	field(INPB, "$(P)AUTOZERO:2:UPPER")
+	field(INPC, "$(P)AUTOZERO:1:LOWER")
+	field(INPD, "$(P)AUTOZERO:2:LOWER")
+	field(INPE, "$(P)SPEED")
+	# Command 1 = Switch drive on / stop mode
+	field(CALC, "((ABS(A)>3 || ABS(B)>3 || ABS(C)>3 || ABS(D)>3) && E>5)?1:0") 
+	# Use raw because otherwise our command could get blocked by the other checks
+	field(OUT, "$(P)COMMAND:SP:_RAW PP")
+	field(OOPT, "When Non-zero")
+}
+
+record(calcout, "$(P)STATUS:_SAFETYCHECKS:MOTORTEMP")
+{
+	field(INPA, "$(P)TEMPERATURE:MOTOR")
+	# Command 2 = Switch drive off
+	field(CALC, "A>45?2:0") 
+	# Use raw because otherwise our command could get blocked by the other checks
+	field(OUT, "$(P)COMMAND:SP:_RAW PP")
+	field(OOPT, "When Non-zero")
+}
+
+record(calcout, "$(P)STATUS:_SAFETYCHECKS:ELECTRONICSTEMP")
+{
+	field(INPA, "$(P)TEMPERATURE:ELECTRONICS")
+	# Command 2 = Switch drive off
+	field(CALC, "A>45?2:0") 
+	# Use raw because otherwise our command could get blocked by the other checks
+	field(OUT, "$(P)COMMAND:SP:_RAW PP")
+	field(OOPT, "When Non-zero")
+}
 
 record(ai, "$(P)SPEED:SP:RBV")
 {
