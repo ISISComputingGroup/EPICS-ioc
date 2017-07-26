@@ -1,0 +1,37 @@
+record(bi, "$(P)LOG:RECORD:SP")
+{
+    field(DESC, "Set logging")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(PINI, "YES")
+    field(VAL, "0")
+    info(archive, "0.1 VAL")
+    info(LOG_trigger, "")
+    
+    info(LOG_header3, "RB Number = {$(MYPVPREFIX)ED:RBNUMBER}")
+    info(LOG_header4, "")
+    
+    info(LOG_column_header1, "Run Number")
+    info(LOG_column_template1, "{$(MYPVPREFIX)DAE:RUNNUMBER}")
+    info(LOG_column_header2, "Position (mm)")
+    info(LOG_column_template2, "{$(P)POS|10.6f}")
+    info(LOG_column_header3, "Load (MPa)")
+    info(LOG_column_template3, "{$(P)STRESS|10.6f}")
+    info(LOG_column_header4, "Strain (%)")
+    info(LOG_column_template4, "{$(P)STRAIN|10.6f}")
+}
+
+alias("$(P)LOG:RECORD:SP", "$(P)LOG:RECORD")
+
+record(ai, "$(P)LOG:SCAN")
+{
+    field(DESC, "Set period between log entries")
+    field(PINI, "YES")
+    field(VAL, "1")
+    field(PREC, 1)
+    info(archive, "0.1 VAL")
+    info(LOG_period_pv, "")
+}
+
+alias("$(P)LOG:SCAN", "$(P)LOG:SCAN:SP")
+

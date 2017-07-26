@@ -176,7 +176,7 @@ record(ai, "$(P)$(CHAN)")
     field(SIOL, "$(P)$(CHAN):SIM:VALUE")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    info(archive, "0.1 VAL")
 }
 
 record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
@@ -331,6 +331,9 @@ record(mbbi, "$(P)$(CHAN):SIM:TYPE")
     field(FRST, "Absolute hold ramp")
     field(FVVL, "5")
     field(FVST, "Absolute rate ramp")
+    
+    field(VAL, "$(CHAN_EXP_TYPE)")
+    field(PINI, "YES")
 }
 
 record(ai, "$(P)$(CHAN):SIM:RAW")
