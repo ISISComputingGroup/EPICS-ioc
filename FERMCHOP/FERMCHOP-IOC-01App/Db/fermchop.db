@@ -114,10 +114,10 @@ record(mbbiDirect, "$(P)STATUS")
     # B3 = magnetic bearing on
     # B4 = DC supply voltage on
     # B5 = drive converter on
-    # B6 = not used
+    # B6 = Using merlin large parameters
     # B7 = interlock open
-    # B8 = not used
-    # B9 = not used
+    # B8 = Using HET/MARI parameters
+    # B9 = Using merlin small parameters
     # BA = speed limit exceeded
     # BB = magnetic bearing off at speed
     # BC = autozero voltage off limit 
@@ -290,6 +290,9 @@ record(ai, "$(P)TEMPERATURE:MOTOR")
 record(mbbo, "$(P)COMMAND:SP")
 {	
 	field(ASG, "$(ASG)")
+	
+	field(ONVL, "0")
+	field(ONST, "No command")
 
 	field(ONVL, "1")
 	field(ONST, "Switch drive on/stop mode")
@@ -305,6 +308,15 @@ record(mbbo, "$(P)COMMAND:SP")
 	
 	field(FVVL, "5")
 	field(FVST, "Switch mag bearings off")
+	
+	field(SXVL, "6")
+	field(SXST, "Use MERLIN large parameters")
+	
+	field(SVVL, "7")
+	field(SVST, "Use HET/MARI parameters")
+	
+	field(EIVL, "8")
+	field(EIST, "Use MERLIN small parameters")
 	
 	field(FLNK, "$(P)COMMAND:SP:_CHECK")	
 }
