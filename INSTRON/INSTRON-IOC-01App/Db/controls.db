@@ -42,7 +42,7 @@ record(mbbi, "$(P)CHANNEL")
     info(archive, "VAL")
 }
 
-# This is used by $(P)$(CHAN):TYPE:_CHANNEL_LABEL
+# This is used by channel :TYPE:_CHANNEL_LABEL
 # It is just a clean list of the original unmodified channel names
 # otherwise it recursively appends " - disabled" which we don't want.
 record(mbbi, "$(P)_CHANNELSLIST_CLEAN")
