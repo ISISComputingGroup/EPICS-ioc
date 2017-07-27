@@ -1,3 +1,14 @@
+record(scalcout, "$(P)MANAGERMODE")
+{
+    field(ASG, "READONLY")
+    field(DESC, "Non-zero if manager is required")
+    field(PINI, "YES")
+    field(INPA, "$(PVPREFIX)CS:MANAGER CP")
+    field(BB, "$(ASG)")
+    field(CALC, "A = 0 && BB = 'MANAGER'")
+    field(OOPT, "Every Time")
+}
+
 record(bo, "$(P)SIM")
 {
     field(SCAN, "Passive")
@@ -127,6 +138,7 @@ record(seq, "$(P)STATUS:_SAFETYCHECKS")
 
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:CHOPSPEED")
 {
+	field(ASG, "READONLY")
 	field(INPA, "$(P)SPEED")
 	# Command 2 = Switch drive off
 	field(CALC, "A>606?2:0") 
@@ -137,6 +149,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:CHOPSPEED")
 
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:BEARING")
 {
+	field(ASG, "READONLY")
 	field(INPA, "$(P)SPEED")
 	field(INPB, "$(P)STATUS.B3")
 	# Command 1 = Switch drive on / stop mode
@@ -148,6 +161,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:BEARING")
 
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:AUTOZERO")
 {
+	field(ASG, "READONLY")
 	field(INPA, "$(P)AUTOZERO:1:UPPER")
 	field(INPB, "$(P)AUTOZERO:2:UPPER")
 	field(INPC, "$(P)AUTOZERO:1:LOWER")
@@ -162,6 +176,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:AUTOZERO")
 
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:MOTORTEMP")
 {
+	field(ASG, "READONLY")
 	field(INPA, "$(P)TEMPERATURE:MOTOR")
 	# Command 2 = Switch drive off
 	field(CALC, "A>45?2:0") 
@@ -172,6 +187,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:MOTORTEMP")
 
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:ELECTRONICSTEMP")
 {
+	field(ASG, "READONLY")
 	field(INPA, "$(P)TEMPERATURE:ELECTRONICS")
 	# Command 2 = Switch drive off
 	field(CALC, "A>45?2:0") 
@@ -184,14 +200,14 @@ record(ai, "$(P)SPEED:SP:RBV")
 {
     field(DESC, "Chopper speed setpoint")
     field(SCAN, "Passive")
-    field(EGU, "rpm")
+    field(EGU, "Hz")
 } 
 
 record(ai, "$(P)SPEED")
 {
     field(DESC, "Chopper speed")
     field(SCAN, "Passive")
-    field(EGU, "rpm")
+    field(EGU, "Hz")
 } 
 
 record(ai, "$(P)DELAY:SP:RBV")
@@ -273,6 +289,8 @@ record(ai, "$(P)TEMPERATURE:MOTOR")
 
 record(mbbo, "$(P)COMMAND:SP")
 {	
+	field(ASG, "$(ASG)")
+
 	field(ONVL, "1")
 	field(ONST, "Switch drive on/stop mode")
 	
@@ -293,6 +311,7 @@ record(mbbo, "$(P)COMMAND:SP")
 
 record(calcout, "$(P)COMMAND:SP:_CHECK")
 {
+	field(ASG, "READONLY")
 	field(INPA, "$(P)COMMAND:SP.RVAL")
 	field(INPB, "$(P)STATUS.B3")
 	field(INPC, "$(P)SPEED")
@@ -304,12 +323,14 @@ record(calcout, "$(P)COMMAND:SP:_CHECK")
 
 record(ao, "$(P)COMMAND:SP:_RAW")
 {
+	field(ASG, "$(ASG)")
     field(DTYP, "stream")
     field(OUT,  "@devfc.proto sendCommand $(PORT)")	
 }
 
 record(ao, "$(P)SPEED:SP:RAW")
 {
+	field(ASG, "$(ASG)")
 	field(DTYP, "stream")
     field(OUT,  "@devfc.proto setSpeed $(PORT)")
 }
@@ -329,12 +350,56 @@ record(aSub, "$(P)SPEED:SP:CALC")
 
 record(ao, "$(P)SPEED:SP")
 {
+	field(EGU, "Hz")
+	field(ASG, "$(ASG)")
 	field(DTYP, "Soft Channel")
 	field(FLNK, "$(P)SPEED:SP:CALC")
 }
 
+record(mbbo, "$(P)SPEED:SP:GUI")
+{
+	field(ZRVL, "0")
+	field(ZRST, "600 Hz")
+
+	field(ONVL, "1")
+	field(ONST, "550 Hz")
+	
+	field(TWVL, "2")
+	field(TWST, "500 Hz")
+	
+	field(THVL, "3")
+	field(THST, "450 Hz")
+	
+	field(FRVL, "4")
+	field(FRST, "400 Hz")
+	
+	field(FVVL, "5")
+	field(FVST, "350 Hz")
+	
+	field(SXVL, "6")
+	field(SXST, "300 Hz")
+	
+	field(SVVL, "7")
+	field(SVST, "250 Hz")
+	
+	field(EIVL, "8")
+	field(EIST, "200 Hz")
+	
+	field(NIVL, "9")
+	field(NIST, "150 Hz")
+	
+	field(TEVL, "10")
+	field(TEST, "100 Hz")
+	
+	field(ELVL, "11")
+	field(ELST, "50 Hz")
+	
+	field(OUT, "$(P)SPEED:SP:RAW PP")
+}
+
 record(ao, "$(P)DELAY:SP")
 {
+	field(ASG, "$(ASG)")
     field(FLNK, "$(P)DELAY:SP:_CALC")
 }
 
@@ -373,6 +438,7 @@ record(seq, "$(P)DELAY:SP:_SEQ")
 
 record(ao, "$(P)GATEWIDTH:SP")
 {
+	field(ASG, "$(ASG)")
 	field(FLNK, "$(P)GATEWIDTH:SP:_CALC")
 }
 
