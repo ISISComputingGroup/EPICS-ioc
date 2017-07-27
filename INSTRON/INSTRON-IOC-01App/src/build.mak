@@ -30,7 +30,6 @@ $(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
-$(APPNAME)_DBD += transformRecord.dbd
 $(APPNAME)_DBD += calcSupport.dbd
 #$(APPNAME)_DBD += xxx.dbd
 
