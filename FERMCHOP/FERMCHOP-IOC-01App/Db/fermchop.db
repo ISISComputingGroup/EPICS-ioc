@@ -126,6 +126,8 @@ record(mbbiDirect, "$(P)STATUS")
     # BC = autozero voltage off limit 
     # BD = Speed limit exceeded
 	field(FLNK, "$(P)STATUS:_SAFETYCHECKS")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 } 
 
 record(seq, "$(P)STATUS:_SAFETYCHECKS")
@@ -207,9 +209,8 @@ record(ai, "$(P)SPEED:SP:RBV")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED:SP:RBV")
     field(SDIS, "$(P)DISABLE")
-	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:SPEED:SP:RBV")
-    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 } 
 
 record(ai, "$(P)SPEED")
@@ -220,9 +221,8 @@ record(ai, "$(P)SPEED")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED")
     field(SDIS, "$(P)DISABLE")
-	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:SPEED")
-    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 } 
 
 record(ai, "$(P)DELAY:SP:RBV")
@@ -233,6 +233,8 @@ record(ai, "$(P)DELAY:SP:RBV")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DELAY:SP:RBV")
     field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 } 
 
 record(ai, "$(P)DELAY")
@@ -243,6 +245,8 @@ record(ai, "$(P)DELAY")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DELAY")
     field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 } 
 
 record(ai, "$(P)GATEWIDTH")
@@ -253,6 +257,8 @@ record(ai, "$(P)GATEWIDTH")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:GATEWIDTH")
     field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 } 
 
 record(ai, "$(P)CURRENT")
@@ -260,6 +266,8 @@ record(ai, "$(P)CURRENT")
     field(DESC, "Drive current")
     field(SCAN, "Passive")
     field(EGU, "A")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 } 
 
 record(ai, "$(P)AUTOZERO:1:UPPER")
@@ -267,6 +275,8 @@ record(ai, "$(P)AUTOZERO:1:UPPER")
     field(DESC, "Upper autozero voltage 1")
     field(SCAN, "Passive")
     field(EGU, "V")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 } 
 
 record(ai, "$(P)AUTOZERO:2:UPPER")
@@ -274,6 +284,8 @@ record(ai, "$(P)AUTOZERO:2:UPPER")
     field(DESC, "Upper autozero voltage 2")
     field(SCAN, "Passive")
     field(EGU, "V")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 } 
 
 record(ai, "$(P)AUTOZERO:1:LOWER")
@@ -281,6 +293,8 @@ record(ai, "$(P)AUTOZERO:1:LOWER")
     field(DESC, "Lower autozero voltage 1")
     field(SCAN, "Passive")
     field(EGU, "V")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 } 
 
 record(ai, "$(P)AUTOZERO:2:LOWER")
@@ -288,6 +302,8 @@ record(ai, "$(P)AUTOZERO:2:LOWER")
     field(DESC, "Lower autozero voltage 2")
     field(SCAN, "Passive")
     field(EGU, "V")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)VOLTAGE")
@@ -295,6 +311,8 @@ record(ai, "$(P)VOLTAGE")
     field(DESC, "Drive voltage")
     field(SCAN, "Passive")
     field(EGU, "V")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 } 
 
 record(ai, "$(P)TEMPERATURE:ELECTRONICS")
@@ -302,6 +320,8 @@ record(ai, "$(P)TEMPERATURE:ELECTRONICS")
     field(DESC, "Temperature of the electronics")
     field(SCAN, "Passive")
     field(EGU, "C")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 } 
 
 record(ai, "$(P)TEMPERATURE:MOTOR")
@@ -309,14 +329,17 @@ record(ai, "$(P)TEMPERATURE:MOTOR")
     field(DESC, "Temperature of the motor")
     field(SCAN, "Passive")
     field(EGU, "C")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 } 
 
 record(mbbo, "$(P)COMMAND:SP")
 {	
+	field(DESC, "The command to send")
 	field(ASG, "$(ASG)")
 	
-	field(ONVL, "0")
-	field(ONST, "No command")
+	field(ZRVL, "0")
+	field(ZRST, "No command")
 
 	field(ONVL, "1")
 	field(ONST, "Switch drive on/stop mode")
@@ -389,6 +412,7 @@ record(aSub, "$(P)SPEED:SP:CALC")
 
 record(ao, "$(P)SPEED:SP")
 {
+	field(DESC, "The speed setpoint")
 	field(EGU, "Hz")
 	field(ASG, "$(ASG)")
 	field(DTYP, "Soft Channel")
@@ -396,13 +420,13 @@ record(ao, "$(P)SPEED:SP")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED:SP")
     field(SDIS, "$(P)DISABLE")
-	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:SPEED:SP")
-    field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbo, "$(P)SPEED:SP:GUI")
 {
+
+	field(DESC, "The speed setpoint (opi)")
+
 	field(ZRVL, "0")
 	field(ZRST, "600 Hz")
 
@@ -444,6 +468,7 @@ record(mbbo, "$(P)SPEED:SP:GUI")
 
 record(ao, "$(P)DELAY:SP")
 {
+	field(DESC, "Delay setpoint")
 	field(ASG, "$(ASG)")
     field(FLNK, "$(P)DELAY:SP:_CALC")
 	field(SIML, "$(P)SIM")
@@ -486,6 +511,7 @@ record(seq, "$(P)DELAY:SP:_SEQ")
 
 record(ao, "$(P)GATEWIDTH:SP")
 {
+	field(DESC, "Gate width setpoint")
 	field(ASG, "$(ASG)")
 	field(FLNK, "$(P)GATEWIDTH:SP:_CALC")
 	field(SIML, "$(P)SIM")
