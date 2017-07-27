@@ -83,6 +83,8 @@ record(mbbo, "$(P)CHANNEL:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CHANNEL:SP")
     field(SDIS, "$(P)DISABLE")
+	
+	field(FLNK, "$(P)WAVE:AMP:_CALC_UNITS")
 }
 
 record(bi, "$(P)WATCHDOG:STAT")
