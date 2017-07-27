@@ -21,10 +21,10 @@ FERMCHOP_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 ## For unit testing:
-$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
+# $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
 
 ## For normal devsim:
-# $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:57677")
+$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:57677")
 
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)

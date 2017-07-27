@@ -310,13 +310,13 @@ record(mbbo, "$(P)COMMAND:SP")
 	field(FVST, "Switch mag bearings off")
 	
 	field(SXVL, "6")
-	field(SXST, "Use MERLIN large parameters")
+	field(SXST, "Use MERLIN large params")
 	
 	field(SVVL, "7")
-	field(SVST, "Use HET/MARI parameters")
+	field(SVST, "Use HET/MARI params")
 	
 	field(EIVL, "8")
-	field(EIST, "Use MERLIN small parameters")
+	field(EIST, "Use MERLIN small params")
 	
 	field(FLNK, "$(P)COMMAND:SP:_CHECK")	
 }
