@@ -38,6 +38,9 @@ record(waveform, "$(P)STATUS:RAW")
     field(INP,  "@devfc.proto getStatus $(PORT)")
     field(SCAN, "1 second")
     field(FLNK, "$(P)STATUS:PARSE")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STATUS:RAW")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(aSub, "$(P)STATUS:PARSE")
@@ -201,6 +204,12 @@ record(ai, "$(P)SPEED:SP:RBV")
     field(DESC, "Chopper speed setpoint")
     field(SCAN, "Passive")
     field(EGU, "Hz")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPEED:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPEED:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
 } 
 
 record(ai, "$(P)SPEED")
@@ -208,6 +217,12 @@ record(ai, "$(P)SPEED")
     field(DESC, "Chopper speed")
     field(SCAN, "Passive")
     field(EGU, "Hz")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPEED")
+    field(SDIS, "$(P)DISABLE")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPEED")
+    field(SDIS, "$(P)DISABLE")
 } 
 
 record(ai, "$(P)DELAY:SP:RBV")
@@ -215,6 +230,9 @@ record(ai, "$(P)DELAY:SP:RBV")
     field(DESC, "Chopper phase delay setpoint")
     field(SCAN, "Passive")
     field(EGU, "us")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DELAY:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
 } 
 
 record(ai, "$(P)DELAY")
@@ -222,6 +240,9 @@ record(ai, "$(P)DELAY")
     field(DESC, "Chopper phase delay")
     field(SCAN, "Passive")
     field(EGU, "us")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DELAY")
+    field(SDIS, "$(P)DISABLE")
 } 
 
 record(ai, "$(P)GATEWIDTH")
@@ -229,6 +250,9 @@ record(ai, "$(P)GATEWIDTH")
     field(DESC, "Gate width")
     field(SCAN, "Passive")
     field(EGU, "us")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:GATEWIDTH")
+    field(SDIS, "$(P)DISABLE")
 } 
 
 record(ai, "$(P)CURRENT")
@@ -338,6 +362,9 @@ record(ao, "$(P)COMMAND:SP:_RAW")
 	field(ASG, "$(ASG)")
     field(DTYP, "stream")
     field(OUT,  "@devfc.proto sendCommand $(PORT)")	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:COMMAND:SP:_RAW")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)SPEED:SP:RAW")
@@ -366,6 +393,12 @@ record(ao, "$(P)SPEED:SP")
 	field(ASG, "$(ASG)")
 	field(DTYP, "Soft Channel")
 	field(FLNK, "$(P)SPEED:SP:CALC")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPEED:SP")
+    field(SDIS, "$(P)DISABLE")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPEED:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbo, "$(P)SPEED:SP:GUI")
@@ -413,6 +446,9 @@ record(ao, "$(P)DELAY:SP")
 {
 	field(ASG, "$(ASG)")
     field(FLNK, "$(P)DELAY:SP:_CALC")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DELAY:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(transform, "$(P)DELAY:SP:_CALC")
@@ -452,6 +488,9 @@ record(ao, "$(P)GATEWIDTH:SP")
 {
 	field(ASG, "$(ASG)")
 	field(FLNK, "$(P)GATEWIDTH:SP:_CALC")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:GATEWIDTH:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(calcout, "$(P)GATEWIDTH:SP:_CALC")
@@ -466,5 +505,49 @@ record(ao, "$(P)GATEWIDTH:SP:_RAW")
 {
 	field(DTYP, "stream")
 	field(OUT,  "@devfc.proto setGateWidth $(PORT)")
+}
+
+
+### SIMULATION RECORDS ###
+
+record(ao, "$(P)SIM:SPEED:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:SPEED:SP","$(P)SIM:SPEED")
+alias("$(P)SIM:SPEED:SP","$(P)SIM:SPEED:SP:RBV")
+
+record(ao, "$(P)SIM:DELAY:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:DELAY:SP","$(P)SIM:DELAY")
+alias("$(P)SIM:DELAY:SP","$(P)SIM:DELAY:SP:RBV")
+
+record(ao, "$(P)SIM:GATEWIDTH:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:GATEWIDTH:SP","$(P)SIM:GATEWIDTH")
+alias("$(P)SIM:GATEWIDTH:SP","$(P)SIM:GATEWIDTH:SP:RBV")
+
+record(ao, "$(P)SIM:COMMAND:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:COMMAND:SP","$(P)SIM:LASTCOMMAND")
+
+record(ai, "$(P)SIM:STATUS:RAW")
+{
+	field(VAL, "1")
+	field(PINI, "YES")
 }
 
