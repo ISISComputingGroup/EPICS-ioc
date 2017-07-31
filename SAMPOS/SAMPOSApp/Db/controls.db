@@ -1,9 +1,9 @@
 # Read LabVIEW control/indicator "Go X" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(bi, "$(P)X:GOING")
 {
-	field(DESC, "LabVIEW 'Go X'")
+	field(DESC, "LabVIEW 'X In Motion'")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(lvfp,0,0)Go_X")
+    field(INP,  "@asyn(lvfp,0,0)X_In_Motion")
     field(SCAN, ".1 second")
     field(ZNAM, "NO")
     field(ONAM, "YES")
@@ -15,9 +15,9 @@ record(bi, "$(P)X:GOING")
 # Read LabVIEW control/indicator "Go Y" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(bi, "$(P)Y:GOING")
 {
-	field(DESC, "LabVIEW 'Go Y'")
+	field(DESC, "LabVIEW 'Y_In_Motion'")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(lvfp,0,0)Go_Y")
+    field(INP,  "@asyn(lvfp,0,0)Y_In_Motion")
     field(SCAN, ".1 second")
     field(ZNAM, "NO")
     field(ONAM, "YES")
@@ -28,9 +28,9 @@ record(bi, "$(P)Y:GOING")
 # Read LabVIEW control/indicator "Go Z" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(bi, "$(P)Z:GOING")
 {
-	field(DESC, "LabVIEW 'Go Z'")
+	field(DESC, "LabVIEW 'Z_In_Motion'")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(lvfp,0,0)Go_Z")
+    field(INP,  "@asyn(lvfp,0,0)Z_In_Motion")
     field(SCAN, ".1 second")
     field(ZNAM, "NO")
     field(ONAM, "YES")
@@ -41,9 +41,9 @@ record(bi, "$(P)Z:GOING")
 # Read LabVIEW control/indicator "Go w" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(bi, "$(P)W:GOING")
 {
-	field(DESC, "LabVIEW 'Go w'")
+	field(DESC, "LabVIEW 'w_In_Motion'")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(lvfp,0,0)Go_w")
+    field(INP,  "@asyn(lvfp,0,0)w_In_Motion")
     field(SCAN, ".1 second")
     field(ZNAM, "NO")
     field(ONAM, "YES")
@@ -54,9 +54,9 @@ record(bi, "$(P)W:GOING")
 # Read LabVIEW control/indicator "Go S" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(bi, "$(P)S:GOING")
 {
-	field(DESC, "LabVIEW 'Go S'")
+	field(DESC, "LabVIEW 'S_In_Motion'")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(lvfp,0,0)Go_S")
+    field(INP,  "@asyn(lvfp,0,0)S_In_Motion")
     field(SCAN, ".1 second")
     field(ZNAM, "NO")
     field(ONAM, "YES")
@@ -65,62 +65,21 @@ record(bi, "$(P)S:GOING")
 }
 
 # Write to LabVIEW control "Go X" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
-record(bo, "$(P)X:GOING:SP")
+record(bo, "$(P)X:GO:SP")
 {
-	field(DESC, "LabVIEW 'Go X'")
+	field(DESC, "LabVIEW 'X_Set'")
     field(DTYP, "asynInt32")
-    field(OUT,  "@asyn(lvfp,0,0)Go_X")
+    field(OUT,  "@asyn(lvfp,0,0)X_Set")
     field(ZNAM, "STOP")
     field(ONAM, "GO")
 }
-
-# Write to LabVIEW control "Go Y" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
-record(bo, "$(P)Y:GOING:SP")
-{
-	field(DESC, "LabVIEW 'Go Y'")
-    field(DTYP, "asynInt32")
-    field(OUT,  "@asyn(lvfp,0,0)Go_Y")
-    field(ZNAM, "STOP")
-    field(ONAM, "GO")
-}
-
-# Write to LabVIEW control "Go Z" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
-record(bo, "$(P)Z:GOING:SP")
-{
-	field(DESC, "LabVIEW 'Go Z'")
-    field(DTYP, "asynInt32")
-    field(OUT,  "@asyn(lvfp,0,0)Go_Z")
-    field(ZNAM, "STOP")
-    field(ONAM, "GO")
-}
-
-# Write to LabVIEW control "Go w" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
-record(bo, "$(P)W:GOING:SP")
-{
-	field(DESC, "LabVIEW 'Go w'")
-    field(DTYP, "asynInt32")
-    field(OUT,  "@asyn(lvfp,0,0)Go_w")
-    field(ZNAM, "STOP")
-    field(ONAM, "GO")
-}
-
-# Write to LabVIEW control "Go S" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
-record(bo, "$(P)S:GOING:SP")
-{
-	field(DESC, "LabVIEW 'Go S'")
-    field(DTYP, "asynInt32")
-    field(OUT,  "@asyn(lvfp,0,0)Go_S")
-    field(ZNAM, "STOP")
-    field(ONAM, "GO")
-}
-
 
 # Read LabVIEW control/indicator "Current X" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ai, "$(P)X")
 {
-	field(DESC, "LabVIEW 'Current X'")
+	field(DESC, "LabVIEW 'X Position'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Current_X")
+    field(INP,  "@asyn(lvfp,0,0)X_Position")
     field(PREC, "3")
     field(SCAN, ".1 second")
 	info(archive, "VAL")
@@ -130,9 +89,9 @@ record(ai, "$(P)X")
 # Read LabVIEW control/indicator "Current Y" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ai, "$(P)Y")
 {
-	field(DESC, "LabVIEW 'Current Y'")
+	field(DESC, "LabVIEW 'Y Position'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Current_Y")
+    field(INP,  "@asyn(lvfp,0,0)Y_Position")
     field(PREC, "3")
     field(SCAN, ".1 second")
 	info(archive, "VAL")
@@ -142,9 +101,9 @@ record(ai, "$(P)Y")
 # Read LabVIEW control/indicator "Current Z" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ai, "$(P)Z")
 {
-	field(DESC, "LabVIEW 'Current Z'")
+	field(DESC, "LabVIEW 'Z Position'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Current_Z")
+    field(INP,  "@asyn(lvfp,0,0)Z_Position")
     field(PREC, "3")
     field(SCAN, ".1 second")
 	info(archive, "VAL")
@@ -154,9 +113,9 @@ record(ai, "$(P)Z")
 # Read LabVIEW control/indicator "Current w" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ai, "$(P)W")
 {
-	field(DESC, "LabVIEW 'Current w'")
+	field(DESC, "LabVIEW 'w Position'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Current_w")
+    field(INP,  "@asyn(lvfp,0,0)w_Position")
     field(PREC, "3")
     field(SCAN, ".1 second")
 	info(archive, "VAL")
@@ -166,9 +125,9 @@ record(ai, "$(P)W")
 # Read LabVIEW control/indicator "Current S" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ai, "$(P)S")
 {
-	field(DESC, "LabVIEW 'Current S'")
+	field(DESC, "LabVIEW 'S Position'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Current_S")
+    field(INP,  "@asyn(lvfp,0,0)S_Position")
     field(PREC, "3")
     field(SCAN, ".1 second")
 	info(archive, "VAL")
@@ -178,45 +137,45 @@ record(ai, "$(P)S")
 # Write to LabVIEW control "New X" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ao, "$(P)X:SP")
 {
-	field(DESC, "LabVIEW 'New X'")
+	field(DESC, "LabVIEW 'X'")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)New_X")
+    field(OUT,  "@asyn(lvfp,0,0)X")
     field(PREC, "3")
 }
 
 # Write to LabVIEW control "New Y" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ao, "$(P)Y:SP")
 {
-	field(DESC, "LabVIEW 'New Y'")
+	field(DESC, "LabVIEW 'Y'")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)New_Y")
+    field(OUT,  "@asyn(lvfp,0,0)Y")
     field(PREC, "3")
 }
 
 # Write to LabVIEW control "New Z" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ao, "$(P)Z:SP")
 {
-	field(DESC, "LabVIEW 'New Z'")
+	field(DESC, "LabVIEW 'Z'")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)New_Z")
+    field(OUT,  "@asyn(lvfp,0,0)Z")
     field(PREC, "3")
 }
 
 # Write to LabVIEW control "New w" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ao, "$(P)W:SP")
 {
-	field(DESC, "LabVIEW 'New w'")
+	field(DESC, "LabVIEW 'w'")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)New_w")
+    field(OUT,  "@asyn(lvfp,0,0)w")
     field(PREC, "3")
 }
 
 # Write to LabVIEW control "New S" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ao, "$(P)S:SP")
 {
-	field(DESC, "LabVIEW 'New S'")
+	field(DESC, "LabVIEW 'S'")
     field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)New_S")
+    field(OUT,  "@asyn(lvfp,0,0)S")
     field(PREC, "3")
 }
 
@@ -224,9 +183,9 @@ record(ao, "$(P)S:SP")
 # Read LabVIEW control/indicator "Set X read" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ai, "$(P)X:SP:RBV")
 {
-	field(DESC, "LabVIEW 'Set X read'")
+	field(DESC, "LabVIEW 'X'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Set_X_read")
+    field(INP,  "@asyn(lvfp,0,0)X")
     field(PREC, "3")
     field(SCAN, ".1 second")
 	info(archive, "VAL")
@@ -236,9 +195,9 @@ record(ai, "$(P)X:SP:RBV")
 # Read LabVIEW control/indicator "Set Y read" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ai, "$(P)Y:SP:RBV")
 {
-	field(DESC, "LabVIEW 'Set Y read'")
+	field(DESC, "LabVIEW 'Y'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Set_Y_read")
+    field(INP,  "@asyn(lvfp,0,0)Y")
     field(PREC, "3")
     field(SCAN, ".1 second")
 	info(archive, "VAL")
@@ -248,9 +207,9 @@ record(ai, "$(P)Y:SP:RBV")
 # Read LabVIEW control/indicator "Set Z read" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ai, "$(P)Z:SP:RBV")
 {
-	field(DESC, "LabVIEW 'Set Z read'")
+	field(DESC, "LabVIEW 'Z'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Set_Z_read")
+    field(INP,  "@asyn(lvfp,0,0)Z")
     field(PREC, "3")
     field(SCAN, ".1 second")
 	info(archive, "VAL")
@@ -260,9 +219,9 @@ record(ai, "$(P)Z:SP:RBV")
 # Read LabVIEW control/indicator "Set w read" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ai, "$(P)W:SP:RBV")
 {
-	field(DESC, "LabVIEW 'Set w read'")
+	field(DESC, "LabVIEW 'w'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Set_w_read")
+    field(INP,  "@asyn(lvfp,0,0)w")
     field(PREC, "3")
     field(SCAN, ".1 second")
 	info(archive, "VAL")
@@ -272,9 +231,9 @@ record(ai, "$(P)W:SP:RBV")
 # Read LabVIEW control/indicator "Set S read" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
 record(ai, "$(P)S:SP:RBV")
 {
-	field(DESC, "LabVIEW 'Set S read'")
+	field(DESC, "LabVIEW 'S'")
     field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)Set_S_read")
+    field(INP,  "@asyn(lvfp,0,0)S")
     field(PREC, "3")
     field(SCAN, ".1 second")
 	info(archive, "VAL")
@@ -289,5 +248,35 @@ record(bo, "$(P)STOP:SP")
     field(OUT,  "@asyn(lvfp,0,0)Stop")
     field(ZNAM, "STOP")
     field(ONAM, "Stopping")
+}
+
+record(bi, "$(P)PENDANT")
+{
+	field(DESC, "LabVIEW 'Pendant_Active'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Pendant_Active")
+    field(SCAN, ".1 second")
+	info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)LIGHTCURTAIN")
+{
+	field(DESC, "LabVIEW 'Light_Curtain_Active'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Light_Curtain_Active")
+    field(SCAN, ".1 second")
+	info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)EMERGENCYSTOP")
+{
+	field(DESC, "LabVIEW 'Emergency_Stop_Active'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Emergency_Stop_Active")
+    field(SCAN, ".1 second")
+	info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 

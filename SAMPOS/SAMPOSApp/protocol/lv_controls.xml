@@ -6,10 +6,23 @@
   <!--Definition of a configSection, the second argument of the IOC lvDCOMConfigure() command -->
   <section name="frontpanel">
     <!--TODO: edit path attribute in <vi /> to contain a full absolute path, you can also use any EPICS macro known to the IOC e.g. $(TOP) -->
-    <vi path="C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi">
+    <vi path="C:\LabVIEW Modules\Instruments\Enginx\Positioner\EnginX - Positioner - System Functions.llb\EnginX - Positioner - Galil Remote.vi">
       <!--The <param /> maps an asyn driver parameter "name" (referenced in the EPICS .db) to the LabVIEW item "target" -->
       <!--TODO: set extint="true" for controls that need LabVIEW events triggering when they are written to -->
+      <param name="Logo" type="ring">
+        <items>
+          <!--TODO: Ring/Enum names could not be extracted from LabVIEW - you will need to add them manually if required-->
+          <item name="Value-0" value="0"/>
+        </items>
+        <read method="GCV" target="Logo"/>
+        <set method="SCV" extint="false" target="Logo"/>
+      </param>
       <!--Ignoring LabVIEW control "Error" as it has invalid type "Cluster"-->
+      <param name="Activity" type="boolean">
+        <items/>
+        <read method="GCV" target="Activity"/>
+        <set method="SCV" extint="false" target="Activity"/>
+      </param>
       <param name="Message" type="string">
         <read method="GCV" target="Message"/>
         <set method="SCV" extint="false" target="Message"/>
@@ -21,105 +34,348 @@
         <read method="GCV" target="Exit"/>
         <set method="SCV" extint="false" target="Exit"/>
       </param>
-      <param name="Activity" type="boolean">
+      <param name="X_Position" type="float64">
+        <read method="GCV" target="X Position"/>
+        <set method="SCV" extint="false" target="X Position"/>
+      </param>
+      <param name="Y_Position" type="float64">
+        <read method="GCV" target="Y Position"/>
+        <set method="SCV" extint="false" target="Y Position"/>
+      </param>
+      <param name="Z_Position" type="float64">
+        <read method="GCV" target="Z Position"/>
+        <set method="SCV" extint="false" target="Z Position"/>
+      </param>
+      <param name="w_Position" type="float64">
+        <read method="GCV" target="w Position"/>
+        <set method="SCV" extint="false" target="w Position"/>
+      </param>
+      <param name="S_Position" type="float64">
+        <read method="GCV" target="S Position"/>
+        <set method="SCV" extint="false" target="S Position"/>
+      </param>
+      <param name="X" type="float64">
+        <read method="GCV" target="X"/>
+        <set method="SCV" extint="false" target="X"/>
+      </param>
+      <param name="Y" type="float64">
+        <read method="GCV" target="Y"/>
+        <set method="SCV" extint="false" target="Y"/>
+      </param>
+      <param name="Z" type="float64">
+        <read method="GCV" target="Z"/>
+        <set method="SCV" extint="false" target="Z"/>
+      </param>
+      <param name="w" type="float64">
+        <read method="GCV" target="w"/>
+        <set method="SCV" extint="false" target="w"/>
+      </param>
+      <param name="S" type="float64">
+        <read method="GCV" target="S"/>
+        <set method="SCV" extint="false" target="S"/>
+      </param>
+      <param name="X_Set" type="boolean">
+        <items>
+          <item name="Go X" value="0"/>
+        </items>
+        <read method="GCV" target="X Set"/>
+        <set method="SCV" extint="false" target="X Set"/>
+      </param>
+      <param name="Y_Set" type="boolean">
+        <items>
+          <item name="Go Y" value="0"/>
+        </items>
+        <read method="GCV" target="Y Set"/>
+        <set method="SCV" extint="false" target="Y Set"/>
+      </param>
+      <param name="Z_Set" type="boolean">
+        <items>
+          <item name="Go Z" value="0"/>
+        </items>
+        <read method="GCV" target="Z Set"/>
+        <set method="SCV" extint="false" target="Z Set"/>
+      </param>
+      <param name="w_Set" type="boolean">
+        <items>
+          <item name="Go w" value="0"/>
+        </items>
+        <read method="GCV" target="w Set"/>
+        <set method="SCV" extint="false" target="w Set"/>
+      </param>
+      <param name="S_Set" type="boolean">
+        <items>
+          <item name="Go S" value="0"/>
+        </items>
+        <read method="GCV" target="S Set"/>
+        <set method="SCV" extint="false" target="S Set"/>
+      </param>
+      <param name="X_Home" type="boolean">
+        <items>
+          <item name="Home X" value="0"/>
+        </items>
+        <read method="GCV" target="X Home"/>
+        <set method="SCV" extint="false" target="X Home"/>
+      </param>
+      <param name="Z_Home" type="boolean">
+        <items>
+          <item name="Home Z" value="0"/>
+        </items>
+        <read method="GCV" target="Z Home"/>
+        <set method="SCV" extint="false" target="Z Home"/>
+      </param>
+      <param name="w_Home" type="boolean">
+        <items>
+          <item name="Home w" value="0"/>
+        </items>
+        <read method="GCV" target="w Home"/>
+        <set method="SCV" extint="false" target="w Home"/>
+      </param>
+      <param name="S_Home" type="boolean">
+        <items>
+          <item name="Home S" value="0"/>
+        </items>
+        <read method="GCV" target="S Home"/>
+        <set method="SCV" extint="false" target="S Home"/>
+      </param>
+      <param name="Y_Home" type="boolean">
+        <items>
+          <item name="Home Y" value="0"/>
+        </items>
+        <read method="GCV" target="Y Home"/>
+        <set method="SCV" extint="false" target="Y Home"/>
+      </param>
+      <param name="X_In_Motion" type="boolean">
         <items/>
-        <read method="GCV" target="Activity"/>
-        <set method="SCV" extint="false" target="Activity"/>
+        <read method="GCV" target="X In Motion"/>
+        <set method="SCV" extint="false" target="X In Motion"/>
       </param>
-      <param name="Go_X" type="boolean">
+      <param name="Y_In_Motion" type="boolean">
         <items/>
-        <read method="GCV" target="Go X"/>
-        <set method="SCV" extint="false" target="Go X"/>
+        <read method="GCV" target="Y In Motion"/>
+        <set method="SCV" extint="false" target="Y In Motion"/>
       </param>
-      <param name="Go_Y" type="boolean">
+      <param name="Z_In_Motion" type="boolean">
         <items/>
-        <read method="GCV" target="Go Y"/>
-        <set method="SCV" extint="false" target="Go Y"/>
+        <read method="GCV" target="Z In Motion"/>
+        <set method="SCV" extint="false" target="Z In Motion"/>
       </param>
-      <param name="Go_Z" type="boolean">
+      <param name="w_In_Motion" type="boolean">
         <items/>
-        <read method="GCV" target="Go Z"/>
-        <set method="SCV" extint="false" target="Go Z"/>
+        <read method="GCV" target="w In Motion"/>
+        <set method="SCV" extint="false" target="w In Motion"/>
       </param>
-      <param name="Go_w" type="boolean">
+      <param name="S_In_Motion" type="boolean">
         <items/>
-        <read method="GCV" target="Go w"/>
-        <set method="SCV" extint="false" target="Go w"/>
+        <read method="GCV" target="S In Motion"/>
+        <set method="SCV" extint="false" target="S In Motion"/>
       </param>
-      <param name="Current_X" type="float64">
-        <read method="GCV" target="Current X"/>
-        <set method="SCV" extint="false" target="Current X"/>
+      <param name="Define_Positions" type="boolean">
+        <items>
+          <item name="Define" value="0"/>
+        </items>
+        <read method="GCV" target="Define Positions"/>
+        <set method="SCV" extint="false" target="Define Positions"/>
       </param>
-      <param name="Current_Y" type="float64">
-        <read method="GCV" target="Current Y"/>
-        <set method="SCV" extint="false" target="Current Y"/>
+      <param name="Set" type="boolean">
+        <items>
+          <item name="Go" value="0"/>
+        </items>
+        <read method="GCV" target="Set"/>
+        <set method="SCV" extint="false" target="Set"/>
       </param>
-      <param name="Current_Z" type="float64">
-        <read method="GCV" target="Current Z"/>
-        <set method="SCV" extint="false" target="Current Z"/>
+      <param name="Home" type="boolean">
+        <items>
+          <item name="Home" value="0"/>
+        </items>
+        <read method="GCV" target="Home"/>
+        <set method="SCV" extint="false" target="Home"/>
       </param>
-      <param name="Current_w" type="float64">
-        <read method="GCV" target="Current w"/>
-        <set method="SCV" extint="false" target="Current w"/>
+      <param name="X_Accel" type="float64">
+        <read method="GCV" target="X Accel"/>
+        <set method="SCV" extint="false" target="X Accel"/>
       </param>
-      <param name="New_X" type="float64">
-        <read method="GCV" target="New X"/>
-        <set method="SCV" extint="false" target="New X"/>
+      <param name="Y_Accel" type="float64">
+        <read method="GCV" target="Y Accel"/>
+        <set method="SCV" extint="false" target="Y Accel"/>
       </param>
-      <param name="New_Y" type="float64">
-        <read method="GCV" target="New Y"/>
-        <set method="SCV" extint="false" target="New Y"/>
+      <param name="Z_Accel" type="float64">
+        <read method="GCV" target="Z Accel"/>
+        <set method="SCV" extint="false" target="Z Accel"/>
       </param>
-      <param name="New_Z" type="float64">
-        <read method="GCV" target="New Z"/>
-        <set method="SCV" extint="false" target="New Z"/>
+      <param name="w_Accel" type="float64">
+        <read method="GCV" target="w Accel"/>
+        <set method="SCV" extint="false" target="w Accel"/>
       </param>
-      <param name="New_w" type="float64">
-        <read method="GCV" target="New w"/>
-        <set method="SCV" extint="false" target="New w"/>
+      <param name="S_Accel" type="float64">
+        <read method="GCV" target="S Accel"/>
+        <set method="SCV" extint="false" target="S Accel"/>
+      </param>
+      <param name="X_Accel_Ind" type="float64">
+        <read method="GCV" target="X Accel Ind"/>
+        <set method="SCV" extint="false" target="X Accel Ind"/>
+      </param>
+      <param name="Y_Accel_Ind" type="float64">
+        <read method="GCV" target="Y Accel Ind"/>
+        <set method="SCV" extint="false" target="Y Accel Ind"/>
+      </param>
+      <param name="Z_Accel_Ind" type="float64">
+        <read method="GCV" target="Z Accel Ind"/>
+        <set method="SCV" extint="false" target="Z Accel Ind"/>
+      </param>
+      <param name="w_Accel_Ind" type="float64">
+        <read method="GCV" target="w Accel Ind"/>
+        <set method="SCV" extint="false" target="w Accel Ind"/>
+      </param>
+      <param name="S_Accel_Ind" type="float64">
+        <read method="GCV" target="S Accel Ind"/>
+        <set method="SCV" extint="false" target="S Accel Ind"/>
+      </param>
+      <param name="X_Decel" type="float64">
+        <read method="GCV" target="X Decel"/>
+        <set method="SCV" extint="false" target="X Decel"/>
+      </param>
+      <param name="Y_Decel" type="float64">
+        <read method="GCV" target="Y Decel"/>
+        <set method="SCV" extint="false" target="Y Decel"/>
+      </param>
+      <param name="Z_Decel" type="float64">
+        <read method="GCV" target="Z Decel"/>
+        <set method="SCV" extint="false" target="Z Decel"/>
+      </param>
+      <param name="w_Decel" type="float64">
+        <read method="GCV" target="w Decel"/>
+        <set method="SCV" extint="false" target="w Decel"/>
+      </param>
+      <param name="S_Decel" type="float64">
+        <read method="GCV" target="S Decel"/>
+        <set method="SCV" extint="false" target="S Decel"/>
+      </param>
+      <param name="X_Decel_Ind" type="float64">
+        <read method="GCV" target="X Decel Ind"/>
+        <set method="SCV" extint="false" target="X Decel Ind"/>
+      </param>
+      <param name="Y_Decel_Ind" type="float64">
+        <read method="GCV" target="Y Decel Ind"/>
+        <set method="SCV" extint="false" target="Y Decel Ind"/>
+      </param>
+      <param name="Z_Decel_Ind" type="float64">
+        <read method="GCV" target="Z Decel Ind"/>
+        <set method="SCV" extint="false" target="Z Decel Ind"/>
+      </param>
+      <param name="w_Decel_Ind" type="float64">
+        <read method="GCV" target="w Decel Ind"/>
+        <set method="SCV" extint="false" target="w Decel Ind"/>
+      </param>
+      <param name="S_Decel_Ind" type="float64">
+        <read method="GCV" target="S Decel Ind"/>
+        <set method="SCV" extint="false" target="S Decel Ind"/>
+      </param>
+      <param name="X_Speed" type="float64">
+        <read method="GCV" target="X Speed"/>
+        <set method="SCV" extint="false" target="X Speed"/>
+      </param>
+      <param name="Y_Speed" type="float64">
+        <read method="GCV" target="Y Speed"/>
+        <set method="SCV" extint="false" target="Y Speed"/>
+      </param>
+      <param name="Z_Speed" type="float64">
+        <read method="GCV" target="Z Speed"/>
+        <set method="SCV" extint="false" target="Z Speed"/>
+      </param>
+      <param name="w_Speed" type="float64">
+        <read method="GCV" target="w Speed"/>
+        <set method="SCV" extint="false" target="w Speed"/>
+      </param>
+      <param name="S_Speed" type="float64">
+        <read method="GCV" target="S Speed"/>
+        <set method="SCV" extint="false" target="S Speed"/>
+      </param>
+      <param name="X_Speed_Ind" type="float64">
+        <read method="GCV" target="X Speed Ind"/>
+        <set method="SCV" extint="false" target="X Speed Ind"/>
+      </param>
+      <param name="Y_Speed_Ind" type="float64">
+        <read method="GCV" target="Y Speed Ind"/>
+        <set method="SCV" extint="false" target="Y Speed Ind"/>
+      </param>
+      <param name="Z_Speed_Ind" type="float64">
+        <read method="GCV" target="Z Speed Ind"/>
+        <set method="SCV" extint="false" target="Z Speed Ind"/>
+      </param>
+      <param name="w_Speed_Ind" type="float64">
+        <read method="GCV" target="w Speed Ind"/>
+        <set method="SCV" extint="false" target="w Speed Ind"/>
+      </param>
+      <param name="S_Speed_Ind" type="float64">
+        <read method="GCV" target="S Speed Ind"/>
+        <set method="SCV" extint="false" target="S Speed Ind"/>
+      </param>
+      <param name="X_Set_Params" type="boolean">
+        <items>
+          <item name="Set X" value="0"/>
+        </items>
+        <read method="GCV" target="X Set Params"/>
+        <set method="SCV" extint="false" target="X Set Params"/>
+      </param>
+      <param name="Y_Set_Params" type="boolean">
+        <items>
+          <item name="Set Y" value="0"/>
+        </items>
+        <read method="GCV" target="Y Set Params"/>
+        <set method="SCV" extint="false" target="Y Set Params"/>
+      </param>
+      <param name="Z_Set_Params" type="boolean">
+        <items>
+          <item name="Set Z" value="0"/>
+        </items>
+        <read method="GCV" target="Z Set Params"/>
+        <set method="SCV" extint="false" target="Z Set Params"/>
+      </param>
+      <param name="w_Set_Params" type="boolean">
+        <items>
+          <item name="Set w" value="0"/>
+        </items>
+        <read method="GCV" target="w Set Params"/>
+        <set method="SCV" extint="false" target="w Set Params"/>
+      </param>
+      <param name="S_Set_Params" type="boolean">
+        <items>
+          <item name="Set S" value="0"/>
+        </items>
+        <read method="GCV" target="S Set Params"/>
+        <set method="SCV" extint="false" target="S Set Params"/>
+      </param>
+      <param name="Set_Params" type="boolean">
+        <items>
+          <item name="Set" value="0"/>
+        </items>
+        <read method="GCV" target="Set Params"/>
+        <set method="SCV" extint="false" target="Set Params"/>
+      </param>
+      <param name="Pendant_Active" type="boolean">
+        <items/>
+        <read method="GCV" target="Pendant Active"/>
+        <set method="SCV" extint="false" target="Pendant Active"/>
+      </param>
+      <param name="Emergency_Stop_Active" type="boolean">
+        <items/>
+        <read method="GCV" target="Emergency Stop Active"/>
+        <set method="SCV" extint="false" target="Emergency Stop Active"/>
+      </param>
+      <param name="Light_Curtain_Active" type="boolean">
+        <items/>
+        <read method="GCV" target="Light Curtain Active"/>
+        <set method="SCV" extint="false" target="Light Curtain Active"/>
       </param>
       <param name="Stop" type="boolean">
         <items>
-          <item name="STOP" value="0"/>
-          <item name="Stopping" value="1"/>
-          <item name="STOP" value="2"/>
-          <item name="Stopping" value="3"/>
+          <item name="OFF" value="0"/>
+          <item name="ON" value="1"/>
+          <item name="OFF" value="2"/>
+          <item name="ON" value="3"/>
         </items>
         <read method="GCV" target="Stop"/>
         <set method="SCV" extint="false" target="Stop"/>
-      </param>
-      <param name="Go_S" type="boolean">
-        <items/>
-        <read method="GCV" target="Go S"/>
-        <set method="SCV" extint="false" target="Go S"/>
-      </param>
-      <param name="Current_S" type="float64">
-        <read method="GCV" target="Current S"/>
-        <set method="SCV" extint="false" target="Current S"/>
-      </param>
-      <param name="New_S" type="float64">
-        <read method="GCV" target="New S"/>
-        <set method="SCV" extint="false" target="New S"/>
-      </param>
-      <param name="Set_X_read" type="float64">
-        <read method="GCV" target="Set X read"/>
-        <set method="SCV" extint="false" target="Set X read"/>
-      </param>
-      <param name="Set_Y_read" type="float64">
-        <read method="GCV" target="Set Y read"/>
-        <set method="SCV" extint="false" target="Set Y read"/>
-      </param>
-      <param name="Set_Z_read" type="float64">
-        <read method="GCV" target="Set Z read"/>
-        <set method="SCV" extint="false" target="Set Z read"/>
-      </param>
-      <param name="Set_w_read" type="float64">
-        <read method="GCV" target="Set w read"/>
-        <set method="SCV" extint="false" target="Set w read"/>
-      </param>
-      <param name="Set_S_read" type="float64">
-        <read method="GCV" target="Set S read"/>
-        <set method="SCV" extint="false" target="Set S read"/>
       </param>
     </vi>
   </section>
