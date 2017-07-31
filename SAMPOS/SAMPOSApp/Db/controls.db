@@ -64,7 +64,7 @@ record(bi, "$(P)S:GOING")
     info(INTEREST, "HIGH")
 }
 
-# Write to LabVIEW control "Go X" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(bo, "$(P)X:GO:SP")
 {
 	field(DESC, "LabVIEW 'X_Set'")
@@ -134,7 +134,7 @@ record(ai, "$(P)S")
     info(INTEREST, "HIGH")
 }
 
-# Write to LabVIEW control "New X" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ao, "$(P)X:SP")
 {
 	field(DESC, "LabVIEW 'X'")
@@ -143,7 +143,7 @@ record(ao, "$(P)X:SP")
     field(PREC, "3")
 }
 
-# Write to LabVIEW control "New Y" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ao, "$(P)Y:SP")
 {
 	field(DESC, "LabVIEW 'Y'")
@@ -152,7 +152,7 @@ record(ao, "$(P)Y:SP")
     field(PREC, "3")
 }
 
-# Write to LabVIEW control "New Z" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ao, "$(P)Z:SP")
 {
 	field(DESC, "LabVIEW 'Z'")
@@ -161,7 +161,7 @@ record(ao, "$(P)Z:SP")
     field(PREC, "3")
 }
 
-# Write to LabVIEW control "New w" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ao, "$(P)W:SP")
 {
 	field(DESC, "LabVIEW 'w'")
@@ -170,7 +170,7 @@ record(ao, "$(P)W:SP")
     field(PREC, "3")
 }
 
-# Write to LabVIEW control "New S" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ao, "$(P)S:SP")
 {
 	field(DESC, "LabVIEW 'S'")
@@ -240,7 +240,7 @@ record(ai, "$(P)S:SP:RBV")
     info(INTEREST, "HIGH")
 }
 
-# Write to LabVIEW control "Stop" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(bo, "$(P)STOP:SP")
 {
 	field(DESC, "LabVIEW 'Stop'")
