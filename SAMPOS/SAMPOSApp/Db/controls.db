@@ -1,4 +1,4 @@
-# Read LabVIEW control/indicator "Go X" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(bi, "$(P)X:GOING")
 {
 	field(DESC, "LabVIEW 'X In Motion'")
@@ -12,7 +12,7 @@ record(bi, "$(P)X:GOING")
 }
 
 
-# Read LabVIEW control/indicator "Go Y" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(bi, "$(P)Y:GOING")
 {
 	field(DESC, "LabVIEW 'Y_In_Motion'")
@@ -25,7 +25,7 @@ record(bi, "$(P)Y:GOING")
     info(INTEREST, "HIGH")
 }
 
-# Read LabVIEW control/indicator "Go Z" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(bi, "$(P)Z:GOING")
 {
 	field(DESC, "LabVIEW 'Z_In_Motion'")
@@ -38,7 +38,7 @@ record(bi, "$(P)Z:GOING")
     info(INTEREST, "HIGH")
 }
 
-# Read LabVIEW control/indicator "Go w" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(bi, "$(P)W:GOING")
 {
 	field(DESC, "LabVIEW 'w_In_Motion'")
@@ -51,7 +51,7 @@ record(bi, "$(P)W:GOING")
     info(INTEREST, "HIGH")
 }
 
-# Read LabVIEW control/indicator "Go S" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(bi, "$(P)S:GOING")
 {
 	field(DESC, "LabVIEW 'S_In_Motion'")
@@ -74,7 +74,7 @@ record(bo, "$(P)X:GO:SP")
     field(ONAM, "GO")
 }
 
-# Read LabVIEW control/indicator "Current X" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ai, "$(P)X")
 {
 	field(DESC, "LabVIEW 'X Position'")
@@ -86,7 +86,7 @@ record(ai, "$(P)X")
     info(INTEREST, "HIGH")
 }
 
-# Read LabVIEW control/indicator "Current Y" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ai, "$(P)Y")
 {
 	field(DESC, "LabVIEW 'Y Position'")
@@ -98,7 +98,7 @@ record(ai, "$(P)Y")
     info(INTEREST, "HIGH")
 }
 
-# Read LabVIEW control/indicator "Current Z" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ai, "$(P)Z")
 {
 	field(DESC, "LabVIEW 'Z Position'")
@@ -110,7 +110,7 @@ record(ai, "$(P)Z")
     info(INTEREST, "HIGH")
 }
 
-# Read LabVIEW control/indicator "Current w" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ai, "$(P)W")
 {
 	field(DESC, "LabVIEW 'w Position'")
@@ -122,7 +122,7 @@ record(ai, "$(P)W")
     info(INTEREST, "HIGH")
 }
 
-# Read LabVIEW control/indicator "Current S" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ai, "$(P)S")
 {
 	field(DESC, "LabVIEW 'S Position'")
@@ -180,7 +180,7 @@ record(ao, "$(P)S:SP")
 }
 
 
-# Read LabVIEW control/indicator "Set X read" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ai, "$(P)X:SP:RBV")
 {
 	field(DESC, "LabVIEW 'X'")
@@ -192,7 +192,7 @@ record(ai, "$(P)X:SP:RBV")
     info(INTEREST, "HIGH")
 }
 
-# Read LabVIEW control/indicator "Set Y read" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ai, "$(P)Y:SP:RBV")
 {
 	field(DESC, "LabVIEW 'Y'")
@@ -204,7 +204,7 @@ record(ai, "$(P)Y:SP:RBV")
     info(INTEREST, "HIGH")
 }
 
-# Read LabVIEW control/indicator "Set Z read" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ai, "$(P)Z:SP:RBV")
 {
 	field(DESC, "LabVIEW 'Z'")
@@ -216,7 +216,7 @@ record(ai, "$(P)Z:SP:RBV")
     info(INTEREST, "HIGH")
 }
 
-# Read LabVIEW control/indicator "Set w read" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ai, "$(P)W:SP:RBV")
 {
 	field(DESC, "LabVIEW 'w'")
@@ -228,7 +228,7 @@ record(ai, "$(P)W:SP:RBV")
     info(INTEREST, "HIGH")
 }
 
-# Read LabVIEW control/indicator "Set S read" on "C:/LabVIEW Modules/Instruments/Enginx/Positioner/EnginX - Positioner - System Functions.llb/EnginX - Positioner - Front Panel.vi"
+
 record(ai, "$(P)S:SP:RBV")
 {
 	field(DESC, "LabVIEW 'S'")
