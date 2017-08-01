@@ -65,16 +65,6 @@ record(bi, "$(P)S:GOING")
 }
 
 
-record(bo, "$(P)X:GO:SP")
-{
-	field(DESC, "LabVIEW 'X_Set'")
-    field(DTYP, "asynInt32")
-    field(OUT,  "@asyn(lvfp,0,0)X_Set")
-    field(ZNAM, "STOP")
-    field(ONAM, "GO")
-}
-
-
 record(ai, "$(P)X")
 {
 	field(DESC, "LabVIEW 'X Position'")
