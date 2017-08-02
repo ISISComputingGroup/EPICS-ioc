@@ -6,7 +6,10 @@
 stringiftest("PORT", "$(PORT$(PS)=)")
 
 # create a real serial port, unless in simulation mode then create an unconnected asyn port 
-$(IFPORT)$(IFSIM)    drvAsynSerialPortConfigure ("L$(PS)", "NUL", 0, 1)
+$(IFPORT)$(IFRECSIM)    drvAsynSerialPortConfigure ("L$(PS)", "NUL", 0, 1)
+
+## For unit testing:
+$(IFDEVSIM) drvAsynIPPortConfigure("L$(PS)", "localhost:$(EMULATOR_PORT=)")
 
 $(IFPORT)$(IFNOTSIM) drvAsynSerialPortConfigure ("L$(PS)", "$(PORT$(PS)=)")
 $(IFPORT)$(IFNOTSIM) asynSetOption ("L$(PS)", 0, "baud", "$(BAUD$(PS)=9600)")
@@ -17,8 +20,8 @@ $(IFPORT)$(IFNOTSIM) asynOctetSetInputEos("L$(PS)",0,"$(IEOS$(PS)=\\r)")
 $(IFPORT)$(IFNOTSIM) asynOctetSetOutputEos("L$(PS)",0,"$(OEOS$(PS)=\\r)")
 
 ## Initialise the comms with the PSU
-$(IFPORT)$(IFNOTSIM) asynOctetConnect("GENESYS_01$(PS)","L$(PS)")
-$(IFPORT)$(IFNOTSIM) asynOctetWrite GENESYS_01$(PS) “ADR $(ADDR$(PS))”
+$(IFPORT)$(IFNOTRECSIM) asynOctetConnect("GENESYS_01$(PS)","L$(PS)")
+$(IFPORT)$(IFNOTRECSIM) asynOctetWrite GENESYS_01$(PS) “ADR $(ADDR$(PS))”
 
 ## Load record instances for connected psu
 $(IFPORT)  dbLoadRecords("$(TOP)/db/TDK_LAMBDA_GENESYS.db", "P=$(MYPVPREFIX)$(IOCNAME):$(PS):, PORT=L$(PS), ADR=$(ADDR$(PS)), SP_PINI=$(SP_AT_STARTUP$(PS)=NO)")
