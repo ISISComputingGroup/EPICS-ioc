@@ -11,7 +11,7 @@ epicsEnvSet ("AUTOSAVEREQ", "#")
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TDKLAMBDAGENESYS)/data"
 
 
-# added from AMINT2L st-common
+
 # For dev sim devices
 $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
 
