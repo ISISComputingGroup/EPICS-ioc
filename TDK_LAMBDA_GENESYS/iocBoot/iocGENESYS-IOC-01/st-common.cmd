@@ -10,6 +10,18 @@ epicsEnvSet ("AUTOSAVEREQ", "#")
 ## set path to stream driver protocol file referenced in db files
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TDKLAMBDAGENESYS)/data"
 
+
+# added from AMINT2L st-common
+# For dev sim devices
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
+
+## For real device use:
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=none)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
+
 epicsEnvSet(PS,1)
 < st-psu.cmd
 
