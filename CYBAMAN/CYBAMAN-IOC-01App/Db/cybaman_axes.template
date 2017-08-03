@@ -1,0 +1,25 @@
+record(ai, "$(P)$(AXIS):RAW")
+{
+	field(DESC, "RAW value of $(AXIS)")
+	field(DTYP, "stream")
+	field(INP, "@devcybaman.proto get$(AXIS) $(PORT)")
+	field(SCAN, "1 second")
+	field(FLNK, "$(P)$(AXIS):CALC")
+}
+
+record(calcout, "$(P)$(AXIS):CALC")
+{
+	field(INPA, "$(P)$(AXIS):RAW")
+	field(CALC, "A/$(SCALE)")
+	
+	field(OUT, "$(P)$(AXIS) PP")
+	field(OOPT, "Every Time")
+}
+
+record(ai, "$(P)$(AXIS)")
+{
+	field(DESC, "Value of $(AXIS)")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
