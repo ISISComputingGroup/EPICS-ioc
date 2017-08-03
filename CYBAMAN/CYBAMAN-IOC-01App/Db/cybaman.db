@@ -16,3 +16,12 @@ record(bo, "$(P)DISABLE")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
 }
+
+record(bo, "$(P)INITIALIZE")
+{
+	field(DESC, "Initialize")
+	field(DTYP, "stream")
+	field(PINI, "YES")
+	field(VAL, "0")
+	field(OUT, "@devcybaman.proto initialize $(PORT)")
+}
