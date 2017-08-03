@@ -29,3 +29,7 @@ record(bo, "$(P)$(AXIS):HOME")
 	field(OUT, "@devcybaman.proto home$(AXIS) $(PORT)")
 }
 
+record(ao, "$(P)$(AXIS):SP")
+{
+	field(FLNK, "$(P)_CALC_TM_AND_SET")
+}

@@ -31,3 +31,33 @@ record(bo, "$(P)RESET")
 	field(DTYP, "stream")
 	field(OUT, "@devcybaman.proto reset $(PORT)")
 }
+
+record(bo, "$(P)STOP")
+{
+	field(DTYP, "stream")
+	field(OUT, "@devcybaman.proto stop $(PORT)")
+}
+
+record(calcout, "$(P)POS:SP:RAW")
+{
+	field(INPA, "$(P)A:SP")
+	field(INPB, "$(P)B:SP")
+	field(INPC, "$(P)C:SP")
+	field(INPD, "$(P)_CALC_TM_AND_SET")
+	field(CALC, "0")
+	field(DTYP, "stream")
+	field(OUT, "@devcybaman.proto sendValues $(PORT)")
+}
+
+record(calc, "$(P)_CALC_TM_AND_SET")
+{
+	field(INPA, "$(P)A:SP")
+	field(INPB, "$(P)B:SP")
+	field(INPC, "$(P)C:SP")
+	field(INPD, "$(P)A")
+	field(INPE, "$(P)B")
+	field(INPF, "$(P)C")
+	field(CALC, "MAX(1000*CEIL(MAX(MAX(ABS(A-D),ABS(B-E)),ABS(C-F))),4000)")
+	field(FLNK, "$(P)POS:SP:RAW")
+}
+
