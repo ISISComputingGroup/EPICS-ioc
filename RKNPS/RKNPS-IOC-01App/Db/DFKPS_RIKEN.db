@@ -43,7 +43,6 @@ record(ai, "$(P)VRAW")
     field(SIOL, "$(P)SIM:VOLT")
     field(SDIS, "$(P)DISABLE")
     field(EGU, "V")
-    info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 
@@ -261,7 +260,6 @@ record(ai, "$(P)RAW")
     field(SIOL, "$(P)SIM:RAW")
     field(SDIS, "$(P)DISABLE")
     field(EGU, "A")
-    info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 
