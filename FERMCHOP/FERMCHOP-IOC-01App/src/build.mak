@@ -46,7 +46,7 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += calc sscan
 
 # FERMCHOP-IOC-01_registerRecordDeviceDriver.cpp derives from FERMCHOP-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
