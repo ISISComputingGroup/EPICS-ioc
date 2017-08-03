@@ -23,3 +23,9 @@ record(ai, "$(P)$(AXIS)")
 	info(archive, "VAL")
 }
 
+record(bo, "$(P)$(AXIS):HOME")
+{
+	field(DTYP, "stream")
+	field(OUT, "@devcybaman.proto home$(AXIS) $(PORT)")
+}
+
