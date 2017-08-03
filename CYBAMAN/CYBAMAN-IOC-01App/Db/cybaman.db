@@ -26,3 +26,8 @@ record(bo, "$(P)INITIALIZE")
 	field(OUT, "@devcybaman.proto initialize $(PORT)")
 }
 
+record(bo, "$(P)RESET")
+{
+	field(DTYP, "stream")
+	field(OUT, "@devcybaman.proto reset $(PORT)")
+}
