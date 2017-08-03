@@ -21,6 +21,9 @@ record(ai, "$(P)$(AXIS)")
 	field(DESC, "Value of $(AXIS)")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(AXIS)")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)$(AXIS):HOME")
@@ -32,4 +35,17 @@ record(bo, "$(P)$(AXIS):HOME")
 record(ao, "$(P)$(AXIS):SP")
 {
 	field(FLNK, "$(P)_CALC_TM_AND_SET")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(AXIS):SP")
+    field(SDIS, "$(P)DISABLE")
 }
+
+## Simulation records
+
+record(ao, "$(P)SIM:$(AXIS):SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:$(AXIS):SP","$(P)SIM:$(AXIS)")
