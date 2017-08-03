@@ -6,16 +6,16 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DANFYSIK8000)/master/danfysikMps8000App/protocol/RIKEN/:"
 
 ## use with emulator
-#drvAsynIPPortConfigure("L0", "localhost:xxxxx")
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
 
 ## use with real device
-drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
-asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
-asynSetOption("L0", -1, "bits", "$(BITS=7)")
-asynSetOption("L0", -1, "parity", "$(PARITY="space")")
-asynSetOption("L0", -1, "stop", "$(STOP=1)")
-asynOctetSetInputEos("L0",0,"$(IEOS=\\n\\r)")
-asynOctetSetOutputEos("L0",0,"$(OEOS=\\r)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=7)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY="space")")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
+$(IFNOTRECSIM) asynOctetSetInputEos("L0",0,"$(IEOS=\\n\\r)")
+$(IFNOTRECSIM) asynOctetSetOutputEos("L0",0,"$(OEOS=\\r)")
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
