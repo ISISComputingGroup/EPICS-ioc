@@ -26,7 +26,23 @@ record(ai, "$(P)$(AXIS)")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bo, "$(P)$(AXIS):HOME")
+record(seq, "$(P)$(AXIS):HOME")
+{
+	field(DOL1, "$(P)$(AXIS):HOME:_CALC PP")
+	field(DLY2, "2")
+	field(DOL2, "$(P)$(AXIS):HOME:_RAW PP")
+	field(SELM, "All")
+}
+
+record(calcout, "$(P)$(AXIS):HOME:_CALC")
+{
+	field(INPA, "$(P)$(AXIS)")
+	field(CALC, "(A<-150)?(-150):0")
+	field(OUT, "$(P)$(AXIS):SP PP")
+	field(OOPT, "When Non-zero")
+}
+
+record(bo, "$(P)$(AXIS):HOME:_RAW")
 {
 	field(DTYP, "stream")
 	field(OUT, "@devcybaman.proto home$(AXIS) $(PORT)")
