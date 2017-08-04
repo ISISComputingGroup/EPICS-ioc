@@ -24,18 +24,40 @@ record(bo, "$(P)INITIALIZE")
 	field(PINI, "YES")
 	field(VAL, "1")
 	field(OUT, "@devcybaman.proto initialize $(PORT)")
+	field(FLNK, "$(P)_SET_INITIALIZED_TRUE")
 }
 
 record(bo, "$(P)RESET")
 {
 	field(DTYP, "stream")
 	field(OUT, "@devcybaman.proto reset $(PORT)")
+	field(FLNK, "$(P)_SET_INITIALIZED_TRUE")
+}
+
+record(seq, "$(P)_SET_INITIALIZED_TRUE")
+{
+	field(DO1, "1")
+	field(LNK1, "$(P)INITIALIZED PP")
+}
+
+record(seq, "$(P)_SET_INITIALIZED_FALSE")
+{
+	field(DO1, "0")
+	field(LNK1, "$(P)INITIALIZED PP")
+}
+
+record(bi, "$(P)INITIALIZED")
+{
+	field(SCAN, "Passive")
+	field(ZNAM, "FALSE")
+	field(ONAM, "TRUE")
 }
 
 record(bo, "$(P)STOP")
 {
 	field(DTYP, "stream")
 	field(OUT, "@devcybaman.proto stop $(PORT)")
+	field(FLNK, "$(P)_SET_INITIALIZED_FALSE")
 }
 
 record(calcout, "$(P)POS:SP:RAW")

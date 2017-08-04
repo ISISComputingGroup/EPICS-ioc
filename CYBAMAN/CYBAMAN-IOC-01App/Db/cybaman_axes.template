@@ -19,6 +19,7 @@ record(calcout, "$(P)$(AXIS):CALC")
 record(ai, "$(P)$(AXIS)")
 {
 	field(DESC, "Value of $(AXIS)")
+	field(PREC, "3")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 	field(SIML, "$(P)SIM")
@@ -28,9 +29,9 @@ record(ai, "$(P)$(AXIS)")
 
 record(seq, "$(P)$(AXIS):HOME")
 {
-	field(DOL1, "$(P)$(AXIS):HOME:_CALC PP")
+	field(LNK1, "$(P)$(AXIS):HOME:_CALC PP")
 	field(DLY2, "2")
-	field(DOL2, "$(P)$(AXIS):HOME:_RAW PP")
+	field(LNK2, "$(P)$(AXIS):HOME:_RAW PP")
 	field(SELM, "All")
 }
 
@@ -50,6 +51,7 @@ record(bo, "$(P)$(AXIS):HOME:_RAW")
 
 record(ao, "$(P)$(AXIS):SP")
 {
+	field(PREC, "3")
 	field(FLNK, "$(P)_CALC_TM_AND_SET")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(AXIS):SP")
