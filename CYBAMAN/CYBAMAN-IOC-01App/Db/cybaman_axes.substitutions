@@ -1,8 +1,8 @@
 file cybaman_axes.template {
 
-pattern { P, PORT, RECSIM, DISABLE, AXIS, SCALE }
-{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "A", "3577"}
-{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "B", "3663"}
-{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "C", "3663"}
+pattern { P, PORT, RECSIM, DISABLE, AXIS, SCALE, SP_IF_A, SP_IF_B, SP_IF_C }
+{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "A", "3577", ":SP", "", ""}
+{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "B", "3663", "", ":SP", ""}
+{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "C", "3663", "", "", ":SP"}
 
 }

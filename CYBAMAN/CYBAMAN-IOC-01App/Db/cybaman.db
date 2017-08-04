@@ -31,7 +31,7 @@ record(bo, "$(P)RESET")
 {
 	field(DTYP, "stream")
 	field(OUT, "@devcybaman.proto reset $(PORT)")
-	field(FLNK, "$(P)_SET_INITIALIZED_TRUE")
+	field(FLNK, "$(P)_SET_INITIALIZED_FALSE")
 }
 
 record(seq, "$(P)_SET_INITIALIZED_TRUE")
@@ -59,31 +59,3 @@ record(bo, "$(P)STOP")
 	field(OUT, "@devcybaman.proto stop $(PORT)")
 	field(FLNK, "$(P)_SET_INITIALIZED_FALSE")
 }
-
-record(calcout, "$(P)POS:SP:RAW")
-{
-	field(INPA, "$(P)A:SP")
-	field(INPB, "$(P)B:SP")
-	field(INPC, "$(P)C:SP")
-	field(INPD, "$(P)_CALC_TM_AND_SET")
-	field(CALC, "0")
-	field(DTYP, "stream")
-	field(OUT, "@devcybaman.proto sendValues $(PORT)")
-	field(OOPT, "Every Time")
-}
-
-record(calc, "$(P)_CALC_TM_AND_SET")
-{
-	field(INPA, "$(P)A:SP")
-	field(INPB, "$(P)B:SP")
-	field(INPC, "$(P)C:SP")
-	field(INPD, "$(P)A")
-	field(INPE, "$(P)B")
-	field(INPF, "$(P)C")
-	# 
-	# ceil(0.5*floor(X*2)) == round(X)
-	#
-	field(CALC, "MAX(1000*CEIL(MAX(MAX(ABS(A-D),ABS(B-E)),ABS(C-F))/5.0),4000)")
-	field(FLNK, "$(P)POS:SP:RAW")
-}
-

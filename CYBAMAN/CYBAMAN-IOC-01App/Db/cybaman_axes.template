@@ -41,6 +41,7 @@ record(calcout, "$(P)$(AXIS):HOME:_CALC")
 	field(CALC, "(A<-150)?(-150):0")
 	field(OUT, "$(P)$(AXIS):SP PP")
 	field(OOPT, "When Non-zero")
+	field(FLNK, "$(P)$(AXIS):_CALC_TM_AND_SET")
 }
 
 record(bo, "$(P)$(AXIS):HOME:_RAW")
@@ -52,10 +53,35 @@ record(bo, "$(P)$(AXIS):HOME:_RAW")
 record(ao, "$(P)$(AXIS):SP")
 {
 	field(PREC, "3")
-	field(FLNK, "$(P)_CALC_TM_AND_SET")
+	field(FLNK, "$(P)$(AXIS):_CALC_TM_AND_SET")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(AXIS):SP")
     field(SDIS, "$(P)DISABLE")
+}
+
+
+record(calc, "$(P)$(AXIS):_CALC_TM_AND_SET")
+{
+	field(INPA, "$(P)A$(SP_IF_A)")
+	field(INPB, "$(P)B$(SP_IF_B)")
+	field(INPC, "$(P)C$(SP_IF_C)")
+	field(INPD, "$(P)A")
+	field(INPE, "$(P)B")
+	field(INPF, "$(P)C")
+	field(CALC, "MAX(1000*CEIL(MAX(MAX(ABS(A-D),ABS(B-E)),ABS(C-F))/5.0),4000)")
+	field(FLNK, "$(P)$(AXIS):SP:RAW")
+}
+
+record(calcout, "$(P)$(AXIS):SP:RAW")
+{
+	field(INPA, "$(P)A$(SP_IF_A)")
+	field(INPB, "$(P)B$(SP_IF_B)")
+	field(INPC, "$(P)C$(SP_IF_C)")
+	field(INPD, "$(P)$(AXIS):_CALC_TM_AND_SET")
+	field(CALC, "0")
+	field(DTYP, "stream")
+	field(OUT, "@devcybaman.proto sendValues $(PORT)")
+	field(OOPT, "Every Time")
 }
 
 ## Simulation records
