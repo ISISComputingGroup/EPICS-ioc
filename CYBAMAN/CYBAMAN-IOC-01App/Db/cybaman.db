@@ -58,7 +58,10 @@ record(calc, "$(P)_CALC_TM_AND_SET")
 	field(INPD, "$(P)A")
 	field(INPE, "$(P)B")
 	field(INPF, "$(P)C")
-	field(CALC, "MAX(1000*CEIL(MAX(MAX(ABS(A-D),ABS(B-E)),ABS(C-F))),4000)")
+	# 
+	# ceil(0.5*floor(X*2)) == round(X)
+	#
+	field(CALC, "MAX(1000*CEIL(MAX(MAX(ABS(A-D),ABS(B-E)),ABS(C-F))/5.0),4000)")
 	field(FLNK, "$(P)POS:SP:RAW")
 }
 
