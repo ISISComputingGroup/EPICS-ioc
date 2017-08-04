@@ -25,6 +25,7 @@ record(ai, "$(P)$(AXIS)")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(AXIS)")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "degree")
 }
 
 record(seq, "$(P)$(AXIS):HOME")
@@ -57,6 +58,7 @@ record(ao, "$(P)$(AXIS):SP")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(AXIS):SP")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "degree")
 }
 
 
