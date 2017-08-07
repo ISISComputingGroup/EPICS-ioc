@@ -27,3 +27,4 @@ relPaths.sh
 *_built_positions.req
 *_built_settings.req
 NULL
+GALIL/iocBoot/**/*.gmc

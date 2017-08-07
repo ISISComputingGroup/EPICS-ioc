@@ -1,0 +1,7 @@
+file controls_channel.template {
+
+pattern {PORT, P, CHAN, CHAN_UNITS, CHAN_NUM, CHAN_TOL, CHAN_EXP_TYPE, ST_PREFIX}
+{"\$(PORT)", "\$(P)", "POS", "mm", 1, 1, 3, "ZR"}
+{"\$(PORT)", "\$(P)", "STRESS", "MPa", 2, 0.1, 2, "ON"}
+{"\$(PORT)", "\$(P)", "STRAIN", "%", 3, 0.1, 4, "TW"}
+}
