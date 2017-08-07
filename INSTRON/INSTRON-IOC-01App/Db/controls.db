@@ -42,7 +42,7 @@ record(mbbi, "$(P)CHANNEL")
     info(archive, "VAL")
 }
 
-# This is used by $(P)$(CHAN):TYPE:_CHANNEL_LABEL
+# This is used by channel :TYPE:_CHANNEL_LABEL
 # It is just a clean list of the original unmodified channel names
 # otherwise it recursively appends " - disabled" which we don't want.
 record(mbbi, "$(P)_CHANNELSLIST_CLEAN")
@@ -166,37 +166,69 @@ record(fanout, "$(P)STAT:_FANOUT")
 record(mbbi, "$(P)STAT:DISP")
 {
     field(DESC, "Display string for rig status")
-    field(INP, "$(P)STAT:_CALC")
+    field(INP, "$(P)STAT:_CALC MSS")
 
     field(ZRST, "System OK")
+    field(ZRSV, "NO_ALARM")
+    
     field(ONST, "Travel limit exceeded")
+    field(ONSV, "MAJOR")
+    
     field(TWST, "Power amplifier too hot")
+    field(TWSV, "MAJOR")
+    
     field(THST, "Emergency stop pushed")
+    field(THSV, "MAJOR")
+    
     field(FRST, "Invalid status from rig")
+    field(FRSV, "MAJOR")
+    
     field(FVST, "Invalid status from rig")
+    field(FVSV, "MAJOR")
+    
     field(SXST, "Emergency stop pushed")
+    field(SXSV, "MAJOR")
+    
     field(SVST, "Oil too hot")
+    field(SVSV, "MAJOR")
+    
     field(EIST, "Oil level too low")
+    field(EISV, "MAJOR")
+    
     field(NIST, "Motor too hot")
+    field(NISV, "MAJOR")
+    
     field(TEST, "Oil pressure too high")
+    field(TESV, "MAJOR")
+    
     field(ELST, "Oil pressure too low")     
+    field(ELSV, "MAJOR")
+    
     field(TVST, "Manifold/pump blocked")
+    field(TVSV, "MAJOR")
+    
     field(TTST, "Oil level going too low")
+    field(TTSV, "MAJOR")
+    
     field(FTST, "Manifold low pressure")
+    field(FTSV, "MAJOR")
+    
     field(FFST, "System OK")
+    field(FFSV, "NO_ALARM")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+    info(alarm, "INSTRON")
 }
 
 record(calc, "$(P)STAT:_CALC")
 {
     field(DESC, "Calculation for finding display string")
     
-    field(INPA, "$(P)STAT:FRAME.B9 CP")
-    field(INPB, "$(P)STAT:FRAME.BA CP")
-    field(INPC, "$(P)STAT:FRAME.BB CP")
-    field(INPD, "$(P)STAT:FRAME.BC CP")
+    field(INPA, "$(P)STAT:FRAME.B9 CP MSS")
+    field(INPB, "$(P)STAT:FRAME.BA CP MSS")
+    field(INPC, "$(P)STAT:FRAME.BB CP MSS")
+    field(INPD, "$(P)STAT:FRAME.BC CP MSS")
     
     field(CALC, "A+(2*B)+(4*C)+(8*D)") 
     field(FLNK, "$(P)STAT:DISP")
