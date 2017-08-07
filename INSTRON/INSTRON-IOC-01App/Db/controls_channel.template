@@ -177,7 +177,7 @@ record(ai, "$(P)$(CHAN)")
     field(SIOL, "$(P)$(CHAN):SIM:VALUE")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    info(archive, "0.1 VAL")
 }
 
 record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")

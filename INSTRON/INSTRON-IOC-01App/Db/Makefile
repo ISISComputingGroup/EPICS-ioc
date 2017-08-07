@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 DB += controls.db 
 DB += controls_channel.db 
 DB += controls_channel_specific.db
+DB += logging.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
