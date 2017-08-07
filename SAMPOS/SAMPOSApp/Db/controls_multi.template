@@ -9,6 +9,9 @@ record(bi, "$(P)$(AXISPV):GOING")
     field(ONAM, "YES")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(AXISPV):GOING")
+    field(SDIS, "$(P)DISABLE")
 	info(alarm, "SAMPOS")
 }
 
@@ -65,4 +68,11 @@ record(ao, "$(P)SIM:$(AXISPV):SP")
 
 alias("$(P)SIM:$(AXISPV):SP","$(P)SIM:$(AXISPV)")
 alias("$(P)SIM:$(AXISPV):SP","$(P)SIM:$(AXISPV):SP:RBV")
+
+record(bi, "$(P)SIM:$(AXISPV):GOING")
+{
+    field(VAL, "0")
+	field(PINI, "YES")
+    field(DTYP, "Soft Channel")
+}
 
