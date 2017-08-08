@@ -342,3 +342,50 @@ record(ai, "$(P)SIM:AMPLITUDE")
 alias("$(P)SIM:AMPLITUDE","$(P)SIM:AMPLITUDE:SP")
 
 alias("$(P)SIM:AMPLITUDE","$(P)SIM:AMPLITUDE:SP:RBV")
+
+record(ai, "$(P)SIM:VOLT:HIGH")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:VOLT:HIGH","$(P)SIM:VOLT:HIGH:SP")
+
+alias("$(P)SIM:VOLT:HIGH","$(P)SIM:VOLT:HIGH:SP:RBV")
+
+record(stringin, "$(P)SIM:IDN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:VOLT:LOW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:VOLT:LOW","$(P)SIM:VOLT:LOW:SP")
+
+alias("$(P)SIM:VOLT:LOW","$(P)SIM:VOLT:LOW:SP:RBV")
+
+record(ai, "$(P)SIM:OFFSET")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:OFFSET","$(P)SIM:OFFSET:SP")
+
+alias("$(P)SIM:OFFSET","$(P)SIM:OFFSET:SP:RBV")
+
+record(mbbi, "$(P)SIM:VOLT:RANGE:AUTO")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:VOLT:RANGE:AUTO","$(P)SIM:VOLT:RANGE:AUTO:SP")
+
+alias("$(P)SIM:VOLT:RANGE:AUTO","$(P)SIM:VOLT:RANGE:AUTO:SP:RBV")
+

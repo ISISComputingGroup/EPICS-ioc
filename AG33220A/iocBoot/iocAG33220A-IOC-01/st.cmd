@@ -29,7 +29,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure ("IP","$(IP_ADDRESS):5025")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/agilent33220A.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=IP")
+dbLoadRecords("db/agilent33220A.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=IP, RECSIM=$(RECSIM=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
