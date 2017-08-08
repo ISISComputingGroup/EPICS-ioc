@@ -28,3 +28,21 @@ record(bo, "$(P)DISABLE")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
 }
+
+record(mbbo, "$(P)MODE:SP")
+{
+	field(DESC, "Operating mode")
+	field(OUT, "@devieg.proto setMode $(PORT)")
+	field(DTYP, "stream")
+	
+	field(ZRVL, "0")
+	field(ZRST, "Dormant")
+	field(ONVL, "1")
+	field(ONST, "Pump, Purge & Fill")
+	field(TWVL, "2")
+	field(TWST, "Pump")
+	field(THVL, "3")
+	field(THST, "Gas Flow")
+	field(FRVL, "4")
+	field(FRST, "Gas - Single Shot")
+}
