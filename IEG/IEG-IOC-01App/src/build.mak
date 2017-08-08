@@ -30,6 +30,7 @@ $(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -44,6 +45,7 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += calc sscan
 
 # IEG-IOC-01_registerRecordDeviceDriver.cpp derives from IEG-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
