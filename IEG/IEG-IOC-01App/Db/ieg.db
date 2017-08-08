@@ -72,6 +72,18 @@ record(seq, "$(P)STATUS:_FANOUT")
 
 	field(DOL4, "$(P)STATUS:_RAW.D")
 	field(LNK4, "$(P)ERROR PP")
+
+	field(DOL5, "$(P)STATUS:_RAW.E")
+	field(LNK5, "$(P)PRESSURE:BUFFER:HIGH PP")
+	
+	field(DOL6, "$(P)STATUS:_RAW.F")
+	field(LNK6, "$(P)PRESSURE:LOW PP")
+	
+	field(DOL7, "$(P)STATUS:_RAW.G")
+	field(LNK7, "$(P)PRESSURE:HIGH PP")
+	
+	field(DOL8, "$(P)STATUS:_RAW.H")
+	field(LNK8, "$(P)PRESSURE:RAW PP")
 	
 	field(SELM, "All")
 }
@@ -145,4 +157,32 @@ record(mbbi, "$(P)ERROR")
 	field(TVST, "Samp vol: leak detected")
 	field(TTVL, "13")
 	field(TTST, "Sensor broken/disconnect")
+}
+
+record(ai, "$(P)PRESSURE:BUFFER:HIGH")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(DESC, "Non-zero if buffer pressure is too high")
+}
+
+record(ai, "$(P)PRESSURE:HIGH")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(DESC, "Non-zero if pressure is too high")
+}
+
+record(ai, "$(P)PRESSURE:LOW")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(DESC, "Non-zero if pressure is too low")
+}
+
+record(ai, "$(P)PRESSURE:RAW")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(DESC, "Device pressure")
 }
