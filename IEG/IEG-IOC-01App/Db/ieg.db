@@ -69,6 +69,9 @@ record(seq, "$(P)STATUS:_FANOUT")
 
 	field(DOL3, "$(P)STATUS:_RAW.C")
 	field(LNK3, "$(P)VALVESTATE PP")
+
+	field(DOL4, "$(P)STATUS:_RAW.D")
+	field(LNK4, "$(P)ERROR PP")
 	
 	field(SELM, "All")
 }
@@ -106,4 +109,40 @@ record(mbbiDirect, "$(P)VALVESTATE")
 	# B0 = Pump valve open
     # B1 = Buffer valve open
     # B2 = Gas valve open
+}
+
+record(mbbi, "$(P)ERROR")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(DESC, "Error from device")
+	
+	field(ZRVL, "0")
+	field(ZRST, "No error")
+	field(ONVL, "1")
+	field(ONST, "INVALID")
+	field(TWVL, "2")
+	field(TWST, "Samp vol: leak detected")
+	field(THVL, "3")
+	field(THST, "Samp vol: no vacuum")
+	field(FRVL, "4")
+	field(FRST, "Samp vol: pump timeout")
+	field(FVVL, "5")
+	field(FVST, "Buff vol: did not fill")
+	field(SXVL, "6")
+	field(SXST, "Samp vol: fill iterations")
+	field(SVVL, "7")
+	field(SVST, "Samp vol: fill timeout")
+	field(EIVL, "8")
+	field(EIST, "Buff or samp vol leak")
+	field(NIVL, "9")
+	field(NIST, "Shot didn't raise press.")
+	field(TEVL, "10")
+	field(TEST, "Manual stop")
+	field(ELVL, "11")
+	field(ELST, "Vacuum tank interlock")
+	field(TVVL, "12")
+	field(TVST, "Samp vol: leak detected")
+	field(TTVL, "13")
+	field(TTST, "Sensor broken/disconnect")
 }
