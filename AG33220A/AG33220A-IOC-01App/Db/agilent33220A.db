@@ -246,6 +246,51 @@ record(bo, "$(P)OUTPUT:SP")
 }
 
 alias("$(P)OUTPUT", "$(P)OUTPUT:SP:RBV")
+
+record(mbbi, "$(P)VOLT:RANGE:AUTO")
+{
+    field(DTYP, "stream")
+    field(INP, "@agilent33220A.proto getVoltRangeAuto $(PORT)")
+    field(SCAN, "1 second")
+
+    field(ZRVL, 0)
+    field(ZRST, "OFF")
+    field(ONVL, 1)
+    field(ONST, "ON")
+    field(TWVL, 2)
+    field(TWST, "ONCE") 
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:RANGE:AUTO")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbo, "$(P)VOLT:RANGE:AUTO:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@agilent33220A.proto setVoltRangeAuto $(PORT)")
+    field(ZRVL, 0)
+    field(ZRST, "OFF")
+    field(ONVL, 1)
+    field(ONST, "ON")
+    field(TWVL, 2)
+    field(TWST, "ONCE") 
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:RANGE:AUTO:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)VOLT:RANGE:AUTO", "$(P)VOLT:RANGE:AUTO:SP:RBV")
+
+record(stringin, "$(P)IDN")
+{
+    field(DTYP, "stream")
+    field(INP, "@agilent33220A.proto getIDN $(PORT)")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:IDN")
+    field(SDIS, "$(P)DISABLE")
+}
+
 ### SIMULATION RECORDS ###
 
 record(mbbi, "$(P)SIM:FUNCTION")
@@ -297,60 +342,3 @@ record(ai, "$(P)SIM:AMPLITUDE")
 alias("$(P)SIM:AMPLITUDE","$(P)SIM:AMPLITUDE:SP")
 
 alias("$(P)SIM:AMPLITUDE","$(P)SIM:AMPLITUDE:SP:RBV")
-
-##record(ai, "$(P)VOLT:RANGE:AUTO")
-##{
-##    field(SCAN, "Passive")
-##    field(DTYP, "Soft Channel")
-##}
-
-##alias("$(P)VOLT:RANGE:AUTO","$(P)VOLT:RANGE:AUTO:SP")
-
-#alias("$(P)VOLT:RANGE:AUTO","$(P)VOLT:RANGE:AUTO:SP:RBV")
-
-record(mbbi, "$(P)VOLT:RANGE:AUTO")
-{
-    field(DTYP, "stream")
-    field(INP, "@agilent33220A.proto getVoltRangeAuto $(PORT)")
-    field(SCAN, "1 second")
-
-    field(ZRVL, 0)
-    field(ZRST, "OFF")
-    field(ONVL, 1)
-    field(ONST, "ON")
-    field(TWVL, 2)
-    field(TWST, "ONCE") 
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:VOLT:RANGE:AUTO")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(mbbo, "$(P)VOLT:RANGE:AUTO:SP")
-{
-    field(DTYP, "stream")
-    field(OUT, "@agilent33220A.proto setVoltRangeAuto $(PORT)")
-    field(ZRVL, 0)
-    field(ZRST, "OFF")
-    field(ONVL, 1)
-    field(ONST, "ON")
-    field(TWVL, 2)
-    field(TWST, "ONCE") 
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:VOLT:RANGE:AUTO:SP")
-    field(SDIS, "$(P)DISABLE")
-}
-
-alias("$(P)VOLT:RANGE:AUTO", "$(P)VOLT:RANGE:AUTO:SP:RBV")
-
-##Not Working##
-record(stringin, "$(P)IDN")
-{
-    field(DTYP, "stream")
-    field(INP, "@agilent33220A.proto getIDN $(PORT)")
-##    field(PREC, "20")
-    field(SCAN, "1 second")
-##    field(SIML, "$(P)SIM")
-##    field(SIOL, "$(P)SIM:IDN")
-##    field(SDIS, "$(P)DISABLE")
-}
-alias("$(P)IDN")
