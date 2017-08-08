@@ -31,9 +31,60 @@ record(bo, "$(P)DISABLE")
 
 record(mbbo, "$(P)MODE:SP")
 {
-	field(DESC, "Operating mode")
+	field(DESC, "Operating mode setpoint")
 	field(OUT, "@devieg.proto setMode $(PORT)")
 	field(DTYP, "stream")
+	
+	field(ONVL, "1")
+	field(ONST, "Pump, Purge & Fill")
+	field(TWVL, "2")
+	field(TWST, "Pump")
+	field(THVL, "3")
+	field(THST, "Gas Flow")
+	field(FRVL, "4")
+	field(FRST, "Gas - Single Shot")
+}
+
+record(ai, $(P)STATUS:_SCAN)
+{
+	field(INP, "@devieg.proto getStatus($(P)STATUS:_RAW) $(PORT)")
+	field(SCAN, "1 second")
+	field(FLNK, "$(P)STATUS:_RAW")
+	field(DTYP, "stream")
+}
+
+record(calcout, "$(P)STATUS:_RAW")
+{
+	field(CALC, "0")
+	field(FLNK, "$(P)STATUS:_FANOUT")
+}
+
+record(seq, "$(P)STATUS:_FANOUT")
+{
+	field(DOL1, "$(P)STATUS:_RAW.A")
+	field(LNK1, "$(P)ID PP")
+
+	field(DOL2, "$(P)STATUS:_RAW.B")
+	field(LNK2, "$(P)MODE PP")
+
+	field(DOL3, "$(P)STATUS:_RAW.C")
+	field(LNK3, "$(P)VALVESTATE PP")
+	
+	field(SELM, "All")
+}
+
+record(ai, "$(P)ID")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(DESC, "ID of this IEG")
+}
+
+record(mbbi, "$(P)MODE")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(DESC, "Operating mode")
 	
 	field(ZRVL, "0")
 	field(ZRST, "Dormant")
@@ -44,5 +95,15 @@ record(mbbo, "$(P)MODE:SP")
 	field(THVL, "3")
 	field(THST, "Gas Flow")
 	field(FRVL, "4")
-	field(FRST, "Gas - Single Shot")
+	field(FRST, "Gas - Single Shot")	
+}
+
+record(mbbiDirect, "$(P)VALVESTATE")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(DESC, "Status of the valves")
+	# B0 = Pump valve open
+    # B1 = Buffer valve open
+    # B2 = Gas valve open
 }
