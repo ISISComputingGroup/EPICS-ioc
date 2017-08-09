@@ -50,6 +50,10 @@ record(mbbo, "$(P)MODE:SP")
 	field(THST, "Gas Flow")
 	field(FRVL, "4")
 	field(FRST, "Gas - Single Shot")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MODE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, $(P)STATUS:_SCAN)
@@ -117,7 +121,11 @@ record(mbbi, "$(P)MODE")
 	field(THVL, "3")
 	field(THST, "Gas Flow")
 	field(FRVL, "4")
-	field(FRST, "Gas - Single Shot")	
+	field(FRST, "Gas - Single Shot")
+
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MODE")
+    field(SDIS, "$(P)DISABLE")	
 }
 
 record(mbbiDirect, "$(P)VALVESTATE")
@@ -193,3 +201,15 @@ record(ai, "$(P)PRESSURE:RAW")
 	field(DTYP, "Soft Channel")
 	field(DESC, "Device pressure")
 }
+
+#
+# Simulation record
+#
+
+record(ao, "$(P)SIM:MODE:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:MODE:SP","$(P)SIM:MODE")
