@@ -32,7 +32,9 @@ record(bo, "$(P)DISABLE")
 record(bo, "$(P)ABORT")
 {
 	field(DESC, "Send kill signal to device")
-	field(OUT, "@devieg.proto abort $(PORT)")
+	# Streamdevice doesn't seem to like doing an 'in' command without reading any data, so tell 
+	# it to read device ID and send it to $(P)STATUS:_RAW.A as usual.
+	field(OUT, "@devieg.proto abort($(P)STATUS:_RAW) $(PORT)")
 	field(DTYP, "stream")
 }
 
@@ -62,6 +64,10 @@ record(ai, $(P)STATUS:_SCAN)
 	field(SCAN, "1 second")
 	field(FLNK, "$(P)STATUS:_RAW")
 	field(DTYP, "stream")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SCAN")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(calcout, "$(P)STATUS:_RAW")
@@ -213,3 +219,11 @@ record(ao, "$(P)SIM:MODE:SP")
 }
 
 alias("$(P)SIM:MODE:SP","$(P)SIM:MODE")
+
+record(ai, "$(P)SIM:SCAN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(VAL, "0")
+	field(PINI, "YES")
+}
