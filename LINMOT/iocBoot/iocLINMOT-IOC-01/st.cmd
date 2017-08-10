@@ -15,4 +15,6 @@ LINMOT_IOC_01_registerRecordDeviceDriver pdbbase
 # enable debugging
 var drvLinMotDebug 5
 
+epicsEnvSet("IFLIN01"," ")
+
 < st-common.cmd
