@@ -16,6 +16,4 @@ LINMOT_IOC_03_registerRecordDeviceDriver pdbbase
 
 cd ${TOP}/iocBoot/iocLINMOT-IOC-01
 
-epicsEnvSet("IFLIN03"," ")
-
 < st-common.cmd
