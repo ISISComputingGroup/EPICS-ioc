@@ -132,6 +132,10 @@ record(mbbi, "$(P)MODE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MODE")
     field(SDIS, "$(P)DISABLE")	
+	
+	field(EGU, "")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
 record(mbbiDirect, "$(P)VALVESTATE")
@@ -142,6 +146,9 @@ record(mbbiDirect, "$(P)VALVESTATE")
 	# B0 = Pump valve open
     # B1 = Buffer valve open
     # B2 = Gas valve open
+	field(EGU, "")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
 record(mbbi, "$(P)ERROR")
@@ -178,6 +185,9 @@ record(mbbi, "$(P)ERROR")
 	field(TVST, "Samp vol: leak detected")
 	field(TTVL, "13")
 	field(TTST, "Sensor broken/disconnect")
+	field(EGU, "")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)PRESSURE:BUFFER:HIGH")
@@ -185,6 +195,9 @@ record(ai, "$(P)PRESSURE:BUFFER:HIGH")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
 	field(DESC, "Non-zero if buffer pressure is too high")
+	field(EGU, "")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)PRESSURE:HIGH")
@@ -192,6 +205,9 @@ record(ai, "$(P)PRESSURE:HIGH")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
 	field(DESC, "Non-zero if pressure is too high")
+	field(EGU, "")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)PRESSURE:LOW")
@@ -199,6 +215,9 @@ record(ai, "$(P)PRESSURE:LOW")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
 	field(DESC, "Non-zero if pressure is too low")
+	field(EGU, "")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)PRESSURE:RAW")
@@ -216,6 +235,10 @@ record(calc, "$(P)PRESSURE")
 	# Default to no calibration if macros not set.
 	field(CALC, "A*$(CALIBRATION_A=1)+$(CALIBRATION_B=0)")
 	field(DESC, "Device pressure")
+	field(EGU, "mbar")
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
 record(scalcout, "$(P)PRESSURE:GUI")
@@ -226,8 +249,8 @@ record(scalcout, "$(P)PRESSURE:GUI")
     field(ASG, "READONLY")
     field(DESC, "GUI pressure reading")
     field(INPA, "$(P)PRESSURE CP")
-    field(CALC, "A>350?'> 350 mBar':PRINTF('%.2f',A)")
-    field(EGU, "mBar")
+    field(CALC, "A>350?'> 350 mbar':PRINTF('%.2f',A)")
+    field(EGU, "mbar")
 }
 
 #
