@@ -214,7 +214,7 @@ record(calc, "$(P)PRESSURE")
 	field(ASG, "READONLY")
 	field(INPA, "$(P)PRESSURE:RAW CP")
 	# Default to no calibration if macros not set.
-	field(CALC, "A*$(CONVERSION_A=1)+$(CONVERSION_B=0)")
+	field(CALC, "A*$(CALIBRATION_A=1)+$(CALIBRATION_B=0)")
 	field(DESC, "Device pressure")
 }
 
