@@ -206,6 +206,28 @@ record(ai, "$(P)PRESSURE:RAW")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
 	field(DESC, "Device pressure")
+	# field(FLNK, "$(P)PRESSURE")
+}
+
+record(calc, "$(P)PRESSURE")
+{
+	field(ASG, "READONLY")
+	field(INPA, "$(P)PRESSURE:RAW CP")
+	# Default to no calibration if macros not set.
+	field(CALC, "A*$(CONVERSION_A=1)+$(CONVERSION_B=0)")
+	field(DESC, "Device pressure")
+}
+
+record(scalcout, "$(P)PRESSURE:GUI")
+{
+	# Format the pressure as '> 350' if pressure 
+	# greater than 350 else format to 2 d.p 
+	# This is for use on the OPI, which looks at the OSV field.
+    field(ASG, "READONLY")
+    field(DESC, "GUI pressure reading")
+    field(INPA, "$(P)PRESSURE CP")
+    field(CALC, "A>350?'> 350 mBar':PRINTF('%.2f',A)")
+    field(EGU, "mBar")
 }
 
 #
