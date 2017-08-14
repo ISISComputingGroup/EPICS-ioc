@@ -133,7 +133,6 @@ record(mbbi, "$(P)MODE")
     field(SIOL, "$(P)SIM:MODE")
     field(SDIS, "$(P)DISABLE")	
 	
-	field(EGU, "")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 }
@@ -146,7 +145,6 @@ record(mbbiDirect, "$(P)VALVESTATE")
 	# B0 = Pump valve open
     # B1 = Buffer valve open
     # B2 = Gas valve open
-	field(EGU, "")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 }
@@ -185,7 +183,7 @@ record(mbbi, "$(P)ERROR")
 	field(TVST, "Samp vol: leak detected")
 	field(TTVL, "13")
 	field(TTST, "Sensor broken/disconnect")
-	field(EGU, "")
+
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 }
@@ -249,8 +247,8 @@ record(scalcout, "$(P)PRESSURE:GUI")
     field(ASG, "READONLY")
     field(DESC, "GUI pressure reading")
     field(INPA, "$(P)PRESSURE CP")
-    field(CALC, "A>350?'> 350 mbar':PRINTF('%.2f',A)")
-    field(EGU, "mbar")
+    field(CALC, "A>350?'> 350 mbar':PRINTF('%.2f mbar',A)")
+    field(EGU, "")
 }
 
 #
