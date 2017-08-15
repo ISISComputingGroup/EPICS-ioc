@@ -87,6 +87,7 @@ record(mbbo, "$(P)FREQ:CHOICES")
     # Because mbbo's value is a ulong the values are 100x the required
     # value. A calcout record is then used to divide by 100 before
     # setting the FREQ:SP
+    field(ASG, "$(ASG=DEFAULT)")
     field(DESC, "Possible frequencies that can be set")
     field(DTYP, "Raw Soft Channel")
     field(ZRVL, "0")
