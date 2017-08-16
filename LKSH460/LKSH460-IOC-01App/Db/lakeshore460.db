@@ -38,6 +38,8 @@ record(bi, "$(P)UNIT")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:UNIT")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)UNIT:SP") 
@@ -50,6 +52,8 @@ record(bo, "$(P)UNIT:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:UNIT:SP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bi, "$(P)OUTPUTSTATUS") 
@@ -62,6 +66,8 @@ record(bi, "$(P)OUTPUTSTATUS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OUTPUTSTATUS")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)OUTPUTSTATUS:SP") 
@@ -74,30 +80,8 @@ record(bo, "$(P)OUTPUTSTATUS:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OUTPUTSTATUS:SP")
     field(SDIS, "$(P)DISABLE")
-}
-
-record(bi, "$(P)OUTPUTSTATUS") 
-{
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(INP,  "@devLakeshore_460.proto getOnOff $(PORT)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:OUTPUTSTATUS")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(bo, "$(P)OUTPUTSTATUS:SP") 
-{
-    field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(OUT,  "@devLakeshore_460.proto setOnOff $(PORT)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:OUTPUTSTATUS:SP")
-    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bi, "$(P)OUTPUTMODE") 
@@ -110,6 +94,8 @@ record(bi, "$(P)OUTPUTMODE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OUTPUTMODE")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)OUTPUTMODE:SP") 
@@ -122,6 +108,8 @@ record(bo, "$(P)OUTPUTMODE:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OUTPUTMODE:SP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bi, "$(P)PRMS") 
@@ -135,6 +123,8 @@ record(bi, "$(P)PRMS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PRMS")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)PRMS:SP") 
@@ -148,6 +138,8 @@ record(bo, "$(P)PRMS:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PRMS:SP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bi, "$(P)FILTER") 
@@ -160,6 +152,8 @@ record(bi, "$(P)FILTER")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FILTER")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)FILTER:SP") 
@@ -172,6 +166,8 @@ record(bo, "$(P)FILTER:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FILTER:SP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bi, "$(P)RELMODE") 
@@ -184,6 +180,8 @@ record(bi, "$(P)RELMODE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RELMODE")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)RELMODE:SP") 
@@ -196,6 +194,8 @@ record(bo, "$(P)RELMODE:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RELMODE:SP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)RELSMODE") 
@@ -209,6 +209,8 @@ record(ai, "$(P)RELSMODE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RELSMODE")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)RELSMODE:SP") 
@@ -220,6 +222,8 @@ record(ao, "$(P)RELSMODE:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RELSMODE:SP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)RELS:MULTIPLIER") 
@@ -231,9 +235,10 @@ record(mbbi, "$(P)RELS:MULTIPLIER")
      field(ONST, "m")
      field(TWST, "")
      field(THST, "k")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RELS:MULTIPLIER")
-    field(SDIS, "$(P)DISABLE")
+     field(SIML, "$(P)SIM")
+     field(SIOL, "$(P)SIM:RELS:MULTIPLIER")
+     field(SDIS, "$(P)DISABLE")
+     info(INTEREST, "LOW")
 }
 
 record(scalcout, "$(P)RELS:UNIT_MULTIPLIER")
@@ -242,6 +247,8 @@ record(scalcout, "$(P)RELS:UNIT_MULTIPLIER")
     field(INAA, "$(P)UNIT")
     field(INBB, "$(P)RELS:MULTIPLIER")
     field(OUT, "$(P)RELSMODE.EGU")
+    info(INTEREST, "LOW")
+
 }
 
 record(ai, "$(P)RELMODEREADING") 
@@ -255,6 +262,8 @@ record(ai, "$(P)RELMODEREADING")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RELMODEREADING")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)RELRM:MULTIPLIER") 
@@ -266,9 +275,11 @@ record(mbbi, "$(P)RELRM:MULTIPLIER")
      field(ONST, "m")
      field(TWST, "")
      field(THST, "k")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RELRM:MULTIPLIER")
-    field(SDIS, "$(P)DISABLE")
+     field(SIML, "$(P)SIM")
+     field(SIOL, "$(P)SIM:RELRM:MULTIPLIER")
+     field(SDIS, "$(P)DISABLE")
+     info(INTEREST, "LOW")
+
 }
 
 record(scalcout, "$(P)RELRM:UNIT_MULTIPLIER")
@@ -277,6 +288,8 @@ record(scalcout, "$(P)RELRM:UNIT_MULTIPLIER")
     field(INAA, "$(P)UNIT")
     field(INBB, "$(P)RELRM:MULTIPLIER")
     field(OUT, "$(P)RELMODEREADING.EGU")
+    info(INTEREST, "LOW")
+
 }
 
 record(ai, "$(P)FIELDREADING") 
@@ -290,6 +303,8 @@ record(ai, "$(P)FIELDREADING")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FIELDREADING")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)FIELD:MULTIPLIER") 
@@ -304,6 +319,7 @@ record(mbbi, "$(P)FIELD:MULTIPLIER")
      field(SIML, "$(P)SIM")
      field(SIOL, "$(P)SIM:FIELD:MULTIPLIER")
      field(SDIS, "$(P)DISABLE")
+     info(INTEREST, "LOW")
 }
 
 record(scalcout, "$(P)FIELD:UNIT_MULTIPLIER")
@@ -312,6 +328,7 @@ record(scalcout, "$(P)FIELD:UNIT_MULTIPLIER")
     field(INAA, "$(P)UNIT")
     field(INBB, "$(P)FIELD:MULTIPLIER")
     field(OUT, "$(P)FIELDREADING.EGU")
+    info(INTEREST, "LOW")
 }
 record(bi, "$(P)MAXHOLD") 
 {
@@ -324,6 +341,7 @@ record(bi, "$(P)MAXHOLD")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MAXHOLD")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
 }
 
 record(bo, "$(P)MAXHOLD:SP") 
@@ -337,6 +355,7 @@ record(bo, "$(P)MAXHOLD:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MAXHOLD:SP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
 }
 
 record(bi, "$(P)AUTO") 
@@ -350,6 +369,8 @@ record(bi, "$(P)AUTO")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:AUTO")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)AUTO:SP") 
@@ -363,6 +384,8 @@ record(bo, "$(P)AUTO:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:AUTO:SP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)ALLFIELDS") 
@@ -375,6 +398,8 @@ record(ai, "$(P)ALLFIELDS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:ALLFIELDS")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)SOURCE") 
@@ -391,6 +416,8 @@ record(mbbi, "$(P)SOURCE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SOURCE")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbo, "$(P)RANGE:SP") 
@@ -406,6 +433,8 @@ record(mbbo, "$(P)RANGE:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RANGE:SP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)RANGE") 
@@ -421,6 +450,8 @@ record(mbbi, "$(P)RANGE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RANGE")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbo, "$(P)SOURCE:SP") 
@@ -437,38 +468,8 @@ record(mbbo, "$(P)SOURCE:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SOURCE:SP")
     field(SDIS, "$(P)DISABLE")
-}
-
-record(mbbi, "$(P)SOURCE") 
-{
-    field(DESC, "Vector Magnitude Source")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(INP, "@devLakeshore_460.proto getSource $(PORT)")
-    field(ONST, "XYZ")
-    field(TWST, "XY")
-    field(THST, "XZ")
-    field(FRST, "YZ")
-    field(FVST, "X-Y")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:SOURCE")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(mbbo, "$(P)SOURCE:SP") 
-{
-    field(DESC, "Set Vector Magnitude Source")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(OUT, "@devLakeshore_460.proto setSource $(PORT)")
-    field(ONST, "XYZ")
-    field(TWST, "XY")
-    field(THST, "XZ")
-    field(FRST, "YZ")
-    field(FVST, "X-Y")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:SOURCE:SP")
-    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)CHANNEL") 
@@ -484,6 +485,8 @@ record(mbbi, "$(P)CHANNEL")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CHANNEL")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbo, "$(P)CHANNEL:SP") 
@@ -499,6 +502,8 @@ record(mbbo, "$(P)CHANNEL:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CHANNEL:SP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)MAX:MULTIPLIER") 
@@ -513,6 +518,8 @@ record(mbbi, "$(P)MAX:MULTIPLIER")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MAX:MULTIPLIER")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
+
 }
 
 record(ai, "$(P)MAXREADING") 
@@ -526,6 +533,8 @@ record(ai, "$(P)MAXREADING")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MAXREADING")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(scalcout, "$(P)MAX:UNITS_MULTIPLIER")
@@ -534,6 +543,7 @@ record(scalcout, "$(P)MAX:UNITS_MULTIPLIER")
     field(INAA, "$(P)UNIT")
     field(INBB, "$(P)MAX:MULTIPLIER")
     field(OUT, "$(P)MAXREADING.EGU")
+    info(INTEREST, "LOW")
 }
 
 record(ai, "$(P)FWIN") 
@@ -549,6 +559,8 @@ record(ai, "$(P)FWIN")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FWIN")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)FWIN:SP") 
@@ -564,6 +576,8 @@ record(ao, "$(P)FWIN:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FWIN:SP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)FNUM") 
@@ -579,6 +593,8 @@ record(ai, "$(P)FNUM")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FNUM")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)FNUM:SP") 
@@ -594,6 +610,8 @@ record(ao, "$(P)FNUM:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FNUM:SP")
     field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 
