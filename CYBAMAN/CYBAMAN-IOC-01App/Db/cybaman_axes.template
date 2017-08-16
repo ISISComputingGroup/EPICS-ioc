@@ -61,7 +61,7 @@ record(ao, "$(P)$(AXIS):SP")
 	field(EGU, "degree")
 }
 
-
+# SP macros mean that calculating axis position minus itself (i.e. zero) for other axes
 record(calc, "$(P)$(AXIS):_CALC_TM_AND_SET")
 {
 	field(INPA, "$(P)A$(SP_IF_A)")
