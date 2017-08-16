@@ -1,6 +1,6 @@
-#!../../bin/windows-x64-debug/AG33220A-IOC-01
+#!../../bin/windows-x64/SAMPOS
 
-## You may have to change AG33220A-IOC-01 to something else
+## You may have to change SAMPOS to something else
 ## everywhere it appears in this file
 
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
@@ -8,37 +8,33 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(AGILENT33220A)/agilent33220AApp/protocol"
-
-cd ${TOP}
+cd "${TOP}"
 
 ## Register all support components
-dbLoadDatabase "dbd/AG33220A-IOC-01.dbd"
-AG33220A_IOC_01_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/SAMPOS.dbd"
+SAMPOS_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-$(IFDEVSIM) drvAsynIPPortConfigure("IP", "localhost:$(EMULATOR_PORT=)")
-
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure ("IP","$(IP_ADDRESS):5025")
-
 ## Load record instances
+
+lvDCOMConfigure("lvfp", "frontpanel", "${TOP}/data/lv_controls.xml", "$(LVDCOM_HOST=)", $(LVDCOM_OPTIONS=1), "$(LVDCOM_PROGID=)", "$(LVDCOM_USER=)", "$(LVDCOM_PASS=)")
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/agilent33220A.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=IP, RECSIM=$(RECSIM=0)")
+dbLoadRecords("db/controls.db","user=ynq66733Host,P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
-cd ${TOP}/iocBoot/${IOC}
+cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
-#seq sncxxx,"user=mjc23Host"
+#seq sncxxx,"user=ynq66733Host"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd

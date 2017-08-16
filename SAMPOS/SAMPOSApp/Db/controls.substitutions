@@ -1,0 +1,15 @@
+file controls_multi.template {
+
+pattern {PORT, P, AXIS, AXISPV}
+{"\$(PORT)", "\$(P)", "X", "X"}
+{"\$(PORT)", "\$(P)", "Y", "Y"}
+{"\$(PORT)", "\$(P)", "Z", "Z"}
+{"\$(PORT)", "\$(P)", "w", "W"}
+{"\$(PORT)", "\$(P)", "S", "S"}
+}
+
+file controls_single.template {
+
+pattern {PORT, P, RECSIM, DISABLE}
+{"\$(PORT)", "\$(P)", "\$(RECSIM)", "\$(DISABLE)"}
+}

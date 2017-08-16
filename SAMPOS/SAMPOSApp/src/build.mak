@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application INSTRON-IOC-01
+# Build the IOC application SAMPOS
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# INSTRON-IOC-01.dbd will be created and installed
+# SAMPOS.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# INSTRON-IOC-01.dbd will be made up from these files:
+# SAMPOS.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += devSequencer.dbd
@@ -25,12 +25,9 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
-## add other dbd here ##
-$(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += lvDCOM.dbd
 $(APPNAME)_DBD += asyn.dbd
-$(APPNAME)_DBD += drvAsynSerialPort.dbd
-$(APPNAME)_DBD += drvAsynIPPort.dbd
-$(APPNAME)_DBD += calcSupport.dbd
+## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
@@ -42,17 +39,13 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
-## Add other libraries here ##
-$(APPNAME)_LIBS += stream
-$(APPNAME)_LIBS += pcre
+$(APPNAME)_LIBS += lvDCOM
 $(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += calc
-$(APPNAME)_LIBS += sscan
+## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
+$(APPNAME)_SYS_LIBS_WIN32 += msxml2
 
-
-
-# INSTRON-IOC-01_registerRecordDeviceDriver.cpp derives from INSTRON-IOC-01.dbd
+# SAMPOS_registerRecordDeviceDriver.cpp derives from SAMPOS.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.

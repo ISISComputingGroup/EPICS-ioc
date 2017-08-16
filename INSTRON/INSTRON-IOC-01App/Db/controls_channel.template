@@ -150,6 +150,7 @@ record(fanout, "$(P)$(CHAN):SP:_NEWDATA")
 
 record(ai, "$(P)$(CHAN):SP:RBV")
 {
+    field(DESC, "Setpoint readback of the $(CHAN) channel")
     field(VAL, "0")
     field(PREC, "3")
     field(FLNK, "$(P)$(CHAN):SP:_UPDATELIMITS")
@@ -176,7 +177,7 @@ record(ai, "$(P)$(CHAN)")
     field(SIOL, "$(P)$(CHAN):SIM:VALUE")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    info(archive, "0.1 VAL")
 }
 
 record(transform, "$(P)$(CHAN):SP:_UPDATELIMITS")
