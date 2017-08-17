@@ -1,0 +1,441 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+	field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+  field(DESC, "Disable comms")
+  field(PINI, "YES")
+  field(VAL, "$(DISABLE)")
+  field(OMSL, "supervisory")
+  field(ZNAM, "COMMS ENABLED")
+  field(ONAM, "COMMS DISABLED")
+}
+
+record(ai, "$(P)UPDATE")
+{
+	field(DESC, "Returns status block")
+    field(DTYP, "stream")
+    field(INP,  "@devHFMAGPSU.proto getUpdate($(P)) $(PORT)")
+	field(SCAN, "1 second")
+    # field(FLNK, "$(P)REMOTE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UPDATE")
+    field(SDIS, "$(P)DISABLE")
+	info(archive, "VAL")
+}
+
+record(bo, "$(P)PAUSE:SP")
+{
+	field(DESC, "Pauses system on/off")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devHFMAGPSU.proto pause $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PAUSE:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+record(stringin, "$(P)PAUSE") 
+{
+	field(DESC, "Returns current pause status")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(INP, "@devHFMAGPSU.proto pauseStatus $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PAUSE:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+alias("$(P)PAUSE", "$(P)PAUSE:SP:RBV")
+
+record(stringin, "$(P)DIRECTION")
+{
+	field(DESC, "Returns current direction")
+	field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(INP,  "@devHFMAGPSU.proto getDirection $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DIRECTION:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+alias("$(P)DIRECTION", "$(P)DIRECTION:SP:RBV")
+
+record(stringin, "$(P)OUTPUTMODE")
+{
+	field(DESC, "Returns output mode - amps or tesla")
+	field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(INP,  "@devHFMAGPSU.proto getOutputMode $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OUTPUTMODE:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+alias("$(P)OUTPUTMODE", "$(P)OUTPUTMODE:SP:RBV")
+
+
+record(stringin, "$(P)RAMPTARGET")
+{
+	field(DESC, "Returns ramp status")
+	field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(INP,  "@devHFMAGPSU.proto getRampTarget $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMPTARGET:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+alias("$(P)RAMPTARGET", "$(P)RAMPTARGET:SP:RBV")
+
+record(stringin, "$(P)HEATERSTATUS")
+{	
+	field(DESC, "Returns heater status (off or on)")
+	field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(INP,  "@devHFMAGPSU.proto getHeaterStatus $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATERSTATUS:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+alias("$(P)HEATERSTATUS", "$(P)HEATERSTATUS:SP:RBV")
+
+record(ai, "$(P)HEATERVALUE")
+{
+	field(DESC, "Returns heater value in volts")
+	field(SCAN, "Passive")
+    # field(DTYP, "stream")
+    # field(INP,  "@devHFMAGPSU.proto getHeaterValue $(PORT)")   
+	field(PREC, "3")
+    field(EGU,  "V")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATERVALUE:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+alias("$(P)HEATERVALUE", "$(P)HEATERVALUE:SP:RBV")
+
+record(ao, "$(P)MAX:SP")
+{
+	field(DESC, "MAX value setpoint")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devHFMAGPSU.proto setMaxTarget $(PORT)")    
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MAX:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)MAX")
+{
+	field(DESC, "Returns value of MAX")
+	field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(INP,  "@devHFMAGPSU.proto getMaxTarget $(PORT)")
+	
+    field(PREC, "3")	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MAX:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ao, "$(P)MAX:SP")
+{
+	field(DESC, "MAX value setpoint")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devHFMAGPSU.proto setMaxTarget $(PORT)")    
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MAX:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)LIMIT")
+{
+	field(DESC, "Returns value of voltage limit")
+	field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(INP,  "@devHFMAGPSU.proto getLimit $(PORT)")
+	field(EGU, "V")
+    field(PREC, "3")	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:LIMIT:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+alias("$(P)LIMIT", "$(P)MAX:LIMIT:RBV")
+
+record(ao, "$(P)LIMIT:SP")
+{
+	field(DESC, "voltage limit setpoint")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devHFMAGPSU.proto setLimit $(PORT)")
+    field(EGU, "V") 
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:LIMIT:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")	
+}
+
+record(ai, "$(P)MID")
+{
+	field(DESC, "Return MID Value")
+	field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(INP,  "@devHFMAGPSU.proto getMidTarget $(PORT)")
+	# field(EGU, "") # set by units transfer
+    field(PREC, "3")	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MID:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)MID", "$(P)MID:SP:RBV")
+
+record(ai, "$(P)RAMPRATE")
+{
+	field(DESC, "Return ramp rate Value - amps per second")
+	field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(INP,  "@devHFMAGPSU.proto getRampRate $(PORT)")
+	
+    field(PREC, "3")	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMPRATE:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)RAMPRATE", "$(P)RAMPRATE:SP:RBV")
+
+record(ao, "$(P)RAMPRATE:SP")
+{
+	field(DESC, "Ramp Rate set in amps per second)")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devHFMAGPSU.proto setRampRate $(PORT)")
+	field(PREC, "3")
+	field(EGU, "A") # amps per second
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMPRATE:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(mbbo, "$(P)DIRECTION:SP")
+{
+	field(DESC, "Set Direction - 0, +ve, -ve")
+	field(DTYP, "stream")
+	field(SDIS, "$(P):DISABLE")
+	field(ZRST, "Zero")
+	field(ZRVL, "0")              # method values correspond to 0/1/2 values? or literal?
+	field(ONST, "-")
+	field(ONVL, "1")
+	field(TWST, "+")
+	field(TWVL, "2")
+	field(OUT, "@devHFMAGPSU.proto setDirection $(PORT)")
+	field(SIML, "$(P):SIM")
+	field(SIOL, "$(P):SIM:DIRECTION:SP PP")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+ }
+ 
+record(mbbo, "$(P)RAMPTARGET:SP")
+{
+	field(DESC, "Set ramp target - 0, mid, max")
+	field(DTYP, "stream")
+	field(ZRST, "Zero")
+	field(ZRVL, "0")              # method values correspond to 0/1/2 values? or literal?
+	field(ONST, "MID")
+	field(ONVL, "1")
+	field(TWST, "MAX")
+	field(TWVL, "2")
+	field(OUT, "@devHFMAGPSU.proto setRampTarget $(PORT)")
+	field(SIML, "$(P):SIM")
+	field(SIOL, "$(P):SIM:RAMPTARGET:SP PP")
+	field(SDIS, "$(P):DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+ }
+ 
+record(bo, "$(P)HEATERSTATUS:SP")
+{
+	field(DESC, "Return Heater status (off or on)")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devHFMAGPSU.proto setHeaterStatus $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATERSTATUS:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+ 
+record(ao, "$(P)HEATERVALUE:SP") 
+{
+    field(DESC, "Heater value, in volts")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devHFMAGPSU.proto setHeaterValue $(PORT)")
+    field(EGU, "V")   
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATERVALUE:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bo, "$(P)OUTPUTMODE:SP")
+{
+	field(DESC, "Set Output Mode - amps or tesla")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devHFMAGPSU.proto setOutputMode $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OUTPUTMODE:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+ 
+ 
+### SIMULATION RECORDS ### 
+ 
+record(stringin, "$(P)SIM:PAUSE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:PAUSE","$(P)SIM:PAUSE:SP")
+alias("$(P)SIM:PAUSE","$(P)SIM:PAUSE:SP:RBV")
+
+record(stringin, "$(P)SIM:UPDATE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(P)SIM:DIRECTION")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:DIRECTION","$(P)SIM:DIRECTION:SP")
+alias("$(P)SIM:DIRECTION","$(P)SIM:DIRECTION:SP:RBV")
+
+record(bi, "$(P)SIM:OUTPUTMODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:OUTPUTMODE","$(P)SIM:OUTPUTMODE:SP")
+alias("$(P)SIM:OUTPUTMODE","$(P)SIM:OUTPUTMODE:SP:RBV")
+
+record(stringin, "$(P)SIM:RAMPTARGET")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:RAMPTARGET","$(P)SIM:RAMPTARGET:SP")
+alias("$(P)SIM:RAMPTARGET","$(P)SIM:RAMPTARGET:SP:RBV")
+
+record(stringin, "$(P)SIM:RAMPRATE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:RAMPRATE","$(P)SIM:RAMPRATE:SP")
+alias("$(P)SIM:RAMPRATE","$(P)SIM:RAMPRATE:SP:RBV")
+
+record(stringin, "$(P)SIM:HEATERSTATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:HEATERSTATUS","$(P)SIM:HEATERSTATUS:SP")
+alias("$(P)SIM:HEATERSTATUS","$(P)SIM:HEATERSTATUS:SP:RBV")
+ 
+record(ai, "$(P)SIM:HEATERVALUE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:HEATERVALUE","$(P)SIM:HEATERVALUE:SP")
+alias("$(P)SIM:HEATERVALUE","$(P)SIM:HEATERVALUE:SP:RBV")
+
+record(ai, "$(P)SIM:MID")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:MID","$(P)SIM:MID:SP")
+alias("$(P)SIM:MID","$(P)SIM:MID:SP:RBV")
+
+record(ai, "$(P)SIM:MAX")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:MAX","$(P)SIM:MAX:SP")
+alias("$(P)SIM:MAX","$(P)SIM:MAX:SP:RBV")
+
+record(ai, "$(P)SIM:LIMIT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:LIMIT","$(P)SIM:LIMIT:SP")
+alias("$(P)SIM:LIMIT","$(P)SIM:LIMIT:SP:RBV")
