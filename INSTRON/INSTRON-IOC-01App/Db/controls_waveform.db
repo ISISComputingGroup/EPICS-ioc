@@ -308,7 +308,7 @@ record(ao, "$(P)WAVE:AMP:SP")
 {
 	field(DESC, "Set the waveform generator amplitude")
 	field(PREC, "3")
-	field(EGU, "mm")
+	field(EGU, "")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAVE:AMP:SP")
     field(SDIS, "$(P)DISABLE")
@@ -370,6 +370,7 @@ record(ai, "$(P)WAVE:AMP")
     field(INP,  "@devInstron.proto getWaveformAmplitude($(P)CHANNEL) $(PORT)")
 	field(PREC, "10")
 	field(VAL,  "0.0")
+	field(EGU, "")
 	
 	field(FLNK, "$(P)WAVE:AMP:SP:RBV:_CALC")
     
@@ -435,7 +436,6 @@ alias("$(P)WAVE:FREQ", "$(P)WAVE:FREQ:SP:RBV")
 record(mbbi, "$(P)QUART:STATUS")
 {
 	field(DESC, "Switch off quarter cycle control")
-	field(DTYP, "stream")
 	field(DTYP, "stream")
     field(INP,  "@devInstron.proto getWaveformQuartStatus $(PORT)")
     
@@ -662,12 +662,6 @@ record(ao, "$(P)SIM:WAVE:AMP:SP:_RAW")
 }
 
 record(mbbi, "$(P)SIM:QUART:STATUS")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(ai, "$(P)SIM:WAVE:AMP")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
