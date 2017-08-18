@@ -46,6 +46,10 @@ $(IFDEVSIM) asynOctetSetInputEos("$(DEVICE)",0,"\r\n")
 ## need that on GPIB-ENET as each network packet gets an EOM to terminate it.  
 #asynOctetSetOutputEos("$(DEVICE)",0,"\n")
 
+# Need to set these for DEVSIM mode as lewis can't handle not having termination characters.
+$(IFDEVSIM) asynOctetSetOutputEos("$(DEVICE)",0,"\r\n")
+$(IFDEVSIM) asynOctetSetInputEos("$(DEVICE)",0,"\r\n")
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
@@ -55,6 +59,10 @@ $(IFDEVSIM) asynOctetSetInputEos("$(DEVICE)",0,"\r\n")
 dbLoadRecords("db/controls.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 dbLoadRecords("db/controls_channel.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 dbLoadRecords("db/controls_channel_specific.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("db/controls_waveform.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+
+dbLoadRecords("db/logging.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),MYPVPREFIX=$(MYPVPREFIX)")
+
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

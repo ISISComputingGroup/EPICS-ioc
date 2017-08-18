@@ -37,9 +37,25 @@ record(mbbi, "$(P)CHANNEL")
     field(SDIS, "$(P)DISABLE")
     
     field(FLNK, "$(P)CHANNEL:_UPDATE_SP")
+	
+	field(VAL, "1")
+	field(PINI, "YES")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+}
+
+# This is used by channel :TYPE:_CHANNEL_LABEL
+# It is just a clean list of the original unmodified channel names
+# otherwise it recursively appends " - disabled" which we don't want.
+record(mbbi, "$(P)_CHANNELSLIST_CLEAN")
+{
+    field(ZRVL, 1)
+    field(ZRST, "Position")    
+    field(ONVL, 2)
+    field(ONST, "Stress")       
+    field(TWVL, 3)
+    field(TWST, "Strain")
 }
 
 record(seq, "$(P)CHANNEL:_UPDATE_SP")
@@ -47,6 +63,7 @@ record(seq, "$(P)CHANNEL:_UPDATE_SP")
     field(DOL1, "$(P)CHANNEL")
     # Don't process the record, just update it's value.
     field(LNK1, "$(P)CHANNEL:SP")
+	
     field(SELM, "All")
 }
 
@@ -56,9 +73,9 @@ record(mbbo, "$(P)CHANNEL:SP")
     field(DTYP, "stream")
     
     field(ZRVL, 1)
-    field(ZRST, "Position")    
+    field(ZRST, "Position")
     field(ONVL, 2)
-    field(ONST, "Stress")       
+    field(ONST, "Stress")
     field(TWVL, 3)
     field(TWST, "Strain")
     
@@ -66,6 +83,8 @@ record(mbbo, "$(P)CHANNEL:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CHANNEL:SP")
     field(SDIS, "$(P)DISABLE")
+	
+	field(FLNK, "$(P)WAVE:AMP:_CALC_UNITS")
 }
 
 record(bi, "$(P)WATCHDOG:STAT")
@@ -112,11 +131,23 @@ record(bo, "$(P)INIT")
     field(DTYP, "stream")
     field(VAL, "0")
     field(OUT,  "@devInstron.proto initRoutine $(PORT)")
+    field(FLNK, "$(P)INITSEQ")
     
     field(PINI, "YES")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:INIT")
     field(SDIS, "$(P)DISABLE")
+}
+
+record(seq, "$(P)INITSEQ")
+{
+    field(DESC, "Initialize comms")   
+    field(LNK1, "$(P)READ_VAR PP")
+    
+    field(DO2, "3")
+    field(LNK2, "$(P)AXES:RAMP:WFTYP:SP PP")
+    
+    field(SELM, "All") 
 }
 
 record(mbbiDirect, "$(P)STAT:FRAME")
@@ -141,37 +172,69 @@ record(fanout, "$(P)STAT:_FANOUT")
 record(mbbi, "$(P)STAT:DISP")
 {
     field(DESC, "Display string for rig status")
-    field(INP, "$(P)STAT:_CALC")
+    field(INP, "$(P)STAT:_CALC MSS")
 
     field(ZRST, "System OK")
+    field(ZRSV, "NO_ALARM")
+    
     field(ONST, "Travel limit exceeded")
+    field(ONSV, "MAJOR")
+    
     field(TWST, "Power amplifier too hot")
+    field(TWSV, "MAJOR")
+    
     field(THST, "Emergency stop pushed")
+    field(THSV, "MAJOR")
+    
     field(FRST, "Invalid status from rig")
+    field(FRSV, "MAJOR")
+    
     field(FVST, "Invalid status from rig")
+    field(FVSV, "MAJOR")
+    
     field(SXST, "Emergency stop pushed")
+    field(SXSV, "MAJOR")
+    
     field(SVST, "Oil too hot")
+    field(SVSV, "MAJOR")
+    
     field(EIST, "Oil level too low")
+    field(EISV, "MAJOR")
+    
     field(NIST, "Motor too hot")
+    field(NISV, "MAJOR")
+    
     field(TEST, "Oil pressure too high")
+    field(TESV, "MAJOR")
+    
     field(ELST, "Oil pressure too low")     
+    field(ELSV, "MAJOR")
+    
     field(TVST, "Manifold/pump blocked")
+    field(TVSV, "MAJOR")
+    
     field(TTST, "Oil level going too low")
+    field(TTSV, "MAJOR")
+    
     field(FTST, "Manifold low pressure")
+    field(FTSV, "MAJOR")
+    
     field(FFST, "System OK")
+    field(FFSV, "NO_ALARM")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+    info(alarm, "INSTRON")
 }
 
 record(calc, "$(P)STAT:_CALC")
 {
     field(DESC, "Calculation for finding display string")
     
-    field(INPA, "$(P)STAT:FRAME.B9 CP")
-    field(INPB, "$(P)STAT:FRAME.BA CP")
-    field(INPC, "$(P)STAT:FRAME.BB CP")
-    field(INPD, "$(P)STAT:FRAME.BC CP")
+    field(INPA, "$(P)STAT:FRAME.B9 CP MSS")
+    field(INPB, "$(P)STAT:FRAME.BA CP MSS")
+    field(INPC, "$(P)STAT:FRAME.BB CP MSS")
+    field(INPD, "$(P)STAT:FRAME.BC CP MSS")
     
     field(CALC, "A+(2*B)+(4*C)+(8*D)") 
     field(FLNK, "$(P)STAT:DISP")
@@ -181,21 +244,21 @@ record(calcout, "$(P)ACTUATOR:STAT:_CALC")
 {
     field(INPA, "$(P)STAT:FRAME.B3 CP")
     field(CALC, "A=0?1:0")
-	field(OOPT, "Every Time")
-	field(OUT, "$(P)ACTUATOR:STAT PP")
+    field(OOPT, "Every Time")
+    field(OUT, "$(P)ACTUATOR:STAT PP")
 }
 
 record(bi, "$(P)ACTUATOR:STAT")
 {
     field(DTYP, "Soft Channel")
-	field(ZNAM, "OFF")
-	field(ONAM, "ON")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
 }
 
 record(stringout, "$(P)ARBITRARY:SP")
 {
-	field(DESC, "General write command")
-	field(FLNK, "$(P)ARBITRARY PP")
+    field(DESC, "General write command")
+    field(FLNK, "$(P)ARBITRARY PP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:ARBITRARY")
     field(SDIS, "$(P)DISABLE")
@@ -233,7 +296,7 @@ record(mbbo, "$(P)MOVE:SP")
 
 record(mbbi, "$(P)MOVE")
 {
-	field(DESC, "Current movement type")
+    field(DESC, "Current movement type")
     field(DTYP, "stream")
     field(INP,  "@devInstron.proto getMovementType $(PORT)")
     field(SCAN, "Passive")
@@ -265,7 +328,7 @@ record(calcout, "$(P)MOVE:_STOPIFHOLDING")
     field(INPA, "$(P)MOVE")
     field(CALC, "A = 2 || A = 5")
     field(OOPT, "When Non-zero")
-	field(OUT, "$(P)MOVE:_END PP")
+    field(OUT, "$(P)MOVE:_END PP")
 }
 
 record(seq, "$(P)MOVE:GO:SP")
@@ -278,7 +341,7 @@ record(seq, "$(P)MOVE:GO:SP")
 
 record(seq, "$(P)MOVE:_END")
 {
-	field(DESC, "End movement")   
+    field(DESC, "End movement")   
     field(DO1, "0")
     field(LNK1, "$(P)MOVE:SP PP")    
     field(SELM, "All")
@@ -289,13 +352,14 @@ record(calcout, "$(P)GOING:_CALC")
     field(INPA, "$(P)MOVE")
     field(CALC, "A=1 || A=6")
     field(OOPT, "Every Time")
-	field(OUT, "$(P)GOING PP")
+    field(OUT, "$(P)GOING PP")
 }
 
 record(bi, "$(P)GOING")
 {
     field(DESC, "Whether the rig is going to SP")
     field(VAL, "0")
+	field(PINI, "YES")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     
@@ -303,9 +367,9 @@ record(bi, "$(P)GOING")
     info(archive, "VAL")
 }
 
-record(seq, "$(P)READALL")
+record(seq, "$(P)READ_SLOW")
 {
-	field(DESC, "Read all data from rig")
+    field(DESC, "Read data from rig (slow scan)")
     
     # Disable watchdog
     field(DO1, "0")
@@ -314,17 +378,48 @@ record(seq, "$(P)READALL")
     field(LNK2, "$(P)MOVE PP")
     field(LNK3, "$(P)STAT:FRAME PP")
     field(LNK4, "$(P)CHANNEL PP")
-	field(LNK5, "$(P)POS:READALL PP")
-	field(LNK6, "$(P)STRESS:READALL PP")
-	field(LNK7, "$(P)STRAIN:READALL PP")
+
+    field(LNK5, "$(P)CONTROLS:SPECIFIC:READALL PP")
+	field(LNK6, "$(P)WAVE:READALL PP")
     
     field(SCAN, "1 second")
     field(SELM, "All")
 }
 
-record(mbbo, "$(P)READALL:SCAN:SP")
+record(seq, "$(P)READ_VAR")
 {
-    field(OUT, "$(P)READALL.SCAN PP")
+    field(DESC, "Read data from rig (variable scan)")
+    
+    # Disable watchdog
+    field(DO1, "0")
+    field(LNK1, "$(P)WATCHDOG:STAT:SP PP")
+	
+    field(LNK2, "$(P)POS:READALL PP")
+    field(LNK3, "$(P)STRESS:READALL PP")
+    field(LNK4, "$(P)STRAIN:READALL PP")
+	
+    field(LNK5, "$(P)READ_VAR:COUNT:_CALC PP")
+    
+    field(SCAN, "1 second")
+    field(SELM, "All")
+}
+
+record(calcout, "$(P)READ_VAR:COUNT:_CALC") {
+	field(INPA, "$(P)READ_VAR:COUNT")
+    field(CALC, "A+1")
+    field(OOPT, "Every Time")
+	field(OUT, "$(P)READ_VAR:COUNT PP")
+}
+
+record(ai, "$(P)READ_VAR:COUNT") {
+	field(DESC, "Heartbeat for reader")
+	field(VAL, "0")
+	field(PINI, "YES")
+}
+
+record(mbbo, "$(P)READ_VAR:SCAN:SP")
+{
+    field(OUT, "$(P)READ_VAR.SCAN PP")
     field(DTYP, "Raw Soft Channel")
     
     field(ZRVL, "3")
@@ -347,13 +442,13 @@ record(mbbo, "$(P)READALL:SCAN:SP")
     field(PINI, "YES")
     
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:READALL:SCAN:SP")
+    field(SIOL, "$(P)SIM:READ_VAR:SCAN:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)PANIC:SP")
 {
-	field(DESC, "Panic stop setpoint")
+    field(DESC, "Panic stop setpoint")
     field(DTYP, "stream")
     field(OUT, "@devInstron.proto panicStop $(PORT)")
     field(ZNAM, "READY")
@@ -383,7 +478,7 @@ record(seq, "$(P)PANIC:_SEQ")
 
 record(bo, "$(P)STOP:SP")
 {
-	field(DESC, "Stop rig")
+    field(DESC, "Stop rig")
     field(ZNAM, "READY")
     field(ONAM, "STOPPING")
     # Initial value.
@@ -412,7 +507,7 @@ record(calcout, "$(P)STOP:_CALC_RAMP")
     field(INPB, "$(P)STOP:SP")
     field(CALC, "A = 0 && B = 1")
     field(OOPT, "When Non-zero")
-	field(OUT, "$(P)STOP:_STOP_RAMP PP")
+    field(OUT, "$(P)STOP:_STOP_RAMP PP")
     field(FLNK, "$(P)STOP:_RESET")
 }
 
@@ -423,13 +518,13 @@ record(calcout, "$(P)STOP:_CALC_WAVEFORM")
     field(INPB, "$(P)STOP:SP")
     field(CALC, "A = 1 && B = 1")
     field(OOPT, "When Non-zero")
-	field(OUT, "$(P)STOP:_STOP_WAVEFORM PP")
+    field(OUT, "$(P)STOP:_STOP_WAVEFORM PP")
     field(FLNK, "$(P)STOP:_RESET")
 }
 
 record(seq, "$(P)STOP:_STOP_RAMP")
 {
-	field(DESC, "Stop ramp")   
+    field(DESC, "Stop ramp")   
     field(DO1, "0")
     field(LNK1, "$(P)MOVE:SP PP")    
     field(SELM, "All")
@@ -437,11 +532,31 @@ record(seq, "$(P)STOP:_STOP_RAMP")
 
 record(seq, "$(P)STOP:_STOP_WAVEFORM")
 {
-	field(DESC, "TODO: Insert actual PV")   
+    field(DESC, "TODO: Insert actual PV")   
     field(DO1, "0")
     field(LNK1, "$(P)WAVE:STOP:RAW PP")    
     field(SELM, "All")
 }
+
+record(mbbo, "$(P)AXES:RAMP:WFTYP:SP")
+{
+    field(DESC, "Set all ramp waveform types")
+    field(ZRST, "Ramp")
+    field(ONST, "Dual ramp")
+    field(TWST, "Trapezium")
+    field(THST, "Absolute ramp")
+    field(FRST, "Absolute hold ramp")
+    field(FVST, "Absolute rate ramp")
+    field(OUT, "${P}AXES:RAMP:WFTYP:SP:_FAN PP")
+}
+
+record(dfanout, "${P}AXES:RAMP:WFTYP:SP:_FAN") {
+  field(DESC, "Fan out the axes WFTYP pv")
+  field(OUTA, "$(P)POS:RAMP:WFTYP:SP PP")
+  field(OUTB, "$(P)STRESS:RAMP:WFTYP:SP PP")
+  field(OUTC, "$(P)STRAIN:RAMP:WFTYP:SP PP")
+}
+
 
 ### SIMULATION RECORDS ###
 
@@ -475,7 +590,7 @@ record(mbbi, "$(P)SIM:CHANNEL")
 
 alias("$(P)SIM:CHANNEL","$(P)SIM:CHANNEL:SP")
 
-record(mbbo, "$(P)SIM:READALL:SCAN:SP")
+record(mbbo, "$(P)SIM:READ_VAR:SCAN:SP")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")

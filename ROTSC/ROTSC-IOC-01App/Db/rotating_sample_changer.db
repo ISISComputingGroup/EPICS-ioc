@@ -339,6 +339,7 @@ record(calc, "$(P)CALC_MOVE_FINISHED")
 	field(INPA, "$(P)MOTOR_0_ACTIVE CP")
 	field(INPB, "$(P)MOTOR_1_ACTIVE CP")
 	field(CALC, "(!A)&&(!B)")
+	field(ASG, "READONLY")
 	info(INTEREST, "MEDIUM")
 }
 
@@ -347,6 +348,7 @@ record(calc, "$(P)IS_INITIALISED")
 	field(DESC, "Has the device has been initialised")	
 	field(INPA, "$(P)POSN.VAL CP")
 	field(CALC, "A>0")
+    field(ASG, "READONLY")
 	info(INTEREST, "MEDIUM")
 }
 

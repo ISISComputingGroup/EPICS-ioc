@@ -44,6 +44,7 @@ record(mbbo, "$(P)UNITS:SP")
     field(ONST, "VRMS")
     field(TWVL, 2)
     field(TWST, "DBM") 
+	field(FLNK, "$(P)UNITS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:UNITS:SP")
     field(SDIS, "$(P)DISABLE")
@@ -118,6 +119,7 @@ record(ao, "$(P)FREQUENCY:SP")
     field(DTYP, "stream")
     field(OUT, "@agilent33220A.proto setFreq $(PORT)")
     field(PREC, "3")
+	field(FLNK, "$(P)FREQUENCY")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FREQUENCY:SP")
     field(SDIS, "$(P)DISABLE")
@@ -141,6 +143,7 @@ record(ao, "$(P)AMPLITUDE:SP")
     field(DTYP, "stream")
     field(OUT, "@agilent33220A.proto setAmplitude $(PORT)")
     field(PREC, "3")
+	field(FLNK, "$(P)AMPLITUDE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:AMPLITUDE:SP")
     field(SDIS, "$(P)DISABLE")
@@ -164,12 +167,59 @@ record(ao, "$(P)OFFSET:SP")
     field(DTYP, "stream")
     field(OUT, "@agilent33220A.proto setOffset $(PORT)")
     field(PREC, "3")
+	field(FLNK, "$(P)OFFSET")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OFFSET:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
 alias("$(P)OFFSET", "$(P)OFFSET:SP:RBV")
+
+record(ai, "$(P)VOLT:HIGH")
+{
+    field(DTYP, "stream")
+    field(INP, "@agilent33220A.proto getVoltHigh $(PORT)")
+    field(PREC, "3")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:HIGH")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)VOLT:HIGH:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@agilent33220A.proto setVoltHigh $(PORT)")
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:HIGH:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)VOLT:HIGH", "$(P)VOLT:HIGH:SP:RBV")
+
+record(ai, "$(P)VOLT:LOW")
+{
+    field(DTYP, "stream")
+    field(INP, "@agilent33220A.proto getVoltLow $(PORT)")
+    field(PREC, "3")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:LOW")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)VOLT:LOW:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@agilent33220A.proto setVoltLow $(PORT)")
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:LOW:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)VOLT:LOW", "$(P)VOLT:LOW:SP:RBV")
 
 record(bi, "$(P)OUTPUT")
 {
@@ -189,12 +239,58 @@ record(bo, "$(P)OUTPUT:SP")
     field(OUT, "@agilent33220A.proto setOutput $(PORT)")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
+	field(FLNK, "$(P)OUTPUT")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OUTPUT:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
 alias("$(P)OUTPUT", "$(P)OUTPUT:SP:RBV")
+
+record(mbbi, "$(P)VOLT:RANGE:AUTO")
+{
+    field(DTYP, "stream")
+    field(INP, "@agilent33220A.proto getVoltRangeAuto $(PORT)")
+    field(SCAN, "1 second")
+
+    field(ZRVL, 0)
+    field(ZRST, "OFF")
+    field(ONVL, 1)
+    field(ONST, "ON")
+    field(TWVL, 2)
+    field(TWST, "ONCE") 
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:RANGE:AUTO")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbo, "$(P)VOLT:RANGE:AUTO:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@agilent33220A.proto setVoltRangeAuto $(PORT)")
+    field(ZRVL, 0)
+    field(ZRST, "OFF")
+    field(ONVL, 1)
+    field(ONST, "ON")
+    field(TWVL, 2)
+    field(TWST, "ONCE") 
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:RANGE:AUTO:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)VOLT:RANGE:AUTO", "$(P)VOLT:RANGE:AUTO:SP:RBV")
+
+record(stringin, "$(P)IDN")
+{
+    field(DTYP, "stream")
+    field(INP, "@agilent33220A.proto getIDN $(PORT)")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:IDN")
+    field(SDIS, "$(P)DISABLE")
+}
+
 ### SIMULATION RECORDS ###
 
 record(mbbi, "$(P)SIM:FUNCTION")
@@ -247,6 +343,32 @@ alias("$(P)SIM:AMPLITUDE","$(P)SIM:AMPLITUDE:SP")
 
 alias("$(P)SIM:AMPLITUDE","$(P)SIM:AMPLITUDE:SP:RBV")
 
+record(ai, "$(P)SIM:VOLT:HIGH")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:VOLT:HIGH","$(P)SIM:VOLT:HIGH:SP")
+
+alias("$(P)SIM:VOLT:HIGH","$(P)SIM:VOLT:HIGH:SP:RBV")
+
+record(stringin, "$(P)SIM:IDN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:VOLT:LOW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:VOLT:LOW","$(P)SIM:VOLT:LOW:SP")
+
+alias("$(P)SIM:VOLT:LOW","$(P)SIM:VOLT:LOW:SP:RBV")
+
 record(ai, "$(P)SIM:OFFSET")
 {
     field(SCAN, "Passive")
@@ -256,4 +378,14 @@ record(ai, "$(P)SIM:OFFSET")
 alias("$(P)SIM:OFFSET","$(P)SIM:OFFSET:SP")
 
 alias("$(P)SIM:OFFSET","$(P)SIM:OFFSET:SP:RBV")
+
+record(mbbi, "$(P)SIM:VOLT:RANGE:AUTO")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:VOLT:RANGE:AUTO","$(P)SIM:VOLT:RANGE:AUTO:SP")
+
+alias("$(P)SIM:VOLT:RANGE:AUTO","$(P)SIM:VOLT:RANGE:AUTO:SP:RBV")
 

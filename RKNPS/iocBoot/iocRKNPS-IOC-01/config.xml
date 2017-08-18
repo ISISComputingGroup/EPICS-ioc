@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>RIKEN power supply</ioc_desc>
+<macros>
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
+	<macro name="BAUD" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
+	<macro name="BITS" pattern="^[7-8]$" description="port data bits (default: 7)" />
+	<macro name="PARITY" pattern="^(even|odd|none|space|mark)$" description="port parity (default: space)" />
+	<macro name="STOP" pattern="^[0-2]$" description="port stop bits (default: 1)" />
+	
+	<macro name="ADR1" pattern="^[0-9]{3}$" description="Address to use for 1st PSU in the chain; 3 digits required, prepend zeroes if required" />
+	<macro name="ID1" pattern="^[a-zA-Z0-9]{1,4}$" description="ID to use for the 1st PSU; Min 1 character, Max 4 characters; defaults to the specified address" />
+	<macro name="FACTOR_READ_I1" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to current of the 1st PSU; defaults to 1" />
+	<macro name="FACTOR_READ_V1" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to voltage of the 1st PSU; defaults to 1" />
+	<macro name="FACTOR_WRITE_I1" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value of the 1st PSU; defaults to 1000" />
+	
+	<macro name="ADR2" pattern="^[0-9]{3}$" description="Address to use for 2nd PSU in the chain; 3 digits required, prepend zeroes if required" />
+	<macro name="ID2" pattern="^[a-zA-Z0-9]{1,4}$" description="ID to use for the 2nd PSU; Min 1 character, Max 4 characters; defaults to the specified address" />
+	<macro name="FACTOR_READ_I2" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to current of the 2nd PSU; defaults to 1" />
+	<macro name="FACTOR_READ_V2" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to voltage of the 2nd PSU; defaults to 1" />
+	<macro name="FACTOR_WRITE_I2" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value of the 2nd PSU; defaults to 1000" />
+	
+	<macro name="ADR3" pattern="^[0-9]{3}$" description="Address to use for 3rd PSU in the chain; 3 digits required, prepend zeroes if required" />
+	<macro name="ID3" pattern="^[a-zA-Z0-9]{1,4}$" description="ID to use for the 3rd PSU; Min 1 character, Max 4 characters; defaults to the specified address" />
+	<macro name="FACTOR_READ_I3" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to current of the 3rd PSU; defaults to 1" />
+	<macro name="FACTOR_READ_V3" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to voltage of the 3rd PSU; defaults to 1" />
+	<macro name="FACTOR_WRITE_I3" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value of the 3rd PSU; defaults to 1000" />
+	
+	<macro name="ADR4" pattern="^[0-9]{3}$" description="Address to use for 4th PSU in the chain; 3 digits required, prepend zeroes if required" />
+	<macro name="ID4" pattern="^[a-zA-Z0-9]{1,4}$" description="ID to use for the 4th PSU; Min 1 character, Max 4 characters; defaults to the specified address" />
+	<macro name="FACTOR_READ_I4" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to current of the 4th PSU; defaults to 1" />
+	<macro name="FACTOR_READ_V4" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to voltage of the 4th PSU; defaults to 1" />
+	<macro name="FACTOR_WRITE_I4" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value of the 4th PSU; defaults to 1000" />
+	
+	<macro name="ADR5" pattern="^[0-9]{3}$" description="Address to use for 5th PSU in the chain; 3 digits required, prepend zeroes if required" />
+	<macro name="ID5" pattern="^[a-zA-Z0-9]{1,4}$" description="ID to use for the 5th PSU; Min 1 character, Max 4 characters; defaults to the specified address" />
+	<macro name="FACTOR_READ_I5" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to current of the 5th PSU; defaults to 1" />
+	<macro name="FACTOR_READ_V5" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to voltage of the 5th PSU; defaults to 1" />
+	<macro name="FACTOR_WRITE_I5" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value of the 5th PSU; defaults to 1000" />
+	
+	<macro name="ADR6" pattern="^[0-9]{3}$" description="Address to use for 6th PSU in the chain; 3 digits required, prepend zeroes if required" />
+	<macro name="ID6" pattern="^[a-zA-Z0-9]{1,4}$" description="ID to use for the 6th PSU; Min 1 character, Max 4 characters; defaults to the specified address" />
+	<macro name="FACTOR_READ_I6" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to current of the 6th PSU; defaults to 1" />
+	<macro name="FACTOR_READ_V6" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to voltage of the 6th PSU; defaults to 1" />
+	<macro name="FACTOR_WRITE_I6" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value of the 6th PSU; defaults to 1000" />
+	
+	<macro name="ADR7" pattern="^[0-9]{3}$" description="Address to use for 7th PSU in the chain; 3 digits required, prepend zeroes if required" />
+	<macro name="ID7" pattern="^[a-zA-Z0-9]{1,4}$" description="ID to use for the 7th PSU; Min 1 character, Max 4 characters; defaults to the specified address" />
+	<macro name="FACTOR_READ_I7" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to current of the 7th PSU; defaults to 1" />
+	<macro name="FACTOR_READ_V7" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to voltage of the 7th PSU; defaults to 1" />
+	<macro name="FACTOR_WRITE_I7" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value of the 7th PSU; defaults to 1000" />
+	
+	<macro name="ADR8" pattern="^[0-9]{3}$" description="Address to use for 8th PSU in the chain; 3 digits required, prepend zeroes if required" />
+	<macro name="ID8" pattern="^[a-zA-Z0-9]{1,4}$" description="ID to use for the 8th PSU; Min 1 character, Max 4 characters; defaults to the specified address" />
+	<macro name="FACTOR_READ_I8" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to current of the 8th PSU; defaults to 1" />
+	<macro name="FACTOR_READ_V8" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to voltage of the 8th PSU; defaults to 1" />
+	<macro name="FACTOR_WRITE_I8" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value of the 8th PSU; defaults to 1000" />
+	
+	<macro name="ADR9" pattern="^[0-9]{3}$" description="Address to use for 9th PSU in the chain; 3 digits required, prepend zeroes if required" />
+	<macro name="ID9" pattern="^[a-zA-Z0-9]{1,4}$" description="ID to use for the 9th PSU; Min 1 character, Max 4 characters; defaults to the specified address" />
+	<macro name="FACTOR_READ_I9" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to current of the 9th PSU; defaults to 1" />
+	<macro name="FACTOR_READ_V9" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to voltage of the 9th PSU; defaults to 1" />
+	<macro name="FACTOR_WRITE_I9" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value of the 9th PSU; defaults to 1000" />
+	
+	<macro name="ADR10" pattern="^[0-9]{3}$" description="Address to use for 10th PSU in the chain; 3 digits required, prepend zeroes if required" />
+	<macro name="ID10" pattern="^[a-zA-Z0-9]{1,4}$" description="ID to use for the 10th PSU; Min 1 character, Max 4 characters; defaults to the specified address" />
+	<macro name="FACTOR_READ_I10" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to current of the 10th PSU; defaults to 1" />
+	<macro name="FACTOR_READ_V10" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to voltage of the 10th PSU; defaults to 1" />
+	<macro name="FACTOR_WRITE_I10" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value of the 10th PSU; defaults to 1000" />
+</macros>
+</config_part>
+</ioc_config>

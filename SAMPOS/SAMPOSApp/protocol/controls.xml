@@ -1,0 +1,606 @@
+<VI syntaxVersion="11" LVversion="10008000" revision="28" name="EnginX - Positioner - Galil Remote.vi">
+<TITLE></TITLE>
+<HELP_PATH></HELP_PATH>
+<HELP_TAG></HELP_TAG>
+<RTM_PATH type="default"></RTM_PATH>
+<DESC>This Arbitrary Waveform Generator front panel is aimed primarily at the use of two reflectometer instruments at the ISIS Pulsed Neutron Facility at the Rutherford Appleton Laboratory. As such some variable items have been defaulted, and the code follows the standards of the Instrument Controls programming team.</DESC>
+<CONTENT>
+	<GROUPER>
+		<PARTS>
+		</PARTS></GROUPER>
+	<CONTROL ID="100" type="Type Definition" name="Logo">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="8010" order="0" type="Cursor Buttons">
+				<CONTROL ID="87" type="Ring" name="">
+					<DESC></DESC>
+					<TIP></TIP>
+					<PARTS>
+						<PART ID="82" order="0" type="Caption"><LABEL><STEXT></STEXT></LABEL></PART>
+					</PARTS>
+				</CONTROL>
+			</PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Logo</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="83" type="Cluster" name="Error">
+		<DESC>The error in cluster can accept error information wired from VIs previously called.  Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+The pop-up option Explain Error (or Explain Warning) gives more information about the error displayed. </DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Error</STEXT></LABEL></PART>
+		</PARTS>
+		<CONTENT>
+			<GROUPER>
+				<PARTS>
+				</PARTS></GROUPER>
+			<CONTROL ID="79" type="Boolean" name="status">
+				<DESC>The status boolean is either TRUE (X) for an error, or FALSE (checkmark) for no error or a warning.
+
+The pop-up option Explain Error (or Explain Warning) gives more information about the error displayed.</DESC>
+				<TIP></TIP>
+				<PARTS>
+					<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING></STRING><STRING></STRING><STRING></STRING><STRING></STRING></STRINGS></MLABEL></PART>
+					<PART ID="82" order="0" type="Caption"><LABEL><STEXT>status</STEXT></LABEL></PART>
+				</PARTS>
+			</CONTROL>
+			<CONTROL ID="80" type="Numeric" name="code">
+				<DESC>The code input identifies the error or warning.
+
+The pop-up option Explain Error (or Explain Warning) gives more information about the error displayed.</DESC>
+				<TIP></TIP>
+				<PARTS>
+					<PART ID="82" order="0" type="Caption"><LABEL><STEXT>code</STEXT></LABEL></PART>
+				</PARTS>
+			</CONTROL>
+			<CONTROL ID="81" type="String" name="source">
+				<DESC>The source string describes the origin of the error or warning.
+
+The pop-up option Explain Error (or Explain Warning) gives more information about the error displayed.</DESC>
+				<TIP></TIP>
+				<PARTS>
+					<PART ID="11" order="0" type="Text"><LABEL><STEXT></STEXT></LABEL></PART>
+					<PART ID="82" order="0" type="Caption"><LABEL><STEXT>source</STEXT></LABEL></PART>
+				</PARTS>
+				<DEFAULT></DEFAULT>
+			</CONTROL>
+		</CONTENT>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Activity">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Activity</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="81" type="String" name="Message">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="11" order="0" type="Text"><LABEL><STEXT></STEXT></LABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Message</STEXT></LABEL></PART>
+		</PARTS>
+		<DEFAULT></DEFAULT>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Exit">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Exit</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Exit</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<LABEL><STEXT>Version 0.0.1</STEXT></LABEL>
+	<CONTROL ID="80" type="Numeric" name="X Position">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>X Position</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Y Position">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Y Position</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Z Position">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Z Position</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="w Position">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>w Position</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="S Position">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>S Position</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="X">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>X</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Y">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Y</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Z">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Z</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="w">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>w</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="S">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>S</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="X Set">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Go X</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>X Set</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Y Set">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Go Y</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Y Set</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Z Set">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Go Z</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Z Set</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="w Set">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Go w</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>w Set</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="S Set">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Go S</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>S Set</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="X Home">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Home X</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>X Home</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Z Home">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Home Z</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Z Home</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="w Home">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Home w</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>w Home</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="S Home">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Home S</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>S Home</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Y Home">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Home Y</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Y Home</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="X In Motion">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>X In Motion</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Y In Motion">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Y In Motion</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Z In Motion">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Z In Motion</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="w In Motion">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>w In Motion</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="S In Motion">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>S In Motion</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Define Positions">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Define</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Define Positions</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Set">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Go</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Set</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Home">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Home</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Home</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="X Accel">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>X Accel</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Y Accel">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Y Accel</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Z Accel">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Z Accel</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="w Accel">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>w Accel</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="S Accel">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>S Accel</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="X Accel Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>X Accel Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Y Accel Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Y Accel Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Z Accel Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Z Accel Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="w Accel Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>w Accel Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="S Accel Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>S Accel Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="X Decel">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>X Decel</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Y Decel">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Y Decel</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Z Decel">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Z Decel</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="w Decel">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>w Decel</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="S Decel">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>S Decel</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="X Decel Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>X Decel Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Y Decel Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Y Decel Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Z Decel Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Z Decel Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="w Decel Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>w Decel Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="S Decel Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>S Decel Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="X Speed">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>X Speed</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Y Speed">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Y Speed</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Z Speed">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Z Speed</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="w Speed">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>w Speed</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="S Speed">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>S Speed</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="X Speed Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>X Speed Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Y Speed Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Y Speed Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Z Speed Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Z Speed Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="w Speed Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>w Speed Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="S Speed Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>S Speed Ind</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="X Set Params">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Set X</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>X Set Params</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Y Set Params">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Set Y</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Y Set Params</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Z Set Params">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Set Z</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Z Set Params</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="w Set Params">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Set w</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>w Set Params</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="S Set Params">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Set S</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>S Set Params</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Set Params">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Set</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Set Params</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<LABEL><STEXT>X</STEXT></LABEL>
+	<LABEL><STEXT>Y</STEXT></LABEL>
+	<LABEL><STEXT>Z</STEXT></LABEL>
+	<LABEL><STEXT>w</STEXT></LABEL>
+	<LABEL><STEXT>S</STEXT></LABEL>
+	<LABEL><STEXT>Position</STEXT></LABEL>
+	<LABEL><STEXT>Setpoint</STEXT></LABEL>
+	<LABEL><STEXT>In Motion</STEXT></LABEL>
+	<LABEL><STEXT>Acceleration</STEXT></LABEL>
+	<LABEL><STEXT>Deceleration</STEXT></LABEL>
+	<LABEL><STEXT>Speed</STEXT></LABEL>
+	<CONTROL ID="79" type="Boolean" name="Pendant Active">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Pendant Active</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Emergency Stop Active">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Emergency Stop Active</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Light Curtain Active">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Light Curtain Active</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Stop">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>OFF</STRING><STRING>ON</STRING><STRING>OFF</STRING><STRING>ON</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Stop</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+</CONTENT>
+</VI>
+
+

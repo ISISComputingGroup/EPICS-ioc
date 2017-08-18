@@ -6,4 +6,5 @@ include "pvdump.dbd"
 include "asSupport.dbd"
 include "devIocStats.dbd"
 include "caPutLog.dbd"
+include "utilities.dbd"
 registrar("mk3DriverRegister")
