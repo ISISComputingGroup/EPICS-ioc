@@ -30,19 +30,35 @@ record(ai, "$(P)$(AXIS)")
 
 record(seq, "$(P)$(AXIS):HOME")
 {
-	field(LNK1, "$(P)$(AXIS):HOME:_CALC PP")
+	field(LNK1, "$(P)$(AXIS):HOME:_NONZERO_IF_NOT_DELAY PP")
+	field(LNK2, "$(P)$(AXIS):HOME:_NONZERO_IF_MUST_DELAY PP")
+	field(SELM, "All")
+	info(INTEREST, "MEDIUM")
+}
+
+record(calcout, "$(P)$(AXIS):HOME:_NONZERO_IF_NOT_DELAY")
+{
+	field(INPA, "$(P)$(AXIS)")
+	field(CALC, "A<-150?0:1")
+	field(OUT, "$(P)$(AXIS):HOME:_RAW PP")
+	field(OOPT, "When Non-zero")
+}
+
+record(calcout, "$(P)$(AXIS):HOME:_NONZERO_IF_MUST_DELAY")
+{
+	field(INPA, "$(P)$(AXIS)")
+	field(CALC, "A<-150?1:0")
+	field(OUT, "$(P)$(AXIS):HOME:_IF_MUST_DELAY PP")
+	field(OOPT, "When Non-zero")
+}
+
+record(seq, "$(P)$(AXIS):HOME:_IF_MUST_DELAY")
+{
+	field(DO1, "-150")
+	field(LNK1, "$(P)$(AXIS):SP PP")
 	field(DLY2, "2")
 	field(LNK2, "$(P)$(AXIS):HOME:_RAW PP")
 	field(SELM, "All")
-}
-
-record(calcout, "$(P)$(AXIS):HOME:_CALC")
-{
-	field(INPA, "$(P)$(AXIS)")
-	field(CALC, "(A<-150)?(-150):0")
-	field(OUT, "$(P)$(AXIS):SP PP")
-	field(OOPT, "When Non-zero")
-	field(FLNK, "$(P)$(AXIS):_CALC_TM_AND_SET")
 }
 
 record(bo, "$(P)$(AXIS):HOME:_RAW")
@@ -64,18 +80,16 @@ record(ao, "$(P)$(AXIS):SP")
 # SP macros mean that calculating axis position minus itself (i.e. zero) for other axes
 record(calc, "$(P)$(AXIS):_CALC_TM_AND_SET")
 {
-	field(INPA, "$(P)A$(SP_IF_A)")
-	field(INPB, "$(P)B$(SP_IF_B)")
-	field(INPC, "$(P)C$(SP_IF_C)")
-	field(INPD, "$(P)A")
-	field(INPE, "$(P)B")
-	field(INPF, "$(P)C")
-	field(CALC, "MAX(1000*CEIL(MAX(MAX(ABS(A-D),ABS(B-E)),ABS(C-F))/5.0),4000)")
+	field(INPA, "$(P)$(AXIS):SP")
+	field(INPB, "$(P)$(AXIS)")
+	field(CALC, "MAX(1000*CEIL(ABS(A-B)/5.0),4000)")
 	field(FLNK, "$(P)$(AXIS):SP:RAW")
 }
 
 record(calcout, "$(P)$(AXIS):SP:RAW")
 {
+	# Need the SP_IF_* macros because we must send all the setpoints simultaneously to the device
+	# This is achieved by sending the setpoint for the current axis and the current value for the other axes
 	field(INPA, "$(P)A$(SP_IF_A)")
 	field(INPB, "$(P)B$(SP_IF_B)")
 	field(INPC, "$(P)C$(SP_IF_C)")
