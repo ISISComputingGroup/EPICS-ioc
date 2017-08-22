@@ -59,7 +59,7 @@ epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 
 # motor extensions
 $(IFNOTTESTDEVSIM) < $(GALILCONFIG)/motorExtensions.cmd
-$(IFTESTDEVSIM) < $(MOTOREXTENSIONS)/settings/motorExtensions.cmd
+$(IFTESTDEVSIM) < $(MOTOREXT)/settings/motorExtensions.cmd
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,PVPREFIX=$(MYPVPREFIX),IFDMC01=$(IFDMC01),IFDMC02=$(IFDMC02),IFDMC03=$(IFDMC03),IFDMC04=$(IFDMC04),IFDMC05=$(IFDMC05),IFDMC06=$(IFDMC06),IFDMC07=$(IFDMC07),IFDMC08=$(IFDMC08),IFDMC09=$(IFDMC09),IFDMC10=$(IFDMC10)")
