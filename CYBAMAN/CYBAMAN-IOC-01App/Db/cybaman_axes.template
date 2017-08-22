@@ -30,6 +30,7 @@ record(ai, "$(P)$(AXIS)")
 
 record(seq, "$(P)$(AXIS):HOME")
 {
+	field(DESC, "Home axis $(AXIS)")
 	field(LNK1, "$(P)$(AXIS):HOME:_NONZERO_IF_NOT_DELAY PP")
 	field(LNK2, "$(P)$(AXIS):HOME:_NONZERO_IF_MUST_DELAY PP")
 	field(SELM, "All")
