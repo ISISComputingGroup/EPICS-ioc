@@ -1,14 +1,13 @@
 record(seq, "$(P)WAVE:READALL") 
 {
 	field(DESC, "Read all waveform data")
-	
-    field(LNK1, "$(P)WAVE:STATUS PP")
-    field(LNK2, "$(P)WAVE:TYPE PP")
-    field(LNK3, "$(P)WAVE:AMP PP")
-    field(LNK4, "$(P)WAVE:FREQ PP")
-    field(LNK5, "$(P)QUART:STATUS PP")
-    field(LNK6, "$(P)QUART PP")	
-    field(LNK7, "$(P)QUART:SP:RBV PP")	
+    field(LNK1, "$(P)WAVE:FREQ:RAW PP")
+    field(LNK2, "$(P)WAVE:TYPE:RAW PP")
+    field(LNK3, "$(P)WAVE:AMP:RAW PP")
+    field(LNK4, "$(P)WAVE:STATUS:RAW PP")
+    field(LNK5, "$(P)QUART:STATUS:RAW PP")
+    field(LNK6, "$(P)QUART:RAW PP")
+    field(LNK7, "$(P)QUART:SP:RBV:RAW PP")	
 	
     field(SELM, "All")
 }
@@ -17,11 +16,17 @@ record(seq, "$(P)WAVE:READALL")
 # STATE CONTROLS
 #
 
+record(mbbi, "$(P)WAVE:STATUS:RAW")
+{
+	field(DTYP, "stream")
+    field(INP, "@devInstron.proto getWaveformStatus $(PORT)")
+	field(MDEL, "-1")
+}
+
 record(mbbi, "$(P)WAVE:STATUS")
 {
 	field(DESC, "Status of the wave generator")
-    field(DTYP, "stream")
-    field(INP, "@devInstron.proto getWaveformStatus $(PORT)")
+    field(INP, "$(P)WAVE:STATUS:RAW CP MS")
 	
     field(ZRST, "Stopped")
     field(ONST, "Running")
@@ -269,11 +274,17 @@ record(mbbo, "$(P)WAVE:TYPE:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(mbbi, "$(P)WAVE:TYPE:RAW")
+{
+	field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getWaveformType($(P)CHANNEL) $(PORT)")
+	field(MDEL, "-1")
+}
+
 record(mbbi, "$(P)WAVE:TYPE")
 {
 	field(DESC, "Set the wave type of the wave generator")
-	field(DTYP, "stream")
-    field(INP,  "@devInstron.proto getWaveformType($(P)CHANNEL) $(PORT)")
+    field(INP,  "$(P)WAVE:TYPE:RAW CP MS")
     
     field(ZRST, "Sine")    
     field(ONST, "Triangle")       
@@ -363,11 +374,17 @@ record(scalcout, "$(P)WAVE:AMP:_PUSH_UNITS_2") {
 	field(OUT, "$(P)WAVE:AMP:SP:RBV.EGU")
 }
 
+record(ai, "$(P)WAVE:AMP:RAW")
+{
+	field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getWaveformAmplitude($(P)CHANNEL) $(PORT)")
+	field(MDEL, "-1")
+}
+
 record(ai, "$(P)WAVE:AMP")
 {
 	field(DESC, "Get the amp of the wave generator")
-	field(DTYP, "stream")
-    field(INP,  "@devInstron.proto getWaveformAmplitude($(P)CHANNEL) $(PORT)")
+    field(INP, "$(P)WAVE:AMP:RAW CP MS")
 	field(PREC, "10")
 	field(VAL,  "0.0")
 	field(EGU, "")
@@ -412,19 +429,26 @@ record(ao, "$(P)WAVE:FREQ:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(ai, "$(P)WAVE:FREQ:RAW")
+{
+	field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getWaveformFrequency($(P)CHANNEL) $(PORT)")
+	field(MDEL, "-1")	
+}
+
 record(ai, "$(P)WAVE:FREQ")
 {
 	field(DESC, "Get the freq of the wave generator")
-	field(DTYP, "stream")
-    field(INP,  "@devInstron.proto getWaveformFrequency($(P)CHANNEL) $(PORT)")
+	field(INP, "$(P)WAVE:FREQ:RAW CP MS")
 	field(PREC, "3")
 	field(EGU, "Hz")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
+	
+	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAVE:FREQ")
-    field(SDIS, "$(P)DISABLE")	
+    field(SDIS, "$(P)DISABLE")
 }
 
 alias("$(P)WAVE:FREQ", "$(P)WAVE:FREQ:SP:RBV")
@@ -433,11 +457,17 @@ alias("$(P)WAVE:FREQ", "$(P)WAVE:FREQ:SP:RBV")
 ## QUARTER CYCLE COUNTER EVENT DETECTOR CONTROLS
 ##
 
+record(mbbi, "$(P)QUART:STATUS:RAW")
+{
+	field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getWaveformQuartStatus $(PORT)")
+	field(MDEL, "-1")
+}
+
 record(mbbi, "$(P)QUART:STATUS")
 {
 	field(DESC, "Switch off quarter cycle control")
-	field(DTYP, "stream")
-    field(INP,  "@devInstron.proto getWaveformQuartStatus $(PORT)")
+    field(INP,  "$(P)QUART:STATUS:RAW CP MS")
     
     field(ZRST, "Off")    
     field(ONST, "Prepared")       
@@ -506,8 +536,6 @@ record(ai, "$(P)QUART:CYCLE:SP:RBV")
 	field(EGU, "")
 }
 
-alias("$(P)QUART:CYCLE:SP", "$(P)QUART:CYCLE:SP:RBV")
-
 record(calcout, "$(P)QUART:SP:_CALC")
 {
 	field(DESC, "Turns cycles into quarters")
@@ -517,11 +545,17 @@ record(calcout, "$(P)QUART:SP:_CALC")
 	field(OUT, "$(P)QUART:SP PP")
 }
 
+record(ai, "$(P)QUART:SP:RBV:RAW")
+{
+	field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getQuartCountsMax $(PORT)")
+	field(MDEL, "-1")
+}
+
 record(ai, "$(P)QUART:SP:RBV")
 {
 	field(DESC, "Max quarter cycle counts")
-	field(DTYP, "stream")
-    field(INP,  "@devInstron.proto getQuartCountsMax $(PORT)")
+    field(INP,  "$(P)QUART:SP:RBV:RAW CP MS")
 	field(PREC, "0")
 	field(EGU, "")
 	field(FLNK, "$(P)QUART:SP:RBV:_CALC")
@@ -545,11 +579,17 @@ record(ao, "$(P)QUART:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(ai, "$(P)QUART:RAW")
+{
+	field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getQuartCounts $(PORT)")
+	field(MDEL, "-1")
+}
+
 record(ai, "$(P)QUART")
 {
 	field(DESC, "Elapsed quarter cycle counter")
-	field(DTYP, "stream")
-    field(INP,  "@devInstron.proto getQuartCounts $(PORT)")
+    field(INP,  "$(P)QUART:RAW CP MS")
 	field(PREC, "0")
 	field(EGU, "")
 	field(FLNK, "$(P)QUART:CYCLE:_CALC")
@@ -614,6 +654,7 @@ record(bo, "$(P)SIM:WAVE:START:RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
+	field(MDEL, "-1")
 }
 
 record(bo, "$(P)SIM:WAVE:ABORT:RAW")
