@@ -20,7 +20,6 @@ record(mbbi, "$(P)WAVE:STATUS:RAW")
 {
 	field(DTYP, "stream")
     field(INP, "@devInstron.proto getWaveformStatus $(PORT)")
-	field(MDEL, "-1")
 }
 
 record(mbbi, "$(P)WAVE:STATUS")
@@ -278,7 +277,6 @@ record(mbbi, "$(P)WAVE:TYPE:RAW")
 {
 	field(DTYP, "stream")
     field(INP,  "@devInstron.proto getWaveformType($(P)CHANNEL) $(PORT)")
-	field(MDEL, "-1")
 }
 
 record(mbbi, "$(P)WAVE:TYPE")
@@ -461,7 +459,6 @@ record(mbbi, "$(P)QUART:STATUS:RAW")
 {
 	field(DTYP, "stream")
     field(INP,  "@devInstron.proto getWaveformQuartStatus $(PORT)")
-	field(MDEL, "-1")
 }
 
 record(mbbi, "$(P)QUART:STATUS")
@@ -654,7 +651,6 @@ record(bo, "$(P)SIM:WAVE:START:RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
-	field(MDEL, "-1")
 }
 
 record(bo, "$(P)SIM:WAVE:ABORT:RAW")
