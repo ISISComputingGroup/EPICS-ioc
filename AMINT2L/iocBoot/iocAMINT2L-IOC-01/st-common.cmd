@@ -4,14 +4,14 @@ epicsEnvSet "STREAM_PROTOCOL_PATH" "$(AMINT2L)/data"
 < $(IOCSTARTUP)/init.cmd
 
 # For dev sim devices
-$(IFTESTDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
 
 ## For real device use:
-$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
-$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
-$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
-$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=none)")
-$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=none)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd

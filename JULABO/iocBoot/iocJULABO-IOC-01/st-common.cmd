@@ -9,11 +9,11 @@ cd ${TOP}
 $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
 
 ## For real device use:
-$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
-$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) asynSetOption("L0", -1, "baud", "4800")
-$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) asynSetOption("L0", -1, "bits", "7")
-$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) asynSetOption("L0", -1, "parity", "even")
-$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) asynSetOption("L0", -1, "stop", "1")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "4800")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "7")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "even")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "1")
 
 ## Load record instances
 
