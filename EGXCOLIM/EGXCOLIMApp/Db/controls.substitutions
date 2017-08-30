@@ -1,0 +1,6 @@
+file controls.template {
+
+pattern {P, DIRECTION_UPPER, DIRECTION_LOWER, AXIS}
+{"\$(P)", "NORTH", "North", "X"}
+{"\$(P)", "SOUTH", "South", "X"}
+}
