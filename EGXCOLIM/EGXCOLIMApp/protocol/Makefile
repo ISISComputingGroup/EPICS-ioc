@@ -3,7 +3,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-#DATA += EGXCOLIM.proto
+DATA += lv_controls.xml
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

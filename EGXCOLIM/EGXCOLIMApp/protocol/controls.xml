@@ -1,0 +1,324 @@
+<VI syntaxVersion="11" LVversion="10008000" revision="184" name="ENGINX Collimators - Front Panel 1.vi">
+<TITLE></TITLE>
+<HELP_PATH></HELP_PATH>
+<HELP_TAG></HELP_TAG>
+<RTM_PATH type="default"></RTM_PATH>
+<DESC></DESC>
+<CONTENT>
+	<GROUPER>
+		<PARTS>
+		</PARTS></GROUPER>
+	<CONTROL ID="83" type="Cluster" name="Error">
+		<DESC>The error in cluster can accept error information wired from VIs previously called.  Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+The pop-up option Explain Error (or Explain Warning) gives more information about the error displayed. </DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Error</STEXT></LABEL></PART>
+		</PARTS>
+		<CONTENT>
+			<GROUPER>
+				<PARTS>
+				</PARTS></GROUPER>
+			<CONTROL ID="79" type="Boolean" name="status">
+				<DESC>The status boolean is either TRUE (X) for an error, or FALSE (checkmark) for no error or a warning.
+
+The pop-up option Explain Error (or Explain Warning) gives more information about the error displayed.</DESC>
+				<TIP></TIP>
+				<PARTS>
+					<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING></STRING><STRING></STRING><STRING></STRING><STRING></STRING></STRINGS></MLABEL></PART>
+					<PART ID="82" order="0" type="Caption"><LABEL><STEXT>status</STEXT></LABEL></PART>
+				</PARTS>
+			</CONTROL>
+			<CONTROL ID="80" type="Numeric" name="code">
+				<DESC>The code input identifies the error or warning.
+
+The pop-up option Explain Error (or Explain Warning) gives more information about the error displayed.</DESC>
+				<TIP></TIP>
+				<PARTS>
+					<PART ID="82" order="0" type="Caption"><LABEL><STEXT>code</STEXT></LABEL></PART>
+				</PARTS>
+			</CONTROL>
+			<CONTROL ID="81" type="String" name="source">
+				<DESC>The source string describes the origin of the error or warning.
+
+The pop-up option Explain Error (or Explain Warning) gives more information about the error displayed.</DESC>
+				<TIP></TIP>
+				<PARTS>
+					<PART ID="11" order="0" type="Text"><LABEL><STEXT></STEXT></LABEL></PART>
+					<PART ID="82" order="0" type="Caption"><LABEL><STEXT>source</STEXT></LABEL></PART>
+				</PARTS>
+				<DEFAULT></DEFAULT>
+			</CONTROL>
+		</CONTENT>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Exit">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Exit</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Exit</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Activity">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Activity</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="81" type="String" name="Message">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="11" order="0" type="Text"><LABEL><STEXT></STEXT></LABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Message</STEXT></LABEL></PART>
+		</PARTS>
+		<DEFAULT></DEFAULT>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Set North X">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Set</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Set North X</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="81" type="String" name="ENGINX Collimator Name">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="11" order="0" type="Text"><LABEL><STEXT></STEXT></LABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>ENGINX Collimator Name</STEXT></LABEL></PART>
+		</PARTS>
+		<DEFAULT></DEFAULT>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="North X">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>0.000</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="North X Ind">
+		<DESC>
+</DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>0.000</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Define North X">
+		<DESC>Defines the positions to be equal to the set points</DESC>
+		<TIP>Defines the positions to be equal to the set points</TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Define</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Define North X</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Home North X Motor">
+		<DESC>Homes the axis</DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Home</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Home North X Motor</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Stop North X">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Stop</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Stop North X</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Set South X">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Set</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Set South X</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="South X">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>0.000</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="South X Ind">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>0.000</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Define South X">
+		<DESC>Defines the positions to be equal to the set points</DESC>
+		<TIP>Defines the positions to be equal to the set points</TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Define</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Define South X</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Home South X Motor">
+		<DESC>Homes the axis</DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Home</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Home South X Motor</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Stop South X">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Stop</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Stop South X</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="100" type="Type Definition" name="North X Limit Switches">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="8010" order="0" type="Cursor Buttons">
+				<CONTROL ID="83" type="Cluster" name="">
+					<DESC></DESC>
+					<TIP></TIP>
+					<PARTS>
+						<PART ID="82" order="0" type="Caption"><LABEL><STEXT></STEXT></LABEL></PART>
+					</PARTS>
+					<CONTENT>
+						<GROUPER>
+							<PARTS>
+							</PARTS></GROUPER>
+						<CONTROL ID="79" type="Boolean" name="Lower Limit">
+							<DESC></DESC>
+							<TIP></TIP>
+							<PARTS>
+							</PARTS>
+						</CONTROL>
+						<CONTROL ID="79" type="Boolean" name="Upper Limit">
+							<DESC></DESC>
+							<TIP></TIP>
+							<PARTS>
+							</PARTS>
+						</CONTROL>
+					</CONTENT>
+				</CONTROL>
+			</PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>North X Limit Switches</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="100" type="Type Definition" name="South X Limit Switches">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="8010" order="0" type="Cursor Buttons">
+				<CONTROL ID="83" type="Cluster" name="">
+					<DESC></DESC>
+					<TIP></TIP>
+					<PARTS>
+						<PART ID="82" order="0" type="Caption"><LABEL><STEXT></STEXT></LABEL></PART>
+					</PARTS>
+					<CONTENT>
+						<GROUPER>
+							<PARTS>
+							</PARTS></GROUPER>
+						<CONTROL ID="79" type="Boolean" name="Lower Limit">
+							<DESC></DESC>
+							<TIP></TIP>
+							<PARTS>
+							</PARTS>
+						</CONTROL>
+						<CONTROL ID="79" type="Boolean" name="Upper Limit">
+							<DESC></DESC>
+							<TIP></TIP>
+							<PARTS>
+							</PARTS>
+						</CONTROL>
+					</CONTENT>
+				</CONTROL>
+			</PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>South X Limit Switches</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="North X Jog">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>0.000</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="North X Back Jog">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>&lt;&lt;</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>North X Back Jog</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="North X Forward Jog">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>&gt;&gt;</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>North X Forward Jog</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="North X Lower Limit">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>North X Lower Limit</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="North X Upper Limit">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>North X Upper Limit</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="South X Jog">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>0.000</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="South X Back Jog">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>&lt;&lt;</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>South X Back Jog</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="South X Forward Jog">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>&gt;&gt;</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>South X Forward Jog</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="South X Lower Limit">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>South X Lower Limit</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="South X Upper Limit">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>South X Upper Limit</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+</CONTENT>
+</VI>
+
+
