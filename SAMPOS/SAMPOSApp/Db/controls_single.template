@@ -1,0 +1,59 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+    field(PINI, "YES")
+}
+    
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(bo, "$(P)STOP:SP")
+{
+	field(DESC, "LabVIEW 'Stop'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Stop")
+    field(ZNAM, "STOP")
+    field(ONAM, "Stopping")
+}
+
+record(bi, "$(P)PENDANT")
+{
+	field(DESC, "LabVIEW 'Pendant_Active'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Pendant_Active")
+    field(SCAN, ".1 second")
+	info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)LIGHTCURTAIN")
+{
+	field(DESC, "LabVIEW 'Light_Curtain_Active'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Light_Curtain_Active")
+    field(SCAN, ".1 second")
+	info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)EMERGENCYSTOP")
+{
+	field(DESC, "LabVIEW 'Emergency_Stop_Active'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Emergency_Stop_Active")
+    field(SCAN, ".1 second")
+	info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+

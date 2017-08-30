@@ -1,19 +1,91 @@
-#
-# Read addresses
-# 
-# W103.02		Main Vacuum On
-# W103.03		PPS Key inplaace
-# W103.04		Guide Vacuum Interlock Made
-# W104			Day and hour (BCD Format)
-# W105			Minutes and Seconds (BCD Format)
-# 
-# 
-# Write address:
-# 
-# W103.00		Start Main Vacuum (self re-setting bit)
-# W103.01		Stop Main Vacuum (self re-setting bit)
-# 
 
-file "$(TOP)/FINS-IOC-01App/Db/zoom-vacuum.template" {
-	{ P=\$(P), Q=\$(Q) }
+
+file "$(TOP)/FINS-IOC-01App/Db/zoom-vacuum-base.template" {
+	pattern{ P, Q, RECSIM, DISABLE }
+	{ "\$(P)", "\$(Q)", "\$(RECSIM)", "\$(DISABLE)" }
 }
+
+file "$(TOP)/FINS-IOC-01App/Db/press-main.template" {
+	pattern{ P, Q, PORT, NAME, GAUGE, ADDRP, ADDREXP, PVALIAS}
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "1", "501", "502", "GAUGE1" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "2", "503", "504", "GAUGE2" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "3", "505", "506", "GAUGE3" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "4", "507", "508", "GAUGE4" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "5", "509", "510", "GAUGE5" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "6", "511", "512", "GAUGE6" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "7", "513", "514", "GAUGE7" }
+	{ "\$(P)", "\$(Q)", "PLC", "GAUGE", "8", "515", "516", "GAUGE8" }
+}
+
+
+file "$(TOP)/FINS-IOC-01App/Db/address-read.template" {
+	pattern{ P, Q, PORT, NAME, DESC, ADDR}
+	{ "\$(P)", "\$(Q)", "PLC", "ADDR:517", "Read PLC address 517", "517" }
+	{ "\$(P)", "\$(Q)", "PLC", "ADDR:518", "Read PLC address 518", "518" }
+	{ "\$(P)", "\$(Q)", "PLC", "ADDR:519", "Read PLC address 519", "519" }
+	{ "\$(P)", "\$(Q)", "PLC", "ADDR:520", "Read PLC address 520", "520" }
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/read-bits.template" {
+	pattern{ P, Q, READPV, NAME, ZNAM, ONAM, DESC }
+
+	{ "\$(P)", "\$(Q)", "ADDR:517.B0", "DOS:ERROR", "OK", "ERROR", "Detector overcount shutter error"}
+	{ "\$(P)", "\$(Q)", "ADDR:517.B1", "DOS", "CLOSED", "OPEN", "Detector overcount shutter"}
+	{ "\$(P)", "\$(Q)", "ADDR:517.B2", "DAE", "NO OVERCOUNT", "OVERCOUNT", "Data acquisition electronics" }
+	{ "\$(P)", "\$(Q)", "ADDR:517.B3", "MONITOR:2:ERROR", "OK", "ERROR", "Monitor 2 error"}
+	{ "\$(P)", "\$(Q)", "ADDR:517.B4", "MONITOR:2", "EXTRACTED", "INSERTED", "Monitor 2 status"}
+	{ "\$(P)", "\$(Q)", "ADDR:517.B5", "MONITOR:4:ERROR", "OK", "ERROR", "Monitor 4 error"}
+	{ "\$(P)", "\$(Q)", "ADDR:517.B6", "MONITOR:4", "EXTRACTED", "INSERTED", "Monitor 4 status"}
+	{ "\$(P)", "\$(Q)", "ADDR:517.B7", "GUIDE_VAC_OK", "NO", "OK", "Guide vacuum is OK" }
+	{ "\$(P)", "\$(Q)", "ADDR:517.B8", "GRP:ERROR", "NONE", "ERROR", "Guide roughing pump isolation valve" }
+	{ "\$(P)", "\$(Q)", "ADDR:517.B9", "GRP", "CLOSED", "OPEN", "Guide roughing pump isolation valve" }
+	{ "\$(P)", "\$(Q)", "ADDR:517.BA", "SNOUT:BYPASS:ERROR", "NONE", "ERROR", "Snout bypass valve" }
+	{ "\$(P)", "\$(Q)", "ADDR:517.BB", "SNOUT:BYPASS", "CLOSED", "OPEN", "Snout bypass valve"}
+	{ "\$(P)", "\$(Q)", "ADDR:517.BC", "SNOUT:LINE:ERROR", "NONE", "ERROR", "Snout line valve" }
+	{ "\$(P)", "\$(Q)", "ADDR:517.BD", "SNOUT:LINE", "CLOSED", "OPEN", "Snout line valve" }
+	{ "\$(P)", "\$(Q)", "ADDR:517.BE", "SNOUT:VENT:ERROR", "NONE", "ERROR", "Snout vent valve" }
+	{ "\$(P)", "\$(Q)", "ADDR:517.BF", "SNOUT:VENT", "CLOSED", "OPEN", "Snout vent valve" }
+
+	{ "\$(P)", "\$(Q)", "ADDR:518.B2", "DRYAIR:1:ERROR", "NONE", "ERROR", "Tank dry air admittance valve 1 error" }
+	{ "\$(P)", "\$(Q)", "ADDR:518.B3", "DRYAIR:1", "CLOSED", "OPEN", "Tank dry air admittance valve 1" }
+	{ "\$(P)", "\$(Q)", "ADDR:518.B4", "DRYAIR:2:ERROR", "NONE", "ERROR", "Tank dry air admittance valve 2"}
+	{ "\$(P)", "\$(Q)", "ADDR:518.B5", "DRYAIR:2", "CLOSED", "OPEN", "Tank dry air admittance valve 2"}
+	{ "\$(P)", "\$(Q)", "ADDR:518.B6", "VENT:ERROR", "NONE", "ERROR", "Tank vent valve error"}
+	{ "\$(P)", "\$(Q)", "ADDR:518.B7", "VENT", "CLOSED", "OPEN", "Tank vent valve"}
+	{ "\$(P)", "\$(Q)", "ADDR:518.B8", "PUMP:1A:ERROR", "NONE", "ERROR", "Tank pump 1 isolation valve"}
+	{ "\$(P)", "\$(Q)", "ADDR:518.B9", "PUMP:1A", "CLOSED", "OPEN", "Tank pump 1 isolation valve"}
+	{ "\$(P)", "\$(Q)", "ADDR:518.BA", "PUMP:1A:RUNNING", "OFF", "RUNNING", "Pump 1a running" }
+	{ "\$(P)", "\$(Q)", "ADDR:518.BB", "PUMP:1A:WARNING", "NONE", "WARNING", "Pump 1a warning" }
+	{ "\$(P)", "\$(Q)", "ADDR:518.BC", "PUMP:1A:FAULT", "NONE", "FAULT", "Pump 1a fault" }
+	{ "\$(P)", "\$(Q)", "ADDR:518.BD", "PUMP:1A:OVERLOAD", "NONE", "OVERLOAD", "Pump 1a tripped/overloaded" }
+	{ "\$(P)", "\$(Q)", "ADDR:518.BE", "PUMP:1B:RUNNING", "OFF", "RUNNING", "Pump 1b running"}
+	{ "\$(P)", "\$(Q)", "ADDR:518.BF", "PUMP:1B:OVERLOAD", "NONE", "OVERLOAD", "Pump 1b tripped/overloaded"}
+
+	{ "\$(P)", "\$(Q)", "ADDR:519.B0", "PUMP:2:ERROR", "NONE", "ERROR", "Tank pump 2 isolation valve error" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.B1", "PUMP:2", "OFF", "ON", "Tank pump 2 isolation valve" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.B2", "PUMP:2:RUNNING", "OFF", "RUNNING", "Pump 2 running" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.B3", "PUMP:2:WARNING", "NONE", "WARNING", "Pump 2 warning" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.B4", "PUMP:2:FAULT", "NONE", "FAULT", "Pump 2 fault" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.B5", "PUMP:2:OVERLOAD", "NONE", "OVERLOAD", "Pump 2 tripped/overloaded" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.B6", "EMSTOP", "FALSE", "TRUE", "Emergency stop pressed" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.B7", "PUMP_MCB", "FALSE", "TRUE", "Any MCB tripped" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.B8", "COMP_AIR", "LOW", "OK", "Compressed air" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.B9", "DRY_AIR", "LOW", "OK", "Dry air for tank vent" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.BA", "VGAUGE:1", "FALSE", "TRUE", "Tank setpoint reached"}
+	{ "\$(P)", "\$(Q)", "ADDR:519.BB", "VGAUGE:2", "FALSE", "TRUE", "Tank pipework setpoint reached" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.BC", "VGAUGE:3", "FALSE", "TRUE", "Pump set 1 setpoint reached" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.BD", "VGAUGE:4", "FALSE", "TRUE", "Pump set 2 setpoint reached" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.BE", "VGAUGE:5", "FALSE", "TRUE", "Snout setpoint reached" }
+	{ "\$(P)", "\$(Q)", "ADDR:519.BF", "VGAUGE:6", "FALSE", "TRUE", "Guide setpoint reached" }
+
+	{ "\$(P)", "\$(Q)", "ADDR:520.B0", "VAC_SWITCH", "VACUUM", "NO VACCUM", "Vacuum switch" }
+	{ "\$(P)", "\$(Q)", "ADDR:520.B1", "GENERAL_ALARM", "OK", "ALARM", "Overload/tripped/EMSTOP/air" }
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/zoom-vacuum-commands.template" {
+	pattern{ P, Q, NAME, ZPV, OPV, ZSP, OSP, ZADDR, OADDR, ZDESC, ODESC }
+	{ "\$(P)", "\$(Q)", "DOS", "CLOSE", "OPEN", "CLOSED", "OPEN", "552", "551", "Close the detector overcount shutter", "Open the detector overcount shutter"}
+	{ "\$(P)", "\$(Q)", "MONITOR:2", "EXTRACT", "INSERT", "EXTRACTED", "INSERTED", "554", "553", "Extract monitor 2", "Insert monitor 2"}
+	{ "\$(P)", "\$(Q)", "MONITOR:4", "EXTRACT", "INSERT", "EXTRACTED", "INSERTED", "556", "555", "Extract monitor 4", "Insert monitor 4"}
+}
+
