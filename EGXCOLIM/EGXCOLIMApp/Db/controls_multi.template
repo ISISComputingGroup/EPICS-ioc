@@ -5,6 +5,9 @@ record(ao, "$(P)$(DIRECTION_UPPER):$(AXIS):SP")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn(lvfp,0,0)$(DIRECTION_LOWER)_$(AXIS)")
     field(PREC, "3")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(DIRECTION_UPPER):$(AXIS):SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 # Read LabVIEW control/indicator "$(DIRECTION_LOWER) $(AXIS) Ind" on "C:/LabVIEW Modules/Drivers/Motion Control/ENGINX Collimators/ENGINX Collimators.llb/ENGINX Collimators - Front Panel 1.vi"
@@ -15,7 +18,18 @@ record(ai, "$(P)$(DIRECTION_UPPER):$(AXIS)")
     field(INP,  "@asyn(lvfp,0,0)$(DIRECTION_LOWER)_$(AXIS)_Ind")
     field(PREC, "3")
     field(SCAN, ".1 second")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(DIRECTION_UPPER):$(AXIS)")
+    field(SDIS, "$(P)DISABLE")
 }
+
+record(ao, "$(P)SIM:$(DIRECTION_UPPER):$(AXIS):SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:$(DIRECTION_UPPER):$(AXIS):SP","$(P)SIM:$(DIRECTION_UPPER):$(AXIS)")
 
 # Write to LabVIEW control "Define $(DIRECTION_LOWER) $(AXIS)" on "C:/LabVIEW Modules/Drivers/Motion Control/ENGINX Collimators/ENGINX Collimators.llb/ENGINX Collimators - Front Panel 1.vi"
 record(bo, "$(P)$(DIRECTION_UPPER):$(AXIS):DEFINE")
