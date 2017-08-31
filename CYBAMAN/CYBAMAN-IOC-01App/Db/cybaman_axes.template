@@ -1,0 +1,112 @@
+record(ai, "$(P)$(AXIS):RAW")
+{
+	field(DESC, "RAW value of $(AXIS)")
+	field(DTYP, "stream")
+	field(INP, "@devcybaman.proto get$(AXIS) $(PORT)")
+	field(SCAN, "1 second")
+	field(FLNK, "$(P)$(AXIS):CALC")
+}
+
+record(calcout, "$(P)$(AXIS):CALC")
+{
+	field(INPA, "$(P)$(AXIS):RAW")
+	field(CALC, "A/$(SCALE)")
+	
+	field(OUT, "$(P)$(AXIS) PP")
+	field(OOPT, "Every Time")
+}
+
+record(ai, "$(P)$(AXIS)")
+{
+	field(DESC, "Value of $(AXIS)")
+	field(PREC, "3")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(AXIS)")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "degree")
+}
+
+record(seq, "$(P)$(AXIS):HOME")
+{
+	field(DESC, "Home axis $(AXIS)")
+	field(LNK1, "$(P)$(AXIS):HOME:_NONZERO_IF_NOT_DELAY PP")
+	field(LNK2, "$(P)$(AXIS):HOME:_NONZERO_IF_MUST_DELAY PP")
+	field(SELM, "All")
+	info(INTEREST, "MEDIUM")
+}
+
+record(calcout, "$(P)$(AXIS):HOME:_NONZERO_IF_NOT_DELAY")
+{
+	field(INPA, "$(P)$(AXIS)")
+	field(CALC, "A<-150?0:1")
+	field(OUT, "$(P)$(AXIS):HOME:_RAW PP")
+	field(OOPT, "When Non-zero")
+}
+
+record(calcout, "$(P)$(AXIS):HOME:_NONZERO_IF_MUST_DELAY")
+{
+	field(INPA, "$(P)$(AXIS)")
+	field(CALC, "A<-150?1:0")
+	field(OUT, "$(P)$(AXIS):HOME:_IF_MUST_DELAY PP")
+	field(OOPT, "When Non-zero")
+}
+
+record(seq, "$(P)$(AXIS):HOME:_IF_MUST_DELAY")
+{
+	field(DO1, "-150")
+	field(LNK1, "$(P)$(AXIS):SP PP")
+	field(DLY2, "2")
+	field(LNK2, "$(P)$(AXIS):HOME:_RAW PP")
+	field(SELM, "All")
+}
+
+record(bo, "$(P)$(AXIS):HOME:_RAW")
+{
+	field(DTYP, "stream")
+	field(OUT, "@devcybaman.proto home$(AXIS) $(PORT)")
+}
+
+record(ao, "$(P)$(AXIS):SP")
+{
+	field(PREC, "3")
+	field(FLNK, "$(P)$(AXIS):_CALC_TM_AND_SET")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(AXIS):SP")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "degree")
+}
+
+# SP macros mean that calculating axis position minus itself (i.e. zero) for other axes
+record(calc, "$(P)$(AXIS):_CALC_TM_AND_SET")
+{
+	field(INPA, "$(P)$(AXIS):SP")
+	field(INPB, "$(P)$(AXIS)")
+	field(CALC, "MAX(1000*CEIL(ABS(A-B)/5.0),4000)")
+	field(FLNK, "$(P)$(AXIS):SP:RAW")
+}
+
+record(calcout, "$(P)$(AXIS):SP:RAW")
+{
+	# Need the SP_IF_* macros because we must send all the setpoints simultaneously to the device
+	# This is achieved by sending the setpoint for the current axis and the current value for the other axes
+	field(INPA, "$(P)A$(SP_IF_A)")
+	field(INPB, "$(P)B$(SP_IF_B)")
+	field(INPC, "$(P)C$(SP_IF_C)")
+	field(INPD, "$(P)$(AXIS):_CALC_TM_AND_SET")
+	field(CALC, "0")
+	field(DTYP, "stream")
+	field(OUT, "@devcybaman.proto sendValues $(PORT)")
+	field(OOPT, "Every Time")
+}
+
+## Simulation records
+
+record(ao, "$(P)SIM:$(AXIS):SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:$(AXIS):SP","$(P)SIM:$(AXIS)")
