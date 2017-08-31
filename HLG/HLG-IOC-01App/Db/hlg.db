@@ -17,4 +17,5 @@ record(ai, "$(P)LEVEL")
     field(PREC, 2)
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+    info(alarm, "HLG")
 }
