@@ -39,7 +39,7 @@
       </param>
       <param name="North_X" type="float64">
         <read method="GCV" target="North X"/>
-        <set method="SCV" extint="false" target="North X"/>
+        <set method="SCV" extint="false" target="North X" post_button="Set North X" post_button_wait="true" />
       </param>
       <param name="North_X_Ind" type="float64">
         <read method="GCV" target="North X Ind"/>
@@ -75,7 +75,7 @@
       </param>
       <param name="South_X" type="float64">
         <read method="GCV" target="South X"/>
-        <set method="SCV" extint="false" target="South X"/>
+        <set method="SCV" extint="false" target="South X" post_button="Set South X" post_button_wait="true" />
       </param>
       <param name="South_X_Ind" type="float64">
         <read method="GCV" target="South X Ind"/>
