@@ -157,32 +157,58 @@ record(mbbi, "$(P)ERROR")
 	
 	field(ZRVL, "0")
 	field(ZRST, "No error")
+	
 	field(ONVL, "1")
 	field(ONST, "INVALID")
+	field(ONSV, "MAJOR")
+	
 	field(TWVL, "2")
 	field(TWST, "Samp vol: leak detected")
+	field(TWSV, "MAJOR")
+	
 	field(THVL, "3")
 	field(THST, "Samp vol: no vacuum")
+	field(THSV, "MAJOR")
+	
 	field(FRVL, "4")
 	field(FRST, "Samp vol: pump timeout")
+	field(FRSV, "MAJOR")
+	
 	field(FVVL, "5")
 	field(FVST, "Buff vol: did not fill")
+	field(FVSV, "MAJOR")
+	
 	field(SXVL, "6")
 	field(SXST, "Samp vol: fill iterations")
+	field(SXSV, "MAJOR")
+	
 	field(SVVL, "7")
 	field(SVST, "Samp vol: fill timeout")
+	field(SVSV, "MAJOR")
+	
 	field(EIVL, "8")
 	field(EIST, "Buff or samp vol leak")
+	field(EISV, "MAJOR")
+	
 	field(NIVL, "9")
 	field(NIST, "Shot didn't raise press.")
+	field(NISV, "MAJOR")
+	
 	field(TEVL, "10")
 	field(TEST, "Manual stop")
+	field(TESV, "MAJOR")
+	
 	field(ELVL, "11")
 	field(ELST, "Vacuum tank interlock")
+	field(ELSV, "MAJOR")
+	
 	field(TVVL, "12")
 	field(TVST, "Samp vol: leak detected")
+	field(TVSV, "MAJOR")
+	
 	field(TTVL, "13")
 	field(TTST, "Sensor broken/disconnect")
+	field(TTSV, "MAJOR")
 
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
@@ -192,7 +218,8 @@ record(ai, "$(P)PRESSURE:BUFFER:HIGH")
 {
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
-	field(DESC, "Non-zero if buffer pressure is too high")
+	field(DESC, "Zero if buffer pressure is too high")
+	field(LOW, "0.1")
 	field(EGU, "")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
@@ -203,6 +230,7 @@ record(ai, "$(P)PRESSURE:HIGH")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
 	field(DESC, "Non-zero if pressure is too high")
+	field(HIGH, "0.1")
 	field(EGU, "")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
@@ -213,6 +241,7 @@ record(ai, "$(P)PRESSURE:LOW")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
 	field(DESC, "Non-zero if pressure is too low")
+	field(HIGH, "0.1")
 	field(EGU, "")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
@@ -223,17 +252,19 @@ record(ai, "$(P)PRESSURE:RAW")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
 	field(DESC, "Device pressure")
-	# field(FLNK, "$(P)PRESSURE")
 }
 
 record(calc, "$(P)PRESSURE")
 {
 	field(ASG, "READONLY")
-	field(INPA, "$(P)PRESSURE:RAW CP")
+	field(INPA, "$(P)PRESSURE:RAW CP MS")
 	# Default to no calibration if macros not set.
-	field(CALC, "A*$(CALIBRATION_A=1)+$(CALIBRATION_B=0)")
+	field(CALC, "A*$(CALIBRATION_A)+$(CALIBRATION_B)")
 	field(DESC, "Device pressure")
 	field(EGU, "mbar")
+	
+	field(LOW, "0")
+	field(HIGH, "350")
 	
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
@@ -246,7 +277,7 @@ record(scalcout, "$(P)PRESSURE:GUI")
 	# This is for use on the OPI, which looks at the OSV field.
     field(ASG, "READONLY")
     field(DESC, "GUI pressure reading")
-    field(INPA, "$(P)PRESSURE CP")
+    field(INPA, "$(P)PRESSURE CP MS")
     field(CALC, "A>350?'> 350 mbar':PRINTF('%.2f mbar',A)")
     field(EGU, "")
 }
