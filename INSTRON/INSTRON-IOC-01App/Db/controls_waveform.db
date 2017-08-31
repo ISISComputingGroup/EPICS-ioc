@@ -150,10 +150,12 @@ record(seq, "$(P)WAVE:START:_SEQ")
     # Do the actual start
     field(DO7, "1")
     field(LNK7, "$(P)WAVE:START:RAW.PROC")
+	field(DLY7, "1")
     
     # Finish
     field(DO8, "0")
     field(LNK8, "$(P)WAVE:START")
+	field(DLY8, "1")
     
     field(SELM, "All") 
 }
