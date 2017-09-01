@@ -8,11 +8,20 @@ epicsEnvSet "RAMP_PAT" ".*"
 
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
-asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
-asynSetOption("L0", -1, "bits", "$(BITS=7)")
-asynSetOption("L0", -1, "parity", "$(PARITY=even)")
-asynSetOption("L0", -1, "stop", "$(STOP=1)")
+# For dev sim devices
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
+
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=7)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=even)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
+
+asynSetTraceMask("L0",-1,0x9) 
+asynSetTraceIOMask("L0",-1,0x2)
+
+asynOctetSetInputEos( "L0", -1, "\r\n")
+asynOctetSetOutputEos("L0", -1, "\r\n")
 
 < $(IOCSTARTUP)/dbload.cmd
 
