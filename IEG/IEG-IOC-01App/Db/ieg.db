@@ -278,7 +278,7 @@ record(ai, "$(P)PRESSURE")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
-    
+    info(alarm, "IEG")
 }
 
 record(scalcout, "$(P)PRESSURE:GUI")
