@@ -114,6 +114,7 @@ record(ao, "$(P)RATE:SP")
    field(DTYP, "asynFloat64")
    field(OUT, "@asyn($(READ),0,1)RATE")
    field(EGU, "K/min")
+   info(INTEREST, "MEDIUM")
 }
 
 record(ai, "$(P)RATE")
@@ -123,6 +124,7 @@ record(ai, "$(P)RATE")
    field(INP, "@asyn($(READ),0,1)RATE")
    field(EGU, "K/min")
    field(SCAN, "I/O Intr")
+   info(INTEREST, "MEDIUM")
 }
 
 record(bi, "$(P)RAMPING")
