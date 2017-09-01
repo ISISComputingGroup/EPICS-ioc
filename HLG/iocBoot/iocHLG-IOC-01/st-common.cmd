@@ -23,7 +23,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/hlg.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
+dbLoadRecords("db/hlg.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0), HIHI_LEVEL_ALARM=$(HIHI_LEVEL_ALARM), HIGH_LEVEL_ALARM=$(HIGH_LEVEL_ALARM), LOW_LEVEL_ALARM=$(LOW_LEVEL_ALARM), LOLO_LEVEL_ALARM=$(LOLO_LEVEL_ALARM)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

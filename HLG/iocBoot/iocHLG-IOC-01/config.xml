@@ -9,6 +9,11 @@
     <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." />
     <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." />
     <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." />
+    
+    <macro name="HIHI_LEVEL_ALARM" pattern="^[-+]?[0-9]*\.?[0-9]+$" description="Level above which a major alarm should be triggered." />
+    <macro name="HIGH_LEVEL_ALARM" pattern="^[-+]?[0-9]*\.?[0-9]+$" description="Level above which a minor alarm should be triggered." />
+    <macro name="LOW_LEVEL_ALARM" pattern="^[-+]?[0-9]*\.?[0-9]+$" description="Level below which a minor alarm should be triggered." />
+    <macro name="LOLO_LEVEL_ALARM" pattern="^[-+]?[0-9]*\.?[0-9]+$" description="Level below which a major alarm should be triggered." />
   </macros>
  </config_part>
 </ioc_config>
