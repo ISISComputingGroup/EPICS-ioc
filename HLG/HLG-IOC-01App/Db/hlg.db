@@ -1,0 +1,66 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+#
+# Main database file
+#
+# Macros:
+#    P - prefix for ioc PVs
+#    PORT - name of the asyn stream port to use
+#    RECSIM - rec sim mode
+#    DISABLE - disable communications
+#    HIHI_LEVEL_ALARM - level above which a major alarm should be triggered
+#    HIGH_LEVEL_ALARM - level above which a minor alarm should be triggered
+#    LOW_LEVEL_ALARM - level below which a minor alarm should be triggered
+#    LOLO_LEVEL_ALARM - level below which a major alarm should be triggered
+
+record(ai, "$(P)LEVEL")
+{
+	field(DESC, "Helium level on probe A")
+    field(EGU, "mm")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devhlg.proto getLevel $(PORT)")
+    field(PREC, 2)
+    
+    field(HIHI, "$(HIHI_LEVEL_ALARM)")
+    field(HHSV, "MAJOR")
+    field(HIGH, "$(HIGH_LEVEL_ALARM)")
+    field(HSV, "MINOR")
+    field(LOW, "$(LOW_LEVEL_ALARM)")
+    field(LSV, "MINOR")
+    field(LOLO, "$(LOLO_LEVEL_ALARM)")
+    field(LLSV, "MAJOR")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    info(alarm, "HLG")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:LEVEL")
+    field(SDIS, "$(P)DISABLE")
+}
+
+### SIMULATION RECORDS ###
+
+record(ai, "$(P)SIM:LEVEL")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
