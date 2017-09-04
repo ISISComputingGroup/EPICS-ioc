@@ -85,7 +85,7 @@ record(seq, "$(P)STATUS:_FANOUT")
     field(LNK2, "$(P)MODE PP")
 
     field(DOL3, "$(P)STATUS:_RAW.C")
-    field(LNK3, "$(P)VALVESTATE PP")
+    field(LNK3, "$(P)VALVE:STAT PP")
 
     field(DOL4, "$(P)STATUS:_RAW.D")
     field(LNK4, "$(P)ERROR PP")
@@ -137,7 +137,7 @@ record(mbbi, "$(P)MODE")
     info(archive, "VAL")
 }
 
-record(mbbiDirect, "$(P)VALVESTATE")
+record(mbbiDirect, "$(P)VALVE:STAT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
