@@ -262,7 +262,7 @@ record(mbbo, "$(P)WAVE:TYPE:SP")
 {
     field(DESC, "Set the wave type of the wave generator")
     field(DTYP, "stream")
-    field(OUT,  "@devInstron.proto setWaveformType($(P)CHANNEL:SP) $(PORT)")
+    field(OUT,  "@devInstron.proto setWaveformType($(P)CHANNEL) $(PORT)")
     
     field(ZRST, "Sine")    
     field(ONST, "Triangle")       
@@ -338,7 +338,7 @@ record(ao, "$(P)WAVE:AMP:SP")
 }
 
 record(calcout, "$(P)WAVE:AMP:_CALC") {
-    field(INPA, "$(P)CHANNEL:SP.RVAL")
+    field(INPA, "$(P)CHANNEL.RVAL")
     field(INPB, "$(P)WAVE:AMP:SP")
     field(INPC, "$(P)POS:SCALE CA")
     field(INPD, "$(P)STRESS:SCALE CA")
@@ -353,7 +353,7 @@ record(ao, "$(P)WAVE:AMP:SP:_RAW")
 {
     field(DESC, "Set the amp of the wave generator")
     field(DTYP, "stream")
-    field(OUT,  "@devInstron.proto setWaveformAmplitude($(P)CHANNEL:SP) $(PORT)")
+    field(OUT,  "@devInstron.proto setWaveformAmplitude($(P)CHANNEL) $(PORT)")
     field(PREC, "10")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAVE:AMP:SP:_RAW")
@@ -363,7 +363,7 @@ record(ao, "$(P)WAVE:AMP:SP:_RAW")
 record(scalcout, "$(P)WAVE:AMP:_CALC_UNITS")
 {
     field(DESC, "Calculate units of the current channel")
-    field(INPA, "$(P)CHANNEL:SP.RVAL")
+    field(INPA, "$(P)CHANNEL.RVAL")
     field(INAA, "$(P)POS.EGU CP")
     field(INBB, "$(P)STRESS.EGU CP")
     field(INCC, "$(P)STRAIN.EGU CP")
@@ -410,7 +410,7 @@ record(ai, "$(P)WAVE:AMP")
 }
 
 record(calcout, "$(P)WAVE:AMP:SP:RBV:_CALC") {
-    field(INPA, "$(P)CHANNEL:SP.RVAL")
+    field(INPA, "$(P)CHANNEL.RVAL")
     field(INPB, "$(P)WAVE:AMP")
     field(INPC, "$(P)POS:SCALE CA")
     field(INPD, "$(P)STRESS:SCALE CA")
@@ -432,7 +432,7 @@ record(ao, "$(P)WAVE:FREQ:SP")
 {
     field(DESC, "Set the wave generator freq")
     field(DTYP, "stream")
-    field(OUT,  "@devInstron.proto setWaveformFrequency($(P)CHANNEL:SP) $(PORT)")
+    field(OUT,  "@devInstron.proto setWaveformFrequency($(P)CHANNEL) $(PORT)")
     field(PREC, "3")
     field(EGU, "Hz")
     field(SIML, "$(P)SIM")
