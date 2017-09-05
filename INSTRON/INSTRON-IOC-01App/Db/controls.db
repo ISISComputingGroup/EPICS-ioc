@@ -18,29 +18,45 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-record(mbbi, "$(P)CHANNEL")
+record(longin, "$(P)CHANNEL:RAW")
 {
-    field(DESC, "Current control channel")
     field(DTYP, "stream")
     field(INP,  "@devInstron.proto getCurrentControlChannel $(PORT)")
     field(SCAN, "Passive")
-    
-    field(ZRVL, 1)
-    field(ZRST, "Position")    
-    field(ONVL, 2)
-    field(ONST, "Stress")       
-    field(TWVL, 3)
-    field(TWST, "Strain")
+}
+
+record(mbbi, "$(P)CHANNEL")
+{
+    field(INP,  "$(P)CHANNEL:RAW CP MS")
+	field(DTYP, "Raw Soft Channel")
+	
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
+	field(ONST, "Position")
+	field(TWST, "Stress")
+	field(THST, "Strain")
     
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CHANNEL")
     field(SDIS, "$(P)DISABLE")
-    
-    field(FLNK, "$(P)CHANNEL:_UPDATE_SP")
+}
+
+record(mbbi, "$(P)CHANNEL:GUI")
+{
+    field(DESC, "Current control channel")
+    field(INP, "$(P)CHANNEL CP MS")
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
+	field(ONST, "Position")
+	field(TWST, "Stress")
+	field(THST, "Strain")
 	
-	field(VAL, "1")
-	field(PINI, "YES")
-    
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CHANNEL:GUI")
+    field(SDIS, "$(P)DISABLE")
+	    
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -58,20 +74,12 @@ record(mbbi, "$(P)_CHANNELSLIST_CLEAN")
     field(TWST, "Strain")
 }
 
-record(seq, "$(P)CHANNEL:_UPDATE_SP")
-{
-    field(DOL1, "$(P)CHANNEL")
-    # Don't process the record, just update it's value.
-    field(LNK1, "$(P)CHANNEL:SP")
-	
-    field(SELM, "All")
-}
-
 record(mbbo, "$(P)CHANNEL:SP")
 {
     field(DESC, "Control channel setpoint")
     field(DTYP, "stream")
     
+	# Have to start from ZRVL so that dropdown displays correctly in CSS
     field(ZRVL, 1)
     field(ZRST, "Position")
     field(ONVL, 2)
@@ -377,7 +385,7 @@ record(seq, "$(P)READ_SLOW")
     
     field(LNK2, "$(P)MOVE PP")
     field(LNK3, "$(P)STAT:FRAME PP")
-    field(LNK4, "$(P)CHANNEL PP")
+    field(LNK4, "$(P)CHANNEL:RAW PP")
 
     field(LNK5, "$(P)CONTROLS:SPECIFIC:READALL PP")
 	field(LNK6, "$(P)WAVE:READALL PP")
@@ -428,7 +436,6 @@ record(mbbo, "$(P)READ_VAR:SCAN:SP")
     field(THVL, "6")
     field(FRVL, "7")
     field(FVVL, "8")
-    field(SXVL, "9")
     
     field(ZRST, "10 second")
     field(ONST, "5 second")
@@ -436,7 +443,7 @@ record(mbbo, "$(P)READ_VAR:SCAN:SP")
     field(THST, "1 second")
     field(FRST, ".5 second")
     field(FVST, ".2 second")
-    field(SXST, ".1 second")
+    # Don't use a .1 second option, this is too fast for the rig.
     
     field(VAL, "3")
     field(PINI, "YES")
@@ -589,6 +596,7 @@ record(mbbi, "$(P)SIM:CHANNEL")
 }
 
 alias("$(P)SIM:CHANNEL","$(P)SIM:CHANNEL:SP")
+alias("$(P)SIM:CHANNEL","$(P)SIM:CHANNEL:GUI")
 
 record(mbbo, "$(P)SIM:READ_VAR:SCAN:SP")
 {
@@ -623,3 +631,10 @@ record(mbbiDirect, "$(P)SIM:STAT:FRAME")
     field(DTYP, "Soft Channel")
 }
 
+record(bi, "$(P)WATCHDOG:_DISABLE")
+{
+    field(DESC, "Disables the watchdog")
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto disableWatchdog $(PORT)")
+    field(SCAN, "1 second")
+}

@@ -13,7 +13,7 @@ record(seq, "$(P)$(CHAN):READALL")
 {
     field(DESC, "Read data from $(CHAN) channel")
     
-    field(LNK1, "$(P)$(CHAN):STEP:TIME PP")
+    field(LNK1, "$(P)$(CHAN):STEP:TIME:RAW PP")
     field(LNK2, "$(P)$(CHAN):RAMP:WFTYP PP")
     field(LNK3, "$(P)$(CHAN):RAW:SP:RBV PP")
     field(LNK4, "$(P)$(CHAN):RAW PP")
@@ -34,19 +34,24 @@ record(ao, "$(P)$(CHAN):STEP:TIME:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)$(CHAN):STEP:TIME")
+record(ai, "$(P)$(CHAN):STEP:TIME:RAW")
 {
-    field(DESC, "The step time of the $(CHAN) channel")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getStepTime($(CHAN_NUM)) $(PORT)")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(CHAN):SIM:STEP:TIME:RAW")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)$(CHAN):STEP:TIME")
+{
+    field(DESC, "The step time of the $(CHAN) channel")
+    field(INP, "$(P)$(CHAN):STEP:TIME:RAW CP MS")
     field(PREC, "3")
     field(EGU, "s")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)$(CHAN):SIM:STEP:TIME")
-    field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbo, "$(P)$(CHAN):RAMP:WFTYP:SP")
@@ -282,7 +287,7 @@ record(scalcout, "$(P)$(CHAN):TYPE:_CHANNEL_LABEL")
 record(sseq, "$(P)$(CHAN):TYPE:_UPDATE_LABELS")
 {
     field(DOL1, "$(P)$(CHAN):TYPE:_CHANNEL_LABEL.SVAL")
-    field(LNK1, "$(P)CHANNEL:SP.$(ST_PREFIX)ST ")
+    field(LNK1, "$(P)CHANNEL:SP.$(ST_PREFIX)ST")
 	field(DOL2, "$(P)$(CHAN):TYPE:_CHANNEL_LABEL.SVAL")
     field(LNK2, "$(P)CHANNEL.$(ST_PREFIX)ST")
     field(SELM, "All")
@@ -301,7 +306,7 @@ record(calcout, "$(P)$(CHAN):TYPE:_CHANNEL_ERROR")
 record(seq, "$(P)$(CHAN):TYPE:_UPDATE_ALARMS")
 {
     field(DOL1, "$(P)$(CHAN):TYPE:_CHANNEL_ERROR")
-    field(LNK1, "$(P)CHANNEL:SP.$(ST_PREFIX)SV PP")
+    field(LNK1, "$(P)CHANNEL:SP.$(ST_PREFIX)SV")
 	field(DOL2, "$(P)$(CHAN):TYPE:_CHANNEL_ERROR")
     field(LNK2, "$(P)CHANNEL.$(ST_PREFIX)SV PP")
     field(SELM, "All")
@@ -359,14 +364,14 @@ alias("$(P)$(CHAN):SIM:RAW","$(P)$(CHAN):SIM:RAW:SP")
 
 alias("$(P)$(CHAN):SIM:RAW","$(P)$(CHAN):SIM:RAW:SP:RBV")
 
-record(ai, "$(P)$(CHAN):SIM:STEP:TIME")
+record(ai, "$(P)$(CHAN):SIM:STEP:TIME:RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
     field(VAL, "0")
 }
 
-alias("$(P)$(CHAN):SIM:STEP:TIME","$(P)$(CHAN):SIM:STEP:TIME:SP")
+alias("$(P)$(CHAN):SIM:STEP:TIME:RAW","$(P)$(CHAN):SIM:STEP:TIME:SP")
 
 record(mbbi, "$(P)$(CHAN):SIM:RAMP:WFTYP")
 {
