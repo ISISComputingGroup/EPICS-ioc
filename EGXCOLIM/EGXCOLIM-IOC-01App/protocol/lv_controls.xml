@@ -7,25 +7,6 @@
   <section name="frontpanel">
     <!--TODO: edit path attribute in <vi /> to contain a full absolute path, you can also use any EPICS macro known to the IOC e.g. $(TOP) -->
     <vi path="C:/LabVIEW Modules/Drivers/Motion Control/ENGINX Collimators/ENGINX Collimators.llb/ENGINX Collimators - Front Panel 1.vi">
-      <!--The <param /> maps an asyn driver parameter "name" (referenced in the EPICS .db) to the LabVIEW item "target" -->
-      <!--TODO: set extint="true" for controls that need LabVIEW events triggering when they are written to -->
-      <!--Ignoring LabVIEW control "Error" as it has invalid type "Cluster"-->
-      <param name="Exit" type="boolean">
-        <items>
-          <item name="Exit" value="0"/>
-        </items>
-        <read method="GCV" target="Exit"/>
-        <set method="SCV" extint="false" target="Exit"/>
-      </param>
-      <param name="Activity" type="boolean">
-        <items/>
-        <read method="GCV" target="Activity"/>
-        <set method="SCV" extint="false" target="Activity"/>
-      </param>
-      <param name="Message" type="string">
-        <read method="GCV" target="Message"/>
-        <set method="SCV" extint="false" target="Message"/>
-      </param>
       <param name="Set_North_X" type="boolean">
         <items>
           <item name="Set" value="0"/>
@@ -33,17 +14,12 @@
         <read method="GCV" target="Set North X"/>
         <set method="SCV" extint="false" target="Set North X"/>
       </param>
-      <param name="ENGINX_Collimator_Name" type="string">
-        <read method="GCV" target="ENGINX Collimator Name"/>
-        <set method="SCV" extint="false" target="ENGINX Collimator Name"/>
-      </param>
       <param name="North_X" type="float64">
         <read method="GCV" target="North X"/>
         <set method="SCV" extint="false" target="North X" post_button="Set North X" post_button_wait="true" />
       </param>
       <param name="North_X_Ind" type="float64">
         <read method="GCV" target="North X Ind"/>
-        <set method="SCV" extint="false" target="North X Ind"/>
       </param>
       <param name="Define_North_X" type="boolean">
         <items>
@@ -79,7 +55,6 @@
       </param>
       <param name="South_X_Ind" type="float64">
         <read method="GCV" target="South X Ind"/>
-        <set method="SCV" extint="false" target="South X Ind"/>
       </param>
       <param name="Define_South_X" type="boolean">
         <items>
@@ -102,8 +77,6 @@
         <read method="GCV" target="Stop South X"/>
         <set method="SCV" extint="false" target="Stop South X"/>
       </param>
-      <!--Ignoring LabVIEW control "North X Limit Switches" as it has invalid type "Type Definition"-->
-      <!--Ignoring LabVIEW control "South X Limit Switches" as it has invalid type "Type Definition"-->
       <param name="North_X_Jog" type="float64">
         <read method="GCV" target="North X Jog"/>
         <set method="SCV" extint="false" target="North X Jog"/>
@@ -125,12 +98,10 @@
       <param name="North_X_Lower_Limit" type="boolean">
         <items/>
         <read method="GCV" target="North X Lower Limit"/>
-        <set method="SCV" extint="false" target="North X Lower Limit"/>
       </param>
       <param name="North_X_Upper_Limit" type="boolean">
         <items/>
         <read method="GCV" target="North X Upper Limit"/>
-        <set method="SCV" extint="false" target="North X Upper Limit"/>
       </param>
       <param name="South_X_Jog" type="float64">
         <read method="GCV" target="South X Jog"/>
@@ -153,12 +124,10 @@
       <param name="South_X_Lower_Limit" type="boolean">
         <items/>
         <read method="GCV" target="South X Lower Limit"/>
-        <set method="SCV" extint="false" target="South X Lower Limit"/>
       </param>
       <param name="South_X_Upper_Limit" type="boolean">
         <items/>
         <read method="GCV" target="South X Upper Limit"/>
-        <set method="SCV" extint="false" target="South X Upper Limit"/>
       </param>
     </vi>
   </section>
