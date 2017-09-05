@@ -1,0 +1,12 @@
+file controls_sim_dis.template {
+
+pattern {P, RECSIM, DISABLE}
+{"\$(P)", "\$(RECSIM)", "\$(DISABLE)"}
+}
+
+file controls_multi.template {
+
+pattern {P, DIRECTION_UPPER, DIRECTION_LOWER, AXIS}
+{"\$(P)", "NORTH", "North", "X"}
+{"\$(P)", "SOUTH", "South", "X"}
+}
