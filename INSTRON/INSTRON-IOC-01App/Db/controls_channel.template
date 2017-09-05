@@ -39,6 +39,9 @@ record(ai, "$(P)$(CHAN):STEP:TIME:RAW")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@devInstron.proto getStepTime($(CHAN_NUM)) $(PORT)")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(CHAN):SIM:STEP:TIME:RAW")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)$(CHAN):STEP:TIME")
@@ -49,9 +52,6 @@ record(ai, "$(P)$(CHAN):STEP:TIME")
     field(EGU, "s")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)$(CHAN):SIM:STEP:TIME")
-    field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbo, "$(P)$(CHAN):RAMP:WFTYP:SP")
@@ -364,14 +364,14 @@ alias("$(P)$(CHAN):SIM:RAW","$(P)$(CHAN):SIM:RAW:SP")
 
 alias("$(P)$(CHAN):SIM:RAW","$(P)$(CHAN):SIM:RAW:SP:RBV")
 
-record(ai, "$(P)$(CHAN):SIM:STEP:TIME")
+record(ai, "$(P)$(CHAN):SIM:STEP:TIME:RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
     field(VAL, "0")
 }
 
-alias("$(P)$(CHAN):SIM:STEP:TIME","$(P)$(CHAN):SIM:STEP:TIME:SP")
+alias("$(P)$(CHAN):SIM:STEP:TIME:RAW","$(P)$(CHAN):SIM:STEP:TIME:SP")
 
 record(mbbi, "$(P)$(CHAN):SIM:RAMP:WFTYP")
 {
