@@ -4,11 +4,7 @@
  <ioc_desc>Instron 8800 Stress Rig</ioc_desc>
  <ioc_details>Instron 8800 Stress Rig</ioc_details>
   <macros>  
-   <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
-   <macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 9600." />
-   <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." />
-   <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." />
-   <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." /> 
+   <macro name="GPIBSTR" pattern="^.*$" description="GPIB connection string, defaults to GPIB0::3::INSTR" />
   </macros>
  </config_part>
 </ioc_config>

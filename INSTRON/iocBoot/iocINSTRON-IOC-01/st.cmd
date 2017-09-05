@@ -32,7 +32,7 @@ $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 ## For real device:
 ## we need to set a 10ms internal read timeout as calls with 0 timeout (such as clearing input buffer)
 ## can cause the GPIB to error  
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","GPIB0::3::INSTR", 0, 0, 1, -1, "", 1)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","$(GPIBSTR=GPIB0::3::INSTR)", 0, 0, 1, -1, "", 1)
 
 # Uncomment the following lines to get some debug output
 #asynSetTraceMask("L0",-1,0x9) 
