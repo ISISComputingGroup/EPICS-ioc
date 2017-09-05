@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application GALIL-IOC-IMAT
+# Build the IOC application HLG-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# GALIL-IOC-IMAT.dbd will be created and installed
+# HLG-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# GALIL-IOC-IMAT.dbd will be made up from these files:
+# HLG-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += devSequencer.dbd
@@ -26,7 +26,10 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
-#$(APPNAME)_DBD += xxx.dbd
+$(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += drvAsynSerialPort.dbd
+$(APPNAME)_DBD += drvAsynIPPort.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -38,9 +41,11 @@ $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
-#$(APPNAME)_LIBS += xxx
+$(APPNAME)_LIBS += stream
+$(APPNAME)_LIBS += pcre
+$(APPNAME)_LIBS += asyn
 
-# GALIL-IOC-IMAT_registerRecordDeviceDriver.cpp derives from GALIL-IOC-IMAT.dbd
+# HLG-IOC-01_registerRecordDeviceDriver.cpp derives from HLG-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
