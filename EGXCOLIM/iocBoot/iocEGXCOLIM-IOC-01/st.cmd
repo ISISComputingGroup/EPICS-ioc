@@ -1,6 +1,6 @@
-#!../../bin/windows-x64/EGXCOLIM
+#!../../bin/windows-x64/EGXCOLIM-IOC-01
 
-## You may have to change EGXCOLIM to something else
+## You may have to change EGXCOLIM-IOC-01 to something else
 ## everywhere it appears in this file
 
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
@@ -11,8 +11,8 @@ errlogInit2(65536, 256)
 cd "${TOP}"
 
 ## Register all support components
-dbLoadDatabase "dbd/EGXCOLIM.dbd"
-EGXCOLIM_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/EGXCOLIM-IOC-01.dbd"
+EGXCOLIM_IOC_01_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd

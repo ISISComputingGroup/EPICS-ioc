@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<testsuite errors="1" failures="0" name="TestPVUnits-20170831140514" tests="10" time="0.022">
+	<testcase classname="TestPVUnits" name="test_desc_length" time="0.001"/>
+	<testcase classname="TestPVUnits" name="test_interest_calc_readonly" time="0.000"/>
+	<testcase classname="TestPVUnits" name="test_interest_descriptions" time="0.000"/>
+	<testcase classname="TestPVUnits" name="test_interest_populated_fields_warning" time="0.015"/>
+	<testcase classname="TestPVUnits" name="test_interest_syntax" time="0.000"/>
+	<testcase classname="TestPVUnits" name="test_log_info_tags" time="0.000"/>
+	<testcase classname="TestPVUnits" name="test_multiple_properties_on_pvs" time="0.000"/>
+	<testcase classname="TestPVUnits" name="test_multiple_pvs_warning" time="0.000"/>
+	<testcase classname="TestPVUnits" name="test_units_valid" time="0.000"/>
+	<testcase classname="TestPVUnits" name="test_interest_units" time="0.006">
+		<error message="Missing units on interesting PVs in project" type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "C:\Instrument\Apps\EPICS\ISIS\DbUnitChecker\master\db_checker.py", line 110, in test_interest_units
+    self.assertEqual(err, 0, msg="Missing units on interesting PVs in project")
+AssertionError: Missing units on interesting PVs in project
+]]>		</error>
+	</testcase>
+	<system-out>
+<![CDATA[WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):DEFINE in .\EGXCOLIMApp\Db\controls_multi.template
+WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):HOME in .\EGXCOLIMApp\Db\controls_multi.template
+WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):STOP in .\EGXCOLIMApp\Db\controls_multi.template
+WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):JOG:BACKWARDS in .\EGXCOLIMApp\Db\controls_multi.template
+WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):JOG:FORWARDS in .\EGXCOLIMApp\Db\controls_multi.template
+WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):LIMIT:LOWER in .\EGXCOLIMApp\Db\controls_multi.template
+WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):LIMIT:UPPER in .\EGXCOLIMApp\Db\controls_multi.template
+ERROR: Missing units on $(P)$(DIRECTION_UPPER):$(AXIS):SP in .\EGXCOLIMApp\Db\controls_multi.template
+ERROR: Missing units on $(P)$(DIRECTION_UPPER):$(AXIS) in .\EGXCOLIMApp\Db\controls_multi.template
+ERROR: Missing units on $(P)$(DIRECTION_UPPER):$(AXIS):JOG:AMOUNT in .\EGXCOLIMApp\Db\controls_multi.template
+Units in project and number of instances: {}
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

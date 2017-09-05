@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<testsuite errors="0" failures="0" name="TestPVUnits-20170831141028" tests="10" time="0.066">
+	<testcase classname="TestPVUnits" name="test_desc_length" time="0.001"/>
+	<testcase classname="TestPVUnits" name="test_interest_calc_readonly" time="0.000"/>
+	<testcase classname="TestPVUnits" name="test_interest_descriptions" time="0.000"/>
+	<testcase classname="TestPVUnits" name="test_interest_populated_fields_warning" time="0.062"/>
+	<testcase classname="TestPVUnits" name="test_interest_syntax" time="0.000"/>
+	<testcase classname="TestPVUnits" name="test_interest_units" time="0.000"/>
+	<testcase classname="TestPVUnits" name="test_log_info_tags" time="0.001"/>
+	<testcase classname="TestPVUnits" name="test_multiple_properties_on_pvs" time="0.000"/>
+	<testcase classname="TestPVUnits" name="test_multiple_pvs_warning" time="0.000"/>
+	<testcase classname="TestPVUnits" name="test_units_valid" time="0.002"/>
+	<system-out>
+<![CDATA[WARNING: Blank fields on $(P)NORTH:X:DEFINE in .\db\controls.db
+WARNING: Blank fields on $(P)NORTH:X:HOME in .\db\controls.db
+WARNING: Blank fields on $(P)NORTH:X:STOP in .\db\controls.db
+WARNING: Blank fields on $(P)NORTH:X:JOG:BACKWARDS in .\db\controls.db
+WARNING: Blank fields on $(P)NORTH:X:JOG:FORWARDS in .\db\controls.db
+WARNING: Blank fields on $(P)NORTH:X:LIMIT:LOWER in .\db\controls.db
+WARNING: Blank fields on $(P)NORTH:X:LIMIT:UPPER in .\db\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:DEFINE in .\db\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:HOME in .\db\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:STOP in .\db\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:JOG:BACKWARDS in .\db\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:JOG:FORWARDS in .\db\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:LIMIT:LOWER in .\db\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:LIMIT:UPPER in .\db\controls.db
+WARNING: Blank fields on $(P)NORTH:X:DEFINE in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)NORTH:X:HOME in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)NORTH:X:STOP in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)NORTH:X:JOG:BACKWARDS in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)NORTH:X:JOG:FORWARDS in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)NORTH:X:LIMIT:LOWER in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)NORTH:X:LIMIT:UPPER in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:DEFINE in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:HOME in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:STOP in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:JOG:BACKWARDS in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:JOG:FORWARDS in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:LIMIT:LOWER in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)SOUTH:X:LIMIT:UPPER in .\EGXCOLIMApp\Db\O.Common\controls.db
+WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):DEFINE in .\EGXCOLIMApp\Db\controls_multi.template
+WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):HOME in .\EGXCOLIMApp\Db\controls_multi.template
+WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):STOP in .\EGXCOLIMApp\Db\controls_multi.template
+WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):JOG:BACKWARDS in .\EGXCOLIMApp\Db\controls_multi.template
+WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):JOG:FORWARDS in .\EGXCOLIMApp\Db\controls_multi.template
+WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):LIMIT:LOWER in .\EGXCOLIMApp\Db\controls_multi.template
+WARNING: Blank fields on $(P)$(DIRECTION_UPPER):$(AXIS):LIMIT:UPPER in .\EGXCOLIMApp\Db\controls_multi.template
+Units in project and number of instances: {'mm': 15}
+]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>
