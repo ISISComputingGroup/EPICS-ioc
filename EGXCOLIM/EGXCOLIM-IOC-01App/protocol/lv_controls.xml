@@ -12,11 +12,11 @@
           <item name="Set" value="0"/>
         </items>
         <read method="GCV" target="Set North X"/>
-        <set method="SCV" extint="false" target="Set North X"/>
+        <set method="SCV" extint="true" target="Set North X"/>
       </param>
       <param name="North_X" type="float64">
         <read method="GCV" target="North X"/>
-        <set method="SCV" extint="false" target="North X" post_button="Set North X" post_button_wait="true" />
+        <set method="SCV" extint="true" target="North X" post_button="Set North X" post_button_wait="true" />
       </param>
       <param name="North_X_Ind" type="float64">
         <read method="GCV" target="North X Ind"/>
@@ -26,32 +26,32 @@
           <item name="Define" value="0"/>
         </items>
         <read method="GCV" target="Define North X"/>
-        <set method="SCV" extint="false" target="Define North X"/>
+        <set method="SCV" extint="true" target="Define North X"/>
       </param>
       <param name="Home_North_X_Motor" type="boolean">
         <items>
           <item name="Home" value="0"/>
         </items>
         <read method="GCV" target="Home North X Motor"/>
-        <set method="SCV" extint="false" target="Home North X Motor"/>
+        <set method="SCV" extint="true" target="Home North X Motor"/>
       </param>
       <param name="Stop_North_X" type="boolean">
         <items>
           <item name="Stop" value="0"/>
         </items>
         <read method="GCV" target="Stop North X"/>
-        <set method="SCV" extint="false" target="Stop North X"/>
+        <set method="SCV" extint="true" target="Stop North X"/>
       </param>
       <param name="Set_South_X" type="boolean">
         <items>
           <item name="Set" value="0"/>
         </items>
         <read method="GCV" target="Set South X"/>
-        <set method="SCV" extint="false" target="Set South X"/>
+        <set method="SCV" extint="true" target="Set South X"/>
       </param>
       <param name="South_X" type="float64">
         <read method="GCV" target="South X"/>
-        <set method="SCV" extint="false" target="South X" post_button="Set South X" post_button_wait="true" />
+        <set method="SCV" extint="true" target="South X" post_button="Set South X" post_button_wait="true" />
       </param>
       <param name="South_X_Ind" type="float64">
         <read method="GCV" target="South X Ind"/>
@@ -61,39 +61,39 @@
           <item name="Define" value="0"/>
         </items>
         <read method="GCV" target="Define South X"/>
-        <set method="SCV" extint="false" target="Define South X"/>
+        <set method="SCV" extint="true" target="Define South X"/>
       </param>
       <param name="Home_South_X_Motor" type="boolean">
         <items>
           <item name="Home" value="0"/>
         </items>
         <read method="GCV" target="Home South X Motor"/>
-        <set method="SCV" extint="false" target="Home South X Motor"/>
+        <set method="SCV" extint="true" target="Home South X Motor"/>
       </param>
       <param name="Stop_South_X" type="boolean">
         <items>
           <item name="Stop" value="0"/>
         </items>
         <read method="GCV" target="Stop South X"/>
-        <set method="SCV" extint="false" target="Stop South X"/>
+        <set method="SCV" extint="true" target="Stop South X"/>
       </param>
       <param name="North_X_Jog" type="float64">
         <read method="GCV" target="North X Jog"/>
-        <set method="SCV" extint="false" target="North X Jog"/>
+        <set method="SCV" extint="true" target="North X Jog"/>
       </param>
       <param name="North_X_Back_Jog" type="boolean">
         <items>
           <item name="&lt;&lt;" value="0"/>
         </items>
         <read method="GCV" target="North X Back Jog"/>
-        <set method="SCV" extint="false" target="North X Back Jog"/>
+        <set method="SCV" extint="true" target="North X Back Jog"/>
       </param>
       <param name="North_X_Forward_Jog" type="boolean">
         <items>
           <item name="&gt;&gt;" value="0"/>
         </items>
         <read method="GCV" target="North X Forward Jog"/>
-        <set method="SCV" extint="false" target="North X Forward Jog"/>
+        <set method="SCV" extint="true" target="North X Forward Jog"/>
       </param>
       <param name="North_X_Lower_Limit" type="boolean">
         <items/>
@@ -105,21 +105,21 @@
       </param>
       <param name="South_X_Jog" type="float64">
         <read method="GCV" target="South X Jog"/>
-        <set method="SCV" extint="false" target="South X Jog"/>
+        <set method="SCV" extint="true" target="South X Jog"/>
       </param>
       <param name="South_X_Back_Jog" type="boolean">
         <items>
           <item name="&lt;&lt;" value="0"/>
         </items>
         <read method="GCV" target="South X Back Jog"/>
-        <set method="SCV" extint="false" target="South X Back Jog"/>
+        <set method="SCV" extint="true" target="South X Back Jog"/>
       </param>
       <param name="South_X_Forward_Jog" type="boolean">
         <items>
           <item name="&gt;&gt;" value="0"/>
         </items>
         <read method="GCV" target="South X Forward Jog"/>
-        <set method="SCV" extint="false" target="South X Forward Jog"/>
+        <set method="SCV" extint="true" target="South X Forward Jog"/>
       </param>
       <param name="South_X_Lower_Limit" type="boolean">
         <items/>
