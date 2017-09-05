@@ -1,0 +1,314 @@
+record(scalcout, "$(P)MANAGERMODE")
+{
+    field(ASG, "READONLY")
+    field(DESC, "Non-zero if manager is required")
+    field(PINI, "YES")
+    field(INPA, "$(PVPREFIX)CS:MANAGER CP")
+    field(BB, "$(ASG)")
+    field(CALC, "A = 0 && BB = 'MANAGER'")
+    field(OOPT, "Every Time")
+}
+
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+    field(PINI, "YES")
+}
+    
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(bo, "$(P)ABORT")
+{
+    field(DESC, "Send kill signal to device")
+    # Streamdevice doesn't seem to like doing an 'in' command without reading any data, so tell 
+    # it to read device ID and send it to $(P)STATUS:_RAW.A as usual.
+    field(OUT, "@devieg.proto abort($(P)STATUS:_RAW) $(PORT)")
+    field(DTYP, "stream")
+}
+
+record(mbbo, "$(P)MODE:SP")
+{
+    field(DESC, "Operating mode setpoint")
+    field(OUT, "@devieg.proto setMode $(PORT)")
+    field(DTYP, "stream")
+    
+    field(ONVL, "1")
+    field(ONST, "Pump, Purge & Fill")
+    field(TWVL, "2")
+    field(TWST, "Pump")
+    field(THVL, "3")
+    field(THST, "Gas Flow")
+    field(FRVL, "4")
+    field(FRST, "Gas - Single Shot")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MODE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, $(P)STATUS:_SCAN)
+{
+    field(INP, "@devieg.proto getStatus($(P)STATUS:_RAW) $(PORT)")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)STATUS:_RAW")
+    field(DTYP, "stream")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SCAN")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(calcout, "$(P)STATUS:_RAW")
+{
+    field(CALC, "0")
+    field(FLNK, "$(P)STATUS:_FANOUT")
+}
+
+record(seq, "$(P)STATUS:_FANOUT")
+{
+    field(DOL1, "$(P)STATUS:_RAW.A")
+    field(LNK1, "$(P)ID PP")
+
+    field(DOL2, "$(P)STATUS:_RAW.B")
+    field(LNK2, "$(P)MODE PP")
+
+    field(DOL3, "$(P)STATUS:_RAW.C")
+    field(LNK3, "$(P)VALVE:STAT PP")
+
+    field(DOL4, "$(P)STATUS:_RAW.D")
+    field(LNK4, "$(P)ERROR PP")
+
+    field(DOL5, "$(P)STATUS:_RAW.E")
+    field(LNK5, "$(P)PRESSURE:BUFFER:HIGH PP")
+    
+    field(DOL6, "$(P)STATUS:_RAW.F")
+    field(LNK6, "$(P)PRESSURE:LOW PP")
+    
+    field(DOL7, "$(P)STATUS:_RAW.G")
+    field(LNK7, "$(P)PRESSURE:HIGH PP")
+    
+    field(DOL8, "$(P)STATUS:_RAW.H")
+    field(LNK8, "$(P)PRESSURE:RAW PP")
+    
+    field(SELM, "All")
+}
+
+record(ai, "$(P)ID")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(DESC, "ID of this IEG")
+}
+
+record(mbbi, "$(P)MODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(DESC, "Operating mode")
+    
+    field(ZRVL, "0")
+    field(ZRST, "Dormant")
+    field(ONVL, "1")
+    field(ONST, "Pump, Purge & Fill")
+    field(TWVL, "2")
+    field(TWST, "Pump")
+    field(THVL, "3")
+    field(THST, "Gas Flow")
+    field(FRVL, "4")
+    field(FRST, "Gas - Single Shot")
+
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MODE")
+    field(SDIS, "$(P)DISABLE")    
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(mbbiDirect, "$(P)VALVE:STAT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(DESC, "Status of the valves")
+    # B0 = Pump valve open
+    # B1 = Buffer valve open
+    # B2 = Gas valve open
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(mbbi, "$(P)ERROR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(DESC, "Error from device")
+    
+    field(ZRVL, "0")
+    field(ZRST, "No error")
+    
+    field(ONVL, "1")
+    field(ONST, "INVALID")
+    field(ONSV, "MAJOR")
+    
+    field(TWVL, "2")
+    field(TWST, "Samp vol: leak detected")
+    field(TWSV, "MAJOR")
+    
+    field(THVL, "3")
+    field(THST, "Samp vol: no vacuum")
+    field(THSV, "MAJOR")
+    
+    field(FRVL, "4")
+    field(FRST, "Samp vol: pump timeout")
+    field(FRSV, "MAJOR")
+    
+    field(FVVL, "5")
+    field(FVST, "Buff vol: did not fill")
+    field(FVSV, "MAJOR")
+    
+    field(SXVL, "6")
+    field(SXST, "Samp vol: fill iterations")
+    field(SXSV, "MAJOR")
+    
+    field(SVVL, "7")
+    field(SVST, "Samp vol: fill timeout")
+    field(SVSV, "MAJOR")
+    
+    field(EIVL, "8")
+    field(EIST, "Buff or samp vol leak")
+    field(EISV, "MAJOR")
+    
+    field(NIVL, "9")
+    field(NIST, "Shot didn't raise press.")
+    field(NISV, "MAJOR")
+    
+    field(TEVL, "10")
+    field(TEST, "Manual stop")
+    field(TESV, "MAJOR")
+    
+    field(ELVL, "11")
+    field(ELST, "Vacuum tank interlock")
+    field(ELSV, "MAJOR")
+    
+    field(TVVL, "12")
+    field(TVST, "Samp vol: leak detected")
+    field(TVSV, "MAJOR")
+    
+    field(TTVL, "13")
+    field(TTST, "Sensor broken/disconnect")
+    field(TTSV, "MAJOR")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)PRESSURE:BUFFER:HIGH")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(DESC, "Zero if buffer pressure is too high")
+    field(ZSV, "MINOR")
+	field(ZNAM, "Out of range")
+	field(ONAM, "In range")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)PRESSURE:HIGH")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(DESC, "Non-zero if pressure is too high")
+	field(OSV, "MINOR")
+	field(ZNAM, "In range")
+	field(ONAM, "Out of range")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)PRESSURE:LOW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(DESC, "Non-zero if pressure is too low")
+	field(OSV, "MINOR")
+	field(ZNAM, "In range")
+	field(ONAM, "Out of range")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)PRESSURE:RAW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(DESC, "Device pressure")
+}
+
+record(calc, "$(P)PRESSURE:CALC")
+{
+    field(ASG, "READONLY")
+    field(INPA, "$(P)PRESSURE:RAW CP MS")
+    # Default to no calibration if macros not set.
+    field(CALC, "A*$(CALIBRATION_A)+$(CALIBRATION_B)")
+}
+
+record(ai, "$(P)PRESSURE")
+{
+    field(DESC, "Device pressure")
+    field(INP, "$(P)PRESSURE:CALC CP MS")
+    field(EGU, "mbar")
+    
+    field(LOW, "-0.1")
+    field(HIGH, "350")
+	field(LSV, "MAJOR")
+	field(HSV, "MAJOR")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    info(alarm, "IEG")
+}
+
+record(scalcout, "$(P)PRESSURE:GUI")
+{
+    # Format the pressure as '> 350' if pressure 
+    # greater than 350 else format to 2 d.p 
+    # This is for use on the OPI, which looks at the OSV field.
+    field(ASG, "READONLY")
+    field(DESC, "GUI pressure reading")
+    field(INPA, "$(P)PRESSURE CP MS")
+    field(CALC, "A>350?'> 350 mbar':PRINTF('%.2f mbar',A)")
+    field(EGU, "")
+}
+
+#
+# Simulation record
+#
+
+record(ao, "$(P)SIM:MODE:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:MODE:SP","$(P)SIM:MODE")
+
+record(ai, "$(P)SIM:SCAN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(VAL, "0")
+    field(PINI, "YES")
+}
