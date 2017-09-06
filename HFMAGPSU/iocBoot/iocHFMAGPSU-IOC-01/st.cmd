@@ -16,4 +16,3 @@ HFMAGPSU_IOC_01_registerRecordDeviceDriver pdbbase
 
 ## calling common command file in ioc 01 boot dir
 < ${TOP}/iocBoot/iocHFMAGPSU-IOC-01/st-common.cmd
-
