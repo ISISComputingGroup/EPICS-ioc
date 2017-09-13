@@ -91,7 +91,7 @@ record(seq, "$(P)PROCALL2")
     field(LNK5, "$(P)ILK:REGSUP")
     field(LNK6, "$(P)ILK:IGBT")
     field(LNK7, "$(P)ILK:OVERC")
-    field(LNK8, "$(P)POWER PP")
+    field(LNK8, "$(P)CALCPOWER.A PP")
     field(LNK9, "$(P)CALCNEUT.A")
     field(LNKA, "$(P)CALCNEUT.B")
     field(FLNK, "$(P)CALCNEUT")
@@ -316,11 +316,18 @@ record(bi, "$(P)ILK:NEUTRAL")
     info(INTEREST, "HIGH")
 }
 
+record(calcout, "$(P)CALCPOWER")
+{
+    field(DESC, "Invert the power bit")
+	field(CALC, "!A")
+	field(OUT, "$(P)POWER PP")
+}
+
 record(bi, "$(P)POWER")
 {
     field(DESC, "Power")
-    field(ZNAM, "On")
-    field(ONAM, "Off")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -352,6 +359,10 @@ record(bo, "$(P)START")
 }
 
 record(bo, "$(P)SIM:START"){
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:STATUS"){
     field(DTYP, "Soft Channel")
 }
 
