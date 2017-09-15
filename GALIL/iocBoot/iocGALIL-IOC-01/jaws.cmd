@@ -1,1 +1,0 @@
-< $(GALILCONFIG)/jaws.cmd
