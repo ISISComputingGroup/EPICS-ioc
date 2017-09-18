@@ -7,12 +7,12 @@ calc("GAD", "$(ADDR_$(EURO_NUM)=0)/10%10",1,1)
 
 ## Load FileList
 ## A seperate instance must be created for each Eurothrm
-$(IFACTIVE) FileListConfigure("RAMPFILELIST$(EURO_NUM)", "$(CALIB_BASE_DIR)/$(RAMP_DIR)", $(RAMP_PAT)) 
+$(IFACTIVE) FileListConfigure("RAMPFILELIST$(EURO_NUM)", "$(RAMP_DIR)", $(RAMP_PAT)) 
 $(IFACTIVE) FileListConfigure("SENSORFILELIST$(EURO_NUM)", "$(CALIB_BASE_DIR)/$(SENS_DIR)", "$(SENS_PAT)", 1) 
 
 ## Load ReadASCII
 ## A seperate instance must be created for each Eurothrm
-$(IFACTIVE) ReadASCIIConfigure("READASCII$(EURO_NUM)", "$(CALIB_BASE_DIR)/$(RAMP_DIR)")
+$(IFACTIVE) ReadASCIIConfigure("READASCII$(EURO_NUM)", "$(RAMP_DIR)")
 
 ## Load record instances
 ## The timing for record reads is controlled in st-timing.cmd
