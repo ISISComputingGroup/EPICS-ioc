@@ -3,8 +3,10 @@ epicsEnvSet "STREAM_PROTOCOL_PATH" "$(EUROTHERM2K)/data"
 epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
 epicsEnvSet "SENS_DIR" "temp_sensors"
 epicsEnvSet "SENS_PAT" "^C.*"
-epicsEnvSet "RAMP_DIR" "ramps"
+epicsEnvSet "RAMP_DIR" "$(CALIB_BASE_DIR)/ramps"
 epicsEnvSet "RAMP_PAT" ".*"
+
+$(IFDEVSIM) epicsEnvSet "RAMP_DIR" "$(READASCII)/example_settings"
 
 < $(IOCSTARTUP)/init.cmd
 
@@ -17,11 +19,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=7)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=even)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 
-asynSetTraceMask("L0",-1,0x9) 
-asynSetTraceIOMask("L0",-1,0x2)
-
-asynOctetSetInputEos( "L0", -1, "\r\n")
-asynOctetSetOutputEos("L0", -1, "\r\n")
+$(IFDEVSIM) asynOctetSetOutputEos("L0", -1, "\r\n")
 
 < $(IOCSTARTUP)/dbload.cmd
 
