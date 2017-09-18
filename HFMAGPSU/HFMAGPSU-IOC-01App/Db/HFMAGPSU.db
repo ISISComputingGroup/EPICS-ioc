@@ -22,7 +22,21 @@ record(stringin, "$(P)LOGMESSAGE")
 	field(DESC, "Returns most recent log message")
     field(SCAN, "1 second")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:LOGMESSAGE:SP")
+    field(SIOL, "$(P)SIM:LOGMESSAGE")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+
+record(ai, "$(P)OUTPUT") 
+{
+	field(DESC, "Displays output string")
+    field(SCAN, "1 second")
+	field(DTYP, "stream")
+	field(INP,  "@devHFMAGPSU.proto getOutput $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OUTPUT")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
@@ -89,13 +103,14 @@ record(mbbi, "$(P)DIRECTION")
 	field(ONVL, "1")
 	field(TWST, "+")
 	field(TWVL, "2")
-    field(INP,  "@devHFMAGPSU.proto getDirection $(PORT)")
+    field(INP, "@devHFMAGPSU.proto getDirection $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DIRECTION")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 }
+
 
 alias("$(P)DIRECTION", "$(P)DIRECTION:SP:RBV")
 
@@ -365,7 +380,6 @@ record(mbbi, "$(P)SIM:DIRECTION")
     field(DTYP, "Soft Channel")
 }
 
-
 alias("$(P)SIM:DIRECTION","$(P)SIM:DIRECTION:SP:RBV")
 
 record(bi, "$(P)SIM:OUTPUTMODE")
@@ -407,7 +421,6 @@ record(ai, "$(P)SIM:HEATERVALUE")
     field(DTYP, "Soft Channel")
 }
 
-
 alias("$(P)SIM:HEATERVALUE","$(P)SIM:HEATERVALUE:SP:RBV")
 
 record(ai, "$(P)SIM:MID")
@@ -415,7 +428,6 @@ record(ai, "$(P)SIM:MID")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
-
 
 alias("$(P)SIM:MID","$(P)SIM:MID:SP:RBV")
 
@@ -439,3 +451,10 @@ record(stringin, "$(P)SIM:LOGMESSAGE")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
+
+record(ai, "$(P)SIM:OUTPUT")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+}
+
