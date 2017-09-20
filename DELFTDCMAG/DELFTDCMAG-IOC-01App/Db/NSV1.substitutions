@@ -12,13 +12,13 @@ pattern { P, PARAM, PORT, RPARAM, SPARAM, SCAN, ZNAME, ONAME }
 
 file "$(NETSHRVAR)/db/NetSHrVar_float64.template"
 {
-pattern { P, PARAM, PORT, RPARAM, SPARAM, SCAN, EGU }
-{ "\$(P)", "SIMPSO", "nsv", "SIMPSO", "SIMPSO", "I/O Intr", "" }
-{ "\$(P)", "SIMTHETA", "nsv", "SIMPSO", "SIMPSO", "I/O Intr", "" }
-{ "\$(P)", "SIML1", "nsv", "SIML1", "SIML1", "I/O Intr", "" }
-{ "\$(P)", "SIML2", "nsv", "SIML2", "SIML2", "I/O Intr", "" }
-{ "\$(P)", "FIELDMAG1", "nsv", "FIELDMAG1", "FIELDMAG1SP", "I/O Intr", "" }
-{ "\$(P)", "FIELDMAG2", "nsv", "FIELDMAG2", "FIELDMAG2SP", "I/O Intr", "" }
-{ "\$(P)", "FIELDMAG3", "nsv", "FIELDMAG3", "FIELDMAG3SP", "I/O Intr", "" }
-{ "\$(P)", "FIELDMAG4", "nsv", "FIELDMAG4", "FIELDMAG4SP", "I/O Intr", "" }
+pattern { P, PARAM, PORT, RPARAM, SPARAM, SCAN, EGU, PREC }
+{ "\$(P)", "SIMPSO", "nsv", "SIMPSO", "SIMPSO", "I/O Intr", "", 3 }
+{ "\$(P)", "SIMTHETA", "nsv", "SIMPSO", "SIMPSO", "I/O Intr", "", 3 }
+{ "\$(P)", "SIML1", "nsv", "SIML1", "SIML1", "I/O Intr", "",3  }
+{ "\$(P)", "SIML2", "nsv", "SIML2", "SIML2", "I/O Intr", "", 3 }
+{ "\$(P)", "FIELDMAG1", "nsv", "FIELDMAG1", "FIELDMAG1SP", "I/O Intr", "", 3 }
+{ "\$(P)", "FIELDMAG2", "nsv", "FIELDMAG2", "FIELDMAG2SP", "I/O Intr", "", 3 }
+{ "\$(P)", "FIELDMAG3", "nsv", "FIELDMAG3", "FIELDMAG3SP", "I/O Intr", "", 3 }
+{ "\$(P)", "FIELDMAG4", "nsv", "FIELDMAG4", "FIELDMAG4SP", "I/O Intr", "", 3 }
 }

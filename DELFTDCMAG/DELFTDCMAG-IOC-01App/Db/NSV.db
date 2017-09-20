@@ -1,8 +1,6 @@
 
-# Read Network shared variable "//localhost/Magnets/PVM1" 
 record(ai, "$(P)POS")
 {
-    field(DESC, "NSV '//localhost/Magnets/PVM1'")
     field(DTYP, "asynFloat64")
     field(INP,  "@asyn(nsv,0,0)$(Q)POS")
     field(PREC, "3")
@@ -10,10 +8,8 @@ record(ai, "$(P)POS")
 	field(EGU, "mT")
 }
 
-# Write Network shared variable "//localhost/Magnets/PVM1" 
 record(ao, "$(P)POS:SP")
 {
-    field(DESC, "NSV '//localhost/Magnets/PVM1'")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn(nsv,0,0)$(Q)POSSET")
     field(PREC, "3")
@@ -21,10 +17,8 @@ record(ao, "$(P)POS:SP")
 }
 
 
-# Read Network shared variable "//localhost/Magnets/PVM2" 
 record(mbbo, "$(P)MOVE:SP")
 {
-    field(DESC, "NSV '//localhost/Magnets/PVM2'")
     field(DTYP, "asynInt32")
     field(OUT,  "@asyn(nsv,0,0)$(Q)ACT")
 	field(ZRVL, 0)
@@ -35,7 +29,6 @@ record(mbbo, "$(P)MOVE:SP")
 
 record(mbbi, "$(P)MOVE")
 {
-    field(DESC, "NSV '//localhost/Magnets/PVM2'")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(nsv,0,0)$(Q)ACT")
 	field(ZRVL, 0)
