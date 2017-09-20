@@ -479,8 +479,8 @@ record(ao, "$(P)DELAY:SP")
 record(transform, "$(P)DELAY:SP:_CALC")
 {
 	field(INPA, "$(P)DELAY:SP")
-	field(CLCB, "(A*50400)%65536")
-	field(CLCC, "FLOOR((A*50400)/65536)")
+	field(CLCB, "(A*50.400)%65536")
+	field(CLCC, "FLOOR((A*50.400)/65536)")
 	field(FLNK, "$(P)DELAY:SP:_SEQ")
 }
 
@@ -498,11 +498,11 @@ record(ao, "$(P)DELAY:SP:_LOWWORD")
 
 record(seq, "$(P)DELAY:SP:_SEQ")
 {
-	field(DOL1, "$(P)DELAY:SP:_CALC.C")
-	field(LNK1, "$(P)DELAY:SP:_HIGHWORD PP")
+	field(DOL2, "$(P)DELAY:SP:_CALC.C")
+	field(LNK2, "$(P)DELAY:SP:_HIGHWORD PP")
 	
-	field(DOL2, "$(P)DELAY:SP:_CALC.B")
-    field(LNK2, "$(P)DELAY:SP:_LOWWORD PP")
+	field(DOL1, "$(P)DELAY:SP:_CALC.B")
+    field(LNK1, "$(P)DELAY:SP:_LOWWORD PP")
     # Must have some delay between the two commands according to the documentation
 	field(DLY2, "0.1") 
 	
