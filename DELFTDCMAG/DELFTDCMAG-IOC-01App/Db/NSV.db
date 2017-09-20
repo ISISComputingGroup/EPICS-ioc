@@ -1,0 +1,46 @@
+
+# Read Network shared variable "//localhost/Magnets/PVM1" 
+record(ai, "$(P)POS")
+{
+    field(DESC, "NSV '//localhost/Magnets/PVM1'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)$(Q)POS")
+    field(PREC, "3")
+    field(SCAN, "I/O Intr")
+	field(EGU, "mT")
+}
+
+# Write Network shared variable "//localhost/Magnets/PVM1" 
+record(ao, "$(P)POS:SP")
+{
+    field(DESC, "NSV '//localhost/Magnets/PVM1'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(nsv,0,0)$(Q)POSSET")
+    field(PREC, "3")
+	field(EGU, "mT")
+}
+
+
+# Read Network shared variable "//localhost/Magnets/PVM2" 
+record(mbbo, "$(P)MOVE:SP")
+{
+    field(DESC, "NSV '//localhost/Magnets/PVM2'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(nsv,0,0)$(Q)ACT")
+	field(ZRVL, 0)
+	field(ONVL, 2)
+	field(ZRST, "Idle")
+	field(ONST, "Move")
+}
+
+record(mbbi, "$(P)MOVE")
+{
+    field(DESC, "NSV '//localhost/Magnets/PVM2'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(nsv,0,0)$(Q)ACT")
+	field(ZRVL, 0)
+	field(ONVL, 2)
+	field(ZRST, "Idle")
+	field(ONST, "Moving")
+    field(SCAN, "I/O Intr")
+}
