@@ -43,17 +43,23 @@ epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 < galil.cmd
 
 # configure jaws
-< jaws.cmd
+< $(GALILCONFIG)/jaws.cmd
 
 # configure barndoors
-< barndoors.cmd
+< $(GALILCONFIG)/barndoors.cmd
 
 # configure axes
-< axes.cmd
+< $(GALILCONFIG)/axes.cmd
 
 # motion set points
-< motionsetpoints.cmd
-< sampleChanger.cmd
+< $(GALILCONFIG)/motionsetpoints.cmd
+
+# sample changer
+< $(GALILCONFIG)/sampleChanger.cmd
+
+# motor extensions
+$(IFNOTTESTDEVSIM) < $(GALILCONFIG)/motorExtensions.cmd
+$(IFTESTDEVSIM) < $(MOTOREXT)/settings/motorExtensions.cmd
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,PVPREFIX=$(MYPVPREFIX),IFDMC01=$(IFDMC01),IFDMC02=$(IFDMC02),IFDMC03=$(IFDMC03),IFDMC04=$(IFDMC04),IFDMC05=$(IFDMC05),IFDMC06=$(IFDMC06),IFDMC07=$(IFDMC07),IFDMC08=$(IFDMC08),IFDMC09=$(IFDMC09),IFDMC10=$(IFDMC10)")
@@ -77,10 +83,10 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 < $(IOCSTARTUP)/postiocinit.cmd
 
 # Save motor positions every 5 seconds
-create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,IFDMC01=$(IFDMC01),IFDMC02=$(IFDMC02),IFDMC03=$(IFDMC03),IFDMC04=$(IFDMC04),IFDMC05=$(IFDMC05),IFDMC06=$(IFDMC06),IFDMC07=$(IFDMC07),IFDMC08=$(IFDMC08),IFDMC09=$(IFDMC09),IFDMC10=$(IFDMC10)")
+$(IFNOTTESTDEVSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,IFDMC01=$(IFDMC01),IFDMC02=$(IFDMC02),IFDMC03=$(IFDMC03),IFDMC04=$(IFDMC04),IFDMC05=$(IFDMC05),IFDMC06=$(IFDMC06),IFDMC07=$(IFDMC07),IFDMC08=$(IFDMC08),IFDMC09=$(IFDMC09),IFDMC10=$(IFDMC10)")
 
 # Save motor settings every 30 seconds
-create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,IFDMC01=$(IFDMC01),IFDMC02=$(IFDMC02),IFDMC03=$(IFDMC03),IFDMC04=$(IFDMC04),IFDMC05=$(IFDMC05),IFDMC06=$(IFDMC06),IFDMC07=$(IFDMC07),IFDMC08=$(IFDMC08),IFDMC09=$(IFDMC09),IFDMC10=$(IFDMC10)")
+$(IFNOTTESTDEVSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,IFDMC01=$(IFDMC01),IFDMC02=$(IFDMC02),IFDMC03=$(IFDMC03),IFDMC04=$(IFDMC04),IFDMC05=$(IFDMC05),IFDMC06=$(IFDMC06),IFDMC07=$(IFDMC07),IFDMC08=$(IFDMC08),IFDMC09=$(IFDMC09),IFDMC10=$(IFDMC10)")
 
 ## Start any sequence programs
 #seq sncxxx,"user=icsHost"
