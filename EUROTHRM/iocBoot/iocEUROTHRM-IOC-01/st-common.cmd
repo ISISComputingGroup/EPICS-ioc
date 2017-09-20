@@ -6,9 +6,9 @@ epicsEnvSet "SENS_PAT" "^C.*"
 epicsEnvSet "RAMP_DIR" "$(CALIB_BASE_DIR)/ramps"
 epicsEnvSet "RAMP_PAT" ".*"
 
-$(IFDEVSIM) epicsEnvSet "RAMP_DIR" "$(READASCII)/example_settings"
-
 < $(IOCSTARTUP)/init.cmd
+
+$(IFDEVSIM) epicsEnvSet "RAMP_DIR" "$(READASCII)/example_settings"
 
 # For dev sim devices
 $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
