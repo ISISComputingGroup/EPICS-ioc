@@ -35,6 +35,7 @@ record(ai, "$(P)OUTPUT")
     field(SCAN, "1 second")
 	field(DTYP, "stream")
 	field(INP,  "@devHFMAGPSU.proto getOutput $(PORT)")
+	field(PREC, "3")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OUTPUT")
     field(SDIS, "$(P)DISABLE")
@@ -238,7 +239,7 @@ record(ai, "$(P)LIMIT")
     info(archive, "VAL")
 }
 
-alias("$(P)LIMIT", "$(P)MAX:LIMIT:RBV")
+alias("$(P)LIMIT", "$(P)LIMIT:SP:RBV")
 
 record(ao, "$(P)LIMIT:SP")
 {
@@ -250,6 +251,38 @@ record(ao, "$(P)LIMIT:SP")
     field(PREC, "3")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:LIMIT:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")	
+}
+
+record(ai, "$(P)CONSTANT")
+{
+	field(DESC, "Returns value of field constant")
+	field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devHFMAGPSU.proto getConstant $(PORT)")
+	field(EGU, "T/A")
+    field(PREC, "5")	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CONSTANT:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+alias("$(P)CONSTANT", "$(P)CONSTANT:SP:RBV")
+
+record(ao, "$(P)CONSTANT:SP")
+{
+	field(DESC, "Set field constant")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devHFMAGPSU.proto setConstant($(P)LOGMESSAGE) $(PORT)")
+    field(EGU, "T/A") 
+    field(PREC, "5")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CONSTANT:SP")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")	
@@ -307,7 +340,6 @@ record(ao, "$(P)RAMPRATE:SP")
     field(DTYP, "stream")
     field(OUT,  "@devHFMAGPSU.proto setRampRate($(P)LOGMESSAGE) $(PORT)")
 	field(PREC, "3")
-	field(EGU, "A") # amps per second
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAMPRATE:SP")
     field(SDIS, "$(P)DISABLE")
@@ -445,6 +477,13 @@ record(ai, "$(P)SIM:LIMIT")
     field(DTYP, "Soft Channel")
 }
 alias("$(P)SIM:LIMIT","$(P)SIM:LIMIT:SP:RBV")
+
+record(ai, "$(P)SIM:CONSTANT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:CONSTANT","$(P)SIM:CONSTANT:SP:RBV")
 
 record(stringin, "$(P)SIM:LOGMESSAGE")
 {
