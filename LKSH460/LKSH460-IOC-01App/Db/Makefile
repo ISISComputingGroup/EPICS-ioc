@@ -11,6 +11,7 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 DB += lakeshore460.db
+DB += lakeshore460_channels.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
