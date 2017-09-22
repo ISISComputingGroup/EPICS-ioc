@@ -25,8 +25,11 @@ dbLoadRecords("db/HFMAGPSU.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RE
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
-## Start any sequence programs
-#seq sncxxx,"user=hgv27692Host"
-
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
+
 < $(IOCSTARTUP)/postiocinit.cmd
+
+epicsEnvSet(P,$(MYPVPREFIX)$(IOCNAME))
+
+## Start any sequence programs
+seq fsm, "P=$(P)"

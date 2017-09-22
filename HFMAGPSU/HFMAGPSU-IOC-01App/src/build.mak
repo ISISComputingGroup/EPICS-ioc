@@ -31,6 +31,7 @@ $(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += fsm.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -46,6 +47,7 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += HFMAGPSU
 
 # HFMAGPSU-IOC-01_registerRecordDeviceDriver.cpp derives from HFMAGPSU-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
@@ -65,4 +67,3 @@ $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
-
