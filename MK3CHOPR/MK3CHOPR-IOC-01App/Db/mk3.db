@@ -262,6 +262,19 @@ record(stringin, "$(P)$(Q)NAME")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(bi, "$(P)$(Q)COMP:MODE")
+{
+    field(DESC, "Chopper in local/remote mode")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)COMPMODE")
+    field(ZNAM, "LOCAL")
+    field(ONAM, "REMOTE")
+    info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)$(Q)SIM:COMP:MODE")
+    field(SDIS, "$(P)DISABLE")
+}
+
 ### SIMULATION RECORDS ###
 
 record(ai, "$(P)$(Q)SIM:FREQ")
@@ -319,6 +332,12 @@ record(bi, "$(P)$(Q)SIM:READY")
 }
 
 record(bi, "$(P)$(Q)SIM:INSYNC")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "1")
+}
+
+record(bi, "$(P)$(Q)SIM:COMP:MODE")
 {
     field(DTYP, "Soft Channel")
     field(VAL, "1")
