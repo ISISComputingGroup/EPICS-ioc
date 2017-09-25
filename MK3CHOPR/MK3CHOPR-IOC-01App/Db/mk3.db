@@ -237,6 +237,7 @@ record(bi, "$(P)$(Q)INSYNC")
     field(SIML, "$(P)SIM")
 	field(SIOL, "$(P)$(Q)SIM:INSYNC")
     field(SDIS, "$(P)DISABLE")
+    field(FLNK, "$(P)$(Q)COMP:MODE")
 }
 
 record(stringin, "$(P)$(Q)VALIDFREQS")
