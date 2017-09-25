@@ -28,6 +28,15 @@ mk3DriverConfigure("MK3", "C:/LabVIEW Modules/Drivers/ISIS MK3 Disc Chopper/MK3_
 ## Load common chopper properties
 dbLoadRecords("db/mk3_common.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=MK3, CHANNEL=1, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
 
+## Translate from old macros for backwards compatibility
+## The old macros are only used if the new one is not set
+stringiftest("_NUM_SET", "$(NUM_CHANNELS=)")
+$(IFNOT_NUM_SET) $(CHOPPER_1_PRESENT=#) epicsEnvSet NUM_CHANNELS 1
+$(IFNOT_NUM_SET) $(CHOPPER_2_PRESENT=#) epicsEnvSet NUM_CHANNELS 2
+$(IFNOT_NUM_SET) $(CHOPPER_3_PRESENT=#) epicsEnvSet NUM_CHANNELS 3
+$(IFNOT_NUM_SET) $(CHOPPER_4_PRESENT=#) epicsEnvSet NUM_CHANNELS 4
+$(IFNOT_NUM_SET) $(CHOPPER_5_PRESENT=#) epicsEnvSet NUM_CHANNELS 5
+
 ## Load our record instances (conditionally!) 
 dbLoadRecordsLoop("db/mk3.db","P=$(MYPVPREFIX)$(IOCNAME):, Q=CH\$(I):, PORT=MK3, CHANNEL=\$(I), RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)", "I", 1, $(NUM_CHANNELS=1), 1)
 
