@@ -40,6 +40,7 @@ private:
     int P_NumChannels;          // int
     int P_NominalPhase;         // int
     int P_ActualPhase;          // int
+    int P_ComputerMode;         // bool
     #define FIRST_MK3_PARAM P_ActualFreq
 	#define LAST_MK3_PARAM P_ActualPhase
 };
@@ -61,6 +62,7 @@ private:
 #define P_NumChannelsString         "CHANNELS"   
 #define P_NominalPhaseString        "NOMPHASE"                 
 #define P_ActualPhaseString         "PHASE"          
+#define P_ComputerModeString        "COMPMODE"
     
     
 #endif /* MK3_DRIVER_H */

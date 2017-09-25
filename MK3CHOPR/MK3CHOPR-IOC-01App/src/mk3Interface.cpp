@@ -46,6 +46,11 @@ int mk3Interface::getChopperName(unsigned int channel, char* result, int size)
     return GetChopperName(channel, result, size);
 }
 
+int mk3Interface::getComputerMode(bool* result)
+{
+    return GetComputerMode(result);
+}
+
 int mk3Interface::getNominalFreq(unsigned int channel, double* result)
 {
     return GetNominalFreq(channel, result);
