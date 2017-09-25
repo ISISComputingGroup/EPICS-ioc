@@ -1,0 +1,53 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+	field(PINI, "YES")
+    field(FLNK, "$(P)VERSION")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(ai, "$(P)NUM_ENABLED")
+{
+    field(DESC, "Number of channels")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)CHANNELS")
+    field(SCAN, "10 second")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "")
+    info(INTEREST, "MEDIUM")
+    field(FLNK, "$(P)COMP:MODE")
+}
+
+record(bi, "$(P)COMP:MODE")
+{
+    field(DESC, "Chopper in local/remote mode")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)COMPMODE")
+    field(ZNAM, "LOCAL")
+    field(ONAM, "REMOTE")
+    info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:COMP:MODE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+### SIMULATION RECORDS ###
+
+record(bi, "$(P)SIM:COMP:MODE")
+{
+    field(DTYP, "Soft Channel")
+    field(VAL, "1")
+}

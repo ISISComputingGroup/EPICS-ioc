@@ -1,35 +1,3 @@
-record(bo, "$(P)SIM")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-    field(ZNAM, "NO")
-    field(ONAM, "YES")
-    field(VAL, "$(RECSIM=0)")
-	field(PINI, "YES")
-    field(FLNK, "$(P)VERSION")
-}
-
-record(bo, "$(P)DISABLE") 
-{
-    field(DESC, "Disable comms")
-    field(PINI, "YES")
-    field(VAL, "$(DISABLE=0)")
-    field(OMSL, "supervisory")
-    field(ZNAM, "COMMS ENABLED")
-    field(ONAM, "COMMS DISABLED")
-}
-
-record(ai, "$(P)NUM_ENABLED")
-{
-    field(DESC, "Number of channels")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT),$(CHANNEL),0)CHANNELS")
-    field(SCAN, "10 second")
-    field(SDIS, "$(P)DISABLE")
-	field(EGU, "")
-    info(INTEREST, "MEDIUM")
-}
-
 record(ai, "$(P)$(Q)FREQ")
 {
     field(DESC, "The actual frequency")
@@ -237,7 +205,6 @@ record(bi, "$(P)$(Q)INSYNC")
     field(SIML, "$(P)SIM")
 	field(SIOL, "$(P)$(Q)SIM:INSYNC")
     field(SDIS, "$(P)DISABLE")
-    field(FLNK, "$(P)$(Q)COMP:MODE")
 }
 
 record(stringin, "$(P)$(Q)VALIDFREQS")
@@ -260,19 +227,6 @@ record(stringin, "$(P)$(Q)NAME")
     field(SCAN, "5 second")
     field(SIML, "$(P)SIM")
 	field(SIOL, "$(P)$(Q)SIM:NAME")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(bi, "$(P)$(Q)COMP:MODE")
-{
-    field(DESC, "Chopper in local/remote mode")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT),$(CHANNEL),0)COMPMODE")
-    field(ZNAM, "LOCAL")
-    field(ONAM, "REMOTE")
-    info(INTEREST, "MEDIUM")
-    field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)$(Q)SIM:COMP:MODE")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -333,12 +287,6 @@ record(bi, "$(P)$(Q)SIM:READY")
 }
 
 record(bi, "$(P)$(Q)SIM:INSYNC")
-{
-    field(DTYP, "Soft Channel")
-    field(VAL, "1")
-}
-
-record(bi, "$(P)$(Q)SIM:COMP:MODE")
 {
     field(DTYP, "Soft Channel")
     field(VAL, "1")
