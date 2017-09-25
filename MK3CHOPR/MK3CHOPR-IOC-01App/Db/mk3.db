@@ -1,3 +1,6 @@
+# Individual comp mode PV needed for OPI
+alias("$(P)COMP:MODE","$(P)$(Q)COMP:MODE")
+
 record(ai, "$(P)$(Q)FREQ")
 {
     field(DESC, "The actual frequency")
