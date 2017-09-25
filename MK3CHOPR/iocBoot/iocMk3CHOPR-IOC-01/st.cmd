@@ -25,6 +25,9 @@ mk3DriverConfigure("MK3", "C:/LabVIEW Modules/Drivers/ISIS MK3 Disc Chopper/MK3_
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+## Load common chopper properties
+dbLoadRecords("db/mk3_common.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=MK3, CHANNEL=1, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
+
 ## Load our record instances (conditionally!) 
 dbLoadRecords("db/mk3.db","P=$(MYPVPREFIX)$(IOCNAME):, Q=CH1:, PORT=MK3, CHANNEL=1, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
 dbLoadRecords("db/mk3.db","P=$(MYPVPREFIX)$(IOCNAME):, Q=CH2:, PORT=MK3, CHANNEL=2, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
