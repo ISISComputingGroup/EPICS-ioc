@@ -209,6 +209,7 @@ record(ai, "$(P)SPEED:SP:RBV")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED:SP:RBV")
     field(SDIS, "$(P)DISABLE")
+	field(PREC, "0")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 } 
