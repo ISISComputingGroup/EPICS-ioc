@@ -207,7 +207,7 @@ record(ai, "$(P)SPEED:SP:RBV")
     field(SCAN, "Passive")
     field(EGU, "Hz")
 	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:SPEED:SP:RBV")
+    field(SIOL, "$(P)SIM:SPEED:SP:R")
     field(SDIS, "$(P)DISABLE")
 	field(PREC, "0")
 	info(INTEREST, "HIGH")
@@ -465,6 +465,10 @@ record(mbbo, "$(P)SPEED:SP:GUI")
 	field(ELST, "50 Hz")
 	
 	field(OUT, "$(P)SPEED:SP:RAW PP")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPEED:SP:GUI PP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)DELAY:SP")
@@ -544,7 +548,56 @@ record(ao, "$(P)SIM:SPEED:SP")
 }
 
 alias("$(P)SIM:SPEED:SP","$(P)SIM:SPEED")
-alias("$(P)SIM:SPEED:SP","$(P)SIM:SPEED:SP:RBV")
+alias("$(P)SIM:SPEED:SP","$(P)SIM:SPEED:SP:R")
+
+record(mbbo, "$(P)SIM:SPEED:SP:GUI")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Raw Soft Channel")
+	field(ZRVL, "0")
+	field(ZRST, "600 Hz")
+
+	field(ONVL, "1")
+	field(ONST, "550 Hz")
+	
+	field(TWVL, "2")
+	field(TWST, "500 Hz")
+	
+	field(THVL, "3")
+	field(THST, "450 Hz")
+	
+	field(FRVL, "4")
+	field(FRST, "400 Hz")
+	
+	field(FVVL, "5")
+	field(FVST, "350 Hz")
+	
+	field(SXVL, "6")
+	field(SXST, "300 Hz")
+	
+	field(SVVL, "7")
+	field(SVST, "250 Hz")
+	
+	field(EIVL, "8")
+	field(EIST, "200 Hz")
+	
+	field(NIVL, "9")
+	field(NIST, "150 Hz")
+	
+	field(TEVL, "10")
+	field(TEST, "100 Hz")
+	
+	field(ELVL, "11")
+	field(ELST, "50 Hz")
+}
+
+record(calcout, "$(P)SIM:SPEED:SP:GUI:CALC")
+{
+	field(INPA, "$(P)SIM:SPEED:SP:GUI CP")
+	field(CALC, "(12-A)*50")
+	field(OUT, "$(P)SIM:SPEED:SP:R PP")
+	field(OOPT, "Every Time")
+}
 
 record(ao, "$(P)SIM:DELAY:SP")
 {
