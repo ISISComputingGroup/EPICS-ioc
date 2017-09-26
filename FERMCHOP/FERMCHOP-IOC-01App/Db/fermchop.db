@@ -207,7 +207,7 @@ record(ai, "$(P)SPEED:SP:RBV")
     field(SCAN, "Passive")
     field(EGU, "Hz")
 	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:SPEED:SP:R")
+    field(SIOL, "$(P)SIM:SPEED:SP:RBV")
     field(SDIS, "$(P)DISABLE")
 	field(PREC, "0")
 	info(INTEREST, "HIGH")
@@ -548,7 +548,7 @@ record(ao, "$(P)SIM:SPEED:SP")
 }
 
 alias("$(P)SIM:SPEED:SP","$(P)SIM:SPEED")
-alias("$(P)SIM:SPEED:SP","$(P)SIM:SPEED:SP:R")
+alias("$(P)SIM:SPEED:SP","$(P)SIM:SPEED:SP:RBV")
 
 record(mbbo, "$(P)SIM:SPEED:SP:GUI")
 {
@@ -595,7 +595,7 @@ record(calcout, "$(P)SIM:SPEED:SP:GUI:CALC")
 {
 	field(INPA, "$(P)SIM:SPEED:SP:GUI CP")
 	field(CALC, "(12-A)*50")
-	field(OUT, "$(P)SIM:SPEED:SP:R PP")
+	field(OUT, "$(P)SIM:SPEED:SP:RBV PP")
 	field(OOPT, "Every Time")
 }
 
