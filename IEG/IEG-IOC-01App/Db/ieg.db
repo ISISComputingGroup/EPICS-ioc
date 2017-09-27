@@ -171,15 +171,15 @@ record(mbbi, "$(P)ERROR")
     field(THSV, "MAJOR")
     
     field(FRVL, "4")
-    field(FRST, "Samp vol: pump timeout")
+    field(FRST, "Buff vol: did not fill")
     field(FRSV, "MAJOR")
     
     field(FVVL, "5")
-    field(FVST, "Buff vol: did not fill")
+    field(FVST, "Samp vol: fill iterations")
     field(FVSV, "MAJOR")
     
     field(SXVL, "6")
-    field(SXST, "Samp vol: fill iterations")
+    field(SXST, "Samp vol: pump timeout")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
