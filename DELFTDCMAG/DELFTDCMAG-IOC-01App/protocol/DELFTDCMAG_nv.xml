@@ -31,16 +31,31 @@
 		  "fval" and "tval" are only used for boolean type, they are the strings to be displayed for false and true values
 		  "field" is only used for a structure type network shared variable, it indicates the structure element to access. Structures are read-only.
 	  -->
-	  <param name="PVM1" type="float64" access="BR,BW" netvar="//localhost/Magnets/PVM1" /> 
-	  <param name="PVM2" type="float64" access="BR,BW" netvar="//localhost/Magnets/PVM2" /> 
-	  <param name="PVM3" type="float64" access="BR,BW" netvar="//localhost/Magnets/PVM3" /> 
-	  <param name="PVM4" type="float64" access="BR,BW" netvar="//localhost/Magnets/PVM4" /> 
-	
-	  <param name="SPM1" type="float64" access="BR,BW" netvar="//localhost/Magnets/SPM1" /> 
-	  <param name="SPM2" type="float64" access="BR,BW" netvar="//localhost/Magnets/SPM2" /> 
-	  <param name="SPM3" type="float64" access="BR,BW" netvar="//localhost/Magnets/SPM3" /> 
-	  <param name="SPM4" type="float64" access="BR,BW" netvar="//localhost/Magnets/SPM4" /> 
-
+	  <param name="APOSSET" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/Aposset" /> 
+	  <param name="APOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Apos" /> 
+	  <param name="AACT" type="int32" access="R,W" netvar="//192.168.1.3/SVlib/APaction" /> 
+	  <param name="GPOSSET" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/Gposset" /> 
+	  <param name="GPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Gpos" /> 
+	  <param name="GACT" type="int32" access="R,W" netvar="//192.168.1.3/SVlib/GPaction" /> 
+	  <param name="SIMARM12" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/SimArm1-2" /> 
+	  <param name="SIMGO" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/SimGo" /> 
+	  <param name="SIMSIM" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/SimSim" /> 
+	  <param name="SIMPSO" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/SimPSO" /> 
+	  <param name="SIMTHETA" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/SimTheta" /> 
+	  <param name="SIML1" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/SimL1" /> 
+	  <param name="SIML2" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/SimL2" /> 
+	  <param name="FIELDMAG1SP" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldSP1" /> 
+	  <param name="FIELDMAG1" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldM1" /> 
+	  <param name="FIELDMAG2SP" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldSP2" /> 
+	  <param name="FIELDMAG2" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldM2" /> 
+	  <param name="FIELDMAG3SP" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldSP4" /> 
+	  <param name="FIELDMAG3" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldM3" /> 
+	  <param name="FIELDMAG4SP" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldSP4" /> 
+	  <param name="FIELDMAG4" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldM4" /> 
+	  <param name="RFON" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/RFOn" /> 
+	  <param name="AWGOUTPUT" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/AWGOutput" /> 
+	  <param name="AWGCONF" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/AWGConf" /> 
+	  <param name="AWGGAINCSET" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/AWGGainCSet" /> 
 	</section>
   
 </netvar>
