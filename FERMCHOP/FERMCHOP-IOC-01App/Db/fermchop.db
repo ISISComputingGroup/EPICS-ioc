@@ -493,12 +493,18 @@ record(ao, "$(P)DELAY:SP:_HIGHWORD")
 {
 	field(DTYP, "stream")
 	field(OUT,  "@devfc.proto setDelayHighWord $(PORT)")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DUMMY")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)DELAY:SP:_LOWWORD")
 {
 	field(DTYP, "stream")
 	field(OUT,  "@devfc.proto setDelayLowWord $(PORT)")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DUMMY")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(seq, "$(P)DELAY:SP:_SEQ")
@@ -536,6 +542,9 @@ record(ao, "$(P)GATEWIDTH:SP:_RAW")
 {
 	field(DTYP, "stream")
 	field(OUT,  "@devfc.proto setGateWidth $(PORT)")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DUMMY")
+    field(SDIS, "$(P)DISABLE")
 }
 
 
@@ -629,5 +638,11 @@ record(ai, "$(P)SIM:STATUS:RAW")
 {
 	field(VAL, "1")
 	field(PINI, "YES")
+}
+
+record(ao, "$(P)SIM:DUMMY")
+{
+	field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
 }
 
