@@ -8,7 +8,12 @@ epicsEnvSet "RAMP_PAT" ".*"
 
 < $(IOCSTARTUP)/init.cmd
 
+## Use the example ramp file
 $(IFDEVSIM) epicsEnvSet "RAMP_DIR" "$(READASCII)/example_settings"
+
+## Use the example sensor files
+$(IFDEVSIM) epicsEnvSet "CALIB_BASE_DIR" "$(SUPPORT)"
+$(IFDEVSIM) epicsEnvSet "SENS_DIR" "eurotherm2k/master/example_temp_sensor"
 
 # For dev sim devices
 $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
