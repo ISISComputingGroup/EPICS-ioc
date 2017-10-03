@@ -17,17 +17,15 @@ record(bo, "$(P)DISABLE")
   field(ONAM, "COMMS DISABLED")
 }
 
-record(stringin, "$(P)LOGMESSAGE") 
+record(waveform, "$(P)LOGMESSAGE") 
 {
 	field(DESC, "Returns most recent log message")
-    field(SCAN, "1 second")
+	field(FTVL, "CHAR")
+	field(NELM, 256)
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:LOGMESSAGE")
     field(SDIS, "$(P)DISABLE")
-	info(INTEREST, "HIGH")
-	info(archive, "VAL")
 }
-
 
 record(stringin, "$(P)ERRORMESSAGE") 
 {
