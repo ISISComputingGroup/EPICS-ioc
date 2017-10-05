@@ -27,15 +27,35 @@ record(waveform, "$(P)LOGMESSAGE")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(stringin, "$(P)ERRORMESSAGE") 
+
+record(waveform, "$(P)RAMPTABLETARGETS")
+{
+	field(DESC, "Stores targets from ramp table file")
+	field(FTVL, "DOUBLE")
+	field(NELM, 64)
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMPTABLETARGETS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(waveform, "$(P)RAMPTABLERATES")
+{
+	field(DESC, "Stores ramp rates from ramp table file")
+	field(FTVL, "DOUBLE")
+	field(NELM, 64)
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMPTABLERATES")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(waveform, "$(P)ERRORMESSAGE") 
 {
 	field(DESC, "Returns most recent log message")
-    field(SCAN, "1 second")
+    field(FTVL, "CHAR")
+	field(NELM, 256)
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:ERRORMESSAGE")
     field(SDIS, "$(P)DISABLE")
-	info(INTEREST, "HIGH")
-	info(archive, "VAL")
 }
 
 record(ai, "$(P)MIDFINALTARGET")
@@ -424,6 +444,8 @@ record(bi, "$(P)OUTPUTMODE")
 }
 
 alias("$(P)OUTPUTMODE", "$(P)OUTPUTMODE:SP:RBV")
+
+
  
  
 ### SIMULATION RECORDS ### 
