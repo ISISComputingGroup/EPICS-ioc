@@ -316,6 +316,15 @@ record(ai, "$(P)AUTOZERO:2:LOWER")
 	info(archive, "VAL")
 }
 
+record(calc, "$(P)AUTOZERO:RANGECHECK")
+{
+	field(INPA, "$(P)AUTOZERO:1:UPPER CP")
+	field(INPB, "$(P)AUTOZERO:2:UPPER CP")
+	field(INPC, "$(P)AUTOZERO:1:LOWER CP")
+	field(INPD, "$(P)AUTOZERO:2:LOWER CP")
+	field(CALC, "A > 3 | B > 3 | C < -3 | D < -3")
+}
+
 record(ai, "$(P)VOLTAGE")
 {
     field(DESC, "Drive voltage")
@@ -325,6 +334,16 @@ record(ai, "$(P)VOLTAGE")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
 } 
+
+record(calc, "$(P)POWER")
+{
+	field(DESC, "Drive power")
+	field(EGU, "W")
+	field(PREC, "2")
+	field(INPA, "$(P)CURRENT CP")
+	field(INPB, "$(P)VOLTAGE CP")
+	field(CALC, "A*B")
+}
 
 record(ai, "$(P)TEMPERATURE:ELECTRONICS")
 {
@@ -345,6 +364,13 @@ record(ai, "$(P)TEMPERATURE:MOTOR")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
 } 
+
+record(calc, "$(P)TEMPERATURE:RANGECHECK")
+{
+	field(INPA, "$(P)TEMPERATURE:MOTOR CP")
+	field(INPB, "$(P)TEMPERATURE:ELECTRONICS CP")
+	field(CALC, "A > 45 | B > 45")
+}
 
 record(mbbo, "$(P)COMMAND:SP")
 {	
