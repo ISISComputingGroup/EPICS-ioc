@@ -59,7 +59,7 @@ record(bo, "$(P)$(Q)$(NAME):$(ZPV)")
     field(ONAM, "$(ZPV)")
     field(DTYP, "Soft Channel")
     field(DESC, "$(ZDESC)")
-    field(FLNK, "$(P)$(Q)$(NAME):$(ZPV):RAW:SP")
+    field(FLNK, "$(P)$(Q)$(NAME):$(ZPV):RAW:VAL")
 }
 
 record(bo, "$(P)$(Q)$(NAME):$(OPV)")
@@ -68,7 +68,19 @@ record(bo, "$(P)$(Q)$(NAME):$(OPV)")
     field(ONAM, "$(OPV)")
     field(DTYP, "Soft Channel")
     field(DESC, "$(ODESC)")
-    field(FLNK, "$(P)$(Q)$(NAME):$(OPV):RAW:SP")
+    field(FLNK, "$(P)$(Q)$(NAME):$(OPV):RAW:VAL")
+}
+
+record(longout, "$(P)$(Q)$(NAME):$(ZPV):RAW:VAL")
+{
+	field(VAL, "1")
+	field(OUT, "$(P)$(Q)$(NAME):$(ZPV):RAW:SP PP")
+}
+
+record(longout, "$(P)$(Q)$(NAME):$(OPV):RAW:VAL")
+{
+	field(VAL, "1")
+	field(OUT, "$(P)$(Q)$(NAME):$(OPV):RAW:SP PP")
 }
 
 record(longout, "$(P)$(Q)$(NAME):$(ZPV):RAW:SP")
