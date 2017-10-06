@@ -92,10 +92,10 @@ record(aSub, "$(P)STATUS:PARSE")
     field(OUTM, "$(P)VOLTAGE PP")
     field(FTVM, "DOUBLE") 
       
-    field(OUTN, "$(P)TEMPERATURE:ELECTRONICS PP")
+    field(OUTN, "$(P)TEMP:ELECTRONICS PP")
     field(FTVN, "DOUBLE") 
       
-    field(OUTO, "$(P)TEMPERATURE:MOTOR PP")
+    field(OUTO, "$(P)TEMP:MOTOR PP")
     field(FTVO, "DOUBLE")
 }
 
@@ -182,7 +182,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:AUTOZERO")
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:MOTORTEMP")
 {
 	field(ASG, "READONLY")
-	field(INPA, "$(P)TEMPERATURE:MOTOR")
+	field(INPA, "$(P)TEMP:MOTOR")
 	# Command 2 = Switch drive off
 	field(CALC, "A>45?2:0") 
 	# Use raw because otherwise our command could get blocked by the other checks
@@ -193,7 +193,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:MOTORTEMP")
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:ELECTRONICSTEMP")
 {
 	field(ASG, "READONLY")
-	field(INPA, "$(P)TEMPERATURE:ELECTRONICS")
+	field(INPA, "$(P)TEMP:ELECTRONICS")
 	# Command 2 = Switch drive off
 	field(CALC, "A>45?2:0") 
 	# Use raw because otherwise our command could get blocked by the other checks
@@ -322,7 +322,9 @@ record(calc, "$(P)AUTOZERO:RANGECHECK")
 	field(INPB, "$(P)AUTOZERO:2:UPPER CP")
 	field(INPC, "$(P)AUTOZERO:1:LOWER CP")
 	field(INPD, "$(P)AUTOZERO:2:LOWER CP")
-	field(CALC, "A > 3 | B > 3 | C < -3 | D < -3")
+	# Absolute value of 3V is the maximum allowable voltage
+	# This behaviour is copied from the equivalent LabView driver.
+	field(CALC, "ABS(A) > 3 | ABS(B) > 3 | ABS(C) > 3 | ABS(D) > 3")
 }
 
 record(ai, "$(P)VOLTAGE")
@@ -345,7 +347,7 @@ record(calc, "$(P)POWER")
 	field(CALC, "A*B")
 }
 
-record(ai, "$(P)TEMPERATURE:ELECTRONICS")
+record(ai, "$(P)TEMP:ELECTRONICS")
 {
     field(DESC, "Temperature of the electronics")
     field(SCAN, "Passive")
@@ -355,7 +357,7 @@ record(ai, "$(P)TEMPERATURE:ELECTRONICS")
 	info(archive, "VAL")
 } 
 
-record(ai, "$(P)TEMPERATURE:MOTOR")
+record(ai, "$(P)TEMP:MOTOR")
 {
     field(DESC, "Temperature of the motor")
     field(SCAN, "Passive")
@@ -365,10 +367,12 @@ record(ai, "$(P)TEMPERATURE:MOTOR")
 	info(archive, "VAL")
 } 
 
-record(calc, "$(P)TEMPERATURE:RANGECHECK")
+record(calc, "$(P)TEMP:RANGECHECK")
 {
-	field(INPA, "$(P)TEMPERATURE:MOTOR CP")
-	field(INPB, "$(P)TEMPERATURE:ELECTRONICS CP")
+	field(INPA, "$(P)TEMP:MOTOR CP")
+	field(INPB, "$(P)TEMP:ELECTRONICS CP")
+	# 45C is the maximum allowable temperature
+	# This behaviour is copied from the equivalent LabView driver.
 	field(CALC, "A > 45 | B > 45")
 }
 
