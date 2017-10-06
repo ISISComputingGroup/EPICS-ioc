@@ -51,7 +51,7 @@ record(longout, "$(P)$(Q)DAE:RESET:RAW:SP")
     field(VAL, "1")
     field(DTYP, "asynInt32")
     field(DESC, "Reset the DAE")
-    field(OUT,  "@asyn(PLC, 550, 5.0) FINS_DR_WRITE")
+    field(OUT,  "@asyn(PLC, 550, 5.0) FINS_DM_WRITE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:DAE:RESET:RAW:SP")
 }
