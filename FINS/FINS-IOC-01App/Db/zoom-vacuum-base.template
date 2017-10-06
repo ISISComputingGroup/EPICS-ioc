@@ -37,7 +37,13 @@ record(bo, "$(P)$(Q)DAE:RESET:SP")
     field(ZNAM, "RESET")
     field(ONAM, "RESET")
     field(DESC, "Reset the DAE")
-    field(FLNK, "$(P)$(Q)DAE:RESET:RAW:SP")
+    field(FLNK, "$(P)$(Q)DAE:RESET:RAW:VAL")
+}
+
+record(longout, "$(P)$(Q)DAE:RESET:RAW:VAL")
+{
+	field(VAL, "1")
+	field(OUT, "$(P)$(Q)DAE:RESET:RAW:SP PP")
 }
 
 record(longout, "$(P)$(Q)DAE:RESET:RAW:SP")
