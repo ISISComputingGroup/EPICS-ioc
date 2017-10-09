@@ -27,6 +27,15 @@ record(waveform, "$(P)LOGMESSAGE")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(waveform, "$(P)RAMPTABLEDIRECTORY")
+{
+	field(DESC, "Stores value of ramp table file directory")
+	field(FTVL, "CHAR")
+	field(NELM, 256)
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMPTABLEDIRECTORY")
+    field(SDIS, "$(P)DISABLE")	
+}
 
 record(waveform, "$(P)RAMPTABLETARGETS")
 {

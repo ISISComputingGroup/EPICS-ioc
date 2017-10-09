@@ -29,7 +29,10 @@ iocInit
 
 < $(IOCSTARTUP)/postiocinit.cmd
 
-epicsEnvSet(P,$(MYPVPREFIX)$(IOCNAME))
+epicsEnvSet "P" "$(MYPVPREFIX)$(IOCNAME)"
+
+# Directory of ramp rate table
+epicsEnvSet "RAMPTABLEDIR" "$(HFMAGPSU)/data/cryomag_ramp_table.txt"
 
 ## Start any sequence programs
-seq fsm, "P=$(P)"
+seq fsm, "P=$(P), RAMPTABLEDIR=$(RAMPTABLEDIR)"
