@@ -89,6 +89,18 @@ record(ai, "$(P)ZERO")
 	info(archive, "VAL")
 }
 
+record(bi, $(P)SYSTEMSTABLE)
+{
+	field(DESC, "Controller for 'system stable' LED in OPI")
+	field(SCAN, "1 second")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SYSTEMSTABLE")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+	
+}
+
 record(ai, "$(P)OUTPUT") 
 {
 	field(DESC, "Displays output string")
