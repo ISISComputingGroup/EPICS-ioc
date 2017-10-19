@@ -125,6 +125,17 @@ record(ai, "$(P)WRITEFILE")
 	info(archive, "VAL")	
 }
 
+record(ai, "$(P)READFILE")
+{
+	field(DESC, "Boolean to trigger ramp table file READ")
+	field(SCAN, "1 second")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:READFILE")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")	
+}
+
 record(bo, "$(P)PAUSE:SP")
 {
 	field(DESC, "Pauses system on/off")
