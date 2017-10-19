@@ -29,7 +29,7 @@ record(waveform, "$(P)LOGMESSAGE")
 
 record(waveform, "$(P)RAMPTABLEDIRECTORY")
 {
-	field(DESC, "Stores value of ramp table file directory")
+	field(DESC, "Stores value of ramp file directory")
 	field(FTVL, "CHAR")
 	field(NELM, 256)
 	field(SIML, "$(P)SIM")
@@ -89,16 +89,15 @@ record(ai, "$(P)ZERO")
 	info(archive, "VAL")
 }
 
-record(bi, $(P)SYSTEMSTABLE)
+record(ai, "$(P)SYSTEMSTABLE")
 {
-	field(DESC, "Controller for 'system stable' LED in OPI")
+	field(DESC, "Controller for stable LED in OPI")
 	field(SCAN, "1 second")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SYSTEMSTABLE")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
-	info(archive, "VAL")
-	
+	info(archive, "VAL")	
 }
 
 record(ai, "$(P)OUTPUT") 
@@ -113,6 +112,17 @@ record(ai, "$(P)OUTPUT")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+}
+
+record(ai, "$(P)WRITEFILE")
+{
+	field(DESC, "Boolean to trigger ramp table file write")
+	field(SCAN, "1 second")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WRITEFILE")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")	
 }
 
 record(bo, "$(P)PAUSE:SP")
