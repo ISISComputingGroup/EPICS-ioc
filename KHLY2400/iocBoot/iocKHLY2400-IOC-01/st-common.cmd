@@ -7,15 +7,15 @@ epicsEnvSet "DEVICE" "L0"
 ## For emulator use:
 $(IFDEVSIM) freeIPPort("FREEPORT")  
 $(IFDEVSIM) epicsEnvShow("FREEPORT") 
-$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(FREEPORT=0)")
+$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:57677")
 
 $(IFNOTDEVSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT)", 0, 0, 0, 0)
 $(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=19200)")
 $(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
 $(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
 $(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
-$(IFNOTDEVSIM) asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r)")
-$(IFNOTDEVSIM) asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
+asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\\r)")
+asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\\r)")
 
 ## Load record instances
 

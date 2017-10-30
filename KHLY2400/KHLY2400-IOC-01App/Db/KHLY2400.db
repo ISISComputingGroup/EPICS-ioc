@@ -131,9 +131,9 @@ record(seq, "$(P)_READ_POWER") {
 	field(DLY2, "0")
 	field(DLY3, "0")
 	
-	field(LNK1, "$(P)V.PROC")
-	field(LNK2, "$(P)I.PROC")
-	field(LNK3, "$(P)R.PROC")
+	field(LNK1, "$(P)V:RAW.PROC")
+	field(LNK2, "$(P)I:RAW.PROC")
+	field(LNK3, "$(P)R:RAW.PROC")
 	
 	field(SELM, "All")
 }
@@ -142,54 +142,103 @@ record(seq, "$(P)_READ_POWER") {
 #### Current, Voltage, Resistance ####
 ######################################
 
-record(ai, "$(P)I")
+record(ai, "$(P)I:RAW")
 {
-    field(DESC, "Current")
     field(DTYP, "stream")
-    field(EGU, "A")
-	field(PREC, "5")
     field(INP, "@Keithley2400.proto get_I $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:I")
     field(SDIS, "$(P)DISABLE")
-    info(archive, "VAL")
-    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:I")
 {
+	field(LOPR, "-1000000000")
+	field(HOPR, "1000000000")
 }
 
-record(ai, "$(P)V")
+record(calcout, "$(P)I:CALC")
 {
-    field(DESC, "Voltage")
-    field(DTYP, "stream")
-    field(EGU, "V")
+	field(INPA, "$(P)I:RAW CP MS")
+	# The reason this is done is to filter out the 10**38 "Nan" 
+	# value that the device gives when sensor disconnected.
+	field(CALC, "A>10**20?Nan:A")
+}
+
+record(ai, "$(P)I")
+{
+	field(DESC, "Current")
+    field(EGU, "A")
 	field(PREC, "5")
+	field(INP, "$(P)I:CALC CP MS")
+	info(archive, "VAL")
+    info(INTEREST, "HIGH")
+	field(LOPR, "-1000000000")
+	field(HOPR, "1000000000")
+}
+
+record(ai, "$(P)V:RAW")
+{
+    field(DTYP, "stream")
     field(INP, "@Keithley2400.proto get_V $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:V")
     field(SDIS, "$(P)DISABLE")
-    info(archive, "VAL")
-    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:V")
 {
+	field(LOPR, "-1000000000")
+	field(HOPR, "1000000000")
 }
 
-record(ai, "$(P)R")
+record(calcout, "$(P)V:CALC")
 {
-    field(DESC, "Resistance")
-    field(DTYP, "stream")
-    field(EGU, "ohm")
+	field(INPA, "$(P)V:RAW CP MS")
+	# The reason this is done is to filter out the 10**38 "Nan" 
+	# value that the device gives when sensor disconnected.
+	field(CALC, "A>10**20?Nan:A")
+}
+
+record(ai, "$(P)V")
+{
+	field(DESC, "Voltage")
+    field(EGU, "V")
 	field(PREC, "5")
+	field(INP, "$(P)V:CALC CP MS")
+	info(archive, "VAL")
+    info(INTEREST, "HIGH")
+	field(LOPR, "-1000000000")
+	field(HOPR, "1000000000")
+}
+
+record(ai, "$(P)R:RAW")
+{
+    field(DTYP, "stream")
     field(INP, "@Keithley2400.proto get_R $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:R")
     field(SDIS, "$(P)DISABLE")
-    info(archive, "VAL")
+}
+
+record(calcout, "$(P)R:CALC")
+{
+	field(INPA, "$(P)R:RAW CP MS")
+	# The reason this is done is to filter out the 10**38 "Nan" 
+	# value that the device gives when sensor disconnected.
+	field(CALC, "A>10**20?Nan:A")
+}
+
+record(ai, "$(P)R")
+{
+	field(DESC, "Resistance")
+    field(EGU, "ohm")
+	field(PREC, "5")
+	field(INP, "$(P)V:CALC CP MS")
+	info(archive, "VAL")
     info(INTEREST, "HIGH")
+	field(LOPR, "-1000000000")
+	field(HOPR, "1000000000")
 }
 
 record(ai, "$(P)SIM:R")
