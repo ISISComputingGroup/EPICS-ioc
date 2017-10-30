@@ -153,8 +153,6 @@ record(ai, "$(P)I:RAW")
 
 record(ai, "$(P)SIM:I")
 {
-	field(LOPR, "-1000000000")
-	field(HOPR, "1000000000")
 }
 
 record(calcout, "$(P)I:CALC")
@@ -173,8 +171,6 @@ record(ai, "$(P)I")
 	field(INP, "$(P)I:CALC CP MS")
 	info(archive, "VAL")
     info(INTEREST, "HIGH")
-	field(LOPR, "-1000000000")
-	field(HOPR, "1000000000")
 }
 
 record(ai, "$(P)V:RAW")
@@ -188,8 +184,6 @@ record(ai, "$(P)V:RAW")
 
 record(ai, "$(P)SIM:V")
 {
-	field(LOPR, "-1000000000")
-	field(HOPR, "1000000000")
 }
 
 record(calcout, "$(P)V:CALC")
@@ -208,8 +202,6 @@ record(ai, "$(P)V")
 	field(INP, "$(P)V:CALC CP MS")
 	info(archive, "VAL")
     info(INTEREST, "HIGH")
-	field(LOPR, "-1000000000")
-	field(HOPR, "1000000000")
 }
 
 record(ai, "$(P)R:RAW")
@@ -237,8 +229,6 @@ record(ai, "$(P)R")
 	field(INP, "$(P)V:CALC CP MS")
 	info(archive, "VAL")
     info(INTEREST, "HIGH")
-	field(LOPR, "-1000000000")
-	field(HOPR, "1000000000")
 }
 
 record(ai, "$(P)SIM:R")
