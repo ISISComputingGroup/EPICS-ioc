@@ -1,0 +1,12 @@
+record(ai, "$(P)$(CRATE):FREQ") {
+
+}
+
+record(ao, "$(P)$(CRATE):FREQ:SP") {
+
+}
+
+record(ai, "$(P)$(CRATE):FREQ:SP:RBV") {
+
+}
+
