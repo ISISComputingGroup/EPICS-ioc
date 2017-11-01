@@ -1,5 +1,7 @@
 record(ai, "$(P)$(CRATE):FREQ") {
-
+	field(SCAN, "1 second")
+	field(INP, "@devSKFMB350.proto getNumber $(PORT)")
+	field(DTYP, "stream")
 }
 
 record(ao, "$(P)$(CRATE):FREQ:SP") {
