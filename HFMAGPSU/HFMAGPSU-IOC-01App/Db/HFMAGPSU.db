@@ -107,11 +107,20 @@ record(ai, "$(P)OUTPUT")
 	field(DTYP, "stream")
 	field(INP,  "@devHFMAGPSU.proto getOutput $(PORT)")
 	field(PREC, "3")
+	field(FLNK, "$(P)GAUSS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OUTPUT")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+}
+
+record(calcout, "$(P)GAUSS")
+{
+	field(DESC, "Convert output to gauss")
+	field(CALC, "A * 10000")
+	field(INPA, "$(P)OUTPUT")
+	
 }
 
 record(ai, "$(P)OUTPUTDISPLAY") 
