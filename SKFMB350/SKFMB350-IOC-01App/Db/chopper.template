@@ -1,11 +1,12 @@
 record(ai, "$(P)$(CRATE):FREQ") {
 	field(SCAN, "1 second")
-	field(INP, "@devSKFMB350.proto getNumber $(PORT)")
+	field(INP, "@devSKFMB350.proto read_phase_info $(PORT)")
 	field(DTYP, "stream")
 }
 
-record(ao, "$(P)$(CRATE):FREQ:SP") {
-
+record(longout, "$(P)$(CRATE):FREQ:SP") {
+	field(OUT, "@devSKFMB350.proto set_rotation_speed $(PORT)")
+	field(DTYP, "stream")
 }
 
 record(ai, "$(P)$(CRATE):FREQ:SP:RBV") {
