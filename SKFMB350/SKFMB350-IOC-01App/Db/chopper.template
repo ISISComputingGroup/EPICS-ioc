@@ -46,3 +46,9 @@ record(ai, "$(P)$(CRATE):PHAS:REPEATABILITY") {
 
 record(ai, "$(P)$(CRATE):PHAS:PERCENTOK") {
 }
+
+#
+# Interlocks
+#
+record(longin, "$(P)$(CRATE):STAT:ILK") {
+}
