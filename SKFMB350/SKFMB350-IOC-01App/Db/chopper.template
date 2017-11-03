@@ -1,11 +1,18 @@
 #
+# General reads
+#
+record(bo, "$(P)$(CRATE):READPHASEINFO"){
+	field(SCAN, "1 second")
+	field(OUT, "@devSKFMB350.proto read_phase_info($(P)$(CRATE):) $(PORT)")
+	field(DTYP, "stream")
+}
+
+
+#
 # Frequency
 #
 
-record(ai, "$(P)$(CRATE):FREQ") {
-	field(SCAN, "1 second")
-	field(INP, "@devSKFMB350.proto get_frequency $(PORT)")
-	field(DTYP, "stream")
+record(longin, "$(P)$(CRATE):FREQ") {
 }
 
 record(longout, "$(P)$(CRATE):FREQ:SP") {
@@ -15,20 +22,27 @@ record(longout, "$(P)$(CRATE):FREQ:SP") {
 
 alias("$(P)$(CRATE):FREQ:SP", "$(P)$(CRATE):FREQ:SP:RBV")
 
+
 #
 # Phase
 #
 
 record(ai, "$(P)$(CRATE):PHAS") {
-	field(SCAN, "1 second")
-	field(INP, "@devSKFMB350.proto get_phase $(PORT)")
-	field(DTYP, "stream")
 }
 
-record(longout, "$(P)$(CRATE):PHAS:SP") {
+record(ao, "$(P)$(CRATE):PHAS:SP") {
 	field(OUT, "@devSKFMB350.proto set_phase $(PORT)")
 	field(DTYP, "stream")
 }
 
 alias("$(P)$(CRATE):PHAS:SP", "$(P)$(CRATE):PHAS:SP:RBV")
 
+#
+# Phase diagnostic records
+#
+
+record(ai, "$(P)$(CRATE):PHAS:REPEATABILITY") {
+}
+
+record(ai, "$(P)$(CRATE):PHAS:PERCENTOK") {
+}
