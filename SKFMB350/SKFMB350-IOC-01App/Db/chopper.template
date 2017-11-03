@@ -1,15 +1,34 @@
+#
+# Frequency
+#
+
 record(ai, "$(P)$(CRATE):FREQ") {
 	field(SCAN, "1 second")
-	field(INP, "@devSKFMB350.proto read_phase_info $(PORT)")
+	field(INP, "@devSKFMB350.proto get_frequency $(PORT)")
 	field(DTYP, "stream")
 }
 
 record(longout, "$(P)$(CRATE):FREQ:SP") {
-	field(OUT, "@devSKFMB350.proto set_rotation_speed $(PORT)")
+	field(OUT, "@devSKFMB350.proto set_frequency $(PORT)")
 	field(DTYP, "stream")
 }
 
-record(ai, "$(P)$(CRATE):FREQ:SP:RBV") {
+alias("$(P)$(CRATE):FREQ:SP", "$(P)$(CRATE):FREQ:SP:RBV")
 
+#
+# Phase
+#
+
+record(ai, "$(P)$(CRATE):PHAS") {
+	field(SCAN, "1 second")
+	field(INP, "@devSKFMB350.proto get_phase $(PORT)")
+	field(DTYP, "stream")
 }
+
+record(longout, "$(P)$(CRATE):PHAS:SP") {
+	field(OUT, "@devSKFMB350.proto set_phase $(PORT)")
+	field(DTYP, "stream")
+}
+
+alias("$(P)$(CRATE):PHAS:SP", "$(P)$(CRATE):PHAS:SP:RBV")
 
