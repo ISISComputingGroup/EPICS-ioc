@@ -58,20 +58,7 @@ record(longin, "$(P)STAT:ILK:RAW") {
 record(mbbiDirect, "$(P)STAT:ILK") {
 	field(DTYP, "Raw Soft Channel")
 	field(INP, "$(P)STAT:ILK:RAW CP MS")
-	# 0 = DSP_WD_FAIL
-	# 1 = OSCILLATOR_FAIL
-	# 2 = POSITION_SHUTDOWN
-	# 3 = EMERGENCY_STOP
-	# 4 = UPS_FAIL
-	# 5 = EXTERNAL_FAULT
-	# 6 = CC_WD_FAIL
-	# 7 = OVERSPEED_TRIP
-	# 8 = VACUUM_FAIL
-	# 9 = MOTOR_OVER_TEMP
-	# A = REFERENCE_SIGNAL_LOSS
-	# B = SPEED_SENSOR_LOSS
-	# C = COOLING_LOSS
-	# D = DSP_SUMMARY_SHUTDOWN
-	# E = CC_SHUTDOWN_REQ
-	# F = TEST_MODE
+	#
+	# See DB file interlocks.db to get interlock PVs.
+	#
 }
