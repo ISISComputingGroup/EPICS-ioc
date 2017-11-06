@@ -50,6 +50,7 @@ record(ai, "$(P)PHAS:PERCENTOK") {
 #
 # Interlocks
 #
+
 record(longin, "$(P)STAT:ILK:RAW") {
     # Doesn't seem to work correctly without this intermediate record. Not sure why.
 }
@@ -62,3 +63,21 @@ record(mbbiDirect, "$(P)STAT:ILK") {
 	# See DB file interlocks.db to get interlock PVs.
 	#
 }
+
+#
+# Chopper status
+#
+
+record(longin, "$(P)STAT:RAW") {
+    # Doesn't seem to work correctly without this intermediate record. Not sure why.
+}
+
+
+record(mbbiDirect, "$(P)STAT") {
+	field(DTYP, "Raw Soft Channel")
+	field(INP, "$(P)STAT:RAW CP MS")
+	#
+	# See DB file status.db to get interlock PVs.
+	#
+}
+

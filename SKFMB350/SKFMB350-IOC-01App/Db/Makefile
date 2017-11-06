@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 DB += chopper.db
 DB += simdis.db
 DB += interlocks.db
+DB += status.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

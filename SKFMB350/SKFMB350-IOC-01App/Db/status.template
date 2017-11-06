@@ -1,0 +1,7 @@
+record(bi, "$(P)STAT:$(SNAME)") {
+	field(INP, "$(P)STAT.$(FIELD) CP MS")
+	field(ZNAM, "$(ZNAM)")
+	field(ONAM, "$(ONAM)")
+	info(archive, "VAL")
+	info(interest, "MEDIUM")
+}
