@@ -64,14 +64,14 @@ record(ai, "$(P)PHAS:PERCENTOK") {
 # Interlocks
 #
 
-record(longin, "$(P)STAT:ILK:RAW") {
+record(longin, "$(P)ILK:RAW") {
     # Doesn't seem to work correctly without this intermediate record. Not sure why.
 }
 
 
-record(mbbiDirect, "$(P)STAT:ILK") {
+record(mbbiDirect, "$(P)ILK") {
 	field(DTYP, "Raw Soft Channel")
-	field(INP, "$(P)STAT:ILK:RAW CP MS")
+	field(INP, "$(P)ILK:RAW CP MS")
 	#
 	# See DB file interlocks.db to get interlock PVs.
 	#

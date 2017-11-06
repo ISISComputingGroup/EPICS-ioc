@@ -1,6 +1,6 @@
-record(bi, "$(P)STAT:ILK:$(ILKNAME)") {
+record(bi, "$(P)ILK:$(ILKNAME)") {
 	field(DESC, "Interlock: $(ILKNAME)")
-	field(INP, "$(P)STAT:ILK.$(FIELD) CP MS")
+	field(INP, "$(P)ILK.$(FIELD) CP MS")
 	field(ZNAM, "Inactive")
 	field(ONAM, "Active")
 	info(archive, "VAL")
