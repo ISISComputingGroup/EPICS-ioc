@@ -11,7 +11,8 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 DB += chopper.db
-DB += chopper_simdis.db
+DB += simdis.db
+DB += interlocks.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

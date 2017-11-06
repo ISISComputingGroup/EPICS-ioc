@@ -1,8 +1,0 @@
-file chopper.template {
-
-pattern {PORT, P, CRATE}
-{"\$(PORT)", "\$(P)", "1"}
-{"\$(PORT)", "\$(P)", "2"}
-}
-
-

@@ -1,0 +1,77 @@
+#
+# General reads
+#
+record(bo, "$(P)READPHASEINFO"){
+	field(SCAN, "1 second")
+	field(OUT, "@devSKFMB350.proto read_phase_info($(P)) $(PORT)")
+	field(DTYP, "stream")
+}
+
+
+#
+# Frequency
+#
+
+record(longin, "$(P)FREQ") {
+}
+
+record(longout, "$(P)FREQ:SP") {
+	field(OUT, "@devSKFMB350.proto set_frequency $(PORT)")
+	field(DTYP, "stream")
+}
+
+alias("$(P)FREQ:SP", "$(P)FREQ:SP:RBV")
+
+
+#
+# Phase
+#
+
+record(ai, "$(P)PHAS") {
+}
+
+record(ao, "$(P)PHAS:SP") {
+	field(OUT, "@devSKFMB350.proto set_phase $(PORT)")
+	field(DTYP, "stream")
+}
+
+alias("$(P)PHAS:SP", "$(P)PHAS:SP:RBV")
+
+#
+# Phase diagnostic records
+#
+
+record(ai, "$(P)PHAS:REPEATABILITY") {
+}
+
+record(ai, "$(P)PHAS:PERCENTOK") {
+}
+
+#
+# Interlocks
+#
+record(longin, "$(P)STAT:ILK:RAW") {
+    # Doesn't seem to work correctly without this intermediate record. Not sure why.
+}
+
+
+record(mbbiDirect, "$(P)STAT:ILK") {
+	field(DTYP, "Raw Soft Channel")
+	field(INP, "$(P)STAT:ILK:RAW CP MS")
+	# 0 = DSP_WD_FAIL
+	# 1 = OSCILLATOR_FAIL
+	# 2 = POSITION_SHUTDOWN
+	# 3 = EMERGENCY_STOP
+	# 4 = UPS_FAIL
+	# 5 = EXTERNAL_FAULT
+	# 6 = CC_WD_FAIL
+	# 7 = OVERSPEED_TRIP
+	# 8 = VACUUM_FAIL
+	# 9 = MOTOR_OVER_TEMP
+	# A = REFERENCE_SIGNAL_LOSS
+	# B = SPEED_SENSOR_LOSS
+	# C = COOLING_LOSS
+	# D = DSP_SUMMARY_SHUTDOWN
+	# E = CC_SHUTDOWN_REQ
+	# F = TEST_MODE
+}
