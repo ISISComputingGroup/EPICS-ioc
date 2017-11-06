@@ -1,4 +1,5 @@
 record(bi, "$(P)STAT:ILK:$(ILKNAME)") {
+	field(DESC, "Interlock: $(ILKNAME)")
 	field(INP, "$(P)STAT:ILK.$(FIELD) CP MS")
 	field(ZNAM, "Inactive")
 	field(ONAM, "Active")

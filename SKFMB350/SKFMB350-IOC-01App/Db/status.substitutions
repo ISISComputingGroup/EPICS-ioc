@@ -1,14 +1,14 @@
-file interlocks.template {
+file status.template {
 
 pattern {P, SNAME, FIELD, ZNAM, ONAM}
 {"\$(P)", "OK", "B0", "NOT OK", "OK"}
-{"\$(P)", "UP_TO_SPEED", "B1", "YES", "NO"}
-{"\$(P)", "RUN", "B2", "YES", "NO"}
-{"\$(P)", "SHUTDOWN", "B3", "YES", "NO"}
-{"\$(P)", "LEVITATION_COMPLETE", "B4", "YES", "NO"}
-{"\$(P)", "PHASE_LOCKED", "B5", "YES", "NO"}
+{"\$(P)", "UP_TO_SPEED", "B1", "NO", "YES"}
+{"\$(P)", "RUN", "B2", "NO", "YES"}
+{"\$(P)", "SHUTDOWN", "B3", "NO", "YES"}
+{"\$(P)", "LEVITATION_COMPLETE", "B4", "NO", "YES"}
+{"\$(P)", "PHASE_LOCKED", "B5", "NO", "YES"}
 {"\$(P)", "DIRECTION", "B6", "Clockwise", "Counter-clockwise"}
-{"\$(P)", "AVC_ON", "B7", "YES", "NO"}
+{"\$(P)", "AVC_ON", "B7", "NO", "YES"}
 }
 
 

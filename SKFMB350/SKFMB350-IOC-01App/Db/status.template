@@ -1,4 +1,5 @@
 record(bi, "$(P)STAT:$(SNAME)") {
+	field(DESC, "Status: $(SNAME)")
 	field(INP, "$(P)STAT.$(FIELD) CP MS")
 	field(ZNAM, "$(ZNAM)")
 	field(ONAM, "$(ONAM)")

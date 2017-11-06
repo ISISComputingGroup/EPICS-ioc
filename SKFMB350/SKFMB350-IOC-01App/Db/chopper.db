@@ -7,6 +7,19 @@ record(bo, "$(P)READPHASEINFO"){
 	field(DTYP, "stream")
 }
 
+#
+# Start / stop
+#
+record(bo, "$(P)START"){
+	field(OUT, "@devSKFMB350.proto start $(PORT)")
+	field(DTYP, "stream")
+}
+
+record(bo, "$(P)STOP"){
+	field(OUT, "@devSKFMB350.proto stop $(PORT)")
+	field(DTYP, "stream")
+}
+
 
 #
 # Frequency
@@ -77,7 +90,7 @@ record(mbbiDirect, "$(P)STAT") {
 	field(DTYP, "Raw Soft Channel")
 	field(INP, "$(P)STAT:RAW CP MS")
 	#
-	# See DB file status.db to get interlock PVs.
+	# See DB file status.db to get status PVs.
 	#
 }
 
