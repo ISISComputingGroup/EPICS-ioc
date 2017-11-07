@@ -87,6 +87,7 @@ record(stringout, "$(P)RAMP_FILE:SP")
    field(SCAN, "I/O Intr")
 }
 
+# This set point is passed to the ReadASCII ramp, which decides what value to pass on to the device.
 record(ao, "$(P)TEMP:SP")
 {
    field(DESC, "Temperature setpoint")
@@ -98,6 +99,7 @@ record(ao, "$(P)TEMP:SP")
    info(archive, "VAL")
 }
 
+# This set point is read back from the ReadASCII ramp to say where it is ramping to
 record(ao, "$(P)TEMP:SP:RBV")
 {
    field(DESC, "Temperature setpoint readback")
@@ -113,7 +115,8 @@ record(ao, "$(P)RATE:SP")
    field(DESC, "Rate the ramp increases/decreases")
    field(DTYP, "asynFloat64")
    field(OUT, "@asyn($(READ),0,1)RATE")
-   field(EGU, "K/s")
+   field(EGU, "K/min")
+   info(INTEREST, "MEDIUM")
 }
 
 record(ai, "$(P)RATE")
@@ -121,8 +124,9 @@ record(ai, "$(P)RATE")
    field(DESC, "Rate the ramp increases/decreases")
    field(DTYP, "asynFloat64")
    field(INP, "@asyn($(READ),0,1)RATE")
-   field(EGU, "K/s")
+   field(EGU, "K/min")
    field(SCAN, "I/O Intr")
+   info(INTEREST, "MEDIUM")
 }
 
 record(bi, "$(P)RAMPING")
@@ -133,6 +137,7 @@ record(bi, "$(P)RAMPING")
    field(SCAN, "I/O Intr")   
 }
 
+# This is the value that is being sent to the ReadASCII ramp to tell it at what temperature we currently are
 record(ao, "$(P)CURRENT_TEMP")
 {
     field(DESC, "The current temperature of the sensor")
@@ -302,7 +307,7 @@ record(bo, "$(P)RAMPON:DISABLE")
 
 ###########
 
-#Pass on PID ramp
+#Pass on PID ramp from ReadASCII to the device
 record(ao, "$(P)RAMP_SP")
 {
     field(DTYP, "Soft Channel")

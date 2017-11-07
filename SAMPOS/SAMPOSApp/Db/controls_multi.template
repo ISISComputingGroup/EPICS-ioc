@@ -41,7 +41,6 @@ record(ao, "$(P)$(AXISPV):SP")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(AXISPV):SP")
     field(SDIS, "$(P)DISABLE")
-	info(alarm, "SAMPOS")
 }
 
 record(ai, "$(P)$(AXISPV):SP:RBV")

@@ -92,10 +92,10 @@ record(aSub, "$(P)STATUS:PARSE")
     field(OUTM, "$(P)VOLTAGE PP")
     field(FTVM, "DOUBLE") 
       
-    field(OUTN, "$(P)TEMPERATURE:ELECTRONICS PP")
+    field(OUTN, "$(P)TEMP:ELECTRONICS PP")
     field(FTVN, "DOUBLE") 
       
-    field(OUTO, "$(P)TEMPERATURE:MOTOR PP")
+    field(OUTO, "$(P)TEMP:MOTOR PP")
     field(FTVO, "DOUBLE")
 }
 
@@ -182,7 +182,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:AUTOZERO")
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:MOTORTEMP")
 {
 	field(ASG, "READONLY")
-	field(INPA, "$(P)TEMPERATURE:MOTOR")
+	field(INPA, "$(P)TEMP:MOTOR")
 	# Command 2 = Switch drive off
 	field(CALC, "A>45?2:0") 
 	# Use raw because otherwise our command could get blocked by the other checks
@@ -193,7 +193,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:MOTORTEMP")
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:ELECTRONICSTEMP")
 {
 	field(ASG, "READONLY")
-	field(INPA, "$(P)TEMPERATURE:ELECTRONICS")
+	field(INPA, "$(P)TEMP:ELECTRONICS")
 	# Command 2 = Switch drive off
 	field(CALC, "A>45?2:0") 
 	# Use raw because otherwise our command could get blocked by the other checks
@@ -209,6 +209,7 @@ record(ai, "$(P)SPEED:SP:RBV")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED:SP:RBV")
     field(SDIS, "$(P)DISABLE")
+	field(PREC, "0")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 } 
@@ -221,6 +222,7 @@ record(ai, "$(P)SPEED")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED")
     field(SDIS, "$(P)DISABLE")
+	field(PREC, "1")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 } 
@@ -233,6 +235,7 @@ record(ai, "$(P)DELAY:SP:RBV")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DELAY:SP:RBV")
     field(SDIS, "$(P)DISABLE")
+	field(PREC, "3")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 } 
@@ -245,6 +248,7 @@ record(ai, "$(P)DELAY")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DELAY")
     field(SDIS, "$(P)DISABLE")
+	field(PREC, "3")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 } 
@@ -257,6 +261,7 @@ record(ai, "$(P)GATEWIDTH")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:GATEWIDTH")
     field(SDIS, "$(P)DISABLE")
+	field(PREC, "3")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 } 
@@ -266,6 +271,7 @@ record(ai, "$(P)CURRENT")
     field(DESC, "Drive current")
     field(SCAN, "Passive")
     field(EGU, "A")
+	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
 } 
@@ -275,6 +281,7 @@ record(ai, "$(P)AUTOZERO:1:UPPER")
     field(DESC, "Upper autozero voltage 1")
     field(SCAN, "Passive")
     field(EGU, "V")
+	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
 } 
@@ -284,6 +291,7 @@ record(ai, "$(P)AUTOZERO:2:UPPER")
     field(DESC, "Upper autozero voltage 2")
     field(SCAN, "Passive")
     field(EGU, "V")
+	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
 } 
@@ -293,6 +301,7 @@ record(ai, "$(P)AUTOZERO:1:LOWER")
     field(DESC, "Lower autozero voltage 1")
     field(SCAN, "Passive")
     field(EGU, "V")
+	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
 } 
@@ -302,8 +311,20 @@ record(ai, "$(P)AUTOZERO:2:LOWER")
     field(DESC, "Lower autozero voltage 2")
     field(SCAN, "Passive")
     field(EGU, "V")
+	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+}
+
+record(calc, "$(P)AUTOZERO:RANGECHECK")
+{
+	field(INPA, "$(P)AUTOZERO:1:UPPER CP")
+	field(INPB, "$(P)AUTOZERO:2:UPPER CP")
+	field(INPC, "$(P)AUTOZERO:1:LOWER CP")
+	field(INPD, "$(P)AUTOZERO:2:LOWER CP")
+	# Absolute value of 3V is the maximum allowable voltage
+	# This behaviour is copied from the equivalent LabView driver.
+	field(CALC, "ABS(A) > 3 | ABS(B) > 3 | ABS(C) > 3 | ABS(D) > 3")
 }
 
 record(ai, "$(P)VOLTAGE")
@@ -311,27 +332,49 @@ record(ai, "$(P)VOLTAGE")
     field(DESC, "Drive voltage")
     field(SCAN, "Passive")
     field(EGU, "V")
+	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
 } 
 
-record(ai, "$(P)TEMPERATURE:ELECTRONICS")
+record(calc, "$(P)POWER")
+{
+	field(DESC, "Drive power")
+	field(EGU, "W")
+	field(PREC, "2")
+	field(INPA, "$(P)CURRENT CP")
+	field(INPB, "$(P)VOLTAGE CP")
+	field(CALC, "A*B")
+}
+
+record(ai, "$(P)TEMP:ELECTRONICS")
 {
     field(DESC, "Temperature of the electronics")
     field(SCAN, "Passive")
     field(EGU, "C")
+	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
 } 
 
-record(ai, "$(P)TEMPERATURE:MOTOR")
+record(ai, "$(P)TEMP:MOTOR")
 {
     field(DESC, "Temperature of the motor")
     field(SCAN, "Passive")
     field(EGU, "C")
+	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
 } 
+
+record(calc, "$(P)TEMP:RANGECHECK")
+{
+	field(INPA, "$(P)TEMP:MOTOR CP")
+	field(INPB, "$(P)TEMP:ELECTRONICS CP")
+	# 45C is the maximum allowable temperature
+	# This behaviour is copied from the equivalent LabView driver.
+	field(CALC, "A > 45 | B > 45")
+}
 
 record(mbbo, "$(P)COMMAND:SP")
 {	
@@ -399,7 +442,7 @@ record(ao, "$(P)SPEED:SP:RAW")
 
 record(aSub, "$(P)SPEED:SP:CALC")
 {
-    field(DESC, "stuff")
+    field(DESC, "Calculates the speed setpoint")
 
     field(SNAM, "speedSpSend")
 	
@@ -419,6 +462,7 @@ record(ao, "$(P)SPEED:SP")
 	field(FLNK, "$(P)SPEED:SP:CALC")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED:SP")
+	field(PREC, "1")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -464,6 +508,10 @@ record(mbbo, "$(P)SPEED:SP:GUI")
 	field(ELST, "50 Hz")
 	
 	field(OUT, "$(P)SPEED:SP:RAW PP")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPEED:SP:GUI PP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)DELAY:SP")
@@ -474,13 +522,15 @@ record(ao, "$(P)DELAY:SP")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DELAY:SP")
     field(SDIS, "$(P)DISABLE")
+	field(PREC, "3")
+	field(EGU, "us")
 }
 
 record(transform, "$(P)DELAY:SP:_CALC")
 {
 	field(INPA, "$(P)DELAY:SP")
-	field(CLCB, "(A*50400)%65536")
-	field(CLCC, "FLOOR((A*50400)/65536)")
+	field(CLCB, "(A*50.400)%65536")
+	field(CLCC, "FLOOR((A*50.400)/65536)")
 	field(FLNK, "$(P)DELAY:SP:_SEQ")
 }
 
@@ -488,21 +538,27 @@ record(ao, "$(P)DELAY:SP:_HIGHWORD")
 {
 	field(DTYP, "stream")
 	field(OUT,  "@devfc.proto setDelayHighWord $(PORT)")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DUMMY")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)DELAY:SP:_LOWWORD")
 {
 	field(DTYP, "stream")
 	field(OUT,  "@devfc.proto setDelayLowWord $(PORT)")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DUMMY")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(seq, "$(P)DELAY:SP:_SEQ")
 {
-	field(DOL1, "$(P)DELAY:SP:_CALC.C")
-	field(LNK1, "$(P)DELAY:SP:_HIGHWORD PP")
+	field(DOL2, "$(P)DELAY:SP:_CALC.C")
+	field(LNK2, "$(P)DELAY:SP:_HIGHWORD PP")
 	
-	field(DOL2, "$(P)DELAY:SP:_CALC.B")
-    field(LNK2, "$(P)DELAY:SP:_LOWWORD PP")
+	field(DOL1, "$(P)DELAY:SP:_CALC.B")
+    field(LNK1, "$(P)DELAY:SP:_LOWWORD PP")
     # Must have some delay between the two commands according to the documentation
 	field(DLY2, "0.1") 
 	
@@ -517,6 +573,8 @@ record(ao, "$(P)GATEWIDTH:SP")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:GATEWIDTH:SP")
     field(SDIS, "$(P)DISABLE")
+	field(PREC, "3")
+	field(EGU, "us")
 }
 
 record(calcout, "$(P)GATEWIDTH:SP:_CALC")
@@ -531,6 +589,9 @@ record(ao, "$(P)GATEWIDTH:SP:_RAW")
 {
 	field(DTYP, "stream")
 	field(OUT,  "@devfc.proto setGateWidth $(PORT)")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DUMMY")
+    field(SDIS, "$(P)DISABLE")
 }
 
 
@@ -544,6 +605,55 @@ record(ao, "$(P)SIM:SPEED:SP")
 
 alias("$(P)SIM:SPEED:SP","$(P)SIM:SPEED")
 alias("$(P)SIM:SPEED:SP","$(P)SIM:SPEED:SP:RBV")
+
+record(mbbo, "$(P)SIM:SPEED:SP:GUI")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Raw Soft Channel")
+	field(ZRVL, "0")
+	field(ZRST, "600 Hz")
+
+	field(ONVL, "1")
+	field(ONST, "550 Hz")
+	
+	field(TWVL, "2")
+	field(TWST, "500 Hz")
+	
+	field(THVL, "3")
+	field(THST, "450 Hz")
+	
+	field(FRVL, "4")
+	field(FRST, "400 Hz")
+	
+	field(FVVL, "5")
+	field(FVST, "350 Hz")
+	
+	field(SXVL, "6")
+	field(SXST, "300 Hz")
+	
+	field(SVVL, "7")
+	field(SVST, "250 Hz")
+	
+	field(EIVL, "8")
+	field(EIST, "200 Hz")
+	
+	field(NIVL, "9")
+	field(NIST, "150 Hz")
+	
+	field(TEVL, "10")
+	field(TEST, "100 Hz")
+	
+	field(ELVL, "11")
+	field(ELST, "50 Hz")
+}
+
+record(calcout, "$(P)SIM:SPEED:SP:GUI:CALC")
+{
+	field(INPA, "$(P)SIM:SPEED:SP:GUI CP")
+	field(CALC, "(12-A)*50")
+	field(OUT, "$(P)SIM:SPEED:SP:RBV PP")
+	field(OOPT, "Every Time")
+}
 
 record(ao, "$(P)SIM:DELAY:SP")
 {
@@ -575,5 +685,11 @@ record(ai, "$(P)SIM:STATUS:RAW")
 {
 	field(VAL, "1")
 	field(PINI, "YES")
+}
+
+record(ao, "$(P)SIM:DUMMY")
+{
+	field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
 }
 
