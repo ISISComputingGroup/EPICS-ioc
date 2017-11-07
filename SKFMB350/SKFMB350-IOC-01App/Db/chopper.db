@@ -44,6 +44,18 @@ record(ai, "$(P)PHAS") {
 }
 
 record(ao, "$(P)PHAS:SP") {
+	
+}
+
+record(calcout, "$(P)PHAS:SP:CALC") {
+	field(DESC, "Converts us to ns")
+	field(INPA, "$(P)PHAS:SP CP MS")
+	field(CALC, "A*1000")
+	field(OUT, "$(P)PHAS:SP:RAW PP")
+	field(OOPT, "Every Time")
+}
+
+record(ao, "$(P)PHAS:SP:RAW") {
 	field(OUT, "@devSKFMB350.proto set_phase $(PORT)")
 	field(DTYP, "stream")
 }
