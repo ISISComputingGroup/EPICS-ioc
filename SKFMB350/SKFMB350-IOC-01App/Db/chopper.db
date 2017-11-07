@@ -13,6 +13,13 @@ record(bo, "$(P)READ:ROTATORANGLE"){
 	field(DTYP, "stream")
 }
 
+record(bo, "$(P)READ:PHASEDELAY"){
+	field(SCAN, "1 second")
+	field(OUT, "@devSKFMB350.proto read_phase_delay($(P)) $(PORT)")
+	field(DTYP, "stream")
+}
+
+
 #
 # Start / stop
 #
@@ -94,24 +101,59 @@ record(ao, "$(P)PHAS:SP:RAW") {
 	field(DTYP, "stream")
 }
 
-alias("$(P)PHAS:SP", "$(P)PHAS:SP:RBV")  # TODO: This is not an alias this can be got from the device.
-
-#
-# Phase diagnostic records
-#
-
-record(ai, "$(P)PHAS:REPEATABILITY") {
-}
-
 record(ai, "$(P)PHAS:PERCENTOK") {
 }
+
+record(ai, "$(P)PHAS:SP:RBV:RAW") {
+
+}
+
+record(calcout, "$(P)PHAS:SP:RBV:CALC") {
+	field(DESC, "Converts raw phase rbv")
+	field(INPA, "$(P)PHAS:SP:RBV:RAW CP MS")
+	field(CALC, "A*1000")
+	field(OUT, "$(P)$(P)PHAS:SP:RBV PP")
+	field(OOPT, "Every Time")
+}
+
+record(ai, "$(P)PHAS:SP:RBV") {
+
+}
+
+
+#
+# Phase repeatability / gate width
+#
+
+record(ai, "$(P)GATE") {
+
+}
+
+record(ao, "$(P)GATE:SP") {
+	field(EGU, "ns")
+}
+
+record(calcout, "$(P)GATE:SP:CALC") {
+	field(DESC, "Converts us to ns")
+	field(INPA, "$(P)GATE:SP CP MS")
+	field(CALC, "A*10")
+	field(OUT, "$(P)GATE:SP:RAW PP")
+	field(OOPT, "Every Time")
+}
+
+record(ao, "$(P)GATE:SP:RAW") {
+	field(EGU, "ns")
+	field(OUT, "@devSKFMB350.proto set_gate_width $(PORT)")
+	field(DTYP, "stream")
+}
+
 
 #
 # Interlocks
 #
 
 record(longin, "$(P)ILK:RAW") {
-    # Doesn't seem to work correctly without this intermediate record. Not sure why.
+    # mbbiDirect doesn't seem to work correctly without this intermediate record. Not sure why.
 }
 
 
@@ -123,12 +165,13 @@ record(mbbiDirect, "$(P)ILK") {
 	#
 }
 
+
 #
 # Chopper status
 #
 
 record(longin, "$(P)STAT:RAW") {
-    # Doesn't seem to work correctly without this intermediate record. Not sure why.
+    # mbbiDirect doesn't seem to work correctly without this intermediate record. Not sure why.
 }
 
 
@@ -140,10 +183,11 @@ record(mbbiDirect, "$(P)STAT") {
 	#
 }
 
+
 #
-# Angles
+# Angle
 #
+
 record(ai, "$(P)ANGLE:ROTATOR") {
-
+	field(EGU, "degrees")
 }
-
