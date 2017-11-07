@@ -224,6 +224,83 @@ record(ai, "$(P)OUT_MAX")
   }
 
 ###########
+# Cache & disable ramp when sensor disconneccted
+record(fanout, "$(P)SENSOR_CHECK")
+{
+   field(LNK1, "$(P)SENSOR_CONNECTED")
+   field(LNK2, "$(P)SENSOR_DISCONNECTED")
+}
+
+record(calcout, "$(P)SENSOR_CONNECTED")
+{
+   field(DESC, "Check whether the temperature sensor is reconnected")
+   field(INPA, "$(P)TEMP")
+   field(CALC, "A = 1529")
+   field(OOPT, "Transition To Zero")
+   field(OUT, "$(P)RAMPON:ENABLE PP")
+   info(archive, "VAL")
+}
+
+record(bo, "$(P)RAMPON:ENABLE")
+{
+   field(DESC, "Enables Ramp setting control")
+   field(OUT,  "$(P)RAMPON:SP.DISP PP")
+   field(SCAN, "Passive")   
+   field(FLNK, "$(P)RAMPON:RETRIEVE")
+}
+
+record(calcout, "$(P)RAMPON:RETRIEVE")
+{
+   # As calcout to add delay
+   field(DESC, "Retrieves and sets the cached Ramp setting")
+   field(ODLY, "1")
+   field(INPA, "$(P)RAMPON:CACHE")
+   field(CALC, "A")
+   field(OUT, "$(P)RAMPON:SP PP")
+   field(ZNAM, "NO")
+   field(ONAM, "YES")
+}
+
+record(calcout, "$(P)SENSOR_DISCONNECTED")
+{
+   field(DESC, "Check whether the temperature sensor is disconnected")
+   field(INPA, "$(P)TEMP")
+   field(CALC, "A = 1529")
+   field(OOPT, "Transition To Non-zero")
+   field(OUT, "$(P)RAMPON:CACHE.PROC PP")
+   info(archive, "VAL")
+}
+
+record(bi, "$(P)RAMPON:CACHE")
+{
+   field(DESC, "Caches the current Ramp setting")
+   field(DTYP, "Soft Channel")
+   field(INP,  "$(P)RAMPON")
+   field(SCAN, "Passive")
+   field(ZNAM, "NO")
+   field(ONAM, "YES")
+   field(FLNK, "$(P)RAMPON:CLEAR")
+}
+
+record(bo, "$(P)RAMPON:CLEAR")
+{
+   field(VAL, 0)
+   field(DESC, "Clears the current Ramp setting")
+   field(DTYP, "Soft Channel")
+   field(OUT,  "$(P)RAMPON:SP PP")
+   field(SCAN, "Passive")
+   field(FLNK, "$(P)RAMPON:DISABLE")
+}
+
+record(bo, "$(P)RAMPON:DISABLE")
+{
+   field(VAL, 1)
+   field(DESC, "Disables ramp setting control")
+   field(OUT,  "$(P)RAMPON:SP.DISP PP")
+   field(SCAN, "Passive")   
+}
+
+###########
 
 #Pass on PID ramp
 record(ao, "$(P)RAMP_SP")
@@ -732,80 +809,6 @@ record(waveform, "$(P)SENSOR_PATTERN")
    field(SCAN, "I/O Intr")
    field(FTVL, "CHAR")
    field(NELM, 256)
-}
-######################################
-record(fanout, "$(P)SENSOR_CHECK")
-{
-   field(LNK1, "$(P)SENSOR_CONNECTED")
-   field(LNK2, "$(P)SENSOR_DISCONNECTED")
-   field(PINI, "YES")
-}
-
-record(calcout, "$(P)SENSOR_CONNECTED")
-{
-   field(DESC, "Check whether the temperature sensor is reconnected")
-   field(INPA, "$(P)TEMP")
-   field(CALC, "A = 1529")
-   field(OOPT, "Transition To Zero")
-   field(OUT, "$(P)RAMPON:ENABLE PP")
-   info(archive, "VAL")
-}
-
-record(bo, "$(P)RAMPON:ENABLE")
-{
-   field(DESC, "Enables Ramp setting control")
-   field(OUT,  "$(P)RAMPON:SP.DISP PP")
-   field(SCAN, "Passive")   
-   field(FLNK, "$(P)RAMPON:RETRIEVE")
-}
-
-record(bo, "$(P)RAMPON:RETRIEVE")
-{
-   field(DESC, "Retrieves and sets the cached Ramp setting")
-   field(OMSL, "closed_loop")
-   field(DOL, "$(P)RAMPON:CACHE")
-   field(OUT, "$(P)RAMPON:SP PP")
-   field(ZNAM, "NO")
-   field(ONAM, "YES")
-}
-
-record(calcout, "$(P)SENSOR_DISCONNECTED")
-{
-   field(DESC, "Check whether the temperature sensor is disconnected")
-   field(INPA, "$(P)TEMP")
-   field(CALC, "A = 1529")
-   field(OOPT, "Transition To Non-zero")
-   field(OUT, "$(P)RAMPON:CACHE.PROC PP")
-   info(archive, "VAL")
-}
-
-record(bi, "$(P)RAMPON:CACHE")
-{
-   field(DESC, "Caches the current Ramp setting")
-   field(DTYP, "Soft Channel")
-   field(INP,  "$(P)RAMPON")
-   field(SCAN, "Passive")
-   field(ZNAM, "NO")
-   field(ONAM, "YES")
-   field(FLNK, "$(P)RAMPON:CLEAR")
-}
-
-record(bo, "$(P)RAMPON:CLEAR")
-{
-   field(VAL, 0)
-   field(DESC, "Clears the current Ramp setting")
-   field(DTYP, "Soft Channel")
-   field(OUT,  "$(P)RAMPON:SP PP")
-   field(SCAN, "Passive")
-   field(FLNK, "$(P)RAMPON:DISABLE")
-}
-
-record(bo, "$(P)RAMPON:DISABLE")
-{
-   field(VAL, 1)
-   field(DESC, "Disables ramp setting control")
-   field(OUT,  "$(P)RAMPON:SP.DISP PP")
-   field(SCAN, "Passive")   
 }
 
 record(cvt, "$(P)TEMP")
