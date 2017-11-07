@@ -18,7 +18,9 @@ MK3CHOPR_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 # Portname, path to config file, use mock (=1 for mock)
-mk3DriverConfigure("MK3", "C:/LabVIEW Modules/Drivers/ISIS MK3 Disc Chopper/MK3_Chopper.config", 0)
+$(IFDEVSIM) epicsEnvSet(useMock, 1)
+$(IFNOTDEVSIM) epicsEnvSet(useMock, 0)
+mk3DriverConfigure("MK3", "C:/LabVIEW Modules/Drivers/ISIS MK3 Disc Chopper/MK3_Chopper.config", $(useMock))
 
 ## Load record instances
 
