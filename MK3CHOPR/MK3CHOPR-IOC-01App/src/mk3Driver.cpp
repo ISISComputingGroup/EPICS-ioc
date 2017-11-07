@@ -22,7 +22,7 @@
 
 
 static const char *driverName="mk3Driver";
-static const int BUFFER_SIZE = 50;
+static const int BUFFER_SIZE = 100;
 
 mk3Driver::mk3Driver(const char *portName, const char *configFilePath, int mockChopper) 
    : asynPortDriver(portName, 
