@@ -1,9 +1,15 @@
 #
 # General reads
 #
-record(bo, "$(P)READPHASEINFO"){
+record(bo, "$(P)READ:PHASEINFO"){
 	field(SCAN, "1 second")
 	field(OUT, "@devSKFMB350.proto read_phase_info($(P)) $(PORT)")
+	field(DTYP, "stream")
+}
+
+record(bo, "$(P)READ:ROTATORANGLE"){
+	field(SCAN, "1 second")
+	field(OUT, "@devSKFMB350.proto read_rotator_angle($(P)) $(PORT)")
 	field(DTYP, "stream")
 }
 
@@ -25,12 +31,38 @@ record(bo, "$(P)STOP"){
 # Frequency
 #
 
-record(longin, "$(P)FREQ") {
+record(longin, "$(P)FREQ:RAW") {
+	field(EGU, "rpm")
 }
 
-record(longout, "$(P)FREQ:SP") {
+record(calcout, "$(P)FREQ:CALC") {
+	field(DESC, "Converts rpm to Hz")
+	field(INPA, "$(P)FREQ:RAW CP MS")
+	field(CALC, "A/60")
+	field(OUT, "$(P)FREQ PP")
+	field(OOPT, "Every Time")
+}
+
+record(ai, "$(P)FREQ"){
+	field(EGU, "Hz")
+}
+
+record(ao, "$(P)FREQ:SP") {
+	field(EGU, "Hz")
+}
+
+record(calcout, "$(P)FREQ:SP:CALC") {
+	field(DESC, "Converts Hz to rpm")
+	field(INPA, "$(P)FREQ:SP CP MS")
+	field(CALC, "FLOOR(A*60)")  # Have to use FLOOR because the result must be an integer.
+	field(OUT, "$(P)FREQ:SP:RAW PP")
+	field(OOPT, "Every Time")
+}
+
+record(longout, "$(P)FREQ:SP:RAW") {
 	field(OUT, "@devSKFMB350.proto set_frequency $(PORT)")
 	field(DTYP, "stream")
+	field(EGU, "rpm")
 }
 
 alias("$(P)FREQ:SP", "$(P)FREQ:SP:RBV")
@@ -41,10 +73,11 @@ alias("$(P)FREQ:SP", "$(P)FREQ:SP:RBV")
 #
 
 record(ai, "$(P)PHAS") {
+	field(EGU, "us")
 }
 
 record(ao, "$(P)PHAS:SP") {
-	
+	field(EGU, "us")
 }
 
 record(calcout, "$(P)PHAS:SP:CALC") {
@@ -56,11 +89,12 @@ record(calcout, "$(P)PHAS:SP:CALC") {
 }
 
 record(ao, "$(P)PHAS:SP:RAW") {
+	field(EGU, "ns")
 	field(OUT, "@devSKFMB350.proto set_phase $(PORT)")
 	field(DTYP, "stream")
 }
 
-alias("$(P)PHAS:SP", "$(P)PHAS:SP:RBV")
+alias("$(P)PHAS:SP", "$(P)PHAS:SP:RBV")  # TODO: This is not an alias this can be got from the device.
 
 #
 # Phase diagnostic records
@@ -104,5 +138,12 @@ record(mbbiDirect, "$(P)STAT") {
 	#
 	# See DB file status.db to get status PVs.
 	#
+}
+
+#
+# Angles
+#
+record(ai, "$(P)ANGLE:ROTATOR") {
+
 }
 
