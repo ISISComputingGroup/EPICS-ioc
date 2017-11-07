@@ -115,12 +115,19 @@ record(ai, "$(P)OUTPUT")
 	info(archive, "VAL")
 }
 
+record(ai, "$(P)RAMPTIME")
+{
+	field(DESC, "Time to ramp completion")
+	field(SCAN, "1 second")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMPTIME")
+}
+
 record(calcout, "$(P)GAUSS")
 {
 	field(DESC, "Convert output to gauss")
 	field(CALC, "A * 10000")
-	field(INPA, "$(P)OUTPUT")
-	
+	field(INPA, "$(P)OUTPUT")	
 }
 
 record(ai, "$(P)OUTPUTDISPLAY") 
@@ -188,6 +195,7 @@ record(bi, "$(P)PAUSE")
 }
 
 alias("$(P)PAUSE", "$(P)PAUSE:SP:RBV")
+
 
 record(mbbo, "$(P)DIRECTION:SP")
 {
@@ -480,12 +488,12 @@ record(ao, "$(P)HEATERVALUE:SP")
 
 record(bo, "$(P)OUTPUTMODE:SP")
 {
-	field(DESC, "Set Output Mode - amps or tesla")
+	field(DESC, "Set Output Mode - amps(0) or tesla(1)")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(OUT,  "@devHFMAGPSU.proto setOutputMode($(P)LOGMESSAGE) $(PORT)")
-    field(ZNAM, "AMPS")
-    field(ONAM, "TESLA")
+	field(ZNAM, "OFF")
+    field(ONAM, "ON")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OUTPUTMODE:SP")
     field(SDIS, "$(P)DISABLE")
