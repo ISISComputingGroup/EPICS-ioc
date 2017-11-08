@@ -61,8 +61,8 @@ private:
 #define P_InSyncString              "INSYNC"
 #define P_NumChannelsString         "NUMCHANNELS"   
 #define P_NominalPhaseString        "NOMPHASE"        
-#define P_ComputerModeString        "COMPMODE"             
 #define P_ActualPhaseString         "PHASE"      
+#define P_ComputerModeString        "COMPMODE"             
     
     
 #endif /* MK3_DRIVER_H */
