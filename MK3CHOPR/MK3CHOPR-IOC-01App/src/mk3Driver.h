@@ -59,7 +59,7 @@ private:
 #define P_VetoString                "VETO" 
 #define P_ReadyString               "READY" 
 #define P_InSyncString              "INSYNC"
-#define P_NumChannelsString         "CHANNELS"   
+#define P_NumChannelsString         "NUMCHANNELS"   
 #define P_NominalPhaseString        "NOMPHASE"        
 #define P_ComputerModeString        "COMPMODE"             
 #define P_ActualPhaseString         "PHASE"      

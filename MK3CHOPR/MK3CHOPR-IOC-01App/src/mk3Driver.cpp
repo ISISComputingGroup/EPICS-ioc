@@ -66,9 +66,9 @@ mk3Driver::mk3Driver(const char *portName, const char *configFilePath, int mockC
     createParam(P_NominalFreqString, asynParamFloat64, &P_NominalFreq);
     createParam(P_NominalPhaseString, asynParamFloat64, &P_NominalPhase);
     createParam(P_NominalPhaseErrorString, asynParamFloat64, &P_NominalPhaseError);
-    createParam(P_DirectionEnabledString, asynParamInt32, &P_ComputerMode);
+    createParam(P_DirectionEnabledString, asynParamInt32, &P_DirectionEnabled);
     createParam(P_NumChannelsString, asynParamInt32, &P_NumChannels);
-    createParam(P_ComputerModeString, asynParamInt32, &P_NumChannels);
+    createParam(P_ComputerModeString, asynParamInt32, &P_ComputerMode);
 }
 
 asynStatus mk3Driver::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
