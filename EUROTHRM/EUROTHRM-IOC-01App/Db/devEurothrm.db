@@ -93,10 +93,17 @@ record(ao, "$(P)TEMP:SP")
    field(DESC, "Temperature setpoint")
    field(DTYP, "asynFloat64")
    field(OUT, "@asyn($(READ),0,1)TGT")
-   field(FLNK, "$(P)OUT_SP")
+   field(FLNK, "$(P)OUT_SP:TRIG")
    field(EGU, "K")
    info(INTEREST, "HIGH")
    info(archive, "VAL")
+}
+
+# Subtly different than FLNK to an I/O intr record. Needs explicit write or does not trigger
+record(calcout, "$(P)OUT_SP:TRIG") {
+   field(INPA, "1")
+   field(CALC, "A")
+   field(OUT, "$(P)OUT_SP.PROC")
 }
 
 # This set point is read back from the ReadASCII ramp to say where it is ramping to
