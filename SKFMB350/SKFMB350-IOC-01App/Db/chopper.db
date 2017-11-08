@@ -187,6 +187,35 @@ record(mbbiDirect, "$(P)STAT") {
 # Angle
 #
 
+record(longin, "$(P)ANGLE:ROTATOR:RAW") {
+	field(EGU, "degrees")
+}
+
+record(calcout, "$(P)ANGLE:ROTATOR:CALC") {
+	field(DESC, "Converts us to ns")
+	field(INPA, "$(P)ANGLE:ROTATOR:RAW CP MS")
+	field(CALC, "A/10")
+	field(OUT, "$(P)ANGLE:ROTATOR PP")
+	field(OOPT, "Every Time")
+}
+
 record(ai, "$(P)ANGLE:ROTATOR") {
 	field(EGU, "degrees")
+}
+
+record(longout, "$(P)ANGLE:ROTATOR:SP") {
+	field(EGU, "degrees")
+}
+
+record(calcout, "$(P)ANGLE:ROTATOR:SP:CALC") {
+	field(DESC, "Converts us to ns")
+	field(INPA, "$(P)ANGLE:ROTATOR:SP CP MS")
+	field(CALC, "FLOOR(A*10)")
+	field(OUT, "$(P)ANGLE:ROTATOR:SP:RAW PP")
+	field(OOPT, "Every Time")
+}
+
+record(longout, "$(P)ANGLE:ROTATOR:SP:RAW") {
+	field(OUT, "@devSKFMB350.proto set_rotator_angle $(PORT)")
+	field(DTYP, "stream")
 }
