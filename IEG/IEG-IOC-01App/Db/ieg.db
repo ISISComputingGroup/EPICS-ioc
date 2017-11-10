@@ -259,26 +259,66 @@ record(ai, "$(P)PRES:RAW")
 
 record(calc, "$(P)PRES:CALC")
 {
+    field(DESC, "Device pressure, as calculated")
+	
     field(ASG, "READONLY")
     field(INPA, "$(P)PRES:RAW CP MS")
     # Default to no calibration if macros not set.
     field(CALC, "A*$(CALIBRATION_A)+$(CALIBRATION_B)")
-}
-
-record(ai, "$(P)PRES")
-{
-    field(DESC, "Device pressure")
-    field(INP, "$(P)PRES:CALC CP MS")
-    field(EGU, "mbar")
     
-    field(LOW, "-0.1")
+    field(LOW, "0")
     field(HIGH, "350")
 	field(LSV, "MAJOR")
 	field(HSV, "MAJOR")
+	
+    field(EGU, "mbar")
+}
+
+record(calc, "$(P)PRES:OUT:CALC") {
+    field(DESC, "Restrict calculated pressure to [0,350] mbar")
+	
+    field(ASG, "READONLY")
+    field(INPA, "$(P)PRES:CALC CP MS")
+    # Default to no calibration if macros not set.
+    field(CALC, "MAX(MIN(INPA,350.0),0.0)")	
+    field(EGU, "mbar")
+}
+
+record(ai, "$(P)PRES:OUT")
+{
+    field(DESC, "Device pressure (restricted [0,350] mbar)")
+    field(INP, "$(P)PRES:OUT:CALC CP MS")
+    field(EGU, "mbar")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     info(alarm, "IEG")
+}
+
+# User requirements are uncertain and subject to change.
+# Use the restricted range pressure as the primary output for now.
+# Aliasing makes it easier to change in future if needed
+# If we're concerned about stability in blocks/scripts, use the
+# unaliased PVs
+alias("$(P)PRES:OUT", "$(P)PRES")
+
+record(scalcout, "$(P)PRES:GUI:NMES")
+{
+	field(DESC, "GUI pressure reading when in range")
+    field(INPA, "$(P)PRES CP")
+    field(CALC, "PRINTF('%.2f mbar',A)")
+}
+
+record(scalcout, "$(P)PRES:GUI:LMES")
+{
+	field(DESC, "GUI pressure reading when le 0")
+    field(CALC, "'<= 0 mbar'")
+}
+
+record(scalcout, "$(P)PRES:GUI:HMES")
+{
+	field(DESC, "GUI pressure reading when gt 350")
+    field(CALC, "'> 350 mbar'")
 }
 
 record(scalcout, "$(P)PRES:GUI")
@@ -289,8 +329,10 @@ record(scalcout, "$(P)PRES:GUI")
     field(ASG, "READONLY")
     field(DESC, "GUI pressure reading")
     field(INPA, "$(P)PRES CP MS")
-    field(CALC, "A>350?'> 350 mbar':PRINTF('%.2f mbar',A)")
-    field(EGU, "")
+	field(INAA, "$(P)PRES:GUI:HMES")
+	field(INBB, "$(P)PRES:GUI:LMES")
+	field(INCC, "$(P)PRES:GUI:NMES")
+    field(CALC, "A>350?AA:(A<=0?BB:CC)")
 }
 
 #
