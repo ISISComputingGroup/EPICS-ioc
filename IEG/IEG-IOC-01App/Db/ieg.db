@@ -323,8 +323,9 @@ record(scalcout, "$(P)PRES:GUI:HMES")
 
 record(scalcout, "$(P)PRES:GUI")
 {
-    # Format the pressure as '> 350' if pressure 
-    # greater than 350 else format to 2 d.p 
+    # Format the pressure as '> 350 mbar' if pressure 
+    # greater than 350, '<= 0 mbar' if pressure less than
+    # or equal to 0 else format to 2 d.p.
     # This is for use on the OPI, which looks at the OSV field.
     field(ASG, "READONLY")
     field(DESC, "GUI pressure reading")
