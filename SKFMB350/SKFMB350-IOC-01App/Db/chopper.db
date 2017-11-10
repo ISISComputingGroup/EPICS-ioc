@@ -75,10 +75,16 @@ record(calcout, "$(P)FREQ:CALC") {
 
 record(ai, "$(P)FREQ"){
     field(EGU, "Hz")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "0")
 }
 
 record(ao, "$(P)FREQ:SP") {
     field(EGU, "Hz")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "0")
 }
 
 record(calcout, "$(P)FREQ:SP:CALC") {
@@ -116,6 +122,9 @@ record(ai, "$(P)PHAS") {
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PHAS")
     field(SDIS, "$(P)DISABLE")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "0")
 }
 
 record(ao, "$(P)PHAS:SP") {
@@ -123,6 +132,9 @@ record(ao, "$(P)PHAS:SP") {
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PHAS:SP")
     field(SDIS, "$(P)DISABLE")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "0")
 }
 
 record(calcout, "$(P)PHAS:SP:CALC") {
@@ -146,6 +158,18 @@ record(fanout, "$(P)PHAS:PROCESS") {
 }
 
 record(ai, "$(P)PHAS:PERCENTOK") {
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHAS:PERCENTOK")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "%")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "1")
+}
+
+record(ao, "$(P)SIM:PHAS:PERCENTOK") {
+	field(VAL, "100")
+	field(PINI, "YES")
 }
 
 record(ai, "$(P)PHAS:SP:RBV:RAW") {
@@ -165,6 +189,9 @@ record(ai, "$(P)PHAS:SP:RBV") {
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PHAS:SP:RBV")
     field(SDIS, "$(P)DISABLE")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "0")
 }
 
 record(ao, "$(P)SIM:PHAS"){
@@ -179,9 +206,13 @@ alias("$(P)SIM:PHAS", "$(P)SIM:PHAS:SP:RBV")
 #
 
 record(ai, "$(P)GATE") {
+	field(EGU, "us")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:GATE")
     field(SDIS, "$(P)DISABLE")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "1")
 }
 
 record(ao, "$(P)GATE:SP") {
@@ -189,10 +220,12 @@ record(ao, "$(P)GATE:SP") {
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:GATE:SP")
     field(SDIS, "$(P)DISABLE")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "1")
 }
 
 record(calcout, "$(P)GATE:SP:CALC") {
-    field(DESC, "Converts us to ns")
     field(INPA, "$(P)GATE:SP CP MS")
     field(CALC, "A*10")
     field(OUT, "$(P)GATE:SP:RAW PP")
@@ -226,6 +259,8 @@ record(mbbiDirect, "$(P)ILK") {
     #
     # See DB file interlocks.db to get interlock PVs.
     #
+	info(interest, "HIGH")
+	info(archive, "VAL")
 }
 
 
@@ -244,6 +279,8 @@ record(mbbiDirect, "$(P)STAT") {
     #
     # See DB file status.db to get status PVs.
     #
+	info(interest, "HIGH")
+	info(archive, "VAL")
 }
 
 
@@ -252,11 +289,12 @@ record(mbbiDirect, "$(P)STAT") {
 #
 
 record(longin, "$(P)ANGLE:ROTATOR:RAW") {
-    field(EGU, "degrees")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ANGLE:ROTATOR:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(calcout, "$(P)ANGLE:ROTATOR:CALC") {
-    field(DESC, "Converts us to ns")
     field(INPA, "$(P)ANGLE:ROTATOR:RAW CP MS")
     field(CALC, "A/10")
     field(OUT, "$(P)ANGLE:ROTATOR PP")
@@ -265,11 +303,17 @@ record(calcout, "$(P)ANGLE:ROTATOR:CALC") {
 
 record(ai, "$(P)ANGLE:ROTATOR") {
     field(EGU, "degrees")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "1")
 }
 
 record(ao, "$(P)ANGLE:ROTATOR:SP") {
     field(EGU, "degrees")
 	field(FLNK, "$(P)ANGLE:ROTATOR:SP:CALC")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "1")
 }
 
 record(calcout, "$(P)ANGLE:ROTATOR:SP:CALC") {
@@ -284,7 +328,15 @@ record(longout, "$(P)ANGLE:ROTATOR:SP:RAW") {
     field(OUT, "@devSKFMB350.proto set_rotator_angle $(PORT)")
     field(DTYP, "stream")
 	field(FLNK, "$(P)ANGLE:ROTATOR:RAW")  # Needed for recsim
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ANGLE:ROTATOR")
+    field(SDIS, "$(P)DISABLE")
 }
+
+record(longout, "$(P)SIM:ANGLE:ROTATOR"){
+}
+
+alias("$(P)SIM:ANGLE:ROTATOR", "$(P)SIM:ANGLE:ROTATOR:SP")
 
 
 #
