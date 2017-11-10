@@ -22,6 +22,7 @@
 
 
 static const char *driverName="mk3Driver";
+static const int BUFFER_SIZE = 100;
 
 mk3Driver::mk3Driver(const char *portName, const char *configFilePath, int mockChopper) 
    : asynPortDriver(portName, 
@@ -191,7 +192,7 @@ asynStatus mk3Driver::readOctet(asynUser *pasynUser, char *value, size_t maxChar
     }
     else if (function == P_ChopperName)
     {
-        const int size = 50;
+        const int size = BUFFER_SIZE;
         char result[size];
         errCode = m_interface->getChopperName(channel, result, size);
         checkErrorCode(errCode);
@@ -354,8 +355,8 @@ void mk3Driver::checkErrorCode(int code)
     // 0 = no error
     if (code != 0)
     {
-        char answer[50];
-        m_interface->checkErrorCode(code, answer, 50);
+        char answer[BUFFER_SIZE];
+        m_interface->checkErrorCode(code, answer, BUFFER_SIZE);
         errlogSevPrintf(errlogMajor, "%s", answer);
         
         // If .net timeout try to re-intialise
