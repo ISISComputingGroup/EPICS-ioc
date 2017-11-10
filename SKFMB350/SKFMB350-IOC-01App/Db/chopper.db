@@ -1,36 +1,56 @@
 #
 # General reads
 #
+
 record(bo, "$(P)READ:PHASEINFO"){
-	field(SCAN, "1 second")
-	field(OUT, "@devSKFMB350.proto read_phase_info($(P)) $(PORT)")
-	field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(OUT, "@devSKFMB350.proto read_phase_info($(P)) $(PORT)")
+    field(DTYP, "stream")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DONOTHING")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)READ:ROTATORANGLE"){
-	field(SCAN, "1 second")
-	field(OUT, "@devSKFMB350.proto read_rotator_angle($(P)) $(PORT)")
-	field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(OUT, "@devSKFMB350.proto read_rotator_angle($(P)) $(PORT)")
+    field(DTYP, "stream")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DONOTHING")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)READ:PHASEDELAY"){
-	field(SCAN, "1 second")
-	field(OUT, "@devSKFMB350.proto read_phase_delay($(P)) $(PORT)")
-	field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(OUT, "@devSKFMB350.proto read_phase_delay($(P)) $(PORT)")
+    field(DTYP, "stream")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DONOTHING")
+    field(SDIS, "$(P)DISABLE")
 }
 
 
 #
 # Start / stop
 #
+
 record(bo, "$(P)START"){
-	field(OUT, "@devSKFMB350.proto start $(PORT)")
-	field(DTYP, "stream")
+    field(OUT, "@devSKFMB350.proto start $(PORT)")
+    field(DTYP, "stream")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DONOTHING")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)STOP"){
-	field(OUT, "@devSKFMB350.proto stop $(PORT)")
-	field(DTYP, "stream")
+    field(OUT, "@devSKFMB350.proto stop $(PORT)")
+    field(DTYP, "stream")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DONOTHING")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)SIM:DONOTHING") {
 }
 
 
@@ -39,40 +59,52 @@ record(bo, "$(P)STOP"){
 #
 
 record(longin, "$(P)FREQ:RAW") {
-	field(EGU, "rpm")
+    field(EGU, "rpm")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FREQ")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(calcout, "$(P)FREQ:CALC") {
-	field(DESC, "Converts rpm to Hz")
-	field(INPA, "$(P)FREQ:RAW CP MS")
-	field(CALC, "A/60")
-	field(OUT, "$(P)FREQ PP")
-	field(OOPT, "Every Time")
+    field(DESC, "Converts rpm to Hz")
+    field(INPA, "$(P)FREQ:RAW CP MS")
+    field(CALC, "A/60")
+    field(OUT, "$(P)FREQ PP")
+    field(OOPT, "Every Time")
 }
 
 record(ai, "$(P)FREQ"){
-	field(EGU, "Hz")
+    field(EGU, "Hz")
 }
 
 record(ao, "$(P)FREQ:SP") {
-	field(EGU, "Hz")
+    field(EGU, "Hz")
 }
 
 record(calcout, "$(P)FREQ:SP:CALC") {
-	field(DESC, "Converts Hz to rpm")
-	field(INPA, "$(P)FREQ:SP CP MS")
-	field(CALC, "FLOOR(A*60)")  # Have to use FLOOR because the result must be an integer.
-	field(OUT, "$(P)FREQ:SP:RAW PP")
-	field(OOPT, "Every Time")
+    field(DESC, "Converts Hz to rpm")
+    field(INPA, "$(P)FREQ:SP CP MS")
+    field(CALC, "FLOOR(A*60)")  # Have to use FLOOR because the result must be an integer.
+    field(OUT, "$(P)FREQ:SP:RAW PP")
+    field(OOPT, "Every Time")
 }
 
 record(longout, "$(P)FREQ:SP:RAW") {
-	field(OUT, "@devSKFMB350.proto set_frequency $(PORT)")
-	field(DTYP, "stream")
-	field(EGU, "rpm")
+    field(OUT, "@devSKFMB350.proto set_frequency $(PORT)")
+    field(DTYP, "stream")
+    field(EGU, "rpm")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FREQ:SP")
+    field(SDIS, "$(P)DISABLE")
+	field(FLNK, "$(P)FREQ:RAW")  # Needed for recsim
 }
 
 alias("$(P)FREQ:SP", "$(P)FREQ:SP:RBV")
+
+record(longout, "$(P)SIM:FREQ:SP"){
+}
+
+alias("$(P)SIM:FREQ:SP", "$(P)SIM:FREQ")
 
 
 #
@@ -80,25 +112,37 @@ alias("$(P)FREQ:SP", "$(P)FREQ:SP:RBV")
 #
 
 record(ai, "$(P)PHAS") {
-	field(EGU, "us")
+    field(EGU, "us")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHAS")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)PHAS:SP") {
-	field(EGU, "us")
+    field(EGU, "us")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHAS:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(calcout, "$(P)PHAS:SP:CALC") {
-	field(DESC, "Converts us to ns")
-	field(INPA, "$(P)PHAS:SP CP MS")
-	field(CALC, "A*1000")
-	field(OUT, "$(P)PHAS:SP:RAW PP")
-	field(OOPT, "Every Time")
+    field(DESC, "Converts us to ns")
+    field(INPA, "$(P)PHAS:SP CP MS")
+    field(CALC, "A*1000")
+    field(OUT, "$(P)PHAS:SP:RAW PP")
+    field(OOPT, "Every Time")
 }
 
 record(ao, "$(P)PHAS:SP:RAW") {
-	field(EGU, "ns")
-	field(OUT, "@devSKFMB350.proto set_phase $(PORT)")
-	field(DTYP, "stream")
+    field(EGU, "ns")
+    field(OUT, "@devSKFMB350.proto set_phase $(PORT)")
+    field(DTYP, "stream")
+	field(FLNK, "$(P)PHAS:PROCESS")  # Needed for recsim
+}
+
+record(fanout, "$(P)PHAS:PROCESS") {
+    field(LNK1, "$(P)PHAS")  # Needed for recsim
+    field(LNK2, "$(P)PHAS:SP:RBV")  # Needed for recsim
 }
 
 record(ai, "$(P)PHAS:PERCENTOK") {
@@ -109,16 +153,25 @@ record(ai, "$(P)PHAS:SP:RBV:RAW") {
 }
 
 record(calcout, "$(P)PHAS:SP:RBV:CALC") {
-	field(DESC, "Converts raw phase rbv")
-	field(INPA, "$(P)PHAS:SP:RBV:RAW CP MS")
-	field(CALC, "A/10")
-	field(OUT, "$(P)PHAS:SP:RBV PP")
-	field(OOPT, "Every Time")
+    field(DESC, "Converts raw phase rbv")
+    field(INPA, "$(P)PHAS:SP:RBV:RAW CP MS")
+    field(CALC, "A/10")
+    field(OUT, "$(P)PHAS:SP:RBV PP")
+    field(OOPT, "Every Time")
 }
 
 record(ai, "$(P)PHAS:SP:RBV") {
-	field(EGU, "us")
+    field(EGU, "us")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHAS:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
 }
+
+record(ao, "$(P)SIM:PHAS"){
+}
+
+alias("$(P)SIM:PHAS", "$(P)SIM:PHAS:SP")
+alias("$(P)SIM:PHAS", "$(P)SIM:PHAS:SP:RBV")
 
 
 #
@@ -126,25 +179,36 @@ record(ai, "$(P)PHAS:SP:RBV") {
 #
 
 record(ai, "$(P)GATE") {
-
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:GATE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)GATE:SP") {
-	field(EGU, "us")
+    field(EGU, "us")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:GATE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(calcout, "$(P)GATE:SP:CALC") {
-	field(DESC, "Converts us to ns")
-	field(INPA, "$(P)GATE:SP CP MS")
-	field(CALC, "A*10")
-	field(OUT, "$(P)GATE:SP:RAW PP")
-	field(OOPT, "Every Time")
+    field(DESC, "Converts us to ns")
+    field(INPA, "$(P)GATE:SP CP MS")
+    field(CALC, "A*10")
+    field(OUT, "$(P)GATE:SP:RAW PP")
+    field(OOPT, "Every Time")
 }
 
 record(ao, "$(P)GATE:SP:RAW") {
-	field(OUT, "@devSKFMB350.proto set_gate_width $(PORT)")
-	field(DTYP, "stream")
+    field(OUT, "@devSKFMB350.proto set_gate_width $(PORT)")
+    field(DTYP, "stream")
+	field(FLNK, "$(P)GATE")  # Needed for recsim
 }
+
+record(ao, "$(P)SIM:GATE"){
+}
+
+alias("$(P)SIM:GATE", "$(P)SIM:GATE:SP")
 
 
 #
@@ -157,11 +221,11 @@ record(longin, "$(P)ILK:RAW") {
 
 
 record(mbbiDirect, "$(P)ILK") {
-	field(DTYP, "Raw Soft Channel")
-	field(INP, "$(P)ILK:RAW CP MS")
-	#
-	# See DB file interlocks.db to get interlock PVs.
-	#
+    field(DTYP, "Raw Soft Channel")
+    field(INP, "$(P)ILK:RAW CP MS")
+    #
+    # See DB file interlocks.db to get interlock PVs.
+    #
 }
 
 
@@ -175,11 +239,11 @@ record(longin, "$(P)STAT:RAW") {
 
 
 record(mbbiDirect, "$(P)STAT") {
-	field(DTYP, "Raw Soft Channel")
-	field(INP, "$(P)STAT:RAW CP MS")
-	#
-	# See DB file status.db to get status PVs.
-	#
+    field(DTYP, "Raw Soft Channel")
+    field(INP, "$(P)STAT:RAW CP MS")
+    #
+    # See DB file status.db to get status PVs.
+    #
 }
 
 
@@ -188,34 +252,74 @@ record(mbbiDirect, "$(P)STAT") {
 #
 
 record(longin, "$(P)ANGLE:ROTATOR:RAW") {
-	field(EGU, "degrees")
+    field(EGU, "degrees")
 }
 
 record(calcout, "$(P)ANGLE:ROTATOR:CALC") {
-	field(DESC, "Converts us to ns")
-	field(INPA, "$(P)ANGLE:ROTATOR:RAW CP MS")
-	field(CALC, "A/10")
-	field(OUT, "$(P)ANGLE:ROTATOR PP")
-	field(OOPT, "Every Time")
+    field(DESC, "Converts us to ns")
+    field(INPA, "$(P)ANGLE:ROTATOR:RAW CP MS")
+    field(CALC, "A/10")
+    field(OUT, "$(P)ANGLE:ROTATOR PP")
+    field(OOPT, "Every Time")
 }
 
 record(ai, "$(P)ANGLE:ROTATOR") {
-	field(EGU, "degrees")
+    field(EGU, "degrees")
 }
 
-record(longout, "$(P)ANGLE:ROTATOR:SP") {
-	field(EGU, "degrees")
+record(ao, "$(P)ANGLE:ROTATOR:SP") {
+    field(EGU, "degrees")
+	field(FLNK, "$(P)ANGLE:ROTATOR:SP:CALC")
 }
 
 record(calcout, "$(P)ANGLE:ROTATOR:SP:CALC") {
-	field(DESC, "Converts us to ns")
-	field(INPA, "$(P)ANGLE:ROTATOR:SP CP MS")
-	field(CALC, "FLOOR(A*10)")
-	field(OUT, "$(P)ANGLE:ROTATOR:SP:RAW PP")
-	field(OOPT, "Every Time")
+    field(DESC, "Converts us to ns")
+    field(INPA, "$(P)ANGLE:ROTATOR:SP MS")
+    field(CALC, "FLOOR(A*10)")
+    field(OUT, "$(P)ANGLE:ROTATOR:SP:RAW PP")
+    field(OOPT, "Every Time")
 }
 
 record(longout, "$(P)ANGLE:ROTATOR:SP:RAW") {
-	field(OUT, "@devSKFMB350.proto set_rotator_angle $(PORT)")
-	field(DTYP, "stream")
+    field(OUT, "@devSKFMB350.proto set_rotator_angle $(PORT)")
+    field(DTYP, "stream")
+	field(FLNK, "$(P)ANGLE:ROTATOR:RAW")  # Needed for recsim
+}
+
+
+#
+# Setting parking positions
+#
+
+record(ao, "$(P)ANGLE:PARK:OPEN") {
+    field(VAL, "$(PARKOPEN)")
+    field(PINI, "YES")
+}
+
+record(ao, "$(P)ANGLE:PARK:CLOSED") {
+    field(VAL, "$(PARKCLOSED)")
+    field(PINI, "YES")
+}
+
+record(bo, "$(P)ANGLE:PARK:SELECTOR") {
+    field(VAL, "$(PARKPOS)")
+    field(ZNAM, "CLOSED")
+    field(ONAM, "OPEN")
+    field(PINI, "YES")
+}
+
+record(calcout, "$(P)ANGLE:PARK:OPEN:CALC") {
+    field(INPA, "$(P)ANGLE:PARK:OPEN CP MS")
+    field(INPB, "$(P)ANGLE:PARK:SELECTOR CP MS")
+    field(CALC, "B=1?A:0")
+    field(OUT, "$(P)ANGLE:ROTATOR:SP PP")
+    field(OOPT, "When Non-zero")
+}
+
+record(calcout, "$(P)ANGLE:PARK:CLOSED:CALC") {
+    field(INPA, "$(P)ANGLE:PARK:CLOSED CP MS")
+    field(INPB, "$(P)ANGLE:PARK:SELECTOR CP MS")
+    field(CALC, "B=0?A:0")
+    field(OUT, "$(P)ANGLE:ROTATOR:SP PP")
+    field(OOPT, "When Non-zero")
 }

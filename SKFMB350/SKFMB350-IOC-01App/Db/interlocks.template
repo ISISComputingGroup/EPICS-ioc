@@ -5,4 +5,12 @@ record(bi, "$(P)ILK:$(ILKNAME)") {
 	field(ONAM, "Active")
 	info(archive, "VAL")
 	info(interest, "MEDIUM")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ILK:$(ILKNAME)")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record (bi, "$(P)SIM:ILK:$(ILKNAME)") {
+	field(VAL, "0")
+	field(PINI, "YES")
 }
