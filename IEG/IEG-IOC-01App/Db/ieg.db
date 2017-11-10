@@ -58,7 +58,7 @@ record(mbbo, "$(P)MODE:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, $(P)STATUS:_SCAN)
+record(ai, "$(P)STATUS:_SCAN")
 {
     field(INP, "@devieg.proto getStatus($(P)STATUS:_RAW) $(PORT)")
     field(SCAN, "1 second")
@@ -266,8 +266,9 @@ record(calc, "$(P)PRESSURE:CALC")
     # Default to no calibration if macros not set.
     field(CALC, "A*$(CALIBRATION_A)+$(CALIBRATION_B)")
     
-    field(LOW, "0")
-    field(HIGH, "350")
+	# No alarm for limit up to 3dp
+    field(LOW, "-0.0005")
+    field(HIGH, "350.0005")
 	field(LSV, "MAJOR")
 	field(HSV, "MAJOR")
 	
@@ -275,20 +276,21 @@ record(calc, "$(P)PRESSURE:CALC")
 }
 
 record(calc, "$(P)PRESSURE:OUT:CALC") {
-    field(DESC, "Restrict calculated pressure to [0,350] mbar")
+    field(DESC, "Calculate pressure in range 0-350 mbar")
 	
     field(ASG, "READONLY")
     field(INPA, "$(P)PRESSURE:CALC CP MS")
     # Default to no calibration if macros not set.
-    field(CALC, "MAX(MIN(INPA,350.0),0.0)")	
+    field(CALC, "MAX(MIN(A,350.0),0.0)")	
     field(EGU, "mbar")
 }
 
 record(ai, "$(P)PRESSURE:OUT")
 {
-    field(DESC, "Device pressure (restricted [0,350] mbar)")
+    field(DESC, "Device pressure (0-350 mbar)")
     field(INP, "$(P)PRESSURE:OUT:CALC CP MS")
     field(EGU, "mbar")
+	field(PREC, "2")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -305,20 +307,22 @@ alias("$(P)PRESSURE:OUT", "$(P)PRESSURE")
 record(scalcout, "$(P)PRESSURE:GUI:NMES")
 {
 	field(DESC, "GUI pressure reading when in range")
-    field(INPA, "$(P)PRESSURE CP")
+    field(INPA, "$(P)PRESSURE:OUT CP")
     field(CALC, "PRINTF('%.2f mbar',A)")
 }
 
-record(scalcout, "$(P)PRESSURE:GUI:LMES")
+record(stringout, "$(P)PRESSURE:GUI:LMES")
 {
-	field(DESC, "GUI pressure reading when le 0")
-    field(CALC, "'<= 0 mbar'")
+	field(DESC, "GUI pressure reading when lt 0")
+    field(VAL, "<0 mbar")
+	field(PINI, "YES")
 }
 
-record(scalcout, "$(P)PRESSURE:GUI:HMES")
+record(stringout, "$(P)PRESSURE:GUI:HMES")
 {
 	field(DESC, "GUI pressure reading when gt 350")
-    field(CALC, "'> 350 mbar'")
+    field(VAL, ">350 mbar")
+	field(PINI, "YES")
 }
 
 record(scalcout, "$(P)PRESSURE:GUI")
@@ -329,11 +333,11 @@ record(scalcout, "$(P)PRESSURE:GUI")
     # This is for use on the OPI, which looks at the OSV field.
     field(ASG, "READONLY")
     field(DESC, "GUI pressure reading")
-    field(INPA, "$(P)PRESSURE CP MS")
+    field(INPA, "$(P)PRESSURE:CALC CP MS")
 	field(INAA, "$(P)PRESSURE:GUI:HMES")
 	field(INBB, "$(P)PRESSURE:GUI:LMES")
-	field(INCC, "$(P)PRESSURE:GUI:NMES")
-    field(CALC, "A>350?AA:(A<=0?BB:CC)")
+	field(INCC, "$(P)PRESSURE:GUI:NMES.OSV CP")
+    field(CALC, "A>350?AA:(A<0?BB:CC)")
 }
 
 #
