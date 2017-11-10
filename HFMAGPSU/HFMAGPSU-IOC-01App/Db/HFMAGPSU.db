@@ -118,7 +118,7 @@ record(ai, "$(P)OUTPUT")
 record(ai, "$(P)RAMPTIME")
 {
 	field(DESC, "Time to ramp completion")
-	field(SCAN, "1 second")
+	#field(SCAN, "1 second")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAMPTIME")
 }
@@ -128,18 +128,6 @@ record(calcout, "$(P)GAUSS")
 	field(DESC, "Convert output to gauss")
 	field(CALC, "A * 10000")
 	field(INPA, "$(P)OUTPUT")	
-}
-
-record(ai, "$(P)OUTPUTDISPLAY") 
-{
-	field(DESC, "Displays converted output")
-    field(SCAN, "1 second")
-	field(PREC, "5")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:OUTPUTDISPLAY")
-    field(SDIS, "$(P)DISABLE")
-	info(INTEREST, "HIGH")
-	info(archive, "VAL")
 }
 
 record(ai, "$(P)WRITEFILE")
@@ -196,17 +184,13 @@ record(bi, "$(P)PAUSE")
 
 alias("$(P)PAUSE", "$(P)PAUSE:SP:RBV")
 
-
 record(mbbo, "$(P)DIRECTION:SP")
 {
 	field(DESC, "Set Direction - 0, +ve, -ve")
 	field(DTYP, "stream")
 	field(ZRST, "0")
-	field(ZRVL, "0")
 	field(ONST, "-")
-	field(ONVL, "1")
 	field(TWST, "+")
-	field(TWVL, "2")
 	field(SDIS, "$(P)DISABLE")
 	field(OUT, "@devHFMAGPSU.proto setDirection($(P)LOGMESSAGE) $(PORT)")
 	field(SIML, "$(P)SIM")
@@ -221,11 +205,8 @@ record(mbbi, "$(P)DIRECTION")
 	field(SCAN, "1 second")
     field(DTYP, "stream")
 	field(ZRST, "0")
-	field(ZRVL, "0")
 	field(ONST, "-")
-	field(ONVL, "1")
 	field(TWST, "+")
-	field(TWVL, "2")
     field(INP, "@devHFMAGPSU.proto getDirection $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DIRECTION")
@@ -233,7 +214,6 @@ record(mbbi, "$(P)DIRECTION")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 }
-
 
 alias("$(P)DIRECTION", "$(P)DIRECTION:SP:RBV")
 
@@ -252,27 +232,12 @@ record(mbbo, "$(P)RAMPTARGET:SP")
 	info(archive, "VAL")
 } 
 
-record(mbbi, "$(P)RAMPTARGET")
-{
-	field(DESC, "Returns ramp status")
-	field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(INP,  "@devHFMAGPSU.proto getRampTarget $(PORT)")
-	field(ZRST, "ZERO")
-	field(ONST, "MID")
-	field(TWST, "MAX")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RAMPTARGET:SP")
-    field(SDIS, "$(P)DISABLE")
-	info(INTEREST, "HIGH")
-	info(archive, "VAL")
-}
+alias("$(P)RAMPTARGET:SP", "$(P)RAMPTARGET")
 
-alias("$(P)RAMPTARGET", "$(P)RAMPTARGET:SP:RBV")
 
 record(bo, "$(P)HEATERSTATUS:SP")
 {
-	field(DESC, "set Heater status (off or on)")
+	field(DESC, "set Heater status to off or on")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(ZNAM, "OFF")
@@ -299,6 +264,8 @@ record(bi, "$(P)HEATERSTATUS")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 }
+
+
 
 alias("$(P)HEATERSTATUS", "$(P)HEATERSTATUS:SP:RBV")
 
@@ -442,7 +409,7 @@ record(ao, "$(P)MID:SP")
 
 record(ai, "$(P)RAMPRATE")
 {
-	field(DESC, "Return ramp rate Value - amps per second")
+	field(DESC, "Return ramp rate value")
 	field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getRampRate $(PORT)")
@@ -468,8 +435,6 @@ record(ao, "$(P)RAMPRATE:SP")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-
-
 
 record(ao, "$(P)HEATERVALUE:SP") 
 {
@@ -640,3 +605,4 @@ record(ai, "$(P)SIM:ZERO")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
 }
+
