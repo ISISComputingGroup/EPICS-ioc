@@ -28,8 +28,6 @@ dbLoadRecords("db/status.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECS
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
-asynSetTraceMask("L0",0,0x11)
-
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
