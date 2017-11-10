@@ -91,16 +91,16 @@ record(seq, "$(P)STATUS:_FANOUT")
     field(LNK4, "$(P)ERROR PP")
 
     field(DOL5, "$(P)STATUS:_RAW.E")
-    field(LNK5, "$(P)PRES:BUFFER:HIGH PP")
+    field(LNK5, "$(P)PRESSURE:BUFFER:HIGH PP")
     
     field(DOL6, "$(P)STATUS:_RAW.F")
-    field(LNK6, "$(P)PRES:LOW PP")
+    field(LNK6, "$(P)PRESSURE:LOW PP")
     
     field(DOL7, "$(P)STATUS:_RAW.G")
-    field(LNK7, "$(P)PRES:HIGH PP")
+    field(LNK7, "$(P)PRESSURE:HIGH PP")
     
     field(DOL8, "$(P)STATUS:_RAW.H")
-    field(LNK8, "$(P)PRES:RAW PP")
+    field(LNK8, "$(P)PRESSURE:RAW PP")
     
     field(SELM, "All")
 }
@@ -214,7 +214,7 @@ record(mbbi, "$(P)ERROR")
     info(archive, "VAL")
 }
 
-record(bi, "$(P)PRES:BUFFER:HIGH")
+record(bi, "$(P)PRESSURE:BUFFER:HIGH")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -226,7 +226,7 @@ record(bi, "$(P)PRES:BUFFER:HIGH")
     info(archive, "VAL")
 }
 
-record(bi, "$(P)PRES:HIGH")
+record(bi, "$(P)PRESSURE:HIGH")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -238,7 +238,7 @@ record(bi, "$(P)PRES:HIGH")
     info(archive, "VAL")
 }
 
-record(bi, "$(P)PRES:LOW")
+record(bi, "$(P)PRESSURE:LOW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -250,19 +250,19 @@ record(bi, "$(P)PRES:LOW")
     info(archive, "VAL")
 }
 
-record(ai, "$(P)PRES:RAW")
+record(ai, "$(P)PRESSURE:RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
     field(DESC, "Device pressure")
 }
 
-record(calc, "$(P)PRES:CALC")
+record(calc, "$(P)PRESSURE:CALC")
 {
     field(DESC, "Device pressure, as calculated")
 	
     field(ASG, "READONLY")
-    field(INPA, "$(P)PRES:RAW CP MS")
+    field(INPA, "$(P)PRESSURE:RAW CP MS")
     # Default to no calibration if macros not set.
     field(CALC, "A*$(CALIBRATION_A)+$(CALIBRATION_B)")
     
@@ -274,20 +274,20 @@ record(calc, "$(P)PRES:CALC")
     field(EGU, "mbar")
 }
 
-record(calc, "$(P)PRES:OUT:CALC") {
+record(calc, "$(P)PRESSURE:OUT:CALC") {
     field(DESC, "Restrict calculated pressure to [0,350] mbar")
 	
     field(ASG, "READONLY")
-    field(INPA, "$(P)PRES:CALC CP MS")
+    field(INPA, "$(P)PRESSURE:CALC CP MS")
     # Default to no calibration if macros not set.
     field(CALC, "MAX(MIN(INPA,350.0),0.0)")	
     field(EGU, "mbar")
 }
 
-record(ai, "$(P)PRES:OUT")
+record(ai, "$(P)PRESSURE:OUT")
 {
     field(DESC, "Device pressure (restricted [0,350] mbar)")
-    field(INP, "$(P)PRES:OUT:CALC CP MS")
+    field(INP, "$(P)PRESSURE:OUT:CALC CP MS")
     field(EGU, "mbar")
     
     info(INTEREST, "HIGH")
@@ -300,28 +300,28 @@ record(ai, "$(P)PRES:OUT")
 # Aliasing makes it easier to change in future if needed
 # If we're concerned about stability in blocks/scripts, use the
 # unaliased PVs
-alias("$(P)PRES:OUT", "$(P)PRES")
+alias("$(P)PRESSURE:OUT", "$(P)PRESSURE")
 
-record(scalcout, "$(P)PRES:GUI:NMES")
+record(scalcout, "$(P)PRESSURE:GUI:NMES")
 {
 	field(DESC, "GUI pressure reading when in range")
-    field(INPA, "$(P)PRES CP")
+    field(INPA, "$(P)PRESSURE CP")
     field(CALC, "PRINTF('%.2f mbar',A)")
 }
 
-record(scalcout, "$(P)PRES:GUI:LMES")
+record(scalcout, "$(P)PRESSURE:GUI:LMES")
 {
 	field(DESC, "GUI pressure reading when le 0")
     field(CALC, "'<= 0 mbar'")
 }
 
-record(scalcout, "$(P)PRES:GUI:HMES")
+record(scalcout, "$(P)PRESSURE:GUI:HMES")
 {
 	field(DESC, "GUI pressure reading when gt 350")
     field(CALC, "'> 350 mbar'")
 }
 
-record(scalcout, "$(P)PRES:GUI")
+record(scalcout, "$(P)PRESSURE:GUI")
 {
     # Format the pressure as '> 350 mbar' if pressure 
     # greater than 350, '<= 0 mbar' if pressure less than
@@ -329,10 +329,10 @@ record(scalcout, "$(P)PRES:GUI")
     # This is for use on the OPI, which looks at the OSV field.
     field(ASG, "READONLY")
     field(DESC, "GUI pressure reading")
-    field(INPA, "$(P)PRES CP MS")
-	field(INAA, "$(P)PRES:GUI:HMES")
-	field(INBB, "$(P)PRES:GUI:LMES")
-	field(INCC, "$(P)PRES:GUI:NMES")
+    field(INPA, "$(P)PRESSURE CP MS")
+	field(INAA, "$(P)PRESSURE:GUI:HMES")
+	field(INBB, "$(P)PRESSURE:GUI:LMES")
+	field(INCC, "$(P)PRESSURE:GUI:NMES")
     field(CALC, "A>350?AA:(A<=0?BB:CC)")
 }
 
