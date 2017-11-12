@@ -21,6 +21,7 @@ $(IFPORT) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption ("L$(PS)", 0, "crtscts", "
 $(IFPORT) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption ("L$(PS)", 0, "clocal", "D")
 $(IFPORT) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption ("L$(PS)", 0, "ixon", "N")
 $(IFPORT) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption ("L$(PS)", 0, "ixoff", "N")
+
 $(IFPORT) $(IFNOTRECSIM) asynOctetSetInputEos("L$(PS)",0,"$(IEOS$(PS)=\\r)")
 $(IFPORT) $(IFNOTRECSIM) asynOctetSetOutputEos("L$(PS)",0,"$(OEOS$(PS)=\\r)")
 

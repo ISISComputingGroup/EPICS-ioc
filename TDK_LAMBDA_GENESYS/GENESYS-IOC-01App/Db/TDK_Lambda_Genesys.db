@@ -72,6 +72,9 @@ record(ai, "$(P)VOLT") {
     field(SIOL, "$(P)SIM:VOLT")
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "V")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")
+    info(autosaveFields, "HIGH LOW")
     info(INTEREST, "HIGH")
     info(archive, "VAL")    
 }
@@ -117,6 +120,9 @@ record(ai, "$(P)CURR") {
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "A")
     info(INTEREST, "HIGH")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")
+    info(autosaveFields, "HIGH LOW")
     info(archive, "VAL")    
 }
 
