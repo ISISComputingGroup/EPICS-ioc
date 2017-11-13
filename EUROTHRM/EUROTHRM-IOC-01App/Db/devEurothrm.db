@@ -146,7 +146,6 @@ record(ao, "$(P)CURRENT_TEMP")
 	field(DTYP, "asynFloat64")
 	field(OUT, "@asyn($(READ),0,1)CUR")
 	field(EGU, "K")
-    field(FLNK, "$(P)SENSOR_CHECK")
 }
 
 record(bo, "$(P)RAMPON:SP")
@@ -229,18 +228,21 @@ record(ai, "$(P)OUT_MAX")
   }
 
 ###########
-# Cache & disable ramp when sensor disconneccted
-record(fanout, "$(P)SENSOR_CHECK")
+# Cache & disable ramp when sensor disconnected
+
+record(ai, "$(P)NO_SENSOR_VALUE")
 {
-   field(LNK1, "$(P)SENSOR_CONNECTED")
-   field(LNK2, "$(P)SENSOR_DISCONNECTED")
+    field(DESC, "The temperature constant indicating a disconnected sensor")
+    field(VAL, 1529)
 }
+
 
 record(calcout, "$(P)SENSOR_CONNECTED")
 {
    field(DESC, "Check whether the temperature sensor is reconnected")
-   field(INPA, "$(P)TEMP")
-   field(CALC, "A = 1529")
+   field(INPA, "$(P)TEMP CP")
+   field(INPB, "(P)NO_SENSOR_VALUE")
+   field(CALC, "A = B")
    field(OOPT, "Transition To Zero")
    field(OUT, "$(P)RAMPON:ENABLE PP")
    info(archive, "VAL")
@@ -269,8 +271,9 @@ record(calcout, "$(P)RAMPON:RETRIEVE")
 record(calcout, "$(P)SENSOR_DISCONNECTED")
 {
    field(DESC, "Check whether the temperature sensor is disconnected")
-   field(INPA, "$(P)TEMP")
-   field(CALC, "A = 1529")
+   field(INPA, "$(P)TEMP CP")
+   field(INPB, "(P)NO_SENSOR_VALUE")
+   field(CALC, "A = B")
    field(OOPT, "Transition To Non-zero")
    field(OUT, "$(P)RAMPON:CACHE.PROC PP")
    info(archive, "VAL")
