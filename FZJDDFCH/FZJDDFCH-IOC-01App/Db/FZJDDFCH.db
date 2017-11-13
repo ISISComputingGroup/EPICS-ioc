@@ -1,12 +1,24 @@
-record(ai, "$(P)MBON")
+record(bo, "$(P)DISABLE") 
+{
+  field(DESC, "Disable comms")
+  field(PINI, "YES")
+  field(VAL, "$(DISABLE=0)")
+  field(OMSL, "supervisory")
+  field(ZNAM, "COMMS ENABLED")
+  field(ONAM, "COMMS DISABLED")
+}
+
+record(bi, "$(P)MB:STATE")
 {
     field(DESC, "Status of magnetic bearings ON|OFF")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@devFZJ_DDFermiChopper.proto getMBON(A) $(PORT)")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:MBON")
-    field(SDIS, "$(P)DISABLE")
+    field(INP,  "@devFZJ_DDFermiChopper.proto getMBON $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    #field(SIML, "$(P)SIM")
+    #field(SIOL, "$(P)SIM:MBON")
+    #field(SDIS, "$(P)DISABLE")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
