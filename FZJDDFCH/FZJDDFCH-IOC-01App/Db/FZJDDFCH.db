@@ -22,3 +22,451 @@ record(bi, "$(P)MB:STATE")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+
+# first record causes concatenated status string to be read
+# then protocol file splits response into separate values
+# and writes them to specified PVs
+
+# reference speed [Hz]
+# RSPE?
+# 20.00 to 26.00 and 32.00 to 100.00
+# relating to master-chopper (chopper 3)
+# two decimal place
+
+record(ai, "$(P)REFFREQ")
+{
+    field(DESC, "Reference Frequency [Hz]")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(EGU, "Hz")
+    field(PREC, "2")
+    field(INP, "@devFZJ_DDFermiChopper.proto getASTA($(P)FREQ:SETP),$(P)RATIO,$(P)FREQ,$(P)PHAS:SETP,$(P)PHAS,$(P)PHAS:STATUS,$(P)MB,$(P)MB:STATUS,$(P)MB:INT,$(P)DRIVE,$(P)DRIVE:STATUS,$(P)DRIVE:CURR:L1,$(P)DRIVE:CURR:L2,$(P)DRIVE:CURR:L3,(P)DIR,(P)PARK:OPEN,(P)DRIVE:TEMP,$(P)INPCLOCK,$(P)PHAS:OUTAGE,$(P)MASTER,$(P)LOGGING,$(P)LMSR,$(P)DSP,$(P)INTERLOCK:ER,$(P)INTERLOCK:VAC,$(P)INTERLOCK:FREQMON,$(P)INTERLOCK:MB:AMP:TEMP,$(P)INTERLOCK:MB:AMP:CURR,$(P)INTERLOCK:DRIVE:AMP:TEMP,$(P)INTERLOCK:DRIVE:AMP:CURR,$(P)INTERLOCK:UPS $(PORT)")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# setpoint speed [Hz]
+# SSPE?
+# 20.00 to 26.00 and 32.00 to 100.00
+# two decimal places
+
+record(ai, "$(P)FREQ:SETP")
+{
+    field(DESC, "Frequency Setpoint [Hz]")
+    field(EGU, "Hz")
+    field(PREC, "2")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# ratio
+# RATI?
+# 1 or 2
+# ratio to reference speed,
+# 1 = 1:1, 2 = 1:2,
+# no decimal places
+
+record(bi, "$(P)RATIO")
+{
+    field(DESC, "Ratio to reference frequency 1|2")
+    # field(EGU, "")
+    field(PREC, "0")    
+    field(ZNAM, "1:1")
+    field(0NAM, "1:2")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# current speed [Hz]
+# SPEE?
+# 0.00 to 100.00
+# two decimal places
+
+record(ai, "$(P)FREQ")
+{
+    field(DESC, "Current Frequency [Hz]")
+    field(EGU, "Hz")
+    field(PREC, "2")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# setpoint phase [º]
+# SPHA?
+# 0.01 to 359.99
+# two decimal places
+
+record(ai, "$(P)PHAS:SETP")
+{
+    field(DESC, "Phase Setpoint [deg]")
+    field(EGU, "deg")
+    field(PREC, "2")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# current phase [º]
+# PHAS?
+# 0.00 to 360.00 or –1.00
+# if the current rotary frequency did not reach the setpoint frequency, the value is –1.00
+# two decimal places
+
+record(ai, "$(P)PHAS")
+{
+    field(DESC, "Current Phase [deg]")
+    field(EGU, "deg")
+    field(PREC, "2")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# status of phase
+# PHOK?
+# OK or NOK
+# phase deviation = 0.1º means that the phase is OK
+
+record(bi, "$(P)PHAS:STATUS")
+{
+    field(DESC, "Phase Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# magnetic bearing
+# MBON?
+# ON or OFF
+
+record(bi, "$(P)MB")
+{
+    field(DESC, "Magnetic Bearing ON|OFF")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# status of magnetic bearing
+# MBOK?
+# OK or NOK
+
+record(bi, "$(P)MB:STATUS")
+{
+    field(DESC, "Magnetic Bearing Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# magnetic bearing integrator [%]
+# MBIN?
+# -100.0 to 100.0
+# integrator of regulator for magnetic bearing
+# one decimal place
+
+record(ai, "$(P)MB:INT")
+{
+    field(DESC, "Magnetic Bearing Regulator Integrator [%]")
+    field(EGU, "%")
+    field(PREC, "1")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# drive
+# DRON?
+# ON or OFF
+
+record(bi, "$(P)DRIVE")
+{
+    field(DESC, "Drive ON|OFF")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# status of drive
+# SDRI?
+# START or STOP
+
+record(bi, "$(P)DRIVE:STATUS")
+{
+    field(DESC, "Drive Status START|STOP")
+    field(ZNAM, "START")
+    field(ONAM, "STOP")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# drive current L1 [A]
+# DRL1?
+# 0.00 to 15.00
+# two decimal places
+
+record(ai, "$(P)DRIVE:CURR:L1")
+{
+    field(DESC, "Drive Current L1 [A]")
+    field(EGU, "A")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# drive current L2 [A]
+# DRL2?
+# 0.00 to 15.00
+# two decimal places
+
+record(ai, "$(P)DRIVE:CURR:L2")
+{
+    field(DESC, "Drive Current L2 [A]")
+    field(EGU, "A")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# drive current L3 [A]
+# DRL3?
+# 0.00 to 15.00
+# two decimal places
+
+record(ai, "$(P)DRIVE:CURR:L3")
+{
+    field(DESC, "Drive Current L3 [A]")
+    field(EGU, "A")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# rotating direction
+# RODI?
+# CLOCK or ANTICLOCK
+# in view of the drive
+
+record(bi, "$(P)DIR")
+{
+    field(DESC, "Rotation Direction CW|CCW")
+    field(ZNAM, "CW")
+    field(ONAM, "CCW")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# Parking Position
+# PPOS?
+# OK or NOK
+# OK if chopper is in open position
+
+record(bi, "$(P)PARK:OPEN")
+{
+    field(DESC, "Parked Open Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# drive temperature [ºC]
+# DRIT?
+# 0.00 to 150.00
+# error if higher than 70.00ºC,
+# two decimal places
+
+record(ai, "$(P)DRIVE:TEMP")
+{
+    field(DESC, "Drive Temperature [C]")
+    field(EGU, "C")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# input clock [Hz]
+# INCL?
+# 0.00 to 100.00
+# two decimal places
+
+record(ai, "$(P)INPCLOCK")
+{
+    field(DESC, "Input Clock Frequency [Hz]")
+    field(EGU, "Hz")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# outage of the phase [s]
+# OUPH?
+# 0.00 to 7257600.00
+# if one counter value = 7257600s (= 12 weeks), then self-acting reset of all counters triggered
+# two decimal places
+
+record(ai, "$(P)PHAS:OUTAGE")
+{
+    field(DESC, "Time out of Phase [s]")
+    field(EGU, "s")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# master-chopper
+# MACH?
+# C01, C02, C2B or C03
+# can be called from all choppers
+
+record(stringin, "$(P)MASTER")
+{
+    field(DESC, "Master Chopper")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# log data
+# LOON?
+# ON or OFF
+
+record(bi, "$(P)LOGGING")
+{
+    field(DESC, "Logging Status ON|OFF")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# linear motion slide release
+# LMSR?
+# OK or NOK
+# related to chopper 2
+
+record(bi, "$(P)LMSR")
+{
+    field(DESC, "Linear Motion Slide Release Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# DSP function control
+# DSPM?
+# OK or NOK
+
+record(bi, "$(P)DSP")
+{
+    field(DESC, "DSP Function Control Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# interlock - external release
+# EROK?
+# OK or NOK
+
+record(bi, "$(P)INTERLOCK:ER")
+{
+    field(DESC, "Interlock - External Release Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# interlock - vacuum
+# VAOK?
+# OK oder NOK
+
+record(bi, "$(P)INTERLOCK:VAC")
+{
+    field(DESC, "Interlock - Vacuum Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# interlock - rotary frequency monitoring
+# SMOK?
+# OK or NOK
+
+record(bi, "$(P)INTERLOCK:FREQMON")
+{
+    field(DESC, "Interlock - Rotary Frequency Monitoring Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# interlock - magnetic bearing amplifier temperature
+# MBAT?
+# OK or NOK
+
+record(bi, "$(P)INTERLOCK:MB:AMP:TEMP")
+{
+    field(DESC, "Interlock - Magnetic Bearing Amplifier Temperature Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# interlock - magnetic bearing amplifier current
+# MBAC?
+# OK or NOK
+
+record(bi, "$(P)INTERLOCK:MB:AMP:CURR")
+{
+    field(DESC, "Interlock - Magnetic Bearing Amplifier Current Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# interlock - drive amplifier temperature
+# DRAT?
+# OK or NOK
+
+record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP")
+{
+    field(DESC, "Interlock - Drive Amplifier Temperature Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# interlock - drive amplifier current
+# DRAC?
+# OK or NOK
+
+record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR")
+{
+    field(DESC, "Interlock - Drive Amplifier Current Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+# interlock - UPS
+# PSOK?
+# OK or NOK
+
+record(bi, "$(P)INTERLOCK:UPS")
+{
+    field(DESC, "Interlock - UPS Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
