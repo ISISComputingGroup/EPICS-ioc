@@ -57,6 +57,7 @@ record(calcout, "$(P)VOLT")
     info(INTEREST, "HIGH")
     field(HSV, "MINOR")
     field(LSV, "MINOR")
+    field(PREC, "3")
     info(archive, "VAL")
     info(autosaveFields, "HIGH LOW")
 }
@@ -67,6 +68,7 @@ record(ao, "$(P)CURR:SP")
 {
     field(DESC, "Set Current")
     field(DTYP, "Soft Channel")
+    field(PREC, "3")
     field(OUT, "$(P)CURR:TORAW.A PP MS")
 }
 
@@ -138,6 +140,7 @@ field(FLNK, "$(P)FIELD:PRECALIB")
 field(EGU, "A")
 field(HSV, "MINOR")
 field(LSV, "MINOR")
+field(PREC, "3")
 info(INTEREST, "HIGH")
 info(archive, "VAL")
 info(autosaveFields, "HIGH LOW")
