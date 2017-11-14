@@ -8,9 +8,9 @@ record(bo, "$(P)DISABLE")
   field(ONAM, "COMMS DISABLED")
 }
 
-record(bi, "$(P)MB:STATE")
+record(bi, "$(P)MB:STATUS")
 {
-    field(DESC, "Status of magnetic bearings ON|OFF")
+    field(DESC, "Magnetic Bearings Status ON|OFF")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@devFZJ_DDFermiChopper.proto getMBON $(PORT)")
@@ -33,14 +33,14 @@ record(bi, "$(P)MB:STATE")
 # relating to master-chopper (chopper 3)
 # two decimal place
 
-record(ai, "$(P)REFFREQ")
+record(ai, "$(P)FREQ:REF")
 {
     field(DESC, "Reference Frequency [Hz]")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(EGU, "Hz")
     field(PREC, "2")
-    field(INP, "@devFZJ_DDFermiChopper.proto getASTA($(P)FREQ:SETP),$(P)RATIO,$(P)FREQ,$(P)PHAS:SETP,$(P)PHAS,$(P)PHAS:STATUS,$(P)MB,$(P)MB:STATUS,$(P)MB:INT,$(P)DRIVE,$(P)DRIVE:STATUS,$(P)DRIVE:CURR:L1,$(P)DRIVE:CURR:L2,$(P)DRIVE:CURR:L3,(P)DIR,(P)PARK:OPEN,(P)DRIVE:TEMP,$(P)INPCLOCK,$(P)PHAS:OUTAGE,$(P)MASTER,$(P)LOGGING,$(P)LMSR,$(P)DSP,$(P)INTERLOCK:ER,$(P)INTERLOCK:VAC,$(P)INTERLOCK:FREQMON,$(P)INTERLOCK:MB:AMP:TEMP,$(P)INTERLOCK:MB:AMP:CURR,$(P)INTERLOCK:DRIVE:AMP:TEMP,$(P)INTERLOCK:DRIVE:AMP:CURR,$(P)INTERLOCK:UPS $(PORT)")
+    field(INP, "@devFZJ_DDFermiChopper.proto getASTA($(P)FREQ:SETP,$(P)RATIO,$(P)FREQ,$(P)PHAS:SETP,$(P)PHAS,$(P)PHAS:STATUS,$(P)MB,$(P)MB:STATUS,$(P)MB:INT,$(P)DRIVE,$(P)DRIVE:STATUS,$(P)DRIVE:CURR:L1,$(P)DRIVE:CURR:L2,$(P)DRIVE:CURR:L3,(P)DIR,(P)PARK:OPEN,(P)DRIVE:TEMP,$(P)INPCLOCK,$(P)PHAS:OUTAGE,$(P)MASTER,$(P)LOGGING,$(P)LMSR,$(P)DSP,$(P)INTERLOCK:ER,$(P)INTERLOCK:VAC,$(P)INTERLOCK:FREQMON,$(P)INTERLOCK:MB:AMP:TEMP,$(P)INTERLOCK:MB:AMP:CURR,$(P)INTERLOCK:DRIVE:AMP:TEMP,$(P)INTERLOCK:DRIVE:AMP:CURR,$(P)INTERLOCK:UPS) $(PORT)")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -151,14 +151,14 @@ record(bi, "$(P)MB")
 # MBOK?
 # OK or NOK
 
-record(bi, "$(P)MB:STATUS")
-{
-    field(DESC, "Magnetic Bearing Status OK|NOK")
-    field(ZNAM, "OK")
-    field(ONAM, "NOK")    
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-}
+#record(bi, "$(P)MB:STATUS")
+#{
+#    field(DESC, "Magnetic Bearing Status OK|NOK")
+#    field(ZNAM, "OK")
+#    field(ONAM, "NOK")    
+#    info(INTEREST, "HIGH")
+#    info(archive, "VAL")
+#}
 
 # magnetic bearing integrator [%]
 # MBIN?
