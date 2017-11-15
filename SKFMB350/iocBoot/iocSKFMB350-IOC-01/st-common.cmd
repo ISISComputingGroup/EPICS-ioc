@@ -15,7 +15,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=none)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=2)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "break", "200")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "break_duration", "20")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "break_delay", "20")
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
