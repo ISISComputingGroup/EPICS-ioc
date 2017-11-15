@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<testsuite errors="2" failures="0" name="tests.hfmagpsu.HfmagpsuTests-20171114143652" tests="8" time="31.156">
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_direction_set_WHEN_read_THEN_direction_is_as_expected" time="11.337"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_heaterStatus_set_OFF_WHEN_read_THEN_heaterStatus_is_as_expected" time="1.201"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_heaterStatus_set_ON_WHEN_read_THEN_heaterStatus_is_as_expected" time="1.000"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_limit_set_WHEN_read_then_logmessage_is_as_expected" time="1.204"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_outputMode_set_TESLA_WHEN_read_THEN_outputMode_is_as_expected" time="1.000"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_rampTarget_set_WHEN_read_THEN_rampTarget_is_as_expected" time="3.204"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_outputMode_set_AMPS_WHEN_read_THEN_outputMode_is_as_expected" time="11.210">
+		<error message="Values didn't match when reading PV 'HFMAGPSU_01:OUTPUTMODE'.
+                   Expected value: AMPS
+                   Actual value: TESLA" type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\tests\hfmagpsu.py", line 60, in test_GIVEN_outputMode_set_AMPS_WHEN_read_THEN_outputMode_is_as_expected
+    self.ca.assert_that_pv_is("HFMAGPSU_01:OUTPUTMODE", test_value)
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 78, in assert_that_pv_is
+    raise AssertionError(str(msg) + error_message)
+AssertionError: Values didn't match when reading PV 'HFMAGPSU_01:OUTPUTMODE'.
+                   Expected value: AMPS
+                   Actual value: TESLA
+]]>		</error>
+	</testcase>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_outputmode_set_WHEN_read_then_logmessage_is_as_expected" time="1.000">
+		<error message="11 not less than 4" type="AssertionError">
+<![CDATA[Traceback (most recent call last):
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\tests\hfmagpsu.py", line 99, in test_GIVEN_outputmode_set_WHEN_read_then_logmessage_is_as_expected
+    self.assertLess(time_difference.seconds, 4)
+AssertionError: 11 not less than 4
+]]>		</error>
+	</testcase>
+	<system-out>
+<![CDATA[]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

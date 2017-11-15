@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<testsuite errors="2" failures="0" name="tests.hfmagpsu.HfmagpsuTests-20171114143038" tests="8" time="19.051">
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_direction_set_WHEN_read_THEN_direction_is_as_expected" time="11.338"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_heaterStatus_set_OFF_WHEN_read_THEN_heaterStatus_is_as_expected" time="1.202"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_heaterStatus_set_ON_WHEN_read_THEN_heaterStatus_is_as_expected" time="1.001"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_limit_set_WHEN_read_then_logmessage_is_as_expected" time="1.204"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_outputmode_set_WHEN_read_then_logmessage_is_as_expected" time="1.000"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_rampTarget_set_WHEN_read_THEN_rampTarget_is_as_expected" time="3.202"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_outputMode_set_AMPS_WHEN_read_THEN_outputMode_is_as_expected" time="0.103">
+		<error message="977 is not a valid AlarmSeverity" type="ValueError">
+<![CDATA[Traceback (most recent call last):
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\tests\hfmagpsu.py", line 59, in test_GIVEN_outputMode_set_AMPS_WHEN_read_THEN_outputMode_is_as_expected
+    self.ca.set_pv_value("HFMAGPSU_01:OUTPUTMODE:SP", 'OFF')
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 49, in set_pv_value
+    self.ca.set_pv_value(self._create_pv_with_prefix(pv), value, wait=False, timeout=self._default_timeout)
+  File "C:\Instrument\Apps\Python\lib\site-packages\genie_python\genie_cachannel_wrapper.py", line 63, in set_pv_value
+    value = CaChannelWrapper.check_for_enum_value(value, chan, name)
+  File "C:\Instrument\Apps\Python\lib\site-packages\genie_python\genie_cachannel_wrapper.py", line 206, in check_for_enum_value
+    channel_properties = chan.getValue()
+  File "C:\Instrument\Apps\Python\lib\site-packages\CaChannel\CaChannel.py", line 458, in getValue
+    dbrvalue = self._dbrvalue.get()
+  File "C:\Instrument\Apps\Python\lib\site-packages\enum\__init__.py", line 347, in __call__
+    return cls.__new__(cls, value)
+  File "C:\Instrument\Apps\Python\lib\site-packages\enum\__init__.py", line 662, in __new__
+    raise ValueError("%s is not a valid %s" % (value, cls.__name__))
+ValueError: 977 is not a valid AlarmSeverity
+]]>		</error>
+	</testcase>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_outputMode_set_TESLA_WHEN_read_THEN_outputMode_is_as_expected" time="0.001">
+		<error message="961 is not a valid AlarmSeverity" type="ValueError">
+<![CDATA[Traceback (most recent call last):
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\tests\hfmagpsu.py", line 64, in test_GIVEN_outputMode_set_TESLA_WHEN_read_THEN_outputMode_is_as_expected
+    self.ca.set_pv_value("HFMAGPSU_01:OUTPUTMODE:SP", 'ON')
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 49, in set_pv_value
+    self.ca.set_pv_value(self._create_pv_with_prefix(pv), value, wait=False, timeout=self._default_timeout)
+  File "C:\Instrument\Apps\Python\lib\site-packages\genie_python\genie_cachannel_wrapper.py", line 63, in set_pv_value
+    value = CaChannelWrapper.check_for_enum_value(value, chan, name)
+  File "C:\Instrument\Apps\Python\lib\site-packages\genie_python\genie_cachannel_wrapper.py", line 206, in check_for_enum_value
+    channel_properties = chan.getValue()
+  File "C:\Instrument\Apps\Python\lib\site-packages\CaChannel\CaChannel.py", line 458, in getValue
+    dbrvalue = self._dbrvalue.get()
+  File "C:\Instrument\Apps\Python\lib\site-packages\enum\__init__.py", line 347, in __call__
+    return cls.__new__(cls, value)
+  File "C:\Instrument\Apps\Python\lib\site-packages\enum\__init__.py", line 662, in __new__
+    raise ValueError("%s is not a valid %s" % (value, cls.__name__))
+ValueError: 961 is not a valid AlarmSeverity
+]]>		</error>
+	</testcase>
+	<system-out>
+<![CDATA[]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>

@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<testsuite errors="0" failures="0" name="tests.hfmagpsu.HfmagpsuTests-20171114145958" tests="15" time="29.257">
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_direction_set_WHEN_read_THEN_direction_is_as_expected" time="11.339"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_heaterStatus_set_OFF_WHEN_read_THEN_heaterStatus_is_as_expected" time="1.201"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_heaterStatus_set_ON_WHEN_read_THEN_heaterStatus_is_as_expected" time="1.000"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_heaterValue_set_WHEN_read_THEN_heaterValue_is_as_expected" time="1.201"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_limit_set_WHEN_read_THEN_limit_is_as_expected" time="1.201"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_limit_set_WHEN_read_then_logmessage_is_as_expected" time="1.104"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_maxTarget_set_WHEN_read_THEN_maxTarget_is_as_expected" time="1.201"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_midTarget_set_WHEN_read_THEN_midTarget_is_as_expected" time="1.201"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_outputMode_set_AMPS_WHEN_read_THEN_outputMode_is_as_expected" time="1.201"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_outputMode_set_TESLA_WHEN_read_THEN_outputMode_is_as_expected" time="1.000"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_outputmode_set_WHEN_read_then_logmessage_is_as_expected" time="1.000"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_pause_set_OFF_WHEN_read_THEN_pause_is_as_expected" time="1.201"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_pause_set_ON_WHEN_read_THEN_pause_is_as_expected" time="1.000"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_rampRate_set_WHEN_read_THEN_rampRate_is_as_expected" time="1.202"/>
+	<testcase classname="tests.hfmagpsu.HfmagpsuTests" name="test_GIVEN_rampTarget_set_WHEN_read_THEN_rampTarget_is_as_expected" time="3.205"/>
+	<system-out>
+<![CDATA[]]>	</system-out>
+	<system-err>
+<![CDATA[]]>	</system-err>
+</testsuite>
