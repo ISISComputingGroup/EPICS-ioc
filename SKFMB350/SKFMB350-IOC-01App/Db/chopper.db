@@ -179,7 +179,7 @@ record(ai, "$(P)PHAS:SP:RBV:RAW") {
 record(calcout, "$(P)PHAS:SP:RBV:CALC") {
     field(DESC, "Converts raw phase rbv")
     field(INPA, "$(P)PHAS:SP:RBV:RAW CP MS")
-    field(CALC, "A/10")
+    field(CALC, "A*1000")
     field(OUT, "$(P)PHAS:SP:RBV PP")
     field(OOPT, "Every Time")
 }
