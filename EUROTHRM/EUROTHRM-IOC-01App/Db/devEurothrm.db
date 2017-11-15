@@ -264,8 +264,8 @@ record(calcout, "$(P)RAMPON:RETRIEVE")
    field(INPA, "$(P)RAMPON:CACHE")
    field(CALC, "A")
    field(OUT, "$(P)RAMPON:SP PP")
-   field(ZNAM, "NO")
-   field(ONAM, "YES")
+   field(ZNAM, "OFF")
+   field(ONAM, "ON")
 }
 
 record(calcout, "$(P)SENSOR_DISCONNECTED")
@@ -285,8 +285,8 @@ record(bi, "$(P)RAMPON:CACHE")
    field(DTYP, "Soft Channel")
    field(INP,  "$(P)RAMPON")
    field(SCAN, "Passive")
-   field(ZNAM, "NO")
-   field(ONAM, "YES")
+   field(ZNAM, "OFF")
+   field(ONAM, "ON")
    field(FLNK, "$(P)RAMPON:CLEAR")
 }
 
