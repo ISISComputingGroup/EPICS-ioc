@@ -95,6 +95,7 @@ record(ao, "$(P)FREQ:SP") {
 	info(interest, "HIGH")
 	info(archive, "VAL")
 	field(PREC, "0")
+    info(autosaveFields, "VAL")
 }
 
 record(calcout, "$(P)FREQ:SP:CALC") {
@@ -145,6 +146,7 @@ record(ao, "$(P)PHAS:SP") {
 	info(interest, "HIGH")
 	info(archive, "VAL")
 	field(PREC, "0")
+    info(autosaveFields, "VAL")
 }
 
 record(calcout, "$(P)PHAS:SP:CALC") {
@@ -233,6 +235,7 @@ record(ao, "$(P)GATE:SP") {
 	info(interest, "HIGH")
 	info(archive, "VAL")
 	field(PREC, "1")
+    info(autosaveFields, "VAL")
 }
 
 record(calcout, "$(P)GATE:SP:CALC") {
