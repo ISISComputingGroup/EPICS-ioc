@@ -1,4 +1,14 @@
 #
+# Device address
+#
+
+record(longout, "$(P)ADDRESS") {
+    field(VAL, "$(ADDRESS)")
+	field(PINI, "YES")
+}
+
+
+#
 # General reads
 #
 
@@ -35,7 +45,7 @@ record(bo, "$(P)READ:PHASEDELAY"){
 #
 
 record(bo, "$(P)START"){
-    field(OUT, "@devSKFMB350.proto start $(PORT)")
+    field(OUT, "@devSKFMB350.proto start($(P)) $(PORT)")
     field(DTYP, "stream")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DONOTHING")
@@ -43,7 +53,7 @@ record(bo, "$(P)START"){
 }
 
 record(bo, "$(P)STOP"){
-    field(OUT, "@devSKFMB350.proto stop $(PORT)")
+    field(OUT, "@devSKFMB350.proto stop($(P)) $(PORT)")
     field(DTYP, "stream")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DONOTHING")
@@ -96,7 +106,7 @@ record(calcout, "$(P)FREQ:SP:CALC") {
 }
 
 record(longout, "$(P)FREQ:SP:RAW") {
-    field(OUT, "@devSKFMB350.proto set_frequency $(PORT)")
+    field(OUT, "@devSKFMB350.proto set_frequency($(P)) $(PORT)")
     field(DTYP, "stream")
     field(EGU, "rpm")
 	field(SIML, "$(P)SIM")
@@ -147,7 +157,7 @@ record(calcout, "$(P)PHAS:SP:CALC") {
 
 record(ao, "$(P)PHAS:SP:RAW") {
     field(EGU, "ns")
-    field(OUT, "@devSKFMB350.proto set_phase $(PORT)")
+    field(OUT, "@devSKFMB350.proto set_phase($(P)) $(PORT)")
     field(DTYP, "stream")
 	field(FLNK, "$(P)PHAS:PROCESS")  # Needed for recsim
 }
@@ -233,7 +243,7 @@ record(calcout, "$(P)GATE:SP:CALC") {
 }
 
 record(ao, "$(P)GATE:SP:RAW") {
-    field(OUT, "@devSKFMB350.proto set_gate_width $(PORT)")
+    field(OUT, "@devSKFMB350.proto set_gate_width($(P)) $(PORT)")
     field(DTYP, "stream")
 	field(FLNK, "$(P)GATE")  # Needed for recsim
 }
@@ -325,7 +335,7 @@ record(calcout, "$(P)ANGLE:ROTATOR:SP:CALC") {
 }
 
 record(longout, "$(P)ANGLE:ROTATOR:SP:RAW") {
-    field(OUT, "@devSKFMB350.proto set_rotator_angle $(PORT)")
+    field(OUT, "@devSKFMB350.proto set_rotator_angle($(P)) $(PORT)")
     field(DTYP, "stream")
 	field(FLNK, "$(P)ANGLE:ROTATOR:RAW")  # Needed for recsim
 	field(SIML, "$(P)SIM")
