@@ -67,7 +67,7 @@ record(ai, "$(P)FREQ:SP:RBV")
     info(archive, "VAL")
 }
 #
-# **** RATI command looks to be unused in the protocol ****
+# **** RATI command looks to be unused in the protocol for the controller ****
 # 
 ## ratio
 ## RATI?
@@ -106,14 +106,14 @@ record(ai, "$(P)FREQ")
 ## 0.01 to 359.99
 ## two decimal places
 #
-#record(ai, "$(P)PHAS:SETP")
-#{
-#    field(DESC, "Phase Setpoint [deg]")
-#    field(EGU, "deg")
-#    field(PREC, "2")    
-#    info(INTEREST, "HIGH")
-#    info(archive, "VAL")
-#}
+record(ai, "$(P)PHAS:SP:RBV")
+{
+    field(DESC, "Phase Setpoint [deg]")
+    field(EGU, "deg")
+    field(PREC, "2")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
 #
 ## current phase [º]
 ## PHAS?
@@ -121,28 +121,28 @@ record(ai, "$(P)FREQ")
 ## if the current rotary frequency did not reach the setpoint frequency, the value is –1.00
 ## two decimal places
 #
-#record(ai, "$(P)PHAS")
-#{
-#    field(DESC, "Current Phase [deg]")
-#    field(EGU, "deg")
-#    field(PREC, "2")    
-#    info(INTEREST, "HIGH")
-#    info(archive, "VAL")
-#}
+record(ai, "$(P)PHAS")
+{
+    field(DESC, "Current Phase [deg]")
+    field(EGU, "deg")
+    field(PREC, "2")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
 #
 ## status of phase
 ## PHOK?
 ## OK or NOK
 ## phase deviation = 0.1º means that the phase is OK
 #
-#record(bi, "$(P)PHAS:STATUS")
-#{
-#    field(DESC, "Phase Status OK|NOK")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "HIGH")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)PHAS:STATUS")
+{
+    field(DESC, "Phase Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
 #
 ## magnetic bearing
 ## MBON?

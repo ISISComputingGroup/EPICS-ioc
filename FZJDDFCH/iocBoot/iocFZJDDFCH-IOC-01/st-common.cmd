@@ -9,8 +9,9 @@ $(IFRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NUL)", 0, 1, 0, 0)
 # For dev sim devices
 $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
 
-asynSetTraceMask("L0",-1,0x9) 
-asynSetTraceIOMask("L0",-1,0x2)
+# Commands for turning on debugging.  Shows traffic on connection.
+# asynSetTraceMask("L0",-1,0x9) 
+# asynSetTraceIOMask("L0",-1,0x2)
 
 ## For real device use:
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure("$(CHOP)","$(IPADDR):$(IPPORT=3323)",0,0,1)
