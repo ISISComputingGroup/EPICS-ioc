@@ -1,3 +1,7 @@
+#
+# DB File for the FZJ Digital Drive Fermi Chopper Controller
+#
+#
 record(bo, "$(P)DISABLE") 
 {
   field(DESC, "Disable comms")
@@ -27,11 +31,14 @@ record(bi, "$(P)MB:STATUS")
 # then protocol file splits response into separate values
 # and writes them to specified PVs
 #
+# See the following VI for details on how the reply to the ASTA? command is formed:
+# MAPS_251115_C6713_LV2010\RAL Neu\MAPS_251115_C6713_LV2014\LabVIEW\TCP.llb\TCP_Kommando_ASTA?.vi
+#
 # reference speed [Hz]
 # RSPE?
 # 20.00 to 26.00 and 32.00 to 100.00
 # relating to master-chopper (chopper 3)
-# two decimal place
+# two decimal places
 #
 record(ai, "$(P)FREQ:REF")
 {
@@ -44,13 +51,13 @@ record(ai, "$(P)FREQ:REF")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-#    field(INP, "@devFZJ_DDFermiChopper.proto getASTA($(P)FREQ:SP:RBV,$(P)RATIO,$(P)FREQ,$(P)PHAS:SETP,$(P)PHAS,$(P)PHAS:STATUS,$(P)MB,$(P)MB:STATUS,$(P)MB:INT,$(P)DRIVE,$(P)DRIVE:STATUS,$(P)DRIVE:CURR:L1,$(P)DRIVE:CURR:L2,$(P)DRIVE:CURR:L3,(P)DIR,(P)PARK:OPEN,(P)DRIVE:TEMP,$(P)INPCLOCK,$(P)PHAS:OUTAGE,$(P)MASTER,$(P)LOGGING,$(P)LMSR,$(P)DSP,$(P)INTERLOCK:ER,$(P)INTERLOCK:VAC,$(P)INTERLOCK:FREQMON,$(P)INTERLOCK:MB:AMP:TEMP,$(P)INTERLOCK:MB:AMP:CURR,$(P)INTERLOCK:DRIVE:AMP:TEMP,$(P)INTERLOCK:DRIVE:AMP:CURR,$(P)INTERLOCK:UPS) $(PORT)")
-##
-## setpoint speed [Hz]
-## SSPE?
-## 20.00 to 26.00 and 32.00 to 100.00
-## two decimal places
-##
+#
+#
+# setpoint speed [Hz]
+# SSPE?
+# 20.00 to 26.00 and 32.00 to 100.00
+# two decimal places
+#
 record(ai, "$(P)FREQ:SP:RBV")
 {
     field(DESC, "Frequency Setpoint [Hz]")
@@ -80,19 +87,19 @@ record(ai, "$(P)FREQ:SP:RBV")
 #    info(archive, "VAL")
 #}
 #
-## current speed [Hz]
-## SPEE?
-## 0.00 to 100.00
-## two decimal places
-#
-#record(ai, "$(P)FREQ")
-#{
-#    field(DESC, "Current Frequency [Hz]")
-#    field(EGU, "Hz")
-#    field(PREC, "2")    
-#    info(INTEREST, "HIGH")
-#    info(archive, "VAL")
-#}
+# current speed [Hz]
+# SPEE?
+# 0.00 to 100.00
+# two decimal places
+
+record(ai, "$(P)FREQ")
+{
+    field(DESC, "Current Frequency [Hz]")
+    field(EGU, "Hz")
+    field(PREC, "2")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
 #
 ## setpoint phase [º]
 ## SPHA?
@@ -251,7 +258,7 @@ record(ai, "$(P)FREQ:SP:RBV")
 ## CLOCK or ANTICLOCK
 ## in view of the drive
 #
-#record(bi, "$(P)DIR")
+#record(bi, "$(P)DRIVE:DIR")
 #{
 #    field(DESC, "Rotation Direction CW|CCW")
 #    field(ZNAM, "CW")
