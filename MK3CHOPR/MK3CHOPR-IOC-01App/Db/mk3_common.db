@@ -52,5 +52,10 @@ record(bi, "$(P)COMP:MODE")
 record(bi, "$(P)SIM:COMP:MODE")
 {
     field(DTYP, "Soft Channel")
+    field(ZNAM, "LOCAL")
+	field(ZSV, "MAJOR")
+    field(ONAM, "REMOTE")
+    field(OSV, "NO_ALARM")
     field(VAL, "1")
+	field(PINI, "YES")
 }
