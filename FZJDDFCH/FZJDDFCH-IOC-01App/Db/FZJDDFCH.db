@@ -12,21 +12,6 @@ record(bo, "$(P)DISABLE")
   field(ONAM, "COMMS DISABLED")
 }
 #
-record(bi, "$(P)MB:STATUS")
-{
-    field(DESC, "Magnetic Bearings Status ON|OFF")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(INP,  "@devFZJ_DDFermiChopper.proto getMBON $(PORT)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
-    #field(SIML, "$(P)SIM")
-    #field(SIOL, "$(P)SIM:MBON")
-    #field(SDIS, "$(P)DISABLE")
-    info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
-}
-#
 # first record causes concatenated status string to be read
 # then protocol file splits response into separate values
 # and writes them to specified PVs
@@ -148,27 +133,27 @@ record(bi, "$(P)PHAS:STATUS")
 ## MBON?
 ## ON or OFF
 #
-#record(bi, "$(P)MB")
-#{
-#    field(DESC, "Magnetic Bearing ON|OFF")
-#    field(ZNAM, "ON")
-#    field(ONAM, "OFF")    
-#    info(INTEREST, "HIGH")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)MB")
+{
+    field(DESC, "Magnetic Bearing ON|OFF")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
 #
 ## status of magnetic bearing
 ## MBOK?
 ## OK or NOK
 #
-##record(bi, "$(P)MB:STATUS")
-##{
-##    field(DESC, "Magnetic Bearing Status OK|NOK")
-##    field(ZNAM, "OK")
-##    field(ONAM, "NOK")    
-##    info(INTEREST, "HIGH")
-##    info(archive, "VAL")
-##}
+record(bi, "$(P)MB:STATUS")
+{
+    field(DESC, "Magnetic Bearing Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
 #
 ## magnetic bearing integrator [%]
 ## MBIN?
@@ -477,6 +462,21 @@ record(bi, "$(P)PHAS:STATUS")
 #    field(DESC, "Interlock - UPS Status OK|NOK")
 #    field(ZNAM, "OK")
 #    field(ONAM, "NOK")    
+#    info(INTEREST, "MEDIUM")
+#    info(archive, "VAL")
+#}
+#
+#record(bi, "$(P)MB:STATUS")
+#{
+#    field(DESC, "Magnetic Bearings Status ON|OFF")
+#    field(SCAN, "1 second")
+#    field(DTYP, "stream")
+#    field(INP,  "@devFZJ_DDFermiChopper.proto getMBON $(PORT)")
+#    field(ZNAM, "OFF")
+#    field(ONAM, "ON")
+#    #field(SIML, "$(P)SIM")
+#    #field(SIOL, "$(P)SIM:MBON")
+#    #field(SDIS, "$(P)DISABLE")
 #    info(INTEREST, "MEDIUM")
 #    info(archive, "VAL")
 #}
