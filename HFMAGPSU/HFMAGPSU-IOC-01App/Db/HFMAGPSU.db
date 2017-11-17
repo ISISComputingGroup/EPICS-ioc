@@ -184,6 +184,7 @@ record(bi, "$(P)PAUSE")
 
 alias("$(P)PAUSE", "$(P)PAUSE:SP:RBV")
 
+
 record(mbbo, "$(P)DIRECTION:SP")
 {
 	field(DESC, "Set Direction - 0, +ve, -ve")
@@ -265,9 +266,8 @@ record(bi, "$(P)HEATERSTATUS")
 	info(archive, "VAL")
 }
 
-
-
 alias("$(P)HEATERSTATUS", "$(P)HEATERSTATUS:SP:RBV")
+
 
 record(ai, "$(P)HEATERVALUE")
 {
@@ -313,6 +313,7 @@ record(ao, "$(P)MAX:SP")
     info(archive, "VAL")
 }
 
+
 record(ai, "$(P)LIMIT")
 {
 	field(DESC, "Returns value of voltage limit")
@@ -344,6 +345,7 @@ record(ao, "$(P)LIMIT:SP")
     info(INTEREST, "HIGH")
     info(archive, "VAL")	
 }
+
 
 record(ai, "$(P)CONSTANT")
 {

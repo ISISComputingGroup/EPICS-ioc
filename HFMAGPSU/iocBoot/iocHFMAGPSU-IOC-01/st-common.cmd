@@ -13,8 +13,9 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=none)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceMask("L0", -1, 0x9)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceIOMask("L0", -1, 0x2)
+# debugging into
+#$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceMask("L0", -1, 0x9)
+#$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceIOMask("L0", -1, 0x2)
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
@@ -35,7 +36,8 @@ iocInit
 epicsEnvSet "P" "$(MYPVPREFIX)$(IOCNAME)"
 
 # Directory of ramp rate table
-epicsEnvSet "RAMPTABLEDIR" "$(HFMAGPSU)/data/cryomag_ramp_table.txt"
+epicsEnvSet "RAMPTABLEDIR" "C:\\Instrument\\Settings\\config\\NDLT658\\configurations\\hifi_ramp_table.txt"
 
 ## Start any sequence programs
+
 seq fsm, "P=$(P), RAMPTABLEDIR=$(RAMPTABLEDIR)"
