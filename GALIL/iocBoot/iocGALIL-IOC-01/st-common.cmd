@@ -18,9 +18,6 @@ set_requestfile_path("${MOTOR}/motorApp/Db", "")
 ## as all Galils cd to GALIL-IOC-01 need to add this explicitly so info generated req files are found
 set_requestfile_path("${TOP}/iocBoot/iocGALIL-IOC-01", "")
 
-# how many galil crates we have
-# GALILNUMCRATES set in icpconfig
-
 # this defines macros we can use for conditional loading later
 stringtest("IFDMC01", "$(GALILADDR01=)")
 stringtest("IFDMC02", "$(GALILADDR02=)")
@@ -32,7 +29,6 @@ stringtest("IFDMC07", "$(GALILADDR07=)")
 stringtest("IFDMC08", "$(GALILADDR08=)")
 stringtest("IFDMC09", "$(GALILADDR09=)")
 stringtest("IFDMC10", "$(GALILADDR10=)")
-
 
 epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 
