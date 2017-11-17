@@ -38,7 +38,7 @@ $(IFNOT_NUM_SET) $(CHOPPER_4_PRESENT=#) epicsEnvSet NUM_CHANNELS 4
 $(IFNOT_NUM_SET) $(CHOPPER_5_PRESENT=#) epicsEnvSet NUM_CHANNELS 5
 
 ## Load our record instances (conditionally!) 
-dbLoadRecordsLoop("db/mk3.db","P=$(MYPVPREFIX)$(IOCNAME):, Q=CH\$(I):, PORT=MK3, CHANNEL=\$(I), RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0), I=\$(I), ASG1=$(ASG1=DEFAULT), ASG2=$(ASG2=DEFAULT), ASG3=$(ASG3=DEFAULT), ASG4=$(ASG4=DEFAULT), ASG5=$(ASG5=DEFAULT)", "I", 1, $(NUM_CHANNELS=1), 1)
+dbLoadRecordsLoop("db/mk3.db","PVPREFIX=$(MYPVPREFIX), P=$(MYPVPREFIX)$(IOCNAME):, Q=CH\$(I):, PORT=MK3, CHANNEL=\$(I), RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0), I=\$(I), ASG1=$(ASG1=DEFAULT), ASG2=$(ASG2=DEFAULT), ASG3=$(ASG3=DEFAULT), ASG4=$(ASG4=DEFAULT), ASG5=$(ASG5=DEFAULT)", "I", 1, $(NUM_CHANNELS=1), 1)
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
