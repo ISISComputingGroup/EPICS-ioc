@@ -161,14 +161,14 @@ record(bi, "$(P)MB:STATUS")
 ## integrator of regulator for magnetic bearing
 ## one decimal place
 #
-#record(ai, "$(P)MB:INT")
-#{
-#    field(DESC, "Magnetic Bearing Regulator Integrator [%]")
-#    field(EGU, "%")
-#    field(PREC, "1")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(ai, "$(P)MB:INT")
+{
+    field(DESC, "Magnetic Bearing Regulator Integrator [%]")
+    field(EGU, "%")
+    field(PREC, "1")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## drive
 ## DRON?
