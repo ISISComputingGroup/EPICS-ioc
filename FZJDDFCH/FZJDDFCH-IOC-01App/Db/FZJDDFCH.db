@@ -163,7 +163,7 @@ record(bi, "$(P)MB:STATUS")
 #
 record(ai, "$(P)MB:INT")
 {
-    field(DESC, "Magnetic Bearing Regulator Integrator [%]")
+    field(DESC, "Mag Bearing Regulator Integrator [%]")
     field(EGU, "%")
     field(PREC, "1")    
     info(INTEREST, "MEDIUM")
@@ -301,85 +301,93 @@ record(ai, "$(P)INPUTCLOCK")
 ## if one counter value = 7257600s (= 12 weeks), then self-acting reset of all counters triggered
 ## two decimal places
 #
-#record(ai, "$(P)PHAS:OUTAGE")
-#{
-#    field(DESC, "Time out of Phase [s]")
-#    field(EGU, "s")
-#    field(PREC, "2")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(ai, "$(P)PHAS:OUTAGE")
+{
+    field(DESC, "Time out of Phase [s]")
+    field(EGU, "s")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## master-chopper
 ## MACH?
 ## C01, C02, C2B or C03
 ## can be called from all choppers
 #
-#record(stringin, "$(P)MASTER")
-#{
-#    field(DESC, "Master Chopper")
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(mbbi, "$(P)MASTER")
+{
+    field(DESC, "Master Chopper")
+    field(ZRVL, 0)
+	field(ONVL, 1)
+	field(TWVL, 2)
+	field(THVL, 3)
+	field(ZRST, "C01")
+	field(ONST, "C02")
+	field(TWST, "C2B")
+	field(THST, "C03")     
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## log data
 ## LOON?
 ## ON or OFF
 #
-#record(bi, "$(P)LOGGING")
-#{
-#    field(DESC, "Logging Status ON|OFF")
-#    field(ZNAM, "ON")
-#    field(ONAM, "OFF")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)LOGGING")
+{
+    field(DESC, "Logging ON|OFF")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## linear motion slide release
 ## LMSR?
 ## OK or NOK
 ## related to chopper 2
 #
-#record(bi, "$(P)LMSR")
-#{
-#    field(DESC, "Linear Motion Slide Release Status OK|NOK")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)LMSR:STATUS")
+{
+    field(DESC, "Linear Motion Slide Release OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## DSP function control
 ## DSPM?
 ## OK or NOK
 #
-#record(bi, "$(P)DSP")
-#{
-#    field(DESC, "DSP Function Control Status OK|NOK")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)DSP:STATUS")
+{
+    field(DESC, "DSP Function Control Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## interlock - external release
 ## EROK?
 ## OK or NOK
 #
-#record(bi, "$(P)INTERLOCK:ER")
-#{
-#    field(DESC, "Interlock - External Release Status OK|NOK")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)INTERLOCK:ER:STATUS")
+{
+    field(DESC, "Interlock - External Release OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## interlock - vacuum
 ## VAOK?
 ## OK oder NOK
 #
-#record(bi, "$(P)INTERLOCK:VAC")
+#record(bi, "$(P)INTERLOCK:VAC:STATUS")
 #{
 #    field(DESC, "Interlock - Vacuum Status OK|NOK")
 #    field(ZNAM, "OK")
@@ -392,7 +400,7 @@ record(ai, "$(P)INPUTCLOCK")
 ## SMOK?
 ## OK or NOK
 #
-#record(bi, "$(P)INTERLOCK:FREQMON")
+#record(bi, "$(P)INTERLOCK:FREQMON:STATUS")
 #{
 #    field(DESC, "Interlock - Rotary Frequency Monitoring Status OK|NOK")
 #    field(ZNAM, "OK")
@@ -405,7 +413,7 @@ record(ai, "$(P)INPUTCLOCK")
 ## MBAT?
 ## OK or NOK
 #
-#record(bi, "$(P)INTERLOCK:MB:AMP:TEMP")
+#record(bi, "$(P)INTERLOCK:MB:AMP:TEMP:STATUS")
 #{
 #    field(DESC, "Interlock - Magnetic Bearing Amplifier Temperature Status OK|NOK")
 #    field(ZNAM, "OK")
@@ -418,7 +426,7 @@ record(ai, "$(P)INPUTCLOCK")
 ## MBAC?
 ## OK or NOK
 #
-#record(bi, "$(P)INTERLOCK:MB:AMP:CURR")
+#record(bi, "$(P)INTERLOCK:MB:AMP:CURR:STATUS")
 #{
 #    field(DESC, "Interlock - Magnetic Bearing Amplifier Current Status OK|NOK")
 #    field(ZNAM, "OK")
@@ -431,7 +439,7 @@ record(ai, "$(P)INPUTCLOCK")
 ## DRAT?
 ## OK or NOK
 #
-#record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP")
+#record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP:STATUS")
 #{
 #    field(DESC, "Interlock - Drive Amplifier Temperature Status OK|NOK")
 #    field(ZNAM, "OK")
@@ -444,7 +452,7 @@ record(ai, "$(P)INPUTCLOCK")
 ## DRAC?
 ## OK or NOK
 #
-#record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR")
+#record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR:STATUS")
 #{
 #    field(DESC, "Interlock - Drive Amplifier Current Status OK|NOK")
 #    field(ZNAM, "OK")
@@ -457,7 +465,7 @@ record(ai, "$(P)INPUTCLOCK")
 ## PSOK?
 ## OK or NOK
 #
-#record(bi, "$(P)INTERLOCK:UPS")
+#record(bi, "$(P)INTERLOCK:UPS:STATUS")
 #{
 #    field(DESC, "Interlock - UPS Status OK|NOK")
 #    field(ZNAM, "OK")
