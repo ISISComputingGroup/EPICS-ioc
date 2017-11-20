@@ -174,97 +174,97 @@ record(ai, "$(P)MB:INT")
 ## DRON?
 ## ON or OFF
 #
-#record(bi, "$(P)DRIVE")
-#{
-#    field(DESC, "Drive ON|OFF")
-#    field(ZNAM, "ON")
-#    field(ONAM, "OFF")    
-#    info(INTEREST, "HIGH")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)DRIVE")
+{
+    field(DESC, "Drive ON|OFF")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
 #
 ## status of drive
 ## SDRI?
 ## START or STOP
 #
-#record(bi, "$(P)DRIVE:STATUS")
-#{
-#    field(DESC, "Drive Status START|STOP")
-#    field(ZNAM, "START")
-#    field(ONAM, "STOP")    
-#    info(INTEREST, "HIGH")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)DRIVE:STATUS")
+{
+    field(DESC, "Drive Status START|STOP")
+    field(ZNAM, "START")
+    field(ONAM, "STOP")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
 #
 ## drive current L1 [A]
 ## DRL1?
 ## 0.00 to 15.00
 ## two decimal places
 #
-#record(ai, "$(P)DRIVE:CURR:L1")
-#{
-#    field(DESC, "Drive Current L1 [A]")
-#    field(EGU, "A")
-#    field(PREC, "2")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(ai, "$(P)DRIVE:L1:CURR")
+{
+    field(DESC, "Drive Current L1 [A]")
+    field(EGU, "A")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## drive current L2 [A]
 ## DRL2?
 ## 0.00 to 15.00
 ## two decimal places
 #
-#record(ai, "$(P)DRIVE:CURR:L2")
-#{
-#    field(DESC, "Drive Current L2 [A]")
-#    field(EGU, "A")
-#    field(PREC, "2")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(ai, "$(P)DRIVE:L2:CURR")
+{
+    field(DESC, "Drive Current L2 [A]")
+    field(EGU, "A")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## drive current L3 [A]
 ## DRL3?
 ## 0.00 to 15.00
 ## two decimal places
 #
-#record(ai, "$(P)DRIVE:CURR:L3")
-#{
-#    field(DESC, "Drive Current L3 [A]")
-#    field(EGU, "A")
-#    field(PREC, "2")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(ai, "$(P)DRIVE:L3:CURR")
+{
+    field(DESC, "Drive Current L3 [A]")
+    field(EGU, "A")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## rotating direction
 ## RODI?
 ## CLOCK or ANTICLOCK
 ## in view of the drive
 #
-#record(bi, "$(P)DRIVE:DIR")
-#{
-#    field(DESC, "Rotation Direction CW|CCW")
-#    field(ZNAM, "CW")
-#    field(ONAM, "CCW")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)DRIVE:DIR")
+{
+    field(DESC, "Rotation Direction CW|CCW")
+    field(ZNAM, "CW")
+    field(ONAM, "CCW")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## Parking Position
 ## PPOS?
 ## OK or NOK
 ## OK if chopper is in open position
 #
-#record(bi, "$(P)PARK:OPEN")
-#{
-#    field(DESC, "Parked Open Status OK|NOK")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "HIGH")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)PARKED:OPEN:STATUS")
+{
+    field(DESC, "Parked Open Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
 #
 ## drive temperature [ºC]
 ## DRIT?
@@ -272,28 +272,28 @@ record(ai, "$(P)MB:INT")
 ## error if higher than 70.00ºC,
 ## two decimal places
 #
-#record(ai, "$(P)DRIVE:TEMP")
-#{
-#    field(DESC, "Drive Temperature [C]")
-#    field(EGU, "C")
-#    field(PREC, "2")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(ai, "$(P)DRIVE:TEMP")
+{
+    field(DESC, "Drive Temperature [C]")
+    field(EGU, "C")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## input clock [Hz]
 ## INCL?
 ## 0.00 to 100.00
 ## two decimal places
 #
-#record(ai, "$(P)INPCLOCK")
-#{
-#    field(DESC, "Input Clock Frequency [Hz]")
-#    field(EGU, "Hz")
-#    field(PREC, "2")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(ai, "$(P)INPUTCLOCK")
+{
+    field(DESC, "Input Clock Frequency [Hz]")
+    field(EGU, "Hz")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## outage of the phase [s]
 ## OUPH?
