@@ -387,92 +387,92 @@ record(bi, "$(P)INTERLOCK:ER:STATUS")
 ## VAOK?
 ## OK oder NOK
 #
-#record(bi, "$(P)INTERLOCK:VAC:STATUS")
-#{
-#    field(DESC, "Interlock - Vacuum Status OK|NOK")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)INTERLOCK:VAC:STATUS")
+{
+    field(DESC, "Interlock - Vacuum Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## interlock - rotary frequency monitoring
 ## SMOK?
 ## OK or NOK
 #
-#record(bi, "$(P)INTERLOCK:FREQMON:STATUS")
-#{
-#    field(DESC, "Interlock - Rotary Frequency Monitoring Status OK|NOK")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)INTERLOCK:FREQMON:STATUS")
+{
+    field(DESC, "Interlock - Rotary Frequency Mon OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## interlock - magnetic bearing amplifier temperature
 ## MBAT?
 ## OK or NOK
 #
-#record(bi, "$(P)INTERLOCK:MB:AMP:TEMP:STATUS")
-#{
-#    field(DESC, "Interlock - Magnetic Bearing Amplifier Temperature Status OK|NOK")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)INTERLOCK:MB:AMP:TEMP:STATUS")
+{
+    field(DESC, "Interlock - Mag Bearing Amp Temp OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## interlock - magnetic bearing amplifier current
 ## MBAC?
 ## OK or NOK
 #
-#record(bi, "$(P)INTERLOCK:MB:AMP:CURR:STATUS")
-#{
-#    field(DESC, "Interlock - Magnetic Bearing Amplifier Current Status OK|NOK")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)INTERLOCK:MB:AMP:CURR:STATUS")
+{
+    field(DESC, "Interlock - Mag Bearing Amp Curr OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## interlock - drive amplifier temperature
 ## DRAT?
 ## OK or NOK
 #
-#record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP:STATUS")
-#{
-#    field(DESC, "Interlock - Drive Amplifier Temperature Status OK|NOK")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP:STATUS")
+{
+    field(DESC, "Interlock - Drive Amp Temp OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## interlock - drive amplifier current
 ## DRAC?
 ## OK or NOK
 #
-#record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR:STATUS")
-#{
-#    field(DESC, "Interlock - Drive Amplifier Current Status OK|NOK")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR:STATUS")
+{
+    field(DESC, "Interlock - Drive Amp Curr OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 ## interlock - UPS
 ## PSOK?
 ## OK or NOK
 #
-#record(bi, "$(P)INTERLOCK:UPS:STATUS")
-#{
-#    field(DESC, "Interlock - UPS Status OK|NOK")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
+record(bi, "$(P)INTERLOCK:UPS:STATUS")
+{
+    field(DESC, "Interlock - UPS Status OK|NOK")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 #
 #record(bi, "$(P)MB:STATUS")
 #{
