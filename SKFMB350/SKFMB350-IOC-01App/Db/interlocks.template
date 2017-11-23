@@ -3,6 +3,7 @@ record(bi, "$(P)ILK:$(ILKNAME)") {
 	field(INP, "$(P)ILK.$(FIELD) CP MS")
 	field(ZNAM, "Inactive")
 	field(ONAM, "Active")
+	field(OSV, "MAJOR")
 	info(archive, "VAL")
 	info(interest, "MEDIUM")
 	field(SIML, "$(P)SIM")

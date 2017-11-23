@@ -69,7 +69,7 @@ record(bo, "$(P)SIM:DONOTHING") {
 #
 
 record(longin, "$(P)FREQ:RAW") {
-    field(EGU, "rpm")
+    # In units of rpm
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FREQ")
     field(SDIS, "$(P)DISABLE")
@@ -108,7 +108,7 @@ record(calcout, "$(P)FREQ:SP:CALC") {
 record(longout, "$(P)FREQ:SP:RAW") {
     field(OUT, "@devSKFMB350.proto set_frequency($(P)) $(PORT)")
     field(DTYP, "stream")
-    field(EGU, "rpm")
+    # In units of rpm
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FREQ:SP")
     field(SDIS, "$(P)DISABLE")
@@ -313,14 +313,14 @@ record(calcout, "$(P)ANGLE:ROTATOR:CALC") {
 }
 
 record(ai, "$(P)ANGLE:ROTATOR") {
-    field(EGU, "degrees")
+    field(EGU, "degree")
 	info(interest, "HIGH")
 	info(archive, "VAL")
 	field(PREC, "1")
 }
 
 record(ao, "$(P)ANGLE:ROTATOR:SP") {
-    field(EGU, "degrees")
+    field(EGU, "degree")
 	field(FLNK, "$(P)ANGLE:ROTATOR:SP:CALC")
 	info(interest, "HIGH")
 	info(archive, "VAL")
