@@ -79,7 +79,7 @@ record(calcout, "$(P)FREQ:CALC") {
     field(DESC, "Converts rpm to Hz")
     field(INPA, "$(P)FREQ:RAW CP MS")
     field(CALC, "A/60")
-    field(OUT, "$(P)FREQ PP")
+    field(OUT, "$(P)FREQ PP MS")
     field(OOPT, "Every Time")
 }
 
@@ -92,7 +92,6 @@ record(ai, "$(P)FREQ"){
 
 record(ao, "$(P)FREQ:SP") {
     field(EGU, "Hz")
-	info(interest, "HIGH")
 	info(archive, "VAL")
 	field(PREC, "0")
     info(autosaveFields, "VAL")
@@ -143,7 +142,6 @@ record(ao, "$(P)PHAS:SP") {
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PHAS:SP")
     field(SDIS, "$(P)DISABLE")
-	info(interest, "HIGH")
 	info(archive, "VAL")
 	field(PREC, "0")
     info(autosaveFields, "VAL")
@@ -201,7 +199,7 @@ record(ai, "$(P)PHAS:SP:RBV") {
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PHAS:SP:RBV")
     field(SDIS, "$(P)DISABLE")
-	info(interest, "HIGH")
+	info(interest, "MEDIUM")
 	info(archive, "VAL")
 	field(PREC, "0")
 }
@@ -218,6 +216,7 @@ alias("$(P)SIM:PHAS", "$(P)SIM:PHAS:SP:RBV")
 #
 
 record(ai, "$(P)GATE") {
+	field(DESC, "Phase repeatability")
 	field(EGU, "us")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:GATE")
@@ -240,7 +239,7 @@ record(ao, "$(P)GATE:SP") {
 
 record(calcout, "$(P)GATE:SP:CALC") {
     field(INPA, "$(P)GATE:SP CP MS")
-    field(CALC, "A*10")
+    field(CALC, "A*10") # Set gate width in integer units of us/10
     field(OUT, "$(P)GATE:SP:RAW PP")
     field(OOPT, "Every Time")
 }
@@ -272,7 +271,6 @@ record(mbbiDirect, "$(P)ILK") {
     #
     # See DB file interlocks.db to get interlock PVs.
     #
-	info(interest, "HIGH")
 	info(archive, "VAL")
 }
 
@@ -310,7 +308,7 @@ record(longin, "$(P)ANGLE:ROTATOR:RAW") {
 record(calcout, "$(P)ANGLE:ROTATOR:CALC") {
     field(INPA, "$(P)ANGLE:ROTATOR:RAW CP MS")
     field(CALC, "A/10")
-    field(OUT, "$(P)ANGLE:ROTATOR PP")
+    field(OUT, "$(P)ANGLE:ROTATOR PP MS")
     field(OOPT, "Every Time")
 }
 
