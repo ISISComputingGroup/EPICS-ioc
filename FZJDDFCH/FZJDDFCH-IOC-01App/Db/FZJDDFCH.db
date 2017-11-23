@@ -2,7 +2,7 @@
 # DB File for the FZJ Digital Drive Fermi Chopper Controller
 #
 #
-record(bo, "$(P)DISABLE") 
+record(bo, "$(P)DISABLE")
 {
   field(DESC, "Disable comms")
   field(PINI, "YES")
@@ -11,6 +11,54 @@ record(bo, "$(P)DISABLE")
   field(ZNAM, "COMMS ENABLED")
   field(ONAM, "COMMS DISABLED")
 }
+#
+record(stringin, "$(P)ADDRESS")
+{   
+  field(DESC, "Chopper name/address")
+  field(PINI, "YES")
+  field(VAL, "$(ADDR)")
+}
+#
+#reference speed [Hz]
+#RESP!
+#20.00 to 26.00 and 32.00 to 100.00
+#only assumed from masterchopper (chopper 3)
+#two decimal places
+#
+## **** RATI command looks to be unused in the protocol for the controller ****
+#
+#ratio
+#RATI!
+#1 or 2
+#ratio to reference speed, 1 = 1:1, 2 = 1:2,
+#only assumed from chopper 3
+#no decimal places
+#
+#factor
+#FACT!
+#1:12
+#multiplication factor of reference speed
+#speed setpoint
+#no decimal places
+#
+#setpoint phase [º]
+#PHAS!
+#0.01 to 359.99
+#two decimal places
+#
+#switch on magnetic bearing
+#MAGB!
+#ON
+#it is not possible to switch off the magnetic bearing by command
+#
+#drive start/stop
+#DRIV!
+#START or STOP
+#
+#acknowledge messages
+#ACKN!
+#ON
+#
 #
 # first record causes concatenated status string to be read
 # then protocol file splits response into separate values
