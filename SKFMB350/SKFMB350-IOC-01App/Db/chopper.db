@@ -292,6 +292,7 @@ record(mbbiDirect, "$(P)STAT") {
     #
 	info(interest, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "SKFMB350")
 }
 
 
