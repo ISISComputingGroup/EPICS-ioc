@@ -215,21 +215,21 @@ alias("$(P)SIM:PHAS", "$(P)SIM:PHAS:SP:RBV")
 # Phase repeatability / gate width
 #
 
-record(ai, "$(P)GATE") {
+record(ai, "$(P)PHAS_ERR") {
 	field(DESC, "Phase repeatability")
 	field(EGU, "us")
 	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:GATE")
+    field(SIOL, "$(P)SIM:PHAS_ERR")
     field(SDIS, "$(P)DISABLE")
 	info(interest, "HIGH")
 	info(archive, "VAL")
 	field(PREC, "1")
 }
 
-record(ao, "$(P)GATE:SP") {
+record(ao, "$(P)PHAS_ERR:SP") {
     field(EGU, "us")
 	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:GATE:SP")
+    field(SIOL, "$(P)SIM:PHAS_ERR:SP")
     field(SDIS, "$(P)DISABLE")
 	info(interest, "HIGH")
 	info(archive, "VAL")
@@ -237,23 +237,23 @@ record(ao, "$(P)GATE:SP") {
     info(autosaveFields, "VAL")
 }
 
-record(calcout, "$(P)GATE:SP:CALC") {
-    field(INPA, "$(P)GATE:SP CP MS")
+record(calcout, "$(P)PHAS_ERR:SP:CALC") {
+    field(INPA, "$(P)PHAS_ERR:SP CP MS")
     field(CALC, "A*10") # Set gate width in integer units of us/10
-    field(OUT, "$(P)GATE:SP:RAW PP")
+    field(OUT, "$(P)PHAS_ERR:SP:RAW PP")
     field(OOPT, "Every Time")
 }
 
-record(ao, "$(P)GATE:SP:RAW") {
+record(ao, "$(P)PHAS_ERR:SP:RAW") {
     field(OUT, "@devSKFMB350.proto set_gate_width($(P)) $(PORT)")
     field(DTYP, "stream")
-	field(FLNK, "$(P)GATE")  # Needed for recsim
+	field(FLNK, "$(P)PHAS_ERR")  # Needed for recsim
 }
 
-record(ao, "$(P)SIM:GATE"){
+record(ao, "$(P)SIM:PHAS_ERR"){
 }
 
-alias("$(P)SIM:GATE", "$(P)SIM:GATE:SP")
+alias("$(P)SIM:PHAS_ERR", "$(P)SIM:PHAS_ERR:SP")
 
 
 #
