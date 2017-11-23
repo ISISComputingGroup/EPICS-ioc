@@ -27,7 +27,7 @@ record(bo, "$(P)DISABLE")
 #
 record(ai, "$(P)FREQ:REF")
 {
-    field(DESC, "Reference Frequency [Hz]")
+    field(DESC, "Reference Frequency")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(EGU, "Hz")
@@ -45,7 +45,7 @@ record(ai, "$(P)FREQ:REF")
 #
 record(ai, "$(P)FREQ:SP:RBV")
 {
-    field(DESC, "Frequency Setpoint [Hz]")
+    field(DESC, "Frequency Setpoint")
     field(EGU, "Hz")
     field(PREC, "2")    
     info(INTEREST, "HIGH")
@@ -63,9 +63,8 @@ record(ai, "$(P)FREQ:SP:RBV")
 #
 #record(bi, "$(P)RATIO")
 #{
-#    field(DESC, "Ratio to reference frequency 1|2")
+#    field(DESC, "Ratio to reference frequency")
 #    # field(EGU, "")
-#    field(PREC, "0")    
 #    field(ZNAM, "1:1")
 #    field(0NAM, "1:2")
 #    info(INTEREST, "HIGH")
@@ -79,7 +78,7 @@ record(ai, "$(P)FREQ:SP:RBV")
 
 record(ai, "$(P)FREQ")
 {
-    field(DESC, "Current Frequency [Hz]")
+    field(DESC, "Current Frequency")
     field(EGU, "Hz")
     field(PREC, "2")    
     info(INTEREST, "HIGH")
@@ -93,7 +92,7 @@ record(ai, "$(P)FREQ")
 #
 record(ai, "$(P)PHAS:SP:RBV")
 {
-    field(DESC, "Phase Setpoint [deg]")
+    field(DESC, "Phase Setpoint")
     field(EGU, "deg")
     field(PREC, "2")    
     info(INTEREST, "HIGH")
@@ -108,7 +107,7 @@ record(ai, "$(P)PHAS:SP:RBV")
 #
 record(ai, "$(P)PHAS")
 {
-    field(DESC, "Current Phase [deg]")
+    field(DESC, "Current Phase")
     field(EGU, "deg")
     field(PREC, "2")    
     info(INTEREST, "HIGH")
@@ -122,7 +121,7 @@ record(ai, "$(P)PHAS")
 #
 record(bi, "$(P)PHAS:STATUS")
 {
-    field(DESC, "Phase Status OK|NOK")
+    field(DESC, "Phase Status")
     field(ZNAM, "OK")
     field(ONAM, "NOK")    
     info(INTEREST, "HIGH")
@@ -135,7 +134,7 @@ record(bi, "$(P)PHAS:STATUS")
 #
 record(bi, "$(P)MB")
 {
-    field(DESC, "Magnetic Bearing ON|OFF")
+    field(DESC, "Magnetic Bearing")
     field(ZNAM, "ON")
     field(ONAM, "OFF")    
     info(INTEREST, "HIGH")
@@ -148,7 +147,7 @@ record(bi, "$(P)MB")
 #
 record(bi, "$(P)MB:STATUS")
 {
-    field(DESC, "Magnetic Bearing Status OK|NOK")
+    field(DESC, "Magnetic Bearing Status")
     field(ZNAM, "OK")
     field(ONAM, "NOK")    
     info(INTEREST, "HIGH")
@@ -163,7 +162,7 @@ record(bi, "$(P)MB:STATUS")
 #
 record(ai, "$(P)MB:INT")
 {
-    field(DESC, "Mag Bearing Regulator Integrator [%]")
+    field(DESC, "Mag Bearing Regulator Integrator")
     field(EGU, "%")
     field(PREC, "1")    
     info(INTEREST, "MEDIUM")
@@ -176,7 +175,7 @@ record(ai, "$(P)MB:INT")
 #
 record(bi, "$(P)DRIVE")
 {
-    field(DESC, "Drive ON|OFF")
+    field(DESC, "Drive")
     field(ZNAM, "ON")
     field(ONAM, "OFF")    
     info(INTEREST, "HIGH")
@@ -189,7 +188,7 @@ record(bi, "$(P)DRIVE")
 #
 record(bi, "$(P)DRIVE:STATUS")
 {
-    field(DESC, "Drive Status START|STOP")
+    field(DESC, "Drive Status")
     field(ZNAM, "START")
     field(ONAM, "STOP")    
     info(INTEREST, "HIGH")
@@ -201,9 +200,9 @@ record(bi, "$(P)DRIVE:STATUS")
 ## 0.00 to 15.00
 ## two decimal places
 #
-record(ai, "$(P)DRIVE:L1:CURR")
+record(ai, "$(P)DRIVE:PHASE1:CURR")
 {
-    field(DESC, "Drive Current L1 [A]")
+    field(DESC, "Drive Current Phase 1")
     field(EGU, "A")
     field(PREC, "2")    
     info(INTEREST, "MEDIUM")
@@ -215,9 +214,9 @@ record(ai, "$(P)DRIVE:L1:CURR")
 ## 0.00 to 15.00
 ## two decimal places
 #
-record(ai, "$(P)DRIVE:L2:CURR")
+record(ai, "$(P)DRIVE:PHASE2:CURR")
 {
-    field(DESC, "Drive Current L2 [A]")
+    field(DESC, "Drive Current Phase 2")
     field(EGU, "A")
     field(PREC, "2")    
     info(INTEREST, "MEDIUM")
@@ -229,9 +228,9 @@ record(ai, "$(P)DRIVE:L2:CURR")
 ## 0.00 to 15.00
 ## two decimal places
 #
-record(ai, "$(P)DRIVE:L3:CURR")
+record(ai, "$(P)DRIVE:PHASE3:CURR")
 {
-    field(DESC, "Drive Current L3 [A]")
+    field(DESC, "Drive Current Phase 3")
     field(EGU, "A")
     field(PREC, "2")    
     info(INTEREST, "MEDIUM")
@@ -245,7 +244,7 @@ record(ai, "$(P)DRIVE:L3:CURR")
 #
 record(bi, "$(P)DRIVE:DIR")
 {
-    field(DESC, "Rotation Direction CW|CCW")
+    field(DESC, "Rotation Direction")
     field(ZNAM, "CW")
     field(ONAM, "CCW")    
     info(INTEREST, "MEDIUM")
@@ -259,7 +258,7 @@ record(bi, "$(P)DRIVE:DIR")
 #
 record(bi, "$(P)PARKED:OPEN:STATUS")
 {
-    field(DESC, "Parked Open Status OK|NOK")
+    field(DESC, "Parked Open Status")
     field(ZNAM, "OK")
     field(ONAM, "NOK")    
     info(INTEREST, "HIGH")
@@ -274,7 +273,7 @@ record(bi, "$(P)PARKED:OPEN:STATUS")
 #
 record(ai, "$(P)DRIVE:TEMP")
 {
-    field(DESC, "Drive Temperature [C]")
+    field(DESC, "Drive Temperature")
     field(EGU, "C")
     field(PREC, "2")    
     info(INTEREST, "MEDIUM")
@@ -288,7 +287,7 @@ record(ai, "$(P)DRIVE:TEMP")
 #
 record(ai, "$(P)INPUTCLOCK")
 {
-    field(DESC, "Input Clock Frequency [Hz]")
+    field(DESC, "Input Clock Frequency")
     field(EGU, "Hz")
     field(PREC, "2")    
     info(INTEREST, "MEDIUM")
@@ -303,7 +302,7 @@ record(ai, "$(P)INPUTCLOCK")
 #
 record(ai, "$(P)PHAS:OUTAGE")
 {
-    field(DESC, "Time out of Phase [s]")
+    field(DESC, "Time out of Phase")
     field(EGU, "s")
     field(PREC, "2")    
     info(INTEREST, "MEDIUM")
@@ -336,7 +335,7 @@ record(mbbi, "$(P)MASTER")
 #
 record(bi, "$(P)LOGGING")
 {
-    field(DESC, "Logging ON|OFF")
+    field(DESC, "Logging")
     field(ZNAM, "ON")
     field(ONAM, "OFF")    
     info(INTEREST, "MEDIUM")
@@ -350,7 +349,7 @@ record(bi, "$(P)LOGGING")
 #
 record(bi, "$(P)LMSR:STATUS")
 {
-    field(DESC, "Linear Motion Slide Release OK|NOK")
+    field(DESC, "Linear Motion Slide Release Status")
     field(ZNAM, "OK")
     field(ONAM, "NOK")    
     info(INTEREST, "MEDIUM")
@@ -363,7 +362,7 @@ record(bi, "$(P)LMSR:STATUS")
 #
 record(bi, "$(P)DSP:STATUS")
 {
-    field(DESC, "DSP Function Control Status OK|NOK")
+    field(DESC, "DSP Function Control Status")
     field(ZNAM, "OK")
     field(ONAM, "NOK")    
     info(INTEREST, "MEDIUM")
@@ -376,7 +375,7 @@ record(bi, "$(P)DSP:STATUS")
 #
 record(bi, "$(P)INTERLOCK:ER:STATUS")
 {
-    field(DESC, "Interlock - External Release OK|NOK")
+    field(DESC, "Interlock - External Release Status")
     field(ZNAM, "OK")
     field(ONAM, "NOK")    
     info(INTEREST, "MEDIUM")
@@ -389,7 +388,7 @@ record(bi, "$(P)INTERLOCK:ER:STATUS")
 #
 record(bi, "$(P)INTERLOCK:VAC:STATUS")
 {
-    field(DESC, "Interlock - Vacuum Status OK|NOK")
+    field(DESC, "Interlock - Vacuum Status")
     field(ZNAM, "OK")
     field(ONAM, "NOK")    
     info(INTEREST, "MEDIUM")
@@ -402,7 +401,7 @@ record(bi, "$(P)INTERLOCK:VAC:STATUS")
 #
 record(bi, "$(P)INTERLOCK:FREQMON:STATUS")
 {
-    field(DESC, "Interlock - Rotary Frequency Mon OK|NOK")
+    field(DESC, "Interlock - Rotary Freq Mon Status")
     field(ZNAM, "OK")
     field(ONAM, "NOK")    
     info(INTEREST, "MEDIUM")
@@ -415,7 +414,7 @@ record(bi, "$(P)INTERLOCK:FREQMON:STATUS")
 #
 record(bi, "$(P)INTERLOCK:MB:AMP:TEMP:STATUS")
 {
-    field(DESC, "Interlock - Mag Bearing Amp Temp OK|NOK")
+    field(DESC, "Interlock - Mag Brng Amp Temp Status")
     field(ZNAM, "OK")
     field(ONAM, "NOK")    
     info(INTEREST, "MEDIUM")
@@ -428,7 +427,7 @@ record(bi, "$(P)INTERLOCK:MB:AMP:TEMP:STATUS")
 #
 record(bi, "$(P)INTERLOCK:MB:AMP:CURR:STATUS")
 {
-    field(DESC, "Interlock - Mag Bearing Amp Curr OK|NOK")
+    field(DESC, "Interlock - Mag Brng Amp Curr Status")
     field(ZNAM, "OK")
     field(ONAM, "NOK")    
     info(INTEREST, "MEDIUM")
@@ -441,7 +440,7 @@ record(bi, "$(P)INTERLOCK:MB:AMP:CURR:STATUS")
 #
 record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP:STATUS")
 {
-    field(DESC, "Interlock - Drive Amp Temp OK|NOK")
+    field(DESC, "Interlock - Drive Amp Temp Status")
     field(ZNAM, "OK")
     field(ONAM, "NOK")    
     info(INTEREST, "MEDIUM")
@@ -454,7 +453,7 @@ record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP:STATUS")
 #
 record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR:STATUS")
 {
-    field(DESC, "Interlock - Drive Amp Curr OK|NOK")
+    field(DESC, "Interlock - Drive Amp Curr Status")
     field(ZNAM, "OK")
     field(ONAM, "NOK")    
     info(INTEREST, "MEDIUM")
@@ -467,7 +466,7 @@ record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR:STATUS")
 #
 record(bi, "$(P)INTERLOCK:UPS:STATUS")
 {
-    field(DESC, "Interlock - UPS Status OK|NOK")
+    field(DESC, "Interlock - UPS Status")
     field(ZNAM, "OK")
     field(ONAM, "NOK")    
     info(INTEREST, "MEDIUM")
@@ -476,7 +475,7 @@ record(bi, "$(P)INTERLOCK:UPS:STATUS")
 #
 #record(bi, "$(P)MB:STATUS")
 #{
-#    field(DESC, "Magnetic Bearings Status ON|OFF")
+#    field(DESC, "Magnetic Bearing Status")
 #    field(SCAN, "1 second")
 #    field(DTYP, "stream")
 #    field(INP,  "@devFZJ_DDFermiChopper.proto getMBON $(PORT)")
