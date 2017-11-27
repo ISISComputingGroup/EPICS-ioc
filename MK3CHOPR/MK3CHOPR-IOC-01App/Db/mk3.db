@@ -1,8 +1,21 @@
+record(scalcout, "$(P)$(Q)MANAGERMODE")
+{
+    field(ASG, "READONLY")
+    field(DESC, "Non-zero if manager is required")
+    field(PINI, "YES")
+    field(INPA, "$(PVPREFIX)CS:MANAGER CP")
+    field(BB, "$(ASG$(CHANNEL)=DEFAULT)")
+    field(CALC, "A = 0 && BB = 'MANAGER'")
+    field(OOPT, "Every Time")
+}
+
+
 # Individual comp mode PV needed for OPI
 alias("$(P)COMP:MODE","$(P)$(Q)COMP:MODE")
 
 record(ai, "$(P)$(Q)FREQ")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "The actual frequency")
     field(DTYP, "asynFloat64")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)FREQ")
@@ -16,6 +29,7 @@ record(ai, "$(P)$(Q)FREQ")
 
 record(ao, "$(P)$(Q)FREQ:SP")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "Sets the nominal frequency")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn($(PORT),$(CHANNEL),0)NOMFREQ")
@@ -27,6 +41,7 @@ record(ao, "$(P)$(Q)FREQ:SP")
 
 record(ai, "$(P)$(Q)FREQ:SP:RBV")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "The nominal frequency")
     field(DTYP, "asynFloat64")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)NOMFREQ")
@@ -40,6 +55,7 @@ record(ai, "$(P)$(Q)FREQ:SP:RBV")
 
 record(ai, "$(P)$(Q)PHAS")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "The actual phase")
     field(DTYP, "asynFloat64")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)PHASE")
@@ -53,6 +69,7 @@ record(ai, "$(P)$(Q)PHAS")
 
 record(ao, "$(P)$(Q)PHAS:SP")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "Sets the nominal phase")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn($(PORT),$(CHANNEL),0)NOMPHASE")
@@ -64,6 +81,7 @@ record(ao, "$(P)$(Q)PHAS:SP")
 
 record(ai, "$(P)$(Q)PHAS:SP:RBV")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "The nominal phase")
     field(DTYP, "asynFloat64")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)NOMPHASE")
@@ -77,6 +95,7 @@ record(ai, "$(P)$(Q)PHAS:SP:RBV")
 
 record(ai, "$(P)$(Q)PHAS_ERR")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "The actual phase error")
     field(DTYP, "asynFloat64")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)PHASEERROR")
@@ -90,6 +109,7 @@ record(ai, "$(P)$(Q)PHAS_ERR")
 
 record(ao, "$(P)$(Q)PHAS_ERR:SP")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "Sets the nominal phase error")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn($(PORT),$(CHANNEL),0)NOMPHASEERROR")
@@ -101,6 +121,7 @@ record(ao, "$(P)$(Q)PHAS_ERR:SP")
 
 record(ai, "$(P)$(Q)PHAS_ERR:SP:RBV")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "The nominal phase error")
     field(DTYP, "asynFloat64")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)NOMPHASEERROR")
@@ -114,6 +135,7 @@ record(ai, "$(P)$(Q)PHAS_ERR:SP:RBV")
 
 record(bi, "$(P)$(Q)DIR")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "The direction")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)DIR")
@@ -129,6 +151,7 @@ record(bi, "$(P)$(Q)DIR")
 
 record(bo, "$(P)$(Q)DIR:SP")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "Sets the nominal direction")
     field(DTYP, "asynInt32")
     field(OUT,  "@asyn($(PORT),$(CHANNEL),0)NOMDIR")
@@ -141,6 +164,7 @@ record(bo, "$(P)$(Q)DIR:SP")
 
 record(bi, "$(P)$(Q)DIR:SP:RBV")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "The nominal direction")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)NOMDIR")
@@ -155,6 +179,7 @@ record(bi, "$(P)$(Q)DIR:SP:RBV")
 
 record(bi, "$(P)$(Q)DIR:ENABLED")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "Whether the direction can be changed")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)DIRENABLED")
@@ -168,6 +193,7 @@ record(bi, "$(P)$(Q)DIR:ENABLED")
 
 record(bi, "$(P)$(Q)VETO")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     # Update triggered by DIR
     field(DESC, "Whether it is vetoing")
     field(DTYP, "asynInt32")
@@ -183,6 +209,7 @@ record(bi, "$(P)$(Q)VETO")
 
 record(bi, "$(P)$(Q)READY")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     # Update triggered by VETO
     field(DESC, "Whether it is ready")
     field(DTYP, "asynInt32")
@@ -198,6 +225,7 @@ record(bi, "$(P)$(Q)READY")
 
 record(bi, "$(P)$(Q)INSYNC")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     # Update triggered by READY
     field(DESC, "Whether it is synchronised")
     field(DTYP, "asynInt32")
@@ -212,6 +240,7 @@ record(bi, "$(P)$(Q)INSYNC")
 
 record(stringin, "$(P)$(Q)VALIDFREQS")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "The frequencies allowed")
     field(DTYP, "asynOctetRead")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)VALIDFREQS")
@@ -224,6 +253,7 @@ record(stringin, "$(P)$(Q)VALIDFREQS")
 
 record(stringin, "$(P)$(Q)NAME")
 {
+    field(ASG, "$(ASG$(CHANNEL)=DEFAULT)")
     field(DESC, "The name of the chopper")
     field(DTYP, "asynOctetRead")
     field(INP,  "@asyn($(PORT),$(CHANNEL),0)CHOPNAME")
