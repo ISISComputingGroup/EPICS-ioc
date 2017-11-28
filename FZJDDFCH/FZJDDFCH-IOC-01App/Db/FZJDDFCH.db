@@ -41,6 +41,52 @@ record(stringin, "$(P)ADDRESS")
 #speed setpoint
 #no decimal places
 #
+record(mbbo, "$(P)FREQ:SP")
+{
+    field(DESC, "Frequency Setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@devFZJ_DDFermiChopper.proto setFACT($(P)) $(PORT)")
+    field(ZRVL, "1")
+    field(ONVL, "2")
+    field(TWVL, "3")
+    field(THVL, "4")
+    field(FRVL, "5")
+    field(FVVL, "6")
+    field(SXVL, "7")
+    field(SVVL, "8")
+    field(EIVL, "9")
+    field(NIVL, "10")
+    field(TEVL, "11")
+    field(ELVL, "12")
+#    field(TVVL, "12")
+    field(ZRST, "50")
+    field(ONST, "100")
+    field(TWST, "150")
+    field(THST, "200")
+    field(FRST, "250")
+    field(FVST, "300")
+    field(SXST, "350")
+    field(SVST, "400")
+    field(EIST, "450")
+    field(NIST, "500")
+    field(TEST, "550")
+    field(ELST, "600")
+#    field(TVST, "600")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(waveform, "$(P)FREQ:SP:ERROR")
+{
+    field("DESC", "Error that occured on setting frequency")
+    field("FTVL", "CHAR")
+    field("NELM", 100)
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+
+#
 #setpoint phase [º]
 #PHAS!
 #0.01 to 359.99
