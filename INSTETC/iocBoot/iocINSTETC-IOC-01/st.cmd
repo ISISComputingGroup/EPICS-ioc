@@ -45,7 +45,7 @@ $(IFEX2) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE2=)
 $(IFEX3) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE3=)")
 $(IFEX4) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE4=)")
 
-dbLoadRecordsLoop("db/user_parameters.db","P=$(MYPVPREFIX)", "INDEX", 1, $(NUM_USER_VARS=10), 1)
+dbLoadRecordsLoop("db/user_parameters.db","P=$(MYPVPREFIX)", "INDEX", 0, $(NUM_USER_VARS=4), 1)
 
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
