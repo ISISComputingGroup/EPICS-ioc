@@ -19,27 +19,27 @@ record(stringin, "$(P)ADDRESS")
   field(VAL, "$(ADDR)")
 }
 #
-#reference speed [Hz]
-#RESP!
-#20.00 to 26.00 and 32.00 to 100.00
-#only assumed from masterchopper (chopper 3)
-#two decimal places
-#
+# reference speed [Hz]
+# RESP!
+# 20.00 to 26.00 and 32.00 to 100.00
+# only assumed from masterchopper (chopper 3)
+# two decimal places
+# 
 ## **** RATI command looks to be unused in the protocol for the controller ****
-#
-#ratio
-#RATI!
-#1 or 2
-#ratio to reference speed, 1 = 1:1, 2 = 1:2,
-#only assumed from chopper 3
-#no decimal places
-#
-#factor
-#FACT!
-#1:12
-#multiplication factor of reference speed
-#speed setpoint
-#no decimal places
+# 
+# ratio
+# RATI!
+# 1 or 2
+# ratio to reference speed, 1 = 1:1, 2 = 1:2,
+# only assumed from chopper 3
+# no decimal places
+# 
+# factor
+# FACT!
+# 1:12
+# multiplication factor of reference speed
+# speed setpoint
+# no decimal places
 #
 record(mbbo, "$(P)FREQ:SP")
 {
@@ -75,7 +75,9 @@ record(mbbo, "$(P)FREQ:SP")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-
+#
+# PV to contain returned error message, if any
+#
 record(waveform, "$(P)FREQ:SP:ERROR")
 {
     field("DESC", "Error that occured on setting frequency")
@@ -84,26 +86,90 @@ record(waveform, "$(P)FREQ:SP:ERROR")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-
-
 #
-#setpoint phase [º]
-#PHAS!
-#0.01 to 359.99
-#two decimal places
+# setpoint phase [º]
+# PHAS!
+# 0.01 to 359.99
+# two decimal places
 #
-#switch on magnetic bearing
-#MAGB!
-#ON
-#it is not possible to switch off the magnetic bearing by command
+record(ao, "$(P)PHAS:SP")
+{
+    field("DESC", "Phase Setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@devFZJ_DDFermiChopper.proto setPHAS($(P)) $(PORT)")
+    field(EGU, "deg")
+    field(PREC, "2")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
 #
-#drive start/stop
-#DRIV!
-#START or STOP
+# PV to contain returned error message, if any
 #
-#acknowledge messages
-#ACKN!
-#ON
+record(waveform, "$(P)PHAS:SP:ERROR")
+{
+    field("DESC", "Error that occured on setting phase")
+    field("FTVL", "CHAR")
+    field("NELM", 100)
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+#
+# switch on magnetic bearing
+# MAGB!
+# ON
+# it is not possible to switch off the magnetic bearing by command
+#
+record(bo, "$(P)MB:SP")
+{
+    field(DESC, "Magnetic Bearing Setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@devFZJ_DDFermiChopper.proto setMAGB($(P)) $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+#
+# PV to contain returned error message, if any
+#
+record(waveform, "$(P)MB:SP:ERROR")
+{
+    field("DESC", "Error that occured on setting MB")
+    field("FTVL", "CHAR")
+    field("NELM", 100)
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+#
+# drive start/stop
+# DRIV!
+# START or STOP
+#
+record(bo, "$(P)DRIVE:MODE:SP")
+{
+    field(DESC, "Drive mode setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@devFZJ_DDFermiChopper.proto setDRIV($(P)) $(PORT)")
+    field(ZNAM, "START")
+    field(ONAM, "STOP")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+#
+# PV to contain returned error message, if any
+#
+record(waveform, "$(P)DRIVE:MODE:SP:ERROR")
+{
+    field("DESC", "Error that occured on setting drive mode")
+    field("FTVL", "CHAR")
+    field("NELM", 100)
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+#
+# acknowledge messages
+# ACKN!
+# ON
 #
 #
 # first record causes concatenated status string to be read
@@ -179,10 +245,10 @@ record(ai, "$(P)FREQ")
     info(archive, "VAL")
 }
 #
-## setpoint phase [º]
-## SPHA?
-## 0.01 to 359.99
-## two decimal places
+# setpoint phase [º]
+# SPHA?
+# 0.01 to 359.99
+# two decimal places
 #
 record(ai, "$(P)PHAS:SP:RBV")
 {
@@ -193,11 +259,11 @@ record(ai, "$(P)PHAS:SP:RBV")
     info(archive, "VAL")
 }
 #
-## current phase [º]
-## PHAS?
-## 0.00 to 360.00 or –1.00
-## if the current rotary frequency did not reach the setpoint frequency, the value is –1.00
-## two decimal places
+# current phase [º]
+# PHAS?
+# 0.00 to 360.00 or –1.00
+# if the current rotary frequency did not reach the setpoint frequency, the value is –1.00
+# two decimal places
 #
 record(ai, "$(P)PHAS")
 {
@@ -208,10 +274,10 @@ record(ai, "$(P)PHAS")
     info(archive, "VAL")
 }
 #
-## status of phase
-## PHOK?
-## OK or NOK
-## phase deviation = 0.1º means that the phase is OK
+# status of phase
+# PHOK?
+# OK or NOK
+# phase deviation = 0.1º means that the phase is OK
 #
 record(bi, "$(P)PHAS:STATUS")
 {
@@ -222,11 +288,11 @@ record(bi, "$(P)PHAS:STATUS")
     info(archive, "VAL")
 }
 #
-## magnetic bearing
-## MBON?
-## ON or OFF
+# magnetic bearing
+# MBON?
+# ON or OFF
 #
-record(bi, "$(P)MB")
+record(bi, "$(P)MB:SP:RBV")
 {
     field(DESC, "Magnetic Bearing")
     field(ZNAM, "ON")
@@ -235,9 +301,9 @@ record(bi, "$(P)MB")
     info(archive, "VAL")
 }
 #
-## status of magnetic bearing
-## MBOK?
-## OK or NOK
+# status of magnetic bearing
+# MBOK?
+# OK or NOK
 #
 record(bi, "$(P)MB:STATUS")
 {
@@ -248,11 +314,11 @@ record(bi, "$(P)MB:STATUS")
     info(archive, "VAL")
 }
 #
-## magnetic bearing integrator [%]
-## MBIN?
-## -100.0 to 100.0
-## integrator of regulator for magnetic bearing
-## one decimal place
+# magnetic bearing integrator [%]
+# MBIN?
+# -100.0 to 100.0
+# integrator of regulator for magnetic bearing
+# one decimal place
 #
 record(ai, "$(P)MB:INT")
 {
@@ -263,9 +329,9 @@ record(ai, "$(P)MB:INT")
     info(archive, "VAL")
 }
 #
-## drive
-## DRON?
-## ON or OFF
+# drive
+# DRON?
+# ON or OFF
 #
 record(bi, "$(P)DRIVE")
 {
@@ -276,23 +342,23 @@ record(bi, "$(P)DRIVE")
     info(archive, "VAL")
 }
 #
-## status of drive
-## SDRI?
-## START or STOP
+# status of drive
+# SDRI?
+# START or STOP
 #
-record(bi, "$(P)DRIVE:STATUS")
+record(bi, "$(P)DRIVE:MODE:SP:RBV")
 {
-    field(DESC, "Drive Status")
+    field(DESC, "Drive Mode")
     field(ZNAM, "START")
     field(ONAM, "STOP")    
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 #
-## drive current L1 [A]
-## DRL1?
-## 0.00 to 15.00
-## two decimal places
+# drive current L1 [A]
+# DRL1?
+# 0.00 to 15.00
+# two decimal places
 #
 record(ai, "$(P)DRIVE:PHASE1:CURR")
 {
@@ -303,10 +369,10 @@ record(ai, "$(P)DRIVE:PHASE1:CURR")
     info(archive, "VAL")
 }
 #
-## drive current L2 [A]
-## DRL2?
-## 0.00 to 15.00
-## two decimal places
+# drive current L2 [A]
+# DRL2?
+# 0.00 to 15.00
+# two decimal places
 #
 record(ai, "$(P)DRIVE:PHASE2:CURR")
 {
@@ -317,10 +383,10 @@ record(ai, "$(P)DRIVE:PHASE2:CURR")
     info(archive, "VAL")
 }
 #
-## drive current L3 [A]
-## DRL3?
-## 0.00 to 15.00
-## two decimal places
+# drive current L3 [A]
+# DRL3?
+# 0.00 to 15.00
+# two decimal places
 #
 record(ai, "$(P)DRIVE:PHASE3:CURR")
 {
@@ -331,10 +397,10 @@ record(ai, "$(P)DRIVE:PHASE3:CURR")
     info(archive, "VAL")
 }
 #
-## rotating direction
-## RODI?
-## CLOCK or ANTICLOCK
-## in view of the drive
+# rotating direction
+# RODI?
+# CLOCK or ANTICLOCK
+# in view of the drive
 #
 record(bi, "$(P)DRIVE:DIR")
 {
@@ -345,10 +411,10 @@ record(bi, "$(P)DRIVE:DIR")
     info(archive, "VAL")
 }
 #
-## Parking Position
-## PPOS?
-## OK or NOK
-## OK if chopper is in open position
+# Parking Position
+# PPOS?
+# OK or NOK
+# OK if chopper is in open position
 #
 record(bi, "$(P)PARKED:OPEN:STATUS")
 {
@@ -359,11 +425,11 @@ record(bi, "$(P)PARKED:OPEN:STATUS")
     info(archive, "VAL")
 }
 #
-## drive temperature [ºC]
-## DRIT?
-## 0.00 to 150.00
-## error if higher than 70.00ºC,
-## two decimal places
+# drive temperature [ºC]
+# DRIT?
+# 0.00 to 150.00
+# error if higher than 70.00ºC,
+# two decimal places
 #
 record(ai, "$(P)DRIVE:TEMP")
 {
@@ -374,10 +440,10 @@ record(ai, "$(P)DRIVE:TEMP")
     info(archive, "VAL")
 }
 #
-## input clock [Hz]
-## INCL?
-## 0.00 to 100.00
-## two decimal places
+# input clock [Hz]
+# INCL?
+# 0.00 to 100.00
+# two decimal places
 #
 record(ai, "$(P)INPUTCLOCK")
 {
@@ -388,11 +454,11 @@ record(ai, "$(P)INPUTCLOCK")
     info(archive, "VAL")
 }
 #
-## outage of the phase [s]
-## OUPH?
-## 0.00 to 7257600.00
-## if one counter value = 7257600s (= 12 weeks), then self-acting reset of all counters triggered
-## two decimal places
+# outage of the phase [s]
+# OUPH?
+# 0.00 to 7257600.00
+# if one counter value = 7257600s (= 12 weeks), then self-acting reset of all counters triggered
+# two decimal places
 #
 record(ai, "$(P)PHAS:OUTAGE")
 {
@@ -403,10 +469,10 @@ record(ai, "$(P)PHAS:OUTAGE")
     info(archive, "VAL")
 }
 #
-## master-chopper
-## MACH?
-## C01, C02, C2B or C03
-## can be called from all choppers
+# master-chopper
+# MACH?
+# C01, C02, C2B or C03
+# can be called from all choppers
 #
 record(mbbi, "$(P)MASTER")
 {
@@ -423,9 +489,9 @@ record(mbbi, "$(P)MASTER")
     info(archive, "VAL")
 }
 #
-## log data
-## LOON?
-## ON or OFF
+# log data
+# LOON?
+# ON or OFF
 #
 record(bi, "$(P)LOGGING")
 {
@@ -436,10 +502,10 @@ record(bi, "$(P)LOGGING")
     info(archive, "VAL")
 }
 #
-## linear motion slide release
-## LMSR?
-## OK or NOK
-## related to chopper 2
+# linear motion slide release
+# LMSR?
+# OK or NOK
+# related to chopper 2
 #
 record(bi, "$(P)LMSR:STATUS")
 {
@@ -450,9 +516,9 @@ record(bi, "$(P)LMSR:STATUS")
     info(archive, "VAL")
 }
 #
-## DSP function control
-## DSPM?
-## OK or NOK
+# DSP function control
+# DSPM?
+# OK or NOK
 #
 record(bi, "$(P)DSP:STATUS")
 {
@@ -463,9 +529,9 @@ record(bi, "$(P)DSP:STATUS")
     info(archive, "VAL")
 }
 #
-## interlock - external release
-## EROK?
-## OK or NOK
+# interlock - external release
+# EROK?
+# OK or NOK
 #
 record(bi, "$(P)INTERLOCK:ER:STATUS")
 {
@@ -476,9 +542,9 @@ record(bi, "$(P)INTERLOCK:ER:STATUS")
     info(archive, "VAL")
 }
 #
-## interlock - vacuum
-## VAOK?
-## OK oder NOK
+# interlock - vacuum
+# VAOK?
+# OK oder NOK
 #
 record(bi, "$(P)INTERLOCK:VAC:STATUS")
 {
@@ -489,9 +555,9 @@ record(bi, "$(P)INTERLOCK:VAC:STATUS")
     info(archive, "VAL")
 }
 #
-## interlock - rotary frequency monitoring
-## SMOK?
-## OK or NOK
+# interlock - rotary frequency monitoring
+# SMOK?
+# OK or NOK
 #
 record(bi, "$(P)INTERLOCK:FREQMON:STATUS")
 {
@@ -502,9 +568,9 @@ record(bi, "$(P)INTERLOCK:FREQMON:STATUS")
     info(archive, "VAL")
 }
 #
-## interlock - magnetic bearing amplifier temperature
-## MBAT?
-## OK or NOK
+# interlock - magnetic bearing amplifier temperature
+# MBAT?
+# OK or NOK
 #
 record(bi, "$(P)INTERLOCK:MB:AMP:TEMP:STATUS")
 {
@@ -515,9 +581,9 @@ record(bi, "$(P)INTERLOCK:MB:AMP:TEMP:STATUS")
     info(archive, "VAL")
 }
 #
-## interlock - magnetic bearing amplifier current
-## MBAC?
-## OK or NOK
+# interlock - magnetic bearing amplifier current
+# MBAC?
+# OK or NOK
 #
 record(bi, "$(P)INTERLOCK:MB:AMP:CURR:STATUS")
 {
@@ -528,9 +594,9 @@ record(bi, "$(P)INTERLOCK:MB:AMP:CURR:STATUS")
     info(archive, "VAL")
 }
 #
-## interlock - drive amplifier temperature
-## DRAT?
-## OK or NOK
+# interlock - drive amplifier temperature
+# DRAT?
+# OK or NOK
 #
 record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP:STATUS")
 {
@@ -541,9 +607,9 @@ record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP:STATUS")
     info(archive, "VAL")
 }
 #
-## interlock - drive amplifier current
-## DRAC?
-## OK or NOK
+# interlock - drive amplifier current
+# DRAC?
+# OK or NOK
 #
 record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR:STATUS")
 {
@@ -554,9 +620,9 @@ record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR:STATUS")
     info(archive, "VAL")
 }
 #
-## interlock - UPS
-## PSOK?
-## OK or NOK
+# interlock - UPS
+# PSOK?
+# OK or NOK
 #
 record(bi, "$(P)INTERLOCK:UPS:STATUS")
 {
