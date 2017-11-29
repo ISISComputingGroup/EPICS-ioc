@@ -8,7 +8,6 @@ record (ao, "$(P)ADDRESS"){
     field(SDIS, "$(P)DISABLE")
 }
 
-
 record(bo, "$(P)SIM") 
 {
     field(SCAN, "Passive")
@@ -72,6 +71,10 @@ record(ai, "$(P)VOLT") {
     field(SIOL, "$(P)SIM:VOLT")
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "V")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")
+    field(PREC, "3")
+    info(autosaveFields, "HIGH LOW")
     info(INTEREST, "HIGH")
     info(archive, "VAL")    
 }
@@ -85,6 +88,7 @@ record(ao, "$(P)VOLT:SP") {
     field(SIOL, "$(P)SIM:VOLT:SP")
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "V")
+    field(PREC, "3")
 	field(PINI, "$(SP_PINI)")
 	info(autosaveFields, "VAL")
 }
@@ -98,6 +102,7 @@ record(ai, "$(P)VOLT:SP:RBV") {
     field(SIOL, "$(P)SIM:VOLT:SP:RBV")
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "V")
+    field(PREC, "3")
 }
 
 record(ao, "$(P)SIM:VOLT"){
@@ -117,6 +122,10 @@ record(ai, "$(P)CURR") {
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "A")
     info(INTEREST, "HIGH")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")
+    field(PREC, "3")
+    info(autosaveFields, "HIGH LOW")
     info(archive, "VAL")    
 }
 
@@ -130,6 +139,7 @@ record(ao, "$(P)CURR:SP") {
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "A")
     field(PINI, "$(SP_PINI)")
+    field(PREC, "3")
     info(autosaveFields, "VAL")
 }
 
@@ -142,6 +152,7 @@ record(ai, "$(P)CURR:SP:RBV") {
     field(SIOL, "$(P)SIM:CURR:SP:RBV")
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "A")
+    field(PREC, "3")
 }
 
 record(ao, "$(P)SIM:CURR"){

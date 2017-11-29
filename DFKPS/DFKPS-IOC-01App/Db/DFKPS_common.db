@@ -54,9 +54,12 @@ record(calcout, "$(P)VOLT")
     field(CALC, "A * $(FRV)")
     field(INPA, "$(P)VRAW")
     field(EGU, "V")
-    field(ASG, "READONLY")
     info(INTEREST, "HIGH")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")
+    field(PREC, "3")
     info(archive, "VAL")
+    info(autosaveFields, "HIGH LOW")
 }
 
 alias("$(P)VOLT", "$(P)VOLT:RBV")
@@ -65,6 +68,7 @@ record(ao, "$(P)CURR:SP")
 {
     field(DESC, "Set Current")
     field(DTYP, "Soft Channel")
+    field(PREC, "3")
     field(OUT, "$(P)CURR:TORAW.A PP MS")
 }
 
@@ -134,9 +138,12 @@ field(CALC, "A * $(FRI)")
 field(INPA, "$(P)RAW")
 field(FLNK, "$(P)FIELD:PRECALIB")
 field(EGU, "A")
-field(ASG, "READONLY")
+field(HSV, "MINOR")
+field(LSV, "MINOR")
+field(PREC, "3")
 info(INTEREST, "HIGH")
 info(archive, "VAL")
+info(autosaveFields, "HIGH LOW")
 }
 alias("$(P)CURR", "$(P)CURR:RBV")
 
