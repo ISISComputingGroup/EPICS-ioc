@@ -1,3 +1,14 @@
+record(waveform, "$(P)LOGMESSAGE") 
+{
+	field(DESC, "Returns most recent log message")
+	field(FTVL, "CHAR")
+	field(NELM, 256)
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:LOGMESSAGE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
 record(bo, "$(P)SIM")
 {
     field(SCAN, "Passive")
@@ -17,15 +28,36 @@ record(bo, "$(P)DISABLE")
   field(ONAM, "COMMS DISABLED")
 }
 
-record(waveform, "$(P)LOGMESSAGE") 
+
+
+record(ai, "$(P)MAX")
 {
-	field(DESC, "Returns most recent log message")
-	field(FTVL, "CHAR")
-	field(NELM, 256)
+	field(DESC, "Returns value of MAX")
+	field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devHFMAGPSU.proto getMaxTarget $(PORT)")
+    field(PREC, "5")	
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:LOGMESSAGE")
+    field(SIOL, "$(P)SIM:MAX:SP")
     field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
+
+record(ao, "$(P)MAX:SP")
+{
+	field(DESC, "MAX value setpoint")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devHFMAGPSU.proto setMaxTarget($(P)LOGMESSAGE) $(PORT)")    
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MAX:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
 
 record(waveform, "$(P)RAMPTABLEDIRECTORY")
 {
@@ -184,7 +216,6 @@ record(bi, "$(P)PAUSE")
 
 alias("$(P)PAUSE", "$(P)PAUSE:SP:RBV")
 
-
 record(mbbo, "$(P)DIRECTION:SP")
 {
 	field(DESC, "Set Direction - 0, +ve, -ve")
@@ -215,6 +246,8 @@ record(mbbi, "$(P)DIRECTION")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 }
+
+
 
 alias("$(P)DIRECTION", "$(P)DIRECTION:SP:RBV")
 
@@ -269,8 +302,9 @@ record(bi, "$(P)HEATERSTATUS")
 alias("$(P)HEATERSTATUS", "$(P)HEATERSTATUS:SP:RBV")
 
 
+
 record(ai, "$(P)HEATERVALUE")
-{
+
 	field(DESC, "Returns heater value in volts")
 	field(SCAN, "1 second")
     field(DTYP, "stream")
@@ -285,33 +319,11 @@ record(ai, "$(P)HEATERVALUE")
 }
 alias("$(P)HEATERVALUE", "$(P)HEATERVALUE:SP:RBV")
 
-record(ai, "$(P)MAX")
-{
-	field(DESC, "Returns value of MAX")
-	field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(INP,  "@devHFMAGPSU.proto getMaxTarget $(PORT)")
-    field(PREC, "5")	
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:MAX:SP")
-    field(SDIS, "$(P)DISABLE")
-	info(INTEREST, "HIGH")
-    info(archive, "VAL")
-}
 
-record(ao, "$(P)MAX:SP")
-{
-	field(DESC, "MAX value setpoint")
-    field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(OUT,  "@devHFMAGPSU.proto setMaxTarget($(P)LOGMESSAGE) $(PORT)")    
-    field(PREC, "3")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:MAX:SP")
-    field(SDIS, "$(P)DISABLE")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-}
+
+
+
+
 
 
 record(ai, "$(P)LIMIT")
@@ -345,7 +357,6 @@ record(ao, "$(P)LIMIT:SP")
     info(INTEREST, "HIGH")
     info(archive, "VAL")	
 }
-
 
 record(ai, "$(P)CONSTANT")
 {
@@ -607,4 +618,5 @@ record(ai, "$(P)SIM:ZERO")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
 }
+
 
