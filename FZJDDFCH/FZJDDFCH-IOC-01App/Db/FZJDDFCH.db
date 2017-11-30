@@ -58,7 +58,6 @@ record(mbbo, "$(P)FREQ:SP")
     field(NIVL, "10")
     field(TEVL, "11")
     field(ELVL, "12")
-#    field(TVVL, "12")
     field(ZRST, "50")
     field(ONST, "100")
     field(TWST, "150")
@@ -71,14 +70,13 @@ record(mbbo, "$(P)FREQ:SP")
     field(NIST, "500")
     field(TEST, "550")
     field(ELST, "600")
-#    field(TVST, "600")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 #
 # PV to contain returned error message, if any
 #
-record(waveform, "$(P)FREQ:SP:ERROR")
+record(stringin, "$(P)FREQ:SP:ERROR")
 {
     field("DESC", "Error that occured on setting frequency")
     field("FTVL", "CHAR")
@@ -86,8 +84,9 @@ record(waveform, "$(P)FREQ:SP:ERROR")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+
 #
-# setpoint phase [º]
+# setpoint phase [degrees]
 # PHAS!
 # 0.01 to 359.99
 # two decimal places
@@ -105,7 +104,7 @@ record(ao, "$(P)PHAS:SP")
 #
 # PV to contain returned error message, if any
 #
-record(waveform, "$(P)PHAS:SP:ERROR")
+record(stringin, "$(P)PHAS:SP:ERROR")
 {
     field("DESC", "Error that occured on setting phase")
     field("FTVL", "CHAR")
@@ -132,7 +131,7 @@ record(bo, "$(P)MB:SP")
 #
 # PV to contain returned error message, if any
 #
-record(waveform, "$(P)MB:SP:ERROR")
+record(stringin, "$(P)MB:SP:ERROR")
 {
     field("DESC", "Error that occured on setting MB")
     field("FTVL", "CHAR")
@@ -158,7 +157,7 @@ record(bo, "$(P)DRIVE:MODE:SP")
 #
 # PV to contain returned error message, if any
 #
-record(waveform, "$(P)DRIVE:MODE:SP:ERROR")
+record(stringin, "$(P)DRIVE:MODE:SP:ERROR")
 {
     field("DESC", "Error that occured on setting drive mode")
     field("FTVL", "CHAR")
