@@ -79,8 +79,6 @@ record(mbbo, "$(P)FREQ:SP")
 record(stringin, "$(P)FREQ:SP:ERROR")
 {
     field("DESC", "Error that occured on setting frequency")
-    field("FTVL", "CHAR")
-    field("NELM", 100)
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -107,8 +105,6 @@ record(ao, "$(P)PHAS:SP")
 record(stringin, "$(P)PHAS:SP:ERROR")
 {
     field("DESC", "Error that occured on setting phase")
-    field("FTVL", "CHAR")
-    field("NELM", 100)
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -134,8 +130,6 @@ record(bo, "$(P)MB:SP")
 record(stringin, "$(P)MB:SP:ERROR")
 {
     field("DESC", "Error that occured on setting MB")
-    field("FTVL", "CHAR")
-    field("NELM", 100)
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -160,8 +154,6 @@ record(bo, "$(P)DRIVE:MODE:SP")
 record(stringin, "$(P)DRIVE:MODE:SP:ERROR")
 {
     field("DESC", "Error that occured on setting drive mode")
-    field("FTVL", "CHAR")
-    field("NELM", 100)
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -210,6 +202,8 @@ record(ai, "$(P)FREQ:SP:RBV")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
+
+
 #
 # **** RATI command looks to be unused in the protocol for the controller ****
 # 
@@ -243,6 +237,7 @@ record(ai, "$(P)FREQ")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
+
 #
 # setpoint phase [º]
 # SPHA?

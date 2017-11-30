@@ -3,6 +3,7 @@ include $(TOP)/configure/CONFIG
 
 #DB += xxx.db
 DB += FZJDDFCH.db
+DB += error_setter.db
 
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
