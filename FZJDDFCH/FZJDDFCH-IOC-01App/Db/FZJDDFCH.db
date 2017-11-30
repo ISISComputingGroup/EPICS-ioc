@@ -148,6 +148,7 @@ record(bo, "$(P)DRIVE:MODE:SP")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
+alias("$(P)DRIVE:MODE:SP", "$(P)DRV:MODE:SP")
 #
 # PV to contain returned error message, if any
 #
@@ -157,6 +158,7 @@ record(stringin, "$(P)DRIVE:MODE:SP:ERROR")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias("$(P)DRIVE:MODE:SP:ERROR", "$(P)DRV:MODE:SP:ERROR")
 #
 # acknowledge messages
 # ACKN!
@@ -202,8 +204,6 @@ record(ai, "$(P)FREQ:SP:RBV")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-
-
 #
 # **** RATI command looks to be unused in the protocol for the controller ****
 # 
@@ -228,7 +228,7 @@ record(ai, "$(P)FREQ:SP:RBV")
 # SPEE?
 # 0.00 to 100.00
 # two decimal places
-
+#
 record(ai, "$(P)FREQ")
 {
     field(DESC, "Current Frequency")
@@ -237,7 +237,7 @@ record(ai, "$(P)FREQ")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-
+#
 #
 # setpoint phase [º]
 # SPHA?
@@ -335,6 +335,7 @@ record(bi, "$(P)DRIVE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
+alias("$(P)DRIVE", "$(P)DRV")
 #
 # status of drive
 # SDRI?
@@ -348,6 +349,7 @@ record(bi, "$(P)DRIVE:MODE:SP:RBV")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
+alias("$(P)DRIVE:MODE:SP:RBV", "$(P)DRV:MODE:SP:RBV")
 #
 # drive current L1 [A]
 # DRL1?
@@ -362,6 +364,7 @@ record(ai, "$(P)DRIVE:PHASE1:CURR")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias("$(P)DRIVE:PHASE1:CURR", "$(P)DRV:PHASE1:CURR")
 #
 # drive current L2 [A]
 # DRL2?
@@ -376,6 +379,7 @@ record(ai, "$(P)DRIVE:PHASE2:CURR")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias("$(P)DRIVE:PHASE2:CURR", "$(P)DRV:PHASE2:CURR")
 #
 # drive current L3 [A]
 # DRL3?
@@ -390,6 +394,7 @@ record(ai, "$(P)DRIVE:PHASE3:CURR")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias("$(P)DRIVE:PHASE3:CURR", "$(P)DRV:PHASE3:CURR")
 #
 # rotating direction
 # RODI?
@@ -404,6 +409,7 @@ record(bi, "$(P)DRIVE:DIR")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias("$(P)DRIVE:DIR", "$(P)DRV:DIR")
 #
 # Parking Position
 # PPOS?
@@ -418,6 +424,7 @@ record(bi, "$(P)PARKED:OPEN:STATUS")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
+alias("$(P)PARKED:OPEN:STATUS", "$(P)PARKED:OPEN:STAT")
 #
 # drive temperature [ºC]
 # DRIT?
@@ -433,6 +440,7 @@ record(ai, "$(P)DRIVE:TEMP")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias("$(P)DRIVE:TEMP", "$(P)DRV:TEMP")
 #
 # input clock [Hz]
 # INCL?
@@ -509,6 +517,7 @@ record(bi, "$(P)LMSR:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias("$(P)LMSR:STATUS", "$(P)LMSR:STAT")
 #
 # DSP function control
 # DSPM?
@@ -522,6 +531,7 @@ record(bi, "$(P)DSP:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias("$(P)DSP:STATUS", "$(P)DSP:STAT")
 #
 # interlock - external release
 # EROK?
@@ -535,6 +545,7 @@ record(bi, "$(P)INTERLOCK:ER:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias ("$(P)INTERLOCK:ER:STATUS", "$(P)IL:ER:STAT")
 #
 # interlock - vacuum
 # VAOK?
@@ -548,6 +559,7 @@ record(bi, "$(P)INTERLOCK:VAC:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias ("$(P)INTERLOCK:VAC:STATUS", "$(P)IL:VAC:STAT")
 #
 # interlock - rotary frequency monitoring
 # SMOK?
@@ -561,6 +573,7 @@ record(bi, "$(P)INTERLOCK:FREQMON:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias ("$(P)INTERLOCK:FREQMON:STATUS", "$(P)IL:FREQMON:STAT")
 #
 # interlock - magnetic bearing amplifier temperature
 # MBAT?
@@ -574,6 +587,7 @@ record(bi, "$(P)INTERLOCK:MB:AMP:TEMP:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias ("$(P)INTERLOCK:MB:AMP:TEMP:STATUS", "$(P)IL:MB:TEMP:STAT")
 #
 # interlock - magnetic bearing amplifier current
 # MBAC?
@@ -587,6 +601,7 @@ record(bi, "$(P)INTERLOCK:MB:AMP:CURR:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias ("$(P)INTERLOCK:MB:AMP:CURR:STATUS", "$(P)IL:MB:CURR:STAT")
 #
 # interlock - drive amplifier temperature
 # DRAT?
@@ -600,6 +615,7 @@ record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias ("$(P)INTERLOCK:DRIVE:AMP:TEMP:STATUS", "$(P)IL:DRV:TEMP:STAT")
 #
 # interlock - drive amplifier current
 # DRAC?
@@ -613,6 +629,7 @@ record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias ("$(P)INTERLOCK:DRIVE:AMP:CURR:STATUS", "$(P)IL:DRV:CURR:STAT")
 #
 # interlock - UPS
 # PSOK?
@@ -626,6 +643,7 @@ record(bi, "$(P)INTERLOCK:UPS:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+alias ("$(P)INTERLOCK:UPS:STATUS", "$(P)IL:UPS:STAT")
 #
 #record(bi, "$(P)MB:STATUS")
 #{

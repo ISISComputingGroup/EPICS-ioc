@@ -21,7 +21,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure("$(CHOP)","$(IPADDR):$(IPPO
 
 ## Load our record instances
 dbLoadRecords("${TOP}/db/FZJDDFCH.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0), ADDR=$(ADDR)")
-dbLoadRecords("${TOP}/db/add_error.db","P=$(MYPVPREFIX)$(IOCNAME):")
+dbLoadRecords("${TOP}/db/error_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
