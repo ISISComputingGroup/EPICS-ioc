@@ -22,7 +22,7 @@ record(bo, "$(P)DISABLE")
 
 ## Current state
 
-record(ai, "$(P)STAT:_SCAN")
+record(longin, "$(P)STAT:_SCAN")
 {
     field(INP, "@devgemorc.proto getStatus($(P)STAT:_RAW) $(PORT)")
     field(SCAN, "1 second")
@@ -48,10 +48,10 @@ record(seq, "$(P)STAT:_FANOUT")
     field(LNK1, "$(P)STAT:OSC PP")
 
     field(DOL2, "$(P)STAT:_RAW.B")
-    field(LNK2, "$(P)STAT:INIT:PROGRESS PP")
+    field(LNK2, "$(P)INIT:PROGRESS PP")
 
     field(DOL3, "$(P)STAT:_RAW.C")
-    field(LNK3, "$(P)STAT:INIT:DONE PP")
+    field(LNK3, "$(P)INIT:DONE PP")
 
     field(DOL4, "$(P)STAT:_RAW.D")
     field(LNK4, "$(P)WIDTH PP")
@@ -80,35 +80,51 @@ record(bi, "$(P)STAT:OSC")
 	field(ZNAM, "No")
 	field(ONAM, "Yes")
     
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STAT:OSC")
+    field(SDIS, "$(P)DISABLE")
+    
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 
-record(bi, "$(P)STAT:INIT:DONE")
+record(bi, "$(P)INIT:DONE")
 {
 	field(DESC, "Collimator initialised")
 	field(ZNAM, "No")
 	field(ONAM, "Yes")
     
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-}
-
-record(bi, "$(P)STAT:INIT:PROGRESS")
-{
-	field(DESC, "Collimator initialising")
-	field(ZNAM, "No")
-	field(ONAM, "Yes")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:INIT:DONE")
+    field(SDIS, "$(P)DISABLE")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 
-record(ai, "$(P)WIDTH")
+record(bi, "$(P)INIT:PROGRESS")
+{
+	field(DESC, "Collimator initialising")
+	field(ZNAM, "No")
+	field(ONAM, "Yes")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:INIT:PROGRESS")
+    field(SDIS, "$(P)DISABLE")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(longin, "$(P)WIDTH")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 	field(DESC, "Window width")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WIDTH")
+    field(SDIS, "$(P)DISABLE")
 	
 	field(EGU, "cdegree")
     
@@ -116,11 +132,15 @@ record(ai, "$(P)WIDTH")
     info(archive, "VAL")
 }
 
-record(ai, "$(P)OFFSET")
+record(longin, "$(P)OFFSET")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 	field(DESC, "Datum offset")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OFFSET")
+    field(SDIS, "$(P)DISABLE")
 	
 	field(EGU, "")
     
@@ -128,11 +148,15 @@ record(ai, "$(P)OFFSET")
     info(archive, "VAL")
 }
 
-record(ai, "$(P)SPEED")
+record(longin, "$(P)SPEED")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 	field(DESC, "Radial speed")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPEED")
+    field(SDIS, "$(P)DISABLE")
 	
 	field(EGU, "cdegree/s")
     
@@ -140,11 +164,15 @@ record(ai, "$(P)SPEED")
     info(archive, "VAL")
 }
 
-record(ai, "$(P)ACC")
+record(longin, "$(P)ACC")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 	field(DESC, "Radial acceleration")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ACC")
+    field(SDIS, "$(P)DISABLE")
 	
 	field(EGU, "cdegree/s^2")
     
@@ -152,11 +180,15 @@ record(ai, "$(P)ACC")
     info(archive, "VAL")
 }
 
-record(ai, "$(P)CYCLES")
+record(longin, "$(P)CYCLES")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 	field(DESC, "Number of complete cycles")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CYCLES")
+    field(SDIS, "$(P)DISABLE")
 	
 	field(EGU, "")
     
@@ -164,11 +196,15 @@ record(ai, "$(P)CYCLES")
     info(archive, "VAL")
 }
 
-record(ai, "$(P)BACKLASH")
+record(longin, "$(P)BACKLASH")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 	field(DESC, "Motor backlash")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BACKLASH")
+    field(SDIS, "$(P)DISABLE")
 	
 	field(EGU, "")
     
@@ -178,10 +214,108 @@ record(ai, "$(P)BACKLASH")
 
 ## Settings
 
+record(bo, "$(P)INIT:STOP") {
+	field(DESC, "Don't do next auto initialisation")
+    field(OUT, "@devgemorc.proto stopNextInit $(PORT)")
+    field(DTYP, "stream")
+}
+
+record(bo, "$(P)START") {
+	field(DESC, "Start oscillations")
+    field(OUT, "@devgemorc.proto start $(PORT)")
+    field(DTYP, "stream")
+}
+
+record(bo, "$(P)STOP") {
+	field(DESC, "Stop oscillations")
+    field(OUT, "@devgemorc.proto start $(PORT)")
+    field(DTYP, "stream")
+}
+
+record(longout, "$(P)SPEED:SP") {
+	field(DESC, "Radial speed setpoint")
+    field(OUT, "@devgemorc.proto setSpeed $(PORT)")
+    field(DTYP, "stream")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPEED:SP")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "cdegree/s")
+    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+alias("$(P)SPEED:SP", "$(P)SPEED:SP:RBV")
+
+record(longout, "$(P)ACC:SP") {
+	field(DESC, "Radial acceleration setpoint")
+    field(OUT, "@devgemorc.proto setAcc $(PORT)")
+    field(DTYP, "stream")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ACC:SP")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "cdegree/s^2")
+    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+alias("$(P)ACC:SP", "$(P)ACC:SP:RBV")
+
+record(longout, "$(P)OFFSET:SP") {
+	field(DESC, "Motor offset setpoint")
+    field(OUT, "@devgemorc.proto setOffset $(PORT)")
+    field(DTYP, "stream")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OFFSET:SP")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "")
+    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+alias("$(P)OFFSET:SP", "$(P)OFFSET:SP:RBV")
+
+record(longout, "$(P)WIDTH:SP") {
+	field(DESC, "Window width setpoint")
+    field(OUT, "@devgemorc.proto setWidth $(PORT)")
+    field(DTYP, "stream")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WIDTH:SP")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "cdegree")
+    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+alias("$(P)WIDTH:SP", "$(P)WIDTH:SP:RBV")
 
 
 ## Simulation records
 
-record(ai, "$(P)SIM:SCAN")
-{
-}
+record(longin, "$(P)SIM:SCAN") {}
+record(longin, "$(P)SIM:WIDTH") {}
+record(longin, "$(P)SIM:OFFSET") {}
+record(longin, "$(P)SIM:SPEED") {}
+record(longin, "$(P)SIM:ACC") {}
+record(longin, "$(P)SIM:BACKLASH") {}
+record(longin, "$(P)SIM:CYCLES") {}
+record(bi, "$(P)SIM:STAT:OSC") {}
+record(bi, "$(P)SIM:INIT:DONE") {}
+record(bi, "$(P)SIM:INIT:PROGRESS") {}
+
+
+alias("$(P)SIM:WIDTH", "$(P)SIM:WIDTH:SP")
+alias("$(P)SIM:OFFSET", "$(P)SIM:OFFSET:SP")
+alias("$(P)SIM:SPEED", "$(P)SIM:SPEED:SP")
+alias("$(P)SIM:ACC", "$(P)SIM:ACC:SP")
