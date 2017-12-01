@@ -254,7 +254,7 @@ record(ao, "$(P)START") {
 
 record(ao, "$(P)STOP") {
 	field(DESC, "Stop oscillations")
-    field(OUT, "@devgemorc.proto start $(PORT)")
+    field(OUT, "@devgemorc.proto stop $(PORT)")
     field(DTYP, "stream")
 }
 
