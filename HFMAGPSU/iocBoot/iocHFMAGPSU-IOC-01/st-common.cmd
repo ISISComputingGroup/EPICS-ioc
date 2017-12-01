@@ -36,8 +36,8 @@ iocInit
 epicsEnvSet "P" "$(MYPVPREFIX)$(IOCNAME)"
 
 # Directory of ramp rate table
-#epicsEnvSet "RAMPTABLEDIR" "C:\\Instrument\\Settings\\config\\NDLT658\\configurations\\hifi_ramp_table.txt"
-epicsEnvSet "RAMPTABLEDIR" "C:\\Instrument\\Settings\\config\\NDW1801\\configurations\\cryomag_ramp_table.txt"
+epicsEnvSet "RAMPTABLEDIR" "C:\\Instrument\\Settings\\config\\NDLT658\\configurations\\hifi_ramp_table.txt"
+#epicsEnvSet "RAMPTABLEDIR" "C:\\Instrument\\Settings\\config\\NDW1801\\configurations\\cryomag_ramp_table.txt"
 ## Start any sequence programs
 
 seq fsm, "P=$(P), RAMPTABLEDIR=$(RAMPTABLEDIR)"

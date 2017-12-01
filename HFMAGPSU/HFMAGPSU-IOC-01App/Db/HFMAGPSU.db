@@ -141,6 +141,19 @@ record(ai, "$(P)WRITEFILE")
 	info(archive, "VAL")	
 }
 
+record(ai, "$(P)RAMPING:SP")
+{
+	field(DESC, "Boolean to trigger ramp from opi")
+	field(SCAN, "1 second")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMPING")
+    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")	
+}
+
+alias("$(P)RAMPING:SP", "$(P)RAMPING")
+
 record(ai, "$(P)READFILE")
 {
 	field(DESC, "Boolean to trigger ramp table file READ")
@@ -184,7 +197,6 @@ record(bi, "$(P)PAUSE")
 
 alias("$(P)PAUSE", "$(P)PAUSE:SP:RBV")
 
-
 record(mbbo, "$(P)DIRECTION:SP")
 {
 	field(DESC, "Set Direction - 0, +ve, -ve")
@@ -203,7 +215,7 @@ record(mbbo, "$(P)DIRECTION:SP")
 record(mbbi, "$(P)DIRECTION")
 {
 	field(DESC, "Returns current direction")
-	field(SCAN, "1 second")
+	field(SCAN, "5 second")
     field(DTYP, "stream")
 	field(ZRST, "0")
 	field(ONST, "-")
@@ -215,6 +227,7 @@ record(mbbi, "$(P)DIRECTION")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 }
+
 
 alias("$(P)DIRECTION", "$(P)DIRECTION:SP:RBV")
 
@@ -236,6 +249,7 @@ record(mbbo, "$(P)RAMPTARGET:SP")
 alias("$(P)RAMPTARGET:SP", "$(P)RAMPTARGET")
 
 
+
 record(bo, "$(P)HEATERSTATUS:SP")
 {
 	field(DESC, "set Heater status to off or on")
@@ -254,7 +268,7 @@ record(bo, "$(P)HEATERSTATUS:SP")
 record(bi, "$(P)HEATERSTATUS")
 {	
 	field(DESC, "Returns heater status (off or on)")
-	field(SCAN, "1 second")
+	field(SCAN, "5 second")
     field(DTYP, "stream")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
@@ -266,13 +280,14 @@ record(bi, "$(P)HEATERSTATUS")
 	info(archive, "VAL")
 }
 
+
 alias("$(P)HEATERSTATUS", "$(P)HEATERSTATUS:SP:RBV")
 
 
 record(ai, "$(P)HEATERVALUE")
 {
 	field(DESC, "Returns heater value in volts")
-	field(SCAN, "1 second")
+	field(SCAN, "5 second")
     field(DTYP, "stream")
     field(INP, "@devHFMAGPSU.proto getHeaterValue $(PORT)")   
 	field(PREC, "5")
@@ -288,7 +303,7 @@ alias("$(P)HEATERVALUE", "$(P)HEATERVALUE:SP:RBV")
 record(ai, "$(P)MAX")
 {
 	field(DESC, "Returns value of MAX")
-	field(SCAN, "1 second")
+	field(SCAN, "5 second")
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getMaxTarget $(PORT)")
     field(PREC, "5")	
@@ -314,10 +329,14 @@ record(ao, "$(P)MAX:SP")
 }
 
 
+
+
+
+
 record(ai, "$(P)LIMIT")
 {
 	field(DESC, "Returns value of voltage limit")
-	field(SCAN, "1 second")
+	field(SCAN, "5 second")
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getLimit $(PORT)")
 	field(EGU, "V")
@@ -350,7 +369,7 @@ record(ao, "$(P)LIMIT:SP")
 record(ai, "$(P)CONSTANT")
 {
 	field(DESC, "Returns value of field constant")
-	field(SCAN, "1 second")
+	field(SCAN, "5 second")
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getConstant $(PORT)")
 	field(EGU, "T/A")
@@ -382,7 +401,7 @@ record(ao, "$(P)CONSTANT:SP")
 record(ai, "$(P)MID")
 {
 	field(DESC, "Return MID Value")
-	field(SCAN, "1 second")
+	field(SCAN, "5 second")
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getMidTarget $(PORT)")
 	# field(EGU, "") # set by units transfer
@@ -409,10 +428,11 @@ record(ao, "$(P)MID:SP")
     info(archive, "VAL")
 }
 
+
 record(ai, "$(P)RAMPRATE")
 {
 	field(DESC, "Return ramp rate value")
-	field(SCAN, "1 second")
+	field(SCAN, "5 second")
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getRampRate $(PORT)")
     field(PREC, "5")	
@@ -437,6 +457,8 @@ record(ao, "$(P)RAMPRATE:SP")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
+
+
 
 record(ao, "$(P)HEATERVALUE:SP") 
 {
@@ -471,7 +493,7 @@ record(bo, "$(P)OUTPUTMODE:SP")
 record(bi, "$(P)OUTPUTMODE")
 {
 	field(DESC, "Returns output mode - amps or tesla")
-	field(SCAN, "1 second")
+	field(SCAN, "5 second")
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getOutputMode $(PORT)")
 	field(ZNAM, "AMPS")
@@ -482,8 +504,6 @@ record(bi, "$(P)OUTPUTMODE")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 }
-
-alias("$(P)OUTPUTMODE", "$(P)OUTPUTMODE:SP:RBV")
 
 
  
@@ -607,4 +627,3 @@ record(ai, "$(P)SIM:ZERO")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
 }
-
