@@ -1,3 +1,5 @@
+## Simulation and disable controls
+
 record(bo, "$(P)SIM")
 {
     field(SCAN, "Passive")
@@ -16,4 +18,170 @@ record(bo, "$(P)DISABLE")
     field(OMSL, "supervisory")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
+}
+
+## Current state
+
+record(ai, "$(P)STAT:_SCAN")
+{
+    field(INP, "@devgemorc.proto getStatus($(P)STAT:_RAW) $(PORT)")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)STAT:_RAW")
+    field(DTYP, "stream")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SCAN")
+    field(SDIS, "$(P)DISABLE")
+	
+    info(alarm, "GEMORC")
+}
+
+record(calcout, "$(P)STAT:_RAW")
+{
+    field(CALC, "0")
+    field(FLNK, "$(P)STAT:_FANOUT")
+}
+
+record(seq, "$(P)STAT:_FANOUT")
+{
+    field(DOL1, "$(P)STAT:_RAW.A")
+    field(LNK1, "$(P)STAT:OSC PP")
+
+    field(DOL2, "$(P)STAT:_RAW.B")
+    field(LNK2, "$(P)STAT:INIT:PROGRESS PP")
+
+    field(DOL3, "$(P)STAT:_RAW.C")
+    field(LNK3, "$(P)STAT:INIT:DONE PP")
+
+    field(DOL4, "$(P)STAT:_RAW.D")
+    field(LNK4, "$(P)WIDTH PP")
+
+    field(DOL5, "$(P)STAT:_RAW.E")
+    field(LNK5, "$(P)OFFSET PP")
+    
+    field(DOL6, "$(P)STAT:_RAW.F")
+    field(LNK6, "$(P)SPEED PP")
+    
+    field(DOL7, "$(P)STAT:_RAW.G")
+    field(LNK7, "$(P)ACC PP")
+    
+    field(DOL8, "$(P)STAT:_RAW.H")
+    field(LNK8, "$(P)CYCLES PP")
+    
+    field(DOL9, "$(P)STAT:_RAW.I")
+    field(LNK9, "$(P)BACKLASH PP")
+    
+    field(SELM, "All")
+}
+
+record(bi, "$(P)STAT:OSC")
+{
+	field(DESC, "Collimator oscillating")
+	field(ZNAM, "No")
+	field(ONAM, "Yes")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)STAT:INIT:DONE")
+{
+	field(DESC, "Collimator initialised")
+	field(ZNAM, "No")
+	field(ONAM, "Yes")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)STAT:INIT:PROGRESS")
+{
+	field(DESC, "Collimator initialising")
+	field(ZNAM, "No")
+	field(ONAM, "Yes")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)WIDTH")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(DESC, "Window width")
+	
+	field(EGU, "cdegree")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)OFFSET")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(DESC, "Datum offset")
+	
+	field(EGU, "")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)SPEED")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(DESC, "Radial speed")
+	
+	field(EGU, "cdegree/s")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)ACC")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(DESC, "Radial acceleration")
+	
+	field(EGU, "cdegree/s^2")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)CYCLES")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(DESC, "Number of complete cycles")
+	
+	field(EGU, "")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)BACKLASH")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(DESC, "Motor backlash")
+	
+	field(EGU, "")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+## Settings
+
+
+
+## Simulation records
+
+record(ai, "$(P)SIM:SCAN")
+{
 }
