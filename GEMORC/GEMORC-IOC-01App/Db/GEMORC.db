@@ -108,8 +108,8 @@ record(calc, "$(P)INIT:REQUIRED")
 {
     field(DESC, "Initialisation required")
 	field(INPA, "$(P)INIT:DONE")
-	field(INPA, "$(P)INIT:PROGRESS")
-	field(CALC, "A+B==0")
+	field(INPB, "$(P)INIT:PROGRESS")
+	field(CALC, "A+B<=0")
 	field(FLNK, "$(P)INIT:ONCE")
 }
 
