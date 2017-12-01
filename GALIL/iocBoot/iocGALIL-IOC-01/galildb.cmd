@@ -5,7 +5,7 @@
 dbLoadRecords("$(TOP)/db/galil_motor.db", "P=$(MYPVPREFIX)MOT,CCP=$(GALILCRATE),IFSIM=$(IFSIM),IFNOTSIM=$(IFNOTSIM)")
 
 #Load extra functionality, untop of motorRecord features for axis/motors (eg. runtime gear ratio changes between master & slaves)
-$(IFNOTSIM) dbLoadRecords("$(TOP)/db/galil_ctrl_extras.db", "P=$(MYPVPREFIX)MOT,CCP=$(GALILCRATE),IFSIM=$(IFSIM),IFNOTSIM=$(IFNOTSIM)")
+$(IFNOTSIM) dbLoadRecords("$(TOP)/db/galil_dmc_ctrl.db", "P=$(MYPVPREFIX)MOT,CCP=$(GALILCRATE),IFSIM=$(IFSIM),IFNOTSIM=$(IFNOTSIM)")
 $(IFNOTSIM) dbLoadRecords("$(TOP)/db/galil_motor_extras.db", "P=$(MYPVPREFIX)MOT,CCP=$(GALILCRATE),IFSIM=$(IFSIM),IFNOTSIM=$(IFNOTSIM)")
 
 #Load digital IO databases
