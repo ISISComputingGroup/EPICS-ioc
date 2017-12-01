@@ -93,6 +93,8 @@ record(bi, "$(P)INIT:DONE")
 	field(DESC, "Collimator initialised")
 	field(ZNAM, "No")
 	field(ONAM, "Yes")
+	
+	field(FLNK, "$(P)INIT:REQUIRED")
     
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:INIT:DONE")
@@ -102,11 +104,29 @@ record(bi, "$(P)INIT:DONE")
     info(archive, "VAL")
 }
 
+record(calc, "$(P)INIT:REQUIRED")
+{
+    field(DESC, "Initialisation required")
+	field(INPA, "$(P)INIT:DONE")
+	field(INPA, "$(P)INIT:PROGRESS")
+	field(CALC, "A+B==0")
+	field(FLNK, "$(P)INIT:ONCE")
+}
+
+record(calc, "$(P)INIT:ONCE")
+{
+    field(DESC, "Initialised at least once")
+	field(INPA, "$(P)INIT:DONE")
+	field(CALC, "A")
+}
+
 record(bi, "$(P)INIT:PROGRESS")
 {
 	field(DESC, "Collimator initialising")
 	field(ZNAM, "No")
 	field(ONAM, "Yes")
+	
+	field(FLNK, "$(P)INIT:REQUIRED")
     
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:INIT:PROGRESS")
@@ -126,7 +146,7 @@ record(longin, "$(P)WIDTH")
     field(SIOL, "$(P)SIM:WIDTH")
     field(SDIS, "$(P)DISABLE")
 	
-	field(EGU, "cdegree")
+	field(EGU, "cdeg")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -158,7 +178,7 @@ record(longin, "$(P)SPEED")
     field(SIOL, "$(P)SIM:SPEED")
     field(SDIS, "$(P)DISABLE")
 	
-	field(EGU, "cdegree/s")
+	field(EGU, "cdeg/s")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -174,7 +194,7 @@ record(longin, "$(P)ACC")
     field(SIOL, "$(P)SIM:ACC")
     field(SDIS, "$(P)DISABLE")
 	
-	field(EGU, "cdegree/s^2")
+	field(EGU, "cdeg/s^2")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -214,19 +234,25 @@ record(longin, "$(P)BACKLASH")
 
 ## Settings
 
-record(bo, "$(P)INIT:STOP") {
+record(ao, "$(P)INIT:STOP") {
 	field(DESC, "Don't do next auto initialisation")
     field(OUT, "@devgemorc.proto stopNextInit $(PORT)")
     field(DTYP, "stream")
 }
 
-record(bo, "$(P)START") {
+record(ao, "$(P)INIT") {
+	field(DESC, "Initialise immediately")
+    field(OUT, "@devgemorc.proto initialise $(PORT)")
+    field(DTYP, "stream")
+}
+
+record(ao, "$(P)START") {
 	field(DESC, "Start oscillations")
     field(OUT, "@devgemorc.proto start $(PORT)")
     field(DTYP, "stream")
 }
 
-record(bo, "$(P)STOP") {
+record(ao, "$(P)STOP") {
 	field(DESC, "Stop oscillations")
     field(OUT, "@devgemorc.proto start $(PORT)")
     field(DTYP, "stream")
@@ -241,7 +267,7 @@ record(longout, "$(P)SPEED:SP") {
     field(SIOL, "$(P)SIM:SPEED:SP")
     field(SDIS, "$(P)DISABLE")
 	
-	field(EGU, "cdegree/s")
+	field(EGU, "cdeg/s")
     
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
@@ -258,7 +284,7 @@ record(longout, "$(P)ACC:SP") {
     field(SIOL, "$(P)SIM:ACC:SP")
     field(SDIS, "$(P)DISABLE")
 	
-	field(EGU, "cdegree/s^2")
+	field(EGU, "cdeg/s^2")
     
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
@@ -292,13 +318,32 @@ record(longout, "$(P)WIDTH:SP") {
     field(SIOL, "$(P)SIM:WIDTH:SP")
     field(SDIS, "$(P)DISABLE")
 	
-	field(EGU, "cdegree")
+	field(EGU, "cdeg")
     
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
 
 alias("$(P)WIDTH:SP", "$(P)WIDTH:SP:RBV")
+
+record(seq, "$(P)RESET") {
+	field(DESC, "Restore default settings")
+
+    field(LNK1, "$(P)WIDTH:SP")
+    field(DO1, "100")
+	
+    field(LNK2, "$(P)OFFSET:SP PP")
+    field(DO2, "")
+	
+    field(LNK3, "$(P)SPEED:SP PP")
+    field(DO3, "20")
+	
+    field(LNK4, "$(P)ACC:SP PP")
+    field(DO4, "500")
+	
+    
+    field(SELM, "All")
+}
 
 
 ## Simulation records
