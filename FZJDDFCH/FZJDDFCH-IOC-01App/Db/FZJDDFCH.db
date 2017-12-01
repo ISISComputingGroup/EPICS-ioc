@@ -645,18 +645,3 @@ record(bi, "$(P)INTERLOCK:UPS:STATUS")
 }
 alias ("$(P)INTERLOCK:UPS:STATUS", "$(P)IL:UPS:STAT")
 #
-#record(bi, "$(P)MB:STATUS")
-#{
-#    field(DESC, "Magnetic Bearing Status")
-#    field(SCAN, "1 second")
-#    field(DTYP, "stream")
-#    field(INP,  "@devFZJ_DDFermiChopper.proto getMBON $(PORT)")
-#    field(ZNAM, "OFF")
-#    field(ONAM, "ON")
-#    #field(SIML, "$(P)SIM")
-#    #field(SIOL, "$(P)SIM:MBON")
-#    #field(SDIS, "$(P)DISABLE")
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
-#
