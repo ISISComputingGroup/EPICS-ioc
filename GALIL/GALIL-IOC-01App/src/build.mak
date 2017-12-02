@@ -11,9 +11,7 @@ include $(TOP)/configure/CONFIG
 # Build the IOC application GALIL-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
-ifeq ($(STATIC_BUILD),NO)
-PROD_IOC_WIN32 = $(APPNAME)
-endif
+PROD_IOC = $(APPNAME)
 # GALIL-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
