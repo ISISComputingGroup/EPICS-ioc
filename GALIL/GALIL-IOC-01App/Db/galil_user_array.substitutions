@@ -1,10 +1,10 @@
-# $File: //ASP/Dev/SBS/4_Controls/4_3_Network_Infrastructure/4_3_1_Comms_Common_Services/sw/device_drivers/Galil/1-5/galilTestApp/Db/galil_userdef_records.substitutions $
+# $File: //ASP/Dev/SBS/4_Controls/4_3_Network_Infrastructure/4_3_1_Comms_Common_Services/sw/device_drivers/Galil/1-5/galilTestApp/Db/galil_ctrl_extras.substitutions $
 # $Revision: #2 $
 # $DateTime: 2012/03/20 11:55:19 $
 # $Author: cliftm $
 #
 # Description
-# Substitution file for user defined commands and monitors
+# Substitution file for arrays
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -23,24 +23,26 @@
 # Contact details:
 # mark.clift@synchrotron.org.au
 # 800 Blackburn Road, Clayton, Victoria 3168, Australia.
+#
 
-# P:EPICSName_MONITOR
-# P:EPICSName_STATUS
-# P:EPICSName_SP
-# P:EPICSName_CMD
+# P    - PV prefix
+# PORT - Asyn port name
+# ADDR - Asyn address
+# NELM - Number of elements
 
-# GalilStr is a galil command or variable 
-# eg. TI0, SB 1, uservarname, etc
-
-# DRVCMD = VAR (GalilStr is a galil variable)
-# DRVCMD = CMD (GalilStr is a galil command)
-
-
-file "$(GALIL)/db/galil_userdef_records.template"
+file "$(GALIL)/GalilSup/Db/galil_user_array.template"
 {
 pattern
-{ P,               EPICSName,            GalilStr, DRVCMD, SCAN,        DRVL, DRVH, LOW,  HIGH, LSV,     HSV,     ZNAM,      ONAM,  ZSV,        OSV,        C, DEFAULT, EGU,  PINI}
-#{"SR08ID01WFS01", "EXPOSURE_TIME",      "expsT",  "VAR"   ".1 second", 1,    1000, 1,    1000, "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", 0, "10",    "ms", "YES"}
+{   P,	      PORT,    ADDR,  NELM } 
+ {  "\$(P)DMC\$(CCP):", "Galil", "0",   1000 }
+ {  "\$(P)DMC\$(CCP):", "Galil", "1",   1000 }
+ {  "\$(P)DMC\$(CCP):", "Galil", "2",   1000 }
+ {  "\$(P)DMC\$(CCP):", "Galil", "3",   1000 }
+ {  "\$(P)DMC\$(CCP):", "Galil", "4",   1000 }
+ {  "\$(P)DMC\$(CCP):", "Galil", "5",   1000 }
+ {  "\$(P)DMC\$(CCP):", "Galil", "6",   1000 }
+ {  "\$(P)DMC\$(CCP):", "Galil", "7",   1000 }
 }
 
 # end
+

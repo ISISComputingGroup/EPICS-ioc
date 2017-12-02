@@ -1,28 +1,78 @@
+# Description:
+# Profile axes substitution file. 
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# Licence as published by the Free Software Foundation; either
+# version 2.1 of the Licence, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public Licence for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# Licence along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+# Contact details:
+# mark.clift@synchrotron.org.au
+# 800 Blackburn Road, Clayton, Victoria 3168, Australia.
+
+# Profile axes
+#
+# P    - PV prefix
+# R    - Record Name
+# M    - Motor number 1-8
+# NPOINTS - Number of profile points
+# NREADBACK - Number of readback points
+# MOTOR - Motor PV name
+
 file "$(MOTOR)/db/profileMoveAxis.template"
 {
 pattern
 {P,       R,      M,  PORT,     ADDR, NPOINTS,   NREADBACK,  MOTOR,    PREC,    TIMEOUT}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)01:,  Galil,    0,    1441,       1441,      "\$(P)MTR\$(CCP)01",  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)02:,  Galil,    1,    1441,       1441,      "\$(P)MTR\$(CCP)02",  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)03:,  Galil,    2,    1441,       1441,      "\$(P)MTR\$(CCP)03",  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)04:,  Galil,    3,    1441,       1441,      "\$(P)MTR\$(CCP)04",  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)05:,  Galil,    4,    1441,       1441,      "\$(P)MTR\$(CCP)05",  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)06:,  Galil,    5,    1441,       1441,      "\$(P)MTR\$(CCP)06",  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)07:,  Galil,    6,    1441,       1441,      "\$(P)MTR\$(CCP)07",  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)08:,  Galil,    7,    1441,       1441,      "\$(P)MTR\$(CCP)08",  4,       1}
+{\$(P),  Prof1:, 1,  Galil,    0,    1441,       1441,      \$(P)A,  4,       1}
+{\$(P),  Prof1:, 2,  Galil,    1,    1441,       1441,      \$(P)B,  4,       1}
+{\$(P),  Prof1:, 3,  Galil,    2,    1441,       1441,      \$(P)C,  4,       1}
+{\$(P),  Prof1:, 4,  Galil,    3,    1441,       1441,      \$(P)D,  4,       1}
+{\$(P),  Prof1:, 5,  Galil,    4,    1441,       1441,      \$(P)E,  4,       1}
+{\$(P),  Prof1:, 6,  Galil,    5,    1441,       1441,      \$(P)F,  4,       1}
+{\$(P),  Prof1:, 7,  Galil,    6,    1441,       1441,      \$(P)G,  4,       1}
+{\$(P),  Prof1:, 8,  Galil,    7,    1441,       1441,      \$(P)H,  4,       1}
+
+#CSAxis
+{\$(P),  Prof1:, 9,  Galil,    8,    1441,       1441,      \$(P)I,  4,       1}
+{\$(P),  Prof1:, 10, Galil,    9,    1441,       1441,      \$(P)J,  4,       1}
+{\$(P),  Prof1:, 11, Galil,    10,   1441,       1441,      \$(P)K,  4,       1}
+{\$(P),  Prof1:, 12, Galil,    11,   1441,       1441,      \$(P)L,  4,       1}
+{\$(P),  Prof1:, 13, Galil,    12,   1441,       1441,      \$(P)M,  4,       1}
+{\$(P),  Prof1:, 14, Galil,    13,   1441,       1441,      \$(P)N,  4,       1}
+{\$(P),  Prof1:, 15, Galil,    14,   1441,       1441,      \$(P)O,  4,       1}
+{\$(P),  Prof1:, 16, Galil,    15,   1441,       1441,      \$(P)P,  4,       1}
 }
 
 file "$(GALIL)/GalilSup/Db/galil_profileMoveAxis.template"
 {
 pattern
-{P,       R,      M,  PORT,     ADDR, PREC,    TIMEOUT}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)01:,  Galil,    0,    4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)02:,  Galil,    1,    4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)03:,  Galil,    2,    4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)04:,  Galil,    3,    4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)05:,  Galil,    4,    4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)06:,  Galil,    5,    4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)07:,  Galil,    6,    4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)08:,  Galil,    7,    4,       1}
+{P,       R,      M,  PORT,     ADDR,  NREADBACK,  ZNAM,       ONAM,       PREC,    TIMEOUT }
+{\$(P),  Prof1:, 1,  Galil,    0,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 2,  Galil,    1,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 3,  Galil,    2,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 4,  Galil,    3,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 5,  Galil,    4,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 6,  Galil,    5,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 7,  Galil,    6,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 8,  Galil,    7,     "1441",     "Relative", "Absolute", 4,       1       }
+
+#CSAxis
+{\$(P),  Prof1:, 9,  Galil,    8,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 10, Galil,    9,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 11, Galil,   10,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 12, Galil,   11,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 13, Galil,   12,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 14, Galil,   13,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 15, Galil,   14,     "1441",     "Relative", "Absolute", 4,       1       }
+{\$(P),  Prof1:, 16, Galil,   15,     "1441",     "Relative", "Absolute", 4,       1       }
 }
 
