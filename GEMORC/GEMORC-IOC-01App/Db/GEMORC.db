@@ -353,22 +353,29 @@ record(longout, "$(P)WIDTH:SP") {
 
 alias("$(P)WIDTH:SP", "$(P)WIDTH:SP:RBV")
 
-record(seq, "$(P)RESET") {
+record(ao, "$(P)RESET") {
+	field(DESC, "Restore default settings")
+	field(FLNK, "$(P)RESET:ACTION")
+}
+
+record(seq, "$(P)RESET:ACTION") {
 	field(DESC, "Restore default settings")
 
-    field(LNK1, "$(P)WIDTH:SP")
+    field(LNK1, "$(P)WIDTH:SP PP")
     field(DO1, "100")
 	
     field(LNK2, "$(P)OFFSET:SP PP")
-    field(DO2, "")
+	field(DLY2, "0.1")
+    field(DO2, "0")
 	
     field(LNK3, "$(P)SPEED:SP PP")
+	field(DLY3, "0.2")
     field(DO3, "20")
 	
     field(LNK4, "$(P)ACC:SP PP")
+	field(DLY4, "0.3")
     field(DO4, "500")
 	
-    
     field(SELM, "All")
 }
 
