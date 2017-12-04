@@ -72,6 +72,8 @@ record(seq, "$(P)STAT:_FANOUT")
     field(LNK9, "$(P)BACKLASH PP")
     
     field(SELM, "All")
+	
+	field(FLNK, "$(P)WIDTH:ACC")
 }
 
 record(bi, "$(P)STAT:OSC")
@@ -379,6 +381,38 @@ record(seq, "$(P)RESET:ACTION") {
     field(SELM, "All")
 }
 
+# Derived values
+
+record(calc, "$(P)WIDTH:ACC") {
+	field(DESC, "Acceleration width")
+	
+	field(INPA, "$(P)SPEED")
+	field(INPB, "$(P)ACC")
+	field(CALC, "B!=0?A/B:0")
+	
+	field(FLNK, "$(P)WIDTH:TOTAL")
+}
+
+record(calc, "$(P)WIDTH:TOTAL") {
+	field(DESC, "Total window width")
+	
+	field(INPA, "$(P)WIDTH")
+	field(INPB, "$(P)WIDTH:ACC")
+	
+	field(CALC, "2*B+A")
+	
+	field(FLNK, "$(P)UTILITY")
+}
+
+record(calcout, "$(P)UTILITY") {
+	field(DESC, "Utility time")
+	
+	field(INPA, "$(P)WIDTH")
+	field(INPB, "$(P)WIDTH:TOTAL")
+	field(INPC, "$(P)ACC")
+	
+	field(CALC, "C!=0?B!=0?A/B:0:0")
+}
 
 ## Simulation records
 
