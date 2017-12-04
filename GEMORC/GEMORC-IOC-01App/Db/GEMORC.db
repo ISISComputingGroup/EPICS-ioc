@@ -22,6 +22,25 @@ record(bo, "$(P)DISABLE")
 
 ## Current state
 
+record(scalcout, "$(P)ID:_TRIG") {
+    field(DESC, "Triggers ID read until non-blank")
+	field(SCAN, "5 second")
+	field(INAA, "$(P)ID")
+	field(CALC, "AA==' '?1:0")
+	field(OUT, "$(P)ID.PROC")
+}
+
+record(stringin, "$(P)ID") {
+    field(DESC, "PnP Identity")
+    field(SCAN, "Passive")
+	field(DTYP, "stream")
+    field(INP, "@devgemorc.proto getID $(PORT)")
+	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ID")
+    field(SDIS, "$(P)DISABLE")
+}
+
 record(longin, "$(P)STAT:_SCAN")
 {
     field(INP, "@devgemorc.proto getStatus($(P)STAT:_RAW) $(PORT)")
@@ -426,6 +445,7 @@ record(longin, "$(P)SIM:CYCLES") {}
 record(bi, "$(P)SIM:STAT:OSC") {}
 record(bi, "$(P)SIM:INIT:DONE") {}
 record(bi, "$(P)SIM:INIT:PROGRESS") {}
+record(stringin, "$(P)SIM:ID")
 
 
 alias("$(P)SIM:WIDTH", "$(P)SIM:WIDTH:SP")
