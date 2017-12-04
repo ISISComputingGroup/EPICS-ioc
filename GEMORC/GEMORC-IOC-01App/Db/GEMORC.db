@@ -94,7 +94,7 @@ record(bi, "$(P)INIT:DONE")
 	field(ZNAM, "No")
 	field(ONAM, "Yes")
 	
-	field(FLNK, "$(P)INIT:REQUIRED")
+	field(FLNK, "$(P)INIT:REQUIRED:CALC")
     
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:INIT:DONE")
@@ -104,20 +104,47 @@ record(bi, "$(P)INIT:DONE")
     info(archive, "VAL")
 }
 
-record(calc, "$(P)INIT:REQUIRED")
+record(calc, "$(P)INIT:REQUIRED:CALC")
 {
     field(DESC, "Initialisation required")
 	field(INPA, "$(P)INIT:DONE")
 	field(INPB, "$(P)INIT:PROGRESS")
-	field(CALC, "A+B<=0")
+	field(CALC, "A+B==0")	
+	field(FLNK, "$(P)INIT:REQUIRED")
+}
+
+record(bi, "$(P)INIT:REQUIRED")
+{
+    field(DESC, "Initialisation required")
+	field(DTYP, "Raw Soft Channel")
+	field(INP, "$(P)INIT:REQUIRED:CALC")
+	field(ZNAM, "No")
+	field(ONAM, "Yes")
+	field(FLNK, "$(P)INIT:ONCE:CALC")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(calc, "$(P)INIT:ONCE:CALC")
+{
+    field(DESC, "Initialised at least once")
+	field(INPA, "$(P)INIT:REQUIRED")
+	field(CALC, "1-A")
 	field(FLNK, "$(P)INIT:ONCE")
 }
 
-record(calc, "$(P)INIT:ONCE")
+record(bi, "$(P)INIT:ONCE")
 {
     field(DESC, "Initialised at least once")
-	field(INPA, "$(P)INIT:DONE")
-	field(CALC, "A")
+	field(DTYP, "Raw Soft Channel")
+	field(INP, "$(P)INIT:ONCE:CALC")
+	
+	field(ZNAM, "No")
+	field(ONAM, "Yes")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bi, "$(P)INIT:PROGRESS")
@@ -126,7 +153,7 @@ record(bi, "$(P)INIT:PROGRESS")
 	field(ZNAM, "No")
 	field(ONAM, "Yes")
 	
-	field(FLNK, "$(P)INIT:REQUIRED")
+	field(FLNK, "$(P)INIT:REQUIRED:CALC")
     
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:INIT:PROGRESS")
@@ -194,7 +221,7 @@ record(longin, "$(P)ACC")
     field(SIOL, "$(P)SIM:ACC")
     field(SDIS, "$(P)DISABLE")
 	
-	field(EGU, "cdeg/s^2")
+	field(EGU, "cdeg/ss")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -284,7 +311,7 @@ record(longout, "$(P)ACC:SP") {
     field(SIOL, "$(P)SIM:ACC:SP")
     field(SDIS, "$(P)DISABLE")
 	
-	field(EGU, "cdeg/s^2")
+	field(EGU, "cdeg/ss")
     
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
