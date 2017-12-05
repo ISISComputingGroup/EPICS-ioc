@@ -327,6 +327,8 @@ record(ao, "$(P)ZERO") {
 record(longout, "$(P)INIT:AUTO") {
     field(DESC, "Automatically initialise after * cycles")
 	field(EGU, "")
+	field(VAL, "20000")
+	field(PINI, "YES")
     
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
@@ -340,13 +342,16 @@ record(calcout, "$(P)INIT:AUTO:CALC") {
     field(DESC, "Determines when to auto init the device")
 	field(INPA, "$(P)INIT:AUTO")
 	field(INPB, "$(P)CYCLES")
-	field(OUT, "$(P)INIT")
 	field(CALC, "B>=A")
+	field(OUT, "$(P)INIT.PROC")
+    field(OOPT, "Transition To Non-zero")
 }
 
 record(longout, "$(P)INIT:OPT") {
     field(DESC, "Optionally initialise after * cycles")
 	field(EGU, "")
+	field(VAL, "10000")
+	field(PINI, "YES")
 	
 	field(FLNK, "$(P)INIT:REQUIRED:CALC")
     
