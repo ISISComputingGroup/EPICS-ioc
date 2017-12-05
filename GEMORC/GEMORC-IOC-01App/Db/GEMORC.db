@@ -474,8 +474,9 @@ record(calcout, "$(P)UTILITY") {
 	field(INPB, "$(P)BACKLASH")
 	
 	field(CALC, "100*A/(A+2*B)")
+	field(PREC, "2")
 	
-	field(EGU, "")    
+	field(EGU, "%")    
 	field(FLNK, "$(P)PERIOD")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -487,6 +488,7 @@ record(calc, "$(P)PERIOD") {
 	field(INPB, "$(P)WIDTH")
 	field(INPC, "$(P)BACKLASH")
 	field(CALC, "(B+2*C)/A")
+	field(PREC, "2")
 	
 	field(EGU, "s")    
 	field(FLNK, "$(P)FREQ")
@@ -498,6 +500,7 @@ record(calc, "$(P)FREQ") {
 	field(EGU, "Hz")
     field(INPA, "$(P)PERIOD")
 	field(CALC, "1/A")	
+	field(PREC, "2")
     info(INTEREST, "HIGH")
     info(archive, "VAL")	
 }
