@@ -306,6 +306,12 @@ record(ao, "$(P)STOP") {
     field(DTYP, "stream")
 }
 
+record(ao, "$(P)ZERO") {
+	field(DESC, "Re zero to datum")
+    field(OUT, "@devgemorc.proto re_zero_to_datum $(PORT)")
+    field(DTYP, "stream")
+}
+
 record(longout, "$(P)SPEED:SP") {
 	field(DESC, "Radial speed setpoint")
     field(OUT, "@devgemorc.proto setSpeed $(PORT)")
