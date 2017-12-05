@@ -19,7 +19,9 @@ AG33220A_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-drvAsynIPPortConfigure ("IP", "130.246.49.196:5025")
+$(IFDEVSIM) drvAsynIPPortConfigure("IP", "localhost:$(EMULATOR_PORT=)")
+
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure ("IP","$(IP_ADDRESS):5025")
 
 ## Load record instances
 
@@ -27,7 +29,7 @@ drvAsynIPPortConfigure ("IP", "130.246.49.196:5025")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/agilent33220A.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=IP")
+dbLoadRecords("db/agilent33220A.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=IP, RECSIM=$(RECSIM=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

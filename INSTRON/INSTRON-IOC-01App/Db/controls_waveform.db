@@ -1,0 +1,753 @@
+record(seq, "$(P)WAVE:READALL") 
+{
+    field(DESC, "Read all waveform data")
+    field(LNK1, "$(P)WAVE:FREQ:RAW PP")
+    field(LNK2, "$(P)WAVE:TYPE:RAW PP")
+    field(LNK3, "$(P)WAVE:AMP:RAW PP")
+    field(LNK4, "$(P)WAVE:STATUS:RAW PP")
+    field(LNK5, "$(P)QUART:STATUS:RAW PP")
+    field(LNK6, "$(P)QUART:RAW PP")
+    field(LNK7, "$(P)QUART:SP:RBV:RAW PP")    
+    
+    field(SELM, "All")
+}
+
+#
+# STATE CONTROLS
+#
+
+record(ai, "$(P)WAVE:STATUS:RAW")
+{
+    field(DTYP, "stream")
+    field(INP, "@devInstron.proto getWaveformStatus $(PORT)")
+    field(MDEL, "-1")
+}
+
+record(ai, "$(P)WAVE:STATUS:INT")
+{
+    field(INP, "$(P)WAVE:STATUS:RAW CP MS")
+    field(MDEL, "-1")
+}
+
+record(mbbi, "$(P)WAVE:STATUS")
+{
+    field(DESC, "Status of the wave generator")
+    field(INP, "$(P)WAVE:STATUS:RAW CP MS")
+    
+    field(ZRST, "Stopped")
+    field(ONST, "Running")
+    field(TWST, "Holding")
+    field(THST, "Finishing")
+    field(FRST, "Aborted")
+    field(FVST, "Disabled")
+    field(SXST, "Slaved")
+    field(SVST, "Slave Locked")
+    field(EIST, "Sweeping")
+    field(NIST, "Dwelling")
+    
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+    field(FRVL, "4")
+    field(FVVL, "5")
+    field(SXVL, "6")
+    field(SVVL, "7")
+    field(EIVL, "8")
+    field(NIVL, "9")
+    
+    field(FLNK, "$(P)WAVE:_STAT_FAN")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:STATUS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(fanout,"$(P)WAVE:_STAT_FAN") 
+{
+    field(LNK1, "$(P)WAVE:_RUN_CALC PP")
+    field(LNK2, "$(P)WAVE:_CONT_CALC PP")
+    field(SELM, "All")
+}
+
+record(calcout,"$(P)WAVE:_RUN_CALC") 
+{
+    field(INPA, "$(P)WAVE:STATUS")
+    field(CALC, "A==1 || A==3")
+    field(OOPT, "Every Time")
+    field(OUT, "$(P)WAVE:RUNNING PP")
+}
+
+record(calcout,"$(P)WAVE:_CONT_CALC") 
+{
+    field(INPA, "$(P)WAVE:STATUS")
+    field(CALC, "A==1")
+    field(OOPT, "Every Time")
+    field(OUT, "$(P)WAVE:CONTINUING PP")
+}
+
+record(bi, "$(P)WAVE:RUNNING")
+{
+    field(DESC, "Waveform generator is running/finishing?")
+    field(ZNAM, "Not running")
+    field(ONAM, "Running")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)WAVE:CONTINUING")
+{
+    field(DESC, "Waveform generator is running?")
+    field(ZNAM, "Not continuing")
+    field(ONAM, "Continuing")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bo, "$(P)WAVE:START:RAW")
+{
+    field(DESC, "Start the waveform generator")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformStart $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:START:RAW")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(seq, "$(P)WAVE:START:_SEQ")
+{    
+    field(DESC, "Start the waveform generator")
+    
+    # Reset axes to non-absolute ramp
+    field(DO1, "0")
+    field(LNK1, "$(P)AXES:RAMP:WFTYP:SP PP")
+    
+    # Abort the waveform generator
+    field(DO2, "1")
+    field(LNK2, "$(P)WAVE:ABORT.PROC")
+    
+    # Switch off the quarter counter
+    field(DO3, "0")
+    field(LNK3, "$(P)QUART:OFF:SP PP")
+    
+    # Hold the waveform generator
+    field(DO4, "1")
+    field(LNK4, "$(P)WAVE:HOLD.PROC")
+    
+    # Maintain waveform logs
+    field(DO5, "1")
+    field(LNK5, "$(P)WAVE:LOG:MAINTAIN.PROC")
+    
+    # Arm the quarter counter
+    field(DO6, "1")
+    field(LNK6, "$(P)QUART:ARM.PROC")
+    
+    # Do the actual start
+    field(DO7, "1")
+    field(LNK7, "$(P)WAVE:START:RAW.PROC")
+	field(DLY7, "1")
+    
+    # Finish
+    field(DO8, "0")
+    field(LNK8, "$(P)WAVE:START")
+	field(DLY8, "1")
+    
+    field(SELM, "All") 
+}
+
+record(bo, "$(P)WAVE:START:SP") 
+{
+    field(DESC, "Start the waveform generator")
+    field(FLNK, "$(P)WAVE:START:_SEQ")
+}
+
+alias("$(P)WAVE:START:SP", "$(P)WAVE:START")
+
+record(bo, "$(P)WAVE:STOP:RAW")
+{
+    field(DESC, "Stop the waveform generator")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformStop $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:STOP:RAW")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(seq, "$(P)WAVE:STOP:_SEQ")
+{
+    field(DESC, "Stop the waveform generator")
+    
+    # Send the stop command
+    field(DO1, "1")
+    field(LNK1, "$(P)WAVE:STOP:RAW.PROC")
+    
+    # Set axes to absolute
+    field(DO2, "3")
+    field(LNK2, "$(P)AXES:RAMP:WFTYP:SP PP")
+    
+    # Finish
+    field(DO3, "0")
+    field(LNK3, "$(P)WAVE:START")
+    
+    field(SELM, "All") 
+}
+
+record(bo, "$(P)WAVE:STOP:SP") 
+{
+    field(DESC, "Stop the waveform generator")
+    field(FLNK, "$(P)WAVE:STOP:_SEQ")
+}
+
+alias("$(P)WAVE:STOP:SP", "$(P)WAVE:STOP")
+
+record(bo, "$(P)WAVE:ABORT:RAW")
+{
+    field(DESC, "Abort the waveform generator")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformAbort $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:ABORT:RAW")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(seq, "$(P)WAVE:ABORT:_SEQ")
+{
+    field(DESC, "Abort the waveform generator")
+    
+    # Send the abort command
+    field(DO1, "1")
+    field(LNK1, "$(P)WAVE:ABORT:RAW.PROC")
+    
+    field(SELM, "All") 
+}
+
+record(bo, "$(P)WAVE:ABORT:SP") 
+{
+    field(DESC, "Abort the waveform generator")
+    field(FLNK, "$(P)WAVE:ABORT:_SEQ")
+}
+
+alias("$(P)WAVE:ABORT:SP", "$(P)WAVE:ABORT")
+
+record(bo, "$(P)WAVE:HOLD")
+{
+    field(DESC, "Hold quarter cycle event detection")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformHold $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:HOLD")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)WAVE:LOG:MAINTAIN")
+{
+    field(DESC, "No action on quart event detection")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setLogMaintain $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:LOG:MAINTAIN")
+    field(SDIS, "$(P)DISABLE")
+}
+
+#
+# GENERATOR SETTINGS
+#
+
+record(mbbo, "$(P)WAVE:TYPE:SP")
+{
+    field(DESC, "Set the wave type of the wave generator")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformType($(P)CHANNEL) $(PORT)")
+    
+    field(ZRST, "Sine")    
+    field(ONST, "Triangle")       
+    field(TWST, "Square")
+    field(THST, "Haversine")
+    field(FRST, "Havetriangle")
+    field(FVST, "Haversquare")
+    field(SXST, "Sensor")
+    field(SVST, "Aux")
+    field(EIST, "Sawtooth")
+    
+    field(VAL, "0")
+    field(PINI, "YES")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:TYPE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbi, "$(P)WAVE:TYPE:RAW")
+{
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getWaveformType($(P)CHANNEL) $(PORT)")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:TYPE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbi, "$(P)WAVE:TYPE")
+{
+    field(DESC, "Set the wave type of the wave generator")
+    field(INP,  "$(P)WAVE:TYPE:RAW CP MS")
+    
+    field(ZRST, "Sine")    
+    field(ONST, "Triangle")       
+    field(TWST, "Square")
+    field(THST, "Haversine")
+    field(FRST, "Havetriangle")
+    field(FVST, "Haversquare")
+    field(SXST, "Sensor")
+    field(SVST, "Aux")
+    field(EIST, "Sawtooth")
+    
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+    field(FRVL, "4")
+    field(FVVL, "5")
+    field(SXVL, "6")
+    field(SVVL, "7")
+    field(EIVL, "8")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:TYPE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)WAVE:TYPE", "$(P)WAVE:TYPE:SP:RBV")
+
+record(ao, "$(P)WAVE:AMP:SP")
+{
+    field(DESC, "Set the waveform generator amplitude")
+    field(PREC, "3")
+    field(EGU, "")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:AMP:SP")
+    field(SDIS, "$(P)DISABLE")
+    field(FLNK, "$(P)WAVE:AMP:_CALC")
+}
+
+record(calcout, "$(P)WAVE:AMP:_CALC") {
+    field(INPA, "$(P)CHANNEL.RVAL")
+    field(INPB, "$(P)WAVE:AMP:SP")
+    field(INPC, "$(P)POS:SCALE CA")
+    field(INPD, "$(P)STRESS:SCALE CA")
+    field(INPE, "$(P)STRESS:AREA CA")
+    field(INPF, "$(P)STRAIN:SCALE CA")
+    field(INPG, "$(P)STRAIN:LENGTH CA")
+    field(CALC, "A==1?B/C/1000:A==2?B*E/D:B/F/G/100000")
+    field(OUT,  "$(P)WAVE:AMP:SP:_RAW PP")
+}
+
+record(ao, "$(P)WAVE:AMP:SP:_RAW")
+{
+    field(DESC, "Set the amp of the wave generator")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformAmplitude($(P)CHANNEL) $(PORT)")
+    field(PREC, "10")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:AMP:SP:_RAW")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(scalcout, "$(P)WAVE:AMP:_CALC_UNITS")
+{
+    field(DESC, "Calculate units of the current channel")
+    field(INPA, "$(P)CHANNEL.RVAL")
+    field(INAA, "$(P)POS.EGU CP")
+    field(INBB, "$(P)STRESS.EGU CP")
+    field(INCC, "$(P)STRAIN.EGU CP")
+    field(CALC, "A==1 ? AA : (A==2 ? BB : (A==3 ? CC : 'X'))")
+    field(OUT, "$(P)WAVE:AMP.EGU")
+    field(FLNK, "$(P)WAVE:AMP:_PUSH_UNITS PP")
+}
+
+record(scalcout, "$(P)WAVE:AMP:_PUSH_UNITS") {
+    field(INAA, "$(P)WAVE:AMP:_CALC_UNITS.OSV")
+    field(CALC, "AA")
+    field(OUT, "$(P)WAVE:AMP:SP.EGU")
+    field(FLNK, "$(P)WAVE:AMP:_PUSH_UNITS_2 PP")
+}
+
+record(scalcout, "$(P)WAVE:AMP:_PUSH_UNITS_2") {
+    field(INAA, "$(P)WAVE:AMP:_CALC_UNITS.OSV")
+    field(CALC, "AA")
+    field(OUT, "$(P)WAVE:AMP:SP:RBV.EGU")
+}
+
+record(ai, "$(P)WAVE:AMP:RAW")
+{
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getWaveformAmplitude($(P)CHANNEL) $(PORT)")
+    field(MDEL, "-1")
+}
+
+record(ai, "$(P)WAVE:AMP")
+{
+    field(DESC, "Get the amp of the wave generator")
+    field(INP, "$(P)WAVE:AMP:RAW CP MS")
+    field(PREC, "10")
+    field(VAL,  "0.0")
+    field(EGU, "")
+    
+    field(FLNK, "$(P)WAVE:AMP:SP:RBV:_CALC")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:AMP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(calcout, "$(P)WAVE:AMP:SP:RBV:_CALC") {
+    field(INPA, "$(P)CHANNEL.RVAL")
+    field(INPB, "$(P)WAVE:AMP")
+    field(INPC, "$(P)POS:SCALE CA")
+    field(INPD, "$(P)STRESS:SCALE CA")
+    field(INPE, "$(P)STRESS:AREA CA")
+    field(INPF, "$(P)STRAIN:SCALE CA")
+    field(INPG, "$(P)STRAIN:LENGTH CA")
+    field(CALC, "A==1?B*C*1000:A==2?B*D/E:B*F*G*100000")
+    field(OUT,  "$(P)WAVE:AMP:SP:RBV PP")
+}
+
+record(ai, "$(P)WAVE:AMP:SP:RBV")
+{
+    field(DESC, "The raw amplitude of the wave generator")
+    field(PREC, "3")
+    field(EGU, "mm")
+}
+
+record(ao, "$(P)WAVE:FREQ:SP")
+{
+    field(DESC, "Set the wave generator freq")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformFrequency($(P)CHANNEL) $(PORT)")
+    field(PREC, "3")
+    field(EGU, "Hz")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:FREQ:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)WAVE:FREQ:RAW")
+{
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getWaveformFrequency($(P)CHANNEL) $(PORT)")
+    field(MDEL, "-1")    
+}
+
+record(ai, "$(P)WAVE:FREQ")
+{
+    field(DESC, "Get the freq of the wave generator")
+    field(INP, "$(P)WAVE:FREQ:RAW CP MS")
+    field(PREC, "3")
+    field(EGU, "Hz")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAVE:FREQ")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)WAVE:FREQ", "$(P)WAVE:FREQ:SP:RBV")
+
+##
+## QUARTER CYCLE COUNTER EVENT DETECTOR CONTROLS
+##
+
+record(mbbi, "$(P)QUART:STATUS:RAW")
+{
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getWaveformQuartStatus $(PORT)")
+}
+
+record(mbbi, "$(P)QUART:STATUS")
+{
+    field(DESC, "Switch off quarter cycle control")
+    field(INP,  "$(P)QUART:STATUS:RAW CP MS")
+    
+    field(ZRST, "Off")    
+    field(ONST, "Prepared")       
+    field(TWST, "Armed")
+    field(THST, "INVALID")
+    field(FRST, "Tripped")
+    field(FVST, "INVALID")
+    field(SXST, "Prepared (GDI)")
+    field(SVST, "Armed (GDI)")
+    field(EIST, "INVALID")
+    field(NIST, "Tripped (GDI)")
+    
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+    field(FRVL, "4")
+    field(FVVL, "5")
+    field(SXVL, "6")
+    field(SVVL, "7")
+    field(EIVL, "8")
+    field(NIVL, "9")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:QUART:STATUS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)QUART:OFF:SP")
+{
+    field(DESC, "Switch off quarter cycle control")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformQuartOff $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:QUART:OFF:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)QUART:OFF:SP", "$(P)QUART:OFF")
+
+record(ao, "$(P)QUART:CYCLE:SP")
+{
+    field(DESC, "Set the required number of cycles")
+    field(PREC, "0")
+    field(EGU, "")
+    field(FLNK, "$(P)QUART:SP:_CALC")
+    field(VAL, "0")
+    field(PINI, "YES")
+}
+
+record(calcout, "$(P)QUART:SP:RBV:_CALC")
+{
+    field(DESC, "Turns quarters into cycles")
+    field(OOPT, "Every Time")
+    field(INPA, "$(P)QUART:SP:RBV")
+    field(CALC, "A/4")
+    field(OUT, "$(P)QUART:CYCLE:SP:RBV PP")
+}
+
+record(ai, "$(P)QUART:CYCLE:SP:RBV")
+{
+    field(DESC, "Max cycles")
+    field(PREC, "0")
+    field(EGU, "")
+}
+
+record(calcout, "$(P)QUART:SP:_CALC")
+{
+    field(DESC, "Turns cycles into quarters")
+    field(OOPT, "Every Time")
+    field(INPA, "$(P)QUART:CYCLE:SP")
+    field(CALC, "4*A")
+    field(OUT, "$(P)QUART:SP PP")
+}
+
+record(ai, "$(P)QUART:SP:RBV:RAW")
+{
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getQuartCountsMax $(PORT)")
+    field(MDEL, "-1")
+}
+
+record(ai, "$(P)QUART:SP:RBV")
+{
+    field(DESC, "Max quarter cycle counts")
+    field(INP,  "$(P)QUART:SP:RBV:RAW CP MS")
+    field(PREC, "0")
+    field(EGU, "")
+    field(FLNK, "$(P)QUART:SP:RBV:_CALC")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:QUART:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)QUART:SP")
+{
+    field(DESC, "Set quarter cycle event detector")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setQuartCountsMax $(PORT)")
+    field(PREC, "0")
+    field(EGU, "")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:QUART:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)QUART:RAW")
+{
+    field(DTYP, "stream")
+    field(INP,  "@devInstron.proto getQuartCounts $(PORT)")
+    field(MDEL, "-1")
+}
+
+record(ai, "$(P)QUART")
+{
+    field(DESC, "Elapsed quarter cycle counter")
+    field(INP,  "$(P)QUART:RAW CP MS")
+    field(PREC, "0")
+    field(EGU, "")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    field(MDEL, "-1")
+}
+
+record(calc, "$(P)QUART:CYCLE:_CALC")
+{
+    field(DESC, "Turns quarters into complete cycles")
+    field(INPA, "$(P)QUART CP MS")
+    field(CALC, "FLOOR(A/4)")
+    field(MDEL, "-1")
+}
+
+record(ai, "$(P)QUART:CYCLE")
+{
+    field(INP, "$(P)QUART:CYCLE:_CALC CP MS")
+    field(DESC, "Elapsed complete cycles")
+    field(PREC, "0")
+    field(EGU, "")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(MDEL, "-1")
+}
+
+record(calcout, "$(P)QUART:_STOP")
+{
+    field(OOPT, "When Non-zero")
+    field(INPA, "$(P)QUART:CYCLE CPP")
+    field(INPB, "$(P)QUART:CYCLE:SP CPP")
+    field(INPC, "$(P)WAVE:STATUS:INT CPP")
+    field(CALC, "A>=B && C=1")
+    field(OUT, "$(P)WAVE:STOP PP")
+}
+
+record(bo, "$(P)QUART:ARM:SP")
+{
+    field(DESC, "Arm quarter cycle event detection")
+    field(DTYP, "stream")
+    field(OUT,  "@devInstron.proto setWaveformQuartArm $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:QUART:ARM:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)QUART:ARM:SP", "$(P)QUART:ARM")
+
+### SIMULATION RECORDS ###
+
+record(mbbi, "$(P)SIM:WAVE:STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:WAVE:START:RAW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:WAVE:ABORT:RAW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:WAVE:FREQ")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:WAVE:FREQ","$(P)SIM:WAVE:FREQ:SP")
+
+record(ai, "$(P)SIM:QUART")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:QUART","$(P)SIM:QUART:SP")
+alias("$(P)SIM:QUART","$(P)SIM:QUART:SP:RBV")
+
+record(bo, "$(P)SIM:QUART:OFF")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:QUART:OFF","$(P)SIM:QUART:OFF:SP")
+
+record(ai, "$(P)SIM:WAVE:AMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:WAVE:AMP","$(P)SIM:WAVE:AMP:SP")
+
+record(ao, "$(P)SIM:WAVE:AMP:SP:_RAW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)SIM:QUART:STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:WAVE:LOG:MAINTAIN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)SIM:WAVE:TYPE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:WAVE:TYPE","$(P)SIM:WAVE:TYPE:SP")
+alias("$(P)SIM:WAVE:TYPE","$(P)SIM:WAVE:TYPE:RAW")
+
+record(bo, "$(P)SIM:QUART:ARM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:QUART:ARM","$(P)SIM:QUART:ARM:SP")
+
+record(bo, "$(P)SIM:WAVE:HOLD")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:WAVE:STOP:RAW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}

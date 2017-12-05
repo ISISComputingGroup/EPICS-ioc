@@ -29,13 +29,26 @@ $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 
-## For real device use:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
-# $(IFNOTDEVSIM) asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r\n)")
+## For real device:
+## we need to set a 10ms internal read timeout as calls with 0 timeout (such as clearing input buffer)
+## can cause the GPIB to error  
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","$(GPIBSTR=GPIB0::3::INSTR)", 0, 0, 1, -1, "", 1)
+
+# Uncomment the following lines to get some debug output
+#asynSetTraceMask("L0",-1,0x9) 
+#asynSetTraceIOMask("L0",-1,0x2)
+
+# Need to set these for DEVSIM mode as lewis can't handle not having termination characters.
+$(IFDEVSIM) asynOctetSetOutputEos("$(DEVICE)",0,"\r\n")
+$(IFDEVSIM) asynOctetSetInputEos("$(DEVICE)",0,"\r\n")
+
+## there is no input EOS, on output multiple command sequences can be separated by \n but we don't 
+## need that on GPIB-ENET as each network packet gets an EOM to terminate it.  
+#asynOctetSetOutputEos("$(DEVICE)",0,"\n")
+
+# Need to set these for DEVSIM mode as lewis can't handle not having termination characters.
+$(IFDEVSIM) asynOctetSetOutputEos("$(DEVICE)",0,"\r\n")
+$(IFDEVSIM) asynOctetSetInputEos("$(DEVICE)",0,"\r\n")
 
 ## Load record instances
 
@@ -44,9 +57,18 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)"
 
 ## Load our record instances
 dbLoadRecords("db/controls.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("db/controls_channel.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("db/controls_channel_specific.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("db/controls_waveform.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+
+dbLoadRecords("db/logging.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),MYPVPREFIX=$(MYPVPREFIX)")
+
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
+
+# Uncomment the following line to get an excesive amount of debug information
+# var streamDebug 1
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit

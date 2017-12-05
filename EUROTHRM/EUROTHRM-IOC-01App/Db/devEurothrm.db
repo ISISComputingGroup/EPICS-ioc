@@ -87,17 +87,20 @@ record(stringout, "$(P)RAMP_FILE:SP")
    field(SCAN, "I/O Intr")
 }
 
+# This set point is passed to the ReadASCII ramp, which decides what value to pass on to the device.
 record(ao, "$(P)TEMP:SP")
 {
    field(DESC, "Temperature setpoint")
    field(DTYP, "asynFloat64")
    field(OUT, "@asyn($(READ),0,1)TGT")
-   field(FLNK, "$(P)OUT_SP")
+   # I/O intr FLNK won't process until we trigger PROC via CA
+   field(FLNK, "$(P)OUT_SP.PROC CA")
    field(EGU, "K")
    info(INTEREST, "HIGH")
    info(archive, "VAL")
 }
 
+# This set point is read back from the ReadASCII ramp to say where it is ramping to
 record(ao, "$(P)TEMP:SP:RBV")
 {
    field(DESC, "Temperature setpoint readback")
@@ -113,7 +116,8 @@ record(ao, "$(P)RATE:SP")
    field(DESC, "Rate the ramp increases/decreases")
    field(DTYP, "asynFloat64")
    field(OUT, "@asyn($(READ),0,1)RATE")
-   field(EGU, "K/s")
+   field(EGU, "K/min")
+   info(INTEREST, "MEDIUM")
 }
 
 record(ai, "$(P)RATE")
@@ -121,8 +125,9 @@ record(ai, "$(P)RATE")
    field(DESC, "Rate the ramp increases/decreases")
    field(DTYP, "asynFloat64")
    field(INP, "@asyn($(READ),0,1)RATE")
-   field(EGU, "K/s")
+   field(EGU, "K/min")
    field(SCAN, "I/O Intr")
+   info(INTEREST, "MEDIUM")
 }
 
 record(bi, "$(P)RAMPING")
@@ -133,6 +138,7 @@ record(bi, "$(P)RAMPING")
    field(SCAN, "I/O Intr")   
 }
 
+# This is the value that is being sent to the ReadASCII ramp to tell it at what temperature we currently are
 record(ao, "$(P)CURRENT_TEMP")
 {
     field(DESC, "The current temperature of the sensor")
@@ -148,6 +154,8 @@ record(bo, "$(P)RAMPON:SP")
    field(DESC, "Toggles the SP ramp")
    field(DTYP, "asynInt32")
    field(OUT,  "@asyn($(READ),0,1)RMP")
+   field(ZNAM, "OFF")
+   field(ONAM, "ON")
 }
 
 record(bi, "$(P)RAMPON")
@@ -156,6 +164,8 @@ record(bi, "$(P)RAMPON")
    field(DTYP, "asynInt32")
    field(INP,  "@asyn($(READ),0,1)RMP")
    field(SCAN, "I/O Intr")
+   field(ZNAM, "OFF")
+   field(ONAM, "ON")
 }
 
 record(bo, "$(P)LUTON:SP")
@@ -219,8 +229,89 @@ record(ai, "$(P)OUT_MAX")
   }
 
 ###########
+# Cache & disable ramp when sensor disconnected
 
-#Pass on PID ramp
+record(ai, "$(P)NO_SENSOR_VALUE")
+{
+    field(DESC, "The temperature constant indicating a disconnected sensor")
+    field(VAL, 1529)
+}
+
+
+record(calcout, "$(P)SENSOR_CONNECTED")
+{
+   field(DESC, "Check whether the temperature sensor is reconnected")
+   field(INPA, "$(P)RBV CP")
+   field(INPB, "$(P)NO_SENSOR_VALUE")
+   field(CALC, "A = B")
+   field(OOPT, "Transition To Zero")
+   field(OUT, "$(P)RAMPON:ENABLE PP")
+   info(archive, "VAL")
+}
+
+record(bo, "$(P)RAMPON:ENABLE")
+{
+   field(DESC, "Enables Ramp setting control")
+   field(OUT,  "$(P)RAMPON:SP.DISP PP")
+   field(SCAN, "Passive")   
+   field(FLNK, "$(P)RAMPON:RETRIEVE")
+}
+
+record(calcout, "$(P)RAMPON:RETRIEVE")
+{
+   # As calcout to add delay
+   field(DESC, "Retrieves and sets the cached Ramp setting")
+   field(ODLY, "1")
+   field(INPA, "$(P)RAMPON:CACHE")
+   field(CALC, "A")
+   field(OUT, "$(P)RAMPON:SP PP")
+   field(ZNAM, "OFF")
+   field(ONAM, "ON")
+}
+
+record(calcout, "$(P)SENSOR_DISCONNECTED")
+{
+   field(DESC, "Check whether the temperature sensor is disconnected")
+   field(INPA, "$(P)RBV CP")
+   field(INPB, "$(P)NO_SENSOR_VALUE")
+   field(CALC, "A = B")
+   field(OOPT, "Transition To Non-zero")
+   field(OUT, "$(P)RAMPON:CACHE.PROC PP")
+   info(archive, "VAL")
+}
+
+record(bi, "$(P)RAMPON:CACHE")
+{
+   field(DESC, "Caches the current Ramp setting")
+   field(DTYP, "Soft Channel")
+   field(INP,  "$(P)RAMPON")
+   field(SCAN, "Passive")
+   field(ZNAM, "OFF")
+   field(ONAM, "ON")
+   field(FLNK, "$(P)RAMPON:CLEAR")
+}
+
+record(bo, "$(P)RAMPON:CLEAR")
+{
+   field(VAL, 0)
+   field(DESC, "Clears the current Ramp setting")
+   field(DTYP, "Soft Channel")
+   field(OUT,  "$(P)RAMPON:SP PP")
+   field(SCAN, "Passive")
+   field(FLNK, "$(P)RAMPON:DISABLE")
+}
+
+record(bo, "$(P)RAMPON:DISABLE")
+{
+   field(VAL, 1)
+   field(DESC, "Disables ramp setting control")
+   field(OUT,  "$(P)RAMPON:SP.DISP PP")
+   field(SCAN, "Passive")   
+}
+
+###########
+
+#Pass on PID ramp from ReadASCII to the device
 record(ao, "$(P)RAMP_SP")
 {
     field(DTYP, "Soft Channel")

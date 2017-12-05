@@ -1,0 +1,69 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(bo, "$(P)INITIALIZE")
+{
+	field(DESC, "Initialize")
+	field(DTYP, "stream")
+	field(PINI, "YES")
+	field(VAL, "1")
+	field(OUT, "@devcybaman.proto initialize $(PORT)")
+	field(FLNK, "$(P)_SET_INITIALIZED_TRUE")
+	info(INTEREST, "MEDIUM")
+}
+
+record(bo, "$(P)RESET")
+{
+	field(DESC, "Reset cybaman")
+	field(DTYP, "stream")
+	field(OUT, "@devcybaman.proto reset $(PORT)")
+	field(FLNK, "$(P)_SET_INITIALIZED_FALSE")
+	info(INTEREST, "MEDIUM")
+}
+
+record(seq, "$(P)_SET_INITIALIZED_TRUE")
+{
+	field(DO1, "1")
+	field(LNK1, "$(P)INITIALIZED PP")
+}
+
+record(seq, "$(P)_SET_INITIALIZED_FALSE")
+{
+	field(DO1, "0")
+	field(LNK1, "$(P)INITIALIZED PP")
+}
+
+record(bi, "$(P)INITIALIZED")
+{
+	field(DESC, "Is cybaman initialized")
+	field(SCAN, "Passive")
+	field(ZNAM, "FALSE")
+	field(ONAM, "TRUE")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+}
+
+record(bo, "$(P)STOP")
+{
+	field(DESC, "Stop cybaman")
+	field(DTYP, "stream")
+	field(OUT, "@devcybaman.proto stop $(PORT)")
+	field(FLNK, "$(P)_SET_INITIALIZED_FALSE")
+	info(INTEREST, "MEDIUM")
+}

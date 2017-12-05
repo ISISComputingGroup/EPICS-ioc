@@ -10,7 +10,11 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-DB += controls.db
+DB += controls.db 
+DB += controls_channel.db 
+DB += controls_channel_specific.db
+DB += controls_waveform.db
+DB += logging.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
