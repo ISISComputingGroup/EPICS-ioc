@@ -10,13 +10,13 @@ record (longin, "$(P)CS:MOT:STOP:ALL")
 }
 
 ## Are any motors moving
-## A-H set by galils, I from _MOVING1
+## A-J set by galils, L from _MOVING1
 record(calc, "$(P)CS:MOT:MOVING") 
 {
 	field(DESC, "IOCs with motion to complete")
     field(VAL, "0")
 	field(SCAN, "Passive")
-	field(CALC, "(A+B+C+D+E+F+G+H+I) > 0 ? 1 : 0")
+	field(CALC, "(A+B+C+D+E+F+G+H+I+J+L) > 0 ? 1 : 0")
 	field(ASG, "NOTRAPW")
     info(archive, "VAL")
 }
@@ -27,7 +27,7 @@ record(calcout, "$(P)CS:MOT:_MOVING1")
     field(VAL, "0")
 	field(SCAN, "Passive")
 	field(CALC, "(A+B+C+D+E+F+G+H+I+J) > 0 ? 1 : 0")
-	field(OUT, "$(P)CS:MOT:MOVING.I PP")
+	field(OUT, "$(P)CS:MOT:MOVING.L PP")
 	field(OOPT, "Every Time")
 	field(DOPT, "Use CALC")
 	field(ASG, "NOTRAPW")
