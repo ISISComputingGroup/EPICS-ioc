@@ -92,7 +92,7 @@ record(seq, "$(P)STAT:_FANOUT")
     
     field(SELM, "All")
 	
-	field(FLNK, "$(P)WIDTH:ACC")
+	field(FLNK, "$(P)UTILITY")
 }
 
 record(bi, "$(P)STAT:OSC")
@@ -402,35 +402,39 @@ record(seq, "$(P)RESET:ACTION") {
 
 # Derived values
 
-record(calc, "$(P)WIDTH:ACC") {
-	field(DESC, "Acceleration width")
-	
-	field(INPA, "$(P)SPEED")
-	field(INPB, "$(P)ACC")
-	field(CALC, "B!=0?A/B:0")
-	
-	field(FLNK, "$(P)WIDTH:TOTAL")
-}
-
-record(calc, "$(P)WIDTH:TOTAL") {
-	field(DESC, "Total window width")
-	
-	field(INPA, "$(P)WIDTH")
-	field(INPB, "$(P)WIDTH:ACC")
-	
-	field(CALC, "2*B+A")
-	
-	field(FLNK, "$(P)UTILITY")
-}
-
 record(calcout, "$(P)UTILITY") {
 	field(DESC, "Utility time")
 	
 	field(INPA, "$(P)WIDTH")
-	field(INPB, "$(P)WIDTH:TOTAL")
-	field(INPC, "$(P)ACC")
+	field(INPB, "$(P)BACKLASH")
 	
-	field(CALC, "C!=0?B!=0?A/B:0:0")
+	field(CALC, "100*A/(A+2*B)")
+	
+	field(EGU, "")    
+	field(FLNK, "$(P)PERIOD")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(calc, "$(P)PERIOD") {
+	
+	field(INPA, "$(P)SPEED")
+	field(INPB, "$(P)WIDTH")
+	field(INPC, "$(P)BACKLASH")
+	field(CALC, "(B+2*C)/A")
+	
+	field(EGU, "s")    
+	field(FLNK, "$(P)FREQ")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(calc, "$(P)FREQ") {
+	field(EGU, "Hz")
+    field(INPA, "$(P)PERIOD")
+	field(CALC, "1/A")	
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")	
 }
 
 ## Simulation records
