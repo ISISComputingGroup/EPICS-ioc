@@ -468,7 +468,8 @@ record(seq, "$(P)RESET:ACTION") {
 # Derived values
 
 record(calcout, "$(P)UTILITY") {
-	field(DESC, "Utility time")
+	field(DESC, "Utility time")	
+	field(ASG, "READONLY")
 	
 	field(INPA, "$(P)WIDTH")
 	field(INPB, "$(P)BACKLASH")
@@ -483,6 +484,8 @@ record(calcout, "$(P)UTILITY") {
 }
 
 record(calc, "$(P)PERIOD") {
+	field(DESC, "Oscillation period")
+	field(ASG, "READONLY")
 	
 	field(INPA, "$(P)SPEED")
 	field(INPB, "$(P)WIDTH")
@@ -497,6 +500,9 @@ record(calc, "$(P)PERIOD") {
 }
 
 record(calc, "$(P)FREQ") {
+	field(DESC, "Oscillation frquency")
+	field(ASG, "READONLY")
+	
 	field(EGU, "Hz")
     field(INPA, "$(P)PERIOD")
 	field(CALC, "1/A")	
