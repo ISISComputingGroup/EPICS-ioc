@@ -14,13 +14,13 @@ $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
 # asynSetTraceIOMask("L0",-1,0x2)
 
 ## For real device use:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure("$(CHOP)","$(IPADDR):$(IPPORT=3323)",0,0,1)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure("L0","$(IPADDR=NO_IPADDR_MACRO):$(IPPORT=3323)",0,0,1)
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("${TOP}/db/FZJDDFCH.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0), ADDR=$(ADDR)")
+dbLoadRecords("${TOP}/db/FZJDDFCH.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0), ADDR=$(ADDR=C01)")
 dbLoadRecords("${TOP}/db/error_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 

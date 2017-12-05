@@ -78,7 +78,7 @@ record(mbbo, "$(P)FREQ:SP")
 #
 record(stringin, "$(P)FREQ:SP:ERROR")
 {
-    field("DESC", "Error that occured on setting frequency")
+    field(DESC, "Error that occured on setting frequency")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -91,7 +91,7 @@ record(stringin, "$(P)FREQ:SP:ERROR")
 #
 record(ao, "$(P)PHAS:SP")
 {
-    field("DESC", "Phase Setpoint")
+    field(DESC, "Phase Setpoint")
     field(DTYP, "stream")
     field(OUT, "@devFZJ_DDFermiChopper.proto setPHAS($(P)) $(PORT)")
     field(EGU, "deg")
@@ -104,7 +104,7 @@ record(ao, "$(P)PHAS:SP")
 #
 record(stringin, "$(P)PHAS:SP:ERROR")
 {
-    field("DESC", "Error that occured on setting phase")
+    field(DESC, "Error that occured on setting phase")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -129,7 +129,7 @@ record(bo, "$(P)MB:SP")
 #
 record(stringin, "$(P)MB:SP:ERROR")
 {
-    field("DESC", "Error that occured on setting MB")
+    field(DESC, "Error that occured on setting MB")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -154,7 +154,7 @@ alias("$(P)DRIVE:MODE:SP", "$(P)DRV:MODE:SP")
 #
 record(stringin, "$(P)DRIVE:MODE:SP:ERROR")
 {
-    field("DESC", "Error that occured on setting drive mode")
+    field(DESC, "Error that occured on setting drive mode")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -234,10 +234,10 @@ record(ai, "$(P)FREQ")
     field(DESC, "Current Frequency")
     field(EGU, "Hz")
     field(PREC, "2")    
+    info(alarm, "FZJDDFCH_01") 
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-#
 #
 # setpoint phase [º]
 # SPHA?
