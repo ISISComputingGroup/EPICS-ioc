@@ -130,7 +130,9 @@ record(calc, "$(P)INIT:REQUIRED:CALC")
     field(DESC, "Initialisation required")
 	field(INPA, "$(P)INIT:DONE")
 	field(INPB, "$(P)INIT:PROGRESS")
-	field(CALC, "A+B==0")	
+	field(INPC, "$(P)CYCLES")
+	field(INPD, "$(P)INIT:OPT")
+	field(CALC, "A+B==0||C>=D")	
 	field(FLNK, "$(P)INIT:REQUIRED")
 }
 
@@ -151,7 +153,8 @@ record(calc, "$(P)INIT:ONCE:CALC")
 {
     field(DESC, "Initialised at least once")
 	field(INPA, "$(P)INIT:REQUIRED")
-	field(CALC, "1-A")
+	field(INPB, "$(P)INIT:ONCE")
+	field(CALC, "MAX(1-A,B)")
 	field(FLNK, "$(P)INIT:ONCE")
 }
 
@@ -253,6 +256,8 @@ record(longin, "$(P)CYCLES")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 	field(DESC, "Number of complete cycles")
+	
+	field(FLNK, "$(P)CYCLES:_FANOUT")
     
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CYCLES")
@@ -262,6 +267,11 @@ record(longin, "$(P)CYCLES")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+}
+
+record(fanout, "$(P)CYCLES:_FANOUT") {
+    field(LNK1, "$(P)INIT:REQUIRED:CALC")
+    field(LNK2, "$(P)INIT:AUTO:CALC")
 }
 
 record(longin, "$(P)BACKLASH")
@@ -280,7 +290,7 @@ record(longin, "$(P)BACKLASH")
     info(archive, "VAL")
 }
 
-## Settings
+## Commands
 
 record(ao, "$(P)INIT:STOP") {
 	field(DESC, "Don't do next auto initialisation")
@@ -311,6 +321,42 @@ record(ao, "$(P)ZERO") {
     field(OUT, "@devgemorc.proto re_zero_to_datum $(PORT)")
     field(DTYP, "stream")
 }
+
+## Settings
+
+record(longout, "$(P)INIT:AUTO") {
+    field(DESC, "Automatically initialise after * cycles")
+	field(EGU, "")
+    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+	info(autosaveFields, "VAL")
+}
+
+alias("$(P)INIT:AUTO", "$(P)INIT:AUTO:SP")
+alias("$(P)INIT:AUTO", "$(P)INIT:AUTO:SP:RBV")
+
+record(calcout, "$(P)INIT:AUTO:CALC") {
+    field(DESC, "Determines when to auto init the device")
+	field(INPA, "$(P)INIT:AUTO")
+	field(INPB, "$(P)CYCLES")
+	field(OUT, "$(P)INIT")
+	field(CALC, "B>=A")
+}
+
+record(longout, "$(P)INIT:OPT") {
+    field(DESC, "Optionally initialise after * cycles")
+	field(EGU, "")
+	
+	field(FLNK, "$(P)INIT:REQUIRED:CALC")
+    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+	info(autosaveFields, "VAL")
+}
+
+alias("$(P)INIT:OPT", "$(P)INIT:OPT:SP")
+alias("$(P)INIT:OPT", "$(P)INIT:OPT:SP:RBV")
 
 record(longout, "$(P)SPEED:SP") {
 	field(DESC, "Radial speed setpoint")
@@ -402,6 +448,14 @@ record(seq, "$(P)RESET:ACTION") {
     field(LNK4, "$(P)ACC:SP PP")
 	field(DLY4, "0.3")
     field(DO4, "500")
+	
+    field(LNK5, "$(P)INIT:AUTO PP")
+	field(DLY5, "0.4")
+    field(DO5, "20000")
+	
+    field(LNK6, "$(P)INIT:OPT PP")
+	field(DLY6, "0.5")
+    field(DO6, "10000")
 	
     field(SELM, "All")
 }
