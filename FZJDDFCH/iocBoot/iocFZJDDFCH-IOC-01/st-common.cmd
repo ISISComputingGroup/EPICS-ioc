@@ -14,7 +14,7 @@ $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
 # asynSetTraceIOMask("L0",-1,0x2)
 
 ## For real device use:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure("L0","$(IPADDR=NO_IPADDR_MACRO):$(IPPORT=3323)",0,0,1)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure("L0","$(IPADDR=NDSMAPSFERMIJU):$(IPPORT=3323)",0,0,1)
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
