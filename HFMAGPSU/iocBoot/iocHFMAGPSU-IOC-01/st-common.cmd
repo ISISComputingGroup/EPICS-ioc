@@ -13,15 +13,30 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=none)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 
+
+# probably remove - adding in/out terminators
+$(IFNOTRECSIM) asynOctetSetInputEos("L0",0,"$(IEOS=\\023)")
+$(IFNOTRECSIM) asynOctetSetOutputEos("L0",0,"$(OEOS=\\r\\n)")
+
 # debugging into
-#$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceMask("L0", -1, 0x9)
-#$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceIOMask("L0", -1, 0x2)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceMask("L0", -1, 0x9)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceIOMask("L0", -1, 0x2)
+# send debug info to log
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceFile("L0",-1,"temp.log")
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+# probably remove later
+#$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetConnect("FRED","L0")
+#$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetRead FRED 
+
+
 ## Load our record instances
 dbLoadRecords("db/HFMAGPSU.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
+
+
+
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

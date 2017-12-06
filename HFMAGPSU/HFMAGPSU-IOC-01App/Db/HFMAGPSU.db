@@ -67,6 +67,7 @@ record(waveform, "$(P)ERRORMESSAGE")
     field(SDIS, "$(P)DISABLE")
 }
 
+# FLNK forward linking starts here 
 record(ai, "$(P)MIDFINALTARGET")
 {
 	field(DESC, "Returns final value of mid")
@@ -76,34 +77,37 @@ record(ai, "$(P)MIDFINALTARGET")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	field(FLNK, "$(P)ZERO")
 }
 
 record(ai, "$(P)ZERO")
 {
 	field(DESC, "Returns Zero value")
-    field(SCAN, "1 second")
+
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:ZERO")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	field(FLNK, "$(P)SYSTEMSTABLE")
 }
 
 record(ai, "$(P)SYSTEMSTABLE")
 {
 	field(DESC, "Controller for stable LED in OPI")
-	field(SCAN, "1 second")
+	
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SYSTEMSTABLE")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
-	info(archive, "VAL")	
+	info(archive, "VAL")
+	field(FLNK, "$(P)OUTPUT")	
 }
 
 record(ai, "$(P)OUTPUT") 
 {
 	field(DESC, "Displays output string")
-    field(SCAN, "1 second")
+	
 	field(DTYP, "stream")
 	field(INP,  "@devHFMAGPSU.proto getOutput $(PORT)")
 	field(PREC, "3")
@@ -113,43 +117,48 @@ record(ai, "$(P)OUTPUT")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	
 }
 
 record(ai, "$(P)RAMPTIME")
 {
 	field(DESC, "Time to ramp completion")
-	#field(SCAN, "1 second")
+	
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAMPTIME")
+	field(FLNK, "$(P)WRITEFILE")
 }
 
 record(calcout, "$(P)GAUSS")
 {
 	field(DESC, "Convert output to gauss")
 	field(CALC, "A * 10000")
-	field(INPA, "$(P)OUTPUT")	
+	field(INPA, "$(P)OUTPUT")
+	field(FLNK, "$(P)RAMPTIME")	
 }
 
 record(ai, "$(P)WRITEFILE")
 {
 	field(DESC, "Boolean to trigger ramp table file write")
-	field(SCAN, "1 second")
+	
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WRITEFILE")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
-	info(archive, "VAL")	
+	info(archive, "VAL")
+	field(FLNK, "$(P)RAMPING:SP")	
 }
 
 record(ai, "$(P)RAMPING:SP")
 {
 	field(DESC, "Boolean to trigger ramp from opi")
-	field(SCAN, "1 second")
+	
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAMPING")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
-	info(archive, "VAL")	
+	info(archive, "VAL")
+	field(FLNK, "$(P)READFILE")	
 }
 
 alias("$(P)RAMPING:SP", "$(P)RAMPING")
@@ -157,12 +166,13 @@ alias("$(P)RAMPING:SP", "$(P)RAMPING")
 record(ai, "$(P)READFILE")
 {
 	field(DESC, "Boolean to trigger ramp table file READ")
-	field(SCAN, "1 second")
+	
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:READFILE")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
-	info(archive, "VAL")	
+	info(archive, "VAL")
+	field(FLNK, "$(P)PAUSE")
 }
 
 record(bo, "$(P)PAUSE:SP")
@@ -183,7 +193,7 @@ record(bo, "$(P)PAUSE:SP")
 record(bi, "$(P)PAUSE") 
 {
 	field(DESC, "Returns current pause status")
-    field(SCAN, "1 second")
+    
     field(DTYP, "stream")
 	field(ZNAM, "OFF")
     field(ONAM, "ON")   
@@ -193,6 +203,7 @@ record(bi, "$(P)PAUSE")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	field(FLNK, "$(P)DIRECTION")
 }
 
 alias("$(P)PAUSE", "$(P)PAUSE:SP:RBV")
@@ -215,7 +226,7 @@ record(mbbo, "$(P)DIRECTION:SP")
 record(mbbi, "$(P)DIRECTION")
 {
 	field(DESC, "Returns current direction")
-	field(SCAN, "5 second")
+	
     field(DTYP, "stream")
 	field(ZRST, "0")
 	field(ONST, "-")
@@ -226,6 +237,7 @@ record(mbbi, "$(P)DIRECTION")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	field(FLNK, "$(P)HEATERVALUE")
 }
 
 
@@ -268,7 +280,7 @@ record(bo, "$(P)HEATERSTATUS:SP")
 record(bi, "$(P)HEATERSTATUS")
 {	
 	field(DESC, "Returns heater status (off or on)")
-	field(SCAN, "5 second")
+	
     field(DTYP, "stream")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
@@ -287,7 +299,7 @@ alias("$(P)HEATERSTATUS", "$(P)HEATERSTATUS:SP:RBV")
 record(ai, "$(P)HEATERVALUE")
 {
 	field(DESC, "Returns heater value in volts")
-	field(SCAN, "5 second")
+	
     field(DTYP, "stream")
     field(INP, "@devHFMAGPSU.proto getHeaterValue $(PORT)")   
 	field(PREC, "5")
@@ -297,13 +309,14 @@ record(ai, "$(P)HEATERVALUE")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	field(FLNK, "$(P)MAX")
 }
 alias("$(P)HEATERVALUE", "$(P)HEATERVALUE:SP:RBV")
 
 record(ai, "$(P)MAX")
 {
 	field(DESC, "Returns value of MAX")
-	field(SCAN, "5 second")
+	
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getMaxTarget $(PORT)")
     field(PREC, "5")	
@@ -312,6 +325,7 @@ record(ai, "$(P)MAX")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
     info(archive, "VAL")
+	field(FLNK, "$(P)LIMIT")
 }
 
 record(ao, "$(P)MAX:SP")
@@ -328,15 +342,10 @@ record(ao, "$(P)MAX:SP")
     info(archive, "VAL")
 }
 
-
-
-
-
-
 record(ai, "$(P)LIMIT")
 {
 	field(DESC, "Returns value of voltage limit")
-	field(SCAN, "5 second")
+	
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getLimit $(PORT)")
 	field(EGU, "V")
@@ -346,6 +355,7 @@ record(ai, "$(P)LIMIT")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
     info(archive, "VAL")
+	field(FLNK, "$(P)CONSTANT")
 }
 
 alias("$(P)LIMIT", "$(P)LIMIT:SP:RBV")
@@ -369,7 +379,7 @@ record(ao, "$(P)LIMIT:SP")
 record(ai, "$(P)CONSTANT")
 {
 	field(DESC, "Returns value of field constant")
-	field(SCAN, "5 second")
+	
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getConstant $(PORT)")
 	field(EGU, "T/A")
@@ -379,6 +389,7 @@ record(ai, "$(P)CONSTANT")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
     info(archive, "VAL")
+	field(FLNK, "$(P)MID")
 }
 
 alias("$(P)CONSTANT", "$(P)CONSTANT:SP:RBV")
@@ -401,7 +412,7 @@ record(ao, "$(P)CONSTANT:SP")
 record(ai, "$(P)MID")
 {
 	field(DESC, "Return MID Value")
-	field(SCAN, "5 second")
+	
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getMidTarget $(PORT)")
 	# field(EGU, "") # set by units transfer
@@ -411,6 +422,7 @@ record(ai, "$(P)MID")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
     info(archive, "VAL")
+	field(FLNK, "$(P)RAMPRATE")
 }
 alias("$(P)MID", "$(P)MID:SP:RBV")
 
@@ -432,7 +444,7 @@ record(ao, "$(P)MID:SP")
 record(ai, "$(P)RAMPRATE")
 {
 	field(DESC, "Return ramp rate value")
-	field(SCAN, "5 second")
+	
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getRampRate $(PORT)")
     field(PREC, "5")	
@@ -441,6 +453,7 @@ record(ai, "$(P)RAMPRATE")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
     info(archive, "VAL")
+	field(FLNK, "$(P)OUTPUTMODE")
 }
 alias("$(P)RAMPRATE", "$(P)RAMPRATE:SP:RBV")
 
@@ -493,7 +506,7 @@ record(bo, "$(P)OUTPUTMODE:SP")
 record(bi, "$(P)OUTPUTMODE")
 {
 	field(DESC, "Returns output mode - amps or tesla")
-	field(SCAN, "5 second")
+	
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getOutputMode $(PORT)")
 	field(ZNAM, "AMPS")
@@ -503,8 +516,8 @@ record(bi, "$(P)OUTPUTMODE")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	field(FLNK, "$(P)HEATERSTATUS")
 }
-
 
  
  
