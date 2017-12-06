@@ -298,6 +298,40 @@ record(ao, "$(P)INIT:STOP") {
     field(DTYP, "stream")
 }
 
+record(stringin, "$(P)INIT:STAT") {
+    field(DESC, "Status of the init sequence")
+	field(VAL, "Initialisation routine not yet run")
+	field(PINI, "YES")
+}
+
+record(sseq, "$(P)INIT:SEQ") {
+	field(DESC, "Initialisation sequence (VI-derived)")
+	
+	field(LNK1, "$(P)INIT:STAT PP")
+	field(STR1, "Starting auto initialisation sequence")
+	
+    field(LNK2, "$(P)STOP PP")
+	field(DO2, "1")
+	field(DLY2, "5")
+	
+	field(LNK3, "$(P)INIT:STAT PP")
+	field(STR3, "Waiting for collimator to stop (30s)")
+	
+    field(LNK4, "$(P)INIT PP")
+	field(DO4, "1")
+	field(DLY4, "30")
+	
+	field(LNK5, "$(P)INIT:STAT PP")
+	field(STR5, "Initialising (250s)")
+	
+    field(LNK6, "$(P)START PP")
+	field(DO6, "1")
+	field(DLY6, "250")
+	
+	field(LNK7, "$(P)INIT:STAT PP")
+	field(STR7, "Initialisation sequence complete")
+}
+
 record(ao, "$(P)INIT") {
 	field(DESC, "Initialise immediately")
     field(OUT, "@devgemorc.proto initialise $(PORT)")
@@ -343,7 +377,7 @@ record(calcout, "$(P)INIT:AUTO:CALC") {
 	field(INPA, "$(P)INIT:AUTO")
 	field(INPB, "$(P)CYCLES")
 	field(CALC, "B>=A")
-	field(OUT, "$(P)INIT.PROC")
+	field(OUT, "$(P)INIT:SEQ.PROC")
     field(OOPT, "Transition To Non-zero")
 }
 
@@ -436,31 +470,31 @@ record(ao, "$(P)RESET") {
 	field(FLNK, "$(P)RESET:ACTION")
 }
 
-record(seq, "$(P)RESET:ACTION") {
+record(sseq, "$(P)RESET:ACTION") {
 	field(DESC, "Restore default settings")
 
     field(LNK1, "$(P)WIDTH:SP PP")
     field(DO1, "100")
+	field(WAIT1, "Wait")
 	
     field(LNK2, "$(P)OFFSET:SP PP")
-	field(DLY2, "0.1")
     field(DO2, "0")
+	field(WAIT2, "Wait")
 	
     field(LNK3, "$(P)SPEED:SP PP")
-	field(DLY3, "0.2")
     field(DO3, "20")
 	
     field(LNK4, "$(P)ACC:SP PP")
-	field(DLY4, "0.3")
     field(DO4, "500")
+	field(WAIT4, "Wait")
 	
     field(LNK5, "$(P)INIT:AUTO PP")
-	field(DLY5, "0.4")
     field(DO5, "20000")
+	field(WAIT5, "Wait")
 	
     field(LNK6, "$(P)INIT:OPT PP")
-	field(DLY6, "0.5")
     field(DO6, "10000")
+	field(WAIT6, "Wait")
 	
     field(SELM, "All")
 }
