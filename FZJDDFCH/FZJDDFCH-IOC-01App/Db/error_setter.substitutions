@@ -6,11 +6,11 @@ file $(UTILITIES)/db/error_setter.template {
     {"\$(P)", "FREQ:REF", "PHAS:SP:RBV"}
     {"\$(P)", "FREQ:REF", "PHAS"}
     {"\$(P)", "FREQ:REF", "PHAS:STATUS"}
-    {"\$(P)", "FREQ:REF", "MB:SP:RBV"}
+    {"\$(P)", "FREQ:REF", "MB"}
     {"\$(P)", "FREQ:REF", "MB:STATUS"}
     {"\$(P)", "FREQ:REF", "MB:INT"}
     {"\$(P)", "FREQ:REF", "DRIVE"}
-    {"\$(P)", "FREQ:REF", "DRIVE:MODE:SP:RBV"}
+    {"\$(P)", "FREQ:REF", "DRIVE:MODE"}
     {"\$(P)", "FREQ:REF", "DRIVE:PHASE1:CURR"}
     {"\$(P)", "FREQ:REF", "DRIVE:PHASE2:CURR"}
     {"\$(P)", "FREQ:REF", "DRIVE:PHASE3:CURR"}

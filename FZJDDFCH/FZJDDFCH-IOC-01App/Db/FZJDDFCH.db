@@ -1,6 +1,14 @@
 #
 # DB File for the FZJ Digital Drive Fermi Chopper Controller
 #
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
 #
 record(bo, "$(P)DISABLE")
 {
@@ -72,6 +80,9 @@ record(mbbo, "$(P)FREQ:SP")
     field(ELST, "600")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FREQ:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 #
 # PV to contain returned error message, if any
@@ -82,7 +93,6 @@ record(stringin, "$(P)FREQ:SP:ERROR")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-
 #
 # setpoint phase [degrees]
 # PHAS!
@@ -98,6 +108,9 @@ record(ao, "$(P)PHAS:SP")
     field(PREC, "2")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHAS:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 #
 # PV to contain returned error message, if any
@@ -123,6 +136,9 @@ record(bo, "$(P)MB:SP")
     field(ONAM, "OFF")    
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MB:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 #
 # PV to contain returned error message, if any
@@ -147,6 +163,9 @@ record(bo, "$(P)DRIVE:MODE:SP")
     field(ONAM, "STOP")    
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DRIVE:MODE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)DRIVE:MODE:SP", "$(P)DRV:MODE:SP")
 #
@@ -188,8 +207,10 @@ record(ai, "$(P)FREQ:REF")
     field(INP, "@devFZJ_DDFermiChopper.proto getASTA($(P)) $(PORT)")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FREQ:REF")
+    field(SDIS, "$(P)DISABLE")
 }
-#
 #
 # setpoint speed [Hz]
 # SSPE?
@@ -198,7 +219,7 @@ record(ai, "$(P)FREQ:REF")
 #
 record(ai, "$(P)FREQ:SP:RBV")
 {
-    field(DESC, "Frequency Setpoint")
+    field(DESC, "Frequency Setpoint Readback")
     field(EGU, "Hz")
     field(PREC, "2")    
     info(INTEREST, "HIGH")
@@ -246,7 +267,7 @@ record(ai, "$(P)FREQ")
 #
 record(ai, "$(P)PHAS:SP:RBV")
 {
-    field(DESC, "Phase Setpoint")
+    field(DESC, "Phase Setpoint Readback")
     field(EGU, "deg")
     field(PREC, "2")    
     info(INTEREST, "HIGH")
@@ -286,7 +307,7 @@ record(bi, "$(P)PHAS:STATUS")
 # MBON?
 # ON or OFF
 #
-record(bi, "$(P)MB:SP:RBV")
+record(bi, "$(P)MB")
 {
     field(DESC, "Magnetic Bearing")
     field(ZNAM, "ON")
@@ -341,7 +362,7 @@ alias("$(P)DRIVE", "$(P)DRV")
 # SDRI?
 # START or STOP
 #
-record(bi, "$(P)DRIVE:MODE:SP:RBV")
+record(bi, "$(P)DRIVE:MODE")
 {
     field(DESC, "Drive Mode")
     field(ZNAM, "START")
@@ -349,7 +370,7 @@ record(bi, "$(P)DRIVE:MODE:SP:RBV")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-alias("$(P)DRIVE:MODE:SP:RBV", "$(P)DRV:MODE:SP:RBV")
+alias("$(P)DRIVE:MODE", "$(P)DRV:MODE")
 #
 # drive current L1 [A]
 # DRL1?
@@ -644,4 +665,23 @@ record(bi, "$(P)INTERLOCK:UPS:STATUS")
     info(archive, "VAL")
 }
 alias ("$(P)INTERLOCK:UPS:STATUS", "$(P)IL:UPS:STAT")
+#
+#
+# ### SIMULATION RECORDS ###
+#
+record(ai, "$(P)SIM:FREQ:REF")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+#
+alias("$(P)DRIVE:MODE","$(P)SIM:DRIVE:MODE:SP")
+#
+alias("$(P)MB","$(P)SIM:MB:SP")
+#
+alias("$(P)PHAS","$(P)SIM:PHAS:SP")
+alias("$(P)PHAS","$(P)SIM:PHAS:SP:RBV")
+#
+alias("$(P)FREQ","$(P)SIM:FREQ:SP")
+alias("$(P)FREQ","$(P)SIM:FREQ:SP:RBV")
 #
