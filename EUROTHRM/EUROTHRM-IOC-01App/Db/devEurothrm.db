@@ -233,14 +233,14 @@ record(ai, "$(P)OUT_MAX")
 
 record(ai, "$(P)NO_SENSOR_VALUE")
 {
-    field(DESC, "The temperature constant indicating a disconnected sensor")
+    field(DESC, "Indicates disconnected sensor")
     field(VAL, 1529)
 }
 
 
 record(calcout, "$(P)SENSOR_CONNECTED")
 {
-   field(DESC, "Check whether the temperature sensor is reconnected")
+   field(DESC, "Check if temp sensor reconnected")
    field(INPA, "$(P)RBV CP")
    field(INPB, "$(P)NO_SENSOR_VALUE")
    field(CALC, "A = B")
@@ -260,7 +260,7 @@ record(bo, "$(P)RAMPON:ENABLE")
 record(calcout, "$(P)RAMPON:RETRIEVE")
 {
    # As calcout to add delay
-   field(DESC, "Retrieves and sets the cached Ramp setting")
+   field(DESC, "Retrieve and set ramp setting")
    field(ODLY, "1")
    field(INPA, "$(P)RAMPON:CACHE")
    field(CALC, "A")
@@ -271,7 +271,7 @@ record(calcout, "$(P)RAMPON:RETRIEVE")
 
 record(calcout, "$(P)SENSOR_DISCONNECTED")
 {
-   field(DESC, "Check whether the temperature sensor is disconnected")
+   field(DESC, "Check temp sensor is disconnected")
    field(INPA, "$(P)RBV CP")
    field(INPB, "$(P)NO_SENSOR_VALUE")
    field(CALC, "A = B")
@@ -658,6 +658,7 @@ record(ai, "$(P)AUTOTUNE") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:AUTOTUNE")
     field(SDIS, "$(Q)DISABLE")
+	field(EGU, "")
 }
 
 record(ao, "$(P)AUTOTUNE:SP") {
@@ -668,6 +669,7 @@ record(ao, "$(P)AUTOTUNE:SP") {
     field(SIOL, "$(P)SIM:AUTOTUNE:SP")
     field(SDIS, "$(Q)DISABLE")
 	field(FLNK, "$(P)AUTOTUNE.PROC")
+	field(EGU, "")
 }
 
 alias("$(P)AUTOTUNE", "$(P)AUTOTUNE:SP:RBV")
