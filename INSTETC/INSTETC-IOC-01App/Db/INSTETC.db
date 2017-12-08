@@ -1,3 +1,11 @@
+record(bo, "$(P)SIM") 
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(ZNAM, "NO")
+	field(ONAM, "YES")
+	field(VAL, "$(RECSIM=0)")
+}
 
 ## Stop all motion
 record (longin, "$(P)CS:MOT:STOP:ALL") 
@@ -14,24 +22,24 @@ record (longin, "$(P)CS:MOT:STOP:ALL")
 record(calc, "$(P)CS:MOT:MOVING") 
 {
 	field(DESC, "IOCs with motion to complete")
-    field(VAL, "0")
+	field(VAL, "0")
 	field(SCAN, "Passive")
 	field(CALC, "(A+B+C+D+E+F+G+H+I+J+L) > 0 ? 1 : 0")
 	field(ASG, "NOTRAPW")
-    info(archive, "VAL")
+	info(archive, "VAL")
 }
 
 record(calcout, "$(P)CS:MOT:_MOVING1") 
 {
 	field(DESC, "IOCs with motion to complete")
-    field(VAL, "0")
+	field(VAL, "0")
 	field(SCAN, "Passive")
 	field(CALC, "(A+B+C+D+E+F+G+H+I+J) > 0 ? 1 : 0")
 	field(OUT, "$(P)CS:MOT:MOVING.L PP")
 	field(OOPT, "Every Time")
 	field(DOPT, "Use CALC")
 	field(ASG, "NOTRAPW")
-    info(archive, "VAL")
+	info(archive, "VAL")
 }
 
 # used by access security file
@@ -40,17 +48,17 @@ record (bo, "$(P)CS:EXCLUSIVE")
 	field(DESC, "Restrict access to localhost")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
-    field(PINI, "YES")
-    field(VAL, "0")
-    field(OMSL, "supervisory")
-    field(ZNAM, "All access")
-    field(ONAM, "Restricted access")
+	field(PINI, "YES")
+	field(VAL, "0")
+	field(OMSL, "supervisory")
+	field(ZNAM, "All access")
+	field(ONAM, "Restricted access")
 }
 
 # Log file messages PV
 record(waveform, "$(P)LOG:TEXT")
 {
-   field(DESC, "Log messages for DAE")  
+   field(DESC, "Log messages for DAE")	
    field(NELM, "10024")
    field(FTVL, "CHAR")
    field(DTYP, "asynOctetRead")
@@ -113,10 +121,35 @@ record (bo, "$(P)CS:MANAGER")
 	field(DESC, "Manager access")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
-    field(PINI, "YES")
-    field(VAL, "0")
-    field(OMSL, "supervisory")
-    field(ZNAM, "No")
-    field(ONAM, "Yes")
+	field(PINI, "YES")
+	field(VAL, "0")
+	field(OMSL, "supervisory")
+	field(ZNAM, "No")
+	field(ONAM, "Yes")
 }
 
+# This points to the centrally located shutter status and archives it locally 
+record (mbbi, "$(P)SHTR:STAT:ARCH")
+{
+	field(INP, "$(P)SHTR:STAT CP")
+	field(PINI, "YES")
+	field(ZRVL, 0)
+	field(ONVL, 1)
+	field(TWVL, 2)
+	field(THVL, 3)
+	field(FRVL, 4)
+	field(ZRST, "DEACT")
+	field(ONST, "OPEN")
+	field(TWST, "CLOSED")
+	field(THST, "MOVING")
+	field(FRST, "FAULT")	
+	field(SIML, "$(P)SIM")
+	field(SIOL, "$(P)SIM:SHTR:STAT:ARCH CP")
+	info(archive, "VAL")
+}
+
+record (mbbo, "$(P)SIM:SHTR:STAT:ARCH")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")	
+}
