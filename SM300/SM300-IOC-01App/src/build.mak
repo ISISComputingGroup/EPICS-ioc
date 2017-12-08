@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application SAMSM300-IOC-01
+# Build the IOC application SM300-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# SAMSM300-IOC-01.dbd will be created and installed
+# SM300-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# SAMSM300-IOC-01.dbd will be made up from these files:
+# SM300-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += devSequencer.dbd
@@ -26,10 +26,22 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
-#$(APPNAME)_DBD += xxx.dbd
+$(APPNAME)_DBD += motorSupport.dbd
+$(APPNAME)_DBD += motorSimSupport.dbd
+$(APPNAME)_DBD += SM300Motor.dbd
+$(APPNAME)_DBD += devSoftMotor.dbd
+$(APPNAME)_DBD += drvAsynSerialPort.dbd
+$(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += busySupport.dbd
+$(APPNAME)_DBD += motionSetPoints.dbd
+$(APPNAME)_DBD += sampleChanger.dbd 
+$(APPNAME)_DBD += stdSupport.dbd
+$(APPNAME)_DBD += asubFunctions.dbd 
+$(APPNAME)_DBD += asyn.dbd 
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
+$(APPNAME)_LIBS += asubFunctions   #TODO do I need this  <---------------------------------------
 $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
@@ -39,8 +51,16 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
+$(APPNAME)_LIBS += SM300Motor
+$(APPNAME)_LIBS += motorSimSupport
+$(APPNAME)_LIBS += softMotor
+$(APPNAME)_LIBS += motor
+$(APPNAME)_LIBS += motionSetPoints
+$(APPNAME)_LIBS += sampleChanger
+$(APPNAME)_LIBS += busy asyn
+$(APPNAME)_LIBS += std sscan
 
-# SAMSM300-IOC-01_registerRecordDeviceDriver.cpp derives from SAMSM300-IOC-01.dbd
+# SM300-IOC-01_registerRecordDeviceDriver.cpp derives from SM300-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
