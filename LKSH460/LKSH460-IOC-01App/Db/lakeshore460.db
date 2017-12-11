@@ -1,0 +1,83 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(stringin, "$(P)IDN")
+{
+    field(DESC, "SCPI identification string")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto getIDN $(PORT)")
+    field(PINI, "YES")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:IDN")
+}
+
+record(mbbi, "$(P)SOURCE") 
+{
+    field(DESC, "Vector Magnitude Source")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devLakeshore_460.proto getSource $(PORT)")
+    field(ZRST, "XYZ")
+    field(ONST, "XY")
+    field(TWST, "XZ")
+    field(THST, "YZ")
+    field(FRST, "X-Y")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SOURCE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
+record(mbbo, "$(P)SOURCE:SP") 
+{
+    field(DESC, "Set Vector Magnitude Source")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT, "@devLakeshore_460.proto setSource $(PORT)")
+    field(ZRST, "XYZ")
+    field(ONST, "XY")
+    field(TWST, "XZ")
+    field(THST, "YZ")
+    field(FRST, "X-Y")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SOURCE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+### SIMULATION RECORDS ###
+
+record(stringin, "$(P)SIM:IDN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)SIM:SOURCE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:SOURCE","$(P)SIM:SOURCE:SP")
+

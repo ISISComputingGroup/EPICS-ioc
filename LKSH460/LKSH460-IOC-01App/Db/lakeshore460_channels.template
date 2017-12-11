@@ -1,0 +1,682 @@
+record(bo, "$(P)$(CHANNEL):SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)$(CHANNEL):DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(bi, "$(P)$(CHANNEL):UNIT") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto read$(CHANNEL)Unit $(PORT)")
+    field(ZNAM, "G")
+    field(ONAM, "T")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:UNIT")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):UNIT:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto set$(CHANNEL)Unit $(PORT)")
+    field(ZNAM, "G")
+    field(ONAM, "T")
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:UNIT:SP")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bi, "$(P)$(CHANNEL):OUTPUTMODE") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto read$(CHANNEL)ACDCFieldReading $(PORT)")
+    field(ZNAM, "AC")
+    field(ONAM, "DC")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:OUTPUTMODE")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):OUTPUTMODE:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto set$(CHANNEL)ACDCFieldReading $(PORT)")
+    field(ZNAM, "AC")
+    field(ONAM, "DC")
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:OUTPUTMODE:SP")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bi, "$(P)$(CHANNEL):PRMS") 
+{
+    field(DESC, "Get Peak/RMS Field Reading")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto read$(CHANNEL)PRMSReading $(PORT)")
+    field(ZNAM, "RMS")
+    field(ONAM, "PEAK")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:PRMS")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):PRMS:SP") 
+{
+    field(DESC, "Set Peak/RMS Field Reading")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto set$(CHANNEL)PRMSReading $(PORT)")
+    field(ZNAM, "RMS")
+    field(ONAM, "PEAK")
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:PRMS:SP")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(ai, "$(P)$(CHANNEL):FIELDREADING") 
+{
+    field(DESC, "Magnetic Field Reading")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(EGU, "")
+    field(INP,  "@devLakeshore_460.proto read$(CHANNEL)FieldReading $(PORT)")
+    field(FLNK, "$(P)$(CHANNEL):FIELD:UNIT_MULTIPLIER")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:FIELDREADING")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bi, "$(P)$(CHANNEL):OUTPUTSTATUS") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto read$(CHANNEL)OnOff $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:OUTPUTSTATUS")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):OUTPUTSTATUS:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto set$(CHANNEL)OnOff $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:OUTPUTSTATUS:SP")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bi, "$(P)$(CHANNEL):RELMODE") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto read$(CHANNEL)RelativeMode $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:RELMODE")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):RELMODE:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto set$(CHANNEL)RelativeMode $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:RELMODE:SP")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bi, "$(P)$(CHANNEL):MAXHOLD") 
+{
+    field(DESC, "Max Hold")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto read$(CHANNEL)MaxHold $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(INTEREST, "LOW")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:MAXHOLD")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):MAXHOLD:SP") 
+{
+    field(DESC, "Set Max Hold")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto set$(CHANNEL)MaxHold $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(INTEREST, "LOW")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:MAXHOLD:SP")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(ai, "$(P)$(CHANNEL):RELSMODE") 
+{
+    field(DESC, "Relative Mode Setpoint")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(EGU, "")
+    field(INP,  "@devLakeshore_460.proto read$(CHANNEL)RelativeModeSetpoint $(PORT)")
+    field(FLNK, "$(P)$(CHANNEL):RELS:UNIT_MULTIPLIER")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:RELSMODE")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(ao, "$(P)$(CHANNEL):RELSMODE:SP") 
+{
+    field(DESC, "Relative Mode Setpoint")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto set$(CHANNEL)RelativeModeSetpoint $(PORT)")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:RELSMODE:SP")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(ai, "$(P)$(CHANNEL):FWIN") 
+{
+    field(DESC, "Display Filter Window")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto read$(CHANNEL)DisplayFilterWindow $(PORT)")
+    field(HIHI, "11")
+ 	field(EGU, "%")
+    field(LOLO, "0")
+    field(HHSV,"MAJOR")
+    field(LLSV,"MAJOR")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:FWIN")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(ao, "$(P)$(CHANNEL):FWIN:SP") 
+{
+    field(DESC, "Set Display Filter Window")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto set$(CHANNEL)DisplayFilterWindow $(PORT)")
+	field(EGU, "%")
+    field(HIHI, "11")
+    field(LOLO, "0")
+    field(HHSV,"MAJOR")
+    field(LLSV,"MAJOR")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:FWIN:SP")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bi, "$(P)$(CHANNEL):FILTER") 
+{
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto read$(CHANNEL)DisplayFilter $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:FILTER")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):FILTER:SP") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto set$(CHANNEL)DisplayFilter $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:FILTER:SP")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(ai, "$(P)$(CHANNEL):RELMODEREADING") 
+{
+    field(DESC, "Relative Mode Reading")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(EGU, "")
+    field(INP,  "@devLakeshore_460.proto read$(CHANNEL)RelativeModeReading $(PORT)")
+    field(FLNK, "$(P)$(CHANNEL):RELRM:UNIT_MULTIPLIER")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:RELMODEREADING")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bi, "$(P)$(CHANNEL):AUTO") 
+{
+     field(DESC, "Auto Range")
+     field(SCAN, "1 second")
+     field(DTYP, "stream")
+     field(INP,  "@devLakeshore_460.proto read$(CHANNEL)AutoRange $(PORT)")
+     field(ZNAM, "OFF")
+     field(ONAM, "ON")
+     info(INTEREST, "HIGH")
+     info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:AUTO")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):AUTO:SP") 
+{
+    field(DESC, "Set Auto Range")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT, "@devLakeshore_460.proto set$(CHANNEL)AutoRange $(PORT)")
+    field(ZNAM, "Auto Range OFF")
+    field(ONAM, "Auto Range ON")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:AUTO:SP")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(ai, "$(P)$(CHANNEL):MAXREADING") 
+{
+    field(DESC, "Max Reading")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devLakeshore_460.proto read$(CHANNEL)MaxReading $(PORT)")
+    field(EGU, "")
+    field(FLNK, "$(P)$(CHANNEL):MAX:UNITS_MULTIPLIER")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:MAXREADING")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(scalcout, "$(P)$(CHANNEL):MAX:UNITS_MULTIPLIER")
+{   field(DESC, "Units and Multiplier Concatenation")
+    field(CALC, "BB + AA")
+    field(INAA, "$(P)$(CHANNEL):UNIT")
+    field(INBB, "$(P)$(CHANNEL):MAX:MULTIPLIER")
+    field(OUT, "$(P)$(CHANNEL):MAXREADING.EGU")
+    info(INTEREST, "LOW")
+}
+
+record(mbbi, "$(P)$(CHANNEL):MAX:MULTIPLIER") 
+{
+    field(DESC, "Max Reading Multiplier")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto ReadMaxReadingMultiplier $(PORT)")
+    field(ZRST, "u")
+    field(ONST, "m")
+    field(TWST, "")
+    field(THST, "k")
+    info(INTEREST, "LOW")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:MAX:MULTIPLIER")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(scalcout, "$(P)$(CHANNEL):FIELD:UNIT_MULTIPLIER")
+{   field(DESC, "Units and Multiplier Concatenation")
+    field(CALC, "BB + AA")
+    field(INAA, "$(P)$(CHANNEL):UNIT")
+    field(INBB, "$(P)$(CHANNEL):FIELD:MULTIPLIER")
+    field(OUT, "$(P)$(CHANNEL):FIELDREADING.EGU")
+    info(INTEREST, "LOW")
+}
+
+record(mbbi, "$(P)$(CHANNEL):FIELD:MULTIPLIER") 
+{
+     field(DESC, "Multiplier for Magnetic Field FIELDM?")
+     field(DTYP, "stream")
+     field(INP,  "@devLakeshore_460.proto getMagneticFieldMultiplier $(PORT)")
+     field(ZRST, "u")
+     field(ONST, "m")
+     field(TWST, "")
+     field(THST, "k")
+     info(INTEREST, "LOW")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:FIELD:MULTIPLIER")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(scalcout, "$(P)$(CHANNEL):RELRM:UNIT_MULTIPLIER")
+{   field(DESC, "Units and Multiplier Concatenation")
+    field(CALC, "BB + AA")
+    field(INAA, "$(P)$(CHANNEL):UNIT")
+    field(INBB, "$(P)$(CHANNEL):RELRM:MULTIPLIER")
+    field(OUT, "$(P)$(CHANNEL):RELMODEREADING.EGU")
+    info(INTEREST, "LOW")
+}
+
+record(mbbi, "$(P)$(CHANNEL):RELRM:MULTIPLIER") 
+{
+     field(DESC, "Multiplier for Relative Mode RELRM?")
+     field(DTYP, "stream")
+     field(INP,  "@devLakeshore_460.proto getRelativeModeReadingMultiplier $(PORT)")
+     field(ZRST, "u")
+     field(ONST, "m")
+     field(TWST, "")
+     field(THST, "k")
+     info(INTEREST, "LOW")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:RELRM:MULTIPLIER")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(scalcout, "$(P)$(CHANNEL):RELS:UNIT_MULTIPLIER")
+{   field(DESC, "Units and Multiplier Concatenation")
+    field(CALC, "BB + AA")
+    field(INAA, "$(P)$(CHANNEL):UNIT")
+    field(INBB, "$(P)$(CHANNEL):RELS:MULTIPLIER")
+    field(OUT, "$(P)$(CHANNEL):RELSMODE.EGU")
+    info(INTEREST, "LOW")
+}
+
+record(mbbi, "$(P)$(CHANNEL):RELS:MULTIPLIER") 
+{
+     field(DESC, "Multiplier for Relative Mode RELSM?")
+     field(DTYP, "stream")
+     field(INP,  "@devLakeshore_460.proto ReadRelativeModeSetpointMultiplier $(PORT)")
+     field(ZRST, "u")
+     field(ONST, "m")
+     field(TWST, "")
+     field(THST, "k")
+     info(INTEREST, "LOW")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:RELS:MULTIPLIER")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(ai, "$(P)$(CHANNEL):FNUM") 
+{
+    field(DESC, "Display Filter Points")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto read$(CHANNEL)FilterPoints $(PORT)")
+    field(HIHI, "65")
+    field(LOLO, "1")
+    field(HHSV,"MAJOR")
+    field(LLSV,"MAJOR")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:FNUM")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(ao, "$(P)$(CHANNEL):FNUM:SP") 
+{
+    field(DESC, "Set Display Filter Points")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto set$(CHANNEL)FilterPoints $(PORT)")
+    field(HIHI, "65")
+    field(LOLO, "1")
+    field(HHSV,"MAJOR")
+    field(LLSV,"MAJOR")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:FNUM:SP")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(mbbo, "$(P)$(CHANNEL):RANGE:SP") 
+{
+    field(DESC, "Set Manual Range")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT, "@devLakeshore_460.proto set$(CHANNEL)ManualRange $(PORT)")
+    field(ZRST, "First Range")
+    field(ONST, "Second Range")
+    field(TWST, "Third Range")
+    field(THST, "Fourth Range")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:RANGE:SP")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(mbbi, "$(P)$(CHANNEL):RANGE") 
+{
+    field(DESC, "Manual Range")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@devLakeshore_460.proto read$(CHANNEL)ManualRange $(PORT)")
+    field(ZRST, "First Range")
+    field(ONST, "Second Range")
+    field(TWST, "Third Range")
+    field(THST, "Fourth Range")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:RANGE")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+record(ao, "$(P)$(CHANNEL):MAXCLEAR") 
+{
+    field(DESC, "Clears Max Reading")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto set$(CHANNEL)MaxClear $(PORT)")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)$(CHANNEL):SIM")
+    field(SIOL, "$(P)$(CHANNEL):SIM:MAXCLEAR")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+}
+
+
+
+
+### SIMULATION RECORDS ###
+
+record(bi, "$(P)$(CHANNEL):SIM:RELMODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)$(CHANNEL):SIM:RELMODE","$(P)$(CHANNEL):SIM:RELMODE:SP")
+
+record(ai, "$(P)$(CHANNEL):SIM:MAXREADING")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(P)$(CHANNEL):SIM:AUTO")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)$(CHANNEL):SIM:AUTO","$(P)$(CHANNEL):SIM:AUTO:SP")
+
+record(ai, "$(P)$(CHANNEL):SIM:FWIN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)$(CHANNEL):SIM:FWIN","$(P)$(CHANNEL):SIM:FWIN:SP")
+
+record(mbbi, "$(P)$(CHANNEL):SIM:RELRM:MULTIPLIER")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)$(CHANNEL):SIM:FIELD:MULTIPLIER")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(P)$(CHANNEL):SIM:UNIT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)$(CHANNEL):SIM:UNIT","$(P)$(CHANNEL):SIM:UNIT:SP")
+
+record(mbbi, "$(P)$(CHANNEL):SIM:RANGE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)$(CHANNEL):SIM:RANGE","$(P)$(CHANNEL):SIM:RANGE:SP")
+
+record(ai, "$(P)$(CHANNEL):SIM:FIELDREADING")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(P)$(CHANNEL):SIM:PRMS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)$(CHANNEL):SIM:PRMS","$(P)$(CHANNEL):SIM:PRMS:SP")
+
+record(bi, "$(P)$(CHANNEL):SIM:MAXHOLD")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)$(CHANNEL):SIM:MAXHOLD","$(P)$(CHANNEL):SIM:MAXHOLD:SP")
+
+record(bi, "$(P)$(CHANNEL):SIM:OUTPUTMODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)$(CHANNEL):SIM:OUTPUTMODE","$(P)$(CHANNEL):SIM:OUTPUTMODE:SP")
+
+record(ai, "$(P)$(CHANNEL):SIM:RELSMODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)$(CHANNEL):SIM:RELSMODE","$(P)$(CHANNEL):SIM:RELSMODE:SP")
+
+record(ai, "$(P)$(CHANNEL):SIM:FNUM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)$(CHANNEL):SIM:FNUM","$(P)$(CHANNEL):SIM:FNUM:SP")
+
+record(bi, "$(P)$(CHANNEL):SIM:FILTER")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)$(CHANNEL):SIM:FILTER","$(P)$(CHANNEL):SIM:FILTER:SP")
+
+record(mbbi, "$(P)$(CHANNEL):SIM:MAX:MULTIPLIER")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)$(CHANNEL):SIM:RELMODEREADING")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ao, "$(P)$(CHANNEL):SIM:MAXCLEAR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)$(CHANNEL):SIM:RELS:MULTIPLIER")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(P)$(CHANNEL):SIM:OUTPUTSTATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)$(CHANNEL):SIM:OUTPUTSTATUS","$(P)$(CHANNEL):SIM:OUTPUTSTATUS:SP")
+
