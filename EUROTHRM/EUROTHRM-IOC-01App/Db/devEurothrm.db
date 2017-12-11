@@ -265,8 +265,6 @@ record(calcout, "$(P)RAMPON:RETRIEVE")
    field(INPA, "$(P)RAMPON:CACHE")
    field(CALC, "A")
    field(OUT, "$(P)RAMPON:SP PP")
-   field(ZNAM, "OFF")
-   field(ONAM, "ON")
 }
 
 record(calcout, "$(P)SENSOR_DISCONNECTED")
