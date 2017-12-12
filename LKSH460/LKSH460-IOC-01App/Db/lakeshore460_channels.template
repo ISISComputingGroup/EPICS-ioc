@@ -12,55 +12,16 @@
 # relative mode
 # manual range
 
-
-record(bi, "$(P)$(CHANNEL):UNIT") 
+record(ai, "$(P)$(CHANNEL):FIELDREADING")
 {
-    field(DESC, "Unit in use - gauss or tesla")
-    field(SCAN, "1 second")
+	field(DESC, "Field reading")
     field(DTYP, "stream")
-    field(INP,  "@devLakeshore_460.proto getUnit$(CHANNEL) $(PORT)")
-    field(ZNAM, "G")
-    field(ONAM, "T")
-    #field(SIML, "$(P)SIM")
-    #field(SIOL, "$(P)SIM:UNIT")
+	field(SCAN, "1 second")
+	field(INP, "@devLakeshore_460.proto getMagneticFieldReading($(CHANNEL)) $(PORT)")
     field(SDIS, "$(P)DISABLE")
-    #info(INTEREST, "HIGH")
-    #info(archive, "VAL")
-}
-
-record(bo, "$(P)$(CHANNEL):UNIT:SP") 
-{
-    field(DESC, "Set Unit, gauss or tesla")
-    field(DTYP, "stream")
-    field(OUT,  "@devLakeshore_460.proto setUnit$(CHANNEL) $(PORT)")
-    field(ZNAM, "G")
-    field(ZNAM, "T") 
-    #field(SIML, "$(P)SIM")
-    #field(SIOL, "$(P)SIM:CURRENT:SP")
-    field(SDIS, "$(P)DISABLE")
-    #info(INTEREST, "HIGH")
-    #info(archive, "VAL")
-}
-
-record(bi, "$(P)$(CHANNEL):STATUS") 
-{
-	field(DESC, "is the channel on/off")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(INP,  "@devLakeshore_460.proto getStatus$(CHANNEL) $(PORT)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(bo, "$(P)$(CHANNEL):STATUS:SP") 
-{
-	field(DESC, "set the channel on/off")
-    field(DTYP, "stream")
-    field(OUT,  "@devLakeshore_460.proto setStatus$(CHANNEL) $(PORT)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
-    field(SDIS, "$(P)DISABLE")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL, EGU")
+	field(FLNK, "$(P)$(CHANNEL):UNIT:MULT")
 }
 
 record(bi, "$(P)$(CHANNEL):MODE") 
@@ -68,7 +29,7 @@ record(bi, "$(P)$(CHANNEL):MODE")
 	field(DESC, "Field reading mode")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@devLakeshore_460.proto getMode$(CHANNEL) $(PORT)")
+    field(INP,  "@devLakeshore_460.proto getACDCFieldReading($(CHANNEL)) $(PORT)")
     field(ZNAM, "AC")
     field(ONAM, "DC")
     field(SDIS, "$(P)DISABLE")
@@ -78,11 +39,164 @@ record(bo, "$(P)$(CHANNEL):MODE:SP")
 {
 	field(DESC, "Set the field reading mode")
     field(DTYP, "stream")
-    field(OUT,  "@devLakeshore_460.proto setMode$(CHANNEL) $(PORT)")
+    field(OUT,  "@devLakeshore_460.proto setACDCFieldReading($(CHANNEL)) $(PORT)")
     field(ZNAM, "AC")
     field(ONAM, "DC")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(bi, "$(P)$(CHANNEL):PRMS")  
+{
+    field(DESC, "Peak/RMS Field Reading")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto getPRMSReading($(CHANNEL)) $(PORT)")
+	field(ZNAM, "RMS")
+    field(ONAM, "PEAK")
+    field(SDIS, "$(P)DISABLE")
+}
 
+record(bo, "$(P)$(CHANNEL):PRMS:SP") 
+{
+    field(DESC, "Set Peak/RMS Field Reading")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setPRMSReading($(CHANNEL)) $(PORT)") 
+	field(ZNAM, "RMS")
+    field(ONAM, "PEAK")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)$(CHANNEL):FILTER")  
+{
+    field(DESC, "Is the filter in use?")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto getFilter($(CHANNEL)) $(PORT)")
+	field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):FILTER:SP") 
+{
+    field(DESC, "Turn filter on/off")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setFilter($(CHANNEL)) $(PORT)") 
+	field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)$(CHANNEL):RELMODE")  
+{
+    field(DESC, "Is the device in relative mode?")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto getRelMode($(CHANNEL)) $(PORT)")
+	field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):RELMODE:SP") 
+{
+    field(DESC, "Set mode to relative mode")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setRelMode($(CHANNEL)) $(PORT)") 
+	field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)$(CHANNEL):MAXHOLD")  
+{
+    field(DESC, "Max hold")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto getMaxHold($(CHANNEL)) $(PORT)")
+	field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):MAXHOLD:SP") 
+{
+    field(DESC, "Set max hold on or off")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setMaxHold($(CHANNEL)) $(PORT)") 
+	field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)$(CHANNEL):AUTO")  
+{
+    field(DESC, "Get auto mode")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto getAutoRange($(CHANNEL)) $(PORT)")
+	field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):AUTO:SP") 
+{
+    field(DESC, "Set auto range on or off")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setAutoRange($(CHANNEL)) $(PORT)") 
+	field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)$(CHANNEL):FWIN")  
+{
+    field(DESC, "Display filter window")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto getFWin($(CHANNEL)) $(PORT)")
+	field(HIHI, "10")
+	field(LOLO, "1")
+	field(HHSV, "MAJOR")
+    field(LLSV, "MAJOR")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)$(CHANNEL):FWIN:SP")  
+{
+    field(DESC, "Display filter window")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setFWin($(CHANNEL)) $(PORT)")
+	field(HIHI, "10")
+	field(LOLO, "1")
+	field(HHSV, "MAJOR")
+    field(LLSV, "MAJOR")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)$(CHANNEL):FNUM")  
+{
+    field(DESC, "Number of filter points")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto setFNum($(CHANNEL)) $(PORT)")
+	field(HIHI, "64")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+    field(LLSV, "MAJOR")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)$(CHANNEL):FNUM:SP")  
+{
+    field(DESC, "Set number of filter points")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setFNum($(CHANNEL)) $(PORT)")
+	field(HIHI, "64")
+	field(LOLO, "2")
+	field(HHSV, "MAJOR")
+    field(LLSV, "MAJOR")
+    field(SDIS, "$(P)DISABLE")
+}
 

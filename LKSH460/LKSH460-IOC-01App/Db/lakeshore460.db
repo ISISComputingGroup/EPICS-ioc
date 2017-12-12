@@ -6,7 +6,114 @@ record(stringin, "$(P)IDN")
     field(DTYP, "stream")
     field(INP,  "@devLakeshore_460.proto getIDN $(PORT)")
     field(PINI, "YES")
-	field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:IDN")
     field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)STATUS") 
+{
+	field(DESC, "is the device on/off")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto getStatus $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)STATUS:SP") 
+{
+	field(DESC, "set the device on/off")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setStatus $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)UNIT") 
+{
+    field(DESC, "Unit in use - gauss or tesla")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto getMagneticFieldUnits $(PORT)")
+    field(ZNAM, "G")
+    field(ONAM, "T")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "MEDIUM")
+}
+
+record(bo, "$(P)UNIT:SP") 
+{
+    field(DESC, "Set Unit, gauss or tesla")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setMagneticFieldUnits	$(PORT)")
+    field(ZNAM, "G")
+    field(ONAM, "T") 
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "LOW")
+}
+
+record(mbbi, "$(P)SOURCE")
+{
+	field(DESC, "Vector magnitude source")
+	field(DTYP, "stream")
+    field(SCAN, "1 second")
+	field(INP,  "@devLakeshore_460.proto getSource $(PORT)")
+	field(ONST, "XYZ")
+	field(TWST, "XY")
+	field(THST, "XZ")
+	field(FRST, "YZ")
+	field(FVST, "X-Y")
+	field(ZRVL, "1")
+	field(ONVL, "2")
+	field(TWVL, "3")
+	field(THVL, "4")
+	field(FRVL, "5")
+	field(SDIS, "$(P)DISABLE")	
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+}
+
+record(mbbo, "$(P)SOURCE:SP")
+{
+	field(DESC, "Set Vector magnitude source")
+	field(DTYP, "stream")
+	field(OUT,  "@devLakeshore_460.proto setSource $(PORT)")
+	field(ONST, "XYZ")
+	field(TWST, "XY")
+	field(THST, "XZ")
+	field(FRST, "YZ")
+	field(FVST, "X-Y")
+	field(ZRVL, "1")
+	field(ONVL, "2")
+	field(TWVL, "3")
+	field(THVL, "4")
+	field(FRVL, "5")
+	info(SDIS, "$(P)DISABLE")	
+	info(INTEREST, "LOW")
+}
+
+record(mbbi, "$(P)CHANNEL")
+{
+	field(DESC, "Get channel")
+	field(DTYP, "stream")
+	field(INP,  "@devLakeshore_460.proto getChannel $(PORT)")
+    field(SCAN, "1 second")
+	field(ONST, "X")
+	field(TWST, "Y")
+	field(THST, "Z")
+	field(FRST, "V")
+	field(SDIS, "$(P)DISABLE")	
+}
+
+record(mbbo, "$(P)CHANNEL:SP")
+{
+	field(DESC, "Set Vector magnitude source")
+	field(OUT,  "@devLakeshore_460.proto setChannel $(PORT)")
+	field(DTYP, "stream")
+	field(ONST, "X")
+	field(TWST, "Y")
+	field(THST, "Z")
+	field(FRST, "V")
+	field(SDIS, "$(P)DISABLE")	
 }
