@@ -109,7 +109,7 @@ record(ao, "$(P)PHAS:SP")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:PHAS:SP")
+    field(SIOL, "$(P)SIM:PHAS:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 #
@@ -675,13 +675,13 @@ record(ai, "$(P)SIM:FREQ:REF")
     field(DTYP, "Soft Channel")
 }
 #
-alias("$(P)DRIVE:MODE","$(P)SIM:DRIVE:MODE:SP")
+alias("$(P)FREQ","$(P)SIM:FREQ:SP")
+#
+alias("$(P)PHAS","$(P)SIM:PHAS:SP")
 #
 alias("$(P)MB","$(P)SIM:MB:SP")
 #
-alias("$(P)PHAS","$(P)SIM:PHAS:SP")
-alias("$(P)PHAS","$(P)SIM:PHAS:SP:RBV")
+alias("$(P)DRIVE:MODE","$(P)SIM:DRIVE:MODE:SP")
 #
-alias("$(P)FREQ","$(P)SIM:FREQ:SP")
-alias("$(P)FREQ","$(P)SIM:FREQ:SP:RBV")
-#
+# SIM:<parameter>:SP:RBV is not linked to SIM:<parameter>:SP or SIM::<parameter>
+# because the aliases point at real values and we do not want to set them accidentally.
