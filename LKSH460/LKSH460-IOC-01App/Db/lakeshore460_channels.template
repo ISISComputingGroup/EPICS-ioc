@@ -1,0 +1,88 @@
+# Template for x/y/z/v channel PVs
+
+# field reading
+# max reading
+# relative mode reading
+# unit
+# ac/dc
+# auto range
+# filter
+# peak/rms
+# max hold
+# relative mode
+# manual range
+
+
+record(bi, "$(P)$(CHANNEL):UNIT") 
+{
+    field(DESC, "Unit in use - gauss or tesla")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto getUnit$(CHANNEL) $(PORT)")
+    field(ZNAM, "G")
+    field(ONAM, "T")
+    #field(SIML, "$(P)SIM")
+    #field(SIOL, "$(P)SIM:UNIT")
+    field(SDIS, "$(P)DISABLE")
+    #info(INTEREST, "HIGH")
+    #info(archive, "VAL")
+}
+
+record(bo, "$(P)$(CHANNEL):UNIT:SP") 
+{
+    field(DESC, "Set Unit, gauss or tesla")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setUnit$(CHANNEL) $(PORT)")
+    field(ZNAM, "G")
+    field(ZNAM, "T") 
+    #field(SIML, "$(P)SIM")
+    #field(SIOL, "$(P)SIM:CURRENT:SP")
+    field(SDIS, "$(P)DISABLE")
+    #info(INTEREST, "HIGH")
+    #info(archive, "VAL")
+}
+
+record(bi, "$(P)$(CHANNEL):STATUS") 
+{
+	field(DESC, "is the channel on/off")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto getStatus$(CHANNEL) $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):STATUS:SP") 
+{
+	field(DESC, "set the channel on/off")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setStatus$(CHANNEL) $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)$(CHANNEL):MODE") 
+{
+	field(DESC, "Field reading mode")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto getMode$(CHANNEL) $(PORT)")
+    field(ZNAM, "AC")
+    field(ONAM, "DC")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)$(CHANNEL):MODE:SP") 
+{
+	field(DESC, "Set the field reading mode")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setMode$(CHANNEL) $(PORT)")
+    field(ZNAM, "AC")
+    field(ONAM, "DC")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
+
