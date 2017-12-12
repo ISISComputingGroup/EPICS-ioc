@@ -13,9 +13,6 @@ errlogInit2(65536, 256)
 dbLoadDatabase("${TOP}/dbd/SM300-IOC-01.dbd",0,0)
 SM300_IOC_01_registerRecordDeviceDriver(pdbbase) 
 
-epicsEnvSet(DEVICE,L0)
-
-iocInit()
 
 cd ${TOP}/iocBoot/${IOC}
 

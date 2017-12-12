@@ -25,6 +25,7 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += motorSupport.dbd
 $(APPNAME)_DBD += motorSimSupport.dbd
@@ -38,6 +39,8 @@ $(APPNAME)_DBD += sampleChanger.dbd
 $(APPNAME)_DBD += stdSupport.dbd
 $(APPNAME)_DBD += asubFunctions.dbd 
 $(APPNAME)_DBD += asyn.dbd 
+$(APPNAME)_DBD += sscanSupport.dbd 
+
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -47,7 +50,7 @@ $(APPNAME)_LIBS += devIocStats
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
-$(APPNAME)_LIBS += autosave
+$(APPNAME)_LIBS += calc autosave sscan
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx

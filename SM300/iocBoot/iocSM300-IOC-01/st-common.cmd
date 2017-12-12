@@ -1,3 +1,4 @@
+epicsEnvSet(DEVICE,L0)
 
 < $(IOCSTARTUP)/init.cmd
 
@@ -29,8 +30,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","Y") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","Y") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceIOMask("$(DEVICE)", 0, 2)
-asynSetTraceMask("L0",-1,0x9) 
-asynSetTraceIOMask("L0",-1,0x2)
+#asynSetTraceMask("L0",-1,0x9) 
+#asynSetTraceIOMask("L0",-1,0x2)
 
 
 ## Always set termination codes
@@ -39,20 +40,20 @@ asynOctetSetOutputEos("$(DEVICE)",0,"\04")
 
 
 
-#iocshCmdLoop("< st-ctrl.cmd", "CNUM=\$(I)", "I", 1, 24)
-#iocshCmdLoop("< st-max-axis.cmd", "MN=\$(I)", "I", 1, 8)
+iocshCmdLoop("< st-ctrl.cmd", "CNUM=\$(I)", "I", 1, 24)
+iocshCmdLoop("< st-max-axis.cmd", "MN=\$(I)", "I", 1, 8)
 
 
 # (driver port, serial port, axis num, ms mov poll, ms idle poll, egu per step)
-#epicsEnvSet("MRES","0.0005")
-#$(IFNOTRECSIM) SM300CreateController("HI", "$(DEVICE)", "$(NAXES=1)", 100, 0, "$(MRES)")
+epicsEnvSet("MRES","0.0005")
+$(IFNOTRECSIM) SM300CreateController("HI", "$(DEVICE)", "$(NAXES=1)", 100, 1000, "$(MRES)")
 
 
-#iocshCmdLoop("< st-port.cmd", "PN=\$(I)", "I", 1, 8)
+iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 
 
 ## motor util package
-#dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -60,11 +61,11 @@ asynOctetSetOutputEos("$(DEVICE)",0,"\04")
 iocInit()
 
 ## motor util package
-#var motorUtil_debug 1
-#motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
+var motorUtil_debug 1
+motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
-#< $(IOCSTARTUP)/postiocinit.cmd
+< $(IOCSTARTUP)/postiocinit.cmd
 
 # Save motor positions every 5 seconds
 #create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:")

@@ -1,6 +1,0 @@
-file $(MOTOR)/motorApp/Db/motor.db {
-
-pattern {P,    M,         DTYP,      DESC,   EGU,  DIR,  VELO,  VBAS, ACCL, BDST, BVEL, BACC,    MRES,    ERES, UEIP, PREC, DHLM, DLLM, INIT, C, S }
-{"\$(P)", "\$(M)", "SM300", "\$(NAME) (SM)",    "\$(EGU)",  "Pos",  "\$(VELO)",   "\$(VBAS)",  "\$(ACCL)",    0,    1,   0,   "\$(MRES)",   "\$(ERES)", "\$(UEIP)",    3,   "\$(DHLM)",   "\$(DLLM)",  "", "\$(C)", "\$(S)"}
-
-}
