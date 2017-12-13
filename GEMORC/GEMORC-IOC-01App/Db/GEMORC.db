@@ -401,6 +401,9 @@ record(longout, "$(P)SPEED:SP") {
 	field(DESC, "Radial speed setpoint")
     field(OUT, "@devgemorc.proto setSpeed $(PORT)")
     field(DTYP, "stream")
+	
+	field(DRVH, "99")
+	field(DRVL, "1")
     
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED:SP")
@@ -418,6 +421,9 @@ record(longout, "$(P)ACC:SP") {
 	field(DESC, "Radial acceleration setpoint")
     field(OUT, "@devgemorc.proto setAcc $(PORT)")
     field(DTYP, "stream")
+	
+	field(DRVH, "9999")
+	field(DRVL, "1")
     
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:ACC:SP")
@@ -435,6 +441,9 @@ record(longout, "$(P)OFFSET:SP") {
 	field(DESC, "Motor offset setpoint")
     field(OUT, "@devgemorc.proto setOffset $(PORT)")
     field(DTYP, "stream")
+	
+	field(DRVH, "999")
+	field(DRVL, "-999")
     
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OFFSET:SP")
@@ -452,6 +461,9 @@ record(longout, "$(P)WIDTH:SP") {
 	field(DESC, "Window width setpoint")
     field(OUT, "@devgemorc.proto setWidth $(PORT)")
     field(DTYP, "stream")
+	
+	field(DRVH, "999")
+	field(DRVL, "0")
     
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WIDTH:SP")
