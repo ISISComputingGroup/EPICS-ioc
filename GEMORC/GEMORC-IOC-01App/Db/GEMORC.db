@@ -35,6 +35,8 @@ record(stringin, "$(P)ID") {
     field(SCAN, "Passive")
 	field(DTYP, "stream")
     field(INP, "@devgemorc.proto getID $(PORT)")
+	field(VAL, " ")
+	field(OOPT, "When Non-zero")
 	
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:ID")
