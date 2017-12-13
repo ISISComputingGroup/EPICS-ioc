@@ -549,17 +549,17 @@ record(calc, "$(P)FREQ") {
 
 ## Simulation records
 
-record(longin, "$(P)SIM:SCAN") {}
-record(longin, "$(P)SIM:WIDTH") {}
-record(longin, "$(P)SIM:OFFSET") {}
-record(longin, "$(P)SIM:SPEED") {}
-record(longin, "$(P)SIM:ACC") {}
-record(longin, "$(P)SIM:BACKLASH") {}
-record(longin, "$(P)SIM:CYCLES") {}
-record(bi, "$(P)SIM:STAT:OSC") {}
-record(bi, "$(P)SIM:INIT:DONE") {}
-record(bi, "$(P)SIM:INIT:PROGRESS") {}
-record(stringin, "$(P)SIM:ID") {}
+record(longin, "$(P)SIM:SCAN")
+record(longin, "$(P)SIM:WIDTH")
+record(longin, "$(P)SIM:OFFSET")
+record(longin, "$(P)SIM:SPEED")
+record(longin, "$(P)SIM:ACC")
+record(longin, "$(P)SIM:BACKLASH")
+record(longin, "$(P)SIM:CYCLES")
+record(bi, "$(P)SIM:STAT:OSC")
+record(bi, "$(P)SIM:INIT:DONE")
+record(bi, "$(P)SIM:INIT:PROGRESS")
+record(stringin, "$(P)SIM:ID")
 
 
 alias("$(P)SIM:WIDTH", "$(P)SIM:WIDTH:SP")
