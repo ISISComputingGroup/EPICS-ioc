@@ -45,7 +45,7 @@ record(longin, "$(P)STAT:_SCAN")
 {
     field(INP, "@devgemorc.proto getStatus($(P)STAT:_RAW) $(PORT)")
     field(SCAN, "1 second")
-    field(FLNK, "$(P)STAT:_RAW")
+    field(FLNK, "$(P)STAT:_RAW MS")
     field(DTYP, "stream")
     
     field(SIML, "$(P)SIM")
@@ -58,37 +58,37 @@ record(longin, "$(P)STAT:_SCAN")
 record(calcout, "$(P)STAT:_RAW")
 {
     field(CALC, "0")
-    field(FLNK, "$(P)STAT:_FANOUT")
+    field(FLNK, "$(P)STAT:_FANOUT MS")
 }
 
 record(seq, "$(P)STAT:_FANOUT")
 {
     field(DOL1, "$(P)STAT:_RAW.A")
-    field(LNK1, "$(P)STAT:OSC PP")
+    field(LNK1, "$(P)STAT:OSC PP MS")
 
     field(DOL2, "$(P)STAT:_RAW.B")
-    field(LNK2, "$(P)INIT:PROGRESS PP")
+    field(LNK2, "$(P)INIT:PROGRESS PP MS")
 
     field(DOL3, "$(P)STAT:_RAW.C")
-    field(LNK3, "$(P)INIT:DONE PP")
+    field(LNK3, "$(P)INIT:DONE PP MS")
 
     field(DOL4, "$(P)STAT:_RAW.D")
-    field(LNK4, "$(P)WIDTH PP")
+    field(LNK4, "$(P)WIDTH PP MS")
 
     field(DOL5, "$(P)STAT:_RAW.E")
-    field(LNK5, "$(P)OFFSET PP")
+    field(LNK5, "$(P)OFFSET PP MS")
     
     field(DOL6, "$(P)STAT:_RAW.F")
-    field(LNK6, "$(P)SPEED PP")
+    field(LNK6, "$(P)SPEED PP MS")
     
     field(DOL7, "$(P)STAT:_RAW.G")
-    field(LNK7, "$(P)ACC PP")
+    field(LNK7, "$(P)ACC PP MS")
     
     field(DOL8, "$(P)STAT:_RAW.H")
-    field(LNK8, "$(P)CYCLES PP")
+    field(LNK8, "$(P)CYCLES PP MS")
     
     field(DOL9, "$(P)STAT:_RAW.I")
-    field(LNK9, "$(P)BACKLASH PP")
+    field(LNK9, "$(P)BACKLASH PP MS")
     
     field(SELM, "All")
 	
