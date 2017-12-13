@@ -559,7 +559,7 @@ record(longin, "$(P)SIM:CYCLES") {}
 record(bi, "$(P)SIM:STAT:OSC") {}
 record(bi, "$(P)SIM:INIT:DONE") {}
 record(bi, "$(P)SIM:INIT:PROGRESS") {}
-record(stringin, "$(P)SIM:ID")
+record(stringin, "$(P)SIM:ID") {}
 
 
 alias("$(P)SIM:WIDTH", "$(P)SIM:WIDTH:SP")
