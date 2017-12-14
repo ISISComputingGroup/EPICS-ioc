@@ -129,7 +129,7 @@ record (bo, "$(P)CS:MANAGER")
 }
 
 # This points to the centrally located shutter status and archives it locally 
-record (mbbi, "$(P)SHTR:STAT:ARCH")
+record (mbbi, "$(P)CS:SHUTTER")
 {
 	field(INP, "$(P)SHTR:STAT CP")
 	field(PINI, "YES")
@@ -144,11 +144,11 @@ record (mbbi, "$(P)SHTR:STAT:ARCH")
 	field(THST, "MOVING")
 	field(FRST, "FAULT")	
 	field(SIML, "$(P)SIM")
-	field(SIOL, "$(P)SIM:SHTR:STAT:ARCH CP")
+	field(SIOL, "$(P)SIM:CS:SHUTTER CP")
 	info(archive, "VAL")
 }
 
-record (mbbo, "$(P)SIM:SHTR:STAT:ARCH")
+record (mbbo, "$(P)SIM:CS:SHUTTER")
 {
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")	
