@@ -21,7 +21,8 @@ record(ai, "$(P)$(CHANNEL):FIELDREADING")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
 	field(EGU, "")
-	field(FLNK, "$(P)$(CHANNEL):MAXREADING")
+	field(SCAN, "1 second")
+	field(PREC, "4")
 }
 
 record(ai, "$(P)$(CHANNEL):MAXREADING")
@@ -32,7 +33,17 @@ record(ai, "$(P)$(CHANNEL):MAXREADING")
 	field(INP, "@devLakeshore_460.proto getMaxReading($(CHANNEL)) $(PORT)")    
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
-	field(FLNK, "$(P)$(CHANNEL):RELMODEREADING")
+	field(SCAN, "1 second")
+	field(PREC, "4")
+}
+
+record(ai, "$(P)$(CHANNEL):MAXREADING:SP")
+{
+	field(DESC, "Set max reading to zero from opi to reset")
+	field(DTYP, "stream")
+	field(INP, "@devLakeshore_460.proto setMaxReading($(CHANNEL)) $(PORT)")    
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
 }
 
 record(ai, "$(P)$(CHANNEL):RELMODEREADING")
@@ -42,7 +53,30 @@ record(ai, "$(P)$(CHANNEL):RELMODEREADING")
 	field(INP, "@devLakeshore_460.proto getRelModeReading($(CHANNEL)) $(PORT)")    
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
-	field(FLNK, "$(P)$(CHANNEL):UNIT:MULT")
+	field(SCAN, "1 second")
+	field(PREC, "4")
+}
+
+record(bi, "$(P)$(CHANNEL):UNIT") 
+{
+    field(DESC, "Unit in use - gauss or tesla")
+    field(DTYP, "stream")
+	field(SCAN, "1 second")
+    field(INP,  "@devLakeshore_460.proto getMagneticFieldUnits $(PORT)")
+    field(ZNAM, "G")
+    field(ONAM, "T")
+    info(INTEREST, "MEDIUM")
+	field(FLNK, "$(P)SOURCE")
+}
+
+record(bo, "$(P)$(CHANNEL):UNIT:SP") 
+{
+    field(DESC, "Set Unit, gauss or tesla")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setMagneticFieldUnits $(PORT)")
+    field(ZNAM, "G")
+    field(ONAM, "T") 
+    info(INTEREST, "LOW")
 }
 
 record(mbbi, "$(P)$(CHANNEL):UNIT:MULT")
@@ -55,17 +89,25 @@ record(mbbi, "$(P)$(CHANNEL):UNIT:MULT")
 	field(TWST, " ")
 	field(THST, "k")
 	info(INTEREST, "LOW")
-	field(FLNK, "$(P)$(CHANNEL):MODE")
+	field(SCAN, "1 second")
 }
 
-record(calcout, "$(CHANNEL):UNIT:CALC")
+record(scalcout, "$(P)$(CHANNEL):UNIT:CALC")
 {
 	field(DESC, "Units and multiplier concatenation")
-	field(CALC, "A+B")
-	field(INPA, "$(P)$(CHANNEL):UNIT:MULT")
-	field(INPB, "$(P)UNIT")
-	field(OUT, "$(P)$(CHANNEL):FIELDREADING.EGU")
-	info(INTEREST, "LOW")	
+	field(INAA, "$(P)$(CHANNEL):UNIT:MULT CP MS")
+	field(INBB, "$(P)$(CHANNEL):UNIT CP MS")	
+	field(CALC, "AA+BB")
+	info(INTEREST, "LOW")
+	field(OOPT, "Every Time")
+}
+
+record(stringout, "$(P)$(CHANNEL):UNIT:CALC:STR")
+{
+    field(DESC, "Push units from one pv to another")
+    field(DOL, "$(P)$(CHANNEL):UNIT:CALC.SVAL CP")
+	field(OMSL, "closed_loop")
+    field(OUT,  "$(P)$(CHANNEL):FIELDREADING.EGU $(P)$(CHANNEL):MAXREADING.EGU PP")
 }
 
 record(bi, "$(P)$(CHANNEL):MODE") 
@@ -77,7 +119,7 @@ record(bi, "$(P)$(CHANNEL):MODE")
     field(ONAM, "AC")    
 	info(INTEREST, "HIGH")	
 	info(ARCHIVE, "VAL")
-	field(FLNK, "$(P)$(CHANNEL):PRMS")
+	field(SCAN, "1 second")
 }
 
 record(bo, "$(P)$(CHANNEL):MODE:SP") 
@@ -99,7 +141,7 @@ record(bi, "$(P)$(CHANNEL):PRMS")
     field(ONAM, "PEAK")    
 	info(INTEREST, "HIGH")	
 	info(ARCHIVE, "VAL")
-	field(FLNK, "$(P)$(CHANNEL):FILTER")
+	field(SCAN, "1 second")
 }
 
 record(bi, "$(P)$(CHANNEL):PRMS:SP")  
@@ -119,7 +161,7 @@ record(bi, "$(P)$(CHANNEL):FILTER")
     field(INP,  "@devLakeshore_460.proto getFilter($(CHANNEL)) $(PORT)")
 	field(ZNAM, "OFF")
     field(ONAM, "ON") 
-	field(FLNK, "$(P)$(CHANNEL):RELMODE")	
+	field(SCAN, "1 second")
 }
 
 record(bo, "$(P)$(CHANNEL):FILTER:SP") 
@@ -138,7 +180,7 @@ record(bi, "$(P)$(CHANNEL):RELMODE")
     field(INP,  "@devLakeshore_460.proto getRelMode($(CHANNEL)) $(PORT)")
 	field(ZNAM, "OFF")
     field(ONAM, "ON")
-	field(FLNK, "$(P)$(CHANNEL):AUTO")	
+	field(SCAN, "1 second")
 }
 
 record(bo, "$(P)$(CHANNEL):RELMODE:SP") 
@@ -159,7 +201,7 @@ record(bi, "$(P)$(CHANNEL):AUTO")
     field(ONAM, "ON")    
 	info(INTEREST, "HIGH")	
 	info(ARCHIVE, "VAL")
-	field(FLNK, "$(P)$(CHANNEL):FWIN")	
+	field(SCAN, "1 second")
 }
 
 record(bo, "$(P)$(CHANNEL):AUTO:SP") 
@@ -181,7 +223,7 @@ record(ai, "$(P)$(CHANNEL):FWIN")
 	field(LOLO, "1")
 	field(HHSV, "MAJOR")
     field(LLSV, "MAJOR")
-	field(FLNK, "$(P)$(CHANNEL):FNUM")	    
+	field(SCAN, "1 second")	    
 }
 
 record(ao, "$(P)$(CHANNEL):FWIN:SP")  
@@ -204,7 +246,7 @@ record(ai, "$(P)$(CHANNEL):FNUM")
 	field(LOLO, "2")
 	field(HHSV, "MAJOR")
     field(LLSV, "MAJOR")
-    field(FLNK, "$(P)$(CHANNEL):RANGE")	       
+    field(SCAN, "1 second")
 }
 
 record(ao, "$(P)$(CHANNEL):FNUM:SP")  
@@ -230,7 +272,7 @@ record(mbbi, "$(P)$(CHANNEL):RANGE")
 	field(FRST, "Fourth Range")		
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
-	field(FLNK, "$(P)$(CHANNEL):MAXHOLD")	       
+	field(SCAN, "1 second")
 }
 
 record(mbbo, "$(P)$(CHANNEL):RANGE:SP")
@@ -255,7 +297,7 @@ record(bi, "$(P)$(CHANNEL):MAXHOLD")
     field(ONAM, "ON")    
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")	
-	field(FLNK, "$(P)$(CHANNEL):STATUS")
+	field(SCAN, "1 second")
 }
 
 record(bo, "$(P)$(CHANNEL):MAXHOLD:SP") 
@@ -268,7 +310,7 @@ record(bo, "$(P)$(CHANNEL):MAXHOLD:SP")
 	info(INTEREST, "LOW")
 }
 
-record(bi, "$(P)$(CHANNEL):$(P)STATUS") 
+record(bi, "$(P)$(CHANNEL):STATUS") 
 {
 	field(DESC, "is the channel on/off")
     field(SCAN, "1 second")
@@ -276,10 +318,11 @@ record(bi, "$(P)$(CHANNEL):$(P)STATUS")
     field(INP,  "@devLakeshore_460.proto getStatus($(CHANNEL)) $(PORT)")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-	field(FLNK, "$(P)UNIT")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")	
 }
 
-record(bo, "$(P)$(CHANNEL):$(P)STATUS:SP") 
+record(bo, "$(P)$(CHANNEL):STATUS:SP") 
 {
 	field(DESC, "set the channel on/off")
     field(DTYP, "stream")
