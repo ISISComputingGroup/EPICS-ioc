@@ -20,8 +20,51 @@ record(bo, "$(P)DISABLE")
 
 record(stringin, "$(P)MC:UID")
 {
+    field(DESC, "Unique ID of mixing chamber")
 	field(DTYP, "stream")
-    field(SCAN, "1 second")
 	field(INP, "@devtriton.proto getMixChamberUid $(PORT)")
+	
+	# Should only change very infrequently if at all, so no need for fast scan.
+	# Scan should allow IOC to recover properly if initial read failed for some reason.
 	field(PINI, "YES")
+    field(SCAN, "10 second") 
+}
+
+record(ao, "$(P)P:SP")
+{
+	field(DTYP, "stream")
+	field(OUT, "@devtriton.proto setP($(P)MC:UID) $(PORT)")
+}
+
+record(ai, "$(P)P")
+{
+	field(DTYP, "stream")
+	field(INP, "@devtriton.proto getP($(P)MC:UID) $(PORT)")
+	field(SCAN, "1 second") 
+}
+
+record(ao, "$(P)I:SP")
+{
+	field(DTYP, "stream")
+	field(OUT, "@devtriton.proto setI($(P)MC:UID) $(PORT)")
+}
+
+record(ai, "$(P)I")
+{
+	field(DTYP, "stream")
+	field(INP, "@devtriton.proto getI($(P)MC:UID) $(PORT)")
+	field(SCAN, "1 second") 
+}
+
+record(ao, "$(P)D:SP")
+{
+	field(DTYP, "stream")
+	field(OUT, "@devtriton.proto setD($(P)MC:UID) $(PORT)")
+}
+
+record(ai, "$(P)D")
+{
+	field(DTYP, "stream")
+	field(INP, "@devtriton.proto getD($(P)MC:UID) $(PORT)")
+	field(SCAN, "1 second") 
 }
