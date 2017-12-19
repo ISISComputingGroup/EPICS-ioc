@@ -28,6 +28,8 @@ record(stringin, "$(P)MC:UID")
     # Scan should allow IOC to recover properly if initial read failed for some reason.
     field(PINI, "YES")
     field(SCAN, "10 second") 
+	
+	field(FLNK, "$(P)HEATER:TYPE")
 }
 
 record(ao, "$(P)P:SP")
@@ -86,7 +88,6 @@ record(stringin, "$(P)HEATER:TYPE")
 {
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getHtrType($(P)) $(PORT)")
-	field(SCAN, "1 second")
 }
 
 record(ao, "$(P)HEATER:RANGE:SP")
@@ -107,4 +108,14 @@ record(ai, "$(P)HEATER:POWER")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getHtrPower($(P)) $(PORT)")
     field(SCAN, "1 second")
+}
+
+record(bi, "$(P)CLOSEDLOOP")
+{
+    field(DTYP, "stream")
+	field(INP, "@devtriton.proto getClosedLoop($(P)) $(PORT)")
+	field(SCAN, "1 second")
+	
+	field(ZNAM, "NO")
+	field(ONAM, "YES")
 }
