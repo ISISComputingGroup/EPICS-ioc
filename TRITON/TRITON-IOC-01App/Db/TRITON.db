@@ -33,64 +33,78 @@ record(stringin, "$(P)MC:UID")
 record(ao, "$(P)P:SP")
 {
     field(DTYP, "stream")
-    field(OUT, "@devtriton.proto setP($(P)MC:UID) $(PORT)")
+    field(OUT, "@devtriton.proto setP($(P)) $(PORT)")
 }
 
 record(ai, "$(P)P")
 {
     field(DTYP, "stream")
-    field(INP, "@devtriton.proto getP($(P)MC:UID) $(PORT)")
+    field(INP, "@devtriton.proto getP($(P)) $(PORT)")
     field(SCAN, "1 second") 
 }
 
 record(ao, "$(P)I:SP")
 {
     field(DTYP, "stream")
-    field(OUT, "@devtriton.proto setI($(P)MC:UID) $(PORT)")
+    field(OUT, "@devtriton.proto setI($(P)) $(PORT)")
 }
 
 record(ai, "$(P)I")
 {
     field(DTYP, "stream")
-    field(INP, "@devtriton.proto getI($(P)MC:UID) $(PORT)")
+    field(INP, "@devtriton.proto getI($(P)) $(PORT)")
     field(SCAN, "1 second") 
 }
 
 record(ao, "$(P)D:SP")
 {
     field(DTYP, "stream")
-    field(OUT, "@devtriton.proto setD($(P)MC:UID) $(PORT)")
+    field(OUT, "@devtriton.proto setD($(P)) $(PORT)")
 }
 
 record(ai, "$(P)D")
 {
     field(DTYP, "stream")
-    field(INP, "@devtriton.proto getD($(P)MC:UID) $(PORT)")
+    field(INP, "@devtriton.proto getD($(P)) $(PORT)")
     field(SCAN, "1 second") 
 }
 
 record(ao, "$(P)TEMP:SP")
 {
     field(DTYP, "stream")
-    field(OUT, "@devtriton.proto setTSetpoint($(P)MC:UID) $(PORT)")
+    field(OUT, "@devtriton.proto setTSetpoint($(P)) $(PORT)")
 }
 
 record(ai, "$(P)TEMP:SP:RBV")
 {
     field(DTYP, "stream")
-    field(INP, "@devtriton.proto getTSetpoint($(P)MC:UID) $(PORT)")
+    field(INP, "@devtriton.proto getTSetpoint($(P)) $(PORT)")
     field(SCAN, "1 second") 
+}
+
+record(stringin, "$(P)HEATER:TYPE")
+{
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getHtrType($(P)) $(PORT)")
+	field(SCAN, "1 second")
 }
 
 record(ao, "$(P)HEATER:RANGE:SP")
 {
     field(DTYP, "stream")
-    field(OUT, "@devtriton.proto setHeaterRange($(P)MC:UID) $(PORT)")
+    field(OUT, "@devtriton.proto setHtrRange($(P)) $(PORT)")
 }
 
 record(ai, "$(P)HEATER:RANGE")
 {
     field(DTYP, "stream")
-    field(INP, "@devtriton.proto getHeaterRange($(P)MC:UID) $(PORT)")
+    field(INP, "@devtriton.proto getHtrRange($(P)) $(PORT)")
     field(SCAN, "1 second") 
+}
+
+record(ai, "$(P)HEATER:POWER")
+{
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getHtrPower($(P)) $(PORT)")
+    field(SCAN, "1 second")
 }
