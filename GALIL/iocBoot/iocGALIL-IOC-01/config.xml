@@ -4,16 +4,8 @@
 <ioc_desc>Galil motor controller</ioc_desc>
 <ioc_details>Galil Motor Details</ioc_details>
 <macros>
-<macro name="GALILADDR01" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 1 (MTR01* PVs)" />
-<macro name="GALILADDR02" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 2 (MTR02* PVs)" />
-<macro name="GALILADDR03" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 3 (MTR03* PVs)" />
-<macro name="GALILADDR04" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 4 (MTR04* PVs)" />
-<macro name="GALILADDR05" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 5 (MTR05* PVs)" />
-<macro name="GALILADDR06" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 6 (MTR06* PVs)" />
-<macro name="GALILADDR07" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 7 (MTR07* PVs)" />
-<macro name="GALILADDR08" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 8 (MTR08* PVs)" />
-<macro name="GALILADDR09" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 9 (MTR09* PVs)" />
-<macro name="GALILADDR10" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 10 (MTR10* PVs)" />
+<macro name="GALILADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller (MTR01* PVs)" />
+<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" />
 </macros>
 <pvsets>
 <pvset name="Motor Limits" description="Motor high and low limits" />

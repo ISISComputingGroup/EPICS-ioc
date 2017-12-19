@@ -1,10 +1,1 @@
-$(IFDMC01)file "GALIL_controller_settings.req" P=$(P),CCP=01
-$(IFDMC02)file "GALIL_controller_settings.req" P=$(P),CCP=02
-$(IFDMC03)file "GALIL_controller_settings.req" P=$(P),CCP=03
-$(IFDMC04)file "GALIL_controller_settings.req" P=$(P),CCP=04
-$(IFDMC05)file "GALIL_controller_settings.req" P=$(P),CCP=05
-$(IFDMC06)file "GALIL_controller_settings.req" P=$(P),CCP=06
-$(IFDMC07)file "GALIL_controller_settings.req" P=$(P),CCP=07
-$(IFDMC08)file "GALIL_controller_settings.req" P=$(P),CCP=08
-$(IFDMC09)file "GALIL_controller_settings.req" P=$(P),CCP=09
-$(IFDMC10)file "GALIL_controller_settings.req" P=$(P),CCP=10
+file "GALIL_controller_settings.req" "P=$(P),CCP=$(CCP)"
