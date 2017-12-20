@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 DB += TRITON.db
 DB += TRITON_valves.db
+DB += TRITON_channels.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

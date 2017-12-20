@@ -1,0 +1,21 @@
+record(bi, "$(P)CHANNELS:T$(CHAN):STATE")
+{
+    field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(INP, "@devtriton.proto getChanState($(CHAN)) $(PORT)")
+	
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+
+}
+
+record(bo, "$(P)CHANNELS:T$(CHAN):STATE:SP")
+{
+    field(DTYP, "stream")
+    field(OUT, "@devtriton.proto setChanState($(CHAN)) $(PORT)")
+	
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+
+}
+

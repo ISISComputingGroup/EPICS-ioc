@@ -1,0 +1,10 @@
+file TRITON_channels.template {
+
+pattern {PORT, P, CHAN}
+{"\$(PORT)", "\$(P)", "1"}
+{"\$(PORT)", "\$(P)", "2"}
+{"\$(PORT)", "\$(P)", "3"}
+{"\$(PORT)", "\$(P)", "4"}
+{"\$(PORT)", "\$(P)", "5"}
+{"\$(PORT)", "\$(P)", "6"}
+}
