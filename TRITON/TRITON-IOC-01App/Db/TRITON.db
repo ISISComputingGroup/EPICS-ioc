@@ -126,3 +126,12 @@ record(waveform, "$(P)STATUS")
     field(INP,  "@devtriton.proto getStatus $(PORT)")
     field(SCAN, "1 second")
 }
+
+record(waveform, "$(P)AUTOMATION")
+{
+    field(DTYP, "stream")
+    field(NELM, "512")
+    field(FTVL, "CHAR")
+    field(INP,  "@devtriton.proto getAutomation $(PORT)")
+    field(SCAN, "1 second")
+}
