@@ -1,0 +1,7 @@
+file TRITON_pid.template {
+
+pattern {PORT, P, CTRL}
+{"\$(PORT)", "\$(P)", "P"}
+{"\$(PORT)", "\$(P)", "I"}
+{"\$(PORT)", "\$(P)", "D"}
+}

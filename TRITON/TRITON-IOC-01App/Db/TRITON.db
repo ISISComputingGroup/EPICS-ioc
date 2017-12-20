@@ -18,78 +18,17 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-record(stringin, "$(P)MC:UID")
+record(ai, "$(P)4KHX:TEMP")
 {
-    field(DESC, "Unique ID of mixing chamber")
     field(DTYP, "stream")
-    field(INP, "@devtriton.proto getMixChamberUid $(PORT)")
-    
-    field(PINI, "YES")
-    field(SCAN, "1 second") 
-	
-	field(FLNK, "$(P)HEATER:TYPE")
-}
-
-record(stringin, "$(P)STIL:UID")
-{
-    field(DESC, "Unique ID of STIL channel")
-    field(DTYP, "stream")
-    field(INP, "@devtriton.proto getStilUid $(PORT)")
-    
-    field(PINI, "YES")
+    field(INP, "@devtriton.proto get4KHXTemp $(PORT)")
     field(SCAN, "1 second") 
 }
 
-record(ai, "$(P)MC:TEMP")
+record(ai, "$(P)JTHX:TEMP")
 {
     field(DTYP, "stream")
-    field(INP, "@devtriton.proto getMcTemp($(P)) $(PORT)")
-    field(SCAN, "1 second")
-}
-
-record(ai, "$(P)STIL:TEMP")
-{
-    field(DTYP, "stream")
-    field(INP, "@devtriton.proto getStilTemp($(P)) $(PORT)")
-    field(SCAN, "1 second")
-}
-
-record(ao, "$(P)P:SP")
-{
-    field(DTYP, "stream")
-    field(OUT, "@devtriton.proto setP($(P)) $(PORT)")
-}
-
-record(ai, "$(P)P")
-{
-    field(DTYP, "stream")
-    field(INP, "@devtriton.proto getP($(P)) $(PORT)")
-    field(SCAN, "1 second") 
-}
-
-record(ao, "$(P)I:SP")
-{
-    field(DTYP, "stream")
-    field(OUT, "@devtriton.proto setI($(P)) $(PORT)")
-}
-
-record(ai, "$(P)I")
-{
-    field(DTYP, "stream")
-    field(INP, "@devtriton.proto getI($(P)) $(PORT)")
-    field(SCAN, "1 second") 
-}
-
-record(ao, "$(P)D:SP")
-{
-    field(DTYP, "stream")
-    field(OUT, "@devtriton.proto setD($(P)) $(PORT)")
-}
-
-record(ai, "$(P)D")
-{
-    field(DTYP, "stream")
-    field(INP, "@devtriton.proto getD($(P)) $(PORT)")
+    field(INP, "@devtriton.proto getJTHXTemp $(PORT)")
     field(SCAN, "1 second") 
 }
 
