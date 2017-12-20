@@ -21,9 +21,9 @@ $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
 
 ## For real device use:
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NO_PORT_MACRO)", 0, 0, 0)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"baud","$(BAUD=57600)") 
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"baud","$(BAUD=9600)") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"bits","8") 
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"stop","1") 
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"stop","2") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"parity","none") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"clocal","Y") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N") 
@@ -32,13 +32,6 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","Y")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceIOMask("$(DEVICE)", 0, 2)
 #asynSetTraceMask("L0",-1,0x9) 
 #asynSetTraceIOMask("L0",-1,0x2)
-
-
-## Always set termination codes
-asynOctetSetInputEos("$(DEVICE)",0,"\04") 
-asynOctetSetOutputEos("$(DEVICE)",0,"\04") 
-
-
 
 iocshCmdLoop("< st-ctrl.cmd", "CNUM=\$(I)", "I", 1, 24)
 iocshCmdLoop("< st-max-axis.cmd", "MN=\$(I)", "I", 1, 8)
