@@ -15,6 +15,7 @@ DB += TRITON_valves.db
 DB += TRITON_channels.db
 DB += TRITON_temp_channels.db
 DB += TRITON_pid.db
+DB += TRITON_pressure_channels.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
