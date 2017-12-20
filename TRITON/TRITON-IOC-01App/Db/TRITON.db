@@ -30,6 +30,30 @@ record(stringin, "$(P)MC:UID")
 	field(FLNK, "$(P)HEATER:TYPE")
 }
 
+record(stringin, "$(P)STIL:UID")
+{
+    field(DESC, "Unique ID of STIL channel")
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getStilUid $(PORT)")
+    
+    field(PINI, "YES")
+    field(SCAN, "1 second") 
+}
+
+record(ai, "$(P)MC:TEMP")
+{
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getMcTemp($(P)) $(PORT)")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(P)STIL:TEMP")
+{
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getStilTemp($(P)) $(PORT)")
+    field(SCAN, "1 second")
+}
+
 record(ao, "$(P)P:SP")
 {
     field(DTYP, "stream")
