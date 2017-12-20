@@ -117,3 +117,12 @@ record(bi, "$(P)CLOSEDLOOP")
 	field(ZNAM, "NO")
 	field(ONAM, "YES")
 }
+
+record(waveform, "$(P)STATUS")
+{
+    field(DTYP, "stream")
+    field(NELM, "512")
+    field(FTVL, "CHAR")
+    field(INP,  "@devtriton.proto getStatus $(PORT)")
+    field(SCAN, "1 second")
+}
