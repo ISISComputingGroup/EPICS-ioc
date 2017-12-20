@@ -1,0 +1,16 @@
+record(mbbi, "$(P)VALVES:V$(VALVE):STATE")
+{
+    field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(INP, "@devtriton.proto getValveState($(VALVE)) $(PORT)")
+	
+	field(ZRST, "OPEN")
+	field(ZRVL, "0")
+	
+	field(ONST, "CLOSED")
+	field(ONVL, "1")
+	
+	field(TWST, "NOT_FOUND")
+	field(TWVL, "2")
+}
+

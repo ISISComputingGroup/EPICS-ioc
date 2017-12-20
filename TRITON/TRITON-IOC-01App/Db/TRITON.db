@@ -24,10 +24,8 @@ record(stringin, "$(P)MC:UID")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getMixChamberUid $(PORT)")
     
-    # Should only change very infrequently if at all, so no need for fast scan.
-    # Scan should allow IOC to recover properly if initial read failed for some reason.
     field(PINI, "YES")
-    field(SCAN, "10 second") 
+    field(SCAN, "1 second") 
 	
 	field(FLNK, "$(P)HEATER:TYPE")
 }
