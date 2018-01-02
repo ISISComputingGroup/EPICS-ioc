@@ -1,4 +1,4 @@
-epicsEnvSet(DEVICE,L0)
+epicsEnvSet("DEVICE", "L0")
 
 < $(IOCSTARTUP)/init.cmd
 
@@ -37,9 +37,10 @@ iocshCmdLoop("< st-ctrl.cmd", "CNUM=\$(I)", "I", 1, 24)
 iocshCmdLoop("< st-max-axis.cmd", "MN=\$(I)", "I", 1, 8)
 
 
-# (driver port, serial port, axis num, ms mov poll, ms idle poll, egu per step)
 epicsEnvSet("MRES","0.0005")
-$(IFNOTRECSIM) SM300CreateController("HI", "$(DEVICE)", "$(NAXES=1)", 100, 1000, "$(MRES)")
+epicsEnvSet("AMOTOR", "SM300MOTOR")
+# (driver port, serial port, axis num, ms mov poll, ms idle poll, egu per step)
+$(IFNOTRECSIM) SM300CreateController("$(AMOTOR)", "$(DEVICE)", "$(NAXES=1)", 100, 1000, "$(MRES)")
 
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
@@ -47,7 +48,7 @@ iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
-dbLoadRecords("$(MOTOR)/db/SM300_extra.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX), PORT=HI, ADDR=0")
+dbLoadRecords("$(MOTOR)/db/SM300_extra.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX), PORT=$(AMOTOR), ADDR=0")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -62,16 +63,5 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 < $(IOCSTARTUP)/postiocinit.cmd
 
 # Save motor positions every 5 seconds
-#create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:")
-
-# Save motor settings every 30 seconds
-#$(IFPORT1) create_monitor_set("$(IOCNAME)_1_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
-#$(IFPORT2) create_monitor_set("$(IOCNAME)_2_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
-#$(IFPORT3) create_monitor_set("$(IOCNAME)_3_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
-#$(IFPORT4) create_monitor_set("$(IOCNAME)_4_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
-#$(IFPORT5) create_monitor_set("$(IOCNAME)_5_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
-#$(IFPORT6) create_monitor_set("$(IOCNAME)_6_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
-#$(IFPORT7) create_monitor_set("$(IOCNAME)_7_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
-#$(IFPORT8) create_monitor_set("$(IOCNAME)_8_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
-
-#create_monitor_set("$(IOCNAME)_settings.req", 5, "P=$(MYPVPREFIX)MOT:")
+create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:")
+create_monitor_set("$(IOCNAME)_settings.req", 5, "P=$(MYPVPREFIX)MOT:")
