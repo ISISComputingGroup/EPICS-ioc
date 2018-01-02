@@ -47,6 +47,7 @@ iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
+dbLoadRecords("$(MOTOR)/db/SM300_extra.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX), PORT=HI, ADDR=0")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
