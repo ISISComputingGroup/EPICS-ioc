@@ -1,6 +1,4 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(LKSH460)/Lakeshore_460Sup"
-
-
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(LKSH460)/data"
 epicsEnvSet "DEVICE" "L0"
 
@@ -10,7 +8,7 @@ epicsEnvSet "DEVICE" "L0"
 cd "${TOP}"
 
 # For dev sim devices
-$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=57677)")
 
 ## Register all support components
 dbLoadDatabase "dbd/LKSH460-IOC-01.dbd"
@@ -22,6 +20,9 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", 7)
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=odd)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
+
+asynSetTraceMask("L0",-1,0x9) 
+asynSetTraceIOMask("L0",-1,0x2)
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd

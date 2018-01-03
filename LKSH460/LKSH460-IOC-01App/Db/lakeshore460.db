@@ -1,4 +1,4 @@
-# Core records (not channel PVs)
+## Core device records (PVs relating to channel x/y/z/v created in lakeshore460_channels.template) ##
 
 record(stringin, "$(P)IDN")
 {
@@ -8,11 +8,32 @@ record(stringin, "$(P)IDN")
     field(PINI, "YES")
 }
 
+record(bi, "$(P)UNIT") 
+{
+    field(DESC, "Unit in use - gauss or tesla")
+    field(DTYP, "stream")
+	field(SCAN, "5 second")
+    field(INP,  "@devLakeshore_460.proto getMagneticFieldUnits $(PORT)")
+    field(ZNAM, "G")
+    field(ONAM, "T")
+    info(INTEREST, "MEDIUM")
+	field(FLNK, "$(P)SOURCE")
+}
+
+record(bo, "$(P)UNIT:SP") 
+{
+    field(DESC, "Set Unit, gauss or tesla")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setMagneticFieldUnits $(PORT)")
+    field(ZNAM, "G")
+    field(ONAM, "T") 
+    info(INTEREST, "LOW")
+}
+
 record(mbbi, "$(P)SOURCE")
 {
 	field(DESC, "Vector magnitude source")
 	field(DTYP, "stream")
-	field(SCAN, "1 second")
 	field(INP,  "@devLakeshore_460.proto getSource $(PORT)")
 	field(ONST, "XYZ")
 	field(TWST, "XY")
@@ -68,4 +89,3 @@ record(mbbo, "$(P)CHANNEL:SP")
 	field(THST, "Z")
 	field(FRST, "V")	
 }
-
