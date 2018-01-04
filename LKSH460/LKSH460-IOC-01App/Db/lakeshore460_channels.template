@@ -32,7 +32,6 @@ record(ai, "$(P)$(CHANNEL):RELMODEREADING")
 	field(INP, "@devLakeshore_460.proto getRelModeReading($(CHANNEL)) $(PORT)")    
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
-	field(SCAN, "1 second")
 	field(PREC, "4")
 	field(EGU, "")
 }
@@ -55,6 +54,7 @@ record(ao, "$(P)$(CHANNEL):RELMODESETPOINT:SP")
 	field(DTYP, "stream")
 	field(OUT, "@devLakeshore_460.proto setRelModeSetpoint($(CHANNEL)) $(PORT)")    
 	info(INTEREST, "LOW")	
+	field(EGU, "")
 }
 
 record(bo, "$(P)$(CHANNEL):MAXCLEAR:SP")
