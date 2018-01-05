@@ -1,0 +1,27 @@
+record(bo, "$(P)PSUS:DISABLE")
+{
+    field(ZNAM, "ENABLED")
+	field(ONAM, "DISABLED")
+	field(FLNK, "$(P)PSUS:DISABLE:FANOUT")
+}
+
+record(fanout, "$(P)PSUS:DISABLE:FANOUT")
+{
+    field(LNK1, "$(P)PSUS:DISABLE:FANOUT:GRP1")
+    #field(LNK2, "$(P)PSUS:DISABLE:FANOUT:GRP2")
+    #field(LNK3, "$(P)PSUS:DISABLE:FANOUT:GRP3")
+    #field(LNK4, "$(P)PSUS:DISABLE:FANOUT:GRP4")
+    #field(LNK5, "$(P)PSUS:DISABLE:FANOUT:GRP5")
+    #field(LNK6, "$(P)PSUS:DISABLE:FANOUT:GRP6")
+}
+
+record(seq, "$(P)PSUS:DISABLE:FANOUT:GRP1")
+{
+    field(DOL1, "$(P)PSUS:DISABLE CP")
+	field(LNK1, "$(PV_PREFIX)DFKPS_01:POWER:SP.DISP PP")
+	
+    field(DOL2, "$(P)PSUS:DISABLE CP")
+	field(LNK2, "$(PV_PREFIX)DFKPS_02:POWER:SP.DISP PP")
+	
+}
+
