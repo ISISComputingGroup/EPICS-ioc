@@ -23,8 +23,12 @@ COORD_IOC_01_registerRecordDeviceDriver pdbbase
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
+# These PVs will make it so the inhibitor will only let one motor be non-zero at a time
+epicsEnvSet(OK_TO_RUN_PSUS,$(MYPVPREFIX)PARS:USER:R0)
+epicsEnvSet(ALLOW_PORT_CHANGEOVER,$(MYPVPREFIX)PARS:USER:R1)
+
 ## Start any sequence programs
-seq coord
+seq riken_port_changeover, "OK_TO_RUN_PSUS=$(OK_TO_RUN_PSUS),ALLOW_PORT_CHANGEOVER=$(ALLOW_PORT_CHANGEOVER)"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
