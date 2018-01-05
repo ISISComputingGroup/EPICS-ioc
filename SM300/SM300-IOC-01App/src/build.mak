@@ -40,11 +40,11 @@ $(APPNAME)_DBD += stdSupport.dbd
 $(APPNAME)_DBD += asubFunctions.dbd 
 $(APPNAME)_DBD += asyn.dbd 
 $(APPNAME)_DBD += sscanSupport.dbd 
-
+$(APPNAME)_DBD += axis.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += asubFunctions   #TODO do I need this  <---------------------------------------
+$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
@@ -62,6 +62,7 @@ $(APPNAME)_LIBS += motionSetPoints
 $(APPNAME)_LIBS += sampleChanger
 $(APPNAME)_LIBS += busy asyn
 $(APPNAME)_LIBS += std sscan
+$(APPNAME)_LIBS += TinyXML
 
 # SM300-IOC-01_registerRecordDeviceDriver.cpp derives from SM300-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

@@ -1,5 +1,4 @@
 epicsEnvSet("DEVICE", "L0")
-
 < $(IOCSTARTUP)/init.cmd
 
 < $(IOCSTARTUP)/dbload.cmd
@@ -30,8 +29,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","Y") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","Y") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceIOMask("$(DEVICE)", 0, 2)
-#asynSetTraceMask("L0",-1,0x9) 
-#asynSetTraceIOMask("L0",-1,0x2)
+asynSetTraceMask("L0",-1,0x9) 
+asynSetTraceIOMask("L0",-1,0x2)
 
 iocshCmdLoop("< st-ctrl.cmd", "CNUM=\$(I)", "I", 1, 24)
 iocshCmdLoop("< st-max-axis.cmd", "MN=\$(I)", "I", 1, 8)
@@ -45,10 +44,21 @@ $(IFNOTRECSIM) SM300CreateController("$(AMOTOR)", "$(DEVICE)", "$(NAXES=1)", 100
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 
+epicsEnvSet("SM300CONFIG","$(ICPCONFIGROOT)/$(IOCNAME)")
+
+# configure axes
+< $(SM300CONFIG)/axes.cmd
+
+# motion set points
+< $(SM300CONFIG)/motionsetpoints.cmd
+
+# sample changer
+< $(SM300CONFIG)/sampleChanger.cmd
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 dbLoadRecords("$(MOTOR)/db/SM300_extra.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX), PORT=$(AMOTOR), ADDR=0")
+
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
