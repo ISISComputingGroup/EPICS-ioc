@@ -1,4 +1,23 @@
-## Core device records (PVs relating to channel x/y/z/v created in lakeshore460_channels.template) ##
+### Core device records (PVs relating to channel x/y/z/v created in lakeshore460_channels.template) ###
+
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
 
 record(stringin, "$(P)IDN")
 {
@@ -18,6 +37,8 @@ record(bi, "$(P)UNIT")
     field(ONAM, "T")
     info(INTEREST, "MEDIUM")
 	field(FLNK, "$(P)SOURCE")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UNIT")
 }
 
 record(bo, "$(P)UNIT:SP") 
@@ -28,6 +49,8 @@ record(bo, "$(P)UNIT:SP")
     field(ZNAM, "G")
     field(ONAM, "T") 
     info(INTEREST, "LOW")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UNIT:SP")
 }
 
 record(mbbi, "$(P)SOURCE")
@@ -48,6 +71,8 @@ record(mbbi, "$(P)SOURCE")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
 	field(FLNK, "$(P)CHANNEL")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SOURCE")
 }
 
 record(mbbo, "$(P)SOURCE:SP")
@@ -66,6 +91,8 @@ record(mbbo, "$(P)SOURCE:SP")
 	field(FRVL, "4")
 	field(FVVL, "5")
 	info(INTEREST, "LOW")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SOURCE:SP")
 }
 
 record(mbbi, "$(P)CHANNEL")
@@ -77,15 +104,54 @@ record(mbbi, "$(P)CHANNEL")
 	field(TWST, "Y")
 	field(THST, "Z")
 	field(FRST, "V")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CHANNEL")
 }
 
 record(mbbo, "$(P)CHANNEL:SP")
 {
-	field(DESC, "Set Vector magnitude source")
+	field(DESC, "Set device channel")
 	field(OUT,  "@devLakeshore_460.proto setChannel $(PORT)")
 	field(DTYP, "stream")
 	field(ONST, "X")
 	field(TWST, "Y")
 	field(THST, "Z")
-	field(FRST, "V")	
+	field(FRST, "V")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CHANNEL:SP")	
 }
+
+### SIMULATION RECORDS ###
+
+record(mbbi, "$(P)SIM:CHANNEL")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:CHANNEL","$(P)SIM:CHANNEL:SP")
+
+record(stringin, "$(P)SIM:IDN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)SIM:SOURCE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:SOURCE","$(P)SIM:SOURCE:SP")
+
+record(bi, "$(P)SIM:UNIT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:UNIT","$(P)SIM:UNIT:SP")
+
