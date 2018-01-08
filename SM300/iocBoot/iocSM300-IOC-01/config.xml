@@ -1,10 +1,72 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>This is a template description</ioc_desc>
-<ioc_details>These are template details</ioc_details>
+<ioc_desc>SM300 motor controller</ioc_desc>
+<ioc_details>SM300 motor controller used for sample changer</ioc_details>
 <macros>
+
+<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" />
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+<macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 9600)" />
+<macro name="BITS" pattern="^[7-8]$" description="Data bits (default: 8)" />
+<macro name="PARITY" pattern="^(even|odd|none)$" description="Parity (default: none)" />
+<macro name="STOP" pattern="^[0-2]$" description="Stop bits (default: 2)" />
+
+<macro name="AXIS1" pattern="^(yes|no)$" description="Motor is attached to axis 1 (default: no)" />
+<macro name="AXIS2" pattern="^(yes|no)$" description="Motor is attached to axis 2 (default: no)" />
+<macro name="AXIS3" pattern="^(yes|no)$" description="Motor is attached to axis 3 (default: no)" />
+<macro name="AXIS4" pattern="^(yes|no)$" description="Motor is attached to axis 4 (default: no)" />
+<macro name="AXIS5" pattern="^(yes|no)$" description="Motor is attached to axis 5 (default: no)" />
+<macro name="AXIS6" pattern="^(yes|no)$" description="Motor is attached to axis 6 (default: no)" />
+<macro name="AXIS7" pattern="^(yes|no)$" description="Motor is attached to axis 7 (default: no)" />
+<macro name="AXIS8" pattern="^(yes|no)$" description="Motor is attached to axis 8 (default: no)" />
+
+<macro name="VELO1" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, mm/s, set in driver to hard coded value (default: 1)" />
+<macro name="VELO2" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, mm/s, set in driver to hard coded value (default: 1)" />
+<macro name="VELO3" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, mm/s, set in driver to hard coded value (default: 1)" />
+<macro name="VELO4" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, mm/s, set in driver to hard coded value (default: 1)" />
+<macro name="VELO5" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, mm/s, set in driver to hard coded value (default: 1)" />
+<macro name="VELO6" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, mm/s, set in driver to hard coded value (default: 1)" />
+<macro name="VELO7" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, mm/s, set in driver to hard coded value (default: 1)" />
+<macro name="VELO8" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, mm/s, set in driver to hard coded value (default: 1)" />
+
+<macro name="MSTP1" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" />
+<macro name="MSTP2" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" />
+<macro name="MSTP3" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" />
+<macro name="MSTP4" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" />
+<macro name="MSTP5" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" />
+<macro name="MSTP6" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" />
+<macro name="MSTP7" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" />
+<macro name="MSTP8" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" />
+
+
+<macro name="DHLM1" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit, set in driver to hard coded value (default: 200)" />
+<macro name="DHLM2" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit, set in driver to hard coded value (default: 200)" />
+<macro name="DHLM3" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit, set in driver to hard coded value (default: 200)" />
+<macro name="DHLM4" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit, set in driver to hard coded value (default: 200)" />
+<macro name="DHLM5" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit, set in driver to hard coded value (default: 200)" />
+<macro name="DHLM6" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit, set in driver to hard coded value (default: 200)" />
+<macro name="DHLM7" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit, set in driver to hard coded value (default: 200)" />
+<macro name="DHLM8" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit, set in driver to hard coded value (default: 200)" />
+
+<macro name="DLLM1" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit, set in driver to hard coded value (default: -200)" />
+<macro name="DLLM2" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit, set in driver to hard coded value (default: -200)" />
+<macro name="DLLM3" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit, set in driver to hard coded value (default: -200)" />
+<macro name="DLLM4" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit, set in driver to hard coded value (default: -200)" />
+<macro name="DLLM5" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit, set in driver to hard coded value (default: -200)" />
+<macro name="DLLM6" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit, set in driver to hard coded value (default: -200)" />
+<macro name="DLLM7" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit, set in driver to hard coded value (default: -200)" />
+<macro name="DLLM8" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit, set in driver to hard coded value (default: -200)" />
+
+<macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
+<macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
+<macro name="NAME3" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
+<macro name="NAME4" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
+<macro name="NAME5" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
+<macro name="NAME6" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
+<macro name="NAME7" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
+<macro name="NAME8" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
+
 </macros>
 <pvsets>
 </pvsets>
