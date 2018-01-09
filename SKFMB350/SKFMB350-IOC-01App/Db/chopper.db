@@ -78,7 +78,7 @@ record(longin, "$(P)FREQ:RAW") {
 record(calcout, "$(P)FREQ:CALC") {
     field(DESC, "Converts rpm to Hz")
     field(INPA, "$(P)FREQ:RAW CP MS")
-	field(INPB, "$(P)READ:PHASEINFO CP MS")
+	field(INPB, "$(P)READ:PHASEINFO CP")
     field(CALC, "A/60")
     field(OUT, "$(P)FREQ PP MS")
     field(OOPT, "Every Time")
@@ -133,7 +133,7 @@ record(ai, "$(P)PHAS:RAW") {
 
 record(calcout, "$(P)PHAS:CALC") {
     field(INPA, "$(P)PHAS:RAW CP MS")
-	field(INPB, "$(P)READ:PHASEINFO CP MS")
+	field(INPB, "$(P)READ:PHASEINFO CP")
     field(CALC, "A")
     field(OUT, "$(P)PHAS PP MS")
     field(OOPT, "Every Time")
@@ -201,7 +201,7 @@ record(ai, "$(P)PHAS:SP:RBV:RAW") {
 record(calcout, "$(P)PHAS:SP:RBV:CALC") {
     field(DESC, "Converts raw phase rbv")
     field(INPA, "$(P)PHAS:SP:RBV:RAW CP MS")
-    field(INPB, "$(P)READ:PHASEINFO CP MS")
+    field(INPB, "$(P)READ:PHASEINFO CP")
     field(CALC, "A*1000")
     field(OUT, "$(P)PHAS:SP:RBV PP")
     field(OOPT, "Every Time")
@@ -233,7 +233,7 @@ record(ai, "$(P)PHAS_ERR:RAW") {
 
 record(calcout, "$(P)PHAS_ERR:CALC") {
     field(INPA, "$(P)PHAS_ERR:RAW CP MS")
-	field(INPB, "$(P)READ:PHASEINFO CP MS")
+	field(INPB, "$(P)READ:PHASEINFO CP")
     field(CALC, "A")
     field(OUT, "$(P)PHAS_ERR PP MS")
     field(OOPT, "Every Time")
@@ -285,7 +285,7 @@ alias("$(P)SIM:PHAS_ERR", "$(P)SIM:PHAS_ERR:SP")
 #
 
 record(calcout, "$(P)ILK:RAW") {
-    field(INPB, "$(P)READ:PHASEINFO CP MS")
+    field(INPB, "$(P)READ:PHASEINFO CP")
     field(CALC, "A")
 }
 
@@ -305,7 +305,7 @@ record(mbbiDirect, "$(P)ILK") {
 #
 
 record(calcout, "$(P)STAT:RAW") {
-	field(INPB, "$(P)READ:PHASEINFO CP MS")
+	field(INPB, "$(P)READ:PHASEINFO CP")
     field(CALC, "A")
 
 }
@@ -335,7 +335,7 @@ record(longin, "$(P)ANGLE:ROTATOR:RAW") {
 
 record(calcout, "$(P)ANGLE:ROTATOR:CALC") {
     field(INPA, "$(P)ANGLE:ROTATOR:RAW CP MS")
-    field(INPB, "$(P)READ:ROTATORANGLE CP MS")
+    field(INPB, "$(P)READ:ROTATORANGLE CP")
     field(CALC, "A/10")
     field(OUT, "$(P)ANGLE:ROTATOR PP MS")
     field(OOPT, "Every Time")
