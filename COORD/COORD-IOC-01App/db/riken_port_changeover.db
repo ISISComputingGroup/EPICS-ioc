@@ -1,4 +1,4 @@
-record(bo, "$(P)PSUS:DISABLE")
+record(bo, "$(P)PSUS:DISABLE:SP")
 {
     field(ZNAM, "ENABLED")
 	field(ONAM, "DISABLED")
@@ -6,10 +6,9 @@ record(bo, "$(P)PSUS:DISABLE")
 
 record(seq, "$(P)PSUS:DISABLE:FANOUT:GRP1")
 {
-    field(DOL1, "$(P)PSUS:DISABLE CP")
+    field(DOL1, "$(P)PSUS:DISABLE:SP CP")
 	field(LNK1, "$(PV_PREFIX)DFKPS_01:POWER:SP.DISP PP")
 	
-    field(DOL2, "$(P)PSUS:DISABLE CP")
+    field(DOL2, "$(P)PSUS:DISABLE:SP CP")
 	field(LNK2, "$(PV_PREFIX)DFKPS_02:POWER:SP.DISP PP")
 }
-
