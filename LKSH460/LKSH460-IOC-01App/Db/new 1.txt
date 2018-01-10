@@ -1,10 +1,8 @@
-## Template for x/y/z/vector channel PVs ##
-
 record(ai, "$(P)$(CHANNEL):FIELDREADING")
 {
 	field(DESC, "Field reading")
     field(DTYP, "stream")
-	field(SCAN, "2 second")
+	field(SCAN, "5 second")
 	field(INP, "@devLakeshore_460.proto getMagneticFieldReading($(CHANNEL)) $(PORT)")    
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
@@ -19,7 +17,7 @@ record(ai, "$(P)$(CHANNEL):MAXREADING")
 {
 	field(DESC, "Max reading")
 	field(DTYP, "stream")
-	field(SCAN, "2 second")
+	field(SCAN, "5 second")
 	field(INP, "@devLakeshore_460.proto getMaxReading($(CHANNEL)) $(PORT)")    
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
@@ -33,7 +31,7 @@ record(ai, "$(P)$(CHANNEL):MAXREADING")
 record(ai, "$(P)$(CHANNEL):RELMODEREADING")
 {
 	field(DESC, "Relative Mode Reading")
-	field(SCAN, "2 second")
+	field(SCAN, "5 second")
 	field(DTYP, "stream")
 	field(INP, "@devLakeshore_460.proto getRelModeReading($(CHANNEL)) $(PORT)")    
 	info(INTEREST, "HIGH")
@@ -43,12 +41,13 @@ record(ai, "$(P)$(CHANNEL):RELMODEREADING")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(CHANNEL):RELMODEREADING")
     field(SDIS, "$(P)DISABLE")
+
 }
 
 record(ai, "$(P)$(CHANNEL):RELMODESET")
 {
 	field(DESC, "return rel mode set point")
-	field(SCAN, "5 second")
+	field(SCAN, "10 second")
 	field(DTYP, "stream")
 	field(INP, "@devLakeshore_460.proto getRelModeSetpoint($(CHANNEL)) $(PORT)")
 	info(INTEREST, "HIGH")	
@@ -71,6 +70,7 @@ record(ao, "$(P)$(CHANNEL):RELMODESET:SP")
     field(SDIS, "$(P)$(CHANNEL):DISABLE")
 	info(INTEREST, "LOW")	
 	field(EGU, "")
+
 }
 
 record(bo, "$(P)$(CHANNEL):MAXCLEAR:SP")
@@ -83,7 +83,7 @@ record(bo, "$(P)$(CHANNEL):MAXCLEAR:SP")
 	info(ARCHIVE, "VAL")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(CHANNEL):MAXCLEAR:SP")
-    field(SDIS, "$(P)DISABLE")
+     field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)$(CHANNEL):MAXCLEAR:SP","$(P)$(CHANNEL):MAXCLEAR")
 
@@ -507,143 +507,3 @@ record(bo, "$(P)$(CHANNEL):STATUS:SP")
     field(SIOL, "$(P)SIM:$(CHANNEL):STATUS:SP")
     field(SDIS, "$(P)DISABLE")
 }
-
-### SIMULATION RECORDS ###
-
-record(mbbi, "$(P)$(CHANNEL):SIM:FIELDREADING:UNIT:MULT")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(bi, "$(P)$(CHANNEL):SIM:RELMODE")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-alias("$(P)$(CHANNEL):SIM:RELMODE","$(P)$(CHANNEL):SIM:RELMODE:SP")
-
-record(ai, "$(P)$(CHANNEL):SIM:MAXREADING")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(bi, "$(P)$(CHANNEL):SIM:AUTO")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-alias("$(P)$(CHANNEL):SIM:AUTO","$(P)$(CHANNEL):SIM:AUTO:SP")
-
-record(ai, "$(P)$(CHANNEL):SIM:FWIN")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-alias("$(P)$(CHANNEL):SIM:FWIN","$(P)$(CHANNEL):SIM:FWIN:SP")
-
-record(ai, "$(P)$(CHANNEL):SIM:RELMODESET")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-alias("$(P)$(CHANNEL):SIM:RELMODESET","$(P)$(CHANNEL):SIM:RELMODESET:SP")
-
-record(mbbi, "$(P)$(CHANNEL):SIM:RANGE")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-alias("$(P)$(CHANNEL):SIM:RANGE","$(P)$(CHANNEL):SIM:RANGE:SP")
-
-record(ai, "$(P)$(CHANNEL):SIM:FIELDREADING")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(bi, "$(P)$(CHANNEL):SIM:MODE")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-alias("$(P)$(CHANNEL):SIM:MODE","$(P)$(CHANNEL):SIM:MODE:SP")
-
-record(bi, "$(P)$(CHANNEL):SIM:PRMS")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-alias("$(P)$(CHANNEL):SIM:PRMS","$(P)$(CHANNEL):SIM:PRMS:SP")
-
-record(bi, "$(P)$(CHANNEL):SIM:MAXHOLD")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-alias("$(P)$(CHANNEL):SIM:MAXHOLD","$(P)$(CHANNEL):SIM:MAXHOLD:SP")
-
-record(mbbi, "$(P)$(CHANNEL):SIM:MAXREADING:UNIT:MULT")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(mbbi, "$(P)$(CHANNEL):SIM:RELMODESET:MULT")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(ai, "$(P)$(CHANNEL):SIM:FNUM")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-alias("$(P)$(CHANNEL):SIM:FNUM","$(P)$(CHANNEL):SIM:FNUM:SP")
-
-record(bi, "$(P)$(CHANNEL):SIM:FILTER")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-alias("$(P)$(CHANNEL):SIM:FILTER","$(P)$(CHANNEL):SIM:FILTER:SP")
-
-record(mbbi, "$(P)$(CHANNEL):SIM:RELMODEREADING:UNIT:MULT")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(ai, "$(P)$(CHANNEL):SIM:RELMODEREADING")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(bo, "$(P)$(CHANNEL):SIM:MAXCLEAR")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-alias("$(P)$(CHANNEL):SIM:MAXCLEAR","$(P)$(CHANNEL):SIM:MAXCLEAR:SP")
-
-record(bi, "$(P)$(CHANNEL):SIM:STATUS")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-alias("$(P)$(CHANNEL):SIM:STATUS","$(P)$(CHANNEL):SIM:STATUS:SP")

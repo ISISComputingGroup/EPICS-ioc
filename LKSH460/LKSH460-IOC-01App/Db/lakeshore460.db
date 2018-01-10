@@ -1,4 +1,4 @@
-### Core device records (PVs relating to channel x/y/z/v created in lakeshore460_channels.template) ###
+### Core device records ###
 
 record(bo, "$(P)SIM")
 {
@@ -27,27 +27,27 @@ record(stringin, "$(P)IDN")
     field(PINI, "YES")
 }
 
-record(bi, "$(P)UNIT") 
+record(mbbi, "$(P)UNIT") 
 {
     field(DESC, "Unit in use - gauss or tesla")
     field(DTYP, "stream")
-	field(SCAN, "5 second")
-    field(INP,  "@devLakeshore_460.proto getMagneticFieldUnits $(PORT)")
-    field(ZNAM, "G")
-    field(ONAM, "T")
+	field(SCAN, "2 second")
+    field(INP,  "@devLakeshore_460.proto getFieldUnits $(PORT)")
+    field(ZRST, "G")
+    field(ONST, "T")	
     info(INTEREST, "MEDIUM")
 	field(FLNK, "$(P)SOURCE")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:UNIT")
 }
 
-record(bo, "$(P)UNIT:SP") 
+record(mbbo, "$(P)UNIT:SP") 
 {
     field(DESC, "Set Unit, gauss or tesla")
     field(DTYP, "stream")
-    field(OUT,  "@devLakeshore_460.proto setMagneticFieldUnits $(PORT)")
-    field(ZNAM, "G")
-    field(ONAM, "T") 
+    field(OUT,  "@devLakeshore_460.proto setFieldUnits $(PORT)")
+    field(ZRST, "G")
+    field(ONST, "T")	
     info(INTEREST, "LOW")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:UNIT:SP")
@@ -123,7 +123,15 @@ record(mbbo, "$(P)CHANNEL:SP")
     field(SIOL, "$(P)SIM:CHANNEL:SP")	
 }
 
+
 ### SIMULATION RECORDS ###
+
+
+record(stringin, "$(P)SIM:IDN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
 
 record(mbbi, "$(P)SIM:CHANNEL")
 {
@@ -132,12 +140,6 @@ record(mbbi, "$(P)SIM:CHANNEL")
 }
 
 alias("$(P)SIM:CHANNEL","$(P)SIM:CHANNEL:SP")
-
-record(stringin, "$(P)SIM:IDN")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
 
 record(mbbi, "$(P)SIM:SOURCE")
 {
