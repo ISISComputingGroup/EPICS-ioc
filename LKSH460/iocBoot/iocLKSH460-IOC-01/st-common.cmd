@@ -17,8 +17,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=odd)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 
 # Uncomment for debugging information
-asynSetTraceMask("L0",-1,0x9) 
-asynSetTraceIOMask("L0",-1,0x2)
+#asynSetTraceMask("L0",-1,0x9) 
+#asynSetTraceIOMask("L0",-1,0x2)
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
