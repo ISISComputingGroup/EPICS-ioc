@@ -1,0 +1,20 @@
+#
+# This record gets pushed to by the individual records in riken_port_changeover_psus.db
+#
+record(calc, "$(P)PSUS:POWER:GRP$(GRP)")
+{
+	field(PINI, "YES")
+	field(A, "0")
+	field(B, "0")
+	field(C, "0")
+	field(D, "0")
+	field(E, "0")
+	field(F, "0")
+	field(G, "0")
+	field(H, "0")
+	field(I, "0")
+	field(J, "0")
+	field(K, "0")
+	field(L, "0")
+    field(CALC, "A+B+C+D+E+F+G+H+I+J+K+L")
+}

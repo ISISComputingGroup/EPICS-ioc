@@ -19,13 +19,14 @@ COORD_IOC_01_registerRecordDeviceDriver pdbbase
 
 
 epicsEnvSet(OK_TO_RUN_PSUS,$(MYPVPREFIX)SIMPLE:VALUE1)
-epicsEnvSet(ALLOW_PORT_CHANGEOVER,$(MYPVPREFIX)PARS:USER:R1)
+epicsEnvSet(ALLOW_PORT_CHANGEOVER,$(MYPVPREFIX)SIMPLE:VALUE2)
 epicsEnvSet(PSU_DISABLE,$(MYPVPREFIX)$(IOCNAME):PSUS:DISABLE:SP)
 epicsEnvSet(PSU_POWER,$(MYPVPREFIX)$(IOCNAME):PSUS:POWER:ANY)
 
 
 dbLoadRecords("$(TOP)/db/riken_port_changeover.db","PV_PREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,OK_TO_RUN_PSUS=$(OK_TO_RUN_PSUS),PSU_DISABLE=$(PSU_DISABLE),PSU_POWER=$(PSU_POWER)")
 dbLoadRecords("$(TOP)/db/riken_port_changeover_psus.db","PV_PREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,OK_TO_RUN_PSUS=$(OK_TO_RUN_PSUS),PSU_DISABLE=$(PSU_DISABLE),PSU_POWER=$(PSU_POWER)")
+dbLoadRecords("$(TOP)/db/riken_port_changeover_groups.db","PV_PREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,OK_TO_RUN_PSUS=$(OK_TO_RUN_PSUS),PSU_DISABLE=$(PSU_DISABLE),PSU_POWER=$(PSU_POWER)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
