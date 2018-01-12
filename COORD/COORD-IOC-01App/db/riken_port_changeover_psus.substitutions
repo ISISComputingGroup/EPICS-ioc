@@ -1,0 +1,10 @@
+file riken_port_changeover_psus.template {
+
+pattern {PV_PREFIX, P, PSU_DISABLE, PSNAME, PSGRP, PSIDX}
+
+{"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RQ1", "1", "A"}
+{"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RQ2", "1", "B"}
+
+{"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RB1", "2", "A"}
+{"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RB2", "2", "B"}
+}

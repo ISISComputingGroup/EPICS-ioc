@@ -1,14 +1,105 @@
-record(bo, "$(P)PSUS:DISABLE:SP")
+record(bo, "$(PSU_DISABLE)")
 {
     field(ZNAM, "ENABLED")
 	field(ONAM, "DISABLED")
 }
 
-record(seq, "$(P)PSUS:DISABLE:FANOUT:GRP1")
+#
+# If this record is in alarm it will report that the PSUS are powered ON.
+#
+# This is so that if the RKNPS ioc cannot talk to the hardware then the changeover 
+# sequence does not proceed (as it cannot check whether the supplies are off).
+#
+record(calc, "$(PSU_POWER)")
 {
-    field(DOL1, "$(P)PSUS:DISABLE:SP CP")
-	field(LNK1, "$(PV_PREFIX)DFKPS_01:POWER:SP.DISP PP")
-	
-    field(DOL2, "$(P)PSUS:DISABLE:SP CP")
-	field(LNK2, "$(PV_PREFIX)DFKPS_02:POWER:SP.DISP PP")
+    field(INPA, "$(PSU_POWER).SEVR CP")
+	field(INPB, "$(P)PSUS:POWER:GRP1 CP MS")
+	field(INPC, "$(P)PSUS:POWER:GRP2 CP MS")
+	field(INPD, "$(P)PSUS:POWER:GRP3 CP MS")
+	field(INPE, "$(P)PSUS:POWER:GRP4 CP MS")
+    field(CALC, "MIN(A+B+C+D+E,1)")
+}
+
+#
+# This record gets pushed to by the individual records in riken_port_changeover_psus.db
+#
+record(calc, "$(P)PSUS:POWER:GRP1")
+{
+	field(PINI, "YES")
+	field(A, "0")
+	field(B, "0")
+	field(C, "0")
+	field(D, "0")
+	field(E, "0")
+	field(F, "0")
+	field(G, "0")
+	field(H, "0")
+	field(I, "0")
+	field(J, "0")
+	field(K, "0")
+	field(L, "0")
+    field(CALC, "A+B+C+D+E+F+G+H+I+J+K+L")
+}
+
+#
+# This record gets pushed to by the individual records in riken_port_changeover_psus.db
+#
+record(calc, "$(P)PSUS:POWER:GRP2")
+{
+    field(PINI, "YES")
+	field(A, "0")
+	field(B, "0")
+	field(C, "0")
+	field(D, "0")
+	field(E, "0")
+	field(F, "0")
+	field(G, "0")
+	field(H, "0")
+	field(I, "0")
+	field(J, "0")
+	field(K, "0")
+	field(L, "0")
+    field(CALC, "A+B+C+D+E+F+G+H+I+J+K+L")
+}
+
+#
+# This record gets pushed to by the individual records in riken_port_changeover_psus.db
+#
+record(calc, "$(P)PSUS:POWER:GRP3")
+{
+	field(PINI, "YES")
+	field(A, "0")
+	field(B, "0")
+	field(C, "0")
+	field(D, "0")
+	field(E, "0")
+	field(F, "0")
+	field(G, "0")
+	field(H, "0")
+	field(I, "0")
+	field(J, "0")
+	field(K, "0")
+	field(L, "0")
+    field(CALC, "A+B+C+D+E+F+G+H+I+J+K+L")
+}
+
+#
+# This record gets pushed to by the individual records in riken_port_changeover_psus.db
+#
+record(calc, "$(P)PSUS:POWER:GRP4")
+{
+	field(PINI, "YES")
+	field(A, "0")
+	field(B, "0")
+	field(C, "0")
+	field(D, "0")
+	field(E, "0")
+	field(F, "0")
+	field(G, "0")
+	field(H, "0")
+	field(I, "0")
+	field(J, "0")
+	field(K, "0")
+	field(L, "0")
+    field(CALC, "A+B+C+D+E+F+G+H+I+J+K+L")
 }

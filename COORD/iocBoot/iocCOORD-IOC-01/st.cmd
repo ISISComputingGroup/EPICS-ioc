@@ -17,7 +17,15 @@ COORD_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-dbLoadRecords("$(TOP)/db/riken_port_changeover.db","PV_PREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):")
+
+epicsEnvSet(OK_TO_RUN_PSUS,$(MYPVPREFIX)SIMPLE:VALUE1)
+epicsEnvSet(ALLOW_PORT_CHANGEOVER,$(MYPVPREFIX)PARS:USER:R1)
+epicsEnvSet(PSU_DISABLE,$(MYPVPREFIX)$(IOCNAME):PSUS:DISABLE:SP)
+epicsEnvSet(PSU_POWER,$(MYPVPREFIX)$(IOCNAME):PSUS:POWER:ANY)
+
+
+dbLoadRecords("$(TOP)/db/riken_port_changeover.db","PV_PREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,OK_TO_RUN_PSUS=$(OK_TO_RUN_PSUS),PSU_DISABLE=$(PSU_DISABLE),PSU_POWER=$(PSU_POWER)")
+dbLoadRecords("$(TOP)/db/riken_port_changeover_psus.db","PV_PREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,OK_TO_RUN_PSUS=$(OK_TO_RUN_PSUS),PSU_DISABLE=$(PSU_DISABLE),PSU_POWER=$(PSU_POWER)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -25,11 +33,7 @@ dbLoadRecords("$(TOP)/db/riken_port_changeover.db","PV_PREFIX=$(MYPVPREFIX),P=$(
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
-epicsEnvSet(OK_TO_RUN_PSUS,$(MYPVPREFIX)PARS:USER:R0)
-epicsEnvSet(ALLOW_PORT_CHANGEOVER,$(MYPVPREFIX)PARS:USER:R1)
-epicsEnvSet(PSU_DISABLE,$(MYPVPREFIX)$(IOCNAME):PSUS:DISABLE)
-
-seq riken_port_changeover, "OK_TO_RUN_PSUS=$(OK_TO_RUN_PSUS),ALLOW_PORT_CHANGEOVER=$(ALLOW_PORT_CHANGEOVER),PSU_DISABLE=$(PSU_DISABLE)"
+seq riken_port_changeover, "OK_TO_RUN_PSUS=$(OK_TO_RUN_PSUS),ALLOW_PORT_CHANGEOVER=$(ALLOW_PORT_CHANGEOVER),PSU_DISABLE=$(PSU_DISABLE),PSU_POWER=$(PSU_POWER)"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
