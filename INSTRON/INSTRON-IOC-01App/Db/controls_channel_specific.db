@@ -21,15 +21,15 @@ record(seq, "$(P)CONTROLS:SPECIFIC:READALL")
 
 record(transform, "$(P)POS:TO")
 {
-    field(INPA, "$(P)POS:RAW CA")
-    field(INPB, "$(P)POS:SCALE CA")
-    field(INPC, "$(P)POS:RAW:SP:RBV CA") 
+    field(INPA, "$(P)POS:RAW CA MS")
+    field(INPB, "$(P)POS:SCALE CA MS")
+    field(INPC, "$(P)POS:RAW:SP:RBV CA MS") 
 
     field(CLCD, "A*B*1000")
     field(CLCE, "C*B*1000")
 
-    field(OUTD, "$(P)POS PP")
-    field(OUTE, "$(P)POS:SP:RBV PP")
+    field(OUTD, "$(P)POS PP MS")
+    field(OUTE, "$(P)POS:SP:RBV PP MS")
 }
 
 record(calcout, "$(P)POS:FROM")
@@ -43,16 +43,16 @@ record(calcout, "$(P)POS:FROM")
 
 record(transform, "$(P)STRESS:TO")
 {
-    field(INPA, "$(P)STRESS:RAW CA")
-    field(INPB, "$(P)STRESS:SCALE CA") 
-    field(INPC, "$(P)STRESS:AREA CA")
-    field(INPD, "$(P)STRESS:RAW:SP:RBV CA")
+    field(INPA, "$(P)STRESS:RAW CA MS")
+    field(INPB, "$(P)STRESS:SCALE CA MS") 
+    field(INPC, "$(P)STRESS:AREA CA MS")
+    field(INPD, "$(P)STRESS:RAW:SP:RBV CA MS")
     
     field(CLCE, "A*B*(1/C)")
     field(CLCF, "D*B*(1/C)")
     
-    field(OUTE, "$(P)STRESS PP")
-    field(OUTF, "$(P)STRESS:SP:RBV PP")
+    field(OUTE, "$(P)STRESS PP MS")
+    field(OUTF, "$(P)STRESS:SP:RBV PP MS")
 }
 
 record(calcout, "$(P)STRESS:FROM")
@@ -67,16 +67,16 @@ record(calcout, "$(P)STRESS:FROM")
 
 record(transform, "$(P)STRAIN:TO")
 {
-    field(INPA, "$(P)STRAIN:RAW CA")
-    field(INPB, "$(P)STRAIN:SCALE CA")  
-    field(INPC, "$(P)STRAIN:LENGTH CA")
-    field(INPD, "$(P)STRAIN:RAW:SP:RBV CA")
+    field(INPA, "$(P)STRAIN:RAW CA MS")
+    field(INPB, "$(P)STRAIN:SCALE CA MS")  
+    field(INPC, "$(P)STRAIN:LENGTH CA MS")
+    field(INPD, "$(P)STRAIN:RAW:SP:RBV CA MS")
     
     field(CLCE, "A*100000*B*(1/C)")
     field(CLCF, "D*100000*B*(1/C)")
     
-    field(OUTE, "$(P)STRAIN PP")
-    field(OUTF, "$(P)STRAIN:SP:RBV PP")
+    field(OUTE, "$(P)STRAIN PP MS")
+    field(OUTF, "$(P)STRAIN:SP:RBV PP MS")
 }
 
 record(calcout, "$(P)STRAIN:FROM")
@@ -147,10 +147,10 @@ record(calcout, "$(P)STRESS:AREA:SP:CALC")
 
 record(calcout, "$(P)STRESS:DIAMETER:CALC")
 {
-    field(INPA, "$(P)STRESS:AREA")
+    field(INPA, "$(P)STRESS:AREA MS")
     # 4*ATAN(1) = PI
     field(CALC, "2*(SQR(A/(4*ATAN(1))))")
-    field(OUT, "$(P)STRESS:DIAMETER PP")
+    field(OUT, "$(P)STRESS:DIAMETER PP MS")
     field(OOPT, "Every Time")
 }
 
