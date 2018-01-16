@@ -9,8 +9,8 @@ set_pass1_restoreFile("$(IOCNAME)_$(MN)_built_settings.sav")
 epicsEnvSet("MSTPI",$(MSTP$(MN)=200))
 dcalc("MRESI", "1.0/$(MSTPI)", 1, 12)
 
-epicsEnvSet("DHLMI",$(DHLM$(MN)=285))
-epicsEnvSet("DLLMI",$(DLLM$(MN)=-0.25))
+epicsEnvSet("DHLMI",$(DHLM$(MN)=200))
+epicsEnvSet("DLLMI",$(DLLM$(MN)=-200))
 
 epicsEnvSet("NAMEI","$(NAME$(MN)=$(AMOTORNAME))")
 epicsEnvSet("VELOI",$(VELO$(MN)=1))
