@@ -372,8 +372,8 @@ record(stringin, "$(P)LIST_OF_READINGS")
 {
     field(DESC, "Buffer Readings")
     field(DTYP, "stream")
-    #field(INP,  "@devKeithley_2700.proto getReadingsRange($(P)START,$(P)COUNT) $(PORT)")
-    field(INP,  "@devKeithley_2700.proto getReadingsRange $(PORT)")
+    field(INP,  "@devKeithley_2700.proto getReadingsRange($(P)START,$(P)COUNT) $(PORT)")
+    #field(INP,  "@devKeithley_2700.proto getReadingsRange $(PORT)")
     field(SCAN, "1 second")
 }
 
