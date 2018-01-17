@@ -1,4 +1,4 @@
-file riken_port_changeover_groups.template {
+file riken_changeover_groups.template {
 
 pattern {P, GRP}
     {"\$(P)", "1"}

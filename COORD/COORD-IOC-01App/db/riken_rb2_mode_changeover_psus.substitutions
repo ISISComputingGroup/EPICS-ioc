@@ -1,0 +1,10 @@
+file riken_rb2_mode_changeover_psus.template {
+#
+# PSNAME = Name of the IOC. e.g. "RB1", "RB2"
+# PSGRP  = Number of the IOC which this is on. E.g. if RB1 is on RKNPS_01 set this to "1"
+# PSIDX  = Letter A-L. Combinations of PSGRP and PSIDX must be unique.
+#
+pattern {PV_PREFIX, P, PSU_DISABLE, PSNAME, PSGRP, PSIDX}
+
+    {"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RB2", "1", "A"}
+}
