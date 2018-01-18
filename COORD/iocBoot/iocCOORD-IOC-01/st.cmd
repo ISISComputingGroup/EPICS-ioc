@@ -26,5 +26,9 @@ COORD_IOC_01_registerRecordDeviceDriver pdbbase
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
+seq riken_changeover, "OK_TO_RUN_PSUS=$(PC_OK_TO_RUN_PSUS),ALLOW_CHANGEOVER=$(PC_ALLOW_CHANGEOVER),PSU_DISABLE=$(PC_PSU_DISABLE),PSU_POWER=$(PC_PSU_POWER)"
+seq riken_changeover, "OK_TO_RUN_PSUS=$(RB2C_OK_TO_RUN_PSUS),ALLOW_CHANGEOVER=$(RB2C_ALLOW_CHANGEOVER),PSU_DISABLE=$(RB2C_PSU_DISABLE),PSU_POWER=$(RB2C_PSU_POWER)"
+
+
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd

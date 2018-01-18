@@ -1,1 +1,1 @@
-registrar(riken_port_changeoverRegistrar)
+registrar(riken_changeoverRegistrar)

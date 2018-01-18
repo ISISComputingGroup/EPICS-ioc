@@ -40,7 +40,7 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 #$(APPNAME)_LIBS += xxx
 
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
-$(APPNAME)_SRCS += riken_port_changeover.st
+$(APPNAME)_SRCS += riken_changeover.st
 
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp

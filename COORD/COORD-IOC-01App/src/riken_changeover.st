@@ -1,4 +1,4 @@
-program riken_port_changeover("OK_TO_RUN_PSUS,ALLOW_PORT_CHANGEOVER,PSU_DISABLE,PSU_POWER")
+program riken_changeover("OK_TO_RUN_PSUS,ALLOW_CHANGEOVER,PSU_DISABLE,PSU_POWER")
 
 #include "seqPVmacros.h"
 
@@ -6,7 +6,7 @@ program riken_port_changeover("OK_TO_RUN_PSUS,ALLOW_PORT_CHANGEOVER,PSU_DISABLE,
 option +d;
 
 /* PV definitions */
-PV(int, allow_port_changeover, "{ALLOW_PORT_CHANGEOVER}", NoMon);
+PV(int, allow_changeover, "{ALLOW_CHANGEOVER}", NoMon);
 PV(int, ok_to_run_psus, "{OK_TO_RUN_PSUS}", Monitor);
 PV(int, psu_disable, "{PSU_DISABLE}", NoMon);
 PV(int, psu_power, "{PSU_POWER}", Monitor);
@@ -28,7 +28,7 @@ ss riken_port_changeover
 	{
 	  puts("Disabling PSUs");
 	  PVPUT(psu_disable, 1);
-	  PVPUT(allow_port_changeover, 1);
+	  PVPUT(allow_changeover, 1);
 	} state changing_over
 	
 	when(ok_to_run_psus == 1)
@@ -42,7 +42,7 @@ ss riken_port_changeover
     when(ok_to_run_psus == 1)
 	{
 	  PVPUT(psu_disable, 0);
-	  PVPUT(allow_port_changeover, 0);
+	  PVPUT(allow_changeover, 0);
 	  puts("Enabling PSUs");
 	} state ready
   }
