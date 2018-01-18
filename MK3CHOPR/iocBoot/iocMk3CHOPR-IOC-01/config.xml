@@ -2,5 +2,8 @@
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
 <ioc_desc>ISIS MK3 chopper</ioc_desc>
+<macros>
+<macro name="NUM_CHANNELS" pattern="^[0-9]+$" description="Number of channels (default: 1)" />
+</macros>
 </config_part>
 </ioc_config>

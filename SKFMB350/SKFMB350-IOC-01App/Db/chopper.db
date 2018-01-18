@@ -1,0 +1,417 @@
+#
+# Device address
+#
+
+record(longout, "$(P)ADDRESS") {
+    field(VAL, "$(ADDRESS)")
+	field(PINI, "YES")
+}
+
+
+#
+# General reads
+#
+
+record(bo, "$(P)READ:PHASEINFO"){
+    field(SCAN, "1 second")
+    field(OUT, "@devSKFMB350.proto read_phase_info($(P)) $(PORT)")
+    field(DTYP, "stream")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DONOTHING")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)READ:ROTATORANGLE"){
+    field(SCAN, "1 second")
+    field(OUT, "@devSKFMB350.proto read_rotator_angle($(P)) $(PORT)")
+    field(DTYP, "stream")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DONOTHING")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)READ:PHASEDELAY"){
+    field(SCAN, "1 second")
+    field(OUT, "@devSKFMB350.proto read_phase_delay($(P)) $(PORT)")
+    field(DTYP, "stream")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DONOTHING")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
+#
+# Start / stop
+#
+
+record(bo, "$(P)START"){
+    field(OUT, "@devSKFMB350.proto start($(P)) $(PORT)")
+    field(DTYP, "stream")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DONOTHING")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)STOP"){
+    field(OUT, "@devSKFMB350.proto stop($(P)) $(PORT)")
+    field(DTYP, "stream")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DONOTHING")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)SIM:DONOTHING") {
+}
+
+
+#
+# Frequency
+#
+
+record(longin, "$(P)FREQ:RAW") {
+    # In units of rpm
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FREQ")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(calcout, "$(P)FREQ:CALC") {
+    field(DESC, "Converts rpm to Hz")
+    field(INPA, "$(P)FREQ:RAW CP MS")
+	field(INPB, "$(P)READ:PHASEINFO CP")
+    field(CALC, "A/60")
+    field(OUT, "$(P)FREQ PP MS")
+    field(OOPT, "Every Time")
+}
+
+record(ai, "$(P)FREQ"){
+    field(EGU, "Hz")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "0")
+}
+
+record(ao, "$(P)FREQ:SP") {
+    field(EGU, "Hz")
+	info(archive, "VAL")
+	field(PREC, "0")
+    info(autosaveFields, "VAL")
+}
+
+record(calcout, "$(P)FREQ:SP:CALC") {
+    field(DESC, "Converts Hz to rpm")
+    field(INPA, "$(P)FREQ:SP CP MS")
+    field(CALC, "FLOOR(A*60)")  # Have to use FLOOR because the result must be an integer.
+    field(OUT, "$(P)FREQ:SP:RAW PP")
+    field(OOPT, "Every Time")
+}
+
+record(longout, "$(P)FREQ:SP:RAW") {
+    field(OUT, "@devSKFMB350.proto set_frequency($(P)) $(PORT)")
+    field(DTYP, "stream")
+    # In units of rpm
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FREQ:SP")
+    field(SDIS, "$(P)DISABLE")
+	field(FLNK, "$(P)FREQ:RAW")  # Needed for recsim
+}
+
+alias("$(P)FREQ:SP", "$(P)FREQ:SP:RBV")
+
+record(longout, "$(P)SIM:FREQ:SP"){
+}
+
+alias("$(P)SIM:FREQ:SP", "$(P)SIM:FREQ")
+
+
+#
+# Phase
+#
+
+record(ai, "$(P)PHAS:RAW") {
+}
+
+record(calcout, "$(P)PHAS:CALC") {
+    field(INPA, "$(P)PHAS:RAW CP MS")
+	field(INPB, "$(P)READ:PHASEINFO CP")
+    field(CALC, "A")
+    field(OUT, "$(P)PHAS PP MS")
+    field(OOPT, "Every Time")
+}
+
+record(ai, "$(P)PHAS") {
+    field(EGU, "us")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHAS")
+    field(SDIS, "$(P)DISABLE")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "0")
+}
+
+record(ao, "$(P)PHAS:SP") {
+    field(EGU, "us")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHAS:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(archive, "VAL")
+	field(PREC, "0")
+    info(autosaveFields, "VAL")
+}
+
+record(calcout, "$(P)PHAS:SP:CALC") {
+    field(DESC, "Converts us to ns")
+    field(INPA, "$(P)PHAS:SP CP MS")
+    field(CALC, "A*1000")
+    field(OUT, "$(P)PHAS:SP:RAW PP")
+    field(OOPT, "Every Time")
+}
+
+record(ao, "$(P)PHAS:SP:RAW") {
+    field(EGU, "ns")
+    field(OUT, "@devSKFMB350.proto set_phase($(P)) $(PORT)")
+    field(DTYP, "stream")
+	field(FLNK, "$(P)PHAS:PROCESS")  # Needed for recsim
+}
+
+record(fanout, "$(P)PHAS:PROCESS") {
+    field(LNK1, "$(P)PHAS")  # Needed for recsim
+    field(LNK2, "$(P)PHAS:SP:RBV")  # Needed for recsim
+}
+
+record(ai, "$(P)PHAS:PERCENTOK") {
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHAS:PERCENTOK")
+    field(SDIS, "$(P)DISABLE")
+	field(EGU, "%")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "1")
+}
+
+record(ao, "$(P)SIM:PHAS:PERCENTOK") {
+	field(VAL, "100")
+	field(PINI, "YES")
+}
+
+record(ai, "$(P)PHAS:SP:RBV:RAW") {
+
+}
+
+record(calcout, "$(P)PHAS:SP:RBV:CALC") {
+    field(DESC, "Converts raw phase rbv")
+    field(INPA, "$(P)PHAS:SP:RBV:RAW CP MS")
+    field(INPB, "$(P)READ:PHASEINFO CP")
+    field(CALC, "A*1000")
+    field(OUT, "$(P)PHAS:SP:RBV PP")
+    field(OOPT, "Every Time")
+}
+
+record(ai, "$(P)PHAS:SP:RBV") {
+    field(EGU, "us")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHAS:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+	info(interest, "MEDIUM")
+	info(archive, "VAL")
+	field(PREC, "0")
+}
+
+record(ao, "$(P)SIM:PHAS"){
+}
+
+alias("$(P)SIM:PHAS", "$(P)SIM:PHAS:SP")
+alias("$(P)SIM:PHAS", "$(P)SIM:PHAS:SP:RBV")
+
+
+#
+# Phase repeatability / gate width
+#
+
+record(ai, "$(P)PHAS_ERR:RAW") {
+}
+
+record(calcout, "$(P)PHAS_ERR:CALC") {
+    field(INPA, "$(P)PHAS_ERR:RAW CP MS")
+	field(INPB, "$(P)READ:PHASEINFO CP")
+    field(CALC, "A")
+    field(OUT, "$(P)PHAS_ERR PP MS")
+    field(OOPT, "Every Time")
+}
+
+record(ai, "$(P)PHAS_ERR") {
+	field(DESC, "Phase repeatability")
+	field(EGU, "us")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHAS_ERR")
+    field(SDIS, "$(P)DISABLE")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "1")
+}
+
+record(ao, "$(P)PHAS_ERR:SP") {
+    field(EGU, "us")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHAS_ERR:SP")
+    field(SDIS, "$(P)DISABLE")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "1")
+    info(autosaveFields, "VAL")
+}
+
+record(calcout, "$(P)PHAS_ERR:SP:CALC") {
+    field(INPA, "$(P)PHAS_ERR:SP CP MS")
+    field(CALC, "A*10") # Set gate width in integer units of us/10
+    field(OUT, "$(P)PHAS_ERR:SP:RAW PP")
+    field(OOPT, "Every Time")
+}
+
+record(ao, "$(P)PHAS_ERR:SP:RAW") {
+    field(OUT, "@devSKFMB350.proto set_gate_width($(P)) $(PORT)")
+    field(DTYP, "stream")
+	field(FLNK, "$(P)PHAS_ERR")  # Needed for recsim
+}
+
+record(ao, "$(P)SIM:PHAS_ERR"){
+}
+
+alias("$(P)SIM:PHAS_ERR", "$(P)SIM:PHAS_ERR:SP")
+
+
+#
+# Interlocks
+#
+
+record(calcout, "$(P)ILK:RAW") {
+    field(INPB, "$(P)READ:PHASEINFO CP")
+    field(CALC, "A")
+}
+
+
+record(mbbiDirect, "$(P)ILK") {
+    field(DTYP, "Raw Soft Channel")
+    field(INP, "$(P)ILK:RAW CP MS")
+    #
+    # See DB file interlocks.db to get interlock PVs.
+    #
+	info(archive, "VAL")
+}
+
+
+#
+# Chopper status
+#
+
+record(calcout, "$(P)STAT:RAW") {
+	field(INPB, "$(P)READ:PHASEINFO CP")
+    field(CALC, "A")
+
+}
+
+
+record(mbbiDirect, "$(P)STAT") {
+    field(DTYP, "Raw Soft Channel")
+    field(INP, "$(P)STAT:RAW CP MS")
+    #
+    # See DB file status.db to get status PVs.
+    #
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	info(alarm, "SKFMB350")
+}
+
+
+#
+# Angle
+#
+
+record(longin, "$(P)ANGLE:ROTATOR:RAW") {
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ANGLE:ROTATOR:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(calcout, "$(P)ANGLE:ROTATOR:CALC") {
+    field(INPA, "$(P)ANGLE:ROTATOR:RAW CP MS")
+    field(INPB, "$(P)READ:ROTATORANGLE CP")
+    field(CALC, "A/10")
+    field(OUT, "$(P)ANGLE:ROTATOR PP MS")
+    field(OOPT, "Every Time")
+}
+
+record(ai, "$(P)ANGLE:ROTATOR") {
+    field(EGU, "degree")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "1")
+}
+
+record(ao, "$(P)ANGLE:ROTATOR:SP") {
+    field(EGU, "degree")
+	field(FLNK, "$(P)ANGLE:ROTATOR:SP:CALC")
+	info(interest, "HIGH")
+	info(archive, "VAL")
+	field(PREC, "1")
+}
+
+record(calcout, "$(P)ANGLE:ROTATOR:SP:CALC") {
+    field(DESC, "Converts us to ns")
+    field(INPA, "$(P)ANGLE:ROTATOR:SP MS")
+    field(CALC, "FLOOR(A*10)")
+    field(OUT, "$(P)ANGLE:ROTATOR:SP:RAW PP")
+    field(OOPT, "Every Time")
+}
+
+record(longout, "$(P)ANGLE:ROTATOR:SP:RAW") {
+    field(OUT, "@devSKFMB350.proto set_rotator_angle($(P)) $(PORT)")
+    field(DTYP, "stream")
+	field(FLNK, "$(P)ANGLE:ROTATOR:RAW")  # Needed for recsim
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ANGLE:ROTATOR")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(longout, "$(P)SIM:ANGLE:ROTATOR"){
+}
+
+alias("$(P)SIM:ANGLE:ROTATOR", "$(P)SIM:ANGLE:ROTATOR:SP")
+
+
+#
+# Setting parking positions
+#
+
+record(ao, "$(P)ANGLE:PARK:OPEN") {
+    field(VAL, "$(PARKOPEN)")
+    field(PINI, "YES")
+}
+
+record(ao, "$(P)ANGLE:PARK:CLOSED") {
+    field(VAL, "$(PARKCLOSED)")
+    field(PINI, "YES")
+}
+
+record(bo, "$(P)ANGLE:PARK:SELECTOR") {
+    field(VAL, "$(PARKPOS)")
+    field(ZNAM, "CLOSED")
+    field(ONAM, "OPEN")
+    field(PINI, "YES")
+}
+
+record(calcout, "$(P)ANGLE:PARK:OPEN:CALC") {
+    field(INPA, "$(P)ANGLE:PARK:OPEN CP MS")
+    field(INPB, "$(P)ANGLE:PARK:SELECTOR CP MS")
+    field(CALC, "B=1?A:0")
+    field(OUT, "$(P)ANGLE:ROTATOR:SP PP")
+    field(OOPT, "When Non-zero")
+}
+
+record(calcout, "$(P)ANGLE:PARK:CLOSED:CALC") {
+    field(INPA, "$(P)ANGLE:PARK:CLOSED CP MS")
+    field(INPB, "$(P)ANGLE:PARK:SELECTOR CP MS")
+    field(CALC, "B=0?A:0")
+    field(OUT, "$(P)ANGLE:ROTATOR:SP PP")
+    field(OOPT, "When Non-zero")
+}
