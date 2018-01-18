@@ -15,13 +15,12 @@ epicsEnvSet("DLLMI",$(DLLM$(MN)=-200))
 epicsEnvSet("NAMEI","$(NAME$(MN)=$(AMOTORNAME))")
 epicsEnvSet("VELOI",$(VELO$(MN)=1))
 
-
-
-
 asynSetTraceIOMask("$(AMOTOR)", 0, 2)
 
 ## Load record instances
 calc("SN", "$(MN)-1", 2, 2)
+$(IFRECSIM) motorSimConfigAxis($(AMOTOR), $(SN), 160000, -200,  0, 0)
+
 # Load asyn record 
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(AMOTORPV):ASYN,PORT=$(AMOTOR),ADDR=$(SN),OMAX=256,IMAX=256") 
 dbLoadRecords("$(TOP)/db/asyn_motor.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),NAME=$(NAMEI),PORT=$(AMOTOR),ADDR=$(SN),VEL=$(VELOI),MRES=$(MRESI),DHLM=$(DHLMI),DLLM=$(DLLMI)") 

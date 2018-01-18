@@ -1,4 +1,4 @@
-file $(MOTOR)/motorApp/Db/asyn_motor.db {
+file $(MOTOR)/asyn_motor.db {
 
 pattern {P,       N,     M,   DTYP,         PORT,       ADDR,        DESC,                EGU,  DIR, VELO,   VBAS, ACCL,  BDST,  BVEL,  BACC, MRES,       PREC, DHLM,       DLLM,  INIT}
         {"\$(P)", 1, "\$(M)", "asynMotor",  "\$(PORT)", "\$(ADDR)",  "\$(NAME) (SMC100)",  mm,  Pos, \$(VEL),  0,    1,   0,     1,     1,    "\$(MRES)", 3,    "\$(DHLM)", "\$(DLLM)",  ""}

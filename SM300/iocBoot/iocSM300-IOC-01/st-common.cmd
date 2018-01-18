@@ -8,12 +8,15 @@ set_requestfile_path("${MOTOR}/motorApp/Db", "")
 ## as we are common, we need to explicity define the 01 area for when we are ran by 02, 03 etc 
 set_requestfile_path("${TOP}/iocBoot/iocSM300-IOC-01", "")
 
-## For recsim:
-$(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
+iocshCmdLoop("< st-ctrl.cmd", "CNUM=\$(I)", "I", 1, 24)
+iocshCmdLoop("< st-max-axis.cmd", "MN=\$(I)", "I", 1, 8)
 
-$(IFRECSIM) motorSimCreateController("$(DEVICE)", 1) 
-$(IFRECSIM) motorSimConfigAxis("$(DEVICE)", 0, 32000, -32000,  0, 0) 
-$(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "NUL", 0, 1)
+epicsEnvSet("AMOTOR", "SM300MOTOR")
+
+## For recsim:
+$(IFRECSIM) motorSimCreateController("$(AMOTOR)", $(NAXES=1)) 
+$(IFRECSIM) drvAsynSerialPortConfigure("$(AMOTOR)", "NUL", 0, 1)
+
 
 ## For dev sim devices
 $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
@@ -32,11 +35,6 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceIOMask("$(DEVICE)", 0, 2)
 #asynSetTraceMask("L0",-1,0x9) 
 #asynSetTraceIOMask("L0",-1,0x2)
 
-iocshCmdLoop("< st-ctrl.cmd", "CNUM=\$(I)", "I", 1, 24)
-iocshCmdLoop("< st-max-axis.cmd", "MN=\$(I)", "I", 1, 8)
-
-
-epicsEnvSet("AMOTOR", "SM300MOTOR")
 # (driver port, serial port, axis num, ms mov poll, ms idle poll, egu per step)
 $(IFNOTRECSIM) SM300CreateController("$(AMOTOR)", "$(DEVICE)", "$(NAXES=1)", 100, 1000)
 
