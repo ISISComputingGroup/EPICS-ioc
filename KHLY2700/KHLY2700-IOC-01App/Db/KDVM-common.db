@@ -7,6 +7,100 @@ record(stringin, "$(P)IDN")
     field(PINI, "YES")
 }
 
+record(bo, "$(P)BUFFER:CLEAR:SP")
+{
+	field(DESC, "Trigger a buffer clear")
+	field(DTYP, "stream")
+	field(ZNAM, "")
+	field(ONAM, "")
+	field(OUT, "@devKeithley_2700.proto clearBuffer $(PORT)")    
+	info(ARCHIVE, "VAL")
+
+}
+alias("$(P)BUFFER:CLEAR:SP","$(P)BUFFER:CLEAR")
+
+# source of the buffer feed: sense, calculate, or none
+record(mbbi, "$(P)BUFFER:SOURCE") 
+{
+    field(DESC, "Get current buffer source")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getBufferFeedSource $(PORT)")
+    field(ZRST, "SENS")
+    field(ONST, "CALC")
+    field(TWST, "NONE")
+    info(INTEREST, "HIGH")
+}
+
+record(mbbo, "$(P)BUFFER:SOURCE:SP") 
+{
+    field(DESC, "Set buffer feed source")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setBufferFeedSource $(PORT)")
+    field(ZRST, "SENS")
+    field(ONST, "CALC")
+    field(TWST, "NONE")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(P)BUFFER:CLEAR:AUTO") 
+{
+    field(DESC, "Return buffer clear mode status")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getBufferAutoClearStatus $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)BUFFER:CLEAR:AUTO:SP") 
+{
+    field(DESC, "Set Buffer State")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setBufferAutoClearStatus $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)BUFFER:NEXT") 
+{
+    field(DESC, "Next Buffer reading location")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getNextBufferReadingLoc $(PORT)")
+}
+
+# Records also receives value for MEM:USED and sets its value 
+record(ai, "$(P)BUFFER:MEM:AVAIL")
+{
+    field(DESC, "Available buffer bytes")
+    field(DTYP, "stream")
+	field (SCAN, "1 second")	
+    field(INP,  "@devKeithley_2700.proto getBufferMemory($(P)BUFFER:MEM:USED) $(PORT)")
+	field(EGU, "b")
+}
+
+record(ai, "$(P)BUFFER:MEM:USED")
+{
+    field(DESC, "Bytes used by buffer for stored readings")
+    field(DTYP, "stream")
+	field(EGU, "b")
+}
+
+
+
+
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+record(mbbi, "(P)RESISTANCE:MODE")
+{
+	field(DESC, "")
+}
+
 record(mbbi, "$(P)CONTROL_SOURCE") 
 {
     field(DESC, "Set programmed control source")
@@ -110,31 +204,7 @@ record(mbbo, "$(P)BUFFER_CONTROL:SP")
 
 }
 
-record(mbbi, "$(P)BUFFER_FEED") 
-{
-    field(DESC, "Query Buffer Feed")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto getBufferFeed $(PORT)")
-    field(ZRST, "SENS")
-    field(ONST, "CALC")
-    field(TWST, "NONE")
-    info(INTEREST, "HIGH")
 
-}
-
-record(mbbo, "$(P)BUFFER_FEED:SP") 
-{
-    field(DESC, "Set Buffer Feed")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(OUT,  "@devKeithley_2700.proto setBufferFeed $(PORT)")
-    field(ZRST, "SENS")
-    field(ONST, "CALC")
-    field(TWST, "NONE")
-    info(INTEREST, "HIGH")
-
-}
 
 record(ai, "$(P)BUFFER_SIZE") 
 {
@@ -196,29 +266,7 @@ record(ao, "$(P)SAMPLE_COUNT:SP")
 
 }
 
-record(bi, "$(P)BUFFER_STATE") 
-{
-    field(DESC, "Query Buffer State")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto getBufferState $(PORT)")
-    field(ZNAM, "ON")
-    field(ONAM, "OFF")
-    info(INTEREST, "HIGH")
 
-}
-
-record(bo, "$(P)BUFFER_STATE:SP") 
-{
-    field(DESC, "Set Buffer State")
-    field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(OUT,  "@devKeithley_2700.proto setBufferState $(PORT)")
-    field(ZNAM, "ON")
-    field(ONAM, "OFF")
-    info(INTEREST, "HIGH")
-
-}
 
 record(bi, "$(P)INIT") 
 {
@@ -334,21 +382,9 @@ record(bo, "$(P)AUTO_RANGE:SP")
 
 }
 
-record(stringin, "$(P)BUFFER_STATS")
-{
-    field(DESC, "Available and reserved buffer size")
-    field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto getBufferStats $(PORT)")
-    field(PINI, "YES")
-}
 
-record(ai, "$(P)BUFFER_LOC") 
-{
-    field(DESC, "Next Buffer Location")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto getNextBufferReading $(PORT)")
-}
+
+
 
 record(stringin, "$(P)LIST_OF_ELEMENTS")
 {
@@ -366,6 +402,8 @@ record(stringout, "$(P)LIST_OF_ELEMENTS:SP")
     field(OUT,  "@devKeithley_2700.proto setDataElements $(PORT)")
     field(PINI, "YES")
 }
+
+ 
 
 ## start/count?
 record(stringin, "$(P)LIST_OF_READINGS")
@@ -392,7 +430,7 @@ record(ai, "$(P)MEAS:VOLT:DC")
 
 record(ai, "$(P)MEAS:FRES")
 {
-    field(DESC, "Configure Channels to  Ω4 ")
+    field(DESC, "Measure 4-wire resistance")
     field(SCAN, "1 second")
     field(EGU, "ohm")
     field(DTYP, "stream")
