@@ -13,6 +13,7 @@ record(ai, "$(P)$(CHANNEL):FIELDREADING")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(CHANNEL):FIELDREADING")
     field(SDIS, "$(P)DISABLE")
+    info(alarm, "Lakeshore460")
 }
 
 record(ai, "$(P)$(CHANNEL):MAXREADING")
