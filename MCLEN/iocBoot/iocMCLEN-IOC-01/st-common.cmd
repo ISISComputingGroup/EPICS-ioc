@@ -41,7 +41,7 @@ $(IFNOTSIM) PM304Setup(1,5)
 < st-homing.cmd
 
 # PM304Config(card being configured, asyn port name,  number of axes)
-$(IFNOTSIM) PM304Config(0, "$(ASERIAL)", "$(NAXES=1)", "$(COMBINED_HOMING_MODES=0)")
+$(IFNOTSIM) PM304Config(0, "$(ASERIAL)", "$(NAXES=1)", "$(COMBINED_HOMING_MODES=0)", 1)
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 
