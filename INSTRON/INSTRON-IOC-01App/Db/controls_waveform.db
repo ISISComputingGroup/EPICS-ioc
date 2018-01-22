@@ -410,15 +410,15 @@ record(ai, "$(P)WAVE:AMP")
 }
 
 record(calcout, "$(P)WAVE:AMP:SP:RBV:_CALC") {
-    field(INPA, "$(P)CHANNEL.RVAL")
-    field(INPB, "$(P)WAVE:AMP")
-    field(INPC, "$(P)POS:SCALE CA")
-    field(INPD, "$(P)STRESS:SCALE CA")
-    field(INPE, "$(P)STRESS:AREA CA")
-    field(INPF, "$(P)STRAIN:SCALE CA")
-    field(INPG, "$(P)STRAIN:LENGTH CA")
+    field(INPA, "$(P)CHANNEL.RVAL MS")
+    field(INPB, "$(P)WAVE:AMP MS")
+    field(INPC, "$(P)POS:SCALE CA MS")
+    field(INPD, "$(P)STRESS:SCALE CA MS")
+    field(INPE, "$(P)STRESS:AREA CA MS")
+    field(INPF, "$(P)STRAIN:SCALE CA MS")
+    field(INPG, "$(P)STRAIN:LENGTH CA MS")
     field(CALC, "A==1?B*C*1000:A==2?B*D/E:B*F*G*100000")
-    field(OUT,  "$(P)WAVE:AMP:SP:RBV PP")
+    field(OUT,  "$(P)WAVE:AMP:SP:RBV PP MS")
 }
 
 record(ai, "$(P)WAVE:AMP:SP:RBV")
