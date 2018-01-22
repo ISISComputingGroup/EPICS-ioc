@@ -21,7 +21,7 @@ record(bo, "$(P)BUFFER:CLEAR:SP")
 	field(ZNAM, "")
 	field(ONAM, "")
 	field(OUT, "@devKeithley_2700.proto clearBuffer $(PORT)")    
-	info(ARCHIVE, "VAL")
+
 
 }
 alias("$(P)BUFFER:CLEAR:SP","$(P)BUFFER:CLEAR")
@@ -36,6 +36,7 @@ record(mbbi, "$(P)BUFFER:SOURCE")
     field(ZRST, "SENS")
     field(ONST, "CALC")
     field(TWST, "NONE")
+	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 }
 
@@ -48,7 +49,6 @@ record(mbbo, "$(P)BUFFER:SOURCE:SP")
     field(ZRST, "SENS")
     field(ONST, "CALC")
     field(TWST, "NONE")
-    info(INTEREST, "HIGH")
 }
 
 record(bi, "$(P)BUFFER:CLEAR:AUTO") 
@@ -59,6 +59,7 @@ record(bi, "$(P)BUFFER:CLEAR:AUTO")
     field(INP,  "@devKeithley_2700.proto getBufferAutoClearStatus $(PORT)")
     field(ZNAM, "ON")
     field(ONAM, "OFF")
+	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 }
 
@@ -70,7 +71,6 @@ record(bo, "$(P)BUFFER:CLEAR:AUTO:SP")
     field(OUT,  "@devKeithley_2700.proto setBufferAutoClearStatus $(PORT)")
     field(ZNAM, "ON")
     field(ONAM, "OFF")
-    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)BUFFER:NEXT") 
@@ -89,6 +89,8 @@ record(ai, "$(P)BUFFER:MEM:AVAIL")
 	field (SCAN, "1 second")	
     field(INP,  "@devKeithley_2700.proto getBufferMemory($(P)BUFFER:MEM:USED) $(PORT)")
 	field(EGU, "b")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)BUFFER:MEM:USED")
@@ -96,6 +98,8 @@ record(ai, "$(P)BUFFER:MEM:USED")
     field(DESC, "Bytes used by buffer for stored readings")
     field(DTYP, "stream")
 	field(EGU, "b")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 ## return string of readings from Start to +Count
@@ -105,6 +109,8 @@ record(stringin, "$(P)BUFFER:READINGS")
     field(DTYP, "stream")
     field(INP,  "@devKeithley_2700.proto getBuffReadRange($(P)START,$(P)COUNT) $(PORT)")
     field(SCAN, "1 second")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)START") 
@@ -128,15 +134,16 @@ alias("$(P)COUNT","$(P)COUNT:SP")
 # number of valuesin the buffer: can be set when buffer:clear:auto is off
 record(ai, "$(P)BUFFER:SIZE") 
 {
-     field(DESC, "Get Size of Buffer")
-     field(SCAN, "1 second")
-     field(DTYP, "stream")
-     field(INP,  "@devKeithley_2700.proto getBufferSize $(PORT)")
-     field(HIHI, "55001")
-     field(LOLO, "1")
-     field(HHSV,"MAJOR")
-     field(LLSV,"MAJOR")
-     info(INTEREST, "HIGH")
+	field(DESC, "Get Size of Buffer")
+	field(SCAN, "1 second")
+	field(DTYP, "stream")
+	field(INP,  "@devKeithley_2700.proto getBufferSize $(PORT)")
+	field(HIHI, "55001")
+	field(LOLO, "1")
+	field(HHSV,"MAJOR")
+	field(LLSV,"MAJOR")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(ao, "$(P)BUFFER:SIZE:SP") 
@@ -149,7 +156,30 @@ record(ao, "$(P)BUFFER:SIZE:SP")
     field(LOLO, "1")
     field(HHSV,"MAJOR")
     field(LLSV,"MAJOR")
+}
+
+record(bi, "$(P)TIMESTAMP") 
+{
+    field(DESC, "Query Time Stamp Format")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getTimeStamp $(PORT)")
+    field(ZNAM, "ABS")
+    field(ONAM, "DELT")
+	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
+
+}
+
+record(bo, "$(P)STAMP:SP") 
+{
+    field(DESC, "Set Time Stamp Format")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setTimeStamp $(PORT)")
+    field(ZNAM, "ABS")
+    field(ONAM, "DELT")
+
 }
 
 
