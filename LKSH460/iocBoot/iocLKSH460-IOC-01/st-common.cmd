@@ -1,4 +1,4 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "C:\Instrument\Apps\EPICS\support\lakeshore460\master\Lakeshore_460Sup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(LKSH460)/Lakeshore_460Sup"
 epicsEnvSet "DEVICE" "L0"
 
 ##ISIS## Run IOC initialisation 
