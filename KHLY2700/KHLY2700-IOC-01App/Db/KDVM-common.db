@@ -183,6 +183,60 @@ record(bo, "$(P)STAMP:SP")
 }
 
 
+ record(bi, "$(P)DELAYMODE") 
+{
+    field(DESC, "Enable/Disable auto delay")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getDelayState $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
+
+}
+
+record(bo, "$(P)DELAYMODE:SP") 
+{
+    field(DESC, "Enable/Disable auto delay")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setDelayState $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
+
+}
+
+
+record(bi, "$(P)INITMODE") 
+{
+    field(DESC, "continuous initiation state - default on")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getInitState $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
+
+}
+
+record(bo, "$(P)INITMODE:SP") 
+{
+    field(DESC, "Enable/Disable continuous initiation")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setInitState $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
+
+}
+
+
 
 
 
