@@ -1,3 +1,10 @@
+#
+# ADD:
+# 
+# setResistanceMode PV: how to factor in @101 channels etc
+#
+###############
+
 
 record(stringin, "$(P)IDN")
 {
@@ -118,7 +125,32 @@ record(ai, "$(P)COUNT")
 }
 alias("$(P)COUNT","$(P)COUNT:SP")
 
+# number of valuesin the buffer: can be set when buffer:clear:auto is off
+record(ai, "$(P)BUFFER:SIZE") 
+{
+     field(DESC, "Get Size of Buffer")
+     field(SCAN, "1 second")
+     field(DTYP, "stream")
+     field(INP,  "@devKeithley_2700.proto getBufferSize $(PORT)")
+     field(HIHI, "55001")
+     field(LOLO, "1")
+     field(HHSV,"MAJOR")
+     field(LLSV,"MAJOR")
+     info(INTEREST, "HIGH")
+}
 
+record(ao, "$(P)BUFFER:SIZE:SP") 
+{
+    field(DESC, "Set Size of Buffer")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setBufferSize $(PORT)")
+    field(HIHI, "55001")
+    field(LOLO, "1")
+    field(HHSV,"MAJOR")
+    field(LLSV,"MAJOR")
+    info(INTEREST, "HIGH")
+}
 
 
 
