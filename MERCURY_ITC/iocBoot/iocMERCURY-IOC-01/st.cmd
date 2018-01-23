@@ -54,7 +54,7 @@ epicsEnvSet(LEVEL_NUM,1)
 epicsEnvSet(LEVEL_NUM,2)
 < $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-level.cmd
 
-dbLoadRecords("db/MercuryGlobal.db", "P=$(MYPVPREFIX)$(IOCNAME):, SIM1=$(SIM1), SIM2=$(SIM2), SIM3=$(SIM3), SIM4=$(SIM4), DISABLE1=$(DISABLE1), DISABLE2=$(DISABLE2), DISABLE3=$(DISABLE3), DISABLE4=$(DISABLE4)")
+dbLoadRecords("db/MercuryGlobal.db", "P=$(MYPVPREFIX)$(IOCNAME):, SIM1=$(SIM1), SIM2=$(SIM2), SIM3=$(SIM3), SIM4=$(SIM4), SIM5=$(SIM5), SIM6=$(SIM6), DISABLE1=$(DISABLE1), DISABLE2=$(DISABLE2), DISABLE3=$(DISABLE3), DISABLE4=$(DISABLE4), DISABLE5=$(DISABLE5), DISABLE6=$(DISABLE6)")
 
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
