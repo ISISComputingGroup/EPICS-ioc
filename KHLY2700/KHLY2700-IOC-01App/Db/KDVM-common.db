@@ -260,8 +260,34 @@ record(ao, "$(P)SAMPLECOUNT:SP")
     field(LOLO, "1")
     field(HHSV,"MAJOR")
     field(LLSV,"MAJOR")
+}
 
 
+record(mbbi, "$(P)CONTROLSOURCE") 
+{
+    field(DESC, "Set Control source")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getControlSource $(PORT)")
+    field(ZRST, "IMM")
+    field(ONST, "TIM")
+    field(TWST, "MAN")
+    field(THST, "BUS")
+    field(FRST, "EXT")
+    info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+    }
+
+record(mbbo, "$(P)CONTROLSOURCE:SP") 
+{
+    field(DESC, "Get control source")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setControlSource $(PORT)")
+    field(ZRST, "IMM")
+    field(ONST, "TIM")
+    field(TWST, "MAN")
+    field(THST, "BUS")
+    field(FRST, "EXT")
 }
 
 
