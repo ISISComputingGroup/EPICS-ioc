@@ -8,6 +8,23 @@ set_requestfile_path("${MOTOR}/motorApp/Db", "")
 ## as we are common, we need to explicity define the 01 area for when we are ran by 02, 03 etc 
 set_requestfile_path("${TOP}/iocBoot/iocSM300-IOC-01", "")
 
+# Hard coded values for current setup
+epicsEnvSet("AXIS1", "yes")
+epicsEnvSet("AXIS2", "yes")
+dcalc("VELO1", "15000/$(MSTP1)", 1, 2)  # Feed rate / steps to give velocity
+dcalc("VELO2", "15000/$(MSTP2)", 1, 2)  # Feed rate / steps to give velocity
+
+epicsEnvSet("DHLM1", "570")
+epicsEnvSet("DHLL1", "-0.5")
+epicsEnvSet("DHLM2", "640")
+epicsEnvSet("DHLL2", "-0.2")
+# 2^data format * Gear factor denomentor / Gear factor numerator
+dcalc("MSTP1", "100*10/5", 1, 1) 
+dcalc("MSTP2", "100*10/1", 1, 1) 
+
+#pad motor control to the right length
+calc("MTRCTRL", "$(MTRCTRL=12)", 2, 2)
+
 iocshCmdLoop("< st-ctrl.cmd", "CNUM=\$(I)", "I", 1, 24)
 iocshCmdLoop("< st-max-axis.cmd", "MN=\$(I)", "I", 1, 8)
 
