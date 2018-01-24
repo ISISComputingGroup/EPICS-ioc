@@ -237,6 +237,34 @@ record(bo, "$(P)INITMODE:SP")
 }
 
 
+record(ai, "$(P)SAMPLECOUNT") 
+{
+    field(DESC, "Query sample count")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getSampleCount $(PORT)")
+    field(HIHI, "55001")
+    field(LOLO, "1")
+    field(HHSV,"MAJOR")
+    field(LLSV,"MAJOR")
+    info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+}
+
+record(ao, "$(P)SAMPLECOUNT:SP") 
+{
+    field(DESC, "Set sample count")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setSampleCount $(PORT)")
+    field(HIHI, "55001")
+    field(LOLO, "1")
+    field(HHSV,"MAJOR")
+    field(LLSV,"MAJOR")
+
+
+}
+
+
 
 
 
