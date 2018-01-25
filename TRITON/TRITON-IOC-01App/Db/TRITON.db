@@ -18,24 +18,18 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-record(ai, "$(P)4KHX:TEMP")
-{
-    field(DTYP, "stream")
-    field(INP, "@devtriton.proto get4KHXTemp $(PORT)")
-    field(SCAN, "1 second") 
-}
 
-record(ai, "$(P)JTHX:TEMP")
-{
-    field(DTYP, "stream")
-    field(INP, "@devtriton.proto getJTHXTemp $(PORT)")
-    field(SCAN, "1 second") 
-}
+#
+# Heater and temperature control
+#
+
 
 record(ao, "$(P)TEMP:SP")
 {
     field(DTYP, "stream")
     field(OUT, "@devtriton.proto setTSetpoint($(P)) $(PORT)")
+	field(PREC, "3")
+	field(EGU, "K")
 }
 
 record(ai, "$(P)TEMP:SP:RBV")
@@ -43,6 +37,8 @@ record(ai, "$(P)TEMP:SP:RBV")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getTSetpoint($(P)) $(PORT)")
     field(SCAN, "1 second") 
+	field(PREC, "3")
+	field(EGU, "K")
 }
 
 record(stringin, "$(P)HEATER:TYPE")
@@ -55,6 +51,8 @@ record(ao, "$(P)HEATER:RANGE:SP")
 {
     field(DTYP, "stream")
     field(OUT, "@devtriton.proto setHtrRange($(P)) $(PORT)")
+	field(PREC, "3")
+	field(EGU, "mA")
 }
 
 record(ai, "$(P)HEATER:RANGE")
@@ -62,6 +60,8 @@ record(ai, "$(P)HEATER:RANGE")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getHtrRange($(P)) $(PORT)")
     field(SCAN, "1 second") 
+	field(PREC, "3")
+	field(EGU, "mA")
 }
 
 record(ai, "$(P)HEATER:POWER")
@@ -69,6 +69,8 @@ record(ai, "$(P)HEATER:POWER")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getHtrPower($(P)) $(PORT)")
     field(SCAN, "1 second")
+	field(PREC, "3")
+	field(EGU, "uW")
 }
 
 record(bi, "$(P)CLOSEDLOOP")
@@ -90,6 +92,12 @@ record(bo, "$(P)CLOSEDLOOP:SP")
     field(ONAM, "YES")
 }
 
+
+#
+# System status
+#
+
+
 record(waveform, "$(P)STATUS")
 {
     field(DTYP, "stream")
@@ -108,6 +116,12 @@ record(waveform, "$(P)AUTOMATION")
     field(SCAN, "1 second")
 }
 
+
+#
+# Arbitrary commands
+#
+
+
 record(waveform, "$(P)ARBITRARY:SP")
 {
     field(NELM, "512")
@@ -125,4 +139,33 @@ record(waveform, "$(P)ARBITRARY")
 {
     field(NELM, "512")
     field(FTVL, "CHAR")
+}
+
+
+#
+# Diagnostics
+#
+
+
+record(stringin, "$(P)SYS:TIME")
+{
+	field(DTYP, "stream")
+    field(INP, "@devtriton.proto getTime $(PORT)")
+	field(SCAN, "1 second")
+}
+
+record(waveform, "$(P)SYS:IDN")
+{
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getIDN $(PORT)")
+	field(PINI, "YES")
+	# No need to scan. This won't change.
+    field(NELM, "512")
+    field(FTVL, "CHAR")
+}
+
+record(stringin, "$(P)SYS:ADDR")
+{
+    field(VAL, "$(IPADDR)")
+	field(PINI, "YES")
 }

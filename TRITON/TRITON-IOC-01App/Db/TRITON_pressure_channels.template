@@ -3,4 +3,6 @@ record(ai, "$(P)PRESSURE:$(CHAN)")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getPressure($(CHAN)) $(PORT)")
     field(SCAN, "1 second") 
+	field(PREC, "3")
+	field(EGU, "mbar")
 }

@@ -18,28 +18,20 @@ TRITON_IOC_01_registerRecordDeviceDriver(pdbbase)
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-## For unit testing:
-$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
+$(IFDEVSIM) epicsEnvSet "IPADDR" "localhost"
+$(IFDEVSIM) epicsEnvSet "IPPORT" "$(EMULATOR_PORT=57677)"
 
-## For normal devsim:
-# $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:57677")
+$(IFNOTDEVSIM) epicsEnvSet "IPADDR" "oi-pc.isis.cclrc.ac.uk"
+$(IFNOTDEVSIM) epicsEnvSet "IPPORT" "33576"
 
-## For recsim:
-$(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
-
-## For real device:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
+drvAsynIPPortConfigure("$(DEVICE)", "$(IPADDR):$(IPPORT)")
 
 ## Load record instances
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-dbLoadRecords("../../db/TRITON.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("../../db/TRITON.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),IPADDR=$(IPADDR)")
 dbLoadRecords("../../db/TRITON_valves.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 dbLoadRecords("../../db/TRITON_channels.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 dbLoadRecords("../../db/TRITON_pid.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")

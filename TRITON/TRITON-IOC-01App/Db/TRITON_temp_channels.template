@@ -2,17 +2,25 @@ record(stringin, "$(P)$(CHAN):UID")
 {
     field(DESC, "Unique ID of $(CHAN)")
     field(DTYP, "stream")
-    field(INP, "@devtriton.proto get$(CHAN)Uid $(PORT)")
+    field(INP, "@devtriton.proto $(UID_COMMAND) $(PORT)")
     
     field(PINI, "YES")
-    field(SCAN, "1 second") 
+    field(SCAN, "10 seconds") 
 	
 	$(IFFLNK) field(FLNK, "$(P)HEATER:TYPE") # Forward link to Heater type iff this is the MC channel.
+}
+
+record(scalcout, "$(P)$(CHAN):EXISTS") {
+    field(INAA, "$(P)$(CHAN):UID CP MS")
+	field(CALC, "AA != 'NONE' && AA != 'NOT_FOUND'")
 }
 
 record(ai, "$(P)$(CHAN):TEMP")
 {
     field(DTYP, "stream")
-    field(INP, "@devtriton.proto get$(CHAN)Temp($(P)) $(PORT)")
+    field(INP, "@devtriton.proto getChanTemp($(P)$(CHAN):UID) $(PORT)")
     field(SCAN, "1 second")
+	field(PREC, "3")
+	field(EGU, "K")
 }
+
