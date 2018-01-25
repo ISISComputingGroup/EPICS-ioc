@@ -7,7 +7,7 @@ epicsEnvSet "STREAM_PROTOCOL_PATH" "$(FZJDDFERMCHOP)/data"
 $(IFRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NUL)", 0, 1, 0, 0)
 
 # For dev sim devices
-$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=57677)")
 
 # Commands for turning on debugging.  Shows traffic on connection.
 # asynSetTraceMask("L0",-1,0x9) 

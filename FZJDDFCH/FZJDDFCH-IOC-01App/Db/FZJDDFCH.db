@@ -294,7 +294,7 @@ record(ai, "$(P)PHAS")
 # OK or NOK
 # phase deviation = 0.1º means that the phase is OK
 #
-record(bi, "$(P)PHAS:STATUS")
+record(bi, "$(P)PHAS:STAT")
 {
     field(DESC, "Phase Status")
     field(ZNAM, "OK")
@@ -320,7 +320,7 @@ record(bi, "$(P)MB")
 # MBOK?
 # OK or NOK
 #
-record(bi, "$(P)MB:STATUS")
+record(bi, "$(P)MB:STAT")
 {
     field(DESC, "Magnetic Bearing Status")
     field(ZNAM, "OK")
@@ -377,45 +377,45 @@ alias("$(P)DRIVE:MODE", "$(P)DRV:MODE")
 # 0.00 to 15.00
 # two decimal places
 #
-record(ai, "$(P)DRIVE:PHASE1:CURR")
+record(ai, "$(P)DRIVE:L1:CURR")
 {
-    field(DESC, "Drive Current Phase 1")
+    field(DESC, "Winding 1 Drive Current")
     field(EGU, "A")
     field(PREC, "2")    
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias("$(P)DRIVE:PHASE1:CURR", "$(P)DRV:PHASE1:CURR")
+alias("$(P)DRIVE:L1:CURR", "$(P)DRV:L1:CURR")
 #
 # drive current L2 [A]
 # DRL2?
 # 0.00 to 15.00
 # two decimal places
 #
-record(ai, "$(P)DRIVE:PHASE2:CURR")
+record(ai, "$(P)DRIVE:L2:CURR")
 {
-    field(DESC, "Drive Current Phase 2")
+    field(DESC, "Winding 2 Drive Current")
     field(EGU, "A")
     field(PREC, "2")    
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias("$(P)DRIVE:PHASE2:CURR", "$(P)DRV:PHASE2:CURR")
+alias("$(P)DRIVE:L2:CURR", "$(P)DRV:L2:CURR")
 #
 # drive current L3 [A]
 # DRL3?
 # 0.00 to 15.00
 # two decimal places
 #
-record(ai, "$(P)DRIVE:PHASE3:CURR")
+record(ai, "$(P)DRIVE:L3:CURR")
 {
-    field(DESC, "Drive Current Phase 3")
+    field(DESC, "Winding 3 Drive Current")
     field(EGU, "A")
     field(PREC, "2")    
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias("$(P)DRIVE:PHASE3:CURR", "$(P)DRV:PHASE3:CURR")
+alias("$(P)DRIVE:L3:CURR", "$(P)DRV:L3:CURR")
 #
 # rotating direction
 # RODI?
@@ -437,7 +437,7 @@ alias("$(P)DRIVE:DIR", "$(P)DRV:DIR")
 # OK or NOK
 # OK if chopper is in open position
 #
-record(bi, "$(P)PARKED:OPEN:STATUS")
+record(bi, "$(P)PARKED:OPEN:STAT")
 {
     field(DESC, "Parked Open Status")
     field(ZNAM, "OK")
@@ -445,7 +445,6 @@ record(bi, "$(P)PARKED:OPEN:STATUS")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-alias("$(P)PARKED:OPEN:STATUS", "$(P)PARKED:OPEN:STAT")
 #
 # drive temperature [ºC]
 # DRIT?
@@ -530,7 +529,7 @@ record(bi, "$(P)LOGGING")
 # OK or NOK
 # related to chopper 2
 #
-record(bi, "$(P)LMSR:STATUS")
+record(bi, "$(P)LMSR:STAT")
 {
     field(DESC, "Linear Motion Slide Release Status")
     field(ZNAM, "OK")
@@ -538,13 +537,12 @@ record(bi, "$(P)LMSR:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias("$(P)LMSR:STATUS", "$(P)LMSR:STAT")
 #
 # DSP function control
 # DSPM?
 # OK or NOK
 #
-record(bi, "$(P)DSP:STATUS")
+record(bi, "$(P)DSP:STAT")
 {
     field(DESC, "DSP Function Control Status")
     field(ZNAM, "OK")
@@ -552,13 +550,12 @@ record(bi, "$(P)DSP:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias("$(P)DSP:STATUS", "$(P)DSP:STAT")
 #
 # interlock - external release
 # EROK?
 # OK or NOK
 #
-record(bi, "$(P)INTERLOCK:ER:STATUS")
+record(bi, "$(P)INTERLOCK:ER:STAT")
 {
     field(DESC, "Interlock - External Release Status")
     field(ZNAM, "OK")
@@ -566,13 +563,13 @@ record(bi, "$(P)INTERLOCK:ER:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias ("$(P)INTERLOCK:ER:STATUS", "$(P)IL:ER:STAT")
+alias ("$(P)INTERLOCK:ER:STAT", "$(P)IL:ER:STAT")
 #
 # interlock - vacuum
 # VAOK?
 # OK oder NOK
 #
-record(bi, "$(P)INTERLOCK:VAC:STATUS")
+record(bi, "$(P)INTERLOCK:VAC:STAT")
 {
     field(DESC, "Interlock - Vacuum Status")
     field(ZNAM, "OK")
@@ -580,13 +577,13 @@ record(bi, "$(P)INTERLOCK:VAC:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias ("$(P)INTERLOCK:VAC:STATUS", "$(P)IL:VAC:STAT")
+alias ("$(P)INTERLOCK:VAC:STAT", "$(P)IL:VAC:STAT")
 #
 # interlock - rotary frequency monitoring
 # SMOK?
 # OK or NOK
 #
-record(bi, "$(P)INTERLOCK:FREQMON:STATUS")
+record(bi, "$(P)INTERLOCK:FREQMON:STAT")
 {
     field(DESC, "Interlock - Rotary Freq Mon Status")
     field(ZNAM, "OK")
@@ -594,13 +591,13 @@ record(bi, "$(P)INTERLOCK:FREQMON:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias ("$(P)INTERLOCK:FREQMON:STATUS", "$(P)IL:FREQMON:STAT")
+alias ("$(P)INTERLOCK:FREQMON:STAT", "$(P)IL:FREQMON:STAT")
 #
 # interlock - magnetic bearing amplifier temperature
 # MBAT?
 # OK or NOK
 #
-record(bi, "$(P)INTERLOCK:MB:AMP:TEMP:STATUS")
+record(bi, "$(P)INTERLOCK:MB:AMP:TEMP:STAT")
 {
     field(DESC, "Interlock - Mag Brng Amp Temp Status")
     field(ZNAM, "OK")
@@ -608,13 +605,13 @@ record(bi, "$(P)INTERLOCK:MB:AMP:TEMP:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias ("$(P)INTERLOCK:MB:AMP:TEMP:STATUS", "$(P)IL:MB:TEMP:STAT")
+alias ("$(P)INTERLOCK:MB:AMP:TEMP:STAT", "$(P)IL:MB:TEMP:STAT")
 #
 # interlock - magnetic bearing amplifier current
 # MBAC?
 # OK or NOK
 #
-record(bi, "$(P)INTERLOCK:MB:AMP:CURR:STATUS")
+record(bi, "$(P)INTERLOCK:MB:AMP:CURR:STAT")
 {
     field(DESC, "Interlock - Mag Brng Amp Curr Status")
     field(ZNAM, "OK")
@@ -622,13 +619,13 @@ record(bi, "$(P)INTERLOCK:MB:AMP:CURR:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias ("$(P)INTERLOCK:MB:AMP:CURR:STATUS", "$(P)IL:MB:CURR:STAT")
+alias ("$(P)INTERLOCK:MB:AMP:CURR:STAT", "$(P)IL:MB:CURR:STAT")
 #
 # interlock - drive amplifier temperature
 # DRAT?
 # OK or NOK
 #
-record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP:STATUS")
+record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP:STAT")
 {
     field(DESC, "Interlock - Drive Amp Temp Status")
     field(ZNAM, "OK")
@@ -636,13 +633,13 @@ record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias ("$(P)INTERLOCK:DRIVE:AMP:TEMP:STATUS", "$(P)IL:DRV:TEMP:STAT")
+alias ("$(P)INTERLOCK:DRIVE:AMP:TEMP:STAT", "$(P)IL:DRV:TEMP:STAT")
 #
 # interlock - drive amplifier current
 # DRAC?
 # OK or NOK
 #
-record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR:STATUS")
+record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR:STAT")
 {
     field(DESC, "Interlock - Drive Amp Curr Status")
     field(ZNAM, "OK")
@@ -650,13 +647,13 @@ record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias ("$(P)INTERLOCK:DRIVE:AMP:CURR:STATUS", "$(P)IL:DRV:CURR:STAT")
+alias ("$(P)INTERLOCK:DRIVE:AMP:CURR:STAT", "$(P)IL:DRV:CURR:STAT")
 #
 # interlock - UPS
 # PSOK?
 # OK or NOK
 #
-record(bi, "$(P)INTERLOCK:UPS:STATUS")
+record(bi, "$(P)INTERLOCK:UPS:STAT")
 {
     field(DESC, "Interlock - UPS Status")
     field(ZNAM, "OK")
@@ -664,7 +661,7 @@ record(bi, "$(P)INTERLOCK:UPS:STATUS")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias ("$(P)INTERLOCK:UPS:STATUS", "$(P)IL:UPS:STAT")
+alias ("$(P)INTERLOCK:UPS:STAT", "$(P)IL:UPS:STAT")
 #
 #
 # ### SIMULATION RECORDS ###
