@@ -1,10 +1,10 @@
 file TRITON_temp_channels.template {
 
   pattern {PORT, P, CHAN, UID_COMMAND, IFFLNK}
-  {"\$(PORT)", "\$(P)", "MC", "getChanUid(MC)", ""}
+  {"\$(PORT)", "\$(P)", "MC", "getChanUid(MC)", "#"}
   {"\$(PORT)", "\$(P)", "STIL", "getChanUid(STIL)", "#"}
   {"\$(PORT)", "\$(P)", "SORB", "getChanUid(SORB)", "#"}
   {"\$(PORT)", "\$(P)", "JTHX", "getChanUid(PT1)", "#"}
   {"\$(PORT)", "\$(P)", "4KHX", "getChanUid(PT2)", "#"}
-  {"\$(PORT)", "\$(P)", "SAMPLE", "getSampleUid", "#"}
+  {"\$(PORT)", "\$(P)", "SAMPLE", "getSampleUid", ""}
 }

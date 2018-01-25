@@ -7,7 +7,7 @@ record(stringin, "$(P)$(CHAN):UID")
     field(PINI, "YES")
     field(SCAN, "10 seconds") 
 	
-	$(IFFLNK) field(FLNK, "$(P)HEATER:TYPE") # Forward link to Heater type iff this is the MC channel.
+	$(IFFLNK) field(FLNK, "$(P)HEATER:TYPE") # Forward link to Heater type iff this is the sample channel.
 }
 
 record(scalcout, "$(P)$(CHAN):EXISTS") {
