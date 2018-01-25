@@ -263,7 +263,7 @@ record(ao, "$(P)SAMPLECOUNT:SP")
 }
 
 
-record(mbbi, "$(P)CONTROLSOURCE") 
+record(mbbi, "$(P)CONTROLSOURCE:SP") 
 {
     field(DESC, "Set Control source")
     field(SCAN, "1 second")
@@ -288,7 +288,11 @@ record(mbbo, "$(P)CONTROLSOURCE:SP")
     field(TWST, "MAN")
     field(THST, "BUS")
     field(FRST, "EXT")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
 }
+
+alias("$(P)CONTROLSOURCE:SP","$(P)CONTROLSOURCE")
 
 
 
