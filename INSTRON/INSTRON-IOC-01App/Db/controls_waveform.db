@@ -636,7 +636,8 @@ record(calcout, "$(P)QUART:_STOP")
     field(INPA, "$(P)QUART:CYCLE CPP")
     field(INPB, "$(P)QUART:CYCLE:SP CPP")
     field(INPC, "$(P)WAVE:STATUS:INT CPP")
-    field(CALC, "A>=B && C=1")
+	field(INPD, "$(P)WAVE:START:SEQ.PACT")
+    field(CALC, "A>=B && C=1 && D=0")
     field(OUT, "$(P)WAVE:STOP PP")
 }
 
