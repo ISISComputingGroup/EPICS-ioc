@@ -288,33 +288,21 @@ record(ao, "$(P)SAMPLECOUNT:SP")
     field(LLSV,"MAJOR")
 }
 
-
-record(mbbi, "$(P)CONTROLSOURCE") 
-{s
-    field(DESC, "Set programmed control source")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto getControlSource $(PORT)")
-    field(ZRST, "IMM")
-    field(ONST, "TIM")
-    field(TWST, "MAN")
-    field(THST, "BUS")
-    field(FRST, "EXT")
-    info(INTEREST, "HIGH")
-	info(ARCHIVE, "VAL")
-    }
-
 record(mbbo, "$(P)CONTROLSOURCE:SP") 
 {
-    field(DESC, "Get control source")
+    field(DESC, "Set programmed control source")
     field(DTYP, "stream")
+	field(SCAN, "1 second")
     field(OUT,  "@devKeithley_2700.proto setControlSource $(PORT)")
     field(ZRST, "IMM")
     field(ONST, "TIM")
     field(TWST, "MAN")
     field(THST, "BUS")
     field(FRST, "EXT")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
 }
+alias("$(P)CONTROLSOURCE:SP", "$(P)CONTROLSOURCE")
 
 record(stringout, "$(P)DATAELEMENTS:SP")
 {
@@ -324,9 +312,8 @@ record(stringout, "$(P)DATAELEMENTS:SP")
     field(OUT,  "@devKeithley_2700.proto setDataElements $(PORT)")
     info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
-	
 }
-alias("$(P)DATAELEMENTS:SP","$(P)DATAELEMENTS:CLEAR")
+alias("$(P)DATAELEMENTS:SP","$(P)DATAELEMENTS")
 
 
 record(bi, "$(P)FRES:AUTORANGE:SP") 
@@ -342,17 +329,40 @@ record(bi, "$(P)FRES:AUTORANGE:SP")
 }
 alias("$(P)FRES:AUTORANGE:SP", "$(P)FRES:AUTORANGE")
 
-
-record(bo, "$(P)AUTO_RANGE:SP") 
+# digits between 4-7
+record(ao, "$(P)FRES:DIGITS:SP") 
 {
-    field(DESC, "Enable or Disable Range")
-    field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(OUT,  "@devKeithley_2700.proto setAutoRange($(P)CHANNEL_END) $(PORT)")
-    field(ZNAM, "ON")
-    field(ONAM, "OFF")
-    info(INTEREST, "HIGH")
-
+	field(DESC, "FRES value for digit range")
+	field(EGU, "")
+	field(DTYP, "stream")
+	field(OUT, "@devKeithley_2700.proto setFResDigits $(PORT)")
+	field(SCAN, "1 second")
+	field(HIHI, "8")
+	field(LOLO, "3")
+	field(HHSV,"MAJOR")
+	field(LLSV,"MAJOR")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
 }
+alias("$(P)FRES:DIGITS:SP", "$(P)FRES:DIGITS")
+
+# number of plc cycles
+record(ao, "$(P)FRES:NPLC:SP") 
+{
+    field(DESC, "Set Intergration Rate")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setFResistancePlcRate $(PORT)")
+    field(HIHI, "61")
+    field(LOLO, "0")
+    field(HHSV,"MAJOR")
+    field(LLSV,"MAJOR")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+}
+alias("$(P)FRES:NPLC:SP", "$(P)FRES:NPLC")
+
+
+
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
