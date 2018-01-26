@@ -1,4 +1,4 @@
-record(bi, "$(P)CHANNELS:T$(CHAN):STATE")
+record(bi, "$(P)CHANNELS:$(CHAN):STATE")
 {
     field(DTYP, "stream")
     field(SCAN, "1 second")
@@ -6,10 +6,10 @@ record(bi, "$(P)CHANNELS:T$(CHAN):STATE")
 	
 	field(ZNAM, "OFF")
 	field(ONAM, "ON")
-
+    field(FLNK, "$(P)CHANNELS:$(CHAN):READALL:CALC")
 }
 
-record(bo, "$(P)CHANNELS:T$(CHAN):STATE:SP")
+record(bo, "$(P)CHANNELS:$(CHAN):STATE:SP")
 {
     field(DTYP, "stream")
     field(OUT, "@devtriton.proto setChanState($(CHAN)) $(PORT)")
@@ -17,5 +17,36 @@ record(bo, "$(P)CHANNELS:T$(CHAN):STATE:SP")
 	field(ZNAM, "OFF")
 	field(ONAM, "ON")
 
+}
+
+record(calcout, "$(P)CHANNELS:$(CHAN):READALL:CALC") 
+{
+    field(INPA, "$(P)CHANNELS:$(CHAN):STATE MS")
+	field(CALC, "A")
+	field(OOPT, "When Non-zero")
+	field(OUT, "$(P)CHANNELS:$(CHAN):READALL:FANOUT PP")
+}
+
+record(fanout, "$(P)CHANNELS:$(CHAN):READALL:FANOUT") 
+{
+    field(LNK1, "$(P)CHANNELS:$(CHAN):READ:SIG PP")
+}
+
+record(bi, "$(P)CHANNELS:$(CHAN):READ:SIG")
+{
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto readSig($(CHAN),$(P)CHANNELS:$(CHAN)) $(PORT)")
+}
+
+record(ai, "$(P)CHANNELS:$(CHAN):TEMP")
+{
+    field(PREC, "3")
+    field(EGU, "K")
+}
+
+record(ai, "$(P)CHANNELS:$(CHAN):RES")
+{
+    field(PREC, "3")
+    field(EGU, "Ohm")
 }
 

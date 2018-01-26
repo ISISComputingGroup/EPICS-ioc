@@ -5,14 +5,35 @@ record(stringin, "$(P)$(CHAN):UID")
     field(INP, "@devtriton.proto $(UID_COMMAND) $(PORT)")
     
     field(PINI, "YES")
-    field(SCAN, "10 seconds") 
-	
-	$(IFFLNK) field(FLNK, "$(P)HEATER:TYPE") # Forward link to Heater type iff this is the sample channel.
+    field(SCAN, "10 second") 
 }
 
-record(scalcout, "$(P)$(CHAN):EXISTS") {
+record(scalcout, "$(P)$(CHAN):UID:CORRECT") 
+{
+    # Newer triton systems report a control channel of 'T0'.
+	# This is not right. It potentially relates to a newer Lakeshore unit internally
+	# but needs to be corrected to T1.
+	#
+	# Only do this correction if this is the SAMPLE channel.
+	#
+    field(INAA, "$(P)$(CHAN):UID:RAW CP MS")
+	field(CALC, "(AA='T0' && '$(IFSAMPLE)'='#')?'T1':AA")
+	field(OUT, "$(P)$(CHAN):UID PP MS")
+}
+
+record(stringin, "$(P)$(CHAN):UID") 
+{
+    info(archive, "VAL")
+	# Forward link to Heater type iff this is the sample channel.
+	$(IFSAMPLE) field(FLNK, "$(P)HEATER:TYPE")
+}
+
+record(scalcout, "$(P)$(CHAN):EXISTS") 
+{
     field(INAA, "$(P)$(CHAN):UID CP MS")
 	field(CALC, "AA != 'NONE' && AA != 'NOT_FOUND'")
+	field(OUT, "$(P)$(CHAN):EXISTS PP MS")
+	field(OOPT, "Every Time")
 }
 
 record(ai, "$(P)$(CHAN):TEMP")
@@ -22,5 +43,8 @@ record(ai, "$(P)$(CHAN):TEMP")
     field(SCAN, "1 second")
 	field(PREC, "3")
 	field(EGU, "K")
+	info(archive, "VAL")
+	# Alarm on sample temperature only (this should always exist and be valid)
+	$(IFSAMPLE) info(alarm, "TRITON") 
 }
 

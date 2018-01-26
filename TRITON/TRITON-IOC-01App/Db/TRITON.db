@@ -129,8 +129,13 @@ record(waveform, "$(P)ARBITRARY:SP")
     field(FLNK, "$(P)ARBITRARY:SP:TRIGGER")
 }
 
-record(bo, "$(P)ARBITRARY:SP:TRIGGER")
+record(calcout, "$(P)ARBITRARY:SP:TRIGGER")
 {
+    field(INPA, "$(P)ARBITRARY:SP.NORD")
+	# Only send if length of command is
+	# Use greater than one to account for null terminator
+	field(CALC, "A > 1") 
+	field(OOPT, "When Non-zero")
     field(DTYP, "stream")
     field(OUT,  "@devtriton.proto arbitrary($(P)) $(PORT)")
 }

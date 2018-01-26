@@ -1,6 +1,6 @@
 file TRITON_temp_channels.template {
 
-  pattern {PORT, P, CHAN, UID_COMMAND, IFFLNK}
+  pattern {PORT, P, CHAN, UID_COMMAND, IFSAMPLE}
   {"\$(PORT)", "\$(P)", "MC", "getChanUid(MC)", "#"}
   {"\$(PORT)", "\$(P)", "STIL", "getChanUid(STIL)", "#"}
   {"\$(PORT)", "\$(P)", "SORB", "getChanUid(SORB)", "#"}
