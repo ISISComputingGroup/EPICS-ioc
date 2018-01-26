@@ -53,51 +53,33 @@ record(mbbo, "$(P)MEASUREMENT:SP") {
 alias("$(P)MEASUREMENT:SP","$(P)MEASUREMENT")
 
 # source of the buffer feed: sense, calculate, or none
-record(mbbi, "$(P)BUFFER:SOURCE") 
-{
-    field(DESC, "Get current buffer source")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto getBufferFeedSource $(PORT)")
-    field(ZRST, "SENS")
-    field(ONST, "CALC")
-    field(TWST, "NONE")
-	info(ARCHIVE, "VAL")
-    info(INTEREST, "HIGH")
-}
-
 record(mbbo, "$(P)BUFFER:SOURCE:SP") 
 {
-    field(DESC, "Set buffer feed source")
+    field(DESC, "Get buffer feed source")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(OUT,  "@devKeithley_2700.proto setBufferFeedSource $(PORT)")
     field(ZRST, "SENS")
     field(ONST, "CALC")
     field(TWST, "NONE")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
 }
+alias("$(P)BUFFER:SOURCE:SP", "$(P)BUFFER:SOURCE")
 
-record(bi, "$(P)BUFFER:CLEAR:AUTO") 
+
+record(bo, "$(P)BUFFER:CLEAR:AUTO:SP") 
 {
-    field(DESC, "Return buffer clear mode status")
+    field(DESC, "Set Buffer State")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto getBufferAutoClearStatus $(PORT)")
+    field(OUT,  "@devKeithley_2700.proto setBufferAutoClearStatus $(PORT)")
     field(ZNAM, "ON")
     field(ONAM, "OFF")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 }
-
-record(bo, "$(P)BUFFER:CLEAR:AUTO:SP") 
-{
-    field(DESC, "Set Buffer State")
-    field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(OUT,  "@devKeithley_2700.proto setBufferAutoClearStatus $(PORT)")
-    field(ZNAM, "ON")
-    field(ONAM, "OFF")
-}
+alias("$(P)BUFFER:CLEAR:AUTO:SP","$(P)BUFFER:CLEAR:AUTO")
 
 record(ai, "$(P)BUFFER:NEXT") 
 {
@@ -105,6 +87,8 @@ record(ai, "$(P)BUFFER:NEXT")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@devKeithley_2700.proto getNextBufferReadingLoc $(PORT)")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 # Records also receives value for MEM:USED and sets its value 
@@ -158,20 +142,6 @@ record(ai, "$(P)COUNT")
 alias("$(P)COUNT","$(P)COUNT:SP")
 
 # number of valuesin the buffer: can be set when buffer:clear:auto is off
-record(ai, "$(P)BUFFER:SIZE") 
-{
-	field(DESC, "Get Size of Buffer")
-	field(SCAN, "1 second")
-	field(DTYP, "stream")
-	field(INP,  "@devKeithley_2700.proto getBufferSize $(PORT)")
-	field(HIHI, "55001")
-	field(LOLO, "1")
-	field(HHSV,"MAJOR")
-	field(LLSV,"MAJOR")
-	info(ARCHIVE, "VAL")
-    info(INTEREST, "HIGH")
-}
-
 record(ao, "$(P)BUFFER:SIZE:SP") 
 {
     field(DESC, "Set Size of Buffer")
@@ -182,31 +152,25 @@ record(ao, "$(P)BUFFER:SIZE:SP")
     field(LOLO, "1")
     field(HHSV,"MAJOR")
     field(LLSV,"MAJOR")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
 }
+alias("$(P)BUFFER:SIZE:SP", "$(P)BUFFER:SIZE")
 
-record(bi, "$(P)TIMESTAMP") 
+record(bi, "$(P)TIMESTAMP:FORMAT:SP") 
 {
     field(DESC, "Query Time Stamp Format")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto getTimeStamp $(PORT)")
+    field(INP,  "@devKeithley_2700.proto setTimeStamp $(PORT)")
     field(ZNAM, "ABS")
     field(ONAM, "DELT")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
-
 }
+alias("$(P)TIMESTAMP:FORMAT:SP", "$(P)TIMESTAMP:FORMAT")
 
-record(bo, "$(P)STAMP:SP") 
-{
-    field(DESC, "Set Time Stamp Format")
-    field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(OUT,  "@devKeithley_2700.proto setTimeStamp $(PORT)")
-    field(ZNAM, "ABS")
-    field(ONAM, "DELT")
 
-}
 
 
  record(bi, "$(P)DELAYMODE") 
@@ -304,6 +268,7 @@ record(mbbo, "$(P)CONTROLSOURCE:SP")
 }
 alias("$(P)CONTROLSOURCE:SP", "$(P)CONTROLSOURCE")
 
+# send empty string?
 record(stringout, "$(P)DATAELEMENTS:SP")
 {
     field(DESC, "set elements returned by trace:data")
@@ -362,6 +327,52 @@ record(ao, "$(P)FRES:NPLC:SP")
 }
 alias("$(P)FRES:NPLC:SP", "$(P)FRES:NPLC")
 
+record(mbbo, "$(P)BUFFER_CONTROL:SP") 
+{
+    field(DESC, "Set Buffer Control Mode")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setBufferControl $(PORT)")
+    field(ZRST, "NEXT")
+    field(ONST, "ALW")
+    field(TWST, "NEV")
+    info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+}
+alias("$(P)BUFFER:CONTROLMODE:SP", "$(P)BUFFER:CONTROLMODE")
+
+record(bi, "$(P)SCAN:STATE:SP") 
+{
+     field(DESC, "Toggle scan on or off")
+     field(SCAN, "1 second")
+     field(DTYP, "stream")
+     field(INP,  "@devKeithley_2700.proto setScanState $(PORT)")
+     field(ZNAM, "INT")
+     field(ONAM, "NONE")
+     info(INTEREST, "HIGH")
+	 info(ARCHIVE, "VAL")
+
+}
+alias("$(P)SCAN:STATE:SP", "$(P)SCAN:STATE")
+
+record(bo, "$(P)SCAN:CHANNELS:SP")
+{
+	field(DESC, "Specify channels to be scanned")
+	field(DTYP, "stream")
+	field(ZNAM, "")
+	field(ONAM, "")
+	field(OUT, "@devKeithley_2700.proto setScanChannels $(PORT)")    
+}
+
+record(ai, "$(P)SCAN:CHANNELS")
+{
+	field(DESC, "Return channel scan list")
+	field(SCAN, "1 second")
+	field(DTYP, "stream")
+	field(IN, "@devKeithley_2700.proto getScanChannels $(PORT)")
+	info(INTEREST, "HIGH")	
+	info(ARCHIVE, "VAL")
+}
 
 
 
