@@ -1,0 +1,24 @@
+file "$(NETSHRVAR)/db/NetSHrVar_boolean.template"
+{
+pattern { P, PARAM, PORT, RPARAM, SPARAM, SCAN, ZNAME, ONAME }
+{ "\$(P)", "SIMARM12", "nsv", "SIMARM12", "SIMARM12", "I/O Intr", "Arm2", "Arm1" }
+{ "\$(P)", "SIMGO", "nsv", "SIMGO", "SIMGO", "I/O Intr", "No", "Yes" }
+{ "\$(P)", "SIMSIM", "nsv", "SIMSIM", "SIMSIM", "I/O Intr", "No", "Yes" }
+{ "\$(P)", "RFON", "nsv", "RFON", "RFON", "I/O Intr", "Off", "On" }
+{ "\$(P)", "AWGOUTPUT", "nsv", "AWGOUTPUT", "AWGOUTPUT", "I/O Intr", "No", "Yes" }
+{ "\$(P)", "AWGCONF", "nsv", "AWGCONF", "AWGCONF", "I/O Intr", "No", "Yes" }
+{ "\$(P)", "AWGGAINCSET", "nsv", "AWGGAINCSET", "AWGGAINCSET", "I/O Intr", "No", "Yes" }
+}
+
+file "$(NETSHRVAR)/db/NetSHrVar_float64.template"
+{
+pattern { P, PARAM, PORT, RPARAM, SPARAM, SCAN, EGU, PREC }
+{ "\$(P)", "SIMPSO", "nsv", "SIMPSO", "SIMPSO", "I/O Intr", "", 3 }
+{ "\$(P)", "SIMTHETA", "nsv", "SIMPSO", "SIMPSO", "I/O Intr", "", 3 }
+{ "\$(P)", "SIML1", "nsv", "SIML1", "SIML1", "I/O Intr", "",3  }
+{ "\$(P)", "SIML2", "nsv", "SIML2", "SIML2", "I/O Intr", "", 3 }
+{ "\$(P)", "FIELDMAG1", "nsv", "FIELDMAG1", "FIELDMAG1SP", "I/O Intr", "", 3 }
+{ "\$(P)", "FIELDMAG2", "nsv", "FIELDMAG2", "FIELDMAG2SP", "I/O Intr", "", 3 }
+{ "\$(P)", "FIELDMAG3", "nsv", "FIELDMAG3", "FIELDMAG3SP", "I/O Intr", "", 3 }
+{ "\$(P)", "FIELDMAG4", "nsv", "FIELDMAG4", "FIELDMAG4SP", "I/O Intr", "", 3 }
+}

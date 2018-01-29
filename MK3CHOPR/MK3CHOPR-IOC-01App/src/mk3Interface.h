@@ -13,7 +13,7 @@ __declspec(dllimport) int GetActualPhase(unsigned int channel, unsigned int* res
 __declspec(dllimport) int GetActualPhaseError(unsigned int channel, int* result);
 __declspec(dllimport) int GetChopperName(unsigned int channel, char* result, int size);
 // __declspec(dllimport) int GetChopperType(unsigned int channel, char* result, int size);
-// __declspec(dllimport) int GetComputerMode(bool* result);
+__declspec(dllimport) int GetComputerMode(bool* result);
 // __declspec(dllimport) int GetFirmwareVersion(unsigned int channel, int* result);
 // __declspec(dllimport) int GetMPPeriod(unsigned int channel, int* result);
 // __declspec(dllimport) int GetNominalAngle(unsigned int channel, double* result);
@@ -50,6 +50,7 @@ class mk3Interface
         int getAllowedFrequencies(unsigned int channel, double* result, int size);   
         int getStatusRegister(unsigned int channel, bool* result, int size); 
         int getChopperName(unsigned int channel, char* result, int size);  
+        int getComputerMode(bool* result);  
         int getChangeDirectionEnabled(unsigned int channel, bool* result); 
         int getNumberEnabledChannels(unsigned int* result); 
         int putNominalDirection(unsigned int channel, bool cw, int* result); 

@@ -39,5 +39,10 @@ pattern { P, Q, DESC, CATEGORY, UNITS, OUT }
     { "\$(P)", "PARS:SAMPLE:TYPE", "Sample Type", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
     { "\$(P)", "PARS:SAMPLE:GEOMETRY", "Sample Geometry", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
     { "\$(P)", "PARS:SAMPLE:SCRIPT:NAME", "Script Name", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:SAMPLE:ID", "Sample ID", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:SAMPLE:MEAS:ID", "Measurement ID", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:SAMPLE:MEAS:TYPE", "Measurement Type", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:SAMPLE:MEAS:SUBID", "Measurement SubID", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
+    { "\$(P)", "PARS:SAMPLE:MEAS:LABEL", "Measurement Label", "SAMPLEPAR", "", "DAE:SAMPLEPAR:SP" }
     { "\$(P)", "PARS:BL:BEAMSTOP:POS", "Beamstop Position", "BEAMLINEPAR", "", "DAE:BEAMLINEPAR:SP" }
     { "\$(P)", "PARS:BL:JOURNAL:BLOCKS", "Journal Blocks", "BEAMLINEPAR", "", "DAE:BEAMLINEPAR:SP" }

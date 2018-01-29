@@ -1,0 +1,77 @@
+
+record(bi, "$(P)$(AXISPV):GOING")
+{
+	field(DESC, "LabVIEW '$(AXIS) In Motion'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)$(AXIS)_In_Motion")
+    field(SCAN, ".1 second")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(AXISPV):GOING")
+    field(SDIS, "$(P)DISABLE")
+	info(alarm, "SAMPOS")
+}
+
+record(ai, "$(P)$(AXISPV)")
+{
+	field(DESC, "LabVIEW '$(AXIS) Position'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)$(AXIS)_Position")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+	field(EGU, "")
+	info(archive, "VAL")
+    info(INTEREST, "HIGH")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(AXISPV)")
+    field(SDIS, "$(P)DISABLE")
+	info(alarm, "SAMPOS")
+}
+
+record(ao, "$(P)$(AXISPV):SP")
+{
+	field(DESC, "LabVIEW '$(AXIS)'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)$(AXIS)")
+    field(PREC, "3")
+	field(EGU, "")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(AXISPV):SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)$(AXISPV):SP:RBV")
+{
+	field(DESC, "LabVIEW '$(AXIS)'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)$(AXIS)")
+    field(PREC, "3")
+	field(EGU, "")
+    field(SCAN, ".1 second")
+	info(archive, "VAL")
+    info(INTEREST, "HIGH")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(AXISPV):SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+	info(alarm, "SAMPOS")
+}
+
+record(ao, "$(P)SIM:$(AXISPV):SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:$(AXISPV):SP","$(P)SIM:$(AXISPV)")
+alias("$(P)SIM:$(AXISPV):SP","$(P)SIM:$(AXISPV):SP:RBV")
+
+record(bi, "$(P)SIM:$(AXISPV):GOING")
+{
+    field(VAL, "0")
+	field(PINI, "YES")
+    field(DTYP, "Soft Channel")
+}
+

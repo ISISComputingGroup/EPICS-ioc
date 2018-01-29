@@ -1,0 +1,16 @@
+record(bi, "$(P)STAT:$(SNAME)") {
+	field(DESC, "Status: $(SNAME)")
+	field(INP, "$(P)STAT.$(FIELD) CP MS")
+	field(ZNAM, "$(ZNAM)")
+	field(ONAM, "$(ONAM)")
+	info(archive, "VAL")
+	info(interest, "MEDIUM")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STAT:$(SNAME)")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record (bi, "$(P)SIM:STAT:$(SNAME)") {
+	field(VAL, "1")
+	field(PINI, "YES")
+}

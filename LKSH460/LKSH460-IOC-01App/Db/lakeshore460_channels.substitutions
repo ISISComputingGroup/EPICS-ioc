@@ -1,0 +1,8 @@
+file lakeshore460_channels.template {
+
+	pattern { P, PORT, RECSIM, DISABLE, CHANNEL }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "X" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "Y" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "Z" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "V" }
+}

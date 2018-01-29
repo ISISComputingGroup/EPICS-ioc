@@ -1,0 +1,582 @@
+## Simulation and disable controls
+
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+    field(PINI, "YES")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+## Current state
+
+record(scalcout, "$(P)ID:_TRIG") {
+    field(DESC, "Triggers ID read until non-blank")
+	field(SCAN, "5 second")
+	field(INAA, "$(P)ID")
+	field(CALC, "AA==' '?1:0")
+	field(OUT, "$(P)ID.PROC")
+}
+
+record(stringin, "$(P)ID") {
+    field(DESC, "PnP Identity")
+    field(SCAN, "Passive")
+	field(DTYP, "stream")
+    field(INP, "@devgemorc.proto getID $(PORT)")
+	field(VAL, " ")
+	field(OOPT, "When Non-zero")
+	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ID")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(longin, "$(P)STAT:_SCAN")
+{
+    field(INP, "@devgemorc.proto getStatus($(P)STAT:_RAW) $(PORT)")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)STAT:_RAW MS")
+    field(DTYP, "stream")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SCAN")
+    field(SDIS, "$(P)DISABLE")
+	
+    info(alarm, "GEMORC")
+}
+
+record(calcout, "$(P)STAT:_RAW")
+{
+    field(CALC, "0")
+    field(FLNK, "$(P)STAT:_FANOUT MS")
+}
+
+record(seq, "$(P)STAT:_FANOUT")
+{
+    field(DOL1, "$(P)STAT:_RAW.A")
+    field(LNK1, "$(P)STAT:OSC PP MS")
+
+    field(DOL2, "$(P)STAT:_RAW.B")
+    field(LNK2, "$(P)INIT:PROGRESS PP MS")
+
+    field(DOL3, "$(P)STAT:_RAW.C")
+    field(LNK3, "$(P)INIT:DONE PP MS")
+
+    field(DOL4, "$(P)STAT:_RAW.D")
+    field(LNK4, "$(P)WIDTH PP MS")
+
+    field(DOL5, "$(P)STAT:_RAW.E")
+    field(LNK5, "$(P)OFFSET PP MS")
+    
+    field(DOL6, "$(P)STAT:_RAW.F")
+    field(LNK6, "$(P)SPEED PP MS")
+    
+    field(DOL7, "$(P)STAT:_RAW.G")
+    field(LNK7, "$(P)ACC PP MS")
+    
+    field(DOL8, "$(P)STAT:_RAW.H")
+    field(LNK8, "$(P)CYCLES PP MS")
+    
+    field(DOL9, "$(P)STAT:_RAW.I")
+    field(LNK9, "$(P)BACKLASH PP MS")
+    
+    field(SELM, "All")
+	
+	field(FLNK, "$(P)UTILITY")
+}
+
+record(bi, "$(P)STAT:OSC")
+{
+	field(DESC, "Collimator oscillating")
+	field(ZNAM, "No")
+	field(ONAM, "Yes")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STAT:OSC")
+    field(SDIS, "$(P)DISABLE")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)INIT:DONE")
+{
+	field(DESC, "Collimator initialised")
+	field(ZNAM, "No")
+	field(ONAM, "Yes")
+	
+	field(FLNK, "$(P)INIT:REQUIRED:CALC")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:INIT:DONE")
+    field(SDIS, "$(P)DISABLE")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(calc, "$(P)INIT:REQUIRED:CALC")
+{
+    field(DESC, "Initialisation required")
+	field(INPA, "$(P)INIT:DONE")
+	field(INPB, "$(P)INIT:PROGRESS")
+	field(INPC, "$(P)CYCLES")
+	field(INPD, "$(P)INIT:OPT")
+	field(CALC, "A+B==0||C>=D")	
+	field(FLNK, "$(P)INIT:REQUIRED")
+}
+
+record(bi, "$(P)INIT:REQUIRED")
+{
+    field(DESC, "Initialisation required")
+	field(DTYP, "Raw Soft Channel")
+	field(INP, "$(P)INIT:REQUIRED:CALC")
+	field(ZNAM, "No")
+	field(ONAM, "Yes")
+	field(FLNK, "$(P)INIT:ONCE:CALC")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(calc, "$(P)INIT:ONCE:CALC")
+{
+    field(DESC, "Initialised at least once")
+	field(INPA, "$(P)INIT:REQUIRED")
+	field(INPB, "$(P)INIT:ONCE")
+	field(CALC, "MAX(1-A,B)")
+	field(FLNK, "$(P)INIT:ONCE")
+}
+
+record(bi, "$(P)INIT:ONCE")
+{
+    field(DESC, "Initialised at least once")
+	field(DTYP, "Raw Soft Channel")
+	field(INP, "$(P)INIT:ONCE:CALC")
+	
+	field(ZNAM, "No")
+	field(ONAM, "Yes")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)INIT:PROGRESS")
+{
+	field(DESC, "Collimator initialising")
+	field(ZNAM, "No")
+	field(ONAM, "Yes")
+	
+	field(FLNK, "$(P)INIT:REQUIRED:CALC")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:INIT:PROGRESS")
+    field(SDIS, "$(P)DISABLE")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(longin, "$(P)WIDTH")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(DESC, "Window width")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WIDTH")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "cdeg")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(longin, "$(P)OFFSET")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(DESC, "Datum offset")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OFFSET")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(longin, "$(P)SPEED")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(DESC, "Radial speed")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPEED")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "cdeg/s")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(longin, "$(P)ACC")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(DESC, "Radial acceleration")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ACC")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "cdeg/ss")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(longin, "$(P)CYCLES")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(DESC, "Number of complete cycles")
+	
+	field(FLNK, "$(P)CYCLES:_FANOUT")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CYCLES")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(fanout, "$(P)CYCLES:_FANOUT") {
+    field(LNK1, "$(P)INIT:REQUIRED:CALC")
+    field(LNK2, "$(P)INIT:AUTO:CALC")
+}
+
+record(longin, "$(P)BACKLASH")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(DESC, "Motor backlash")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BACKLASH")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+## Commands
+
+record(ao, "$(P)INIT:STOP") {
+	field(DESC, "Don't do next auto initialisation")
+    field(OUT, "@devgemorc.proto stopNextInit $(PORT)")
+    field(DTYP, "stream")
+}
+
+record(stringin, "$(P)INIT:STAT") {
+    field(DESC, "Status of the init sequence")
+	field(VAL, "Initialisation routine not yet run")
+	field(PINI, "YES")
+}
+
+record(sseq, "$(P)INIT:SEQ") {
+	field(DESC, "Initialisation sequence (VI-derived)")
+	
+	field(LNK1, "$(P)INIT:STAT PP")
+	field(STR1, "Starting auto initialisation sequence")
+	
+    field(LNK2, "$(P)STOP PP")
+	field(DO2, "1")
+	field(DLY2, "5")
+	
+	field(LNK3, "$(P)INIT:STAT PP")
+	field(STR3, "Waiting for collimator to stop (30s)")
+	
+    field(LNK4, "$(P)INIT PP")
+	field(DO4, "1")
+	field(DLY4, "30")
+	
+	field(LNK5, "$(P)INIT:STAT PP")
+	field(STR5, "Initialising (250s)")
+	
+    field(LNK6, "$(P)START PP")
+	field(DO6, "1")
+	field(DLY6, "250")
+	
+	field(LNK7, "$(P)INIT:STAT PP")
+	field(STR7, "Initialisation sequence complete")
+}
+
+record(ao, "$(P)INIT") {
+	field(DESC, "Initialise immediately")
+    field(OUT, "@devgemorc.proto initialise $(PORT)")
+    field(DTYP, "stream")
+}
+
+record(ao, "$(P)START") {
+	field(DESC, "Start oscillations")
+    field(OUT, "@devgemorc.proto start $(PORT)")
+    field(DTYP, "stream")
+}
+
+record(ao, "$(P)STOP") {
+	field(DESC, "Stop oscillations")
+    field(OUT, "@devgemorc.proto stop $(PORT)")
+    field(DTYP, "stream")
+}
+
+record(ao, "$(P)ZERO") {
+	field(DESC, "Re zero to datum")
+    field(OUT, "@devgemorc.proto re_zero_to_datum $(PORT)")
+    field(DTYP, "stream")
+}
+
+## Settings
+
+record(longout, "$(P)INIT:AUTO") {
+    field(DESC, "Automatically initialise after * cycles")
+	field(EGU, "")
+	field(VAL, "20000")
+	field(PINI, "YES")
+    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+	info(autosaveFields, "VAL")
+}
+
+alias("$(P)INIT:AUTO", "$(P)INIT:AUTO:SP")
+alias("$(P)INIT:AUTO", "$(P)INIT:AUTO:SP:RBV")
+
+record(calcout, "$(P)INIT:AUTO:CALC") {
+    field(DESC, "Determines when to auto init the device")
+	field(INPA, "$(P)INIT:AUTO")
+	field(INPB, "$(P)CYCLES")
+	field(CALC, "B>=A")
+	field(OUT, "$(P)INIT:SEQ.PROC")
+    field(OOPT, "Transition To Non-zero")
+}
+
+record(longout, "$(P)INIT:OPT") {
+    field(DESC, "Optionally initialise after * cycles")
+	field(EGU, "")
+	field(VAL, "10000")
+	field(PINI, "YES")
+	
+	field(FLNK, "$(P)INIT:REQUIRED:CALC")
+    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+	info(autosaveFields, "VAL")
+}
+
+alias("$(P)INIT:OPT", "$(P)INIT:OPT:SP")
+alias("$(P)INIT:OPT", "$(P)INIT:OPT:SP:RBV")
+
+record(longout, "$(P)SPEED:SP") {
+	field(DESC, "Radial speed setpoint")
+    field(OUT, "@devgemorc.proto setSpeed $(PORT)")
+    field(DTYP, "stream")
+	
+	field(DRVH, "99")
+	field(DRVL, "1")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPEED:SP")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "cdeg/s")
+    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+alias("$(P)SPEED:SP", "$(P)SPEED:SP:RBV")
+
+record(longout, "$(P)ACC:SP") {
+	field(DESC, "Radial acceleration setpoint")
+    field(OUT, "@devgemorc.proto setAcc $(PORT)")
+    field(DTYP, "stream")
+	
+	field(DRVH, "9999")
+	field(DRVL, "1")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ACC:SP")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "cdeg/ss")
+    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+alias("$(P)ACC:SP", "$(P)ACC:SP:RBV")
+
+record(longout, "$(P)OFFSET:SP") {
+	field(DESC, "Motor offset setpoint")
+    field(OUT, "@devgemorc.proto setOffset $(PORT)")
+    field(DTYP, "stream")
+	
+	field(DRVH, "999")
+	field(DRVL, "-999")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:OFFSET:SP")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "")
+    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+alias("$(P)OFFSET:SP", "$(P)OFFSET:SP:RBV")
+
+record(longout, "$(P)WIDTH:SP") {
+	field(DESC, "Window width setpoint")
+    field(OUT, "@devgemorc.proto setWidth $(PORT)")
+    field(DTYP, "stream")
+	
+	field(DRVH, "999")
+	field(DRVL, "0")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WIDTH:SP")
+    field(SDIS, "$(P)DISABLE")
+	
+	field(EGU, "cdeg")
+    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+alias("$(P)WIDTH:SP", "$(P)WIDTH:SP:RBV")
+
+record(ao, "$(P)RESET") {
+	field(DESC, "Restore default settings")
+	field(FLNK, "$(P)RESET:ACTION")
+}
+
+record(sseq, "$(P)RESET:ACTION") {
+	field(DESC, "Restore default settings")
+
+    field(LNK1, "$(P)WIDTH:SP PP")
+    field(DO1, "100")
+	field(WAIT1, "Wait")
+	
+    field(LNK2, "$(P)OFFSET:SP PP")
+    field(DO2, "0")
+	field(WAIT2, "Wait")
+	
+    field(LNK3, "$(P)SPEED:SP PP")
+    field(DO3, "20")
+	
+    field(LNK4, "$(P)ACC:SP PP")
+    field(DO4, "500")
+	field(WAIT4, "Wait")
+	
+    field(LNK5, "$(P)INIT:AUTO PP")
+    field(DO5, "20000")
+	field(WAIT5, "Wait")
+	
+    field(LNK6, "$(P)INIT:OPT PP")
+    field(DO6, "10000")
+	field(WAIT6, "Wait")
+	
+    field(SELM, "All")
+}
+
+# Derived values
+
+record(calcout, "$(P)UTILITY") {
+	field(DESC, "Utility time")	
+	field(ASG, "READONLY")
+	
+	field(INPA, "$(P)WIDTH")
+	field(INPB, "$(P)BACKLASH")
+	
+	# In the VI it is A/(2*(A+B)). I think that's wrong because it makes the max
+	# utility 50%. The soft spec implies strongly this is the correct formula
+	field(CALC, "100*A/(A+2*B)")
+	field(PREC, "2")
+	
+	field(EGU, "%")    
+	field(FLNK, "$(P)PERIOD")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(calc, "$(P)PERIOD") {
+	field(DESC, "Oscillation period")
+	field(ASG, "READONLY")
+	
+	field(INPA, "$(P)SPEED")
+	field(INPB, "$(P)WIDTH")
+	field(INPC, "$(P)BACKLASH")
+	field(CALC, "(B+2*C)/A")
+	field(PREC, "2")
+	
+	field(EGU, "s")    
+	field(FLNK, "$(P)FREQ")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(calc, "$(P)FREQ") {
+	field(DESC, "Oscillation frquency")
+	field(ASG, "READONLY")
+	
+	field(EGU, "Hz")
+    field(INPA, "$(P)PERIOD")
+	field(CALC, "1/A")	
+	field(PREC, "2")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")	
+}
+
+## Simulation records
+
+record(longin, "$(P)SIM:SCAN")
+record(longin, "$(P)SIM:WIDTH")
+record(longin, "$(P)SIM:OFFSET")
+record(longin, "$(P)SIM:SPEED")
+record(longin, "$(P)SIM:ACC")
+record(longin, "$(P)SIM:BACKLASH")
+record(longin, "$(P)SIM:CYCLES")
+record(bi, "$(P)SIM:STAT:OSC")
+record(bi, "$(P)SIM:INIT:DONE")
+record(bi, "$(P)SIM:INIT:PROGRESS")
+record(stringin, "$(P)SIM:ID")
+
+
+alias("$(P)SIM:WIDTH", "$(P)SIM:WIDTH:SP")
+alias("$(P)SIM:OFFSET", "$(P)SIM:OFFSET:SP")
+alias("$(P)SIM:SPEED", "$(P)SIM:SPEED:SP")
+alias("$(P)SIM:ACC", "$(P)SIM:ACC:SP")

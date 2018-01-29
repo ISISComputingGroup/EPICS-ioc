@@ -1,0 +1,66 @@
+record(bo, "$(P)$(Q)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)$(Q)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(longin, "$(P)$(Q)HEARTBEAT")
+{
+    field(DESC, "Heartbeat of the FINS PLC")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, 500, 5.0) FINS_WR_READ")
+    field(SCAN, "1 second")
+    field(EGU, "")
+    info(INTEREST, "HIGH")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:HEARTBEAT")
+    field(SDIS, "$(P)$(Q)DISABLE")
+}
+
+# Reset DAE
+
+record(bo, "$(P)$(Q)DAE:RESET:SP")
+{
+    field(ZNAM, "RESET")
+    field(ONAM, "RESET")
+    field(DESC, "Reset the DAE")
+    field(FLNK, "$(P)$(Q)DAE:RESET:RAW:VAL")
+}
+
+record(longout, "$(P)$(Q)DAE:RESET:RAW:VAL")
+{
+	field(VAL, "1")
+	field(OUT, "$(P)$(Q)DAE:RESET:RAW:SP PP")
+}
+
+record(longout, "$(P)$(Q)DAE:RESET:RAW:SP")
+{
+    field(VAL, "1")
+    field(DTYP, "asynInt32")
+    field(DESC, "Reset the DAE")
+    field(OUT,  "@asyn(PLC, 550, 5.0) FINS_DM_WRITE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:DAE:RESET:RAW:SP")
+}
+
+### SIMULATION RECORDS ###
+
+record(longin, "$(P)$(Q)SIM:HEARTBEAT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+

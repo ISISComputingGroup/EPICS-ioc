@@ -1,0 +1,10 @@
+
+record(bi, "$(P)$(Q)$(NAME)")
+{
+    field(SCAN, ".1 second")
+    field(DESC, "$(DESC)")
+    field(ZNAM, "$(ZNAM)")
+    field(ONAM, "$(ONAM)")
+    field(INP,  "$(P)$(Q)$(READPV) PP")
+    info(INTEREST, "HIGH")
+}
