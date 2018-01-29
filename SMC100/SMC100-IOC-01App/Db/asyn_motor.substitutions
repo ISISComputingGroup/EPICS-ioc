@@ -1,5 +1,5 @@
 file $(MOTOR)/motorApp/Db/asyn_motor.db {
-
-pattern {P,      N,     M,         DTYP,      PORT,  ADDR,    DESC,        EGU,     DIR,  VELO,  VBAS,  ACCL,  BDST,  BVEL,  BACC,  MRES,  PREC,  DHLM,  DLLM,  INIT}
-{"\$(P)", 1, "\$(M)", "asynMotor",  "\$(PORT)",    "\$(ADDR)",  "\$(M) (SMC100)",  mm,  Pos,  1,     0,    .2,    0,     .5,     .2,    0.0005,  6,     125,   -125,  ""}
+	
+pattern {P,      N,     M,         DTYP,      PORT,  ADDR,    DESC,        EGU,     DIR,  VELO,  VBAS,  ACCL,  BDST,  BVEL,  BACC,  MRES,  PREC,  DHLM,  DLLM,  INIT}		
+{"\$(P)", 1, "\$(M)", "asynMotor",  "\$(PORT)",    "\$(ADDR)",  "\$(M) (SMC100)",  mm,  Pos,  1,     0,    .2,    0,     .5,     .2,    0.0005,  6,     125,   -125,  ""}		
 }
