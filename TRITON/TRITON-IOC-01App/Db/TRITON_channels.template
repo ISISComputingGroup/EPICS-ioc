@@ -2,7 +2,7 @@ record(bi, "$(P)CHANNELS:$(CHAN):STATE")
 {
     field(DTYP, "stream")
     field(SCAN, "1 second")
-    field(INP, "@devtriton.proto getChanState($(CHAN)) $(PORT)")
+    field(INP, "@devtriton.proto getChanState($(CHAN_PLUS_ONE)) $(PORT)")
 	
 	field(ZNAM, "OFF")
 	field(ONAM, "ON")
@@ -12,7 +12,7 @@ record(bi, "$(P)CHANNELS:$(CHAN):STATE")
 record(bo, "$(P)CHANNELS:$(CHAN):STATE:SP")
 {
     field(DTYP, "stream")
-    field(OUT, "@devtriton.proto setChanState($(CHAN)) $(PORT)")
+    field(OUT, "@devtriton.proto setChanState($(CHAN_PLUS_ONE)) $(PORT)")
 	
 	field(ZNAM, "OFF")
 	field(ONAM, "ON")
@@ -30,12 +30,20 @@ record(calcout, "$(P)CHANNELS:$(CHAN):READALL:CALC")
 record(fanout, "$(P)CHANNELS:$(CHAN):READALL:FANOUT") 
 {
     field(LNK1, "$(P)CHANNELS:$(CHAN):READ:SIG PP")
+	field(LNK2, "$(P)CHANNELS:$(CHAN):READ:SIG:EXCITATION PP")
+	field(LNK3, "$(P)CHANNELS:$(CHAN):READ:SIG:MEAS PP")
 }
+
+
+#
+# Read signal (temp/resistance)
+#
+
 
 record(bi, "$(P)CHANNELS:$(CHAN):READ:SIG")
 {
     field(DTYP, "stream")
-    field(INP, "@devtriton.proto readSig($(CHAN),$(P)CHANNELS:$(CHAN)) $(PORT)")
+    field(INP, "@devtriton.proto readSig($(CHAN_PLUS_ONE),$(P)CHANNELS:$(CHAN)) $(PORT)")
 }
 
 record(ai, "$(P)CHANNELS:$(CHAN):TEMP")
@@ -46,7 +54,53 @@ record(ai, "$(P)CHANNELS:$(CHAN):TEMP")
 
 record(ai, "$(P)CHANNELS:$(CHAN):RES")
 {
-    field(PREC, "3")
+    field(PREC, "1")
     field(EGU, "Ohm")
+}
+
+
+#
+# Excitation
+#
+
+
+record(bi, "$(P)CHANNELS:$(CHAN):READ:SIG:EXCITATION")
+{
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto readExcitation($(CHAN_PLUS_ONE),$(P)CHANNELS:$(CHAN)) $(PORT)")
+}
+
+record(stringin, "$(P)CHANNELS:$(CHAN):EXCITATION:TYPE")
+{
+}
+
+record(ai, "$(P)CHANNELS:$(CHAN):EXCITATION")
+{
+    field(PREC, "5")
+    field(EGU, "V")
+}
+
+
+#
+# Pause/dwell
+#
+
+
+record(bi, "$(P)CHANNELS:$(CHAN):READ:SIG:MEAS")
+{
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto readMeas($(CHAN_PLUS_ONE),$(P)CHANNELS:$(CHAN)) $(PORT)")
+}
+
+record(ai, "$(P)CHANNELS:$(CHAN):PAUSE")
+{
+    field(PREC, "0")
+    field(EGU, "s")
+}
+
+record(ai, "$(P)CHANNELS:$(CHAN):DWELL")
+{
+    field(PREC, "0")
+    field(EGU, "s")
 }
 
