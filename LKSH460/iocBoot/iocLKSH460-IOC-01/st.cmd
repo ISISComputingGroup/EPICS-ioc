@@ -5,8 +5,6 @@
 
 < envPaths
 
-cd ${TOP}
-
 ## Register all support components
 dbLoadDatabase "${TOP}/dbd/LKSH460-IOC-01.dbd"
 LKSH460_IOC_01_registerRecordDeviceDriver pdbbase
