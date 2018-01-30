@@ -21,7 +21,7 @@ TRITON_IOC_01_registerRecordDeviceDriver(pdbbase)
 $(IFDEVSIM) epicsEnvSet "IPADDR" "localhost"
 $(IFDEVSIM) epicsEnvSet "IPPORT" "$(EMULATOR_PORT=57677)"
 
-$(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet "IPADDR" "oi-pc.isis.cclrc.ac.uk"
+$(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet "IPADDR" "$(IPADDR=localhost)"
 $(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet "IPPORT" "$(IPPORT=33576)"
 
 $(IFNOTRECSIM) drvAsynIPPortConfigure("$(DEVICE)", "$(IPADDR=NUL):$(IPPORT=NUL)")
