@@ -67,9 +67,6 @@ record(mbbo, "$(P)BUFFER:SOURCE:SP")
 }
 alias("$(P)BUFFER:SOURCE:SP", "$(P)BUFFER:SOURCE")
 
-
-
-
 record(bo, "$(P)BUFFER:CLEAR:AUTO:SP") 
 {
     field(DESC, "Set Buffer State")
@@ -91,55 +88,52 @@ record(ai, "$(P)BUFFER:NEXT")
     field(INP,  "@devKeithley_2700.proto getNextBufferReadingLoc $(PORT)")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
-	info(FLNK, "$(P)BUFFER:COUNT:CALC")
+	info(FLNK, "$(P)COUNT:CALC")
 }
 
-record(ai, "$(P)BUFFER:COUNT")
+record(ao, "$(P)COUNT")
 {
 	field(DESC, "Number of buffer readings to return")
-	field(SCAN, "1 second")
-	field(DTYP, "stream")
 	info(INTEREST, "LOW")
 }
 
 # should initially be set to 0
-record(ao, "$(P)BUFFER:CURRENT")
+record(ao, "$(P)CURRENT")
 {
 	field(DESC, "Current buffer read location")
-	field(DTYP, "stream")
 	info(INTEREST, "low")
 }
 
-record(calcout, "$(P)BUFFER:COUNT:CALC") 
+record(calcout, "$(P)COUNT:CALC") 
 {
 	field(DESC, "Calculating number of readings")
-	field(DTYP, "stream")
-	field(INPA, "$(P)BUFFER:NEXT")
-	field(INPB, "$(P)BUFFER:CURRENT")
-	field(CALC, "A-B")
-	field(OUT, "$(P)BUFFER:COUNT PP")	
-	field(FLNK, "$(P)BUFFER:READINGS")
 	field(OOPT, "On Change")
+	field(INPA, "$(P)BUFFER:NEXT")
+	field(INPB, "$(P)CURRENT")
+	field(CALC, "A-B")
+	field(OUT, "$(P)COUNT PP")	
+	field(FLNK, "$(P)BUFFER:READINGS")
+
 }
+
 
 ## return string of readings from Start to +Count
 record(stringin, "$(P)BUFFER:READINGS")
 {
     field(DESC, "Buffer Readings")
     field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto getBuffReadings($(P)BUFFER:CURRENT,$(P)BUFFER:COUNT) $(PORT)")
+    field(INP,  "@devKeithley_2700.proto getBuffReadings($(P)CURRENT,$(P)COUNT) $(PORT)")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
-	field(FLNK, "$(P)BUFFER:CURRENT:CALC")
+	field(FLNK, "$(P)CURRENT:CALC")
 }
 
-record(calcout, "$(P)BUFFER:CURRENT:CALC")
+record(calcout, "$(P)CURRENT:CALC")
 {
 	field(DESC, "Update current buffer memory location")
-	field(DTYP, "stream")
 	field(INPA, "$(P)BUFFER:NEXT")
 	field(CALC, "A")
-	field(OUT, "$(P)BUFFER:CURRENT")
+	field(OUT, "$(P)CURRENT")
 	field(OOPT, "On Change")
 }
 
@@ -160,7 +154,6 @@ record(ai, "$(P)BUFFER:MEM:AVAIL")
 record(ai, "$(P)BUFFER:MEM:USED")
 {
     field(DESC, "Bytes used by buffer for stored readings")
-    field(DTYP, "stream")
 	field(EGU, "b")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
@@ -354,7 +347,7 @@ record(ao, "$(P)FRES:NPLC:SP")
 }
 alias("$(P)FRES:NPLC:SP", "$(P)FRES:NPLC")
 
-record(mbbo, "$(P)BUFFER_CONTROL:SP") 
+record(mbbo, "$(P)BUFFER:CONTROLMODE:SP") 
 {
     field(DESC, "Set Buffer Control Mode")
     field(SCAN, "1 second")
@@ -396,7 +389,7 @@ record(ai, "$(P)SCAN:CHANNELS")
 	field(DESC, "Return channel scan list")
 	field(SCAN, "1 second")
 	field(DTYP, "stream")
-	field(IN, "@devKeithley_2700.proto getScanChannels $(PORT)")
+	field(INP, "@devKeithley_2700.proto getScanChannels $(PORT)")
 	info(INTEREST, "HIGH")	
 	info(ARCHIVE, "VAL")
 }
