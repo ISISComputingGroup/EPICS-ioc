@@ -1,7 +1,7 @@
 #
 # ADD:
 # 
-# setResistanceMode PV: how to factor in @101 channels etc
+#
 #
 ###############
 
@@ -68,6 +68,8 @@ record(mbbo, "$(P)BUFFER:SOURCE:SP")
 alias("$(P)BUFFER:SOURCE:SP", "$(P)BUFFER:SOURCE")
 
 
+
+
 record(bo, "$(P)BUFFER:CLEAR:AUTO:SP") 
 {
     field(DESC, "Set Buffer State")
@@ -89,7 +91,59 @@ record(ai, "$(P)BUFFER:NEXT")
     field(INP,  "@devKeithley_2700.proto getNextBufferReadingLoc $(PORT)")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
+	info(FLNK, "$(P)BUFFER:COUNT:CALC")
 }
+
+record(ai, "$(P)BUFFER:COUNT")
+{
+	field(DESC, "Number of buffer readings to return")
+	field(SCAN, "1 second")
+	field(DTYP, "stream")
+	info(INTEREST, "LOW")
+}
+
+# should initially be set to 0
+record(ao, "$(P)BUFFER:CURRENT")
+{
+	field(DESC, "Current buffer read location")
+	field(DTYP, "stream")
+	info(INTEREST, "low")
+}
+
+record(calcout, "$(P)BUFFER:COUNT:CALC") 
+{
+	field(DESC, "Calculating number of readings")
+	field(DTYP, "stream")
+	field(INPA, "$(P)BUFFER:NEXT")
+	field(INPB, "$(P)BUFFER:CURRENT")
+	field(CALC, "A-B")
+	field(OUT, "$(P)BUFFER:COUNT PP")	
+	field(FLNK, "$(P)BUFFER:READINGS")
+	field(OOPT, "On Change")
+}
+
+## return string of readings from Start to +Count
+record(stringin, "$(P)BUFFER:READINGS")
+{
+    field(DESC, "Buffer Readings")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getBuffReadings($(P)BUFFER:CURRENT,$(P)BUFFER:COUNT) $(PORT)")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
+	field(FLNK, "$(P)BUFFER:CURRENT:CALC")
+}
+
+record(calcout, "$(P)BUFFER:CURRENT:CALC")
+{
+	field(DESC, "Update current buffer memory location")
+	field(DTYP, "stream")
+	field(INPA, "$(P)BUFFER:NEXT")
+	field(CALC, "A")
+	field(OUT, "$(P)BUFFER:CURRENT")
+	field(OOPT, "On Change")
+}
+
+
 
 # Records also receives value for MEM:USED and sets its value 
 record(ai, "$(P)BUFFER:MEM:AVAIL")
@@ -112,34 +166,7 @@ record(ai, "$(P)BUFFER:MEM:USED")
     info(INTEREST, "HIGH")
 }
 
-## return string of readings from Start to +Count
-record(stringin, "$(P)BUFFER:READINGS")
-{
-    field(DESC, "Buffer Readings")
-    field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto getBuffReadRange($(P)START,$(P)COUNT) $(PORT)")
-    field(SCAN, "1 second")
-	info(ARCHIVE, "VAL")
-    info(INTEREST, "HIGH")
-}
 
-record(ai, "$(P)START") 
-{
-    field(DESC, "Starting mem location of buffer readings")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    info(INTEREST, "LOW")
-}
-alias("$(P)START","$(P)START:SP")
-
-record(ai, "$(P)COUNT") 
-{
-    field(DESC, "Buffer memory locations to read")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    info(INTEREST, "LOW")
-}
-alias("$(P)COUNT","$(P)COUNT:SP")
 
 # number of valuesin the buffer: can be set when buffer:clear:auto is off
 record(ao, "$(P)BUFFER:SIZE:SP") 
