@@ -79,8 +79,8 @@ record(bi, "$(P)CLOSEDLOOP")
     field(INP, "@devtriton.proto getClosedLoop($(P)) $(PORT)")
     field(SCAN, "1 second")
     
-    field(ZNAM, "NO")
-    field(ONAM, "YES")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
 }
 
 record(bo, "$(P)CLOSEDLOOP:SP")
@@ -88,8 +88,8 @@ record(bo, "$(P)CLOSEDLOOP:SP")
     field(DTYP, "stream")
     field(OUT, "@devtriton.proto setClosedLoop($(P)) $(PORT)")
     
-    field(ZNAM, "NO")
-    field(ONAM, "YES")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
 }
 
 
