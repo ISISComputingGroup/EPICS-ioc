@@ -50,6 +50,10 @@ record(ai, "$(P)$(CHAN):TEMP")
 	
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(CHAN):TEMP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 
@@ -60,5 +64,11 @@ record(ai, "$(P)$(CHAN):TEMP")
 record(stringin, "$(P)SIM:$(CHAN):UID")
 {
     field(VAL, "UID:CHAN:$(CHAN)")
+    field(PINI, "YES")
+}
+
+record(ai, "$(P)SIM:$(CHAN):TEMP")
+{
+    field(VAL, "1")
     field(PINI, "YES")
 }

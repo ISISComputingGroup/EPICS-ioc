@@ -24,7 +24,8 @@ $(IFDEVSIM) epicsEnvSet "IPPORT" "$(EMULATOR_PORT=57677)"
 $(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet "IPADDR" "oi-pc.isis.cclrc.ac.uk"
 $(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet "IPPORT" "$(IPPORT=33576)"
 
-drvAsynIPPortConfigure("$(DEVICE)", "$(IPADDR=NUL):$(IPPORT=NUL)")
+$(IFNOTRECSIM) drvAsynIPPortConfigure("$(DEVICE)", "$(IPADDR=NUL):$(IPPORT=NUL)")
+$(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "NUL")
 
 ## Load record instances
 

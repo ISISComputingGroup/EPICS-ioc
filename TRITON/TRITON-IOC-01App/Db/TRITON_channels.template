@@ -133,10 +133,10 @@ record(ai, "$(P)CHANNELS:$(CHAN):DWELL")
 # Simulation records
 #
 
-record(bo, "$(P)CHANNELS:$(CHAN):STATE:SP")
+record(bo, "$(P)SIM:CHANNELS:$(CHAN):STATE:SP")
 {	
 	field(ZNAM, "OFF")
 	field(ONAM, "ON")
 }
 
-alias("$(P)CHANNELS:$(CHAN):STATE", "$(P)CHANNELS:$(CHAN):STATE:SP")
+alias("$(P)SIM:CHANNELS:$(CHAN):STATE:SP", "$(P)SIM:CHANNELS:$(CHAN):STATE")

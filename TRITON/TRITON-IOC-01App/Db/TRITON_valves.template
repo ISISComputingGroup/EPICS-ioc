@@ -12,5 +12,21 @@ record(mbbi, "$(P)VALVES:V$(VALVE):STATE")
 	
 	field(TWST, "NOT_FOUND")
 	field(TWVL, "2")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VALVES:V$(VALVE):STATE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
+#
+# Simulation record
+#
+
+
+record(mbbi, "$(P)SIM:VALVES:V$(VALVE):STATE")
+{
+    field(VAL, "0")
+	field(PINI, "YES")
 }
 

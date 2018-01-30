@@ -152,6 +152,10 @@ record(waveform, "$(P)STATUS")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STATUS")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(waveform, "$(P)AUTOMATION")
@@ -164,6 +168,10 @@ record(waveform, "$(P)AUTOMATION")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:AUTOMATION")
+    field(SDIS, "$(P)DISABLE")
 }
 
 
@@ -207,6 +215,10 @@ record(stringin, "$(P)SYS:TIME")
 	field(DTYP, "stream")
     field(INP, "@devtriton.proto getTime $(PORT)")
 	field(SCAN, "1 second")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SYS:TIME")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(waveform, "$(P)SYS:IDN")
@@ -263,3 +275,21 @@ record(bo, "$(P)SIM:CLOSEDLOOP")
 }
 
 alias("$(P)SIM:CLOSEDLOOP", "$(P)SIM:CLOSEDLOOP:SP")
+
+record(stringin, "$(P)SIM:SYS:TIME")
+{
+    field(VAL, "SYSTEM TIME")
+	field(PINI, "YES")
+}
+
+record(stringin, "$(P)SIM:STATUS")
+{
+    field(VAL, "DEVICE STATUS")
+	field(PINI, "YES")
+}
+
+record(stringin, "$(P)SIM:AUTOMATION")
+{
+    field(VAL, "DEVICE AUTOMATION")
+	field(PINI, "YES")
+}
