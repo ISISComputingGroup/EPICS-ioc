@@ -3,8 +3,8 @@
 <config_part>
 <ioc_desc>Triton Dilution Fridge</ioc_desc>
 <macros>
-<macro name="IPADDR" pattern="^COM[0-9]+$" description="IP address to connect to." />
-<macro name="IPPORT" pattern="^COM[0-9]+$" description="Port to connect to (defaults to 33576)." />
+<macro name="IPADDR" pattern="^.*$" description="IP address to connect to." />
+<macro name="IPPORT" pattern="^[0-9]+$" description="Port to connect to (defaults to 33576)." />
 </macros>
 <pvsets>
 </pvsets>
