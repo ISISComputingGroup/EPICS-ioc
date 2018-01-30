@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>This is a template description</ioc_desc>
-<ioc_details>These are template details</ioc_details>
+<ioc_desc>Triton Dilution Fridge</ioc_desc>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+<macro name="IPADDR" pattern="^COM[0-9]+$" description="IP address to connect to." />
+<macro name="IPPORT" pattern="^COM[0-9]+$" description="Port to connect to (defaults to 33576)." />
 </macros>
 <pvsets>
 </pvsets>

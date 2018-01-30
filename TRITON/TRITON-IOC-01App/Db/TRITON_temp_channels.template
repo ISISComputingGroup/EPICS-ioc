@@ -6,6 +6,10 @@ record(stringin, "$(P)$(CHAN):UID")
     
     field(PINI, "YES")
     field(SCAN, "10 second") 
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(CHAN):UID")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(scalcout, "$(P)$(CHAN):UID:CORRECT") 
@@ -32,8 +36,6 @@ record(scalcout, "$(P)$(CHAN):EXISTS")
 {
     field(INAA, "$(P)$(CHAN):UID CP MS")
 	field(CALC, "AA != 'NONE' && AA != 'NOT_FOUND'")
-	field(OUT, "$(P)$(CHAN):EXISTS PP MS")
-	field(OOPT, "Every Time")
 }
 
 record(ai, "$(P)$(CHAN):TEMP")
@@ -43,8 +45,20 @@ record(ai, "$(P)$(CHAN):TEMP")
     field(SCAN, "1 second")
 	field(PREC, "3")
 	field(EGU, "K")
-	info(archive, "VAL")
 	# Alarm on sample temperature only (this should always exist and be valid)
 	$(IFSAMPLE) info(alarm, "TRITON") 
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
+
+#
+# Simulation records
+#
+
+record(stringin, "$(P)SIM:$(CHAN):UID")
+{
+    field(VAL, "UID:CHAN:$(CHAN)")
+    field(PINI, "YES")
+}

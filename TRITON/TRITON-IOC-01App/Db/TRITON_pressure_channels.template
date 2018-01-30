@@ -5,4 +5,22 @@ record(ai, "$(P)PRESSURE:$(CHAN)")
     field(SCAN, "1 second") 
 	field(PREC, "3")
 	field(EGU, "mbar")
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PRESSURE:$(CHAN)")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
+#
+# Simulation record
+#
+
+record(ao, "$(P)SIM:PRESSURE:$(CHAN)")
+{
+    field(VAL, "0")
+	field(PINI, "YES")
 }

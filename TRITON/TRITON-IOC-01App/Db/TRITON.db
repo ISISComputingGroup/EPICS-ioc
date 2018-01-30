@@ -30,6 +30,10 @@ record(ao, "$(P)TEMP:SP")
     field(OUT, "@devtriton.proto setTSetpoint($(P)) $(PORT)")
 	field(PREC, "3")
 	field(EGU, "K")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:TEMP:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)TEMP:SP:RBV")
@@ -39,12 +43,23 @@ record(ai, "$(P)TEMP:SP:RBV")
     field(SCAN, "1 second") 
 	field(PREC, "3")
 	field(EGU, "K")
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:TEMP:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(stringin, "$(P)HEATER:TYPE")
 {
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getHtrType($(P)) $(PORT)")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATER:TYPE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)HEATER:RANGE:SP")
@@ -53,6 +68,10 @@ record(ao, "$(P)HEATER:RANGE:SP")
     field(OUT, "@devtriton.proto setHtrRange($(P)) $(PORT)")
 	field(PREC, "3")
 	field(EGU, "mA")
+	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATER:RANGE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)HEATER:RANGE")
@@ -62,6 +81,13 @@ record(ai, "$(P)HEATER:RANGE")
     field(SCAN, "1 second") 
 	field(PREC, "3")
 	field(EGU, "mA")
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATER:RANGE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)HEATER:POWER")
@@ -71,6 +97,13 @@ record(ai, "$(P)HEATER:POWER")
     field(SCAN, "1 second")
 	field(PREC, "3")
 	field(EGU, "uW")
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATER:POWER")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bi, "$(P)CLOSEDLOOP")
@@ -81,6 +114,13 @@ record(bi, "$(P)CLOSEDLOOP")
     
     field(ZNAM, "Off")
     field(ONAM, "On")
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CLOSEDLOOP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)CLOSEDLOOP:SP")
@@ -90,6 +130,10 @@ record(bo, "$(P)CLOSEDLOOP:SP")
     
     field(ZNAM, "Off")
     field(ONAM, "On")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CLOSEDLOOP:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 
@@ -105,6 +149,9 @@ record(waveform, "$(P)STATUS")
     field(FTVL, "CHAR")
     field(INP,  "@devtriton.proto getStatus $(PORT)")
     field(SCAN, "1 second")
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 
 record(waveform, "$(P)AUTOMATION")
@@ -114,6 +161,9 @@ record(waveform, "$(P)AUTOMATION")
     field(FTVL, "CHAR")
     field(INP,  "@devtriton.proto getAutomation $(PORT)")
     field(SCAN, "1 second")
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 
 
@@ -167,10 +217,49 @@ record(waveform, "$(P)SYS:IDN")
 	# No need to scan. This won't change.
     field(NELM, "512")
     field(FTVL, "CHAR")
+	
+	info(archive, "VAL")
 }
 
 record(stringin, "$(P)SYS:ADDR")
 {
     field(VAL, "$(IPADDR)")
 	field(PINI, "YES")
+	
+	info(archive, "VAL")
 }
+
+
+#
+# Simulation records
+#
+
+record(ao, "$(P)SIM:TEMP:SP")
+{
+}
+
+alias("$(P)SIM:TEMP:SP", "$(P)SIM:TEMP:SP:RBV")
+
+record(ao, "$(P)SIM:HEATER:RANGE:SP")
+{
+}
+
+alias("$(P)SIM:HEATER:RANGE:SP", "$(P)SIM:HEATER:RANGE")
+
+record(stringin, "$(P)HEATER:TYPE")
+{
+    field(VAL, "HEATER_TYPE")
+	field(PINI, "YES")
+}
+
+record(ao, "$(P)SIM:HEATER:POWER")
+{
+    field(VAL, "0")
+	field(PINI, "YES")
+}
+
+record(bo, "$(P)SIM:CLOSEDLOOP")
+{
+}
+
+alias("$(P)SIM:CLOSEDLOOP", "$(P)SIM:CLOSEDLOOP:SP")

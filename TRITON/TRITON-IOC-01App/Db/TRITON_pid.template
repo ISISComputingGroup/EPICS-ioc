@@ -3,6 +3,10 @@ record(ao, "$(P)$(CTRL):SP")
     field(DTYP, "stream")
     field(OUT, "@devtriton.proto set$(CTRL)($(P)) $(PORT)")
 	field(PREC, "3")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(CTRL):SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)$(CTRL)")
@@ -11,5 +15,21 @@ record(ai, "$(P)$(CTRL)")
     field(INP, "@devtriton.proto get$(CTRL)($(P)) $(PORT)")
     field(SCAN, "1 second")
     field(PREC, "3")	
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(CTRL)")
+    field(SDIS, "$(P)DISABLE")
 }
 
+#
+# Simulation records
+#
+
+record(ao, "$(P)SIM:$(CTRL):SP")
+{	
+}
+
+alias("$(P)SIM:$(CTRL):SP", "$(P)SIM:$(CTRL)")
