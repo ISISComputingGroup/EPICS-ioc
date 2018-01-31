@@ -27,10 +27,14 @@ epicsEnvSet(SIM1, " ")
 epicsEnvSet(SIM2, " ")
 epicsEnvSet(SIM3, " ")
 epicsEnvSet(SIM4, " ")
+epicsEnvSet(SIM5, " ")
+epicsEnvSet(SIM6, " ")
 epicsEnvSet(DISABLE1, " ")
 epicsEnvSet(DISABLE2, " ")
 epicsEnvSet(DISABLE3, " ")
 epicsEnvSet(DISABLE4, " ")
+epicsEnvSet(DISABLE5, " ")
+epicsEnvSet(DISABLE6, " ")
 
 epicsEnvSet(TEMP_NUM,1)
 < $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-temp.cmd
@@ -44,7 +48,13 @@ epicsEnvSet(TEMP_NUM,3)
 epicsEnvSet(TEMP_NUM,4)
 < $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-temp.cmd
 
-dbLoadRecords("db/MercuryGlobal.db", "P=$(MYPVPREFIX)$(IOCNAME):, SIM1=$(SIM1), SIM2=$(SIM2), SIM3=$(SIM3), SIM4=$(SIM4), DISABLE1=$(DISABLE1), DISABLE2=$(DISABLE2), DISABLE3=$(DISABLE3), DISABLE4=$(DISABLE4)")
+epicsEnvSet(LEVEL_NUM,1)
+< $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-level.cmd
+
+epicsEnvSet(LEVEL_NUM,2)
+< $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-level.cmd
+
+dbLoadRecords("db/MercuryGlobal.db", "P=$(MYPVPREFIX)$(IOCNAME):, SIM1=$(SIM1), SIM2=$(SIM2), SIM3=$(SIM3), SIM4=$(SIM4), SIM5=$(SIM5), SIM6=$(SIM6), DISABLE1=$(DISABLE1), DISABLE2=$(DISABLE2), DISABLE3=$(DISABLE3), DISABLE4=$(DISABLE4), DISABLE5=$(DISABLE5), DISABLE6=$(DISABLE6)")
 
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
