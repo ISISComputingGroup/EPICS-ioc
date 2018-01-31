@@ -100,11 +100,12 @@ record(stringout, "$(P)LKUP:RAMP_FILE:SP")
 record(ao, "$(P)LKUP:TEMP:SP:RBV")
 {
     field(DESC, "The current temperature of the sensor")
-	field(DOL, "$(P)TEMP:SP:RBV")
+	field(DOL, "$(P)TEMP:SP:RBV CP")
 	field(OMSL, "closed_loop")
 	field(DTYP, "asynFloat64")
 	field(OUT, "@asyn($(READ),0,1)CUR")
 	field(EGU, "K")
+	field(FLNK, "$(P)LKUP:LUTON:SP")
 }
 
 record(bo, "$(P)LKUP:LUTON:SP")
