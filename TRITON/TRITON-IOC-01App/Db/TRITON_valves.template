@@ -1,5 +1,6 @@
 record(mbbi, "$(P)VALVES:V$(VALVE):STATE")
 {
+    field(DESC, "Valve state of V$(VALVE)")
     field(DTYP, "stream")
     field(SCAN, "1 second")
     field(INP, "@devtriton.proto getValveState($(VALVE)) $(PORT)")

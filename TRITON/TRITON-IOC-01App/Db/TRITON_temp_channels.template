@@ -1,4 +1,4 @@
-record(stringin, "$(P)$(CHAN):UID")
+record(stringin, "$(P)$(CHAN):UID:RAW")
 {
     field(DESC, "Unique ID of $(CHAN)")
     field(DTYP, "stream")
@@ -40,6 +40,7 @@ record(scalcout, "$(P)$(CHAN):EXISTS")
 
 record(ai, "$(P)$(CHAN):TEMP")
 {
+    field(DESC, "Temperature of $(CHAN)")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getChanTemp($(P)$(CHAN):UID) $(PORT)")
     field(SCAN, "1 second")

@@ -1,8 +1,10 @@
 record(ao, "$(P)$(CTRL):SP")
 {
+    field(DESC, "$(CTRL) Setpoint")
     field(DTYP, "stream")
     field(OUT, "@devtriton.proto set$(CTRL)($(P)) $(PORT)")
 	field(PREC, "3")
+	field(EGU, "")
 	
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(CTRL):SP")
@@ -11,10 +13,12 @@ record(ao, "$(P)$(CTRL):SP")
 
 record(ai, "$(P)$(CTRL)")
 {
+    field(DESC, "$(CTRL)")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto get$(CTRL)($(P)) $(PORT)")
     field(SCAN, "1 second")
     field(PREC, "3")	
+    field(EGU, "")
 	
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")

@@ -26,6 +26,7 @@ record(bo, "$(P)DISABLE")
 
 record(ao, "$(P)TEMP:SP")
 {
+    field(DESC, "Temperature setpoint")
     field(DTYP, "stream")
     field(OUT, "@devtriton.proto setTSetpoint($(P)) $(PORT)")
 	field(PREC, "3")
@@ -38,6 +39,7 @@ record(ao, "$(P)TEMP:SP")
 
 record(ai, "$(P)TEMP:SP:RBV")
 {
+    field(DESC, "Temperature setpoint readback")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getTSetpoint($(P)) $(PORT)")
     field(SCAN, "1 second") 
@@ -54,6 +56,7 @@ record(ai, "$(P)TEMP:SP:RBV")
 
 record(stringin, "$(P)HEATER:TYPE")
 {
+    field(DESC, "Heater type")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getHtrType($(P)) $(PORT)")
 	
@@ -64,6 +67,7 @@ record(stringin, "$(P)HEATER:TYPE")
 
 record(ao, "$(P)HEATER:RANGE:SP")
 {
+    field(DESC, "Heater range setpoint")
     field(DTYP, "stream")
     field(OUT, "@devtriton.proto setHtrRange($(P)) $(PORT)")
 	field(PREC, "3")
@@ -76,6 +80,7 @@ record(ao, "$(P)HEATER:RANGE:SP")
 
 record(ai, "$(P)HEATER:RANGE")
 {
+    field(DESC, "Heater range")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getHtrRange($(P)) $(PORT)")
     field(SCAN, "1 second") 
@@ -92,6 +97,7 @@ record(ai, "$(P)HEATER:RANGE")
 
 record(ai, "$(P)HEATER:POWER")
 {
+    field(DESC, "Heater power")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getHtrPower($(P)) $(PORT)")
     field(SCAN, "1 second")
@@ -108,6 +114,7 @@ record(ai, "$(P)HEATER:POWER")
 
 record(bi, "$(P)CLOSEDLOOP")
 {
+    field(DESC, "Closed loop mode")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getClosedLoop($(P)) $(PORT)")
     field(SCAN, "1 second")
@@ -125,6 +132,7 @@ record(bi, "$(P)CLOSEDLOOP")
 
 record(bo, "$(P)CLOSEDLOOP:SP")
 {
+    field(DESC, "Closed loop mode setpoint")
     field(DTYP, "stream")
     field(OUT, "@devtriton.proto setClosedLoop($(P)) $(PORT)")
     
@@ -144,6 +152,7 @@ record(bo, "$(P)CLOSEDLOOP:SP")
 
 record(waveform, "$(P)STATUS")
 {
+    field(DESC, "System status")
     field(DTYP, "stream")
     field(NELM, "512")
     field(FTVL, "CHAR")
@@ -160,6 +169,7 @@ record(waveform, "$(P)STATUS")
 
 record(waveform, "$(P)AUTOMATION")
 {
+    field(DESC, "System automation")
     field(DTYP, "stream")
     field(NELM, "512")
     field(FTVL, "CHAR")
@@ -212,6 +222,7 @@ record(waveform, "$(P)ARBITRARY")
 
 record(stringin, "$(P)SYS:TIME")
 {
+    field(DESC, "System time")
 	field(DTYP, "stream")
     field(INP, "@devtriton.proto getTime $(PORT)")
 	field(SCAN, "1 second")
@@ -223,6 +234,7 @@ record(stringin, "$(P)SYS:TIME")
 
 record(waveform, "$(P)SYS:IDN")
 {
+    field(DESC, "System identity")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getIDN $(PORT)")
 	field(PINI, "YES")
@@ -235,6 +247,7 @@ record(waveform, "$(P)SYS:IDN")
 
 record(stringin, "$(P)SYS:ADDR")
 {
+    field(DESC, "IP Address")
     field(VAL, "$(IPADDR)")
 	field(PINI, "YES")
 	
@@ -258,7 +271,7 @@ record(ao, "$(P)SIM:HEATER:RANGE:SP")
 
 alias("$(P)SIM:HEATER:RANGE:SP", "$(P)SIM:HEATER:RANGE")
 
-record(stringin, "$(P)HEATER:TYPE")
+record(stringin, "$(P)SIM:HEATER:TYPE")
 {
     field(VAL, "HEATER_TYPE")
 	field(PINI, "YES")
