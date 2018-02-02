@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Schneider PLC</ioc_desc>
+<macros>
+<macro name="MODE" pattern="^(tcp|rtu|ascii)$" description="PLC connection mode (tcp, rtu or ascii)" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port (rtu and ascii MODE)" />
+<macro name="IPADDR" pattern="^COM[0-9]+$" description="IP Address of PLC (tcp MODE)" />
+</macros>
+</config_part>
+</ioc_config>
