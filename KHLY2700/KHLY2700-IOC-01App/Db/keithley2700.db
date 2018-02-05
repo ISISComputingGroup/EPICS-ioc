@@ -14,6 +14,55 @@ record(stringin, "$(P)IDN")
     field(PINI, "YES")
 }
 
+record(calcout, "$(P)CH:RANGE:SP")
+{
+	field(DESC, "Write start and end of scan range")
+	field(DTYP, "stream")
+	field(INPA, "$(P)CH:START:SP")
+	field(INPB, "$(P)CH:END:SP")
+	field(CALC, "0")
+	field(OUT, "@devKeithley_2700.proto setScanChannels $(PORT)")
+}
+
+
+record(ao, "$(P)CH:START:SP")
+{
+	field(DESC, "Set channel scan range start point")
+	field(DTYP, "stream")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
+	field(OUT, "@devKeithley_2700.proto setScanChannelsStart(($P)CH:END) $(PORT)")
+}
+
+record(ai, "$(P)CH:START")
+{
+	field(DESC, "Return start and end value of scan range")
+	field(DTYP, "stream")
+	field(SCAN, "1 second")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
+	field(INP, "@devKeithley_2700.proto getChannelsStart $(PORT)")
+}
+
+record(ai, "$(P)CH:END")
+{
+	field(DESC, "Return last channel in scan range")
+	field(DTYP, "stream")
+	field(SCAN, "1 second")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
+	field(INP, "@devKeithley_2700.proto getChannelsEnd $(PORT)")
+}
+record(ao, "$(P)CH:END:SP")
+{
+	field(DESC, "Set channel scan range end point")
+	field(DTYP, "stream")
+	info(ARCHIVE, "VAL")
+    info(INTEREST, "HIGH")
+	field(OUT, "@devKeithley_2700.proto setScanChannelsEnd(($P)CH:START) $(PORT)")
+}
+
+
 record(bo, "$(P)BUFFER:CLEAR:SP")
 {
 	field(DESC, "Clear readings from buffer")
@@ -48,7 +97,7 @@ record(mbbo, "$(P)MEASUREMENT:SP") {
     field(FVST, "CONT")
     field(SXST, "FREQ")
     field(SVST, "PER")
-	field(OUT, "@devKeithley_2700.proto setMeasurement $(PORT)")  
+	field(OUT, "@devKeithley_2700.proto setMeasurement($(P)CH:START,($(P)CH:END)) $(PORT)")  
 }
 alias("$(P)MEASUREMENT:SP","$(P)MEASUREMENT")
 
@@ -304,9 +353,8 @@ alias("$(P)DATAELEMENTS:SP","$(P)DATAELEMENTS")
 record(bi, "$(P)FRES:AUTORANGE:SP") 
 {
     field(DESC, "Toggle auto range on/off")
-    field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto setAutoRange $(PORT)")
+    field(INP,  "@devKeithley_2700.proto setAutoRange($(P)CH) $(PORT)")
     field(ZNAM, "ON")
     field(ONAM, "OFF")
     info(INTEREST, "HIGH")
@@ -320,8 +368,7 @@ record(ao, "$(P)FRES:DIGITS:SP")
 	field(DESC, "FRES value for digit range")
 	field(EGU, "")
 	field(DTYP, "stream")
-	field(OUT, "@devKeithley_2700.proto setFResDigits $(PORT)")
-	field(SCAN, "1 second")
+	field(OUT, "@devKeithley_2700.proto setFResDigits($(P)CH) $(PORT)")
 	field(HIHI, "8")
 	field(LOLO, "3")
 	field(HHSV,"MAJOR")
@@ -375,24 +422,11 @@ record(bi, "$(P)SCAN:STATE:SP")
 }
 alias("$(P)SCAN:STATE:SP", "$(P)SCAN:STATE")
 
-record(bo, "$(P)SCAN:CHANNELS:SP")
-{
-	field(DESC, "Specify channels to be scanned")
-	field(DTYP, "stream")
-	field(ZNAM, "")
-	field(ONAM, "")
-	field(OUT, "@devKeithley_2700.proto setScanChannels $(PORT)")    
-}
 
-record(ai, "$(P)SCAN:CHANNELS")
-{
-	field(DESC, "Return channel scan list")
-	field(SCAN, "1 second")
-	field(DTYP, "stream")
-	field(INP, "@devKeithley_2700.proto getScanChannels $(PORT)")
-	info(INTEREST, "HIGH")	
-	info(ARCHIVE, "VAL")
-}
+
+
+
+
 
 
 
