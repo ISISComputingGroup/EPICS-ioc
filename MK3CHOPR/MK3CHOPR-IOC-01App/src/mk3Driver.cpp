@@ -367,10 +367,10 @@ void mk3Driver::checkErrorCode(int code)
         m_interface->checkErrorCode(code, answer, BUFFER_SIZE);
         errlogSevPrintf(errlogMajor, "%s", answer);
         
-        // If .net timeout try to re-intialise
-        if (code == -3)
+        // If "Chopper connection not initialised", ".net timeout" or "Unknown .NET error" try to re-intialise
+        if (code == -1 || code == -3 || code == -4)
         {
-            errlogSevPrintf(errlogMajor, "%s","Trying to re-establish .NET connection");
+            errlogSevPrintf(errlogMajor, "%s","Trying to re-establish connection");
             m_interface->initialise();
         }
     }
