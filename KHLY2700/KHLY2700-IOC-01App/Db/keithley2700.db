@@ -24,19 +24,18 @@ record(calcout, "$(P)CH:RANGE:SP")
 	field(OUT, "@devKeithley_2700.proto setScanChannels $(PORT)")
 }
 
-
 record(ao, "$(P)CH:START:SP")
 {
 	field(DESC, "Set channel scan range start point")
 	field(DTYP, "stream")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
-	field(OUT, "@devKeithley_2700.proto setScanChannelsStart(($P)CH:END) $(PORT)")
+	field(OUT, "@devKeithley_2700.proto setScanChannelsStart($(P)CH) $(PORT)")
 }
 
 record(ai, "$(P)CH:START")
 {
-	field(DESC, "Return start and end value of scan range")
+	field(DESC, "Return first channel in scan range")
 	field(DTYP, "stream")
 	field(SCAN, "1 second")
 	info(ARCHIVE, "VAL")
@@ -53,13 +52,14 @@ record(ai, "$(P)CH:END")
     info(INTEREST, "HIGH")
 	field(INP, "@devKeithley_2700.proto getChannelsEnd $(PORT)")
 }
+
 record(ao, "$(P)CH:END:SP")
 {
 	field(DESC, "Set channel scan range end point")
 	field(DTYP, "stream")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
-	field(OUT, "@devKeithley_2700.proto setScanChannelsEnd(($P)CH:START) $(PORT)")
+	field(OUT, "@devKeithley_2700.proto setScanChannelsEnd($(P)CH) $(PORT)")
 }
 
 
@@ -97,7 +97,7 @@ record(mbbo, "$(P)MEASUREMENT:SP") {
     field(FVST, "CONT")
     field(SXST, "FREQ")
     field(SVST, "PER")
-	field(OUT, "@devKeithley_2700.proto setMeasurement($(P)CH:START,($(P)CH:END)) $(PORT)")  
+	field(OUT, "@devKeithley_2700.proto setMeasurement($(P)CH) $(PORT)")  
 }
 alias("$(P)MEASUREMENT:SP","$(P)MEASUREMENT")
 
