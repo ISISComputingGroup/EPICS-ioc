@@ -112,6 +112,35 @@ record(ai, "$(P)HEATER:POWER")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(ai, "$(P)HEATER:CURR")
+{
+    field(DESC, "Heater current")
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getHtrCurr($(P)) $(PORT)")
+    field(SCAN, "1 second")
+	field(PREC, "3")
+	field(EGU, "mA")
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATER:CURR")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(calc, "$(P)HEATER:PERCENT")
+{
+    field(DESC, "Heater percentage")
+    field(INPA, "$(P)HEATER:RANGE CP MS")
+    field(INPB, "$(P)HEATER:CURR CP MS")
+	field(CALC, "A=0?0:100*B/A")  # Avoid zero division by reporting 0% if heater range is zero.
+	field(ASG, "READONLY")
+	field(EGU, "%")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
 record(bi, "$(P)CLOSEDLOOP")
 {
     field(DESC, "Closed loop mode")
@@ -278,6 +307,12 @@ record(stringin, "$(P)SIM:HEATER:TYPE")
 }
 
 record(ao, "$(P)SIM:HEATER:POWER")
+{
+    field(VAL, "0")
+	field(PINI, "YES")
+}
+
+record(ao, "$(P)SIM:HEATER:CURR")
 {
     field(VAL, "0")
 	field(PINI, "YES")
