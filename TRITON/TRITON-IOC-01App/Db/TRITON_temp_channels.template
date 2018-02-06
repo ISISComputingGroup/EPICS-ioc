@@ -10,6 +10,8 @@ record(stringin, "$(P)$(CHAN):UID:RAW")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(CHAN):UID")
     field(SDIS, "$(P)DISABLE")
+	
+	field(FLNK, "$(P)$(CHAN):UID:CORRECT")
 }
 
 record(scalcout, "$(P)$(CHAN):UID:CORRECT") 
@@ -20,13 +22,15 @@ record(scalcout, "$(P)$(CHAN):UID:CORRECT")
 	#
 	# Only do this correction if this is the SAMPLE channel.
 	#
-    field(INAA, "$(P)$(CHAN):UID:RAW CP MS")
-	field(CALC, "(AA='T0' && '$(IFSAMPLE)'='#')?'T1':AA")
-	field(OUT, "$(P)$(CHAN):UID PP MS")
+    field(INAA, "$(P)$(CHAN):UID:RAW MS")
+	field(CALC, "(AA=\"T0\" && \"$(IFSAMPLE)\"=\"#\")?\"T1\":AA")
+	
+	field(FLNK, "$(P)$(CHAN):UID")
 }
 
 record(stringin, "$(P)$(CHAN):UID") 
 {
+    field(INP, "$(P)$(CHAN):UID:CORRECT.SVAL MS")
     info(archive, "VAL")
 	# Forward link to Heater type iff this is the sample channel.
 	$(IFSAMPLE) field(FLNK, "$(P)HEATER:TYPE")
