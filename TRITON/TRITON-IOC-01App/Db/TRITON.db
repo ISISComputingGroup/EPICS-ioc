@@ -112,21 +112,34 @@ record(ai, "$(P)HEATER:POWER")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)HEATER:CURR")
+record(ai, "$(P)HEATER:RES")
 {
-    field(DESC, "Heater current")
+    field(DESC, "Heater resistance")
     field(DTYP, "stream")
-    field(INP, "@devtriton.proto getHtrCurr($(P)) $(PORT)")
+    field(INP, "@devtriton.proto getHtrRes($(P)) $(PORT)")
     field(SCAN, "1 second")
 	field(PREC, "3")
-	field(EGU, "mA")
+	field(EGU, "Ohm")
 	
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 	
 	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:HEATER:CURR")
+    field(SIOL, "$(P)SIM:HEATER:RES")
     field(SDIS, "$(P)DISABLE")
+}
+
+record(calc, "$(P)HEATER:CURR")
+{
+    field(DESC, "Heater current")
+    field(INPA, "$(P)HEATER:POWER CP MS")  # Power in uW
+    field(INPB, "$(P)HEATER:RES CP MS")    # Resistance in Ohms
+    field(CALC, "SQR(A/B)")                # P = I^2 R
+	field(PREC, "3")
+	field(EGU, "mA")                       # uW = mA * mA * Ohms
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
 record(calc, "$(P)HEATER:PERCENT")
@@ -312,7 +325,7 @@ record(ao, "$(P)SIM:HEATER:POWER")
 	field(PINI, "YES")
 }
 
-record(ao, "$(P)SIM:HEATER:CURR")
+record(ao, "$(P)SIM:HEATER:RES")
 {
     field(VAL, "0")
 	field(PINI, "YES")
