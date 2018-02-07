@@ -1,0 +1,70 @@
+record(ai, "$(P)CH$(NUM):LEVEL")
+{
+	field(DESC, "Channel $(NUM) level")
+    field(EGU, "%")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP, "@ilm200.proto getLevel $(PORT)")
+    field(PREC, 2)
+    
+    field(LOW, "10.0")
+    field(LSV, "MINOR")
+    field(LOLO, "0.0")
+    field(LLSV, "MAJOR")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    info(alarm, "ILM")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CH$(NUM):LEVEL")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)CH$(NUM):RATE")
+{
+	field(DESC, "Channel $(NUM) sample rate")
+	field(EGU, "")
+	
+	field(ZNAM, "Slow")
+	field(ONAM, "Fast")
+	
+	field(INTEREST, "HIGH")
+	field(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CH$(NUM):RATE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)CH$(NUM):RATE:SP")
+{
+	field(DESC, "Channel $(NUM) sample rate SP")
+	field(EGU, "")
+    field(DTYP, "stream")
+    field(OUT, "@ilm200.proto setRate $(PORT)")
+	
+	field(ZNAM, "Slow")
+	field(ONAM, "Fast")
+	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CH$(NUM):RATE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+### SIMULATION RECORDS ###
+
+record(ai, "$(P)SIM:CH$(NUM):LEVEL")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(P)SIM:CH$(NUM):RATE")
+{
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	
+	field(ZNAM, "Slow")
+	field(ONAM, "Fast")
+}
+
+alias("$(P)SIM:CH$(NUM):RATE", "$(P)SIM:CH$(NUM):RATE:SP")

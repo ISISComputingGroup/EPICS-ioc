@@ -10,7 +10,8 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-DB += ILM200.db
+DB += ILM200_common.db
+DB += ILM200_channel.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

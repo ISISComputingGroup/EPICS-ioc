@@ -47,6 +47,8 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += asubFunctions
+$(APPNAME)_LIBS += calc
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 
