@@ -529,40 +529,15 @@ record(ao, "$(P)DELAY:SP")
 record(transform, "$(P)DELAY:SP:_CALC")
 {
 	field(INPA, "$(P)DELAY:SP")
-	field(CLCB, "(A*50.400)%65536")
-	field(CLCC, "FLOOR((A*50.400)/65536)")
-	field(FLNK, "$(P)DELAY:SP:_SEQ")
+	field(CLCB, "(A*50.400)%65536")  # Low word
+	field(CLCC, "FLOOR((A*50.400)/65536)") # High word
+	field(FLNK, "$(P)DELAY:SP:_SEND")
 }
 
-record(ao, "$(P)DELAY:SP:_HIGHWORD")
+record(ao, "$(P)DELAY:SP:_SEND")
 {
 	field(DTYP, "stream")
-	field(OUT,  "@devfc.proto setDelayHighWord $(PORT)")
-	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:DUMMY")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(ao, "$(P)DELAY:SP:_LOWWORD")
-{
-	field(DTYP, "stream")
-	field(OUT,  "@devfc.proto setDelayLowWord $(PORT)")
-	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:DUMMY")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(seq, "$(P)DELAY:SP:_SEQ")
-{
-	field(DOL2, "$(P)DELAY:SP:_CALC.C")
-	field(LNK2, "$(P)DELAY:SP:_HIGHWORD PP")
-	
-	field(DOL1, "$(P)DELAY:SP:_CALC.B")
-    field(LNK1, "$(P)DELAY:SP:_LOWWORD PP")
-    # Must have some delay between the two commands according to the documentation
-	field(DLY2, "0.1") 
-	
-    field(SELM, "All")
+	field(OUT,  "@devfc.proto setDelay($(P)) $(PORT)")
 }
 
 record(ao, "$(P)GATEWIDTH:SP")
