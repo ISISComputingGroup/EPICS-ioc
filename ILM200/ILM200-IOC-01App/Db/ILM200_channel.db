@@ -2,13 +2,11 @@ record(ai, "$(P)CH$(NUM):LEVEL")
 {
 	field(DESC, "Channel $(NUM) level")
     field(EGU, "%")
-    field(SCAN, "1 second")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@ilm200.proto getLevel($(NUM)) $(PORT)")
     field(PREC, 2)
     
-    field(LOW, "10.0")
-    field(LSV, "MINOR")
     field(LOLO, "0.0")
     field(LLSV, "MAJOR")
     
@@ -68,14 +66,82 @@ record(mbbi, "$(P)CH$(NUM):TYPE")
     info(archive, "VAL")
 }
 
-record(ai, "$(P)CH$(NUM):STATUS:RAW")
+record(mbbiDirect, "$(P)CH$(NUM):STATUS:RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
+	# Bit 0 Current flowing in Helium Probe Wire
+	# Bit 1 Helium Probe in FAST rate
+	# Bit 2 Helium Probe in SLOW rate
+	# Bits 3,4 Auto-Fill Status
+	# 	00 End Fill (Level > FULL)
+	# 	01 Not Filling (Level < FULL, Level > FILL)
+	# 	10 Filling (Level < FULL, Level > FILL)
+	# 	11 Start Filling (Level < FILL)
+	# Bit 5 Low State Active (Level < LOW)
+	# Bit 6 Alarm Requested (As defined by CONFIG BYTE)
+	# Bit 7 Pre-Pulse Current Flowing
+	field(FLNK, "$(P)CH$(NUM):STATUS:_SEQ")
+    info(archive, "VAL")
+}
+
+record(seq, "$(P)CH$(NUM):STATUS:_SEQ")
+{
+	field(DOL1, "$(P)CH$(NUM):STATUS:RAW.B1")
+	field(LNK1, "$(P)CH$(NUM):RATE PP")
 	
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CH$(NUM):STATUS:RAW")
-    field(SDIS, "$(P)DISABLE")
+	field(DOL2, "$(P)CH$(NUM):STATUS:RAW.B3")
+	field(LNK2, "$(P)CH$(NUM):FILLING PP")
+	
+	field(DOL3, "$(P)CH$(NUM):STATUS:RAW.B5")
+	field(LNK3, "$(P)CH$(NUM):LOW PP")
+}
+
+record(bi, "$(P)CH$(NUM):RATE")
+{
+	field(ZNAM, "Slow")
+	field(ONAM, "Fast")
+	
+	field(FLNK, "$(P)CH$(NUM):RATE:_ASSERT")
+	
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(calc, "$(P)CH$(NUM):RATE:_ASSERT")
+{
+	field(INPA, "$(P)CH$(NUM):STATUS:RAW.B0")
+	field(INPB, "$(P)CH$(NUM):STATUS:RAW.B1")
+	field(CALC, "A+B")
+	
+    field(LOW, "0")
+    field(LSV, "MAJOR")
+    field(HIGH, "2")
+    field(HSV, "MAJOR")
+	
+    info(archive, "VAL")
+    info(alarm, "ILM")
+}
+
+record(bi, "$(P)CH$(NUM):FILLING")
+{
+	field(ONAM, "Not filling")
+	field(ZNAM, "Filling")
+	
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)CH$(NUM):LOW")
+{
+	field(ONAM, "Not low")
+	field(ZNAM, "Low")
+
+    field(OSV, "MINOR")
+	
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    info(alarm, "ILM")
 }
 
 ### SIMULATION RECORDS ###

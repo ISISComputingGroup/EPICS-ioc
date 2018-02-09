@@ -18,26 +18,29 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-#record(sseq, "$(P)READ") {
-#    field(SCAN, "1 second")
-#	
-#	field(LNK1, "$(P)STATUS:_SCAN PP")
-#	field(WAIT1, "Wait")
-#	
-#	field(LNK2, "$(P)CH1:LEVEL PP")
-#	field(WAIT2, "Wait")
-#	
-#	field(LNK3, "$(P)CH2:LEVEL PP")
-#	field(WAIT3, "Wait")
-#	
-#	field(LNK4, "$(P)CH3:LEVEL PP")
-#	field(WAIT4, "Wait")
-#}
+record(sseq, "$(P)READ") {
+    field(SCAN, "1 second")
+	
+	field(LNK1, "$(P)STATUS:_SCAN PP")
+	field(WAIT1, "Wait")
+	
+	field(LNK2, "$(P)CH1:LEVEL PP")
+	field(WAIT2, "Wait")
+	
+	field(LNK3, "$(P)CH2:LEVEL PP")
+	field(WAIT3, "Wait")
+	
+	field(LNK4, "$(P)CH3:LEVEL PP")
+	field(WAIT4, "Wait")
+	
+	field(LNK5, "$(P)VERSION PP")
+	field(WAIT5, "Wait")
+}
 
 record(stringin, "$(P)VERSION")
 {
     field(INP, "@ilm200.proto getVersion $(PORT)")
-    field(SCAN, "1 second")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     
     field(SIML, "$(P)SIM")
