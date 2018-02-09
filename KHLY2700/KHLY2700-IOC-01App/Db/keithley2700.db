@@ -137,26 +137,30 @@ record(ai, "$(P)BUFFER:NEXT")
     field(INP,  "@devKeithley_2700.proto getNextBufferReadingLoc $(PORT)")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
-	info(FLNK, "$(P)COUNT:CALC")
+	#field(FLNK, "$(P)BUFFER:READINGS")
+	field(FLNK, "$(P)COUNT:CALC")
+
 }
 
 record(ao, "$(P)COUNT")
 {
 	field(DESC, "Number of buffer readings to return")
 	info(INTEREST, "LOW")
+	
 }
 
 # should initially be set to 0
 record(ao, "$(P)CURRENT")
 {
 	field(DESC, "Current buffer read location")
+
 	info(INTEREST, "low")
 }
 
 record(calcout, "$(P)COUNT:CALC") 
 {
 	field(DESC, "Calculating number of readings")
-	field(OOPT, "On Change")
+	field(OOPT, "Every Time")
 	field(INPA, "$(P)BUFFER:NEXT")
 	field(INPB, "$(P)CURRENT")
 	field(CALC, "A-B")
@@ -171,7 +175,7 @@ record(stringin, "$(P)BUFFER:READINGS")
 {
     field(DESC, "Buffer Readings")
     field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto getBuffReadings($(P)CURRENT,$(P)COUNT) $(PORT)")
+    field(INP,  "@devKeithley_2700.proto getBuffReadings($(P)) $(PORT)")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 	field(FLNK, "$(P)CURRENT:CALC")
@@ -179,11 +183,12 @@ record(stringin, "$(P)BUFFER:READINGS")
 
 record(calcout, "$(P)CURRENT:CALC")
 {
+
 	field(DESC, "Update current buffer memory location")
 	field(INPA, "$(P)BUFFER:NEXT")
 	field(CALC, "A")
-	field(OUT, "$(P)CURRENT")
-	field(OOPT, "On Change")
+	field(OUT, "$(P)CURRENT PP")
+	field(OOPT, "Every Time")
 }
 
 
@@ -193,7 +198,7 @@ record(ai, "$(P)BUFFER:MEM:AVAIL")
 {
     field(DESC, "Available buffer bytes")
     field(DTYP, "stream")
-	field (SCAN, "1 second")	
+	field(SCAN, "1 second")	
     field(INP,  "@devKeithley_2700.proto getBufferMemory($(P)BUFFER:MEM:USED) $(PORT)")
 	field(EGU, "b")
 	info(ARCHIVE, "VAL")
