@@ -17,3 +17,91 @@ record(bo, "$(P)DISABLE")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
 }
+
+#record(sseq, "$(P)READ") {
+#    field(SCAN, "1 second")
+#	
+#	field(LNK1, "$(P)STATUS:_SCAN PP")
+#	field(WAIT1, "Wait")
+#	
+#	field(LNK2, "$(P)CH1:LEVEL PP")
+#	field(WAIT2, "Wait")
+#	
+#	field(LNK3, "$(P)CH2:LEVEL PP")
+#	field(WAIT3, "Wait")
+#	
+#	field(LNK4, "$(P)CH3:LEVEL PP")
+#	field(WAIT4, "Wait")
+#}
+
+record(stringin, "$(P)VERSION")
+{
+    field(INP, "@ilm200.proto getVersion $(PORT)")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VERSION")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)STATUS:_SCAN")
+{
+    field(INP, "@ilm200.proto getStatus($(P)STATUS:_RAW) $(PORT)")
+    field(SCAN, "Passive")
+    field(FLNK, "$(P)STATUS:_RAW")
+    field(DTYP, "stream")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SCAN")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(calcout, "$(P)STATUS:_RAW")
+{
+    field(CALC, "0")
+    field(FLNK, "$(P)STATUS:_FANOUT")
+}
+
+record(seq, "$(P)STATUS:_FANOUT")
+{
+    field(DOL1, "$(P)STATUS:_RAW.A")
+    field(LNK1, "$(P)CH1:TYPE:RAW PP")
+
+    field(DOL2, "$(P)STATUS:_RAW.B")
+    field(LNK2, "$(P)CH2:TYPE:RAW PP")
+
+    field(DOL3, "$(P)STATUS:_RAW.C")
+    field(LNK3, "$(P)CH3:TYPE:RAW PP")
+
+    field(DOL4, "$(P)STATUS:_RAW.D")
+    field(LNK4, "$(P)CH1:STATUS:RAW PP")
+
+    field(DOL5, "$(P)STATUS:_RAW.E")
+    field(LNK5, "$(P)CH2:STATUS:RAW PP")
+    
+    field(DOL6, "$(P)STATUS:_RAW.F")
+    field(LNK6, "$(P)CH3:STATUS:RAW PP")
+    
+    field(DOL7, "$(P)STATUS:_RAW.G")
+    field(LNK7, "$(P)LOGIC:STATUS PP")
+    
+    field(SELM, "All")
+}
+
+record(ai, "$(P)LOGIC:STATUS") {
+}
+
+### SIMULATION RECORDS ###
+
+record(ai, "$(P)SIM:_SCAN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringin, "$(P)SIM:VERSION")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}

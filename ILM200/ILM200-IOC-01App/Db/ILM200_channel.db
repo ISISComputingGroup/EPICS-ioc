@@ -4,7 +4,7 @@ record(ai, "$(P)CH$(NUM):LEVEL")
     field(EGU, "%")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP, "@ilm200.proto getLevel $(PORT)")
+    field(INP, "@ilm200.proto getLevel($(NUM)) $(PORT)")
     field(PREC, 2)
     
     field(LOW, "10.0")
@@ -20,27 +20,12 @@ record(ai, "$(P)CH$(NUM):LEVEL")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bi, "$(P)CH$(NUM):RATE")
-{
-	field(DESC, "Channel $(NUM) sample rate")
-	field(EGU, "")
-	
-	field(ZNAM, "Slow")
-	field(ONAM, "Fast")
-	
-	field(INTEREST, "HIGH")
-	field(archive, "VAL")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CH$(NUM):RATE")
-    field(SDIS, "$(P)DISABLE")
-}
-
 record(bo, "$(P)CH$(NUM):RATE:SP")
 {
 	field(DESC, "Channel $(NUM) sample rate SP")
-	field(EGU, "")
+	
     field(DTYP, "stream")
-    field(OUT, "@ilm200.proto setRate $(PORT)")
+    field(OUT, "@ilm200.proto setRate($(NUM)) $(PORT)")
 	
 	field(ZNAM, "Slow")
 	field(ONAM, "Fast")
@@ -50,9 +35,64 @@ record(bo, "$(P)CH$(NUM):RATE:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(ai, "$(P)CH$(NUM):TYPE:RAW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(FLNK, "$(P)CH$(NUM):TYPE:CALC")
+	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CH$(NUM):TYPE:RAW")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(calcout, "$(P)CH$(NUM):TYPE:CALC")
+{
+	field(DESC, "Makes sure type in contiguous range")
+    field(INPA, "$(P)CH$(NUM):TYPE:RAW")
+	field(CALC, "A==9?4:A")
+	field(OUT, "$(P)CH$(NUM):TYPE PP")
+}
+
+record(mbbi, "$(P)CH$(NUM):TYPE")
+{
+	field(DESC, "Channel $(NUM) cryogen type")
+	
+	field(ZRST, "Not in use")
+	field(ONST, "Nitrogen")
+	field(TWST, "Helium")
+	field(THST, "Helium (continuous)")
+	field(FRST, "Channel error")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)CH$(NUM):STATUS:RAW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CH$(NUM):STATUS:RAW")
+    field(SDIS, "$(P)DISABLE")
+}
+
 ### SIMULATION RECORDS ###
 
 record(ai, "$(P)SIM:CH$(NUM):LEVEL")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:CH$(NUM):TYPE:RAW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:CH$(NUM):STATUS:RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
