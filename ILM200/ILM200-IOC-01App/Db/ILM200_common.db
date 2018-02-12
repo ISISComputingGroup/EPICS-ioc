@@ -107,4 +107,5 @@ record(stringin, "$(P)SIM:VERSION")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
+	field(VAL, "ILM200 RecSim")
 }
