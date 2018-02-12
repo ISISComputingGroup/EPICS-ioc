@@ -1,0 +1,33 @@
+##
+# Template for the 20 Keithley_2700 Channels
+#
+# Values created by aSub record which populates channel values from the block of 
+# data returned in BUFFER:READINGS.
+#
+# Channel names range from 101-110 and 201-210 and have the PV format CHNL:101
+##
+
+record(ao, "$(P)$(CHANNEL):READING")
+{
+	field(DESC, "Latest device reading")
+	field(EGU, "")
+	field(PREC, "5")
+	info(alarm, "Keithley2700")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+}
+alias("$(P)$(CHANNEL):READING","$(P)$(CHANNEL):READING:SP")
+
+record(ao, "$(P)$(CHANNEL):TIMESTAMP")
+{
+	field(DESC, "Latest device reading timestamp")
+	field(EGU, "")
+	field(PREC, "5")
+	info(alarm, "Keithley2700")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+}
+alias("$(P)$(CHANNEL):TIMESTAMP","$(P)$(CHANNEL):TIMESTAMP:SP")
+
+
+

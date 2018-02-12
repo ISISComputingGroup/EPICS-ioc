@@ -171,9 +171,11 @@ record(calcout, "$(P)COUNT:CALC")
 
 
 ## return string of readings from Start to +Count
-record(stringin, "$(P)BUFFER:READINGS")
+record(waveform, "$(P)BUFFER:READINGS")
 {
     field(DESC, "Buffer Readings")
+	field(NELM, "100")
+	field(FTVL, "DOUBLE")
     field(DTYP, "stream")
     field(INP,  "@devKeithley_2700.proto getBuffReadings($(P)) $(PORT)")
 	info(ARCHIVE, "VAL")

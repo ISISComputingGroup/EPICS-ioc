@@ -11,6 +11,7 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 DB += keithley2700.db
+DB += keithley2700_channels.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
