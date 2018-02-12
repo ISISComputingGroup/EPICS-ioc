@@ -78,7 +78,7 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 < $(IOCSTARTUP)/postiocinit.cmd
 
 stringiftest("HASMTRCTRL", "$(MTRCTRL=)", 0, 0)
-$(IFNOTHASMTRCTRL) errlogSev("MTRCTRL has not been set", 2)
+$(IFNOTHASMTRCTRL) errlogSev(2, "MTRCTRL has not been set")
 
 # Save motor positions every 5 seconds
 $(IFHASMTRCTRL) $(IFNOTSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
