@@ -41,8 +41,8 @@ asynOctetSetOutputEos("$(DEVICE)", -1, "\r")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/ILM200_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
-dbLoadRecordsLoop("db/ILM200_channel.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,NUM=\$(NUM), PORT=$(DEVICE)", "NUM", 1, 3, 1)
+dbLoadRecords("db/ILM200_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ISO=$(ISOBUS=1)")
+dbLoadRecordsLoop("db/ILM200_channel.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,N=\$(N), PORT=$(DEVICE), ISO=$(ISOBUS=1)", "N", 1, 3, 1)
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

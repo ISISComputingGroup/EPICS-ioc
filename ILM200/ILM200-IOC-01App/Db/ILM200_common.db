@@ -39,7 +39,7 @@ record(sseq, "$(P)READ") {
 
 record(stringin, "$(P)VERSION")
 {
-    field(INP, "@ilm200.proto getVersion $(PORT)")
+    field(INP, "@ilm200.proto getVersion($(ISO)) $(PORT)")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     
@@ -50,7 +50,7 @@ record(stringin, "$(P)VERSION")
 
 record(ai, "$(P)STATUS:_SCAN")
 {
-    field(INP, "@ilm200.proto getStatus($(P)STATUS:_RAW) $(PORT)")
+    field(INP, "@ilm200.proto getStatus($(ISO),$(P)STATUS:_RAW) $(PORT)")
     field(SCAN, "Passive")
     field(FLNK, "$(P)STATUS:_RAW")
     field(DTYP, "stream")

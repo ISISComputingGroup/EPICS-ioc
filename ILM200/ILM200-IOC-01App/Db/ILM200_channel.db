@@ -1,10 +1,10 @@
-record(ai, "$(P)CH$(NUM):LEVEL")
+record(ai, "$(P)CH$(N):LEVEL")
 {
-	field(DESC, "Channel $(NUM) level")
+	field(DESC, "Channel $(N) level")
     field(EGU, "%")
     field(SCAN, "Passive")
     field(DTYP, "stream")
-    field(INP, "@ilm200.proto getLevel($(NUM)) $(PORT)")
+    field(INP, "@ilm200.proto getLevel($(ISO),$(N)) $(PORT)")
     field(PREC, 2)
     
     field(LOLO, "0.0")
@@ -14,47 +14,47 @@ record(ai, "$(P)CH$(NUM):LEVEL")
     info(archive, "VAL")
     info(alarm, "ILM")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CH$(NUM):LEVEL")
+    field(SIOL, "$(P)SIM:CH$(N):LEVEL")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bo, "$(P)CH$(NUM):RATE:SP")
+record(bo, "$(P)CH$(N):RATE:SP")
 {
-	field(DESC, "Channel $(NUM) sample rate SP")
+	field(DESC, "Channel $(N) sample rate SP")
 	
     field(DTYP, "stream")
-    field(OUT, "@ilm200.proto setRate($(NUM)) $(PORT)")
+    field(OUT, "@ilm200.proto setRate($(ISO),$(N)) $(PORT)")
 	
 	field(ZNAM, "Slow")
 	field(ONAM, "Fast")
 	
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CH$(NUM):RATE:SP")
+    field(SIOL, "$(P)SIM:CH$(N):RATE:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)CH$(NUM):TYPE:RAW")
+record(ai, "$(P)CH$(N):TYPE:RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
-	field(FLNK, "$(P)CH$(NUM):TYPE:CALC")
+	field(FLNK, "$(P)CH$(N):TYPE:CALC")
 	
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CH$(NUM):TYPE:RAW")
+    field(SIOL, "$(P)SIM:CH$(N):TYPE:RAW")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(calcout, "$(P)CH$(NUM):TYPE:CALC")
+record(calcout, "$(P)CH$(N):TYPE:CALC")
 {
 	field(DESC, "Makes sure type in contiguous range")
-    field(INPA, "$(P)CH$(NUM):TYPE:RAW")
+    field(INPA, "$(P)CH$(N):TYPE:RAW")
 	field(CALC, "A==9?4:A")
-	field(OUT, "$(P)CH$(NUM):TYPE PP")
+	field(OUT, "$(P)CH$(N):TYPE PP")
 }
 
-record(mbbi, "$(P)CH$(NUM):TYPE")
+record(mbbi, "$(P)CH$(N):TYPE")
 {
-	field(DESC, "Channel $(NUM) cryogen type")
+	field(DESC, "Channel $(N) cryogen type")
 	
 	field(ZRST, "Not in use")
 	field(ONST, "Nitrogen")
@@ -66,7 +66,7 @@ record(mbbi, "$(P)CH$(NUM):TYPE")
     info(archive, "VAL")
 }
 
-record(mbbiDirect, "$(P)CH$(NUM):STATUS:RAW")
+record(mbbiDirect, "$(P)CH$(N):STATUS:RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -81,37 +81,37 @@ record(mbbiDirect, "$(P)CH$(NUM):STATUS:RAW")
 	# Bit 5 Low State Active (Level < LOW)
 	# Bit 6 Alarm Requested (As defined by CONFIG BYTE)
 	# Bit 7 Pre-Pulse Current Flowing
-	field(FLNK, "$(P)CH$(NUM):STATUS:_SEQ")
+	field(FLNK, "$(P)CH$(N):STATUS:_SEQ")
     info(archive, "VAL")
 }
 
-record(seq, "$(P)CH$(NUM):STATUS:_SEQ")
+record(seq, "$(P)CH$(N):STATUS:_SEQ")
 {
-	field(DOL1, "$(P)CH$(NUM):STATUS:RAW.B1")
-	field(LNK1, "$(P)CH$(NUM):RATE PP")
+	field(DOL1, "$(P)CH$(N):STATUS:RAW.B1")
+	field(LNK1, "$(P)CH$(N):RATE PP")
 	
-	field(DOL2, "$(P)CH$(NUM):STATUS:RAW.B3")
-	field(LNK2, "$(P)CH$(NUM):FILLING PP")
+	field(DOL2, "$(P)CH$(N):STATUS:RAW.B3")
+	field(LNK2, "$(P)CH$(N):FILLING PP")
 	
-	field(DOL3, "$(P)CH$(NUM):STATUS:RAW.B5")
-	field(LNK3, "$(P)CH$(NUM):LOW PP")
+	field(DOL3, "$(P)CH$(N):STATUS:RAW.B5")
+	field(LNK3, "$(P)CH$(N):LOW PP")
 }
 
-record(bi, "$(P)CH$(NUM):RATE")
+record(bi, "$(P)CH$(N):RATE")
 {
 	field(ZNAM, "Slow")
 	field(ONAM, "Fast")
 	
-	field(FLNK, "$(P)CH$(NUM):RATE:_ASSERT")
+	field(FLNK, "$(P)CH$(N):RATE:_ASSERT")
 	
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 
-record(calc, "$(P)CH$(NUM):RATE:_ASSERT")
+record(calc, "$(P)CH$(N):RATE:_ASSERT")
 {
-	field(INPA, "$(P)CH$(NUM):STATUS:RAW.B0")
-	field(INPB, "$(P)CH$(NUM):STATUS:RAW.B1")
+	field(INPA, "$(P)CH$(N):STATUS:RAW.B0")
+	field(INPB, "$(P)CH$(N):STATUS:RAW.B1")
 	field(CALC, "A+B")
 	
     field(LOW, "0")
@@ -123,7 +123,7 @@ record(calc, "$(P)CH$(NUM):RATE:_ASSERT")
     info(alarm, "ILM")
 }
 
-record(bi, "$(P)CH$(NUM):FILLING")
+record(bi, "$(P)CH$(N):FILLING")
 {
 	field(ONAM, "Not filling")
 	field(ZNAM, "Filling")
@@ -132,7 +132,7 @@ record(bi, "$(P)CH$(NUM):FILLING")
     info(archive, "VAL")
 }
 
-record(bi, "$(P)CH$(NUM):LOW")
+record(bi, "$(P)CH$(N):LOW")
 {
 	field(ONAM, "Not low")
 	field(ZNAM, "Low")
@@ -146,25 +146,25 @@ record(bi, "$(P)CH$(NUM):LOW")
 
 ### SIMULATION RECORDS ###
 
-record(ai, "$(P)SIM:CH$(NUM):LEVEL")
+record(ai, "$(P)SIM:CH$(N):LEVEL")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)SIM:CH$(NUM):TYPE:RAW")
+record(ai, "$(P)SIM:CH$(N):TYPE:RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)SIM:CH$(NUM):STATUS:RAW")
+record(ai, "$(P)SIM:CH$(N):STATUS:RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(bi, "$(P)SIM:CH$(NUM):RATE")
+record(bi, "$(P)SIM:CH$(N):RATE")
 {
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")
@@ -173,4 +173,4 @@ record(bi, "$(P)SIM:CH$(NUM):RATE")
 	field(ONAM, "Fast")
 }
 
-alias("$(P)SIM:CH$(NUM):RATE", "$(P)SIM:CH$(NUM):RATE:SP")
+alias("$(P)SIM:CH$(N):RATE", "$(P)SIM:CH$(N):RATE:SP")

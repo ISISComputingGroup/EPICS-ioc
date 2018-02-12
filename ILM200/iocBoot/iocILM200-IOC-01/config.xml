@@ -1,10 +1,11 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>This is a template description</ioc_desc>
-<ioc_details>These are template details</ioc_details>
+<ioc_desc>ILM 200 series</ioc_desc>
+<ioc_details>Oxford instruments Intelligent Level Meter 200 series</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+    <macro name="ISOBUS" pattern="^[0-9]+$" description="ISOBUS address (default: 1)" />
 </macros>
 <pvsets>
 </pvsets>
