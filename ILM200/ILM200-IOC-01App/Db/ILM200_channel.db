@@ -13,6 +13,7 @@ record(ai, "$(P)CH$(N):LEVEL")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     info(alarm, "ILM")
+
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CH$(N):LEVEL")
     field(SDIS, "$(P)DISABLE")
@@ -125,8 +126,8 @@ record(calc, "$(P)CH$(N):RATE:_ASSERT")
 
 record(bi, "$(P)CH$(N):FILLING")
 {
-	field(ONAM, "Not filling")
-	field(ZNAM, "Filling")
+	field(ZNAM, "Not filling")
+	field(ONAM, "Filling")
 	
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -134,8 +135,8 @@ record(bi, "$(P)CH$(N):FILLING")
 
 record(bi, "$(P)CH$(N):LOW")
 {
-	field(ONAM, "Not low")
-	field(ZNAM, "Low")
+	field(ZNAM, "Not low")
+	field(ONAM, "Low")
 
     field(OSV, "MINOR")
 	
@@ -150,12 +151,16 @@ record(ai, "$(P)SIM:CH$(N):LEVEL")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
+	field(VAL, "100.0")
+	field(PINI, "YES")
 }
 
 record(ai, "$(P)SIM:CH$(N):TYPE:RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
+	field(VAL, "$(N)")
+	field(PINI, "YES")
 }
 
 record(ai, "$(P)SIM:CH$(N):STATUS:RAW")
@@ -171,6 +176,9 @@ record(bi, "$(P)SIM:CH$(N):RATE")
 	
 	field(ZNAM, "Slow")
 	field(ONAM, "Fast")
+	
+	field(VAL, "0")
+	field(PINI, "YES")
 }
 
 alias("$(P)SIM:CH$(N):RATE", "$(P)SIM:CH$(N):RATE:SP")
