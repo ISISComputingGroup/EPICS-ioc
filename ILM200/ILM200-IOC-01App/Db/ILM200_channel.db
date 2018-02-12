@@ -111,8 +111,10 @@ record(bi, "$(P)CH$(N):RATE")
 
 record(calc, "$(P)CH$(N):RATE:_ASSERT")
 {
-	field(INPA, "$(P)CH$(N):STATUS:RAW.B0")
-	field(INPB, "$(P)CH$(N):STATUS:RAW.B1")
+	field(DESC, "Should never be both FAST and SLOW")
+	
+	field(INPA, "$(P)CH$(N):STATUS:RAW.B1")
+	field(INPB, "$(P)CH$(N):STATUS:RAW.B2")
 	field(CALC, "A+B")
 	
     field(LOW, "0")
