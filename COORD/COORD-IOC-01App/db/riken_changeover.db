@@ -13,9 +13,27 @@ record(bo, "$(PSU_DISABLE)")
 record(calc, "$(PSU_POWER)")
 {
     field(INPA, "$(PSU_POWER).SEVR CP")
-	field(INPB, "$(P)PSUS:POWER:GRP1 CP MS")
-	field(INPC, "$(P)PSUS:POWER:GRP2 CP MS")
-	field(INPD, "$(P)PSUS:POWER:GRP3 CP MS")
-	field(INPE, "$(P)PSUS:POWER:GRP4 CP MS")
-    field(CALC, "MIN(A+B+C+D+E,1)")
+	field(INPB, "$(P)PSUS:POWER:CALC CP MS")
+    field(CALC, "MIN(A+B,1)")
+}
+
+#
+# This record gets pushed to by the individual records in riken_port_changeover_psus.db
+#
+record(calc, "$(P)PSUS:POWER:CALC")
+{
+	field(PINI, "YES")
+	field(A, "0")
+	field(B, "0")
+	field(C, "0")
+	field(D, "0")
+	field(E, "0")
+	field(F, "0")
+	field(G, "0")
+	field(H, "0")
+	field(I, "0")
+	field(J, "0")
+	field(K, "0")
+	field(L, "0")
+    field(CALC, "A+B+C+D+E+F+G+H+I+J+K+L")
 }

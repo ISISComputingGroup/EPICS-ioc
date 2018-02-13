@@ -11,7 +11,6 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 DB += riken_changeover.db
-DB += riken_changeover_groups.db
 
 DB += riken_port_changeover_psus.db
 DB += riken_rb2_mode_changeover_psus.db

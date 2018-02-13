@@ -1,13 +1,13 @@
-file riken_port_changeover_psus.template {
+file riken_psus.template {
 #
 # PSNAME = Name of the IOC. e.g. "RB1", "RB2"
-# PSGRP  = Number of the IOC which this is on. E.g. if RB1 is on RKNPS_01 set this to "1"
-# PSIDX  = Letter A-L. Combinations of PSGRP and PSIDX must be unique.
+# PSIOC  = IOC which this power supply is on. E.g. RKNPS_01
+# PSIDX  = Letter A-L. Must be unique
 #
-pattern {PV_PREFIX, P, PSU_DISABLE, PSNAME, PSGRP, PSIDX}
+pattern {PV_PREFIX, P, PSU_DISABLE, PSNAME, PSIOC, PSIDX}
 
-    {"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RQ18", "1", "A"}
-    {"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RQ19", "1", "B"}
+    {"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RQ18", "RKNPS_01", "A"}
+    {"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RQ19", "RKNPS_01", "B"}
 
-    {"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RQ20", "2", "A"}
+    {"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RQ20", "RKNPS_02", "C"}
 }
