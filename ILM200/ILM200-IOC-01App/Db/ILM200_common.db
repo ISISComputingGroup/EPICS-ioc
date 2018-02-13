@@ -21,16 +21,16 @@ record(bo, "$(P)DISABLE")
 record(sseq, "$(P)READ") {
     field(SCAN, "1 second")
 	
-	field(LNK1, "$(P)STATUS:_SCAN PP")
+	field(LNK1, "$(P)STATUS:SCAN PP")
 	field(WAIT1, "Wait")
 	
-	field(LNK2, "$(P)CH1:LEVEL:_READ PP")
+	field(LNK2, "$(P)CH1:LEVEL:READ PP")
 	field(WAIT2, "Wait")
 	
-	field(LNK3, "$(P)CH2:LEVEL:_READ PP")
+	field(LNK3, "$(P)CH2:LEVEL:READ PP")
 	field(WAIT3, "Wait")
 	
-	field(LNK4, "$(P)CH3:LEVEL:_READ PP")
+	field(LNK4, "$(P)CH3:LEVEL:READ PP")
 	field(WAIT4, "Wait")
 	
 	field(LNK5, "$(P)VERSION PP")
@@ -48,11 +48,11 @@ record(stringin, "$(P)VERSION")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)STATUS:_SCAN")
+record(ai, "$(P)STATUS:SCAN")
 {
-    field(INP, "@ilm200.proto getStatus($(ISO),$(P)STATUS:_RAW) $(PORT)")
+    field(INP, "@ilm200.proto getStatus($(ISO),$(P)STATUS:RAW) $(PORT)")
     field(SCAN, "Passive")
-    field(FLNK, "$(P)STATUS:_RAW")
+    field(FLNK, "$(P)STATUS:RAW")
     field(DTYP, "stream")
     
     field(SIML, "$(P)SIM")
@@ -60,33 +60,33 @@ record(ai, "$(P)STATUS:_SCAN")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(calcout, "$(P)STATUS:_RAW")
+record(calcout, "$(P)STATUS:RAW")
 {
     field(CALC, "0")
-    field(FLNK, "$(P)STATUS:_FANOUT")
+    field(FLNK, "$(P)STATUS:FANOUT")
 }
 
-record(seq, "$(P)STATUS:_FANOUT")
+record(seq, "$(P)STATUS:FANOUT")
 {
-    field(DOL1, "$(P)STATUS:_RAW.A")
+    field(DOL1, "$(P)STATUS:RAW.A")
     field(LNK1, "$(P)CH1:TYPE:RAW PP")
 
-    field(DOL2, "$(P)STATUS:_RAW.B")
+    field(DOL2, "$(P)STATUS:RAW.B")
     field(LNK2, "$(P)CH2:TYPE:RAW PP")
 
-    field(DOL3, "$(P)STATUS:_RAW.C")
+    field(DOL3, "$(P)STATUS:RAW.C")
     field(LNK3, "$(P)CH3:TYPE:RAW PP")
 
-    field(DOL4, "$(P)STATUS:_RAW.D")
+    field(DOL4, "$(P)STATUS:RAW.D")
     field(LNK4, "$(P)CH1:STATUS:RAW PP")
 
-    field(DOL5, "$(P)STATUS:_RAW.E")
+    field(DOL5, "$(P)STATUS:RAW.E")
     field(LNK5, "$(P)CH2:STATUS:RAW PP")
     
-    field(DOL6, "$(P)STATUS:_RAW.F")
+    field(DOL6, "$(P)STATUS:RAW.F")
     field(LNK6, "$(P)CH3:STATUS:RAW PP")
     
-    field(DOL7, "$(P)STATUS:_RAW.G")
+    field(DOL7, "$(P)STATUS:RAW.G")
     field(LNK7, "$(P)LOGIC:STATUS PP")
     
     field(SELM, "All")
@@ -97,7 +97,7 @@ record(ai, "$(P)LOGIC:STATUS") {
 
 ### SIMULATION RECORDS ###
 
-record(ai, "$(P)SIM:_SCAN")
+record(ai, "$(P)SIM:SCAN")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")

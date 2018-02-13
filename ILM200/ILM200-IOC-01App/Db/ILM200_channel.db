@@ -1,21 +1,21 @@
-record(ai, "$(P)CH$(N):LEVEL:_READ")
+record(ai, "$(P)CH$(N):LEVEL:READ")
 {
 	field(DESC, "Read channel $(N) level")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@ilm200.proto getLevel($(ISO),$(N)) $(PORT)")
     field(PREC, "0")
-	field(FLNK, "$(P)CH$(N):LEVEL:_CALC")
+	field(FLNK, "$(P)CH$(N):LEVEL:CALC")
 
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CH$(N):LEVEL:_READ")
+    field(SIOL, "$(P)SIM:CH$(N):LEVEL:READ")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(calcout, "$(P)CH$(N):LEVEL:_CALC")
+record(calcout, "$(P)CH$(N):LEVEL:CALC")
 {
     field(DESC, "Adjusts received level by factor 10")
-	field(INPA, "$(P)CH$(N):LEVEL:_READ")
+	field(INPA, "$(P)CH$(N):LEVEL:READ")
 	field(CALC, "A/10")
 	field(OUT, "$(P)CH$(N):LEVEL PP")
 }
@@ -97,11 +97,11 @@ record(mbbiDirect, "$(P)CH$(N):STATUS:RAW")
 	# Bit 5 Low State Active (Level < LOW)
 	# Bit 6 Alarm Requested (As defined by CONFIG BYTE)
 	# Bit 7 Pre-Pulse Current Flowing
-	field(FLNK, "$(P)CH$(N):STATUS:_SEQ")
+	field(FLNK, "$(P)CH$(N):STATUS:SEQ")
     info(archive, "VAL")
 }
 
-record(seq, "$(P)CH$(N):STATUS:_SEQ")
+record(seq, "$(P)CH$(N):STATUS:SEQ")
 {
 	field(DOL1, "$(P)CH$(N):STATUS:RAW.B1")
 	field(LNK1, "$(P)CH$(N):RATE PP")
@@ -118,16 +118,18 @@ record(seq, "$(P)CH$(N):STATUS:_SEQ")
 
 record(bi, "$(P)CH$(N):RATE")
 {
+	field(DESC, "Channel $(N) scan rate")
+	
 	field(ZNAM, "Slow")
 	field(ONAM, "Fast")
 	
-	field(FLNK, "$(P)CH$(N):RATE:_ASSERT")
+	field(FLNK, "$(P)CH$(N):RATE:ASSERT")
 	
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 
-record(calc, "$(P)CH$(N):RATE:_ASSERT")
+record(calc, "$(P)CH$(N):RATE:ASSERT")
 {
 	field(DESC, "Should never be both FAST and SLOW")
 	
@@ -146,6 +148,8 @@ record(calc, "$(P)CH$(N):RATE:_ASSERT")
 
 record(bi, "$(P)CH$(N):FILLING")
 {
+	field(DESC, "Channel $(N) currently filling")
+	
 	field(ZNAM, "Not filling")
 	field(ONAM, "Filling")
 	
@@ -155,6 +159,8 @@ record(bi, "$(P)CH$(N):FILLING")
 
 record(bi, "$(P)CH$(N):LOW")
 {
+	field(DESC, "Channel $(N) level is low")
+	
 	field(ZNAM, "Not low")
 	field(ONAM, "Low")
 
@@ -167,6 +173,8 @@ record(bi, "$(P)CH$(N):LOW")
 
 record(bi, "$(P)CH$(N):CURRENT")
 {
+	field(DESC, "Channel $(N) has helium probe current")
+	
 	field(ZNAM, "Off")
 	field(ONAM, "On")
 	
@@ -176,7 +184,7 @@ record(bi, "$(P)CH$(N):CURRENT")
 
 ### SIMULATION RECORDS ###
 
-record(ai, "$(P)SIM:CH$(N):LEVEL:_READ")
+record(ai, "$(P)SIM:CH$(N):LEVEL:READ")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
