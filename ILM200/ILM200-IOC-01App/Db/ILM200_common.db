@@ -46,6 +46,8 @@ record(stringin, "$(P)VERSION")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VERSION")
     field(SDIS, "$(P)DISABLE")
+	
+    info(alarm, "ILM")
 }
 
 record(ai, "$(P)STATUS:SCAN")
