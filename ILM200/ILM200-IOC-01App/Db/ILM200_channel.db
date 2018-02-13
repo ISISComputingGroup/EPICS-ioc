@@ -1,11 +1,30 @@
+record(ai, "$(P)CH$(N):LEVEL:_READ")
+{
+	field(DESC, "Read channel $(N) level")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(INP, "@ilm200.proto getLevel($(ISO),$(N)) $(PORT)")
+    field(PREC, "0")
+	field(FLNK, "$(P)CH$(N):LEVEL:_CALC")
+
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CH$(N):LEVEL:_READ")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(calcout, "$(P)CH$(N):LEVEL:_CALC")
+{
+    field(DESC, "Adjusts received level by factor 10")
+	field(INPA, "$(P)CH$(N):LEVEL:_READ")
+	field(CALC, "A/10")
+	field(OUT, "$(P)CH$(N):LEVEL PP")
+}
+
 record(ai, "$(P)CH$(N):LEVEL")
 {
 	field(DESC, "Channel $(N) level")
     field(EGU, "%")
-    field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(INP, "@ilm200.proto getLevel($(ISO),$(N)) $(PORT)")
-    field(PREC, 2)
+    field(PREC, "1")
     
     field(LOLO, "0.0")
     field(LLSV, "MAJOR")
@@ -13,10 +32,6 @@ record(ai, "$(P)CH$(N):LEVEL")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     info(alarm, "ILM")
-
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CH$(N):LEVEL")
-    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)CH$(N):RATE:SP")
@@ -91,11 +106,14 @@ record(seq, "$(P)CH$(N):STATUS:_SEQ")
 	field(DOL1, "$(P)CH$(N):STATUS:RAW.B1")
 	field(LNK1, "$(P)CH$(N):RATE PP")
 	
-	field(DOL2, "$(P)CH$(N):STATUS:RAW.B3")
+	field(DOL2, "$(P)CH$(N):STATUS:RAW.B4")
 	field(LNK2, "$(P)CH$(N):FILLING PP")
 	
 	field(DOL3, "$(P)CH$(N):STATUS:RAW.B5")
 	field(LNK3, "$(P)CH$(N):LOW PP")
+	
+	field(DOL4, "$(P)CH$(N):STATUS:RAW.B0")
+	field(LNK4, "$(P)CH$(N):CURRENT PP")
 }
 
 record(bi, "$(P)CH$(N):RATE")
@@ -147,9 +165,18 @@ record(bi, "$(P)CH$(N):LOW")
     info(alarm, "ILM")
 }
 
+record(bi, "$(P)CH$(N):CURRENT")
+{
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
 ### SIMULATION RECORDS ###
 
-record(ai, "$(P)SIM:CH$(N):LEVEL")
+record(ai, "$(P)SIM:CH$(N):LEVEL:_READ")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")

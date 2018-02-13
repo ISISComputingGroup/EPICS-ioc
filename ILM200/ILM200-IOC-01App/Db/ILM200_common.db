@@ -24,13 +24,13 @@ record(sseq, "$(P)READ") {
 	field(LNK1, "$(P)STATUS:_SCAN PP")
 	field(WAIT1, "Wait")
 	
-	field(LNK2, "$(P)CH1:LEVEL PP")
+	field(LNK2, "$(P)CH1:LEVEL:_READ PP")
 	field(WAIT2, "Wait")
 	
-	field(LNK3, "$(P)CH2:LEVEL PP")
+	field(LNK3, "$(P)CH2:LEVEL:_READ PP")
 	field(WAIT3, "Wait")
 	
-	field(LNK4, "$(P)CH3:LEVEL PP")
+	field(LNK4, "$(P)CH3:LEVEL:_READ PP")
 	field(WAIT4, "Wait")
 	
 	field(LNK5, "$(P)VERSION PP")
