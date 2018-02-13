@@ -20,11 +20,8 @@ ILM200_IOC_02_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-## For unit testing:
-$(IFTESTDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
-
-## For normal devsim:
-$(IFNOTTESTDEVSIM) $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:57677")
+## For testing with emulator:
+$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=57677)")
 
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
@@ -35,6 +32,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=960
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
+asynOctetSetInputEos("$(DEVICE)", -1, "\r")
+asynOctetSetOutputEos("$(DEVICE)", -1, "\r")
 
 ## Load record instances
 
@@ -42,7 +41,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)"
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/ILM200.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("db/ILM200_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ISO=$(ISOBUS=1)")
+dbLoadRecordsLoop("db/ILM200_channel.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,N=\$(N), PORT=$(DEVICE), ISO=$(ISOBUS=1)", "N", 1, 3, 1)
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
