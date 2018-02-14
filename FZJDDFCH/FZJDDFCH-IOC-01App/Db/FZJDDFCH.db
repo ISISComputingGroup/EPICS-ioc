@@ -89,7 +89,7 @@ record(mbbo, "$(P)FREQ:SP")
 #
 record(stringin, "$(P)FREQ:SP:ERROR")
 {
-    field(DESC, "Error that occured on setting frequency")
+    field(DESC, "Error that occurred on setting frequency")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -117,7 +117,7 @@ record(ao, "$(P)PHAS:SP")
 #
 record(stringin, "$(P)PHAS:SP:ERROR")
 {
-    field(DESC, "Error that occured on setting phase")
+    field(DESC, "Error that occurred on setting phase")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -145,7 +145,7 @@ record(bo, "$(P)MB:SP")
 #
 record(stringin, "$(P)MB:SP:ERROR")
 {
-    field(DESC, "Error that occured on setting MB")
+    field(DESC, "Error that occurred on setting MB")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -173,7 +173,7 @@ alias("$(P)DRIVE:MODE:SP", "$(P)DRV:MODE:SP")
 #
 record(stringin, "$(P)DRIVE:MODE:SP:ERROR")
 {
-    field(DESC, "Error that occured on setting drive mode")
+    field(DESC, "Error that occurred on setting drive mode")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
