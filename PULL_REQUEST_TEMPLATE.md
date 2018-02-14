@@ -21,7 +21,7 @@
     - [Record simulation](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Record-Simulation)
     - [Finishing touches](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/IOC-Finishing-Touches)
 - [ ] If an OPI has been modified, does it conform to the [style guidelines](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/OPI-Creation)?
-- [ ] Does the IOC conform to the new [build guidelines](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Reducing-Build-Dependencies)
+- [ ] Do the IOC and support module conform to the new [build guidelines](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Reducing-Build-Dependencies)
 - [ ] Have the changes been recorded appropriately in the [release notes](https://github.com/ISISComputingGroup/IBEX/wiki/ReleaseNotes_Dev)?
 
 ### Functional Tests
