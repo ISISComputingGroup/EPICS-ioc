@@ -1,0 +1,15 @@
+record(seq, "$(PSU_DISABLE):$(PSNAME)")
+{
+    field(DOL1, "$(PSU_DISABLE) CP")
+	field(LNK1, "$(PV_PREFIX)$(PSIOC):$(PSNAME):POWER:SP.DISP PP")
+}
+
+
+record(calcout, "$(P)PSUS:POWER:$(PSNAME)")
+{
+    field(INPA, "$(PV_PREFIX)$(PSIOC):$(PSNAME):POWER CP MS")
+	field(CALC, "A")
+	field(OUT, "$(P)PSUS:POWER:CALC.$(PSIDX) PP MS")
+	field(OOPT, "Every Time")
+}
+

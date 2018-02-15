@@ -226,7 +226,7 @@ record(ai, "$(P)R")
 	field(DESC, "Resistance")
     field(EGU, "ohm")
 	field(PREC, "5")
-	field(INP, "$(P)V:CALC CP MS")
+	field(INP, "$(P)R:CALC CP MS")
 	info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
