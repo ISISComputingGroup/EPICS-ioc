@@ -5,6 +5,28 @@
 #
 ###############
 
+### ASUB TEST PVS
+
+record(ai, "$(P)ASUB:VALUE:IN")
+{
+    field(VAL, 1)
+    field(FLNK,"$(P)ASUB:PROCESS")
+}
+record(aSub,"$(P)ASUB:PROCESS")
+{
+    field(SNAM, "my_asub_routine")
+    field(FTA, "DOUBLE")
+    field(INPA, "$(P)ASUB:VALUE:IN")
+    field(OUTA, "$(P)ASUB:VALUE:OUT")
+    field(FTVA, "DOUBLE")
+}
+record(ai, "$(P)ASUB:VALUE:OUT")
+{
+    field(INP, "$(P)ASUB:PROCESS.VALA")
+}
+
+
+### END ASUB TEST PVS
 
 record(stringin, "$(P)IDN")
 {
