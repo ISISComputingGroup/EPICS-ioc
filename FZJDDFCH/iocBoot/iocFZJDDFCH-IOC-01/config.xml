@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+ <config_part>
+  <ioc_desc>FZJ Digital Drive Fermi Chopper</ioc_desc>
+  <ioc_details>FZJ Fermi Chopper</ioc_details>
+  <macros>
+    <macro name="ADDR" pattern="^[a-zA-Z0-9]{3}$" description="Chopper name (default: C01)." />
+    <macro name="IPADDR" pattern="^[a-zA-Z0-9.]+$" description="IP address or hostname of chopper controller." />
+    <macro name="IPPORT" pattern="^[0-9]+$" description="IP port of chopper controller (default: 3323)." />
+  </macros>
+ </config_part>
+</ioc_config>
