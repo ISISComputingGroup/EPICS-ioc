@@ -66,4 +66,5 @@ ZLIB=$(SUPPORT)/zlib/master
 include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
 
-# IOC-specific support moduleILM200=$(SUPPORT)/ilm200/master
+# IOC-specific support module
+ILM200=$(SUPPORT)/ilm200/master
