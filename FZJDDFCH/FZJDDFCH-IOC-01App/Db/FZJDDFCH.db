@@ -173,7 +173,7 @@ alias("$(P)DRIVE:MODE:SP", "$(P)DRV:MODE:SP")
 #
 record(stringin, "$(P)DRIVE:MODE:SP:ERROR")
 {
-    field(DESC, "Error that occurred on setting drive mode")
+    field(DESC, "Error message from drive mode set")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
