@@ -42,6 +42,7 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 -include $(TOP)/configure/RELEASE.local
 
 # Macros required for basic ioc/stream device
+ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
 ASYN=$(SUPPORT)/asyn/master
 AUTOSAVE=$(SUPPORT)/autosave/master
