@@ -19,7 +19,7 @@ set_requestfile_path("${MOTOR}/motorApp/Db", "")
 set_requestfile_path("${TOP}/iocBoot/iocGALIL-IOC-01", "")
 
 # Make sure controller number is 2 digits long
-calc("MTRCTRL", "$(MTRCTRL=01)", 2, 2)
+calc("MTRCTRL", "$(MTRCTRL)", 2, 2)
 
 epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 
@@ -77,11 +77,14 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
 
+stringiftest("HASMTRCTRL", "$(MTRCTRL=)", 0, 0)
+$(IFNOTHASMTRCTRL) errlogSev(2, "MTRCTRL has not been set")
+
 # Save motor positions every 5 seconds
-$(IFNOTTESTDEVSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+$(IFHASMTRCTRL) $(IFNOTSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
 # Save motor settings every 30 seconds
-$(IFNOTTESTDEVSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+$(IFHASMTRCTRL) $(IFNOTSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
 ## Start any sequence programs
 #seq sncxxx,"user=icsHost"
