@@ -31,7 +31,8 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
-$(APPNAME)_DBD += asubroutine.dbd
+$(APPNAME)_DBD += Keithley2700.dbd
+
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -47,12 +48,14 @@ $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 
+$(APPNAME)_LIBS += Keithley2700
 $(APPNAME)_LIBS += calc sscan
 
 
 # KHLY2700-IOC-01_registerRecordDeviceDriver.cpp derives from KHLY2700-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
-$(APPNAME)_SRCS_DEFAULT += my_asub_routine.c
+
+#$(APPNAME)_SRCS += parse_channel_data.c
 
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp
