@@ -49,6 +49,7 @@ $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += sscan
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 
