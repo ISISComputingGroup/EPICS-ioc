@@ -7,15 +7,6 @@
 # Channel names range from 101-110 and 201-210 and have the PV format CHNL:101
 ##
 
-record(waveform, "$(P)$(CHANNEL):RAWDATA")
-{
-	field(DESC, "Array of raw channel data")
-	# Array: [ READING, TIMESTAMP, CHANNEL ]
-	field(NELM, "3")
-	field(FTVL, "DOUBLE")
-	# FLINK TO calc to seperate array elements? like CURRENT:CALC record
-	
-}
 
 record(ao, "$(P)$(CHANNEL):READING")
 {

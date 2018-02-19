@@ -1,32 +1,4 @@
-#
-# ADD:
-# 
-#
-#
-###############
-
-### ASUB TEST PVS
-
-record(ai, "$(P)ASUB:VALUE:IN")
-{
-    field(VAL, 1)
-    field(FLNK,"$(P)ASUB:PROCESS")
-}
-record(aSub,"$(P)ASUB:PROCESS")
-{
-    field(SNAM, "parse_channel_data")
-    field(FTA, "DOUBLE")
-    field(INPA, "$(P)ASUB:VALUE:IN")
-    field(OUTA, "$(P)ASUB:VALUE:OUT")
-    field(FTVA, "DOUBLE")
-}
-record(ao, "$(P)ASUB:VALUE:OUT")
-{
-    #field(INP, "$(P)ASUB:PROCESS.VALA")
-}
-
-
-### END ASUB TEST PVS
+# KEITHLEY 2700 
 
 record(stringin, "$(P)IDN")
 {
@@ -202,6 +174,7 @@ record(waveform, "$(P)BUFFER:READINGS")
     field(INP,  "@devKeithley_2700.proto getBuffReadings($(P)) $(PORT)")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
+	field(PREC, "5")
 	field(FLNK, "$(P)CURRENT:CALC")
 }
 
@@ -213,7 +186,70 @@ record(calcout, "$(P)CURRENT:CALC")
 	field(CALC, "A")
 	field(OUT, "$(P)CURRENT PP")
 	field(OOPT, "Every Time")
+	field(FLNK, "$(P)BUFFER:READINGS:PARSE:READINGS")
 }
+
+record(aSub,"$(P)BUFFER:READINGS:PARSE:READINGS")
+{
+    field(SNAM, "parse_channel_readings")
+    field(FTA, "DOUBLE")
+    field(INPA, "$(P)BUFFER:READINGS")
+	field(NOA, "100")
+	# OUT = CHANNEL1/2/ETC
+    field(OUTA, "$(P)CHNL:101:READING")
+    field(OUTB, "$(P)CHNL:102:READING")
+    field(OUTC, "$(P)CHNL:103:READING")
+    field(OUTD, "$(P)CHNL:104:READING")
+    field(OUTE, "$(P)CHNL:105:READING")
+    field(OUTF, "$(P)CHNL:106:READING")
+    field(OUTG, "$(P)CHNL:107:READING")
+    field(OUTH, "$(P)CHNL:108:READING")
+    field(OUTI, "$(P)CHNL:109:READING")
+    field(OUTJ, "$(P)CHNL:110:READING")
+    field(OUTK, "$(P)CHNL:201:READING")
+    field(OUTL, "$(P)CHNL:202:READING")
+    field(OUTM, "$(P)CHNL:203:READING")
+    field(OUTN, "$(P)CHNL:204:READING")
+    field(OUTO, "$(P)CHNL:205:READING")
+    field(OUTP, "$(P)CHNL:206:READING")
+    field(OUTQ, "$(P)CHNL:207:READING")
+    field(OUTR, "$(P)CHNL:208:READING")
+    field(OUTS, "$(P)CHNL:209:READING")
+    field(OUTT, "$(P)CHNL:210:READING")
+	field(FLNK, "$(P)BUFFER:READINGS:PARSE:TIMESTAMPS")
+}
+
+record(aSub,"$(P)BUFFER:READINGS:PARSE:TIMESTAMPS")
+{
+    field(SNAM, "parse_channel_timestamps")
+    field(FTA, "DOUBLE")
+    field(INPA, "$(P)BUFFER:READINGS")
+	field(NOA, "100")
+	# OUT = CHANNEL1/2/ETC
+    field(OUTA, "$(P)CHNL:101:TIMESTAMP")
+    field(OUTB, "$(P)CHNL:102:TIMESTAMP")
+    field(OUTC, "$(P)CHNL:103:TIMESTAMP")
+    field(OUTD, "$(P)CHNL:104:TIMESTAMP")
+    field(OUTE, "$(P)CHNL:105:TIMESTAMP")
+    field(OUTF, "$(P)CHNL:106:TIMESTAMP")
+    field(OUTG, "$(P)CHNL:107:TIMESTAMP")
+    field(OUTH, "$(P)CHNL:108:TIMESTAMP")
+    field(OUTI, "$(P)CHNL:109:TIMESTAMP")
+    field(OUTJ, "$(P)CHNL:110:TIMESTAMP")
+    field(OUTK, "$(P)CHNL:201:TIMESTAMP")
+    field(OUTL, "$(P)CHNL:202:TIMESTAMP")
+    field(OUTM, "$(P)CHNL:203:TIMESTAMP")
+    field(OUTN, "$(P)CHNL:204:TIMESTAMP")
+    field(OUTO, "$(P)CHNL:205:TIMESTAMP")
+    field(OUTP, "$(P)CHNL:206:TIMESTAMP")
+    field(OUTQ, "$(P)CHNL:207:TIMESTAMP")
+    field(OUTR, "$(P)CHNL:208:TIMESTAMP")
+    field(OUTS, "$(P)CHNL:209:TIMESTAMP")
+    field(OUTT, "$(P)CHNL:210:TIMESTAMP")
+	field(FLNK, "$(P)CURRENT:CALC")
+}
+
+
 
 
 
