@@ -1,4 +1,9 @@
-# KEITHLEY 2700 
+##################################################
+#
+# DB file for Keithley 2700
+#
+##################################################
+
 
 record(stringin, "$(P)IDN")
 {
@@ -49,13 +54,12 @@ record(ai, "$(P)CH:END")
 
 record(ao, "$(P)CH:END:SP")
 {
-	field(DESC, "Set channel scan range end point")
+	field(DESC, "Set end point of channel range to scan")
 	field(DTYP, "stream")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 	field(OUT, "@devKeithley_2700.proto setScanChannelsEnd($(P)CH) $(PORT)")
 }
-
 
 record(bo, "$(P)BUFFER:CLEAR:SP")
 {
@@ -66,7 +70,6 @@ record(bo, "$(P)BUFFER:CLEAR:SP")
 	field(OUT, "@devKeithley_2700.proto clearBuffer $(PORT)")    
 }
 alias("$(P)BUFFER:CLEAR:SP","$(P)BUFFER:CLEAR")
-
 
 record(bo, "$(P)SYSTEM:CLEAR:SP")
 {
@@ -131,23 +134,19 @@ record(ai, "$(P)BUFFER:NEXT")
     field(INP,  "@devKeithley_2700.proto getNextBufferReadingLoc $(PORT)")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
-	#field(FLNK, "$(P)BUFFER:READINGS")
 	field(FLNK, "$(P)COUNT:CALC")
-
 }
 
 record(ao, "$(P)COUNT")
 {
 	field(DESC, "Number of buffer readings to return")
 	info(INTEREST, "LOW")
-	
 }
 
 # should initially be set to 0
 record(ao, "$(P)CURRENT")
 {
 	field(DESC, "Current buffer read location")
-
 	info(INTEREST, "low")
 }
 
@@ -160,9 +159,7 @@ record(calcout, "$(P)COUNT:CALC")
 	field(CALC, "A-B")
 	field(OUT, "$(P)COUNT PP")	
 	field(FLNK, "$(P)BUFFER:READINGS")
-
 }
-
 
 ## return string of readings from Start to +Count
 record(waveform, "$(P)BUFFER:READINGS")
@@ -180,7 +177,6 @@ record(waveform, "$(P)BUFFER:READINGS")
 
 record(calcout, "$(P)CURRENT:CALC")
 {
-
 	field(DESC, "Update current buffer memory location")
 	field(INPA, "$(P)BUFFER:NEXT")
 	field(CALC, "A")
@@ -189,13 +185,19 @@ record(calcout, "$(P)CURRENT:CALC")
 	field(FLNK, "$(P)BUFFER:READINGS:PARSE:READINGS")
 }
 
+# These aSub records parse BUFFER:READINGS into 
+# channel PVs (CHNL:XXX:READING and CHNL:XXX:TIMESTAMP)
+
+# They are duplicated as I couldn't find a way to set waveform values from 
+# a single C file and we are limited in the number of OUT fields an aSub record
+# can have.
+
 record(aSub,"$(P)BUFFER:READINGS:PARSE:READINGS")
 {
     field(SNAM, "parse_channel_readings")
     field(FTA, "DOUBLE")
     field(INPA, "$(P)BUFFER:READINGS")
 	field(NOA, "100")
-	# OUT = CHANNEL1/2/ETC
     field(OUTA, "$(P)CHNL:101:READING")
     field(OUTB, "$(P)CHNL:102:READING")
     field(OUTC, "$(P)CHNL:103:READING")
@@ -225,7 +227,6 @@ record(aSub,"$(P)BUFFER:READINGS:PARSE:TIMESTAMPS")
     field(FTA, "DOUBLE")
     field(INPA, "$(P)BUFFER:READINGS")
 	field(NOA, "100")
-	# OUT = CHANNEL1/2/ETC
     field(OUTA, "$(P)CHNL:101:TIMESTAMP")
     field(OUTB, "$(P)CHNL:102:TIMESTAMP")
     field(OUTC, "$(P)CHNL:103:TIMESTAMP")
@@ -249,11 +250,6 @@ record(aSub,"$(P)BUFFER:READINGS:PARSE:TIMESTAMPS")
 	field(FLNK, "$(P)CURRENT:CALC")
 }
 
-
-
-
-
-# Records also receives value for MEM:USED and sets its value 
 record(ai, "$(P)BUFFER:MEM:AVAIL")
 {
     field(DESC, "Available buffer bytes")
@@ -273,9 +269,7 @@ record(ai, "$(P)BUFFER:MEM:USED")
     info(INTEREST, "HIGH")
 }
 
-
-
-# number of valuesin the buffer: can be set when buffer:clear:auto is off
+# Number of values in the buffer: can be set when buffer:clear:auto is off
 record(ao, "$(P)BUFFER:SIZE:SP") 
 {
     field(DESC, "Set Size of Buffer")
@@ -304,9 +298,6 @@ record(bi, "$(P)TIMESTAMP:FORMAT:SP")
 }
 alias("$(P)TIMESTAMP:FORMAT:SP", "$(P)TIMESTAMP:FORMAT")
 
-
-
-
  record(bi, "$(P)DELAYMODE") 
 {
     field(DESC, "Enable/Disable auto delay")
@@ -317,7 +308,6 @@ alias("$(P)TIMESTAMP:FORMAT:SP", "$(P)TIMESTAMP:FORMAT")
     field(ONAM, "ON")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
-
 }
 
 record(bo, "$(P)DELAYMODE:SP") 
@@ -332,7 +322,6 @@ record(bo, "$(P)DELAYMODE:SP")
     info(INTEREST, "HIGH")
 
 }
-
 
 record(bi, "$(P)INITMODE") 
 {
@@ -359,7 +348,6 @@ record(bo, "$(P)INITMODE:SP")
     info(INTEREST, "HIGH")
 
 }
-
 
 record(ai, "$(P)SAMPLECOUNT") 
 {
@@ -402,7 +390,6 @@ record(mbbo, "$(P)CONTROLSOURCE:SP")
 }
 alias("$(P)CONTROLSOURCE:SP", "$(P)CONTROLSOURCE")
 
-# send empty string?
 record(stringout, "$(P)DATAELEMENTS:SP")
 {
     field(DESC, "set elements returned by trace:data")
@@ -413,7 +400,6 @@ record(stringout, "$(P)DATAELEMENTS:SP")
 	info(ARCHIVE, "VAL")
 }
 alias("$(P)DATAELEMENTS:SP","$(P)DATAELEMENTS")
-
 
 record(bi, "$(P)FRES:AUTORANGE:SP") 
 {
@@ -475,24 +461,13 @@ alias("$(P)BUFFER:CONTROLMODE:SP", "$(P)BUFFER:CONTROLMODE")
 
 record(bi, "$(P)SCAN:STATE:SP") 
 {
-     field(DESC, "Toggle scan on or off")
-     field(SCAN, "1 second")
-     field(DTYP, "stream")
-     field(INP,  "@devKeithley_2700.proto setScanState $(PORT)")
-     field(ZNAM, "INT")
-     field(ONAM, "NONE")
-     info(INTEREST, "HIGH")
-	 info(ARCHIVE, "VAL")
-
+	field(DESC, "Toggle scan on or off")
+	field(SCAN, "1 second")
+	field(DTYP, "stream")
+	field(INP,  "@devKeithley_2700.proto setScanState $(PORT)")
+	field(ZNAM, "INT")
+	field(ONAM, "NONE")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
 }
 alias("$(P)SCAN:STATE:SP", "$(P)SCAN:STATE")
-
-
-
-
-
-
-
-
-
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
