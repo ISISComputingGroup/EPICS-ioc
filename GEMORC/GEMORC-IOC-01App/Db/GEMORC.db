@@ -293,7 +293,7 @@ record(ao, "$(P)INIT:STOP") {
 
 record(stringin, "$(P)INIT:STAT") {
     field(DESC, "Status of the init sequence")
-	field(VAL, "Initialisation routine not yet run")
+	field(VAL, "Sequence not run since IOC startup")
 	field(PINI, "YES")
 }
 
