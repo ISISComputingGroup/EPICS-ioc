@@ -513,9 +513,7 @@ record(calcout, "$(P)UTILITY") {
 	field(INPA, "$(P)WIDTH")
 	field(INPB, "$(P)BACKLASH")
 	
-	# In the VI it is A/(2*(A+B)). I think that's wrong because it makes the max
-	# utility 50%. The soft spec implies strongly this is the correct formula
-	field(CALC, "100*A/(A+2*B)")
+	field(CALC, "100*A/(A+B)")
 	field(PREC, "2")
 	
 	field(EGU, "%")    
@@ -531,7 +529,7 @@ record(calc, "$(P)PERIOD") {
 	field(INPA, "$(P)SPEED")
 	field(INPB, "$(P)WIDTH")
 	field(INPC, "$(P)BACKLASH")
-	field(CALC, "(B+2*C)/A")
+	field(CALC, "2*(B+C)/A")
 	field(PREC, "2")
 	
 	field(EGU, "s")    
