@@ -27,7 +27,6 @@ record(waveform, "$(P)ID") {
 	field(SCAN, "5 second")
 	field(DTYP, "stream")
     field(INP, "@devgemorc.proto getID $(PORT)")
-	field(VAL, " ")
 	
     field(NELM, "512")
     field(FTVL, "CHAR")
