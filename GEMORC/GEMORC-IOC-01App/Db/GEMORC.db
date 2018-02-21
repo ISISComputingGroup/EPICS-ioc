@@ -22,12 +22,15 @@ record(bo, "$(P)DISABLE")
 
 ## Current state
 
-record(stringin, "$(P)ID") {
+record(waveform, "$(P)ID") {
     field(DESC, "PnP Identity")
 	field(SCAN, "5 second")
 	field(DTYP, "stream")
     field(INP, "@devgemorc.proto getID $(PORT)")
 	field(VAL, " ")
+	
+    field(NELM, "512")
+    field(FTVL, "CHAR")
 	
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:ID")
@@ -562,7 +565,7 @@ record(longin, "$(P)SIM:CYCLES")
 record(bi, "$(P)SIM:STAT:OSC")
 record(bi, "$(P)SIM:INIT:DONE")
 record(bi, "$(P)SIM:INIT:PROGRESS")
-record(stringin, "$(P)SIM:ID")
+record(waveform, "$(P)SIM:ID")
 
 
 alias("$(P)SIM:WIDTH", "$(P)SIM:WIDTH:SP")
