@@ -22,21 +22,12 @@ record(bo, "$(P)DISABLE")
 
 ## Current state
 
-record(scalcout, "$(P)ID:_TRIG") {
-    field(DESC, "Triggers ID read until non-blank")
-	field(SCAN, "5 second")
-	field(INAA, "$(P)ID")
-	field(CALC, "AA==' '?1:0")
-	field(OUT, "$(P)ID.PROC")
-}
-
 record(stringin, "$(P)ID") {
     field(DESC, "PnP Identity")
-    field(SCAN, "Passive")
+	field(SCAN, "5 second")
 	field(DTYP, "stream")
     field(INP, "@devgemorc.proto getID $(PORT)")
 	field(VAL, " ")
-	field(OOPT, "When Non-zero")
 	
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:ID")
