@@ -267,7 +267,7 @@ record(stringin, "$(P)SYS:TIME")
     field(DESC, "System time")
 	field(DTYP, "stream")
     field(INP, "@devtriton.proto getTime $(PORT)")
-	field(SCAN, "1 second")
+	field(SCAN, ".5 second")
 	
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SYS:TIME")
