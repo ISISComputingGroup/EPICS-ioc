@@ -119,6 +119,8 @@ record(bo, "$(P)SIM:POWER:SP"){
     field(ONAM, "On")
 }
 
+alias("$(P)SIM:POWER:SP", "$(P)SIM:POWER")
+
 record(ao, "$(P)SIM:VOLT"){
     field(DTYP, "Soft Channel")
     field(EGU, "V")
@@ -175,6 +177,9 @@ record(bi, "$(P)POWER")
     field(ONAM, "On")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POWER")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)POWER", "$(P)POWER:RBV")
 

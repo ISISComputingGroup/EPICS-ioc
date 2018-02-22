@@ -60,7 +60,7 @@ dbLoadRecords("db/IMAT.db","P=$(MYPVPREFIX),PORT=MCU1,M1=MOT:MTR0901,M2=MOT:MTR0
 
 ## motor util package
 ## note: IOC name needs to have been added to _FAN element of this DB file
-dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC_$(IOCNAME))= ,PVPREFIX=$(MYPVPREFIX)")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=MOT:MTR0901")
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=MOT:MTR0902")

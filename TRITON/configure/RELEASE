@@ -42,10 +42,28 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 -include $(TOP)/configure/RELEASE.local
 
 # top level master release and local private options 
-include $(TOP)/../../../configure/MASTER_RELEASE
--include $(TOP)/../../../configure/MASTER_RELEASE.$(EPICS_HOST_ARCH)
--include $(TOP)/../../../configure/MASTER_RELEASE.private
--include $(TOP)/../../../configure/MASTER_RELEASE.private.$(EPICS_HOST_ARCH)
+ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
+AUTOSAVE=$(SUPPORT)/autosave/master
+SSCAN=$(SUPPORT)/sscan/master
+CAPUTLOG=$(SUPPORT)/caPutLog/master
+DEVIOCSTATS=$(SUPPORT)/devIocStats/master
+ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
+PVDUMP=$(SUPPORT)/pvdump/master
+ICPCONFIG=$(SUPPORT)/icpconfig/master
+COMMON=$(ISISSUPPORT)/Common/master
+SNCSEQ=$(SUPPORT)/seq/master
+UTILITIES=$(SUPPORT)/utilities/master
+SQLITE=$(SUPPORT)/sqlite/master
+PUGIXML=$(SUPPORT)/pugixml/master
+PCRE=$(SUPPORT)/pcre/master
+LIBJSON=$(SUPPORT)/libjson/master
+ZLIB=$(SUPPORT)/zlib/master
+MYSQL=$(SUPPORT)/MySQL/master
+TRITON=$(SUPPORT)/triton/master
+CALC=$(SUPPORT)/calc/master
+STREAMDEVICE=$(SUPPORT)/StreamDevice/master
+ASYN=$(SUPPORT)/asyn/master
+ONCRPC=$(SUPPORT)/oncrpc/master
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
