@@ -64,6 +64,7 @@ CALC=$(SUPPORT)/calc/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 ASYN=$(SUPPORT)/asyn/master
 ONCRPC=$(SUPPORT)/oncrpc/master
+FILELIST=$(SUPPORT)/FileList/master
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
