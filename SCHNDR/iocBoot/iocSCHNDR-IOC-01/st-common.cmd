@@ -1,7 +1,7 @@
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-## load appropriate setup file (tcp, rtu or ascii)
+## load appropriate setup file (TCP, RTU or ASCII)
 < st-$(MODE).cmd
 
 # Modbus function codes supported are:
