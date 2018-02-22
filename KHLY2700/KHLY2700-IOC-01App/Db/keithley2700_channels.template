@@ -1,3 +1,22 @@
+record(bo, "$(P)$(CHANNEL):SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)$(CHANNEL):DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
 ##################################################
 #
 # Template for the 20 Keithley_2700 Channels
@@ -8,7 +27,6 @@
 # Channel names range from 101-110 and 201-210 and have the PV format CHNL:101
 #
 ##################################################
-
 
 record(ao, "$(P)$(CHANNEL):READING")
 {
@@ -31,3 +49,57 @@ record(ao, "$(P)$(CHANNEL):TIMESTAMP")
 	info(ARCHIVE, "VAL")
 }
 alias("$(P)$(CHANNEL):TIMESTAMP","$(P)$(CHANNEL):TIMESTAMP:SP")
+
+record(ao, "$(P)$(CHANNEL):TEMP")
+{
+	field(DESC, "Calculated Temperature reading")
+	field(EGU, "K")
+	field(PREC, "5")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+}
+alias("$(P)$(CHANNEL):TEMP","$(P)$(CHANNEL):TEMP:SP")
+
+record(ao, "$(P)$(CHANNEL):DRIFT")
+{
+	field(DESC, "Channel Drift Value")
+	field(EGU, "")
+	field(PREC, "5")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+}
+alias("$(P)$(CHANNEL):DRIFT","$(P)$(CHANNEL):DRIFT:SP")
+
+### SIMULATION RECORDS ###
+
+record(ao, "$(P)SIM:$(CHANNEL):READING")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:$(CHANNEL):READING","$(P)SIM:$(CHANNEL):READING:SP")
+
+record(ao, "$(P)SIM:$(CHANNEL):TIMESTAMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:$(CHANNEL):TIMESTAMP","$(P)SIM:$(CHANNEL):TIMESTAMP:SP")
+
+record(ao, "$(P)SIM:$(CHANNEL):TEMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:$(CHANNEL):TEMP","$(P)SIM:$(CHANNEL):TEMP:SP")
+
+record(ao, "$(P)SIM:$(CHANNEL):DRIFT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:$(CHANNEL):DRIFT","$(P)SIM:$(CHANNEL):DRIFT:SP")

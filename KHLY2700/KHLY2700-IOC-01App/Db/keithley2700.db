@@ -1,3 +1,22 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
 ##################################################
 #
 # DB file for Keithley 2700
@@ -11,6 +30,9 @@ record(stringin, "$(P)IDN")
     field(DTYP, "stream")
     field(INP,  "@devKeithley_2700.proto getIDN $(PORT)")
     field(PINI, "YES")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:IDN")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(calcout, "$(P)CH:RANGE:SP")
@@ -30,6 +52,9 @@ record(ao, "$(P)CH:START:SP")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 	field(OUT, "@devKeithley_2700.proto setScanChannelsStart($(P)CH) $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CH:START:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)CH:START")
@@ -40,6 +65,9 @@ record(ai, "$(P)CH:START")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 	field(INP, "@devKeithley_2700.proto getChannelsStart $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CH:START")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)CH:END")
@@ -50,6 +78,9 @@ record(ai, "$(P)CH:END")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 	field(INP, "@devKeithley_2700.proto getChannelsEnd $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CH:END")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)CH:END:SP")
@@ -59,6 +90,9 @@ record(ao, "$(P)CH:END:SP")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 	field(OUT, "@devKeithley_2700.proto setScanChannelsEnd($(P)CH) $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CH:END:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)BUFFER:CLEAR:SP")
@@ -68,6 +102,9 @@ record(bo, "$(P)BUFFER:CLEAR:SP")
 	field(ZNAM, "")
 	field(ONAM, "")
 	field(OUT, "@devKeithley_2700.proto clearBuffer $(PORT)")    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER:CLEAR:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)BUFFER:CLEAR:SP","$(P)BUFFER:CLEAR")
 
@@ -79,6 +116,9 @@ record(bo, "$(P)SYSTEM:CLEAR:SP")
 	field(ONAM, "")
 	field(OUT, "@devKeithley_2700.proto clearSystemErrors $(PORT)")  
 
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SYSTEM:CLEAR:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)SYSTEM:CLEAR:SP","$(P)SYSTEM:CLEAR")
 
@@ -95,10 +135,12 @@ record(mbbo, "$(P)MEASUREMENT:SP") {
     field(SXST, "FREQ")
     field(SVST, "PER")
 	field(OUT, "@devKeithley_2700.proto setMeasurement($(P)CH) $(PORT)")  
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MEASUREMENT:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)MEASUREMENT:SP","$(P)MEASUREMENT")
 
-# source of the buffer feed: sense, calculate, or none
 record(mbbo, "$(P)BUFFER:SOURCE:SP") 
 {
     field(DESC, "Get buffer feed source")
@@ -110,6 +152,9 @@ record(mbbo, "$(P)BUFFER:SOURCE:SP")
     field(TWST, "NONE")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER:SOURCE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)BUFFER:SOURCE:SP", "$(P)BUFFER:SOURCE")
 
@@ -123,6 +168,9 @@ record(bo, "$(P)BUFFER:CLEAR:AUTO:SP")
     field(ONAM, "OFF")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER:CLEAR:AUTO:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)BUFFER:CLEAR:AUTO:SP","$(P)BUFFER:CLEAR:AUTO")
 
@@ -135,6 +183,9 @@ record(ai, "$(P)BUFFER:NEXT")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 	field(FLNK, "$(P)COUNT:CALC")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER:NEXT")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)COUNT")
@@ -143,7 +194,6 @@ record(ao, "$(P)COUNT")
 	info(INTEREST, "LOW")
 }
 
-# should initially be set to 0
 record(ao, "$(P)CURRENT")
 {
 	field(DESC, "Current buffer read location")
@@ -173,6 +223,9 @@ record(waveform, "$(P)BUFFER:READINGS")
     info(INTEREST, "HIGH")
 	field(PREC, "5")
 	field(FLNK, "$(P)CURRENT:CALC")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER:READINGS")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(calcout, "$(P)CURRENT:CALC")
@@ -259,6 +312,9 @@ record(ai, "$(P)BUFFER:MEM:AVAIL")
 	field(EGU, "b")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER:MEM:AVAIL")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)BUFFER:MEM:USED")
@@ -269,7 +325,6 @@ record(ai, "$(P)BUFFER:MEM:USED")
     info(INTEREST, "HIGH")
 }
 
-# Number of values in the buffer: can be set when buffer:clear:auto is off
 record(ao, "$(P)BUFFER:SIZE:SP") 
 {
     field(DESC, "Set Size of Buffer")
@@ -282,6 +337,9 @@ record(ao, "$(P)BUFFER:SIZE:SP")
     field(LLSV,"MAJOR")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER:SIZE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)BUFFER:SIZE:SP", "$(P)BUFFER:SIZE")
 
@@ -295,6 +353,9 @@ record(bi, "$(P)TIMESTAMP:FORMAT:SP")
     field(ONAM, "DELT")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:TIMESTAMP:FORMAT:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)TIMESTAMP:FORMAT:SP", "$(P)TIMESTAMP:FORMAT")
 
@@ -308,6 +369,9 @@ alias("$(P)TIMESTAMP:FORMAT:SP", "$(P)TIMESTAMP:FORMAT")
     field(ONAM, "ON")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:TIMESTAMP:FORMAT:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)DELAYMODE:SP") 
@@ -321,6 +385,9 @@ record(bo, "$(P)DELAYMODE:SP")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DELAYMODE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bi, "$(P)INITMODE") 
@@ -334,6 +401,9 @@ record(bi, "$(P)INITMODE")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:INITMODE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)INITMODE:SP") 
@@ -347,6 +417,9 @@ record(bo, "$(P)INITMODE:SP")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:INITMODE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)SAMPLECOUNT") 
@@ -361,6 +434,9 @@ record(ai, "$(P)SAMPLECOUNT")
     field(LLSV,"MAJOR")
     info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SAMPLECOUNT")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)SAMPLECOUNT:SP") 
@@ -372,6 +448,9 @@ record(ao, "$(P)SAMPLECOUNT:SP")
     field(LOLO, "1")
     field(HHSV,"MAJOR")
     field(LLSV,"MAJOR")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SAMPLECOUNT:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbo, "$(P)CONTROLSOURCE:SP") 
@@ -387,6 +466,9 @@ record(mbbo, "$(P)CONTROLSOURCE:SP")
     field(FRST, "EXT")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CONTROLSOURCE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)CONTROLSOURCE:SP", "$(P)CONTROLSOURCE")
 
@@ -398,6 +480,9 @@ record(stringout, "$(P)DATAELEMENTS:SP")
     field(OUT,  "@devKeithley_2700.proto setDataElements $(PORT)")
     info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DATAELEMENTS:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)DATAELEMENTS:SP","$(P)DATAELEMENTS")
 
@@ -410,6 +495,9 @@ record(bi, "$(P)FRES:AUTORANGE:SP")
     field(ONAM, "OFF")
     info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FRES:AUTORANGE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)FRES:AUTORANGE:SP", "$(P)FRES:AUTORANGE")
 
@@ -426,6 +514,9 @@ record(ao, "$(P)FRES:DIGITS:SP")
 	field(LLSV,"MAJOR")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FRES:DIGITS:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)FRES:DIGITS:SP", "$(P)FRES:DIGITS")
 
@@ -442,6 +533,9 @@ record(ao, "$(P)FRES:NPLC:SP")
     field(LLSV,"MAJOR")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FRES:NPLC:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)FRES:NPLC:SP", "$(P)FRES:NPLC")
 
@@ -456,6 +550,9 @@ record(mbbo, "$(P)BUFFER:CONTROLMODE:SP")
     field(TWST, "NEV")
     info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER:CONTROLMODE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)BUFFER:CONTROLMODE:SP", "$(P)BUFFER:CONTROLMODE")
 
@@ -469,5 +566,187 @@ record(bi, "$(P)SCAN:STATE:SP")
 	field(ONAM, "NONE")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SCAN:STATE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)SCAN:STATE:SP", "$(P)SCAN:STATE")
+
+### SIMULATION RECORDS ###
+
+record(bi, "$(P)SIM:INITMODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:INITMODE","$(P)SIM:INITMODE:SP")
+
+record(mbbo, "$(P)SIM:BUFFER:SOURCE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:BUFFER:SOURCE","$(P)SIM:BUFFER:SOURCE:SP")
+
+record(ao, "$(P)SIM:BUFFER:SIZE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:BUFFER:SIZE","$(P)SIM:BUFFER:SIZE:SP")
+
+record(bo, "$(P)SIM:SYSTEM:CLEAR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:SYSTEM:CLEAR","$(P)SIM:SYSTEM:CLEAR:SP")
+
+record(bi, "$(P)SIM:FRES:AUTORANGE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:FRES:AUTORANGE","$(P)SIM:FRES:AUTORANGE:SP")
+
+record(ai, "$(P)SIM:BUFFER:NEXT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ao, "$(P)SIM:FRES:NPLC")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:FRES:NPLC","$(P)SIM:FRES:NPLC:SP")
+
+record(bi, "$(P)SIM:SCAN:STATE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:SCAN:STATE","$(P)SIM:SCAN:STATE:SP")
+
+record(stringout, "$(P)SIM:DATAELEMENTS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:DATAELEMENTS","$(P)SIM:DATAELEMENTS:SP")
+
+record(ai, "$(P)SIM:CH:END")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:CH:END","$(P)SIM:CH:END:SP")
+
+record(bo, "$(P)SIM:BUFFER:CLEAR:AUTO")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:BUFFER:CLEAR:AUTO","$(P)SIM:BUFFER:CLEAR:AUTO:SP")
+
+record(ai, "$(P)SIM:CH:START")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:CH:START","$(P)SIM:CH:START:SP")
+
+record(ai, "$(P)SIM:BUFFER:MEM:AVAIL")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bo, "$(P)SIM:BUFFER:CLEAR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:BUFFER:CLEAR","$(P)SIM:BUFFER:CLEAR:SP")
+
+record(waveform, "$(P)SIM:BUFFER:READINGS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(NELM, "100")
+    field(FTVL, "DOUBLE")
+}
+
+record(bo, "$(P)SIM:DELAYMODE:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbo, "$(P)SIM:BUFFER:CONTROLMODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:BUFFER:CONTROLMODE","$(P)SIM:BUFFER:CONTROLMODE:SP")
+
+record(ai, "$(P)SIM:SAMPLECOUNT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:SAMPLECOUNT","$(P)SIM:SAMPLECOUNT:SP")
+
+record(ao, "$(P)SIM:FRES:DIGITS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:FRES:DIGITS","$(P)SIM:FRES:DIGITS:SP")
+
+record(mbbo, "$(P)SIM:MEASUREMENT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:MEASUREMENT","$(P)SIM:MEASUREMENT:SP")
+
+record(stringin, "$(P)SIM:IDN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(P)SIM:TIMESTAMP:FORMAT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:TIMESTAMP:FORMAT","$(P)SIM:TIMESTAMP:FORMAT:SP")
+
+record(mbbo, "$(P)SIM:CONTROLSOURCE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:CONTROLSOURCE","$(P)SIM:CONTROLSOURCE:SP")
+
