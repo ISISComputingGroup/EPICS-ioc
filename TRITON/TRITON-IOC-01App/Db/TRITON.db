@@ -119,7 +119,7 @@ record(ai, "$(P)HEATER:RES")
     field(INP, "@devtriton.proto getHtrRes($(P)) $(PORT)")
     field(SCAN, "1 second")
 	field(PREC, "3")
-	field(EGU, "Ohm")
+	field(EGU, "ohm")
 	
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
@@ -133,10 +133,10 @@ record(calc, "$(P)HEATER:CURR")
 {
     field(DESC, "Heater current")
     field(INPA, "$(P)HEATER:POWER CP MS")  # Power in uW
-    field(INPB, "$(P)HEATER:RES CP MS")    # Resistance in Ohms
+    field(INPB, "$(P)HEATER:RES CP MS")    # Resistance in ohms
     field(CALC, "B=0?0:SQR(A/B)")          # P = I^2 R. Avoid zero division by reporting current of zero if resistance is zero.
 	field(PREC, "3")
-	field(EGU, "mA")                       # uW = mA * mA * Ohms
+	field(EGU, "mA")                       # uW = mA * mA * ohms
 	field(ASG, "READONLY")
 	
 	info(INTEREST, "HIGH")
