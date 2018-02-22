@@ -50,6 +50,7 @@ CALC=$(SUPPORT)/calc/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
 COMMON=$(ISISSUPPORT)/Common/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
+EFSW=$(SUPPORT)/efsw/master
 FILELIST=$(SUPPORT)/FileList/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master
 LIBJSON=$(SUPPORT)/libjson/master
