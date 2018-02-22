@@ -45,6 +45,7 @@ STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 
+CCD100=$(SUPPORT)/CCD100/master
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
