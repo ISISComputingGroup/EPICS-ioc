@@ -137,6 +137,7 @@ record(calc, "$(P)HEATER:CURR")
     field(CALC, "B=0?0:SQR(A/B)")          # P = I^2 R. Avoid zero division by reporting current of zero if resistance is zero.
 	field(PREC, "3")
 	field(EGU, "mA")                       # uW = mA * mA * Ohms
+	field(ASG, "READONLY")
 	
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
