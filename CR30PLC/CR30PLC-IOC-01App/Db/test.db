@@ -1,0 +1,20 @@
+record(bi, "$(P)TEST1")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "EtherIP")
+    field(INP, "@plc RunMode")
+}
+
+record(bi, "$(P)TEST2")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "EtherIP")
+    field(INP, "@plc MajorFault")
+}
+
+record(ai, "$(P)TEST3")
+{
+    field(SCAN, "1 second")
+    field(DTYP, "EtherIP")
+    field(INP, "@plc MajorFaultCode")
+}
