@@ -4,6 +4,12 @@ epicsEnvSet("AMOTORPV", "MOT:$(AMOTORNAME)")
 
 ## Load record instances
 
+## Initialise control mode. Defaults to CM14, closed
+$(IFNOTSIM) asynOctetConnect("MKINIT","$(ASERIAL)")
+$(IFNOTSIM) $(IFCMOPEN) asynOctetWrite("MKINIT","$(MN)CM11")
+$(IFNOTSIM) $(IFNOTCMOPEN) asynOctetWrite("MKINIT","$(MN)CM14")
+$(IFNOTSIM) asynOctetWrite("MKINIT","$(MN)ER$(ERES$(MN)=400/4096)")
+
 # Set motor specific initial conditions
 epicsEnvSet("EGUI",$(UNIT$(MN)="mm"))
 epicsEnvSet("VELOI",$(VELO$(MN)=1))

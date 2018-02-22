@@ -1,0 +1,8 @@
+file TRITON_temp_channels.template {
+
+pattern {PORT, P, CHAN}
+{"\$(PORT)", "\$(P)", "P1"}
+{"\$(PORT)", "\$(P)", "P2"}
+{"\$(PORT)", "\$(P)", "P3"}
+{"\$(PORT)", "\$(P)", "P5"}
+}

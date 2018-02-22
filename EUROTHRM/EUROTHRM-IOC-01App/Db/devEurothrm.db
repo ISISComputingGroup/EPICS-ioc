@@ -503,6 +503,7 @@ record(ai, "$(P)MAX_OUTPUT") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:MAX_OUTPUT")
     field(SDIS, "$(Q)DISABLE")
+    info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
 
