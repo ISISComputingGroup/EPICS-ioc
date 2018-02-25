@@ -49,6 +49,10 @@ epicsEnvSet("LINMOTCONFIG","$(ICPCONFIGROOT)/linmot")
 < motionsetpoints.cmd
 < sampleChanger.cmd
 
+# motor extensions
+$(IFNOTTESTRECSIM) < $(LINMOTCONFIG)/motorExtensions.cmd
+$(IFTESTRECSIM) < $(MOTOREXT)/settings/motorExtensions.cmd
+
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
