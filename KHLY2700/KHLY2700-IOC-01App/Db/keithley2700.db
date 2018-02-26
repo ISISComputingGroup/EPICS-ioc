@@ -39,11 +39,13 @@ record(calcout, "$(P)CH:RANGE:SP")
 {
 	field(DESC, "Write start and end of scan range")
 	field(DTYP, "stream")
-	field(INPA, "$(P)CH:START:SP")
+	field(OOPT, "Every Time")
+	field(INPA, "$(P)CH:START:SP ")
 	field(INPB, "$(P)CH:END:SP")
 	field(CALC, "0")
-	field(OUT, "@devKeithley_2700.proto setScanChannels $(PORT)")
+	field(OUT, "@devKeithley_2700.proto setScanChannels $(PORT) PP")
 }
+alias("$(P)CH:RANGE:SP","$(P)CH:RANGE")
 
 record(ao, "$(P)CH:START:SP")
 {
@@ -343,12 +345,12 @@ record(ao, "$(P)BUFFER:SIZE:SP")
 }
 alias("$(P)BUFFER:SIZE:SP", "$(P)BUFFER:SIZE")
 
-record(bi, "$(P)TIMESTAMP:FORMAT:SP") 
+record(bo, "$(P)TIMESTAMP:FORMAT:SP") 
 {
     field(DESC, "Query Time Stamp Format")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto setTimeStamp $(PORT)")
+    field(OUT,  "@devKeithley_2700.proto setTimeStamp $(PORT)")
     field(ZNAM, "ABS")
     field(ONAM, "DELT")
 	info(ARCHIVE, "VAL")
@@ -486,11 +488,12 @@ record(stringout, "$(P)DATAELEMENTS:SP")
 }
 alias("$(P)DATAELEMENTS:SP","$(P)DATAELEMENTS")
 
-record(bi, "$(P)FRES:AUTORANGE:SP") 
+record(bo, "$(P)FRES:AUTORANGE:SP") 
 {
     field(DESC, "Toggle auto range on/off")
     field(DTYP, "stream")
-    field(INP,  "@devKeithley_2700.proto setAutoRange($(P)CH) $(PORT)")
+	field(SCAN, "1 second")
+    field(OUT,  "@devKeithley_2700.proto setAutoRange($(P)CH) $(PORT)")
     field(ZNAM, "ON")
     field(ONAM, "OFF")
     info(INTEREST, "HIGH")
@@ -556,12 +559,12 @@ record(mbbo, "$(P)BUFFER:CONTROLMODE:SP")
 }
 alias("$(P)BUFFER:CONTROLMODE:SP", "$(P)BUFFER:CONTROLMODE")
 
-record(bi, "$(P)SCAN:STATE:SP") 
+record(bo, "$(P)SCAN:STATE:SP") 
 {
 	field(DESC, "Toggle scan on or off")
 	field(SCAN, "1 second")
 	field(DTYP, "stream")
-	field(INP,  "@devKeithley_2700.proto setScanState $(PORT)")
+	field(OUT,  "@devKeithley_2700.proto setScanState $(PORT)")
 	field(ZNAM, "INT")
 	field(ONAM, "NONE")
 	info(INTEREST, "HIGH")
