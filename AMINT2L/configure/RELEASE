@@ -41,12 +41,6 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 -include $(TOP)/../RELEASE.local
 -include $(TOP)/configure/RELEASE.local
 
-# optional extra local definitions here
--include $(TOP)/configure/RELEASE.private
-
-include $(TOP)/../../../ISIS_CONFIG
--include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
-
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master 
 CALC=$(SUPPORT)/calc/master
 ASYN=$(SUPPORT)/asyn/master
@@ -66,3 +60,9 @@ ZLIB=$(SUPPORT)/zlib/master
 STD=$(SUPPORT)/std/master
 SSCAN=$(SUPPORT)/sscan/master
 MYSQL=$(SUPPORT)/MySQL/master
+
+# optional extra local definitions here
+-include $(TOP)/configure/RELEASE.private
+
+include $(TOP)/../../../ISIS_CONFIG
+-include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
