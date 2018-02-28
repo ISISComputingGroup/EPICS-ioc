@@ -43,27 +43,30 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 
 # top level master release and local private options 
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
-AUTOSAVE=$(SUPPORT)/autosave/master
-SSCAN=$(SUPPORT)/sscan/master
-CAPUTLOG=$(SUPPORT)/caPutLog/master
-DEVIOCSTATS=$(SUPPORT)/devIocStats/master
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
-PVDUMP=$(SUPPORT)/pvdump/master
-ICPCONFIG=$(SUPPORT)/icpconfig/master
-COMMON=$(ISISSUPPORT)/Common/master
-SNCSEQ=$(SUPPORT)/seq/master
-UTILITIES=$(SUPPORT)/utilities/master
-SQLITE=$(SUPPORT)/sqlite/master
-PUGIXML=$(SUPPORT)/pugixml/master
-PCRE=$(SUPPORT)/pcre/master
-LIBJSON=$(SUPPORT)/libjson/master
-ZLIB=$(SUPPORT)/zlib/master
-MYSQL=$(SUPPORT)/MySQL/master
-TRITON=$(SUPPORT)/triton/master
-CALC=$(SUPPORT)/calc/master
-STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 ASYN=$(SUPPORT)/asyn/master
+AUTOSAVE=$(SUPPORT)/autosave/master
+CALC=$(SUPPORT)/calc/master
+CAPUTLOG=$(SUPPORT)/caPutLog/master
+COMMON=$(ISISSUPPORT)/Common/master
+DEVIOCSTATS=$(SUPPORT)/devIocStats/master
+EFSW=$(SUPPORT)/efsw/master
+FILELIST=$(SUPPORT)/FileList/master
+ICPCONFIG=$(SUPPORT)/icpconfig/master
+LIBJSON=$(SUPPORT)/libjson/master
 ONCRPC=$(SUPPORT)/oncrpc/master
+MYSQL=$(SUPPORT)/MySQL/master
+PCRE=$(SUPPORT)/pcre/master
+PUGIXML=$(SUPPORT)/pugixml/master
+PVDUMP=$(SUPPORT)/pvdump/master
+READASCII=$(SUPPORT)/ReadASCII/master
+SNCSEQ=$(SUPPORT)/seq/master
+SQLITE=$(SUPPORT)/sqlite/master
+SSCAN=$(SUPPORT)/sscan/master
+STREAMDEVICE=$(SUPPORT)/StreamDevice/master
+TRITON=$(SUPPORT)/triton/master
+UTILITIES=$(SUPPORT)/utilities/master
+ZLIB=$(SUPPORT)/zlib/master
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
