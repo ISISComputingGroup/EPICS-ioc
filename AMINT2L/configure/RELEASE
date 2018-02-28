@@ -41,7 +41,8 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 -include $(TOP)/../RELEASE.local
 -include $(TOP)/configure/RELEASE.local
 
-ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master 
+ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
+AMINT2L=$(SUPPORT)/amint2l/master
 CALC=$(SUPPORT)/calc/master
 ASYN=$(SUPPORT)/asyn/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
