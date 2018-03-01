@@ -1,0 +1,113 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+    field(PINI, "YES")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(sseq, "$(P)READ") {
+    field(SCAN, "1 second")
+	
+	field(LNK1, "$(P)STAT:SCAN PP")
+	field(WAIT1, "Wait")
+	
+	field(LNK2, "$(P)CH1:LEVEL:READ PP")
+	field(WAIT2, "Wait")
+	
+	field(LNK3, "$(P)CH2:LEVEL:READ PP")
+	field(WAIT3, "Wait")
+	
+	field(LNK4, "$(P)CH3:LEVEL:READ PP")
+	field(WAIT4, "Wait")
+	
+	field(LNK5, "$(P)VERSION PP")
+	field(WAIT5, "Wait")
+}
+
+record(stringin, "$(P)VERSION")
+{
+    field(INP, "@ilm200.proto getVersion($(ISO)) $(PORT)")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VERSION")
+    field(SDIS, "$(P)DISABLE")
+	
+    info(alarm, "ILM")
+}
+
+record(ai, "$(P)STAT:SCAN")
+{
+    field(INP, "@ilm200.proto getStatus($(ISO),$(P)STAT:RAW) $(PORT)")
+    field(SCAN, "Passive")
+    field(FLNK, "$(P)STAT:RAW")
+    field(DTYP, "stream")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SCAN")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(calcout, "$(P)STAT:RAW")
+{
+    field(CALC, "0")
+    field(FLNK, "$(P)STAT:FANOUT")
+}
+
+record(seq, "$(P)STAT:FANOUT")
+{
+    field(DOL1, "$(P)STAT:RAW.A")
+    field(LNK1, "$(P)CH1:TYPE:RAW PP")
+
+    field(DOL2, "$(P)STAT:RAW.B")
+    field(LNK2, "$(P)CH2:TYPE:RAW PP")
+
+    field(DOL3, "$(P)STAT:RAW.C")
+    field(LNK3, "$(P)CH3:TYPE:RAW PP")
+
+    field(DOL4, "$(P)STAT:RAW.D")
+    field(LNK4, "$(P)CH1:STAT:RAW PP")
+
+    field(DOL5, "$(P)STAT:RAW.E")
+    field(LNK5, "$(P)CH2:STAT:RAW PP")
+    
+    field(DOL6, "$(P)STAT:RAW.F")
+    field(LNK6, "$(P)CH3:STAT:RAW PP")
+    
+    field(DOL7, "$(P)STAT:RAW.G")
+    field(LNK7, "$(P)LOGIC:STAT PP")
+    
+    field(SELM, "All")
+}
+
+record(ai, "$(P)LOGIC:STAT") {
+}
+
+### SIMULATION RECORDS ###
+
+record(ai, "$(P)SIM:SCAN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringin, "$(P)SIM:VERSION")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(VAL, "ILM200 RecSim")
+}

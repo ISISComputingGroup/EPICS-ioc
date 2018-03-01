@@ -19,6 +19,10 @@ AG33220A_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
+## For recsim:
+$(IFRECSIM) drvAsynSerialPortConfigure("IP", "$(PORT=NUL)", 0, 1, 0, 0)
+
+# For dev sim devices
 $(IFDEVSIM) drvAsynIPPortConfigure("IP", "localhost:$(EMULATOR_PORT=)")
 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure ("IP","$(IP_ADDRESS):5025")

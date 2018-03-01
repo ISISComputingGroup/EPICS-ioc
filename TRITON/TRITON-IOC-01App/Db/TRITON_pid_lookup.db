@@ -1,0 +1,204 @@
+#
+# This DB contains records used for interacting with ReadASCII.
+#
+
+
+#
+# File list
+#
+
+
+record(waveform, "$(P)LKUP:RAMP_DIRBASE:SP")
+{
+   field(DESC, "Set directory of ramp files")
+   field(DTYP, "asynOctetWrite")
+   field(PINI, "NO")
+   field(INP, "@asyn($(RAMPLIST),0,1)DIRBASE")
+   field(FTVL, "CHAR")
+   field(NELM, 256)
+}
+
+record(waveform, "$(P)LKUP:RAMP_DIRBASE")
+{
+   field(DESC, "Get directory of ramp files")
+   field(DTYP, "asynOctetRead")
+   field(INP, "@asyn($(RAMPLIST),0,1)DIRBASE")
+   field(SCAN, "I/O Intr")
+   field(FTVL, "CHAR")
+   field(NELM, 256)
+}
+
+record(waveform, "$(P)LKUP:RAMP_FILES")
+{
+	field(DESC, "Compressed JSON list of ramp files")
+	field(FTVL, "CHAR")
+	field(DTYP, "asynOctetRead")
+    field(INP, "@asyn($(RAMPLIST),0,1)JARR")	
+	field(NELM, 16384)
+	field(SCAN, "I/O Intr")
+}
+
+record(waveform, "$(P)LKUP:RAMP_PATTERN:SP")
+{
+   field(DESC, "Set regex search of ramp files")  
+   field(DTYP, "asynOctetWrite")
+   field(INP, "@asyn($(RAMPLIST),0,1)SEARCH")
+   field(PINI, "NO")
+   field(FTVL, "CHAR")
+   field(NELM, 256)
+}
+record(waveform, "$(P)LKUP:RAMP_PATTERN")
+{
+   field(DESC, "Get regex search of ramp files")
+   field(DTYP, "asynOctetRead")
+   field(INP, "@asyn($(RAMPLIST),0,1)SEARCH")
+   field(PINI, "NO")
+   field(SCAN, "I/O Intr")
+   field(FTVL, "CHAR")
+   field(NELM, 256)
+}
+
+record(waveform, "$(P)LKUP:READ_RAMP_DIRBASE:SP")
+{
+   field(DTYP, "asynOctetWrite")
+   field(INP, "@asyn($(READ),0,1)DIRBASE")
+   field(PINI, "NO")
+   field(FTVL, "CHAR")
+   field(NELM, 256)
+   
+}
+
+record(waveform, "$(P)LKUP:READ_RAMP_DIRBASE")
+{
+   field(DTYP, "asynOctetRead")
+   field(INP, "@asyn($(READ),0,1)DIRBASE")
+   field(PINI, "YES")
+   field(FTVL, "CHAR")
+   field(NELM, 256)
+   field(SCAN, "I/O Intr")
+}
+
+record(stringin, "$(P)LKUP:RAMP_FILE")
+{
+   field(DTYP, "asynOctetRead")
+   field(INP,  "@asyn($(READ),0,1)DIR")
+   field(SCAN, "I/O Intr")
+}
+
+record(stringout, "$(P)LKUP:RAMP_FILE:SP")
+{
+   field(DTYP, "asynOctetWrite")
+   field(OUT,  "@asyn($(READ),0,1)DIR")
+   field(SCAN, "I/O Intr")
+}
+
+#
+# Lookup records
+#
+
+# This is the value that is being sent to the ReadASCII ramp to tell it at what temperature we currently are
+record(ao, "$(P)LKUP:TEMP:SP:RBV")
+{
+    field(DESC, "The current temperature of the sensor")
+	field(DOL, "$(P)TEMP:SP:RBV CP")
+	field(OMSL, "closed_loop")
+	field(DTYP, "asynFloat64")
+	field(OUT, "@asyn($(READ),0,1)CUR")
+	field(EGU, "K")
+	field(FLNK, "$(P)LKUP:LUTON:SP")
+}
+
+record(bo, "$(P)LKUP:LUTON:SP")
+{
+   field(DESC, "Toggles the PID lookup")
+   field(DTYP, "asynInt32")
+   field(OUT,  "@asyn($(READ),0,1)LUT")
+}
+
+record(bi, "$(P)LKUP:LUTON")
+{
+   field(DESC, "Toggles the PID lookup")
+   field(DTYP, "asynInt32")
+   field(INP,  "@asyn($(READ),0,1)LUT")
+   field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)LKUP:OUT_P")
+{
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn($(READ),0,1)P")
+   field(PREC, "5")
+   field(SCAN, "I/O Intr")
+   field(FLNK, "$(P)LKUP:RAMP_P")
+}
+
+record(ai, "$(P)LKUP:OUT_I")
+{
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn($(READ),0,1)I")
+   field(PREC, "5")
+   field(SCAN, "I/O Intr")
+   field(FLNK, "$(P)LKUP:RAMP_I")
+}
+
+record(ai, "$(P)LKUP:OUT_D")
+{
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn($(READ),0,1)D")
+   field(PREC, "5")
+   field(SCAN, "I/O Intr")
+   field(FLNK, "$(P)LKUP:RAMP_D")
+}
+
+record(ai, "$(P)LKUP:OUT_MAX")
+{
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn($(READ),0,1)MH")
+   field(PREC, "5")
+   field(SCAN, "I/O Intr")
+   field(FLNK, "$(P)LKUP:RAMP_MAXOUT")
+}
+
+
+#
+#Pass on PID ramp from ReadASCII to the device
+#
+
+
+record(ao, "$(P)LKUP:RAMP_P")
+{
+    field(DTYP, "Soft Channel")
+	field(DOL, "$(P)LKUP:OUT_P")
+	field(OMSL, "closed_loop")
+	field(OIF, "Full")
+	field(OUT, "$(P)P:SP PP")
+}
+
+record(ao, "$(P)LKUP:RAMP_I")
+{
+    field(DTYP, "Soft Channel")
+	field(DOL, "$(P)LKUP:OUT_I")
+	field(OMSL, "closed_loop")
+	field(OIF, "Full")
+	field(OUT, "$(P)I:SP PP")
+}
+
+record(ao, "$(P)LKUP:RAMP_D")
+{
+    field(DTYP, "Soft Channel")
+	field(DOL, "$(P)LKUP:OUT_D")
+	field(OMSL, "closed_loop")
+	field(OIF, "Full")
+	field(OUT, "$(P)D:SP PP")
+}
+
+record(ao, "$(P)LKUP:RAMP_MAXOUT")
+{
+    field(DTYP, "Soft Channel")
+	field(DOL, "$(P)LKUP:OUT_MAX")
+	field(OMSL, "closed_loop")
+	field(OIF, "Full")
+	field(OUT, "$(P)HEATER:RANGE:SP PP")
+}
+
+

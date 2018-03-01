@@ -1,0 +1,6 @@
+# ai record template for register inputs
+record(longin, "$(P)$(R)") {
+    field(DTYP,"asynInt32")
+    field(INP,"@asyn($(PORT)test)UINT16")
+    field(SCAN,"I/O Intr")
+}   
