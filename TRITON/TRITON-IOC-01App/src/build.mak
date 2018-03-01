@@ -39,16 +39,15 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += pcre libjson zlib
 ## Add other libraries here ##
 $(APPNAME)_LIBS += stream
-$(APPNAME)_LIBS += pcre
-$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += ReadASCII
 $(APPNAME)_LIBS += FileList
+$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += utilities
-$(APPNAME)_LIBS += efsw
 $(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += pcre libjson zlib
+$(APPNAME)_LIBS += efsw
 
 # FERMCHOP-IOC-01_registerRecordDeviceDriver.cpp derives from FERMCHOP-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
