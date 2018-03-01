@@ -1,0 +1,707 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(stringin, "$(P)IDN")
+{
+    field(DESC, "SCPI identification string")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getIDN $(PORT)")
+    field(PINI, "YES")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:IDN")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbi, "$(P)CONTROL_SOURCE") 
+{
+    field(DESC, "Set programmed control source")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getSource $(PORT)")
+    field(ZRST, "IMM")
+    field(ONST, "EXT")
+    field(TWST, "TIM")
+    field(THST, "MAN")
+    field(FRST, "BUS")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CONTROL_SOURCE")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    }
+
+record(mbbo, "$(P)CONTROL_SOURCE:SP") 
+{
+    field(DESC, "Query programmed control source")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setSource $(PORT)")
+    field(ZRST, "IMM")
+    field(ONST, "EXT")
+    field(TWST, "TIM")
+    field(THST, "MAN")
+    field(FRST, "BUS")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CONTROL_SOURCE:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+ record(bi, "$(P)DELAY_STATE") 
+{
+    field(DESC, "Enable/Disable auto delay")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getDelayState $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CONTROL_SOURCE:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(bo, "$(P)DELAY_STATE:SP") 
+{
+    field(DESC, "Enable/Disable auto delay")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setDelayState $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DELAY_STATE:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(bi, "$(P)SCAN_STATE") 
+{
+     field(DESC, "Enable/Disable continuous Initiation")
+     field(SCAN, "1 second")
+     field(DTYP, "stream")
+     field(INP,  "@devKeithley_2700.proto getScanState $(PORT)")
+     field(ZNAM, "NONE")
+     field(ONAM, "INT")
+     field(SIML, "$(P)SIM")
+     field(SIOL, "$(P)SIM:SCAN_STATE")
+     field(SDIS, "$(P)DISABLE")
+     info(INTEREST, "HIGH")
+
+}
+
+record(bo, "$(P)SCAN_STATE:SP") 
+{
+    field(DESC, "Enable/Disable Scan")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setScanState $(PORT)")
+    field(ZNAM, "NONE")
+    field(ONAM, "INT")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SCAN_STATE:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(mbbi, "$(P)BUFFER_CONTROL") 
+{
+    field(DESC, "Get Buffer Control Mode")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getBufferControl $(PORT)")
+    field(ZRST, "NEXT")
+    field(ONST, "ALW")
+    field(TWST, "NEV")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER_CONTROL")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(mbbo, "$(P)BUFFER_CONTROL:SP") 
+{
+    field(DESC, "Set Buffer Control Mode")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setBufferControl $(PORT)")
+    field(ZRST, "NEXT")
+    field(ONST, "ALW")
+    field(TWST, "NEV")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER_CONTROL:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(mbbi, "$(P)BUFFER_FEED") 
+{
+    field(DESC, "Query Buffer Feed")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getBufferFeed $(PORT)")
+    field(ZRST, "SENS")
+    field(ONST, "CALC")
+    field(TWST, "NONE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER_FEED")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(mbbo, "$(P)BUFFER_FEED:SP") 
+{
+    field(DESC, "Set Buffer Feed")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setBufferFeed $(PORT)")
+    field(ZRST, "SENS")
+    field(ONST, "CALC")
+    field(TWST, "NONE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER_FEED:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(ai, "$(P)BUFFER_SIZE") 
+{
+     field(DESC, "Get Size of Buffer")
+     field(SCAN, "1 second")
+     field(DTYP, "stream")
+     field(EGU, "")
+     field(INP,  "@devKeithley_2700.proto getBufferSize $(PORT)")
+     field(HIHI, "55001")
+     field(LOLO, "1")
+     field(HHSV,"MAJOR")
+     field(LLSV,"MAJOR")
+     field(SIML, "$(P)SIM")
+     field(SIOL, "$(P)SIM:BUFFER_SIZE")
+     field(SDIS, "$(P)DISABLE")
+     info(INTEREST, "HIGH")
+
+}
+
+record(ao, "$(P)BUFFER_SIZE:SP") 
+{
+    field(DESC, "Set Size of Buffer")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(EGU, "")
+    field(OUT,  "@devKeithley_2700.proto setBufferSize $(PORT)")
+    field(HIHI, "55001")
+    field(LOLO, "1")
+    field(HHSV,"MAJOR")
+    field(LLSV,"MAJOR")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER_SIZE:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(ai, "$(P)SAMPLE_COUNT") 
+{
+    field(DESC, "Query sample count")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(EGU, "")
+    field(INP,  "@devKeithley_2700.proto getSampleCount $(PORT)")
+    field(HIHI, "55001")
+    field(LOLO, "1")
+    field(HHSV,"MAJOR")
+    field(LLSV,"MAJOR")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SAMPLE_COUNT")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(ao, "$(P)SAMPLE_COUNT:SP") 
+{
+    field(DESC, "Set sample count")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(EGU, "")
+    field(OUT,  "@devKeithley_2700.proto setSampleCount $(PORT)")
+    field(HIHI, "55001")
+    field(LOLO, "1")
+    field(HHSV,"MAJOR")
+    field(LLSV,"MAJOR")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SAMPLE_COUNT:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(bi, "$(P)BUFFER_STATE") 
+{
+    field(DESC, "Query Buffer State")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getBufferState $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER_STATE")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(bo, "$(P)BUFFER_STATE:SP") 
+{
+    field(DESC, "Set Buffer State")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setBufferState $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER_STATE:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(bi, "$(P)INIT") 
+{
+    field(DESC, "continuous initiation")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getInitState $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:INIT")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(bo, "$(P)INIT:SP") 
+{
+    field(DESC, "Enable/Disable continuous initiation")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setInitState $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:INIT:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(ai, "$(P)NPLCYCLES") 
+{
+    field(DESC, "Query line cycle intergration rate")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getResistanceRate $(PORT)")
+    field(HIHI, "61")
+    field(LOLO, "0")
+    field(HHSV,"MAJOR")
+    field(LLSV,"MAJOR")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:NPLCYCLES")
+    field(SDIS, "$(P)DISABLE")
+
+}
+
+record(ao, "$(P)NPLCYCLES:SP") 
+{
+    field(DESC, "Set Intergration Rate")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setResistanceRate $(PORT)")
+    field(HIHI, "61")
+    field(LOLO, "0")
+    field(HHSV,"MAJOR")
+    field(LLSV,"MAJOR")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:NPLCYCLES:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)DIGIT_RANGE:SP") 
+{
+  field(DESC, "FRES value for digit range")
+  field(EGU, "")
+  field(DTYP, "stream")
+  field(OUT, "@devKeithley_2700.proto setResistanceDigits($(P)CHANNEL_END:SP) $(PORT)")
+  field(SCAN, "1 second")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:DIGIT_RANGE:SP")
+  field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "HIGH")
+
+}
+
+# ## Read the Channel End Value.
+record(ao, "$(P)CHANNEL_END:SP") {
+  field(DESC, "DIGIT value")
+  field(FLNK, "$(P)FRES")
+}
+
+
+record(ai, "$(P)DIGIT_RANGE")
+{
+  field(DESC, "FRES value for digit range")
+  field(DTYP, "stream")
+  field(EGU, "")
+  field(INP, "@devKeithley_2700.proto getResistanceDigits($(P)CHANNEL_END) $(PORT)")
+  field(SCAN, "1 second")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:DIGIT_RANGE")
+  field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "HIGH")
+
+}
+
+
+# ## Read the status value 3.
+record(ai, "$(P)CHANNEL_END") 
+{
+  field(DESC, "DIGIT value")
+  field(SCAN, "1 second")
+
+}
+
+record(bi, "$(P)AUTO_RANGE") 
+{
+    field(DESC, "Query Auto Range")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getAutoRange($(P)CHANNEL_END) $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:AUTO_RANGE")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(bo, "$(P)AUTO_RANGE:SP") 
+{
+    field(DESC, "Enable or Disable Range")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setAutoRange($(P)CHANNEL_END) $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:AUTO_RANGE:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+
+}
+
+record(stringin, "$(P)BUFFER_STATS")
+{
+    field(DESC, "Available and reserved buffer size")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getBufferStats $(PORT)")
+    field(PINI, "YES")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER_STATS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)BUFFER_LOC") 
+{
+    field(DESC, "Next Buffer Location")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getNextBufferReading $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFFER_LOC")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(stringin, "$(P)LIST_OF_ELEMENTS")
+{
+    field(DESC, "DATA")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getDataElements $(PORT)")
+    field(PINI, "YES")
+}
+
+record(stringout, "$(P)LIST_OF_ELEMENTS:SP")
+{
+    field(DESC, "DATA:SP")
+    field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(OUT,  "@devKeithley_2700.proto setDataElements $(PORT)")
+    field(PINI, "YES")
+}
+
+record(stringin, "$(P)LIST_OF_READINGS")
+{
+    field(DESC, "Buffer Readings")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getReadingsRange($(P)START,$(P)COUNT) $(PORT)")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:LIST_OF_READINGS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)START") 
+{
+    field(DESC, "DATA ELEMENT READ PARAMETER")
+    field(DTYP, "stream")
+    field(FLNK, "$(P)LIST_OF_READINGS")
+
+}
+
+record(ai, "$(P)COUNT") 
+{
+    field(DESC, "DATA ELEMENT READ PARAMETER")
+    field(DTYP, "stream")
+    field(FLNK, "$(P)LIST_OF_READINGS")
+
+
+}
+
+record(ai, "$(P)MEAS:VOLT:DC")
+{
+    field(DESC, "Configure Channels to DCV")
+    field(SCAN, "1 second")
+    field(EGU, "V")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto MeasureDCVoltageMode $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MEAS:VOLT:DC")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)MEAS:FRES")
+{
+    field(DESC, "Configure Channels to  Ω4 ")
+    field(SCAN, "1 second")
+    field(EGU, "ohm")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto MeasureFRESMode $(PORT)")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)MEAS:CURR:DC")
+{
+    field(DESC, "Configure Channels to DCI")
+    field(SCAN, "1 second")
+    field(EGU, "A")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto MeasureDCCurrentMode $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MEAS:CURR:DC")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+####### KEITHLEY 2700 ONLY #############
+
+record(bi, "$(P)STAMP") 
+{
+    field(DESC, "Query Time Stamp Format")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devKeithley_2700.proto getTimeStamp $(PORT)")
+    field(ZNAM, "ABS")
+    field(ONAM, "DELT")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STAMP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)STAMP:SP") 
+{
+    field(DESC, "Set Time Stamp Format")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto setTimeStamp $(PORT)")
+    field(ZNAM, "ABS")
+    field(ONAM, "DELT")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STAMP:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
+
+### SIMULATION RECORDS ###
+
+record(stringout, "$(P)SIM:FRES")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)SIM:CONTROL_SOURCE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:CONTROL_SOURCE","$(P)SIM:CONTROL_SOURCE:SP")
+
+record(stringin, "$(P)SIM:LIST_OF_READINGS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringin, "$(P)SIM:BUFFER_STATS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)SIM:BUFFER_CONTROL")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:BUFFER_CONTROL","$(P)SIM:BUFFER_CONTROL:SP")
+
+record(ai, "$(P)SIM:BUFFER_LOC")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:SAMPLE_COUNT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:SAMPLE_COUNT","$(P)SIM:SAMPLE_COUNT:SP")
+
+record(bi, "$(P)SIM:STAMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:STAMP","$(P)SIM:STAMP:SP")
+
+record(bo, "$(P)SIM:DELAY_STATE:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:DIGIT_RANGE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:DIGIT_RANGE","$(P)SIM:DIGIT_RANGE:SP")
+
+record(bi, "$(P)SIM:SCAN_STATE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:SCAN_STATE","$(P)SIM:SCAN_STATE:SP")
+
+record(ai, "$(P)SIM:BUFFER_SIZE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:BUFFER_SIZE","$(P)SIM:BUFFER_SIZE:SP")
+
+record(bi, "$(P)SIM:INIT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:INIT","$(P)SIM:INIT:SP")
+
+record(ai, "$(P)SIM:NPLCYCLES")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:NPLCYCLES","$(P)SIM:NPLCYCLES:SP")
+
+record(ai, "$(P)SIM:MEAS:CURR:DC")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringin, "$(P)SIM:IDN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(P)SIM:AUTO_RANGE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:AUTO_RANGE","$(P)SIM:AUTO_RANGE:SP")
+
+record(bi, "$(P)SIM:BUFFER_STATE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:BUFFER_STATE","$(P)SIM:BUFFER_STATE:SP")
+
+record(ai, "$(P)SIM:MEAS:VOLT:DC")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)SIM:BUFFER_FEED")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:BUFFER_FEED","$(P)SIM:BUFFER_FEED:SP")
+
