@@ -37,38 +37,32 @@ record(ao, "$(P)$(CHANNEL):READING")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
 }
-alias("$(P)$(CHANNEL):READING","$(P)$(CHANNEL):READING:SP")
 
 record(ao, "$(P)$(CHANNEL):TIMESTAMP")
 {
 	field(DESC, "Latest device reading timestamp")
 	field(EGU, "")
 	field(PREC, "5")
-	info(alarm, "Keithley2700")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
 }
-alias("$(P)$(CHANNEL):TIMESTAMP","$(P)$(CHANNEL):TIMESTAMP:SP")
+
+# TEMP and DRIFT to be calculated during work for Ticket 2994
 
 record(ao, "$(P)$(CHANNEL):TEMP")
 {
 	field(DESC, "Calculated Temperature reading")
 	field(EGU, "K")
 	field(PREC, "5")
-	info(INTEREST, "HIGH")
-	info(ARCHIVE, "VAL")
 }
-alias("$(P)$(CHANNEL):TEMP","$(P)$(CHANNEL):TEMP:SP")
 
 record(ao, "$(P)$(CHANNEL):DRIFT")
 {
 	field(DESC, "Channel Drift Value")
 	field(EGU, "")
 	field(PREC, "5")
-	info(INTEREST, "HIGH")
-	info(ARCHIVE, "VAL")
+
 }
-alias("$(P)$(CHANNEL):DRIFT","$(P)$(CHANNEL):DRIFT:SP")
 
 ### SIMULATION RECORDS ###
 
@@ -78,15 +72,11 @@ record(ao, "$(P)SIM:$(CHANNEL):READING")
     field(DTYP, "Soft Channel")
 }
 
-alias("$(P)SIM:$(CHANNEL):READING","$(P)SIM:$(CHANNEL):READING:SP")
-
 record(ao, "$(P)SIM:$(CHANNEL):TIMESTAMP")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
-
-alias("$(P)SIM:$(CHANNEL):TIMESTAMP","$(P)SIM:$(CHANNEL):TIMESTAMP:SP")
 
 record(ao, "$(P)SIM:$(CHANNEL):TEMP")
 {
@@ -94,12 +84,8 @@ record(ao, "$(P)SIM:$(CHANNEL):TEMP")
     field(DTYP, "Soft Channel")
 }
 
-alias("$(P)SIM:$(CHANNEL):TEMP","$(P)SIM:$(CHANNEL):TEMP:SP")
-
 record(ao, "$(P)SIM:$(CHANNEL):DRIFT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
-
-alias("$(P)SIM:$(CHANNEL):DRIFT","$(P)SIM:$(CHANNEL):DRIFT:SP")
