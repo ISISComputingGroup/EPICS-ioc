@@ -61,6 +61,7 @@ ZLIB=$(SUPPORT)/zlib/master
 STD=$(SUPPORT)/std/master
 SSCAN=$(SUPPORT)/sscan/master
 MYSQL=$(SUPPORT)/MySQL/master
+ONCRPC=$(SUPPORT)/oncrpc/master
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private

@@ -45,7 +45,6 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
 ASYN=$(SUPPORT)/asyn/master
-ASYN=$(SUPPORT)/asyn/master
 ONCRPC=$(SUPPORT)/oncrpc/master
 AUTOSAVE=$(SUPPORT)/autosave/master
 AXIS=$(SUPPORT)/axis/master
