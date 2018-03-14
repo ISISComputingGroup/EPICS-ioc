@@ -8,19 +8,18 @@ record(ai, "$(P)$(CHANNEL):FIELD:RAW")
 	field(INP, "@devLakeshore_460.proto getMagneticFieldReading($(CHANNEL)) $(PORT)")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
-	info(ARCHIVE, "EGU")
 	field(PREC, "4")
 	field(FLNK, "$(P)UNIT")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(CHANNEL):FIELD:RAW")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "")
 }
 
 record(mbbi, "$(P)UNIT") 
 {
     field(DESC, "Unit in use - gauss or tesla")
     field(DTYP, "stream")
-
     field(INP,  "@devLakeshore_460.proto getFieldUnits $(PORT)")
     field(ZRST, "G")
     field(ONST, "T")	
@@ -46,7 +45,6 @@ record(ai, "$(P)$(CHANNEL):MAXREADING")
 {
 	field(DESC, "Max reading")
 	field(DTYP, "stream")
-	#field(SCAN, "2 second")
 	field(INP, "@devLakeshore_460.proto getMaxReading($(CHANNEL)) $(PORT)")    
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
@@ -62,7 +60,6 @@ record(ai, "$(P)$(CHANNEL):MAXREADING")
 record(ai, "$(P)$(CHANNEL):RELMODEREADING")
 {
 	field(DESC, "Relative Mode Reading")
-	#field(SCAN, "2 second")
 	field(DTYP, "stream")
 	field(INP, "@devLakeshore_460.proto getRelModeReading($(CHANNEL)) $(PORT)")    
 	info(INTEREST, "HIGH")
@@ -188,8 +185,6 @@ record(stringout, "$(P)$(CHANNEL):FIELD:UNIT:CALC:STR")
     field(OUT,  "$(P)$(CHANNEL):FIELD.EGU PP")
 }
 
-
-
 ## MAX HOLD READING UNITS CALCULATION ###
 
 record(scalcout, "$(P)$(CHANNEL):MAXREADING:UNIT:CALC")
@@ -310,9 +305,7 @@ record(ai, "$(P)$(CHANNEL):RELMODESET")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(CHANNEL):RELMODESET")
     field(SDIS, "$(P)DISABLE")
-	#field(FLNK, "$(P)$(CHANNEL):UNIT:MULT")
 	field(FLNK, "$(P)$(CHANNEL):MODE")
-
 }
 
 record(ao, "$(P)$(CHANNEL):RELMODESET:SP")
@@ -331,7 +324,6 @@ record(bi, "$(P)$(CHANNEL):MODE")
 {
 	field(DESC, "Get the field reading mode")
     field(DTYP, "stream")
-	#field(SCAN, "5 second")
     field(INP,  "@devLakeshore_460.proto getACDCFieldReading($(CHANNEL)) $(PORT)")
     field(ZNAM, "DC")
     field(ONAM, "AC")    

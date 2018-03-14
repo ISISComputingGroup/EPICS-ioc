@@ -98,9 +98,7 @@ record(mbbo, "$(P)CHANNEL:SP")
     field(SIOL, "$(P)SIM:CHANNEL:SP")	
 }
 
-
 ### SIMULATION RECORDS ###
-
 
 record(stringin, "$(P)SIM:IDN")
 {
@@ -131,4 +129,3 @@ record(bi, "$(P)SIM:UNIT")
 }
 
 alias("$(P)SIM:UNIT","$(P)SIM:UNIT:SP")
-
