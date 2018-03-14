@@ -13,7 +13,8 @@
 ## a readback of > 0 on a write (code 16) configure line below means it does a 
 ## single initial read of the value on IOC startup. 
 ## 3rd arg is PLC slave address, check on PLC for this. Doesn't seem important for TCP, but is for RTU/ASCII
-drvModbusAsynConfigure("$(DEVICE)test", "$(DEVICE)", 1, 3, 2, 1, 0, 500, "PLC") # or 4
+drvModbusAsynConfigure("$(DEVICE)heartbeat", "$(DEVICE)", 1, 3, 2, 1, 0, 899, "PLC") # or 4
+drvModbusAsynConfigure("$(DEVICE)gatevalve", "$(DEVICE)", 1, 3, 2, 1, 0, 41315, "PLC") # or 4
 
 ## Load record instances
 
@@ -21,7 +22,7 @@ drvModbusAsynConfigure("$(DEVICE)test", "$(DEVICE)", 1, 3, 2, 1, 0, 500, "PLC") 
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(TOP)/db/SCHNDR.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE),R=faa")
+dbLoadRecords("$(TOP)/db/SCHNDR.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE),R=")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
