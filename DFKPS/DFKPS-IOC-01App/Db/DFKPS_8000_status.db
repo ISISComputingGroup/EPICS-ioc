@@ -1,6 +1,84 @@
+record(longin, "$(P)STATUS")
+{
+    field(DESC, "Device Status Flags")
+    field(DTYP, "stream")
+    field(INP,  "@dfkps.proto status $(port) 0")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STATUS")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "")
+}
+
+
+record(calcout, "$(P)CALSTA1")
+{
+    field(DESC, "Get Status Flags 1-16")
+    field(CALC, "(A>>8)&65535")
+    field(INPA, "$(P)STATUS CP MS")
+}
+
+record(calcout, "$(P)CALSTA2")
+{
+    field(DESC, "Get Status Flags 16-24")
+    field(CALC, "(A<<8)&65535")
+    field(INPA, "$(P)STATUS CP MS")
+}
+
+record(mbbiDirect, "$(P)STA1")
+{
+    field(DESC, "Status Flags 1-16")
+	field(INP, "$(P)CALSTA1 CP MS")
+	field(DTYP, "Raw Soft Channel")
+	# F = Power off
+	# E = Polarity normal
+	# D = Polarity reversed
+	# C = regulation transformer <> 0 * main power
+	# B = DAC16
+	# A = DAC17
+	# 9 = High = %, low = amps/volts
+	# 8 = spare interlock
+	# 7 = one transistor fault
+	# 6 = Sum interlocks
+	# 5 = DC Overcurrent
+	# 4 = DC Overload
+	# 3 = regulation mode fail
+	# 2 = Pre-regulator failure
+	# 1 = Phase failure
+	# 0 = MPS water flow failure	
+}
+
+record(mbbiDirect, "$(P)STA2")
+{
+    field(DESC, "Status Flags 16-24")
+	field(INP, "$(P)CALSTA2 CP MS")
+	field(DTYP, "Raw Soft Channel")
+	# F = Earth leakage failure
+	# E = Thermal breaker/fuses
+	# D = MPS over temperature
+	# C = door switch
+	# B = magnet waterflow failure
+	# A = magnet over temperature
+	# 9 = MPS not ready
+	# 8 = spare
+}
+
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
+
 
 record(bi, "$(P)ILK")
 {
+    field(INP, "$(P)STA1.B6 CP MS")
     field(DESC, "Overall Interlock")
     field(ZNAM, "OK")
     field(ONAM, "Interlock")
@@ -8,8 +86,15 @@ record(bi, "$(P)ILK")
     info(archive, "VAL")
 }
 
+record(calcout, "$(P)POWER:_CALC")
+{
+    field(INPA, "$(P)STA1.BF CP MS")
+	field(CALC, "!A")
+}
+
 record(bi, "$(P)POWER")
 {
+    field(INP, "$(P)POWER:_CALC CP MS")
     field(DESC, "Power")
     field(ZNAM, "Off")
     field(ONAM, "On")
@@ -17,46 +102,6 @@ record(bi, "$(P)POWER")
     info(archive, "VAL")
 }
 alias("$(P)POWER", "$(P)POWER:RBV")
-
-
-record(stringin, "$(P)STATUS")
-{
-    field(DESC, "Device Status Flags")
-    field(DTYP, "stream")
-    field(INP,  "@dfkps.proto status $(port) 0")
-    field(SCAN, "1 second")
-    field(FLNK, "$(P)CALPOWER")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:STATUS")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(scalcout, "$(P)CALPOWER")
-{
-    field(DESC, "Update Power Status")
-    field(OUT,  "$(P)POWER PP MS")
-    field(CALC, "BB==AA[$(powpos),$(powpos)] ? CC : DD")
-    field(INAA, "$(P)STATUS MS")
-    field(BB, "!")
-    field(CC, "Off")
-    field(DD, "On")
-    field(FLNK, "$(P)CALILK")
-}
-
-record(scalcout, "$(P)CALILK")
-{
-    field(DESC, "Update Interlock Status")
-    field(OUT,  "$(P)ILK PP MS")
-    field(CALC, "BB==AA[$(ilkpos),$(ilkpos)] ? CC : DD")
-    field(INAA, "$(P)STATUS MS")
-    field(BB, "!")
-    field(CC, "Interlock")
-    field(DD, "OK")
-}
-
-record(stringin, "$(P)SIM:STATUS"){
-    field(DTYP, "Soft Channel")
-}
 
 record(ao, "$(P)RAW:SP")
 {
