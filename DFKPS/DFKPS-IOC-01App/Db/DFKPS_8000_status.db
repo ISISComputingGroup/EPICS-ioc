@@ -63,23 +63,140 @@ record(mbbiDirect, "$(P)STA2")
 	# 8 = spare
 }
 
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-
-
-
 record(bi, "$(P)ILK")
 {
     field(INP, "$(P)STA1.B6 CP MS")
     field(DESC, "Overall Interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:TRANS")
+{
+    field(INP, "$(P)STA1.B7 CP MS")
+    field(DESC, "Transistor fault interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:DCOC")
+{
+    field(INP, "$(P)STA1.B5 CP MS")
+    field(DESC, "DC overcurrent interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:DCOL")
+{
+    field(INP, "$(P)STA1.B4 CP MS")
+    field(DESC, "DC overload interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:REGMOD")
+{
+    field(INP, "$(P)STA1.B3 CP MS")
+    field(DESC, "Regulation modulator interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:PREREG")
+{
+    field(INP, "$(P)STA1.B2 CP MS")
+    field(DESC, "Preregulator interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:PHAS")
+{
+    field(INP, "$(P)STA1.B1 CP MS")
+    field(DESC, "Phase failure interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MPSWATER")
+{
+    field(INP, "$(P)STA1.B0 CP MS")
+    field(DESC, "MPS water flow interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:EARTHLEAK")
+{
+    field(INP, "$(P)STA2.BF CP MS")
+    field(DESC, "Earth leak interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:THERMAL")
+{
+    field(INP, "$(P)STA2.BE CP MS")
+    field(DESC, "Thermal breaker interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MPSTEMP")
+{
+    field(INP, "$(P)STA2.BD CP MS")
+    field(DESC, "MPS overtemp interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:DOOR")
+{
+    field(INP, "$(P)STA2.BC CP MS")
+    field(DESC, "Door switch interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MAGWATER")
+{
+    field(INP, "$(P)STA2.BB CP MS")
+    field(DESC, "Magnet waterflow interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MAGTEMP")
+{
+    field(INP, "$(P)STA2.BA CP MS")
+    field(DESC, "Magnet overtemp interlock")
     field(ZNAM, "OK")
     field(ONAM, "Interlock")
     info(INTEREST, "HIGH")
