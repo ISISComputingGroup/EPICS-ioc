@@ -1,0 +1,36 @@
+record(longout, "$(P)CHARGE:SP")
+{
+    field(DTYP, "stream")
+	field(OUT, "@GAMRY.protocol startCharging $(PORT)")
+}
+
+# this record is processed when charging is finished, 
+record(bi, "$(P)CHARGE:STAT")
+{
+    field(DTYP, "stream")
+    field(SCAN, "I/O Intr")
+	field(INP, "@GAMRY.protocol chargingStatus $(PORT)")
+	field(ZNAM, "Idle")
+	field(ONAM, "Charging")
+}
+
+record(bi, "$(P)BEAM:STAT")
+{
+    field(DTYP, "stream")
+    field(SCAN, "I/O Intr")
+	field(INP, "@GAMRY.protocol beamStatus $(PORT)")
+	field(ZNAM, "BEAMOFF")
+	field(ONAM, "BEAMON")
+}
+
+record(longout, "$(P)BEAM:ON:SP")
+{
+    field(DTYP, "stream")
+	field(OUT, "@GAMRY.protocol beamOn $(PORT)")
+}
+
+record(longout, "$(P)BEAM:OFF:SP")
+{
+    field(DTYP, "stream")
+	field(OUT, "@GAMRY.protocol beamOff $(PORT)")
+}
