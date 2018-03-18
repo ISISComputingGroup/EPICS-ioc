@@ -47,7 +47,7 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn calc sscan
-$(APPNAME)_SYS_LIBS_WIN32 += oncrpc
+$(APPNAME)_LIBS_WIN32 += oncrpc
 
 # GAMRY-IOC-01_registerRecordDeviceDriver.cpp derives from GAMRY-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
