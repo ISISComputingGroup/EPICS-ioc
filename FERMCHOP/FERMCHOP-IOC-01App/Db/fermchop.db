@@ -411,14 +411,29 @@ record(mbbo, "$(P)COMMAND:SP")
 	field(FLNK, "$(P)COMMAND:SP:_CHECK")	
 }
 
-record(calcout, "$(P)COMMAND:SP:_CHECK")
-{
-	field(ASG, "READONLY")
-	field(INPA, "$(P)COMMAND:SP.RVAL")
-	field(INPB, "$(P)STATUS.B3")
-	field(INPC, "$(P)SPEED")
-	field(CALC, "A=3?(B=1?3:0):((A=5 && C>10)?0:A)")
+record(aSub, "$(P)COMMAND:SP:_CHECK")
+{	
+	field(SNAM, "commandCheck")
+	field(DESC, "Checks command is allowed to be sent")
 	
+    field(INPA, "$(P)COMMAND:SP.RVAL")
+    field(FTA, "LONG")
+    field(INPB, "$(P)STATUS.B3")
+    field(FTB, "LONG")
+    field(INPC, "$(P)SPEED")
+    field(FTC, "DOUBLE")
+    field(INPD, "$(P)SPEED:SP:RBV")
+    field(FTD, "LONG")
+    field(INPE, "$(P)STATUS.B5")
+    field(FTE, "LONG")
+
+    field(OUTA, "$(P)COMMAND:SP:_SEND_IF_OK.A PP")
+    field(FTVA, "LONG")
+}
+
+record(calcout, "$(P)COMMAND:SP:_SEND_IF_OK")
+{
+    field(CALC, "A")
 	field(OUT, "$(P)COMMAND:SP:_RAW PP")
 	field(OOPT, "When Non-zero")
 }
