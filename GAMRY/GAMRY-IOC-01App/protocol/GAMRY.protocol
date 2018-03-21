@@ -1,8 +1,8 @@
 Terminator = CR;
 
 beamOn {
-    out "BEAMON";
-    in "BEAMON";
+    out "BEAM_ON";
+    in "BEAM_ON";
 }
 
 beamOff {
@@ -23,6 +23,6 @@ chargingStatus {
     in "%{STOPPED|STARTED}";
 }
 
-beamStatus {
-    in "%{BEAMOFF|BEAMON}";
-}
+#beamStatus {
+#    in "%{BEAMOFF|BEAM_ON}";
+#}
