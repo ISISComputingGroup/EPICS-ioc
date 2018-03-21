@@ -14,14 +14,14 @@ record(bi, "$(P)CHARGE:STAT")
 	field(ONAM, "Charging")
 }
 
-record(bi, "$(P)BEAM:STAT")
-{
-    field(DTYP, "stream")
-    field(SCAN, "I/O Intr")
-	field(INP, "@GAMRY.protocol beamStatus $(PORT)")
-	field(ZNAM, "BEAMOFF")
-	field(ONAM, "BEAMON")
-}
+#record(bi, "$(P)BEAM:STAT")
+#{
+#    field(DTYP, "stream")
+#    field(SCAN, "I/O Intr")
+#	field(INP, "@GAMRY.protocol beamStatus $(PORT)")
+#	field(ZNAM, "BEAMOFF")
+#	field(ONAM, "BEAMON")
+#}
 
 record(longout, "$(P)BEAM:ON:SP")
 {

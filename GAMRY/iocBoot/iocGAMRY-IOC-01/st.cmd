@@ -16,13 +16,14 @@ GAMRY_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 #drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
-drvAsynIPPortConfigure("L0", "localhost:52000")
-#asynSetOption("L0", -1, "baud", "9600")
-#asynSetOption("L0", -1, "bits", "8")
-#asynSetOption("L0", -1, "parity", "none")
-#asynSetOption("L0", -1, "stop", "1")
-#asynSetOption("L0", -1, "ixon", "Y")
-#asynSetOption("L0", -1, "ixoff", "Y")
+#drvAsynIPPortConfigure("L0", "localhost:52000")
+drvAsynSerialPortConfigure("L0", "COM22", 0, 0, 0, 0)
+asynSetOption("L0", -1, "baud", "9600")
+asynSetOption("L0", -1, "bits", "8")
+asynSetOption("L0", -1, "parity", "none")
+asynSetOption("L0", -1, "stop", "1")
+asynSetOption("L0", -1, "ixon", "N")
+asynSetOption("L0", -1, "ixoff", "N")
 
 < $(IOCSTARTUP)/dbload.cmd
 
