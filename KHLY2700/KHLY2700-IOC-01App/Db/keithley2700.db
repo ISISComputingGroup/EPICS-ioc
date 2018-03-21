@@ -344,7 +344,6 @@ alias("$(P)BUFFER:SIZE:SP", "$(P)BUFFER:SIZE")
 record(bo, "$(P)TIMESTAMP:FORMAT:SP") 
 {
     field(DESC, "Query Time Stamp Format")
-    field(SCAN, "1 second")
     field(DTYP, "stream")
     field(OUT,  "@devKeithley_2700.proto setTimeStamp $(PORT)")
     field(ZNAM, "ABS")
@@ -353,7 +352,19 @@ record(bo, "$(P)TIMESTAMP:FORMAT:SP")
     field(SIOL, "$(P)SIM:TIMESTAMP:FORMAT:SP")
     field(SDIS, "$(P)DISABLE")
 }
-alias("$(P)TIMESTAMP:FORMAT:SP", "$(P)TIMESTAMP:FORMAT")
+
+record(bo, "$(P)TIMESTAMP:FORMAT") 
+{
+    field(DESC, "Query Time Stamp Format")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto getTimeStamp $(PORT)")
+    field(ZNAM, "ABS")
+    field(ONAM, "DELT")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:TIMESTAMP:FORMAT")
+    field(SDIS, "$(P)DISABLE")
+}
 
  record(bi, "$(P)DELAYMODE") 
 {
