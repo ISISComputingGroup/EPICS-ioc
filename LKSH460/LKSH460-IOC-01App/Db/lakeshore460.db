@@ -45,7 +45,7 @@ record(mbbi, "$(P)SOURCE")
 	field(FVVL, "5")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
-	field(FLNK, "$(P)CHANNEL")
+	field(FLNK, "$(P)UNIT")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SOURCE")
 }
@@ -68,6 +68,31 @@ record(mbbo, "$(P)SOURCE:SP")
 	info(INTEREST, "LOW")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SOURCE:SP")
+}
+
+record(mbbi, "$(P)UNIT") 
+{
+    field(DESC, "Unit in use - gauss or tesla")
+    field(DTYP, "stream")
+    field(INP,  "@devLakeshore_460.proto getFieldUnits $(PORT)")
+    field(ZRST, "G")
+    field(ONST, "T")	
+    info(INTEREST, "MEDIUM")
+	field(FLNK, "$(P)CHANNEL")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UNIT")
+}
+
+record(mbbo, "$(P)UNIT:SP") 
+{
+    field(DESC, "Set Unit, gauss or tesla")
+    field(DTYP, "stream")
+    field(OUT,  "@devLakeshore_460.proto setFieldUnits $(PORT)")
+    field(ZRST, "G")
+    field(ONST, "T")	
+    info(INTEREST, "LOW")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UNIT:SP")
 }
 
 record(mbbi, "$(P)CHANNEL")
