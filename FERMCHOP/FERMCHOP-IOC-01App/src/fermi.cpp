@@ -313,7 +313,7 @@ long commandChecker(aSubRecord *prec)
 		if (magnetic_bearings != 1) {
 			puts("commandCheck: refusing to switch on run mode without magnetic bearings.");
 			output_command = 0;
-		} else if (speed_sp_rbv == 600 && speed > 550 && drive_generator_on) {
+		} else if (speed_sp_rbv == 600 && speed > 595 && drive_generator_on) {
 			puts("commandCheck: not sending 'switch drive on and run' command as chopper is already set at 600Hz");
 			output_command = 0;
 		}else {

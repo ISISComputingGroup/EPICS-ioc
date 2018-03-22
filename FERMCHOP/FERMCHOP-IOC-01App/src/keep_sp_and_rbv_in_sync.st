@@ -1,4 +1,4 @@
-program keep_sp_and_rbv_in_sync("SETPOINT,READBACK")
+program keep_sp_and_rbv_in_sync("SETPOINT,READBACK,TOLERANCE")
 
 #include "seqPVmacros.h"
 
@@ -17,10 +17,12 @@ PV(string, setpoint_description, "{SETPOINT}.DESC", Monitor);
 PV(string, readback_description, "{READBACK}.DESC", Monitor);
 PV(double, readback, "{READBACK}", Monitor);
 
+PV(double, tolerance, "{TOLERANCE}", Monitor);
+
 %{
 
-int notWithinTolerance(double setpoint, double readback) {
-    return abs(setpoint - readback) > 1.0;
+int notWithinTolerance(double setpoint, double readback, double tolerance) {
+    return abs(setpoint - readback) > tolerance;
 }
 
 }%
@@ -30,11 +32,11 @@ ss keep_sp_and_rbv_in_sync
   /* Initial state. */
   state idle
   {
-    when(notWithinTolerance(setpoint, readback) && setpoint_alarm == 0) /* setpoint alarm must be zero to avoid sending zero to device when first starting driver (SP will be UDF_alarm) */
+    when(notWithinTolerance(setpoint, readback, tolerance) && setpoint_alarm == 0) /* setpoint alarm must be zero to avoid sending zero to device when first starting driver (SP will be UDF_alarm) */
 	{
 	  printf("Keep SP and RBV in sync: setpoint ('%s') not equal readback ('%s'). Reprocessing setpoint in 5 seconds if still not the same.\n", setpoint_description, readback_description);
 	  epicsThreadSleep(5);
-	  if (notWithinTolerance(setpoint, readback)) {
+	  if (notWithinTolerance(setpoint, readback, tolerance)) {
 	      printf("Keep SP and RBV in sync: setpoint ('%s') not equal readback ('%s'). Reprocessing setpoint now.\n", setpoint_description, readback_description);
 	      PVPUT(setpoint_proc, 1);
 	  } else {

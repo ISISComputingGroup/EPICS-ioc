@@ -577,6 +577,14 @@ record(ao, "$(P)DELAY:SP:_SEND")
 	field(OUT,  "@devfc.proto setDelay($(P)) $(PORT)")
 }
 
+record(ai, "$(P)DELAY:TOLERANCE")
+{
+    # If actual delay setpoint readback not equal to setpoint within this tolerance, resend setpoint.
+    field(VAL, "1")
+	field(PINI, "YES")
+	info(archive, "VAL")
+}
+
 record(ao, "$(P)GATEWIDTH:SP")
 {
 	field(DESC, "Gate width setpoint")
@@ -605,6 +613,14 @@ record(ao, "$(P)GATEWIDTH:SP:_RAW")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DUMMY")
     field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)GATEWIDTH:TOLERANCE")
+{
+    # If gate width is not equal to setpoint within this tolerance, resend setpoint.
+    field(VAL, "0.1")
+	field(PINI, "YES")
+	info(archive, "VAL")
 }
 
 
