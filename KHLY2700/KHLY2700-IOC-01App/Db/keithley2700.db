@@ -165,7 +165,7 @@ alias("$(P)BUFFER:CLEAR:AUTO:SP","$(P)BUFFER:CLEAR:AUTO")
 record(ai, "$(P)BUFFER:NEXT") 
 {
     field(DESC, "Next Buffer reading location")
-    field(SCAN, "1 second")
+    #field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@devKeithley_2700.proto getNextBufferReadingLoc $(PORT)")
 	info(ARCHIVE, "VAL")
@@ -339,7 +339,6 @@ record(ao, "$(P)BUFFER:SIZE")
     field(SIOL, "$(P)SIM:BUFFER:SIZE")
     field(SDIS, "$(P)DISABLE")
 }
-alias("$(P)BUFFER:SIZE:SP", "$(P)BUFFER:SIZE")
 
 record(bo, "$(P)TIMESTAMP:FORMAT:SP") 
 {
