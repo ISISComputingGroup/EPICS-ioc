@@ -3,7 +3,7 @@
 	<config_part>
 		<ioc_desc>CAEN high voltage power supply</ioc_desc>
 		<macros>
-			<macro name ="HVCAENIPn" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the device." />
+			<macro name ="HVCAENIP0" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the device." />
 		</macros>
 	</config_part>
 </ioc_config>
