@@ -577,10 +577,18 @@ record(ao, "$(P)DELAY:SP:_SEND")
 	field(OUT,  "@devfc.proto setDelay($(P)) $(PORT)")
 }
 
-record(ai, "$(P)DELAY:TOLERANCE")
+record(ai, "$(P)DELAY:_SEQ_TOL")
 {
     # If actual delay setpoint readback not equal to setpoint within this tolerance, resend setpoint.
     field(VAL, "1")
+	field(PINI, "YES")
+	info(archive, "VAL")
+}
+
+record(ai, "$(P)DELAY:_SEQ_DELAY")
+{
+    # Actual delay stability time. If delay has not reached sp within this time, resend setpoint.
+    field(VAL, "30")
 	field(PINI, "YES")
 	info(archive, "VAL")
 }
@@ -615,10 +623,18 @@ record(ao, "$(P)GATEWIDTH:SP:_RAW")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)GATEWIDTH:TOLERANCE")
+record(ai, "$(P)GATEWIDTH:_SEQ_TOL")
 {
-    # If gate width is not equal to setpoint within this tolerance, resend setpoint.
-    field(VAL, "0.1")
+    # If actual gate width readback not equal to setpoint within this tolerance, resend setpoint.
+    field(VAL, "1")
+	field(PINI, "YES")
+	info(archive, "VAL")
+}
+
+record(ai, "$(P)GATEWIDTH:_SEQ_DELAY")
+{
+    # Gate width stability time. If delay has not reached sp within this time, resend setpoint.
+    field(VAL, "5")
 	field(PINI, "YES")
 	info(archive, "VAL")
 }
