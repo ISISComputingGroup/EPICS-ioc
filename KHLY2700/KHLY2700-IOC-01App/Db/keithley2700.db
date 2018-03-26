@@ -485,7 +485,18 @@ record(bo, "$(P)FRES:AUTORANGE:SP")
     field(SIOL, "$(P)SIM:FRES:AUTORANGE:SP")
     field(SDIS, "$(P)DISABLE")
 }
-alias("$(P)FRES:AUTORANGE:SP", "$(P)FRES:AUTORANGE")
+
+record(bi, "$(P)FRES:AUTORANGE") 
+{
+    field(DESC, "Get FResistance autorange mode")
+    field(DTYP, "stream")
+    field(OUT,  "@devKeithley_2700.proto getAutoRange $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FRES:AUTORANGE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
 
 # digits between 4-7
 record(ao, "$(P)FRES:DIGITS:SP") 

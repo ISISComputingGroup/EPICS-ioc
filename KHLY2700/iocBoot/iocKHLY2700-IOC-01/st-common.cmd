@@ -27,11 +27,23 @@ asynSetTraceIOMask("L0",-1,0x2)
 ### set initial values here ###
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetConnect("KHLY2700","L0")
 ## This is across multiple lines as there is a buffer limit
-#$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 ":SYST:CLE;TRAC:CLE;:FUNC "FRES", (@101:210);:FRES:RANG:AUTO ON, (@101:210)\r\n"
-#$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 ":FRES:DIG 7, (@101:210);:FRES:NPLC 5.000000E+0;TRIG:SOUR IMM;TRIG:DEL:AUTO 0\r\n"
-#$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "TRAC:CLE:AUTO ON;TRAC:POIN 1000;TRAC:FEED SENS;TRAC:FEED:CONT ALW;TRAC:TST:FORM ABS\r\n"
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "INIT:CONT ON\r\n"
-##$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "ROUT:SCAN (@101:205);ROUT:SCAN:LSEL INT;SAMP:COUN 1\r\n"
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 ":SYST:CLE\r\n"						# Clear system errors
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "TRAC:CLE\r\n"						# Empty buffer readings
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 ":FUNC 'FRES', (@101:210)\r\n"		# Set function to 'FResistance' and set channels
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "FRES:RANG:AUTO ON, (@101:210)\r\n"	# Set auto range to on
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 ":FRES:DIG 7, (@101:210)\r\n"			# Set number of digits to 7
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 ":FRES:NPLC 5.000000E+0\r\n"			# Set PLC cycles
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "TRIG:SOUR IMM\r\n"					# Set control source to Immediate
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "TRIG:DEL:AUTO 0\r\n"					# Set auto delay to On
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "TRAC:CLE:AUTO ON\r\n"				# Set trace buffer to auto clear
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "TRAC:POIN 1000\r\n"					# Set trace buffer points to 1000
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "TRAC:FEED SENS\r\n"					# Set buffer source to raw (sens)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "TRAC:FEED:CONT ALW\r\n"				# Set buffer control mode to Always
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "TRAC:TST:FORM ABS\r\n"				# Set timestamp format to Absolute
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "INIT:CONT ON\r\n"					# Set continuous initiation to On 
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "ROUT:SCAN (@101:210)\r\n"			# Set scan channels start
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "ROUT:SCAN:LSEL INT\r\n"				# Set scan to Internal
+#$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "ROUT:SCAN (@101:210);ROUT:SCAN:LSEL INT;SAMP:COUN 1\r\n"
 #$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "ROUT:SCAN:LSEL INT;ROUT:SCAN:LSEL NONE\r\n"
 
 
