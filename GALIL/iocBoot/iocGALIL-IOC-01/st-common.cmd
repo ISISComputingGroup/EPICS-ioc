@@ -26,17 +26,20 @@ epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 ## uncomment to see every command sent to every galil, of define in st.cmd for just one galil
 #epicsEnvSet("GALIL_DEBUG_FILE", "galil_debug.txt")
 
-## create simulated motor if required (asyn port GalilSim)
-$(IFSIM) < motorsim.cmd
+## create simulated motor if required (asyn port "GalilSim")
+$(IFTESTDEVSIM) < motorsim.cmd
+$(IFTESTRECSIM) < motorsim.cmd
 
 ## configure the galil, if we are simulated this will not be used to drive the 
 ## actual device, but creating this asyn port at least allows record initialisation 
 ## to complete
 < $(GALILCONFIG)/galil$(MTRCTRL).cmd
 
-# GALIL_MTR_PORT is the asyn port used to load the motor record
-$(IFSIM) epicsEnvSet("GALIL_MTR_PORT", "GalilSim")
-$(IFNOTSIM) epicsEnvSet("GALIL_MTR_PORT", "Galil")
+## GALIL_MTR_PORT is the asyn port used to load just the motor record, other records 
+## are loaded with "Galil" as the asyn port
+$(IFTESTDEVSIM) epicsEnvSet("GALIL_MTR_PORT", "GalilSim")
+$(IFTESTRECSIM) epicsEnvSet("GALIL_MTR_PORT", "GalilSim")
+$(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) epicsEnvSet("GALIL_MTR_PORT", "Galil")
 
 ## load the galil db files
 < galildb.cmd
@@ -90,12 +93,12 @@ stringiftest("HASMTRCTRL", "$(MTRCTRL=)", 0, 0)
 $(IFNOTHASMTRCTRL) errlogSev(2, "MTRCTRL has not been set")
 
 # Save motor positions every 5 seconds
-$(IFHASMTRCTRL) $(IFNOTSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+$(IFHASMTRCTRL) $(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
 # Save motor settings every 30 seconds
-$(IFHASMTRCTRL) $(IFNOTSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+$(IFHASMTRCTRL) $(IFNOTTESTDEVSIM) $(IFNOTTESTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
-$(IFHASMTRCTRL) $(IFNOTSIM) $(IFMOTORCONFIG) create_manual_set("$(MOTORCONFIG=)Menu.req","P=$(MYPVPREFIX)MOT:,CMP=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=),IOCNAME=$(IOCNAME),MTRCTRL=$(MTRCTRL),CONFIGMENU=1")
+$(IFHASMTRCTRL) $(IFMOTORCONFIG) create_manual_set("$(MOTORCONFIG=)Menu.req","P=$(MYPVPREFIX)MOT:,CMP=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=),IOCNAME=$(IOCNAME),MTRCTRL=$(MTRCTRL),CONFIGMENU=1")
 
 ## Start any sequence programs
 #seq sncxxx,"user=icsHost"
