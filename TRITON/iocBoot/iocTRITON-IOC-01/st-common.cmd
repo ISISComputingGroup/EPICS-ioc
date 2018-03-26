@@ -13,6 +13,20 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet "IPPORT" "$(IPPORT=33576)"
 $(IFNOTRECSIM) drvAsynIPPortConfigure("$(DEVICE)", "$(IPADDR=NUL):$(IPPORT=NUL)")
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "NUL")
 
+#
+# Configure ReadASCII for PID lookup.
+#
+epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
+epicsEnvSet "RAMP_PAT" ".*"
+$(IFNOTDEVSIM) epicsEnvSet "RAMP_DIR" "$(CALIB_BASE_DIR)/ramps"
+$(IFDEVSIM) epicsEnvSet "RAMP_DIR" "$(READASCII)/example_settings"
+
+epicsEnvSet "READASCII_NAME" "READASCII"
+epicsEnvSet "FILELIST_NAME" "RAMPFILELIST"
+
+FileListConfigure("$(FILELIST_NAME)", "$(RAMP_DIR)", "$(RAMP_PAT)") 
+ReadASCIIConfigure("$(READASCII_NAME)", "$(RAMP_DIR)")
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
@@ -22,6 +36,7 @@ dbLoadRecords("../../db/TRITON.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=
 dbLoadRecords("../../db/TRITON_valves.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 dbLoadRecords("../../db/TRITON_channels.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 dbLoadRecords("../../db/TRITON_pid.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
+dbLoadRecords("../../db/TRITON_pid_lookup.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE),READ=$(READASCII_NAME),RAMPLIST=$(FILELIST_NAME)")
 dbLoadRecords("../../db/TRITON_temp_channels.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 dbLoadRecords("../../db/TRITON_pressure_channels.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 
