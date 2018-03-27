@@ -557,7 +557,19 @@ record(bo, "$(P)SCAN:STATE:SP")
     field(SIOL, "$(P)SIM:SCAN:STATE:SP")
     field(SDIS, "$(P)DISABLE")
 }
-alias("$(P)SCAN:STATE:SP", "$(P)SCAN:STATE")
+
+record(bi, "$(P)SCAN:STATE") 
+{
+	field(DESC, "Get scan state")
+	field(DTYP, "stream")
+	field(SCAN, "1 second")
+	field(INP,  "@devKeithley_2700.proto getScanState $(PORT)")
+	field(ZNAM, "INT")
+	field(ONAM, "NONE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SCAN:STATE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
 
 ### SIMULATION RECORDS ###
 
