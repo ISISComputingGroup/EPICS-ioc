@@ -44,6 +44,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "INIT:CONT ON\r\n"					# S
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "ROUT:SCAN (@101:210)\r\n"			# Set scan channels start
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "ROUT:SCAN:LSEL INT\r\n"				# Set scan to Internal (starts clicks)
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "SAMP:COUN 1\r\n"
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "FORM:ELEM READ,CHAN,TST;\r\n"		# Set readback elements (reading, channel, timestamp)
+
 
 
 

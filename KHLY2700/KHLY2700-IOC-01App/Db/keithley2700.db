@@ -199,8 +199,8 @@ record(calcout, "$(P)COUNT:CALC")
 	field(INPB, "$(P)CURRENT")
 	field(CALC, "A-B")
 	field(OUT, "$(P)COUNT PP")	
-	#field(FLNK, "$(P)BUFFER:READINGS")
-	field(FLNK, "$(P)CURRENT:CALC")
+	field(FLNK, "$(P)BUFFER:READINGS")
+	#field(FLNK, "$(P)CURRENT:CALC")
 }
 
 ## return string of readings from Start to +Count
@@ -208,7 +208,7 @@ record(waveform, "$(P)BUFFER:READINGS")
 {
     field(DESC, "Buffer Readings")
 	field(NELM, "100")
-	field(FTVL, "DOUBLE")
+	field(FTVL, "STRING")
     field(DTYP, "stream")
     field(INP,  "@devKeithley_2700.proto getBuffReadings($(P)) $(PORT)")
 	info(ARCHIVE, "VAL")
