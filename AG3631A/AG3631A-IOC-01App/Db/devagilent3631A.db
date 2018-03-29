@@ -16,7 +16,6 @@ record(bo, "$(P)DISABLE")
     field(OMSL, "supervisory")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
-	field(PINI, "YES")
 }
 
 record(stringin, "$(P)$(R)IDN")
