@@ -275,7 +275,7 @@ record(bo, "$(P)CHAN_A:IMPEDANCE:SP")
     field(ZNAM, "50")
     field(ONAM, "1M")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CHAN_A:IMPEDANCE:SP")
+    field(SIOL, "$(P)SIM:CHAN_A:IMPEDANCE:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 
