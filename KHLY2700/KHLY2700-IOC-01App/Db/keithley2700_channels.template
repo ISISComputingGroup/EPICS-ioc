@@ -28,7 +28,7 @@ record(bo, "$(P)$(CHANNEL):DISABLE")
 #
 ##################################################
 
-record(ao, "$(P)$(CHANNEL):READING")
+record(ao, "$(P)$(CHANNEL):READ")
 {
 	field(DESC, "Latest device reading value")
 	field(EGU, "")
@@ -38,7 +38,7 @@ record(ao, "$(P)$(CHANNEL):READING")
 	info(ARCHIVE, "VAL")
 }
 
-record(ao, "$(P)$(CHANNEL):TIMESTAMP")
+record(ao, "$(P)$(CHANNEL):TIME")
 {
 	field(DESC, "Latest device reading timestamp")
 	field(EGU, "")
@@ -66,13 +66,13 @@ record(ao, "$(P)$(CHANNEL):DRIFT")
 
 ### SIMULATION RECORDS ###
 
-record(ao, "$(P)SIM:$(CHANNEL):READING")
+record(ao, "$(P)SIM:$(CHANNEL):READ")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ao, "$(P)SIM:$(CHANNEL):TIMESTAMP")
+record(ao, "$(P)SIM:$(CHANNEL):TIME")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")

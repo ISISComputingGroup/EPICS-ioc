@@ -21,8 +21,8 @@ dbLoadRecords("${TOP}/db/keithley2700.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, 
 dbLoadRecords("${TOP}/db/keithley2700_channels.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
 
 ## For debugging:
-asynSetTraceMask("L0",-1,0x9) 
-asynSetTraceIOMask("L0",-1,0x2)
+#asynSetTraceMask("L0",-1,0x9) 
+#asynSetTraceIOMask("L0",-1,0x2)
 
 ### set initial values here ###
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetConnect("KHLY2700","L0")
@@ -42,7 +42,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "TRAC:FEED:CONT ALW\r\n"		
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "TRAC:TST:FORM ABS\r\n"				# Set timestamp format to Absolute
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "INIT:CONT ON\r\n"					# Set continuous initiation to On 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "ROUT:SCAN (@101:210)\r\n"			# Set scan channels start
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "ROUT:SCAN:LSEL INT\r\n"				# Set scan to Internal (starts clicks)
+#$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "ROUT:SCAN:LSEL INT\r\n"				# Set scan to Internal (starts clicks)
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "SAMP:COUN 1\r\n"
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "FORM:ELEM READ,CHAN,TST;\r\n"		# Set readback elements (reading, channel, timestamp)
 

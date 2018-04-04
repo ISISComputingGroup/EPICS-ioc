@@ -89,7 +89,7 @@ record(ao, "$(P)CH:END:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bo, "$(P)BUFFER:CLEAR:SP")
+record(bo, "$(P)BUFF:CLEAR:SP")
 {
 	field(DESC, "Clear readings from buffer")
 	field(DTYP, "stream")
@@ -97,10 +97,10 @@ record(bo, "$(P)BUFFER:CLEAR:SP")
 	field(ONAM, "")
 	field(OUT, "@devKeithley_2700.proto clearBuffer $(PORT)")    
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:BUFFER:CLEAR:SP")
+    field(SIOL, "$(P)SIM:BUFF:CLEAR:SP")
     field(SDIS, "$(P)DISABLE")
 }
-alias("$(P)BUFFER:CLEAR:SP","$(P)BUFFER:CLEAR")
+alias("$(P)BUFF:CLEAR:SP","$(P)BUFF:CLEAR")
 
 record(bo, "$(P)SYSTEM:CLEAR:SP")
 {
@@ -135,7 +135,7 @@ record(mbbo, "$(P)MEASUREMENT:SP") {
 }
 alias("$(P)MEASUREMENT:SP","$(P)MEASUREMENT")
 
-record(mbbo, "$(P)BUFFER:SOURCE:SP") 
+record(mbbo, "$(P)BUFF:SOURCE:SP") 
 {
     field(DESC, "Set buffer feed source")
     field(DTYP, "stream")
@@ -144,12 +144,12 @@ record(mbbo, "$(P)BUFFER:SOURCE:SP")
     field(ONST, "CALC")
     field(TWST, "NONE")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:BUFFER:SOURCE:SP")
+    field(SIOL, "$(P)SIM:BUFF:SOURCE:SP")
     field(SDIS, "$(P)DISABLE")
 }
-alias("$(P)BUFFER:SOURCE:SP", "$(P)BUFFER:SOURCE")
+alias("$(P)BUFF:SOURCE:SP", "$(P)BUFF:SOURCE")
 
-record(bo, "$(P)BUFFER:CLEAR:AUTO:SP") 
+record(bo, "$(P)BUFF:CLEAR:AUTO:SP") 
 {
     field(DESC, "Set Buffer State")
     field(SCAN, "1 second")
@@ -157,12 +157,12 @@ record(bo, "$(P)BUFFER:CLEAR:AUTO:SP")
     field(ZNAM, "ON")
     field(ONAM, "OFF")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:BUFFER:CLEAR:AUTO:SP")
+    field(SIOL, "$(P)SIM:BUFF:CLEAR:AUTO:SP")
     field(SDIS, "$(P)DISABLE")
 }
-alias("$(P)BUFFER:CLEAR:AUTO:SP","$(P)BUFFER:CLEAR:AUTO")
+alias("$(P)BUFF:CLEAR:AUTO:SP","$(P)BUFF:CLEAR:AUTO")
 
-record(ai, "$(P)BUFFER:NEXT") 
+record(ai, "$(P)BUFF:NEXT") 
 {
     field(DESC, "Next Buffer reading location")
     field(SCAN, "1 second")
@@ -173,7 +173,7 @@ record(ai, "$(P)BUFFER:NEXT")
 	field(EGU, "")
 	field(FLNK, "$(P)COUNT:CALC")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:BUFFER:NEXT")
+    field(SIOL, "$(P)SIM:BUFF:NEXT")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -195,16 +195,16 @@ record(calcout, "$(P)COUNT:CALC")
 {
 	field(DESC, "Calculating number of readings")
 	field(OOPT, "Every Time")
-	field(INPA, "$(P)BUFFER:NEXT")
+	field(INPA, "$(P)BUFF:NEXT")
 	field(INPB, "$(P)CURRENT")
 	field(CALC, "A-B")
 	field(OUT, "$(P)COUNT PP")	
-	field(FLNK, "$(P)BUFFER:READINGS")
+	field(FLNK, "$(P)BUFF:READ")
 	#field(FLNK, "$(P)CURRENT:CALC")
 }
 
 ## return string of readings from Start to +Count
-record(waveform, "$(P)BUFFER:READINGS")
+record(waveform, "$(P)BUFF:READ")
 {
     field(DESC, "Buffer Readings")
 	field(NELM, "100")
@@ -216,103 +216,103 @@ record(waveform, "$(P)BUFFER:READINGS")
 	field(PREC, "5")
 	field(FLNK, "$(P)CURRENT:CALC")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:BUFFER:READINGS")
+    field(SIOL, "$(P)SIM:BUFF:READ")
     field(SDIS, "$(P)DISABLE")
 }
 
 record(calcout, "$(P)CURRENT:CALC")
 {
 	field(DESC, "Update current buffer memory location")
-	field(INPA, "$(P)BUFFER:NEXT")
+	field(INPA, "$(P)BUFF:NEXT")
 	field(CALC, "A")
 	field(OUT, "$(P)CURRENT PP")
 	field(OOPT, "Every Time")
-	field(FLNK, "$(P)BUFFER:READINGS:PARSE:READINGS")
+	field(FLNK, "$(P)BUFF:READ:PARSE")
 }
 
-# These aSub records parse BUFFER:READINGS into 
-# channel PVs (CHNL:XXX:READING and CHNL:XXX:TIMESTAMP)
+# These aSub records parse BUFF:READ into 
+# channel PVs (CHNL:XXX:READING and CHNL:XXX:TIME)
 
 # They are duplicated as I couldn't find a way to set waveform values from 
 # a single C file and we are limited in the number of OUT fields an aSub record
 # can have.
 
-record(aSub,"$(P)BUFFER:READINGS:PARSE:READINGS")
+record(aSub,"$(P)BUFF:READ:PARSE")
 {
     field(SNAM, "parse_channel_readings")
     field(FTA, "DOUBLE")
-    field(INPA, "$(P)BUFFER:READINGS")
+    field(INPA, "$(P)BUFF:READ")
 	field(NOA, "100")
-    field(OUTA, "$(P)CHNL:101:READING PP")
-    field(OUTB, "$(P)CHNL:102:READING PP")
-    field(OUTC, "$(P)CHNL:103:READING PP")
-    field(OUTD, "$(P)CHNL:104:READING PP")
-    field(OUTE, "$(P)CHNL:105:READING PP")
-    field(OUTF, "$(P)CHNL:106:READING PP")
-    field(OUTG, "$(P)CHNL:107:READING PP")
-    field(OUTH, "$(P)CHNL:108:READING PP")
-    field(OUTI, "$(P)CHNL:109:READING PP")
-    field(OUTJ, "$(P)CHNL:110:READING PP")
-    field(OUTK, "$(P)CHNL:201:READING PP")
-    field(OUTL, "$(P)CHNL:202:READING PP")
-    field(OUTM, "$(P)CHNL:203:READING PP")
-    field(OUTN, "$(P)CHNL:204:READING PP")
-    field(OUTO, "$(P)CHNL:205:READING PP")
-    field(OUTP, "$(P)CHNL:206:READING PP")
-    field(OUTQ, "$(P)CHNL:207:READING PP")
-    field(OUTR, "$(P)CHNL:208:READING PP")
-    field(OUTS, "$(P)CHNL:209:READING PP")
-    field(OUTT, "$(P)CHNL:210:READING PP")
-	field(FLNK, "$(P)BUFFER:READINGS:PARSE:TIMESTAMPS")
+    field(OUTA, "$(P)CHNL:101:READ PP")
+    field(OUTB, "$(P)CHNL:102:READ PP")
+    field(OUTC, "$(P)CHNL:103:READ PP")
+    field(OUTD, "$(P)CHNL:104:READ PP")
+    field(OUTE, "$(P)CHNL:105:READ PP")
+    field(OUTF, "$(P)CHNL:106:READ PP")
+    field(OUTG, "$(P)CHNL:107:READ PP")
+    field(OUTH, "$(P)CHNL:108:READ PP")
+    field(OUTI, "$(P)CHNL:109:READ PP")
+    field(OUTJ, "$(P)CHNL:110:READ PP")
+    field(OUTK, "$(P)CHNL:201:READ PP")
+    field(OUTL, "$(P)CHNL:202:READ PP")
+    field(OUTM, "$(P)CHNL:203:READ PP")
+    field(OUTN, "$(P)CHNL:204:READ PP")
+    field(OUTO, "$(P)CHNL:205:READ PP")
+    field(OUTP, "$(P)CHNL:206:READ PP")
+    field(OUTQ, "$(P)CHNL:207:READ PP")
+    field(OUTR, "$(P)CHNL:208:READ PP")
+    field(OUTS, "$(P)CHNL:209:READ PP")
+    field(OUTT, "$(P)CHNL:210:READ PP")
+	field(FLNK, "$(P)BUFF:READ:PARSE:TIME")
 }
 
-record(aSub,"$(P)BUFFER:READINGS:PARSE:TIMESTAMPS")
+record(aSub,"$(P)BUFF:READ:PARSE:TIME")
 {
     field(SNAM, "parse_channel_timestamps")
     field(FTA, "DOUBLE")
-    field(INPA, "$(P)BUFFER:READINGS")
+    field(INPA, "$(P)BUFF:READ")
 	field(NOA, "100")
-    field(OUTA, "$(P)CHNL:101:TIMESTAMP PP")
-    field(OUTB, "$(P)CHNL:102:TIMESTAMP PP")
-    field(OUTC, "$(P)CHNL:103:TIMESTAMP PP")
-    field(OUTD, "$(P)CHNL:104:TIMESTAMP PP")
-    field(OUTE, "$(P)CHNL:105:TIMESTAMP PP")
-    field(OUTF, "$(P)CHNL:106:TIMESTAMP PP")
-    field(OUTG, "$(P)CHNL:107:TIMESTAMP PP")
-    field(OUTH, "$(P)CHNL:108:TIMESTAMP PP")
-    field(OUTI, "$(P)CHNL:109:TIMESTAMP PP")
-    field(OUTJ, "$(P)CHNL:110:TIMESTAMP PP")
-    field(OUTK, "$(P)CHNL:201:TIMESTAMP PP")
-    field(OUTL, "$(P)CHNL:202:TIMESTAMP PP")
-    field(OUTM, "$(P)CHNL:203:TIMESTAMP PP")
-    field(OUTN, "$(P)CHNL:204:TIMESTAMP PP")
-    field(OUTO, "$(P)CHNL:205:TIMESTAMP PP")
-    field(OUTP, "$(P)CHNL:206:TIMESTAMP PP")
-    field(OUTQ, "$(P)CHNL:207:TIMESTAMP PP")
-    field(OUTR, "$(P)CHNL:208:TIMESTAMP PP")
-    field(OUTS, "$(P)CHNL:209:TIMESTAMP PP")
-    field(OUTT, "$(P)CHNL:210:TIMESTAMP PP")
+    field(OUTA, "$(P)CHNL:101:TIME PP")
+    field(OUTB, "$(P)CHNL:102:TIME PP")
+    field(OUTC, "$(P)CHNL:103:TIME PP")
+    field(OUTD, "$(P)CHNL:104:TIME PP")
+    field(OUTE, "$(P)CHNL:105:TIME PP")
+    field(OUTF, "$(P)CHNL:106:TIME PP")
+    field(OUTG, "$(P)CHNL:107:TIME PP")
+    field(OUTH, "$(P)CHNL:108:TIME PP")
+    field(OUTI, "$(P)CHNL:109:TIME PP")
+    field(OUTJ, "$(P)CHNL:110:TIME PP")
+    field(OUTK, "$(P)CHNL:201:TIME PP")
+    field(OUTL, "$(P)CHNL:202:TIME PP")
+    field(OUTM, "$(P)CHNL:203:TIME PP")
+    field(OUTN, "$(P)CHNL:204:TIME PP")
+    field(OUTO, "$(P)CHNL:205:TIME PP")
+    field(OUTP, "$(P)CHNL:206:TIME PP")
+    field(OUTQ, "$(P)CHNL:207:TIME PP")
+    field(OUTR, "$(P)CHNL:208:TIME PP")
+    field(OUTS, "$(P)CHNL:209:TIME PP")
+    field(OUTT, "$(P)CHNL:210:TIME PP")
 	field(FLNK, "$(P)CURRENT:CALC")
 }
 
-record(ai, "$(P)BUFFER:MEM:AVAIL")
+record(ai, "$(P)BUFF:MEM:AVAIL")
 {
     field(DESC, "Available buffer bytes")
     field(DTYP, "stream")
 	field(SCAN, "1 second")	
-    field(INP,  "@devKeithley_2700.proto getBufferMemory($(P)BUFFER:MEM:USED) $(PORT)")
+    field(INP,  "@devKeithley_2700.proto getBufferMemory($(P)BUFF:MEM:USED) $(PORT)")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:BUFFER:MEM:AVAIL")
+    field(SIOL, "$(P)SIM:BUFF:MEM:AVAIL")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)BUFFER:MEM:USED")
+record(ai, "$(P)BUFF:MEM:USED")
 {
     field(DESC, "Bytes used by buffer for stored readings")
 	field(EGU, "")
 }
 
-record(ao, "$(P)BUFFER:SIZE:SP") 
+record(ao, "$(P)BUFF:SIZE:SP") 
 {
     field(DESC, "Set Size of Buffer")
     field(DTYP, "stream")
@@ -322,11 +322,11 @@ record(ao, "$(P)BUFFER:SIZE:SP")
     field(HHSV,"MAJOR")
     field(LLSV,"MAJOR")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:BUFFER:SIZE:SP")
+    field(SIOL, "$(P)SIM:BUFF:SIZE:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ao, "$(P)BUFFER:SIZE") 
+record(ao, "$(P)BUFF:SIZE") 
 {
     field(DESC, "Get Size of Buffer")
     field(SCAN, "1 second")
@@ -337,11 +337,11 @@ record(ao, "$(P)BUFFER:SIZE")
     field(HHSV,"MAJOR")
     field(LLSV,"MAJOR")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:BUFFER:SIZE")
+    field(SIOL, "$(P)SIM:BUFF:SIZE")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bo, "$(P)TIMESTAMP:FORMAT:SP") 
+record(bo, "$(P)TIME:FORMAT:SP") 
 {
     field(DESC, "Query Time Stamp Format")
     field(DTYP, "stream")
@@ -349,11 +349,11 @@ record(bo, "$(P)TIMESTAMP:FORMAT:SP")
     field(ZNAM, "ABS")
     field(ONAM, "DELT")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:TIMESTAMP:FORMAT:SP")
+    field(SIOL, "$(P)SIM:TIME:FORMAT:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bo, "$(P)TIMESTAMP:FORMAT") 
+record(bo, "$(P)TIME:FORMAT") 
 {
     field(DESC, "Query Time Stamp Format")
     field(SCAN, "1 second")
@@ -362,7 +362,7 @@ record(bo, "$(P)TIMESTAMP:FORMAT")
     field(ZNAM, "ABS")
     field(ONAM, "DELT")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:TIMESTAMP:FORMAT")
+    field(SIOL, "$(P)SIM:TIME:FORMAT")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -375,7 +375,7 @@ record(bo, "$(P)TIMESTAMP:FORMAT")
     field(ZNAM, "ON")
     field(ONAM, "OFF")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:TIMESTAMP:FORMAT:SP")
+    field(SIOL, "$(P)SIM:TIME:FORMAT:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -532,7 +532,7 @@ record(ao, "$(P)FRES:NPLC:SP")
 }
 alias("$(P)FRES:NPLC:SP", "$(P)FRES:NPLC")
 
-record(mbbo, "$(P)BUFFER:CONTROLMODE:SP") 
+record(mbbo, "$(P)BUFF:CONTROLMODE:SP") 
 {
     field(DESC, "Set Buffer Control Mode")
     field(DTYP, "stream")
@@ -541,10 +541,10 @@ record(mbbo, "$(P)BUFFER:CONTROLMODE:SP")
     field(ONST, "ALW")
     field(TWST, "NEV")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:BUFFER:CONTROLMODE:SP")
+    field(SIOL, "$(P)SIM:BUFF:CONTROLMODE:SP")
     field(SDIS, "$(P)DISABLE")
 }
-alias("$(P)BUFFER:CONTROLMODE:SP", "$(P)BUFFER:CONTROLMODE")
+alias("$(P)BUFF:CONTROLMODE:SP", "$(P)BUFF:CONTROLMODE")
 
 record(bo, "$(P)SCAN:STATE:SP") 
 {
@@ -581,21 +581,21 @@ record(bi, "$(P)SIM:INITMODE")
 
 alias("$(P)SIM:INITMODE","$(P)SIM:INITMODE:SP")
 
-record(mbbo, "$(P)SIM:BUFFER:SOURCE")
+record(mbbo, "$(P)SIM:BUFF:SOURCE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-alias("$(P)SIM:BUFFER:SOURCE","$(P)SIM:BUFFER:SOURCE:SP")
+alias("$(P)SIM:BUFF:SOURCE","$(P)SIM:BUFF:SOURCE:SP")
 
-record(ao, "$(P)SIM:BUFFER:SIZE")
+record(ao, "$(P)SIM:BUFF:SIZE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-alias("$(P)SIM:BUFFER:SIZE","$(P)SIM:BUFFER:SIZE:SP")
+alias("$(P)SIM:BUFF:SIZE","$(P)SIM:BUFF:SIZE:SP")
 
 record(bo, "$(P)SIM:SYSTEM:CLEAR")
 {
@@ -613,7 +613,7 @@ record(bi, "$(P)SIM:FRES:AUTORANGE")
 
 alias("$(P)SIM:FRES:AUTORANGE","$(P)SIM:FRES:AUTORANGE:SP")
 
-record(ai, "$(P)SIM:BUFFER:NEXT")
+record(ai, "$(P)SIM:BUFF:NEXT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -651,13 +651,13 @@ record(ai, "$(P)SIM:CH:END")
 
 alias("$(P)SIM:CH:END","$(P)SIM:CH:END:SP")
 
-record(bo, "$(P)SIM:BUFFER:CLEAR:AUTO")
+record(bo, "$(P)SIM:BUFF:CLEAR:AUTO")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-alias("$(P)SIM:BUFFER:CLEAR:AUTO","$(P)SIM:BUFFER:CLEAR:AUTO:SP")
+alias("$(P)SIM:BUFF:CLEAR:AUTO","$(P)SIM:BUFF:CLEAR:AUTO:SP")
 
 record(ai, "$(P)SIM:CH:START")
 {
@@ -667,21 +667,21 @@ record(ai, "$(P)SIM:CH:START")
 
 alias("$(P)SIM:CH:START","$(P)SIM:CH:START:SP")
 
-record(ai, "$(P)SIM:BUFFER:MEM:AVAIL")
+record(ai, "$(P)SIM:BUFF:MEM:AVAIL")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(bo, "$(P)SIM:BUFFER:CLEAR")
+record(bo, "$(P)SIM:BUFF:CLEAR")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-alias("$(P)SIM:BUFFER:CLEAR","$(P)SIM:BUFFER:CLEAR:SP")
+alias("$(P)SIM:BUFF:CLEAR","$(P)SIM:BUFF:CLEAR:SP")
 
-record(waveform, "$(P)SIM:BUFFER:READINGS")
+record(waveform, "$(P)SIM:BUFF:READ")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -695,13 +695,13 @@ record(bo, "$(P)SIM:DELAYMODE:SP")
     field(DTYP, "Soft Channel")
 }
 
-record(mbbo, "$(P)SIM:BUFFER:CONTROLMODE")
+record(mbbo, "$(P)SIM:BUFF:CONTROLMODE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-alias("$(P)SIM:BUFFER:CONTROLMODE","$(P)SIM:BUFFER:CONTROLMODE:SP")
+alias("$(P)SIM:BUFF:CONTROLMODE","$(P)SIM:BUFF:CONTROLMODE:SP")
 
 record(ai, "$(P)SIM:SAMPLECOUNT")
 {
@@ -733,13 +733,13 @@ record(stringin, "$(P)SIM:IDN")
     field(DTYP, "Soft Channel")
 }
 
-record(bi, "$(P)SIM:TIMESTAMP:FORMAT")
+record(bi, "$(P)SIM:TIME:FORMAT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-alias("$(P)SIM:TIMESTAMP:FORMAT","$(P)SIM:TIMESTAMP:FORMAT:SP")
+alias("$(P)SIM:TIME:FORMAT","$(P)SIM:TIME:FORMAT:SP")
 
 record(mbbo, "$(P)SIM:CONTROLSOURCE")
 {
