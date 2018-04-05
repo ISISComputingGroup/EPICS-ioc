@@ -152,8 +152,7 @@ alias("$(P)BUFF:SOURCE:SP", "$(P)BUFF:SOURCE")
 
 record(bo, "$(P)BUFF:CLEAR:AUTO:SP") 
 {
-    field(DESC, "Set Buffer State")
-    field(SCAN, "1 second")
+    field(DESC, "Set Buffer auto clear")
     field(OUT,  "@devKeithley_2700.proto setBufferAutoClearStatus $(PORT)")
     field(ZNAM, "ON")
     field(ONAM, "OFF")
@@ -161,7 +160,18 @@ record(bo, "$(P)BUFF:CLEAR:AUTO:SP")
     field(SIOL, "$(P)SIM:BUFF:CLEAR:AUTO:SP")
     field(SDIS, "$(P)DISABLE")
 }
-alias("$(P)BUFF:CLEAR:AUTO:SP","$(P)BUFF:CLEAR:AUTO")
+
+record(bi, "$(P)BUFF:CLEAR:AUTO") 
+{
+    field(DESC, "Get Buffer auto clear")
+    field(SCAN, "1 second")
+    field(OUT,  "@devKeithley_2700.proto getBufferAutoClearStatus $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUFF:CLEAR:AUTO")
+    field(SDIS, "$(P)DISABLE")
+}
 
 record(ai, "$(P)BUFF:NEXT") 
 {

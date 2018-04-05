@@ -1,4 +1,5 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(KHLY2700)/Keithley_2700Sup"
+epicsEnvSet "DEVICE" "L0"
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
@@ -13,6 +14,10 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=none)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 
+# Configurable terminators
+asynOctetSetInputEos("$(DEVICE)", -1, "$(IEOS=\\r\\n)")
+asynOctetSetOutputEos("$(DEVICE)", -1, "$(OEOS=\\r\\n)")
+
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
@@ -26,7 +31,6 @@ asynSetTraceIOMask("L0",-1,0x2)
 
 ### set initial values here ###
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetConnect("KHLY2700","L0")
-## This is across multiple lines as there is a buffer limit
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 ":SYST:CLE\r\n"						# Clear system errors
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 "TRAC:CLE\r\n"						# Empty buffer readings
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite KHLY2700 ":FUNC 'FRES', (@101:210)\r\n"		# Set function to 'FResistance' and set channels
