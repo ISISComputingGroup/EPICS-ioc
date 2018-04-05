@@ -21,8 +21,8 @@ record(bo, "$(P)$(CHANNEL):DISABLE")
 #
 # Template for the 20 Keithley_2700 Channels
 #
-# Values created by aSub record BUFFER:READINGS:PARSE which populates channel 
-# values from the block of data returned in BUFFER:READINGS.
+# Values created by aSub record BUFF:READ:PARSE which populates channel 
+# values from the block of data returned in BUFF:READ.
 #
 # Channel names range from 101-110 and 201-210 and have the PV format CHNL:101
 #
@@ -47,23 +47,6 @@ record(ao, "$(P)$(CHANNEL):TIME")
 	info(ARCHIVE, "VAL")
 }
 
-# TEMP and DRIFT to be calculated during work for Ticket 2994
-
-record(ao, "$(P)$(CHANNEL):TEMP")
-{
-	field(DESC, "Calculated Temperature reading")
-	field(EGU, "K")
-	field(PREC, "5")
-}
-
-record(ao, "$(P)$(CHANNEL):DRIFT")
-{
-	field(DESC, "Channel Drift Value")
-	field(EGU, "")
-	field(PREC, "5")
-
-}
-
 ### SIMULATION RECORDS ###
 
 record(ao, "$(P)SIM:$(CHANNEL):READ")
@@ -73,18 +56,6 @@ record(ao, "$(P)SIM:$(CHANNEL):READ")
 }
 
 record(ao, "$(P)SIM:$(CHANNEL):TIME")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(ao, "$(P)SIM:$(CHANNEL):TEMP")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(ao, "$(P)SIM:$(CHANNEL):DRIFT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")

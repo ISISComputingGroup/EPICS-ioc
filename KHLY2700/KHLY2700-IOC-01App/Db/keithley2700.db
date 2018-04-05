@@ -44,6 +44,7 @@ record(calcout, "$(P)CH:RANGE:SP")
 	field(CALC, "0")
 	field(OUT, "@devKeithley_2700.proto setScanChannels $(PORT)")
 }
+
 alias("$(P)CH:RANGE:SP","$(P)CH:RANGE")
 
 record(ao, "$(P)CH:START:SP")
@@ -202,10 +203,9 @@ record(calcout, "$(P)COUNT:CALC")
 	field(FLNK, "$(P)BUFF:READ")
 }
 
-## return string of readings from Start to +Count
 record(waveform, "$(P)BUFF:READ")
 {
-    field(DESC, "Buffer Readings")
+    field(DESC, "Buffer readings from start to +count")
 	field(NELM, "100")
 	field(FTVL, "DOUBLE")
     field(DTYP, "stream")
@@ -230,7 +230,7 @@ record(calcout, "$(P)CURRENT:CALC")
 }
 
 # These aSub records parse BUFF:READ into 
-# channel PVs (CHNL:XXX:READING and CHNL:XXX:TIME PPSTAMP)
+# channel PVs (CHNL:XXX:READ and CHNL:XXX:TIME)
 
 # They are duplicated as I couldn't find a way to set waveform values from 
 # a single C file and we are limited in the number of OUT fields an aSub record
@@ -262,7 +262,7 @@ record(aSub,"$(P)BUFF:READ:PARSE:READINGS")
     field(OUTR, "$(P)CHNL:208:READ PP")
     field(OUTS, "$(P)CHNL:209:READ PP")
     field(OUTT, "$(P)CHNL:210:READ PP")
-	field(FLNK, "$(P)BUFF:READ:PARSE:TIME PP")
+	field(FLNK, "$(P)BUFF:READ:PARSE:TIME")
 }
 
 record(aSub,"$(P)BUFF:READ:PARSE:TIME")
@@ -498,7 +498,6 @@ record(bi, "$(P)FRES:AUTORANGE")
     field(SDIS, "$(P)DISABLE")
 }
 
-# digits between 4-7
 record(ao, "$(P)FRES:DIGITS:SP") 
 {
 	field(DESC, "FRES value for digit range")
@@ -515,7 +514,6 @@ record(ao, "$(P)FRES:DIGITS:SP")
 }
 alias("$(P)FRES:DIGITS:SP", "$(P)FRES:DIGITS")
 
-# number of plc cycles
 record(ao, "$(P)FRES:NPLC:SP") 
 {
     field(DESC, "Set Intergration Rate")
