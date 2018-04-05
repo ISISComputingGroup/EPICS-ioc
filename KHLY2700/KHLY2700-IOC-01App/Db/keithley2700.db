@@ -97,7 +97,7 @@ record(bo, "$(P)BUFF:CLEAR:SP")
 	field(ONAM, "")
 	field(OUT, "@devKeithley_2700.proto clearBuffer $(PORT)")    
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:BUFF:CLEAR:SP")
+    field(SIOL, "$(P)SIM:BUFFER:CLEAR:SP")
     field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)BUFF:CLEAR:SP","$(P)BUFF:CLEAR")
@@ -173,7 +173,7 @@ record(ai, "$(P)BUFF:NEXT")
 	field(EGU, "")
 	field(FLNK, "$(P)COUNT:CALC")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:BUFF:NEXT")
+    field(SIOL, "$(P)SIM:BUFFER:NEXT")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -200,7 +200,6 @@ record(calcout, "$(P)COUNT:CALC")
 	field(CALC, "A-B")
 	field(OUT, "$(P)COUNT PP")	
 	field(FLNK, "$(P)BUFF:READ")
-	#field(FLNK, "$(P)CURRENT:CALC")
 }
 
 ## return string of readings from Start to +Count
@@ -208,7 +207,7 @@ record(waveform, "$(P)BUFF:READ")
 {
     field(DESC, "Buffer Readings")
 	field(NELM, "100")
-	field(FTVL, "STRING")
+	field(FTVL, "DOUBLE")
     field(DTYP, "stream")
     field(INP,  "@devKeithley_2700.proto getBuffReadings($(P)) $(PORT)")
 	info(ARCHIVE, "VAL")
@@ -227,17 +226,17 @@ record(calcout, "$(P)CURRENT:CALC")
 	field(CALC, "A")
 	field(OUT, "$(P)CURRENT PP")
 	field(OOPT, "Every Time")
-	field(FLNK, "$(P)BUFF:READ:PARSE")
+	field(FLNK, "$(P)BUFF:READ:PARSE:READINGS")
 }
 
 # These aSub records parse BUFF:READ into 
-# channel PVs (CHNL:XXX:READING and CHNL:XXX:TIME)
+# channel PVs (CHNL:XXX:READING and CHNL:XXX:TIME PPSTAMP)
 
 # They are duplicated as I couldn't find a way to set waveform values from 
 # a single C file and we are limited in the number of OUT fields an aSub record
 # can have.
 
-record(aSub,"$(P)BUFF:READ:PARSE")
+record(aSub,"$(P)BUFF:READ:PARSE:READINGS")
 {
     field(SNAM, "parse_channel_readings")
     field(FTA, "DOUBLE")
@@ -263,7 +262,7 @@ record(aSub,"$(P)BUFF:READ:PARSE")
     field(OUTR, "$(P)CHNL:208:READ PP")
     field(OUTS, "$(P)CHNL:209:READ PP")
     field(OUTT, "$(P)CHNL:210:READ PP")
-	field(FLNK, "$(P)BUFF:READ:PARSE:TIME")
+	field(FLNK, "$(P)BUFF:READ:PARSE:TIME PP")
 }
 
 record(aSub,"$(P)BUFF:READ:PARSE:TIME")
@@ -295,7 +294,7 @@ record(aSub,"$(P)BUFF:READ:PARSE:TIME")
 	field(FLNK, "$(P)CURRENT:CALC")
 }
 
-record(ai, "$(P)BUFF:MEM:AVAIL")
+record(ai, "$(P)BUFFER:MEM:AVAIL")
 {
     field(DESC, "Available buffer bytes")
     field(DTYP, "stream")
@@ -315,6 +314,7 @@ record(ai, "$(P)BUFF:MEM:USED")
 record(ao, "$(P)BUFF:SIZE:SP") 
 {
     field(DESC, "Set Size of Buffer")
+    field(SCAN, "1 second")
     field(DTYP, "stream")
     field(OUT,  "@devKeithley_2700.proto setBufferSize $(PORT)")
     field(HIHI, "55001")
@@ -325,7 +325,6 @@ record(ao, "$(P)BUFF:SIZE:SP")
     field(SIOL, "$(P)SIM:BUFF:SIZE:SP")
     field(SDIS, "$(P)DISABLE")
 }
-
 record(ao, "$(P)BUFF:SIZE") 
 {
     field(DESC, "Get Size of Buffer")
@@ -344,12 +343,13 @@ record(ao, "$(P)BUFF:SIZE")
 record(bo, "$(P)TIME:FORMAT:SP") 
 {
     field(DESC, "Query Time Stamp Format")
+    field(SCAN, "1 second")
     field(DTYP, "stream")
     field(OUT,  "@devKeithley_2700.proto setTimeStamp $(PORT)")
     field(ZNAM, "ABS")
     field(ONAM, "DELT")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:TIME:FORMAT:SP")
+    field(SIOL, "$(P)SIM:TIME PPSTAMP:FORMAT:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -372,10 +372,10 @@ record(bo, "$(P)TIME:FORMAT")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@devKeithley_2700.proto getDelayState $(PORT)")
-    field(ZNAM, "ON")
-    field(ONAM, "OFF")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:TIME:FORMAT:SP")
+    field(SIOL, "$(P)SIM:TIME PPSTAMP:FORMAT:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -385,8 +385,8 @@ record(bo, "$(P)DELAYMODE:SP")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(OUT,  "@devKeithley_2700.proto setDelayState $(PORT)")
-    field(ZNAM, "ON")
-    field(ONAM, "OFF")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DELAYMODE:SP")
     field(SDIS, "$(P)DISABLE")
@@ -478,9 +478,9 @@ record(bo, "$(P)FRES:AUTORANGE:SP")
 {
     field(DESC, "Toggle auto range on/off")
     field(DTYP, "stream")
-    field(OUT,  "@devKeithley_2700.proto setAutoRange $(PORT)")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
+    field(OUT,  "@devKeithley_2700.proto setAutoRange($(P)CH) $(PORT)")
+    field(ZNAM, "ON")
+    field(ONAM, "OFF")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FRES:AUTORANGE:SP")
     field(SDIS, "$(P)DISABLE")
