@@ -314,7 +314,6 @@ record(ai, "$(P)BUFF:MEM:USED")
 record(ao, "$(P)BUFF:SIZE:SP") 
 {
     field(DESC, "Set Size of Buffer")
-    field(SCAN, "1 second")
     field(DTYP, "stream")
     field(OUT,  "@devKeithley_2700.proto setBufferSize $(PORT)")
     field(HIHI, "55001")

@@ -21,8 +21,8 @@ dbLoadRecords("${TOP}/db/keithley2700.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, 
 dbLoadRecords("${TOP}/db/keithley2700_channels.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
 
 ## For debugging:
-#asynSetTraceMask("L0",-1,0x9) 
-#asynSetTraceIOMask("L0",-1,0x2)
+asynSetTraceMask("L0",-1,0x9) 
+asynSetTraceIOMask("L0",-1,0x2)
 
 ### set initial values here ###
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetConnect("KHLY2700","L0")
