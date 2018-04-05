@@ -1,26 +1,25 @@
 ## Template for x/y/z/vector channel PVs ##
 
-record(ai, "$(P)$(CHANNEL):FIELDREADING")
+record(ai, "$(P)$(CHANNEL):FIELD:RAW")
 {
-	field(DESC, "Field reading")
-    field(DTYP, "stream")
-	field(SCAN, "2 second")
-	field(INP, "@devLakeshore_460.proto getMagneticFieldReading($(CHANNEL)) $(PORT)")    
+	field(DESC, "Magnetic field reading")
+	field(DTYP, "stream")
+	field(SCAN, "1 second")
+	field(INP, "@devLakeshore_460.proto getMagneticFieldReading($(CHANNEL)) $(PORT)")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
-	field(EGU, "")
 	field(PREC, "4")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(CHANNEL):FIELDREADING")
+	field(FLNK, "$(P)$(CHANNEL):MAXREADING")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(CHANNEL):FIELD:RAW")
     field(SDIS, "$(P)DISABLE")
-    info(alarm, "Lakeshore460")
+	field(EGU, "")
 }
 
 record(ai, "$(P)$(CHANNEL):MAXREADING")
 {
 	field(DESC, "Max reading")
 	field(DTYP, "stream")
-	field(SCAN, "2 second")
 	field(INP, "@devLakeshore_460.proto getMaxReading($(CHANNEL)) $(PORT)")    
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
@@ -29,12 +28,13 @@ record(ai, "$(P)$(CHANNEL):MAXREADING")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(CHANNEL):MAXREADING")
     field(SDIS, "$(P)DISABLE")
+	field(FLNK, "$(P)$(CHANNEL):RELMODEREADING")
+
 }
 
 record(ai, "$(P)$(CHANNEL):RELMODEREADING")
 {
 	field(DESC, "Relative Mode Reading")
-	field(SCAN, "2 second")
 	field(DTYP, "stream")
 	field(INP, "@devLakeshore_460.proto getRelModeReading($(CHANNEL)) $(PORT)")    
 	info(INTEREST, "HIGH")
@@ -44,35 +44,87 @@ record(ai, "$(P)$(CHANNEL):RELMODEREADING")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(CHANNEL):RELMODEREADING")
     field(SDIS, "$(P)DISABLE")
+	field(FLNK, "$(P)$(CHANNEL):UNIT:MULT")
+
 }
 
-record(ai, "$(P)$(CHANNEL):RELMODESET")
+record(mbbi, "$(P)$(CHANNEL):UNIT:MULT")
 {
-	field(DESC, "return rel mode set point")
-	field(SCAN, "5 second")
+	field(DESC, "Multiplier for magnetic field reading")
 	field(DTYP, "stream")
-	field(INP, "@devLakeshore_460.proto getRelModeSetpoint($(CHANNEL)) $(PORT)")
-	info(INTEREST, "HIGH")	
-	info(ARCHIVE, "VAL")
-	field(EGU, "")
-	field(PREC, "4")
+	field(INP, "@devLakeshore_460.proto getFieldUnitsMulti($(CHANNEL)) $(PORT)")
+	field(ZRST, "u")
+	field(ONST, "m")
+	field(TWST, " ")
+	field(THST, "k")
+	info(INTEREST, "LOW")
+	field(FLNK, "$(P)$(CHANNEL):CALC:MULT")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(CHANNEL):RELMODESET")
+    field(SIOL, "$(P)SIM:$(CHANNEL):UNIT:MULT")
     field(SDIS, "$(P)DISABLE")
-	field(FLNK, "$(P)$(CHANNEL):FIELDREADING:UNIT:MULT")
 }
 
-record(ao, "$(P)$(CHANNEL):RELMODESET:SP")
+record(scalcout, "$(P)$(CHANNEL):CALC:MULT")
 {
-	field(DESC, "set rel mode set point")
-	field(DTYP, "stream")
-	field(OUT, "@devLakeshore_460.proto setRelModeSetpoint($(CHANNEL)) $(PORT)")    
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(CHANNEL):RELMODESET:SP")
-    field(SDIS, "$(P)$(CHANNEL):DISABLE")
-	info(INTEREST, "LOW")	
-	field(EGU, "")
+	field(DESC, "Alter the multiplier string to a number")
+	field(CALC, "AA='u'?0.000001:AA='m'?0.001:AA='k'?1000:1")
+	field(INAA, "$(P)$(CHANNEL):UNIT:MULT")
+	info(INTEREST, "LOW")
+	field(FLNK, "$(P)$(CHANNEL):CALC:FAN")
 }
+
+record(fanout, "$(P)$(CHANNEL):CALC:FAN")
+{
+	field(DESC, "Trigger all readback calculations")
+	field(LNK1, "$(P)$(CHANNEL):FIELD:CALC:GAUSS.PROC")
+	field(LNK2, "$(P)$(CHANNEL):FIELD:CALC:TESLA.PROC")
+	field(LNK3, "$(P)$(CHANNEL):FIELD:UNIT:CALC.PROC")
+	info(INTEREST, "LOW")	
+}
+
+record(calcout, "$(P)$(CHANNEL):FIELD:CALC:GAUSS")
+{
+	field(DESC, "Calculating gauss with multiplier")
+	field(INPA, "$(P)$(CHANNEL):FIELD:RAW")
+	field(INPB, "$(P)UNIT")
+	field(INPC, "$(P)$(CHANNEL):CALC:MULT")
+	field(CALC, "B=0?A*C:A*C*10000")
+	field(OUT, "$(P)$(CHANNEL):FIELD:GAUSS PP")
+	info(INTEREST, "LOW")
+	field(EGU, "G")
+}
+
+record(ai, "$(P)$(CHANNEL):FIELD:GAUSS") 
+{
+	field(DESC, "Gauss field reading")
+	field(EGU, "G")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+	field(PREC, "4")
+}
+
+record(calcout, "$(P)$(CHANNEL):FIELD:CALC:TESLA")
+{
+	field(DESC, "Calculating tesla value with multiplier")
+	field(INPA, "$(P)$(CHANNEL):FIELD:RAW")
+	field(INPB, "$(P)UNIT")
+	field(INPC, "$(P)$(CHANNEL):CALC:MULT")
+	field(CALC, "B=1?A*C:A*C*0.0001")
+	field(OUT, "$(P)$(CHANNEL):FIELD:TESLA PP")
+	info(INTEREST, "LOW")
+	field(EGU, "T")
+}
+
+record(ai, "$(P)$(CHANNEL):FIELD:TESLA") 
+{
+	field(DESC, "Tesla field reading")
+	field(EGU, "T")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+	field(PREC, "4")
+}
+
+
 
 record(bo, "$(P)$(CHANNEL):MAXCLEAR:SP")
 {
@@ -90,38 +142,22 @@ alias("$(P)$(CHANNEL):MAXCLEAR:SP","$(P)$(CHANNEL):MAXCLEAR")
 
 ## FIELD READING UNITS CALCULATION ###
 
-record(scalcout, "$(P)$(CHANNEL):FIELDREADING:UNIT:CALC")
+record(scalcout, "$(P)$(CHANNEL):FIELD:UNIT:CALC")
 {
 	field(DESC, "field units concat.")
-	field(INAA, "$(P)$(CHANNEL):FIELDREADING:UNIT:MULT CP MS")
+	field(INAA, "$(P)$(CHANNEL):UNIT:MULT CP MS")
 	field(INBB, "$(P)UNIT CP MS")	
 	field(CALC, "AA+BB")
 	info(INTEREST, "LOW")
 	field(OOPT, "Every Time")
 }
 
-record(stringout, "$(P)$(CHANNEL):FIELDREADING:UNIT:CALC:STR")
+record(stringout, "$(P)$(CHANNEL):FIELD:UNIT:CALC:STR")
 {
     field(DESC, "Push units to field reading")
-    field(DOL, "$(P)$(CHANNEL):FIELDREADING:UNIT:CALC.SVAL CP")
+    field(DOL, "$(P)$(CHANNEL):FIELD:UNIT:CALC.SVAL CP")
 	field(OMSL, "closed_loop")
-    field(OUT,  "$(P)$(CHANNEL):FIELDREADING.EGU PP")
-}
-
-record(mbbi, "$(P)$(CHANNEL):FIELDREADING:UNIT:MULT")
-{
-	field(DESC, "Multiplier for field reading")
-	field(DTYP, "stream")
-	field(INP, "@devLakeshore_460.proto getFieldUnitsMulti($(CHANNEL)) $(PORT)")
-	field(ZRST, "u")
-	field(ONST, "m")
-	field(TWST, " ")
-	field(THST, "k")
-	info(INTEREST, "LOW")
-	field(FLNK, "$(P)$(CHANNEL):MAXREADING:UNIT:MULT")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(CHANNEL):FIELDREADING:UNIT:MULT")
-    field(SDIS, "$(P)DISABLE")
+    field(OUT,  "$(P)$(CHANNEL):FIELD.EGU PP")
 }
 
 ## MAX HOLD READING UNITS CALCULATION ###
@@ -208,7 +244,6 @@ record(mbbi, "$(P)$(CHANNEL):RELMODESET:MULT")
 	field(TWST, " ")
 	field(THST, "k")
 	info(INTEREST, "LOW")
-	field(FLNK, "$(P)$(CHANNEL):MODE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(CHANNEL):RELMODESET:MULT")
     field(SDIS, "$(P)DISABLE")
@@ -230,6 +265,34 @@ record(stringout, "$(P)$(CHANNEL):RELMODESET:UNIT:CALC:STR")
     field(DOL, "$(P)$(CHANNEL):RELMODESET:UNIT:CALC.SVAL CP")
 	field(OMSL, "closed_loop")
     field(OUT,  "$(P)$(CHANNEL):RELMODESET.EGU PP")
+}
+
+record(ai, "$(P)$(CHANNEL):RELMODESET")
+{
+	field(DESC, "return rel mode set point")
+	field(SCAN, "5 second")
+	field(DTYP, "stream")
+	field(INP, "@devLakeshore_460.proto getRelModeSetpoint($(CHANNEL)) $(PORT)")
+	info(INTEREST, "HIGH")	
+	info(ARCHIVE, "VAL")
+	field(EGU, "")
+	field(PREC, "4")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(CHANNEL):RELMODESET")
+    field(SDIS, "$(P)DISABLE")
+	field(FLNK, "$(P)$(CHANNEL):MODE")
+}
+
+record(ao, "$(P)$(CHANNEL):RELMODESET:SP")
+{
+	field(DESC, "set rel mode set point")
+	field(DTYP, "stream")
+	field(OUT, "@devLakeshore_460.proto setRelModeSetpoint($(CHANNEL)) $(PORT)")    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(CHANNEL):RELMODESET:SP")
+    field(SDIS, "$(P)$(CHANNEL):DISABLE")
+	info(INTEREST, "LOW")	
+	field(EGU, "")
 }
 
 record(bi, "$(P)$(CHANNEL):MODE") 
@@ -511,7 +574,13 @@ record(bo, "$(P)$(CHANNEL):STATUS:SP")
 
 ### SIMULATION RECORDS ###
 
-record(mbbi, "$(P)$(CHANNEL):SIM:FIELDREADING:UNIT:MULT")
+record(mbbi, "$(P)$(CHANNEL):SIM:UNIT:MULT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)$(CHANNEL):SIM:FIELD:RAW")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -563,7 +632,7 @@ record(mbbi, "$(P)$(CHANNEL):SIM:RANGE")
 
 alias("$(P)$(CHANNEL):SIM:RANGE","$(P)$(CHANNEL):SIM:RANGE:SP")
 
-record(ai, "$(P)$(CHANNEL):SIM:FIELDREADING")
+record(ai, "$(P)$(CHANNEL):SIM:FIELD")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")

@@ -13,6 +13,10 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=7)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=even)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 
+## Commands for turning on debugging.  Shows traffic on connection.
+#asynSetTraceMask("L0",-1,0x9) 
+#asynSetTraceIOMask("L0",-1,0x2)
+
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
