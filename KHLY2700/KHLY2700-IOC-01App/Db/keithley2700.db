@@ -242,10 +242,6 @@ record(calcout, "$(P)CURRENT:CALC")
 # These aSub records parse BUFF:READ into 
 # channel PVs (CHNL:XXX:READ and CHNL:XXX:TIME)
 
-# They are duplicated as I couldn't find a way to set waveform values from 
-# a single C file and we are limited in the number of OUT fields an aSub record
-# can have.
-
 record(aSub,"$(P)BUFF:READ:PARSE:READINGS")
 {
     field(SNAM, "parse_channel_readings")
