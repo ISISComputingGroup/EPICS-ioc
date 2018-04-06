@@ -18,7 +18,7 @@ AG53220A_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 # Turn on asynTraceFlow and asynTraceError for global trace, i.e. no connected asynUser.
-#asynSetTraceMask("", 0, 17)
+asynSetTraceMask("", 0, 17)
 
 ## main args are:  portName, configSection, configFile, host, options (see lvDCOMConfigure() documentation in lvDCOMDriver.cpp)
 ##
@@ -27,8 +27,8 @@ AG53220A_IOC_01_registerRecordDeviceDriver pdbbase
 ##
 ## the "options" argument is a combination of the following flags (as per the #lvDCOMOptions enum in lvDCOMInterface.h)
 ##    viWarnIfIdle=1, viStartIfIdle=2, viStopOnExitIfStarted=4, viAlwaysStopOnExit=8
-lvDCOMConfigure("ex1", "frontpanel", "$(TOP)/Agilent_53220AApp/protocol/agilent53200A.xml", "ndxchipir", 6, "", "spudulike", "reliablebeam")
-#lvDCOMConfigure("ex1", "frontpanel", "$(TOP)/Agilent_53220AApp/protocol/agilent53200A.xml", "", 6)
+#lvDCOMConfigure("ex1", "frontpanel", "$(AG53220A)/Agilent_53220AApp/protocol/agilent53200A.xml", "ndxchipir", 6, "", "spudulike", "reliablebeam")
+lvDCOMConfigure("ex1", "frontpanel", "$(AG53220A)/Agilent_53220AApp/protocol/agilent53200A.xml", "", 6)
 
 #asynSetTraceMask("ex1",0,0xff)
 asynSetTraceIOMask("ex1",0,0x2)
