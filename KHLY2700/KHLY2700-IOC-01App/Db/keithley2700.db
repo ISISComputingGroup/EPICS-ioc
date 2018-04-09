@@ -110,7 +110,6 @@ record(bo, "$(P)SYSTEM:CLEAR:SP")
 	field(ZNAM, "")
 	field(ONAM, "")
 	field(OUT, "@devKeithley_2700.proto clearSystemErrors $(PORT)")  
-
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SYSTEM:CLEAR:SP")
     field(SDIS, "$(P)DISABLE")
@@ -134,7 +133,25 @@ record(mbbo, "$(P)MEASUREMENT:SP") {
     field(SIOL, "$(P)SIM:MEASUREMENT:SP")
     field(SDIS, "$(P)DISABLE")
 }
-alias("$(P)MEASUREMENT:SP","$(P)MEASUREMENT")
+
+record(mbbi, "$(P)MEASUREMENT") {
+	field(DESC, "Get measurement function")
+	field(DTYP, "stream")
+	field(SCAN, "1 second")
+	field(ZRST, "VOLT")
+    field(ONST, "VOLT:AC")
+    field(TWST, "CURR")
+    field(THST, "CURR:AC")
+    field(FRST, "RES")
+    field(FVST, "FRES")
+    field(SXST, "CONT")
+    field(SVST, "FREQ")
+    field(EIST, "PER")
+	field(OUT, "@devKeithley_2700.proto getMeasurement($(P)CH) $(PORT)")  
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MEASUREMENT")
+    field(SDIS, "$(P)DISABLE")
+}
 
 record(mbbo, "$(P)BUFF:SOURCE:SP") 
 {
