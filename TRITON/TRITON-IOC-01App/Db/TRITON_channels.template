@@ -1,0 +1,150 @@
+record(bi, "$(P)CHANNELS:$(CHAN):STATE")
+{
+    field(DESC, "State on $(CHAN)")
+    field(DTYP, "stream")
+    field(SCAN, "2 second")  # There are a lot of channels. Reduce the scan rate here to avoid overloading device.
+    field(INP, "@devtriton.proto getChanState($(CHAN_PLUS_ONE)) $(PORT)")
+	
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+    field(FLNK, "$(P)CHANNELS:$(CHAN):READALL:CALC")
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CHANNELS:$(CHAN):STATE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)CHANNELS:$(CHAN):STATE:SP")
+{
+    field(DESC, "State setpoint of $(CHAN)")
+    field(DTYP, "stream")
+    field(OUT, "@devtriton.proto setChanState($(CHAN_PLUS_ONE)) $(PORT)")
+	
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CHANNELS:$(CHAN):STATE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(calcout, "$(P)CHANNELS:$(CHAN):READALL:CALC") 
+{
+    field(INPA, "$(P)CHANNELS:$(CHAN):STATE MS")
+	field(CALC, "A")
+	field(OOPT, "When Non-zero")
+	field(OUT, "$(P)CHANNELS:$(CHAN):READALL:FANOUT PP")
+}
+
+record(fanout, "$(P)CHANNELS:$(CHAN):READALL:FANOUT") 
+{
+    field(LNK1, "$(P)CHANNELS:$(CHAN):READ:SIG PP")
+	field(LNK2, "$(P)CHANNELS:$(CHAN):READ:SIG:EXCITATION PP")
+	field(LNK3, "$(P)CHANNELS:$(CHAN):READ:SIG:MEAS PP")
+}
+
+
+#
+# Read signal (temp/resistance)
+#
+
+
+record(bi, "$(P)CHANNELS:$(CHAN):READ:SIG")
+{
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto readSig($(CHAN_PLUS_ONE),$(P)CHANNELS:$(CHAN)) $(PORT)")
+}
+
+record(ai, "$(P)CHANNELS:$(CHAN):TEMP")
+{
+    field(DESC, "Temperature of $(CHAN)")
+    field(PREC, "3")
+    field(EGU, "K")
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+}
+
+record(ai, "$(P)CHANNELS:$(CHAN):RES")
+{
+    field(DESC, "Resistance of $(CHAN)")
+    field(PREC, "1")
+    field(EGU, "ohm")
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+}
+
+
+#
+# Excitation
+#
+
+
+record(bi, "$(P)CHANNELS:$(CHAN):READ:SIG:EXCITATION")
+{
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto readExcitation($(CHAN_PLUS_ONE),$(P)CHANNELS:$(CHAN)) $(PORT)")
+}
+
+record(stringin, "$(P)CHANNELS:$(CHAN):EXCITATION:TYPE")
+{
+    field(DESC, "Excitation type of $(CHAN)")
+    info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+}
+
+record(ai, "$(P)CHANNELS:$(CHAN):EXCITATION")
+{
+    field(DESC, "Excitation of $(CHAN)")
+    field(PREC, "5")
+    field(EGU, "V")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+}
+
+
+#
+# Pause/dwell
+#
+
+
+record(bi, "$(P)CHANNELS:$(CHAN):READ:SIG:MEAS")
+{
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto readMeas($(CHAN_PLUS_ONE),$(P)CHANNELS:$(CHAN)) $(PORT)")
+}
+
+record(ai, "$(P)CHANNELS:$(CHAN):PAUSE")
+{
+    field(DESC, "Pause $(CHAN)")
+    field(PREC, "0")
+    field(EGU, "s")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+}
+
+record(ai, "$(P)CHANNELS:$(CHAN):DWELL")
+{
+    field(DESC, "Dwell $(CHAN)")
+    field(PREC, "0")
+    field(EGU, "s")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+}
+
+
+#
+# Simulation records
+#
+
+record(bo, "$(P)SIM:CHANNELS:$(CHAN):STATE:SP")
+{	
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+
+alias("$(P)SIM:CHANNELS:$(CHAN):STATE:SP", "$(P)SIM:CHANNELS:$(CHAN):STATE")

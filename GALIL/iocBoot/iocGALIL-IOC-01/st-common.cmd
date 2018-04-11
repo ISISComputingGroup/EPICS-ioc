@@ -60,6 +60,9 @@ $(IFTESTDEVSIM) < $(MOTOREXT)/settings/motorExtensions.cmd
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
+stringiftest("MOTORCONFIG", "$(MOTORCONFIG=)", 0, 0)
+$(IFMOTORCONFIG) dbLoadRecords("$(AUTOSAVE)/asApp/Db/configMenu.db","P=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=)")
+
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
@@ -85,6 +88,8 @@ $(IFHASMTRCTRL) $(IFNOTSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P
 
 # Save motor settings every 30 seconds
 $(IFHASMTRCTRL) $(IFNOTSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+
+$(IFHASMTRCTRL) $(IFNOTSIM) $(IFMOTORCONFIG) create_manual_set("$(MOTORCONFIG=)Menu.req","P=$(MYPVPREFIX)MOT:,CMP=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=),IOCNAME=$(IOCNAME),MTRCTRL=$(MTRCTRL),CONFIGMENU=1")
 
 ## Start any sequence programs
 #seq sncxxx,"user=icsHost"

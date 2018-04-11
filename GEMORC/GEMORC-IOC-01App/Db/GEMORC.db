@@ -22,21 +22,14 @@ record(bo, "$(P)DISABLE")
 
 ## Current state
 
-record(scalcout, "$(P)ID:_TRIG") {
-    field(DESC, "Triggers ID read until non-blank")
-	field(SCAN, "5 second")
-	field(INAA, "$(P)ID")
-	field(CALC, "AA==' '?1:0")
-	field(OUT, "$(P)ID.PROC")
-}
-
-record(stringin, "$(P)ID") {
+record(waveform, "$(P)ID") {
     field(DESC, "PnP Identity")
-    field(SCAN, "Passive")
+	field(SCAN, "5 second")
 	field(DTYP, "stream")
     field(INP, "@devgemorc.proto getID $(PORT)")
-	field(VAL, " ")
-	field(OOPT, "When Non-zero")
+	
+    field(NELM, "512")
+    field(FTVL, "CHAR")
 	
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:ID")
@@ -302,7 +295,7 @@ record(ao, "$(P)INIT:STOP") {
 
 record(stringin, "$(P)INIT:STAT") {
     field(DESC, "Status of the init sequence")
-	field(VAL, "Initialisation routine not yet run")
+	field(VAL, "Sequence not run since IOC startup")
 	field(PINI, "YES")
 }
 
@@ -522,9 +515,7 @@ record(calcout, "$(P)UTILITY") {
 	field(INPA, "$(P)WIDTH")
 	field(INPB, "$(P)BACKLASH")
 	
-	# In the VI it is A/(2*(A+B)). I think that's wrong because it makes the max
-	# utility 50%. The soft spec implies strongly this is the correct formula
-	field(CALC, "100*A/(A+2*B)")
+	field(CALC, "100*A/(A+B)")
 	field(PREC, "2")
 	
 	field(EGU, "%")    
@@ -540,7 +531,7 @@ record(calc, "$(P)PERIOD") {
 	field(INPA, "$(P)SPEED")
 	field(INPB, "$(P)WIDTH")
 	field(INPC, "$(P)BACKLASH")
-	field(CALC, "(B+2*C)/A")
+	field(CALC, "2*(B+C)/A")
 	field(PREC, "2")
 	
 	field(EGU, "s")    
@@ -573,7 +564,7 @@ record(longin, "$(P)SIM:CYCLES")
 record(bi, "$(P)SIM:STAT:OSC")
 record(bi, "$(P)SIM:INIT:DONE")
 record(bi, "$(P)SIM:INIT:PROGRESS")
-record(stringin, "$(P)SIM:ID")
+record(waveform, "$(P)SIM:ID")
 
 
 alias("$(P)SIM:WIDTH", "$(P)SIM:WIDTH:SP")
