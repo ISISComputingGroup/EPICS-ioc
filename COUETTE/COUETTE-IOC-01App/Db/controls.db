@@ -1,0 +1,652 @@
+# Read LabVIEW control/indicator "Motor Position (SI)" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Motor_Position__SI__RBV")
+{
+	field(DESC, "LabVIEW 'Motor Position (SI)'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Motor_Position__SI_")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Motor Position (SI)" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Motor_Position__SI_")
+{
+	field(DESC, "LabVIEW 'Motor Position (SI)'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Motor_Position__SI_")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Encoder Position (SI)" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Encoder_Position__SI__RBV")
+{
+	field(DESC, "LabVIEW 'Encoder Position (SI)'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Encoder_Position__SI_")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Encoder Position (SI)" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Encoder_Position__SI_")
+{
+	field(DESC, "LabVIEW 'Encoder Position (SI)'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Encoder_Position__SI_")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Exit" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bi, "$(P)Exit_RBV")
+{
+	field(DESC, "LabVIEW 'Exit'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Exit")
+    field(SCAN, ".1 second")
+    field(ZNAM, "Exit")
+    field(ONAM, "")
+}
+
+# Write to LabVIEW control "Exit" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bo, "$(P)Exit")
+{
+	field(DESC, "LabVIEW 'Exit'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Exit")
+    field(ZNAM, "Exit")
+    field(ONAM, "")
+}
+
+
+# Read LabVIEW control/indicator "Target Position Abs" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Target_Position_Abs_RBV")
+{
+	field(DESC, "LabVIEW 'Target Position Abs'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Target_Position_Abs")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Target Position Abs" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Target_Position_Abs")
+{
+	field(DESC, "LabVIEW 'Target Position Abs'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Target_Position_Abs")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Set Position Abs" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bi, "$(P)Set_Position_Abs_RBV")
+{
+	field(DESC, "LabVIEW 'Set Position Abs'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Set_Position_Abs")
+    field(SCAN, ".1 second")
+    field(ZNAM, "Set")
+    field(ONAM, "")
+}
+
+# Write to LabVIEW control "Set Position Abs" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bo, "$(P)Set_Position_Abs")
+{
+	field(DESC, "LabVIEW 'Set Position Abs'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Set_Position_Abs")
+    field(ZNAM, "Set")
+    field(ONAM, "")
+}
+
+
+# Read LabVIEW control/indicator "Target Position Rel" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Target_Position_Rel_RBV")
+{
+	field(DESC, "LabVIEW 'Target Position Rel'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Target_Position_Rel")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Target Position Rel" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Target_Position_Rel")
+{
+	field(DESC, "LabVIEW 'Target Position Rel'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Target_Position_Rel")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Set Position Rel" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bi, "$(P)Set_Position_Rel_RBV")
+{
+	field(DESC, "LabVIEW 'Set Position Rel'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Set_Position_Rel")
+    field(SCAN, ".1 second")
+    field(ZNAM, "Set")
+    field(ONAM, "")
+}
+
+# Write to LabVIEW control "Set Position Rel" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bo, "$(P)Set_Position_Rel")
+{
+	field(DESC, "LabVIEW 'Set Position Rel'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Set_Position_Rel")
+    field(ZNAM, "Set")
+    field(ONAM, "")
+}
+
+
+# Read LabVIEW control/indicator "Constant Velocity" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Constant_Velocity_RBV")
+{
+	field(DESC, "LabVIEW 'Constant Velocity'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Constant_Velocity")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Constant Velocity" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Constant_Velocity")
+{
+	field(DESC, "LabVIEW 'Constant Velocity'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Constant_Velocity")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Set Constant Velocity" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bi, "$(P)Set_Constant_Velocity_RBV")
+{
+	field(DESC, "LabVIEW 'Set Constant Velocity'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Set_Constant_Velocity")
+    field(SCAN, ".1 second")
+    field(ZNAM, "Set")
+    field(ONAM, "")
+}
+
+# Write to LabVIEW control "Set Constant Velocity" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bo, "$(P)Set_Constant_Velocity")
+{
+	field(DESC, "LabVIEW 'Set Constant Velocity'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Set_Constant_Velocity")
+    field(ZNAM, "Set")
+    field(ONAM, "")
+}
+
+
+# Read LabVIEW control/indicator "Stop Sequence" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bi, "$(P)Stop_Sequence_RBV")
+{
+	field(DESC, "LabVIEW 'Stop Sequence'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Stop_Sequence")
+    field(SCAN, ".1 second")
+    field(ZNAM, "Stop Sequence")
+    field(ONAM, "")
+}
+
+# Write to LabVIEW control "Stop Sequence" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bo, "$(P)Stop_Sequence")
+{
+	field(DESC, "LabVIEW 'Stop Sequence'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Stop_Sequence")
+    field(ZNAM, "Stop Sequence")
+    field(ONAM, "")
+}
+
+
+# Read LabVIEW control/indicator "Start Sequence" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bi, "$(P)Start_Sequence_RBV")
+{
+	field(DESC, "LabVIEW 'Start Sequence'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Start_Sequence")
+    field(SCAN, ".1 second")
+    field(ZNAM, "Start Sequence")
+    field(ONAM, "")
+}
+
+# Write to LabVIEW control "Start Sequence" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bo, "$(P)Start_Sequence")
+{
+	field(DESC, "LabVIEW 'Start Sequence'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Start_Sequence")
+    field(ZNAM, "Start Sequence")
+    field(ONAM, "")
+}
+
+
+# Read LabVIEW control/indicator "Inhibit Readback" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bi, "$(P)Inhibit_Readback_RBV")
+{
+	field(DESC, "LabVIEW 'Inhibit Readback'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Inhibit_Readback")
+    field(SCAN, ".1 second")
+    field(ZNAM, "OFF/ON")
+    field(ONAM, "")
+}
+
+# Write to LabVIEW control "Inhibit Readback" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bo, "$(P)Inhibit_Readback")
+{
+	field(DESC, "LabVIEW 'Inhibit Readback'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Inhibit_Readback")
+    field(ZNAM, "OFF/ON")
+    field(ONAM, "")
+}
+
+
+# Read LabVIEW control/indicator "Stop Move" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bi, "$(P)Stop_Move_RBV")
+{
+	field(DESC, "LabVIEW 'Stop Move'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Stop_Move")
+    field(SCAN, ".1 second")
+    field(ZNAM, "Stop Move")
+    field(ONAM, "")
+}
+
+# Write to LabVIEW control "Stop Move" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bo, "$(P)Stop_Move")
+{
+	field(DESC, "LabVIEW 'Stop Move'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Stop_Move")
+    field(ZNAM, "Stop Move")
+    field(ONAM, "")
+}
+
+
+# Read LabVIEW control/indicator "Active" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bi, "$(P)Active_RBV")
+{
+	field(DESC, "LabVIEW 'Active'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Active")
+    field(SCAN, ".1 second")
+    field(ZNAM, "")
+    field(ONAM, "")
+}
+
+# Write to LabVIEW control "Active" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bo, "$(P)Active")
+{
+	field(DESC, "LabVIEW 'Active'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Active")
+    field(ZNAM, "")
+    field(ONAM, "")
+}
+
+
+## Creating both stringout/stringin and waveform records for "Message" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+## EPICS strings are restricted to 40 characters in length, if your strings are
+## longer than this choose the character waveform records and adjust NELM if necessary
+
+# Read LabVIEW control/indicator "Message" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(stringin, "$(P)Message_RBV")
+{
+	field(DESC, "LabVIEW 'Message'")
+    field(DTYP, "asynOctetRead")
+    field(INP,  "@asyn(lvfp,0,0)Message")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Message" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(stringout, "$(P)Message")
+{
+	field(DESC, "LabVIEW 'Message'")
+    field(DTYP, "asynOctetWrite")
+    field(OUT,  "@asyn(lvfp,0,0)Message")
+}
+
+# Read LabVIEW control/indicator "Message" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(waveform, "$(P)MessageWF_RBV")
+{
+	field(DESC, "LabVIEW 'Message'")
+    field(DTYP, "asynOctetRead")
+	field(FTVL, "CHAR")
+	field(NELM, 256)
+    field(INP,  "@asyn(lvfp,0,0)Message")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Message" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(waveform, "$(P)MessageWF")
+{
+	field(DESC, "LabVIEW 'Message'")
+    field(DTYP, "asynOctetWrite")
+	field(FTVL, "CHAR")
+	field(NELM, 256)
+    field(INP,  "@asyn(lvfp,0,0)Message")
+}
+
+
+# Read LabVIEW control/indicator "Reset" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bi, "$(P)Reset_RBV")
+{
+	field(DESC, "LabVIEW 'Reset'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Reset")
+    field(SCAN, ".1 second")
+    field(ZNAM, "Reset")
+    field(ONAM, "")
+}
+
+# Write to LabVIEW control "Reset" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bo, "$(P)Reset")
+{
+	field(DESC, "LabVIEW 'Reset'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Reset")
+    field(ZNAM, "Reset")
+    field(ONAM, "")
+}
+
+
+# Read LabVIEW control/indicator "Set to Zero" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bi, "$(P)Set_to_Zero_RBV")
+{
+	field(DESC, "LabVIEW 'Set to Zero'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Set_to_Zero")
+    field(SCAN, ".1 second")
+    field(ZNAM, "Set to Zero")
+    field(ONAM, "")
+}
+
+# Write to LabVIEW control "Set to Zero" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bo, "$(P)Set_to_Zero")
+{
+	field(DESC, "LabVIEW 'Set to Zero'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Set_to_Zero")
+    field(ZNAM, "Set to Zero")
+    field(ONAM, "")
+}
+
+
+# Read LabVIEW control/indicator "Mode" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(mbbi, "$(P)Mode_RBV")
+{
+	field(DESC, "LabVIEW 'Mode'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Mode")
+    field(SCAN, ".1 second")
+
+    field(ZRVL, 0)
+    field(ZRST, "Value-0")
+        
+}
+
+# Write to LabVIEW control "Mode" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(mbbo, "$(P)Mode")
+{
+	field(DESC, "LabVIEW 'Mode'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Mode")
+
+    field(ZRVL, 0)
+    field(ZRST, "Value-0")
+        
+}
+
+
+# Read LabVIEW control/indicator "Max" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Max_RBV")
+{
+	field(DESC, "LabVIEW 'Max'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Max")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Max" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Max")
+{
+	field(DESC, "LabVIEW 'Max'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Max")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Min" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Min_RBV")
+{
+	field(DESC, "LabVIEW 'Min'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Min")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Min" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Min")
+{
+	field(DESC, "LabVIEW 'Min'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Min")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Velocity" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Velocity_RBV")
+{
+	field(DESC, "LabVIEW 'Velocity'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Velocity")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Velocity" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Velocity")
+{
+	field(DESC, "LabVIEW 'Velocity'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Velocity")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Initial Delay1" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Initial_Delay1_RBV")
+{
+	field(DESC, "LabVIEW 'Initial Delay1'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Initial_Delay1")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Initial Delay1" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Initial_Delay1")
+{
+	field(DESC, "LabVIEW 'Initial Delay1'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Initial_Delay1")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Acceleration1" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Acceleration1_RBV")
+{
+	field(DESC, "LabVIEW 'Acceleration1'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Acceleration1")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Acceleration1" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Acceleration1")
+{
+	field(DESC, "LabVIEW 'Acceleration1'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Acceleration1")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Velocity1" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Velocity1_RBV")
+{
+	field(DESC, "LabVIEW 'Velocity1'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Velocity1")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Velocity1" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Velocity1")
+{
+	field(DESC, "LabVIEW 'Velocity1'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Velocity1")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Position1" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Position1_RBV")
+{
+	field(DESC, "LabVIEW 'Position1'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Position1")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Position1" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Position1")
+{
+	field(DESC, "LabVIEW 'Position1'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Position1")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Initial Delay2" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Initial_Delay2_RBV")
+{
+	field(DESC, "LabVIEW 'Initial Delay2'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Initial_Delay2")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Initial Delay2" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Initial_Delay2")
+{
+	field(DESC, "LabVIEW 'Initial Delay2'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Initial_Delay2")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Acceleration2" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Acceleration2_RBV")
+{
+	field(DESC, "LabVIEW 'Acceleration2'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Acceleration2")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Acceleration2" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Acceleration2")
+{
+	field(DESC, "LabVIEW 'Acceleration2'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Acceleration2")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Velocity2" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Velocity2_RBV")
+{
+	field(DESC, "LabVIEW 'Velocity2'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Velocity2")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Velocity2" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Velocity2")
+{
+	field(DESC, "LabVIEW 'Velocity2'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Velocity2")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Position2" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ai, "$(P)Position2_RBV")
+{
+	field(DESC, "LabVIEW 'Position2'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Position2")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Position2" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(ao, "$(P)Position2")
+{
+	field(DESC, "LabVIEW 'Position2'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Position2")
+    field(PREC, "3")
+}
+
+
+# Read LabVIEW control/indicator "Busy" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bi, "$(P)Busy_RBV")
+{
+	field(DESC, "LabVIEW 'Busy'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Busy")
+    field(SCAN, ".1 second")
+    field(ZNAM, "")
+    field(ONAM, "")
+}
+
+# Write to LabVIEW control "Busy" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bo, "$(P)Busy")
+{
+	field(DESC, "LabVIEW 'Busy'")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(lvfp,0,0)Busy")
+    field(ZNAM, "")
+    field(ONAM, "")
+}
+
