@@ -1,2 +1,4 @@
 function(fermichopper)
 function(speedSpSend)
+function(commandCheck)
+registrar(keep_sp_and_rbv_in_syncRegistrar)
