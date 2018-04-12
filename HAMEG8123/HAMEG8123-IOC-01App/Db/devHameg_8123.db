@@ -1,19 +1,20 @@
-record(bo, "$(P)SIM")
+record(bo, "$(P)SIM") 
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
     field(ZNAM, "NO")
     field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
 }
 
 record(bo, "$(P)DISABLE") 
 {
-    field(DESC, "Disable comms")
-    field(PINI, "YES")
-    field(VAL, "0")
-    field(OMSL, "supervisory")
-    field(ZNAM, "COMMS ENABLED")
-    field(ONAM, "COMMS DISABLED")
+  field(DESC, "Disable comms")
+  field(PINI, "YES")
+  field(VAL, "$(DISABLE=0)")
+  field(OMSL, "supervisory")
+  field(ZNAM, "COMMS ENABLED")
+  field(ONAM, "COMMS DISABLED")
 }
 
 record(stringin, "$(P)IDN")
@@ -274,7 +275,7 @@ record(bo, "$(P)CHAN_A:IMPEDANCE:SP")
     field(ZNAM, "50")
     field(ONAM, "1M")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CHAN_A:IMPEDANCE:SP")
+    field(SIOL, "$(P)SIM:CHAN_A:IMPEDANCE:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 
