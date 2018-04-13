@@ -11,6 +11,9 @@ record(ai, "$(P)MOTOR:POSITION")
     field(INP,  "@asyn(lvfp,0,0)Motor_Position__SI_")
     field(PREC, "3")
     field(SCAN, ".1 second")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	field(EGU, "deg")
 }
 
 # Read LabVIEW control/indicator "Encoder Position (SI)" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -21,6 +24,9 @@ record(ai, "$(P)ENCODER:POSITION")
     field(INP,  "@asyn(lvfp,0,0)Encoder_Position__SI_")
     field(PREC, "3")
     field(SCAN, ".1 second")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	field(EGU, "deg")
 }
 
 # Write to LabVIEW control "Set to Zero" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -40,6 +46,7 @@ record(ao, "$(P)MOTOR:POSITION:SP")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn(lvfp,0,0)Target_Position_Abs")
     field(PREC, "3")
+	field(EGU, "deg")
 }
 
 # Write to LabVIEW control "Target Position Rel" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -49,6 +56,7 @@ record(ao, "$(P)MOTOR:POSITION:SP:REL")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn(lvfp,0,0)Target_Position_Rel")
     field(PREC, "3")
+	field(EGU, "deg")
 }
 
 # Write to LabVIEW control "Stop Move" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -75,6 +83,9 @@ record(ai, "$(P)MOTOR:VEL")
     field(INP,  "@asyn(lvfp,0,0)Velocity")
     field(PREC, "3")
     field(SCAN, ".1 second")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+	field(EGU, "deg/s")
 }
 
 # Read LabVIEW control/indicator "Max" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -85,6 +96,9 @@ record(ai, "$(P)MOTOR:VEL:MAX")
     field(INP,  "@asyn(lvfp,0,0)Max")
     field(PREC, "3")
     field(SCAN, ".1 second")
+	info(INTEREST, "LOW")
+	info(archive, "VAL")
+	field(EGU, "deg/s")
 }
 
 # Read LabVIEW control/indicator "Min" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -95,6 +109,9 @@ record(ai, "$(P)MOTOR:VEL:MIN")
     field(INP,  "@asyn(lvfp,0,0)Min")
     field(PREC, "3")
     field(SCAN, ".1 second")
+	info(INTEREST, "LOW")
+	info(archive, "VAL")
+	field(EGU, "deg/s")
 }
 
 # Write to LabVIEW control "Constant Velocity" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -104,6 +121,7 @@ record(ao, "$(P)MOTOR:VEL:SP")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn(lvfp,0,0)Constant_Velocity")
 	field(PREC, "3")
+	field(EGU, "deg/s")
 }
 
 # Read LabVIEW control/indicator "Constant Velocity" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -114,6 +132,7 @@ record(ai, "$(P)MOTOR:VEL:SP:RBV")
     field(INP,  "@asyn(lvfp,0,0)Constant_Velocity")
     field(PREC, "3")
     field(SCAN, ".1 second")
+	field(EGU, "deg/s")
 }
 
 # Write to LabVIEW control "Mode" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -129,7 +148,9 @@ record(mbbo, "$(P)MOTOR:VEL:MODE:SP")
     field(TWVL, 2)
     field(TWST, "revs per min")
     field(THVL, 3)
-    field(THST, "shear rate")      
+    field(THST, "shear rate")
+    info(INTEREST, "HIGH")
+	info(archive, "VAL")	
 }
 
 
@@ -174,6 +195,9 @@ record(ao, "$(P)SEQ:1:INITIALDELAY:SP")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn(lvfp,0,0)Initial_Delay1")
     field(PREC, "3")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	field(EGU, "ms")
 }
 
 # Write to LabVIEW control "Acceleration1" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -183,6 +207,9 @@ record(ao, "$(P)SEQ:1:ACCELERATION:SP")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn(lvfp,0,0)Acceleration1")
     field(PREC, "3")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	field(EGU, "deg/s^2")
 }
 
 # Write to LabVIEW control "Velocity1" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -192,6 +219,9 @@ record(ao, "$(P)SEQ:1:VELOCITY:SP")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn(lvfp,0,0)Velocity1")
     field(PREC, "3")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	field(EGU, "deg/s")
 }
 
 # Write to LabVIEW control "Position1" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -201,6 +231,9 @@ record(ao, "$(P)SEQ:1:POSITION:SP")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn(lvfp,0,0)Position1")
     field(PREC, "3")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	field(EGU, "deg")
 }
 
 # Write to LabVIEW control "Initial Delay2" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -210,6 +243,9 @@ record(ao, "$(P)SEQ:2:INITIALDELAY:SP")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn(lvfp,0,0)Initial_Delay2")
     field(PREC, "3")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	field(EGU, "ms")
 }
 
 # Write to LabVIEW control "Acceleration2" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -219,6 +255,9 @@ record(ao, "$(P)SEQ:2:ACCELERATION:SP")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn(lvfp,0,0)Acceleration2")
     field(PREC, "3")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	field(EGU, "deg/s^2")
 }
 
 # Write to LabVIEW control "Velocity2" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -228,6 +267,9 @@ record(ao, "$(P)SEQ:2:VELOCITY:SP")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn(lvfp,0,0)Velocity2")
     field(PREC, "3")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	field(EGU, "deg/s")
 }
 
 # Write to LabVIEW control "Position2" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
@@ -237,5 +279,8 @@ record(ao, "$(P)SEQ:2:POSITION:SP")
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn(lvfp,0,0)Position2")
     field(PREC, "3")
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	field(EGU, "deg")
 }
 
