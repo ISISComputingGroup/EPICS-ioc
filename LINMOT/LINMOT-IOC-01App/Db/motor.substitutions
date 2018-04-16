@@ -7,3 +7,8 @@ file $(MOTOR)/db/linmot_extra.db {
 pattern {P, M, OFF}
 {"\$(P)", "\$(M)", "\$(OFF)"}
 }
+
+file $(MOTOR)/db/periodic_polling.db {
+pattern {P, M}
+{"\$(P)", "\$(M)"}
+}
