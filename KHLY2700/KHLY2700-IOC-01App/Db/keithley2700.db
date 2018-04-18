@@ -17,11 +17,118 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-##################################################
-#
-# DB file for Keithley 2700
-#
-##################################################
+# INIT:SEQ and INIT:SEQ:TWO set up the initial state of the Keithley 2700
+# to read FResistance values across channels 101:210.
+
+record(sseq, "$(P)INIT:SEQ") {
+	field(PINI, "YES")
+	field(DESC, "Initialisation of values")
+	
+	# Clear all system errors
+	field(LNK1, "$(P)SYSTEM:CLEAR:SP PP")
+	field(DO1, "0")
+	field(WAIT1, "Wait")
+	
+	# Empty buffer readings
+	field(LNK2, "$(P)BUFF:CLEAR:SP PP")
+	field(STR2, "")
+	field(WAIT2, "Wait")
+	
+	# Empty buffer readings
+	field(LNK3, "$(P)CH:RANGE:SP PP")
+	field(STR3, "101:210")
+	field(WAIT3, "Wait")
+	
+	# Empty buffer readings
+	#field(LNK4, "$(P)CH:START PP")
+	#Field(STR4, "101:210")
+	#field(WAIT4, "Wait")
+	
+	# Set function to 'FResistance' and set channels
+	field(LNK4, "$(P)MEASUREMENT:SP PP")
+	field(STR4, "FRES")
+	field(WAIT4, "Wait")
+
+	# Set auto range to on
+	field(LNK5, "$(P)FRES:AUTORANGE:SP PP")
+	field(STR5, "ON")
+	field(WAIT5, "Wait")
+	
+	# Set number of digits to 7
+	field(LNK6, "$(P)FRES:DIGITS:SP PP")
+	field(DO6, "7")
+	field(WAIT6, "Wait")
+	
+	# Set PLC cycles
+	field(LNK7, "$(P)FRES:NPLC:SP PP")
+	field(DO7, "5")	
+	field(WAIT7, "Wait")
+	
+	# Set control source to Immediate
+	field(LNK8, "$(P)CONTROLSOURCE:SP PP")
+	field(STR8, "IMM")
+	field(WAIT8, "Wait")
+	
+	# Set auto delay to On
+	field(LNK9, "$(P)DELAYMODE:SP PP")
+	field(STR9, "ON")
+	field(WAIT9, "Wait")
+		
+	field(FLNK, "$(P)INIT:SEQ:TWO PP")
+}
+
+record(sseq, "$(P)INIT:SEQ:TWO") {
+	
+	# Set trace buffer to auto clear
+	field(LNK1, "$(P)BUFF:AUTOCLEAR:SP PP")
+	field(STR1, "ON")
+	field(WAIT1, "Wait")
+	
+	# Set trace buffer points to 1000
+	field(LNK2, "$(P)BUFF:SIZE:SP PP")
+	field(DO2, "1000")
+	field(WAIT2, "Wait")
+
+	# Set buffer source to raw (sens)
+	field(LNK3, "$(P)BUFF:SOURCE:SP PP")
+	field(STR3, "SENS")
+	field(WAIT3, "Wait")
+	
+	# Set buffer control mode to Always
+	field(LNK4, "$(P)BUFF:CONTROLMODE:SP PP")
+	field(STR4, "ALW")
+	field(WAIT4, "Wait")
+	
+	# Set timestamp format to Absolute
+	field(LNK5, "$(P)TIME:FORMAT:SP PP")
+	field(STR5, "ABS")
+	field(WAIT5, "Wait")
+	
+	# Set continuous initiation to On 
+	field(LNK6, "$(P)INITMODE:SP PP")
+	field(STR6, "ON")
+	field(WAIT6, "Wait")
+	
+	# Set scan channels start
+	field(LNK7, "$(P)CH:RANGE:SP PP")
+	field(STR7, "101:210")
+	field(WAIT7, "Wait")
+	
+	# Set scan to Internal (starts clicks)
+	field(LNK8, "$(P)SCAN:STATE:SP PP")
+	field(STR8, "INT")	
+	field(WAIT8, "Wait")
+	
+	# Set sample count to 1
+	field(LNK9, "$(P)SAMPLECOUNT:SP PP")
+	field(DO9, "1")
+	field(WAIT9, "Wait")
+	
+	# # Set readback elements (reading, channel, timestamp)
+	field(LNKA, "$(P)DATAELEMENTS:SP PP")
+	field(STRA, "READ,CHAN,TST")
+	field(WAITA, "Wait")
+}	
 
 
 record(stringin, "$(P)IDN")
@@ -35,14 +142,17 @@ record(stringin, "$(P)IDN")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(calcout, "$(P)CH:RANGE:SP")
+record(stringout, "$(P)CH:RANGE:SP")
 {
 	field(DESC, "Write start and end of scan range")
 	field(DTYP, "stream")
-	field(INPA, "$(P)CH:START:SP ")
-	field(INPB, "$(P)CH:END:SP")
-	field(CALC, "0")
+	#field(INPA, "$(P)CH:START")
+	#field(INPB, "$(P)CH:END")
+	#field(CALC, "0")
 	field(OUT, "@devKeithley_2700.proto setScanChannels $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CH:RANGE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 alias("$(P)CH:RANGE:SP","$(P)CH:RANGE")
@@ -128,7 +238,7 @@ record(mbbo, "$(P)MEASUREMENT:SP") {
     field(SXST, "CONT")
     field(SVST, "FREQ")
     field(EIST, "PER")
-	field(OUT, "@devKeithley_2700.proto setMeasurement $(PORT)")  
+	field(OUT, "@devKeithley_2700.proto setMeasurement($(P)CH) $(PORT)")  
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MEASUREMENT:SP")
     field(SDIS, "$(P)DISABLE")
@@ -214,7 +324,7 @@ record(ao, "$(P)COUNT")
 	field(EGU, "")
 }
 
-record(ao, "$(P)CURRENT")
+record(ao, "$(P)CURR:LOC")
 {
 	field(DESC, "Current buffer read location")
 	info(INTEREST, "LOW")
@@ -226,7 +336,7 @@ record(calcout, "$(P)COUNT:CALC")
 	field(DESC, "Calculating number of readings")
 	field(OOPT, "Every Time")
 	field(INPA, "$(P)BUFF:NEXT")
-	field(INPB, "$(P)CURRENT")
+	field(INPB, "$(P)CURR:LOC")
 	field(CALC, "A-B")
 	field(OUT, "$(P)COUNT PP")	
 	field(FLNK, "$(P)BUFF:READ")
@@ -242,18 +352,18 @@ record(waveform, "$(P)BUFF:READ")
 	info(ARCHIVE, "VAL")
     info(INTEREST, "HIGH")
 	field(PREC, "5")
-	field(FLNK, "$(P)CURRENT:CALC")
+	field(FLNK, "$(P)CURR:POS:CALC")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:BUFF:READ")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(calcout, "$(P)CURRENT:CALC")
+record(calcout, "$(P)CURR:POS:CALC")
 {
 	field(DESC, "Update current buffer memory location")
 	field(INPA, "$(P)BUFF:NEXT")
 	field(CALC, "A")
-	field(OUT, "$(P)CURRENT PP")
+	field(OUT, "$(P)CURR:LOC PP")
 	field(OOPT, "Every Time")
 	field(FLNK, "$(P)BUFF:READ:PARSE:READINGS")
 }
@@ -316,7 +426,7 @@ record(aSub,"$(P)BUFF:READ:PARSE:TIME")
     field(OUTR, "$(P)CHNL:208:TIME PP")
     field(OUTS, "$(P)CHNL:209:TIME PP")
     field(OUTT, "$(P)CHNL:210:TIME PP")
-	field(FLNK, "$(P)CURRENT:CALC")
+	field(FLNK, "$(P)CURR:POS:CALC")
 }
 
 record(ai, "$(P)BUFFER:MEM:AVAIL")
@@ -366,21 +476,19 @@ record(ao, "$(P)BUFF:SIZE")
 
 record(bo, "$(P)TIME:FORMAT:SP") 
 {
-    field(DESC, "Query Time Stamp Format")
-    field(SCAN, "1 second")
+    field(DESC, "Set Time Stamp Format")
     field(DTYP, "stream")
     field(OUT,  "@devKeithley_2700.proto setTimeStamp $(PORT)")
     field(ZNAM, "ABS")
     field(ONAM, "DELT")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:TIME PPSTAMP:FORMAT:SP")
+    field(SIOL, "$(P)SIM:TIME:FORMAT:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)TIME:FORMAT") 
 {
-    field(DESC, "Query Time Stamp Format")
-    field(SCAN, "1 second")
+    field(DESC, "Get Time Stamp Format")
     field(DTYP, "stream")
     field(OUT,  "@devKeithley_2700.proto getTimeStamp $(PORT)")
     field(ZNAM, "ABS")
@@ -392,7 +500,7 @@ record(bo, "$(P)TIME:FORMAT")
 
  record(bi, "$(P)DELAYMODE") 
 {
-    field(DESC, "Enable/Disable auto delay")
+    field(DESC, "Get auto delay mode")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@devKeithley_2700.proto getDelayState $(PORT)")
@@ -672,6 +780,14 @@ record(ai, "$(P)SIM:CH:END")
 }
 
 alias("$(P)SIM:CH:END","$(P)SIM:CH:END:SP")
+
+record(ai, "$(P)SIM:CH:RANGE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:CH:RANGE","$(P)SIM:CH:RANGE:SP")
 
 record(bo, "$(P)SIM:BUFF:AUTOCLEAR")
 {

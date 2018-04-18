@@ -31,12 +31,12 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
-$(APPNAME)_DBD += Keithley2700.dbd
+$(APPNAME)_DBD += Keithley_2700.dbd
 
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seqDev seq pv
+$(APPNAME)_LIBS += seqDev seq pv 
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
