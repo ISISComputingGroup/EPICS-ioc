@@ -80,6 +80,7 @@ record(waveform, "$(P)LKUP:READ_RAMP_DIRBASE")
 
 record(stringin, "$(P)LKUP:RAMP_FILE")
 {
+   field(DESC, "Path of lookup file for ramping")
    field(DTYP, "asynOctetRead")
    field(INP,  "@asyn($(READ),0,1)DIR")
    field(SCAN, "I/O Intr")
