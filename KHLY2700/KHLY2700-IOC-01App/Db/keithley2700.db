@@ -17,8 +17,10 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
+#
 # INIT:SEQ and INIT:SEQ:TWO set up the initial state of the Keithley 2700
 # to read FResistance values across channels 101:210.
+#
 
 record(sseq, "$(P)INIT:SEQ") {
 	field(PINI, "YES")
@@ -38,11 +40,6 @@ record(sseq, "$(P)INIT:SEQ") {
 	field(LNK3, "$(P)CH:RANGE:SP PP")
 	field(STR3, "101:210")
 	field(WAIT3, "Wait")
-	
-	# Empty buffer readings
-	#field(LNK4, "$(P)CH:START PP")
-	#Field(STR4, "101:210")
-	#field(WAIT4, "Wait")
 	
 	# Set function to 'FResistance' and set channels
 	field(LNK4, "$(P)MEASUREMENT:SP PP")
@@ -130,7 +127,6 @@ record(sseq, "$(P)INIT:SEQ:TWO") {
 	field(WAITA, "Wait")
 }	
 
-
 record(stringin, "$(P)IDN")
 {
     field(DESC, "SCPI identification string")
@@ -146,9 +142,6 @@ record(stringout, "$(P)CH:RANGE:SP")
 {
 	field(DESC, "Write start and end of scan range")
 	field(DTYP, "stream")
-	#field(INPA, "$(P)CH:START")
-	#field(INPB, "$(P)CH:END")
-	#field(CALC, "0")
 	field(OUT, "@devKeithley_2700.proto setScanChannels $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CH:RANGE:SP")
@@ -489,6 +482,7 @@ record(bo, "$(P)TIME:FORMAT:SP")
 record(bo, "$(P)TIME:FORMAT") 
 {
     field(DESC, "Get Time Stamp Format")
+	field(SCAN, "1 second")
     field(DTYP, "stream")
     field(OUT,  "@devKeithley_2700.proto getTimeStamp $(PORT)")
     field(ZNAM, "ABS")
@@ -507,7 +501,7 @@ record(bo, "$(P)TIME:FORMAT")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:TIME PPSTAMP:FORMAT:SP")
+    field(SIOL, "$(P)SIM:DELAYMODE:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
