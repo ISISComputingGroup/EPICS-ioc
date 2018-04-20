@@ -31,7 +31,7 @@ record(bo, "$(P)$(CHANNEL):DISABLE")
 record(ao, "$(P)$(CHANNEL):READ")
 {
 	field(DESC, "Latest device reading value")
-	field(EGU, "O")
+	field(EGU, "ohm")
 	field(PREC, "5")
 	info(alarm, "Keithley2700")
 	info(INTEREST, "HIGH")
