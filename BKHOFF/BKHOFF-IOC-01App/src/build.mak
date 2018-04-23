@@ -28,12 +28,18 @@ $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += axisSupport.dbd
+$(APPNAME)_DBD += motionSetPoints.dbd
+$(APPNAME)_DBD += sampleChanger.dbd 
+$(APPNAME)_DBD += axis.dbd
+$(APPNAME)_DBD += asubFunctions.dbd 
 
 ## add other dbd here ##
 $(APPNAME)_DBD += eemcuSupport.dbd
+$(APPNAME)_DBD += calcSupport.dbd 
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
+$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
@@ -41,8 +47,13 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
+
 ## Add other libraries here ##
-$(APPNAME)_LIBS += eemcuSupport axis asyn
+$(APPNAME)_LIBS += eemcuSupport axis asyn calc
+$(APPNAME)_LIBS += sscan
+$(APPNAME)_LIBS += motionSetPoints
+$(APPNAME)_LIBS += sampleChanger
+$(APPNAME)_LIBS += TinyXML
 
 # BKHOFF-IOC-01_registerRecordDeviceDriver.cpp derives from BKHOFF-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

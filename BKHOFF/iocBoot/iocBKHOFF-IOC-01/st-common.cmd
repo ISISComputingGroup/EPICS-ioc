@@ -3,8 +3,8 @@
 < $(IOCSTARTUP)/init.cmd
 
 ## Configure devices
-#drvAsynIPPortConfigure("MC_CPU1","127.0.0.1:5024",0,0,0)
-drvAsynIPPortConfigure("MC_CPU1","192.168.1.67:200",0,0,0)
+drvAsynIPPortConfigure("MC_CPU1","$HOST",0,0,0)
+
 asynOctetSetOutputEos("MC_CPU1", -1, ";\n")
 asynOctetSetInputEos("MC_CPU1", -1, ";\n")
 #eemcuCreateController("MCU1", "MC_CPU1", "32", "200", "1000")
@@ -64,6 +64,11 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,
 
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=MOT:MTR0901")
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=MOT:MTR0902")
+
+
+## Load any motor extras from the config directory, e.g. jaws, motion setpoints, motor_extensions
+< iocBoot/iocBKHOFF-IOC-01/motor_extras_from_config.cmd
+
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
