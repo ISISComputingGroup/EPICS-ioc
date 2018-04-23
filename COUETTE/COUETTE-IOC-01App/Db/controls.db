@@ -14,6 +14,7 @@ record(ai, "$(P)MOTOR:POSITION")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
 	field(EGU, "deg")
+	info(alarm, "COUETTE") 
 }
 
 # Read LabVIEW control/indicator "Encoder Position (SI)" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
