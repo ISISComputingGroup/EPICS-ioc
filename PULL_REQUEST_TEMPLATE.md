@@ -14,7 +14,8 @@
 
 #### Code Review
 
-- [ ] **Pertitent information and a copy of the manual has been stored in the [wiki](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Specific-Device-IOC)**
+- [ ] A copy of the manual has been placed on the shared drive
+- [ ] Pertitent information has been stored in the [wiki](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Specific-Device-IOC)
 - [ ] Does the IOC conform to IBEX standards?
     - [PV naming](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/PV-Naming).
     - [Disable records](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Disable-records)
@@ -23,6 +24,7 @@
 - [ ] If an OPI has been modified, does it conform to the [style guidelines](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/OPI-Creation)?
 - [ ] Do the IOC and support module conform to the new [build guidelines](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Reducing-Build-Dependencies)
 - [ ] Have the changes been recorded appropriately in the [release notes](https://github.com/ISISComputingGroup/IBEX/wiki/ReleaseNotes_Dev)?
+- [ ] Is the device's flow control setting correct? [For most devices flow control should be OFF](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Flow-control).
 
 ### Functional Tests
 

@@ -13,6 +13,6 @@ dbLoadDatabase "$(TOP)/dbd/MCLEN-IOC-01.dbd"
 MCLEN_IOC_01_registerRecordDeviceDriver pdbbase
 
 # enable debugging
-var drvPM304Debug 2
+var drvPM304Debug 0
 
 < st-common.cmd

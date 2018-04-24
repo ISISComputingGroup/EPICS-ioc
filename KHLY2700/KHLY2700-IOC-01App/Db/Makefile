@@ -10,12 +10,8 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-DB += TRITON.db
-DB += TRITON_channels.db
-DB += TRITON_temp_channels.db
-DB += TRITON_pid.db
-DB += TRITON_pid_lookup.db
-DB += TRITON_pressure_channels.db
+DB += keithley2700.db
+DB += keithley2700_channels.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
