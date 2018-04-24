@@ -137,6 +137,25 @@ record(ai, "$(P)MOTOR:VEL:SP:RBV")
 }
 
 # Write to LabVIEW control "Mode" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(mbbi, "$(P)MOTOR:VEL:MODE")
+{
+	field(DESC, "LabVIEW 'Mode'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Mode")
+	field(SCAN, ".1 second")
+    field(ZRVL, 0)
+    field(ZRST, "deg per sec")
+    field(ONVL, 1)
+    field(ONST, "steps per sec")
+    field(TWVL, 2)
+    field(TWST, "revs per min")
+    field(THVL, 3)
+    field(THST, "shear rate")
+    info(INTEREST, "HIGH")
+	info(archive, "VAL")	
+}
+
+# Write to LabVIEW control "Mode" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
 record(mbbo, "$(P)MOTOR:VEL:MODE:SP")
 {
 	field(DESC, "LabVIEW 'Mode'")
@@ -150,8 +169,6 @@ record(mbbo, "$(P)MOTOR:VEL:MODE:SP")
     field(TWST, "revs per min")
     field(THVL, 3)
     field(THST, "shear rate")
-    info(INTEREST, "HIGH")
-	info(archive, "VAL")	
 }
 
 
@@ -180,7 +197,18 @@ record(bo, "$(P)SEQ:START")
 }
 
 # Write to LabVIEW control "Inhibit Readback" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
-record(bo, "$(P)READBACK:INHIBIT")
+record(bi, "$(P)READBACK:INHIBIT")
+{
+	field(DESC, "LabVIEW 'Inhibit Readback'")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(lvfp,0,0)Inhibit_Readback")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+	field(SCAN, ".1 second")
+}
+
+# Write to LabVIEW control "Inhibit Readback" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
+record(bo, "$(P)READBACK:INHIBIT:SP")
 {
 	field(DESC, "LabVIEW 'Inhibit Readback'")
     field(DTYP, "asynInt32")
