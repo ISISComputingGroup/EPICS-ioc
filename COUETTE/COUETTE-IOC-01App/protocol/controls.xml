@@ -1,0 +1,250 @@
+<VI syntaxVersion="11" LVversion="10008000" revision="171" name="LOQ - Couette Cell - PM600 - Front Panel.vi">
+<TITLE></TITLE>
+<HELP_PATH></HELP_PATH>
+<HELP_TAG></HELP_TAG>
+<RTM_PATH type="default"></RTM_PATH>
+<DESC></DESC>
+<CONTENT>
+	<GROUPER>
+		<PARTS>
+		</PARTS></GROUPER>
+	<CONTROL ID="80" type="Numeric" name="Motor Position (SI)">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>deg</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Encoder Position (SI)">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>deg</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Exit">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Exit</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Exit</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Target Position Abs">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>deg</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Set Position Abs">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Set</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Set Position Abs</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Target Position Rel">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>deg</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Set Position Rel">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Set</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Set Position Rel</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Constant Velocity">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>deg\sec</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Set Constant Velocity">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Set</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Set Constant Velocity</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Stop Sequence">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Stop Sequence</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Stop Sequence</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Start Sequence">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Start Sequence</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Start Sequence</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Inhibit Readback">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>OFF/ON</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Inhibit Readback</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Stop Move">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Stop Move</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Stop Move</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Active">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Active</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="81" type="String" name="Message">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="11" order="0" type="Text"><LABEL><STEXT>Initialising Com Port 0 : Error</STEXT></LABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Message</STEXT></LABEL></PART>
+		</PARTS>
+		<DEFAULT><STRING></STRING></DEFAULT>
+	</CONTROL>
+	<CONTROL ID="79" type="Boolean" name="Reset">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Reset</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Reset</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<LABEL><STEXT>Couette Shear Cell</STEXT></LABEL>
+	<CONTROL ID="79" type="Boolean" name="Set to Zero">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="22" order="0" type="Boolean Text"><MLABEL><STRINGS><STRING>Set to Zero</STRING></STRINGS></MLABEL></PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Set to Zero</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="100" type="Type Definition" name="Mode">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="8010" order="0" type="Cursor Buttons">
+				<CONTROL ID="87" type="Enum" name="">
+					<DESC></DESC>
+					<TIP></TIP>
+					<PARTS>
+						<PART ID="12" order="0" type="Ring Text"><MLABEL><STRINGS></STRINGS></MLABEL></PART>
+						<PART ID="82" order="0" type="Caption"><LABEL><STEXT></STEXT></LABEL></PART>
+					</PARTS>
+				</CONTROL>
+			</PART>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Mode</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Max">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Max</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Min">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Min</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Velocity">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>deg\sec</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Initial Delay1">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>msec</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Acceleration1">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>deg\sec</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Velocity1">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>deg\sec</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Position1">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>deg</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Initial Delay2">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>msec</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Acceleration2">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>deg\sec</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Velocity2">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>deg\sec</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<CONTROL ID="80" type="Numeric" name="Position2">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>deg</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+	<LABEL><STEXT>Sequence</STEXT></LABEL>
+	<LABEL><STEXT>First Move</STEXT></LABEL>
+	<LABEL><STEXT>Second Move</STEXT></LABEL>
+	<CONTROL ID="79" type="Boolean" name="Busy">
+		<DESC></DESC>
+		<TIP></TIP>
+		<PARTS>
+			<PART ID="82" order="0" type="Caption"><LABEL><STEXT>Busy</STEXT></LABEL></PART>
+		</PARTS>
+	</CONTROL>
+</CONTENT>
+</VI>
+
+
