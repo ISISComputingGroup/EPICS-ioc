@@ -12,7 +12,6 @@ record(ai, "$(P)MOTOR:POSITION")
     field(PREC, "3")
     field(SCAN, ".1 second")
 	info(INTEREST, "MEDIUM")
-	info(archive, "VAL")
 	field(EGU, "deg")
 	info(alarm, "COUETTE") 
 }
@@ -26,7 +25,6 @@ record(ai, "$(P)ENCODER:POSITION")
     field(PREC, "3")
     field(SCAN, ".1 second")
 	info(INTEREST, "MEDIUM")
-	info(archive, "VAL")
 	field(EGU, "deg")
 }
 
@@ -86,7 +84,7 @@ record(ai, "$(P)MOTOR:VEL")
     field(SCAN, ".1 second")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
-	field(EGU, "deg/s")
+	field(EGU, "")
 }
 
 # Read LabVIEW control/indicator "Max" on "C:/LabVIEW Modules/Instruments/LOQ/LOQ Couette Cell/LOQ - Couette Cell - PM600.llb/LOQ - Couette Cell - PM600 - Front Panel.vi"
