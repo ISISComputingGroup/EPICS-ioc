@@ -26,6 +26,10 @@ record(bo, "$(P)$(CHANNEL):DISABLE")
 #
 # Channel names range from 101-110 and 201-210 and have the PV format CHNL:101
 #
+# CALIB_FILE - calibration file name
+# CALIB_DIR - file for magnets within calibartion 
+# CALIB_BASE_DIR - path for calibration base directory
+#
 ##################################################
 
 record(ao, "$(P)$(CHANNEL):READ")
@@ -36,6 +40,7 @@ record(ao, "$(P)$(CHANNEL):READ")
 	info(alarm, "Keithley2700")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
+	field(FLNK, "$(P)$(CHANNEL):TEMP")
 }
 
 record(ao, "$(P)$(CHANNEL):TIME")
@@ -45,6 +50,21 @@ record(ao, "$(P)$(CHANNEL):TIME")
 	field(PREC, "5")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
+}
+
+record(cvt, "$(P)$(CHANNEL):TEMP")
+{
+	field(DESC, "Calculate temperature from calib file")
+	field(SCAN, "Passive")
+	field(EGU, "k")
+	field(INPY, "$(P)$(CHANNEL):READ")
+	field(METH, "1D TABLE INVERTED")
+    field(DRVL, "$(DRVLO)")
+    field(DRVH, "$(DRVHI)")
+    field(SPEC, "$(CALIB_FILE)")
+	field(TDIR, "$(CALIB_DIR)")
+    field(BDIR, "$(CALIB_BASE_DIR)")
+	info(INTEREST, "LOW")
 }
 
 ### SIMULATION RECORDS ###

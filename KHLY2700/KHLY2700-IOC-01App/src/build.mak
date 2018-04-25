@@ -22,6 +22,7 @@ $(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
+$(APPNAME)_DBD += cvtRecord.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
@@ -49,7 +50,7 @@ $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 
 $(APPNAME)_LIBS += Keithley2700
-$(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += calc sscan csmbase cvtRecord
 
 
 # KHLY2700-IOC-01_registerRecordDeviceDriver.cpp derives from KHLY2700-IOC-01.dbd
