@@ -142,6 +142,11 @@ record(ai, "$(P)EXTTEMP")
     info(archive, "VAL")
 }
 
+# Julabo only has one setpoint. To enable doing csets on external temperature,
+# alias the setpoint PVs to also apply to exttemp PVs
+alias("$(P)TEMP:SP", "$(P)EXTTEMP:SP")
+alias("$(P)TEMP:SP:RBV", "$(P)EXTTEMP:SP:RBV")
+
 record(ai, "$(P)HIGHLIMIT") 
 {
     field(DESC, "High limit")
