@@ -60,15 +60,13 @@ dbLoadRecords("db/IMAT.db","P=$(MYPVPREFIX),PORT=MCU1,M1=MOT:MTR0901,M2=MOT:MTR0
 
 ## motor util package
 ## note: IOC name needs to have been added to _FAN element of this DB file
-dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
+dbLoadRecords("$(AXISRECORD)/db/axisUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=MOT:MTR0901")
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=MOT:MTR0902")
 
-
 ## Load any motor extras from the config directory, e.g. jaws, motion setpoints, motor_extensions
 < iocBoot/iocBKHOFF-IOC-01/motor_extras_from_config.cmd
-
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -76,7 +74,7 @@ dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=MOT:MTR0902")
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
-motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
+axisUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 ## Start any sequence programs
 #seq sncxxx,"user=faa59Host"
