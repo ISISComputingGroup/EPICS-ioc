@@ -1,6 +1,11 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(KHLY2700)/Keithley_2700Sup"
 epicsEnvSet "DEVICE" "L0"
 
+## Environment Variables
+epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
+epicsEnvSet "CALIB_DIR" "cryomagnet_scanner"
+epicsEnvSet "CALIB_FILE" "8_shim_xy.txt"
+
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
@@ -23,7 +28,7 @@ asynOctetSetOutputEos("$(DEVICE)", -1, "$(OEOS=\\r\\n)")
 
 ## Load our record instances
 dbLoadRecords("${TOP}/db/keithley2700.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
-dbLoadRecords("${TOP}/db/keithley2700_channels.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
+dbLoadRecords("${TOP}/db/keithley2700_channels.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0), CALIB_BASE_DIR=$(CALIB_BASE_DIR),CALIB_DIR=$(CALIB_DIR),CALIB_FILE=$(CALIB_FILE)")
 
 ## For debugging:
 #asynSetTraceMask("L0",-1,0x9) 
