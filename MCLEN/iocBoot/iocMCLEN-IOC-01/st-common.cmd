@@ -30,8 +30,8 @@ $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"stop","$(STOP=1)")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"parity","$(PARITY=even)")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"clocal","Y") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","Y") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","Y") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","N")
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","N")
 
 # Test for Mclennan PM600 stepper motor controller
 # Note that setup must be done in sim mode too or unconfigured card will crash at first caput
