@@ -40,7 +40,14 @@ record(ao, "$(P)$(CHANNEL):READ")
 	info(alarm, "Keithley2700")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
-	field(FLNK, "$(P)$(CHANNEL):TEMP")
+	field(FLNK, "$(P)$(CHANNEL):TEMP:RAW")
+}
+
+record(ao, "$(P)$(CHANNEL):READ:PREV")
+{
+	field(DESC, "Previous device reading")
+	field(EGU, "ohm")
+	field(PREC, "5")	
 }
 
 record(ao, "$(P)$(CHANNEL):TIME")
@@ -52,10 +59,11 @@ record(ao, "$(P)$(CHANNEL):TIME")
 	info(ARCHIVE, "VAL")
 }
 
-record(cvt, "$(P)$(CHANNEL):TEMP")
+record(cvt, "$(P)$(CHANNEL):TEMP:RAW")
 {
 	field(DESC, "Calculate temperature from calib file")
 	field(SCAN, "Passive")
+	field(PREC, "5")
 	field(EGU, "k")
 	field(INPY, "$(P)$(CHANNEL):READ")
 	field(METH, "1D TABLE INVERTED")
@@ -65,6 +73,23 @@ record(cvt, "$(P)$(CHANNEL):TEMP")
 	field(TDIR, "$(CALIB_DIR)")
     field(BDIR, "$(CALIB_BASE_DIR)")
 	info(INTEREST, "LOW")
+	field(FLNK, "$(P)$(CHANNEL):TEMP:CHECK")
+}
+
+record(calcout, "$(P)$(CHANNEL):TEMP:CHECK")
+{
+	field(DESC, "Check temp is within range")
+	field(OOPT, "Every Time")
+	field(INPA, "$(P)$(CHANNEL):TEMP:RAW")
+	field(CALC, "((A>=0)&&(A<320))?A:0")
+	field(OUT, "$(P)$(CHANNEL):TEMP PP")	
+}
+
+record(ao, "$(P)$(CHANNEL):TEMP")
+{
+	field(DESC, "Temp value post range check")
+	field(EGU, "K")
+	field(PREC, "5")
 }
 
 ### SIMULATION RECORDS ###
@@ -76,6 +101,12 @@ record(ao, "$(P)SIM:$(CHANNEL):READ")
 }
 
 record(ao, "$(P)SIM:$(CHANNEL):TIME")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ao, "$(P)SIM:$(CHANNEL):TEMP")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")

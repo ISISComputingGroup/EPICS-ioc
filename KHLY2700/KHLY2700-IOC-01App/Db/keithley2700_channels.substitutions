@@ -15,7 +15,7 @@ file keithley2700_channels.template {
 	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:202", "12) Shield I.txt" }
 	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:203", "13) Switch.txt" }
 	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:204", "14) 2nd Stage A.txt" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:205", "14) 2nd Stage B.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:205", "15) 2nd Stage B.txt" }
 	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:206", "16) Inner Coil A Base.txt" }
 	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:207", "17) Inner Coil B Base.txt" }
 	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:208", "18) Middle Coil A Base.txt" }
