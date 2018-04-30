@@ -82,15 +82,72 @@ record(calcout, "$(P)$(CHANNEL):TEMP:CHECK")
 	field(OOPT, "Every Time")
 	field(INPA, "$(P)$(CHANNEL):TEMP:RAW")
 	field(CALC, "((A>=0)&&(A<320))?A:0")
-	field(OUT, "$(P)$(CHANNEL):TEMP PP")	
+	field(OUT, "$(P)$(CHANNEL):TEMP PP")
+	field(FLNK, "$(P)$(CHANNEL):DRIFT:CALC")	
 }
 
 record(ao, "$(P)$(CHANNEL):TEMP")
 {
 	field(DESC, "Temp value post range check")
-	field(EGU, "K")
+	field(EGU, "k")
 	field(PREC, "5")
 }
+
+record(ao, "$(P)$(CHANNEL):TEMP:PREV")
+{
+	field(DESC, "Previous temperature value")
+	field(EGU, "k")
+	field(PREC, "5")
+}
+
+record(ao, "$(P)$(CHANNEL):TIME:PREV")
+{
+	field(DESC, "Previous timestamp value")
+	field(EGU, "")
+	field(PREC, "5")
+}
+
+# dummy values for now
+record(calcout, "$(P)$(CHANNEL):DRIFT:CALC")
+{
+	field(DESC, "Calculate drift")
+	field(OOPT, "Every Time")
+	#field(INPA, "temp delta")
+	#field(INPB, "time delta")
+	# make this an aSub record?
+	field(INPA, "$(P)$(CHANNEL):TEMP")
+	field(CALC, "A/10")
+	field(OUT, "$(P)$(CHANNEL):DRIFT PP")
+	field(FLNK, "$(P)$(CHANNEL):TEMP:PREV:PUSH")
+}
+
+record(calcout, "$(P)$(CHANNEL):TEMP:PREV:PUSH")
+{
+	field(DESC, "Push temp value to previous")
+	field(OOPT, "Every Time")
+	field(INPA, "$(P)$(CHANNEL):TEMP")
+	field(CALC, "A")
+	field(OUT, "$(P)$(CHANNEL):TEMP:PREV PP")
+	field(FLNK, "$(P)$(CHANNEL):TIME:PREV:PUSH")
+}
+
+record(calcout, "$(P)$(CHANNEL):TIME:PREV:PUSH")
+{
+	field(DESC, "Push time value to previous")
+	field(OOPT, "Every Time")
+	field(INPA, "$(P)$(CHANNEL):TIME")
+	field(CALC, "A")
+	field(OUT, "$(P)$(CHANNEL):TIME:PREV PP")
+}
+
+record(ao, "$(P)$(CHANNEL):DRIFT")
+{
+	field(DESC, "Drift value")
+	field(PREC, "5")
+}
+
+## Do drift calc
+## update temp:prev using :temp
 
 ### SIMULATION RECORDS ###
 
