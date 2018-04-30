@@ -2,8 +2,9 @@
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
 <ioc_desc>Beckhoff Motor Controller</ioc_desc>
-<ioc_details>Beckhoff Motor Details</ioc_details>
+<ioc_details>Beckhoff Motor</ioc_details>
 <macros>
+    <macro name="HOST" description="Host name or ip address with port for the motor controller" />
 </macros>
 <pvsets>
 </pvsets>
