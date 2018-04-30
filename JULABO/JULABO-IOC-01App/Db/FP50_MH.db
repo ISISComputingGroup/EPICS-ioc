@@ -372,6 +372,34 @@ record(ao, "$(P)EXTD:SP")
     info(archive, "VAL")
 }
 
+record(bo, "$(P)CONTROLMODE:SP")
+{
+    field(DESC, "Control mode int/ext setpoint")
+	field(SCAN, "Passive")
+    field(DTYP, "stream")
+    field(OUT,  "@julaboCommon.proto setControlMode $(PORT)")
+	field(ZNAM, "External")
+	field(ONAM, "Internal")
+	field(SIOL, "$(P)SIM:CONTROLMODE:SP")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)CONTROLMODE")
+{
+    field(DESC, "Control mode int/ext")
+	field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@julaboCommon.proto readControlMode $(PORT)")
+	field(ZNAM, "External")
+	field(ONAM, "Internal")
+	field(SIOL, "$(P)SIM:CONTROLMODE")
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
 ### SIMULATION RECORDS ###
 
 record(stringout, "$(P)SIM:VERSION")
@@ -481,3 +509,13 @@ record(ao, "$(P)SIM:EXTD")
 
 alias ("$(P)SIM:EXTD","$(P)SIM:EXTD:SP")
 alias ("$(P)SIM:EXTD:SP","$(P)SIM:EXTD:SP:RBV")
+
+record(bo, "$(P)SIM:CONTROLMODE:SP")
+{
+	field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+	field(ZNAM, "EXTERNAL")
+	field(ONAM, "INTERNAL")
+}
+
+alias ("$(P)SIM:CONTROLMODE:SP","$(P)SIM:CONTROLMODE")
