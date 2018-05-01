@@ -54,7 +54,7 @@ record(ao, "$(P)$(CHANNEL):TIME")
 {
 	field(DESC, "Latest device reading timestamp")
 	field(EGU, "")
-	field(PREC, "5")
+	field(PREC, "7")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
 }
@@ -108,17 +108,58 @@ record(ao, "$(P)$(CHANNEL):TIME:PREV")
 }
 
 # dummy values for now
-record(calcout, "$(P)$(CHANNEL):DRIFT:CALC")
+record(aSub, "$(P)$(CHANNEL):DRIFT:CALC")
 {
 	field(DESC, "Calculate drift")
+	field(SNAM, "calculate_drift")
+	field(NOA, "1")	
+	field(INPA, "$(P)$(CHANNEL):TEMP:DELTA")
+	field(INPB, "$(P)$(CHANNEL):TIME:DELTA")
+	field(INPC, "$(P)$(CHANNEL):DRIFT")
+	field(OUTA, "$(P)$(CHANNEL):DRIFT PP")
+	field(FLNK, "$(P)$(CHANNEL):TEMP:DELTA:CALC")
+}
+
+# insert time delta record
+
+# insert temp delta record
+
+record(calcout, "$(P)$(CHANNEL):TEMP:DELTA:CALC")
+{
+	field(DESC, "Calculate temperature delta")
 	field(OOPT, "Every Time")
-	#field(INPA, "temp delta")
-	#field(INPB, "time delta")
-	# make this an aSub record?
 	field(INPA, "$(P)$(CHANNEL):TEMP")
-	field(CALC, "A/10")
-	field(OUT, "$(P)$(CHANNEL):DRIFT PP")
+	field(INPB, "$(P)$(CHANNEL):TEMP:PREV")
+	field(INPC, "$(P)$(CHANNEL):TEMP:DELTA")	
+	field(CALC, "(A#B)?(A-B):C")
+	field(OUT, "$(P)$(CHANNEL):TEMP:DELTA PP")
+	field(FLNK, "$(P)$(CHANNEL):TIME:DELTA:CALC")
+}
+
+record(ao, "$(P)$(CHANNEL):TEMP:DELTA")
+{
+	field(DESC, "Difference between current and prev temp")
+	field(EGU, "")
+	field(PREC, "5")
+}
+
+record(calcout, "$(P)$(CHANNEL):TIME:DELTA:CALC")
+{
+	field(DESC, "Calculate Time delta")
+	field(OOPT, "Every Time")
+	field(INPA, "$(P)$(CHANNEL):TIME")
+	field(INPB, "$(P)$(CHANNEL):TIME:PREV")
+	field(INPC, "$(P)$(CHANNEL):TIME:DELTA")	
+	field(CALC, "(A#B)?(A-B):C")
+	field(OUT, "$(P)$(CHANNEL):TIME:DELTA PP")
 	field(FLNK, "$(P)$(CHANNEL):TEMP:PREV:PUSH")
+}
+
+record(ao, "$(P)$(CHANNEL):TIME:DELTA")
+{
+	field(DESC, "Difference between current and prev time")
+	field(EGU, "")
+	field(PREC, "7")
 }
 
 record(calcout, "$(P)$(CHANNEL):TEMP:PREV:PUSH")
@@ -143,6 +184,12 @@ record(calcout, "$(P)$(CHANNEL):TIME:PREV:PUSH")
 record(ao, "$(P)$(CHANNEL):DRIFT")
 {
 	field(DESC, "Drift value")
+	field(PREC, "5")
+}
+
+record(ao, "$(P)$(CHANNEL):DRIFT:PREV")
+{
+	field(DESC, "Previous drift value")
 	field(PREC, "5")
 }
 
