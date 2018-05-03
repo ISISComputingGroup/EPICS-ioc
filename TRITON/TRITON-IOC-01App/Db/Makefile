@@ -11,7 +11,6 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 DB += TRITON.db
-DB += TRITON_valves.db
 DB += TRITON_channels.db
 DB += TRITON_temp_channels.db
 DB += TRITON_pid.db

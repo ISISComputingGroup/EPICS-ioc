@@ -80,9 +80,12 @@ record(waveform, "$(P)LKUP:READ_RAMP_DIRBASE")
 
 record(stringin, "$(P)LKUP:RAMP_FILE")
 {
+   field(DESC, "Path of lookup file for ramping")
    field(DTYP, "asynOctetRead")
    field(INP,  "@asyn($(READ),0,1)DIR")
    field(SCAN, "I/O Intr")
+   info(INTEREST, "MEDIUM")
+   info(archive, "VAL")
 }
 
 record(stringout, "$(P)LKUP:RAMP_FILE:SP")
@@ -113,6 +116,8 @@ record(bo, "$(P)LKUP:LUTON:SP")
    field(DESC, "Toggles the PID lookup")
    field(DTYP, "asynInt32")
    field(OUT,  "@asyn($(READ),0,1)LUT")
+   field(ZNAM, "Off")
+   field(ONAM, "On")
 }
 
 record(bi, "$(P)LKUP:LUTON")
@@ -121,6 +126,10 @@ record(bi, "$(P)LKUP:LUTON")
    field(DTYP, "asynInt32")
    field(INP,  "@asyn($(READ),0,1)LUT")
    field(SCAN, "I/O Intr")
+   field(ZNAM, "Off")
+   field(ONAM, "On")
+   info(INTEREST, "MEDIUM")
+   info(archive, "VAL")
 }
 
 record(ai, "$(P)LKUP:OUT_P")

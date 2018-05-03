@@ -18,7 +18,7 @@ set_requestfile_path("${MOTOR}/motorApp/Db", "")
 ## as all Galils cd to GALIL-IOC-01 need to add this explicitly so info generated req files are found
 set_requestfile_path("${TOP}/iocBoot/iocGALIL-IOC-01", "")
 
-# Make sure controller number is 2 digits long
+## Make sure controller number is 2 digits long
 calc("MTRCTRL", "$(MTRCTRL)", 2, 2)
 
 epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
@@ -26,31 +26,40 @@ epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
 ## uncomment to see every command sent to every galil, of define in st.cmd for just one galil
 #epicsEnvSet("GALIL_DEBUG_FILE", "galil_debug.txt")
 
-# create simulated motor if required
-$(IFSIM) < motorsim.cmd
+## create simulated motor if required (asyn port "GalilSim")
+$(IFDEVSIM) < motorsim.cmd
+$(IFRECSIM) < motorsim.cmd
 
-# load the galil db files
+## configure the galil, if we are simulated this will not be used to drive the 
+## actual device, but creating this asyn port at least allows record initialisation 
+## to complete
+< $(GALILCONFIG)/galil$(MTRCTRL).cmd
+
+## GALIL_MTR_PORT is the asyn port used to load just the motor record, other records 
+## are loaded with "Galil" as the asyn port
+$(IFDEVSIM) epicsEnvSet("GALIL_MTR_PORT", "GalilSim")
+$(IFRECSIM) epicsEnvSet("GALIL_MTR_PORT", "GalilSim")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet("GALIL_MTR_PORT", "Galil")
+
+## load the galil db files
 < galildb.cmd
 
-# configure the galil
-$(IFNOTSIM) < $(GALILCONFIG)/galil$(MTRCTRL).cmd
-
-# load the generic ISIS axis db for each axis
+## load the generic ISIS axis db for each axis
 iocshCmdLoop("< st-axis.cmd", "MN=\$(I)", "I", 1, 8)
 
-# configure jaws
+## configure jaws
 < $(GALILCONFIG)/jaws.cmd
 
-# configure barndoors
+## configure barndoors
 < $(GALILCONFIG)/barndoors.cmd
 
-# configure axes
+## configure axes
 < $(GALILCONFIG)/axes.cmd
 
-# motion set points
+## motion set points
 < $(GALILCONFIG)/motionsetpoints.cmd
 
-# sample changer
+## sample changer
 < $(GALILCONFIG)/sampleChanger.cmd
 
 # motor extensions
@@ -84,12 +93,12 @@ stringiftest("HASMTRCTRL", "$(MTRCTRL=)", 0, 0)
 $(IFNOTHASMTRCTRL) errlogSev(2, "MTRCTRL has not been set")
 
 # Save motor positions every 5 seconds
-$(IFHASMTRCTRL) $(IFNOTSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+$(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
 # Save motor settings every 30 seconds
-$(IFHASMTRCTRL) $(IFNOTSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+$(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
-$(IFHASMTRCTRL) $(IFNOTSIM) $(IFMOTORCONFIG) create_manual_set("$(MOTORCONFIG=)Menu.req","P=$(MYPVPREFIX)MOT:,CMP=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=),IOCNAME=$(IOCNAME),MTRCTRL=$(MTRCTRL),CONFIGMENU=1")
+$(IFHASMTRCTRL) $(IFMOTORCONFIG) create_manual_set("$(MOTORCONFIG=)Menu.req","P=$(MYPVPREFIX)MOT:,CMP=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=),IOCNAME=$(IOCNAME),MTRCTRL=$(MTRCTRL),CONFIGMENU=1")
 
 ## Start any sequence programs
 #seq sncxxx,"user=icsHost"

@@ -298,3 +298,43 @@ long speedSetpointSend(aSubRecord *prec)
 	
 	return 0;
 }
+
+long commandChecker(aSubRecord *prec)
+{
+	long command = *(long*)(prec->a);
+	long magnetic_bearings = *(long*)(prec->b);
+	double speed = *(double*)(prec->c);
+	long speed_sp_rbv = *(long*)(prec->d);
+	long drive_generator_on = *(long*)(prec->e);
+	
+	int output_command;
+	
+	if (command == 3) {
+		if (magnetic_bearings != 1) {
+			puts("commandCheck: refusing to switch on run mode without magnetic bearings.");
+			output_command = 0;
+		} else if (speed_sp_rbv == 600 && speed > 595 && drive_generator_on) {
+			puts("commandCheck: not sending 'switch drive on and run' command as chopper is already set at 600Hz");
+			output_command = 0;
+		}else {
+			output_command = 3;
+		}
+	} else if (command == 5) {
+		if (speed > 10) {
+			puts("commandCheck: refusing to switch off magnetic bearings as chopper speed is over 10Hz.");
+			output_command = 0;
+		} else {
+			output_command = 5;
+		}
+	} else {
+		output_command = command;
+	}
+	
+	*(long*)prec->vala = output_command;
+	
+	if (output_command != 0) {
+		printf("commandCheck: sending command (%d) to device.\n", output_command);
+	}
+	
+	return 0;
+}

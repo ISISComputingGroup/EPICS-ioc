@@ -41,6 +41,8 @@ record(waveform, "$(P)STATUS:RAW")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STATUS:RAW")
     field(SDIS, "$(P)DISABLE")
+	
+	info(archive, "VAL")
 }
 
 record(aSub, "$(P)STATUS:PARSE")
@@ -103,6 +105,7 @@ record(stringin, "$(P)LASTCOMMAND")
 {
     field(DESC, "The last command received")
     field(SCAN, "Passive")
+	info(archive, "VAL")
 } 
 
 record(mbbiDirect, "$(P)STATUS")
@@ -150,6 +153,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:CHOPSPEED")
 	# Use raw because otherwise our command could get blocked by the other checks
 	field(OUT, "$(P)COMMAND:SP:_RAW PP")
 	field(OOPT, "When Non-zero")
+	info(archive, "VAL")
 }
 
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:BEARING")
@@ -162,6 +166,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:BEARING")
 	# Use raw because otherwise our command could get blocked by the other checks
 	field(OUT, "$(P)COMMAND:SP:_RAW PP")
 	field(OOPT, "When Non-zero")
+	info(archive, "VAL")
 }
 
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:AUTOZERO")
@@ -177,6 +182,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:AUTOZERO")
 	# Use raw because otherwise our command could get blocked by the other checks
 	field(OUT, "$(P)COMMAND:SP:_RAW PP")
 	field(OOPT, "When Non-zero")
+	info(archive, "VAL")
 }
 
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:MOTORTEMP")
@@ -188,6 +194,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:MOTORTEMP")
 	# Use raw because otherwise our command could get blocked by the other checks
 	field(OUT, "$(P)COMMAND:SP:_RAW PP")
 	field(OOPT, "When Non-zero")
+	info(archive, "VAL")
 }
 
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:ELECTRONICSTEMP")
@@ -199,6 +206,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:ELECTRONICSTEMP")
 	# Use raw because otherwise our command could get blocked by the other checks
 	field(OUT, "$(P)COMMAND:SP:_RAW PP")
 	field(OOPT, "When Non-zero")
+	info(archive, "VAL")
 }
 
 record(ai, "$(P)SPEED:SP:RBV")
@@ -374,6 +382,7 @@ record(calc, "$(P)TEMP:RANGECHECK")
 	# 45C is the maximum allowable temperature
 	# This behaviour is copied from the equivalent LabView driver.
 	field(CALC, "A > 45 | B > 45")
+	info(archive, "VAL")
 }
 
 record(mbbo, "$(P)COMMAND:SP")
@@ -411,14 +420,29 @@ record(mbbo, "$(P)COMMAND:SP")
 	field(FLNK, "$(P)COMMAND:SP:_CHECK")	
 }
 
-record(calcout, "$(P)COMMAND:SP:_CHECK")
-{
-	field(ASG, "READONLY")
-	field(INPA, "$(P)COMMAND:SP.RVAL")
-	field(INPB, "$(P)STATUS.B3")
-	field(INPC, "$(P)SPEED")
-	field(CALC, "A=3?(B=1?3:0):((A=5 && C>10)?0:A)")
+record(aSub, "$(P)COMMAND:SP:_CHECK")
+{	
+	field(SNAM, "commandCheck")
+	field(DESC, "Checks command is allowed to be sent")
 	
+    field(INPA, "$(P)COMMAND:SP.RVAL")
+    field(FTA, "LONG")
+    field(INPB, "$(P)STATUS.B3")
+    field(FTB, "LONG")
+    field(INPC, "$(P)SPEED")
+    field(FTC, "DOUBLE")
+    field(INPD, "$(P)SPEED:SP:RBV")
+    field(FTD, "LONG")
+    field(INPE, "$(P)STATUS.B5")
+    field(FTE, "LONG")
+
+    field(OUTA, "$(P)COMMAND:SP:_SEND_IF_OK.A PP")
+    field(FTVA, "LONG")
+}
+
+record(calcout, "$(P)COMMAND:SP:_SEND_IF_OK")
+{
+    field(CALC, "A")
 	field(OUT, "$(P)COMMAND:SP:_RAW PP")
 	field(OOPT, "When Non-zero")
 }
@@ -431,6 +455,7 @@ record(ao, "$(P)COMMAND:SP:_RAW")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:COMMAND:SP:_RAW")
     field(SDIS, "$(P)DISABLE")
+	info(archive, "VAL")
 }
 
 record(ao, "$(P)SPEED:SP:RAW")
@@ -438,6 +463,7 @@ record(ao, "$(P)SPEED:SP:RAW")
 	field(ASG, "$(ASG)")
 	field(DTYP, "stream")
     field(OUT,  "@devfc.proto setSpeed $(PORT)")
+	info(archive, "VAL")
 }
 
 record(aSub, "$(P)SPEED:SP:CALC")
@@ -453,17 +479,27 @@ record(aSub, "$(P)SPEED:SP:CALC")
     field(FTVA, "LONG")
 }
 
+record(calcout, "$(P)SPEED:SP:_SEND_IF_OK")
+{
+    field(INPA, "$(P)SPEED:SP")
+    field(INPB, "$(P)SPEED:SP:RBV")
+	field(CALC, "A!=B") # Prevents resending a setpoint if that setpoint was already set.
+	field(OOPT, "When Non-zero")
+	field(OUT, "$(P)SPEED:SP:CALC.PROC CA PP")
+}
+
 record(ao, "$(P)SPEED:SP")
 {
 	field(DESC, "The speed setpoint")
 	field(EGU, "Hz")
 	field(ASG, "$(ASG)")
 	field(DTYP, "Soft Channel")
-	field(FLNK, "$(P)SPEED:SP:CALC")
+	field(PREC, "1")
+	field(FLNK, "$(P)SPEED:SP:_SEND_IF_OK")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED:SP")
-	field(PREC, "1")
     field(SDIS, "$(P)DISABLE")
+	info(archive, "VAL")
 }
 
 record(mbbo, "$(P)SPEED:SP:GUI")
@@ -524,6 +560,7 @@ record(ao, "$(P)DELAY:SP")
     field(SDIS, "$(P)DISABLE")
 	field(PREC, "3")
 	field(EGU, "us")
+	info(archive, "VAL")
 }
 
 record(transform, "$(P)DELAY:SP:_CALC")
@@ -540,6 +577,22 @@ record(ao, "$(P)DELAY:SP:_SEND")
 	field(OUT,  "@devfc.proto setDelay($(P)) $(PORT)")
 }
 
+record(ai, "$(P)DELAY:_SEQ_TOL")
+{
+    # If actual delay setpoint readback not equal to setpoint within this tolerance, resend setpoint.
+    field(VAL, "1")
+	field(PINI, "YES")
+	info(archive, "VAL")
+}
+
+record(ai, "$(P)DELAY:_SEQ_DELAY")
+{
+    # Actual delay stability time. If delay has not reached sp within this time, resend setpoint.
+    field(VAL, "30")
+	field(PINI, "YES")
+	info(archive, "VAL")
+}
+
 record(ao, "$(P)GATEWIDTH:SP")
 {
 	field(DESC, "Gate width setpoint")
@@ -550,6 +603,7 @@ record(ao, "$(P)GATEWIDTH:SP")
     field(SDIS, "$(P)DISABLE")
 	field(PREC, "3")
 	field(EGU, "us")
+	info(archive, "VAL")
 }
 
 record(calcout, "$(P)GATEWIDTH:SP:_CALC")
@@ -567,6 +621,22 @@ record(ao, "$(P)GATEWIDTH:SP:_RAW")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DUMMY")
     field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)GATEWIDTH:_SEQ_TOL")
+{
+    # If actual gate width readback not equal to setpoint within this tolerance, resend setpoint.
+    field(VAL, "1")
+	field(PINI, "YES")
+	info(archive, "VAL")
+}
+
+record(ai, "$(P)GATEWIDTH:_SEQ_DELAY")
+{
+    # Gate width stability time. If delay has not reached sp within this time, resend setpoint.
+    field(VAL, "5")
+	field(PINI, "YES")
+	info(archive, "VAL")
 }
 
 
