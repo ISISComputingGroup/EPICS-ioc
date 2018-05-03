@@ -40,14 +40,6 @@ record(ao, "$(P)$(CHANNEL):READ")
 	info(alarm, "Keithley2700")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
-	field(FLNK, "$(P)$(CHANNEL):TEMP:RAW")
-}
-
-record(ao, "$(P)$(CHANNEL):READ:PREV")
-{
-	field(DESC, "Previous device reading")
-	field(EGU, "ohm")
-	field(PREC, "5")	
 }
 
 record(ao, "$(P)$(CHANNEL):TIME")
@@ -57,6 +49,14 @@ record(ao, "$(P)$(CHANNEL):TIME")
 	field(PREC, "7")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
+	field(FLNK, "$(P)$(CHANNEL):TEMP:RAW")
+}
+
+record(ao, "$(P)$(CHANNEL):TIME:PREV")
+{
+	field(DESC, "Previous timestamp value")
+	field(EGU, "")
+	field(PREC, "5")
 }
 
 record(cvt, "$(P)$(CHANNEL):TEMP:RAW")
@@ -100,101 +100,26 @@ record(ao, "$(P)$(CHANNEL):TEMP:PREV")
 	field(PREC, "5")
 }
 
-record(ao, "$(P)$(CHANNEL):TIME:PREV")
-{
-	field(DESC, "Previous timestamp value")
-	field(EGU, "")
-	field(PREC, "5")
-}
-
-# dummy values for now
 record(aSub, "$(P)$(CHANNEL):DRIFT:CALC")
 {
 	field(DESC, "Calculate drift")
 	field(SNAM, "calculate_drift")
 	field(NOA, "1")	
-	field(INPA, "$(P)$(CHANNEL):TEMP:DELTA")
-	field(INPB, "$(P)$(CHANNEL):TIME:DELTA")
-	field(INPC, "$(P)$(CHANNEL):DRIFT")
-	field(OUTA, "$(P)$(CHANNEL):DRIFT PP")
-	field(FLNK, "$(P)$(CHANNEL):TEMP:DELTA:CALC")
-}
-
-# insert time delta record
-
-# insert temp delta record
-
-record(calcout, "$(P)$(CHANNEL):TEMP:DELTA:CALC")
-{
-	field(DESC, "Calculate temperature delta")
-	field(OOPT, "Every Time")
 	field(INPA, "$(P)$(CHANNEL):TEMP")
 	field(INPB, "$(P)$(CHANNEL):TEMP:PREV")
-	field(INPC, "$(P)$(CHANNEL):TEMP:DELTA")	
-	field(CALC, "(A#B)?(A-B):C")
-	field(OUT, "$(P)$(CHANNEL):TEMP:DELTA PP")
-	field(FLNK, "$(P)$(CHANNEL):TIME:DELTA:CALC")
-}
-
-record(ao, "$(P)$(CHANNEL):TEMP:DELTA")
-{
-	field(DESC, "Difference between current and prev temp")
-	field(EGU, "")
-	field(PREC, "5")
-}
-
-record(calcout, "$(P)$(CHANNEL):TIME:DELTA:CALC")
-{
-	field(DESC, "Calculate Time delta")
-	field(OOPT, "Every Time")
-	field(INPA, "$(P)$(CHANNEL):TIME")
-	field(INPB, "$(P)$(CHANNEL):TIME:PREV")
-	field(INPC, "$(P)$(CHANNEL):TIME:DELTA")	
-	field(CALC, "(A#B)?(A-B):C")
-	field(OUT, "$(P)$(CHANNEL):TIME:DELTA PP")
-	field(FLNK, "$(P)$(CHANNEL):TEMP:PREV:PUSH")
-}
-
-record(ao, "$(P)$(CHANNEL):TIME:DELTA")
-{
-	field(DESC, "Difference between current and prev time")
-	field(EGU, "")
-	field(PREC, "7")
-}
-
-record(calcout, "$(P)$(CHANNEL):TEMP:PREV:PUSH")
-{
-	field(DESC, "Push temp value to previous")
-	field(OOPT, "Every Time")
-	field(INPA, "$(P)$(CHANNEL):TEMP")
-	field(CALC, "A")
-	field(OUT, "$(P)$(CHANNEL):TEMP:PREV PP")
-	field(FLNK, "$(P)$(CHANNEL):TIME:PREV:PUSH")
-}
-
-record(calcout, "$(P)$(CHANNEL):TIME:PREV:PUSH")
-{
-	field(DESC, "Push time value to previous")
-	field(OOPT, "Every Time")
-	field(INPA, "$(P)$(CHANNEL):TIME")
-	field(CALC, "A")
-	field(OUT, "$(P)$(CHANNEL):TIME:PREV PP")
+	field(INPC, "$(P)$(CHANNEL):TIME")
+	field(INPD, "$(P)$(CHANNEL):TIME:PREV")	
+	field(INPE, "$(P)$(CHANNEL):DRIFT")
+	field(OUTA, "$(P)$(CHANNEL):DRIFT PP")
+	field(OUTB, "$(P)$(CHANNEL):TEMP:PREV PP")
+	field(OUTC, "$(P)$(CHANNEL):TIME:PREV PP")
 }
 
 record(ao, "$(P)$(CHANNEL):DRIFT")
 {
 	field(DESC, "Drift value")
-	field(PREC, "5")
+	field(PREC, "6")
 }
-
-record(ao, "$(P)$(CHANNEL):DRIFT:PREV")
-{
-	field(DESC, "Previous drift value")
-	field(PREC, "5")
-}
-
-## Do drift calc
-## update temp:prev using :temp
 
 ### SIMULATION RECORDS ###
 
@@ -211,6 +136,18 @@ record(ao, "$(P)SIM:$(CHANNEL):TIME")
 }
 
 record(ao, "$(P)SIM:$(CHANNEL):TEMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ao, "$(P)SIM:$(CHANNEL):TIME:PREV")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ao, "$(P)SIM:$(CHANNEL):TEMP:PREV")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
