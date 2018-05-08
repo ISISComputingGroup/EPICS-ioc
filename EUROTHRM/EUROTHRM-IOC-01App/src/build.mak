@@ -33,6 +33,7 @@ $(APPNAME)_DBD += cvtRecord.dbd
 $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
+$(APPNAME)_DBD += EurothermSup.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -47,7 +48,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += FileList ReadASCII
 $(APPNAME)_LIBS += stream cvtRecord csmbase std calc sscan asyn 
 $(APPNAME)_LIBS += utilities pcre libjson zlib efsw
-$(APPNAME)_LIBS += $(MYSQLLIB) easySQLite sqlite
+$(APPNAME)_LIBS += $(MYSQLLIB) easySQLite sqlite EurothermSup asubFunctions
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 

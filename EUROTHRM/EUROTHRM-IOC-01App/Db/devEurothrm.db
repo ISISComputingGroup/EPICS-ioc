@@ -691,6 +691,33 @@ record(stringin, "$(P)CAL:RBV")
 	field(PINI, "YES")
 	field(SCAN, "Passive")
     info(archive, "VAL")
+	field(FLNK, "$(P)CAL:UNITS:CALC")
+}
+
+record(aSub, "$(P)CAL:UNITS:CALC")
+{
+    field(DESC, "Gets units based on calibration file")
+
+    field(SNAM, "get_units")
+	
+    field(A, "$(CALIB_BASE_DIR)")
+    field(FTA, "STRING")
+	
+	field(B, "$(SDIR)")
+	field(FTB, "STRING")
+	
+    field(INPC, "$(P)CAL:RBV")
+    field(FTC, "STRING")
+      
+    field(OUTA, "$(P)UNITS PP")
+    field(FTVA, "STRING")
+}
+
+record(stringin, "$(P)UNITS"){
+    # Pushed to TEMP.EGU, TEMP:SP.EGU and TEMP:SP:RBV.EGU by unit_setter
+    field(DESC, "Units of the device")
+	info(archive, "VAL")
+	info(interest, "LOW")
 }
 
 record(bi, "$(P)CAL:APPLY")
