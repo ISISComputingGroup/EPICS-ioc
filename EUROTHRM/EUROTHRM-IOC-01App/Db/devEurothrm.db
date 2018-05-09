@@ -691,7 +691,6 @@ record(stringin, "$(P)CAL:RBV")
 	field(PINI, "YES")
 	field(SCAN, "Passive")
     info(archive, "VAL")
-	field(FLNK, "$(P)CAL:UNITS:CALC")
 }
 
 record(aSub, "$(P)CAL:UNITS:CALC")
@@ -700,13 +699,13 @@ record(aSub, "$(P)CAL:UNITS:CALC")
 
     field(SNAM, "get_units")
 	
-    field(A, "$(CALIB_BASE_DIR)")
+    field(INPA, "$(P)TEMP.BDIR CP")
     field(FTA, "STRING")
 	
-	field(B, "$(SDIR)")
+	field(INPB, "$(P)TEMP.TDIR CP")
 	field(FTB, "STRING")
 	
-    field(INPC, "$(P)CAL:RBV")
+    field(INPC, "$(P)CAL:RBV CP")
     field(FTC, "STRING")
       
     field(OUTA, "$(P)UNITS PP")
