@@ -17,5 +17,6 @@ $(IFACTIVE) ReadASCIIConfigure("READASCII$(EURO_NUM)", "$(RAMP_DIR)")
 ## Load record instances
 ## The timing for record reads is controlled in st-timing.cmd
 $(IFACTIVE) dbLoadRecords("$(TOP)/db/devEurothrm.db","P=$(MYPVPREFIX)$(IOCNAME):A0$(EURO_NUM):, Q=$(MYPVPREFIX)$(IOCNAME):, ADDR=$(ADDR_$(EURO_NUM)=0), GAD=$(GAD), LAD=$(LAD), PORT=L0, CALIB_BASE_DIR= $(CALIB_BASE_DIR), SDIR=$(SENS_DIR), READ=READASCII$(EURO_NUM), RAMPLIST=RAMPFILELIST$(EURO_NUM), SENSORLIST=SENSORFILELIST$(EURO_NUM), TREAD=$(TREAD=1.4), TDLY=$(TDLY=0.5)")
+$(IFACTIVE) dbLoadRecords("$(TOP)/db/unit_setter.db","P=$(MYPVPREFIX)$(IOCNAME):A0$(EURO_NUM):")
 
 dbLoadRecords("$(TOP)/db/isActiveEurothrm.db","P=$(MYPVPREFIX)$(IOCNAME):A0$(EURO_NUM):, IFACTIVE=$(IFACTIVE), IFNOTACTIVE=$(IFNOTACTIVE)")
