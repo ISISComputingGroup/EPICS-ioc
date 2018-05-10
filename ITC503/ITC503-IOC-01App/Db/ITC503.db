@@ -69,6 +69,9 @@ record(ao, "$(P)MAXV:SP") {
   field(PREC, "1")
   field(DRVH, "99.9")
   field(DRVL, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:MAXV:SP")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)SHIELDFLW:SP") {
@@ -80,6 +83,9 @@ record(ao, "$(P)SHIELDFLW:SP") {
   field(PREC, "1")
   field(DRVH, "99.9")
   field(DRVL, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:SHIELDFLW:SP")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)SAMPLEFLW:SP") {
@@ -91,6 +97,9 @@ record(ao, "$(P)SAMPLEFLW:SP") {
   field(PREC, "1")
   field(DRVH, "99.9")
   field(DRVL, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:SAMPLEFLW:SP")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)MANV:SP") {
@@ -102,6 +111,9 @@ record(ao, "$(P)MANV:SP") {
   field(PREC, "1")
   field(DRVH, "99.9")
   field(DRVL, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:MANV:SP")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)ACTIVITY:SP") {
@@ -111,9 +123,12 @@ record(bo, "$(P)ACTIVITY:SP") {
   field(OUT, "@itc503.proto set_act $(PORT)")
   field(ZNAM, "Manual")
   field(ONAM, "Auto")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:ACTIVITY:SP")
+  field(SDIS, "$(P)DISABLE")
 }
 
-record(ao, "$(P)TTEMP:SP") {
+record(ao, "$(P)TEMP:SP") {
   field(DESC, "Set target temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
@@ -122,6 +137,9 @@ record(ao, "$(P)TTEMP:SP") {
   field(PREC, "2")
   field(DRVH, "999.99")
   field(DRVL, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:TEMP:SP")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(bi, "$(P)ACTIVITY") {
@@ -131,6 +149,9 @@ record(bi, "$(P)ACTIVITY") {
   field(INP, "@itc503.proto get_sta($(P)CTRL) $(PORT)")
   field(ZNAM, "Manual")
   field(ONAM, "Auto")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:ACTIVITY")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbi, "$(P)CTRL") {
@@ -144,6 +165,9 @@ record(mbbi, "$(P)CTRL") {
   field(ONST, "EPICS+FPLock")
   field(TWST, "FPUnlock")
   field(THST, "EPICS+FPUnlock")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:CTRL")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbo, "$(P)CTRL:SP") {
@@ -161,9 +185,12 @@ record(mbbo, "$(P)CTRL:SP") {
   field(ONST, "EPICS+FPLock")
   field(TWST, "FPUnlock")
   field(THST, "EPICS+FPUnlock")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:CTRL:SP")
+  field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)TTEMP") {
+record(ai, "$(P)TEMP:SP:RBV") {
   field(DESC, "Get tagret temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
@@ -172,9 +199,12 @@ record(ai, "$(P)TTEMP") {
   field(HOPR, "999.99")
   field(LOPR, "0")
   field(EGU, "K")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:TEMP:SP:RBV")
+  field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)STEMP") {
+record(ai, "$(P)TEMP") {
   field(DESC, "Get sensor temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
@@ -183,6 +213,9 @@ record(ai, "$(P)STEMP") {
   field(HOPR, "999.99")
   field(LOPR, "0")
   field(EGU, "K")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:TEMP")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)TEMP:ERR") {
@@ -194,6 +227,9 @@ record(ai, "$(P)TEMP:ERR") {
   field(HOPR, "999.99")
   field(LOPR, "-999.99")
   field(EGU, "K")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:TEMP:ERR")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)HEATERP") {
@@ -205,6 +241,9 @@ record(ai, "$(P)HEATERP") {
   field(EGU, "%")
   field(HOPR, "100")
   field(LOPR, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:HEATERP")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)HEATERV") {
@@ -216,6 +255,9 @@ record(ai, "$(P)HEATERV") {
   field(EGU, "V")
   field(HOPR, "99.9")
   field(LOPR, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:HEATERV")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)P") {
@@ -265,6 +307,9 @@ record(ai, "$(P)SHIELDFLW") {
   field(PREC, "1")
   field(HOPR, "99.9")
   field(LOPR, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:SHIELDFLW")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)SAMPLEFLW") {
@@ -275,6 +320,9 @@ record(ai, "$(P)SAMPLEFLW") {
   field(PREC, "1")
   field(HOPR, "99.9")
   field(LOPR, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:SAMPLEFLW")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)CHANFREQ") {
@@ -287,6 +335,9 @@ record(ai, "$(P)CHANFREQ") {
   field(LOPR, "0")
   field(ASLO, "4")
   field(EGU, "Hz")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:CHANFREQ")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(seq, "$(P)FAN1") {
@@ -339,4 +390,27 @@ alias("$(P)SIM:I", "$(P)SIM:I:SP")
 record(ao, "$(P)SIM:D"){
 }
 alias("$(P)SIM:D", "$(P)SIM:D:SP")
+
+record(ao, "$(P)SIM:SHIELDFLW"){
+}
+alias("$(P)SIM:SHIELDFLW", "$(P)SIM:SHIELDFLW:SP")
+
+record(ao, "$(P)SIM:SAMPLEFLW"){
+}
+alias("$(P)SIM:SAMPLEFLW", "$(P)SIM:SAMPLEFLW:SP")
+
+record(bo, "$(P)SIM:ACTIVITY") {
+  field(ZNAM, "Manual")
+  field(ONAM, "Auto")
+}
+alias("$(P)SIM:ACTIVITY", "$(P)SIM:ACTIVITY:SP")
+
+record(ao, "$(P)SIM:CHANFREQ"){
+}
+
+record(ao, "$(P)SIM:HEATERP"){
+}
+
+record(ao, "$(P)SIM:HEATERV"){
+}
 
