@@ -1,123 +1,139 @@
-record(ao, "$(P)$(Q):P:SET") {
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+    field(PINI, "YES")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(ao, "$(P)P:SP") {
   field(DESC, "Set PID P")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(OUT, "@cjet.proto set_p $(PORT) 0")
+  field(OUT, "@itc503.proto set_p $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "2")
   field(DRVH, "999.99")
   field(DRVL, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:P:SP")
+  field(SDIS, "$(P)DISABLE")
 }
 
-#% gdatag,pv,rw,$(gda_name=),IGAIN_SET
-#% autosave 1 VAL
-record(ao, "$(P)$(Q):I:SET") {
+record(ao, "$(P)I:SP") {
   field(DESC, "Set PID I")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(OUT, "@cjet.proto set_i $(PORT) 0")
+  field(OUT, "@itc503.proto set_i $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
   field(DRVH, "9999.9")
   field(DRVL, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:I:SP")
+  field(SDIS, "$(P)DISABLE")
 }
 
-#% gdatag,pv,rw,$(gda_name=),DGAIN_SET
-#% autosave 1 VAL
-record(ao, "$(P)$(Q):D:SET") {
+record(ao, "$(P)D:SP") {
   field(DESC, "Set PID D")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(OUT, "@cjet.proto set_d $(PORT) 0")
+  field(OUT, "@itc503.proto set_d $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
   field(DRVH, "9999.9")
   field(DRVL, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:D:SP")
+  field(SDIS, "$(P)DISABLE")
 }
 
-#% autosave 1 VAL
-record(ao, "$(P)$(Q):MAXV:SET") {
+record(ao, "$(P)MAXV:SP") {
   field(DESC, "Set max htr v")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(OUT, "@cjet.proto set_maxv $(PORT) 0")
+  field(OUT, "@itc503.proto set_maxv $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
   field(DRVH, "99.9")
   field(DRVL, "0")
 }
 
-#% gdatag,pv,rw,$(gda_name=),SHIELDFLOW_SET
-#% autosave 1 VAL
-record(ao, "$(P)$(Q):SHIELDFLW:SET") {
+record(ao, "$(P)SHIELDFLW:SP") {
   field(DESC, "Set shield flow")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(OUT, "@cjet.proto set_sh_flo $(PORT) 0")
+  field(OUT, "@itc503.proto set_sh_flo $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
   field(DRVH, "99.9")
   field(DRVL, "0")
 }
 
-#% gdatag,pv,rw,$(gda_name=),SAMPLEFLOW_SET
-#% autosave 1 VAL
-record(ao, "$(P)$(Q):SAMPLEFLW:SET") {
+record(ao, "$(P)SAMPLEFLW:SP") {
   field(DESC, "Set sample flow")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(OUT, "@cjet.proto set_sa_flo $(PORT) 0")
+  field(OUT, "@itc503.proto set_sa_flo $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
   field(DRVH, "99.9")
   field(DRVL, "0")
 }
 
-#% autosave 1 VAL
-record(ao, "$(P)$(Q):MANV:SET") {
+record(ao, "$(P)MANV:SP") {
   field(DESC, "Set man htr v")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(OUT, "@cjet.proto set_manv $(PORT) 0")
+  field(OUT, "@itc503.proto set_manv $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
   field(DRVH, "99.9")
   field(DRVL, "0")
 }
 
-#% autosave 1 VAL
-record(bo, "$(P)$(Q):ACTIVITY:SET") {
+record(bo, "$(P)ACTIVITY:SP") {
   field(DESC, "Set auto or man")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(OUT, "@cjet.proto set_act $(PORT) 0")
+  field(OUT, "@itc503.proto set_act $(PORT)")
   field(ZNAM, "Manual")
   field(ONAM, "Auto")
 }
 
-#% gdatag,pv,rw,$(gda_name=),TEMP_SET
-#% autosave 1 VAL
-record(ao, "$(P)$(Q):TTEMP:SET") {
+record(ao, "$(P)TTEMP:SP") {
   field(DESC, "Set target temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(OUT, "@cjet.proto set_ttemp $(PORT) 0")
+  field(OUT, "@itc503.proto set_ttemp $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "2")
   field(DRVH, "999.99")
   field(DRVL, "0")
 }
 
-record(bi, "$(P)$(Q):ACTIVITY") {
+record(bi, "$(P)ACTIVITY") {
   field(DESC, "Get status")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@cjet.proto get_sta($(P)$(Q):CTRL) $(PORT) 0")
+  field(INP, "@itc503.proto get_sta($(P)CTRL) $(PORT)")
   field(ZNAM, "Manual")
   field(ONAM, "Auto")
 }
 
-record(mbbi, "$(P)$(Q):CTRL") {
+record(mbbi, "$(P)CTRL") {
   field(DESC, "Get control")
   field(DTYP, "Soft Channel")
   field(ZRVL, "0")
@@ -130,14 +146,13 @@ record(mbbi, "$(P)$(Q):CTRL") {
   field(THST, "EPICS+FPUnlock")
 }
 
-#% autosave 1 VAL
-record(mbbo, "$(P)$(Q):CTRL:SET") {
+record(mbbo, "$(P)CTRL:SP") {
   field(DESC, "Set control")
   field(SCAN, "Passive")
   field(PINI, "YES")
   field(DTYP, "stream")
   field(VAL, "1")
-  field(OUT, "@cjet.proto set_ctrl $(PORT) 0")
+  field(OUT, "@itc503.proto set_ctrl $(PORT)")
   field(ZRVL, "0")
   field(ONVL, "1")
   field(TWVL, "2")
@@ -148,118 +163,125 @@ record(mbbo, "$(P)$(Q):CTRL:SET") {
   field(THST, "EPICS+FPUnlock")
 }
 
-record(ai, "$(P)$(Q):TTEMP") {
+record(ai, "$(P)TTEMP") {
   field(DESC, "Get tagret temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@cjet.proto get_ttemp $(PORT) 0")
+  field(INP, "@itc503.proto get_ttemp $(PORT)")
   field(PREC, "2")
   field(HOPR, "999.99")
   field(LOPR, "0")
   field(EGU, "K")
 }
 
-#% gdatag,pv,ro,$(gda_name=),SENSOR_TEMP
-#% archiver 10 Monitor
-record(ai, "$(P)$(Q):STEMP") {
+record(ai, "$(P)STEMP") {
   field(DESC, "Get sensor temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@cjet.proto get_stemp $(PORT) 0")
+  field(INP, "@itc503.proto get_stemp $(PORT)")
   field(PREC, "2")
   field(HOPR, "999.99")
   field(LOPR, "0")
   field(EGU, "K")
 }
 
-record(ai, "$(P)$(Q):TEMP:ERR") {
+record(ai, "$(P)TEMP:ERR") {
   field(DESC, "Get temp error")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@cjet.proto get_etemp $(PORT) 0")
+  field(INP, "@itc503.proto get_etemp $(PORT)")
   field(PREC, "2")
   field(HOPR, "999.99")
   field(LOPR, "-999.99")
   field(EGU, "K")
 }
 
-record(ai, "$(P)$(Q):HEATERP") {
+record(ai, "$(P)HEATERP") {
   field(DESC, "Get heater %")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@cjet.proto get_htrp $(PORT) 0")
+  field(INP, "@itc503.proto get_htrp $(PORT)")
   field(PREC, "0")
   field(EGU, "%")
   field(HOPR, "100")
   field(LOPR, "0")
 }
 
-record(ai, "$(P)$(Q):HEATERV") {
+record(ai, "$(P)HEATERV") {
   field(DESC, "Get heater volts")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@cjet.proto get_htrv $(PORT) 0")
+  field(INP, "@itc503.proto get_htrv $(PORT)")
   field(PREC, "1")
   field(EGU, "V")
   field(HOPR, "99.9")
   field(LOPR, "0")
 }
 
-record(ai, "$(P)$(Q):P") {
+record(ai, "$(P)P") {
   field(DESC, "Get PID P")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@cjet.proto get_p $(PORT) 0")
+  field(INP, "@itc503.proto get_p $(PORT)")
   field(PREC, "2")
   field(HOPR, "999.99")
   field(LOPR, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:P")
+  field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)$(Q):I") {
+record(ai, "$(P)I") {
   field(DESC, "Get PID I")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@cjet.proto get_i $(PORT) 0")
+  field(INP, "@itc503.proto get_i $(PORT)")
   field(PREC, "1")
   field(HOPR, "999.9")
   field(LOPR, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:I")
+  field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)$(Q):D") {
+record(ai, "$(P)D") {
   field(DESC, "Get PID D")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@cjet.proto get_d $(PORT) 0")
+  field(INP, "@itc503.proto get_d $(PORT)")
   field(PREC, "1")
   field(HOPR, "999.9")
   field(LOPR, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:D")
+  field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)$(Q):SHIELDFLW") {
+record(ai, "$(P)SHIELDFLW") {
   field(DESC, "Get shield flow")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@cjet.proto get_sh_flo $(PORT) 0")
+  field(INP, "@itc503.proto get_sh_flo $(PORT)")
   field(PREC, "1")
   field(HOPR, "99.9")
   field(LOPR, "0")
 }
 
-record(ai, "$(P)$(Q):SAMPLEFLW") {
+record(ai, "$(P)SAMPLEFLW") {
   field(DESC, "Get sample flow")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@cjet.proto get_sa_flo $(PORT) 0")
+  field(INP, "@itc503.proto get_sa_flo $(PORT)")
   field(PREC, "1")
   field(HOPR, "99.9")
   field(LOPR, "0")
 }
 
-record(ai, "$(P)$(Q):CHANFREQ") {
+record(ai, "$(P)CHANFREQ") {
   field(DESC, "Get channel freq")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@cjet.proto get_chnf $(PORT) 0")
+  field(INP, "@itc503.proto get_chnf $(PORT)")
   field(PREC, "1")
   field(HOPR, "100000")
   field(LOPR, "0")
@@ -267,32 +289,18 @@ record(ai, "$(P)$(Q):CHANFREQ") {
   field(EGU, "Hz")
 }
 
-# % gdatag,binary,rw,$(gda_name=),DISABLE
-record(bo, "$(P)$(Q):DISABLE") {
-  field(DESC, "Disable comms")
-  field(PINI, "YES")
-  field(VAL, "$(DISABLED=1)")
-  field(OMSL, "supervisory")
-  field(ZNAM, "Enabled")
-  field(ONAM, "Disabled")
-}
-
-record(asyn, "$(P)$(Q):ASYN") {
-  field(PORT, "$(PORT)")
-}
-
-record(seq, "$(P)$(Q):FAN1") {
+record(seq, "$(P)FAN1") {
   field(SCAN, "10 second")
-  field(SDIS, "$(P)$(Q):DISABLE")
+  field(SDIS, "$(P)DISABLE")
   field(SELM, "All")
-  field(LNK1, "$(P)$(Q):P.PROC PP")
-  field(LNK2, "$(P)$(Q):I.PROC PP")
-  field(LNK3, "$(P)$(Q):D.PROC PP")
-  field(LNK4, "$(P)$(Q):TTEMP.PROC PP")
-  field(LNK5, "$(P)$(Q):STEMP.PROC PP")
-  field(LNK6, "$(P)$(Q):TEMP:ERR.PROC PP")
-  field(LNK7, "$(P)$(Q):FAN2.PROC PP")
-  field(LNK8, "$(P)$(Q):FAN1.DESC")      
+  field(LNK1, "$(P)P.PROC PP")
+  field(LNK2, "$(P)I.PROC PP")
+  field(LNK3, "$(P)D.PROC PP")
+  field(LNK4, "$(P)TTEMP.PROC PP")
+  field(LNK5, "$(P)STEMP.PROC PP")
+  field(LNK6, "$(P)TEMP:ERR.PROC PP")
+  field(LNK7, "$(P)FAN2.PROC PP")
+  field(LNK8, "$(P)FAN1.DESC")      
   field(DLY2, "1.0")
   field(DLY3, "1.0")
   field(DLY4, "1.0")
@@ -302,18 +310,33 @@ record(seq, "$(P)$(Q):FAN1") {
   field(DLY8, "6.0")     
 }
 
-record(seq, "$(P)$(Q):FAN2") {
+record(seq, "$(P)FAN2") {
   field(SELM, "All")
-  field(LNK1, "$(P)$(Q):HEATERP.PROC PP")
-  field(LNK2, "$(P)$(Q):SHIELDFLW.PROC PP")
-  field(LNK3, "$(P)$(Q):SAMPLEFLW.PROC PP")
-  field(LNK4, "$(P)$(Q):HEATERV.PROC PP")
-  field(LNK5, "$(P)$(Q):ACTIVITY.PROC PP")
-  field(LNK6, "$(P)$(Q):CHANFREQ.PROC PP")  
+  field(LNK1, "$(P)HEATERP.PROC PP")
+  field(LNK2, "$(P)SHIELDFLW.PROC PP")
+  field(LNK3, "$(P)SAMPLEFLW.PROC PP")
+  field(LNK4, "$(P)HEATERV.PROC PP")
+  field(LNK5, "$(P)ACTIVITY.PROC PP")
+  field(LNK6, "$(P)CHANFREQ.PROC PP")  
   field(DLY2, "1.0")
   field(DLY3, "1.0")
   field(DLY4, "1.0")
   field(DLY5, "1.0")
   field(DLY6, "1.0")
 }
+
+
+# Simulation records
+
+record(ao, "$(P)SIM:P"){
+}
+alias("$(P)SIM:P", "$(P)SIM:P:SP")
+
+record(ao, "$(P)SIM:I"){
+}
+alias("$(P)SIM:I", "$(P)SIM:I:SP")
+
+record(ao, "$(P)SIM:D"){
+}
+alias("$(P)SIM:D", "$(P)SIM:D:SP")
 
