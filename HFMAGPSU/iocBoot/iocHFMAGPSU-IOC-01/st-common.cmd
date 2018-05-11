@@ -27,10 +27,6 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceFile("L0",-1,"temp.log")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-# probably remove later
-#$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetConnect("FRED","L0")
-#$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetRead FRED 
-
 
 ## Load our record instances
 dbLoadRecords("db/HFMAGPSU.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
