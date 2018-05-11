@@ -339,14 +339,16 @@ record(bi, "$(P)MB:STAT")
 # integrator of regulator for magnetic bearing
 # one decimal place
 #
-record(ai, "$(P)MB:INT")
-{
-    field(DESC, "Mag Bearing Regulator Integrator")
-    field(EGU, "%")
-    field(PREC, "1")    
-    info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
-}
+# *** not implemented in server application ***
+#
+#record(ai, "$(P)MB:INT")
+#{
+#    field(DESC, "Mag Bearing Regulator Integrator")
+#    field(EGU, "%")
+#    field(PREC, "1")    
+#    info(INTEREST, "MEDIUM")
+#    info(archive, "VAL")
+#}
 #
 # drive
 # DRON?
@@ -441,14 +443,16 @@ alias("$(P)DRIVE:DIR", "$(P)DRV:DIR")
 # OK or NOK
 # OK if chopper is in open position
 #
-record(bi, "$(P)PARKED:OPEN:STAT")
-{
-    field(DESC, "Parked Open Status")
-    field(ZNAM, "OK")
-    field(ONAM, "NOK")    
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-}
+# *** not implemented in server application ***
+#
+#record(bi, "$(P)PARKED:OPEN:STAT")
+#{
+#    field(DESC, "Parked Open Status")
+#    field(ZNAM, "OK")
+#    field(ONAM, "NOK")    
+#    info(INTEREST, "HIGH")
+#    info(archive, "VAL")
+#}
 #
 # drive temperature [ºC]
 # DRIT?
@@ -471,14 +475,16 @@ alias("$(P)DRIVE:TEMP", "$(P)DRV:TEMP")
 # 0.00 to 100.00
 # two decimal places
 #
-record(ai, "$(P)INPUTCLOCK")
-{
-    field(DESC, "Input Clock Frequency")
-    field(EGU, "Hz")
-    field(PREC, "2")    
-    info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
-}
+# *** not implemented in server application ***
+#
+#record(ai, "$(P)INPUTCLOCK")
+#{
+#    field(DESC, "Input Clock Frequency")
+#    field(EGU, "Hz")
+#    field(PREC, "2")    
+#    info(INTEREST, "MEDIUM")
+#    info(archive, "VAL")
+#}
 #
 # outage of the phase [s]
 # OUPH?
@@ -533,14 +539,16 @@ record(bi, "$(P)LOGGING")
 # OK or NOK
 # related to chopper 2
 #
-record(bi, "$(P)LMSR:STAT")
-{
-    field(DESC, "Linear Motion Slide Release Status")
-    field(ZNAM, "OK")
-    field(ONAM, "NOK")    
-    info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
-}
+# *** not implemented in server application ***
+#
+#record(bi, "$(P)LMSR:STAT")
+#{
+#    field(DESC, "Linear Motion Slide Release Status")
+#    field(ZNAM, "OK")
+#    field(ONAM, "NOK")    
+#    info(INTEREST, "MEDIUM")
+#    info(archive, "VAL")
+#}
 #
 # DSP function control
 # DSPM?
