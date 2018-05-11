@@ -105,7 +105,7 @@ record(ao, "$(P)PHAS:SP")
     field(DTYP, "stream")
     field(OUT, "@devFZJ_DDFermiChopper.proto setPHAS($(P)) $(PORT)")
     field(EGU, "deg")
-    field(PREC, "2")
+    field(PREC, "1")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     field(SIML, "$(P)SIM")
@@ -183,34 +183,28 @@ alias("$(P)DRIVE:MODE:SP:ERROR", "$(P)DRV:MODE:SP:ERROR")
 # ACKN!
 # ON
 #
-#
-# first record causes concatenated status string to be read
-# then protocol file splits response into separate values
-# and writes them to specified PVs
-#
-# See the following VI for details on how the reply to the ASTA? command is formed:
-# MAPS_251115_C6713_LV2010\RAL Neu\MAPS_251115_C6713_LV2014\LabVIEW\TCP.llb\TCP_Kommando_ASTA?.vi
-#
 # reference speed [Hz]
 # RSPE?
 # 20.00 to 26.00 and 32.00 to 100.00
 # relating to master-chopper (chopper 3)
 # two decimal places
 #
-record(ai, "$(P)FREQ:REF")
-{
-    field(DESC, "Reference Frequency")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(EGU, "Hz")
-    field(PREC, "2")
-    field(INP, "@devFZJ_DDFermiChopper.proto getASTA($(P)) $(PORT)")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:FREQ:REF")
-    field(SDIS, "$(P)DISABLE")
-}
+# *** not implemented in server application ***
+#
+#record(ai, "$(P)FREQ:REF")
+#{
+#    field(DESC, "Reference Frequency")
+#    field(SCAN, "1 second")
+#    field(DTYP, "stream")
+#    field(EGU, "Hz")
+#    field(PREC, "2")
+#    field(INP, "@devFZJ_DDFermiChopper.proto getASTA($(P)) $(PORT)")
+#    info(INTEREST, "HIGH")
+#    info(archive, "VAL")
+#    field(SIML, "$(P)SIM")
+#    field(SIOL, "$(P)SIM:FREQ:REF")
+#    field(SDIS, "$(P)DISABLE")
+#}
 #
 # setpoint speed [Hz]
 # SSPE?
@@ -245,6 +239,13 @@ record(ai, "$(P)FREQ:SP:RBV")
 #    info(archive, "VAL")
 #}
 #
+# first record causes concatenated status string to be read
+# then protocol file splits response into separate values
+# and writes them to specified PVs
+#
+# See the following VI for details on how the reply to the ASTA? command is formed:
+# MAPS_251115_C6713_LV2010\RAL Neu\MAPS_251115_C6713_LV2014\LabVIEW\TCP.llb\TCP_Kommando_ASTA?.vi
+#
 # current speed [Hz]
 # SPEE?
 # 0.00 to 100.00
@@ -253,9 +254,12 @@ record(ai, "$(P)FREQ:SP:RBV")
 record(ai, "$(P)FREQ")
 {
     field(DESC, "Current Frequency")
+	field(SCAN, "1 second")
+	field(DTYP, "stream")
     field(EGU, "Hz")
     field(PREC, "2")    
-    info(alarm, "FZJDDFCH_01") 
+    info(alarm, "FZJDDFCH_01")
+    field(INP, "@devFZJ_DDFermiChopper.proto getASTA($(P)) $(PORT)")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
