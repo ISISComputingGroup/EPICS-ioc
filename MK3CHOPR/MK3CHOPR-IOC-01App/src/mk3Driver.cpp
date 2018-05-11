@@ -22,6 +22,7 @@
 
 
 static const char *driverName="mk3Driver";
+static const int BUFFER_SIZE = 100;
 
 mk3Driver::mk3Driver(const char *portName, const char *configFilePath, int mockChopper) 
    : asynPortDriver(portName, 
@@ -68,6 +69,7 @@ mk3Driver::mk3Driver(const char *portName, const char *configFilePath, int mockC
     createParam(P_NominalPhaseErrorString, asynParamFloat64, &P_NominalPhaseError);
     createParam(P_DirectionEnabledString, asynParamInt32, &P_DirectionEnabled);
     createParam(P_NumChannelsString, asynParamInt32, &P_NumChannels);
+    createParam(P_ComputerModeString, asynParamInt32, &P_ComputerMode);
 }
 
 asynStatus mk3Driver::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
@@ -191,7 +193,7 @@ asynStatus mk3Driver::readOctet(asynUser *pasynUser, char *value, size_t maxChar
     }
     else if (function == P_ChopperName)
     {
-        const int size = 50;
+        const int size = BUFFER_SIZE;
         char result[size];
         errCode = m_interface->getChopperName(channel, result, size);
         checkErrorCode(errCode);
@@ -269,7 +271,7 @@ asynStatus mk3Driver::readInt32(asynUser *pasynUser, epicsInt32 *value)
         unsigned int result;
         errCode = m_interface->getNumberEnabledChannels(&result);
         
-        *value = result;
+        *value = (int) result;
         checkErrorCode(errCode);
     }
     else if (function == P_Veto)
@@ -284,6 +286,13 @@ asynStatus mk3Driver::readInt32(asynUser *pasynUser, epicsInt32 *value)
     {
         *value = insyncStatus;
     }
+	else if (function == P_ComputerMode)
+	{
+        bool result;
+        errCode = m_interface->getComputerMode(&result);
+        *value = (int) result;
+        checkErrorCode(errCode);
+	}
 
     return status;
 }
@@ -354,14 +363,14 @@ void mk3Driver::checkErrorCode(int code)
     // 0 = no error
     if (code != 0)
     {
-        char answer[50];
-        m_interface->checkErrorCode(code, answer, 50);
+        char answer[BUFFER_SIZE];
+        m_interface->checkErrorCode(code, answer, BUFFER_SIZE);
         errlogSevPrintf(errlogMajor, "%s", answer);
         
-        // If .net timeout try to re-intialise
-        if (code == -3)
+        // If "Chopper connection not initialised", ".net timeout" or "Unknown .NET error" try to re-intialise
+        if (code == -1 || code == -3 || code == -4)
         {
-            errlogSevPrintf(errlogMajor, "%s","Trying to re-establish .NET connection");
+            errlogSevPrintf(errlogMajor, "%s","Trying to re-establish connection");
             m_interface->initialise();
         }
     }

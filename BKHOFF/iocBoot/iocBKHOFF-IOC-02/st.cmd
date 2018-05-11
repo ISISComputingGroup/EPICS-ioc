@@ -14,7 +14,8 @@ cd "${TOP}"
 dbLoadDatabase "dbd/BKHOFF-IOC-02.dbd"
 BKHOFF_IOC_02_registerRecordDeviceDriver pdbbase
 
-< iocBoot/iocBKHOFF-IOC-01/st-common.cmd
+# disable for now
+# < iocBoot/iocBKHOFF-IOC-01/st-common.cmd
 
 
 

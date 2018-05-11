@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 DB += controls.db 
 DB += controls_channel.db 
 DB += controls_channel_specific.db
+DB += controls_waveform.db
 DB += logging.db
 
 #----------------------------------------------------

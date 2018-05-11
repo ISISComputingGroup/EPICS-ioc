@@ -14,23 +14,28 @@
 
 #### Code Review
 
-- [ ] Is the code of an acceptable quality?
-- [ ] Are the PVs named according to the [naming standards](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/PV-Naming).
-- [ ] Have suitable [disable records](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Disable-records) been added?
-- [ ] Have suitable [simulation records](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Record-Simulation) been added?
-- [ ] Have the [finishing touches](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/IOC-Finishing-Touches) been applied?
-- [ ] Is there an [emulator](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Emulating-Devices) for the device?
-- [ ] Have the changes been documented in the [release notes](https://github.com/ISISComputingGroup/IBEX/wiki/ReleaseNotes_Dev). If so, do they describe the changes appropriately?
-- [ ] If an OPI has been modified, does it conform to the [style guidelines](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/OPI-Creation)? There is a script called `check_opi_format.py` to help with this.
+- [ ] A copy of the manual has been placed on the shared drive
+- [ ] Pertitent information has been stored in the [wiki](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Specific-Device-IOC)
+- [ ] Does the IOC conform to IBEX standards?
+    - [PV naming](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/PV-Naming).
+    - [Disable records](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Disable-records)
+    - [Record simulation](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Record-Simulation)
+    - [Finishing touches](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/IOC-Finishing-Touches)
+- [ ] If an OPI has been modified, does it conform to the [style guidelines](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/OPI-Creation)?
+- [ ] Do the IOC and support module conform to the new [build guidelines](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Reducing-Build-Dependencies)
+- [ ] Have the changes been recorded appropriately in the [release notes](https://github.com/ISISComputingGroup/IBEX/wiki/ReleaseNotes_Dev)?
+- [ ] Is the device's flow control setting correct? [For most devices flow control should be OFF](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Flow-control).
 
 ### Functional Tests
 
-- [ ] Do changes function as described? Add comments below that describe the tests performed.
-- [ ] Does the IOC respond correctly both in full and simulation mode, where it's possible to test both?
-- [ ] If there are multiple _0n IOCs, do they run correctly?
-- [ ] Ensure that the log files do not contain undefined macros, ie serach for `macLib: macro` full text is `macLib: macro XXXXX is undefined (expanding string XXXX)`
+- IOC responds correctly in:
+    - [ ] Devsim mode
+    - [ ] Recsim mode
+    - [ ] Real device, if available
+- [ ] Supplementary IOCs (`..._0n` where `n>1`) run correctly
+- [ ] Log files do not report undefined macros (serach for `macLib: macro` to find instances of `macLib: macro [macro name] is undefined...`
 
 ### Final steps
 
-- [ ] Reviewer has updated the submodule in the main EPICS repo? See **Reviewing work for the subModules of EPICS** in the [Git workflow](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Git-workflow) page for details.
+- [ ] Update the IOC submodule in the main EPICS repo. See [Git workflow](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Git-workflow) page for details.
 - [ ] Reviewer has moved the [release notes](https://github.com/ISISComputingGroup/IBEX/wiki/ReleaseNotes_Dev) entry for this ticket in the "Changes merged into master" section

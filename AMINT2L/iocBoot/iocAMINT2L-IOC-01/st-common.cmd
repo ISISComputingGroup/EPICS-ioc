@@ -3,6 +3,9 @@ epicsEnvSet "STREAM_PROTOCOL_PATH" "$(AMINT2L)/data"
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
+## For recsim:
+$(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
+
 # For dev sim devices
 $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
 

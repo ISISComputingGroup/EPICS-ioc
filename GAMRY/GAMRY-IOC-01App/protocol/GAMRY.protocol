@@ -1,0 +1,28 @@
+Terminator = CR;
+
+beamOn {
+    out "BEAM_ON";
+    in "BEAM_ON";
+}
+
+beamOff {
+    out "BEAMOFF";
+    in "BEAMOFF";
+}
+
+# this will later send an asynchronous reply when charging is complete
+# this is caught by chargingStatus() below
+startCharging {
+    out "START01";
+	in "STARTED";
+}
+
+# this is for I/O Intr monitoring of replies to startCharging()
+# it will return 1 with STARTED and 0 with STOPPED matched 
+chargingStatus {
+    in "%{STOPPED|STARTED}";
+}
+
+#beamStatus {
+#    in "%{BEAMOFF|BEAM_ON}";
+#}

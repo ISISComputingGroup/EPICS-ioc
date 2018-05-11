@@ -8,7 +8,8 @@ drvAsynIPPortConfigure("MC_CPU1","192.168.1.67:200",0,0,0)
 asynOctetSetOutputEos("MC_CPU1", -1, ";\n")
 asynOctetSetInputEos("MC_CPU1", -1, ";\n")
 #eemcuCreateController("MCU1", "MC_CPU1", "32", "200", "1000")
-eemcuCreateController("MCU1", "MC_CPU1", "2", "200", "1000")
+#eemcuCreateController("MCU1", "MC_CPU1", "2", "200", "1000")
+EssMCAGmotorCreateController("MCU1", "MC_CPU1", "2", "200", "1000")
   #define ASYN_TRACE_ERROR     0x0001
   #define ASYN_TRACEIO_DEVICE  0x0002
   #define ASYN_TRACEIO_FILTER  0x0004
@@ -37,8 +38,10 @@ asynSetTraceInfoMask("MC_CPU1", -1, 15)
 #define AMPLIFIER_ON_FLAG_WHEN_HOMING  (1<<1)
 #define AMPLIFIER_ON_FLAG_USING_CNEN   (1<<2)
 
-eemcuCreateAxis("MCU1", "1", "1", "")
-eemcuCreateAxis("MCU1", "2", "1", "")
+#eemcuCreateAxis("MCU1", "1", "1", "")
+#eemcuCreateAxis("MCU1", "2", "1", "")
+EssMCAGmotorCreateAxis("MCU1", "1", "1", "")
+EssMCAGmotorCreateAxis("MCU1", "2", "1", "")
 #eemcuCreateAxis("MCU1", "1", "4", "")
 #eemcuCreateAxis("MCU1", "2", "4", "")
 
@@ -53,13 +56,26 @@ eemcuCreateAxis("MCU1", "2", "1", "")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/IMAT.db","P=$(MYPVPREFIX),M1=MOT:MTR0901,M2=MOT:MTR0902")
+dbLoadRecords("db/IMAT.db","P=$(MYPVPREFIX),PORT=MCU1,M1=MOT:MTR0901,M2=MOT:MTR0902")
+
+## motor util package
+## note: IOC name needs to have been added to _FAN element of this DB file
+dbLoadRecords("$(AXISRECORD)/db/axisUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
+
+dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=MOT:MTR0901")
+dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=MOT:MTR0902")
+
+epicsEnvSet("BKHOFFCONFIG","$(ICPCONFIGROOT)/$(IOCNAME)")
+## configure axes
+< $(BKHOFFCONFIG)/axes.cmd
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
+
+axisUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 ## Start any sequence programs
 #seq sncxxx,"user=faa59Host"

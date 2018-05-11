@@ -8,6 +8,8 @@
 <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." />
 <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." />
 <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." />
+<macro name="OEOS" pattern="^.*$" description="Serial communication output terminator, defaults to \\r\\n." />
+<macro name="IEOS" pattern="^.*$" description="Serial communication input terminator, defaults to \\r\\n." />
 </macros>
 </config_part>
 </ioc_config>

@@ -4,3 +4,8 @@ pattern {P,    M,         DTYP,      DESC,   EGU,  DIR,  VELO,  VBAS, ACCL, BDST
 {"\$(P)", "\$(M)", "Mclennan PM304", "\$(NAME) (MCLEN)",    "\$(EGU)",  "Pos",  "\$(VELO)",   "\$(VBAS)",  "\$(ACCL)",    0,    1,   0,   "\$(MRES)",   "\$(ERES)", "\$(UEIP)",    3,   "\$(DHLM)",   "\$(DLLM)",  "", "\$(C)", "\$(S)"}
 
 }
+
+file $(MOTOR)/db/periodic_polling.db {
+pattern {P, M}
+{"\$(P)", "\$(M)"}
+}

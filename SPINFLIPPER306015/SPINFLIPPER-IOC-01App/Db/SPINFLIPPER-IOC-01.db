@@ -1,9 +1,10 @@
 record(bo, "$(P)SIM")
 {
+    field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(FLNK, "$(P)VERSION")
+    field(VAL, "$(RECSIM=0)")
 }
 
 record(bo, "$(P)DISABLE") 
@@ -15,7 +16,7 @@ record(bo, "$(P)DISABLE")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
 }
-
+	
 record(ai, "$(P)TGUI")
 {
     field(DTYP, "stream")

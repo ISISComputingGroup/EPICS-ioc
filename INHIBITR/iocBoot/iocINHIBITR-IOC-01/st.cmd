@@ -35,8 +35,11 @@ iocInit
 < $(IOCSTARTUP)/postiocinit.cmd
 
 # These PVs will make it so the inhibitor will only let one motor be non-zero at a time
-epicsEnvSet(PVONE,$(MYPVPREFIX)MOT:MTR0407)
 
+#epicsEnvSet(PVONE,$(MYPVPREFIX)MOT:MTR0407)
+#epicsEnvSet(PVTWO,$(MYPVPREFIX)MOT:MTR0408)
+#epicsEnvSet(PVONE_DISP,$(MYPVPREFIX)MOT:MTR0407.DISP)
+#epicsEnvSet(PVTWO_DISP,$(MYPVPREFIX)MOT:MTR0408.DISP)
 
 ## Start any sequence programs
 seq sncSummary, "PVONE=$(PVONE)"

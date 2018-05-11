@@ -1,1 +1,0 @@
-< $(GALILCONFIG)/axes.cmd
