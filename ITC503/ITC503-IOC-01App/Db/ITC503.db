@@ -102,6 +102,20 @@ record(ao, "$(P)SAMPLEFLW:SP") {
   field(SDIS, "$(P)DISABLE")
 }
 
+record(ao, "$(P)GASFLOW:SP") {
+  field(DESC, "Set gas flow")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(OUT, "@itc503.proto set_gflow $(PORT)")
+  field(OMSL, "supervisory")
+  field(PREC, "1")
+  field(DRVH, "99.9")
+  field(DRVL, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:GASFLOW:SP")
+  field(SDIS, "$(P)DISABLE")
+}
+
 record(ao, "$(P)MANV:SP") {
   field(DESC, "Set man htr v")
   field(SCAN, "Passive")
@@ -191,7 +205,7 @@ record(mbbo, "$(P)CTRL:SP") {
 }
 
 record(ai, "$(P)TEMP:SP:RBV") {
-  field(DESC, "Get tagret temp")
+  field(DESC, "Get target temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
   field(INP, "@itc503.proto get_ttemp $(PORT)")
@@ -325,6 +339,19 @@ record(ai, "$(P)SAMPLEFLW") {
   field(SDIS, "$(P)DISABLE")
 }
 
+record(ai, "$(P)GASFLOW") {
+  field(DESC, "Get gas flow")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(INP, "@itc503.proto get_gflow $(PORT)")
+  field(PREC, "1")
+  field(HOPR, "99.9")
+  field(LOPR, "0")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:GASFLOW")
+  field(SDIS, "$(P)DISABLE")
+}
+
 record(ai, "$(P)CHANFREQ") {
   field(DESC, "Get channel freq")
   field(SCAN, "Passive")
@@ -347,8 +374,8 @@ record(seq, "$(P)FAN1") {
   field(LNK1, "$(P)P.PROC PP")
   field(LNK2, "$(P)I.PROC PP")
   field(LNK3, "$(P)D.PROC PP")
-  field(LNK4, "$(P)TTEMP.PROC PP")
-  field(LNK5, "$(P)STEMP.PROC PP")
+  field(LNK4, "$(P)TEMP.PROC PP")
+  field(LNK5, "$(P)TEMP:SP:RBV.PROC PP")
   field(LNK6, "$(P)TEMP:ERR.PROC PP")
   field(LNK7, "$(P)FAN2.PROC PP")
   field(LNK8, "$(P)FAN1.DESC")      
@@ -358,7 +385,7 @@ record(seq, "$(P)FAN1") {
   field(DLY5, "1.0")
   field(DLY6, "1.0")   
   field(DLY7, "1.0")   
-  field(DLY8, "6.0")     
+  field(DLY8, "7.0")     
 }
 
 record(seq, "$(P)FAN2") {
@@ -369,6 +396,7 @@ record(seq, "$(P)FAN2") {
   field(LNK4, "$(P)HEATERV.PROC PP")
   field(LNK5, "$(P)ACTIVITY.PROC PP")
   field(LNK6, "$(P)CHANFREQ.PROC PP")  
+  field(LNK7, "$(P)GASFLOW.PROC PP")  
   field(DLY2, "1.0")
   field(DLY3, "1.0")
   field(DLY4, "1.0")
@@ -379,25 +407,23 @@ record(seq, "$(P)FAN2") {
 
 # Simulation records
 
-record(ao, "$(P)SIM:P"){
-}
+record(ao, "$(P)SIM:P"){}
 alias("$(P)SIM:P", "$(P)SIM:P:SP")
 
-record(ao, "$(P)SIM:I"){
-}
+record(ao, "$(P)SIM:I"){}
 alias("$(P)SIM:I", "$(P)SIM:I:SP")
 
-record(ao, "$(P)SIM:D"){
-}
+record(ao, "$(P)SIM:D"){}
 alias("$(P)SIM:D", "$(P)SIM:D:SP")
 
-record(ao, "$(P)SIM:SHIELDFLW"){
-}
+record(ao, "$(P)SIM:SHIELDFLW"){}
 alias("$(P)SIM:SHIELDFLW", "$(P)SIM:SHIELDFLW:SP")
 
-record(ao, "$(P)SIM:SAMPLEFLW"){
-}
+record(ao, "$(P)SIM:SAMPLEFLW"){}
 alias("$(P)SIM:SAMPLEFLW", "$(P)SIM:SAMPLEFLW:SP")
+
+record(ao, "$(P)SIM:GASFLOW"){}
+alias("$(P)SIM:GASFLOW", "$(P)SIM:GASFLOW:SP")
 
 record(bo, "$(P)SIM:ACTIVITY") {
   field(ZNAM, "Manual")
@@ -405,12 +431,11 @@ record(bo, "$(P)SIM:ACTIVITY") {
 }
 alias("$(P)SIM:ACTIVITY", "$(P)SIM:ACTIVITY:SP")
 
-record(ao, "$(P)SIM:CHANFREQ"){
-}
+record(ao, "$(P)SIM:CHANFREQ"){}
+record(ao, "$(P)SIM:HEATERP"){}
+record(ao, "$(P)SIM:HEATERV"){}
 
-record(ao, "$(P)SIM:HEATERP"){
-}
-
-record(ao, "$(P)SIM:HEATERV"){
-}
+record(ao, "$(P)SIM:TEMP"){}
+alias("$(P)SIM:TEMP", "$(P)SIM:TEMP:SP")
+alias("$(P)SIM:TEMP", "$(P)SIM:TEMP:SP:RBV")
 
