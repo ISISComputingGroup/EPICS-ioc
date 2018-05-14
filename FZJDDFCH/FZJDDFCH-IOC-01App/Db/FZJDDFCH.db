@@ -506,20 +506,20 @@ record(ai, "$(P)PHAS:OUTAGE")
 # C01, C02, C2B or C03
 # can be called from all choppers
 #
-record(mbbi, "$(P)MASTER")
-{
-    field(DESC, "Master Chopper")
-    field(ZRVL, 0)
-	field(ONVL, 1)
-	field(TWVL, 2)
-	field(THVL, 3)
-	field(ZRST, "C01")
-	field(ONST, "C02")
-	field(TWST, "C2B")
-	field(THST, "C03")     
-    info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
-}
+#record(mbbi, "$(P)MASTER")
+#{
+#    field(DESC, "Master Chopper")
+#    field(ZRVL, 0)
+#	field(ONVL, 1)
+#	field(TWVL, 2)
+#	field(THVL, 3)
+#	field(ZRST, "C01")
+#	field(ONST, "C02")
+#	field(TWST, "C2B")
+#	field(THST, "C03")     
+#    info(INTEREST, "MEDIUM")
+#    info(archive, "VAL")
+#}
 #
 # log data
 # LOON?

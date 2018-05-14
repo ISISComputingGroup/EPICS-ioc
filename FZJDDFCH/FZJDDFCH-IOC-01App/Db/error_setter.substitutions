@@ -2,26 +2,26 @@ file $(UTILITIES)/db/error_setter.template {
     pattern {P, STREAM_PV, PV_NAME}
     
     {"\$(P)", "FREQ", "FREQ:SP:RBV"}
-    {"\$(P)", "FREQ", "FREQ"}
+#    {"\$(P)", "FREQ", "FREQ"}
     {"\$(P)", "FREQ", "PHAS:SP:RBV"}
     {"\$(P)", "FREQ", "PHAS"}
     {"\$(P)", "FREQ", "PHAS:STAT"}
     {"\$(P)", "FREQ", "MB"}
     {"\$(P)", "FREQ", "MB:STAT"}
-    {"\$(P)", "FREQ", "MB:INT"}
+#    {"\$(P)", "FREQ", "MB:INT"}
     {"\$(P)", "FREQ", "DRIVE"}
     {"\$(P)", "FREQ", "DRIVE:MODE"}
     {"\$(P)", "FREQ", "DRIVE:L1:CURR"}
     {"\$(P)", "FREQ", "DRIVE:L2:CURR"}
     {"\$(P)", "FREQ", "DRIVE:L3:CURR"}
     {"\$(P)", "FREQ", "DRIVE:DIR"}
-    {"\$(P)", "FREQ", "PARKED:OPEN:STAT"}
+#    {"\$(P)", "FREQ", "PARKED:OPEN:STAT"}
     {"\$(P)", "FREQ", "DRIVE:TEMP"}
-    {"\$(P)", "FREQ", "INPUTCLOCK"}
+#    {"\$(P)", "FREQ", "INPUTCLOCK"}
     {"\$(P)", "FREQ", "PHAS:OUTAGE"}
-    {"\$(P)", "FREQ", "MASTER"}
+#    {"\$(P)", "FREQ", "MASTER"}
     {"\$(P)", "FREQ", "LOGGING"}
-    {"\$(P)", "FREQ", "LMSR:STAT"}
+#    {"\$(P)", "FREQ", "LMSR:STAT"}
     {"\$(P)", "FREQ", "DSP:STAT"}
     {"\$(P)", "FREQ", "INTERLOCK:ER:STAT"}
     {"\$(P)", "FREQ", "INTERLOCK:VAC:STAT"}
