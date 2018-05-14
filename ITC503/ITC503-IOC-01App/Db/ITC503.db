@@ -74,34 +74,6 @@ record(ao, "$(P)MAXV:SP") {
   field(SDIS, "$(P)DISABLE")
 }
 
-record(ao, "$(P)SHIELDFLW:SP") {
-  field(DESC, "Set shield flow")
-  field(SCAN, "Passive")
-  field(DTYP, "stream")
-  field(OUT, "@itc503.proto set_sh_flo $(PORT)")
-  field(OMSL, "supervisory")
-  field(PREC, "1")
-  field(DRVH, "99.9")
-  field(DRVL, "0")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:SHIELDFLW:SP")
-  field(SDIS, "$(P)DISABLE")
-}
-
-record(ao, "$(P)SAMPLEFLW:SP") {
-  field(DESC, "Set sample flow")
-  field(SCAN, "Passive")
-  field(DTYP, "stream")
-  field(OUT, "@itc503.proto set_sa_flo $(PORT)")
-  field(OMSL, "supervisory")
-  field(PREC, "1")
-  field(DRVH, "99.9")
-  field(DRVL, "0")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:SAMPLEFLW:SP")
-  field(SDIS, "$(P)DISABLE")
-}
-
 record(ao, "$(P)GASFLOW:SP") {
   field(DESC, "Set gas flow")
   field(SCAN, "Passive")
@@ -160,7 +132,7 @@ record(bi, "$(P)ACTIVITY") {
   field(DESC, "Get status")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@itc503.proto get_sta($(P)CTRL) $(PORT)")
+  field(INP, "@itc503.proto get_sta($(P)) $(PORT)")
   field(ZNAM, "Manual")
   field(ONAM, "Auto")
   field(SIML, "$(P)SIM")
@@ -313,32 +285,6 @@ record(ai, "$(P)D") {
   field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)SHIELDFLW") {
-  field(DESC, "Get shield flow")
-  field(SCAN, "Passive")
-  field(DTYP, "stream")
-  field(INP, "@itc503.proto get_sh_flo $(PORT)")
-  field(PREC, "1")
-  field(HOPR, "99.9")
-  field(LOPR, "0")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:SHIELDFLW")
-  field(SDIS, "$(P)DISABLE")
-}
-
-record(ai, "$(P)SAMPLEFLW") {
-  field(DESC, "Get sample flow")
-  field(SCAN, "Passive")
-  field(DTYP, "stream")
-  field(INP, "@itc503.proto get_sa_flo $(PORT)")
-  field(PREC, "1")
-  field(HOPR, "99.9")
-  field(LOPR, "0")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:SAMPLEFLW")
-  field(SDIS, "$(P)DISABLE")
-}
-
 record(ai, "$(P)GASFLOW") {
   field(DESC, "Get gas flow")
   field(SCAN, "Passive")
@@ -391,21 +337,59 @@ record(seq, "$(P)FAN1") {
 record(seq, "$(P)FAN2") {
   field(SELM, "All")
   field(LNK1, "$(P)HEATERP.PROC PP")
-  field(LNK2, "$(P)SHIELDFLW.PROC PP")
-  field(LNK3, "$(P)SAMPLEFLW.PROC PP")
-  field(LNK4, "$(P)HEATERV.PROC PP")
-  field(LNK5, "$(P)ACTIVITY.PROC PP")
-  field(LNK6, "$(P)CHANFREQ.PROC PP")  
-  field(LNK7, "$(P)GASFLOW.PROC PP")  
+  field(LNK2, "$(P)HEATERV.PROC PP")
+  field(LNK3, "$(P)ACTIVITY.PROC PP")
+  field(LNK4, "$(P)CHANFREQ.PROC PP")  
+  field(LNK5, "$(P)GASFLOW.PROC PP")  
   field(DLY2, "1.0")
   field(DLY3, "1.0")
   field(DLY4, "1.0")
   field(DLY5, "1.0")
-  field(DLY6, "1.0")
+}
+
+record(mbbi, "$(P)SWEEPING") {
+  field(DESC, "Sweeping")
+  field(SCAN, "Passive")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(ZRST, "Not Sweeping")
+  field(ONST, "Sweeping")
+  field(TWST, "Unknown")
+}
+
+record(mbbi, "$(P)CTRLCHANNEL") {
+  field(DESC, "Control channel")
+  field(SCAN, "Passive")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "Channel 1")
+  field(ONST, "Channel 2")
+  field(TWST, "Channel 3")
+  field(THST, "Unknown")
+}
+
+record(bi, "$(P)AUTOPID") {
+  field(DESC, "Control channel")
+  field(SCAN, "Passive")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
 }
 
 
-# Simulation records
+
+
+####################################
+####################################
+####################################
+######## Simulation records ########
+####################################
+####################################
+####################################
+
+
 
 record(ao, "$(P)SIM:P"){}
 alias("$(P)SIM:P", "$(P)SIM:P:SP")
@@ -439,3 +423,14 @@ record(ao, "$(P)SIM:TEMP"){}
 alias("$(P)SIM:TEMP", "$(P)SIM:TEMP:SP")
 alias("$(P)SIM:TEMP", "$(P)SIM:TEMP:SP:RBV")
 
+record(mbbo, "$(P)SIM:CTRL") {
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "FPLock")
+  field(ONST, "EPICS+FPLock")
+  field(TWST, "FPUnlock")
+  field(THST, "EPICS+FPUnlock")
+}
+alias("$(P)SIM:CTRL", "$(P)SIM:CTRL:SP")
