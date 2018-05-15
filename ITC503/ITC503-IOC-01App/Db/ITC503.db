@@ -18,6 +18,17 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
+record(ai, "$(P)P") {
+  field(DESC, "Get PID P")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(INP, "@itc503.proto get_p $(PORT)")
+  field(PREC, "2")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:P")
+  field(SDIS, "$(P)DISABLE")
+}
+
 record(ao, "$(P)P:SP") {
   field(DESC, "Set PID P")
   field(SCAN, "Passive")
@@ -25,8 +36,6 @@ record(ao, "$(P)P:SP") {
   field(OUT, "@itc503.proto set_p $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "2")
-  field(DRVH, "999.99")
-  field(DRVL, "0")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:P:SP")
   field(SDIS, "$(P)DISABLE")
@@ -39,10 +48,19 @@ record(ao, "$(P)I:SP") {
   field(OUT, "@itc503.proto set_i $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
-  field(DRVH, "9999.9")
-  field(DRVL, "0")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:I:SP")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)I") {
+  field(DESC, "Get PID I")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(INP, "@itc503.proto get_i $(PORT)")
+  field(PREC, "1")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:I")
   field(SDIS, "$(P)DISABLE")
 }
 
@@ -53,24 +71,30 @@ record(ao, "$(P)D:SP") {
   field(OUT, "@itc503.proto set_d $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
-  field(DRVH, "9999.9")
-  field(DRVL, "0")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:D:SP")
   field(SDIS, "$(P)DISABLE")
 }
 
-record(ao, "$(P)MAXV:SP") {
-  field(DESC, "Set max htr v")
+record(ai, "$(P)D") {
+  field(DESC, "Get PID D")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(OUT, "@itc503.proto set_maxv $(PORT)")
-  field(OMSL, "supervisory")
+  field(INP, "@itc503.proto get_d $(PORT)")
   field(PREC, "1")
-  field(DRVH, "99.9")
-  field(DRVL, "0")
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:MAXV:SP")
+  field(SIOL, "$(P)SIM:D")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)GASFLOW") {
+  field(DESC, "Get gas flow")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(INP, "@itc503.proto get_gflow $(PORT)")
+  field(PREC, "1")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:GASFLOW")
   field(SDIS, "$(P)DISABLE")
 }
 
@@ -81,62 +105,44 @@ record(ao, "$(P)GASFLOW:SP") {
   field(OUT, "@itc503.proto set_gflow $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
-  field(DRVH, "99.9")
-  field(DRVL, "0")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:GASFLOW:SP")
   field(SDIS, "$(P)DISABLE")
 }
 
-record(ao, "$(P)MANV:SP") {
-  field(DESC, "Set man htr v")
-  field(SCAN, "Passive")
-  field(DTYP, "stream")
-  field(OUT, "@itc503.proto set_manv $(PORT)")
-  field(OMSL, "supervisory")
-  field(PREC, "1")
-  field(DRVH, "99.9")
-  field(DRVL, "0")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:MANV:SP")
-  field(SDIS, "$(P)DISABLE")
-}
-
-record(bo, "$(P)ACTIVITY:SP") {
-  field(DESC, "Set auto or man")
-  field(SCAN, "Passive")
-  field(DTYP, "stream")
-  field(OUT, "@itc503.proto set_act $(PORT)")
-  field(ZNAM, "Manual")
-  field(ONAM, "Auto")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:ACTIVITY:SP")
-  field(SDIS, "$(P)DISABLE")
-}
-
-record(ao, "$(P)TEMP:SP") {
-  field(DESC, "Set target temp")
-  field(SCAN, "Passive")
-  field(DTYP, "stream")
-  field(OUT, "@itc503.proto set_ttemp $(PORT)")
-  field(OMSL, "supervisory")
-  field(PREC, "2")
-  field(DRVH, "999.99")
-  field(DRVL, "0")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:TEMP:SP")
-  field(SDIS, "$(P)DISABLE")
-}
-
-record(bi, "$(P)ACTIVITY") {
+record(mbbi, "$(P)MODE") {
   field(DESC, "Get status")
   field(SCAN, "Passive")
   field(DTYP, "stream")
   field(INP, "@itc503.proto get_sta($(P)) $(PORT)")
-  field(ZNAM, "Manual")
-  field(ONAM, "Auto")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "Man heater, man flow")
+  field(ONST, "Auto heater, man flow")
+  field(TWST, "Man heater, auto flow")
+  field(THST, "Auto gas, auto flow")
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:ACTIVITY")
+  field(SIOL, "$(P)SIM:MODE")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbo, "$(P)MODE:SP") {
+  field(DESC, "Set auto or man")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(OUT, "@itc503.proto set_act $(PORT)")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "Man heater, man flow")
+  field(ONST, "Auto heater, man flow")
+  field(TWST, "Man heater, auto flow")
+  field(THST, "Auto gas, auto flow")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:MODE:SP")
   field(SDIS, "$(P)DISABLE")
 }
 
@@ -176,31 +182,39 @@ record(mbbo, "$(P)CTRL:SP") {
   field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)TEMP:SP:RBV") {
-  field(DESC, "Get target temp")
-  field(SCAN, "Passive")
-  field(DTYP, "stream")
-  field(INP, "@itc503.proto get_ttemp $(PORT)")
-  field(PREC, "2")
-  field(HOPR, "999.99")
-  field(LOPR, "0")
-  field(EGU, "K")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:TEMP:SP:RBV")
-  field(SDIS, "$(P)DISABLE")
-}
-
 record(ai, "$(P)TEMP") {
   field(DESC, "Get sensor temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
   field(INP, "@itc503.proto get_stemp $(PORT)")
   field(PREC, "2")
-  field(HOPR, "999.99")
-  field(LOPR, "0")
   field(EGU, "K")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:TEMP")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)TEMP:SP") {
+  field(DESC, "Set target temp")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(OUT, "@itc503.proto set_ttemp $(PORT)")
+  field(OMSL, "supervisory")
+  field(PREC, "2")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:TEMP:SP")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)TEMP:SP:RBV") {
+  field(DESC, "Get target temp")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(INP, "@itc503.proto get_ttemp $(PORT)")
+  field(PREC, "2")
+  field(EGU, "K")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:TEMP:SP:RBV")
   field(SDIS, "$(P)DISABLE")
 }
 
@@ -210,8 +224,6 @@ record(ai, "$(P)TEMP:ERR") {
   field(DTYP, "stream")
   field(INP, "@itc503.proto get_etemp $(PORT)")
   field(PREC, "2")
-  field(HOPR, "999.99")
-  field(LOPR, "-999.99")
   field(EGU, "K")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:TEMP:ERR")
@@ -226,9 +238,8 @@ record(ai, "$(P)HEATERP") {
   field(PREC, "0")
   field(EGU, "%")
   field(HOPR, "100")
-  field(LOPR, "0")
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:HEATERP")
+  field(SIOL, "$(P)SIM:HEATERV")
   field(SDIS, "$(P)DISABLE")
 }
 
@@ -239,112 +250,33 @@ record(ai, "$(P)HEATERV") {
   field(INP, "@itc503.proto get_htrv $(PORT)")
   field(PREC, "1")
   field(EGU, "V")
-  field(HOPR, "99.9")
-  field(LOPR, "0")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HEATERV")
   field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)P") {
-  field(DESC, "Get PID P")
+record(ao, "$(P)HEATERV:MAX") {
+  field(DESC, "Set max htr v")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@itc503.proto get_p $(PORT)")
-  field(PREC, "2")
-  field(HOPR, "999.99")
-  field(LOPR, "0")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:P")
-  field(SDIS, "$(P)DISABLE")
-}
-
-record(ai, "$(P)I") {
-  field(DESC, "Get PID I")
-  field(SCAN, "Passive")
-  field(DTYP, "stream")
-  field(INP, "@itc503.proto get_i $(PORT)")
+  field(OUT, "@itc503.proto set_maxv $(PORT)")
+  field(OMSL, "supervisory")
   field(PREC, "1")
-  field(HOPR, "999.9")
-  field(LOPR, "0")
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:I")
+  field(SIOL, "$(P)SIM:HEATERV:MAX")
   field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)D") {
-  field(DESC, "Get PID D")
+record(ao, "$(P)HEATERV:SP") {
+  field(DESC, "Set man htr v")
   field(SCAN, "Passive")
   field(DTYP, "stream")
-  field(INP, "@itc503.proto get_d $(PORT)")
+  field(OUT, "@itc503.proto set_manv $(PORT)")
+  field(OMSL, "supervisory")
   field(PREC, "1")
-  field(HOPR, "999.9")
-  field(LOPR, "0")
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:D")
+  field(SIOL, "$(P)SIM:HEATERV:SP")
   field(SDIS, "$(P)DISABLE")
-}
-
-record(ai, "$(P)GASFLOW") {
-  field(DESC, "Get gas flow")
-  field(SCAN, "Passive")
-  field(DTYP, "stream")
-  field(INP, "@itc503.proto get_gflow $(PORT)")
-  field(PREC, "1")
-  field(HOPR, "99.9")
-  field(LOPR, "0")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:GASFLOW")
-  field(SDIS, "$(P)DISABLE")
-}
-
-record(ai, "$(P)CHANFREQ") {
-  field(DESC, "Get channel freq")
-  field(SCAN, "Passive")
-  field(DTYP, "stream")
-  field(INP, "@itc503.proto get_chnf $(PORT)")
-  field(PREC, "1")
-  field(HOPR, "100000")
-  field(LOPR, "0")
-  field(ASLO, "4")
-  field(EGU, "Hz")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:CHANFREQ")
-  field(SDIS, "$(P)DISABLE")
-}
-
-record(seq, "$(P)FAN1") {
-  field(SCAN, "10 second")
-  field(SDIS, "$(P)DISABLE")
-  field(SELM, "All")
-  field(LNK1, "$(P)P.PROC PP")
-  field(LNK2, "$(P)I.PROC PP")
-  field(LNK3, "$(P)D.PROC PP")
-  field(LNK4, "$(P)TEMP.PROC PP")
-  field(LNK5, "$(P)TEMP:SP:RBV.PROC PP")
-  field(LNK6, "$(P)TEMP:ERR.PROC PP")
-  field(LNK7, "$(P)FAN2.PROC PP")
-  field(LNK8, "$(P)FAN1.DESC")      
-  field(DLY2, "1.0")
-  field(DLY3, "1.0")
-  field(DLY4, "1.0")
-  field(DLY5, "1.0")
-  field(DLY6, "1.0")   
-  field(DLY7, "1.0")   
-  field(DLY8, "7.0")     
-}
-
-record(seq, "$(P)FAN2") {
-  field(SELM, "All")
-  field(LNK1, "$(P)HEATERP.PROC PP")
-  field(LNK2, "$(P)HEATERV.PROC PP")
-  field(LNK3, "$(P)ACTIVITY.PROC PP")
-  field(LNK4, "$(P)CHANFREQ.PROC PP")  
-  field(LNK5, "$(P)GASFLOW.PROC PP")  
-  field(DLY2, "1.0")
-  field(DLY3, "1.0")
-  field(DLY4, "1.0")
-  field(DLY5, "1.0")
 }
 
 record(mbbi, "$(P)SWEEPING") {
@@ -369,13 +301,83 @@ record(mbbi, "$(P)CTRLCHANNEL") {
   field(ONST, "Channel 2")
   field(TWST, "Channel 3")
   field(THST, "Unknown")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:CTRLCHANNEL")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbo, "$(P)CTRLCHANNEL:SP") {
+  field(DESC, "Control channel")
+  field(SCAN, "Passive")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(ZRST, "Channel 1")
+  field(ONST, "Channel 2")
+  field(TWST, "Channel 3")
+  field(DTYP, "stream")
+  field(OUT, "@itc503.proto set_ctrl_chan $(PORT)")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:CTRLCHANNEL:SP")
+  field(SDIS, "$(P)DISABLE")
 }
 
 record(bi, "$(P)AUTOPID") {
-  field(DESC, "Control channel")
+  field(DESC, "Automatic PID")
   field(SCAN, "Passive")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:AUTOPID")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)AUTOPID:SP") {
+  field(DESC, "Automatic PID setpoint")
+  field(SCAN, "Passive")
+  field(OUT, "@itc503.proto set_auto_pid $(PORT)")
+  field(DTYP, "stream")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:AUTOPID:SP")
+  field(SDIS, "$(P)DISABLE")
+}
+
+
+
+
+
+record(seq, "$(P)FAN1") {
+  field(SCAN, "10 second")
+  field(SDIS, "$(P)DISABLE")
+  field(SELM, "All")
+  field(LNK1, "$(P)P.PROC PP")
+  field(LNK2, "$(P)I.PROC PP")
+  field(LNK3, "$(P)D.PROC PP")
+  field(LNK4, "$(P)TEMP.PROC PP")
+  field(LNK5, "$(P)TEMP:SP:RBV.PROC PP")
+  field(LNK6, "$(P)TEMP:ERR.PROC PP")
+  field(LNK7, "$(P)FAN2.PROC PP")
+  field(LNK8, "$(P)FAN1.DESC")      
+  field(DLY2, "1.0")
+  field(DLY3, "1.0")
+  field(DLY4, "1.0")
+  field(DLY5, "1.0")
+  field(DLY6, "1.0")   
+  field(DLY7, "1.0")   
+  field(DLY8, "5.0")     
+}
+
+record(seq, "$(P)FAN2") {
+  field(SELM, "All")
+  field(LNK1, "$(P)HEATERP.PROC PP")
+  field(LNK2, "$(P)HEATERV.PROC PP")
+  field(LNK3, "$(P)MODE.PROC PP")
+  field(LNK4, "$(P)GASFLOW.PROC PP")  
+  field(DLY2, "1.0")
+  field(DLY3, "1.0")
+  field(DLY4, "1.0")
 }
 
 
@@ -409,14 +411,18 @@ alias("$(P)SIM:SAMPLEFLW", "$(P)SIM:SAMPLEFLW:SP")
 record(ao, "$(P)SIM:GASFLOW"){}
 alias("$(P)SIM:GASFLOW", "$(P)SIM:GASFLOW:SP")
 
-record(bo, "$(P)SIM:ACTIVITY") {
-  field(ZNAM, "Manual")
-  field(ONAM, "Auto")
+record(mbbo, "$(P)SIM:MODE:SP") {
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "Man heater, man flow")
+  field(ONST, "Auto heater, man flow")
+  field(TWST, "Man heater, auto flow")
+  field(THST, "Auto gas, auto flow")
 }
-alias("$(P)SIM:ACTIVITY", "$(P)SIM:ACTIVITY:SP")
+alias("$(P)SIM:MODE:SP", "$(P)SIM:MODE")
 
-record(ao, "$(P)SIM:CHANFREQ"){}
-record(ao, "$(P)SIM:HEATERP"){}
 record(ao, "$(P)SIM:HEATERV"){}
 
 record(ao, "$(P)SIM:TEMP"){}
@@ -434,3 +440,21 @@ record(mbbo, "$(P)SIM:CTRL") {
   field(THST, "EPICS+FPUnlock")
 }
 alias("$(P)SIM:CTRL", "$(P)SIM:CTRL:SP")
+
+record(mbbo, "$(P)SIM:CTRLCHANNEL") {
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "Channel 1")
+  field(ONST, "Channel 2")
+  field(TWST, "Channel 3")
+  field(THST, "Unknown")
+}
+alias("$(P)SIM:CTRLCHANNEL", "$(P)SIM:CTRLCHANNEL:SP")
+
+record(bo, "$(P)SIM:AUTOPID") {
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+}
+alias("$(P)SIM:AUTOPID", "$(P)SIM:AUTOPID:SP")
