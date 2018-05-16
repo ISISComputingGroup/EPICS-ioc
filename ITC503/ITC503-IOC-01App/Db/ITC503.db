@@ -23,10 +23,13 @@ record(ai, "$(P)P") {
   field(SCAN, "Passive")
   field(DTYP, "stream")
   field(INP, "@itc503.proto get_p $(PORT)")
-  field(PREC, "2")
+  field(PREC, "1")
+  field(EGU, "")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:P")
   field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "MEDIUM")
+  info(archive, "VAL")
 }
 
 record(ao, "$(P)P:SP") {
@@ -35,7 +38,8 @@ record(ao, "$(P)P:SP") {
   field(DTYP, "stream")
   field(OUT, "@itc503.proto set_p $(PORT)")
   field(OMSL, "supervisory")
-  field(PREC, "2")
+  field(PREC, "1")
+  field(EGU, "")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:P:SP")
   field(SDIS, "$(P)DISABLE")
@@ -48,6 +52,7 @@ record(ao, "$(P)I:SP") {
   field(OUT, "@itc503.proto set_i $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
+  field(EGU, "")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:I:SP")
   field(SDIS, "$(P)DISABLE")
@@ -59,9 +64,12 @@ record(ai, "$(P)I") {
   field(DTYP, "stream")
   field(INP, "@itc503.proto get_i $(PORT)")
   field(PREC, "1")
+  field(EGU, "")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:I")
   field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "MEDIUM")
+  info(archive, "VAL")
 }
 
 record(ao, "$(P)D:SP") {
@@ -71,6 +79,7 @@ record(ao, "$(P)D:SP") {
   field(OUT, "@itc503.proto set_d $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
+  field(EGU, "")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:D:SP")
   field(SDIS, "$(P)DISABLE")
@@ -82,9 +91,12 @@ record(ai, "$(P)D") {
   field(DTYP, "stream")
   field(INP, "@itc503.proto get_d $(PORT)")
   field(PREC, "1")
+  field(EGU, "")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:D")
   field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "MEDIUM")
+  info(archive, "VAL")
 }
 
 record(ai, "$(P)GASFLOW") {
@@ -93,9 +105,12 @@ record(ai, "$(P)GASFLOW") {
   field(DTYP, "stream")
   field(INP, "@itc503.proto get_gflow $(PORT)")
   field(PREC, "1")
+  field(EGU, "%")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:GASFLOW")
   field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "MEDIUM")
+  info(archive, "VAL")
 }
 
 record(ao, "$(P)GASFLOW:SP") {
@@ -105,6 +120,7 @@ record(ao, "$(P)GASFLOW:SP") {
   field(OUT, "@itc503.proto set_gflow $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
+  field(EGU, "%")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:GASFLOW:SP")
   field(SDIS, "$(P)DISABLE")
@@ -126,6 +142,8 @@ record(mbbi, "$(P)MODE") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MODE")
   field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "LOW")
+  info(archive, "VAL")
 }
 
 record(mbbo, "$(P)MODE:SP") {
@@ -160,6 +178,8 @@ record(mbbi, "$(P)CTRL") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CTRL")
   field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "LOW")
+  info(archive, "VAL")
 }
 
 record(mbbo, "$(P)CTRL:SP") {
@@ -182,31 +202,62 @@ record(mbbo, "$(P)CTRL:SP") {
   field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)TEMP") {
-  field(DESC, "Get sensor temp")
+record(ai, "$(P)TEMP1") {
+  field(DESC, "Get sensor 1 temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
   field(INP, "@itc503.proto get_stemp $(PORT)")
-  field(PREC, "2")
+  field(PREC, "4")
   field(EGU, "K")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:TEMP")
   field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
 }
 
-record(ao, "$(P)TEMP:SP") {
+record(ai, "$(P)TEMP2") {
+  field(DESC, "Get sensor 2 temp")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(INP, "@itc503.proto get_s2temp $(PORT)")
+  field(PREC, "4")
+  field(EGU, "K")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:TEMP")
+  field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(ai, "$(P)TEMP3") {
+  field(DESC, "Get sensor 3 temp")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(INP, "@itc503.proto get_s3temp $(PORT)")
+  field(PREC, "4")
+  field(EGU, "K")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:TEMP")
+  field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
+}
+
+record(ao, "$(P)TTEMP:SP") {
   field(DESC, "Set target temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
   field(OUT, "@itc503.proto set_ttemp $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "2")
+  field(EGU, "K")
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:TEMP:SP")
+  field(SIOL, "$(P)SIM:TTEMP:SP")
   field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)TEMP:SP:RBV") {
+record(ai, "$(P)TTEMP") {
   field(DESC, "Get target temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
@@ -214,8 +265,10 @@ record(ai, "$(P)TEMP:SP:RBV") {
   field(PREC, "2")
   field(EGU, "K")
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:TEMP:SP:RBV")
+  field(SIOL, "$(P)SIM:TTEMP")
   field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
 }
 
 record(ai, "$(P)TEMP:ERR") {
@@ -237,10 +290,11 @@ record(ai, "$(P)HEATERP") {
   field(INP, "@itc503.proto get_htrp $(PORT)")
   field(PREC, "0")
   field(EGU, "%")
-  field(HOPR, "100")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HEATERV")
   field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "MEDIUM")
+  info(archive, "VAL")
 }
 
 record(ai, "$(P)HEATERV") {
@@ -253,19 +307,31 @@ record(ai, "$(P)HEATERV") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HEATERV")
   field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "MEDIUM")
+  info(archive, "VAL")
 }
 
-record(ao, "$(P)HEATERV:MAX") {
-  field(DESC, "Set max htr v")
-  field(SCAN, "Passive")
-  field(DTYP, "stream")
-  field(OUT, "@itc503.proto set_maxv $(PORT)")
-  field(OMSL, "supervisory")
-  field(PREC, "1")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:HEATERV:MAX")
-  field(SDIS, "$(P)DISABLE")
-}
+
+#
+# At ISIS this should only be set by cryogenics and never by the user.
+#
+# There is potential for damaging cryostats if this is set incorrectly so
+# remove this PV for now. If it is needed, this record can be uncommented.
+# 
+# record(ao, "$(P)HEATERV:MAX") {
+#   field(DESC, "Set max htr v")
+#   field(SCAN, "Passive")
+#   field(DTYP, "stream")
+#   field(OUT, "@itc503.proto set_maxv $(PORT)")
+#   field(OMSL, "supervisory")
+#   field(PREC, "1")
+#   field(EGU, "V")
+#   field(SIML, "$(P)SIM")
+#   field(SIOL, "$(P)SIM:HEATERV:MAX")
+#   field(SDIS, "$(P)DISABLE")
+#   info(INTEREST, "MEDIUM")
+#   info(archive, "VAL")
+# }
 
 record(ao, "$(P)HEATERV:SP") {
   field(DESC, "Set man htr v")
@@ -274,6 +340,7 @@ record(ao, "$(P)HEATERV:SP") {
   field(OUT, "@itc503.proto set_manv $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
+  field(EGU, "V")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HEATERV:SP")
   field(SDIS, "$(P)DISABLE")
@@ -330,6 +397,8 @@ record(bi, "$(P)AUTOPID") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:AUTOPID")
   field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "MEDIUM")
+  info(archive, "VAL")
 }
 
 record(bo, "$(P)AUTOPID:SP") {
@@ -355,8 +424,8 @@ record(seq, "$(P)FAN1") {
   field(LNK1, "$(P)P.PROC PP")
   field(LNK2, "$(P)I.PROC PP")
   field(LNK3, "$(P)D.PROC PP")
-  field(LNK4, "$(P)TEMP.PROC PP")
-  field(LNK5, "$(P)TEMP:SP:RBV.PROC PP")
+  field(LNK4, "$(P)TEMP1.PROC PP")
+  field(LNK5, "$(P)TTEMP.PROC PP")
   field(LNK6, "$(P)TEMP:ERR.PROC PP")
   field(LNK7, "$(P)FAN2.PROC PP")
   field(LNK8, "$(P)FAN1.DESC")      
@@ -366,7 +435,7 @@ record(seq, "$(P)FAN1") {
   field(DLY5, "1.0")
   field(DLY6, "1.0")   
   field(DLY7, "1.0")   
-  field(DLY8, "5.0")     
+  field(DLY8, "7.0")     
 }
 
 record(seq, "$(P)FAN2") {
@@ -375,9 +444,13 @@ record(seq, "$(P)FAN2") {
   field(LNK2, "$(P)HEATERV.PROC PP")
   field(LNK3, "$(P)MODE.PROC PP")
   field(LNK4, "$(P)GASFLOW.PROC PP")  
+  field(LNK5, "$(P)TEMP2.PROC PP")
+  field(LNK6, "$(P)TEMP3.PROC PP")
   field(DLY2, "1.0")
   field(DLY3, "1.0")
   field(DLY4, "1.0")
+  field(DLY5, "1.0")
+  field(DLY6, "1.0")
 }
 
 
@@ -426,8 +499,8 @@ alias("$(P)SIM:MODE:SP", "$(P)SIM:MODE")
 record(ao, "$(P)SIM:HEATERV"){}
 
 record(ao, "$(P)SIM:TEMP"){}
-alias("$(P)SIM:TEMP", "$(P)SIM:TEMP:SP")
-alias("$(P)SIM:TEMP", "$(P)SIM:TEMP:SP:RBV")
+alias("$(P)SIM:TEMP", "$(P)SIM:TTEMP:SP")
+alias("$(P)SIM:TEMP", "$(P)SIM:TTEMP")
 
 record(mbbo, "$(P)SIM:CTRL") {
   field(ZRVL, "0")
