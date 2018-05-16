@@ -244,12 +244,81 @@ record(ai, "$(P)TEMP3") {
   info(archive, "VAL")
 }
 
+record(bo, "$(P)RAMP:STATUS:SP")
+{
+   field(DESC, "Toggles the SP ramp")
+   field(DTYP, "asynInt32")
+   field(OUT,  "@asyn($(READ),0,1)RMP")
+   field(ZNAM, "OFF")
+   field(ONAM, "ON")
+}
+
+record(bi, "$(P)RAMP:STATUS")
+{
+   field(DESC, "Toggles the SP ramp")
+   field(DTYP, "asynInt32")
+   field(INP,  "@asyn($(READ),0,1)RMP")
+   field(SCAN, "I/O Intr")
+   field(ZNAM, "OFF")
+   field(ONAM, "ON")
+}
+
+record(ao, "$(P)RAMP:RATE:SP")
+{
+   field(DESC, "Rate the ramp increases/decreases")
+   field(DTYP, "asynFloat64")
+   field(OUT, "@asyn($(READ),0,1)RATE")
+   field(EGU, "K/min")
+}
+
+record(ai, "$(P)RAMP:RATE")
+{
+   field(DESC, "Rate the ramp increases/decreases")
+   field(DTYP, "asynFloat64")
+   field(INP, "@asyn($(READ),0,1)RATE")
+   field(EGU, "K/min")
+   field(SCAN, "I/O Intr")
+   info(INTEREST, "MEDIUM")
+}
+
 record(ao, "$(P)TTEMP:SP") {
   field(DESC, "Set target temp")
   field(SCAN, "Passive")
+  field(PREC, "2")
+  field(EGU, "K")
+  field(DTYP, "asynFloat64")
+  field(OUT, "@asyn($(READ),0,1)TGT")
+  
+  # Readascii ramp is responsible for setting TTEMP:SP:RAW, but have to trigger it
+  field(FLNK, "$(P)RAMP:_OUT_SP.PROC CA")
+}
+
+record(ai, "$(P)RAMP:_OUT_SP")
+{
+   field(DESC, "The value that the ramp is setting")
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn($(READ),0,1)SP")
+   field(SCAN, "I/O Intr")
+   field(FLNK, "$(P)TTEMP:SP:RAW.PROC CA")
+}
+
+# This is the value that is being sent to the ReadASCII ramp to tell it at what temperature we currently are
+record(ao, "$(P)RAMP:_CURRENT_TTEMP")
+{
+    field(DESC, "The current temperature of the sensor")
+	field(DOL, "$(P)TTEMP")
+	field(OMSL, "closed_loop")
+	field(DTYP, "asynFloat64")
+	field(OUT, "@asyn($(READ),0,1)CUR")
+}
+
+record(ao, "$(P)TTEMP:SP:RAW") {
+  field(DESC, "Set target temp")
+  field(SCAN, "Passive")
   field(DTYP, "stream")
+  field(DOL, "$(P)RAMP:_OUT_SP")
   field(OUT, "@itc503.proto set_ttemp $(PORT)")
-  field(OMSL, "supervisory")
+  field(OMSL, "closed_loop")
   field(PREC, "2")
   field(EGU, "K")
   field(SIML, "$(P)SIM")
@@ -269,6 +338,7 @@ record(ai, "$(P)TTEMP") {
   field(SDIS, "$(P)DISABLE")
   info(INTEREST, "HIGH")
   info(archive, "VAL")
+  field(FLNK, "$(P)RAMP:_CURRENT_TTEMP.PROC CA")
 }
 
 record(ai, "$(P)TEMP:ERR") {
