@@ -16,10 +16,13 @@ set_requestfile_path("${TOP}/iocBoot/iocPIMOT-IOC-01", "")
 
 ## asyn serial port internal device name and motor name 
 epicsEnvSet("ASERIAL", "serial1")
-epicsEnvSet("PN", "1")
 epicsEnvSet("AMOTOR", "motor1")
-# The macro MTRCTRL must be set in globals.txt
+
+# Make sure controller number is 2 digits long
+calc("MTRCTRL", "$(MTRCTRL=1)", 2, 2)
+
 # PN is 1->8 so we can safely add a 0
+epicsEnvSet("PN", "1")
 epicsEnvSet("AMOTORPV", "MOT:MTR$(MTRCTRL)0$(PN)")
 
 autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 1)

@@ -12,5 +12,6 @@ dbLoadDatabase "dbd/PIMOT-IOC-01.dbd"
 PIMOT_IOC_01_registerRecordDeviceDriver pdbbase
 
 cd ${TOP}/iocBoot/iocPIMOT-IOC-01
+epicsEnvSet("PN", "1")
 
 < st-common.cmd
