@@ -27,9 +27,6 @@ $(IFNOTRECSIM) asynOctetSetOutputEos("L0",0,"$(OEOS=\\r\\n)")
 ## Load our record instances
 dbLoadRecords("db/HFMAGPSU.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
 
-
-
-
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
@@ -42,10 +39,11 @@ iocInit
 
 epicsEnvSet "P" "$(MYPVPREFIX)$(IOCNAME)"
 
-# Directory of ramp rate table
-epicsEnvSet "RAMPTABLEDIR" "C:\\Instrument\\Settings\\config\\NDLT658\\configurations\\hifi_ramp_table.txt"
+epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common/"
+epicsEnvSet "CALIB_DIR" "ramps/"
+epicsEnvSet "CALIB_FILE" "cryomag_ramp_table.txt"
+epicsEnvSet "RAMPTABLEDIR" $(CALIB_BASE_DIR)$(CALIB_DIR)$(CALIB_FILE)
+
 ## Start any sequence programs
 
 seq fsm, "P=$(P), RAMPTABLEDIR=$(RAMPTABLEDIR)"
-
-
