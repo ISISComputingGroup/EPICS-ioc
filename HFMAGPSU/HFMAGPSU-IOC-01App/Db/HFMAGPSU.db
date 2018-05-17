@@ -27,7 +27,7 @@ record(waveform, "$(P)LOGMESSAGE")
     field(SDIS, "$(P)DISABLE")
 }
 
-alias("$(P)LOGMESSAGE:SP", "$(P)LOGMESSAGE")
+alias("$(P)LOGMESSAGE", "$(P)LOGMESSAGE:SP")
 
 record(waveform, "$(P)RAMPTABLEDIRECTORY")
 {
@@ -564,14 +564,3 @@ record(ai, "$(P)SIM:MIDFINALTARGET")
 	field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)SIM:ZERO")
-{
-	field(SCAN, "Passive")
-	field(DTYP, "Soft Channel")
-}
-
-(DTYP, "Soft Channel")
-    field(ZNAM, "NO")
-    field(ONAM, "YES")
-	field(VAL, "$(RECSIM=0)")
-}
