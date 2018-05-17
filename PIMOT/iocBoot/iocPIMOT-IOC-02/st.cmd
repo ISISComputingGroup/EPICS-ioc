@@ -9,7 +9,7 @@ cd ${TOP}
 
 ## Register all support components
 dbLoadDatabase "dbd/PIMOT-IOC-02.dbd"
-KEPCO_IOC_02_registerRecordDeviceDriver pdbbase
+PIMOT_IOC_02_registerRecordDeviceDriver pdbbase
 
 cd ${TOP}/iocBoot/iocPIMOT-IOC-01
 
