@@ -1,6 +1,8 @@
 #
 # DB File for the FZJ Digital Drive Fermi Chopper Controller
 #
+# Command descriptions from manual
+#
 record(bo, "$(P)SIM")
 {
     field(SCAN, "Passive")
@@ -27,21 +29,6 @@ record(stringin, "$(P)ADDRESS")
   field(VAL, "$(ADDR)")
 }
 #
-# reference speed [Hz]
-# RESP!
-# 20.00 to 26.00 and 32.00 to 100.00
-# only assumed from masterchopper (chopper 3)
-# two decimal places
-# 
-## **** RATI command looks to be unused in the protocol for the controller ****
-# 
-# ratio
-# RATI!
-# 1 or 2
-# ratio to reference speed, 1 = 1:1, 2 = 1:2,
-# only assumed from chopper 3
-# no decimal places
-# 
 # factor
 # FACT!
 # 1:12
@@ -96,8 +83,8 @@ record(stringin, "$(P)FREQ:SP:ERROR")
 #
 # setpoint phase [degrees]
 # PHAS!
-# 0.01 to 359.99
-# two decimal places
+# 0.1 to 359.9
+# one decimal place
 #
 record(ao, "$(P)PHAS:SP")
 {
@@ -179,33 +166,6 @@ record(stringin, "$(P)DRIVE:MODE:SP:ERROR")
 }
 alias("$(P)DRIVE:MODE:SP:ERROR", "$(P)DRV:MODE:SP:ERROR")
 #
-# acknowledge messages
-# ACKN!
-# ON
-#
-# reference speed [Hz]
-# RSPE?
-# 20.00 to 26.00 and 32.00 to 100.00
-# relating to master-chopper (chopper 3)
-# two decimal places
-#
-# *** not implemented in server application ***
-#
-#record(ai, "$(P)FREQ:REF")
-#{
-#    field(DESC, "Reference Frequency")
-#    field(SCAN, "1 second")
-#    field(DTYP, "stream")
-#    field(EGU, "Hz")
-#    field(PREC, "2")
-#    field(INP, "@devFZJ_DDFermiChopper.proto getASTA($(P)) $(PORT)")
-#    info(INTEREST, "HIGH")
-#    info(archive, "VAL")
-#    field(SIML, "$(P)SIM")
-#    field(SIOL, "$(P)SIM:FREQ:REF")
-#    field(SDIS, "$(P)DISABLE")
-#}
-#
 # setpoint speed [Hz]
 # SSPE?
 # 20.00 to 26.00 and 32.00 to 100.00
@@ -220,26 +180,7 @@ record(ai, "$(P)FREQ:SP:RBV")
     info(archive, "VAL")
 }
 #
-# **** RATI command looks to be unused in the protocol for the controller ****
-# 
-## ratio
-## RATI?
-## 1 or 2
-## ratio to reference speed,
-## 1 = 1:1, 2 = 1:2,
-## no decimal places
-#
-#record(bi, "$(P)RATIO")
-#{
-#    field(DESC, "Ratio to reference frequency")
-#    # field(EGU, "")
-#    field(ZNAM, "1:1")
-#    field(0NAM, "1:2")
-#    info(INTEREST, "HIGH")
-#    info(archive, "VAL")
-#}
-#
-# first record causes concatenated status string to be read
+# record causes concatenated status string to be read
 # then protocol file splits response into separate values
 # and writes them to specified PVs
 #
@@ -333,23 +274,6 @@ record(bi, "$(P)MB:STAT")
     info(archive, "VAL")
 }
 #
-# magnetic bearing integrator [%]
-# MBIN?
-# -100.0 to 100.0
-# integrator of regulator for magnetic bearing
-# one decimal place
-#
-# *** not implemented in server application ***
-#
-#record(ai, "$(P)MB:INT")
-#{
-#    field(DESC, "Mag Bearing Regulator Integrator")
-#    field(EGU, "%")
-#    field(PREC, "1")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
-#
 # drive
 # DRON?
 # ON or OFF
@@ -438,22 +362,6 @@ record(bi, "$(P)DRIVE:DIR")
 }
 alias("$(P)DRIVE:DIR", "$(P)DRV:DIR")
 #
-# Parking Position
-# PPOS?
-# OK or NOK
-# OK if chopper is in open position
-#
-# *** not implemented in server application ***
-#
-#record(bi, "$(P)PARKED:OPEN:STAT")
-#{
-#    field(DESC, "Parked Open Status")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "HIGH")
-#    info(archive, "VAL")
-#}
-#
 # drive temperature [ºC]
 # DRIT?
 # 0.00 to 150.00
@@ -470,22 +378,6 @@ record(ai, "$(P)DRIVE:TEMP")
 }
 alias("$(P)DRIVE:TEMP", "$(P)DRV:TEMP")
 #
-# input clock [Hz]
-# INCL?
-# 0.00 to 100.00
-# two decimal places
-#
-# *** not implemented in server application ***
-#
-#record(ai, "$(P)INPUTCLOCK")
-#{
-#    field(DESC, "Input Clock Frequency")
-#    field(EGU, "Hz")
-#    field(PREC, "2")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
-#
 # outage of the phase [s]
 # OUPH?
 # 0.00 to 7257600.00
@@ -501,26 +393,6 @@ record(ai, "$(P)PHAS:OUTAGE")
     info(archive, "VAL")
 }
 #
-# master-chopper
-# MACH?
-# C01, C02, C2B or C03
-# can be called from all choppers
-#
-#record(mbbi, "$(P)MASTER")
-#{
-#    field(DESC, "Master Chopper")
-#    field(ZRVL, 0)
-#	field(ONVL, 1)
-#	field(TWVL, 2)
-#	field(THVL, 3)
-#	field(ZRST, "C01")
-#	field(ONST, "C02")
-#	field(TWST, "C2B")
-#	field(THST, "C03")     
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
-#
 # log data
 # LOON?
 # ON or OFF
@@ -533,22 +405,6 @@ record(bi, "$(P)LOGGING")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-#
-# linear motion slide release
-# LMSR?
-# OK or NOK
-# related to chopper 2
-#
-# *** not implemented in server application ***
-#
-#record(bi, "$(P)LMSR:STAT")
-#{
-#    field(DESC, "Linear Motion Slide Release Status")
-#    field(ZNAM, "OK")
-#    field(ONAM, "NOK")    
-#    info(INTEREST, "MEDIUM")
-#    info(archive, "VAL")
-#}
 #
 # DSP function control
 # DSPM?
