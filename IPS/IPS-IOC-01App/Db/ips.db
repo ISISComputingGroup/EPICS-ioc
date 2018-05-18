@@ -1,0 +1,845 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+    field(PINI, "YES")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+#########################################################
+# START OF RECORDS FOR READBACK FROM VERSION COMMAND.
+# # Readback of the instrument model and version info.
+# # Run the Version command, V.
+# # The string was too long to put model and version into same record.
+# # Scan this once, probably not needed again.
+# The reply comes back and is split amongst other records.
+record(stringin, "$(P)GET:VERSION") {
+  field(DESC, "Examine Status")
+  field(DTYP, "stream")
+  field(INP,  "@OxInstIPS.protocol getVersion($(P)) $(port)")
+  field(PINI, "YES")
+  field(FLNK, "$(P)MODEL")
+  field(SCAN, "Passive")
+}
+
+record(stringin, "$(P)MODEL") {
+  field(DESC, "Model.")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(FLNK, "$(P)VERSION")
+}
+
+record(stringin, "$(P)VERSION") {
+  field(DESC, "Firmware version.")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+}
+
+#########################################################
+# START OF RECORDS FOR READBACK OF R COMMAND PARAMETERS.
+
+#% archiver 10 Monitor
+# Think this is the present current the unit is trying to supply.
+record(ai, "$(P)RBV:DEMANDCURRENT") {
+  field(DESC, "Demand Current Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getDemandCurrent $(port)")
+  field(EGU,  "A")
+  field(PREC, "4")
+  field(ADEL, "0.0002" )
+}
+
+#% archiver 10 Monitor
+# The present voltage.
+record(ai, "$(P)RBV:SUPPLYVOLTAGE") {
+  field(DESC, "Supply Voltage Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getSupplyVoltage $(port)")
+  field(EGU,  "V")
+  field(PREC, "8")
+  field(ADEL, "0.02" )
+}
+
+#% archiver 10 Monitor
+# The present current measured.
+record(ai, "$(P)RBV:MEASUREDMAGNETCURRENT") {
+  field(DESC, "Measured Magnet Current Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getMeasuredMagnetCurrent $(port)")
+  field(EGU,  "A")
+  field(PREC, "4")
+  field(ADEL, "0.2" )
+}
+
+#% archiver 10 Monitor
+# The present current setpoint.
+record(ai, "$(P)RBV:SETPOINTCURRENT") {
+  field(DESC, "Setpoint Current Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getSetpointCurrent $(port)")
+  field(EGU,  "A")
+  field(PREC, "4")
+  field(ADEL, "0.0002" )
+}
+
+#% archiver 10 Monitor
+# The present sweeprate for current.
+record(ai, "$(P)RBV:CURRENTSWEEPRATE") {
+  field(DESC, "Current Sweep Rate Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getCurrentSweepRate $(port)")
+  field(EGU,  "A/min")
+  field(PREC, "3")
+  field(ADEL, "0.002" )
+}
+
+#% archiver 10 Monitor
+#% gdatag,pv,ro,$(gda_name=),RBV_DEMANDFIELD
+# The field the unit is attempting to create.
+record(ai, "$(P)RBV:DEMANDFIELD") {
+  field(DESC, "Demand Field Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getDemandField $(port)")
+  field(EGU,  "T")
+  field(PREC, "5")
+  field(ADEL, "0.00002" )
+}
+
+#% archiver 10 Monitor
+#% gdatag,pv,ro,$(gda_name=),RBV_SETPOINTFIELD
+# The present field setpoint.  The target field the unit will aim for when
+# told to go to the setpoint.
+record(ai, "$(P)RBV:SETPOINTFIELD") {
+  field(DESC, "Setpoint Field Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getSetpointField $(port)")
+  field(EGU,  "T")
+  field(PREC, "5")
+  field(ADEL, "0.00002" )
+}
+
+#% archiver 10 Monitor
+#% gdatag,pv,ro,$(gda_name=),RBV_FIELDSWEEPRATE
+# The present sweeprate (a.k.a. ramprate) for adjusting the field.
+record(ai, "$(P)RBV:FIELDSWEEPRATE") {
+  field(DESC, "Field Sweep Rate Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getFieldSweepRate $(port)")
+  field(EGU,  "T/min")
+  field(PREC, "4")
+  field(ADEL, "0.0002" )
+}
+
+# The voltage at which the unit will stop ramping/sweeping at the sweeprate
+# requested, but reduce it to protect the voltage.
+record(ai, "$(P)RBV:SOFTWAREVOLTAGELIMIT") {
+  field(DESC, "Software Voltage Limit Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getSoftwareVoltageLimit $(port)")
+  field(EGU,  "V")
+  field(PREC, "8")
+  field(ADEL, "0.000002" )
+}
+
+# This is the current that is in the magnet, which in the case of a magnet with a switch
+# and a heater is preserved even when the power unit is not connected (cos of how
+# superconducting magnets behave.  However our magnets do not have switches and 
+# therefore this is not really relevant.
+record(ai, "$(P)RBV:PERSISTENTMAGNETCURRENT") {
+  field(DESC, "Persistent Magnet Current Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getPersistentMagnetCurrent $(port)")
+  field(EGU,  "A")
+  field(PREC, "4")
+  field(ADEL, "0.000002" )
+}
+
+#% archiver 10 Monitor
+# The current at which a trip last occurred.  Am not sure if by trip, they mean
+# a quench or a problem with the level meter.  Believe the unit will take the current
+# and field to zero if there is a trip, so this parameter preserves what was happening
+# at the time of the trip.
+record(ai, "$(P)RBV:TRIPCURRENT") {
+  field(DESC, "Trip Current Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getTripCurrent $(port)")
+  field(EGU,  "A")
+  field(PREC, "4")
+  field(ADEL, "0.000002" )
+}
+
+# The field in the magnet due to the persistent current. See current for explanation.
+record(ai, "$(P)RBV:PERSISTENTMAGNETFIELD") {
+  field(DESC, "Persistent Magnet Field Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getPersistentMagnetField $(port)")
+  field(EGU,  "T")
+  field(PREC, "5")
+  field(ADEL, "0.000002" )
+}
+
+#% archiver 10 Monitor
+# The field at which a trip last occurred.  See current for explanation.
+record(ai, "$(P)RBV:TRIPFIELD") {
+  field(DESC, "Trip Field Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getTripField $(port)")
+  field(EGU,  "T")
+  field(PREC, "5")
+  field(ADEL, "0.000002" )
+}
+
+# The current being provided to the heater.
+# Our magnets do not have heaters, so this is not relevant.
+record(ai, "$(P)RBV:HEATERCURRENT") {
+  field(DESC, "Heater Current Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getHeaterCurrent  $(port)")
+  field(EGU,  "mA")
+  field(PREC, "4")
+  field(ADEL, "0.000002" )
+}
+
+# The lower limit for the current.  This refers to a limit on the controller and
+# is nothing to do with EPICS record limit or alarm fields.
+record(ai, "$(P)RBV:NEGCURRENTLIMIT") {
+  field(DESC, "Neg Current Limit Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getNegCurrentLimit $(port)")
+  field(EGU,  "A")
+  field(PREC, "4")
+  field(ADEL, "0.000002" )
+}
+
+# The higher limit for the current.  This refers to a limit on the controller and
+# is nothing to do with EPICS record limit or alarm fields.
+record(ai, "$(P)RBV:POSCURRENTLIMIT") {
+  field(DESC, "Pos Current Limit Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getPosCurrentLimit $(port)")
+  field(EGU,  "A")
+  field(PREC, "4")
+  field(ADEL, "0.000002" )
+}
+
+# The resistance of the lead from the unit to the magnet that carries
+# the current.  This is set by the supplier in the controller, all this
+# record does is read and report the value.
+record(ai, "$(P)RBV:LEADRESISTANCE") {
+  field(DESC, "LeadResistance Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getLeadResistance $(port)")
+  field(EGU,  "mOhm")
+  field(PREC, "5")
+  field(ADEL, "0.00002" )
+}
+
+# The inductance of the magnet. Believe this is also set by the supplier
+# as a calibration.
+record(ai, "$(P)RBV:MAGNETINDUCTANCE") {
+  field(DESC, "Magnet Inductance Readback")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(INP,  "@OxInstIPS.protocol getMagnetInductance $(port)")
+  field(EGU,  "H")
+  field(PREC, "5")
+  field(ADEL, "0.00002" )
+}
+
+# Records to control scanning of the readback parameter records.
+# Start with the stuff more likely to change.
+record(fanout, "$(P)FAN:RBV:1") {
+  field(DESC, "R scan fanout 1")
+  field(SCAN, "1 second")
+  field(SDIS, "$(P)DISABLE")
+  field(LNK1, "$(P)RBV:DEMANDCURRENT")
+  field(LNK2, "$(P)RBV:SUPPLYVOLTAGE")
+  field(LNK3, "$(P)RBV:MEASUREDMAGNETCURRENT")
+  field(LNK4, "$(P)RBV:DEMANDFIELD")
+  field(LNK5, "$(P)RBV:PERSISTENTMAGNETCURRENT")
+  field(LNK6, "$(P)RBV:PERSISTENTMAGNETFIELD")
+}
+
+# Put some of the setup stuff on slower scanning.
+record(fanout, "$(P)FAN:RBV:2") {
+  field(DESC, "R scan fanout 2")
+  field(SCAN, "2 second")
+  field(SDIS, "$(P)DISABLE")
+  field(LNK1, "$(P)RBV:SETPOINTCURRENT")
+  field(LNK2, "$(P)RBV:CURRENTSWEEPRATE")
+  field(LNK3, "$(P)RBV:SETPOINTFIELD")
+  field(LNK4, "$(P)RBV:FIELDSWEEPRATE")
+  field(LNK5, "$(P)RBV:NEGCURRENTLIMIT")
+  field(LNK6, "$(P)RBV:POSCURRENTLIMIT")
+}
+
+record(fanout, "$(P)FAN:RBV:3") {
+  field(DESC, "R scan fanout 3")
+  field(SCAN, "10 second")
+  field(SDIS, "$(P)DISABLE")
+  field(LNK1, "$(P)RBV:SOFTWAREVOLTAGELIMIT")
+  field(LNK2, "$(P)RBV:TRIPCURRENT")
+  field(LNK3, "$(P)RBV:TRIPFIELD")
+  field(LNK4, "$(P)RBV:HEATERCURRENT")
+  field(LNK5, "$(P)RBV:LEADRESISTANCE")
+  field(LNK6, "$(P)RBV:MAGNETINDUCTANCE")
+}
+
+# END OF RECORDS FOR READBACK OF R COMMAND PARAMETERS.
+#########################################################
+# START OF RECORDS FROM DIRECT READBACK OF EXAMINE STATUS COMMAND.
+# # Run the Examine Status command, X.
+# The reply comes back and is split amongst other records.
+record(stringin, "$(P)GET:STATUS") {
+  field(DESC, "Examine Status")
+  field(DTYP, "stream")
+  field(INP, "@OxInstIPS.protocol getStatus($(P)) $(port)")
+  field(FLNK, "$(P)FAN:STATUS:1")
+  field(SCAN, "1 second")
+  field(SDIS, "$(P)DISABLE")
+}
+
+# 
+# Examine status reply fanout.  Force processsing of records that use 
+# the reply from the examine status command.
+# 
+# Fan out the processing to the records relevant to the reply.  The protocol itself knows the
+# names of the records and sets the value: this is passing the processing baton to make sure
+# the reply from the protocol to these records is processed.
+#
+record(fanout, "$(P)FAN:STS:1") {
+  field(DESC, "X status fanout 1")
+  field(SCAN, "Passive")
+  field(LNK1, "$(P)STS:SYSTEM:FAULT")
+  field(LNK2, "$(P)STS:SYSTEM:LIMIT")
+  field(LNK3, "$(P)STS:ACTIVITY")
+  field(LNK4, "$(P)STS:CONTROL")
+  field(LNK5, "$(P)STS:SWEEPMODE:PARAMS")
+  field(LNK6, "$(P)STS:SWEEPMODE:SWEEP")
+  field(FLNK, "$(P)FAN:STS:2")
+}
+
+# One fanout cannot have enough links, so need a second one.  Processing baton
+# passed on from the first fanout.
+record(fanout, "$(P)FAN:STS:2") {
+  field(DESC, "X status fanout 2")
+  field(SCAN, "Passive")
+  field(LNK1, "$(P)STS:HEATER")
+  field(LNK2, "$(P)DBG:STS:MISMATCH")
+}
+
+#% archiver 10 Monitor
+# # Readback from m of Xmn part of Examine command return.
+record(mbbi, "$(P)STS:SYSTEM:FAULT") {
+  field(DESC, "System fault status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(ZRST, "Normal")
+  field(ZRVL, "0")
+  field(ZRSV, "NO_ALARM")
+  field(ONST, "Quenched")
+  field(ONVL, "1")
+  field(ONSV, "MAJOR")
+  field(TWST, "Overheated")
+  field(TWVL, "2")
+  field(TWSV, "MAJOR")
+  field(FRST, "Warming Up")
+  field(FRVL, "4")
+  field(FRSV, "MAJOR")
+  field(EIST, "Fault")
+  field(EIVL, "8")
+  field(EISV, "MAJOR")
+}
+
+#% archiver 10 Monitor
+# # Readback from n of Xmn part of Examine command return.
+record(mbbi, "$(P)STS:SYSTEM:LIMIT") {
+  field(DESC, "System limit status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(ZRST, "Normal")
+  field(ZRVL, "0")
+  field(ZRSV, "NO_ALARM")
+  field(ONST, "On +ve V Limit")
+  field(ONVL, "1")
+  field(ONSV, "MINOR")
+  field(TWST, "On -ve V Limit")
+  field(TWVL, "2")
+  field(TWSV, "MINOR")
+  field(FRST, "Current too -ve")
+  field(FRVL, "4")
+  field(FRSV, "MINOR")
+  field(EIST, "Current too +ve")
+  field(EIVL, "8")
+  field(EISV, "MINOR")
+}
+
+#% archiver 10 Monitor
+#% gdatag,mbbinary,ro,$(gda_name=),STS_ACTIVITY
+# # Readback from An part of Examine command return.
+# # Hold means maintaining present current.
+# # Clamped means you cannot adjust it - powers up in this 
+# # state.  Only the set activity hold command can get out
+# # of the clamped state.  Hold will interrupt a sweep.
+record(mbbi, "$(P)STS:ACTIVITY") {
+  field(DESC, "Activity status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(ZRST, "Hold")
+  field(ZRVL, "0")
+  field(ONST, "To Setpoint")
+  field(ONVL, "1")
+  field(TWST, "To Zero")
+  field(TWVL, "2")
+  field(FRST, "Clamped")
+  field(FRVL, "4")
+}
+
+#% archiver 10 Monitor
+# # Readback from Cn part of Examine command return.
+record(mbbi, "$(P)STS:CONTROL") {
+  field(DESC, "Control status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(ZRST, "Local & Locked")
+  field(ZRVL, "0")
+  field(ZRSV, "NO_ALARM")
+  field(ONST, "Remote & Locked")
+  field(ONVL, "1")
+  field(ONSV, "NO_ALARM")
+  field(TWST, "Local & Unlocked")
+  field(TWVL, "2")
+  field(TWSV, "NO_ALARM")
+  field(THST, "Remote & Unlocked")
+  field(THVL, "3")
+  field(THSV, "NO_ALARM")
+  field(FRST, "Auto-Run-Down")
+  field(FRVL, "4")
+  field(FRSV, "MAJOR")
+  field(FVST, "Auto-Run-Down")
+  field(FVVL, "5")
+  field(FVSV, "MAJOR")
+  field(SXST, "Auto-Run-Down")
+  field(SXVL, "6")
+  field(SXSV, "MAJOR")
+  field(SVST, "Auto-Run-Down")
+  field(SVVL, "7")
+  field(SVSV, "MAJOR")
+  field(FLNK, "$(P)TFM:CONTROL")
+}
+
+# # Readback from Hn part of Examine command return.
+# Don't think I10 magnet will use this.  Not bothering with alarms.
+# 0 switch closed, 1 switch open, 2 switch closed, 5 heater is on but low current, 8 no switch fitted.
+record(mbbi, "$(P)STS:HEATER") {
+  field(DESC, "Heater status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(ZRST, "Off Mag at 0")
+  field(ZRVL, "0")
+  field(ONST, "On")
+  field(ONVL, "1")
+  field(TWST, "Off Mag at F")
+  field(TWVL, "2")
+  field(FVST, "Heater Fault")
+  field(FVVL, "5")
+  field(EIST, "No Switch")
+  field(EIVL, "8")
+}
+
+# # Readback from m of Mmn part of Examine command return.
+# The Display is in Amps or Tesla.  The Magnet Sweep is fast or slow.
+record(mbbi, "$(P)STS:SWEEPMODE:PARAMS") {
+  field(DESC, "Mode status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(ZRST, "Amps Fast")
+  field(ZRVL, "0")
+  field(ONST, "Tesla Fast")
+  field(ONVL, "1")
+  field(FRST, "Amps Slow")
+  field(FRVL, "4")
+  field(FVST, "Tesla Slow")
+  field(FVVL, "5")
+  field(FLNK, "$(P)TFM:SWEEPMODE:PARAMS")
+}
+
+#% archiver 10 Monitor
+#% gdatag,mbbinary,ro,$(gda_name=),STS_SWEEPMODESWEEP
+# # Readback from n of Mmn part of Examine command return.
+# # (Ignore the Pmn part of the Examine command return - no records for this.)
+# 0 output constant, 1, 2, 3 output changing
+record(mbbi, "$(P)STS:SWEEPMODE:SWEEP") {
+  field(DESC, "Mode status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(ZRST, "At rest")
+  field(ZRVL, "0")
+  field(ONST, "Sweeping")
+  field(ONVL, "1")
+  field(TWST, "Sweep Limiting")
+  field(TWVL, "2")
+  field(THST, "Swping & Lmting")
+  field(THVL, "3")
+}
+
+# To capture bits of mismatching status protocol.*3::
+# We do not do much with it at the moment.
+record(stringin, "$(P)DBG:STS:MISMATCH") {
+  field(DESC, "Mismatching protocol string.")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+}
+
+# END OF RECORDS FROM DIRECT READBACK OF EXAMINE STATUS COMMAND.
+#########################################################
+# START OF RECORDS INDIRECTLY FROM READBACK OF EXAMINE STATUS COMMAND
+# ---------------------------------------------------------------------
+# To produce good/bad status by combining limit and fault statuses.
+
+record(bi, "$(P)STS:SYSTEM:STATUS") {
+  field(DESC, "Combined status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(ZNAM, "Normal")
+  field(ONAM, "Fault")
+}
+
+record(calcout, "$(P)CLC:SYSTEM:STATUS") {
+  field(DESC, "Combine Remote/Unlocked")
+  field(SCAN, "1 second")
+  field(SDIS, "$(P)DISABLE")
+  field(CALC, "A+B")
+  field(INPA, "$(P)STS:SYSTEM:FAULT") 
+  field(INPB, "$(P)STS:SYSTEM:LIMIT")
+  field(OUT, "$(P)STS:SYSTEM:STATUS PP")
+}
+
+# End of combination of limit and fault statuses.
+# ---------------------------------------------------------------------
+# To split control into separate Remote/Local and Locked/Unlocked records.
+# # Treat being in local control as a minor alarm - warn the have no control
+# user on the GUI, you have no control.
+record(bi, "$(P)STS:REMOTE") {
+  field(DESC, "Control local or remote")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(ZNAM, "Local")
+  field(ZSV,  "MINOR")
+  field(ONAM, "Remote")
+  field(OSV,  "NO_ALARM")
+}
+
+record(bi, "$(P)STS:UNLOCKED") {
+  field(DESC, "Control locked")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(ZNAM, "Locked")
+  field(ONAM, "Unlocked")
+}
+
+record(transform, "$(P)TFM:CONTROL") {
+  field(INPA, "$(P)STS:CONTROL")
+  field(SCAN, "Passive")
+  field(CLCB, "A&1")
+  field(CLCC, "(A&2)/2")
+  field(OUTB, "$(P)STS:REMOTE PP")
+  field(OUTC, "$(P)STS:UNLOCKED PP")
+}
+
+# End of split of control into remote and lock.
+# ---------------------------------------------------------------------
+# To split sweep parameters into separate units and fast/slow records.
+#
+# # Readback from m of Mmn part of Examine command return.
+# The Display is in Amps or Tesla.  The Magnet Sweep is fast or slow.
+record(bi, "$(P)STS:SWEEPMODE:UNITS") {
+  field(DESC, "Units Tesla or Amps")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(ZNAM, "Amps")
+  field(ONAM, "Tesla")
+}
+
+#% gdatag,binary,ro,$(gda_name=),STS_SWEEPMODETYPE
+# # Readback from m of Mmn part of Examine command return.
+# The Display is in Amps or Tesla.  The Magnet Sweep is fast or slow.
+record(bi, "$(P)STS:SWEEPMODE:TYPE") {
+  field(DESC, "Fast/Slow Sweep")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(ZNAM, "Fast")
+  field(ONAM, "Slow")
+}
+
+record(transform, "$(P)TFM:SWEEPMODE:PARAMS") {
+  field(INPA, "$(P)STS:SWEEPMODE:PARAMS")
+  field(SCAN, "Passive")
+  field(CLCB, "A&1")
+  field(CLCC, "(A&4)/4")
+  field(OUTB, "$(P)STS:SWEEPMODE:UNITS PP")
+  field(OUTC, "$(P)STS:SWEEPMODE:TYPE PP")
+}
+
+# End of split of sweepmode parameters.
+# ---------------------------------------------------------------------
+# END OF RECORDS FROM INDIRECT READBACK OF EXAMINE STATUS COMMAND.
+#########################################################
+# START OF RECORDS TO SET STUFF DIRECTLY ON CONTROLLER.
+
+# Diddle with the comms and reported resolution.
+# This is the nasty Q command which does not reply and whose
+# info does not get reported by the status command.
+# This may be needed after power cycle of IPS or if it has
+# been connected to the Oxford Instruments Windows Application
+# to allow EPICS to talk to it and to allow the resolution to be extended.
+# Are not supporting setting these things individually, just setting
+# what we want.
+record(ao, "$(P)SET:COMMSRES") {
+  field(DESC, "Set Ext. Resn, No LF")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(VAL, "6")
+  field(PINI, "YES")
+  field(OUT,  "@OxInstIPS.protocol setCommsResExtended $(port)")
+}
+
+#% autosave 1 VAL
+# Grab remote vs local control
+record(mbbo, "$(P)SET:CONTROL") {
+  field(DESC, "Set Remote/Local Control")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(OUT,  "@OxInstIPS.protocol setControl $(port)")
+  field(ZRST, "Local & Locked")
+  field(ZRVL, "0")
+  field(ONST, "Remote & Locked")
+  field(ONVL, "1")
+  field(TWST, "Local & Unlocked")
+  field(TWVL, "2")
+  field(THST, "Remote & Unlocked")
+  field(THVL, "3")
+}
+
+# Diddle with the comms wait interval.
+# Probably will not need this, but put it here in case we do.  Will not put access to this
+# on the GUI.
+record(ao, "$(P)SET:WAITINTERVAL") {
+  field(DESC, "Set Wait Interval")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(EGU, "msec")
+  field(OUT,  "@OxInstIPS.protocol setWaitInterval $(port)")
+}
+
+#% autosave 1 VAL
+#% gdatag,mbbinary,rw,$(gda_name=),SET_ACTIVITY
+# # Hold means maintaining present current.
+# # Clamped means you cannot adjust it - powers up in this 
+# # state.  Only the set activity hold command can get out
+# # of the clamped state.  Hold will interrupt a sweep.
+record(mbbo, "$(P)SET:ACTIVITY") {
+  field(DESC, "Activity Control")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(OUT,   "@OxInstIPS.protocol setActivity $(port)")
+  field(ZRST, "Hold")
+  field(ZRVL, "0")
+  field(ONST, "To Setpoint")
+  field(ONVL, "1")
+  field(TWST, "To Zero")
+  field(TWVL, "2")
+  field(FRST, "Clamp")
+  field(FRVL, "4")
+}
+
+#% autosave 1 VAL
+# Set the Setpoint Current (ie the current the unit will provide and hold when 
+# told to go to the setpoint, the target current if you like.)
+# The controller will automatically adjust the field setpoint.
+record(ao, "$(P)SET:SETPOINTCURRENT") {
+  field(DESC, "Set setpoint current")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(OUT,   "@OxInstIPS.protocol setSetpointCurrent $(port)")
+  field(EGU,  "A")
+  field(PREC, "4")
+  field(ADEL, "0.0002" )
+}
+
+#% autosave 1 VAL
+#% gdatag,pv,rw,$(gda_name=),SET_SETPOINTFIELD
+# Set the Field Setpoint (i.e. the field the unit will go to and hold for the
+# magnet.)
+# The controller will automaticllay adjust the current setpoint.
+record(ao, "$(P)SET:SETPOINTFIELD") {
+  field(DESC, "Set setpoint field")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(OUT,   "@OxInstIPS.protocol setSetpointField $(port)")
+  field(EGU,  "T")
+  field(PREC, "5")
+  field(ADEL, "0.00002" )
+}
+
+#% autosave 1 VAL
+record(ao, "$(P)SET:CURRENTSWEEPRATE") {
+  field(DESC, "Set Current Sweep Rate")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(OUT,   "@OxInstIPS.protocol setCurrentSweepRate $(port)")
+  field(EGU,  "A/min")
+  field(PREC, "3")
+  field(ADEL, "0.002" )
+}
+
+#% autosave 1 VAL
+#% gdatag,pv,rw,$(gda_name=),SET_FIELDSWEEPRATE
+record(ao, "$(P)SET:FIELDSWEEPRATE") {
+  field(DESC, "Set Field Sweep Rate")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(OUT,   "@OxInstIPS.protocol setFieldSweepRate $(port)")
+  field(EGU,  "T/min")
+  field(PREC, "4")
+  field(ADEL, "0.0002" )
+}
+
+# To set the sweep and display mode - its a bit confusing as there
+# are duplicates, but we do not present this choice to the user.
+#
+record(mbbo, "$(P)SET:SWEEPMODE:PARAMS") {
+  field(DESC, "Set sweep and display mode.")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(ZRST, "Amps Fast")
+  field(ZRVL, "0")
+  field(ONST, "Tesla Fast")
+  field(ONVL, "1")
+  field(TWST, "Amps Fast")
+  field(TWVL, "2")
+  field(THST, "Tesla Fast")
+  field(THVL, "3")
+  field(FRST, "Amps Slow")
+  field(FRVL, "4")
+  field(FVST, "Tesla Slow")
+  field(FVVL, "5")
+  field(SXST, "Amps Slow")
+  field(SXVL, "6")
+  field(SVST, "Tesla Slow")
+  field(SVVL, "7")
+  field(EIST, "Amps Unaffected")
+  field(EIVL, "8")
+  field(NIST, "Tesla Unaffected")
+  field(NIVL, "9")
+  field(OUT,  "@OxInstIPS.protocol setMode $(port)")
+}
+
+# END OF RECORDS TO SET STUFF DIRECTLY ON CONTROLLER.
+#########################################################
+# START OF RECORDS TO SET STUFF INDIRECTLY.
+# ---------------------------------------------------------------------------
+# To munge together sweep mode and display mode as the controller treats them.
+# Need some logic records on top of this.
+# To split sweep parameters into separate units and fast/slow records.
+# # Readback from m of Mmn part of Examine command return.
+# The Display is in Amps or Tesla.  The Magnet Sweep is fast or slow.
+#% autosave 1 VAL
+record(bo, "$(P)SET:SWEEPMODE:UNITS") {
+  field(DESC, "Set Units Tesla or Amps")
+  field(SCAN, "Passive")
+  field(ZNAM, "Amps")
+  field(ONAM, "Tesla")
+  field(OUT, "$(P)CLC:SWEEPMODE:UNITSTOGGLE.A PP")
+}
+
+record(calcout, "$(P)CLC:SWEEPMODE:UNITSTOGGLE") {
+  field(DESC, "Calc mode units toggle")
+  field(SCAN, "Passive")
+  field(CALC, "A+8")
+  field(OUT, "$(P)SET:SWEEPMODE:PARAMS PP")
+}
+
+#% autosave 1 VAL
+#% gdatag,binary,rw,$(gda_name=),SET_SWEEPMODETYPE
+# The Display is in Amps or Tesla.  The Magnet Sweep is fast or slow.
+record(bo, "$(P)SET:SWEEPMODE:TYPE") {
+  field(DESC, "Fast/Slow Sweep")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(ZNAM, "Fast")
+  field(ONAM, "Slow")
+  field(OUT, "$(P)CLC:SWEEPMODE:MODE.A PP")
+}
+
+record(calcout, "$(P)CLC:SWEEPMODE:MODE") {
+  field(DESC, "Combine Fast/Slow/Units")
+  field(SCAN, "Passive")
+  field(INPB, "$(P)STS:SWEEPMODE:UNITS")
+  field(CALC, "A+4*B")
+  field(OUT, "$(P)SET:SWEEPMODE:PARAMS PP")
+}
+
+# End of sweep and display mode munge.
+# ---------------------------------------------------------------------------
+#% autosave 1 VAL
+# To munge together remote and unlocked demands as the controller treats them.
+record(bo, "$(P)SET:REMOTE") {
+  field(DESC, "Set Remote Status")
+  field(SCAN, "Passive")
+  field(ZNAM, "Local")
+  field(ONAM, "Remote")
+  field(OUT, "$(P)CLC:CONTROL.A PP")
+}
+
+#% autosave 1 VAL
+record(bo, "$(P)SET:UNLOCKED") {
+  field(DESC, "Set Control lock")
+  field(SCAN, "Passive")
+  field(ZNAM, "Lock")
+  field(ONAM, "Unlock")
+  field(OUT, "$(P)CLC:CONTROL.B PP")
+}
+
+record(calcout, "$(P)CLC:CONTROL") {
+  field(DESC, "Combine Remote/Unlocked")
+  field(SCAN, "Passive")
+  field(CALC, "(B*2)+A")
+  field(OUT, "$(P)SET:CONTROL PP")
+}
+
+# End of remote and lock munge.
+# END OF RECORDS TO SET STUFF INDIRECTLY.
+#########################################################
+#! Further lines contain data used by VisualDCT
+#! View(97,63,1.2)
+#! Record("$(P)VERSION",440,465,0,0,"$(P)VERSION")
