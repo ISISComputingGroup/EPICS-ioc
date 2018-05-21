@@ -28,6 +28,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "8")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "none")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "1")
 ## Flow control settings not explicitly available. Tested in situ.
+$(IFNOTDEVSIM) $(IFNOTRECSIM)  asynSetOption("L0", 0, "clocal", "Y") 
+$(IFNOTDEVSIM) $(IFNOTRECSIM)  asynSetOption("L0", 0, "crtscts", "N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "ixon", "N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "ixoff", "N")
 
