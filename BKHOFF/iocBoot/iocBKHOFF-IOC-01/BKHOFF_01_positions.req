@@ -1,0 +1,1 @@
+file "motor_positions.req" "P=$(P),CCP=$(CCP)"
