@@ -40,8 +40,6 @@ $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=57677
 
 ## For real device use:
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NO_PORT_MACRO)", 0, 0, 0)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetInputEos("$(DEVICE)",0,"$(IEOS=)") 
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetOutputEos("$(DEVICE)",0,"$(OEOS=)") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"baud","$(BAUD=9600)") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"bits","$(BITS=8)") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"stop","$(STOP=2)") 

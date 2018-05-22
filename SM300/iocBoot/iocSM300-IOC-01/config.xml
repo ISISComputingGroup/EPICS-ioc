@@ -11,8 +11,6 @@
 <macro name="BITS" pattern="^[7-8]$" description="Data bits (default: 8)" />
 <macro name="PARITY" pattern="^(even|odd|none)$" description="Parity (default: none)" />
 <macro name="STOP" pattern="^[0-2]$" description="Stop bits (default: 2)" />
-<macro name="OEOS" pattern="^.*$" description="Serial communication output terminator, defaults to \\r\\n." />
-<macro name="IEOS" pattern="^.*$" description="Serial communication input terminator, defaults to \\r\\n." />
 
 <macro name="MSTP1" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" />
 <macro name="MSTP2" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" />
