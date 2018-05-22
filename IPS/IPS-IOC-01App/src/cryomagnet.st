@@ -78,6 +78,11 @@ ss cryomagnet
   
   state set_psu_to_match_magnet
   {
+  
+    /* Execute entry and exit blocks even if the next state is the same as the current state */
+    option -e;
+    option -x;
+  
     entry
     {
       printf("Setting raw field setpoint to %f\n", magnet_field);
@@ -95,13 +100,29 @@ ss cryomagnet
     {
       print_transition("set_psu_to_match_magnet", "wait_for_voltage_to_stabilise");
     } state wait_for_voltage_to_stabilise
+    
+    /* If not succeeded, re-enter state which will resend all appropriate commands */
+    when(delay(300)){} state set_psu_to_match_magnet
   }
   
   state wait_for_voltage_to_stabilise
   {
+  
+    /* Execute entry and exit blocks even if the next state is the same as the current state */
+    option -e;
+    option -x;
+  
     when(supplyvoltage_stable == 1) {
       print_transition("wait_for_voltage_to_stabilise", "turn_switch_heater_on_and_wait");
     } state turn_switch_heater_on_and_wait
+    
+    /* If the PSU current drifts outside of tolerance for some reason, go back to previous step */
+    when(!within_tolerance(field_setpoint_readback, field_setpoint_raw, field_tolerance)) {
+      print_transition("wait_for_voltage_to_stabilise", "set_psu_to_match_magnet");
+    } state set_psu_to_match_magnet
+    
+    /* If not stable, re-set psu to magnet current (i.e. try again from state above) */
+    when (delay(300)){} state set_psu_to_match_magnet
   }
   
   state turn_switch_heater_on_and_wait
@@ -123,11 +144,17 @@ ss cryomagnet
       print_transition("turn_switch_heater_on_and_wait", "set_psu_output");
     } state set_psu_output
     
-    when(delay(5)){} state turn_switch_heater_on_and_wait
+    /* If heater is not switched on within timeout, retry sending commands */
+    when(delay(30)){} state turn_switch_heater_on_and_wait
   }
   
   state set_psu_output
   {
+  
+    /* Execute entry and exit blocks even if the next state is the same as the current state */
+    option -e;
+    option -x;
+  
     entry
     {
       printf("Setting raw field setpoint to %f\n", field_setpoint);
@@ -157,6 +184,9 @@ ss cryomagnet
       print_transition("set_psu_output", "at_field");
     } state at_field
     
+    /* If not succeeded, try resending setpoint */
+    when(delay(300)){} state set_psu_output
+    
   }
   
   state switch_off_heater
@@ -177,11 +207,17 @@ ss cryomagnet
       print_transition("switch_off_heater", "ramp_down_psu");
     } state ramp_down_psu
     
-    when(delay(5)){} state switch_off_heater
+    /* If not succeeded, try resending setpoint */
+    when(delay(30)){} state switch_off_heater
   }
   
   state ramp_down_psu
   {
+  
+    /* Execute entry and exit blocks even if the next state is the same as the current state */
+    option -e;
+    option -x;
+  
     entry
     {
       PVPUT(activity_sp, ACTIVITY_TO_ZERO);
@@ -194,5 +230,7 @@ ss cryomagnet
     {
       print_transition("ramp_down_psu", "at_field");
     } state at_field
+    
+    when(delay(30)){} state ramp_down_psu
   }
 }
