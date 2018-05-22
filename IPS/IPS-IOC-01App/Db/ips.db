@@ -335,22 +335,22 @@ record(ai, "$(P)SOFTWAREVOLTAGELIMIT") {
   field(SDIS, "$(P)DISABLE")
 }
 
-##############    # This is the current that is in the magnet, which in the case of a magnet with a switch
-##############    # and a heater is preserved even when the power unit is not connected (cos of how
-##############    # superconducting magnets behave).
-##############    record(ai, "$(P)PERSISTENTMAGNETCURRENT") {
-##############      field(DESC, "Persistent Magnet Current Readback")
-##############      field(DTYP, "stream")
-##############      field(SCAN, "1 second")
-##############      field(INP,  "@OxInstIPS.protocol getPersistentMagnetCurrent $(PORT)")
-##############      field(EGU,  "A")
-##############      field(PREC, "4")
-##############      field(ADEL, "0.000002" )
-##############      
-##############      field(SIML, "$(P)SIM")
-##############      field(SIOL, "$(P)SIM:PERSISTENTMAGNETCURRENT")
-##############      field(SDIS, "$(P)DISABLE")
-##############    }
+# This is the current that is in the magnet, which in the case of a magnet with a switch
+# and a heater is preserved even when the power unit is not connected (cos of how
+# superconducting magnets behave).
+record(ai, "$(P)PERSISTENTMAGNETCURRENT") {
+  field(DESC, "Persistent Magnet Current Readback")
+  field(DTYP, "stream")
+  field(SCAN, "1 second")
+  field(INP,  "@OxInstIPS.protocol getPersistentMagnetCurrent $(PORT)")
+  field(EGU,  "A")
+  field(PREC, "4")
+  field(ADEL, "0.000002" )
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:PERSISTENTMAGNETCURRENT")
+  field(SDIS, "$(P)DISABLE")
+}
 
 # The current at which a trip last occurred.  Am not sure if by trip, they mean
 # a quench or a problem with the level meter.  Believe the unit will take the current

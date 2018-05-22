@@ -1,4 +1,4 @@
-program cryomagnet("FIELD,FIELD_SETPOINT,FIELD_SETPOINT_RAW,PERSISTENT,MAGNET_FIELD,HEATER_STATUS,HEATER_STATUS_SP,HEATER_WAIT_TIME")
+program cryomagnet("FIELD,FIELD_SETPOINT,FIELD_SETPOINT_RAW,FIELD_SETPOINT_READBACK,PERSISTENT,MAGNET_FIELD,HEATER_STATUS,HEATER_STATUS_SP,HEATER_WAIT_TIME,ACTIVITY,ACTIVITY_SP")
 
 #include "seqPVmacros.h"
 
@@ -11,6 +11,7 @@ option +r;
 /* Field */
 PV(double, field_setpoint, "{FIELD_SETPOINT}", Monitor);
 PV(int, field_setpoint_alarm, "{FIELD_SETPOINT}.SEVR", Monitor);
+PV(double, field_setpoint_readback, "{FIELD_SETPOINT_READBACK}", Monitor);
 PV(double, field_setpoint_raw, "{FIELD_SETPOINT_RAW}", NoMon);
 PV(double, psu_field, "{FIELD}", Monitor);
 PV(int, psu_field_alarm, "{FIELD}.SEVR", Monitor);
@@ -25,14 +26,24 @@ PV(int, heater, "{HEATER_STATUS}", Monitor);
 PV(int, heater_alarm, "{HEATER_STATUS}.SEVR", Monitor);
 PV(int, heater_sp, "{HEATER_STATUS_SP}", NoMon);
 
+PV(int, activity, "{ACTIVITY}", Monitor);
+PV(int, activity_sp, "{ACTIVITY_SP}", NoMon);
+
 PV(double, heater_delay_time, "{HEATER_WAIT_TIME}", Monitor);
 
 /* If fields are the same within this tolerance, treat as the same */
 double field_tolerance = 0.0001;
 
+int ACTIVITY_TO_SP = 1;
+int ACTIVITY_TO_ZERO = 2;
+
 %{
 void print_transition(char* old, char* new) {
     printf("cryomagnet.st: Moving from state %s to %s.\n", old, new);
+}
+
+int within_tolerance(float a, float b, float tolerance) {
+    return fabs(a - b) < tolerance;
 }
 }%
 
@@ -49,102 +60,87 @@ ss cryomagnet
   
   state at_field
   {
-    when(fabs(field_setpoint - magnet_field) > field_tolerance)
+    when(!within_tolerance(field_setpoint, field_setpoint_readback, field_tolerance))
     {
+      printf("moving from at field: %f %f %f\n", field_setpoint, field_setpoint_readback, field_tolerance);
       print_transition("at_field", "set_psu_to_match_magnet");
     } state set_psu_to_match_magnet
   }
   
   state set_psu_to_match_magnet
   {
-    when(1)
+    entry
     {
+      printf("Setting raw field setpoint to %f\n", magnet_field);
       PVPUT(field_setpoint_raw, magnet_field);
-      print_transition("set_psu_to_match_magnet", "waiting_for_psu_current_to_match_magnet");
-    } state waiting_for_psu_current_to_match_magnet
-  }
-  
-  state waiting_for_psu_current_to_match_magnet
-  {
-    when(fabs(psu_field - magnet_field) < field_tolerance)
+      PVPUT(activity_sp, ACTIVITY_TO_SP);
+    } 
+
+    when(within_tolerance(field_setpoint_readback, field_setpoint_raw, field_tolerance) && within_tolerance(psu_field, magnet_field, field_tolerance) && activity == ACTIVITY_TO_SP)
     {
-      print_transition("waiting_for_psu_current_to_match_magnet", "turn_switch_heater_on");
-    } state turn_switch_heater_on
+      print_transition("set_psu_to_match_magnet", "turn_switch_heater_on_and_wait");
+    } state turn_switch_heater_on_and_wait
   }
   
-  state turn_switch_heater_on
+  state turn_switch_heater_on_and_wait
   {
-    when(1)
+    entry
     {
       PVPUT(heater_sp, 1);
-      print_transition("turn_switch_heater_on", "wait_for_heater_to_be_on");
-    } state wait_for_heater_to_be_on
-  }
-  
-  state wait_for_heater_to_be_on
-  {
-    when(heater == 1)
+    }
+
+    when(heater == 1 && heater_alarm == 0)
     {
       epicsThreadSleep(heater_delay_time);
-      print_transition("wait_for_heater_to_be_on", "set_psu_output");
+      print_transition("turn_switch_heater_on_and_wait", "set_psu_output");
     } state set_psu_output
   }
   
   state set_psu_output
   {
-    when(1)
+    entry
     {
-      PVPUT(field_setpoint_raw, field_setpoint)
-      print_transition("set_psu_output", "wait_for_field_to_be_reached");
-    } state wait_for_field_to_be_reached
-  }
-  
-  state wait_for_field_to_be_reached
-  {
+      printf("Setting raw field setpoint to %f\n", field_setpoint);
+      PVPUT(field_setpoint_raw, field_setpoint);
+      PVPUT(activity_sp, ACTIVITY_TO_SP);
+    }
+
     /* Set to persistent mode */
-    when(fabs(field_setpoint - psu_field) < field_tolerance && persistent == 1)
+    when(within_tolerance(field_setpoint_readback, field_setpoint, field_tolerance) && within_tolerance(field_setpoint, psu_field, field_tolerance) && persistent == 1 && activity == ACTIVITY_TO_SP)
     {
-      print_transition("wait_for_field_to_be_reached", "switch_off_heater");
+      print_transition("set_psu_output", "switch_off_heater");
     } state switch_off_heater
     
     /* If not setting to persistent mode, skip ramping down the PSU and setting switch heater to OFF */
-    when(fabs(field_setpoint - psu_field) < field_tolerance && persistent == 0)
+    when(within_tolerance(field_setpoint_readback, field_setpoint, field_tolerance) && within_tolerance(field_setpoint, psu_field, field_tolerance) && persistent == 0 && activity == ACTIVITY_TO_SP)
     {
-      print_transition("wait_for_field_to_be_reached", "at_field");
+      print_transition("set_psu_output", "at_field");
     } state at_field
     
   }
   
   state switch_off_heater
   {
-    when(1)
+    entry
     {
-      PVPUT(heater_sp, 0)
-      print_transition("switch_off_heater", "wait_for_heater_to_be_off");
-    } state wait_for_heater_to_be_off
-  }
-  
-  state wait_for_heater_to_be_off
-  {
+      PVPUT(heater_sp, 0);
+    }
+
     when(heater == 0 && heater_alarm == 0)
     {
       epicsThreadSleep(heater_delay_time);
-      print_transition("wait_for_heater_to_be_off", "ramp_down_psu");
+      print_transition("switch_off_heater", "ramp_down_psu");
     } state ramp_down_psu
   }
   
   state ramp_down_psu
   {
-    when(1)
+    entry
     {
-      PVPUT(field_setpoint_raw, 0)
-      print_transition("ramp_down_psu", "wait_for_psu_to_be_at_zero");
-    } state wait_for_psu_to_be_at_zero
-  }
-  
-  state wait_for_psu_to_be_at_zero
-  {
-    when(psu_field == 0)
+      PVPUT(activity_sp, ACTIVITY_TO_ZERO);
+    }
+
+    when(fabs(psu_field) < field_tolerance && activity == ACTIVITY_TO_ZERO)
     {
       print_transition("wait_for_psu_to_be_at_zero", "at_field");
     } state at_field
