@@ -200,6 +200,44 @@ record(ai, "$(P)SUPPLYVOLTAGE") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:SUPPLYVOLTAGE")
   field(SDIS, "$(P)DISABLE")
+  
+  field(FLNK, "$(P)SUPPLYVOLTAGE:_STABILITY:BUF")
+}
+
+record(compress, "$(P)SUPPLYVOLTAGE:_STABILITY:BUF") {
+  field(INP, "$(P)SUPPLYVOLTAGE")
+  field(ALG, "Circular Buffer")
+  field(NSAM, "5")
+  field(FLNK, "$(P)SUPPLYVOLTAGE:_STABILITY:LOW")
+}
+
+record(compress, "$(P)SUPPLYVOLTAGE:_STABILITY:LOW") {
+  field(INP, "$(P)SUPPLYVOLTAGE:_STABILITY:BUF")
+  field(ALG, "N to 1 Low Value")
+  field(NSAM, "1")
+  field(N, "5")
+  field(FLNK, "$(P)SUPPLYVOLTAGE:_STABILITY:HIGH")
+}
+
+record(compress, "$(P)SUPPLYVOLTAGE:_STABILITY:HIGH") {
+  field(INP, "$(P)SUPPLYVOLTAGE:_STABILITY:BUF")
+  field(ALG, "N to 1 High Value")
+  field(NSAM, "1")
+  field(N, "5")
+  field(FLNK, "$(P)SUPPLYVOLTAGE:_STABILITY:CALC")
+}
+
+record(calcout, "$(P)SUPPLYVOLTAGE:_STABILITY:CALC") {
+  field(INPA, "$(P)SUPPLYVOLTAGE:_STABILITY:HIGH")
+  field(INPB, "$(P)SUPPLYVOLTAGE:_STABILITY:LOW")
+  field(CALC, "ABS(A-B)<1.0")
+  field(OUT, "$(P)SUPPLYVOLTAGE:STABLE PP")
+  field(OOPT, "Every Time")
+}
+
+record(bo, "$(P)SUPPLYVOLTAGE:STABLE") {
+  field(ZNAM, "NO")
+  field(ONAM, "YES")
 }
 
 # The present current measured.

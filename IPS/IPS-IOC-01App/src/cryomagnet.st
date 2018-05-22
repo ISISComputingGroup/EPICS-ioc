@@ -1,4 +1,4 @@
-program cryomagnet("FIELD,FIELD_SETPOINT,FIELD_SETPOINT_RAW,FIELD_SETPOINT_READBACK,PERSISTENT,MAGNET_FIELD,HEATER_STATUS,HEATER_STATUS_SP,HEATER_WAIT_TIME,ACTIVITY,ACTIVITY_SP,SWEEPMODE,SWEEPMODE_SP")
+program cryomagnet("FIELD,FIELD_SETPOINT,FIELD_SETPOINT_RAW,FIELD_SETPOINT_READBACK,PERSISTENT,MAGNET_FIELD,HEATER_STATUS,HEATER_STATUS_SP,HEATER_WAIT_TIME,ACTIVITY,ACTIVITY_SP,SWEEPMODE,SWEEPMODE_SP,SUPPLYVOLTAGE_STABLE")
 
 #include "seqPVmacros.h"
 
@@ -28,6 +28,8 @@ PV(int, sweepmode, "{SWEEPMODE}", Monitor);
 PV(int, sweepmode_sp, "{SWEEPMODE_SP}", NoMon);
 
 PV(double, heater_delay_time, "{HEATER_WAIT_TIME}", Monitor);
+
+PV(int, supplyvoltage_stable, "{SUPPLYVOLTAGE_STABLE}", Monitor);
 
 /* If fields are the same within this tolerance, treat as the same */
 double field_tolerance = 0.0001;
@@ -97,8 +99,7 @@ ss cryomagnet
   
   state wait_for_voltage_to_stabilise
   {
-    when(1) {
-      /* TODO */
+    when(supplyvoltage_stable == 1) {
       print_transition("wait_for_voltage_to_stabilise", "turn_switch_heater_on_and_wait");
     } state turn_switch_heater_on_and_wait
   }
