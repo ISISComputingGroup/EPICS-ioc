@@ -126,24 +126,23 @@ record(ao, "$(P)GASFLOW:SP") {
   field(SDIS, "$(P)DISABLE")
 }
 
-record(mbbi, "$(P)MODE") {
-  field(DESC, "Get status")
-  field(SCAN, "Passive")
-  field(DTYP, "stream")
-  field(INP, "@itc503.proto get_sta($(P)) $(PORT)")
-  field(ZRVL, "0")
-  field(ONVL, "1")
-  field(TWVL, "2")
-  field(THVL, "3")
-  field(ZRST, "Man heater, man flow")
-  field(ONST, "Auto heater, man flow")
-  field(TWST, "Man heater, auto flow")
-  field(THST, "Auto gas, auto flow")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:MODE")
-  field(SDIS, "$(P)DISABLE")
-  info(INTEREST, "LOW")
-  info(archive, "VAL")
+record(bo, "$(P)MODE:HTR:SP") {
+  field(DESC, "Heater control mode setpoint")
+  field(ZNAM, "Manual")
+  field(ONAM, "Auto")
+}
+
+record(bo, "$(P)MODE:GAS:SP") {
+  field(DESC, "Gas flow control mode setpoint")
+  field(ZNAM, "Manual")
+  field(ONAM, "Auto")
+}
+
+record(calcout, "$(P)MODE:SP:CALC") {
+  field(INPA, "$(P)MODE:HTR:SP CP")
+  field(INPB, "$(P)MODE:GAS:SP CP")
+  field(CALC, "B=0?(A=0?0:1):(A=0?2:3)")
+  field(OUT, "$(P)MODE:SP CA PP")
 }
 
 record(mbbo, "$(P)MODE:SP") {
@@ -159,9 +158,56 @@ record(mbbo, "$(P)MODE:SP") {
   field(ONST, "Auto heater, man flow")
   field(TWST, "Man heater, auto flow")
   field(THST, "Auto gas, auto flow")
+  
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MODE:SP")
   field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbi, "$(P)MODE") {
+  field(DESC, "Get status")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(INP, "@itc503.proto get_sta($(P)) $(PORT)")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(ZRST, "Man heater, man flow")
+  field(ONST, "Auto heater, man flow")
+  field(TWST, "Man heater, auto flow")
+  field(THST, "Auto gas, auto flow")
+  field(FLNK, "$(P)MODE:CALC:SEQ")
+  info(INTEREST, "LOW")
+  info(archive, "VAL")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:MODE")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(calcout, "$(P)MODE:HTR:CALC") {
+  field(INPA, "$(P)MODE CP")
+  field(CALC, "(A=0||A=2)?0:1")
+  field(OUT, "$(P)MODE:HTR CA PP")
+}
+
+record(calcout, "$(P)MODE:GAS:CALC") {
+  field(INPA, "$(P)MODE CP")
+  field(CALC, "(A=0||A=1)?0:1")
+  field(OUT, "$(P)MODE:GAS CA PP")
+}
+
+record(bi, "$(P)MODE:HTR") {
+  field(DESC, "Heater control mode")
+  field(ZNAM, "Manual")
+  field(ONAM, "Auto")
+}
+
+record(bi, "$(P)MODE:GAS") {
+  field(DESC, "Gas flow control mode")
+  field(ZNAM, "Manual")
+  field(ONAM, "Auto")
 }
 
 record(mbbi, "$(P)CTRL") {
@@ -171,15 +217,16 @@ record(mbbi, "$(P)CTRL") {
   field(ONVL, "1")
   field(TWVL, "2")
   field(THVL, "3")
-  field(ZRST, "FPLock")
-  field(ONST, "EPICS+FPLock")
-  field(TWST, "FPUnlock")
-  field(THST, "EPICS+FPUnlock")
+  field(ZRST, "Locked")
+  field(ONST, "Remote only")
+  field(TWST, "Local only")
+  field(THST, "Local and remote")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CTRL")
   field(SDIS, "$(P)DISABLE")
   info(INTEREST, "LOW")
   info(archive, "VAL")
+  info(alarm, "ITC503")
 }
 
 record(mbbo, "$(P)CTRL:SP") {
@@ -193,16 +240,16 @@ record(mbbo, "$(P)CTRL:SP") {
   field(ONVL, "1")
   field(TWVL, "2")
   field(THVL, "3")
-  field(ZRST, "FPLock")
-  field(ONST, "EPICS+FPLock")
-  field(TWST, "FPUnlock")
-  field(THST, "EPICS+FPUnlock")
+  field(ZRST, "Locked")
+  field(ONST, "Remote only")
+  field(TWST, "Local only")
+  field(THST, "Local and remote")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CTRL:SP")
   field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)TEMP1") {
+record(ai, "$(P)TEMP:1") {
   field(DESC, "Get sensor 1 temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
@@ -216,7 +263,7 @@ record(ai, "$(P)TEMP1") {
   info(archive, "VAL")
 }
 
-record(ai, "$(P)TEMP2") {
+record(ai, "$(P)TEMP:2") {
   field(DESC, "Get sensor 2 temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
@@ -230,7 +277,7 @@ record(ai, "$(P)TEMP2") {
   info(archive, "VAL")
 }
 
-record(ai, "$(P)TEMP3") {
+record(ai, "$(P)TEMP:3") {
   field(DESC, "Get sensor 3 temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
@@ -281,7 +328,7 @@ record(ai, "$(P)RAMP:RATE")
    info(INTEREST, "MEDIUM")
 }
 
-record(ao, "$(P)TTEMP:SP") {
+record(ao, "$(P)TEMP:SP") {
   field(DESC, "Set target temp")
   field(SCAN, "Passive")
   field(PREC, "2")
@@ -289,7 +336,7 @@ record(ao, "$(P)TTEMP:SP") {
   field(DTYP, "asynFloat64")
   field(OUT, "@asyn($(READ),0,1)TGT")
   
-  # Readascii ramp is responsible for setting TTEMP:SP:RAW, but have to trigger it
+  # Readascii ramp is responsible for setting TEMP:SP:RAW, but have to trigger it
   field(FLNK, "$(P)RAMP:_OUT_SP.PROC CA")
 }
 
@@ -299,20 +346,20 @@ record(ai, "$(P)RAMP:_OUT_SP")
    field(DTYP, "asynFloat64")
    field(INP,  "@asyn($(READ),0,1)SP")
    field(SCAN, "I/O Intr")
-   field(FLNK, "$(P)TTEMP:SP:RAW.PROC CA")
+   field(FLNK, "$(P)TEMP:SP:RAW.PROC CA")
 }
 
 # This is the value that is being sent to the ReadASCII ramp to tell it at what temperature we currently are
-record(ao, "$(P)RAMP:_CURRENT_TTEMP")
+record(ao, "$(P)RAMP:_CURRENT_TEMP")
 {
     field(DESC, "The current temperature of the sensor")
-	field(DOL, "$(P)TTEMP")
+	field(DOL, "$(P)TEMP:SP:RBV")
 	field(OMSL, "closed_loop")
 	field(DTYP, "asynFloat64")
 	field(OUT, "@asyn($(READ),0,1)CUR")
 }
 
-record(ao, "$(P)TTEMP:SP:RAW") {
+record(ao, "$(P)TEMP:SP:RAW") {
   field(DESC, "Set target temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
@@ -322,11 +369,11 @@ record(ao, "$(P)TTEMP:SP:RAW") {
   field(PREC, "2")
   field(EGU, "K")
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:TTEMP:SP")
+  field(SIOL, "$(P)SIM:TEMP:SP")
   field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)TTEMP") {
+record(ai, "$(P)TEMP:SP:RBV") {
   field(DESC, "Get target temp")
   field(SCAN, "Passive")
   field(DTYP, "stream")
@@ -334,11 +381,11 @@ record(ai, "$(P)TTEMP") {
   field(PREC, "2")
   field(EGU, "K")
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:TTEMP")
+  field(SIOL, "$(P)SIM:TEMP:SP:RBV")
   field(SDIS, "$(P)DISABLE")
   info(INTEREST, "HIGH")
   info(archive, "VAL")
-  field(FLNK, "$(P)RAMP:_CURRENT_TTEMP.PROC CA")
+  field(FLNK, "$(P)RAMP:_CURRENT_TEMP.PROC CA")
 }
 
 record(ai, "$(P)TEMP:ERR") {
@@ -494,8 +541,8 @@ record(seq, "$(P)FAN1") {
   field(LNK1, "$(P)P.PROC PP")
   field(LNK2, "$(P)I.PROC PP")
   field(LNK3, "$(P)D.PROC PP")
-  field(LNK4, "$(P)TEMP1.PROC PP")
-  field(LNK5, "$(P)TTEMP.PROC PP")
+  field(LNK4, "$(P)TEMP:1.PROC PP")
+  field(LNK5, "$(P)TEMP:SP:RBV.PROC PP")
   field(LNK6, "$(P)TEMP:ERR.PROC PP")
   field(LNK7, "$(P)FAN2.PROC PP")
   field(LNK8, "$(P)FAN1.DESC")      
@@ -514,8 +561,8 @@ record(seq, "$(P)FAN2") {
   field(LNK2, "$(P)HEATERV.PROC PP")
   field(LNK3, "$(P)MODE.PROC PP")
   field(LNK4, "$(P)GASFLOW.PROC PP")  
-  field(LNK5, "$(P)TEMP2.PROC PP")
-  field(LNK6, "$(P)TEMP3.PROC PP")
+  field(LNK5, "$(P)TEMP:2.PROC PP")
+  field(LNK6, "$(P)TEMP:3.PROC PP")
   field(DLY2, "1.0")
   field(DLY3, "1.0")
   field(DLY4, "1.0")
@@ -554,7 +601,7 @@ alias("$(P)SIM:SAMPLEFLW", "$(P)SIM:SAMPLEFLW:SP")
 record(ao, "$(P)SIM:GASFLOW"){}
 alias("$(P)SIM:GASFLOW", "$(P)SIM:GASFLOW:SP")
 
-record(mbbo, "$(P)SIM:MODE:SP") {
+record(mbbo, "$(P)SIM:MODE") {
   field(ZRVL, "0")
   field(ONVL, "1")
   field(TWVL, "2")
@@ -564,23 +611,23 @@ record(mbbo, "$(P)SIM:MODE:SP") {
   field(TWST, "Man heater, auto flow")
   field(THST, "Auto gas, auto flow")
 }
-alias("$(P)SIM:MODE:SP", "$(P)SIM:MODE")
+alias("$(P)SIM:MODE", "$(P)SIM:MODE:SP")
 
 record(ao, "$(P)SIM:HEATERV"){}
 
 record(ao, "$(P)SIM:TEMP"){}
-alias("$(P)SIM:TEMP", "$(P)SIM:TTEMP:SP")
-alias("$(P)SIM:TEMP", "$(P)SIM:TTEMP")
+alias("$(P)SIM:TEMP", "$(P)SIM:TEMP:SP")
+alias("$(P)SIM:TEMP", "$(P)SIM:TEMP:SP:RBV")
 
 record(mbbo, "$(P)SIM:CTRL") {
   field(ZRVL, "0")
   field(ONVL, "1")
   field(TWVL, "2")
   field(THVL, "3")
-  field(ZRST, "FPLock")
-  field(ONST, "EPICS+FPLock")
-  field(TWST, "FPUnlock")
-  field(THST, "EPICS+FPUnlock")
+  field(ZRST, "Locked")
+  field(ONST, "Remote only")
+  field(TWST, "Local only")
+  field(THST, "Local and remote")
 }
 alias("$(P)SIM:CTRL", "$(P)SIM:CTRL:SP")
 
