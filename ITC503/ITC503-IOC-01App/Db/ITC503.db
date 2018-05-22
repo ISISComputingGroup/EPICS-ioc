@@ -178,8 +178,6 @@ record(mbbi, "$(P)MODE") {
   field(TWST, "Man heater, auto flow")
   field(THST, "Auto gas, auto flow")
   field(FLNK, "$(P)MODE:CALC:SEQ")
-  info(INTEREST, "LOW")
-  info(archive, "VAL")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MODE")
@@ -202,12 +200,16 @@ record(bi, "$(P)MODE:HTR") {
   field(DESC, "Heater control mode")
   field(ZNAM, "Manual")
   field(ONAM, "Auto")
+  info(INTEREST, "LOW")
+  info(archive, "VAL")
 }
 
 record(bi, "$(P)MODE:GAS") {
   field(DESC, "Gas flow control mode")
   field(ZNAM, "Manual")
   field(ONAM, "Auto")
+  info(INTEREST, "LOW")
+  info(archive, "VAL")
 }
 
 record(mbbi, "$(P)CTRL") {
