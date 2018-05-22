@@ -30,6 +30,7 @@ $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
+$(APPNAME)_DBD += cryomagnet.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -49,8 +50,9 @@ $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += pcre libjson zlib
 $(APPNAME)_LIBS += efsw
 
-# FERMCHOP-IOC-01_registerRecordDeviceDriver.cpp derives from FERMCHOP-IOC-01.dbd
+# FERMCHOP-IOC-01_registerRecordDeviceDriver.cpp derives from IPS-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
+$(APPNAME)_SRCS += cryomagnet.st
 
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp

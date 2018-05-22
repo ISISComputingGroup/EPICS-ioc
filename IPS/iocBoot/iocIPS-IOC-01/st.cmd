@@ -38,8 +38,10 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)"
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+epicsEnvSet("P", "$(MYPVPREFIX)$(IOCNAME):")
+
 ## Load our record instances
-dbLoadRecords("db/ips.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("db/ips.db","PVPREFIX=$(MYPVPREFIX),P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -48,7 +50,7 @@ cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
-#seq sncxxx,"user=ynq66733"
+seq cryomagnet, "FIELD=$(P)FIELD,FIELD_SETPOINT=$(P)FIELD:SP,FIELD_SETPOINT_RAW=$(P)FIELD:SP:_RAW,PERSISTENT=$(P)PERSISTENT,MAGNET_FIELD=$(P)PERSISTENTMAGNETFIELD,HEATER_STATUS=$(P)HEATER:STATUS,HEATER_STATUS_SP=$(P)HEATER:STATUS:SP,HEATER_WAIT_TIME=$(P)HEATER:WAITTIME"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
