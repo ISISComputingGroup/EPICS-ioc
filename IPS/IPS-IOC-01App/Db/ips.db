@@ -83,6 +83,9 @@ record(mbbi, "$(P)CONTROL") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CONTROL")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
+  info(alarm, "IPS")
 }
 
 # Grab remote vs local control
@@ -126,6 +129,8 @@ record(mbbi, "$(P)ACTIVITY") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:ACTIVITY")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # Hold means maintaining present current.
@@ -164,6 +169,8 @@ record(ai, "$(P)CURRENT") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CURRENT")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # The present current setpoint.
@@ -179,6 +186,8 @@ record(ai, "$(P)CURRENT:SP:RBV") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CURRENT")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # The present voltage.
@@ -196,6 +205,8 @@ record(ai, "$(P)SUPPLYVOLTAGE") {
   field(SDIS, "$(P)DISABLE")
   
   field(FLNK, "$(P)SUPPLYVOLTAGE:_STABILITY:BUF")
+  
+  info(archive, "VAL")
 }
 
 record(compress, "$(P)SUPPLYVOLTAGE:_STABILITY:BUF") {
@@ -232,6 +243,7 @@ record(calcout, "$(P)SUPPLYVOLTAGE:_STABILITY:CALC") {
 record(bo, "$(P)SUPPLYVOLTAGE:STABLE") {
   field(ZNAM, "NO")
   field(ONAM, "YES")
+  info(archive, "VAL")
 }
 
 # The present current measured.
@@ -247,6 +259,8 @@ record(ai, "$(P)MEASUREDMAGNETCURRENT") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MEASUREDMAGNETCURRENT")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # The present sweeprate for current.
@@ -262,6 +276,8 @@ record(ai, "$(P)CURRENTSWEEPRATE") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CURRENTSWEEPRATE")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # The field the unit is attempting to create.
@@ -277,6 +293,9 @@ record(ai, "$(P)FIELD") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
 }
 
 record(ao, "$(P)FIELD:SP") {
@@ -291,6 +310,7 @@ record(ao, "$(P)FIELD:SP") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD")
   field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
 }
 
 # Set the Field Setpoint (i.e. the field the unit will go to and hold for the magnet.)
@@ -308,6 +328,7 @@ record(ao, "$(P)FIELD:SP:_RAW") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD")
   field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
 }
 
 # The present field setpoint.  The target field the unit will aim for when
@@ -324,6 +345,7 @@ record(ai, "$(P)FIELD:SP:RBV") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD")
   field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
 }
 
 # The present sweeprate (a.k.a. ramprate) for adjusting the field.
@@ -342,6 +364,8 @@ record(ai, "$(P)FIELDSWEEPRATE") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELDSWEEPRATE")
   field(SDIS, "$(P)DISABLE")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
 }
 
 record(ao, "$(P)FIELDSWEEPRATE:SP") {
@@ -391,6 +415,8 @@ record(ai, "$(P)PERSISTENTMAGNETCURRENT") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:PERSISTENTMAGNETCURRENT")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # The current at which a trip last occurred.  Am not sure if by trip, they mean
@@ -409,6 +435,8 @@ record(ai, "$(P)TRIPCURRENT") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:TRIPCURRENT")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # The field in the magnet due to the persistent current. See current for explanation.
@@ -424,6 +452,10 @@ record(ai, "$(P)PERSISTENTMAGNETFIELD") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:PERSISTENTMAGNETFIELD")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
+  
+  info(archive, "VAL")
 }
 
 # The field at which a trip last occurred.  See current for explanation.
@@ -439,6 +471,8 @@ record(ai, "$(P)TRIPFIELD") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:TRIPFIELD")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # The current being provided to the heater.
@@ -455,6 +489,8 @@ record(ai, "$(P)HEATERCURRENT") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HEATERCURRENT")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # The lower limit for the current.  This refers to a limit on the controller and
@@ -471,6 +507,8 @@ record(ai, "$(P)NEGCURRENTLIMIT") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:NEGCURRENTLIMIT")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # The higher limit for the current.  This refers to a limit on the controller and
@@ -487,6 +525,8 @@ record(ai, "$(P)POSCURRENTLIMIT") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:POSCURRENTLIMIT")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # The resistance of the lead from the unit to the magnet that carries
@@ -497,13 +537,15 @@ record(ai, "$(P)LEADRESISTANCE") {
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getLeadResistance $(PORT)")
-  field(EGU,  "mOhm")
+  field(EGU,  "mohm")
   field(PREC, "5")
   field(ADEL, "0.00002" )
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:LEADRESISTANCE")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # The inductance of the magnet. Believe this is also set by the supplier
@@ -520,6 +562,8 @@ record(ai, "$(P)MAGNETINDUCTANCE") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MAGNETINDUCTANCE")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # # Run the Examine Status command, X.
@@ -529,7 +573,6 @@ record(stringin, "$(P)GET:STATUS") {
   field(DTYP, "stream")
   field(INP, "@OxInstIPS.protocol getStatus($(P)) $(PORT)")
   field(SCAN, "1 second")
-  field(SDIS, "$(P)DISABLE")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:DONOTHING")
@@ -556,6 +599,8 @@ record(mbbi, "$(P)STS:SYSTEM:FAULT") {
   field(EIST, "Fault")
   field(EIVL, "8")
   field(EISV, "MAJOR")
+  
+  info(archive, "VAL")
 }
 
 # # Readback from n of Xmn part of Examine command return.
@@ -578,6 +623,8 @@ record(mbbi, "$(P)STS:SYSTEM:LIMIT") {
   field(EIST, "Current too +ve")
   field(EIVL, "8")
   field(EISV, "MINOR")
+  
+  info(archive, "VAL")
 }
 
 # Readback from Hn part of Examine command return.
@@ -602,6 +649,8 @@ record(mbbi, "$(P)HEATER:STATUS") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HEATER:STATUS")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 record(bo, "$(P)HEATER:STATUS:SP") {
@@ -624,6 +673,7 @@ record(ao, "$(P)HEATER:WAITTIME") {
   field(DESC, "Time to wait for heater")
   field(VAL, "30")
   field(PINI, "YES")
+  info(archive, "VAL")
 }
 
 # # Readback from m of Mmn part of Examine command return.
@@ -656,6 +706,8 @@ record(mbbi, "$(P)SWEEPMODE:PARAMS") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:SWEEPMODE:PARAMS")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # To set the sweep and display mode - its a bit confusing as there
@@ -714,6 +766,8 @@ record(mbbi, "$(P)STS:SWEEPMODE:SWEEP") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:STS:SWEEPMODE:SWEEP")
   field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
 # To capture bits of mismatching status protocol.
@@ -752,7 +806,7 @@ record(ao, "$(P)SET:WAITINTERVAL") {
   field(DESC, "Set Wait Interval")
   field(DTYP, "stream")
   field(SCAN, "Passive")
-  field(EGU, "msec")
+  field(EGU, "ms")
   field(OUT,  "@OxInstIPS.protocol setWaitInterval $(PORT)")
   
   field(SIML, "$(P)SIM")
@@ -766,6 +820,8 @@ record(bo, "$(P)PERSISTENT") {
   field(ONAM, "YES")
   field(VAL, "1")
   field(PINI, "YES")
+  info(INTEREST, "HIGH")
+  info(archive, "VAL")
 }
 
 # Play nicely with blocks/genie_python
@@ -836,7 +892,7 @@ record(mbbo, "$(P)SIM:ACTIVITY") {
 
 alias("$(P)SIM:ACTIVITY", "$(P)SIM:ACTIVITY:SP")
 
-record(mbbo, "$(P)CONTROL") {
+record(mbbo, "$(P)SIM:CONTROL") {
   field(ZRST, "Local & Locked")
   field(ZRVL, "0")
   field(ONST, "Remote & Locked")
