@@ -1,0 +1,3 @@
+# Motor settings
+file "motor_settings.req" P=$(P),M=MTR$(CCP)01
+file "motor_settings.req" P=$(P),M=MTR$(CCP)02
