@@ -1,4 +1,4 @@
-program cryomagnet("FIELD,FIELD_SETPOINT,FIELD_SETPOINT_RAW,FIELD_SETPOINT_READBACK,PERSISTENT,MAGNET_FIELD,HEATER_STATUS,HEATER_STATUS_SP,HEATER_WAIT_TIME,ACTIVITY,ACTIVITY_SP,SWEEPMODE,SWEEPMODE_SP,SUPPLYVOLTAGE_STABLE")
+program cryomagnet("FIELD,FIELD_SETPOINT,FIELD_SETPOINT_ALARM,FIELD_SETPOINT_RAW,FIELD_SETPOINT_READBACK,PERSISTENT,MAGNET_FIELD,HEATER_STATUS,HEATER_STATUS_SP,HEATER_WAIT_TIME,ACTIVITY,ACTIVITY_SP,SWEEPMODE,SWEEPMODE_SP,SUPPLYVOLTAGE_STABLE")
 
 #include "seqPVmacros.h"
 
@@ -10,10 +10,11 @@ option +r;
 
 /* Field */
 PV(double, field_setpoint, "{FIELD_SETPOINT}", Monitor);
+PV(int, field_setpoint_alarm, "{FIELD_SETPOINT_ALARM}", Monitor);
 PV(double, field_setpoint_readback, "{FIELD_SETPOINT_READBACK}", Monitor);
 PV(double, field_setpoint_raw, "{FIELD_SETPOINT_RAW}", NoMon);
-PV(double, psu_field, "{FIELD}", Monitor);
 
+PV(double, psu_field, "{FIELD}", Monitor);
 PV(double, magnet_field, "{MAGNET_FIELD}", Monitor);
 
 PV(int, persistent, "{PERSISTENT}", Monitor);
@@ -50,6 +51,11 @@ int within_tolerance(double a, double b, double tolerance) {
 }
 }%
 
+/*
+ *
+ * Documentation and further information about this state machine is available at https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/OxfordInstrumentsIPS
+ *
+ */
 ss cryomagnet
 {
 
@@ -65,6 +71,7 @@ ss cryomagnet
     when(
       !within_tolerance(field_setpoint, field_setpoint_readback, field_tolerance)
       && activity == ACTIVITY_HOLD
+      && field_setpoint_alarm == 0
       )
     {
       print_transition("at_field", "set_psu_to_match_magnet");
@@ -72,7 +79,7 @@ ss cryomagnet
     
     when (activity != ACTIVITY_HOLD) {
       PVPUT(activity_sp, ACTIVITY_HOLD);
-      epicsThreadSleep(0.5);  /* Avoid spamming the machine with a very high command rate */
+      epicsThreadSleep(1.0);  /* Avoid spamming the IPS with a very high command rate */
     } state at_field
   }
   
@@ -231,6 +238,6 @@ ss cryomagnet
       print_transition("ramp_down_psu", "at_field");
     } state at_field
     
-    when(delay(30)){} state ramp_down_psu
+    when(delay(300)){} state ramp_down_psu
   }
 }

@@ -33,7 +33,7 @@ record(stringin, "$(P)GET:VERSION") {
   field(FLNK, "$(P)MODEL")
   field(SCAN, "Passive")
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:GET:VERSION")
+  field(SIOL, "$(P)SIM:DONOTHING")
   field(SDIS, "$(P)DISABLE")
 }
 
@@ -42,18 +42,12 @@ record(stringin, "$(P)MODEL") {
   field(DTYP, "Soft Channel")
   field(SCAN, "Passive")
   field(FLNK, "$(P)VERSION")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:MODEL")
-  field(SDIS, "$(P)DISABLE")
 }
 
 record(stringin, "$(P)VERSION") {
   field(DESC, "Firmware version.")
   field(DTYP, "Soft Channel")
   field(SCAN, "Passive")
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:VERSION")
-  field(SDIS, "$(P)DISABLE")
 }
 
 # # Readback from Cn part of Examine command return.
@@ -183,7 +177,7 @@ record(ai, "$(P)CURRENT:SP:RBV") {
   field(ADEL, "0.0002")
   
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:CURRENT:SP:RBV")
+  field(SIOL, "$(P)SIM:CURRENT")
   field(SDIS, "$(P)DISABLE")
 }
 
@@ -279,6 +273,8 @@ record(ai, "$(P)FIELD") {
   field(EGU,  "T")
   field(PREC, "5")
   field(ADEL, "0.00002" )
+  field(HIHI, "$(MAX_FIELD)")
+  field(LOLO, "-$(MAX_FIELD)")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD")
@@ -291,9 +287,11 @@ record(ao, "$(P)FIELD:SP") {
   field(EGU,  "T")
   field(PREC, "5")
   field(ADEL, "0.00002" )
+  field(DRVH, "$(MAX_FIELD)")
+  field(DRVL, "-$(MAX_FIELD)")
   
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:FIELD:SP")
+  field(SIOL, "$(P)SIM:FIELD")
   field(SDIS, "$(P)DISABLE")
 }
 
@@ -306,9 +304,11 @@ record(ao, "$(P)FIELD:SP:_RAW") {
   field(EGU,  "T")
   field(PREC, "5")
   field(ADEL, "0.00002" )
+  field(DRVH, "$(MAX_FIELD)")
+  field(DRVL, "-$(MAX_FIELD)")
   
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:FIELD:SP")
+  field(SIOL, "$(P)SIM:FIELD")
   field(SDIS, "$(P)DISABLE")
 }
 
@@ -322,9 +322,11 @@ record(ai, "$(P)FIELD:SP:RBV") {
   field(EGU,  "T")
   field(PREC, "5")
   field(ADEL, "0.00002" )
+  field(HIHI, "$(MAX_FIELD)")
+  field(LOLO, "-$(MAX_FIELD)")
   
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:FIELD:SP:RBV")
+  field(SIOL, "$(P)SIM:FIELD")
   field(SDIS, "$(P)DISABLE")
 }
 
@@ -337,6 +339,9 @@ record(ai, "$(P)FIELDSWEEPRATE") {
   field(EGU,  "T/min")
   field(PREC, "4")
   field(ADEL, "0.0002" )
+  
+  field(HIHI, "$(MAX_SWEEP_RATE)")
+  field(LOLO, "0")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELDSWEEPRATE")
@@ -351,6 +356,8 @@ record(ao, "$(P)FIELDSWEEPRATE:SP") {
   field(EGU,  "T/min")
   field(PREC, "4")
   field(ADEL, "0.0002" )
+  field(DRVH, "$(MAX_SWEEP_RATE)")
+  field(DRVL, "0")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELDSWEEPRATE:SP")
@@ -529,7 +536,7 @@ record(stringin, "$(P)GET:STATUS") {
   field(SDIS, "$(P)DISABLE")
   
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:GET:STATUS")
+  field(SIOL, "$(P)SIM:DONOTHING")
   field(SDIS, "$(P)DISABLE")
 }
 
@@ -553,10 +560,6 @@ record(mbbi, "$(P)STS:SYSTEM:FAULT") {
   field(EIST, "Fault")
   field(EIVL, "8")
   field(EISV, "MAJOR")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:STS:SYSTEM:FAULT")
-  field(SDIS, "$(P)DISABLE")
 }
 
 # # Readback from n of Xmn part of Examine command return.
@@ -579,10 +582,6 @@ record(mbbi, "$(P)STS:SYSTEM:LIMIT") {
   field(EIST, "Current too +ve")
   field(EIVL, "8")
   field(EISV, "MINOR")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:STS:SYSTEM:LIMIT")
-  field(SDIS, "$(P)DISABLE")
 }
 
 # Readback from Hn part of Examine command return.
@@ -618,13 +617,13 @@ record(bo, "$(P)HEATER:STATUS:SP") {
   field(ONAM, "On")
   
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:CONTROL:SP")
+  field(SIOL, "$(P)SIM:HEATER:STATUS:SP")
   field(SDIS, "$(P)DISABLE")
 }
 
 # Amount of time to wait for heater to warm up/cool down.
-# DO NOT CHANGE THIS IF YOU ARE CONNECTED TO A REAL CRYOMAGNET
 # CAN CAUSE MAGNET TO QUENCH IF SET TOO LOW
+# Oxford Instruments labview driver uses 30s
 record(ao, "$(P)HEATER:WAITTIME") {
   field(DESC, "Time to wait for heater")
   field(VAL, "30")
@@ -775,3 +774,81 @@ record(bo, "$(P)PERSISTENT") {
 
 # Play nicely with blocks/genie_python
 alias("$(P)PERSISTENT", "$(P)PERSISTENT:SP")  
+
+
+### Simulation record - Just to stop errors, doesn't do anything
+
+record(ao, "$(P)SIM:DONOTHING") {}
+
+record(mbbo, "$(P)SIM:SWEEPMODE:PARAMS") {
+  field(ZRST, "Amps Fast")
+  field(ZRVL, "0")
+  field(ONST, "Tesla Fast")
+  field(ONVL, "1")
+  field(TWST, "Amps Fast")
+  field(TWVL, "2")
+  field(THST, "Tesla Fast")
+  field(THVL, "3")
+  field(FRST, "Amps Slow")
+  field(FRVL, "4")
+  field(FVST, "Tesla Slow")
+  field(FVVL, "5")
+  field(SXST, "Amps Slow")
+  field(SXVL, "6")
+  field(SVST, "Tesla Slow")
+  field(SVVL, "7")
+  field(EIST, "Amps Unaffected")
+  field(EIVL, "8")
+  field(NIST, "Tesla Unaffected")
+  field(NIVL, "9")
+}
+
+alias("$(P)SIM:SWEEPMODE:PARAMS", "$(P)SIM:SPEEPMODE:PARAMS:SP")
+
+record(bo, "$(P)SIM:HEATER:STATUS") {
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+}
+
+alias("$(P)SIM:HEATER:STATUS", "$(P)SIM:HEATER:STATUS:SP")
+
+record(ao, "$(P)SIM:MAGNETINDUCTANCE"){}
+record(ao, "$(P)SIM:LEADRESISTANCE"){}
+record(ao, "$(P)SIM:POSCURRENTLIMIT"){}
+record(ao, "$(P)SIM:NEGCURRENTLIMIT"){}
+record(ao, "$(P)SIM:HEATERCURRENT"){}
+record(ao, "$(P)SIM:TRIPFIELD"){}
+record(ao, "$(P)SIM:TRIPCURRENT"){}
+record(ao, "$(P)SIM:CURRENTSWEEPRATE"){}
+record(ao, "$(P)SIM:SUPPLYVOLTAGE"){}
+record(ao, "$(P)SIM:CURRENT"){}
+record(ao, "$(P)SIM:SOFTWAREVOLTAGELIMIT"){}
+record(ao, "$(P)SIM:FIELDSWEEPRATE"){}
+record(ao, "$(P)SIM:FIELD"){}
+alias("$(P)SIM:FIELDSWEEPRATE", "$(P)SIM:FIELDSWEEPRATE:SP")
+
+record(mbbo, "$(P)SIM:ACTIVITY") {
+  field(ZRST, "Hold")
+  field(ZRVL, "0")
+  field(ONST, "To Setpoint")
+  field(ONVL, "1")
+  field(TWST, "To Zero")
+  field(TWVL, "2")
+  field(FRST, "Clamp")
+  field(FRVL, "4")
+}
+
+alias("$(P)SIM:ACTIVITY", "$(P)SIM:ACTIVITY:SP")
+
+record(mbbo, "$(P)CONTROL") {
+  field(ZRST, "Local & Locked")
+  field(ZRVL, "0")
+  field(ONST, "Remote & Locked")
+  field(ONVL, "1")
+  field(TWST, "Local & Unlocked")
+  field(TWVL, "2")
+  field(THST, "Remote & Unlocked")
+  field(THVL, "3")
+}
+
+alias("$(P)SIM:CONTROL", "$(P)SIM:CONTROL:SP")
