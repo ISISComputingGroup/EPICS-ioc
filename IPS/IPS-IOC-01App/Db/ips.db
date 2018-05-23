@@ -273,8 +273,6 @@ record(ai, "$(P)FIELD") {
   field(EGU,  "T")
   field(PREC, "5")
   field(ADEL, "0.00002" )
-  field(HIHI, "$(MAX_FIELD)")
-  field(LOLO, "-$(MAX_FIELD)")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD")
@@ -322,8 +320,6 @@ record(ai, "$(P)FIELD:SP:RBV") {
   field(EGU,  "T")
   field(PREC, "5")
   field(ADEL, "0.00002" )
-  field(HIHI, "$(MAX_FIELD)")
-  field(LOLO, "-$(MAX_FIELD)")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD")
@@ -340,8 +336,8 @@ record(ai, "$(P)FIELDSWEEPRATE") {
   field(PREC, "4")
   field(ADEL, "0.0002" )
   
-  field(HIHI, "$(MAX_SWEEP_RATE)")
   field(LOLO, "0")
+  field(LLSV, "MAJOR")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELDSWEEPRATE")

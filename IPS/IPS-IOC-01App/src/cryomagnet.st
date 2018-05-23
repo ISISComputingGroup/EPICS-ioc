@@ -61,7 +61,9 @@ ss cryomagnet
 
   state initial
   {
-    when(1) {
+    /* Dont do anything at all until the field setpoint is set to something & UDF_ALARM goes away. */
+    when(field_setpoint_alarm == 0) {
+      print_transition("initial", "at_field");
     } state at_field
   }
 
