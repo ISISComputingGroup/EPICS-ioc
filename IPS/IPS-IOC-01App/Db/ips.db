@@ -54,7 +54,7 @@ record(stringin, "$(P)VERSION") {
 record(mbbi, "$(P)CONTROL") {
   field(DESC, "Control status")
   field(DTYP, "Soft Channel")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(ZRST, "Local & Locked")
   field(ZRVL, "0")
   field(ZRSV, "NO_ALARM")
@@ -116,7 +116,7 @@ record(mbbo, "$(P)CONTROL:SP") {
 record(mbbi, "$(P)ACTIVITY") {
   field(DESC, "Activity status")
   field(DTYP, "Soft Channel")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(ZRST, "Hold")
   field(ZRVL, "0")
   field(ONST, "To Setpoint")
@@ -160,7 +160,7 @@ record(mbbo, "$(P)ACTIVITY:SP") {
 record(ai, "$(P)CURRENT") {
   field(DESC, "Demand Current Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getDemandCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
@@ -177,7 +177,7 @@ record(ai, "$(P)CURRENT") {
 record(ai, "$(P)CURRENT:SP:RBV") {
   field(DESC, "Setpoint Current Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getSetpointCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
@@ -194,7 +194,7 @@ record(ai, "$(P)CURRENT:SP:RBV") {
 record(ai, "$(P)SUPPLYVOLTAGE") {
   field(DESC, "Supply Voltage Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getSupplyVoltage $(PORT)")
   field(EGU,  "V")
   field(PREC, "8")
@@ -250,7 +250,7 @@ record(bo, "$(P)SUPPLYVOLTAGE:STABLE") {
 record(ai, "$(P)MEASUREDMAGNETCURRENT") {
   field(DESC, "Measured Magnet Current Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getMeasuredMagnetCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
@@ -267,7 +267,7 @@ record(ai, "$(P)MEASUREDMAGNETCURRENT") {
 record(ai, "$(P)CURRENTSWEEPRATE") {
   field(DESC, "Current Sweep Rate Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getCurrentSweepRate $(PORT)")
   field(EGU,  "A/min")
   field(PREC, "3")
@@ -284,7 +284,7 @@ record(ai, "$(P)CURRENTSWEEPRATE") {
 record(ai, "$(P)FIELD") {
   field(DESC, "Demand Field Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getDemandField $(PORT)")
   field(EGU,  "T")
   field(PREC, "5")
@@ -336,7 +336,7 @@ record(ao, "$(P)FIELD:SP:_RAW") {
 record(ai, "$(P)FIELD:SP:RBV") {
   field(DESC, "Setpoint Field Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getSetpointField $(PORT)")
   field(EGU,  "T")
   field(PREC, "5")
@@ -352,7 +352,7 @@ record(ai, "$(P)FIELD:SP:RBV") {
 record(ai, "$(P)FIELDSWEEPRATE") {
   field(DESC, "Field Sweep Rate Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getFieldSweepRate $(PORT)")
   field(EGU,  "T/min")
   field(PREC, "4")
@@ -406,7 +406,7 @@ record(ai, "$(P)SOFTWAREVOLTAGELIMIT") {
 record(ai, "$(P)PERSISTENTMAGNETCURRENT") {
   field(DESC, "Persistent Magnet Current Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getPersistentMagnetCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
@@ -426,7 +426,7 @@ record(ai, "$(P)PERSISTENTMAGNETCURRENT") {
 record(ai, "$(P)TRIPCURRENT") {
   field(DESC, "Trip Current Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getTripCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
@@ -443,7 +443,7 @@ record(ai, "$(P)TRIPCURRENT") {
 record(ai, "$(P)PERSISTENTMAGNETFIELD") {
   field(DESC, "Persistent Magnet Field Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getPersistentMagnetField $(PORT)")
   field(EGU,  "T")
   field(PREC, "5")
@@ -462,7 +462,7 @@ record(ai, "$(P)PERSISTENTMAGNETFIELD") {
 record(ai, "$(P)TRIPFIELD") {
   field(DESC, "Trip Field Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getTripField $(PORT)")
   field(EGU,  "T")
   field(PREC, "5")
@@ -480,7 +480,7 @@ record(ai, "$(P)TRIPFIELD") {
 record(ai, "$(P)HEATERCURRENT") {
   field(DESC, "Heater Current Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getHeaterCurrent  $(PORT)")
   field(EGU,  "mA")
   field(PREC, "4")
@@ -535,7 +535,7 @@ record(ai, "$(P)POSCURRENTLIMIT") {
 record(ai, "$(P)LEADRESISTANCE") {
   field(DESC, "LeadResistance Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getLeadResistance $(PORT)")
   field(EGU,  "mohm")
   field(PREC, "5")
@@ -553,7 +553,7 @@ record(ai, "$(P)LEADRESISTANCE") {
 record(ai, "$(P)MAGNETINDUCTANCE") {
   field(DESC, "Magnet Inductance Readback")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(INP,  "@OxInstIPS.protocol getMagnetInductance $(PORT)")
   field(EGU,  "H")
   field(PREC, "5")
@@ -572,7 +572,7 @@ record(stringin, "$(P)GET:STATUS") {
   field(DESC, "Examine Status")
   field(DTYP, "stream")
   field(INP, "@OxInstIPS.protocol getStatus($(P)) $(PORT)")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:DONOTHING")

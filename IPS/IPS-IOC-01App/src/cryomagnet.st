@@ -12,7 +12,7 @@ option +r;
 PV(double, field_setpoint, "{FIELD_SETPOINT}", Monitor);
 PV(int, field_setpoint_alarm, "{FIELD_SETPOINT_ALARM}", Monitor);
 PV(double, field_setpoint_readback, "{FIELD_SETPOINT_READBACK}", Monitor);
-PV(double, field_setpoint_raw, "{FIELD_SETPOINT_RAW}", NoMon);
+PV(double, field_setpoint_raw, "{FIELD_SETPOINT_RAW}", Monitor);
 
 PV(double, psu_field, "{FIELD}", Monitor);
 PV(double, magnet_field, "{MAGNET_FIELD}", Monitor);
@@ -20,13 +20,13 @@ PV(double, magnet_field, "{MAGNET_FIELD}", Monitor);
 PV(int, persistent, "{PERSISTENT}", Monitor);
 
 PV(int, heater, "{HEATER_STATUS}", Monitor);
-PV(int, heater_sp, "{HEATER_STATUS_SP}", NoMon);
+PV(int, heater_sp, "{HEATER_STATUS_SP}", Monitor);
 
 PV(int, activity, "{ACTIVITY}", Monitor);
-PV(int, activity_sp, "{ACTIVITY_SP}", NoMon);
+PV(int, activity_sp, "{ACTIVITY_SP}", Monitor);
 
 PV(int, sweepmode, "{SWEEPMODE}", Monitor);
-PV(int, sweepmode_sp, "{SWEEPMODE_SP}", NoMon);
+PV(int, sweepmode_sp, "{SWEEPMODE_SP}", Monitor);
 
 PV(double, heater_delay_time, "{HEATER_WAIT_TIME}", Monitor);
 
@@ -96,15 +96,17 @@ ss cryomagnet
     {
       printf("Setting raw field setpoint to %f\n", magnet_field);
       PVPUT(field_setpoint_raw, magnet_field);
+      epicsThreadSleep(1.0);
       PVPUT(activity_sp, ACTIVITY_TO_SP);
+      epicsThreadSleep(1.0);
       PVPUT(sweepmode_sp, SWEEP_MODE);
     } 
 
     when(
-      within_tolerance(field_setpoint_readback, field_setpoint_raw, field_tolerance) 
+      within_tolerance(field_setpoint_readback, magnet_field, field_tolerance) 
       && within_tolerance(psu_field, magnet_field, field_tolerance) 
-      && activity == ACTIVITY_TO_SP
-      && sweepmode == SWEEP_MODE
+      && (activity == ACTIVITY_TO_SP)
+      && (sweepmode == SWEEP_MODE)
       )
     {
       print_transition("set_psu_to_match_magnet", "wait_for_voltage_to_stabilise");
@@ -144,6 +146,7 @@ ss cryomagnet
     entry
     {
       PVPUT(activity_sp, ACTIVITY_HOLD);
+      epicsThreadSleep(1.0);
       PVPUT(heater_sp, 1);
     }
 
@@ -168,6 +171,7 @@ ss cryomagnet
     {
       printf("Setting raw field setpoint to %f\n", field_setpoint);
       PVPUT(field_setpoint_raw, field_setpoint);
+      epicsThreadSleep(1.0);
       PVPUT(activity_sp, ACTIVITY_TO_SP);
     }
 
