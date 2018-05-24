@@ -64,7 +64,7 @@ record(cvt, "$(P)$(CHANNEL):TEMP:RAW")
 	field(DESC, "Calculate temperature from calib file")
 	field(SCAN, "Passive")
 	field(PREC, "5")
-	field(EGU, "k")
+	field(EGU, "K")
 	field(INPY, "$(P)$(CHANNEL):READ")
 	field(METH, "1D TABLE INVERTED")
     field(DRVL, "$(DRVLO)")
@@ -89,14 +89,16 @@ record(calcout, "$(P)$(CHANNEL):TEMP:CHECK")
 record(ao, "$(P)$(CHANNEL):TEMP")
 {
 	field(DESC, "Temp value post range check")
-	field(EGU, "k")
+	field(EGU, "K")
 	field(PREC, "5")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
 }
 
 record(ao, "$(P)$(CHANNEL):TEMP:PREV")
 {
 	field(DESC, "Previous temperature value")
-	field(EGU, "k")
+	field(EGU, "K")
 	field(PREC, "5")
 }
 
@@ -119,6 +121,9 @@ record(ao, "$(P)$(CHANNEL):DRIFT")
 {
 	field(DESC, "Drift value")
 	field(PREC, "6")
+	field(EGU, "")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
 }
 
 ### SIMULATION RECORDS ###
