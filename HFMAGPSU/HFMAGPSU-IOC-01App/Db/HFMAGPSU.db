@@ -135,7 +135,7 @@ record(bi, "$(P)PAUSE")
     field(ONAM, "ON")   
 	field(INP, "@devHFMAGPSU.proto getPause $(PORT)")	
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:PAUSE:SP")
+    field(SIOL, "$(P)SIM:PAUSE")
     field(SDIS, "$(P)DISABLE")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
@@ -191,7 +191,6 @@ record(mbbo, "$(P)RAMPTARGET:SP")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 } 
-
 alias("$(P)RAMPTARGET:SP", "$(P)RAMPTARGET")
 
 record(bo, "$(P)HEATERSTATUS:SP")
@@ -224,8 +223,6 @@ record(bi, "$(P)HEATERSTATUS")
 	info(archive, "VAL")
 }
 
-alias("$(P)HEATERSTATUS", "$(P)HEATERSTATUS:SP:RBV")
-
 record(ai, "$(P)HEATERVALUE")
 {
 	field(DESC, "Returns heater value in volts")
@@ -240,15 +237,14 @@ record(ai, "$(P)HEATERVALUE")
 	info(archive, "VAL")
 	field(SCAN, "2 second")
 }
-alias("$(P)HEATERVALUE", "$(P)HEATERVALUE:SP:RBV")
 
 record(ai, "$(P)MAX")
 {
-	field(DESC, "Returns value of MAX")
+	field(DESC, "Returns value of max target")
     field(DTYP, "stream")
     field(INP,  "@devHFMAGPSU.proto getMaxTarget $(PORT)")
     field(PREC, "5")
-	field(EGU, "A")	
+	field(EGU, "G")	
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MAX:SP")
     field(SDIS, "$(P)DISABLE")
@@ -263,8 +259,8 @@ record(ao, "$(P)MAX:SP")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(OUT,  "@devHFMAGPSU.proto setMaxTarget $(PORT)")    
-    field(PREC, "3")
-	field(EGU, "A")
+    field(PREC, "5")
+	field(EGU, "G")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MAX:SP")
     field(SDIS, "$(P)DISABLE")
@@ -286,8 +282,6 @@ record(ai, "$(P)LIMIT")
     info(archive, "VAL")
 	field(SCAN, "2 second")
 }
-
-alias("$(P)LIMIT", "$(P)LIMIT:SP:RBV")
 
 record(ao, "$(P)LIMIT:SP")
 {
@@ -329,8 +323,6 @@ record(ai, "$(P)CONSTANT")
     info(archive, "VAL")
 	field(SCAN, "2 second")
 }
-
-alias("$(P)CONSTANT", "$(P)CONSTANT:SP:RBV")
 
 record(ao, "$(P)CONSTANT:SP")
 {
@@ -392,7 +384,6 @@ record(ai, "$(P)RAMPRATE")
     info(archive, "VAL")
 	field(SCAN, "2 second")
 }
-alias("$(P)RAMPRATE", "$(P)RAMPRATE:SP:RBV")
 
 record(ao, "$(P)RAMPRATE:SP")
 {
