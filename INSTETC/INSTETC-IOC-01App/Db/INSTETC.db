@@ -127,6 +127,8 @@ record (bo, "$(P)CS:CONTROL:LOCKED")
 	field(DTYP, "Soft Channel")
 	field(ZNAM, "NO")
 	field(ONAM, "YES")
+	field(ZSV, "NO_ALARM")
+    field(OSV, "MAJOR")
 	field(PINI, "YES")
 	field(VAL, "0")
 }
