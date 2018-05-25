@@ -127,8 +127,6 @@ record (bo, "$(P)CS:CONTROL:LOCKED")
 	field(DTYP, "Soft Channel")
 	field(ZNAM, "NO")
 	field(ONAM, "YES")
-	field(ZSV, "NO_ALARM")
-    field(OSV, "MAJOR")
 	field(PINI, "YES")
 	field(VAL, "0")
 }
@@ -143,6 +141,8 @@ record (bo, "$(P)CS:MANAGER")
 	field(OMSL, "supervisory")
 	field(ZNAM, "No")
 	field(ONAM, "Yes")
+	field(ZSV, "NO_ALARM")
+    field(OSV, "MAJOR")
 }
 
 # This points to the centrally located shutter status and archives it locally 
