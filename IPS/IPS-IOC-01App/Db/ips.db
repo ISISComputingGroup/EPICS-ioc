@@ -26,7 +26,7 @@ record(bo, "$(P)DISABLE")
 # # Scan this once, probably not needed again.
 # The reply comes back and is split amongst other records.
 record(stringin, "$(P)GET:VERSION") {
-  field(DESC, "Examine Status")
+  field(DESC, "Examine status")
   field(DTYP, "stream")
   field(INP,  "@OxInstIPS.protocol getVersion($(P)) $(PORT)")
   field(PINI, "YES")
@@ -38,7 +38,7 @@ record(stringin, "$(P)GET:VERSION") {
 }
 
 record(stringin, "$(P)MODEL") {
-  field(DESC, "Model.")
+  field(DESC, "Model")
   field(DTYP, "Soft Channel")
   field(SCAN, "Passive")
   field(FLNK, "$(P)VERSION")
@@ -67,6 +67,10 @@ record(mbbi, "$(P)CONTROL") {
   field(THST, "Remote & Unlocked")
   field(THVL, "3")
   field(THSV, "NO_ALARM")
+  
+  # Modes 4-7 come back from device. Manual does not make it clear what the
+  # differences are. Keeping them as separate items in case they are useful
+  # for diagnostics later on.
   field(FRST, "Auto-Run-Down")
   field(FRVL, "4")
   field(FRSV, "MAJOR")
@@ -90,7 +94,7 @@ record(mbbi, "$(P)CONTROL") {
 
 # Grab remote vs local control
 record(mbbo, "$(P)CONTROL:SP") {
-  field(DESC, "Set Remote/Local Control")
+  field(DESC, "Set remote/local control")
   field(DTYP, "stream")
   field(SCAN, "Passive")
   field(OUT,  "@OxInstIPS.protocol setControl $(PORT)")
@@ -138,7 +142,7 @@ record(mbbi, "$(P)ACTIVITY") {
 # state.  Only the set activity hold command can get out
 # of the clamped state.  Hold will interrupt a sweep.
 record(mbbo, "$(P)ACTIVITY:SP") {
-  field(DESC, "Activity Control")
+  field(DESC, "Activity control")
   field(DTYP, "stream")
   field(SCAN, "Passive")
   field(OUT,   "@OxInstIPS.protocol setActivity $(PORT)")
@@ -157,14 +161,13 @@ record(mbbo, "$(P)ACTIVITY:SP") {
 }
 
 # Think this is the present current the unit is trying to supply.
-record(ai, "$(P)CURRENT") {
-  field(DESC, "Demand Current Readback")
+record(ai, "$(P)CURR") {
+  field(DESC, "Demand current readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getDemandCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
-  field(ADEL, "0.0002" )
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CURRENT")
@@ -174,14 +177,13 @@ record(ai, "$(P)CURRENT") {
 }
 
 # The present current setpoint.
-record(ai, "$(P)CURRENT:SP:RBV") {
-  field(DESC, "Setpoint Current Readback")
+record(ai, "$(P)CURR:SP:RBV") {
+  field(DESC, "Setpoint current readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getSetpointCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
-  field(ADEL, "0.0002")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CURRENT")
@@ -191,90 +193,87 @@ record(ai, "$(P)CURRENT:SP:RBV") {
 }
 
 # The present voltage.
-record(ai, "$(P)SUPPLYVOLTAGE") {
-  field(DESC, "Supply Voltage Readback")
+record(ai, "$(P)SUPPLY:VOLT") {
+  field(DESC, "Supply voltage readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getSupplyVoltage $(PORT)")
   field(EGU,  "V")
   field(PREC, "8")
-  field(ADEL, "0.02" )
   
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:SUPPLYVOLTAGE")
+  field(SIOL, "$(P)SIM:SUPPLY:VOLT")
   field(SDIS, "$(P)DISABLE")
   
-  field(FLNK, "$(P)SUPPLYVOLTAGE:_STABILITY:BUF")
+  field(FLNK, "$(P)SUPPLY:VOLT:_STABILITY:BUF")
   
   info(archive, "VAL")
 }
 
-record(compress, "$(P)SUPPLYVOLTAGE:_STABILITY:BUF") {
-  field(INP, "$(P)SUPPLYVOLTAGE")
+record(compress, "$(P)SUPPLY:VOLT:_STABILITY:BUF") {
+  field(INP, "$(P)SUPPLY:VOLT")
   field(ALG, "Circular Buffer")
   field(NSAM, "5")
-  field(FLNK, "$(P)SUPPLYVOLTAGE:_STABILITY:LOW")
+  field(FLNK, "$(P)SUPPLY:VOLT:_STABILITY:LOW")
 }
 
-record(compress, "$(P)SUPPLYVOLTAGE:_STABILITY:LOW") {
-  field(INP, "$(P)SUPPLYVOLTAGE:_STABILITY:BUF")
+record(compress, "$(P)SUPPLY:VOLT:_STABILITY:LOW") {
+  field(INP, "$(P)SUPPLY:VOLT:_STABILITY:BUF")
   field(ALG, "N to 1 Low Value")
   field(NSAM, "1")
   field(N, "5")
-  field(FLNK, "$(P)SUPPLYVOLTAGE:_STABILITY:HIGH")
+  field(FLNK, "$(P)SUPPLY:VOLT:_STABILITY:HIGH")
 }
 
-record(compress, "$(P)SUPPLYVOLTAGE:_STABILITY:HIGH") {
-  field(INP, "$(P)SUPPLYVOLTAGE:_STABILITY:BUF")
+record(compress, "$(P)SUPPLY:VOLT:_STABILITY:HIGH") {
+  field(INP, "$(P)SUPPLY:VOLT:_STABILITY:BUF")
   field(ALG, "N to 1 High Value")
   field(NSAM, "1")
   field(N, "5")
-  field(FLNK, "$(P)SUPPLYVOLTAGE:_STABILITY:CALC")
+  field(FLNK, "$(P)SUPPLY:VOLT:_STABILITY:CALC")
 }
 
-record(calcout, "$(P)SUPPLYVOLTAGE:_STABILITY:CALC") {
-  field(INPA, "$(P)SUPPLYVOLTAGE:_STABILITY:HIGH")
-  field(INPB, "$(P)SUPPLYVOLTAGE:_STABILITY:LOW")
+record(calcout, "$(P)SUPPLY:VOLT:_STABILITY:CALC") {
+  field(INPA, "$(P)SUPPLY:VOLT:_STABILITY:HIGH")
+  field(INPB, "$(P)SUPPLY:VOLT:_STABILITY:LOW")
   field(CALC, "ABS(A-B)<1.0")
-  field(OUT, "$(P)SUPPLYVOLTAGE:STABLE PP")
+  field(OUT, "$(P)SUPPLY:VOLT:STABLE PP")
   field(OOPT, "Every Time")
 }
 
-record(bo, "$(P)SUPPLYVOLTAGE:STABLE") {
+record(bo, "$(P)SUPPLY:VOLT:STABLE") {
   field(ZNAM, "NO")
   field(ONAM, "YES")
   info(archive, "VAL")
 }
 
 # The present current measured.
-record(ai, "$(P)MEASUREDMAGNETCURRENT") {
-  field(DESC, "Measured Magnet Current Readback")
+record(ai, "$(P)MAGNET:CURR:MEAS") {
+  field(DESC, "Measured magnet current readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getMeasuredMagnetCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
-  field(ADEL, "0.2")
   
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:MEASUREDMAGNETCURRENT")
+  field(SIOL, "$(P)SIM:MAGNET:CURR:MEAS")
   field(SDIS, "$(P)DISABLE")
   
   info(archive, "VAL")
 }
 
 # The present sweeprate for current.
-record(ai, "$(P)CURRENTSWEEPRATE") {
-  field(DESC, "Current Sweep Rate Readback")
+record(ai, "$(P)CURR:RATE") {
+  field(DESC, "Current sweep rate readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getCurrentSweepRate $(PORT)")
   field(EGU,  "A/min")
   field(PREC, "3")
-  field(ADEL, "0.002" )
   
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:CURRENTSWEEPRATE")
+  field(SIOL, "$(P)SIM:CURR:RATE")
   field(SDIS, "$(P)DISABLE")
   
   info(archive, "VAL")
@@ -282,13 +281,12 @@ record(ai, "$(P)CURRENTSWEEPRATE") {
 
 # The field the unit is attempting to create.
 record(ai, "$(P)FIELD") {
-  field(DESC, "Demand Field Readback")
+  field(DESC, "Demand field readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getDemandField $(PORT)")
   field(EGU,  "T")
   field(PREC, "5")
-  field(ADEL, "0.00002" )
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD")
@@ -303,7 +301,6 @@ record(ao, "$(P)FIELD:SP") {
   field(SCAN, "Passive")
   field(EGU,  "T")
   field(PREC, "5")
-  field(ADEL, "0.00002" )
   field(DRVH, "$(MAX_FIELD)")
   field(DRVL, "-$(MAX_FIELD)")
   
@@ -321,7 +318,6 @@ record(ao, "$(P)FIELD:SP:_RAW") {
   field(OUT,  "@OxInstIPS.protocol setSetpointField $(PORT)")
   field(EGU,  "T")
   field(PREC, "5")
-  field(ADEL, "0.00002" )
   field(DRVH, "$(MAX_FIELD)")
   field(DRVL, "-$(MAX_FIELD)")
   
@@ -334,13 +330,12 @@ record(ao, "$(P)FIELD:SP:_RAW") {
 # The present field setpoint.  The target field the unit will aim for when
 # told to go to the setpoint.
 record(ai, "$(P)FIELD:SP:RBV") {
-  field(DESC, "Setpoint Field Readback")
+  field(DESC, "Setpoint field readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getSetpointField $(PORT)")
   field(EGU,  "T")
   field(PREC, "5")
-  field(ADEL, "0.00002" )
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD")
@@ -349,51 +344,48 @@ record(ai, "$(P)FIELD:SP:RBV") {
 }
 
 # The present sweeprate (a.k.a. ramprate) for adjusting the field.
-record(ai, "$(P)FIELDSWEEPRATE") {
-  field(DESC, "Field Sweep Rate Readback")
+record(ai, "$(P)FIELD:RATE") {
+  field(DESC, "Field sweep rate readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getFieldSweepRate $(PORT)")
   field(EGU,  "T/min")
   field(PREC, "4")
-  field(ADEL, "0.0002" )
   
   field(LOLO, "0")
   field(LLSV, "MAJOR")
   
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:FIELDSWEEPRATE")
+  field(SIOL, "$(P)SIM:FIELD:RATE")
   field(SDIS, "$(P)DISABLE")
   info(INTEREST, "HIGH")
   info(archive, "VAL")
 }
 
-record(ao, "$(P)FIELDSWEEPRATE:SP") {
-  field(DESC, "Set Field Sweep Rate")
+record(ao, "$(P)FIELD:RATE:SP") {
+  field(DESC, "Set field sweep rate")
   field(DTYP, "stream")
   field(SCAN, "Passive")
   field(OUT,   "@OxInstIPS.protocol setFieldSweepRate $(PORT)")
   field(EGU,  "T/min")
   field(PREC, "4")
-  field(ADEL, "0.0002" )
   field(DRVH, "$(MAX_SWEEP_RATE)")
   field(DRVL, "0")
   
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:FIELDSWEEPRATE:SP")
+  field(SIOL, "$(P)SIM:FIELD:RATE:SP")
   field(SDIS, "$(P)DISABLE")
 }
 
 # The voltage at which the unit will stop ramping/sweeping at the sweeprate
 # requested, but reduce it to protect the voltage.
-record(ai, "$(P)SOFTWAREVOLTAGELIMIT") {
-  field(DESC, "Software Voltage Limit Readback")
+record(ai, "$(P)VOLT:LIMIT:SOFTWARE") {
+  field(DESC, "Software voltage limit readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getSoftwareVoltageLimit $(PORT)")
   field(EGU,  "V")
   field(PREC, "8")
-  field(ADEL, "0.000002" )
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:SOFTWAREVOLTAGELIMIT")
@@ -403,14 +395,13 @@ record(ai, "$(P)SOFTWAREVOLTAGELIMIT") {
 # This is the current that is in the magnet, which in the case of a magnet with a switch
 # and a heater is preserved even when the power unit is not connected (cos of how
 # superconducting magnets behave).
-record(ai, "$(P)PERSISTENTMAGNETCURRENT") {
-  field(DESC, "Persistent Magnet Current Readback")
+record(ai, "$(P)MAGNET:CURR:PERSISTENT") {
+  field(DESC, "Persistent magnet current readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getPersistentMagnetCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
-  field(ADEL, "0.000002" )
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:PERSISTENTMAGNETCURRENT")
@@ -423,14 +414,13 @@ record(ai, "$(P)PERSISTENTMAGNETCURRENT") {
 # a quench or a problem with the level meter.  Believe the unit will take the current
 # and field to zero if there is a trip, so this parameter preserves what was happening
 # at the time of the trip.
-record(ai, "$(P)TRIPCURRENT") {
-  field(DESC, "Trip Current Readback")
+record(ai, "$(P)CURR:TRIP") {
+  field(DESC, "Trip current readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getTripCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
-  field(ADEL, "0.000002")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:TRIPCURRENT")
@@ -440,14 +430,13 @@ record(ai, "$(P)TRIPCURRENT") {
 }
 
 # The field in the magnet due to the persistent current. See current for explanation.
-record(ai, "$(P)PERSISTENTMAGNETFIELD") {
-  field(DESC, "Persistent Magnet Field Readback")
+record(ai, "$(P)MAGNET:FIELD:PERSISTENT") {
+  field(DESC, "Persistent magnet field readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getPersistentMagnetField $(PORT)")
   field(EGU,  "T")
   field(PREC, "5")
-  field(ADEL, "0.000002")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:PERSISTENTMAGNETFIELD")
@@ -459,14 +448,13 @@ record(ai, "$(P)PERSISTENTMAGNETFIELD") {
 }
 
 # The field at which a trip last occurred.  See current for explanation.
-record(ai, "$(P)TRIPFIELD") {
-  field(DESC, "Trip Field Readback")
+record(ai, "$(P)FIELD:TRIP") {
+  field(DESC, "Trip field readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getTripField $(PORT)")
   field(EGU,  "T")
   field(PREC, "5")
-  field(ADEL, "0.000002")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:TRIPFIELD")
@@ -477,14 +465,13 @@ record(ai, "$(P)TRIPFIELD") {
 
 # The current being provided to the heater.
 # Our magnets do not have heaters, so this is not relevant.
-record(ai, "$(P)HEATERCURRENT") {
-  field(DESC, "Heater Current Readback")
+record(ai, "$(P)HEATER:CURR") {
+  field(DESC, "Heater current readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getHeaterCurrent  $(PORT)")
   field(EGU,  "mA")
   field(PREC, "4")
-  field(ADEL, "0.000002" )
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HEATERCURRENT")
@@ -495,14 +482,13 @@ record(ai, "$(P)HEATERCURRENT") {
 
 # The lower limit for the current.  This refers to a limit on the controller and
 # is nothing to do with EPICS record limit or alarm fields.
-record(ai, "$(P)NEGCURRENTLIMIT") {
-  field(DESC, "Neg Current Limit Readback")
+record(ai, "$(P)CURR:LIMIT:NEG") {
+  field(DESC, "Neg current limit readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getNegCurrentLimit $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
-  field(ADEL, "0.000002" )
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:NEGCURRENTLIMIT")
@@ -513,14 +499,13 @@ record(ai, "$(P)NEGCURRENTLIMIT") {
 
 # The higher limit for the current.  This refers to a limit on the controller and
 # is nothing to do with EPICS record limit or alarm fields.
-record(ai, "$(P)POSCURRENTLIMIT") {
-  field(DESC, "Pos Current Limit Readback")
+record(ai, "$(P)CURR:LIMIT:POS") {
+  field(DESC, "Pos current limit readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getPosCurrentLimit $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
-  field(ADEL, "0.000002" )
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:POSCURRENTLIMIT")
@@ -532,14 +517,13 @@ record(ai, "$(P)POSCURRENTLIMIT") {
 # The resistance of the lead from the unit to the magnet that carries
 # the current.  This is set by the supplier in the controller, all this
 # record does is read and report the value.
-record(ai, "$(P)LEADRESISTANCE") {
-  field(DESC, "LeadResistance Readback")
+record(ai, "$(P)RESISTANCE:LEAD") {
+  field(DESC, "Leadresistance readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getLeadResistance $(PORT)")
   field(EGU,  "mohm")
   field(PREC, "5")
-  field(ADEL, "0.00002" )
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:LEADRESISTANCE")
@@ -550,14 +534,13 @@ record(ai, "$(P)LEADRESISTANCE") {
 
 # The inductance of the magnet. Believe this is also set by the supplier
 # as a calibration.
-record(ai, "$(P)MAGNETINDUCTANCE") {
-  field(DESC, "Magnet Inductance Readback")
+record(ai, "$(P)MAGNET:INDUCTANCE") {
+  field(DESC, "Magnet inductance readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS.protocol getMagnetInductance $(PORT)")
   field(EGU,  "H")
   field(PREC, "5")
-  field(ADEL, "0.00002" )
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MAGNETINDUCTANCE")
@@ -569,7 +552,7 @@ record(ai, "$(P)MAGNETINDUCTANCE") {
 # # Run the Examine Status command, X.
 # The reply comes back and is split amongst other records.
 record(stringin, "$(P)GET:STATUS") {
-  field(DESC, "Examine Status")
+  field(DESC, "Examine status")
   field(DTYP, "stream")
   field(INP, "@OxInstIPS.protocol getStatus($(P)) $(PORT)")
   field(SCAN, "1 second")
@@ -747,8 +730,8 @@ record(mbbo, "$(P)SWEEPMODE:PARAMS:SP") {
   field(SDIS, "$(P)DISABLE")
 }
 
-# # Readback from n of Mmn part of Examine command return.
-# # (Ignore the Pmn part of the Examine command return - no records for this.)
+# Readback from n of Mmn part of Examine command return.
+# (Ignore the Pmn part of the Examine command return - no records for this.)
 # 0 output constant, 1, 2, 3 output changing
 record(mbbi, "$(P)STS:SWEEPMODE:SWEEP") {
   field(DESC, "Mode status")
@@ -787,7 +770,7 @@ record(stringin, "$(P)DBG:STS:MISMATCH") {
 # Are not supporting setting these things individually, just setting
 # what we want.
 record(ao, "$(P)SET:COMMSRES") {
-  field(DESC, "Set Ext. Resn, No LF")
+  field(DESC, "Set ext. resn, no LF")
   field(DTYP, "stream")
   field(SCAN, "Passive")
   field(VAL, "6")
@@ -803,7 +786,7 @@ record(ao, "$(P)SET:COMMSRES") {
 # Probably will not need this, but put it here in case we do.  Will not put access to this
 # on the GUI.
 record(ao, "$(P)SET:WAITINTERVAL") {
-  field(DESC, "Set Wait Interval")
+  field(DESC, "Set wait interval")
   field(DTYP, "stream")
   field(SCAN, "Passive")
   field(EGU, "ms")
@@ -902,13 +885,13 @@ record(ao, "$(P)SIM:NEGCURRENTLIMIT"){}
 record(ao, "$(P)SIM:HEATERCURRENT"){}
 record(ao, "$(P)SIM:TRIPFIELD"){}
 record(ao, "$(P)SIM:TRIPCURRENT"){}
-record(ao, "$(P)SIM:CURRENTSWEEPRATE"){}
-record(ao, "$(P)SIM:SUPPLYVOLTAGE"){}
+record(ao, "$(P)SIM:CURR:RATE"){}
+record(ao, "$(P)SIM:SUPPLY:VOLT"){}
 record(ao, "$(P)SIM:CURRENT"){}
 record(ao, "$(P)SIM:SOFTWAREVOLTAGELIMIT"){}
-record(ao, "$(P)SIM:FIELDSWEEPRATE"){}
+record(ao, "$(P)SIM:FIELD:RATE"){}
 record(ao, "$(P)SIM:FIELD"){}
-alias("$(P)SIM:FIELDSWEEPRATE", "$(P)SIM:FIELDSWEEPRATE:SP")
+alias("$(P)SIM:FIELD:RATE", "$(P)SIM:FIELD:RATE:SP")
 
 record(mbbo, "$(P)SIM:ACTIVITY") {
   field(ZRST, "Hold")
