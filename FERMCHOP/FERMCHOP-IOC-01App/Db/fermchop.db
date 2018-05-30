@@ -49,7 +49,7 @@ record(aSub, "$(P)STATUS:PARSE")
 {
     field(DESC, "Parses the response from chopper")
 
-    field(SNAM, "fermichopper")
+    field(SNAM, "$(PARSE_RESP_SNAM=fermichopper)")
     field(INPA, "$(P)STATUS:RAW")
     field(FTA, "STRING")
     field(NOA, "20")
@@ -462,7 +462,7 @@ record(ao, "$(P)SPEED:SP:RAW")
 {
 	field(ASG, "$(ASG)")
 	field(DTYP, "stream")
-    field(OUT,  "@devfc.proto setSpeed $(PORT)")
+    field(OUT,  "@devfc.proto setSpeed(1) $(PORT)")
 	info(archive, "VAL")
 }
 
@@ -470,7 +470,7 @@ record(aSub, "$(P)SPEED:SP:CALC")
 {
     field(DESC, "Calculates the speed setpoint")
 
-    field(SNAM, "speedSpSend")
+    field(SNAM, "$(SPEED_SP_SEND_SNAM=speedSpSend)")
 	
     field(INPA, "$(P)SPEED:SP")
     field(FTA, "LONG")
@@ -506,44 +506,45 @@ record(mbbo, "$(P)SPEED:SP:GUI")
 {
 
 	field(DESC, "The speed setpoint (opi)")
+    field(DTYP, "Raw Soft Channel")
 
-	field(ZRVL, "0")
+	field(ZRVL, "600")
 	field(ZRST, "600 Hz")
 
-	field(ONVL, "1")
+	field(ONVL, "550")
 	field(ONST, "550 Hz")
 	
-	field(TWVL, "2")
+	field(TWVL, "500")
 	field(TWST, "500 Hz")
 	
-	field(THVL, "3")
+	field(THVL, "450")
 	field(THST, "450 Hz")
 	
-	field(FRVL, "4")
+	field(FRVL, "400")
 	field(FRST, "400 Hz")
 	
-	field(FVVL, "5")
+	field(FVVL, "350")
 	field(FVST, "350 Hz")
 	
-	field(SXVL, "6")
+	field(SXVL, "300")
 	field(SXST, "300 Hz")
 	
-	field(SVVL, "7")
+	field(SVVL, "250")
 	field(SVST, "250 Hz")
 	
-	field(EIVL, "8")
+	field(EIVL, "200")
 	field(EIST, "200 Hz")
 	
-	field(NIVL, "9")
+	field(NIVL, "150")
 	field(NIST, "150 Hz")
 	
-	field(TEVL, "10")
+	field(TEVL, "100")
 	field(TEST, "100 Hz")
 	
-	field(ELVL, "11")
+	field(ELVL, "50")
 	field(ELST, "50 Hz")
 	
-	field(OUT, "$(P)SPEED:SP:RAW PP")
+	field(OUT, "$(P)SPEED:SP PP")
 	
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED:SP:GUI PP")
