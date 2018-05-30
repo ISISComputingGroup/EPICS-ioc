@@ -177,7 +177,6 @@ record(mbbi, "$(P)MODE") {
   field(ONST, "Auto heater, man flow")
   field(TWST, "Man heater, auto flow")
   field(THST, "Auto gas, auto flow")
-  field(FLNK, "$(P)MODE:CALC:SEQ")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MODE")
