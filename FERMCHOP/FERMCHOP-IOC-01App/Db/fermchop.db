@@ -45,14 +45,23 @@ record(waveform, "$(P)STATUS:RAW")
 	info(archive, "VAL")
 }
 
+record(ao, "$(P)_MHZ") {
+    field(VAL, "$(MHZ=50.4)")
+    field(PINI, "YES")
+    info(archive, "VAL")
+}
+
 record(aSub, "$(P)STATUS:PARSE")
 {
     field(DESC, "Parses the response from chopper")
 
-    field(SNAM, "$(PARSE_RESP_SNAM=fermichopper)")
+    field(SNAM, "fermichopper_$(INSTRUMENT=merlin)")
     field(INPA, "$(P)STATUS:RAW")
     field(FTA, "STRING")
     field(NOA, "20")
+    
+    field(INPB, "$(P)_MHZ")
+    field(FTB, "DOUBLE")
       
     field(OUTA, "$(P)LASTCOMMAND")
     field(FTVA, "STRING")
@@ -470,7 +479,7 @@ record(aSub, "$(P)SPEED:SP:CALC")
 {
     field(DESC, "Calculates the speed setpoint")
 
-    field(SNAM, "$(SPEED_SP_SEND_SNAM=speedSpSend)")
+    field(SNAM, "speedSpSend_$(INSTRUMENT=merlin)")
 	
     field(INPA, "$(P)SPEED:SP")
     field(FTA, "LONG")
@@ -567,8 +576,9 @@ record(ao, "$(P)DELAY:SP")
 record(transform, "$(P)DELAY:SP:_CALC")
 {
 	field(INPA, "$(P)DELAY:SP")
-	field(CLCB, "(A*50.400)%65536")  # Low word
-	field(CLCC, "FLOOR((A*50.400)/65536)") # High word
+    field(INPD, "$(P)_MHZ")
+	field(CLCB, "(A*D)%65536")  # Low word
+	field(CLCC, "FLOOR((A*D)/65536)") # High word
 	field(FLNK, "$(P)DELAY:SP:_SEND")
 }
 
@@ -610,7 +620,8 @@ record(ao, "$(P)GATEWIDTH:SP")
 record(calcout, "$(P)GATEWIDTH:SP:_CALC")
 {
 	field(INPA, "$(P)GATEWIDTH:SP")
-	field(CALC, "FLOOR(A*50.4)")
+	field(INPB, "$(P)_MHZ")
+	field(CALC, "FLOOR(A*B)")
 	field(OUT, "$(P)GATEWIDTH:SP:_RAW PP")
 	field(OOPT, "Every Time")
 }

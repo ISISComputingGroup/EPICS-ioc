@@ -75,14 +75,14 @@ static unsigned long dehexAndCombineWords(const std::string& lowWord, const std:
 	return longFromHex(lowWord) + (65536 * longFromHex(highWord));
 }
 
-double delayFrom2HexWords(const std::string& lowWord, const std::string& highWord)
+double delayFrom2HexWords(const std::string& lowWord, const std::string& highWord, double mhz)
 {
-	return ((double) dehexAndCombineWords(lowWord, highWord))/50.4;
+	return ((double) dehexAndCombineWords(lowWord, highWord))/mhz;
 }
 
-double delayFromHex(const std::string& hex)
+double delayFromHex(const std::string& hex, double mhz)
 {
-	return ((double) longFromHex(hex))/50.4;
+	return ((double) longFromHex(hex))/mhz;
 }
 
 double driveCurrentFromHex(const std::string& hex)
@@ -113,8 +113,9 @@ double motorTemperatureFromHex(const std::string& hex)
 /**
   *		Maps the first character in a data packet to an output link of the asub record.
   */
-static void outputToPv(aSubRecord *prec, int firstChar, const std::string& data)
+static void outputToPv_merlin(aSubRecord *prec, int firstChar, const std::string& data, double mhz)
 {
+    
 	switch(firstChar) 
 	{
 		case '1':
@@ -149,7 +150,7 @@ static void outputToPv(aSubRecord *prec, int firstChar, const std::string& data)
 			else
 			{
 				double delay;
-				delay = delayFrom2HexWords(data.c_str(), packet6data.c_str());
+				delay = delayFrom2HexWords(data.c_str(), packet6data.c_str(), mhz);
 				*(double*)prec->vale = delay;
 			}
 			break;
@@ -162,7 +163,7 @@ static void outputToPv(aSubRecord *prec, int firstChar, const std::string& data)
 			else
 			{
 				double delay;
-				delay = delayFrom2HexWords(packet5data.c_str(), data.c_str());
+				delay = delayFrom2HexWords(packet5data.c_str(), data.c_str(), mhz);
 				*(double*)prec->vale = delay;
 			}
 			break;
@@ -175,7 +176,7 @@ static void outputToPv(aSubRecord *prec, int firstChar, const std::string& data)
 			else
 			{
 				double delay;
-				delay = delayFrom2HexWords(data.c_str(), packet8data.c_str());
+				delay = delayFrom2HexWords(data.c_str(), packet8data.c_str(), mhz);
 				*(double*)prec->valf = delay;
 			}
 			break;
@@ -188,14 +189,14 @@ static void outputToPv(aSubRecord *prec, int firstChar, const std::string& data)
 			else
 			{
 				double delay;
-				delay = delayFrom2HexWords(packet7data.c_str(), data.c_str());
+				delay = delayFrom2HexWords(packet7data.c_str(), data.c_str(), mhz);
 				*(double*)prec->valf = delay;
 			}
 			break;
 		case '9':
 			// output G: $(P)GATEWIDTH
 			double delay;
-			delay = delayFromHex(data.c_str());
+			delay = delayFromHex(data.c_str(), mhz);
 			*(double*)prec->valg = delay;
 			break;
 		case 'A':
@@ -252,8 +253,9 @@ static void outputToPv(aSubRecord *prec, int firstChar, const std::string& data)
 /**
   *		Maps the first character in a data packet to an output link of the asub record.
   */
-static void outputToPv_maps(aSubRecord *prec, int firstChar, const std::string& data)
+static void outputToPv_maps(aSubRecord *prec, int firstChar, const std::string& data, double mhz)
 {
+    
 	switch(firstChar) 
 	{
 		case '1':
@@ -288,7 +290,7 @@ static void outputToPv_maps(aSubRecord *prec, int firstChar, const std::string& 
 			else
 			{
 				double delay;
-				delay = delayFrom2HexWords(data.c_str(), packet6data.c_str());
+				delay = delayFrom2HexWords(data.c_str(), packet6data.c_str(), mhz);
 				*(double*)prec->vale = delay;
 			}
 			break;
@@ -301,7 +303,7 @@ static void outputToPv_maps(aSubRecord *prec, int firstChar, const std::string& 
 			else
 			{
 				double delay;
-				delay = delayFrom2HexWords(packet5data.c_str(), data.c_str());
+				delay = delayFrom2HexWords(packet5data.c_str(), data.c_str(), mhz);
 				*(double*)prec->vale = delay;
 			}
 			break;
@@ -314,7 +316,7 @@ static void outputToPv_maps(aSubRecord *prec, int firstChar, const std::string& 
 			else
 			{
 				double delay;
-				delay = delayFrom2HexWords(data.c_str(), packet8data.c_str());
+				delay = delayFrom2HexWords(data.c_str(), packet8data.c_str(), mhz);
 				*(double*)prec->valf = delay;
 			}
 			break;
@@ -327,14 +329,14 @@ static void outputToPv_maps(aSubRecord *prec, int firstChar, const std::string& 
 			else
 			{
 				double delay;
-				delay = delayFrom2HexWords(packet7data.c_str(), data.c_str());
+				delay = delayFrom2HexWords(packet7data.c_str(), data.c_str(), mhz);
 				*(double*)prec->valf = delay;
 			}
 			break;
 		case '9':
 			// output G: $(P)GATEWIDTH
 			double delay;
-			delay = delayFromHex(data.c_str());
+			delay = delayFromHex(data.c_str(), mhz);
 			*(double*)prec->valg = delay;
 			break;
 		case 'A':
@@ -374,7 +376,7 @@ static void outputToPv_maps(aSubRecord *prec, int firstChar, const std::string& 
 /**
  *  Merlin.
  */
-long fermi(aSubRecord *prec) 
+long fermi_merlin(aSubRecord *prec) 
 {
 	
     std::vector<std::string> args;
@@ -388,7 +390,7 @@ long fermi(aSubRecord *prec)
 	{
 		// String has format #TVVVVCC where T=Type, V=Value, C=Checksum.
 		// We only care about the type and the value.
-		outputToPv(prec, args[i][1], args[i].substr(2, 4));
+		outputToPv_merlin(prec, args[i][1], args[i].substr(2, 4), *(double*)prec->b);
 	}
 	
 	// printf("Asub: fermichopper: Parsed output %s\n", *(epicsOldString*)(prec->vala));
@@ -420,7 +422,7 @@ long fermi_maps(aSubRecord *prec)
 	{
 		// String has format #TVVVVCC where T=Type, V=Value, C=Checksum.
 		// We only care about the type and the value.
-		outputToPv_maps(prec, args[i][1], args[i].substr(2, 4));
+		outputToPv_maps(prec, args[i][1], args[i].substr(2, 4), *(double*)prec->b);
 	}
 	
 	// Reset data from packets now that the whole thing should be adequately processed.
@@ -432,7 +434,7 @@ long fermi_maps(aSubRecord *prec)
     return 0; /* process output links */
 }
 
-long speedSetpointSend(aSubRecord *prec)
+long speedSetpointSend_merlin(aSubRecord *prec)
 {	
 	if (*(int*)(prec->a) == 50) *(long*)prec->vala = 11;
 	else if (*(int*)(prec->a) == 100) *(long*)prec->vala = 10;
