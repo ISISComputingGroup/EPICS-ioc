@@ -7,6 +7,10 @@
 
 <macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" />
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+<macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 9600)" />
+<macro name="BITS" pattern="^[7-8]$" description="Data bits (default: 8)" />
+<macro name="PARITY" pattern="^(even|odd|none)$" description="Parity (default: none)" />
+<macro name="STOP" pattern="^[0-2]$" description="Stop bits (default: 1)" />
 
 <macro name="AXIS1" pattern="^(yes|no)$" description="Motor is attached to axis 1 (default: no)" />
 <macro name="AXIS2" pattern="^(yes|no)$" description="Motor is attached to axis 2 (default: no)" />
