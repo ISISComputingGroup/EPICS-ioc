@@ -1,6 +1,8 @@
 #
 # DB File for the FZJ Digital Drive Fermi Chopper Controller
 #
+# Command descriptions from manual
+#
 record(bo, "$(P)SIM")
 {
     field(SCAN, "Passive")
@@ -27,21 +29,6 @@ record(stringin, "$(P)ADDRESS")
   field(VAL, "$(ADDR)")
 }
 #
-# reference speed [Hz]
-# RESP!
-# 20.00 to 26.00 and 32.00 to 100.00
-# only assumed from masterchopper (chopper 3)
-# two decimal places
-# 
-## **** RATI command looks to be unused in the protocol for the controller ****
-# 
-# ratio
-# RATI!
-# 1 or 2
-# ratio to reference speed, 1 = 1:1, 2 = 1:2,
-# only assumed from chopper 3
-# no decimal places
-# 
 # factor
 # FACT!
 # 1:12
@@ -78,6 +65,7 @@ record(mbbo, "$(P)FREQ:SP")
     field(NIST, "500")
     field(TEST, "550")
     field(ELST, "600")
+    field(EGU, "Hz")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     field(SIML, "$(P)SIM")
@@ -96,8 +84,8 @@ record(stringin, "$(P)FREQ:SP:ERROR")
 #
 # setpoint phase [degrees]
 # PHAS!
-# 0.01 to 359.99
-# two decimal places
+# 0.1 to 359.9
+# one decimal place
 #
 record(ao, "$(P)PHAS:SP")
 {
@@ -105,7 +93,7 @@ record(ao, "$(P)PHAS:SP")
     field(DTYP, "stream")
     field(OUT, "@devFZJ_DDFermiChopper.proto setPHAS($(P)) $(PORT)")
     field(EGU, "deg")
-    field(PREC, "2")
+    field(PREC, "1")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     field(SIML, "$(P)SIM")
@@ -132,8 +120,8 @@ record(bo, "$(P)MB:SP")
     field(DESC, "Magnetic Bearing Setpoint")
     field(DTYP, "stream")
     field(OUT, "@devFZJ_DDFermiChopper.proto setMAGB($(P)) $(PORT)")
-    field(ZNAM, "ON")
-    field(ONAM, "OFF")    
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")    
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     field(SIML, "$(P)SIM")
@@ -159,8 +147,8 @@ record(bo, "$(P)DRIVE:MODE:SP")
     field(DESC, "Drive mode setpoint")
     field(DTYP, "stream")
     field(OUT, "@devFZJ_DDFermiChopper.proto setDRIV($(P)) $(PORT)")
-    field(ZNAM, "START")
-    field(ONAM, "STOP")    
+    field(ZNAM, "STOP")
+    field(ONAM, "START")    
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     field(SIML, "$(P)SIM")
@@ -179,39 +167,6 @@ record(stringin, "$(P)DRIVE:MODE:SP:ERROR")
 }
 alias("$(P)DRIVE:MODE:SP:ERROR", "$(P)DRV:MODE:SP:ERROR")
 #
-# acknowledge messages
-# ACKN!
-# ON
-#
-#
-# first record causes concatenated status string to be read
-# then protocol file splits response into separate values
-# and writes them to specified PVs
-#
-# See the following VI for details on how the reply to the ASTA? command is formed:
-# MAPS_251115_C6713_LV2010\RAL Neu\MAPS_251115_C6713_LV2014\LabVIEW\TCP.llb\TCP_Kommando_ASTA?.vi
-#
-# reference speed [Hz]
-# RSPE?
-# 20.00 to 26.00 and 32.00 to 100.00
-# relating to master-chopper (chopper 3)
-# two decimal places
-#
-record(ai, "$(P)FREQ:REF")
-{
-    field(DESC, "Reference Frequency")
-    field(SCAN, "1 second")
-    field(DTYP, "stream")
-    field(EGU, "Hz")
-    field(PREC, "2")
-    field(INP, "@devFZJ_DDFermiChopper.proto getASTA($(P)) $(PORT)")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:FREQ:REF")
-    field(SDIS, "$(P)DISABLE")
-}
-#
 # setpoint speed [Hz]
 # SSPE?
 # 20.00 to 26.00 and 32.00 to 100.00
@@ -226,24 +181,12 @@ record(ai, "$(P)FREQ:SP:RBV")
     info(archive, "VAL")
 }
 #
-# **** RATI command looks to be unused in the protocol for the controller ****
-# 
-## ratio
-## RATI?
-## 1 or 2
-## ratio to reference speed,
-## 1 = 1:1, 2 = 1:2,
-## no decimal places
+# record causes concatenated status string to be read
+# then protocol file splits response into separate values
+# and writes them to specified PVs
 #
-#record(bi, "$(P)RATIO")
-#{
-#    field(DESC, "Ratio to reference frequency")
-#    # field(EGU, "")
-#    field(ZNAM, "1:1")
-#    field(0NAM, "1:2")
-#    info(INTEREST, "HIGH")
-#    info(archive, "VAL")
-#}
+# See the following VI for details on how the reply to the ASTA? command is formed:
+# MAPS_251115_C6713_LV2010\RAL Neu\MAPS_251115_C6713_LV2014\LabVIEW\TCP.llb\TCP_Kommando_ASTA?.vi
 #
 # current speed [Hz]
 # SPEE?
@@ -253,9 +196,12 @@ record(ai, "$(P)FREQ:SP:RBV")
 record(ai, "$(P)FREQ")
 {
     field(DESC, "Current Frequency")
+	field(SCAN, "1 second")
+	field(DTYP, "stream")
     field(EGU, "Hz")
     field(PREC, "2")    
-    info(alarm, "FZJDDFCH_01") 
+    info(alarm, "FZJDDFCH_01")
+    field(INP, "@devFZJ_DDFermiChopper.proto getASTA($(P)) $(PORT)")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -269,7 +215,7 @@ record(ai, "$(P)PHAS:SP:RBV")
 {
     field(DESC, "Phase Setpoint Readback")
     field(EGU, "deg")
-    field(PREC, "2")    
+    field(PREC, "1")    
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -284,7 +230,7 @@ record(ai, "$(P)PHAS")
 {
     field(DESC, "Current Phase")
     field(EGU, "deg")
-    field(PREC, "2")    
+    field(PREC, "1")    
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -297,8 +243,8 @@ record(ai, "$(P)PHAS")
 record(bi, "$(P)PHAS:STAT")
 {
     field(DESC, "Phase Status")
-    field(ZNAM, "OK")
-    field(ONAM, "NOK")    
+    field(ZNAM, "NOK")
+    field(ONAM, "OK")    
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -310,8 +256,8 @@ record(bi, "$(P)PHAS:STAT")
 record(bi, "$(P)MB")
 {
     field(DESC, "Magnetic Bearing")
-    field(ZNAM, "ON")
-    field(ONAM, "OFF")    
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")    
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -323,24 +269,9 @@ record(bi, "$(P)MB")
 record(bi, "$(P)MB:STAT")
 {
     field(DESC, "Magnetic Bearing Status")
-    field(ZNAM, "OK")
-    field(ONAM, "NOK")    
+    field(ZNAM, "NOK")
+    field(ONAM, "OK")    
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
-}
-#
-# magnetic bearing integrator [%]
-# MBIN?
-# -100.0 to 100.0
-# integrator of regulator for magnetic bearing
-# one decimal place
-#
-record(ai, "$(P)MB:INT")
-{
-    field(DESC, "Mag Bearing Regulator Integrator")
-    field(EGU, "%")
-    field(PREC, "1")    
-    info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
 #
@@ -351,8 +282,8 @@ record(ai, "$(P)MB:INT")
 record(bi, "$(P)DRIVE")
 {
     field(DESC, "Drive")
-    field(ZNAM, "ON")
-    field(ONAM, "OFF")    
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")    
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -365,8 +296,8 @@ alias("$(P)DRIVE", "$(P)DRV")
 record(bi, "$(P)DRIVE:MODE")
 {
     field(DESC, "Drive Mode")
-    field(ZNAM, "START")
-    field(ONAM, "STOP")    
+    field(ZNAM, "STOP")
+    field(ONAM, "START")    
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -425,26 +356,12 @@ alias("$(P)DRIVE:L3:CURR", "$(P)DRV:L3:CURR")
 record(bi, "$(P)DRIVE:DIR")
 {
     field(DESC, "Rotation Direction")
-    field(ZNAM, "CW")
-    field(ONAM, "CCW")    
+    field(ZNAM, "CCW")
+    field(ONAM, "CW")    
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
 alias("$(P)DRIVE:DIR", "$(P)DRV:DIR")
-#
-# Parking Position
-# PPOS?
-# OK or NOK
-# OK if chopper is in open position
-#
-record(bi, "$(P)PARKED:OPEN:STAT")
-{
-    field(DESC, "Parked Open Status")
-    field(ZNAM, "OK")
-    field(ONAM, "NOK")    
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-}
 #
 # drive temperature [ºC]
 # DRIT?
@@ -462,20 +379,6 @@ record(ai, "$(P)DRIVE:TEMP")
 }
 alias("$(P)DRIVE:TEMP", "$(P)DRV:TEMP")
 #
-# input clock [Hz]
-# INCL?
-# 0.00 to 100.00
-# two decimal places
-#
-record(ai, "$(P)INPUTCLOCK")
-{
-    field(DESC, "Input Clock Frequency")
-    field(EGU, "Hz")
-    field(PREC, "2")    
-    info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
-}
-#
 # outage of the phase [s]
 # OUPH?
 # 0.00 to 7257600.00
@@ -491,26 +394,6 @@ record(ai, "$(P)PHAS:OUTAGE")
     info(archive, "VAL")
 }
 #
-# master-chopper
-# MACH?
-# C01, C02, C2B or C03
-# can be called from all choppers
-#
-record(mbbi, "$(P)MASTER")
-{
-    field(DESC, "Master Chopper")
-    field(ZRVL, 0)
-	field(ONVL, 1)
-	field(TWVL, 2)
-	field(THVL, 3)
-	field(ZRST, "C01")
-	field(ONST, "C02")
-	field(TWST, "C2B")
-	field(THST, "C03")     
-    info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
-}
-#
 # log data
 # LOON?
 # ON or OFF
@@ -518,22 +401,8 @@ record(mbbi, "$(P)MASTER")
 record(bi, "$(P)LOGGING")
 {
     field(DESC, "Logging")
-    field(ZNAM, "ON")
-    field(ONAM, "OFF")    
-    info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
-}
-#
-# linear motion slide release
-# LMSR?
-# OK or NOK
-# related to chopper 2
-#
-record(bi, "$(P)LMSR:STAT")
-{
-    field(DESC, "Linear Motion Slide Release Status")
-    field(ZNAM, "OK")
-    field(ONAM, "NOK")    
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")    
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -545,8 +414,8 @@ record(bi, "$(P)LMSR:STAT")
 record(bi, "$(P)DSP:STAT")
 {
     field(DESC, "DSP Function Control Status")
-    field(ZNAM, "OK")
-    field(ONAM, "NOK")    
+    field(ZNAM, "NOK")
+    field(ONAM, "OK")    
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
