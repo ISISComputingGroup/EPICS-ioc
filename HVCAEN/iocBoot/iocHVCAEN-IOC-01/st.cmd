@@ -26,7 +26,7 @@ CAENx527ConfigureCreate "hv0", "$(HVCAENIP0)"
 
 ## Load our record instances
 #dbLoadRecords("db/xxx.db","user=faa59Host")
-CAENx527DbLoadRecords("P=$(MYPVPREFIX)CAEN")
+CAENx527DbLoadRecords("P=$(MYPVPREFIX)CAEN, ALARM_WHEN_ON=$(ALARM_WHEN_ON=NO_ALARM), ALARM_WHEN_RAMPING=$(ALARM_WHEN_RAMPING=NO_ALARM)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
