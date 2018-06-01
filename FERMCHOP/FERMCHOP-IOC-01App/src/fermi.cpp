@@ -85,27 +85,37 @@ double delayFromHex(const std::string& hex, double mhz)
 	return ((double) longFromHex(hex))/mhz;
 }
 
-double driveCurrentFromHex(const std::string& hex)
+double driveCurrentFromHex_merlin(const std::string& hex)
 {	
 	return ((double) longFromHex(hex))*0.002016;
 }
 
-double azVoltageFromHex(const std::string& hex)
+double driveCurrentFromHex_maps(const std::string& hex)
+{	
+	return ((double) longFromHex(hex))*0.00684;
+}
+
+double azVoltageFromHex_merlin(const std::string& hex)
 {	
 	return (((double) longFromHex(hex))*0.04486) - 22.86647;
 }
 
-double supplyVoltageFromHex(const std::string& hex)
+double azVoltageFromHex_maps(const std::string& hex)
+{	
+	return (((double) longFromHex(hex))*0.0137) - 7.0;
+}
+
+double supplyVoltageFromHex_merlin(const std::string& hex)
 {
 	return ((double) longFromHex(hex))*0.4274;
 }
 
-double electronicsTemperatureFromHex(const std::string& hex)
+double electronicsTemperatureFromHex_merlin(const std::string& hex)
 {
 	return (((double) longFromHex(hex))*0.14663) - 25.0;
 }
 
-double motorTemperatureFromHex(const std::string& hex)
+double motorTemperatureFromHex_merlin(const std::string& hex)
 {
 	return (((double) longFromHex(hex))*0.1263) - 12.124;
 }
@@ -202,49 +212,49 @@ static void outputToPv_merlin(aSubRecord *prec, int firstChar, const std::string
 		case 'A':
 			// output H: $(P)DRIVECURRENT
 			double current;
-			current = driveCurrentFromHex(data.c_str());
+			current = driveCurrentFromHex_merlin(data.c_str());
 			*(double*)prec->valh = current;
 			break;
 		case 'B':
 			// output I: $(P)AUTOZERO:1:UPPER
 			double azVolt1Upper;
-			azVolt1Upper = azVoltageFromHex(data.c_str());
+			azVolt1Upper = azVoltageFromHex_merlin(data.c_str());
 			*(double*)prec->vali = azVolt1Upper;
 			break;
 		case 'C':
 			// output J: $(P)AUTOZERO:2:UPPER
 			double azVolt2Upper;
-			azVolt2Upper = azVoltageFromHex(data.c_str());
+			azVolt2Upper = azVoltageFromHex_merlin(data.c_str());
 			*(double*)prec->valj = azVolt2Upper;
 			break;
 		case 'D':
 			// output K: $(P)AUTOZERO:1:LOWER
 			double azVolt1Lower;
-			azVolt1Lower = azVoltageFromHex(data.c_str());
+			azVolt1Lower = azVoltageFromHex_merlin(data.c_str());
 			*(double*)prec->valk = azVolt1Lower;
 			break;
 		case 'E':
 			// output L: $(P)AUTOZERO:2:LOWER
 			double azVolt2Lower;
-			azVolt2Lower = azVoltageFromHex(data.c_str());
+			azVolt2Lower = azVoltageFromHex_merlin(data.c_str());
 			*(double*)prec->vall = azVolt2Lower;
 			break;
 		case 'F':
 			// output M: $(P)VOLTAGE
 			double voltage;
-			voltage = supplyVoltageFromHex(data.c_str());
+			voltage = supplyVoltageFromHex_merlin(data.c_str());
 			*(double*)prec->valm = voltage;
 			break;		
 		case 'G':
 			// output N: $(P)TEMPERATURE:ELECTRONICS
 			double electronicsTemp;
-			electronicsTemp = electronicsTemperatureFromHex(data.c_str());
+			electronicsTemp = electronicsTemperatureFromHex_merlin(data.c_str());
 			*(double*)prec->valn = electronicsTemp;
 			break;		
 		case 'H':
 			// output O: $(P)TEMPERATURE:MOTOR
 			double motorTemp;
-			motorTemp = motorTemperatureFromHex(data.c_str());
+			motorTemp = motorTemperatureFromHex_merlin(data.c_str());
 			*(double*)prec->valo = motorTemp;
 			break;
 	}
@@ -342,31 +352,31 @@ static void outputToPv_maps(aSubRecord *prec, int firstChar, const std::string& 
 		case 'A':
 			// output H: $(P)DRIVECURRENT
 			double current;
-			current = driveCurrentFromHex(data.c_str());
+			current = driveCurrentFromHex_maps(data.c_str());
 			*(double*)prec->valh = current;
 			break;
 		case 'B':
 			// output I: $(P)AUTOZERO:1:UPPER
 			double azVolt1Upper;
-			azVolt1Upper = azVoltageFromHex(data.c_str());
+			azVolt1Upper = azVoltageFromHex_maps(data.c_str());
 			*(double*)prec->vali = azVolt1Upper;
 			break;
 		case 'C':
 			// output J: $(P)AUTOZERO:2:UPPER
 			double azVolt2Upper;
-			azVolt2Upper = azVoltageFromHex(data.c_str());
+			azVolt2Upper = azVoltageFromHex_maps(data.c_str());
 			*(double*)prec->valj = azVolt2Upper;
 			break;
 		case 'D':
 			// output K: $(P)AUTOZERO:1:LOWER
 			double azVolt1Lower;
-			azVolt1Lower = azVoltageFromHex(data.c_str());
+			azVolt1Lower = azVoltageFromHex_maps(data.c_str());
 			*(double*)prec->valk = azVolt1Lower;
 			break;
 		case 'E':
 			// output L: $(P)AUTOZERO:2:LOWER
 			double azVolt2Lower;
-			azVolt2Lower = azVoltageFromHex(data.c_str());
+			azVolt2Lower = azVoltageFromHex_maps(data.c_str());
 			*(double*)prec->vall = azVolt2Lower;
 			break;
 
