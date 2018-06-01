@@ -35,7 +35,7 @@ record(waveform, "$(P)STATUS:RAW")
     field(DTYP, "stream")
     field(NELM, "20")
     field(FTVL, "STRING")
-    field(INP,  "@fc_$(INSTRUMENT=merlin).proto getStatus $(PORT)")
+    field(INP,  "@fc_$(INST=merlin).proto getStatus $(PORT)")
     field(SCAN, "1 second")
     field(FLNK, "$(P)STATUS:PARSE")
 	field(SIML, "$(P)SIM")
@@ -55,7 +55,7 @@ record(aSub, "$(P)STATUS:PARSE")
 {
     field(DESC, "Parses the response from chopper")
 
-    field(SNAM, "fermichopper_$(INSTRUMENT=merlin)")
+    field(SNAM, "fermichopper_$(INST=merlin)")
     field(INPA, "$(P)STATUS:RAW")
     field(FTA, "STRING")
     field(NOA, "20")
@@ -460,7 +460,7 @@ record(ao, "$(P)COMMAND:SP:_RAW")
 {
 	field(ASG, "$(ASG)")
     field(DTYP, "stream")
-    field(OUT,  "@fc_$(INSTRUMENT=merlin).proto sendCommand $(PORT)")	
+    field(OUT,  "@fc_$(INST=merlin).proto sendCommand $(PORT)")	
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:COMMAND:SP:_RAW")
     field(SDIS, "$(P)DISABLE")
@@ -471,7 +471,7 @@ record(ao, "$(P)SPEED:SP:RAW")
 {
 	field(ASG, "$(ASG)")
 	field(DTYP, "stream")
-    field(OUT,  "@fc_$(INSTRUMENT=merlin).proto setSpeed $(PORT)")
+    field(OUT,  "@fc_$(INST=merlin).proto setSpeed $(PORT)")
 	info(archive, "VAL")
 }
 
@@ -479,7 +479,7 @@ record(aSub, "$(P)SPEED:SP:CALC")
 {
     field(DESC, "Calculates the speed setpoint")
 
-    field(SNAM, "speedSpSend_$(INSTRUMENT=merlin)")
+    field(SNAM, "speedSpSend_$(INST=merlin)")
 	
     field(INPA, "$(P)SPEED:SP")
     field(FTA, "LONG")
@@ -585,7 +585,7 @@ record(transform, "$(P)DELAY:SP:_CALC")
 record(ao, "$(P)DELAY:SP:_SEND")
 {
 	field(DTYP, "stream")
-	field(OUT,  "@fc_$(INSTRUMENT=merlin).proto setDelay($(P)) $(PORT)")
+	field(OUT,  "@fc_$(INST=merlin).proto setDelay($(P)) $(PORT)")
 }
 
 record(ai, "$(P)DELAY:_SEQ_TOL")
@@ -629,7 +629,7 @@ record(calcout, "$(P)GATEWIDTH:SP:_CALC")
 record(ao, "$(P)GATEWIDTH:SP:_RAW")
 {
 	field(DTYP, "stream")
-	field(OUT,  "@fc_$(INSTRUMENT=merlin).proto setGateWidth $(PORT)")
+	field(OUT,  "@fc_$(INST=merlin).proto setGateWidth $(PORT)")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DUMMY")
     field(SDIS, "$(P)DISABLE")
