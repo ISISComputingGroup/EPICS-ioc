@@ -660,3 +660,43 @@ record(ai, "$(P)SIM:V:COMPLIANCE")
 alias("$(P)V:COMPLIANCE", "$(P)V:COMPLIANCE:SP:RBV")
 alias("$(P)SIM:V:COMPLIANCE", "$(P)SIM:V:COMPLIANCE:SP")
 alias("$(P)SIM:V:COMPLIANCE", "$(P)SIM:V:COMPLIANCE:SP:RBV")
+
+################################
+########  Source mode  #########
+################################
+
+record(ao, "$(P)VOLT:SP")
+{
+    field(DESC, "Set source voltage")
+    field(DTYP, "stream")
+    field(EGU, "V")
+    field(PREC, "2")
+    field(OUT, "@Keithley2400.proto set_V_SOURCE $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)VOLT:RBV")
+{
+    field(DESC, "Source voltage read back")
+    field(DTYP, "stream")
+    field(EGU, "V")
+    field(PREC, "2")
+    field(INP, "@Keithley2400.proto get_V_SOURCE $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:RBV)
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)SIM:VOLT")
+{
+}
+
+alias("$(P)VOLT", "$(P)VOLT:SP:RBV")
+alias("$(P)SIM:VOLT", "$(P)SIM:VOLT:SP")
+alias("$(P)SIM:VOLT", "$(P)SIM:VOLT:SP:RBV")
