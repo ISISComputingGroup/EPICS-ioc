@@ -4,11 +4,6 @@ epicsEnvSet "DEVICE" "L0"
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
 
-## For emulator use:
-#$(IFDEVSIM) freeIPPort("FREEPORT")
-#$(IFDEVSIM) epicsEnvShow("FREEPORT")
-#$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(FREEPORT=0)")
-
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 
