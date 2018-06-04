@@ -13,7 +13,6 @@ include $(TOP)/configure/CONFIG
 DB += devEurothrm.db
 DB += devSimDis.db
 DB += isActiveEurothrm.db
-DB += unit_setter.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

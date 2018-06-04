@@ -1,9 +1,0 @@
-file $(UTILITIES)/db/unit_setter.template { 
-  pattern 
-    {P,    FROM, TO, PROCESS_FLAGS}
-    
-    {"\$(P)", "UNITS", "TEMP", "PP"}
-    {"\$(P)", "UNITS", "TEMP:SP", ""}
-    {"\$(P)", "UNITS", "TEMP:SP:RBV", "PP"} 
-}
-
