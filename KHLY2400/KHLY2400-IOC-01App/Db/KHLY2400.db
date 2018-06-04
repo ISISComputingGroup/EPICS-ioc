@@ -81,8 +81,8 @@ record(fanout, "$(P)_READ_OUTPUT") {
 
 record(seq, "$(P)_READ_MODES") {
 
-	field(SCAN, "1 second")
-	
+	field(SCAN, "2 second")
+
 	field(DO1, "1")
 	field(DO2, "1")
 	field(DO3, "1")
@@ -91,7 +91,7 @@ record(seq, "$(P)_READ_MODES") {
 	field(DO6, "1")
 	field(DO7, "1")
 	field(DO8, "1")
-	
+
 	field(DLY1, "0.1")
 	field(DLY2, "0.1")
 	field(DLY3, "0.1")
@@ -100,7 +100,7 @@ record(seq, "$(P)_READ_MODES") {
 	field(DLY6, "0.1")
 	field(DLY7, "0.1")
 	field(DLY8, "0.1")
-	
+
 	field(LNK1, "$(P)SENS:MODE.PROC")
 	field(LNK2, "$(P)OCOM.PROC")
 	field(LNK3, "$(P)RES:MODE.PROC")
@@ -108,8 +108,32 @@ record(seq, "$(P)_READ_MODES") {
 	field(LNK5, "$(P)RES:RANGE.PROC")
 	field(LNK6, "$(P)SOURCE:MODE.PROC")
 	field(LNK7, "$(P)I:COMPLIANCE.PROC")
-	field(LNK8, "$(P)V:COMPLIANCE.PROC")
-	
+	field(LNK8, "$(P)_READ_SOURCES.PROC")
+
+	field(SELM, "All")
+}
+
+record(seq, "$(P)_READ_SOURCES") {
+
+	field(SCAN, "2 second")
+
+	field(DO1, "1")
+	field(DO2, "1")
+
+	field(DLY1, "0.1")
+	field(DLY2, "0.1")
+	field(DLY3, "0.1")
+	field(DLY4, "0.1")
+	field(DLY5, "0.1")
+	field(DLY6, "0.1")
+	field(DLY7, "0.1")
+	field(DLY8, "0.1")
+
+
+	field(LNK1, "$(P)V:COMPLIANCE.PROC")
+	field(LNK2, "$(P)VOLT:SP:RBV.PROC")
+	field(LNK3, "$(P)_READ_MODES.PROC")
+
 	field(SELM, "All")
 }
 
@@ -679,7 +703,7 @@ record(ao, "$(P)VOLT:SP")
     info(INTEREST, "HIGH")
 }
 
-record(ai, "$(P)VOLT:RBV")
+record(ai, "$(P)VOLT:SP:RBV")
 {
     field(DESC, "Source voltage read back")
     field(DTYP, "stream")
@@ -687,7 +711,7 @@ record(ai, "$(P)VOLT:RBV")
     field(PREC, "2")
     field(INP, "@Keithley2400.proto get_V_SOURCE $(PORT)")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:VOLT:RBV)
+    field(SIOL, "$(P)SIM:VOLT:SP:RBV")
     field(SDIS, "$(P)DISABLE")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
@@ -697,6 +721,6 @@ record(ai, "$(P)SIM:VOLT")
 {
 }
 
-alias("$(P)VOLT", "$(P)VOLT:SP:RBV")
+alias("$(P)VOLT:SP:RBV", "$(P)VOLT")
 alias("$(P)SIM:VOLT", "$(P)SIM:VOLT:SP")
 alias("$(P)SIM:VOLT", "$(P)SIM:VOLT:SP:RBV")
