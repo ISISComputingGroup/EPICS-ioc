@@ -65,6 +65,7 @@ record(ai, "$(P)TEMP1")
     field(EGU, "K")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:TEMP1")
@@ -86,6 +87,7 @@ record(ai, "$(P)SENSOR1")
     field(EGU, "")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:SENSOR1")
@@ -108,6 +110,7 @@ record(ai, "$(P)TEMP2")
     field(EGU, "K")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:TEMP2")
@@ -129,6 +132,7 @@ record(ai, "$(P)SENSOR2")
     field(EGU, "")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:SENSOR2")
@@ -151,6 +155,7 @@ record(ai, "$(P)TEMP3")
     field(EGU, "K")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:TEMP3")
@@ -172,6 +177,7 @@ record(ai, "$(P)SENSOR3")
     field(EGU, "")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:SENSOR3")
@@ -194,6 +200,7 @@ record(ai, "$(P)TEMP4")
     field(EGU, "K")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:TEMP4")
@@ -215,6 +222,7 @@ record(ai, "$(P)SENSOR4")
     field(EGU, "")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:SENSOR4")
@@ -237,6 +245,7 @@ record(ai, "$(P)TEMP5")
     field(EGU, "K")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:TEMP5")
@@ -258,6 +267,7 @@ record(ai, "$(P)SENSOR5")
     field(EGU, "")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:SENSOR5")
@@ -280,6 +290,7 @@ record(ai, "$(P)TEMP6")
     field(EGU, "K")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:TEMP6")
@@ -301,6 +312,7 @@ record(ai, "$(P)SENSOR6")
     field(EGU, "")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:SENSOR6")
@@ -323,6 +335,7 @@ record(ai, "$(P)TEMP7")
     field(EGU, "K")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:TEMP7")
@@ -344,6 +357,7 @@ record(ai, "$(P)SENSOR7")
     field(EGU, "")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:SENSOR7")
@@ -366,6 +380,7 @@ record(ai, "$(P)TEMP8")
     field(EGU, "K")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:TEMP8")
@@ -387,6 +402,7 @@ record(ai, "$(P)SENSOR8")
     field(EGU, "")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "LKSH218")
 }
 
 record(ai, "$(P)SIM:SENSOR8")
