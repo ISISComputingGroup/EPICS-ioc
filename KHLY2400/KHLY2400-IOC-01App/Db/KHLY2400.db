@@ -768,3 +768,42 @@ record(ai, "$(P)SIM:CURR:SOURCE")
 alias("$(P)CURR:SOURCE:SP:RBV", "$(P)CURR:SOURCE")
 alias("$(P)SIM:CURR:SOURCE", "$(P)SIM:CURR:SOURCE:SP")
 alias("$(P)SIM:CURR:SOURCE", "$(P)SIM:CURR:SOURCE:SP:RBV")
+
+record(bo, "$(P)CURR:SOURCE:AUTORANGE:SP")
+{
+    field(DESC, "Sets current source autoranging on/off")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto set_I_SOURCE_AUTORANGE $(PORT)")
+    field(PINI, "YES"
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(VAL, "1")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURR:SOURCE:AUTORANGE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
+}
+
+record(bi, "$(P)CURR:SOURCE:AUTORANGE:SP:RBV")
+{
+    field(DESC, "Sets current source autoranging on/off")
+    field(DTYP, "stream")
+    field(SCAN, "Passive")
+    field(OUT, "@Keithley2400.proto get_I_SOURCE_AUTORANGE $(PORT)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURR:SOURCE:AUTORANGE")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
+}
+
+record(bi, "$(P)SIM:CURR:SOURCE:AUTORANGE")
+{
+}
+
+alias("$(P)CURR:SOURCE:AUTORANGE:SP:RBV", "$(P)CURR:SOURCE")
+alias("$(P)SIM:CURR:SOURCE:AUTORANGE", "$(P)SIM:CURR:SOURCE:AUTORANGE:SP")
+alias("$(P)SIM:CURR:SOURCE:AUTORANGE", "$(P)SIM:CURR:SOURCE:AUTORANGE:SP:RBV")
