@@ -8,17 +8,33 @@
 /**
  *  Parse the response from the chopper.
  */
-static long fermichopper(aSubRecord *prec) 
+static long fermichopper_merlin(aSubRecord *prec) 
 {
-	return fermi(prec);	
+	return fermi_merlin(prec);	
+}
+
+/**
+ *  Parse the response from the chopper.
+ */
+static long fermichopper_maps(aSubRecord *prec) 
+{
+	return fermi_maps(prec);	
 }
 
 /**
  *  Send a speed setpoint to the device.
  */
-static long speedSpSend(aSubRecord *prec) 
+static long speedSpSend_merlin(aSubRecord *prec) 
 {
-	return speedSetpointSend(prec);	
+	return speedSetpointSend_merlin(prec);	
+}
+
+/**
+ *  Send a speed setpoint to the device.
+ */
+static long speedSpSend_maps(aSubRecord *prec) 
+{
+	return speedSetpointSend_maps(prec);	
 }
 
 /**
@@ -29,6 +45,8 @@ static long commandCheck(aSubRecord *prec)
 	return commandChecker(prec);	
 }
 
-epicsRegisterFunction(fermichopper); /* must also be mentioned in asubFunctions.dbd */
-epicsRegisterFunction(speedSpSend); /* must also be mentioned in asubFunctions.dbd */
+epicsRegisterFunction(fermichopper_merlin); /* must also be mentioned in asubFunctions.dbd */
+epicsRegisterFunction(fermichopper_maps); /* must also be mentioned in asubFunctions.dbd */
+epicsRegisterFunction(speedSpSend_merlin); /* must also be mentioned in asubFunctions.dbd */
+epicsRegisterFunction(speedSpSend_maps); /* must also be mentioned in asubFunctions.dbd */
 epicsRegisterFunction(commandCheck); /* must also be mentioned in asubFunctions.dbd */
