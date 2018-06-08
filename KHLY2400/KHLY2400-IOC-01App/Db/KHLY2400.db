@@ -30,14 +30,14 @@ record(bo, "$(P)DISABLE")
 record(bi, "$(P)OUTPUT:MODE") {
     field(DESC, "Output mode Off/On")
     field(DTYP, "stream")
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(INP, "@Keithley2400.proto get_OUTPUT_MODE $(PORT)")
     field(ZNAM, "Off")
     field(ONAM, "On")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OUTPUT:MODE")
-	field(FLNK, "$(P)_READ_TRIGGER")
+    field(FLNK, "$(P)_READ_TRIGGER")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
@@ -48,7 +48,7 @@ record(bo, "$(P)OUTPUT:MODE:SP") {
     field(OUT, "@Keithley2400.proto set_OUTPUT_MODE $(PORT)")
     field(ZNAM, "Off")
     field(ONAM, "On")
-	field(VAL, "1")
+    field(VAL, "1")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OUTPUT:MODE:SP")
@@ -74,78 +74,78 @@ alias("$(P)SIM:OUTPUT:MODE", "$(P)SIM:OUTPUT:MODE:SP:RBV")
 
 
 record(fanout, "$(P)_READ_OUTPUT") {
-	field(SCAN, "1 second")	
-	field(LNK1, "$(P)OUTPUT:MODE PP")
-	field(SELM, "All")
+    field(SCAN, "1 second")
+    field(LNK1, "$(P)OUTPUT:MODE PP")
+    field(SELM, "All")
 }
 
 record(seq, "$(P)_READ_MODES") {
 
-	field(SCAN, "2 second")
+    field(SCAN, "2 second")
 
-	field(DO1, "1")
-	field(DO2, "1")
-	field(DO3, "1")
-	field(DO4, "1")
-	field(DO5, "1")
-	field(DO6, "1")
-	field(DO7, "1")
-	field(DO8, "1")
+    field(DO1, "1")
+    field(DO2, "1")
+    field(DO3, "1")
+    field(DO4, "1")
+    field(DO5, "1")
+    field(DO6, "1")
+    field(DO7, "1")
+    field(DO8, "1")
 
-	field(DLY1, "0.1")
-	field(DLY2, "0.1")
-	field(DLY3, "0.1")
-	field(DLY4, "0.1")
-	field(DLY5, "0.1")
-	field(DLY6, "0.1")
-	field(DLY7, "0.1")
-	field(DLY8, "0.1")
+    field(DLY1, "0.1")
+    field(DLY2, "0.1")
+    field(DLY3, "0.1")
+    field(DLY4, "0.1")
+    field(DLY5, "0.1")
+    field(DLY6, "0.1")
+    field(DLY7, "0.1")
+    field(DLY8, "0.1")
 
-	field(LNK1, "$(P)SENS:MODE.PROC")
-	field(LNK2, "$(P)OCOM.PROC")
-	field(LNK3, "$(P)RES:MODE.PROC")
-	field(LNK4, "$(P)RES:RANGE:AUTO.PROC")
-	field(LNK5, "$(P)RES:RANGE.PROC")
-	field(LNK6, "$(P)SOURCE:MODE.PROC")
-	field(LNK7, "$(P)I:COMPLIANCE.PROC")
-	field(LNK8, "$(P)_READ_SOURCES.PROC")
+    field(LNK1, "$(P)SENS:MODE.PROC")
+    field(LNK2, "$(P)OCOM.PROC")
+    field(LNK3, "$(P)RES:MODE.PROC")
+    field(LNK4, "$(P)RES:RANGE:AUTO.PROC")
+    field(LNK5, "$(P)RES:RANGE.PROC")
+    field(LNK6, "$(P)SOURCE:MODE.PROC")
+    field(LNK7, "$(P)I:COMPLIANCE.PROC")
+    field(LNK8, "$(P)_READ_SOURCES.PROC")
 
-	field(SELM, "All")
+    field(SELM, "All")
 }
 
 record(seq, "$(P)_READ_SOURCES") {
 
-	field(SCAN, "2 second")
+    field(SCAN, "2 second")
 
-	field(DO1, "1")
-	field(DO2, "1")
-	field(DO3, "1")
-	field(DO4, "1")
-	field(DO5, "1")
-	field(DO6, "1")
-	field(DO7, "1")
-	field(DO8, "1")
+    field(DO1, "1")
+    field(DO2, "1")
+    field(DO3, "1")
+    field(DO4, "1")
+    field(DO5, "1")
+    field(DO6, "1")
+    field(DO7, "1")
+    field(DO8, "1")
 
-	field(DLY1, "0.1")
-	field(DLY2, "0.1")
-	field(DLY3, "0.1")
-	field(DLY4, "0.1")
-	field(DLY5, "0.1")
-	field(DLY6, "0.1")
-	field(DLY7, "0.1")
-	field(DLY8, "0.1")
+    field(DLY1, "0.1")
+    field(DLY2, "0.1")
+    field(DLY3, "0.1")
+    field(DLY4, "0.1")
+    field(DLY5, "0.1")
+    field(DLY6, "0.1")
+    field(DLY7, "0.1")
+    field(DLY8, "0.1")
 
 
-	field(LNK1, "$(P)V:COMPLIANCE.PROC")
-	field(LNK2, "$(P)VOLT:SOURCE:SP:RBV.PROC")
-	field(LNK3, "$(P)CURR:SOURCE:SP:RBV.PROC")
-	field(LNK4, "$(P)CURR:SOURCE:AUTORANGE:SP:RBV.PROC")
+    field(LNK1, "$(P)V:COMPLIANCE.PROC")
+    field(LNK2, "$(P)VOLT:SOURCE:SP:RBV.PROC")
+    field(LNK3, "$(P)CURR:SOURCE:SP:RBV.PROC")
+    field(LNK4, "$(P)CURR:SOURCE:AUTORANGE:SP:RBV.PROC")
     field(LNK5, "$(P)VOLT:SOURCE:AUTORANGE:SP:RBV.PROC")
-	field(LNK6, "$(P)_READ_MODES.PROC")
+    field(LNK6, "$(P)_READ_MODES.PROC")
 
 
 
-	field(SELM, "All")
+    field(SELM, "All")
 }
 
 record(calcout, "$(P)_READ_TRIGGER") {
@@ -157,20 +157,20 @@ record(calcout, "$(P)_READ_TRIGGER") {
 
 record(seq, "$(P)_READ_POWER") {
 
-	field(SCAN, "Passive")
-	field(DO1, "1")
-	field(DO2, "1")
-	field(DO3, "1")
-	
-	field(DLY1, "0")
-	field(DLY2, "0")
-	field(DLY3, "0")
-	
-	field(LNK1, "$(P)V:RAW.PROC")
-	field(LNK2, "$(P)I:RAW.PROC")
-	field(LNK3, "$(P)R:RAW.PROC")
-	
-	field(SELM, "All")
+    field(SCAN, "Passive")
+    field(DO1, "1")
+    field(DO2, "1")
+    field(DO3, "1")
+
+    field(DLY1, "0")
+    field(DLY2, "0")
+    field(DLY3, "0")
+
+    field(LNK1, "$(P)V:RAW.PROC")
+    field(LNK2, "$(P)I:RAW.PROC")
+    field(LNK3, "$(P)R:RAW.PROC")
+
+    field(SELM, "All")
 }
 
 ######################################
@@ -192,19 +192,19 @@ record(ai, "$(P)SIM:I")
 
 record(calcout, "$(P)I:CALC")
 {
-	field(INPA, "$(P)I:RAW CP MS")
-	# The reason this is done is to filter out the 10**38 "Nan" 
-	# value that the device gives when sensor disconnected.
-	field(CALC, "A>10**20?Nan:A")
+    field(INPA, "$(P)I:RAW CP MS")
+    # The reason this is done is to filter out the 10**38 "Nan"
+    # value that the device gives when sensor disconnected.
+    field(CALC, "A>10**20?Nan:A")
 }
 
 record(ai, "$(P)I")
 {
-	field(DESC, "Current")
+    field(DESC, "Current")
     field(EGU, "A")
-	field(PREC, "5")
-	field(INP, "$(P)I:CALC CP MS")
-	info(archive, "VAL")
+    field(PREC, "5")
+    field(INP, "$(P)I:CALC CP MS")
+    info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
@@ -223,19 +223,19 @@ record(ai, "$(P)SIM:V")
 
 record(calcout, "$(P)V:CALC")
 {
-	field(INPA, "$(P)V:RAW CP MS")
-	# The reason this is done is to filter out the 10**38 "Nan" 
-	# value that the device gives when sensor disconnected.
-	field(CALC, "A>10**20?Nan:A")
+    field(INPA, "$(P)V:RAW CP MS")
+    # The reason this is done is to filter out the 10**38 "Nan"
+    # value that the device gives when sensor disconnected.
+    field(CALC, "A>10**20?Nan:A")
 }
 
 record(ai, "$(P)V")
 {
-	field(DESC, "Voltage")
+    field(DESC, "Voltage")
     field(EGU, "V")
-	field(PREC, "5")
-	field(INP, "$(P)V:CALC CP MS")
-	info(archive, "VAL")
+    field(PREC, "5")
+    field(INP, "$(P)V:CALC CP MS")
+    info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
@@ -250,19 +250,19 @@ record(ai, "$(P)R:RAW")
 
 record(calcout, "$(P)R:CALC")
 {
-	field(INPA, "$(P)R:RAW CP MS")
-	# The reason this is done is to filter out the 10**38 "Nan" 
-	# value that the device gives when sensor disconnected.
-	field(CALC, "A>10**20?Nan:A")
+    field(INPA, "$(P)R:RAW CP MS")
+    # The reason this is done is to filter out the 10**38 "Nan"
+    # value that the device gives when sensor disconnected.
+    field(CALC, "A>10**20?Nan:A")
 }
 
 record(ai, "$(P)R")
 {
-	field(DESC, "Resistance")
+    field(DESC, "Resistance")
     field(EGU, "ohm")
-	field(PREC, "5")
-	field(INP, "$(P)R:CALC CP MS")
-	info(archive, "VAL")
+    field(PREC, "5")
+    field(INP, "$(P)R:CALC CP MS")
+    info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
@@ -276,10 +276,10 @@ record(ai, "$(P)SIM:R")
 
 record(stringout, "$(P)READ:SP")
 {
-	field(DESC, "General read command")
-	field(VAL, "*IDN?")
-	field(PINI, "YES")
-	field(FLNK, "$(P)READ PP")
+    field(DESC, "General read command")
+    field(VAL, "*IDN?")
+    field(PINI, "YES")
+    field(FLNK, "$(P)READ PP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:READ")
     field(SDIS, "$(P)DISABLE")
@@ -316,8 +316,8 @@ alias("$(P)SIM:READ", "$(P)SIM:READ:SP:RBV")
 
 record(stringout, "$(P)WRITE:SP")
 {
-	field(DESC, "General write command")
-	field(FLNK, "$(P)WRITE PP")
+    field(DESC, "General write command")
+    field(FLNK, "$(P)WRITE PP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WRITE")
     field(SDIS, "$(P)DISABLE")
@@ -367,7 +367,7 @@ record(ao, "$(P)RESET")
 record(bi, "$(P)OCOM") {
     field(DESC, "Output mode Off/On")
     field(DTYP, "stream")
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(INP, "@Keithley2400.proto get_OFFSET_MODE $(PORT)")
     field(ZNAM, "Off")
     field(ONAM, "On")
@@ -384,7 +384,7 @@ record(bo, "$(P)OCOM:SP") {
     field(OUT, "@Keithley2400.proto set_OffSET_MODE $(PORT)")
     field(ZNAM, "Off")
     field(ONAM, "On")
-	field(VAL, "1")
+    field(VAL, "1")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OCOM:SP")
@@ -411,7 +411,7 @@ alias("$(P)SIM:OCOM", "$(P)SIM:OCOM:SP:RBV")
 record(bi, "$(P)RES:MODE") {
     field(DESC, "resistance mode Manual/Auto")
     field(DTYP, "stream")
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(INP, "@Keithley2400.proto get_RES_MODE $(PORT)")
     field(ZNAM, "Manual")
     field(ONAM, "Auto")
@@ -428,8 +428,8 @@ record(bo, "$(P)RES:MODE:SP") {
     field(OUT, "@Keithley2400.proto set_RES_MODE $(PORT)")
     field(ZNAM, "Manual")
     field(ONAM, "Auto")
-	field(VAL, "1")
-	field(PINI, "YES")
+    field(VAL, "1")
+    field(PINI, "YES")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RES:MODE:SP")
@@ -456,7 +456,7 @@ alias("$(P)SIM:RES:MODE", "$(P)SIM:RES:MODE:SP:RBV")
 record(bi, "$(P)SENS:MODE") {
     field(DESC, "Get remote sensing mode Off/On")
     field(DTYP, "stream")
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(INP, "@Keithley2400.proto get_SENSING_MODE $(PORT)")
     field(ZNAM, "On")
     field(ONAM, "Off")
@@ -473,7 +473,7 @@ record(bo, "$(P)SENS:MODE:SP") {
     field(OUT, "@Keithley2400.proto set_SENSING_MODE $(PORT)")
     field(ZNAM, "On")
     field(ONAM, "Off")
-	field(VAL, "0")
+    field(VAL, "0")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SENS:MODE:SP")
@@ -500,7 +500,7 @@ alias("$(P)SIM:SENS:MODE", "$(P)SIM:SENS:MODE:SP:RBV")
 record(bi, "$(P)RES:RANGE:AUTO") {
     field(DESC, "Resistance range mode Manual/Auto")
     field(DTYP, "stream")
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(INP, "@Keithley2400.proto get_RES_RANGE_MODE $(PORT)")
     field(ZNAM, "Manual")
     field(ONAM, "Auto")
@@ -517,7 +517,7 @@ record(bo, "$(P)RES:RANGE:AUTO:SP") {
     field(OUT, "@Keithley2400.proto set_RES_RANGE_MODE $(PORT)")
     field(ZNAM, "Manual")
     field(ONAM, "Auto")
-	field(VAL, "1")
+    field(VAL, "1")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RES:RANGE:AUTO:SP")
@@ -542,8 +542,8 @@ alias("$(P)SIM:RES:RANGE:AUTO", "$(P)SIM:RES:RANGE:AUTO:SP:RBV")
 record(ai, "$(P)RES:RANGE") {
     field(DESC, "Resistance measurement range")
     field(DTYP, "stream")
-	field(SCAN, "Passive")
-	field(EGU, "ohm")
+    field(SCAN, "Passive")
+    field(EGU, "ohm")
     field(INP, "@Keithley2400.proto get_RES_RANGE $(PORT)")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
@@ -556,7 +556,7 @@ record(ao, "$(P)RES:RANGE:SP") {
     field(DESC, "Set resistance measurement range")
     field(DTYP, "stream")
     field(OUT, "@Keithley2400.proto set_RES_RANGE $(PORT)")
-	field(EGU, "ohm")
+    field(EGU, "ohm")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RES:RANGE:SP")
@@ -581,7 +581,7 @@ alias("$(P)SIM:RES:RANGE", "$(P)SIM:RES:RANGE:SP:RBV")
 record(bi, "$(P)SOURCE:MODE") {
     field(DESC, "Manual resisance mode Current/Voltage")
     field(DTYP, "stream")
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(INP, "@Keithley2400.proto get_SOURCE_MODE $(PORT)")
     field(ZNAM, "Current")
     field(ONAM, "Voltage")
@@ -598,7 +598,7 @@ record(bo, "$(P)SOURCE:MODE:SP") {
     field(OUT, "@Keithley2400.proto set_SOURCE_MODE $(PORT)")
     field(ZNAM, "Current")
     field(ONAM, "Voltage")
-	field(VAL, "1")
+    field(VAL, "1")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SOURCE:MODE:SP")
@@ -624,9 +624,9 @@ record(ai, "$(P)I:COMPLIANCE")
 {
     field(DESC, "Current compliance")
     field(DTYP, "stream")
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(EGU, "A")
-	field(PREC, "5")
+    field(PREC, "5")
     field(INP, "@Keithley2400.proto get_I_COMPLIANCE $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:I:COMPLIANCE")
@@ -640,7 +640,7 @@ record(ao, "$(P)I:COMPLIANCE:SP")
     field(DESC, "Set current compliance")
     field(DTYP, "stream")
     field(EGU, "A")
-	field(PREC, "5")
+    field(PREC, "5")
     field(OUT, "@Keithley2400.proto set_I_COMPLIANCE $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:I:COMPLIANCE:SP")
@@ -663,9 +663,9 @@ record(ai, "$(P)V:COMPLIANCE")
 {
     field(DESC, "Voltage compliance")
     field(DTYP, "stream")
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(EGU, "V")
-	field(PREC, "2")
+    field(PREC, "2")
     field(INP, "@Keithley2400.proto get_V_COMPLIANCE $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:V:COMPLIANCE")
@@ -679,7 +679,7 @@ record(ao, "$(P)V:COMPLIANCE:SP")
     field(DESC, "Set voltage compliance")
     field(DTYP, "stream")
     field(EGU, "V")
-	field(PREC, "2")
+    field(PREC, "2")
     field(OUT, "@Keithley2400.proto set_V_COMPLIANCE $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:V:COMPLIANCE:SP")
