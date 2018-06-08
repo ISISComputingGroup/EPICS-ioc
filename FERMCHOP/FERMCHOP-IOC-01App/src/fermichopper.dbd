@@ -1,4 +1,6 @@
-function(fermichopper)
-function(speedSpSend)
+function(fermichopper_merlin)
+function(fermichopper_maps)
+function(speedSpSend_merlin)
+function(speedSpSend_maps)
 function(commandCheck)
 registrar(keep_sp_and_rbv_in_syncRegistrar)

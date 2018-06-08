@@ -35,7 +35,7 @@ record(waveform, "$(P)STATUS:RAW")
     field(DTYP, "stream")
     field(NELM, "20")
     field(FTVL, "STRING")
-    field(INP,  "@devfc.proto getStatus $(PORT)")
+    field(INP,  "@fc_$(INST=merlin).proto getStatus $(PORT)")
     field(SCAN, "1 second")
     field(FLNK, "$(P)STATUS:PARSE")
 	field(SIML, "$(P)SIM")
@@ -45,14 +45,23 @@ record(waveform, "$(P)STATUS:RAW")
 	info(archive, "VAL")
 }
 
+record(ao, "$(P)_MHZ") {
+    field(VAL, "$(MHZ=50.4)")
+    field(PINI, "YES")
+    info(archive, "VAL")
+}
+
 record(aSub, "$(P)STATUS:PARSE")
 {
     field(DESC, "Parses the response from chopper")
 
-    field(SNAM, "fermichopper")
+    field(SNAM, "fermichopper_$(INST=merlin)")
     field(INPA, "$(P)STATUS:RAW")
     field(FTA, "STRING")
     field(NOA, "20")
+    
+    field(INPB, "$(P)_MHZ")
+    field(FTB, "DOUBLE")
       
     field(OUTA, "$(P)LASTCOMMAND")
     field(FTVA, "STRING")
@@ -451,7 +460,7 @@ record(ao, "$(P)COMMAND:SP:_RAW")
 {
 	field(ASG, "$(ASG)")
     field(DTYP, "stream")
-    field(OUT,  "@devfc.proto sendCommand $(PORT)")	
+    field(OUT,  "@fc_$(INST=merlin).proto sendCommand $(PORT)")	
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:COMMAND:SP:_RAW")
     field(SDIS, "$(P)DISABLE")
@@ -462,7 +471,7 @@ record(ao, "$(P)SPEED:SP:RAW")
 {
 	field(ASG, "$(ASG)")
 	field(DTYP, "stream")
-    field(OUT,  "@devfc.proto setSpeed $(PORT)")
+    field(OUT,  "@fc_$(INST=merlin).proto setSpeed $(PORT)")
 	info(archive, "VAL")
 }
 
@@ -470,7 +479,7 @@ record(aSub, "$(P)SPEED:SP:CALC")
 {
     field(DESC, "Calculates the speed setpoint")
 
-    field(SNAM, "speedSpSend")
+    field(SNAM, "speedSpSend_$(INST=merlin)")
 	
     field(INPA, "$(P)SPEED:SP")
     field(FTA, "LONG")
@@ -506,44 +515,45 @@ record(mbbo, "$(P)SPEED:SP:GUI")
 {
 
 	field(DESC, "The speed setpoint (opi)")
+    field(DTYP, "Raw Soft Channel")
 
-	field(ZRVL, "0")
+	field(ZRVL, "600")
 	field(ZRST, "600 Hz")
 
-	field(ONVL, "1")
+	field(ONVL, "550")
 	field(ONST, "550 Hz")
 	
-	field(TWVL, "2")
+	field(TWVL, "500")
 	field(TWST, "500 Hz")
 	
-	field(THVL, "3")
+	field(THVL, "450")
 	field(THST, "450 Hz")
 	
-	field(FRVL, "4")
+	field(FRVL, "400")
 	field(FRST, "400 Hz")
 	
-	field(FVVL, "5")
+	field(FVVL, "350")
 	field(FVST, "350 Hz")
 	
-	field(SXVL, "6")
+	field(SXVL, "300")
 	field(SXST, "300 Hz")
 	
-	field(SVVL, "7")
+	field(SVVL, "250")
 	field(SVST, "250 Hz")
 	
-	field(EIVL, "8")
+	field(EIVL, "200")
 	field(EIST, "200 Hz")
 	
-	field(NIVL, "9")
+	field(NIVL, "150")
 	field(NIST, "150 Hz")
 	
-	field(TEVL, "10")
+	field(TEVL, "100")
 	field(TEST, "100 Hz")
 	
-	field(ELVL, "11")
+	field(ELVL, "50")
 	field(ELST, "50 Hz")
 	
-	field(OUT, "$(P)SPEED:SP:RAW PP")
+	field(OUT, "$(P)SPEED:SP PP")
 	
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED:SP:GUI PP")
@@ -566,15 +576,16 @@ record(ao, "$(P)DELAY:SP")
 record(transform, "$(P)DELAY:SP:_CALC")
 {
 	field(INPA, "$(P)DELAY:SP")
-	field(CLCB, "(A*50.400)%65536")  # Low word
-	field(CLCC, "FLOOR((A*50.400)/65536)") # High word
+    field(INPD, "$(P)_MHZ")
+	field(CLCB, "(A*D)%65536")  # Low word
+	field(CLCC, "FLOOR((A*D)/65536)") # High word
 	field(FLNK, "$(P)DELAY:SP:_SEND")
 }
 
 record(ao, "$(P)DELAY:SP:_SEND")
 {
 	field(DTYP, "stream")
-	field(OUT,  "@devfc.proto setDelay($(P)) $(PORT)")
+	field(OUT,  "@fc_$(INST=merlin).proto setDelay($(P)) $(PORT)")
 }
 
 record(ai, "$(P)DELAY:_SEQ_TOL")
@@ -609,7 +620,8 @@ record(ao, "$(P)GATEWIDTH:SP")
 record(calcout, "$(P)GATEWIDTH:SP:_CALC")
 {
 	field(INPA, "$(P)GATEWIDTH:SP")
-	field(CALC, "FLOOR(A*50.4)")
+	field(INPB, "$(P)_MHZ")
+	field(CALC, "FLOOR(A*B)")
 	field(OUT, "$(P)GATEWIDTH:SP:_RAW PP")
 	field(OOPT, "Every Time")
 }
@@ -617,7 +629,7 @@ record(calcout, "$(P)GATEWIDTH:SP:_CALC")
 record(ao, "$(P)GATEWIDTH:SP:_RAW")
 {
 	field(DTYP, "stream")
-	field(OUT,  "@devfc.proto setGateWidth $(PORT)")
+	field(OUT,  "@fc_$(INST=merlin).proto setGateWidth $(PORT)")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:DUMMY")
     field(SDIS, "$(P)DISABLE")
