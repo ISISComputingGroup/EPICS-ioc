@@ -140,7 +140,8 @@ record(seq, "$(P)_READ_SOURCES") {
 	field(LNK2, "$(P)VOLT:SOURCE:SP:RBV.PROC")
 	field(LNK3, "$(P)CURR:SOURCE:SP:RBV.PROC")
 	field(LNK4, "$(P)CURR:SOURCE:AUTORANGE:SP:RBV.PROC")
-	field(LNK5, "$(P)_READ_MODES.PROC")
+    field(LNK5, "$(P)VOLT:SOURCE:AUTORANGE:SP:RBV.PROC")
+	field(LNK6, "$(P)_READ_MODES.PROC")
 
 
 
@@ -789,7 +790,7 @@ record(bo, "$(P)CURR:SOURCE:AUTORANGE:SP")
 
 record(bi, "$(P)CURR:SOURCE:AUTORANGE:SP:RBV")
 {
-    field(DESC, "Sets current source autoranging on/off")
+    field(DESC, "Sets current source autoranging status")
     field(DTYP, "stream")
     field(SCAN, "Passive")
     field(INP, "@Keithley2400.proto get_I_SOURCE_AUTORANGE $(PORT)")
@@ -809,3 +810,42 @@ record(bi, "$(P)SIM:CURR:SOURCE:AUTORANGE")
 alias("$(P)CURR:SOURCE:AUTORANGE:SP:RBV", "$(P)CURR:SOURCE:AUTORANGE")
 alias("$(P)SIM:CURR:SOURCE:AUTORANGE", "$(P)SIM:CURR:SOURCE:AUTORANGE:SP")
 alias("$(P)SIM:CURR:SOURCE:AUTORANGE", "$(P)SIM:CURR:SOURCE:AUTORANGE:SP:RBV")
+
+record(bo, "$(P)VOLT:SOURCE:AUTORANGE:SP")
+{
+    field(DESC, "Sets voltage source autoranging on/off")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto set_V_SOURCE_AUTORANGE $(PORT)")
+    field(PINI, "YES")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(VAL, "1")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURR:SOURCE:AUTORANGE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
+}
+
+record(bi, "$(P)VOLT:SOURCE:AUTORANGE:SP:RBV")
+{
+    field(DESC, "Gets source voltage autoranging status")
+    field(DTYP, "stream")
+    field(SCAN, "Passive")
+    field(INP, "@Keithley2400.proto get_V_SOURCE_AUTORANGE $(PORT)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:SOURCE:AUTORANGE")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
+}
+
+record(bi, "$(P)SIM:VOLT:SOURCE:AUTORANGE")
+{
+}
+
+alias("$(P)VOLT:SOURCE:AUTORANGE:SP:RBV", "$(P)VOLT:SOURCE:AUTORANGE")
+alias("$(P)SIM:VOLT:SOURCE:AUTORANGE", "$(P)SIM:VOLT:SOURCE:AUTORANGE:SP")
+alias("$(P)SIM:VOLT:SOURCE:AUTORANGE", "$(P)SIM:VOLT:SOURCE:AUTORANGE:SP:RBV")
