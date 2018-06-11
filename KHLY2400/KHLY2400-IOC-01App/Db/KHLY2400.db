@@ -141,7 +141,8 @@ record(seq, "$(P)_READ_SOURCES") {
     field(LNK3, "$(P)CURR:SOURCE:SP:RBV.PROC")
     field(LNK4, "$(P)CURR:SOURCE:AUTORANGE:SP:RBV.PROC")
     field(LNK5, "$(P)VOLT:SOURCE:AUTORANGE:SP:RBV.PROC")
-    field(LNK6, "$(P)_READ_MODES.PROC")
+    field(LNK6, "$(P)CURR:SOURCE:RANGE:SP:RBV.PROC")
+    field(LNK7, "$(P)_READ_MODES.PROC")
 
 
 
@@ -849,3 +850,32 @@ record(bi, "$(P)SIM:VOLT:SOURCE:AUTORANGE")
 alias("$(P)VOLT:SOURCE:AUTORANGE:SP:RBV", "$(P)VOLT:SOURCE:AUTORANGE")
 alias("$(P)SIM:VOLT:SOURCE:AUTORANGE", "$(P)SIM:VOLT:SOURCE:AUTORANGE:SP")
 alias("$(P)SIM:VOLT:SOURCE:AUTORANGE", "$(P)SIM:VOLT:SOURCE:AUTORANGE:SP:RBV")
+
+record(ai, "$(P)CURR:SOURCE:RANGE:SP")
+{
+    field(DESC, "Sets the source current range")
+    field(DTYP, "stream")
+    field(INP, "@Keithley2400.proto set_I_SOURCE_RANGE $(PORT)")
+    field(PREC, "7")
+    field(EGU, "A")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURR:SOURCE:RANGE:SP")
+}
+
+record(ao, "$(P)CURR:SOURCE:RANGE:SP:RBV")
+{
+    field(DESC, "Gets the source current range")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto get_I_SOURCE_RANGE $(PORT)")
+    field(PREC, "7")
+    field(EGU, "A")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURR:SOURCE:RANGE:SP:RBV")
+}
+
+record(ai, "$(P)SIM:CURR:SOURCE:RANGE")
+{
+}
+
