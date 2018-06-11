@@ -142,7 +142,8 @@ record(seq, "$(P)_READ_SOURCES") {
     field(LNK4, "$(P)CURR:SOURCE:AUTORANGE:SP:RBV.PROC")
     field(LNK5, "$(P)VOLT:SOURCE:AUTORANGE:SP:RBV.PROC")
     field(LNK6, "$(P)CURR:SOURCE:RANGE:SP:RBV.PROC")
-    field(LNK7, "$(P)_READ_MODES.PROC")
+    field(LNK7, "$(P)VOLT:SOURCE:RANGE:SP:RBV.PROC")
+    field(LNK8, "$(P)_READ_MODES.PROC")
 
 
 
@@ -851,11 +852,11 @@ alias("$(P)VOLT:SOURCE:AUTORANGE:SP:RBV", "$(P)VOLT:SOURCE:AUTORANGE")
 alias("$(P)SIM:VOLT:SOURCE:AUTORANGE", "$(P)SIM:VOLT:SOURCE:AUTORANGE:SP")
 alias("$(P)SIM:VOLT:SOURCE:AUTORANGE", "$(P)SIM:VOLT:SOURCE:AUTORANGE:SP:RBV")
 
-record(ai, "$(P)CURR:SOURCE:RANGE:SP")
+record(ao, "$(P)CURR:SOURCE:RANGE:SP")
 {
     field(DESC, "Sets the source current range")
     field(DTYP, "stream")
-    field(INP, "@Keithley2400.proto set_I_SOURCE_RANGE $(PORT)")
+    field(OUT, "@Keithley2400.proto set_I_SOURCE_RANGE $(PORT)")
     field(PREC, "7")
     field(EGU, "A")
     field(SDIS, "$(P)DISABLE")
@@ -863,11 +864,11 @@ record(ai, "$(P)CURR:SOURCE:RANGE:SP")
     field(SIOL, "$(P)SIM:CURR:SOURCE:RANGE:SP")
 }
 
-record(ao, "$(P)CURR:SOURCE:RANGE:SP:RBV")
+record(ai, "$(P)CURR:SOURCE:RANGE:SP:RBV")
 {
     field(DESC, "Gets the source current range")
     field(DTYP, "stream")
-    field(OUT, "@Keithley2400.proto get_I_SOURCE_RANGE $(PORT)")
+    field(INP, "@Keithley2400.proto get_I_SOURCE_RANGE $(PORT)")
     field(PREC, "7")
     field(EGU, "A")
     field(SDIS, "$(P)DISABLE")
@@ -879,3 +880,38 @@ record(ai, "$(P)SIM:CURR:SOURCE:RANGE")
 {
 }
 
+alias("$(P)CURR:SOURCE:RANGE:SP:RBV", "$(P)CURR:SOURCE:RANGE")
+alias("$(P)SIM:CURR:SOURCE:RANGE", "$(P)SIM:CURR:SOURCE:RANGE:SP")
+alias("$(P)SIM:CURR:SOURCE:RANGE", "$(P)SIM:CURR:SOURCE:RANGE:SP:RBV")
+
+record(ao, "$(P)VOLT:SOURCE:RANGE:SP")
+{
+    field(DESC, "Sets the voltage source range")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto set_V_SOURCE_RANGE $(PORT)")
+    field(EGU, "V")
+    field(PREC, "10")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:SOURCE:RANGE:SP")
+}
+
+record(ai, "$(P)VOLT:SOURCE:RANGE:SP:RBV")
+{
+    field(DESC, "Reads the voltage source range back")
+    field(DTYP, "stream")
+    field(INP, "@Keithley2400.proto get_V_SOURCE_RANGE $(PORT)")
+    field(EGU, "V")
+    field(PREC, "10")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:SOURCE:RANGE:SP:RBV")
+}
+
+record(ai, "$(P)SIM:VOLT:SOURCE:RANGE")
+{
+}
+
+alias("$(P)VOLT:SOURCE:RANGE:SP:RBV", "$(P)VOLT:SOURCE:RANGE")
+alias("$(P)SIM:VOLT:SOURCE:RANGE", "$(P)SIM:VOLT:SOURCE:RANGE:SP")
+alias("$(P)SIM:VOLT:SOURCE:RANGE", "$(P)SIM:VOLT:SOURCE:RANGE:SP:RBV")
