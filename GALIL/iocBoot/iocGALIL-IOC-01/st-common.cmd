@@ -1,6 +1,5 @@
 
 ##ISIS## Run IOC initialisation 
-# iocshCmdLoop("epicsEnvSet("IFIOC_GALIL_0\$(I)", "#")", "", "I", 1, 9)
 epicsEnvSet("IFIOC_GALIL_01", "#")
 epicsEnvSet("IFIOC_GALIL_02", "#")
 epicsEnvSet("IFIOC_GALIL_03", "#")
