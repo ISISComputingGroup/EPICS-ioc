@@ -175,6 +175,8 @@ record(seq, "$(P)_READ_MEASUR_SETTINGS") {
 
     field(LNK1, "$(P)VOLT:MEAS:AUTORANGE:SP:RBV.PROC")
     field(LNK2, "$(P)CURR:MEAS:AUTORANGE:SP:RBV.PROC")
+    field(LNK3, "$(P)VOLT:MEAS:RANGE:SP:RBV.PROC")
+    field(LNK4, "$(P)CURR:MEAS:RANGE:SP:RBV.PROC")
     field(LNK8, "$(P)_READ_MODES.PROC")
 
 
@@ -855,7 +857,7 @@ record(bo, "$(P)VOLT:SOURCE:AUTORANGE:SP")
     field(VAL, "1")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:CURR:SOURCE:AUTORANGE:SP")
+    field(SIOL, "$(P)SIM:VOLT:SOURCE:AUTORANGE:SP")
     info(archive, "VAL")
     info(INTEREST, "LOW")
 }
@@ -1033,3 +1035,75 @@ record(bi, "$(P)SIM:CURR:MEAS:AUTORANGE")
 alias("$(P)CURR:MEAS:AUTORANGE:SP:RBV", "$(P)CURR:MEAS:AUTORANGE")
 alias("$(P)SIM:CURR:MEAS:AUTORANGE", "$(P)SIM:CURR:MEAS:AUTORANGE:SP")
 alias("$(P)SIM:CURR:MEAS:AUTORANGE", "$(P)SIM:CURR:MEAS:AUTORANGE:SP:RBV")
+
+record(ao, "$(P)CURR:MEAS:RANGE:SP")
+{
+    field(DESC, "Sets the measured current range")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto set_I_MEAS_RANGE $(PORT)")
+    field(PREC, "7")
+    field(EGU, "A")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURR:MEAS:RANGE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
+}
+
+record(ai, "$(P)CURR:MEAS:RANGE:SP:RBV")
+{
+    field(DESC, "Gets the measured current range")
+    field(DTYP, "stream")
+    field(INP, "@Keithley2400.proto get_I_MEAS_RANGE $(PORT)")
+    field(PREC, "7")
+    field(EGU, "A")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURR:MEAS:RANGE:SP:RBV")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
+}
+
+record(ai, "$(P)SIM:CURR:MEAS:RANGE")
+{
+}
+
+alias("$(P)CURR:MEAS:RANGE:SP:RBV", "$(P)CURR:MEAS:RANGE")
+alias("$(P)SIM:CURR:MEAS:RANGE", "$(P)SIM:CURR:MEAS:RANGE:SP")
+alias("$(P)SIM:CURR:MEAS:RANGE", "$(P)SIM:CURR:MEAS:RANGE:SP:RBV")
+
+record(ao, "$(P)VOLT:MEAS:RANGE:SP")
+{
+    field(DESC, "Sets the measured voltage range")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto set_V_MEAS_RANGE $(PORT)")
+    field(EGU, "V")
+    field(PREC, "10")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:MEAS:RANGE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
+}
+
+record(ai, "$(P)VOLT:MEAS:RANGE:SP:RBV")
+{
+    field(DESC, "Reads the measured voltage range back")
+    field(DTYP, "stream")
+    field(INP, "@Keithley2400.proto get_V_MEAS_RANGE $(PORT)")
+    field(EGU, "V")
+    field(PREC, "10")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:MEAS:RANGE:SP:RBV")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
+}
+
+record(ai, "$(P)SIM:VOLT:MEAS:RANGE")
+{
+}
+
+alias("$(P)VOLT:MEAS:RANGE:SP:RBV", "$(P)VOLT:MEAS:RANGE")
+alias("$(P)SIM:VOLT:MEAS:RANGE", "$(P)SIM:VOLT:MEAS:RANGE:SP")
+alias("$(P)SIM:VOLT:MEAS:RANGE", "$(P)SIM:VOLT:MEAS:RANGE:SP:RBV")
