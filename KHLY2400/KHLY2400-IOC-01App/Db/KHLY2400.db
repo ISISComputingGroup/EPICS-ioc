@@ -81,7 +81,7 @@ record(fanout, "$(P)_READ_OUTPUT") {
 
 record(seq, "$(P)_READ_MODES") {
 
-    field(SCAN, "2 second")
+    field(SCAN, "5 second")
 
     field(DO1, "1")
     field(DO2, "1")
@@ -115,7 +115,7 @@ record(seq, "$(P)_READ_MODES") {
 
 record(seq, "$(P)_READ_SOURCES") {
 
-    field(SCAN, "2 second")
+    field(SCAN, "5 second")
 
     field(DO1, "1")
     field(DO2, "1")
@@ -143,8 +143,38 @@ record(seq, "$(P)_READ_SOURCES") {
     field(LNK5, "$(P)VOLT:SOURCE:AUTORANGE:SP:RBV.PROC")
     field(LNK6, "$(P)CURR:SOURCE:RANGE:SP:RBV.PROC")
     field(LNK7, "$(P)VOLT:SOURCE:RANGE:SP:RBV.PROC")
-    field(LNK8, "$(P)_READ_MODES.PROC")
+    field(LNK8, "$(P)_READ_MEASUR_SETTINGS.PROC")
 
+
+
+    field(SELM, "All")
+}
+
+record(seq, "$(P)_READ_MEASUR_SETTINGS") {
+
+    field(SCAN, "5 second")
+
+    field(DO1, "1")
+    field(DO2, "1")
+    field(DO3, "1")
+    field(DO4, "1")
+    field(DO5, "1")
+    field(DO6, "1")
+    field(DO7, "1")
+    field(DO8, "1")
+
+    field(DLY1, "0.1")
+    field(DLY2, "0.1")
+    field(DLY3, "0.1")
+    field(DLY4, "0.1")
+    field(DLY5, "0.1")
+    field(DLY6, "0.1")
+    field(DLY7, "0.1")
+    field(DLY8, "0.1")
+
+
+    field(LNK1, "$(P)VOLT:MEAS:AUTORANGE:SP:RBV.PROC")
+    field(LNK8, "$(P)_READ_MODES.PROC")
 
 
     field(SELM, "All")
@@ -862,6 +892,8 @@ record(ao, "$(P)CURR:SOURCE:RANGE:SP")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR:SOURCE:RANGE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
 }
 
 record(ai, "$(P)CURR:SOURCE:RANGE:SP:RBV")
@@ -874,6 +906,8 @@ record(ai, "$(P)CURR:SOURCE:RANGE:SP:RBV")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR:SOURCE:RANGE:SP:RBV")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
 }
 
 record(ai, "$(P)SIM:CURR:SOURCE:RANGE")
@@ -894,6 +928,8 @@ record(ao, "$(P)VOLT:SOURCE:RANGE:SP")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLT:SOURCE:RANGE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
 }
 
 record(ai, "$(P)VOLT:SOURCE:RANGE:SP:RBV")
@@ -906,6 +942,8 @@ record(ai, "$(P)VOLT:SOURCE:RANGE:SP:RBV")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLT:SOURCE:RANGE:SP:RBV")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
 }
 
 record(ai, "$(P)SIM:VOLT:SOURCE:RANGE")
@@ -915,3 +953,43 @@ record(ai, "$(P)SIM:VOLT:SOURCE:RANGE")
 alias("$(P)VOLT:SOURCE:RANGE:SP:RBV", "$(P)VOLT:SOURCE:RANGE")
 alias("$(P)SIM:VOLT:SOURCE:RANGE", "$(P)SIM:VOLT:SOURCE:RANGE:SP")
 alias("$(P)SIM:VOLT:SOURCE:RANGE", "$(P)SIM:VOLT:SOURCE:RANGE:SP:RBV")
+
+record(bo, "$(P)VOLT:MEAS:AUTORANGE:SP")
+{
+    field(DESC, "Sets voltage measure autoranging on/off")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto set_V_MEAS_AUTORANGE $(PORT)")
+    field(PINI, "YES")
+    field(VAL, "1")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:MEAS:AUTORANGE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
+}
+
+record(bi, "$(P)VOLT:MEAS:AUTORANGE:SP:RBV")
+{
+    field(DESC, "Gets status of volts measure autoranging")
+    field(DTYP, "stream")
+    field(INP, "@Keithley2400.proto get_V_MEAS_AUTORANGE $(PORT)")
+    field(SCAN, "Passive")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:VOLT:MEAS:AUTORANGE:SP:RBV")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
+}
+
+record(bi, "$(P)SIM:VOLT:MEAS:AUTORANGE")
+{
+}
+
+alias("$(P)VOLT:MEAS:AUTORANGE:SP:RBV", "$(P)VOLT:MEAS:AUTORANGE")
+alias("$(P)SIM:VOLT:MEAS:AUTORANGE", "$(P)SIM:VOLT:MEAS:AUTORANGE:SP")
+alias("$(P)SIM:VOLT:MEAS:AUTORANGE", "$(P)SIM:VOLT:MEAS:AUTORANGE:SP:RBV")
+
