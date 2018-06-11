@@ -174,6 +174,7 @@ record(seq, "$(P)_READ_MEASUR_SETTINGS") {
 
 
     field(LNK1, "$(P)VOLT:MEAS:AUTORANGE:SP:RBV.PROC")
+    field(LNK2, "$(P)CURR:MEAS:AUTORANGE:SP:RBV.PROC")
     field(LNK8, "$(P)_READ_MODES.PROC")
 
 
@@ -993,3 +994,42 @@ alias("$(P)VOLT:MEAS:AUTORANGE:SP:RBV", "$(P)VOLT:MEAS:AUTORANGE")
 alias("$(P)SIM:VOLT:MEAS:AUTORANGE", "$(P)SIM:VOLT:MEAS:AUTORANGE:SP")
 alias("$(P)SIM:VOLT:MEAS:AUTORANGE", "$(P)SIM:VOLT:MEAS:AUTORANGE:SP:RBV")
 
+
+record(bo, "$(P)CURR:MEAS:AUTORANGE:SP")
+{
+    field(DESC, "Sets current measure autoranging on/off")
+    field(DTYP, "stream")
+    field(OUT, "@Keithley2400.proto set_I_MEAS_AUTORANGE $(PORT)")
+    field(PINI, "YES")
+    field(VAL, "1")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURR:MEAS:AUTORANGE:SP")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
+}
+
+record(bi, "$(P)CURR:MEAS:AUTORANGE:SP:RBV")
+{
+    field(DESC, "Gets status of amps measure autoranging")
+    field(DTYP, "stream")
+    field(INP, "@Keithley2400.proto get_I_MEAS_AUTORANGE $(PORT)")
+    field(SCAN, "Passive")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CURR:MEAS:AUTORANGE:SP:RBV")
+    info(archive, "VAL")
+    info(INTEREST, "LOW")
+}
+
+record(bi, "$(P)SIM:CURR:MEAS:AUTORANGE")
+{
+}
+
+alias("$(P)CURR:MEAS:AUTORANGE:SP:RBV", "$(P)CURR:MEAS:AUTORANGE")
+alias("$(P)SIM:CURR:MEAS:AUTORANGE", "$(P)SIM:CURR:MEAS:AUTORANGE:SP")
+alias("$(P)SIM:CURR:MEAS:AUTORANGE", "$(P)SIM:CURR:MEAS:AUTORANGE:SP:RBV")
