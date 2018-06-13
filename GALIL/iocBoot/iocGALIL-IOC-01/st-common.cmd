@@ -1,5 +1,15 @@
 
 ##ISIS## Run IOC initialisation 
+epicsEnvSet("IFIOC_GALIL_01", "#")
+epicsEnvSet("IFIOC_GALIL_02", "#")
+epicsEnvSet("IFIOC_GALIL_03", "#")
+epicsEnvSet("IFIOC_GALIL_04", "#")
+epicsEnvSet("IFIOC_GALIL_05", "#")
+epicsEnvSet("IFIOC_GALIL_06", "#")
+epicsEnvSet("IFIOC_GALIL_07", "#")
+epicsEnvSet("IFIOC_GALIL_08", "#")
+epicsEnvSet("IFIOC_GALIL_09", "#")
+epicsEnvSet("IFIOC_GALIL_10", "#")
 < $(IOCSTARTUP)/init.cmd
 
 ##ISIS## Load common DB records 
