@@ -184,6 +184,7 @@ record(seq, "$(P)_READ_MEASUR_SETTINGS") {
 }
 
 record(calcout, "$(P)_READ_TRIGGER") {
+  field(SCAN, "1 second")
   field(INPA, "$(P)OUTPUT:MODE.RVAL")
   field(CALC, "A==1?0:1")
   field(OOPT, "When Zero")
@@ -197,9 +198,9 @@ record(seq, "$(P)_READ_POWER") {
     field(DO2, "1")
     field(DO3, "1")
 
-    field(DLY1, "0")
-    field(DLY2, "0")
-    field(DLY3, "0")
+    field(DLY1, "0.1")
+    field(DLY2, "0.1")
+    field(DLY3, "0.1")
 
     field(LNK1, "$(P)VOLT:RAW.PROC")
     field(LNK2, "$(P)CURR:RAW.PROC")
@@ -217,7 +218,7 @@ record(ai, "$(P)CURR:RAW")
     field(DTYP, "stream")
     field(INP, "@Keithley2400.proto get_I $(PORT)")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:I")
+    field(SIOL, "$(P)SIM:CURR")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -226,8 +227,6 @@ alias("$(P)CURR:RAW", "$(P)I:RAW")
 record(ai, "$(P)SIM:CURR")
 {
 }
-
-alias("$(P)SIM:CURR", "$(P)SIM:I")
 
 record(calcout, "$(P)CURR:CALC")
 {
@@ -256,7 +255,7 @@ record(ai, "$(P)VOLT:RAW")
     field(DTYP, "stream")
     field(INP, "@Keithley2400.proto get_V $(PORT)")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:V")
+    field(SIOL, "$(P)SIM:VOLT")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -265,8 +264,6 @@ alias("$(P)VOLT:RAW", "$(P)V:RAW")
 record(ai, "$(P)SIM:VOLT")
 {
 }
-
-alias("$(P)SIM:VOLT", "$(P)SIM:V")
 
 record(calcout, "$(P)VOLT:CALC")
 {
