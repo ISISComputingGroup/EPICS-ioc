@@ -31,6 +31,7 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += keyence.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -41,6 +42,7 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += KYNCTM3K
 ## Add other libraries here ##
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
