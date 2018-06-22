@@ -25,14 +25,12 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
-## Stream device support ##
+## add other dbd here ##
 $(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
-## add other dbd here ##
-#$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -43,12 +41,11 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
-## Stream device libraries ##
+## Add other libraries here ##
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
-## Add other libraries here ##
-#$(APPNAME)_LIBS += xxx
+$(APPNAME)_LIBS += calc sscan
 
 # KYNCTM3K-IOC-01_registerRecordDeviceDriver.cpp derives from KYNCTM3K-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
