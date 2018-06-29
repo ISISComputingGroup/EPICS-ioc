@@ -2,9 +2,10 @@
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
 <ioc_desc>IOC for the Keyence TM-3001P Optical Micrometer controller</ioc_desc>
-<ioc_details>These are template details</ioc_details>
+<ioc_details>Keyence TM-3001P details</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+    <macro name="MEAS_UNITS" pattern=".*" description="Measurement units of Keyence 3000, defaults to mm" />
 </macros>
 <pvsets>
 </pvsets>

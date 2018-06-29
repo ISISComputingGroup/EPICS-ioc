@@ -1,12 +1,4 @@
-<?xml version="1.0" ?>
+?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
-<config_part>
-<ioc_desc>This is a template description</ioc_desc>
-<ioc_details>These are template details</ioc_details>
-<macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
-</macros>
-<pvsets>
-</pvsets>
-</config_part>
+<xi:include href="../iocKYNCTM3K-IOC-01/config.xml"  />
 </ioc_config>
