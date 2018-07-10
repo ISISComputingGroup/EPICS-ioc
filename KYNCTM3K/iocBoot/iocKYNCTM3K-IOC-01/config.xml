@@ -5,7 +5,6 @@
 <ioc_details>Keyence TM-3001P details</ioc_details>
 <macros>
     <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
-    <macro name="MEAS_UNITS" pattern="^.*$" description="Measurement units of Keyence 3000, defaults to mm" />
     <macro name="DISCHAN01" pattern="#?" description="Disables alarms for channel 01, defaults to blank" />
     <macro name="DISCHAN02" pattern="#?" description="Disables alarms for channel 02, defaults to blank" />
     <macro name="DISCHAN03" pattern="#?" description="Disables alarms for channel 03, defaults to blank" />
@@ -22,6 +21,22 @@
     <macro name="DISCHAN14" pattern="#?" description="Disables alarms for channel 14, defaults to blank" />
     <macro name="DISCHAN15" pattern="#?" description="Disables alarms for channel 15, defaults to blank" />
     <macro name="DISCHAN16" pattern="#?" description="Disables alarms for channel 16, defaults to blank" />
+    <macro name="CHAN_EGU01" pattern="^.*$" description="Measurement units for channel 01, defaults to mm" />
+    <macro name="CHAN_EGU02" pattern="^.*$" description="Measurement units for channel 02, defaults to mm" />
+    <macro name="CHAN_EGU03" pattern="^.*$" description="Measurement units for channel 03, defaults to mm" />
+    <macro name="CHAN_EGU04" pattern="^.*$" description="Measurement units for channel 04, defaults to mm" />
+    <macro name="CHAN_EGU05" pattern="^.*$" description="Measurement units for channel 05, defaults to mm" />
+    <macro name="CHAN_EGU06" pattern="^.*$" description="Measurement units for channel 06, defaults to mm" />
+    <macro name="CHAN_EGU07" pattern="^.*$" description="Measurement units for channel 07, defaults to mm" />
+    <macro name="CHAN_EGU08" pattern="^.*$" description="Measurement units for channel 08, defaults to mm" />
+    <macro name="CHAN_EGU09" pattern="^.*$" description="Measurement units for channel 09, defaults to mm" />
+    <macro name="CHAN_EGU10" pattern="^.*$" description="Measurement units for channel 10, defaults to mm" />
+    <macro name="CHAN_EGU11" pattern="^.*$" description="Measurement units for channel 11, defaults to mm" />
+    <macro name="CHAN_EGU12" pattern="^.*$" description="Measurement units for channel 12, defaults to mm" />
+    <macro name="CHAN_EGU13" pattern="^.*$" description="Measurement units for channel 13, defaults to mm" />
+    <macro name="CHAN_EGU14" pattern="^.*$" description="Measurement units for channel 14, defaults to mm" />
+    <macro name="CHAN_EGU15" pattern="^.*$" description="Measurement units for channel 15, defaults to mm" />
+    <macro name="CHAN_EGU16" pattern="^.*$" description="Measurement units for channel 16, defaults to mm" />
 </macros>
 <pvsets>
 </pvsets>
