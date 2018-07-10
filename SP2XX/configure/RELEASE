@@ -15,7 +15,7 @@
 #  RELEASE.$(EPICS_HOST_ARCH).$(T_A)
 #
 # This file is parsed by both GNUmake and an EPICS Perl script,
-# so it can ONLY contain definititions of paths to other support
+# so it can ONLY contain definitions of paths to other support
 # modules, variable definitions that are used in module paths,
 # and include statements that pull in other RELEASE files.
 # Variables may be used before their values have been set.
@@ -41,30 +41,24 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 -include $(TOP)/../RELEASE.local
 -include $(TOP)/configure/RELEASE.local
 
-EUROTHERM2K=$(SUPPORT)/eurotherm2k/master
-CSM=$(SUPPORT)/csm/master
+# Macros required for basic ioc/stream device
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
 ASYN=$(SUPPORT)/asyn/master
 AUTOSAVE=$(SUPPORT)/autosave/master
 CALC=$(SUPPORT)/calc/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
-COMMON=$(ISISSUPPORT)/Common/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
-EFSW=$(SUPPORT)/efsw/master
-FILELIST=$(SUPPORT)/FileList/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master
 LIBJSON=$(SUPPORT)/libjson/master
-ONCRPC=$(SUPPORT)/oncrpc/master
 MYSQL=$(SUPPORT)/MySQL/master
+ONCRPC=$(SUPPORT)/oncrpc/master
 PCRE=$(SUPPORT)/pcre/master
 PUGIXML=$(SUPPORT)/pugixml/master
 PVDUMP=$(SUPPORT)/pvdump/master
-READASCII=$(SUPPORT)/ReadASCII/master
 SNCSEQ=$(SUPPORT)/seq/master
 SQLITE=$(SUPPORT)/sqlite/master
 SSCAN=$(SUPPORT)/sscan/master
-STD=$(SUPPORT)/std/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
@@ -74,3 +68,6 @@ ZLIB=$(SUPPORT)/zlib/master
 
 include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
+
+# IOC-specific support module
+SP2XX=$(SUPPORT)/sp2xx/master
