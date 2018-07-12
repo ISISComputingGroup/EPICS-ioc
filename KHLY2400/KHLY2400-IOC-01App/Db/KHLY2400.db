@@ -136,8 +136,8 @@ record(seq, "$(P)_READ_SOURCES") {
 
 
     field(LNK1, "$(P)VOLT:COMPLIANCE.PROC")
-    field(LNK2, "$(P)VOLT:SOURCE:SP:RBV.PROC")
-    field(LNK3, "$(P)CURR:SOURCE:SP:RBV.PROC")
+    field(LNK2, "$(P)VOLT:SOURCE.PROC")
+    field(LNK3, "$(P)CURR:SOURCE.PROC")
     field(LNK4, "$(P)CURR:SOURCE:AUTORANGE:SP:RBV.PROC")
     field(LNK5, "$(P)VOLT:SOURCE:AUTORANGE:SP:RBV.PROC")
     field(LNK6, "$(P)CURR:SOURCE:RANGE:SP:RBV.PROC")
@@ -172,10 +172,10 @@ record(seq, "$(P)_READ_MEASUR_SETTINGS") {
     field(DLY8, "0.1")
 
 
-    field(LNK1, "$(P)VOLT:MEAS:AUTORANGE:SP:RBV.PROC")
-    field(LNK2, "$(P)CURR:MEAS:AUTORANGE:SP:RBV.PROC")
-    field(LNK3, "$(P)VOLT:MEAS:RANGE:SP:RBV.PROC")
-    field(LNK4, "$(P)CURR:MEAS:RANGE:SP:RBV.PROC")
+    field(LNK1, "$(P)VOLT:MEAS:AUTORANGE.PROC")
+    field(LNK2, "$(P)CURR:MEAS:AUTORANGE.PROC")
+    field(LNK3, "$(P)VOLT:MEAS:RANGE.PROC")
+    field(LNK4, "$(P)CURR:MEAS:RANGE.PROC")
     field(LNK8, "$(P)_READ_MODES.PROC")
 
 
@@ -976,6 +976,11 @@ record(ai, "$(P)SIM:VOLT:SOURCE:RANGE")
 }
 
 
+alias("$(P)VOLT:SOURCE:RANGE", "$(P)VOLT:SOURCE:RANGE:SP:RBV")
+
+alias("$(P)SIM:VOLT:SOURCE:RANGE", "$(P)SIM:VOLT:SOURCE:RANGE:SP")
+alias("$(P)SIM:VOLT:SOURCE:RANGE", "$(P)SIM:VOLT:SOURCE:RANGE:SP:RBV")
+
 #################################
 ## Source auto ranging toggles ##
 #################################
@@ -1055,11 +1060,6 @@ alias("$(P)VOLT:SOURCE:AUTORANGE", "$(P)VOLT:SOURCE:AUTORANGE:SP:RBV")
 
 alias("$(P)SIM:VOLT:SOURCE:AUTORANGE", "$(P)SIM:VOLT:SOURCE:AUTORANGE:SP")
 alias("$(P)SIM:VOLT:SOURCE:AUTORANGE", "$(P)SIM:VOLT:SOURCE:AUTORANGE:SP:RBV")
-
-alias("$(P)VOLT:SOURCE:RANGE", "$(P)VOLT:SOURCE:RANGE:SP:RBV")
-
-alias("$(P)SIM:VOLT:SOURCE:RANGE", "$(P)SIM:VOLT:SOURCE:RANGE:SP")
-alias("$(P)SIM:VOLT:SOURCE:RANGE", "$(P)SIM:VOLT:SOURCE:RANGE:SP:RBV")
 
 ######################################
 ## Measurement auto ranging toggles ##
