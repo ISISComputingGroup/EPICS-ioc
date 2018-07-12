@@ -15,7 +15,6 @@ ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
 ASYN=$(SUPPORT)/asyn/master
 AXIS=$(SUPPORT)/axis/master
-AXISRECORD=$(SUPPORT)/axisRecord/master
 AUTOSAVE=$(SUPPORT)/autosave/master
 BUSY=$(SUPPORT)/busy/master
 CALC=$(SUPPORT)/calc/master
