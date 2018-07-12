@@ -3,7 +3,8 @@
 < $(IOCSTARTUP)/init.cmd
 
 ## Configure devices
-drvAsynIPPortConfigure("MC_CPU1","$(HOST=127.0.0.1:5024)",0,0,0)
+# beckhoff simulator runs on port 5024 
+drvAsynIPPortConfigure("MC_CPU1","$(HOST=127.0.0.1:23)",0,0,0)
 
 asynOctetSetOutputEos("MC_CPU1", -1, ";\n")
 asynOctetSetInputEos("MC_CPU1", -1, ";\n")
