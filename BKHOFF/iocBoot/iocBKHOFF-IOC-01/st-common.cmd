@@ -3,7 +3,7 @@
 < $(IOCSTARTUP)/init.cmd
 
 ## Configure devices
-drvAsynIPPortConfigure("MC_CPU1","$(HOST=127.0.0.1:23)",0,0,0)
+drvAsynIPPortConfigure("MC_CPU1","$(HOST=127.0.0.1:5024)",0,0,0)
 
 asynOctetSetOutputEos("MC_CPU1", -1, ";\n")
 asynOctetSetInputEos("MC_CPU1", -1, ";\n")
@@ -18,14 +18,14 @@ $(IFNOTDEVSIM=) $(IFNOTRECSIM=) EssMCAGmotorCreateController("MCU1", "MC_CPU1", 
   #define ASYN_TRACE_WARNING   0x0020
   #define ASYN_TRACE_INFO      0x0040
 asynSetTraceMask("MC_CPU1", -1, 0x41)
-##asynSetTraceMask("MC_CPU1", -1, 0x48)
+asynSetTraceMask("MC_CPU1", -1, 0x48)
 
   #define ASYN_TRACEIO_NODATA 0x0000
   #define ASYN_TRACEIO_ASCII  0x0001
   #define ASYN_TRACEIO_ESCAPE 0x0002
   #define ASYN_TRACEIO_HEX    0x0004
 asynSetTraceIOMask("MC_CPU1", -1, 2)
-##asynSetTraceIOMask("MC_CPU1", -1, 6)
+#asynSetTraceIOMask("MC_CPU1", -1, 6)
 
   #define ASYN_TRACEINFO_TIME 0x0001
   #define ASYN_TRACEINFO_PORT 0x0002
