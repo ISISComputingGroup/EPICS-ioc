@@ -3,6 +3,7 @@
 < $(IOCSTARTUP)/init.cmd
 
 ## Configure devices
+# beckhoff simulator runs on port 5024 
 drvAsynIPPortConfigure("MC_CPU1","$(HOST=127.0.0.1:23)",0,0,0)
 
 asynOctetSetOutputEos("MC_CPU1", -1, ";\n")
@@ -75,7 +76,7 @@ dbLoadRecords("db/IMAT.db","P=$(MYPVPREFIX),PORT=MCU1,M1=MOT:MTR0901,M2=MOT:MTR0
 
 ## motor util package
 ## note: IOC name needs to have been added to _FAN element of this DB file
-dbLoadRecords("$(AXISRECORD)/db/axisUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=MOT:MTR0901")
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=MOT:MTR0902")
@@ -89,7 +90,7 @@ dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=MOT:MTR0902")
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
-axisUtilInit("$(MYPVPREFIX)$(IOCNAME):")
+motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 ## Start any sequence programs
 #seq sncxxx,"user=faa59Host"

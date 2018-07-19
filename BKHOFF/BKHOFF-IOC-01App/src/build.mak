@@ -32,7 +32,6 @@ $(APPNAME)_DBD += sampleChanger.dbd
 $(APPNAME)_DBD += asubFunctions.dbd 
 
 ## add other dbd here ##
-$(APPNAME)_DBD += axisSupport.dbd
 $(APPNAME)_DBD += axis.dbd
 $(APPNAME)_DBD += eemcuSupport.dbd
 $(APPNAME)_DBD += calcSupport.dbd 
@@ -51,8 +50,8 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 
 ## Add other libraries here ##
-$(APPNAME)_LIBS += eemcuSupport axis
-$(APPNAME)_LIBS += motorSimSupport motor
+$(APPNAME)_LIBS += eemcuSupport
+$(APPNAME)_LIBS += motorSimSupport softMotor motor
 $(APPNAME)_LIBS += asyn calc sscan
 $(APPNAME)_LIBS += motionSetPoints
 $(APPNAME)_LIBS += sampleChanger
