@@ -233,7 +233,6 @@ record(mbbi, "$(P)CTRL") {
 record(mbbo, "$(P)CTRL:SP") {
   field(DESC, "Set control")
   field(SCAN, "Passive")
-  field(PINI, "YES")
   field(DTYP, "stream")
   field(VAL, "1")
   field(OUT, "@itc503.proto set_ctrl $(PORT)")
@@ -340,6 +339,10 @@ record(ao, "$(P)TEMP:SP") {
   # Readascii ramp is responsible for setting TEMP:SP:RAW, but have to trigger it
   field(FLNK, "$(P)RAMP:_OUT_SP.PROC CA")
 }
+
+alias("$(P)TEMP:SP", "$(P)TEMP:1:SP")
+alias("$(P)TEMP:SP", "$(P)TEMP:2:SP")
+alias("$(P)TEMP:SP", "$(P)TEMP:3:SP")
 
 record(ai, "$(P)RAMP:_OUT_SP")
 {
@@ -536,7 +539,7 @@ record(bo, "$(P)AUTOPID:SP") {
 
 
 record(seq, "$(P)FAN1") {
-  field(SCAN, "10 second")
+  field(SCAN, "1 second")
   field(SDIS, "$(P)DISABLE")
   field(SELM, "All")
   field(LNK1, "$(P)P.PROC PP")
@@ -547,13 +550,13 @@ record(seq, "$(P)FAN1") {
   field(LNK6, "$(P)TEMP:ERR.PROC PP")
   field(LNK7, "$(P)FAN2.PROC PP")
   field(LNK8, "$(P)FAN1.DESC")      
-  field(DLY2, "1.0")
-  field(DLY3, "1.0")
-  field(DLY4, "1.0")
-  field(DLY5, "1.0")
-  field(DLY6, "1.0")   
-  field(DLY7, "1.0")   
-  field(DLY8, "7.0")     
+  field(DLY2, "0.05")
+  field(DLY3, "0.1")
+  field(DLY4, "0.15")
+  field(DLY5, "0.2")
+  field(DLY6, "0.25")   
+  field(DLY7, "0.3")   
+  field(DLY8, "0.35")     
 }
 
 record(seq, "$(P)FAN2") {
@@ -564,11 +567,11 @@ record(seq, "$(P)FAN2") {
   field(LNK4, "$(P)GASFLOW.PROC PP")  
   field(LNK5, "$(P)TEMP:2.PROC PP")
   field(LNK6, "$(P)TEMP:3.PROC PP")
-  field(DLY2, "1.0")
-  field(DLY3, "1.0")
-  field(DLY4, "1.0")
-  field(DLY5, "1.0")
-  field(DLY6, "1.0")
+  field(DLY2, "0.05")
+  field(DLY3, "0.1")
+  field(DLY4, "0.15")
+  field(DLY5, "0.2")
+  field(DLY6, "0.25")
 }
 
 
@@ -615,6 +618,7 @@ record(mbbo, "$(P)SIM:MODE") {
 alias("$(P)SIM:MODE", "$(P)SIM:MODE:SP")
 
 record(ao, "$(P)SIM:HEATERV"){}
+alias("$(P)SIM:HEATERV", "$(P)SIM:HEATERV:SP")
 
 record(ao, "$(P)SIM:TEMP"){}
 alias("$(P)SIM:TEMP", "$(P)SIM:TEMP:SP")
