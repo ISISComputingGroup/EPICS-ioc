@@ -604,6 +604,22 @@ record(ai, "$(P)DELAY:_SEQ_DELAY")
 	info(archive, "VAL")
 }
 
+record(ai, "$(P)SPEED:_SEQ_TOL")
+{
+    # If speed setpoint readback not equal to setpoint within this tolerance, resend setpoint.
+    field(VAL, "5")
+	field(PINI, "YES")
+	info(archive, "VAL")
+}
+
+record(ai, "$(P)SPEED:_SEQ_DELAY")
+{
+    # If speed setpoint readback has not reached sp within this time, resend setpoint.
+    field(VAL, "30")
+	field(PINI, "YES")
+	info(archive, "VAL")
+}
+
 record(ao, "$(P)GATEWIDTH:SP")
 {
 	field(DESC, "Gate width setpoint")
