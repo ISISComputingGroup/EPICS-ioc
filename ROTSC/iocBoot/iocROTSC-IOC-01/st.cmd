@@ -32,6 +32,14 @@ $(IFNOTDEVSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
 $(IFNOTDEVSIM) asynOctetSetInputEos("$(DEVICE)", -1, "\r")          
 $(IFNOTDEVSIM) asynOctetSetOutputEos("$(DEVICE)", -1, "\r")         
 
+## Hardware flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", 0, "clocal", "Y")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
+
+## Software flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
+
 ## Load record instances
 
 #asynSetTraceIOMask("$(DEVICE)",0,2)
