@@ -35,6 +35,7 @@ $(APPNAME)_DBD += cvtRecord.dbd
 $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
+$(APPNAME)_DBD += DAQmxSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -47,7 +48,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
-$(APPNAME)_LIBS += FileList ReadASCII
+$(APPNAME)_LIBS += FileList ReadASCII DAQmxSupport
 $(APPNAME)_LIBS += stream cvtRecord csmbase std calc sscan asyn 
 $(APPNAME)_LIBS += utilities pcre libjson zlib efsw
 
@@ -63,6 +64,13 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
+
+ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
+DAQMXLIB = $(ICPBINARYDIR)/NIDAQmx/lib/msvc64
+else
+DAQMXLIB = $(ICPBINARYDIR)/NIDAQmx/lib/msvc
+endif
+$(APPNAME)_SYS_LIBS_WIN32 += $(DAQMXLIB)/NIDAQmx
 
 #===========================
 

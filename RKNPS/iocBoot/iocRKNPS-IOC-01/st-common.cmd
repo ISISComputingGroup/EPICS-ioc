@@ -38,6 +38,8 @@ asynOctetConnect("DFKINIT","L0")
 ## Load record instances
 iocshCmdLoop("< iocBoot/iocRKNPS-IOC-01/st-psu.cmd", "PS=\$(I)", "I", 1, 10)
 
+< iocBoot/iocRKNPS-IOC-01/st-daq.cmd
+
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
