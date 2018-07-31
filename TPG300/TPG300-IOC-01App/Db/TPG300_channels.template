@@ -1,0 +1,55 @@
+record(ai, "$(P)PRESSURE_$(CHAN)")
+{
+    field(DESC, "Pressure of $(CHAN)")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@devTPG300.proto getPressure(P$(CHAN)) $(PORT)")
+    field(PREC, "3")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PRESSURE")
+    field(SDIS, "$(P)DISABLE")
+	info(archive, "VAL")
+    info(INTEREST, "HIGH")
+    field(EGU, "")
+    $(IFTEST) info(alarm, "Pressure $(CHAN)")
+}
+
+## Visible PVs have initial value set to 0 if the channel is off,
+## or 1 when the channel is on and the VAL field is uncommented
+
+record(bo, "$(P)PRESSURE_$(CHAN):VISIBLE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(PINI, "YES")
+    $(IFTEST) field(VAL, "1")
+}
+
+#record(mbbi, "$(P)UNITS")
+#{
+#    field(SCAN, "1 second")
+#    field(DTYP, "stream")
+#    field(INP,  "@devTPG300.proto getUnits $(PORT)")
+#    field(ZRST, "mbar")
+#    field(ONST, "Torr")
+#    field(TWST, "Pa")
+#    field(SIML, "$(P)SIM")
+#    field(SIOL, "$(P)SIM:UNITS")
+#    field(SDIS, "$(P)DISABLE")
+#}
+#
+#record(mbbo, "$(P)UNITS:SP")
+#{
+#    field(DTYP, "stream")
+#    field(OUT,  "@devTPG300.proto setUnits $(PORT)")
+#    field(ZRST, "mbar")
+#    field(ONST, "Torr")
+#    field(TWST, "Pa")
+#    field(SIML, "$(P)SIM")
+#    field(SIOL, "$(P)SIM:UNITS:SP")
+#    field(SDIS, "$(P)DISABLE")
+#}
+#
+#alias("$(P)UNITS", "$(P)UNITS:SP:RBV")

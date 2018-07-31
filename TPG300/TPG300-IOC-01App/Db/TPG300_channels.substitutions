@@ -1,0 +1,9 @@
+file kynctm3k.template {
+
+pattern {PORT, P, CHAN, IFTEST}
+{"\$(PORT)", "\$(P)", "A1", "\$(IFPRESSURA1)"}
+{"\$(PORT)", "\$(P)", "A2", "\$(IFPRESSURA2)"}
+{"\$(PORT)", "\$(P)", "B1", "\$(IFPRESSURB1)"}
+{"\$(PORT)", "\$(P)", "B2", "\$(IFPRESSURB2)"}
+
+}

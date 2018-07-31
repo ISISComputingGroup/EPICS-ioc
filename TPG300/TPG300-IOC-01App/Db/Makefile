@@ -11,6 +11,7 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 DB += devTPG300.db
+DB += TPG300_channels.db
 DB += unit_setter.db
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
