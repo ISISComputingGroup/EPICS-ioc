@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application BKHOFF-IOC-01
+# Build the IOC application KYNCTM3K-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# BKHOFF-IOC-01.dbd will be created and installed
+# KYNCTM3K-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# BKHOFF-IOC-01.dbd will be made up from these files:
+# KYNCTM3K-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += devSequencer.dbd
@@ -25,22 +25,16 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
-$(APPNAME)_DBD += asyn.dbd
-$(APPNAME)_DBD += drvAsynIPPort.dbd
-$(APPNAME)_DBD += motionSetPoints.dbd
-$(APPNAME)_DBD += sampleChanger.dbd 
-$(APPNAME)_DBD += asubFunctions.dbd 
-
 ## add other dbd here ##
-$(APPNAME)_DBD += axis.dbd
-$(APPNAME)_DBD += eemcuSupport.dbd
-$(APPNAME)_DBD += calcSupport.dbd 
-$(APPNAME)_DBD += motorSupport.dbd
-$(APPNAME)_DBD += motorSimSupport.dbd
+$(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += drvAsynSerialPort.dbd
+$(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += keyence.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
@@ -48,16 +42,14 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
-
+$(APPNAME)_LIBS += KYNCTM3K
 ## Add other libraries here ##
-$(APPNAME)_LIBS += eemcuSupport
-$(APPNAME)_LIBS += motorSimSupport softMotor motor
-$(APPNAME)_LIBS += asyn calc sscan
-$(APPNAME)_LIBS += motionSetPoints
-$(APPNAME)_LIBS += sampleChanger
-$(APPNAME)_LIBS += TinyXML
+$(APPNAME)_LIBS += stream
+$(APPNAME)_LIBS += pcre
+$(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += calc sscan
 
-# BKHOFF-IOC-01_registerRecordDeviceDriver.cpp derives from BKHOFF-IOC-01.dbd
+# KYNCTM3K-IOC-01_registerRecordDeviceDriver.cpp derives from KYNCTM3K-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
