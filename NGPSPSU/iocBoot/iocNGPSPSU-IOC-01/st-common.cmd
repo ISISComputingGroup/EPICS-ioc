@@ -1,12 +1,6 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(NGPSPSU)/data"
 epicsEnvSet "DEVICE" "L0"
 
-cd "${TOP}"
-
-## Register all support components
-dbLoadDatabase "dbd/NGPSPSU-IOC-01.dbd"
-NGPSPSU_IOC_01_registerRecordDeviceDriver pdbbase
-
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 

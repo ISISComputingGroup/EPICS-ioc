@@ -12,7 +12,7 @@ cd "${TOP}"
 
 ## Register all support components
 dbLoadDatabase "dbd/NGPSPSU-IOC-02.dbd"
-NGPSPSU_IOC_01_registerRecordDeviceDriver pdbbase
+NGPSPSU_IOC_02_registerRecordDeviceDriver pdbbase
 
 ## calling common command file in ioc 01 boot dir
 < ${TOP}/iocBoot/iocNGPSPSU-IOC-01/st-common.cmd
