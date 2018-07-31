@@ -50,9 +50,3 @@ iocInit
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
-
-## Get rid of these before making a pull request
-asynSetTraceMask("L0",0,0x11)
-asynSetTraceIOMask("L0",-1,0x2)
-asynSetTraceInfoMask("L0",-1,0x3)
-asynSetTraceMask("L0",-1,0x9)
