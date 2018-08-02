@@ -7,7 +7,7 @@ record(bo, "$(P)SIM")
     field(VAL, "$(RECSIM=0)")
 }
 
-record(bo, "$(P)DISABLE") 
+record(bo, "$(P)DISABLE")
 {
     field(DESC, "Disable comms")
     field(PINI, "YES")
@@ -45,7 +45,7 @@ record(fanout, "$(P)STAT_FAN")
     field(LNK2, "$(P)CALC_MTR_0_ENB.PROC")
     field(LNK3, "$(P)CALC_ACTUATOR_ARM_POSN.PROC")
 	field(LNK4, "$(P)CALC_CAR_AT_IDX.PROC")
-    field(LNK5, "$(P)CALC_CAR_AT_POS_1.PROC")	
+    field(LNK5, "$(P)CALC_CAR_AT_POS_1.PROC")
 	field(LNK6, "$(P)STAT_FAN_01.PROC")
 }
 
@@ -79,7 +79,7 @@ record(fanout, "$(P)MTR_STAT_FAN")
 
 record(ai, "$(P)POSN")
 {
-	field(DESC, "The position of the rotation")	
+	field(DESC, "The position of the rotation")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
 	field(EGU, "") # Fixed positions of 1-20
@@ -158,7 +158,7 @@ record(scalcout, "$(P)CALC_SAMPLE_ARM_UP")
 
 record(bo, "$(P)SAMPLE_ARM_UP")
 {
-	field(DESC, "Whether the sample arm is up")	
+	field(DESC, "Whether the sample arm is up")
 	field(ONAM, "UP")
 	field(ZNAM, "NOT UP")
 }
@@ -174,7 +174,7 @@ record(scalcout, "$(P)CALC_SAMPLE_ARM_DOWN")
 
 record(bo, "$(P)SAMPLE_ARM_DOWN")
 {
-	field(DESC, "Whether the sample arm is down")	
+	field(DESC, "Whether the sample arm is down")
 	field(ONAM, "DOWN")
 	field(ZNAM, "NOT DOWN")
 	info(INTEREST, "MEDIUM")
@@ -199,7 +199,7 @@ record(bo, "$(P)MOTOR_1_ACTIVE")
 record(scalcout, "$(P)CALC_MTR_0_ACTIVE")
 {
 	# HRPD version gives three motor status bits rather than two
-    field(CALC, "AA[($(VERSION)+1),($(VERSION)+1)]") 
+    field(CALC, "AA[($(VERSION)+1),($(VERSION)+1)]")
     field(INAA, "$(P)RAW_MTR_STAT PP MS")
     field(OUT, "$(P)MOTOR_0_ACTIVE PP MS")
 	field(IVOA, "Don't drive outputs")
@@ -231,7 +231,7 @@ record(bo, "$(P)GO_BACKWARD")
 	field(DESC, "Move carousel one step backward")
 	field(OUT, "@rotsc_$(VERSION).proto sendCommand(bk,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
 	field(FLNK, "$(P)$(CMD_ERR)_NUMBER.PROC")
-	info(INTEREST, "MEDIUM")	
+	info(INTEREST, "MEDIUM")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:GO_BACKWARD")
     field(SDIS, "$(P)DISABLE")
@@ -241,7 +241,7 @@ record(bo, "$(P)HALT")
 {
 	field(DTYP, "stream")
 	field(DESC, "Halt all motors")
-	field(OUT, "@rotsc_$(VERSION).proto sendCommand(ht,$(P)$(CMD_ERR)_NUMBER) $(PORT)")	
+	field(OUT, "@rotsc_$(VERSION).proto sendCommand(ht,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
 	field(FLNK, "$(P)$(CMD_ERR)_NUMBER.PROC")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:HALT")
@@ -252,7 +252,7 @@ record(bo, "$(P)RESET_0")
 {
 	field(DTYP, "stream")
 	field(DESC, "Reset the rotating drive")
-	field(OUT, "@rotsc_$(VERSION).proto sendCommand(r0,$(P)$(CMD_ERR)_NUMBER) $(PORT)")	
+	field(OUT, "@rotsc_$(VERSION).proto sendCommand(r0,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
 	field(FLNK, "$(P)$(CMD_ERR)_NUMBER.PROC")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RESET_0")
@@ -277,7 +277,7 @@ record(bo, "$(P)INIT")
 	field(DESC, "Initialise the device")
 	field(OUT, "@rotsc_$(VERSION).proto sendCommand(in,$(P)$(CMD_ERR)_NUMBER) $(PORT)")
 	field(FLNK, "$(P)$(CMD_ERR)_NUMBER.PROC")
-	info(INTEREST, "MEDIUM")	
+	info(INTEREST, "MEDIUM")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:INIT")
     field(SDIS, "$(P)DISABLE")
@@ -319,12 +319,11 @@ record(bo, "$(P)RETRIEVE_DROPPED")
 }
 
 record(ao, "$(P)POSN:SP")
-{	
+{
+  field(DTYP, "Soft Channel")
+  field(DESC, "Move to the position and lower the arm")
 	field(SCAN, "Passive")
-	field(DTYP, "stream")
-	field(DESC, "Move to the position and lower the arm")
-	field(OUT, "@rotsc_$(VERSION).proto moveWithLower($(P)$(CMD_ERR)_NUMBER) $(PORT)")
-	field(FLNK, "$(P)$(CMD_ERR)_NUMBER.PROC")
+	field(FLNK, "$(P)POSN:SP:_SEND_IF_CHANGED") #forward links to check if move is necessary
 	info(INTEREST, "HIGH")
 	field(EGU, "")
     field(SIML, "$(P)SIM")
@@ -332,9 +331,31 @@ record(ao, "$(P)POSN:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
+record(calcout, "$(P)POSN:SP:_SEND_IF_CHANGED")
+{
+  field(INPA, "$(P)POSN:SP") #takes "variable"
+  field(INPB, "$(P)POSN") #takes other "variable"
+  field(CALC, "A!=B") # compares and prevents moving to position that it is already in.
+  	field(OOPT, "When Non-zero") #???
+  field(OUT, "$(P)POSN:SP:RAW.PROC") #Not sure what the RAW is for
+}
+
+
+record(ao, "$(P)POSN:SP:RAW")
+{
+	field(DTYP, "stream")
+  field(DRVH, "20")
+  field(DRVL, "1")
+  field(OIF, "FULL")
+	field(OMSL, "closed_loop")
+	field(DOL, "$(P)POSN:SP")
+	field(OUT, "@rotsc_$(VERSION).proto moveWithLower($(P)$(CMD_ERR)_NUMBER) $(PORT)") #moveWithLower in 2 places?
+  # field(OUT, "@rotsc_$(VERSION).proto moveWithLower($(P)POSN:SP) $(PORT)")
+}
+
 record(calc, "$(P)CALC_MOVE_FINISHED")
 {
-	field(DESC, "Has the device has finished moving")	
+	field(DESC, "Has the device has finished moving")
 	field(SCAN, "Passive")
 	field(INPA, "$(P)MOTOR_0_ACTIVE CP")
 	field(INPB, "$(P)MOTOR_1_ACTIVE CP")
@@ -345,7 +366,7 @@ record(calc, "$(P)CALC_MOVE_FINISHED")
 
 record(calc, "$(P)IS_INITIALISED")
 {
-	field(DESC, "Has the device has been initialised")	
+	field(DESC, "Has the device has been initialised")
 	field(INPA, "$(P)POSN.VAL CP")
 	field(CALC, "A>0")
     field(ASG, "READONLY")
@@ -354,7 +375,7 @@ record(calc, "$(P)IS_INITIALISED")
 
 record(calcout, "$(P)CALC_STAT")
 {
-	field(DESC, "Make text version of status")	
+	field(DESC, "Make text version of status")
 	field(INPA, "$(P)IS_INITIALISED CP")
 	field(INPB, "$(P)CALC_MOVE_FINISHED CP")
 	field(CALC, "(!A)?0:B?1:2")
@@ -363,7 +384,7 @@ record(calcout, "$(P)CALC_STAT")
 
 record(mbbi, "$(P)STAT")
 {
-	field(DESC, "Device status")	
+	field(DESC, "Device status")
 	field(ZRVL, "0")
 	field(ZRST, "Uninitialised")
 	field(ONVL, "1")
@@ -448,4 +469,3 @@ record(bo, "$(P)SIM:LOWER_ARM")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
-
