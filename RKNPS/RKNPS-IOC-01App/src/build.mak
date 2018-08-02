@@ -25,6 +25,7 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += coord.dbd 
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 $(APPNAME)_DBD += stream.dbd
@@ -54,6 +55,7 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib efsw
 
 # RKNPS-IOC-01_registerRecordDeviceDriver.cpp derives from RKNPS-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
+$(APPNAME)_SRCS += riken_changeover.st
 
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp
