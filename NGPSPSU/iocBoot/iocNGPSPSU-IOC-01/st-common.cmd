@@ -23,6 +23,9 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 
+## Set the out terminator character, default to \\r
+asynOctetSetOutputEos("$(DEVICE)", -1, "$(OEOS=\\r)") 
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
