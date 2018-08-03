@@ -9,6 +9,7 @@ CALC=$(SUPPORT)/calc/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
 CSM=$(SUPPORT)/csm/master
 DAQMXBASE=$(SUPPORT)/DAQmxBase/master
+DANFYSIK8000=$(SUPPORT)/danfysikMps8000/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
 EFSW=$(SUPPORT)/efsw/master
 FILELIST=$(SUPPORT)/FileList/master
