@@ -346,7 +346,7 @@ record(ao, "$(P)POSN:SP:RAW")
 	field(DTYP, "stream")
   field(DRVH, "20")
   field(DRVL, "1")
-  field(OIF, "FULL")
+  field(OIF, "Full")
 	field(OMSL, "closed_loop")
 	field(DOL, "$(P)POSN:SP")
 	field(OUT, "@rotsc_$(VERSION).proto moveWithLower($(P)$(CMD_ERR)_NUMBER) $(PORT)") #moveWithLower in 2 places?
@@ -449,7 +449,8 @@ record(bo, "$(P)SIM:GO_FORWARD")
 record(bo, "$(P)SIM:INIT")
 {
     field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
+    field(DTYP, "Raw Soft Channel")
+    field(OUT, "$(P)SIM:POSN:SP PP")
 }
 
 record(bo, "$(P)SIM:RAISE_ARM")
