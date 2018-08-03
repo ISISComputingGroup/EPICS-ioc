@@ -449,7 +449,7 @@ record(bo, "$(P)SIM:GO_FORWARD")
 record(bo, "$(P)SIM:INIT")
 {
     field(SCAN, "Passive")
-    field(DTYP, "Raw Soft Channel")
+    field(DTYP, "Soft Channel")
     field(OUT, "$(P)SIM:POSN:SP PP")
 }
 
