@@ -1,4 +1,4 @@
-file kynctm3k.template {
+file TPG300_channels.template {
 
 pattern {PORT, P, CHAN, IFTEST}
 {"\$(PORT)", "\$(P)", "A1", "\$(IFPRESSURA1)"}
