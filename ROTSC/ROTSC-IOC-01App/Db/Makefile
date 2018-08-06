@@ -7,12 +7,6 @@ include $(TOP)/configure/CONFIG
 #  Optimization of db files using dbst (DEFAULT: NO)
 #DB_OPT = YES
 
-#----------------------------------------------------
-# Create and install (or just install) into <top>/db
-# databases, templates, substitutions like this
-DB += rotating_sample_changer.db
-DB += error_calculator.db
-DB += HRPD_specific.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
