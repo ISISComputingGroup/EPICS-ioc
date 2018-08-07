@@ -48,6 +48,7 @@ $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
+$(APPNAME)_LIBS += calc
 #$(APPNAME)_LIBS += xxx
 
 # TSX1820P-IOC-01_registerRecordDeviceDriver.cpp derives from TSX1820P-IOC-01.dbd
