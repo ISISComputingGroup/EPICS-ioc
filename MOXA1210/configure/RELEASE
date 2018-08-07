@@ -63,6 +63,8 @@ STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 
+MODBUS=$(SUPPORT)/modbus/master
+
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
 
@@ -70,3 +72,4 @@ include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
 
 # IOC-specific support module
+MOXA1210=$(SUPPORT)/moxa1210/master
