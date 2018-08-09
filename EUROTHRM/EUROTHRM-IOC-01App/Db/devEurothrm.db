@@ -719,8 +719,8 @@ record(stringout, "$(P)CAL:SEL")
     field(PINI, "YES")
     field(VAL, "None.txt")
     info(archive, "VAL")
-    info(autosave    fields, "VAL")
-#        info(autosave    fields_pass0, "VAL")
+    info(autosaveFields, "VAL")
+#        info(autosaveFields_pass0, "VAL")
 }
 
 record(scalcout, "$(P)CAL:SEL:FMT")
