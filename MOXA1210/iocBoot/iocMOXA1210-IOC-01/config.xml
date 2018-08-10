@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>IOC for the Moxa ioLogik E1210 Remote I/O</ioc_desc>
+<ioc_details>Moxa E1210 details</ioc_details>
+<macros>
+    <macro name="IP_ADDRESS" pattern="^.*$" description="IP address to connect to." />
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>
