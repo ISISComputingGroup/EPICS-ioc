@@ -55,6 +55,8 @@ drvModbusAsynConfigure("$(E1210_ASYNPORT)_DICNT",          "$(E1210_ASYNPORT)", 
 
 dbLoadRecords("$(MOXA1210)/db/ioLogik_E1210.db","NAME=$(MYPVPREFIX)$(IOCNAME), ASYNPORT=$(E1210_ASYNPORT)")
 
+dbLoadRecords("${TOP}/db/IBEX_aliases.db","NAME=$(MYPVPREFIX)$(IOCNAME), ASYNPORT=$(E1210_ASYNPORT)")
+
 asynSetTraceIOMask("$(E1210_ASYNPORT)_DI",-1,4)
 asynSetTraceMask("$(E1210_ASYNPORT)_DI",-1,9)
 

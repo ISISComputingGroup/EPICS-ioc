@@ -1,0 +1,2 @@
+
+alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CH$(CHAN)_RBV", "$(NAME):$(ASYNPORT):$(FNCTN):CH$(CHAN):RBV")

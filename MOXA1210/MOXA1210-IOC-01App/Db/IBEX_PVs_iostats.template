@@ -1,0 +1,21 @@
+# I/O statistics
+
+alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CHx_HistEnable", "$(NAME):$(ASYNPORT):$(FNCTN):HistEnable")
+
+alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CHx_Statistics", "$(NAME):$(ASYNPORT):$(FNCTN):Statistics")
+
+alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CHx_Hist", "$(NAME):$(ASYNPORT):$(FNCTN):Hist")
+
+alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CHx_HistTimeAxis", "$(NAME):$(ASYNPORT):$(FNCTN):HistTimeAxis")
+
+alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CHx_MsPerBin", "$(NAME):$(ASYNPORT):$(FNCTN):MsPerBin")
+
+alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CHx_ReadOK", "$(NAME):$(ASYNPORT):$(FNCTN):ReadOK")
+
+alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CHx_WriteOK", "$(NAME):$(ASYNPORT):$(FNCTN):WriteOK")
+
+alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CHx_IOErrors", "$(NAME):$(ASYNPORT):$(FNCTN):IOErrors")
+
+alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CHx_LastIOTime", "$(NAME):$(ASYNPORT):$(FNCTN):LastIOTime")
+
+alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CHx_MaxIOTime", "$(NAME):$(ASYNPORT):$(FNCTN):MaxIOTime")

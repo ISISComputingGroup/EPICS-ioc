@@ -1,0 +1,103 @@
+file "IBEX_PVs_channels.template" {
+
+pattern {NAME, ASYNPORT, FNCTN, CHAN}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "00"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "01"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "02"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "03"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "04"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "05"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "06"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "07"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "08"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "09"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "10"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "12"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "13"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "14"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "15"}
+
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "00"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "01"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "02"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "03"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "04"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "05"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "06"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "07"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "08"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "09"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "10"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "12"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "13"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "14"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "15"}
+
+
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "00"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "01"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "02"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "03"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "04"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "05"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "06"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "07"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "08"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "09"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "10"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "12"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "13"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "14"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "15"}
+
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "00"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "01"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "02"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "03"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "04"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "05"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "06"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "07"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "08"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "09"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "10"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "12"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "13"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "14"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "15"}
+}
+
+
+file "IBEX_PVs_RBVs.template" {
+pattern {NAME, ASYNPORT, FNCTN, CHAN}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "00"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "01"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "02"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "03"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "04"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "05"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "06"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "07"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "08"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "09"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "10"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "12"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "13"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "14"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "15"}
+
+
+file "IBEX_PVs_iostats.template" {
+pattern {NAME, ASYNPORT, FNCTN}
+{"\$(NAME)", "\$(ASYNPORT)", "DI"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S_RBV"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT"}
+
+}
+
+file "IBEX_PVs_misc.template" {
+pattern {NAME, ASYNPORT}
+{"\$(NAME)", "\$(ASYNPORT)"}
+}
