@@ -1,2 +1,2 @@
 
-alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CH$(CHAN)_RBV", "$(NAME):$(ASYNPORT):$(FNCTN):CH$(CHAN):RBV")
+alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CH$(CHAN)_RBV", "$(NAME):$(FNCTN):CH$(CHAN):RBV")

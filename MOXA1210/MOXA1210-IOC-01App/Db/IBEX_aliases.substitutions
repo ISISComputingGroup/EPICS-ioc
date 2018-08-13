@@ -12,6 +12,7 @@ pattern {NAME, ASYNPORT, FNCTN, CHAN}
 {"\$(NAME)", "\$(ASYNPORT)", "DI", "08"}
 {"\$(NAME)", "\$(ASYNPORT)", "DI", "09"}
 {"\$(NAME)", "\$(ASYNPORT)", "DI", "10"}
+{"\$(NAME)", "\$(ASYNPORT)", "DI", "11"}
 {"\$(NAME)", "\$(ASYNPORT)", "DI", "12"}
 {"\$(NAME)", "\$(ASYNPORT)", "DI", "13"}
 {"\$(NAME)", "\$(ASYNPORT)", "DI", "14"}
@@ -28,6 +29,7 @@ pattern {NAME, ASYNPORT, FNCTN, CHAN}
 #{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "08"}
 #{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "09"}
 #{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "10"}
+#{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "11"}
 #{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "12"}
 #{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "13"}
 #{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "14"}
@@ -45,6 +47,7 @@ pattern {NAME, ASYNPORT, FNCTN, CHAN}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "08"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "09"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "10"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "11"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "12"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "13"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT_CLR", "14"}
@@ -61,6 +64,7 @@ pattern {NAME, ASYNPORT, FNCTN, CHAN}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT", "08"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT", "09"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT", "10"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT", "11"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT", "12"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT", "13"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT", "14"}
@@ -81,6 +85,7 @@ pattern {NAME, ASYNPORT, FNCTN, CHAN}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "08"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "09"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "10"}
+{"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "11"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "12"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "13"}
 {"\$(NAME)", "\$(ASYNPORT)", "DICNT_S", "14"}
