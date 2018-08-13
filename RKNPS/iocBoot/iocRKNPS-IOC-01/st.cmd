@@ -30,7 +30,7 @@ iocshCmdLoop("< iocBoot/iocRKNPS-IOC-01/st-psu-chain.cmd", "CHAIN=\$(CHAIN)", "C
 # Load up DB record for talking to the DAQ box
 < iocBoot/iocRKNPS-IOC-01/st-daq.cmd
 
-epicsEnvSet("RIKEN_PC_OUT","RKNPS_01:DAQ:W00:DATA")
+epicsEnvSet("RIKEN_PC_OUT","RKNPS_01:DAQ:W00:DATA.A")
 epicsEnvSet("RIKEN_PC_IN","RKNPS_01:DAQ:R00:DATA")
 
 # Riken port change
@@ -40,7 +40,7 @@ epicsEnvSet(PC_PSU_POWER,$(MYPVPREFIX)$(IOCNAME):PC:PSUS:POWER)
 dbLoadRecords("$(TOP)/db/riken_changeover.db","P=$(MYPVPREFIX)$(IOCNAME):,PSU_DISABLE=$(PC_PSU_DISABLE),PSU_POWER=$(PC_PSU_POWER)")
 dbLoadRecords("$(TOP)/db/riken_port_changeover_psus.db","PV_PREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,PSU_DISABLE=$(PC_PSU_DISABLE)")
 
-epicsEnvSet("RIKEN_RB2C_OUT","RKNPS_01:DAQ:W01:DATA")
+epicsEnvSet("RIKEN_RB2C_OUT","RKNPS_01:DAQ:W01:DATA.A")
 epicsEnvSet("RIKEN_RB2C_IN","RKNPS_01:DAQ:R01:DATA")
 
 # Riken RB2 mode change
@@ -61,7 +61,7 @@ iocInit
 seq riken_changeover, "OK_TO_RUN_PSUS=$(MYPVPREFIX)$(RIKEN_PC_IN),ALLOW_CHANGEOVER=$(MYPVPREFIX)$(RIKEN_PC_OUT),PSU_DISABLE=$(PC_PSU_DISABLE),PSU_POWER=$(PC_PSU_POWER)"
 
 # Riken RB2 mode change
-# seq riken_changeover, "OK_TO_RUN_PSUS=$(MYPVPREFIX)$(RIKEN_RB2C_IN),ALLOW_CHANGEOVER=$(MYPVPREFIX)$(RIKEN_RB2C_OUT),PSU_DISABLE=$(RB2C_PSU_DISABLE),PSU_POWER=$(RB2C_PSU_POWER)"
+seq riken_changeover, "OK_TO_RUN_PSUS=$(MYPVPREFIX)$(RIKEN_RB2C_IN),ALLOW_CHANGEOVER=$(MYPVPREFIX)$(RIKEN_RB2C_OUT),PSU_DISABLE=$(RB2C_PSU_DISABLE),PSU_POWER=$(RB2C_PSU_POWER)"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
