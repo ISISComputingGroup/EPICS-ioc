@@ -61,10 +61,7 @@ iocInit
 seq riken_changeover, "OK_TO_RUN_PSUS=$(MYPVPREFIX)$(RIKEN_PC_IN),ALLOW_CHANGEOVER=$(MYPVPREFIX)$(RIKEN_PC_OUT),PSU_DISABLE=$(PC_PSU_DISABLE),PSU_POWER=$(PC_PSU_POWER)"
 
 # Riken RB2 mode change
-seq riken_changeover, "OK_TO_RUN_PSUS=$(MYPVPREFIX)$(RIKEN_RB2C_IN),ALLOW_CHANGEOVER=$(MYPVPREFIX)$(RIKEN_RB2C_OUT),PSU_DISABLE=$(RB2C_PSU_DISABLE),PSU_POWER=$(RB2C_PSU_POWER)"
+# seq riken_changeover, "OK_TO_RUN_PSUS=$(MYPVPREFIX)$(RIKEN_RB2C_IN),ALLOW_CHANGEOVER=$(MYPVPREFIX)$(RIKEN_RB2C_OUT),PSU_DISABLE=$(RB2C_PSU_DISABLE),PSU_POWER=$(RB2C_PSU_POWER)"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
-
-# For diagnostics
-dbl
