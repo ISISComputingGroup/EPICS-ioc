@@ -15,7 +15,7 @@
 #  RELEASE.$(EPICS_HOST_ARCH).$(T_A)
 #
 # This file is parsed by both GNUmake and an EPICS Perl script,
-# so it can ONLY contain definititions of paths to other support
+# so it can ONLY contain definitions of paths to other support
 # modules, variable definitions that are used in module paths,
 # and include statements that pull in other RELEASE files.
 # Variables may be used before their values have been set.
@@ -41,11 +41,10 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 -include $(TOP)/../RELEASE.local
 -include $(TOP)/configure/RELEASE.local
 
-# START OF AUTO GENERATED DEPENDENCIES
+# Macros required for basic ioc/stream device
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
+ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
 ASYN=$(SUPPORT)/asyn/master
-ASYN=$(SUPPORT)/asyn/master
-ONCRPC=$(SUPPORT)/oncrpc/master
 AUTOSAVE=$(SUPPORT)/autosave/master
 CALC=$(SUPPORT)/calc/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
@@ -53,17 +52,16 @@ DEVIOCSTATS=$(SUPPORT)/devIocStats/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master
 LIBJSON=$(SUPPORT)/libjson/master
 MYSQL=$(SUPPORT)/MySQL/master
+ONCRPC=$(SUPPORT)/oncrpc/master
 PCRE=$(SUPPORT)/pcre/master
 PUGIXML=$(SUPPORT)/pugixml/master
 PVDUMP=$(SUPPORT)/pvdump/master
-ROTSC=$(SUPPORT)/rotating_sample_changer/master
 SNCSEQ=$(SUPPORT)/seq/master
 SQLITE=$(SUPPORT)/sqlite/master
 SSCAN=$(SUPPORT)/sscan/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
-# END OF AUTO GENERATED DEPENDENCIES
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
@@ -71,3 +69,5 @@ ZLIB=$(SUPPORT)/zlib/master
 include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
 
+# IOC-specific support module
+NGPSPSU=$(SUPPORT)/ngpspsu/master
