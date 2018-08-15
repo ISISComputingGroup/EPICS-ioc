@@ -8,6 +8,5 @@ pattern {PV_PREFIX, P, PSU_DISABLE, PSNAME, PSIOC, PSIDX}
 
     {"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RQ18", "RKNPS_01", "A"}
     {"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RQ19", "RKNPS_01", "B"}
-
-    {"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RQ20", "RKNPS_02", "C"}
+    {"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RQ20", "RKNPS_01", "C"}
 }
