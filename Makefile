@@ -18,6 +18,7 @@ IOCDIRS += SP2XX
 IOCDIRS += RKNDIO
 IOCDIRS += NGPSPSU
 IOCDIRS += KYNCTM3K
+IOCDIRS += KICKER
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
