@@ -27,9 +27,7 @@ epicsEnvSet("E1210_ASYNPORT","IP")
 # For dev sim devices
 $(IFDEVSIM) drvAsynIPPortConfigure("$(E1210_ASYNPORT)", "localhost:$(EMULATOR_PORT=)")
 
-# drvAsynIPPortConfigure("$(E1210_ASYNPORT)", "$(IP_ADDRESS):502", 0, 0, 1)
-
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure ("$(E1210_ASYNPORT)","$(IP_ADDRESS):502")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure ("$(E1210_ASYNPORT)","$(IP_ADDR):$(PORT=502)")
 
 modbusInterposeConfig("$(E1210_ASYNPORT)", 0, 2000, 0)
 
@@ -55,7 +53,11 @@ drvModbusAsynConfigure("$(E1210_ASYNPORT)_DICNT",          "$(E1210_ASYNPORT)", 
 
 dbLoadRecords("$(MOXA1210)/db/ioLogik_E1210.db","NAME=$(MYPVPREFIX)$(IOCNAME), ASYNPORT=$(E1210_ASYNPORT)")
 
-dbLoadRecords("${TOP}/db/IBEX_aliases.db","NAME=$(MYPVPREFIX)$(IOCNAME), ASYNPORT=$(E1210_ASYNPORT)")
+dbLoadRecords("${TOP}/db/IBEX_PVs.db","NAME=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME), ASYNPORT=$(E1210_ASYNPORT)")
+
+# Load the user-given aliases of the channels
+
+iocshCmdList("< st-aliases.cmd", "CHAN=\$(I)", "I", "00;01;02;03;04;05;06;07;08;09;10;11;12;13;14;15", ";")
 
 asynSetTraceIOMask("$(E1210_ASYNPORT)_DI",-1,4)
 asynSetTraceMask("$(E1210_ASYNPORT)_DI",-1,9)
