@@ -20,6 +20,9 @@ epicsEnvSet "DEVICE" "L0"
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
+## Modbus configuration
+drvModbusAsynConfigure("$(DEVICE)heartbeat", "$(DEVICE)", 1, 3, 649, 1, 0, 1000, "PLC")
+
 ## Device simulation mode IP configuration
 $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=57677)")
 
@@ -44,11 +47,14 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-# Load up DB record for talking to the DAQ box
+# Load up DB records for talking to the DAQ box
 < iocBoot/iocKICKER-IOC-01/st-daq.cmd
 
+# Load up record for talking to the Schneider M580 PLC 
+< iocBoot/iocKICKER-IOC-01/st-schneider.cmd
+
 ## Load our record instances
-dbLoadRecords("$(KICKER)/db/kicker.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(KICKER)/db/kicker.db","PVPREFIX=$(MYPVPREFIX), ,P=$(MYPVPREFIX)$(IOCNAME):,DAQMX=$(MYPVPREFIX)$(IOCNAME):DAQ:,PSU_MAX_VOLT=$(PSU_MAX_VOLT=45), PSU_MAX_CURR=$(PSU_MAX_CURR=15),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

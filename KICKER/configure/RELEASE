@@ -52,6 +52,7 @@ DAQMXBASE=$(SUPPORT)/DAQmxBase\master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master
 LIBJSON=$(SUPPORT)/libjson/master
+MODBUS=$(SUPPORT)/modbus/master
 MYSQL=$(SUPPORT)/MySQL/master
 ONCRPC=$(SUPPORT)/oncrpc/master
 PCRE=$(SUPPORT)/pcre/master
