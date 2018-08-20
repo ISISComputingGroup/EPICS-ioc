@@ -31,6 +31,7 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
+#$(APPNAME)_DBD += aCalcoutRecord.dbd
 $(APPNAME)_DBD += DAQmxSupport.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
