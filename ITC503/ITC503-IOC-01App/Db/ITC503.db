@@ -130,19 +130,45 @@ record(bo, "$(P)MODE:HTR:SP") {
   field(DESC, "Heater control mode setpoint")
   field(ZNAM, "Manual")
   field(ONAM, "Auto")
+  field(FLNK, "$(P)MODE:_FAN_SANITIZED")
 }
 
 record(bo, "$(P)MODE:GAS:SP") {
   field(DESC, "Gas flow control mode setpoint")
   field(ZNAM, "Manual")
   field(ONAM, "Auto")
+  field(FLNK, "$(P)MODE:_FAN_SANITIZED")
+}
+
+record(fanout, "$(P)MODE:_FAN_SANITIZED") {
+    field(LNK1, "$(P)MODE:HTR:SP:_SANITIZED")
+    field(LNK2, "$(P)MODE:GAS:SP:_SANITIZED")
+}
+
+# If the setpoint is undefined use current value instead
+record(calcout, "$(P)MODE:HTR:SP:_SANITIZED") {
+    field(INPA, "$(P)MODE:HTR:SP")
+    field(INPB, "$(P)MODE:HTR:SP.SEVR")
+    field(INPC, "$(P)MODE:HTR MS")
+    field(CALC, "B=0?(A=0?0:1):(C=0?0:1)")
+    field(IVOA, "Don't drive outputs")
+}
+
+# If the setpoint is undefined use current value instead
+record(calcout, "$(P)MODE:GAS:SP:_SANITIZED") {
+    field(INPA, "$(P)MODE:GAS:SP")
+    field(INPB, "$(P)MODE:GAS:SP.SEVR")
+    field(INPC, "$(P)MODE:GAS MS")
+    field(CALC, "B=0?(A=0?0:1):(C=0?0:1)")
+    field(IVOA, "Don't drive outputs")
 }
 
 record(calcout, "$(P)MODE:SP:CALC") {
-  field(INPA, "$(P)MODE:HTR:SP CP")
-  field(INPB, "$(P)MODE:GAS:SP CP")
-  field(CALC, "B=0?(A=0?0:1):(A=0?2:3)")
+  field(INPA, "$(P)MODE:HTR:SP:_SANITIZED CP MS")
+  field(INPB, "$(P)MODE:GAS:SP:_SANITIZED CP MS")
+  field(CALC, "A + B*2")
   field(OUT, "$(P)MODE:SP CA PP")
+  field(IVOA, "Don't drive outputs")
 }
 
 record(mbbo, "$(P)MODE:SP") {
