@@ -18,6 +18,15 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=2)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "break_duration", "20")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "break_delay", "20")
 
+# Hardware flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "clocal", "Y")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
+
+# Software flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N") 
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
+
+
 # Need to set these for DEVSIM mode as lewis can't handle not having termination characters.
 $(IFDEVSIM) asynOctetSetOutputEos("L0",0,"\r\n") # Set it to CRLF and hope it is unlikely to ever happen "by accident" in the binary data
 $(IFDEVSIM) asynOctetSetInputEos("L0",0,"\r\n")

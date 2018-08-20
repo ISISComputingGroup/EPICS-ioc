@@ -17,6 +17,14 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 $(IFNOTRECSIM) asynOctetSetInputEos("L0",0,"$(IEOS=\\n\\r)")
 $(IFNOTRECSIM) asynOctetSetOutputEos("L0",0,"$(OEOS=\\r)")
 
+## Hardware flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", 0, "clocal", "Y")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
+
+## Software flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
+
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 

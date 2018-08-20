@@ -18,6 +18,20 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)"
 asynOctetSetInputEos("$(DEVICE)", -1, "$(IEOS=\\r\\n)")
 asynOctetSetOutputEos("$(DEVICE)", -1, "$(OEOS=\\r\\n)")
 
+## Check if hardware flow control is used
+stringiftest("HARDCNTL", "$(HARDFLOWCNTL=N)",5,"Y")
+
+# Hardware flow control
+$(IFNOTHARDCNTL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "clocal", "Y")
+$(IFNOTHARDCNTL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
+
+$(IFHARDCNTL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "clocal", "N")
+$(IFHARDCNTL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","Y")
+
+# Software flow control
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","$(SOFTFLOWCNTL=N)") 
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","$(SOFTFLOWCNTL=N)")
+
 ## Load record instances
 
 ##ISIS## Load common DB records
