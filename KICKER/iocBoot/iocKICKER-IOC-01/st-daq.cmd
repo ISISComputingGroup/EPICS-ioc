@@ -1,17 +1,10 @@
-## NI cDAQ-9181 with NI 9375 card
-epicsEnvSet("CDAQ","cDAQ9185-1D195CF")
+## NI cDAQ-9185
+epicsEnvSet("CDAQER","cDAQ9185-1D195CFMod2")
+epicsEnvSet("CDAQAI","cDAQ9185-1D195CFMod3")
+epicsEnvSet("CDAQAO","cDAQ9185-1D195CFMod4")
 
-## CDAQ port0 is input
-$(IFNOTDEVSIM) DAQmxConfig("R0", "$(CDAQ)/port1/line0", 0, "AI","OneShot N=1 F=0")
-$(IFNOTDEVSIM) DAQmxConfig("R0", "$(CDAQ)/port1/line1", 1, "AI","OneShot N=1 F=0")
-$(IFNOTDEVSIM) DAQmxConfig("R0", "$(CDAQ)/port1/line2", 2, "AI","OneShot N=1 F=0")
-$(IFNOTDEVSIM) DAQmxConfig("R0", "$(CDAQ)/port1/line3", 3, "AI","OneShot N=1 F=0")
-
-
-## Load record instances
-$(IFNOTDEVSIM) dbLoadRecords("$(DAQMXBASE)/db/DAQmxBaseIOC.vdb","DAQMX=$(MYPVPREFIX)$(IOCNAME):DAQ,RECSIM=$(RECSIM=0)")
-
-$(IFNOTDEVSIM) dbLoadRecords("$(DAQMXBASE)/db/DAQmxBaseAnIn.db","DAQMX=$(MYPVPREFIX)$(IOCNAME):DAQ,PORT=R0,CHAN=0,IFRECSIM=$(IFRECSIM),IFNOTRECSIM=$(IFNOTRECSIM)")
-$(IFNOTDEVSIM) dbLoadRecords("$(DAQMXBASE)/db/DAQmxBaseAnIn.db","DAQMX=$(MYPVPREFIX)$(IOCNAME):DAQ,PORT=R0,CHAN=1,IFRECSIM=$(IFRECSIM),IFNOTRECSIM=$(IFNOTRECSIM)")
-$(IFNOTDEVSIM) dbLoadRecords("$(DAQMXBASE)/db/DAQmxBaseAnIn.db","DAQMX=$(MYPVPREFIX)$(IOCNAME):DAQ,PORT=R0,CHAN=2,IFRECSIM=$(IFRECSIM),IFNOTRECSIM=$(IFNOTRECSIM)")
-$(IFNOTDEVSIM) dbLoadRecords("$(DAQMXBASE)/db/DAQmxBaseAnIn.db","DAQMX=$(MYPVPREFIX)$(IOCNAME):DAQ,PORT=R0,CHAN=3,IFRECSIM=$(IFRECSIM),IFNOTRECSIM=$(IFNOTRECSIM)")
+## input
+$(IFNOTDEVSIM) DAQmxConfig("R0", "$(CDAQAI)/ai0", 0, "AI","N=1000 F=1000") ## Kicker Volt
+$(IFNOTDEVSIM) DAQmxConfig("R0", "$(CDAQAI)/ai1", 1, "AI","N=1000 F=1000") ## Kicker Curr
+$(IFNOTDEVSIM) DAQmxConfig("R0", "$(CDAQAI)/ai2", 2, "AI","N=1000 F=1000") ## Separator Volt
+$(IFNOTDEVSIM) DAQmxConfig("R0", "$(CDAQAI)/ai3", 3, "AI","N=1000 F=1000") ## Separator Curr
