@@ -1,27 +1,10 @@
-#!../../bin/linux-x86_64/MX_E12xx_ModbusIOC
-
-## You may have to change MX_E12xx_ModbusIOC to something else
-## everywhere it appears in this file
-
-# Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
-errlogInit2(65536, 256)
-
-< envPaths
-
-cd ${TOP}
-
-## Register all support components
-dbLoadDatabase "dbd/MOXA1210-IOC-01.dbd"
-MOXA1210_IOC_01_registerRecordDeviceDriver pdbbase
-
 cd ${TOP}/iocBoot/${IOC}
 
-##ISIS## Run IOC initialisation 
+##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
 
-
 ## Startup script
-# ### E1240 (8AI) ###
+# ### E1210 (8AI) ###
 epicsEnvSet("E1210_ASYNPORT","IP")
 
 # For dev sim devices
@@ -57,7 +40,7 @@ dbLoadRecords("${TOP}/db/IBEX_PVs.db","NAME=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPRE
 
 # Load the user-given aliases of the channels
 
-iocshCmdList("< st-aliases.cmd", "CHAN=\$(I)", "I", "00;01;02;03;04;05;06;07;08;09;10;11;12;13;14;15", ";")
+iocshCmdList("< ${TOP}/iocBoot/iocMOXA1210-IOC-01/st-aliases.cmd", "CHAN=\$(I)", "I", "00;01;02;03;04;05;06;07;08;09;10;11;12;13;14;15", ";")
 
 asynSetTraceIOMask("$(E1210_ASYNPORT)_DI",-1,4)
 asynSetTraceMask("$(E1210_ASYNPORT)_DI",-1,9)
@@ -77,15 +60,8 @@ asynSetTraceMask("$(E1210_ASYNPORT)_DICNT",-1,9)
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
-
-cd ${TOP}/iocBoot/${IOC}
 iocInit()
-#< startup.postscript
 
-# has to wait for a second !
-epicsThreadSleep 1
-
-#
 ## Start any sequence programs
 #seq sncxxx,"user=faa59Host"
 
