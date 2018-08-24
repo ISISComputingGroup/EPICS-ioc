@@ -1,11 +1,4 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
-<config_part>
-<ioc_desc>A SP2XX syringe pump</ioc_desc>
-<macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
-</macros>
-<pvsets>
-</pvsets>
-</config_part>
+    <xi:include href="../iocSP2XX-IOC-01/config.xml"  />
 </ioc_config>
