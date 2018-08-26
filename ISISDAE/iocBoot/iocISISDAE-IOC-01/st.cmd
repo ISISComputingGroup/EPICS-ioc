@@ -27,6 +27,11 @@ ISISDAE_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
+# The search path for database files
+epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
+
+asynSetMinTimerPeriod(0.001)
+
 ## used for restarting and checking EPICS block archiver via web URL
 webgetConfigure("arch1")
 webgetConfigure("arch2")
@@ -35,7 +40,7 @@ webgetConfigure("arch2")
 #epicsEnvSet("NOCHECKFUAMP","1")
 
 ## local dae, no dcom/labview
-isisdaeConfigure("icp", $(DAEDCOM=1), $(DAEHOST=localhost), "spudulike", "reliablebeam")
+isisdaeConfigure("icp", $(DAEDCOM=1), $(DAEHOST=localhost), "spudulike", "reliablebeam", 2, 512, 512)
 ## pass 1 as second arg to signify DCOM to either local or remote dae
 ## pass 2 as second arg to signify SECI mode
 #isisdaeConfigure("icp", 1, "localhost")
@@ -70,8 +75,47 @@ dbLoadRecords("$(ISISDAE)/db/isisdae.db","S=$(MYPVPREFIX), P=$(MYPVPREFIX), Q=$(
 dbLoadRecords("$(ISISDAE)/db/dae_diag.db","P=$(MYPVPREFIX),Q=DAE:")
 dbLoadRecords("$(ISISDAE)/db/veto.db","P=$(MYPVPREFIX),Q=DAE:")
 
+dbLoadRecords("$(ISISDAE)/db/ADisisdae.template","P=$(MYPVPREFIX),R=DAE:AD1:,PORT=icp,ADDR=0,TIMEOUT=1")
+dbLoadRecords("$(ISISDAE)/db/ADisisdae.template","P=$(MYPVPREFIX),R=DAE:AD2:,PORT=icp,ADDR=1,TIMEOUT=1")
+
+NDStdArraysConfigure("AD1Image1", 3, 0, "icp", 0, 0)
+NDStdArraysConfigure("AD2Image1", 3, 0, "icp", 1, 0)
+
+## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
+epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES",  "1000000")
+
+## This waveform 
+##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
+##  TYPE=Int32,FTVL=LONG for 32 bit integer
+##  TYPE=Float32,FTVL=FLOAT for 32 bit float
+dbLoadRecords("NDStdArrays.template", "P=$(MYPVPREFIX),R=DAE:AD1:image1:,PORT=AD1Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=0,TYPE=Int8,FTVL=UCHAR,NELEMENTS=150000,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=$(MYPVPREFIX),R=DAE:AD2:image1:,PORT=AD2Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=1,TYPE=Int8,FTVL=UCHAR,NELEMENTS=150000,ENABLED=1")
+
+## Create an FFT plugin
+#NDFFTConfigure("FFT1", 3, 0, "icp", 0)
+#dbLoadRecords("NDFFT.template", "P=$(PREFIX),R=DAE:FFT1:,PORT=FFT1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=0,NAME=FFT1,NCHANS=2048")
+
+## this will now need a color conversion plugin?
+#ffmpegServerConfigure(8081)
+## ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+#ffmpegStreamConfigure("C1.MJPG", 2, 0, "icp", 0)
+#ffmpegStreamConfigure("C2.MJPG", 2, 0, "icp", 1)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD1:Stream:,PORT=C1.MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=0,ENABLED=1")
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD2:Stream:,PORT=C2.MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=1,ENABLED=1")
+
+## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+#ffmpegFileConfigure("C1.FILE", 16, 0, "icp", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:File:,PORT=C1.FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=0,ENABLED=1")
+
+#NDPvaConfigure("PVA", 3, 0, "icp", 0, "v4pvname")
+#dbLoadRecords("NDPva.template", "P=$(MYPVPREFIX),R=DAE:V4:,PORT=PVA,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=0,ENABLED=1")
+
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
+
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("icp", -1, 0x11)
+#asynSetTraceMask("AD1Image1", -1, 0x11)
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit
