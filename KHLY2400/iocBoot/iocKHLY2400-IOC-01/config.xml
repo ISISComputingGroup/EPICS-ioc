@@ -10,6 +10,8 @@
 <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." />
 <macro name="OEOS" pattern="^.*$" description="Serial communication output terminator, defaults to \\r\\n." />
 <macro name="IEOS" pattern="^.*$" description="Serial communication input terminator, defaults to \\r\\n." />
+<macro name="HARDFLOWCNTL" pattern="^Y|N$" description="Hardware serial communication flow control (RTS/CTS), defaults to N." />
+<macro name="SOFTFLOWCNTL" pattern="^Y|N$" description="Sotfware serial communication flow control (XON/XOFF) defaults to N." />
 </macros>
 </config_part>
 </ioc_config>

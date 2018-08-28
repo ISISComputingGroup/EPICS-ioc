@@ -19,6 +19,14 @@ $(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
 $(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "parity", "$(PARITY="none")")
 $(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "stop", "$(STOP=2)")
 
+# Hardware flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "clocal", "Y")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
+
+# Software flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N") 
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
+
 $(IFNOTRECSIM) asynOctetSetInputEos("L0",0,"$(IEOS=\\n\\r)")
 $(IFNOTRECSIM) asynOctetSetOutputEos("L0",0,"$(OEOS=\\r)")
 
