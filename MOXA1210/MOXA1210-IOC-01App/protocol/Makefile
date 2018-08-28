@@ -3,16 +3,11 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-#----------------------------------------------------
-#  Optimization of db files using dbst (DEFAULT: NO)
-#DB_OPT = YES
+#DATA += MOXA1210-IOC-01.proto
 
 #----------------------------------------------------
-# Create and install (or just install) into <top>/db
-# databases, templates, substitutions like this
-#----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
-# <anyname>_template = <templatename>
+# <anyname>_TEMPLATE = <templatename>
 
 include $(TOP)/configure/RULES
 #----------------------------------------
