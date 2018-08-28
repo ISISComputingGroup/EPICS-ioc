@@ -12,7 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 DB += IBEX_PVs.db
-DB += channel_aliases.db
+DB += moxa1210_aliases.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
