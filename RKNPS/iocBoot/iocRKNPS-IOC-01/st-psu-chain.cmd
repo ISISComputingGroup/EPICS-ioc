@@ -8,7 +8,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(CHAIN$(
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(CHAIN$(CHAIN)_BAUD=9600)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(CHAIN$(CHAIN)_BITS=7)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(CHAIN$(CHAIN)_PARITY="space")")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(CHAIN$(CHAIN)_STOP=1)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(CHAIN$(CHAIN)_STOP=2)")
 $(IFNOTRECSIM) asynOctetSetInputEos("$(DEVICE)",0,"$(CHAIN$(CHAIN)_IEOS=\\n\\r)")
 $(IFNOTRECSIM) asynOctetSetOutputEos("$(DEVICE)",0,"$(CHAIN$(CHAIN)_OEOS=\\r)")
 
