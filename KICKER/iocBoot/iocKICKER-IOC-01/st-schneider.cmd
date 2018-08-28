@@ -1,25 +1,22 @@
 ## RTU
 
-## Device simulation mode IP configuration
-$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE):PLC", "localhost:$(EMULATOR_PORT=57677)")
-
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE):PLC", "$(PORT=NUL)", 0, 1, 0, 0)
 
 ## For real devices
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE):PLC","$(PORT=NO_PORT_MACRO)",0,0,0) # change this
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"baud","9600")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"bits","8")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"parity","even")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"stop","1")
+$(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE):PLC","$(PORT=NO_PORT_MACRO)",0,0,0) # change this
+$(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"baud","9600")
+$(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"bits","8")
+$(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"parity","even")
+$(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"stop","1")
 
 # Hardware flow control
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"clocal","N") # N enables DSR/DTR handshaking
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"crtscts","N")
+$(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"clocal","N") # N enables DSR/DTR handshaking
+$(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"crtscts","N")
 
 # Softawre flow control on
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"ixon","Y")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"ixoff","Y")
+$(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"ixon","Y")
+$(IFNOTRECSIM) asynSetOption("$(DEVICE):PLC",0,"ixoff","Y")
 
 ## Add an asyn "interpose interface" driver.
 #######################################################################
@@ -50,4 +47,4 @@ $(IFNOTRECSIM) drvModbusAsynConfigure("$(DEVICE):POWER", "$(DEVICE):PLC", 1, 3, 
 
 
 # Load modbus record from template
-dbLoadRecords("$(KICKER)/db/kicker_power.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),R=$(R=)")
+dbLoadRecords("$(KICKER)/db/kicker_power.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,IFNOTRECSIM=$(IFNOTRECSIM),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
