@@ -1,3 +1,6 @@
+## Modbus configuration
+# drvModbusAsynConfigure("$(DEVICE)heartbeat", "$(DEVICE)", 1, 3, 649, 1, 0, 1000, "PLC")
+
 ## RTU
 
 ## For recsim:
