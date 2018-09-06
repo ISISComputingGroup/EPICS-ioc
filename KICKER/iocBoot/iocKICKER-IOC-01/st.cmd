@@ -20,12 +20,6 @@ epicsEnvSet "DEVICE" "L0"
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-## Modbus configuration
-drvModbusAsynConfigure("$(DEVICE)heartbeat", "$(DEVICE)", 1, 3, 649, 1, 0, 1000, "PLC")
-
-## For recsim:
-$(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
-
 ## Load record instances
 
 ##ISIS## Load common DB records 
@@ -38,9 +32,9 @@ $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 < iocBoot/iocKICKER-IOC-01/st-schneider.cmd
 
 ## Load our record instances
-dbLoadRecords("$(KICKER)/db/kicker.db","PVPREFIX=$(MYPVPREFIX), ,P=$(MYPVPREFIX)$(IOCNAME):,DAQMX=$(MYPVPREFIX)$(IOCNAME):DAQ:, PSU_MAX_CURR=$(PSU_MAX_CURR=15),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
-dbLoadRecords("$(KICKER)/db/kicker_voltage.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),DAQMX=$(MYPVPREFIX)$(IOCNAME):DAQ:,IFNOTRECSIM=$(IFNOTRECSIM),IFRECSIM=$(IFRECSIM),PSU_MAX_VOLT=$(PSU_MAX_VOLT=45),NELM=$(NELM=1000)")
-dbLoadRecords("$(KICKER)/db/kicker_current.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),DAQMX=$(MYPVPREFIX)$(IOCNAME):DAQ:,IFNOTRECSIM=$(IFNOTRECSIM),IFRECSIM=$(IFRECSIM),PSU_MAX_CURR=$(PSU_MAX_VOLT=15),NELM=$(NELM=1000)")
+dbLoadRecords("$(KICKER)/db/kicker.db","PVPREFIX=$(MYPVPREFIX), ,P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(KICKER)/db/kicker_voltage.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),DAQMX=$(DAQMX = DAQ):,IFNOTRECSIM=$(IFNOTRECSIM),IFRECSIM=$(IFRECSIM),PSU_MAX_VOLT=$(PSU_MAX_VOLT=45),NELM=$(NELM=1000)")
+dbLoadRecords("$(KICKER)/db/kicker_current.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),DAQMX=$(DAQMX = DAQ):,IFNOTRECSIM=$(IFNOTRECSIM),IFRECSIM=$(IFRECSIM),PSU_MAX_CURR=$(PSU_MAX_CURR=15),NELM=$(NELM=1000)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
