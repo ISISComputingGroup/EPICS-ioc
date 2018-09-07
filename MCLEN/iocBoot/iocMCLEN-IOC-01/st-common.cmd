@@ -29,7 +29,7 @@ $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"bits","$(BITS=7)")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"stop","$(STOP=1)") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"parity","$(PARITY=even)")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"clocal","Y") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","D") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","N")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","N")
 
