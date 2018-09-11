@@ -1,7 +1,9 @@
 ## NI cDAQ-9185
-epicsEnvSet("CDAQER","cDAQ9185-1D195CFMod2")
-epicsEnvSet("CDAQAI","cDAQ9185-1D195CFMod3")
-epicsEnvSet("CDAQAO","cDAQ9185-1D195CFMod4")
+epicsEnvSet("CDAQER","cDAQ9185-MUONFEMod2")
+epicsEnvSet("CDAQAI","cDAQ9185-MUONFEMod3")
+epicsEnvSet("CDAQAO","cDAQ9185-MUONFEMod4")
+
+cDAQ9185-MUONFE-Mod4
 
 ## input
 $(IFNOTDEVSIM) DAQmxConfig("R0", "$(CDAQAI)/ai0", 0, "AI","N=1000 F=1000") ## Kicker Volt
