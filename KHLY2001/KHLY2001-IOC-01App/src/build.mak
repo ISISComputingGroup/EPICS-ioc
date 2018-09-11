@@ -31,6 +31,7 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += ipSupport.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -47,6 +48,7 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += ip
 ## Add other libraries here ##
 $(APPNAME)_LIBS += calc
 #$(APPNAME)_LIBS += xxx

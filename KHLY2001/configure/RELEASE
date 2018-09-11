@@ -50,6 +50,7 @@ CALC=$(SUPPORT)/calc/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master
+IP=$(SUPPORT)/ip/master
 LIBJSON=$(SUPPORT)/libjson/master
 MYSQL=$(SUPPORT)/MySQL/master
 ONCRPC=$(SUPPORT)/oncrpc/master
