@@ -24,6 +24,9 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 $(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "\r\n")
 $(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "\r\n")
 
+stringiftest("PRESSUR1", $(PRES1ON="Y"), 5, "Y")
+stringiftest("PRESSUR2", $(PRES2ON="Y"), 5, "Y")
+
 ## For debugging:
 #asynSetTraceMask("L0",-1,0x9) 
 #asynSetTraceIOMask("L0",-1,0x2)
@@ -31,7 +34,7 @@ $(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "\r\n")
 #####################
 ## Load record instances
 
-dbLoadRecords("$(TPG)/db/tpg26x.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+dbLoadRecords("$(TPG)/db/tpg26x.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),IFPRESSUR1=$(IFPRESSUR1),IFPRESSUR2=$(IFPRESSUR2)")
 
 ## Finished loading record instances
 #########################

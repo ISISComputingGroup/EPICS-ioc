@@ -18,6 +18,7 @@ IOCDIRS += SP2XX
 IOCDIRS += RKNDIO
 IOCDIRS += NGPSPSU
 IOCDIRS += KYNCTM3K
+IOCDIRS += MOXA1210
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
@@ -26,7 +27,7 @@ MISSIOCDIRS = $(filter-out $(IOCDIRS),$(ALLIOCDIRS))
 
 ## modules not to build on linux
 ifneq ($(findstring linux,$(EPICS_HOST_ARCH)),)
-DIRS_NOTBUILD += MK3CHOPR ECLAB GALIL HIFIMAG INSTRON SECI2IBEX FERMCHOP
+DIRS_NOTBUILD += MK3CHOPR ECLAB GALIL HIFIMAG INSTRON SECI2IBEX FERMCHOP RKNPS
 endif
 
 ## modules not to build on windows 64bit
