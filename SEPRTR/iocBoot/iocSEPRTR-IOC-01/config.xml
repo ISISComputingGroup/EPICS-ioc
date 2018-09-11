@@ -4,7 +4,12 @@
 	<ioc_desc>Muon Separator PSU</ioc_desc>
 	<ioc_details>Detailed status of PSU</ioc_details>
 	<macros>
-		<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+		<macro name="DAQ_AI_PORT_NAME" pattern="^[a-zA-Z0-9_-]+$" description="Port name for AI DAQ Port. Defaults to cDAQ9185-MUONFEMod3" />
+		<macro name="DAQ_AO_PORT_NAME" pattern="^[a-zA-Z0-9_-]+$" description="Port name for AO DAQ Port. Defaults to cDAQ9185-MUONFEMod4" />
+		<macro name="CURR_FREQ" pattern="^[0-9]+$" description="Sample rate in Hz for reading separator current. Defaults to 1000" />
+		<macro name="CURR_NELM" pattern="^[0-9]+$" description="Number of samples read from separator current. Defaults to 1000" />
+		<macro name="VOLT_FREQ" pattern="^[0-9]+$" description="Sample rate in Hz for reading separator voltage. Defaults to 1000" />
+		<macro name="VOLT_NELM" pattern="^[0-9]+$" description="Number of samples read from separator voltage. Defaults to 1000" />
 	</macros>
 	<pvsets>
 	
