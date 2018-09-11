@@ -32,6 +32,8 @@ $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += ipSupport.dbd
+$(APPNAME)_DBD += VISAdrv.dbd
+
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -44,14 +46,19 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
+
 ## Stream device libraries ##
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += ip
+$(APPNAME)_LIBS += VISAdrv 
+
 ## Add other libraries here ##
 $(APPNAME)_LIBS += calc
 #$(APPNAME)_LIBS += xxx
+
+include $(VISADRV)/visa_lib.mak
 
 # KHLY2001-IOC-01_registerRecordDeviceDriver.cpp derives from KHLY2001-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

@@ -64,6 +64,9 @@ STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 
+# Macro for NIVISAdrv
+VISADRV=$(SUPPORT)/VISAdrv/master
+
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
 
