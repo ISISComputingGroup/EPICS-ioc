@@ -51,11 +51,12 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += ip
-$(APPNAME)_LIBS += VISAdrv 
 
 ## Add other libraries here ##
 $(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += ip
+$(APPNAME)_LIBS += VISAdrv
+$(APPNAME)_LIBS += sscan
 #$(APPNAME)_LIBS += xxx
 
 include $(VISADRV)/visa_lib.mak

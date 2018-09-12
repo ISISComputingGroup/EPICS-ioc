@@ -67,6 +67,11 @@ ZLIB=$(SUPPORT)/zlib/master
 # Macro for NIVISAdrv
 VISADRV=$(SUPPORT)/VISAdrv/master
 
+# to pick up VISA library at run time on a developer/test machine
+# on an instrument, $(ICPBINARYDIR) does not exist and so this will not
+# form part of dllPath 
+VISALIB=$(ICPBINARYDIR)/NIVISA
+
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
 
