@@ -31,11 +31,11 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
-$(APPNAME)_DBD += ipSupport.dbd
 $(APPNAME)_DBD += VISAdrv.dbd
 
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
+$(APPNAME)DBD += Keithley_2001
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -54,10 +54,10 @@ $(APPNAME)_LIBS += asyn
 
 ## Add other libraries here ##
 $(APPNAME)_LIBS += calc
-$(APPNAME)_LIBS += ip
 $(APPNAME)_LIBS += VISAdrv
 $(APPNAME)_LIBS += sscan
 #$(APPNAME)_LIBS += xxx
+$(APPNAME)_LIBS += Keithley_2001
 
 include $(VISADRV)/visa_lib.mak
 

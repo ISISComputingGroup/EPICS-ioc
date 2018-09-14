@@ -32,7 +32,7 @@ asynSetTraceIOMask("$(DEVICE)",0,0x2)
 
 ## Load our record instances
 #dbLoadRecords("$(KHLY2001)/db/keithley_2001.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
-dbLoadRecords("$(IP)/ipApp/db/Keithley2kDMM_mf.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0), Dmm=DMM:,PORT=$(DEVICE)")
+dbLoadRecords("$(KHLY2001)/db/keithley_2001_channels.db","PVPREFIX=$(MYPVPREFIX), P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -41,7 +41,7 @@ cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
-seq &Keithley2kDMM, "P=$(MYPVPREFIX)$(IOCNAME):, Dmm=DMM:, channels=10, model=2001, stack=10000"
+#seq sncxxx,"user=clrc\olz75487"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
