@@ -9,8 +9,9 @@
         <macro name="FREQ" pattern="^[0-9]+$" description="Sample acquisition frequency. Defaults to 1000"/>
         <macro name="VUPPERLIM" pattern="^[.0-9]+$" description="Voltage stability upper limit"/>
         <macro name="VLOWERLIM" pattern="^[.0-9]+$" description="Voltage stability lower limit"/>
-        <macro name="CSTEADY" pattern="^[.0-9]+$" description="Nominal stable current value"/>
-        <macro name="CLIMIT" pattern="^[.0-9]+$" description="Current stability tolerance"/>
+        <macro name="ISTEADY" pattern="^[.0-9]+$" description="Nominal stable current value"/>
+        <macro name="ILIMIT" pattern="^[.0-9]+$" description="Current stability tolerance"/>
+        <macro name="WINDOWSIZE" pattern="^[0-9]+$" description="Number of seconds in moving window. Defaults to 600"/>
     </macros>
     <pvsets>
 
