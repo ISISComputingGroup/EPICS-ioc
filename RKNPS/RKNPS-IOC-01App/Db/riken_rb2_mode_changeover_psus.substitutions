@@ -7,4 +7,5 @@ file riken_psus.template {
 pattern {PV_PREFIX, P, PSU_DISABLE, PSNAME, PSIOC, PSIDX}
 
     {"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RB2", "RKNPS_01", "A"}
+    {"\$(PV_PREFIX)", "\$(P)", "\$(PSU_DISABLE)", "RB2-2", "RKNPS_01", "B"}
 }
