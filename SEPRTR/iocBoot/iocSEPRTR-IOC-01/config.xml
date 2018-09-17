@@ -1,13 +1,19 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-	<ioc_desc>Muon Separator PSU</ioc_desc>
-	<ioc_details>Detailed status of PSU</ioc_details>
-	<macros>
-		<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
-	</macros>
-	<pvsets>
-	
-	</pvsets>
+    <ioc_desc>Muon Separator PSU</ioc_desc>
+    <ioc_details>Detailed status of PSU</ioc_details>
+    <macros>
+        <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+        <macro name="NELM" pattern="^[0-9]+$" description="Number of elements in sample data. Defaults to 1000" />
+        <macro name="FREQ" pattern="^[0-9]+$" description="Sample acquisition frequency. Defaults to 1000"/>
+        <macro name="VUPPERLIM" pattern="^[.0-9]+$" description="Voltage stability upper limit"/>
+        <macro name="VLOWERLIM" pattern="^[.0-9]+$" description="Voltage stability lower limit"/>
+        <macro name="CSTEADY" pattern="^[.0-9]+$" description="Nominal stable current value"/>
+        <macro name="CLIMIT" pattern="^[.0-9]+$" description="Current stability tolerance"/>
+    </macros>
+    <pvsets>
+
+    </pvsets>
 </config_part>
 </ioc_config>
