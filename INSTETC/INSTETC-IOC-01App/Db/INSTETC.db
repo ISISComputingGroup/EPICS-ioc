@@ -170,3 +170,8 @@ record (mbbo, "$(P)SIM:CS:SHUTTER")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")	
 }
+
+record(stringin, "$(P)TIME_OF_DAY") {
+    field(INP, "$(P)CS:IOC:INSTETC_01:DEVIOS:TOD CP MS")
+    info(archive, "VAL")
+}
