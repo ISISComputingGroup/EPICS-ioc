@@ -2,13 +2,11 @@
 epicsEnvSet("CDAQAI","$(DAQ_AI_PORT_NAME=cDAQ9185-MUONFEMod3)")
 epicsEnvSet("CDAQAO","$(DAQ_AO_PORT_NAME=cDAQ9185-MUONFEMod4)")
 
-cDAQ9185-MUONFE-Mod4
-
 ## input
 $(IFNOTRECSIM) DAQmxConfig("R0", "$(CDAQAI)/ai0", 0, "AI","N=1000 F=1000") ## Kicker Volt
 $(IFNOTRECSIM) DAQmxConfig("R0", "$(CDAQAI)/ai1", 1, "AI","N=1000 F=1000") ## Kicker Curr
-$(IFNOTRECSIM) DAQmxConfig("R0", "$(CDAQAI)/ai2", 2, "AI","N=$(VOLT_NELM=1000) F=$(VOLT_FREQ=1000)") ## Separator Volt
-$(IFNOTRECSIM) DAQmxConfig("R0", "$(CDAQAI)/ai3", 3, "AI","N=$(CURR_NELM=1000) F=$(CURR_FREQ=1000)" ## Separator Curr
+$(IFNOTRECSIM) DAQmxConfig("R0", "$(CDAQAI)/ai2", 2, "AI","N=$(NELM=100) F=$(FREQ=1000)") ## Separator Volt
+$(IFNOTRECSIM) DAQmxConfig("R0", "$(CDAQAI)/ai3", 3, "AI","N=$(NELM=100) F=$(FREQ=1000)" ## Separator Curr
 
 ## output
 $(IFNOTRECSIM) DAQmxConfig("W0", "$(CDAQAO)/ao0", 0, "AO","N=1 F=0") ## x
