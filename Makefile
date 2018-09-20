@@ -19,6 +19,7 @@ IOCDIRS += RKNDIO
 IOCDIRS += NGPSPSU
 IOCDIRS += KYNCTM3K
 IOCDIRS += MOXA1210
+IOCDIRS += INDFURN
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
