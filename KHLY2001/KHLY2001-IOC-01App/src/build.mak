@@ -35,7 +35,7 @@ $(APPNAME)_DBD += VISAdrv.dbd
 
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
-$(APPNAME)DBD += Keithley_2001
+$(APPNAME)DBD += Keithley_2001.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
