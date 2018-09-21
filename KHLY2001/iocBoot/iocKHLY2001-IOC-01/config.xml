@@ -3,8 +3,7 @@
     <config_part>
         <ioc_desc>Keithley 2001 Digital Multimeter</ioc_desc>
         <macros>
-            <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
-            <macro name="GPIBSTR" pattern="^.*$" description="GPIB connection string, defaults to GPIB0::16::INSTR" />
+            <macro name="GPIBSTR" pattern="^.*$" description="GPIB connection string. Defaults to GPIB0::16::INSTR" />
         </macros>
         <pvsets />
     </config_part>
