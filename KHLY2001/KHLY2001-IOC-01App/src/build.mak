@@ -25,39 +25,32 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
-## Stream device support ##
+## add other dbd here ##
 $(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
-$(APPNAME)_DBD += VISAdrv.dbd
+$(APPNAME)_DBD += keithley_2001_sm.dbd
 
-## add other dbd here ##
-#$(APPNAME)_DBD += xxx.dbd
-$(APPNAME)DBD += Keithley_2001.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seqDev seq pv
+$(APPNAME)_LIBS += seqDev seq pv 
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
-
-## Stream device libraries ##
+## Add other libraries here ##
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
-
-## Add other libraries here ##
+$(APPNAME)_LIBS += Keithley_2001
 $(APPNAME)_LIBS += calc
 $(APPNAME)_LIBS += VISAdrv
-$(APPNAME)_LIBS += sscan
 #$(APPNAME)_LIBS += xxx
-$(APPNAME)_LIBS += Keithley_2001
 
 include $(VISADRV)/visa_lib.mak
 

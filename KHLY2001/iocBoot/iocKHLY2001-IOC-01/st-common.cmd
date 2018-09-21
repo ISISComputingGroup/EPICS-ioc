@@ -16,8 +16,8 @@ $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 ## For real device:
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","$(GPIBSTR=GPIB0::16::INSTR)")
 
-asynOctetSetOutputEos("$(DEVICE)",0,"\n")
-asynOctetSetInputEos("$(DEVICE)",0,"\n")
+#asynOctetSetOutputEos("$(DEVICE)",0,"\n")
+#asynOctetSetInputEos("$(DEVICE)",0,"\n")
 
 # trace masks for debugging
 asynSetTraceMask("L0",-1,0x9)
@@ -36,9 +36,8 @@ dbLoadRecords("$(KHLY2001)/db/keithley_2001_channels.db","PVPREFIX=$(MYPVPREFIX)
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
-## Start Keithley sequence program
-epicsEnvSet(P,$(MYPVPREFIX)$(IOCNAME):)
-seq keithley_2001, "P=$(P), channels=10"
-
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
+
+## Start Keithley 2001 sequence program
+seq keithley_2001, "P=$(MYPVPREFIX)$(IOCNAME):, channels=10"
