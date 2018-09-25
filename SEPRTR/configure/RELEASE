@@ -71,4 +71,4 @@ include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
 
 # IOC-specific support module
-SEPRTR=$(SUPPORT)/separator/EPICS-SEPRTR
+SEPRTR=$(SUPPORT)/separator/master
