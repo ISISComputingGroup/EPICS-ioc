@@ -58,7 +58,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet("GALIL_MTR_PORT", "Galil")
 iocshCmdLoop("< st-axis.cmd", "MN=\$(I)", "I", 1, 8)
 
 ## configure jaws
-< $(GALILCONFIG)/jaws.cmd
+$(IFNOTTESTRECSIM) < $(GALILCONFIG)/jaws.cmd
+$(IFTESTRECSIM) < $(JAWS)/settings/jaws.cmd
 
 ## configure barndoors
 < $(GALILCONFIG)/barndoors.cmd
