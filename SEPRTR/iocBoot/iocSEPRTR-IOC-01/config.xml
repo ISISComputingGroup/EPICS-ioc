@@ -8,6 +8,7 @@
         <macro name="DAQ_AO_PORT_NAME" pattern="^[a-zA-Z0-9_-]+$" description="Port name for AO DAQ Port. Defaults to cDAQ9185-MUONFEMod4" />
         <macro name="FREQ" pattern="^[0-9]+$" description="Sample rate in Hz for reading separator voltage and current. Defaults to 1000" />
         <macro name="NELM" pattern="^[0-9]+$" description="Number of samples read from separator voltage and current. Defaults to 100" />
+        <macro name="POWER_MIN_VOLT" pattern="^[0-9]+$" description="Voltage value (in kV) to determine when the separator is off. Defaults to 2" />
     </macros>
     <pvsets>	
     </pvsets>
