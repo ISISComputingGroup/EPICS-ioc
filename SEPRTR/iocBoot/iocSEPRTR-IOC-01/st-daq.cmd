@@ -1,4 +1,7 @@
-## NI cDAQ-9185
+## Hostname of Instrument: cDAQ9185-MUONFE
+## Model: NI cDAQ-9185
+## Last updated: 2018-09-26
+
 epicsEnvSet("CDAQAI","$(DAQ_AI_PORT_NAME=cDAQ9185-MUONFEMod3)")
 epicsEnvSet("CDAQAO","$(DAQ_AO_PORT_NAME=cDAQ9185-MUONFEMod4)")
 
