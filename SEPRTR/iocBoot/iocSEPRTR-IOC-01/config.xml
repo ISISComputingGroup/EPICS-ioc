@@ -12,6 +12,7 @@
         <macro name="ISTEADY" pattern="^[.0-9]+$" description="Nominal stable current value"/>
         <macro name="ILIMIT" pattern="^[.0-9]+$" description="Current stability tolerance"/>
         <macro name="WINDOWSIZE" pattern="^[0-9]+$" description="Number of seconds in moving window. Defaults to 600"/>
+        <macro name="MAXUNSTBL" pattern="^[0-9]+$" description="Maximum number of seconds allowed out of stability before alarm. Defaults to 30"/>
     </macros>
     <pvsets>
 
