@@ -4,7 +4,8 @@ dbLoadRecords("$(ISISDAE)/db/ADisisdae.template","P=$(MYPVPREFIX),R=DAE:AD$(LVDE
 
 NDTransformConfigure("AD$(LVDET)RawImage1", 3, 0, "icp", $(LVADDR), 0)
 NDStdArraysConfigure("AD$(LVDET)Image1", 3, 0, "AD$(LVDET)RawImage1", 0, 0)
-
+NDStatsConfigure("AD$(LVDET)Stats1", 3, 0, "AD$(LVDET)RawImage1", 0, 0)
+  
 ## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
 ## also NELEMENTS needs to at least nx * ny
 epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES",  "1100000")
@@ -14,7 +15,8 @@ epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES",  "1100000")
 ##  TYPE=Int32,FTVL=LONG for 32 bit integer
 ##  TYPE=Float32,FTVL=FLOAT,DATATYPE=6 for 32 bit float 
 dbLoadRecords("NDTransform.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):rawimage1:,PORT=AD$(LVDET)RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=$(LVADDR),DATATYPE=6,ENABLED=1")
-dbLoadRecords("NDStdArrays.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):image1:,PORT=AD$(LVDET)Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)RawImage1,NDARRAY_ADDR=0,TYPE=Float32,FTVL=FLOAT,DATATYPE=6,NELEMENTS=100000,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):image1:,PORT=AD$(LVDET)Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)RawImage1,NDARRAY_ADDR=0,DATATYPE=6,ENABLED=1,TYPE=Float32,FTVL=FLOAT,NELEMENTS=100000,")
+dbLoadRecords("NDStats.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):stats1:,PORT=AD$(LVDET)Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)RawImage1,NDARRAY_ADDR=0,DATATYPE=6,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
 
 ## Create an FFT plugin
 #NDFFTConfigure("FFT1", 3, 0, "icp", 0)
