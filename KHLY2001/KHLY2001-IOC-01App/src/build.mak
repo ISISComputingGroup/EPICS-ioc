@@ -31,6 +31,7 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += VISAdrv.dbd
 $(APPNAME)_DBD += keithley_2001_sm.dbd
 
 
