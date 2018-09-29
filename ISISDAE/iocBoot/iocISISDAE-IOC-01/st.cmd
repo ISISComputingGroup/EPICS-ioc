@@ -79,6 +79,7 @@ dbLoadRecords("$(ISISDAE)/db/veto.db","P=$(MYPVPREFIX),Q=DAE:")
 cd ${TOP}/iocBoot/${IOC}
 
 ## uncomment to enable live view
+#ffmpegServerConfigure(8081)
 iocshLoad "liveview.cmd", "LVDET=1,LVADDR=0"
 iocshLoad "liveview.cmd", "LVDET=2,LVADDR=1"
 
