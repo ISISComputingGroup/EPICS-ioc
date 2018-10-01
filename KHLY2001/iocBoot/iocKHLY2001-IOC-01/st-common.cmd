@@ -20,6 +20,9 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","$(GPIBSTR=GP
 asynSetTraceMask("$(DEVICE)",-1,0x9)
 asynSetTraceIOMask("$(DEVICE)",-1,0x2)
 
+# Need to set these for DEVSIM mode as lewis can't handle not having termination characters.
+$(IFDEVSIM) asynOctetSetOutputEos("$(DEVICE)",0,"\r\n")
+
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
