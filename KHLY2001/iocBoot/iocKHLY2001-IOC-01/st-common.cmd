@@ -27,9 +27,10 @@ $(IFDEVSIM) asynOctetSetOutputEos("$(DEVICE)",0,"\r\n")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(KHLY2001)/db/keithley_2001.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
-dbLoadRecords("$(KHLY2001)/db/keithley_2001_channels.db","PVPREFIX=$(MYPVPREFIX), P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(KHLY2001)/db/keithley_2001_misc.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 dbLoadRecords("$(KHLY2001)/db/keithley_2001_init.db","PVPREFIX=$(MYPVPREFIX), P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(KHLY2001)/db/keithley_2001_buffer.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(KHLY2001)/db/keithley_2001_channels.db","PVPREFIX=$(MYPVPREFIX), P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 dbLoadRecords("$(KHLY2001)/db/keithley_2001_channel_scanning.db","PVPREFIX=$(MYPVPREFIX), P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0),PORT=$(DEVICE), SCAN_SPEED = $(SCAN_SPEED = 0.5)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
@@ -42,4 +43,4 @@ iocInit
 < $(IOCSTARTUP)/postiocinit.cmd
 
 ## Start Keithley 2001 sequence program
-seq keithley_2001, "P=$(MYPVPREFIX)$(IOCNAME):, channels=10"
+seq keithley_2001, "P=$(MYPVPREFIX)$(IOCNAME):"
