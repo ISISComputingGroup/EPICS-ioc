@@ -65,3 +65,5 @@ seq riken_changeover, "OK_TO_RUN_PSUS=$(MYPVPREFIX)$(RIKEN_RB2C_IN),ALLOW_CHANGE
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
+
+
