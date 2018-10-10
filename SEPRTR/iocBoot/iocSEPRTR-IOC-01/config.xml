@@ -9,6 +9,7 @@
         <macro name="FREQ" pattern="^[0-9]+$" description="Sample acquisition frequency. Defaults to 1000"/>
         <macro name="VUPPERLIM" pattern="^[.0-9]+$" description="Voltage stability upper limit"/>
         <macro name="VLOWERLIM" pattern="^[.0-9]+$" description="Voltage stability lower limit"/>
+        <macro name="POWER_MIN_VOLT" pattern="^[0-9]+$" description="Voltage value (in kV) to determine when the separator is off. Defaults to 2" />
         <macro name="ISTEADY" pattern="^[.0-9]+$" description="Nominal stable current value"/>
         <macro name="ILIMIT" pattern="^[.0-9]+$" description="Current stability tolerance"/>
         <macro name="WINDOWSIZE" pattern="^[0-9]+$" description="Number of seconds in moving window. Defaults to 600"/>
