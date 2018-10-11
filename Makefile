@@ -28,7 +28,7 @@ MISSIOCDIRS = $(filter-out $(IOCDIRS),$(ALLIOCDIRS))
 
 ## modules not to build on linux
 ifneq ($(findstring linux,$(EPICS_HOST_ARCH)),)
-DIRS_NOTBUILD += MK3CHOPR ECLAB GALIL HIFIMAG INSTRON SECI2IBEX FERMCHOP RKNPS
+DIRS_NOTBUILD += MK3CHOPR ECLAB GALIL HIFIMAG INSTRON SECI2IBEX FERMCHOP RKNPS SEPRTR
 endif
 
 ## modules not to build on windows 64bit
