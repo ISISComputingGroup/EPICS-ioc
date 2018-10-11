@@ -65,6 +65,14 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
+# daqmx external library (need to specify explicitly for static buulds)
+ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
+DAQMXLIB = $(ICPBINARYDIR)/NIDAQmx/lib/msvc64
+else
+DAQMXLIB = $(ICPBINARYDIR)/NIDAQmx/lib/msvc
+endif
+$(APPNAME)_SYS_LIBS_WIN32 += $(DAQMXLIB)/NIDAQmx
+
 #===========================
 
 include $(TOP)/configure/RULES
