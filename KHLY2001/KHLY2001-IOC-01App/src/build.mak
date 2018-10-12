@@ -27,13 +27,16 @@ $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += stream.dbd
-$(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += VISAdrv.dbd
-$(APPNAME)_DBD += keithley_2001_sm.dbd
+$(APPNAME)_DBD  += asyn.dbd
+$(APPNAME)_DBD  += asubFunctions.dbd
 
+## IOC support DBD file
+$(APPNAME)_DBD += keithley_2001_sm.dbd
+$(APPNAME)_DBD += keithley_2001_asub.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -47,11 +50,12 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
-$(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += Keithley_2001
+$(APPNAME)_LIBS += asyn 
+$(APPNAME)_LIBS += asubFunctions 
 $(APPNAME)_LIBS += calc
 $(APPNAME)_LIBS += VISAdrv
-#$(APPNAME)_LIBS += xxx
+## IOC support LIB
+$(APPNAME)_LIBS += Keithley_2001
 
 include $(VISADRV)/visa_lib.mak
 
