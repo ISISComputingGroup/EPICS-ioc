@@ -21,7 +21,7 @@ record(bo, "$(P)POWER:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:POWER:SP PP")
     field(SDIS, "$(P)DISABLE")
-    field(TPRO, "1")
+    field(TPRO, "1")  # Useful for diagnostics leaving in until we know it is working well
 }
 alias("$(P)POWER:SP", "$(P)POWER:SP:RBV")
 
