@@ -35,8 +35,8 @@ $(APPNAME)_DBD  += asyn.dbd
 $(APPNAME)_DBD  += asubFunctions.dbd
 
 ## IOC support DBD file
-$(APPNAME)_DBD += keithley_2001_sm.dbd
-$(APPNAME)_DBD += keithley_2001_asub.dbd
+$(APPNAME)_DBD += keithley_2001_buffer_parsing.dbd
+$(APPNAME)_DBD += keithley_2001_state_machine.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
