@@ -21,44 +21,30 @@ epicsEnvSet("AMOTOR", "motor1")
 # Make sure controller number is 2 digits long
 calc("MTRCTRL", "$(MTRCTRL=1)", 2, 2)
 
-# PN is 1->8 so we can safely add a 0
-epicsEnvSet("PN", "1")
-epicsEnvSet("AMOTORPV", "MOT:MTR$(MTRCTRL)0$(PN)")
-
-autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 1)
-set_pass0_restoreFile("$(IOCNAME)_$(PN)_built_settings.sav")
-set_pass1_restoreFile("$(IOCNAME)_$(PN)_built_settings.sav")
-
 $(IFSIM) motorSimCreateController("$(AMOTOR)", 1) 
 $(IFSIM) motorSimConfigAxis("$(AMOTOR)", 0, 32000, -32000,  0, 0) 
 $(IFSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
 
-$(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT=NUL)", 0, 0, 0)
+$(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT=COM20)", 0, 0, 0)
 $(IFNOTSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\n") 
 $(IFNOTSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\n") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"baud","$(BAUD=38400)") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"baud","$(BAUD=115200)") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"bits","8") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"stop","1") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"parity","none") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"clocal","Y") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","Y") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","N") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","N") 
 $(IFNOTSIM) asynSetTraceIOMask("$(ASERIAL)", 0, 2)
 
-$(IFNOTSIM) PI_GCS2_CreateController("$(AMOTOR)","$(ASERIAL)", 1, 0, 0, 500, 1000)
-
-asynSetTraceIOMask("$(AMOTOR)", 0, 2)
+$(IFNOTSIM) PI_GCS2_CreateController("$(AMOTOR)","$(ASERIAL)", 6, 0, 0, 500, 1000)
 
 ## Load record instances
 
-# Load asyn record 
-dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(AMOTORPV):ASYN,PORT=$(ASERIAL),ADDR=0,OMAX=256,IMAX=256") 
-dbLoadRecords("$(TOP)/db/asyn_motor.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),PORT=$(AMOTOR),ADDR=0") 
-dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=$(AMOTORPV)") 
-dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(PN),mAXIS=$(AMOTORPV)") 
+# Load asyn record
 
-autosaveBuild("$(IOCNAME)_$(PN)_built_settings.req", "_settings.req", 0)
+iocshCmdLoop("< st-motor.cmd", "AN=\$(I)", "I", 1, 6)
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
@@ -78,6 +64,3 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
-
-# Save motor settings every 30 seconds
-create_monitor_set("$(IOCNAME)_$(PN)_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
