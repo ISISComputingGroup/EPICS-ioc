@@ -215,10 +215,22 @@ record(bi, "$(P)POWER")
     field(DESC, "Power")
     field(ZNAM, "Off")
     field(ONAM, "On")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POWER CP")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+	
 }
 alias("$(P)POWER", "$(P)POWER:RBV")
+
+record(bi, "$(P)SIM:POWER")
+{
+    field(DTYP, "Soft Channel")
+	field(DESC, "Power")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+alias("$(P)SIM:POWER", "$(P)SIM:POWER:SP")
 
 record(ao, "$(P)RAW:SP")
 {

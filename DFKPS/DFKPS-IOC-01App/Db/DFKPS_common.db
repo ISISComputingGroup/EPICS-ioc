@@ -19,7 +19,7 @@ record(bo, "$(P)POWER:SP")
     field(ZNAM, "Off")
     field(ONAM, "On")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:POWER:SP PP")
+	field(SIOL, "$(P)SIM:POWER:SP PP")
     field(SDIS, "$(P)DISABLE")
     field(PINI, "$(SP_PINI)")
     info(autosaveFields, "VAL")
@@ -97,11 +97,12 @@ record(bo, "$(P)SIM:RESET"){
     field(DTYP, "Soft Channel")
 }
 
-record(bo, "$(P)SIM:POWER:SP"){
-    field(DTYP, "Soft Channel")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-}
+#record(bo, "$(P)SIM:POWER:SP"){
+#    field(DTYP, "Soft Channel")
+#    field(ZNAM, "Off")
+#    field(ONAM, "On")
+#	field(OUT, "$(P)SIM:POWER")
+#}
 
 record(ao, "$(P)SIM:VOLT"){
     field(DTYP, "Soft Channel")
