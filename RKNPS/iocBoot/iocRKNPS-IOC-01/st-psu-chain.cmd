@@ -24,9 +24,6 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 epicsEnvSet "POWER_FLAG_POSITION" "0"
 epicsEnvSet "INTERLOCK_FLAG_POSITION" "9"
 
-## Initialise the comms with the PSU
-asynOctetConnect("DFKINIT","$(DEVICE)")
-
 ## Load record instances
 iocshCmdLoop("< iocBoot/iocRKNPS-IOC-01/st-psu.cmd", "PS=\$(I)", "I", 1, 10)
 

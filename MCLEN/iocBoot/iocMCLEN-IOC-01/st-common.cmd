@@ -53,6 +53,7 @@ epicsEnvSet("MCLENCONFIG","$(ICPCONFIGROOT)/mclennan")
 # motion set points
 < motionsetpoints.cmd
 < sampleChanger.cmd
+< motorExtensions.cmd
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
