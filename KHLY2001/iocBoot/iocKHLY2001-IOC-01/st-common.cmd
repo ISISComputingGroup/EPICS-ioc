@@ -28,6 +28,7 @@ $(IFDEVSIM) asynOctetSetOutputEos("$(DEVICE)",0,"\r\n")
 
 ## Load our record instances
 dbLoadRecords("$(KHLY2001)/db/keithley_2001_misc.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(KHLY2001)/db/keithley_2001_error_handling.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 dbLoadRecords("$(KHLY2001)/db/unit_setter.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 dbLoadRecords("$(KHLY2001)/db/keithley_2001_init.db","PVPREFIX=$(MYPVPREFIX), P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 dbLoadRecords("$(KHLY2001)/db/keithley_2001_buffer.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
