@@ -17,8 +17,8 @@ $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","$(GPIBSTR=GPIB0::16::INSTR)",0, 0, 1, -1, "\n", 1)
 
 # trace masks for debugging
-asynSetTraceMask("$(DEVICE)",-1,0x9)
-asynSetTraceIOMask("$(DEVICE)",-1,0x2)
+#asynSetTraceMask("$(DEVICE)",-1,0x9)
+#asynSetTraceIOMask("$(DEVICE)",-1,0x2)
 
 # Need to set these for DEVSIM mode as lewis can't handle not having termination characters.
 $(IFDEVSIM) asynOctetSetOutputEos("$(DEVICE)",0,"\r\n")
