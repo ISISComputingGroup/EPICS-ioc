@@ -4,7 +4,7 @@
         <ioc_desc>Keithley 2001 Digital Multimeter</ioc_desc>
         <macros>
             <macro name="GPIBSTR" pattern="^.*$" description="GPIB connection string. Defaults to GPIB0::16::INSTR" />
-            <macro name="SCAN_SPEED" pattern="^[0-9.]*$" description="Scan speed of the IOC in seconds. Defaults to 0.5 seconds" />
+            <macro name="SCAN_SPEED" pattern="^[0-9.]*$" description="Scan speed of the IOC in seconds. Defaults to 1 second." />
             <macro name="ACTIVATE_CHAN_01" pattern="^(0|1)$" description="Activate channel 1. Defaults to 0." />
             <macro name="ACTIVATE_CHAN_02" pattern="^(0|1)$" description="Activate channel 2. Defaults to 0." />
             <macro name="ACTIVATE_CHAN_03" pattern="^(0|1)$" description="Activate channel 3. Defaults to 0." />
