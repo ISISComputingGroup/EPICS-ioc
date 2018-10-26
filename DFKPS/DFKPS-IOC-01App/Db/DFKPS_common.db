@@ -97,13 +97,6 @@ record(bo, "$(P)SIM:RESET"){
     field(DTYP, "Soft Channel")
 }
 
-#record(bo, "$(P)SIM:POWER:SP"){
-#    field(DTYP, "Soft Channel")
-#    field(ZNAM, "Off")
-#    field(ONAM, "On")
-#	field(OUT, "$(P)SIM:POWER")
-#}
-
 record(ao, "$(P)SIM:VOLT"){
     field(DTYP, "Soft Channel")
     field(EGU, "V")
