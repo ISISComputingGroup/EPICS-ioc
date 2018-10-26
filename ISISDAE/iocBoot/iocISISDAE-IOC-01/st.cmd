@@ -41,7 +41,7 @@ webgetConfigure("arch2")
 
 ## local dae, no dcom/labview
 ## define max number of live detectos and max (x,y) size of each
-isisdaeConfigure("icp", $(DAEDCOM=1), $(DAEHOST=localhost), "spudulike", "reliablebeam", 2, 512, 512)
+isisdaeConfigure("icp", $(DAEDCOM=1), $(DAEHOST=localhost), "spudulike", "reliablebeam", 2)
 ## pass 1 as second arg to signify DCOM to either local or remote dae
 ## pass 2 as second arg to signify SECI mode
 #isisdaeConfigure("icp", 1, "localhost")
@@ -79,6 +79,7 @@ dbLoadRecords("$(ISISDAE)/db/veto.db","P=$(MYPVPREFIX),Q=DAE:")
 cd ${TOP}/iocBoot/${IOC}
 
 ## uncomment to enable live view
+#ffmpegServerConfigure(8081)
 iocshLoad "liveview.cmd", "LVDET=1,LVADDR=0"
 iocshLoad "liveview.cmd", "LVDET=2,LVADDR=1"
 
