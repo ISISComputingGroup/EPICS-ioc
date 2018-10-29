@@ -9,10 +9,10 @@
         <macro name="FREQ" pattern="^[0-9]+$" description="Sample acquisition frequency. Defaults to 100"/>
         <macro name="NELM" pattern="^[0-9]+$" description="Number of elements in sample data. Defaults to 100" />
         <macro name="POWER_MIN_VOLT" pattern="^[0-9]+$" description="Voltage value (in kV) to determine when the separator is off. Defaults to 2" />
-        <macro name="VUPPERLIM" pattern="^[.0-9]+$" description="Voltage stability upper limit"/>
-        <macro name="VLOWERLIM" pattern="^[.0-9]+$" description="Voltage stability lower limit"/>
-        <macro name="ISTEADY" pattern="^[.0-9]+$" description="Nominal stable current value"/>
-        <macro name="ILIMIT" pattern="^[.0-9]+$" description="Current stability tolerance"/>
+        <macro name="VUPPERLIM" pattern="^[.0-9]+$" description="Voltage stability upper limit (kV). Defaults to 1"/>
+        <macro name="VLOWERLIM" pattern="^[.0-9]+$" description="Voltage stability lower limit (kV). Defaults to 0"/>
+        <macro name="ISTEADY" pattern="^[.0-9]+$" description="Nominal stable current value (mA). Defaults to 0"/>
+        <macro name="ILIMIT" pattern="^[.0-9]+$" description="Current stability tolerance (mA). Defaults to 1"/>
         <macro name="WINDOWSIZE" pattern="^[0-9]+$" description="Number of seconds in moving window. Defaults to 600"/>
         <macro name="MAXUNSTBL" pattern="^[0-9]+$" description="Maximum number of seconds allowed out of stability before alarm. Defaults to 30"/>
     </macros>
