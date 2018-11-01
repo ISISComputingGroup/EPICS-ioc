@@ -328,6 +328,8 @@ record(bi, "$(P)POWER")
     field(DESC, "Power")
     field(ZNAM, "Off")
     field(ONAM, "On")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POWER:SP PP")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
