@@ -6,11 +6,18 @@
     <macros>
         <macro name="DAQ_AI_PORT_NAME" pattern="^[a-zA-Z0-9_-]+$" description="Port name for AI DAQ Port. Defaults to cDAQ9185-MUONFEMod3" />
         <macro name="DAQ_AO_PORT_NAME" pattern="^[a-zA-Z0-9_-]+$" description="Port name for AO DAQ Port. Defaults to cDAQ9185-MUONFEMod4" />
-        <macro name="FREQ" pattern="^[0-9]+$" description="Sample rate in Hz for reading separator voltage and current. Defaults to 1000" />
-        <macro name="NELM" pattern="^[0-9]+$" description="Number of samples read from separator voltage and current. Defaults to 100" />
+        <macro name="FREQ" pattern="^[0-9]+$" description="Sample acquisition frequency. Defaults to 100"/>
+        <macro name="NELM" pattern="^[0-9]+$" description="Number of elements in sample data. Defaults to 100" />
         <macro name="POWER_MIN_VOLT" pattern="^[0-9]+$" description="Voltage value (in kV) to determine when the separator is off. Defaults to 2" />
+        <macro name="VUPPERLIM" pattern="^[.0-9]+$" description="Voltage stability upper limit (kV). Defaults to 1"/>
+        <macro name="VLOWERLIM" pattern="^[.0-9]+$" description="Voltage stability lower limit (kV). Defaults to 0"/>
+        <macro name="ISTEADY" pattern="^[.0-9]+$" description="Nominal stable current value (mA). Defaults to 0"/>
+        <macro name="ILIMIT" pattern="^[.0-9]+$" description="Current stability tolerance (mA). Defaults to 1"/>
+        <macro name="WINDOWSIZE" pattern="^[0-9]+$" description="Number of seconds in moving window. Defaults to 600"/>
+        <macro name="MAXUNSTBL" pattern="^[0-9]+$" description="Maximum number of seconds allowed out of stability before alarm. Defaults to 30"/>
     </macros>
-    <pvsets>	
+    <pvsets>
+
     </pvsets>
 </config_part>
 </ioc_config>
