@@ -33,7 +33,7 @@ $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += DAQmxSupport.dbd
 ## add other dbd here ##
-#$(APPNAME)_DBD += xxx.dbd
+$(APPNAME)_DBD += separator.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -49,6 +49,7 @@ $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
+$(APPNAME)_LIBS += SEPRTR#separator#SEPRTR
 $(APPNAME)_LIBS += calc
 #$(APPNAME)_LIBS += xxx
 $(APPNAME)_LIBS += DAQmxSupport
