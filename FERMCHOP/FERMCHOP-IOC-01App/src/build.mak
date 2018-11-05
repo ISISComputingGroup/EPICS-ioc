@@ -55,6 +55,7 @@ include $(VISADRV)/visa_lib.mak
 # FERMCHOP-IOC-01_registerRecordDeviceDriver.cpp derives from FERMCHOP-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 $(APPNAME)_SRCS += keep_sp_and_rbv_in_sync.st
+$(APPNAME)_SRCS += error_logger.st
 
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp
