@@ -1,3 +1,12 @@
+#
+#
+#
+# Fermi chopper IOC starting.
+#
+#
+#
+
+
 #!../../bin/windows-x64/FERMCHOP-IOC-01
 
 ## You may have to change FERMCHOP-IOC-01 to something else
@@ -99,3 +108,13 @@ seq error_logger, "INPUT_PV=$(P)STATUS:_SAFETYCHECKS:ELECTRONICSTEMP,OFF_STR=Sof
 # Uncomment these two lines to log every command sent to/from the chopper.
 # asynSetTraceIOMask("L0", -1, 0x2)
 # asynSetTraceMask("L0", -1, 0x9)
+
+
+#
+#
+#
+#  Fermi chopper IOC start complete.
+#
+#
+#
+
