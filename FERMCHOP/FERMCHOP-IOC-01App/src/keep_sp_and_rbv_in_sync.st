@@ -1,6 +1,7 @@
 program keep_sp_and_rbv_in_sync("SETPOINT,READBACK,TOLERANCE,DELAY")
 
 #include "seqPVmacros.h"
+%% #include "log_with_timestamp.h"
 
 /* Turn on run-time debug messages */
 option +d;
@@ -26,6 +27,7 @@ PV(double, delay, "{DELAY}", Monitor);
 int notWithinTolerance(double setpoint, double readback, double tolerance) {
     return fabs(setpoint - readback) > tolerance;
 }
+
 }%
 
 ss keep_sp_and_rbv_in_sync
@@ -36,15 +38,19 @@ ss keep_sp_and_rbv_in_sync
     /* setpoint alarm must be zero to avoid sending zero to device when first starting driver (SP will be UDF_alarm) */
     when(notWithinTolerance(setpoint, readback, tolerance) && setpoint_alarm == 0) 
 	{
-	  printf("Keep SP and RBV in sync: setpoint ('%s') not equal readback ('%s'). Reprocessing setpoint in %f seconds if still not the same.\n", setpoint_description, readback_description, delay);
+      char message[1000];
+      sprintf(message, "Keep SP and RBV in sync: setpoint ('%s') not equal readback ('%s'). Reprocessing setpoint in %f seconds if still not the same.\n", setpoint_description, readback_description, delay);
+	  log_with_timestamp(errlogMinor, message);
 	  
 	  epicsThreadSleep(delay);
 	  
 	  if (notWithinTolerance(setpoint, readback, tolerance) && setpoint_alarm == 0) {
-	      printf("Keep SP and RBV in sync: setpoint ('%s') not equal readback ('%s'). Reprocessing setpoint now.\n", setpoint_description, readback_description);
+	      sprintf(message, "Keep SP and RBV in sync: setpoint ('%s') not equal readback ('%s'). Reprocessing setpoint now.\n", setpoint_description, readback_description);
+          log_with_timestamp(errlogMinor, message);
 	      PVPUT(setpoint_proc, 1);
 	  } else {
-	      printf("Keep SP and RBV in sync: Not reprocessing setpoint ('%s') because readback is now in sync.\n", setpoint_description);
+	      sprintf(message, "Keep SP and RBV in sync: Not reprocessing setpoint ('%s') because readback is now in sync.\n", setpoint_description);
+          log_with_timestamp(errlogMinor, message);
 	  }
 	} state wait
   }
