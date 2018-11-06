@@ -12,8 +12,6 @@
 #include <vector>
 #include <sstream>
 #include <iostream>
-#include "time.h"
-#include "log_with_timestamp.h"
 
 #include "fermichopper.h"
 
@@ -483,17 +481,17 @@ long commandChecker(aSubRecord *prec)
 	
 	if (command == 3) {
 		if (magnetic_bearings != 1) {
-			log_with_timestamp(errlogMajor, "commandCheck: refusing to switch on run mode without magnetic bearings.");
+			errlogSevPrintf(errlogMajor, "commandCheck: refusing to switch on run mode without magnetic bearings.");
 			output_command = 0;
 		} else if (speed_sp_rbv == 600 && speed > 595 && drive_generator_on) {
-			log_with_timestamp(errlogMajor, "commandCheck: not sending 'switch drive on and run' command as chopper is already set at 600Hz");
+			errlogSevPrintf(errlogMajor, "commandCheck: not sending 'switch drive on and run' command as chopper is already set at 600Hz");
 			output_command = 0;
 		}else {
 			output_command = 3;
 		}
 	} else if (command == 5) {
 		if (speed > 10) {
-			log_with_timestamp(errlogMajor, "commandCheck: refusing to switch off magnetic bearings as chopper speed is over 10Hz.");
+			errlogSevPrintf(errlogMajor, "commandCheck: refusing to switch off magnetic bearings as chopper speed is over 10Hz.");
 			output_command = 0;
 		} else {
 			output_command = 5;
@@ -505,9 +503,7 @@ long commandChecker(aSubRecord *prec)
 	*(long*)prec->vala = output_command;
 	
 	if (output_command != 0) {
-        char mess[1000] = {0};
-        sprintf(mess, "commandCheck: sending command (%d) to device.\n", output_command);
-		log_with_timestamp(errlogInfo, mess);
+		errlogSevPrintf(errlogInfo, "commandCheck: sending command (%d) to device.\n", output_command);
 	}
 	
 	return 0;

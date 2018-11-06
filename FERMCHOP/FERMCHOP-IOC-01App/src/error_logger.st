@@ -4,7 +4,6 @@ program error_logger("INPUT_PV,OFF_STR,ON_STR")
 %% #include "time.h"
 %% #include "string.h"
 %% #include "errlog.h"
-%% #include "log_with_timestamp.h"
 
 /* Turn on run-time debug messages */
 option +d;
@@ -18,25 +17,17 @@ PV(int, input, "{INPUT_PV}", Monitor);
 %{
 
 void logMess(char* mess) {
+    char mess_without_underscores[1000] = {0};
+    int i;
     
-    time_t t = time(NULL);
-    struct tm tm = *localtime(&t);
-    
-    char logMessage[1000] = {0};
-    sprintf(logMessage, "[%04d-%02d-%02d %02d:%02d:%02d] Chopper status: %s\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec, mess);
-    
-    // char filename[1000] = {0};
-    // sprintf(filename, "C:\\Instrument\\var\\logs\\ioc\\FERMCHOP-DIAGNOSTICS-%04d-%02d-%02d.log", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
-    // 
-    // Write to a log file
-    // FILE* logFile;
-    // logFile = fopen(filename, "a");
-    // fprintf(logFile, logMessage);
-    // fflush(logFile);
-    // fclose(logFile);
-    
-    // Also put the same message into the main IOC log.
-    errlogSevPrintf(errlogMajor, logMessage);
+    for (i=0; i<strlen(mess); ++i) {
+        if (mess[i] == '_') {
+            mess_without_underscores[i] = ' ';
+        } else {
+            mess_without_underscores[i] = mess[i];
+        }
+    }
+    errlogSevPrintf(errlogMajor, "Chopper status: %s\n", mess_without_underscores);
 }
 
 }%
