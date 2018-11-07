@@ -1,4 +1,4 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(_SUPPORT_MACRO_)/data"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(WBVALVE)/data"
 epicsEnvSet "DEVICE" "L0"
 
 ##ISIS## Run IOC initialisation 
@@ -29,7 +29,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(_SUPPORT_MACRO_)/db/_NAME_LOWER_.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(WBVALVE)/db/wbvalve.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
