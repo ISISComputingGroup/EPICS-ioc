@@ -23,9 +23,6 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 
-asynSetTraceMask("L0",-1,0x9) 
-asynSetTraceIOMask("L0",-1,0x2)
-
 ## Load record instances
 
 ##ISIS## Load common DB records 
