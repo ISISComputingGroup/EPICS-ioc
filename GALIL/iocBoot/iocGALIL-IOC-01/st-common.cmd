@@ -31,7 +31,7 @@ set_requestfile_path("${TOP}/iocBoot/iocGALIL-IOC-01", "")
 ## Make sure controller number is 2 digits long
 calc("MTRCTRL", "$(MTRCTRL)", 2, 2)
 
-epicsEnvSet("GALILCONFIG","$(ICPCONFIGROOT)/galil")
+epicsEnvSet("GALILCONFIG","$(GALILCONFIGDIR=$(ICPCONFIGROOT)/galil)")
 
 ## uncomment to see every command sent to every galil, of define in st.cmd for just one galil
 #epicsEnvSet("GALIL_DEBUG_FILE", "galil_debug.txt")
@@ -58,8 +58,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet("GALIL_MTR_PORT", "Galil")
 iocshCmdLoop("< st-axis.cmd", "MN=\$(I)", "I", 1, 8)
 
 ## configure jaws
-$(IFNOTTESTRECSIM) < $(GALILCONFIG)/jaws.cmd
-$(IFTESTRECSIM) < $(JAWS)/settings/jaws.cmd
+< $(GALILCONFIG)/jaws.cmd
 
 ## configure barndoors
 < $(GALILCONFIG)/barndoors.cmd
@@ -74,8 +73,7 @@ $(IFTESTRECSIM) < $(JAWS)/settings/jaws.cmd
 < $(GALILCONFIG)/sampleChanger.cmd
 
 # motor extensions
-$(IFNOTTESTDEVSIM) < $(GALILCONFIG)/motorExtensions.cmd
-$(IFTESTDEVSIM) < $(MOTOREXT)/settings/motorExtensions.cmd
+< $(GALILCONFIG)/motorExtensions.cmd
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
