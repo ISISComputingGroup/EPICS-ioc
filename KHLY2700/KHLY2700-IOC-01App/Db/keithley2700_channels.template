@@ -7,7 +7,7 @@ record(bo, "$(P)$(CHANNEL):SIM")
     field(VAL, "$(RECSIM=0)")
 }
 
-record(bo, "$(P)$(CHANNEL):DISABLE") 
+record(bo, "$(P)$(CHANNEL):DISABLE")
 {
     field(DESC, "Disable comms")
     field(PINI, "YES")
@@ -21,13 +21,13 @@ record(bo, "$(P)$(CHANNEL):DISABLE")
 #
 # Template for the 20 Keithley_2700 Channels
 #
-# Values created by aSub record BUFF:READ:PARSE which populates channel 
+# Values created by aSub record BUFF:READ:PARSE which populates channel
 # values from the block of data returned in BUFF:READ.
 #
 # Channel names range from 101-110 and 201-210 and have the PV format CHNL:101
 #
 # CALIB_FILE - calibration file name
-# CALIB_DIR - file for magnets within calibartion 
+# CALIB_DIR - file for magnets within calibartion
 # CALIB_BASE_DIR - path for calibration base directory
 #
 ##################################################
@@ -61,19 +61,19 @@ record(ao, "$(P)$(CHANNEL):TIME:PREV")
 
 record(cvt, "$(P)$(CHANNEL):TEMP:RAW")
 {
-	field(DESC, "Calculate temperature from calib file")
-	field(SCAN, "Passive")
-	field(PREC, "5")
-	field(EGU, "K")
-	field(INPY, "$(P)$(CHANNEL):READ")
-	field(METH, "1D TABLE INVERTED")
-    field(DRVL, "$(DRVLO)")
-    field(DRVH, "$(DRVHI)")
-    field(SPEC, "$(CALIB_FILE)")
-	field(TDIR, "$(CALIB_DIR)")
-    field(BDIR, "$(CALIB_BASE_DIR)")
-	info(INTEREST, "LOW")
-	field(FLNK, "$(P)$(CHANNEL):TEMP:CHECK")
+  field(DESC, "Calculate temperature from calib file")
+  field(SCAN, "Passive")
+  field(PREC, "5")
+  field(EGU, "K")
+  field(INPY, "$(P)$(CHANNEL):READ")
+  field(METH, "1D TABLE INVERTED")
+  field(DRVL, "$(DRVLO)")
+  field(DRVH, "$(DRVHI)")
+  field(SPEC, "$(CALIB_FILE)")
+  field(TDIR, "$(CALIB_DIR)")
+  field(BDIR, "$(CALIB_BASE_DIR)")
+  info(INTEREST, "LOW")
+  field(FLNK, "$(P)$(CHANNEL):TEMP:CHECK")
 }
 
 record(calcout, "$(P)$(CHANNEL):TEMP:CHECK")
@@ -83,7 +83,7 @@ record(calcout, "$(P)$(CHANNEL):TEMP:CHECK")
 	field(INPA, "$(P)$(CHANNEL):TEMP:RAW")
 	field(CALC, "((A>=0)&&(A<320))?A:0")
 	field(OUT, "$(P)$(CHANNEL):TEMP PP")
-	field(FLNK, "$(P)$(CHANNEL):DRIFT:CALC")	
+	field(FLNK, "$(P)$(CHANNEL):DRIFT:CALC")
 }
 
 record(ao, "$(P)$(CHANNEL):TEMP")
@@ -106,11 +106,11 @@ record(aSub, "$(P)$(CHANNEL):DRIFT:CALC")
 {
 	field(DESC, "Calculate drift")
 	field(SNAM, "calculate_drift")
-	field(NOA, "1")	
+	field(NOA, "1")
 	field(INPA, "$(P)$(CHANNEL):TEMP")
 	field(INPB, "$(P)$(CHANNEL):TEMP:PREV")
 	field(INPC, "$(P)$(CHANNEL):TIME")
-	field(INPD, "$(P)$(CHANNEL):TIME:PREV")	
+	field(INPD, "$(P)$(CHANNEL):TIME:PREV")
 	field(INPE, "$(P)$(CHANNEL):DRIFT")
 	field(OUTA, "$(P)$(CHANNEL):DRIFT PP")
 	field(OUTB, "$(P)$(CHANNEL):TEMP:PREV PP")
@@ -124,6 +124,7 @@ record(ao, "$(P)$(CHANNEL):DRIFT")
 	field(EGU, "")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
+  field(TPRO,  "1")
 }
 
 ### SIMULATION RECORDS ###
