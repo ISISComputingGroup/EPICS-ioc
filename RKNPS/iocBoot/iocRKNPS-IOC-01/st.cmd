@@ -50,6 +50,7 @@ epicsEnvSet(RB2C_PSU_POWER,$(MYPVPREFIX)$(IOCNAME):RB2C:PSUS:POWER)
 dbLoadRecords("$(TOP)/db/riken_changeover.db","P=$(MYPVPREFIX)$(IOCNAME):RB2C:,PSU_DISABLE=$(RB2C_PSU_DISABLE),PSU_POWER=$(RB2C_PSU_POWER)")
 dbLoadRecords("$(TOP)/db/riken_rb2_mode_changeover_psus.db","PV_PREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):RB2C:,PSU_DISABLE=$(RB2C_PSU_DISABLE)")
 
+dbLoadRecords("$(TOP)/db/riken_psu_banner.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
