@@ -1,6 +1,8 @@
+stringiftest  "LOCALCALIB"  "$(LOCAL_CALIB="no")"  5  "yes"
 
+$(IFNOTLOCALCALIB) epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
+$(IFLOCALCALIB) epicsEnvSet "CALIB_BASE_DIR" "$(ICPCONFIGROOT)/calib"
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(EUROTHERM2K)/data"
-epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
 epicsEnvSet "SENS_DIR" "temp_sensors"
 epicsEnvSet "SENS_PAT" "^C.*"
 epicsEnvSet "RAMP_DIR" "$(CALIB_BASE_DIR)/ramps"
