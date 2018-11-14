@@ -184,9 +184,9 @@ record(ai, "$(P)CH:END")
 
 record(ao, "$(P)CH:END:SP")
 {
-	field(DESC, "Set end point of channel range to scan")
-	field(DTYP, "stream")
-	field(OUT, "@devKeithley_2700.proto setScanChannelsEnd($(P)CH) $(PORT)")
+  field(DESC, "Set end point of channel range to scan")
+  field(DTYP, "stream")
+  field(OUT, "@devKeithley_2700.proto setScanChannelsEnd($(P)CH) $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CH:END:SP")
     field(SDIS, "$(P)DISABLE")
@@ -194,11 +194,12 @@ record(ao, "$(P)CH:END:SP")
 
 record(bo, "$(P)BUFF:CLEAR:SP")
 {
-	field(DESC, "Clear readings from buffer")
-	field(DTYP, "stream")
-	field(ZNAM, "")
-	field(ONAM, "")
-	field(OUT, "@devKeithley_2700.proto clearBuffer $(PORT)")
+  field(DESC, "Clear readings from buffer")
+  field(DTYP, "stream")
+  field(ZNAM, "")
+  field(ONAM, "")
+  field(OUT, "@devKeithley_2700.proto clearBuffer $(PORT)")
+  field(FLNK,  "$(P)LAST:READ:LOC:RST")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:BUFFER:CLEAR:SP")
     field(SDIS, "$(P)DISABLE")
@@ -323,18 +324,24 @@ record(ao, "$(P)LAST:READ:LOC") {
   field(VAL,  "-1") #initial sentinel value
 }
 
+record(calcout, "$(P)LAST:READ:LOC:RST") {
+  field(DESC,  "Reset last buffer read location")
+  field(CALC,  "-1")
+  field(OUT,  "$(P)LAST:READ:LOC")
+}
+
 record(calc, "$(P)INDEX:FIRST") {
   field(DESC,  "First index to read from")
   field(INPA,  "$(P)LAST:READ:LOC")
   field(CALC,  "A+1")
-  field(FLNK,  "$(P)INDEX:LAST")
+  field(FLNK,  "$(P)INDEX:LAST PP")
 }
 
 record(calc, "$(P)INDEX:LAST") {
   field(DESC,  "Final index to read from")
   field(INPA,  "$(P)BUFF:NEXT")
   field(CALC,  "A-1")
-  field(FLNK,  "$(P)VALID:RANGE:CHECK")
+  field(FLNK,  "$(P)VALID:RANGE:CHECK PP")
 }
 
 record(calcout, "$(P)VALID:RANGE:CHECK") {
@@ -361,7 +368,6 @@ record(waveform, "$(P)BUFF:READ")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:BUFF:READ")
   field(SDIS, "$(P)DISABLE")
-  field(TPRO, "1")
 }
 
 record(calcout, "$(P)LAST:READ:LOC:UPDATE") {
