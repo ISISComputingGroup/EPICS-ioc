@@ -3,12 +3,16 @@
 stringiftest  "LOCALCALIB"  "$(LOCAL_CALIB="no")"  5  "yes"
 
 $(IFNOTLOCALCALIB) epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
-$(IFLOCALCALIB) epicsEnvSet "CALIB_BASE_DIR" "$(ICPCONFIGBASE)/NDXPOLARIS"
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(EUROTHERM2K)/data"
-epicsEnvSet "SENS_DIR" "temp_sensors"
+$(IFNOTLOCALCALIB) epicsEnvSet "SENS_DIR" "temp_sensors"
+$(IFNOTLOCALCALIB) epicsEnvSet "RAMP_DIR" "$(CALIB_BASE_DIR)/ramps"
+
+$(IFLOCALCALIB) epicsEnvSet "CALIB_BASE_DIR" "$(ICPCONFIGBASE)/$(INSTRUMENT)"
+$(IFLOCALCALIB) epicsEnvSet "SENS_DIR" "calib/temp_sensors"
+$(IFLOCALCALIB) epicsEnvSet "RAMP_DIR" "$(CALIB_BASE_DIR)/calib/ramps"
+
 epicsEnvSet "SENS_PAT" "^C.*"
-epicsEnvSet "RAMP_DIR" "$(CALIB_BASE_DIR)/ramps"
 epicsEnvSet "RAMP_PAT" ".*"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(EUROTHERM2K)/data"
 
 ## Use the example ramp file
 $(IFDEVSIM) epicsEnvSet "RAMP_DIR" "$(READASCII)/example_settings"
