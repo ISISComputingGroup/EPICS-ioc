@@ -18,17 +18,9 @@ DBD += $(APPNAME).dbd
 # QEPRO-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
-$(APPNAME)_DBD += icpconfig.dbd
-$(APPNAME)_DBD += pvdump.dbd
-$(APPNAME)_DBD += asSupport.dbd
-$(APPNAME)_DBD += devIocStats.dbd
-$(APPNAME)_DBD += caPutLog.dbd
-$(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
-$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += busySupport.dbd
 $(APPNAME)_DBD += sscanSupport.dbd
 $(APPNAME)_DBD += drvUSBQEProSupport.dbd
@@ -37,13 +29,6 @@ $(APPNAME)_DBD += drvUSBQEProSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seqDev seq pv
-$(APPNAME)_LIBS += devIocStats 
-$(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
-$(APPNAME)_LIBS += caPutLog
-$(APPNAME)_LIBS += icpconfig pugixml
-$(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += qepro
 $(APPNAME)_LIBS += seabreeze
 $(APPNAME)_LIBS += pcre
@@ -64,7 +49,7 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
-$(APPNAME)_SYS_LIBS_Linux += usb
+$(APPNAME)_SYS_LIBS_Linux += usb usb-1.0
 
 #===========================
 
