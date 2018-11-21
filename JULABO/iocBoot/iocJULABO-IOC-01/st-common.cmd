@@ -23,6 +23,9 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
+$(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "$(OEOS=\\r\\n)")
+$(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "$(IEOS=\\r)")
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
