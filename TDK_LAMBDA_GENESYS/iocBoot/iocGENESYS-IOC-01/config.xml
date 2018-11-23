@@ -11,6 +11,7 @@
 <macro name="OEOS1" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
 <macro name="IEOS1" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
 <macro name="SP_AT_STARTUP1" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" />
+<macro name="ADDR1" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" />
 
 <macro name="PORT2" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD2" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -20,6 +21,7 @@
 <macro name="OEOS2" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
 <macro name="IEOS2" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
 <macro name="SP_AT_STARTUP2" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" />
+<macro name="ADDR2" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" />
 
 <macro name="PORT3" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD3" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -29,6 +31,7 @@
 <macro name="OEOS3" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
 <macro name="IEOS3" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
 <macro name="SP_AT_STARTUP3" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" />
+<macro name="ADDR3" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" />
 
 <macro name="PORT4" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD4" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -38,6 +41,7 @@
 <macro name="OEOS4" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
 <macro name="IEOS4" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
 <macro name="SP_AT_STARTUP4" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" />
+<macro name="ADDR4" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" />
 
 <macro name="PORT5" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD5" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -47,6 +51,7 @@
 <macro name="OEOS5" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
 <macro name="IEOS5" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
 <macro name="SP_AT_STARTUP5" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" />
+<macro name="ADDR5" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" />
 
 <macro name="PORT6" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD6" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -56,6 +61,7 @@
 <macro name="OEOS6" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
 <macro name="IEOS6" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
 <macro name="SP_AT_STARTUP6" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" />
+<macro name="ADDR6" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" />
 
 <macro name="PORT7" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD7" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -65,6 +71,7 @@
 <macro name="OEOS7" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
 <macro name="IEOS7" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
 <macro name="SP_AT_STARTUP7" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" />
+<macro name="ADDR7" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" />
 
 <macro name="PORT8" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD8" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -74,6 +81,7 @@
 <macro name="OEOS8" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
 <macro name="IEOS8" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
 <macro name="SP_AT_STARTUP8" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" />
+<macro name="ADDR8" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" />
 
 <macro name="PORT9" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD9" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -83,6 +91,7 @@
 <macro name="OEOS9" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
 <macro name="IEOS9" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
 <macro name="SP_AT_STARTUP9" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" />
+<macro name="ADDR9" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" />
 
 <macro name="PORT10" pattern="^COM[0-9]+$" description="Serial COM Port" />
 <macro name="BAUD10" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
@@ -92,6 +101,7 @@
 <macro name="OEOS10" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
 <macro name="IEOS10" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
 <macro name="SP_AT_STARTUP10" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" />
+<macro name="ADDR10" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" />
 </macros>
 </config_part>
 </ioc_config>

@@ -1,7 +1,7 @@
 record(seq, "$(PSU_DISABLE):$(PSNAME)")
 {
     field(DOL1, "$(PSU_DISABLE) CP")
-	field(LNK1, "$(PV_PREFIX)$(PSIOC):$(PSNAME):POWER:SP.DISP PP")
+	field(LNK1, "$(PV_PREFIX)$(PSIOC):$(PSNAME):POWER:SP.DISP NPP")
 }
 
 
@@ -12,4 +12,3 @@ record(calcout, "$(P)PSUS:POWER:$(PSNAME)")
 	field(OUT, "$(P)PSUS:POWER:CALC.$(PSIDX) PP MS")
 	field(OOPT, "Every Time")
 }
-

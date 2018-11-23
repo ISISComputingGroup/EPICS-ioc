@@ -4,6 +4,12 @@
 <ioc_desc>Julabo water bath</ioc_desc>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="READ_POWER_CMD_NUMBER" pattern="^[0-9]+$" description="Command number for reading power. The prefix 'IN_PV_' is added automatically. Defaults to 01" />
+<macro name="READ_EXT_TEMP_CMD_NUMBER" pattern="^[0-9]+$" description="Command number for reading external temperature. The prefix 'IN_PV_' is added automatically. Defaults to 02" />
+<macro name="READ_HIGH_LIM_CMD_NUMBER" pattern="^[0-9]+$" description="Command number for reading the high limit. The prefix 'IN_SP_' is added automatically. Defaults to 01" />
+<macro name="READ_LOW_LIM_CMD_NUMBER" pattern="^[0-9]+$" description="Command number for reading the low limit. The prefix 'IN_SP_' is added automatically. Defaults to 02" />
+<macro name="OEOS" pattern="^(\\\\r)?(\\\\n)?$" description="Output end of string. Needs slashes escaping - e.g. set to \\r\\n to set terminator to CR LF. Defaults to \\r\\n (CR LF)" />
+<macro name="IEOS" pattern="^(\\\\r)?(\\\\n)?$" description="Input end of string. Needs slashes escaping - e.g. set to \\r\\n to set terminator to CR LF. Defaults to \\r (CR)" />
 </macros>
 </config_part>
 </ioc_config>
