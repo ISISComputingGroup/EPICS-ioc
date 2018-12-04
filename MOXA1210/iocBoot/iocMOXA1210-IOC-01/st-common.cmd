@@ -42,21 +42,6 @@ dbLoadRecords("${TOP}/db/IBEX_PVs.db","NAME=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPRE
 
 iocshCmdList("< ${TOP}/iocBoot/iocMOXA1210-IOC-01/st-aliases.cmd", "CHAN=\$(I)", "I", "00;01;02;03;04;05;06;07;08;09;10;11;12;13;14;15", ";")
 
-asynSetTraceIOMask("$(E1210_ASYNPORT)_DI",-1,4)
-asynSetTraceMask("$(E1210_ASYNPORT)_DI",-1,9)
-
-asynSetTraceIOMask("$(E1210_ASYNPORT)_DICNT_S",-1,4)
-asynSetTraceMask("$(E1210_ASYNPORT)_DICNT_S",-1,9)
-
-asynSetTraceIOMask("$(E1210_ASYNPORT)_DICNT_S_RBV",-1,4)
-asynSetTraceMask("$(E1210_ASYNPORT)_DICNT_S_RBV",-1,9)
-
-asynSetTraceIOMask("$(E1210_ASYNPORT)_DICNT_CLR",-1,4)
-asynSetTraceMask("$(E1210_ASYNPORT)_DICNT_CLR",-1,9)
-
-asynSetTraceIOMask("$(E1210_ASYNPORT)_DICNT",-1,4)
-asynSetTraceMask("$(E1210_ASYNPORT)_DICNT",-1,9)
-
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
