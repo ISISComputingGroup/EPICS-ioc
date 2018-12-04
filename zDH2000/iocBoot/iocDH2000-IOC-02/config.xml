@@ -1,4 +1,0 @@
-<?xml version="1.0" ?>
-<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
-    <xi:include href="../ioc_01_APP_NAME_/config.xml"  />
-</ioc_config>
