@@ -19,6 +19,10 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","$(GPIBSTR=GP
 # Need to set these for DEVSIM mode as lewis can't handle not having termination characters.
 $(IFDEVSIM) asynOctetSetOutputEos("$(DEVICE)",0,"\r\n")
 
+
+asynSetTraceMask("L0",-1,0x9)
+asynSetTraceIOMask("L0",-1,0x2)
+
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
@@ -33,6 +37,9 @@ dbLoadRecords("$(KHLY2001)/db/keithley_2001_buffer_parsing.db","PVPREFIX=$(MYPVP
 dbLoadRecordsList("$(KHLY2001)/db/keithley_2001_channel.db", "PVPREFIX=$(MYPVPREFIX), P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0),PORT=$(DEVICE)", "CHANNEL", "01;02;03;04;05;06;07;08;09;10", ";")
 
 dbLoadRecords("$(KHLY2001)/db/keithley_2001_channel_scanning.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),SCAN_DELAY=$(SCAN_DELAY=1)")
+
+dbLoadRecords("$(KHLY2001)/db/alarm_readings_setter.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
+dbLoadRecords("$(KHLY2001)/db/alarm_units_setter.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
