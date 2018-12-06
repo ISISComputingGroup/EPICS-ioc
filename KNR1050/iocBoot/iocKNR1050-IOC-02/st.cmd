@@ -15,4 +15,4 @@ dbLoadDatabase "dbd/KNR1050-IOC-02.dbd"
 KNR1050_IOC_02_registerRecordDeviceDriver pdbbase
 
 ## calling common command file in ioc 01 boot dir
-< ${TOP}/iocBoot/KNR1050-IOC-01/st-common.cmd
+< ${TOP}/iocBoot/iocKNR1050-IOC-01/st-common.cmd
