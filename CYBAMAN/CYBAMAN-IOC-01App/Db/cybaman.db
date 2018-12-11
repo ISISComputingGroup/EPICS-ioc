@@ -26,7 +26,6 @@ record(bo, "$(P)INITIALIZE")
 	field(OUT, "@devcybaman.proto initialize $(PORT)")
 	field(FLNK, "$(P)_SET_INITIALIZED_TRUE")
 	info(INTEREST, "MEDIUM")
-	field(alarm, "CYBAMAN")
 }
 
 record(bo, "$(P)RESET")
