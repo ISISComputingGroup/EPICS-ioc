@@ -113,6 +113,7 @@ record(ai, "$(P)FREQUENCY")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FREQUENCY")
     field(SDIS, "$(P)DISABLE")
+	field(alarm, "AG33220A")
 }
 
 record(ao, "$(P)FREQUENCY:SP")

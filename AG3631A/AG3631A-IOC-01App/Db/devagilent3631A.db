@@ -87,6 +87,7 @@ record(bi, "$(P)OUTPUT_STATUS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURRENT")
     field(SDIS, "$(P)DISABLE")
+	field(alarm, "AG3631A")
 }
 
 record(bo, "$(P)OUTPUT_STATUS:SP")
