@@ -3,7 +3,7 @@
 < $(IOCSTARTUP)/init.cmd
 
 drvUSBQEProConfigure("qepro",100,1,$(DEVICE_ID))
-asynSetTraceMask("qepro",0,0x11)
+#asynSetTraceMask("qepro",0,0x11)
 
 ## Load record instances
 
