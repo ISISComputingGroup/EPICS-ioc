@@ -30,5 +30,5 @@ record(bi, "$(P)RUNNING")
    field(SCAN, ".1 second")
    field(ZNAM, "NO")
    field(ONAM, "YES")
-   info(alarm, "DELFTARDUSTEP"
+   info(alarm, "DELFTARDUSTEP")
 }

@@ -38,7 +38,7 @@ record(ai, "$(P)READING")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:READING")
     field(SDIS, "$(P)DISABLE")
-	field(alarm, "CCD100")
+	info(alarm, "CCD100")
 }
 
 record(ao, "$(P)SP")
