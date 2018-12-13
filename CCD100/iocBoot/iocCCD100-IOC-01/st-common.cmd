@@ -17,13 +17,21 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "\r\n")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "\r\n") 
 
+# Hardware flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "clocal", "Y")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
+
+# Software flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N") 
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("${TOP}/db/CCD100.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, DEV_NAME=$(DEV_NAME=), RECSIM=$(RECSIM), DEVSIM=$(DEVSIM)")
+dbLoadRecords("${TOP}/db/CCD100.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, ADDR=$(ADDRESS=a), DEV_NAME=$(DEV_NAME=), RECSIM=$(RECSIM), DEVSIM=$(DEVSIM)")
 dbLoadRecords("${TOP}/db/unit_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 

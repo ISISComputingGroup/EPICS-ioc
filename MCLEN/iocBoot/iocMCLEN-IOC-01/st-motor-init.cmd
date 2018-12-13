@@ -7,7 +7,7 @@ asynOctetConnect("MKINIT","$(ASERIAL)")
 #asynOctetWrite("MKINIT","$(MN)IN")
 
 ## Check if open loop mode has been requested
-stringiftest("CMOPEN", "$(MODE$(MN)=)",4,"OPEN")
+stringiftest("CMOPEN", "$(CMOD$(MN)=)",5,"OPEN")
 
 ## Initialise control mode. Defaults to CM14, closed
 $(IFCMOPEN) asynOctetWrite("MKINIT","$(MN)CM11")

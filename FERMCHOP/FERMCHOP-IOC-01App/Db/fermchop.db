@@ -49,6 +49,7 @@ record(ao, "$(P)_MHZ") {
     field(VAL, "$(MHZ=50.4)")
     field(PINI, "YES")
     info(archive, "VAL")
+    field(ADEL, "0.05")
 }
 
 record(aSub, "$(P)STATUS:PARSE")
@@ -139,7 +140,7 @@ record(mbbiDirect, "$(P)STATUS")
     # BD = Speed limit exceeded
 	field(FLNK, "$(P)STATUS:_SAFETYCHECKS")
 	info(INTEREST, "HIGH")
-	info(archive, "VAL")
+	info(archive, "VAL B0 B1 B2 B3 B4 B5 B6 B7 B8 B9 BA BB BC BD")
 } 
 
 record(seq, "$(P)STATUS:_SAFETYCHECKS")
@@ -163,6 +164,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:CHOPSPEED")
 	field(OUT, "$(P)COMMAND:SP:_RAW PP")
 	field(OOPT, "When Non-zero")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 }
 
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:BEARING")
@@ -176,6 +178,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:BEARING")
 	field(OUT, "$(P)COMMAND:SP:_RAW PP")
 	field(OOPT, "When Non-zero")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 }
 
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:AUTOZERO")
@@ -192,6 +195,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:AUTOZERO")
 	field(OUT, "$(P)COMMAND:SP:_RAW PP")
 	field(OOPT, "When Non-zero")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 }
 
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:MOTORTEMP")
@@ -204,6 +208,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:MOTORTEMP")
 	field(OUT, "$(P)COMMAND:SP:_RAW PP")
 	field(OOPT, "When Non-zero")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 }
 
 record(calcout, "$(P)STATUS:_SAFETYCHECKS:ELECTRONICSTEMP")
@@ -216,6 +221,7 @@ record(calcout, "$(P)STATUS:_SAFETYCHECKS:ELECTRONICSTEMP")
 	field(OUT, "$(P)COMMAND:SP:_RAW PP")
 	field(OOPT, "When Non-zero")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 }
 
 record(ai, "$(P)SPEED:SP:RBV")
@@ -229,6 +235,7 @@ record(ai, "$(P)SPEED:SP:RBV")
 	field(PREC, "0")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+    field(ADEL, "0.1")
 } 
 
 record(ai, "$(P)SPEED")
@@ -242,6 +249,7 @@ record(ai, "$(P)SPEED")
 	field(PREC, "1")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 } 
 
 record(ai, "$(P)DELAY:SP:RBV")
@@ -255,6 +263,7 @@ record(ai, "$(P)DELAY:SP:RBV")
 	field(PREC, "3")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 } 
 
 record(ai, "$(P)DELAY")
@@ -268,6 +277,7 @@ record(ai, "$(P)DELAY")
 	field(PREC, "3")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 } 
 
 record(ai, "$(P)GATEWIDTH")
@@ -281,6 +291,7 @@ record(ai, "$(P)GATEWIDTH")
 	field(PREC, "3")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+    field(ADEL, "0.001")
 } 
 
 record(ai, "$(P)CURRENT")
@@ -291,6 +302,7 @@ record(ai, "$(P)CURRENT")
 	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 } 
 
 record(ai, "$(P)AUTOZERO:1:UPPER")
@@ -301,6 +313,7 @@ record(ai, "$(P)AUTOZERO:1:UPPER")
 	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 } 
 
 record(ai, "$(P)AUTOZERO:2:UPPER")
@@ -311,6 +324,7 @@ record(ai, "$(P)AUTOZERO:2:UPPER")
 	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 } 
 
 record(ai, "$(P)AUTOZERO:1:LOWER")
@@ -321,6 +335,7 @@ record(ai, "$(P)AUTOZERO:1:LOWER")
 	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 } 
 
 record(ai, "$(P)AUTOZERO:2:LOWER")
@@ -331,6 +346,7 @@ record(ai, "$(P)AUTOZERO:2:LOWER")
 	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 }
 
 record(calc, "$(P)AUTOZERO:RANGECHECK")
@@ -342,6 +358,7 @@ record(calc, "$(P)AUTOZERO:RANGECHECK")
 	# Absolute value of 3V is the maximum allowable voltage
 	# This behaviour is copied from the equivalent LabView driver.
 	field(CALC, "ABS(A) > 3 | ABS(B) > 3 | ABS(C) > 3 | ABS(D) > 3")
+    field(ADEL, "0.01")
 }
 
 record(ai, "$(P)VOLTAGE")
@@ -352,6 +369,7 @@ record(ai, "$(P)VOLTAGE")
 	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 } 
 
 record(calc, "$(P)POWER")
@@ -362,6 +380,7 @@ record(calc, "$(P)POWER")
 	field(INPA, "$(P)CURRENT CP")
 	field(INPB, "$(P)VOLTAGE CP")
 	field(CALC, "A*B")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)TEMP:ELECTRONICS")
@@ -372,6 +391,7 @@ record(ai, "$(P)TEMP:ELECTRONICS")
 	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 } 
 
 record(ai, "$(P)TEMP:MOTOR")
@@ -382,6 +402,7 @@ record(ai, "$(P)TEMP:MOTOR")
 	field(PREC, "2")
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 } 
 
 record(calc, "$(P)TEMP:RANGECHECK")
@@ -392,6 +413,7 @@ record(calc, "$(P)TEMP:RANGECHECK")
 	# This behaviour is copied from the equivalent LabView driver.
 	field(CALC, "A > 45 | B > 45")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 }
 
 record(mbbo, "$(P)COMMAND:SP")
@@ -427,6 +449,8 @@ record(mbbo, "$(P)COMMAND:SP")
 	field(EIST, "Use MERLIN small params")
 	
 	field(FLNK, "$(P)COMMAND:SP:_CHECK")	
+    
+    info(archive, "VAL")
 }
 
 record(aSub, "$(P)COMMAND:SP:_CHECK")
@@ -465,6 +489,7 @@ record(ao, "$(P)COMMAND:SP:_RAW")
     field(SIOL, "$(P)SIM:COMMAND:SP:_RAW")
     field(SDIS, "$(P)DISABLE")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 }
 
 record(ao, "$(P)SPEED:SP:RAW")
@@ -473,6 +498,7 @@ record(ao, "$(P)SPEED:SP:RAW")
 	field(DTYP, "stream")
     field(OUT,  "@fc_$(INST=merlin).proto setSpeed $(PORT)")
 	info(archive, "VAL")
+    field(ADEL, "0.1")
 }
 
 record(aSub, "$(P)SPEED:SP:CALC")
@@ -509,6 +535,7 @@ record(ao, "$(P)SPEED:SP")
     field(SIOL, "$(P)SIM:SPEED:SP")
     field(SDIS, "$(P)DISABLE")
 	info(archive, "VAL")
+    field(ADEL, "0.1")
 }
 
 record(mbbo, "$(P)SPEED:SP:GUI")
@@ -571,6 +598,7 @@ record(ao, "$(P)DELAY:SP")
 	field(PREC, "3")
 	field(EGU, "us")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 }
 
 record(transform, "$(P)DELAY:SP:_CALC")
@@ -594,6 +622,7 @@ record(ai, "$(P)DELAY:_SEQ_TOL")
     field(VAL, "1")
 	field(PINI, "YES")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
 }
 
 record(ai, "$(P)DELAY:_SEQ_DELAY")
@@ -602,6 +631,25 @@ record(ai, "$(P)DELAY:_SEQ_DELAY")
     field(VAL, "30")
 	field(PINI, "YES")
 	info(archive, "VAL")
+    field(ADEL, "0.01")
+}
+
+record(ai, "$(P)SPEED:_SEQ_TOL")
+{
+    # If speed setpoint readback not equal to setpoint within this tolerance, resend setpoint.
+    field(VAL, "5")
+	field(PINI, "YES")
+	info(archive, "VAL")
+    field(ADEL, "0.01")
+}
+
+record(ai, "$(P)SPEED:_SEQ_DELAY")
+{
+    # If speed setpoint readback has not reached sp within this time, resend setpoint.
+    field(VAL, "30")
+	field(PINI, "YES")
+	info(archive, "VAL")
+    field(ADEL, "0.01")
 }
 
 record(ao, "$(P)GATEWIDTH:SP")
@@ -615,6 +663,7 @@ record(ao, "$(P)GATEWIDTH:SP")
 	field(PREC, "3")
 	field(EGU, "us")
 	info(archive, "VAL")
+    field(ADEL, "0.001")
 }
 
 record(calcout, "$(P)GATEWIDTH:SP:_CALC")

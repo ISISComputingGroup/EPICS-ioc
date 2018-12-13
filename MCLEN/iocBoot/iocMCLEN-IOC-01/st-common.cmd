@@ -29,7 +29,7 @@ $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"bits","$(BITS=7)")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"stop","$(STOP=1)") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"parity","$(PARITY=even)")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"clocal","Y") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","D") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","N")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","N")
 
@@ -53,6 +53,7 @@ epicsEnvSet("MCLENCONFIG","$(ICPCONFIGROOT)/mclennan")
 # motion set points
 < motionsetpoints.cmd
 < sampleChanger.cmd
+< motorExtensions.cmd
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")

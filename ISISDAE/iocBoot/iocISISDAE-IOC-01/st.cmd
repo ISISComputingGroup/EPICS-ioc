@@ -27,6 +27,11 @@ ISISDAE_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
+# The search path for database files
+epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
+
+asynSetMinTimerPeriod(0.001)
+
 ## used for restarting and checking EPICS block archiver via web URL
 webgetConfigure("arch1")
 webgetConfigure("arch2")
@@ -35,8 +40,10 @@ webgetConfigure("arch2")
 #epicsEnvSet("NOCHECKFUAMP","1")
 
 ## local dae, no dcom/labview
-isisdaeConfigure("icp", $(DAEDCOM=1), $(DAEHOST=localhost), "spudulike", "reliablebeam")
+## define max number of live detectos and max (x,y) size of each
+isisdaeConfigure("icp", $(DAEDCOM=1), $(DAEHOST=localhost), "spudulike", "reliablebeam", 2)
 ## pass 1 as second arg to signify DCOM to either local or remote dae
+## pass 2 as second arg to signify SECI mode
 #isisdaeConfigure("icp", 1, "localhost")
 #isisdaeConfigure("icp", 1, "ndxchipir", "spudulike", "reliablebeam")
 
@@ -67,11 +74,21 @@ $(IFPARALLEL=) dbLoadRecords("$(ISISDAE)/db/dae3_parallel.db","P=$(MYPVPREFIX), 
 
 dbLoadRecords("$(ISISDAE)/db/isisdae.db","S=$(MYPVPREFIX), P=$(MYPVPREFIX), Q=$(Q), WIRINGLIST=WLIST, DETECTORLIST=DLIST, SPECTRALIST=SLIST, PERIODLIST=PLIST, TCBLIST=TLIST, BEGINRUNA=$(BEGINRUN_DAE3=$(MYPVPREFIX)$(Q)_BEGINRUN1), ENDRUNA=$(ENDRUN_DAE3=$(MYPVPREFIX)$(Q)_ENDRUN1)")
 dbLoadRecords("$(ISISDAE)/db/dae_diag.db","P=$(MYPVPREFIX),Q=DAE:")
+dbLoadRecords("$(ISISDAE)/db/veto.db","P=$(MYPVPREFIX),Q=DAE:")
+
+cd ${TOP}/iocBoot/${IOC}
+
+## uncomment to enable live view
+#ffmpegServerConfigure(8081)
+iocshLoad "liveview.cmd", "LVDET=1,LVADDR=0"
+iocshLoad "liveview.cmd", "LVDET=2,LVADDR=1"
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
-cd ${TOP}/iocBoot/${IOC}
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("icp", -1, 0x11)
+
 iocInit
 
 ## Start any sequence programs
