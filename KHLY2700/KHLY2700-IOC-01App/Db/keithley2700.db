@@ -303,83 +303,83 @@ record(ai, "$(P)BUFF:NEXT") {
   field(INP,  "@devKeithley_2700.proto getNextBufferReadingLoc $(PORT)")
   info(ARCHIVE, "VAL")
   info(INTEREST, "HIGH")
-  field(EGU, "")
+  field(EGU, "") # Proto command uses this value
 
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:BUFFER:NEXT")
   field(SDIS, "$(P)DISABLE")
 
-  field(FLNK, "$(P)INDEX:FIRST")
+  field(FLNK, "$(P)INDEX:START:CALC")
 }
 
-record(calcout, "$(P)LAST:READ_LOC:TRIG") {
-  field(DESC,  "Tigger last read loc reset on buff rst")
-  field(INPA,  "$(P)BUFF:NEXT")
-  field(INPB,  "$(P)LAST:READ_LOC")
-  field(CALC,  "A<B")
-  field(OOPT,  "When Non-zero")
-  field(OUT,  "$(P)LAST:READ_LOC:RST PP")
+record(calcout,  "$(P)INDEX:START:CALC") {
+  field(DESC,  "Where to start reading from")
+  field(INPA, "$(P)BUFF:NEXT")
+  field(INPB, "$(P)INDEX:START")
+  field(CALC,  "((A<B)&&(A>0))?0:B")
+  field(OUT,  "$(P)INDEX:START PP")
 }
 
-record(ao, "$(P)LAST:READ_LOC") {
-  field(DESC,  "Last buffer location that was read")
+record(ao, "$(P)INDEX:START") {
+  field(DESC, "Index loc to start retrieve readings")
   field(PINI,  "YES")
-  field(VAL,  "-1") #initial sentinel value
-  field(FLNK,  "$(P)LAST:READ_LOC:TRIG")
+  field(VAL, "0")
+  field(FLNK, "$(P)COUNT:CALC")
 }
 
-record(calcout, "$(P)LAST:READ_LOC:RST") {
-  field(DESC,  "Reset last buffer read location")
-  field(CALC,  "-1")
-  field(OUT,  "$(P)LAST:READ_LOC PP")
+record(calcout, "$(P)COUNT:CALC") {
+  field(DESC, "calculates number of readings to return")
+  field(INPA, "$(P)BUFF:NEXT")
+  field(INPB, "$(P)INDEX:START")
+  field(INPC, "$(P)BUFF:SIZE")
+  # if next free buff location is >= index to start reading from, then this is
+  # the normal case, and count is simply next free buffer location - starting
+  # index. If not, then check if next buffer location is reported as 0. If it is
+  # then buffer has filled and there are readings yet to be retrieved from the
+  # buffer, so retrieve them. If next buffer location is not 0, then readings
+  # have been cleared from the buffer, so just read from index 0 up to next free
+  # buffer location. See Wiki page for more detail
+  field(CALC, "(A>=B)?(A-B):((A=0)?(C-B):A)")
+  field(OUT, "$(P)COUNT PP")
 }
 
-record(calc, "$(P)INDEX:FIRST") {
-  field(DESC,  "First index to read from")
-  field(INPA,  "$(P)LAST:READ_LOC")
-  field(CALC,  "A+1")
-  field(FLNK,  "$(P)INDEX:LAST PP")
+record(ao, "$(P)COUNT") {
+  field(DESC, "number of items to return")
+  field(FLNK,  "$(P)BUFF:READ:TRIG")
 }
 
-record(calc, "$(P)INDEX:LAST") {
-  field(DESC,  "Final index to read from")
-  field(INPA,  "$(P)BUFF:NEXT")
-  field(CALC,  "A-1")
-  field(FLNK,  "$(P)VALID:RANGE:CHECK PP")
-}
-
-record(calcout, "$(P)VALID:RANGE:CHECK") {
-  field(DESC,  "Check for valid read range indices")
-  field(INPA,  "$(P)INDEX:FIRST")
-  field(INPB,  "$(P)INDEX:LAST")
-  field(CALC,  "A<=B")
+record(calcout, "$(P)BUFF:READ:TRIG") {
+  field(INPA,  "$(P)COUNT")
+  field(CALC,  "A>0?1:0")
+  # forward link predicated on COUNT>0 ?
   field(OOPT,  "When Non-zero")
-  field(OUT,  "$(P)BUFF:READ PP")
+  field(OUT,  "$(P)BUFF:READ PP") # this will send 1 to BUFF:READ
 }
 
 record(waveform, "$(P)BUFF:READ")
 {
   field(DESC, "Buffer readings from start to +count")
-	field(NELM, "100")
-	field(FTVL, "DOUBLE")
+  field(NELM, "$(BUFF_SIZE)")
+  field(FTVL, "DOUBLE")
   field(DTYP, "stream")
   field(INP,  "@devKeithley_2700.proto getBufferReadings($(P)) $(PORT)")
-	info(ARCHIVE, "VAL")
+  info(ARCHIVE, "VAL")
   info(INTEREST, "HIGH")
-	field(PREC, "5")
-	field(FLNK, "$(P)BUFF:READ:PARSE:READINGS")
+  field(PREC, "5")
+  field(FLNK, "$(P)BUFF:READ:PARSE:READINGS")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:BUFF:READ")
   field(SDIS, "$(P)DISABLE")
 }
 
-record(calcout, "$(P)LAST:READ_LOC:UPDATE") {
-  field(DESC,  "Update last read index")
-  field(INPA,  "$(P)INDEX:LAST")
-  field(CALC,  "A")
-  field(OUT,  "$(P)LAST:READ_LOC PP")
-  field(OOPT,  "Every Time")
+record(calcout, "$(P)INDEX:START:UPDATE") {  # this needs to be triggered at the end of each read
+  field(DESC, "Update start index after reads")
+  field(INPA, "$(P)BUFF:NEXT") # May not work if record scans before read op completes
+  field(CALC, "A")
+  field(OUT, "$(P)INDEX:START PP")
+  field(TPRO,  "1")
 }
+
 
 
 
@@ -446,7 +446,8 @@ record(aSub,"$(P)BUFF:READ:PARSE:TIME")
   field(OUTR, "$(P)CHNL:208:TIME PP")
   field(OUTS, "$(P)CHNL:209:TIME PP")
   field(OUTT, "$(P)CHNL:210:TIME PP")
-  field(FLNK, "$(P)LAST:READ_LOC:UPDATE")
+  field(FLNK, "$(P)INDEX:START:UPDATE")
+  field(TPRO,  "1")
 }
 
 record(ai, "$(P)BUFFER:MEM:AVAIL")
