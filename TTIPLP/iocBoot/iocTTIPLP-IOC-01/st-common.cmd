@@ -1,5 +1,15 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DMA4500M)/protocol"
+#!../../bin/windows-x64/TTIPLP-IOC-01
+
+## You may have to change TTIPLP-IOC-01 to something else
+## everywhere it appears in this file
+
+# Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
+errlogInit2(65536, 256)
+
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TTIPLP)/data"
 epicsEnvSet "DEVICE" "L0"
+
+cd "${TOP}"
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
@@ -29,7 +39,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(DMA4500M)/db/dma4500m.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(TTIPLP)/db/ttiplp.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ADDRESS=$(ADDRESS=1)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -38,7 +48,7 @@ cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
-#seq sncxxx,"user=faa59"
+#seq sncxxx,"user=kht13119"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
