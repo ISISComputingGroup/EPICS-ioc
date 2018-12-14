@@ -290,12 +290,6 @@ record(bi, "$(P)BUFF:AUTOCLEAR")
     field(SDIS, "$(P)DISABLE")
 }
 
-
-
-
-
-
-
 record(ai, "$(P)BUFF:NEXT") {
   field(DESC, "Next free buffer location")
   field(SCAN, ".2 second")
@@ -379,14 +373,6 @@ record(calcout, "$(P)INDEX:START:UPDATE") {  # this needs to be triggered at the
   field(OUT, "$(P)INDEX:START PP")
   field(TPRO,  "1")
 }
-
-
-
-
-
-
-
-
 
 # These aSub records parse BUFF:READ into
 # channel PVs (CHNL:XXX:READ and CHNL:XXX:TIME)
