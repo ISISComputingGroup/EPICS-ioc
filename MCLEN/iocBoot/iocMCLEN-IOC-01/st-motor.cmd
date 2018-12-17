@@ -16,7 +16,10 @@ epicsEnvSet("VELOI",$(VELO$(MN)=1))
 epicsEnvSet("ACCLI",$(ACCL$(MN)=1))
 epicsEnvSet("MSTPI",$(MSTP$(MN)=4000))
 dcalc("MRESI", "1.0/$(MSTPI)", 1, 12)
-dcalc("JVELI", "0.1*$(VELOI)",1,3)
+dcalc("JVELCALC", "0.1*$(VELOI)",1,3)
+
+epicsEnvSet("JVELI", "$(JVEL$(MN)=$(JVELCALC))")
+
 # Need a non-zero encoder resolution for sim mode
 $(IFSIM) epicsEnvSet("ERESI",1)
 $(IFNOTSIM) epicsEnvSet("ERESI",0)
