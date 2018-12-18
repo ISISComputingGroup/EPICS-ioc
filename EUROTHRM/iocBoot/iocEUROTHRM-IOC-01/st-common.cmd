@@ -40,6 +40,9 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 
 $(IFDEVSIM) asynOctetSetOutputEos("L0", -1, "\r\n")
 
+asynSetTraceIOMask("L0", -1, 0x2)
+asynSetTraceMask("L0", -1, 0x9)
+
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load the sim and disable records

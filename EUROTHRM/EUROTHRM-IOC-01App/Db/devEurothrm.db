@@ -1038,6 +1038,13 @@ record(ai, "$(P)LOWLIM") {
     field(PREC, "3")
 }
 
+record(calc, "$(P)TEMP:RANGE:UNDER") {
+    field(DESC, "TEMP lower than min calibration value")
+    field(INPA, "$(P)TEMP CP")
+    # B is written to by the CAL:RANGE aSub record
+    field(CALC, "A < B")
+}
+
 ### SIMULATION RECORDS ###
 
 record(ai, "$(P)SIM:MAX_OUTPUT")

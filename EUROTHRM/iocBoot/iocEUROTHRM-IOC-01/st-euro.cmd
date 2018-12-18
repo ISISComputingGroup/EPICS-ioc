@@ -27,6 +27,6 @@ $(IFACTIVE) dbLoadRecords("$(ReadASCII)/db/get_metadata.db","DIR=$(P)TEMP,CAL=$(
 $(IFACTIVE) dbLoadRecords("$(ReadASCII)/db/get_metadata.db","DIR=$(P)TEMP,CAL=$(P)CAL:RBV,OUT=$(P)RATE:UPDATE_EGU,OUTF=AA,NAME=column1_units,DEFAULT=K,OUTPP=PP")
 
 # Load calibration range
-$(IFACTIVE) dbLoadRecords("$(UTILITIES)/db/calibration_range.db","P=$(P), BDIR=TEMP.BDIR,TDIR=TEMP.TDIR,SPEC=TEMP.SPEC,HIGH_PV=TEMP.HIHI,LOW_PV=TEMP.LOLO")
+$(IFACTIVE) dbLoadRecords("$(UTILITIES)/db/calibration_range.db","P=$(P), BDIR=TEMP.BDIR,TDIR=TEMP.TDIR,SPEC=TEMP.SPEC,HIGH_PV=TEMP:RANGE:UNDER.C,LOW_PV=TEMP:RANGE:UNDER.B")
 
 dbLoadRecords("$(TOP)/db/isActiveEurothrm.db","P=$(P), IFACTIVE=$(IFACTIVE), IFNOTACTIVE=$(IFNOTACTIVE)")
