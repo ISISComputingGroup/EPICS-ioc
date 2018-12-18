@@ -1041,8 +1041,15 @@ record(ai, "$(P)LOWLIM") {
 record(calc, "$(P)TEMP:RANGE:UNDER") {
     field(DESC, "TEMP lower than min calibration value")
     field(INPA, "$(P)TEMP CP")
-    # B is written to by the CAL:RANGE aSub record
+    # B is the minimum calibration value written to by the CAL:RANGE aSub record
     field(CALC, "A < B")
+}
+
+record(calc, "$(P)TEMP:RANGE:OVER") {
+    field(DESC, "TEMP higher than max calibration value")
+    field(INPA, "$(P)TEMP CP")
+    # B is the maximum calibration value written to by the CAL:RANGE aSub record
+    field(CALC, "B < A")
 }
 
 ### SIMULATION RECORDS ###
