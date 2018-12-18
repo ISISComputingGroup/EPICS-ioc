@@ -82,7 +82,7 @@ record(sseq, "$(P)INIT:SEQ:TWO") {
 
 	# Set trace buffer points to 1000
 	field(LNK2, "$(P)BUFF:SIZE:SP PP")
-	field(DO2, "1000")
+	field(DO2, "$(BUFFER_SIZE)")
 	field(WAIT2, "Wait")
 
 	# Set buffer source to raw (sens)

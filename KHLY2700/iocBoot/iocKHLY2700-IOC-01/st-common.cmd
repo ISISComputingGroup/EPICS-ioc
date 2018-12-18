@@ -29,10 +29,6 @@ asynOctetSetOutputEos("$(DEVICE)", -1, "$(OEOS=\\r\\n)")
 dbLoadRecords("${TOP}/db/keithley2700.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0),BUFF_SIZE=$(BUFF_SIZE=1000)")
 dbLoadRecords("${TOP}/db/keithley2700_channels.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0), CALIB_BASE_DIR=$(CALIB_BASE_DIR),CALIB_DIR=$(CALIB_DIR), DRVHI=$(DRIVE_HIGH=10000),DRVLO=$(DRIVE_LOW=0)")
 
-## For debugging:
-#asynSetTraceMask("L0",-1,0x9)
-#asynSetTraceIOMask("L0",-1,0x2)
-
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
 < $(IOCSTARTUP)/preiocinit.cmd
 
