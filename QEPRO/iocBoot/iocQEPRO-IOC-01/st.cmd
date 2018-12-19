@@ -9,4 +9,6 @@
 dbLoadDatabase("../../dbd/QEPRO-IOC-01.dbd",0,0)
 QEPRO_IOC_01_registerRecordDeviceDriver(pdbbase) 
 
+epicsEnvSet("DEVICE_ID",0)
+
 < st-common.cmd

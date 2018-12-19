@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>TTI PL-P series power supply</ioc_desc>
+<ioc_details>Thurlby Thandar PL-P Series Power Supply</ioc_details>
+<macros>
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+    <macro name="ADDRESS" pattern="^[0-9]+$" description="Device Address (default: 1)" />
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>

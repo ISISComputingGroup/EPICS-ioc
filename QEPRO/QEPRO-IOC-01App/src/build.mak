@@ -38,8 +38,8 @@ $(APPNAME)_DBD += drvUSBQEProSupport.dbd
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += seqDev seq pv
-$(APPNAME)_LIBS += devIocStats 
-$(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
+$(APPNAME)_LIBS += devIocStats
+$(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
@@ -64,7 +64,7 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
-$(APPNAME)_SYS_LIBS_Linux += usb
+$(APPNAME)_SYS_LIBS_Linux += usb usb-1.0
 
 #===========================
 

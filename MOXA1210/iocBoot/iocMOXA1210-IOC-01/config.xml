@@ -6,22 +6,22 @@
 <macros>
     <macro name="IP_ADDR" pattern="^.*$" description="IP address to connect to." />
     <macro name="PORT" pattern="^[0-9]*$" description="Modbus Port number of device. Defaults to 502" />
-    <macro name="CHAN00NAME" pattern="^[A-Z0-9]*$" description="Name of channel 0. Defaults to blank" />
-    <macro name="CHAN01NAME" pattern="^[A-Z0-9]*$" description="Name of channel 1. Defaults to blank" />
-    <macro name="CHAN02NAME" pattern="^[A-Z0-9]*$" description="Name of channel 2. Defaults to blank" />
-    <macro name="CHAN03NAME" pattern="^[A-Z0-9]*$" description="Name of channel 3. Defaults to blank" />
-    <macro name="CHAN04NAME" pattern="^[A-Z0-9]*$" description="Name of channel 4. Defaults to blank" />
-    <macro name="CHAN05NAME" pattern="^[A-Z0-9]*$" description="Name of channel 5. Defaults to blank" />
-    <macro name="CHAN06NAME" pattern="^[A-Z0-9]*$" description="Name of channel 6. Defaults to blank" />
-    <macro name="CHAN07NAME" pattern="^[A-Z0-9]*$" description="Name of channel 7. Defaults to blank" />
-    <macro name="CHAN08NAME" pattern="^[A-Z0-9]*$" description="Name of channel 8. Defaults to blank" />
-    <macro name="CHAN09NAME" pattern="^[A-Z0-9]*$" description="Name of channel 9. Defaults to blank" />
-    <macro name="CHAN10NAME" pattern="^[A-Z0-9]*$" description="Name of channel 10. Defaults to blank" />
-    <macro name="CHAN11NAME" pattern="^[A-Z0-9]*$" description="Name of channel 11. Defaults to blank" />
-    <macro name="CHAN12NAME" pattern="^[A-Z0-9]*$" description="Name of channel 12. Defaults to blank" />
-    <macro name="CHAN13NAME" pattern="^[A-Z0-9]*$" description="Name of channel 13. Defaults to blank" />
-    <macro name="CHAN14NAME" pattern="^[A-Z0-9]*$" description="Name of channel 14. Defaults to blank" />
-    <macro name="CHAN15NAME" pattern="^[A-Z0-9]*$" description="Name of channel 15. Defaults to blank" />
+    <macro name="CHAN00NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 0, max 39 characters. Defaults to blank" />
+    <macro name="CHAN01NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 1, max 39 characters. Defaults to blank" />
+    <macro name="CHAN02NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 2, max 39 characters. Defaults to blank" />
+    <macro name="CHAN03NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 3, max 39 characters. Defaults to blank" />
+    <macro name="CHAN04NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 4, max 39 characters. Defaults to blank" />
+    <macro name="CHAN05NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 5, max 39 characters. Defaults to blank" />
+    <macro name="CHAN06NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 6, max 39 characters. Defaults to blank" />
+    <macro name="CHAN07NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 7, max 39 characters. Defaults to blank" />
+    <macro name="CHAN08NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 8, max 39 characters. Defaults to blank" />
+    <macro name="CHAN09NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 9, max 39 characters. Defaults to blank" />
+    <macro name="CHAN10NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 10, max 39 characters. Defaults to blank" />
+    <macro name="CHAN11NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 11, max 39 characters. Defaults to blank" />
+    <macro name="CHAN12NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 12, max 39 characters. Defaults to blank" />
+    <macro name="CHAN13NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 13, max 39 characters. Defaults to blank" />
+    <macro name="CHAN14NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 14, max 39 characters. Defaults to blank" />
+    <macro name="CHAN15NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 15, max 39 characters. Defaults to blank" />
 </macros>
 <pvsets>
 </pvsets>
