@@ -310,6 +310,9 @@ record(calcout,  "$(P)INDEX:START:CALC") {
   field(DESC,  "Where to start reading from")
   field(INPA, "$(P)BUFF:NEXT")
   field(INPB, "$(P)INDEX:START")
+  # If BUFF:NEXT is less than INDEX:START AND BUFF:NEXT is greater than 0
+  # then the buffer has cleared and more readings have been added, so
+  # begin reading from 0. Otherwise, read as normal
   field(CALC,  "((A<B)&&(A>0))?0:B")
   field(OUT,  "$(P)INDEX:START PP")
 }
