@@ -73,7 +73,7 @@ record(calcout, "$(P)VOLT")
 {
     field(DESC, "Convert Raw Val to VOLTAGE")
     field(CALC, "A * (B=0?1:-1) * $(FRV)")
-    field(INPA, "$(P)VRAW")
+    field(INPA, "$(P)VRAW MS")
     field(INPB, "$(P)POL")
     field(EGU, "V")
     field(PREC, "2")
@@ -154,7 +154,7 @@ record(calcout, "$(P)CURR")
 {
     field(DESC, "Convert Raw Val to Current")
     field(CALC, "A * (B=0?1:-1) * $(FRI)")
-    field(INPA, "$(P)RAW")
+    field(INPA, "$(P)RAW MS")
     field(INPB, "$(P)POL")
     field(EGU, "A")
     field(PREC, "2")
@@ -305,11 +305,11 @@ record(bo, "$(P)SIM:POL"){
 }
 alias("$(P)SIM:POL", "$(P)SIM:POL:SP")
 
-
 record(bi, "$(P)IS_CALIB") {
     field(VAL, "0")
     field(PINI, "YES")
 }
+
 record(bi, "$(P)POL_TYPE") {
     field(VAL, "1")
     field(ZNAM, "UNIPOLAR")
