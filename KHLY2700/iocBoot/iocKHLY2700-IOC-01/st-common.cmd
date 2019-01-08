@@ -19,8 +19,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=none)"
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 
 # Configurable terminators
-asynOctetSetInputEos("$(DEVICE)", -1, "$(IEOS=\\r\\n)")
-asynOctetSetOutputEos("$(DEVICE)", -1, "$(OEOS=\\r\\n)")
+asynOctetSetInputEos("$(DEVICE)", -1, "$(IEOS=\\r)")
+asynOctetSetOutputEos("$(DEVICE)", -1, "$(OEOS=\\r)")
 
 ##ISIS## Load common DB records
 < $(IOCSTARTUP)/dbload.cmd
