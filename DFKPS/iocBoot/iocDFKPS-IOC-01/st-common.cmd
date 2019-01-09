@@ -1,11 +1,17 @@
-## Environment Variables
 
-epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
-epicsEnvSet "CALIB_DIR" "magnets"
-epicsEnvSet "CALIB_FILE" "default_calib.dat"
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
+
+stringiftest  "LOCALCALIB"  "$(LOCAL_CALIB="no")"  5  "yes"
+
+## Environment Variables
+
+$(IFNOTLOCALCALIB) epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
+$(IFNOTLOCALCALIB) epicsEnvSet "CALIB_DIR" "magnets"
+
+$(IFLOCALCALIB) epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/$(INSTRUMENT)"
+$(IFLOCALCALIB) epicsEnvSet "CALIB_DIR" "calib/magnets"
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DANFYSIK8000)/master/danfysikMps8000App/protocol/:$(DANFYSIK8000)/master/danfysikMps8000App/protocol/DFK$(DEV_TYPE=8000)/"
 
@@ -43,7 +49,7 @@ epicsEnvSet "SP_PINI" "$(SP_AT_STARTUP=NO)"
 ## Load record instances
 dbLoadRecords("$(TOP)/db/DFKPS_common.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, FWI=$(FACTOR_WRITE_I=1000), FRI=$(FACTOR_READ_I=1), FRV=$(FACTOR_READ_V=1), port=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),SP_PINI=$(SP_PINI), VADC=$(VADC=2), DEV_TYPE=$(DEV_TYPE=8000), CALIBRATED=$(CALIBRATED=1), POLARITY=$(POLARITY=BIPOLAR)")
 $(IFPOLAR) dbLoadRecords("$(TOP)/db/DFKPS_polarity.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0")
-$(IFCALIB) dbLoadRecords("$(TOP)/db/DFKPS_calibrated.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, CALIB_BASE_DIR=$(CALIB_BASE_DIR),CALIB_DIR=$(CALIB_DIR),CALIB_FILE=$(CALIB_FILE),DRVHI=$(DRIVE_HIGH=5000000),DRVLO=$(DRIVE_LOW=-5000000), port=L0")
+$(IFCALIB) dbLoadRecords("$(TOP)/db/DFKPS_calibrated.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, CALIB_BASE_DIR=$(CALIB_BASE_DIR),CALIB_DIR=$(CALIB_DIR),CALIB_FILE=$(CALIB_FILE=default_calib.dat),DRVHI=$(DRIVE_HIGH=5000000),DRVLO=$(DRIVE_LOW=-5000000), port=L0")
 $(IFSLEW) dbLoadRecords("$(TOP)/db/DFKPS_slew.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0")
 
 ## Load device type specific st.cmd
