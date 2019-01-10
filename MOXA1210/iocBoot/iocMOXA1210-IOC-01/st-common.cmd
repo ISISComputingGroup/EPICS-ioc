@@ -12,9 +12,13 @@ $(IFDEVSIM) drvAsynIPPortConfigure("$(E12XX_ASYNPORT)", "localhost:$(EMULATOR_PO
 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure ("$(E12XX_ASYNPORT)","$(IP_ADDR):$(PORT=502)")
 
+modbusInterposeConfig("$(E12XX_ASYNPORT)", 0, 2000, 0)
+
 stringiftest("MOXA1210", $(MODELNO), 5, "1210")
+stringiftest("MOXA1240", $(MODELNO), 5, "1240")
 
 $(IFMOXA1210) < ${TOP}/iocBoot/iocMOXA1210-IOC-01/st-e1210.cmd
+$(IFMOXA1240) < ${TOP}/iocBoot/iocMOXA1210-IOC-01/st-e1240.cmd
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
