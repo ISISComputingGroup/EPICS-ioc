@@ -4,7 +4,6 @@ cd ${TOP}/iocBoot/${IOC}
 < $(IOCSTARTUP)/init.cmd
 
 ## Startup script
-# ### E1210 (8AI) ###
 epicsEnvSet("E12XX_ASYNPORT","IP")
 
 # For dev sim devices
