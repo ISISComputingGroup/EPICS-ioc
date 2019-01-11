@@ -5,9 +5,4 @@ alias("$(NAME):$(ASYNPORT)_OctetAsyn", "$(NAME):OctetAsyn")
 # ao record template for poll delay
 alias("$(NAME):$(ASYNPORT)_DI_CHx_PollDelay", "$(NAME):DI:PollDelay")
 
-# ao record template for poll delay
-alias("$(NAME):$(ASYNPORT)_DICNT_S_RBV_CHx_PollDelay", "$(NAME):DICNT_S:RBV:PollDelay")
-
-# ao record template for poll delay
-alias("$(NAME):$(ASYNPORT)_DICNT_CHx_PollDelay", "$(NAME):DICNT:PollDelay")
 
