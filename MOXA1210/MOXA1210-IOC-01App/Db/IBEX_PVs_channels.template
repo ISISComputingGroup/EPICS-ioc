@@ -3,6 +3,9 @@ alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CH$(CHAN)", "$(P):CH$(CHAN):$(FNCTN)")
 
 record(calcout, "$(P):CH$(CHAN):$(FNCTN):CNT") {
     field(INPA, "$(P):CH$(CHAN):$(FNCTN) CP")
-	field(CALC, "(A=1)?VAL+1:VAL")
-	info(autosaveFields, "VAL")
+    field(DESC, "Counter for channel $(CHAN)")
+
+    field(CALC, "(A=1)?VAL+1:VAL")
+    info(autosaveFields, "VAL")
+
 }
