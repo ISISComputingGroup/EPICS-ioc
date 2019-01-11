@@ -1,0 +1,88 @@
+file "IBEX_PVs_channels.template" {
+
+pattern {NAME, P, ASYNPORT, FNCTN, CHAN}
+
+# RAW (DAC?) values
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "0"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "1"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "2"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "3"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "4"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "5"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "6"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "7"}
+
+# Out-of-range statuses
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_st", "0"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_st", "1"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_st", "2"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_st", "3"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_st", "4"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_st", "5"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_st", "6"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_st", "7"}
+
+# AI Mode (Volt or current) READ
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "0"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "1"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "2"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "3"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "4"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "5"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "6"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "7"}
+
+# AI Mode (Volt or current) WRITE
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMW", "0"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMW", "1"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMW", "2"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMW", "3"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMW", "4"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMW", "5"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMW", "6"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMW", "7"}
+}
+
+file "IBEX_PVs_suffix.template" {
+pattern {NAME, P, ASYNPORT, FNCTN, CHAN, OLDSUFFX, NEWSUFFX}
+
+# Normalised (not RAW) value
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "0", "VAL", "VAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "1", "VAL", "VAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "2", "VAL", "VAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "3", "VAL", "VAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "4", "VAL", "VAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "5", "VAL", "VAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "6", "VAL", "VAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "7", "VAL", "VAL"}
+
+# Averaged measured value
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "0", "AVAL", "AVAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "1", "AVAL", "AVAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "2", "AVAL", "AVAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "3", "AVAL", "AVAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "4", "AVAL", "AVAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "5", "AVAL", "AVAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "6", "AVAL", "AVAL"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "7", "AVAL", "AVAL"}
+
+# Reads Burn-out value from device
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "0", "BO_RBV", "BRNOUT:RBV"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "1", "BO_RBV", "BRNOUT:RBV"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "2", "BO_RBV", "BRNOUT:RBV"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "3", "BO_RBV", "BRNOUT:RBV"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "4", "BO_RBV", "BRNOUT:RBV"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "5", "BO_RBV", "BRNOUT:RBV"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "6", "BO_RBV", "BRNOUT:RBV"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "7", "BO_RBV", "BRNOUT:RBV"}
+
+# Writes Burn-out value to device
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "0", "BO_Setp", "BRNOUT:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "1", "BO_Setp", "BRNOUT:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "2", "BO_Setp", "BRNOUT:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "3", "BO_Setp", "BRNOUT:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "4", "BO_Setp", "BRNOUT:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "5", "BO_Setp", "BRNOUT:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "6", "BO_Setp", "BRNOUT:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "7", "BO_Setp", "BRNOUT:SP"}
+}
