@@ -1,4 +1,4 @@
-file "IBEX_PVs_channels.template" {
+file "IBEX_PVs_counters.template" {
 
 pattern {NAME, P, ASYNPORT, OLDFNCTN, CHAN, NEWFNCTN}
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "00", "DI"}
@@ -17,71 +17,11 @@ pattern {NAME, P, ASYNPORT, OLDFNCTN, CHAN, NEWFNCTN}
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "13", "DI"}
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "14", "DI"}
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "15", "DI"}
-
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "00", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "01", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "02", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "03", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "04", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "05", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "06", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "07", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "08", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "09", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "10", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "11", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "12", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "13", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "14", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)","\$(ASYNPORT)", "DICNT_CLR", "15", "DICNT_CLR"}
-
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "00", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "01", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "02", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "03", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "04", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "05", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "06", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "07", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "08", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "09", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "10", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "11", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "12", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "13", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "14", "DICNT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT", "15", "DICNT"}
 }
-
-
-file "IBEX_PVs_suffix.template" {
-pattern {NAME, P, ASYNPORT, FNCTN, CHAN, OLDSUFFX, NEWSUFFX}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "00", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "01", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "02", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "03", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "04", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "05", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "06", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "07", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "08", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "09", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "10", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "11", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "12", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "13", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "14", "RBV", "RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S", "15", "RBV", "RBV"}
-
 
 file "IBEX_PVs_iostats.template" {
 pattern {NAME, P, ASYNPORT, FNCTN}
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_S_RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT_CLR"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DICNT"}
-
 }
 
 file "IBEX_PVs_misc.template" {
