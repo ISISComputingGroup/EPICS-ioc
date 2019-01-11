@@ -1,3 +1,3 @@
 
-alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CH$(CHAN)", "$(P):CH$(CHAN):$(FNCTN)")
+alias("$(NAME):$(ASYNPORT)_$(OLDFNCTN)_CH$(CHAN)", "$(P):CH$(CHAN):$(NEWFNCTN)")
 
