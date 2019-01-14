@@ -1,0 +1,9 @@
+record(stringin, "$(P)$(Q)STATUS")
+{
+    field(DESC, "The status of the chopper")
+    field(DTYP, "asynOctetRead")
+    field(INP,  "@asyn($(PORT),$(CHANNEL),0)STATUS")
+    field(SCAN, "1 second")
+}
+
+### SIMULATION RECORDS ###
