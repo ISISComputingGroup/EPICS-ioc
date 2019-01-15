@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sstream>
+#include <algorithm>
 #include <stdio.h>
 #include <errno.h>
 #include <math.h>
@@ -22,15 +23,15 @@
 
 
 static const char *driverName="astriumDriver";
-static const int BUFFER_SIZE = 100;
+static const int BUFFER_SIZE = 255;
 
 astriumDriver::astriumDriver(const char *portName, const char *ip) 
    : asynPortDriver(portName, 
-                    1, /* maxAddr */ 
+                    3, /* maxAddr */ 
                     (int)NUM_ASTRIUM_PARAMS,
                     asynOctetMask | asynDrvUserMask, /* Interface mask */
                     asynOctetMask,  /* Interrupt mask */
-                    ASYN_MULTIDEVICE,
+                    ASYN_MULTIDEVICE | ASYN_CANBLOCK,
                     1, /* Autoconnect */
                     0, /* Default priority */
                     0) /* Default stack size*/    
@@ -48,47 +49,40 @@ astriumDriver::astriumDriver(const char *portName, const char *ip)
 
 asynStatus astriumDriver::readOctet(asynUser *pasynUser, char *value, size_t maxChars, size_t *nActual, int *eomReason)
 {
-    std::cout << "readOctet" << std::endl;
+    int function = pasynUser->reason;    
+    std::string result;
+	asynStatus status = getStringParam(function, result);
+    if (result.size()) {
+		*nActual = std::min(maxChars, result.size());
+        strncpy(value, result.c_str(), *nActual);
+        status = setStringParam(function, result.substr(*nActual)); //Stream device will keep reading until no characters are left
+    } else {
+		status = asynError;
+	}
+
+    return status;
+}
+
+asynStatus astriumDriver::writeOctet(asynUser *pasynUser, const char *value, size_t maxChars, size_t *nActual) {
     int function = pasynUser->reason;
-    asynStatus status = asynSuccess;
-    const char *paramName;
-    static const char *functionName = "readOctet"; 
-    getParamName(function, &paramName);
-    
     int channel;
     getAddress(pasynUser, &channel);
-    
-    int errCode;
-    
-    if (function == P_Status)
+
+    if (strcmp(value, P_StatusString) == 0)
     {
-        const int size = BUFFER_SIZE;
-        char result[size];
-        errCode = m_interface->getStatus(channel, result, size);
-        
-        if (errCode == 0)
-        {
-            std::string temp(result);
-            
-            if (temp.size() > maxChars) // More than we have space for?
-            {
-                *nActual = maxChars;
-            }
-            else
-            {
-                *nActual = temp.size();
-            }
-            
-            strncpy(value, temp.c_str(), maxChars); // maxChars will NULL pad if possible, change to *nActual if we do not want this
+		const int size = BUFFER_SIZE;
+        char result[size];// = "#NCS016#ACCEPT CH=0# State= INACTIVE#ASPEED= 0#RSPEED= 0#APHASE= 0#RPHASE= 0#AVETO = 0#DIR   = CCW#MONIT = er#FLOWR = 3,81325301204819#WTEMP = 17#MTEMP = 22#MVIBR = 0#MVACU = 0,000546822026457275#DATE  = 15.01.2019#TIME";
+		int errCode = m_interface->getStatus(channel, result, size);
+        if (errCode) {
+            return asynError;
         }
-        else
-        {
-            *nActual = maxChars;
-            strncpy(value, "UNKNOWN", maxChars);
-        }
+		std::string result_str = std::string(result) + "\n";
+		std::replace(result_str.begin(), result_str.end(), ',', '.');
+        setStringParam(function, result_str); 
+        *nActual = maxChars;
     }
     
-    return status;
+    return asynSuccess;
 }
 
 /* Configuration routine.  Called directly, or from the iocsh function below */

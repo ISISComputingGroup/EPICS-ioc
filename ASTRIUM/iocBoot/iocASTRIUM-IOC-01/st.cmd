@@ -17,25 +17,18 @@ ASTRIUM_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-# Portname, path to config file, use mock (=1 for mock)
-astriumDriverConfigure("ASTRIUM", "192.168.1.20:8095")
+epicsEnvSet ("STREAM_PROTOCOL_PATH", "$(TOP)/data")
+
+# Portname, port address
+astriumDriverConfigure("ASTRIUM", "$(IP_ADDR):$(IP_PORT)")
 
 ## Load record instances
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-## Translate from old macros for backwards compatibility
-## The old macros are only used if the new one is not set
-stringiftest("_NUM_SET", "$(NUM_CHANNELS=)")
-$(IFNOT_NUM_SET) $(CHOPPER_1_PRESENT=#) epicsEnvSet NUM_CHANNELS 1
-$(IFNOT_NUM_SET) $(CHOPPER_2_PRESENT=#) epicsEnvSet NUM_CHANNELS 2
-$(IFNOT_NUM_SET) $(CHOPPER_3_PRESENT=#) epicsEnvSet NUM_CHANNELS 3
-$(IFNOT_NUM_SET) $(CHOPPER_4_PRESENT=#) epicsEnvSet NUM_CHANNELS 4
-$(IFNOT_NUM_SET) $(CHOPPER_5_PRESENT=#) epicsEnvSet NUM_CHANNELS 5
-
 ## Load our record instances (conditionally!) 
-dbLoadRecordsLoop("db/astrium.db","PVPREFIX=$(MYPVPREFIX), P=$(MYPVPREFIX)$(IOCNAME):, Q=CH\$(I):, PORT=ASTRIUM, CHANNEL=\$(I), RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0), I=\$(I), ASG1=$(ASG1=DEFAULT), ASG2=$(ASG2=DEFAULT), ASG3=$(ASG3=DEFAULT), ASG4=$(ASG4=DEFAULT), ASG5=$(ASG5=DEFAULT)", "I", 1, $(NUM_CHANNELS=1), 1)
+dbLoadRecordsLoop("db/astrium.db","P=$(MYPVPREFIX)$(IOCNAME):, Q=CH\$(I):, I=\$(I), PORT=ASTRIUM, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)", "I", 1, 2, 1)
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

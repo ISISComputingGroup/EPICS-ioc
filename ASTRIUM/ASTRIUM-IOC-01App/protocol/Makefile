@@ -3,7 +3,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-#DATA += ASTRIUM-IOC-01.proto
+DATA += astrium.proto
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

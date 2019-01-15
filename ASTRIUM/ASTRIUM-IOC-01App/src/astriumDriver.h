@@ -10,7 +10,7 @@ public:
                  
     /* These are the methods that we override from asynPortDriver */
     virtual asynStatus readOctet(asynUser *pasynUser, char *value, size_t maxChars, size_t *nActual, int *eomReason);
-    
+    virtual asynStatus writeOctet(asynUser *pasynUser, const char *value, size_t maxChars, size_t *nActual);
 private:
     asynUser* pasynUser;
     astriumInterface* m_interface;

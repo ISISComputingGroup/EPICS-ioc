@@ -4,6 +4,7 @@
 <ioc_desc>Astrium Chopper</ioc_desc>
 <macros>
 <macro name="IP_ADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the chopper machine" />
+<macro name="IP_PORT" pattern="^[0-9]+$" description="IP port to communicate with chopper machine" />
 </macros>
 </config_part>
 </ioc_config>

@@ -30,6 +30,7 @@ $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += sscan
 ## Add other libraries here ##
 $(APPNAME)_LIBS += asyn AstriumBridgeLib
+$(APPNAME)_LIBS += stream
 
 # ASTRIUM-IOC-01_registerRecordDeviceDriver.cpp derives from ASTRIUM-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

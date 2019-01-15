@@ -6,4 +6,5 @@ include "asSupport.dbd"
 include "devIocStats.dbd"
 include "caPutLog.dbd"
 include "utilities.dbd"
+include "stream.dbd"
 registrar("astriumDriverRegister")
