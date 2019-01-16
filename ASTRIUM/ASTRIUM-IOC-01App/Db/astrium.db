@@ -99,4 +99,40 @@ record(stringin, "$(P)$(Q)STATE")
     info(INTEREST, "HIGH")
 }
 
+record(ao, "$(P)$(Q)FREQ:SP")
+{
+    field(DESC, "The frequency of the chopper")
+    field(DTYP, "stream")
+    field(EGU, "Hz")
+    field(OUT, "@astrium.proto setFreq $(PORT) $(I)")
+    field(FLNK, "$(P)$(Q)STATE")
+    info(INTEREST, "HIGH")
+}
+
+record(ao, "$(P)$(Q)PHAS:SP")
+{
+    field(DESC, "The phase of the chopper")
+    field(DTYP, "stream")
+    field(EGU, "deg")
+    field(OUT, "@astrium.proto setPhas $(PORT) $(I)")
+    field(FLNK, "$(P)$(Q)STATE")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)$(Q)BRAKE")
+{
+    field(DTYP, "stream")
+    field(OUT, "@astrium.proto brake $(PORT) $(I)")
+    field(FLNK, "$(P)$(Q)STATE")
+    info(INTEREST, "HIGH")
+}
+
+record(bo, "$(P)$(Q)RESUME")
+{
+    field(DTYP, "stream")
+    field(OUT, "@astrium.proto resume $(PORT) $(I)")
+    field(FLNK, "$(P)$(Q)STATE")
+    info(INTEREST, "HIGH")
+}
+
 ### SIMULATION RECORDS ###

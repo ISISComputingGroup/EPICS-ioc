@@ -20,7 +20,7 @@ ASTRIUM_IOC_01_registerRecordDeviceDriver pdbbase
 epicsEnvSet ("STREAM_PROTOCOL_PATH", "$(TOP)/data")
 
 # Portname, port address
-astriumDriverConfigure("ASTRIUM", "$(IP_ADDR):$(IP_PORT)")
+astriumDriverConfigure("ASTRIUM", "$(IP_ADDR):$(IP_PORT)", $(DEVSIM=0))
 
 ## Load record instances
 

@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sstream>
-#include <algorithm>
 #include <stdio.h>
 #include <errno.h>
 #include <math.h>
@@ -23,9 +22,8 @@
 
 
 static const char *driverName="astriumDriver";
-static const int BUFFER_SIZE = 255;
 
-astriumDriver::astriumDriver(const char *portName, const char *ip) 
+astriumDriver::astriumDriver(const char *portName, const char *ip, bool mock) 
    : asynPortDriver(portName, 
                     3, /* maxAddr */ 
                     (int)NUM_ASTRIUM_PARAMS,
@@ -37,13 +35,13 @@ astriumDriver::astriumDriver(const char *portName, const char *ip)
                     0) /* Default stack size*/    
 {
     const char *functionName = "astriumDriver";
-
-    std::cout << "*** Initialising Astrium Interface on IP " << ip << " ***" << std::endl;
     
-    m_interface = new astriumInterface(ip);
-    
-    int errCode = m_interface->initialise();
-    
+    if (mock) {
+        std::cout << "Creating mock chopper" << std::endl;
+    } else {
+        std::cout << "*** Initialising Astrium Interface on IP " << ip << " ***" << std::endl;
+    }
+    m_interface = new astriumInterface(ip, mock);
     createParam(P_StatusString, asynParamOctet, &P_Status);
 }
 
@@ -63,26 +61,40 @@ asynStatus astriumDriver::readOctet(asynUser *pasynUser, char *value, size_t max
     return status;
 }
 
+bool astriumDriver::compareStringStart(const char* value, const char* expected) {
+	return (strncmp(value, expected, strlen(expected)) == 0);
+}
+
 asynStatus astriumDriver::writeOctet(asynUser *pasynUser, const char *value, size_t maxChars, size_t *nActual) {
     int function = pasynUser->reason;
     int channel;
+	std::string result = "";
+	asynStatus status = asynSuccess;
     getAddress(pasynUser, &channel);
 
-    if (strcmp(value, P_StatusString) == 0)
-    {
-		const int size = BUFFER_SIZE;
-        char result[size];// = "#NCS016#ACCEPT CH=0# State= INACTIVE#ASPEED= 0#RSPEED= 0#APHASE= 0#RPHASE= 0#AVETO = 0#DIR   = CCW#MONIT = er#FLOWR = 3,81325301204819#WTEMP = 17#MTEMP = 22#MVIBR = 0#MVACU = 0,000546822026457275#DATE  = 15.01.2019#TIME";
-		int errCode = m_interface->getStatus(channel, result, size);
-        if (errCode) {
-            return asynError;
-        }
-		std::string result_str = std::string(result) + "\n";
-		std::replace(result_str.begin(), result_str.end(), ',', '.');
-        setStringParam(function, result_str); 
-        *nActual = maxChars;
-    }
-    
-    return asynSuccess;
+	*nActual = maxChars;
+    if (compareStringStart(value, P_StatusString)) {
+		result = m_interface->getStatus(channel);
+        setStringParam(function, result); 
+    } else if (compareStringStart(value, P_FreqString)) {
+		std::string freq_string = std::string(value).substr(strlen(P_FreqString) + 1);
+		result = m_interface->setFreq(channel, std::atoi(freq_string.c_str()));
+	} else if (compareStringStart(value, P_PhaseString)) {
+		std::string phas_string = std::string(value).substr(strlen(P_PhaseString) + 1);
+		result = m_interface->setPhase(channel, std::atof(phas_string.c_str()));
+	} else if (compareStringStart(value, P_BrakeString)) {
+		result = m_interface->brake(channel);
+	} else if (compareStringStart(value, P_ResumeString)) {
+		result = m_interface->resume(channel);
+	} else if (compareStringStart(value, P_CalibrateString)) {
+		result = m_interface->calibrate();
+	} else {
+		*nActual = 0;
+	}
+
+    setStringParam(function, result);
+
+    return status;
 }
 
 /* Configuration routine.  Called directly, or from the iocsh function below */
@@ -90,11 +102,11 @@ asynStatus astriumDriver::writeOctet(asynUser *pasynUser, const char *value, siz
 extern "C" {
 
 // EPICS iocsh callable function to call constructor for the class.
-int astriumDriverConfigure(const char *portName, const char *ip)
+int astriumDriverConfigure(const char *portName, const char *ip, bool mock)
 {
 	try
 	{
-		new astriumDriver(portName, ip);
+		new astriumDriver(portName, ip, mock);
 		return(asynSuccess);
 	}
 	catch(const std::exception& ex)
@@ -108,11 +120,12 @@ int astriumDriverConfigure(const char *portName, const char *ip)
 /* EPICS iocsh shell commands */
 static const iocshArg initArg0 = { "portName", iocshArgString};
 static const iocshArg initArg1 = { "ip", iocshArgString};
-static const iocshArg * const initArgs[] = {&initArg0, &initArg1};
-static const iocshFuncDef initFuncDef = {"astriumDriverConfigure", 2, initArgs};
+static const iocshArg initArg2 = { "mock", iocshArgInt};
+static const iocshArg * const initArgs[] = {&initArg0, &initArg1, &initArg2};
+static const iocshFuncDef initFuncDef = {"astriumDriverConfigure", 3, initArgs};
 static void initCallFunc(const iocshArgBuf *args)
 {
-    astriumDriverConfigure(args[0].sval, args[1].sval);
+    astriumDriverConfigure(args[0].sval, args[1].sval, args[2].ival);
 }
 
 void astriumDriverRegister(void)

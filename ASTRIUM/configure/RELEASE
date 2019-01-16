@@ -28,6 +28,7 @@ EPICS_BASE=C:/INSTRU~1/Apps/EPICS/base/master
 ASTRIUM=$(SUPPORT)/astriumchopper/master
 AUTOSAVE=$(SUPPORT)/autosave/master
 ASYN=$(SUPPORT)/asyn/master
+BOOST=$(EPICS_ROOT)/libraries/master/boost
 CAPUTLOG=$(SUPPORT)/caPutLog/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master
