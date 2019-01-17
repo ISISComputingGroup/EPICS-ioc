@@ -11,94 +11,6 @@ record(calc, "$(P)$(Q)STAT_CALC")
     field(DESC, "Splits the status of the chopper")
 }
 
-record(ai, "$(P)$(Q)FREQ")
-{
-    field(DESC, "The frequency of the chopper")
-    field(EGU, "Hz")
-    field(INP, "$(P)$(Q)STAT_CALC.A CP")
-    info(INTEREST, "HIGH")
-}
-
-record(ai, "$(P)$(Q)FREQ:RBV")
-{
-    field(DESC, "The frequency readback of the chopper")
-    field(EGU, "Hz")
-    field(INP, "$(P)$(Q)STAT_CALC.B CP")
-    info(INTEREST, "HIGH")
-}
-
-record(ai, "$(P)$(Q)PHAS")
-{
-    field(DESC, "The phase of the chopper")
-    field(EGU, "deg")
-    field(INP, "$(P)$(Q)STAT_CALC.C CP")
-    info(INTEREST, "HIGH")
-}
-
-record(ai, "$(P)$(Q)PHAS:RBV")
-{
-    field(DESC, "The phase readback of the chopper")
-    field(EGU, "deg")
-    field(INP, "$(P)$(Q)STAT_CALC.D CP")
-    info(INTEREST, "HIGH")
-}
-
-record(ai, "$(P)$(Q)VETO")
-{
-    field(DESC, "The percentage time in gate")
-    field(EGU, "percent")
-    field(INP, "$(P)$(Q)STAT_CALC.E CP")
-    info(INTEREST, "HIGH")
-}
-
-record(ai, "$(P)$(Q)MON:WATER:FLOW")
-{
-    field(DESC, "The cooling water flow rate")
-    field(EGU, "l/min")
-    field(INP, "$(P)$(Q)STAT_CALC.F CP")
-}
-
-record(ai, "$(P)$(Q)MON:WATER:TEMP")
-{
-    field(DESC, "The temperature of the cooling water")
-    field(EGU, "C")
-    field(INP, "$(P)$(Q)STAT_CALC.G CP")
-}
-
-record(ai, "$(P)$(Q)MON:MOTOR:TEMP")
-{
-    field(DESC, "The temperature of the motor")
-    field(EGU, "C")
-    field(INP, "$(P)$(Q)STAT_CALC.H CP")
-}
-
-record(ai, "$(P)$(Q)MON:VIBR")
-{
-    field(DESC, "The housing vibration speed")
-    field(EGU, "mm/s")
-    field(INP, "$(P)$(Q)STAT_CALC.I CP")
-}
-
-record(ai, "$(P)$(Q)MON:PRES")
-{
-    field(DESC, "The housing pressure")
-    field(EGU, "mbar")
-    field(INP, "$(P)$(Q)STAT_CALC.J CP")
-}
-
-record(stringin, "$(P)$(Q)MON:STAT")
-{
-}
-
-record(stringin, "$(P)$(Q)STATE")
-{
-    field(DESC, "The state of the chopper")
-    field(DTYP, "stream")
-    field(INP,  "@astrium.proto getStatus($(P)$(Q),STAT_CALC,DIR,MON:STAT) $(PORT) $(I)")
-    field(SCAN, "1 second")
-    info(INTEREST, "HIGH")
-}
-
 record(ao, "$(P)$(Q)FREQ:SP")
 {
     field(DESC, "The frequency of the chopper")
@@ -109,6 +21,25 @@ record(ao, "$(P)$(Q)FREQ:SP")
     info(INTEREST, "HIGH")
 }
 
+# Can't read this due to bug in the device
+alias("$(P)$(Q)FREQ:SP", "$(P)$(Q)FREQ:SP:RBV")
+
+record(ai, "$(P)$(Q)FREQ")
+{
+    field(DESC, "The frequency of the chopper")
+    field(EGU, "Hz")
+    field(INP, "$(P)$(Q)STAT_CALC.A CP")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)$(Q)PHAS")
+{
+    field(DESC, "The phase of the chopper")
+    field(EGU, "deg")
+    field(INP, "$(P)$(Q)STAT_CALC.B CP")
+    info(INTEREST, "HIGH")
+}
+
 record(ao, "$(P)$(Q)PHAS:SP")
 {
     field(DESC, "The phase of the chopper")
@@ -116,6 +47,71 @@ record(ao, "$(P)$(Q)PHAS:SP")
     field(EGU, "deg")
     field(OUT, "@astrium.proto setPhas $(PORT) $(I)")
     field(FLNK, "$(P)$(Q)STATE")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)$(Q)PHAS:SP:RBV")
+{
+    field(DESC, "The phase readback of the chopper")
+    field(EGU, "deg")
+    field(INP, "$(P)$(Q)STAT_CALC.C CP")
+    info(INTEREST, "MEDIUM")
+}
+
+record(ai, "$(P)$(Q)VETO")
+{
+    field(DESC, "The percentage time in gate")
+    field(EGU, "percent")
+    field(INP, "$(P)$(Q)STAT_CALC.D CP")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)$(Q)MON:WATER:FLOW")
+{
+    field(DESC, "The cooling water flow rate")
+    field(EGU, "l/min")
+    field(INP, "$(P)$(Q)STAT_CALC.E CP")
+}
+
+record(ai, "$(P)$(Q)MON:WATER:TEMP")
+{
+    field(DESC, "The temperature of the cooling water")
+    field(EGU, "C")
+    field(INP, "$(P)$(Q)STAT_CALC.F CP")
+}
+
+record(ai, "$(P)$(Q)MON:MOTOR:TEMP")
+{
+    field(DESC, "The temperature of the motor")
+    field(EGU, "C")
+    field(INP, "$(P)$(Q)STAT_CALC.G CP")
+}
+
+record(ai, "$(P)$(Q)MON:VIBR")
+{
+    field(DESC, "The housing vibration speed")
+    field(EGU, "mm/s")
+    field(INP, "$(P)$(Q)STAT_CALC.H CP")
+}
+
+record(ai, "$(P)$(Q)MON:PRES")
+{
+    field(DESC, "The housing pressure")
+    field(EGU, "mbar")
+    field(INP, "$(P)$(Q)STAT_CALC.I CP")
+}
+
+record(stringin, "$(P)$(Q)MON:STAT")
+{
+    field(DESC, "The status of the monitoring")
+}
+
+record(stringin, "$(P)$(Q)STATE")
+{
+    field(DESC, "The state of the chopper")
+    field(DTYP, "stream")
+    field(INP,  "@astrium.proto getStatus($(P)$(Q),STAT_CALC,DIR,MON:STAT) $(PORT) $(I)")
+    field(SCAN, "1 second")
     info(INTEREST, "HIGH")
 }
 
