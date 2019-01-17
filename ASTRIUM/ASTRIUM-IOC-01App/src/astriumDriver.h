@@ -28,7 +28,6 @@ private:
 #define P_FreqString                "FREQ"
 #define P_PhaseString               "PHAS"
 #define P_BrakeString               "BRAKE"
-#define P_ResumeString              "RESUME"
 #define P_CalibrateString           "CALIB"
 
 #endif /* ASTRIUM_DRIVER_H */

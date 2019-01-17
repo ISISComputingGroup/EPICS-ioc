@@ -127,12 +127,4 @@ record(bo, "$(P)$(Q)BRAKE")
     info(INTEREST, "HIGH")
 }
 
-record(bo, "$(P)$(Q)RESUME")
-{
-    field(DTYP, "stream")
-    field(OUT, "@astrium.proto resume $(PORT) $(I)")
-    field(FLNK, "$(P)$(Q)STATE")
-    info(INTEREST, "HIGH")
-}
-
 ### SIMULATION RECORDS ###

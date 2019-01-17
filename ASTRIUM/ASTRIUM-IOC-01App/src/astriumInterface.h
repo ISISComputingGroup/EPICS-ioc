@@ -9,7 +9,6 @@ __declspec(dllimport) int Calibrate(char* result, int size);
 __declspec(dllimport) int GetStatus(unsigned int channel, char* result, int size);
 __declspec(dllimport) int SetFreq(unsigned int channel, int speed, char* result, int size);
 __declspec(dllimport) int SetPhase(unsigned int channel, double phase, char* result, int size);
-__declspec(dllimport) int Resume(unsigned int channel, char* result, int size);
 __declspec(dllimport) int Brake(unsigned int channel, char* result, int size);
 
 class astriumInterface
@@ -21,7 +20,6 @@ class astriumInterface
 		std::string setFreq(unsigned int channel, int speed);
 		std::string setPhase(unsigned int channel, double phase);
 		std::string brake(unsigned int channel);
-		std::string resume(unsigned int channel);
 	private:
         std::string doCommand(boost::function<void(char * result, int size)> func);
 		std::string formatString(const char* str);

@@ -5,26 +5,21 @@ acc = "#%*[^#]#ACCEPT ";
 
 getStatus {
     out "STATUS";
-    in "#%*[^#]#ACCEPT CH=%*d# State= %[^#]#ASPEED= %(\$1\$2.A)f#RSPEED= %(\$1\$2.B)f#APHASE= %(\$1\$2.C)f#RPHASE= %(\$1\$2.D)f#AVETO = %(\$1\$2.E)f#DIR   = %(\$1\$3){CW|CCW}#MONIT = %(\$1\$4)[^#]#FLOWR = %(\$1\$2.F)f#WTEMP = %(\$1\$2.G)f#MTEMP = %(\$1\$2.H)f#MVIBR = %(\$1\$2.I)f#MVACU = %(\$1\$2.J)f#";
+    in "#%*[^#]#ACCEPT CH=%*d# State= %[^#]#ASPEED= %(\$1\$2.A)f#RSPEED= %*f#APHASE= %(\$1\$2.C)f#RPHASE= %(\$1\$2.D)f#AVETO = %(\$1\$2.E)f#DIR   = %(\$1\$3){CW|CCW}#MONIT = %(\$1\$4)[^#]#FLOWR = %(\$1\$2.F)f#WTEMP = %(\$1\$2.G)f#MTEMP = %(\$1\$2.H)f#MVIBR = %(\$1\$2.I)f#MVACU = %(\$1\$2.J)f#";
 }
 
 setFreq {
-    out "FREQ %f";
+    out "FREQ %d";
     in $acc;
 }
 
 setPhas {
-    out "PHAS %d";
+    out "PHAS %f";
     in $acc;
 }
 
 brake {
     out "BRAKE";
-    in $acc;
-}
-
-resume {
-    out "RESUME";
     in $acc;
 }
 

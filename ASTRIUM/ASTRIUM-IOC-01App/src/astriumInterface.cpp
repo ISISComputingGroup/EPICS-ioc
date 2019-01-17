@@ -38,11 +38,6 @@ std::string astriumInterface::brake(unsigned int channel)
     return doCommand(boost::bind<void>(Brake, channel, _1, _2));
 }
 
-std::string astriumInterface::resume(unsigned int channel)
-{
-    return doCommand(boost::bind<void>(Resume, channel, _1, _2));
-}
-
 std::string astriumInterface::formatString(const char* str)
 {
 	std::string result = std::string(str) + "\n";

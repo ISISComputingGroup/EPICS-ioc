@@ -84,8 +84,6 @@ asynStatus astriumDriver::writeOctet(asynUser *pasynUser, const char *value, siz
 		result = m_interface->setPhase(channel, std::atof(phas_string.c_str()));
 	} else if (compareStringStart(value, P_BrakeString)) {
 		result = m_interface->brake(channel);
-	} else if (compareStringStart(value, P_ResumeString)) {
-		result = m_interface->resume(channel);
 	} else if (compareStringStart(value, P_CalibrateString)) {
 		result = m_interface->calibrate();
 	} else {

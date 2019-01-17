@@ -1,0 +1,9 @@
+record(bo, "$(P)CALIB")
+{
+    field(DTYP, "stream")
+    field(OUT, "@astrium.proto calib $(PORT)")
+    field(FLNK, "$(P)STATE")
+    info(INTEREST, "HIGH")
+}
+
+### SIMULATION RECORDS ###
