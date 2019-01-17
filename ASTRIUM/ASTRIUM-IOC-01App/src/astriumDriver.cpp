@@ -78,7 +78,7 @@ asynStatus astriumDriver::writeOctet(asynUser *pasynUser, const char *value, siz
         setStringParam(function, result); 
     } else if (compareStringStart(value, P_FreqString)) {
 		std::string freq_string = std::string(value).substr(strlen(P_FreqString) + 1);
-		result = m_interface->setFreq(channel, std::atoi(freq_string.c_str()));
+		result = m_interface->setFreq(channel, std::atoi(freq_string.c_str())/10);
 	} else if (compareStringStart(value, P_PhaseString)) {
 		std::string phas_string = std::string(value).substr(strlen(P_PhaseString) + 1);
 		result = m_interface->setPhase(channel, std::atof(phas_string.c_str()));

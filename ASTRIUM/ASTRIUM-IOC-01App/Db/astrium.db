@@ -16,12 +16,14 @@ record(ao, "$(P)$(Q)FREQ:SP")
     field(DESC, "The frequency of the chopper")
     field(DTYP, "stream")
     field(EGU, "Hz")
+    field(DRVL, "0")
+    field(DRVH, "300")
     field(OUT, "@astrium.proto setFreq $(PORT) $(I)")
     field(FLNK, "$(P)$(Q)STATE")
     info(INTEREST, "HIGH")
 }
 
-# Can't read this due to bug in the device
+# Can't read this from hardware due to bug in the device
 alias("$(P)$(Q)FREQ:SP", "$(P)$(Q)FREQ:SP:RBV")
 
 record(ai, "$(P)$(Q)FREQ")
