@@ -72,4 +72,4 @@ include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
 
 # IOC-specific support module
-MOXA1210=$(SUPPORT)/moxa1210/master
+MOXA12XX=$(SUPPORT)/moxa12xx/master

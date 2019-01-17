@@ -1,4 +1,4 @@
-/* MOXA1210-IOC-02Main.cpp */
+/* MOXA12XX-IOC-01Main.cpp */
 /* Author:  Marty Kraimer Date:    17MAR2000 */
 
 #include <stddef.h>

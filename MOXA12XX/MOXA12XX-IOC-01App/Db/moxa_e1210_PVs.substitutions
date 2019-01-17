@@ -1,0 +1,30 @@
+file "IBEX_PVs_counters.template" {
+
+pattern {NAME, P, ASYNPORT, OLDFNCTN, CHAN, NEWFNCTN}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "00", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "01", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "02", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "03", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "04", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "05", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "06", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "07", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "08", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "09", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "10", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "11", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "12", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "13", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "14", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "15", "DI"}
+}
+
+file "IBEX_PVs_iostats.template" {
+pattern {NAME, P, ASYNPORT, FNCTN}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI"}
+}
+
+file "IBEX_PVs_misc.template" {
+pattern {NAME, P, ASYNPORT}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)"}
+}

@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application MOXA1210-IOC-01
+# Build the IOC application MOXA12XX-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# MOXA1210-IOC-01.dbd will be created and installed
+# MOXA12XX-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# MOXA1210-IOC-01.dbd will be made up from these files:
+# MOXA12XX-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += devSequencer.dbd
@@ -48,7 +48,7 @@ $(APPNAME)_LIBS += calc
 $(APPNAME)_LIBS += modbus asyn
 
 
-# MOXA1210-IOC-01_registerRecordDeviceDriver.cpp derives from MOXA1210-IOC-01.dbd
+# MOXA12XX-IOC-01_registerRecordDeviceDriver.cpp derives from MOXA12XX-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
