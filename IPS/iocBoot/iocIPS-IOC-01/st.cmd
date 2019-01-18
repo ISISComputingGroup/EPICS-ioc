@@ -49,7 +49,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 epicsEnvSet("P", "$(MYPVPREFIX)$(IOCNAME):")
 
 ## Load our record instances
-dbLoadRecords("db/ips.db","PVPREFIX=$(MYPVPREFIX),P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),MAX_FIELD=7.0,MAX_SWEEP_RATE=1.0,STABILITY_VOLTAGE=$(STABILITY_VOLTAGE=0.1)")
+dbLoadRecords("db/ips.db","PVPREFIX=$(MYPVPREFIX),P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),MAX_FIELD=$(MAX_FIELD=7.0),MAX_SWEEP_RATE=$(MAX_SWEEP_RATE=1.0),STABILITY_VOLTAGE=$(STABILITY_VOLTAGE=0.1)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
