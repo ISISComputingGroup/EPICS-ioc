@@ -1,0 +1,12 @@
+file "moxa_e1240_misc.template" {
+
+pattern {NAME, P, ASYNPORT, CHAN}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "0"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "1"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "2"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "3"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "4"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "5"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "6"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "7"}
+}

@@ -25,3 +25,5 @@ dbLoadRecords("$(MOXA12XX)/db/ioLogik_E1240.db","NAME=$(MYPVPREFIX)$(IOCNAME), A
 
 dbLoadRecords("${TOP}/db/moxa_e1240_PVs.db","NAME=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME), ASYNPORT=$(E12XX_ASYNPORT)")
 
+dbLoadRecords("${TOP}/db/moxa_e1240_misc.db","NAME=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME), ASYNPORT=$(E12XX_ASYNPORT)")
+

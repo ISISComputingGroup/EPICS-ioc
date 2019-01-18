@@ -12,16 +12,6 @@ pattern {NAME, P, ASYNPORT, OLDFNCTN, CHAN, NEWFNCTN}
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "6", "AI:RAW"}
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "7", "AI:RAW"}
 
-# Out-of-range statuses
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_St", "0", "AI:RANGESTAT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_St", "1", "AI:RANGESTAT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_St", "2", "AI:RANGESTAT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_St", "3", "AI:RANGESTAT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_St", "4", "AI:RANGESTAT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_St", "5", "AI:RANGESTAT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_St", "6", "AI:RANGESTAT"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI_St", "7", "AI:RANGESTAT"}
-
 # AI Mode (Volt or current) READ
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "0", "AI:MODE:RBV"}
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "1", "AI:MODE:RBV"}
