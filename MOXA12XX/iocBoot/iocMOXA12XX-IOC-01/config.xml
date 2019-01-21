@@ -6,6 +6,7 @@
 <macros>
     <macro name="IP_ADDR" pattern="^.*$" description="IP address to connect to." />
     <macro name="PORT" pattern="^[0-9]*$" description="Modbus Port number of device. Defaults to 502" />
+    <macro name="MODELNO" pattern="^12(10|40|62)+$" description="Moxa model number. 1210, 1240 or 1262. Defaults to 1210" />
     <macro name="CHAN00NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 0, max 39 characters. Defaults to blank" />
     <macro name="CHAN01NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 1, max 39 characters. Defaults to blank" />
     <macro name="CHAN02NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 2, max 39 characters. Defaults to blank" />
