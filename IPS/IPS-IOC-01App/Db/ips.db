@@ -236,7 +236,7 @@ record(compress, "$(P)SUPPLY:VOLT:_STABILITY:HIGH") {
 record(calcout, "$(P)SUPPLY:VOLT:_STABILITY:CALC") {
   field(INPA, "$(P)SUPPLY:VOLT:_STABILITY:HIGH")
   field(INPB, "$(P)SUPPLY:VOLT:_STABILITY:LOW")
-  field(CALC, "ABS(A-B)<1.0")
+  field(CALC, "ABS(A-B)<$(STABILITY_VOLTAGE)")
   field(OUT, "$(P)SUPPLY:VOLT:STABLE PP")
   field(OOPT, "Every Time")
 }
