@@ -7,4 +7,5 @@ include "devIocStats.dbd"
 include "caPutLog.dbd"
 include "utilities.dbd"
 include "stream.dbd"
+include "drvAsynSerialPort.dbd"
 registrar("astriumDriverRegister")

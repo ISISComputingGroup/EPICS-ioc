@@ -1,9 +1,39 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
 record(bo, "$(P)CALIB")
 {
     field(DTYP, "stream")
     field(OUT, "@astrium.proto calib $(PORT)")
-    field(FLNK, "$(P)STATE")
     info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CALIB")
+    field(SDIS, "$(P)DISABLE")
 }
 
 ### SIMULATION RECORDS ###
+
+### SIMULATION RECORDS ###
+
+record(bo,"$(P)SIM:CALIB")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+

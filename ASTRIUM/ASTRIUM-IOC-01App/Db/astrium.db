@@ -21,6 +21,9 @@ record(ao, "$(P)$(Q)FREQ:SP")
     field(OUT, "@astrium.proto setFreq $(PORT) $(I)")
     field(FLNK, "$(P)$(Q)STATE")
     info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(Q)SIM:FREQ:SP PP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 # Can't read this from hardware due to bug in the device
@@ -32,6 +35,9 @@ record(ai, "$(P)$(Q)FREQ")
     field(EGU, "Hz")
     field(INP, "$(P)$(Q)STAT_CALC.A CP")
     info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(Q)SIM:FREQ")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)$(Q)PHAS")
@@ -40,6 +46,9 @@ record(ai, "$(P)$(Q)PHAS")
     field(EGU, "deg")
     field(INP, "$(P)$(Q)STAT_CALC.B CP")
     info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(Q)SIM:PHAS")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ao, "$(P)$(Q)PHAS:SP")
@@ -50,6 +59,9 @@ record(ao, "$(P)$(Q)PHAS:SP")
     field(OUT, "@astrium.proto setPhas $(PORT) $(I)")
     field(FLNK, "$(P)$(Q)STATE")
     info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(Q)SIM:PHAS:SP PP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)$(Q)PHAS:SP:RBV")
@@ -115,6 +127,9 @@ record(stringin, "$(P)$(Q)STATE")
     field(INP,  "@astrium.proto getStatus($(P)$(Q),STAT_CALC,DIR,MON:STAT) $(PORT) $(I)")
     field(SCAN, "1 second")
     info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(Q)SIM:STATE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(bo, "$(P)$(Q)BRAKE")
@@ -123,6 +138,42 @@ record(bo, "$(P)$(Q)BRAKE")
     field(OUT, "@astrium.proto brake $(PORT) $(I)")
     field(FLNK, "$(P)$(Q)STATE")
     info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(Q)SIM:BRAKE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 ### SIMULATION RECORDS ###
+
+### SIMULATION RECORDS ###
+
+record(stringin,"$(P)$(Q)SIM:STATE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringin,"$(P)$(Q)SIM:FREQ")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(FLNK, "$(P)$(Q)FREQ.PROC")
+}
+
+alias("$(P)$(Q)SIM:FREQ", "$(P)$(Q)SIM:FREQ:SP")
+
+record(stringin,"$(P)$(Q)SIM:PHAS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(FLNK, "$(P)$(Q)PHAS.PROC")
+}
+
+alias("$(P)$(Q)SIM:PHAS", "$(P)$(Q)SIM:PHAS:SP")
+
+record(bo,"$(P)$(Q)SIM:BRAKE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
