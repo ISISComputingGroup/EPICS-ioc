@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 #DB += xxx.db
 DB += moxa_e1210_PVs.db
 DB += moxa_e1240_PVs.db
+DB += moxa_e1262_PVs.db
 DB += moxa1210_aliases.db
 DB += moxa_e1240_misc.db
 
