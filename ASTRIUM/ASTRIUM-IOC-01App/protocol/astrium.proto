@@ -13,8 +13,8 @@ setFreq {
     in $acc;
 }
 
-setPhas {
-    out "PHAS %f";
+setPhase {
+    out "PHASE %f";
     in $acc;
 }
 

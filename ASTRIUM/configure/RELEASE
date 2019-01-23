@@ -29,6 +29,7 @@ ASTRIUM=$(SUPPORT)/astriumchopper/master
 AUTOSAVE=$(SUPPORT)/autosave/master
 ASYN=$(SUPPORT)/asyn/master
 BOOST=$(EPICS_ROOT)/libraries/master/boost
+CALC=$(SUPPORT)/calc/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master

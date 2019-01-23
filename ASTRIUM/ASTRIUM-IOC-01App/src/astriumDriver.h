@@ -26,7 +26,7 @@ private:
 
 #define P_StatusString              "STATUS"
 #define P_FreqString                "FREQ"
-#define P_PhaseString               "PHAS"
+#define P_PhaseString               "PHASE"
 #define P_BrakeString               "BRAKE"
 #define P_CalibrateString           "CALIB"
 

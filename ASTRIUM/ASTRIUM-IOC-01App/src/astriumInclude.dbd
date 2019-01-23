@@ -8,4 +8,5 @@ include "caPutLog.dbd"
 include "utilities.dbd"
 include "stream.dbd"
 include "drvAsynSerialPort.dbd"
+include "calcSupport.dbd"
 registrar("astriumDriverRegister")

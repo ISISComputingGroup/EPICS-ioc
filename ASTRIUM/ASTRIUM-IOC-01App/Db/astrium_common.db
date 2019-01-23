@@ -24,10 +24,16 @@ record(bo, "$(P)CALIB")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CALIB")
-    field(SDIS, "$(P)DISABLE")
+    field(SDIS, "$(P)CALIB_DISABLED")
 }
 
-### SIMULATION RECORDS ###
+record(scalcout, "$(P)CALIB_DISABLED")
+{
+    field(OUT, "$(P)CALIB.DISA")
+    field(INAA, "$(P)CH1:STATE CP")
+    field(INBB, "$(P)CH2:STATE CP")
+    field(CALC, "(AA!='E_STOP')||(BB!='E_STOP')")
+}
 
 ### SIMULATION RECORDS ###
 

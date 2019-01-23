@@ -40,31 +40,31 @@ record(ai, "$(P)$(Q)FREQ")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)$(Q)PHAS")
+record(ai, "$(P)$(Q)PHASE")
 {
     field(DESC, "The phase of the chopper")
     field(EGU, "deg")
     field(INP, "$(P)$(Q)STAT_CALC.B CP")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)$(Q)SIM:PHAS")
+    field(SIOL, "$(P)$(Q)SIM:PHASE")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ao, "$(P)$(Q)PHAS:SP")
+record(ao, "$(P)$(Q)PHASE:SP")
 {
     field(DESC, "The phase of the chopper")
     field(DTYP, "stream")
     field(EGU, "deg")
-    field(OUT, "@astrium.proto setPhas $(PORT) $(I)")
+    field(OUT, "@astrium.proto setPhase $(PORT) $(I)")
     field(FLNK, "$(P)$(Q)STATE")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)$(Q)SIM:PHAS:SP PP")
+    field(SIOL, "$(P)$(Q)SIM:PHASE:SP PP")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)$(Q)PHAS:SP:RBV")
+record(ai, "$(P)$(Q)PHASE:SP:RBV")
 {
     field(DESC, "The phase readback of the chopper")
     field(EGU, "deg")
@@ -75,7 +75,7 @@ record(ai, "$(P)$(Q)PHAS:SP:RBV")
 record(ai, "$(P)$(Q)VETO")
 {
     field(DESC, "The percentage time in gate")
-    field(EGU, "percent")
+    field(EGU, "%")
     field(INP, "$(P)$(Q)STAT_CALC.D CP")
     info(INTEREST, "HIGH")
 }
@@ -145,8 +145,6 @@ record(bo, "$(P)$(Q)BRAKE")
 
 ### SIMULATION RECORDS ###
 
-### SIMULATION RECORDS ###
-
 record(stringin,"$(P)$(Q)SIM:STATE")
 {
     field(SCAN, "Passive")
@@ -162,14 +160,14 @@ record(stringin,"$(P)$(Q)SIM:FREQ")
 
 alias("$(P)$(Q)SIM:FREQ", "$(P)$(Q)SIM:FREQ:SP")
 
-record(stringin,"$(P)$(Q)SIM:PHAS")
+record(stringin,"$(P)$(Q)SIM:PHASE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
-    field(FLNK, "$(P)$(Q)PHAS.PROC")
+    field(FLNK, "$(P)$(Q)PHASE.PROC")
 }
 
-alias("$(P)$(Q)SIM:PHAS", "$(P)$(Q)SIM:PHAS:SP")
+alias("$(P)$(Q)SIM:PHASE", "$(P)$(Q)SIM:PHASE:SP")
 
 record(bo,"$(P)$(Q)SIM:BRAKE")
 {
