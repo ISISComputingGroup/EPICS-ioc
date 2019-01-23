@@ -1,16 +1,16 @@
 file "IBEX_PVs_counters.template" {
 
 pattern {NAME, P, ASYNPORT, OLDFNCTN, CHAN, NEWFNCTN}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "00", "DI"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "01", "DI"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "02", "DI"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "03", "DI"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "04", "DI"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "05", "DI"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "06", "DI"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "07", "DI"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "08", "DI"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "09", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "0", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "1", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "2", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "3", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "4", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "5", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "6", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "7", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "8", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "9", "DI"}
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "10", "DI"}
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "11", "DI"}
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "12", "DI"}

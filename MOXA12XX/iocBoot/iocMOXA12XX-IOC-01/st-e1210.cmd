@@ -13,4 +13,6 @@ dbLoadRecords("${TOP}/db/moxa_e1210_PVs.db","NAME=$(MYPVPREFIX)$(IOCNAME), P=$(M
 
 # Load the user-given aliases of the channels
 
-iocshCmdList("< ${TOP}/iocBoot/iocMOXA12XX-IOC-01/st-aliases.cmd", "CHAN=\$(I)", "I", "00;01;02;03;04;05;06;07;08;09;10;11;12;13;14;15", ";")
+iocshCmdList("< ${TOP}/iocBoot/iocMOXA12XX-IOC-01/st-aliases.cmd", "CHAN=\$(I), FNCTN=DI", "I", "0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15", ";")
+
+dbl

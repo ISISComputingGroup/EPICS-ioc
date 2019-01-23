@@ -6,3 +6,12 @@ record(mbbi, "$(P):CH$(CHAN):AI:RANGESTAT"){
     field(TWST, "OVERRANGE")
     field(THST, "UNDERRANGE")
 }
+
+record(ai, "$(P):CH$(CHAN):AI:RBV"){
+    field(DESC, "Readback value for channel $(CHAN)")
+    field(EGU, "V")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    info(alarm, "MOXA1240")
+}

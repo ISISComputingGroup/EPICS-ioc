@@ -1,0 +1,7 @@
+record(ai, "$(P):CH$(CHAN):TEMP:RBV"){
+    field(DESC, "Readback value for channel $(CHAN)")
+    field(EGU, "C")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    info(alarm, "MOXA1262")
+}

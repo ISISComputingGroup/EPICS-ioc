@@ -25,5 +25,6 @@ dbLoadRecords("$(MOXA12XX)/db/ioLogik_E1240.db","NAME=$(MYPVPREFIX)$(IOCNAME), A
 
 dbLoadRecords("${TOP}/db/moxa_e1240_PVs.db","NAME=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME), ASYNPORT=$(E12XX_ASYNPORT)")
 
-dbLoadRecords("${TOP}/db/moxa_e1240_misc.db","NAME=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME), ASYNPORT=$(E12XX_ASYNPORT)")
+iocshCmdList("< ${TOP}/iocBoot/iocMOXA12XX-IOC-01/st-aliases.cmd", "CHAN=\$(I), FNCTN=AI:RBV", "I", "0;1;2;3;4;5;6;7", ";")
 
+dbLoadRecordsLoop("${TOP}/db/moxa_e1240_misc.db","NAME=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME), ASYNPORT=$(E12XX_ASYNPORT), CHAN=\$(CHAN)", "CHAN", )
