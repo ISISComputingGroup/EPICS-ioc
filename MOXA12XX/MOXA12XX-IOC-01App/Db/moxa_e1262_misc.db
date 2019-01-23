@@ -1,6 +1,13 @@
 record(ai, "$(P):CH$(CHAN):TEMP:RBV"){
     field(DESC, "Readback value for channel $(CHAN)")
     field(EGU, "C")
+
+    field(HIGH, "$(HIGHLIMIT)")
+    field(HSV, "MAJOR")
+
+    field(LOW, "$(LOWLIMIT)")
+    field(LSV, "MAJOR")
+
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     info(alarm, "MOXA1262")
