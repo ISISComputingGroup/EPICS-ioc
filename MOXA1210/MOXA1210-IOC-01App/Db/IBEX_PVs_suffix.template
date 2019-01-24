@@ -1,2 +1,0 @@
-
-alias("$(NAME):$(ASYNPORT)_$(FNCTN)_CH$(CHAN)_$(OLDSUFFX)", "$(NAME):CH$(CHAN):$(FNCTN):$(NEWSUFFX)")
