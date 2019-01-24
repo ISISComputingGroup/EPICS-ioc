@@ -16,7 +16,7 @@ PROD_IOC = $(APPNAME)
 DBD += $(APPNAME).dbd
 
 # ASTRIUM-IOC-01.dbd will be made up from these files:
-$(APPNAME)_DBD += astriumInclude.dbd
+$(APPNAME)_DBD += $(TOP)/ASTRIUM-IOC-01App/src/astriumInclude.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -33,10 +33,10 @@ $(APPNAME)_LIBS += asyn AstriumBridgeLib
 $(APPNAME)_LIBS += stream calc
 
 # ASTRIUM-IOC-01_registerRecordDeviceDriver.cpp derives from ASTRIUM-IOC-01.dbd
-$(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
-
+$(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp astriumDriver.cpp astriumInterface.cpp
+SRC_DIRS += $(TOP)/ASTRIUM-IOC-01App/src
 # Build the main IOC entry point on workstation OSs.
-$(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp astriumDriver.cpp astriumInterface.cpp
+$(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp 
 $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Add support from base/src/vxWorks if needed
