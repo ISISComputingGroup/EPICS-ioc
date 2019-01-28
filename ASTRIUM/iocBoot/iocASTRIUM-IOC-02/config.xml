@@ -1,10 +1,4 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
-<config_part>
-<ioc_desc>Astrium Chopper</ioc_desc>
-<macros>
-<macro name="IP_ADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the chopper machine" />
-<macro name="IP_PORT" pattern="^[0-9]+$" description="IP port to communicate with chopper machine" />
-</macros>
-</config_part>
+<xi:include href="../iocASTRIUM-IOC-01/config.xml"/>
 </ioc_config>

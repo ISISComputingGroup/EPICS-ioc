@@ -2,7 +2,7 @@
 #include <algorithm>
 
 std::string astriumInterface::doCommand(boost::function<void(char * result, int size)> func) {
-    static const int BUFFER_SIZE = 255;
+    static const int BUFFER_SIZE = 255; //Messages from the driver are in general not longer than 255 chars. If they are the AstriumBridge will ensure that we do not overflow.
     char result[BUFFER_SIZE];
     func(result, BUFFER_SIZE);
     return formatString(result);

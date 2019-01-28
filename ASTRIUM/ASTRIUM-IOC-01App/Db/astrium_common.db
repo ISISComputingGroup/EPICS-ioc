@@ -24,7 +24,6 @@ record(bo, "$(P)CALIB")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CALIB")
-    field(SDIS, "$(P)CALIB_DISABLED")
 }
 
 record(scalcout, "$(P)CALIB_DISABLED")

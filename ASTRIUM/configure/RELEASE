@@ -22,7 +22,7 @@
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 
 # EPICS_BASE usually appears last so other apps can override stuff:
-EPICS_BASE=C:/INSTRU~1/Apps/EPICS/base/master
+EPICS_BASE=C:/Instrument/Apps/EPICS/base/master
 
 # Macros required for basic ioc/stream device
 ASTRIUM=$(SUPPORT)/astriumchopper/master
