@@ -21,9 +21,6 @@ record(ao, "$(P)$(Q)FREQ:SP")
     field(FLNK, "$(P)$(Q)STATE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)$(Q)SIM:FREQ:SP PP")
-    field(SDIS, "$(P)DISABLE")
 }
 
 # The hardware doesn't like a speed of 180Hz being set so check this here
@@ -41,6 +38,9 @@ record(ao, "$(P)$(Q)FREQ:SP_ACTUAL")
     field(EGU, "Hz")
     field(OUT, "@astrium.proto setFreq $(PORT) $(I)")
     info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(Q)SIM:FREQ:SP_ACTUAL PP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 # Can't read this from hardware due to bug in the device
@@ -172,16 +172,16 @@ record(stringin,"$(P)$(Q)SIM:STATE")
     field(DTYP, "Soft Channel")
 }
 
-record(stringin,"$(P)$(Q)SIM:FREQ")
+record(ai,"$(P)$(Q)SIM:FREQ")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
     field(FLNK, "$(P)$(Q)FREQ.PROC")
 }
 
-alias("$(P)$(Q)SIM:FREQ", "$(P)$(Q)SIM:FREQ:SP")
+alias("$(P)$(Q)SIM:FREQ", "$(P)$(Q)SIM:FREQ:SP_ACTUAL")
 
-record(stringin,"$(P)$(Q)SIM:PHASE")
+record(ai,"$(P)$(Q)SIM:PHASE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
