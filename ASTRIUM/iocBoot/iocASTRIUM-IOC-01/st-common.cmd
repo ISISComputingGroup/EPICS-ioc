@@ -7,7 +7,7 @@ epicsEnvSet ("STREAM_PROTOCOL_PATH", "$(TOP)/data")
 
 # Portname, port address
 $(IFRECSIM) drvAsynSerialPortConfigure("ASTRIUM", "$(PORT=NUL)", 0, 1, 0, 0)
-$(IFNOTRECSIM) astriumDriverConfigure("ASTRIUM", "$(IP_ADDR):$(IP_PORT)", $(DEVSIM=0))
+$(IFNOTRECSIM) astriumDriverConfigure("ASTRIUM", "$(IP_ADDR=NUL):$(IP_PORT=NUL)", $(DEVSIM=0))
 
 ## Load record instances
 
