@@ -13,14 +13,14 @@ pattern {NAME, P, ASYNPORT, OLDFNCTN, CHAN, NEWFNCTN}
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "7", "AI:RAW"}
 
 # AI Mode (Volt or current) READ
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "0", "AI:MODE:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "1", "AI:MODE:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "2", "AI:MODE:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "3", "AI:MODE:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "4", "AI:MODE:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "5", "AI:MODE:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "6", "AI:MODE:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "7", "AI:MODE:RBV"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "0", "AI:MODE"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "1", "AI:MODE"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "2", "AI:MODE"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "3", "AI:MODE"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "4", "AI:MODE"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "5", "AI:MODE"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "6", "AI:MODE"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMR", "7", "AI:MODE"}
 
 # AI Mode (Volt or current) WRITE
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AIMW", "0", "AI:MODE:SP"}
@@ -57,14 +57,14 @@ pattern {NAME, P, ASYNPORT, FNCTN, CHAN, OLDSUFFX, NEWSUFFX}
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "7", "AVAL", "AVGVAL"}
 
 # Reads Burn-out value from device
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "0", "BO_RBV", "BRNOUT:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "1", "BO_RBV", "BRNOUT:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "2", "BO_RBV", "BRNOUT:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "3", "BO_RBV", "BRNOUT:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "4", "BO_RBV", "BRNOUT:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "5", "BO_RBV", "BRNOUT:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "6", "BO_RBV", "BRNOUT:RBV"}
-{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "7", "BO_RBV", "BRNOUT:RBV"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "0", "BO_RBV", "BRNOUT"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "1", "BO_RBV", "BRNOUT"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "2", "BO_RBV", "BRNOUT"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "3", "BO_RBV", "BRNOUT"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "4", "BO_RBV", "BRNOUT"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "5", "BO_RBV", "BRNOUT"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "6", "BO_RBV", "BRNOUT"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "7", "BO_RBV", "BRNOUT"}
 
 # Writes Burn-out value to device
 {"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "0", "BO_Setp", "BRNOUT:SP"}

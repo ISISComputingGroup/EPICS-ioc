@@ -1,4 +1,4 @@
-record(ai, "$(P):CH$(CHAN):TEMP:RBV"){
+record(ai, "$(P):CH$(CHAN):TEMP"){
     field(DESC, "Readback value for channel $(CHAN)")
     field(EGU, "C")
 
