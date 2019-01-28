@@ -14,11 +14,10 @@ record(calc, "$(P)$(Q)STAT_CALC")
 record(ao, "$(P)$(Q)FREQ:SP")
 {
     field(DESC, "The frequency of the chopper")
-    field(DTYP, "stream")
     field(EGU, "Hz")
     field(DRVL, "0")
     field(DRVH, "300")
-    field(OUT, "@astrium.proto setFreq $(PORT) $(I)")
+    field(OUT, "$(P)$(Q)FREQ:SP_CHECK.A PP")
     field(FLNK, "$(P)$(Q)STATE")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -27,8 +26,25 @@ record(ao, "$(P)$(Q)FREQ:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
+# The hardware doesn't like a speed of 180Hz being set so check this here
+record(calcout, "$(P)$(Q)FREQ:SP_CHECK")
+{
+    field(CALC, "A!=180?A:VAL")
+    field(OUT, "$(P)$(Q)FREQ:SP_ACTUAL PP")
+    field(OOPT, "On Change")
+}
+
+record(ao, "$(P)$(Q)FREQ:SP_ACTUAL")
+{
+    field(DESC, "The frequency of the chopper")
+    field(DTYP, "stream")
+    field(EGU, "Hz")
+    field(OUT, "@astrium.proto setFreq $(PORT) $(I)")
+    info(archive, "VAL")
+}
+
 # Can't read this from hardware due to bug in the device
-alias("$(P)$(Q)FREQ:SP", "$(P)$(Q)FREQ:SP:RBV")
+alias("$(P)$(Q)FREQ:SP_ACTUAL", "$(P)$(Q)FREQ:SP:RBV")
 
 record(ai, "$(P)$(Q)FREQ")
 {
