@@ -1,0 +1,23 @@
+record(mbbi, "$(P):CH$(CHAN):AI:RANGESTAT"){
+    field(DESC, "Channel $(CHAN) range status")
+    field(INP, "$(P):$(ASYNPORT)_AI_St_CH$(CHAN) CP")
+    field(ZRST, "NORMAL")
+    field(ONST, "BURNOUT")
+    field(TWST, "OVERRANGE")
+    field(THST, "UNDERRANGE")
+}
+
+record(ai, "$(P):CH$(CHAN):AI:RBV"){
+    field(DESC, "Readback value for channel $(CHAN)")
+    field(EGU, "V")
+
+    field(HIGH, "$(HIGHLIMIT)")
+    field(HSV, "MAJOR")
+
+    field(LOW, "$(LOWLIMIT)")
+    field(LSV, "MAJOR")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    info(alarm, "MOXA1240")
+}
