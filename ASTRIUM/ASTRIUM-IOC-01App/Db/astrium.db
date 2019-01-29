@@ -104,7 +104,7 @@ record(ai, "$(P)$(Q)VETO")
 record(ai, "$(P)$(Q)MON:WATER:FLOW")
 {
     field(DESC, "The cooling water flow rate")
-    field(EGU, "l/min")
+    field(EGU, "L/min")
     field(INP, "$(P)$(Q)STAT_CALC.E CP")
 }
 
@@ -155,6 +155,7 @@ record(stringin, "$(P)$(Q)STATE")
 
 record(bo, "$(P)$(Q)BRAKE")
 {
+    field(DESC, "Brakes the chopper")
     field(DTYP, "stream")
     field(OUT, "@astrium.proto brake $(PORT) $(I)")
     field(FLNK, "$(P)$(Q)STATE")

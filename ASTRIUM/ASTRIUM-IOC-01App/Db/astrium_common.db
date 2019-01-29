@@ -19,6 +19,7 @@ record(bo, "$(P)DISABLE")
 
 record(bo, "$(P)CALIB")
 {
+    field(DESC, "Calibrates the choppers")
     field(DTYP, "stream")
     field(OUT, "@astrium.proto calib $(PORT)")
     info(INTEREST, "HIGH")
