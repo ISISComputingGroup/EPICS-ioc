@@ -35,6 +35,7 @@ DEVIOCSTATS=$(SUPPORT)/devIocStats/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master
 MYSQL=$(SUPPORT)/MySQL/master
 ONCRPC=$(SUPPORT)/oncrpc/master
+PCRE=$(SUPPORT)/pcre/master
 PVDUMP=$(SUPPORT)/pvdump/master
 PUGIXML=$(SUPPORT)/pugixml/master
 SQLITE=$(SUPPORT)/sqlite/master
