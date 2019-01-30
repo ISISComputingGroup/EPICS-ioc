@@ -236,7 +236,7 @@ record(compress, "$(P)SUPPLY:VOLT:_STABILITY:HIGH") {
 record(calcout, "$(P)SUPPLY:VOLT:_STABILITY:CALC") {
   field(INPA, "$(P)SUPPLY:VOLT:_STABILITY:HIGH")
   field(INPB, "$(P)SUPPLY:VOLT:_STABILITY:LOW")
-  field(CALC, "ABS(A-B)<1.0")
+  field(CALC, "ABS(A-B)<$(STABILITY_VOLTAGE)")
   field(OUT, "$(P)SUPPLY:VOLT:STABLE PP")
   field(OOPT, "Every Time")
 }
@@ -371,6 +371,7 @@ record(ao, "$(P)FIELD:RATE:SP") {
   field(PREC, "4")
   field(DRVH, "$(MAX_SWEEP_RATE)")
   field(DRVL, "0")
+  field(ASG, "$(MANAGER_ASG)")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD:RATE:SP")
@@ -652,9 +653,11 @@ record(bo, "$(P)HEATER:STATUS:SP") {
 # Amount of time to wait for heater to warm up/cool down.
 # CAN CAUSE MAGNET TO QUENCH IF SET TOO LOW
 # Oxford Instruments labview driver uses 30s
+# ISIS cryogenics have asked us to increase this to 60s,
+# which is more conservative.
 record(ao, "$(P)HEATER:WAITTIME") {
   field(DESC, "Time to wait for heater")
-  field(VAL, "30")
+  field(VAL, "60")
   field(PINI, "YES")
   info(archive, "VAL")
 }
