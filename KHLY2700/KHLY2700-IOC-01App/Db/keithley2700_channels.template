@@ -86,7 +86,7 @@ record(calcout, "$(P)$(CHANNEL):TEMP:CHECK")
   field(HIGH, "320")
   field(LOW,  "0")
   field(HSV,  "MAJOR")
-  field(LSV,  "MAJOR") #TODO write test to check alarm bounds
+  field(LSV,  "MAJOR")
 	field(CALC, "((A>=0)&&(A<320))?A:0")
 	field(OUT, "$(P)$(CHANNEL):TEMP PP")
 	field(FLNK, "$(P)$(CHANNEL):DRIFT:CALC")
