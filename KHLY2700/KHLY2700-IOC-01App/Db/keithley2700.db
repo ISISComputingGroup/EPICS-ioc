@@ -35,7 +35,7 @@ record(sseq, "$(P)INIT:SEQ") {
 	field(STR2, "")
 	field(WAIT2, "Wait")
 
-	# Empty buffer readings
+	# Set scan channels
 	field(LNK3, "$(P)CH:RANGE:SP PP")
 	field(STR3, "101:210")
 	field(WAIT3, "Wait")
@@ -217,14 +217,14 @@ record(mbbo, "$(P)MEASUREMENT:SP") {
 	field(DESC, "Set measurement function")
 	field(DTYP, "stream")
 	field(ZRST, "VOLT:DC")
-    field(ONST, "VOLT:AC")
-    field(TWST, "CURR:DC")
-    field(THST, "CURR:AC")
-    field(FRST, "RES")
-    field(FVST, "FRES")
-    field(SXST, "CONT")
-    field(SVST, "FREQ")
-    field(EIST, "PER")
+  field(ONST, "VOLT:AC")
+  field(TWST, "CURR:DC")
+  field(THST, "CURR:AC")
+  field(FRST, "RES")
+  field(FVST, "FRES")
+  field(SXST, "CONT")
+  field(SVST, "FREQ")
+  field(EIST, "PER")
 	field(OUT, "@devKeithley_2700.proto setMeasurement($(P)CH) $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MEASUREMENT:SP")
@@ -236,14 +236,14 @@ record(mbbi, "$(P)MEASUREMENT") {
 	field(DTYP, "stream")
 	field(SCAN, "1 second")
 	field(ZRST, "VOLT:DC")
-    field(ONST, "VOLT:AC")
-    field(TWST, "CURR:DC")
-    field(THST, "CURR:AC")
-    field(FRST, "RES")
-    field(FVST, "FRES")
-    field(SXST, "CONT")
-    field(SVST, "FREQ")
-    field(EIST, "PER")
+  field(ONST, "VOLT:AC")
+  field(TWST, "CURR:DC")
+  field(THST, "CURR:AC")
+  field(FRST, "RES")
+  field(FVST, "FRES")
+  field(SXST, "CONT")
+  field(SVST, "FREQ")
+  field(EIST, "PER")
 	field(INP, "@devKeithley_2700.proto getMeasurement $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:MEASUREMENT")
@@ -352,6 +352,7 @@ record(calcout, "$(P)BUFF:READ:TRIG") {
   field(OUT,  "$(P)BUFF:READ PP") # this will send 1 to BUFF:READ
 }
 
+# Data in array that looks like READ,TST,CHNL
 record(waveform, "$(P)BUFF:READ")
 {
   field(DESC, "Buffer readings from start to +count")
@@ -373,7 +374,6 @@ record(calcout, "$(P)INDEX:START:UPDATE") {  # this needs to be triggered at the
   field(INPA, "$(P)BUFF:NEXT") # May not work if record scans before read op completes
   field(CALC, "A")
   field(OUT, "$(P)INDEX:START PP")
-  field(TPRO,  "1")
 }
 
 # These aSub records parse BUFF:READ into
@@ -435,7 +435,6 @@ record(aSub,"$(P)BUFF:READ:PARSE:TIME")
   field(OUTS, "$(P)CHNL:209:TIME PP")
   field(OUTT, "$(P)CHNL:210:TIME PP")
   field(FLNK, "$(P)INDEX:START:UPDATE")
-  field(TPRO,  "1")
 }
 
 record(ai, "$(P)BUFFER:MEM:AVAIL")
@@ -558,9 +557,6 @@ record(bo, "$(P)INITMODE:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-
-
-
 record(ai, "$(P)SAMPLECOUNT")
 {
     field(DESC, "Query sample count")
@@ -678,9 +674,9 @@ record(mbbo, "$(P)BUFF:CONTROLMODE:SP")
     field(DESC, "Set Buffer Control Mode")
     field(DTYP, "stream")
     field(OUT,  "@devKeithley_2700.proto setBufferControl $(PORT)")
-    field(ZRST, "NEXT")
-    field(ONST, "ALW")
-    field(TWST, "NEV")
+    field(ZRST, "NEV")
+    field(ONST, "NEXT")
+    field(TWST, "ALW")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:BUFF:CONTROLMODE:SP")
     field(SDIS, "$(P)DISABLE")

@@ -40,5 +40,3 @@ iocInit
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs
 < $(IOCSTARTUP)/postiocinit.cmd
-asynSetTraceIOMask("L0", -1, 0x2)
-asynSetTraceMask("L0", -1, 0x9)
