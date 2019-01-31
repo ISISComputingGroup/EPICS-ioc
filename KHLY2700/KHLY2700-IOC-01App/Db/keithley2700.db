@@ -27,7 +27,7 @@ record(sseq, "$(P)INIT:SEQ") {
 
 	# Clear all system errors
 	field(LNK1, "$(P)SYSTEM:CLEAR:SP PP")
-	field(DO1, "0")
+	field(STR1, "")
 	field(WAIT1, "Wait")
 
 	# Empty buffer readings
