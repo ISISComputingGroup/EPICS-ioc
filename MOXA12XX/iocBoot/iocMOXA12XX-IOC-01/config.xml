@@ -23,22 +23,22 @@
     <macro name="CHAN13NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 13, max 39 characters. Defaults to blank" />
     <macro name="CHAN14NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 14, max 39 characters. Defaults to blank" />
     <macro name="CHAN15NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 15, max 39 characters. Defaults to blank" />
-    <macro name="CHAN0HILIMIT" pattern="^[.0-9]+$" description="Channel 0 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
-    <macro name="CHAN1HILIMIT" pattern="^[.0-9]+$" description="Channel 1 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
-    <macro name="CHAN2HILIMIT" pattern="^[.0-9]+$" description="Channel 2 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
-    <macro name="CHAN3HILIMIT" pattern="^[.0-9]+$" description="Channel 3 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
-    <macro name="CHAN4HILIMIT" pattern="^[.0-9]+$" description="Channel 4 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
-    <macro name="CHAN5HILIMIT" pattern="^[.0-9]+$" description="Channel 5 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
-    <macro name="CHAN6HILIMIT" pattern="^[.0-9]+$" description="Channel 6 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
-    <macro name="CHAN7HILIMIT" pattern="^[.0-9]+$" description="Channel 7 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
-    <macro name="CHAN0LOWLIMIT" pattern="^[.0-9]+$" description="Channel 0 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
-    <macro name="CHAN1LOWLIMIT" pattern="^[.0-9]+$" description="Channel 1 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
-    <macro name="CHAN2LOWLIMIT" pattern="^[.0-9]+$" description="Channel 2 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
-    <macro name="CHAN3LOWLIMIT" pattern="^[.0-9]+$" description="Channel 3 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
-    <macro name="CHAN4LOWLIMIT" pattern="^[.0-9]+$" description="Channel 4 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
-    <macro name="CHAN5LOWLIMIT" pattern="^[.0-9]+$" description="Channel 5 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
-    <macro name="CHAN6LOWLIMIT" pattern="^[.0-9]+$" description="Channel 6 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
-    <macro name="CHAN7LOWLIMIT" pattern="^[.0-9]+$" description="Channel 7 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
+    <macro name="CHAN0HILIMIT" pattern="^-?[.0-9]+$" description="Channel 0 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
+    <macro name="CHAN1HILIMIT" pattern="^-?[.0-9]+$" description="Channel 1 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
+    <macro name="CHAN2HILIMIT" pattern="^-?[.0-9]+$" description="Channel 2 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
+    <macro name="CHAN3HILIMIT" pattern="^-?[.0-9]+$" description="Channel 3 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
+    <macro name="CHAN4HILIMIT" pattern="^-?[.0-9]+$" description="Channel 4 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
+    <macro name="CHAN5HILIMIT" pattern="^-?[.0-9]+$" description="Channel 5 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
+    <macro name="CHAN6HILIMIT" pattern="^-?[.0-9]+$" description="Channel 6 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
+    <macro name="CHAN7HILIMIT" pattern="^-?[.0-9]+$" description="Channel 7 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." />
+    <macro name="CHAN0LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 0 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
+    <macro name="CHAN1LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 1 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
+    <macro name="CHAN2LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 2 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
+    <macro name="CHAN3LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 3 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
+    <macro name="CHAN4LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 4 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
+    <macro name="CHAN5LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 5 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
+    <macro name="CHAN6LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 6 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
+    <macro name="CHAN7LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 7 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
     <macro name="CHAN0UNITS" pattern="(V|mV|kV)" description="Channel 0 Units for model 1240. Defaults to V" />
     <macro name="CHAN1UNITS" pattern="(V|mV|kV)" description="Channel 1 Units for model 1240. Defaults to V" />
     <macro name="CHAN2UNITS" pattern="(V|mV|kV)" description="Channel 2 Units for model 1240. Defaults to V" />
@@ -47,14 +47,14 @@
     <macro name="CHAN5UNITS" pattern="(V|mV|kV)" description="Channel 5 Units for model 1240. Defaults to V" />
     <macro name="CHAN6UNITS" pattern="(V|mV|kV)" description="Channel 6 Units for model 1240. Defaults to V" />
     <macro name="CHAN7UNITS" pattern="(V|mV|kV)" description="Channel 7 Units for model 1240. Defaults to V" />
-    <macro name="CHAN0SCLEFACTR" pattern="^[.0-9]+" description="Channel 0 Scaling factor for model 1240. Defaults to 1" />
-    <macro name="CHAN1SCLEFACTR" pattern="^[.0-9]+" description="Channel 1 Scaling factor for model 1240. Defaults to 1" />
-    <macro name="CHAN2SCLEFACTR" pattern="^[.0-9]+" description="Channel 2 Scaling factor for model 1240. Defaults to 1" />
-    <macro name="CHAN3SCLEFACTR" pattern="^[.0-9]+" description="Channel 3 Scaling factor for model 1240. Defaults to 1" />
-    <macro name="CHAN4SCLEFACTR" pattern="^[.0-9]+" description="Channel 4 Scaling factor for model 1240. Defaults to 1" />
-    <macro name="CHAN5SCLEFACTR" pattern="^[.0-9]+" description="Channel 5 Scaling factor for model 1240. Defaults to 1" />
-    <macro name="CHAN6SCLEFACTR" pattern="^[.0-9]+" description="Channel 6 Scaling factor for model 1240. Defaults to 1" />
-    <macro name="CHAN7SCLEFACTR" pattern="^[.0-9]+" description="Channel 7 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN0SCLEFACTR" pattern="^-?[.0-9]+" description="Channel 0 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN1SCLEFACTR" pattern="^-?[.0-9]+" description="Channel 1 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN2SCLEFACTR" pattern="^-?[.0-9]+" description="Channel 2 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN3SCLEFACTR" pattern="^-?[.0-9]+" description="Channel 3 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN4SCLEFACTR" pattern="^-?[.0-9]+" description="Channel 4 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN5SCLEFACTR" pattern="^-?[.0-9]+" description="Channel 5 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN6SCLEFACTR" pattern="^-?[.0-9]+" description="Channel 6 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN7SCLEFACTR" pattern="^-?[.0-9]+" description="Channel 7 Scaling factor for model 1240. Defaults to 1" />
 </macros>
 <pvsets>
 </pvsets>
