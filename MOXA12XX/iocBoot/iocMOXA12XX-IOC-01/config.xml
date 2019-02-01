@@ -39,6 +39,22 @@
     <macro name="CHAN5LOWLIMIT" pattern="^[.0-9]+$" description="Channel 5 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
     <macro name="CHAN6LOWLIMIT" pattern="^[.0-9]+$" description="Channel 6 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
     <macro name="CHAN7LOWLIMIT" pattern="^[.0-9]+$" description="Channel 7 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." />
+    <macro name="CHAN0UNITS" pattern="(V|mV|kV)" description="Channel 0 Units for model 1240. Defaults to V" />
+    <macro name="CHAN1UNITS" pattern="(V|mV|kV)" description="Channel 1 Units for model 1240. Defaults to V" />
+    <macro name="CHAN2UNITS" pattern="(V|mV|kV)" description="Channel 2 Units for model 1240. Defaults to V" />
+    <macro name="CHAN3UNITS" pattern="(V|mV|kV)" description="Channel 3 Units for model 1240. Defaults to V" />
+    <macro name="CHAN4UNITS" pattern="(V|mV|kV)" description="Channel 4 Units for model 1240. Defaults to V" />
+    <macro name="CHAN5UNITS" pattern="(V|mV|kV)" description="Channel 5 Units for model 1240. Defaults to V" />
+    <macro name="CHAN6UNITS" pattern="(V|mV|kV)" description="Channel 6 Units for model 1240. Defaults to V" />
+    <macro name="CHAN7UNITS" pattern="(V|mV|kV)" description="Channel 7 Units for model 1240. Defaults to V" />
+    <macro name="CHAN0SCLEFACTR" pattern="^[.0-9]+" description="Channel 0 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN1SCLEFACTR" pattern="^[.0-9]+" description="Channel 1 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN2SCLEFACTR" pattern="^[.0-9]+" description="Channel 2 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN3SCLEFACTR" pattern="^[.0-9]+" description="Channel 3 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN4SCLEFACTR" pattern="^[.0-9]+" description="Channel 4 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN5SCLEFACTR" pattern="^[.0-9]+" description="Channel 5 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN6SCLEFACTR" pattern="^[.0-9]+" description="Channel 6 Scaling factor for model 1240. Defaults to 1" />
+    <macro name="CHAN7SCLEFACTR" pattern="^[.0-9]+" description="Channel 7 Scaling factor for model 1240. Defaults to 1" />
 </macros>
 <pvsets>
 </pvsets>
