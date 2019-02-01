@@ -4,7 +4,7 @@
 <ioc_desc>Moxa ioLogik E1210 Remote I/O</ioc_desc>
 <ioc_details>Moxa E1210 details</ioc_details>
 <macros>
-    <macro name="IP_ADDR" pattern="^.*$" description="IP address to connect to." />
+    <macro name="ADDR" pattern="^.*$" description="IP address to connect to." />
     <macro name="PORT" pattern="^[0-9]*$" description="Modbus Port number of device. Defaults to 502" />
     <macro name="MODELNO" pattern="^12(10|40|62)+$" description="Moxa model number. 1210, 1240 or 1262." />
     <macro name="CHAN0NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 0, max 39 characters. Defaults to blank" />
