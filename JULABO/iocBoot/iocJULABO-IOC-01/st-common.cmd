@@ -19,9 +19,16 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "1")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "clocal", "Y")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
 
-# Software flow control off
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N") 
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
+stringiftest("FLOWCTRL", "$(FLOWCONTROL=N)", 5, "Y")
+
+# Software flow control
+$(IFNOTFLOWCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N")
+$(IFNOTFLOWCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
+
+$(IFFLOWCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","Y")
+$(IFFLOWCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","Y")
+
+
 
 $(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "$(OEOS=\\r\\n)")
 $(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "$(IEOS=\\r)")
