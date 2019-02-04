@@ -1,13 +1,9 @@
 program qstat
 
 /*
-As SNL can't do enums natively, or jumping in code, will have to manage this
-done is used to indicate that an action is done so that the next action can be dequeued
-action is the state to be doing now
-action should always be set to -1 when done is set to 1 so that you don't reiterate a state
-action_index is the location in the actions array
-actions is the list of states to undertake next
-The value of action relates to the following behaviours:
+As SNL can't do enums natively, or jumping in code, will have to manage this by hand
+
+The value of action relates to the following behaviors:
 action = 0 ==> idle
 action = 1 ==> start
 action = 2 ==> state 1
@@ -16,16 +12,39 @@ action = 4 ==> state 3
 action = 5 ==> pause
 action = 6 ==> abort
 
-Abort based on a pv
+The few constants here are just to provide some method of variation
+queue_length is to parameterize the queue length, which will also allow for out of range checks - note that this is presently a manual match between the two places
+
+The variables used by the code is as follows:
+done is used to indicate that an action is done so that the next action can be 'dequeued'
+(rather than use a dequeue option, the plan is to use a pointer to the location in the queue, this pointer allows for an easier pause option)
+action is the state to be doing now
+action_index is the location in the actions array, note that the initial value is set to -1, as the first action is to increment to the next item, this allows the pause to use a simple decrement to remain in the current state
+actions is the list of states to undertake next
+print is used with state 3 to limit the number of times the statement is printed to allow following of the statements in a console window
+allow start ensures that a start is only enacted when appropriate, the system is idle, or paused
+
+The following PVs are used:
+{P}START ==> Starts the states running
+{P}CAR ==> Can be varied below, but is used to end the three unnamed states, for 1 and 2 this is straight through, state 3 waits for the value of VAR > 2
+{P}TYPE ==> Decides which states to run, A runs all 3 in order, B skips state 2
+{P}ABORT ==> Will stop the queue immediately, and return to the idle state ready to start again
+{P}PAUSE ==> Stops the queue running, but changing pause again, or starting again will continue from the point where Pause was initially pressed, abort behaves as standard
 */
 
-int done = 0;
-int action = 0;
-int action_index = 0;
-int actions[5];
-int test_trigger = 0;
+/* CONSTANTS */
+int queue_length = 3;
+
+/* VARIABLES */
+int done;
+int action;
+int action_index;
+int actions[3];
+int print;
+int allow_start;
+
+/* PVs & related*/
 char *prefix;
-int allow_start = 1;
 int start;
 int prev_start;
 assign start to "{P}START";
@@ -40,186 +59,209 @@ int abort;
 int prev_abort;
 assign abort to "{P}ABORT";
 monitor abort;
-int print = 0;
 int pause;
 assign pause to "{P}PAUSE";
 monitor pause;
 int prev_pause;
 
+/* STATE SETS */
+
+/* Init Set ==> Things to do to setup the system */
+/* This could be moved into one of the other states sets, but is here to make it more obvious as to what is happening */
 ss init {
   state start_init {
     when () {
       prefix = macValueGet("P");
+      done = 0;
+      action = 0;
+      action_index = -1;
+      print = 0;
+      allow_start = 1;
+      prev_abort = abort;
+      prev_pause = pause;
+      prev_start = start;
     } state init_done
   }
   state init_done {
-     when () {
-     } state init_done
+    when () {
+      /* Empty state */
+    } state init_done
   }
 }
 
+/* Abort Set ==> check for the abort button in what behaves as it's own thread */
 ss abort {
-  state abort_init {
-    when () {
-      prev_abort = abort;
-    } state abort_action
-  }
   state abort_action {
     when () {
-       if (abort != prev_abort) {
-         action = 6;
-         abort = 0;
-         pvPut(abort);
-         prev_abort = abort;
-         printf("Abort has changed\r\n");
-       }
+      if (abort != prev_abort) {
+        action = 6;
+        abort = 0;
+        pvPut(abort);
+        prev_abort = abort;
+        printf("Aborting\r\n");
+      }
     } state abort_action
   }
 }
 
+/* Pause Set ==> check for the pause button in what behaves as it's own thread */
 ss pause {
-  state pause_init {
-    when () {
-      prev_pause = pause;
-    } state pause_action
-  }
   state pause_action {
     when () {
-       if (pause != prev_pause) {
-         action = 5;
-         prev_pause = pause;
-         printf("Pause has changed\r\n");
-       }
+      if (pause != prev_pause) {
+        action = 5;
+        prev_pause = pause;
+        printf("Pausing\r\n");
+      }
     } state pause_action
   }
 }
 
+/* Start Set ==> check for the start button in what behaves as it's own thread */
 ss start {
-  state start_init {
-    when () {
-      prev_start = start;
-    } state start_action
-  }
   state start_action {
     when () {
-       if (start != prev_start) {
-         start = 0;
-         pvPut(start);
-         if (allow_start == 1) {
-           allow_start = 0;
-           prev_start = start;
-           printf("Start has changed\r\n");
-           action = 1;
-         }
-       }
+      if (start != prev_start) {
+        start = 0;
+        pvPut(start);
+        if (allow_start == 1) {
+          allow_start = 0;
+          prev_start = start;
+          printf("Starting\r\n");
+          action = 1;
+        }
+      }
     } state start_action
   }
 }
 
+/* Action Queue Set ==> Do things based on the current action */
 ss action_queue {
   state action_state {
-     when (done == 1) {
-       /*printf("Do nothing when done is 1\r\n");*/
-     } state action_state
-     when (action == 0) {
-       /*printf("Idle\r\n");*/
-     } state action_state
-     when (action == 1) {
-        printf("Starting\r\n");
-        if (type == 0) {
-          printf("Type A\r\n");
-          actions[0] = 2;
-          actions[1] = 3;
-          actions[2] = 4;
-          actions[3] = 0;
-          actions[4] = 0;
-        }
-        else {
-          printf("Type B\r\n");
-          actions[0] = 2;
-          actions[1] = 4;
-          actions[2] = 0;
-          actions[3] = 0;
-          actions[4] = 0;
-        }
-        if (pause == 0) {
-          action_index = 0;
-        }
-        else {
-          pause = 0;
-          pvPut(pause);
-        }
-        done = 1;
-     } state action_state
-     when (action == 2) {
-        printf("State 1\r\n");
-        if (var >= 0) {
-          /* Reset the var for testing/examples */
-          var = 0;
-          pvPut(var);
-          done = 1;
-        }
-     } state action_state
-     when (action == 3) {
-        printf("State 2\r\n");
-        if (var >= 0) {
-          /* Reset the var for testing/examples */
-          var = 0;
-          pvPut(var);
-          done = 1;
-        }
-     } state action_state
-     when (action == 4) {
-        if (print == 0) {
-           print = 1;
-           printf("State 3\r\n");
-        }
-        /* In this state don't wait for the var to continue */
-        if (var >= 2) {
-          print = 0;
-          pvPut(var);
-          done = 1;
-        }
-     } state action_state
-     when (action == 5) {
-        printf("Pause\r\n");
-        allow_start = 1;
-        print = 0;
-        if (pause == 1) {
-          action_index--;
-          action = 0;
-        }
-        else {
-          done = 1;
-        }
-     } state action_state
-     when (action == 6) {
-        printf("Abort\r\n");
-        actions[0] = 0;
-        actions[1] = 0;
+    /* Done */
+    when (done == 1) {
+      /* Do nothing when done is 1 */
+    } state action_state
+    /* Idle */
+    when (action == 0) {
+      /* Idle state - Do nothing */
+    } state action_state
+    /* Start */
+    when (action == 1) {
+      /* Build up queue based on type, note that longer term this array management should be handled more adaptively in functions */
+      printf("Started\r\n");
+      if (type == 0) {
+        printf("Type A\r\n");
+        actions[0] = 2;
+        actions[1] = 3;
+        actions[2] = 4;
+      }
+      else {
+        printf("Type B\r\n");
+        actions[0] = 2;
+        actions[1] = 4;
         actions[2] = 0;
-        actions[3] = 0;
-        actions[4] = 0;
+      }
+      /* Check on Pause, if Pause is 0 reset the queue start point to 0, otherwise clear the pause state */
+      if (pause == 0) {
+        action_index = -1;
+      }
+      else {
+        pause = 0;
+        pvPut(pause);
+        prev_pause = pause;
+      }
+      /* Trigger the queue management */
+      done = 1;
+    } state action_state
+    /* State 1 */
+    when (action == 2) {
+      printf("State 1\r\n");
+      if (var >= 0) {
+        /* Reset the var for testing/examples */
+        var = 0;
+        pvPut(var);
+        done = 1;
+      }
+    } state action_state
+    /* State 2 */
+    when (action == 3) {
+      printf("State 2\r\n");
+      if (var >= 0) {
+        /* Reset the var for testing/examples */
+        var = 0;
+        pvPut(var);
+        done = 1;
+      }
+    } state action_state
+    /* State 3 */
+    when (action == 4) {
+      /* Check on print before announcing which state we are in - consider a function */
+      if (print == 0) {
+        print = 1;
+        printf("State 3\r\n");
+      }
+      /* Wait for the var to be the right value reset to 0 for ease of testing*/
+      if (var >= 2) {
+        print = 0;
+        pvPut(var);
+        done = 1;
+      }
+    } state action_state
+    /* Pause */
+    when (action == 5) {
+      printf("Paused\r\n");
+      allow_start = 1;
+      print = 0;
+      /* If Pause was requested (set to 1) then reset the action_index to the action that was interrupted, but go to an idle state, if the pause was deselected then continue - use done */
+      if (pause == 1) {
+        action_index--;
         action = 0;
-        allow_start = 1;
-        print = 0;     
-     } state action_state
-     when () {
-       printf("HOW DID YOU GET HERE!!!!\r\n");
-     } state action_state
+      }
+      else {
+        done = 1;
+      }
+    } state action_state
+    /* Abort */
+    when (action == 6) {
+      /* Clear the array to all idle, just in case; reset a few of the variables to the initial value */
+      actions[0] = 0;
+      actions[1] = 0;
+      actions[2] = 0;
+      action = 0;
+      allow_start = 1;
+      print = 0;
+      pause = 0;
+      pvPut(pause);
+      prev_pause = pause;
+      printf("Aborted\r\n");
+    } state action_state
+    /* Default state */
+    when () {
+      /* This is a catch all state, the queue management should ensure that this is never enacted a more suitable error should be raised, but this print is enough for the proof of concept */
+      printf("HOW DID YOU GET HERE!!!!\r\n");
+    } state action_state
   }
 }
 
-ss done {
+/* Queue Manager Set ==> When things are done sort out what the queue should be doing */
+ss queue_manager {
   state wait_for_done {
     when (done == 1) {
-       printf("Done!\r\n");
-       done = 0;
-       action = actions[action_index];
-       if (action == 0) {allow_start = 1;}
-       action_index++;
+      printf("Done!\r\n");
+      done = 0;
+      if (action_index < queue_length) {
+        action_index++;
+        action = actions[action_index];
+        if (action == 0) {allow_start = 1;}
+      }
+      else {
+        printf("Queue too long! Please check the code you have written.\r\n");
+        action = 0;
+      }
     } state wait_for_done
     when () {
+      /* Empty state as nothing needs to be done in this thread */
     } state wait_for_done
   }
 }
