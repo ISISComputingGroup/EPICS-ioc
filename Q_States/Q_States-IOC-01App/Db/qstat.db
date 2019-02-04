@@ -1,0 +1,37 @@
+record (bo, "$(P)START") {
+  field( DESC, "Start the actions")
+  field( ZNAM, "Start")
+  field( ONAM, "Starting")
+  field( DTYP, "Soft Channel")
+  field( SCAN, "Passive")
+}
+
+record(ao, "$(P)VAR") {
+  field( DESC, "A Variable to check")
+  field( DTYP, "Soft Channel")
+  field( SCAN, "Passive")
+}
+
+record (bo, "$(P)TYPE") {
+  field( DESC, "The type of the function")
+  field( ZNAM, "Type A")
+  field( ONAM, "Type B")
+  field( DTYP, "Soft Channel")
+  field( SCAN, "Passive")
+}
+
+record (bo, "$(P)ABORT") {
+  field( DESC, "Abort the actions")
+  field( ZNAM, "Abort")
+  field( ONAM, "Aborting")
+  field( DTYP, "Soft Channel")
+  field( SCAN, "Passive")
+}
+
+record (bo, "$(P)PAUSE") {
+  field( DESC, "Pause the actions")
+  field( ZNAM, "Pause")
+  field( ONAM, "Paused")
+  field( DTYP, "Soft Channel")
+  field( SCAN, "Passive")
+}
