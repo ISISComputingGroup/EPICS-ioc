@@ -201,7 +201,7 @@ ss action_queue {
         print = 1;
         printf("State 3\r\n");
       }
-      /* Wait for the var to be the right value reset to 0 for ease of testing, definition of done shuold be appropriate for the work undertaken */
+      /* Wait for the var to be the right value reset to 0 for ease of testing, definition of done should be appropriate for the work undertaken */
       if (var >= 2) {
         print = 0;
         pvPut(var);
