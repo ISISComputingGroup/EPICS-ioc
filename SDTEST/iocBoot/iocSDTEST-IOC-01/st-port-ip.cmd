@@ -8,3 +8,5 @@ stringiftest("PORT", "$(PORT$(PN)=)")
 $(IFPORT)$(IFSIM)       drvAsynIPPortConfigure("SD$(PN)", "127.0.0.1:80 UDP", 0, 1)
 $(IFPORT)$(IFNOTSIM)    drvAsynIPPortConfigure("SD$(PN)","$(PORT$(PN)=)",0,0,0) 
 #
+$(IFPORT) < st-port-common.cmd
+#

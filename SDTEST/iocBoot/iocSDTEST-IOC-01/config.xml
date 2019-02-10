@@ -4,14 +4,22 @@
 <ioc_desc>Simple IOC for talking to any serial device</ioc_desc>
 <macros>
 <!-- check st-port.cmd for defaults -->
-<macro name="PORT1" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT2" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT3" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT4" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT5" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT6" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT7" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT8" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
+<macro name="PORT1" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" />
+<macro name="PORT2" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" />
+<macro name="PORT3" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" />
+<macro name="PORT4" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" />
+<macro name="PORT5" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" />
+<macro name="PORT6" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" />
+<macro name="PORT7" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" />
+<macro name="PORT8" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" />
+<macro name="PTYPE1" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" />
+<macro name="PTYPE2" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" />
+<macro name="PTYPE3" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" />
+<macro name="PTYPE4" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" />
+<macro name="PTYPE5" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" />
+<macro name="PTYPE6" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" />
+<macro name="PTYPE7" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" />
+<macro name="PTYPE8" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" />
 <macro name="BAUD1" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BAUD2" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
 <macro name="BAUD3" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
