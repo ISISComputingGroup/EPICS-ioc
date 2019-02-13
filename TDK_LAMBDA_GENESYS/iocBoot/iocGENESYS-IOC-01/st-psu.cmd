@@ -25,8 +25,8 @@ $(IFPORT) $(IFNOTRECSIM) asynOctetSetInputEos("L$(PS)",0,"$(IEOS$(PS)=\\r)")
 $(IFPORT) $(IFNOTRECSIM) asynOctetSetOutputEos("L$(PS)",0,"$(OEOS$(PS)=\\r)")
 
 ## Initialise the comms with the PSU
-$(IFPORT) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetConnect("GENESYS_01$(PS)","L$(PS)")
-$(IFPORT) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetWrite GENESYS_01$(PS) "ADR $(ADDR$(PS))"
+$(IFPORT) $(IFNOTRECSIM) asynOctetConnect("GENESYS_01$(PS)","L$(PS)")
+$(IFPORT) $(IFNOTRECSIM) asynOctetWrite GENESYS_01$(PS) "ADR $(ADDR$(PS))"
 
 ## Load record instances for connected psu
 $(IFPORT)  dbLoadRecords("$(TOP)/db/TDK_LAMBDA_GENESYS.db", "P=$(MYPVPREFIX)$(IOCNAME):$(PS):,RECSIM=$(RECSIM=0), PORT=L$(PS), ADR=$(ADDR$(PS)), SP_PINI=$(SP_AT_STARTUP$(PS)=NO)")

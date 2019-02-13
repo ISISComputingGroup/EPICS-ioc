@@ -1,0 +1,357 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+    field(PINI, "YES")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+
+#
+# Heater and temperature control
+#
+
+
+record(ao, "$(P)TEMP:SP")
+{
+    field(DESC, "Temperature setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@devtriton.proto setTSetpoint($(P)) $(PORT)")
+	field(PREC, "3")
+	field(EGU, "K")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:TEMP:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)TEMP:SP:RBV")
+{
+    field(DESC, "Temperature setpoint readback")
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getTSetpoint($(P)) $(PORT)")
+    field(SCAN, "1 second") 
+	field(PREC, "3")
+	field(EGU, "K")
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:TEMP:SP:RBV")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(stringin, "$(P)HEATER:TYPE")
+{
+    field(DESC, "Heater type")
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getHtrType($(P)) $(PORT)")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATER:TYPE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)HEATER:RANGE:SP")
+{
+    field(DESC, "Heater range setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@devtriton.proto setHtrRange($(P)) $(PORT)")
+	field(PREC, "3")
+	field(EGU, "mA")
+	
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATER:RANGE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)HEATER:RANGE")
+{
+    field(DESC, "Heater range")
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getHtrRange($(P)) $(PORT)")
+    field(SCAN, "1 second") 
+	field(PREC, "3")
+	field(EGU, "mA")
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATER:RANGE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)HEATER:POWER")
+{
+    field(DESC, "Heater power")
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getHtrPower($(P)) $(PORT)")
+    field(SCAN, "1 second")
+	field(PREC, "3")
+	field(EGU, "uW")
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATER:POWER")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)HEATER:RES")
+{
+    field(DESC, "Heater resistance")
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getHtrRes($(P)) $(PORT)")
+    field(SCAN, "1 second")
+	field(PREC, "3")
+	field(EGU, "ohm")
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:HEATER:RES")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(calc, "$(P)HEATER:CURR")
+{
+    field(DESC, "Heater current")
+    field(INPA, "$(P)HEATER:POWER CP MS")  # Power in uW
+    field(INPB, "$(P)HEATER:RES CP MS")    # Resistance in ohms
+    field(CALC, "B=0?0:SQR(A/B)")          # P = I^2 R. Avoid zero division by reporting current of zero if resistance is zero.
+	field(PREC, "3")
+	field(EGU, "mA")                       # uW = mA * mA * ohms
+	field(ASG, "READONLY")
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+record(calc, "$(P)HEATER:PERCENT")
+{
+    field(DESC, "Heater percentage")
+    field(INPA, "$(P)HEATER:RANGE CP MS")
+    field(INPB, "$(P)HEATER:CURR CP MS")
+	field(CALC, "A=0?0:100*B/A")  # Avoid zero division by reporting 0% if heater range is zero.
+	field(ASG, "READONLY")
+	field(EGU, "%")
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+}
+
+record(bi, "$(P)CLOSEDLOOP")
+{
+    field(DESC, "Closed loop mode")
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getClosedLoop($(P)) $(PORT)")
+    field(SCAN, "1 second")
+    
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+	
+	info(INTEREST, "HIGH")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CLOSEDLOOP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)CLOSEDLOOP:SP")
+{
+    field(DESC, "Closed loop mode setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@devtriton.proto setClosedLoop($(P)) $(PORT)")
+    
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CLOSEDLOOP:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
+#
+# System status
+#
+
+
+record(waveform, "$(P)STATUS")
+{
+    field(DESC, "System status")
+    field(DTYP, "stream")
+    field(NELM, "512")
+    field(FTVL, "CHAR")
+    field(INP,  "@devtriton.proto getStatus $(PORT)")
+    field(SCAN, "1 second")
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STATUS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(waveform, "$(P)AUTOMATION")
+{
+    field(DESC, "System automation")
+    field(DTYP, "stream")
+    field(NELM, "512")
+    field(FTVL, "CHAR")
+    field(INP,  "@devtriton.proto getAutomation $(PORT)")
+    field(SCAN, "1 second")
+	
+	info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:AUTOMATION")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
+#
+# Arbitrary commands
+#
+
+
+record(waveform, "$(P)ARBITRARY:SP")
+{
+    field(NELM, "512")
+    field(FTVL, "CHAR")
+    field(FLNK, "$(P)ARBITRARY:SP:TRIGGER")
+}
+
+record(calcout, "$(P)ARBITRARY:SP:TRIGGER")
+{
+    field(INPA, "$(P)ARBITRARY:SP.NORD")
+	# Only send if length of command is
+	# Use greater than one to account for null terminator
+	field(CALC, "A > 1") 
+	field(OOPT, "When Non-zero")
+    field(DTYP, "stream")
+    field(OUT,  "@devtriton.proto arbitrary($(P)) $(PORT)")
+}
+
+record(waveform, "$(P)ARBITRARY")
+{
+    field(NELM, "512")
+    field(FTVL, "CHAR")
+}
+
+
+#
+# Diagnostics
+#
+
+
+record(stringin, "$(P)SYS:TIME")
+{
+    field(DESC, "System time")
+	field(DTYP, "stream")
+    field(INP, "@devtriton.proto getTime $(PORT)")
+	field(SCAN, ".5 second")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SYS:TIME")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(waveform, "$(P)SYS:IDN")
+{
+    field(DESC, "System identity")
+    field(DTYP, "stream")
+    field(INP, "@devtriton.proto getIDN $(PORT)")
+	field(PINI, "YES")
+	# No need to scan. This won't change.
+    field(NELM, "512")
+    field(FTVL, "CHAR")
+	
+	info(archive, "VAL")
+}
+
+record(stringin, "$(P)SYS:ADDR")
+{
+    field(DESC, "IP Address")
+    field(VAL, "$(IPADDR)")
+	field(PINI, "YES")
+	
+	info(archive, "VAL")
+}
+
+
+#
+# Simulation records
+#
+
+record(ao, "$(P)SIM:TEMP:SP")
+{
+}
+
+alias("$(P)SIM:TEMP:SP", "$(P)SIM:TEMP:SP:RBV")
+
+record(ao, "$(P)SIM:HEATER:RANGE:SP")
+{
+}
+
+alias("$(P)SIM:HEATER:RANGE:SP", "$(P)SIM:HEATER:RANGE")
+
+record(stringin, "$(P)SIM:HEATER:TYPE")
+{
+    field(VAL, "HEATER_TYPE")
+	field(PINI, "YES")
+}
+
+record(ao, "$(P)SIM:HEATER:POWER")
+{
+    field(VAL, "0")
+	field(PINI, "YES")
+}
+
+record(ao, "$(P)SIM:HEATER:RES")
+{
+    field(VAL, "0")
+	field(PINI, "YES")
+}
+
+record(bo, "$(P)SIM:CLOSEDLOOP")
+{
+}
+
+alias("$(P)SIM:CLOSEDLOOP", "$(P)SIM:CLOSEDLOOP:SP")
+
+record(stringin, "$(P)SIM:SYS:TIME")
+{
+    field(VAL, "SYSTEM TIME")
+	field(PINI, "YES")
+}
+
+record(stringin, "$(P)SIM:STATUS")
+{
+    field(VAL, "DEVICE STATUS")
+	field(PINI, "YES")
+}
+
+record(stringin, "$(P)SIM:AUTOMATION")
+{
+    field(VAL, "DEVICE AUTOMATION")
+	field(PINI, "YES")
+}

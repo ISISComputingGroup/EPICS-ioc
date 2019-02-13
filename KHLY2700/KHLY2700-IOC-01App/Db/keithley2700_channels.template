@@ -1,0 +1,62 @@
+record(bo, "$(P)$(CHANNEL):SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)$(CHANNEL):DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+##################################################
+#
+# Template for the 20 Keithley_2700 Channels
+#
+# Values created by aSub record BUFF:READ:PARSE which populates channel 
+# values from the block of data returned in BUFF:READ.
+#
+# Channel names range from 101-110 and 201-210 and have the PV format CHNL:101
+#
+##################################################
+
+record(ao, "$(P)$(CHANNEL):READ")
+{
+	field(DESC, "Latest device reading value")
+	field(EGU, "ohm")
+	field(PREC, "5")
+	info(alarm, "Keithley2700")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+}
+
+record(ao, "$(P)$(CHANNEL):TIME")
+{
+	field(DESC, "Latest device reading timestamp")
+	field(EGU, "")
+	field(PREC, "5")
+	info(INTEREST, "HIGH")
+	info(ARCHIVE, "VAL")
+}
+
+### SIMULATION RECORDS ###
+
+record(ao, "$(P)SIM:$(CHANNEL):READ")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ao, "$(P)SIM:$(CHANNEL):TIME")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}

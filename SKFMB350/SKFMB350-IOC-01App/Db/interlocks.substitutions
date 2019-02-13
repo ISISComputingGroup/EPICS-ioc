@@ -1,0 +1,22 @@
+file interlocks.template {
+
+pattern {P, ILKNAME, FIELD}
+{"\$(P)", "DSP_WD_FAIL", "B0"}
+{"\$(P)", "OSCILLATOR_FAIL", "B1"}
+{"\$(P)", "POSITION_SHUTDOWN", "B2"}
+{"\$(P)", "EMERGENCY_STOP", "B3"}
+{"\$(P)", "UPS_FAIL", "B4"}
+{"\$(P)", "EXTERNAL_FAULT", "B5"}
+{"\$(P)", "CC_WD_FAIL", "B6"}
+{"\$(P)", "OVERSPEED_TRIP", "B7"}
+{"\$(P)", "VACUUM_FAIL", "B8"}
+{"\$(P)", "MOTOR_OVER_TEMP", "B9"}
+{"\$(P)", "REFERENCE_SIGNAL_LOSS", "BA"}
+{"\$(P)", "SPEED_SENSOR_LOSS", "BB"}
+{"\$(P)", "COOLING_LOSS", "BC"}
+{"\$(P)", "DSP_SUMMARY_SHUTDOWN", "BD"}
+{"\$(P)", "CC_SHUTDOWN_REQ", "BE"}
+{"\$(P)", "TEST_MODE", "BF"}
+}
+
+

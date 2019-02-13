@@ -3,8 +3,9 @@
 <config_part>
 <ioc_desc>PI motor stage</ioc_desc>
 <macros>
-<macro name="PORT1" pattern="^COM[0-9]+$" description="Serial COM Port" />
-<macro name="BAUD1" pattern="^[0-9]+$" description="port baud rate (default: 38400)" />
+<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD" pattern="^[0-9]+$" description="port baud rate (default: 38400)" />
 </macros>
 </config_part>
 </ioc_config>

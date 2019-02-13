@@ -33,7 +33,7 @@ stringtest("IFEX3", "$(EXCLUSIVE3=)")
 stringtest("IFEX4", "$(EXCLUSIVE4=)")
 
 ## Load our record instances
-dbLoadRecords("db/INSTETC.db","P=$(MYPVPREFIX),IOC=$(IOCNAME)")
+dbLoadRecords("db/INSTETC.db","P=$(MYPVPREFIX),IOC=$(IOCNAME),RECSIM=$(RECSIM=0)")
 dbLoadRecords("db/svn-revision.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/build-id.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/inst_string_parameters.db","P=$(MYPVPREFIX)")

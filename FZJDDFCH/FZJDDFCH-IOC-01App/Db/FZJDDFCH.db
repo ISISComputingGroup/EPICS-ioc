@@ -1,0 +1,553 @@
+#
+# DB File for the FZJ Digital Drive Fermi Chopper Controller
+#
+# Command descriptions from manual
+#
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+#
+record(bo, "$(P)DISABLE")
+{
+  field(DESC, "Disable comms")
+  field(PINI, "YES")
+  field(VAL, "$(DISABLE=0)")
+  field(OMSL, "supervisory")
+  field(ZNAM, "COMMS ENABLED")
+  field(ONAM, "COMMS DISABLED")
+}
+#
+record(stringin, "$(P)ADDRESS")
+{   
+  field(DESC, "Chopper name/address")
+  field(PINI, "YES")
+  field(VAL, "$(ADDR)")
+}
+#
+# factor
+# FACT!
+# 1:12
+# multiplication factor of reference speed
+# speed setpoint
+# no decimal places
+#
+record(mbbo, "$(P)FREQ:SP")
+{
+    field(DESC, "Frequency Setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@devFZJ_DDFermiChopper.proto setFACT($(P)) $(PORT)")
+    field(ZRVL, "1")
+    field(ONVL, "2")
+    field(TWVL, "3")
+    field(THVL, "4")
+    field(FRVL, "5")
+    field(FVVL, "6")
+    field(SXVL, "7")
+    field(SVVL, "8")
+    field(EIVL, "9")
+    field(NIVL, "10")
+    field(TEVL, "11")
+    field(ELVL, "12")
+    field(ZRST, "50")
+    field(ONST, "100")
+    field(TWST, "150")
+    field(THST, "200")
+    field(FRST, "250")
+    field(FVST, "300")
+    field(SXST, "350")
+    field(SVST, "400")
+    field(EIST, "450")
+    field(NIST, "500")
+    field(TEST, "550")
+    field(ELST, "600")
+    field(EGU, "Hz")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FREQ:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+#
+# PV to contain returned error message, if any
+#
+record(stringin, "$(P)FREQ:SP:ERROR")
+{
+    field(DESC, "Error that occurred on setting frequency")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+#
+# setpoint phase [degrees]
+# PHAS!
+# 0.1 to 359.9
+# one decimal place
+#
+record(ao, "$(P)PHAS:SP")
+{
+    field(DESC, "Phase Setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@devFZJ_DDFermiChopper.proto setPHAS($(P)) $(PORT)")
+    field(EGU, "deg")
+    field(PREC, "1")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PHAS:SP PP")
+    field(SDIS, "$(P)DISABLE")
+}
+#
+# PV to contain returned error message, if any
+#
+record(stringin, "$(P)PHAS:SP:ERROR")
+{
+    field(DESC, "Error that occurred on setting phase")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+#
+# switch on magnetic bearing
+# MAGB!
+# ON
+# it is not possible to switch off the magnetic bearing by command
+#
+record(bo, "$(P)MB:SP")
+{
+    field(DESC, "Magnetic Bearing Setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@devFZJ_DDFermiChopper.proto setMAGB($(P)) $(PORT)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MB:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+#
+# PV to contain returned error message, if any
+#
+record(stringin, "$(P)MB:SP:ERROR")
+{
+    field(DESC, "Error that occurred on setting MB")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+#
+# drive start/stop
+# DRIV!
+# START or STOP
+#
+record(bo, "$(P)DRIVE:MODE:SP")
+{
+    field(DESC, "Drive mode setpoint")
+    field(DTYP, "stream")
+    field(OUT, "@devFZJ_DDFermiChopper.proto setDRIV($(P)) $(PORT)")
+    field(ZNAM, "STOP")
+    field(ONAM, "START")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DRIVE:MODE:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+alias("$(P)DRIVE:MODE:SP", "$(P)DRV:MODE:SP")
+#
+# PV to contain returned error message, if any
+#
+record(stringin, "$(P)DRIVE:MODE:SP:ERROR")
+{
+    field(DESC, "Error message from drive mode set")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias("$(P)DRIVE:MODE:SP:ERROR", "$(P)DRV:MODE:SP:ERROR")
+#
+# setpoint speed [Hz]
+# SSPE?
+# 20.00 to 26.00 and 32.00 to 100.00
+# two decimal places
+#
+record(ai, "$(P)FREQ:SP:RBV")
+{
+    field(DESC, "Frequency Setpoint Readback")
+    field(EGU, "Hz")
+    field(PREC, "2")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+#
+# record causes concatenated status string to be read
+# then protocol file splits response into separate values
+# and writes them to specified PVs
+#
+# See the following VI for details on how the reply to the ASTA? command is formed:
+# MAPS_251115_C6713_LV2010\RAL Neu\MAPS_251115_C6713_LV2014\LabVIEW\TCP.llb\TCP_Kommando_ASTA?.vi
+#
+# current speed [Hz]
+# SPEE?
+# 0.00 to 100.00
+# two decimal places
+#
+record(ai, "$(P)FREQ")
+{
+    field(DESC, "Current Frequency")
+	field(SCAN, "1 second")
+	field(DTYP, "stream")
+    field(EGU, "Hz")
+    field(PREC, "2")    
+    info(alarm, "FZJDDFCH_01")
+    field(INP, "@devFZJ_DDFermiChopper.proto getASTA($(P)) $(PORT)")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+#
+# setpoint phase [º]
+# SPHA?
+# 0.01 to 359.99
+# two decimal places
+#
+record(ai, "$(P)PHAS:SP:RBV")
+{
+    field(DESC, "Phase Setpoint Readback")
+    field(EGU, "deg")
+    field(PREC, "1")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+#
+# current phase [º]
+# PHAS?
+# 0.00 to 360.00 or –1.00
+# if the current rotary frequency did not reach the setpoint frequency, the value is –1.00
+# two decimal places
+#
+record(ai, "$(P)PHAS")
+{
+    field(DESC, "Current Phase")
+    field(EGU, "deg")
+    field(PREC, "1")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+#
+# status of phase
+# PHOK?
+# OK or NOK
+# phase deviation = 0.1º means that the phase is OK
+#
+record(bi, "$(P)PHAS:STAT")
+{
+    field(DESC, "Phase Status")
+    field(ZNAM, "NOK")
+    field(ONAM, "OK")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+#
+# magnetic bearing
+# MBON?
+# ON or OFF
+#
+record(bi, "$(P)MB")
+{
+    field(DESC, "Magnetic Bearing")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+#
+# status of magnetic bearing
+# MBOK?
+# OK or NOK
+#
+record(bi, "$(P)MB:STAT")
+{
+    field(DESC, "Magnetic Bearing Status")
+    field(ZNAM, "NOK")
+    field(ONAM, "OK")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+#
+# drive
+# DRON?
+# ON or OFF
+#
+record(bi, "$(P)DRIVE")
+{
+    field(DESC, "Drive")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)DRIVE", "$(P)DRV")
+#
+# status of drive
+# SDRI?
+# START or STOP
+#
+record(bi, "$(P)DRIVE:MODE")
+{
+    field(DESC, "Drive Mode")
+    field(ZNAM, "STOP")
+    field(ONAM, "START")    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)DRIVE:MODE", "$(P)DRV:MODE")
+#
+# drive current L1 [A]
+# DRL1?
+# 0.00 to 15.00
+# two decimal places
+#
+record(ai, "$(P)DRIVE:L1:CURR")
+{
+    field(DESC, "Winding 1 Drive Current")
+    field(EGU, "A")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias("$(P)DRIVE:L1:CURR", "$(P)DRV:L1:CURR")
+#
+# drive current L2 [A]
+# DRL2?
+# 0.00 to 15.00
+# two decimal places
+#
+record(ai, "$(P)DRIVE:L2:CURR")
+{
+    field(DESC, "Winding 2 Drive Current")
+    field(EGU, "A")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias("$(P)DRIVE:L2:CURR", "$(P)DRV:L2:CURR")
+#
+# drive current L3 [A]
+# DRL3?
+# 0.00 to 15.00
+# two decimal places
+#
+record(ai, "$(P)DRIVE:L3:CURR")
+{
+    field(DESC, "Winding 3 Drive Current")
+    field(EGU, "A")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias("$(P)DRIVE:L3:CURR", "$(P)DRV:L3:CURR")
+#
+# rotating direction
+# RODI?
+# CLOCK or ANTICLOCK
+# in view of the drive
+#
+record(bi, "$(P)DRIVE:DIR")
+{
+    field(DESC, "Rotation Direction")
+    field(ZNAM, "CCW")
+    field(ONAM, "CW")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias("$(P)DRIVE:DIR", "$(P)DRV:DIR")
+#
+# drive temperature [ºC]
+# DRIT?
+# 0.00 to 150.00
+# error if higher than 70.00ºC,
+# two decimal places
+#
+record(ai, "$(P)DRIVE:TEMP")
+{
+    field(DESC, "Drive Temperature")
+    field(EGU, "C")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias("$(P)DRIVE:TEMP", "$(P)DRV:TEMP")
+#
+# outage of the phase [s]
+# OUPH?
+# 0.00 to 7257600.00
+# if one counter value = 7257600s (= 12 weeks), then self-acting reset of all counters triggered
+# two decimal places
+#
+record(ai, "$(P)PHAS:OUTAGE")
+{
+    field(DESC, "Time out of Phase")
+    field(EGU, "s")
+    field(PREC, "2")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+#
+# log data
+# LOON?
+# ON or OFF
+#
+record(bi, "$(P)LOGGING")
+{
+    field(DESC, "Logging")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+#
+# DSP function control
+# DSPM?
+# OK or NOK
+#
+record(bi, "$(P)DSP:STAT")
+{
+    field(DESC, "DSP Function Control Status")
+    field(ZNAM, "NOK")
+    field(ONAM, "OK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+#
+# interlock - external release
+# EROK?
+# OK or NOK
+#
+record(bi, "$(P)INTERLOCK:ER:STAT")
+{
+    field(DESC, "Interlock - External Release Status")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias ("$(P)INTERLOCK:ER:STAT", "$(P)IL:ER:STAT")
+#
+# interlock - vacuum
+# VAOK?
+# OK oder NOK
+#
+record(bi, "$(P)INTERLOCK:VAC:STAT")
+{
+    field(DESC, "Interlock - Vacuum Status")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias ("$(P)INTERLOCK:VAC:STAT", "$(P)IL:VAC:STAT")
+#
+# interlock - rotary frequency monitoring
+# SMOK?
+# OK or NOK
+#
+record(bi, "$(P)INTERLOCK:FREQMON:STAT")
+{
+    field(DESC, "Interlock - Rotary Freq Mon Status")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias ("$(P)INTERLOCK:FREQMON:STAT", "$(P)IL:FREQMON:STAT")
+#
+# interlock - magnetic bearing amplifier temperature
+# MBAT?
+# OK or NOK
+#
+record(bi, "$(P)INTERLOCK:MB:AMP:TEMP:STAT")
+{
+    field(DESC, "Interlock - Mag Brng Amp Temp Status")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias ("$(P)INTERLOCK:MB:AMP:TEMP:STAT", "$(P)IL:MB:TEMP:STAT")
+#
+# interlock - magnetic bearing amplifier current
+# MBAC?
+# OK or NOK
+#
+record(bi, "$(P)INTERLOCK:MB:AMP:CURR:STAT")
+{
+    field(DESC, "Interlock - Mag Brng Amp Curr Status")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias ("$(P)INTERLOCK:MB:AMP:CURR:STAT", "$(P)IL:MB:CURR:STAT")
+#
+# interlock - drive amplifier temperature
+# DRAT?
+# OK or NOK
+#
+record(bi, "$(P)INTERLOCK:DRIVE:AMP:TEMP:STAT")
+{
+    field(DESC, "Interlock - Drive Amp Temp Status")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias ("$(P)INTERLOCK:DRIVE:AMP:TEMP:STAT", "$(P)IL:DRV:TEMP:STAT")
+#
+# interlock - drive amplifier current
+# DRAC?
+# OK or NOK
+#
+record(bi, "$(P)INTERLOCK:DRIVE:AMP:CURR:STAT")
+{
+    field(DESC, "Interlock - Drive Amp Curr Status")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias ("$(P)INTERLOCK:DRIVE:AMP:CURR:STAT", "$(P)IL:DRV:CURR:STAT")
+#
+# interlock - UPS
+# PSOK?
+# OK or NOK
+#
+record(bi, "$(P)INTERLOCK:UPS:STAT")
+{
+    field(DESC, "Interlock - UPS Status")
+    field(ZNAM, "OK")
+    field(ONAM, "NOK")    
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias ("$(P)INTERLOCK:UPS:STAT", "$(P)IL:UPS:STAT")
+#
+#
+# ### SIMULATION RECORDS ###
+#
+record(ai, "$(P)SIM:FREQ:REF")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+#
+alias("$(P)FREQ","$(P)SIM:FREQ:SP")
+#
+alias("$(P)PHAS","$(P)SIM:PHAS:SP")
+#
+alias("$(P)MB","$(P)SIM:MB:SP")
+#
+alias("$(P)DRIVE:MODE","$(P)SIM:DRIVE:MODE:SP")
+#
+# SIM:<parameter>:SP:RBV is not linked to SIM:<parameter>:SP or SIM::<parameter>
+# because the aliases point at real values and we do not want to set them accidentally.

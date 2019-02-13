@@ -1,0 +1,2 @@
+file configMenu.req P=$(CMP),CONFIG=$(CONFIG)
+file $(IOCNAME)_settings.req P=$(P),CCP=$(MTRCTRL)

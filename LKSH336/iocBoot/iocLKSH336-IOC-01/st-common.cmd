@@ -6,11 +6,14 @@ cd ${TOP}
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-## For emulator use:
-$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:55626")
+# For dev sim devices
+$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=57677)")
+
+## For recsim:
+$(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 
 ## For real device use:
-$(IFNOTDEVSIM) drvAsynIPPortConfigure ("$(DEVICE)", "$(HOST):7777")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure ("$(DEVICE)", "$(HOST):7777")
 
 ## Load record instances
 

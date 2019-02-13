@@ -25,13 +25,21 @@ AG3631A_IOC_01_registerRecordDeviceDriver pdbbase
 #asynOctetSetOutputEos("GPIB0", 1, "\n")
 
 #Set up serial port
-drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
-asynSetOption("L0", -1, "baud", "9600")
-asynSetOption("L0", -1, "bits", "8")
-asynSetOption("L0", -1, "parity", "none")
-asynSetOption("L0", -1, "stop", "1")
-asynOctetSetInputEos("L0", -1, "\r\n")
-asynOctetSetOutputEos("L0", -1, "\r\n")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "9600")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "8")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "none")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "1")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "\r\n")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "\r\n")
+
+# Hardware flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "clocal", "Y")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
+
+# Software flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N") 
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
 ## Load record instances
 
@@ -39,8 +47,8 @@ asynOctetSetOutputEos("L0", -1, "\r\n")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-#dbLoadRecords("db/devagilent3631A.db","P=$(MYPVPREFIX)$(IOCNAME):,R=:,PORT=GPIB0,A=1")  #GPIB
-dbLoadRecords("db/devagilent3631A.db","P=$(MYPVPREFIX)$(IOCNAME):,R=:,PORT=L0,A=0")      #Serial
+#dbLoadRecords("db/devagilent3631A.db","P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),R=:,PORT=GPIB0,A=1")  #GPIB
+dbLoadRecords("db/devagilent3631A.db","P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),R=:,PORT=L0,A=0")      #Serial
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

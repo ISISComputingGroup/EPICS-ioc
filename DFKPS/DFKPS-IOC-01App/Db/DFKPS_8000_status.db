@@ -1,6 +1,71 @@
+record(longin, "$(P)STATUS")
+{
+    field(DESC, "Device Status Flags")
+    field(DTYP, "stream")
+    field(INP,  "@dfkps.proto status $(port) 0")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STATUS")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "")
+}
+
+
+record(calcout, "$(P)CALSTA1")
+{
+    field(DESC, "Get Status Flags 1-16")
+    field(CALC, "(A>>8)&65535")
+    field(INPA, "$(P)STATUS CP MS")
+}
+
+record(calcout, "$(P)CALSTA2")
+{
+    field(DESC, "Get Status Flags 16-24")
+    field(CALC, "(A<<8)&65535")
+    field(INPA, "$(P)STATUS CP MS")
+}
+
+record(mbbiDirect, "$(P)STA1")
+{
+    field(DESC, "Status Flags 1-16")
+	field(INP, "$(P)CALSTA1 CP MS")
+	field(DTYP, "Raw Soft Channel")
+	# F = Power off
+	# E = Polarity normal
+	# D = Polarity reversed
+	# C = regulation transformer <> 0 * main power
+	# B = DAC16
+	# A = DAC17
+	# 9 = High = %, low = amps/volts
+	# 8 = spare interlock
+	# 7 = one transistor fault
+	# 6 = Sum interlocks
+	# 5 = DC Overcurrent
+	# 4 = DC Overload
+	# 3 = regulation mode fail
+	# 2 = Pre-regulator failure
+	# 1 = Phase failure
+	# 0 = MPS water flow failure	
+}
+
+record(mbbiDirect, "$(P)STA2")
+{
+    field(DESC, "Status Flags 16-24")
+	field(INP, "$(P)CALSTA2 CP MS")
+	field(DTYP, "Raw Soft Channel")
+	# F = Earth leakage failure
+	# E = Thermal breaker/fuses
+	# D = MPS over temperature
+	# C = door switch
+	# B = magnet waterflow failure
+	# A = magnet over temperature
+	# 9 = MPS not ready
+	# 8 = spare
+}
 
 record(bi, "$(P)ILK")
 {
+    field(INP, "$(P)STA1.B6 CP MS")
     field(DESC, "Overall Interlock")
     field(ZNAM, "OK")
     field(ONAM, "Interlock")
@@ -8,55 +73,164 @@ record(bi, "$(P)ILK")
     info(archive, "VAL")
 }
 
-record(bi, "$(P)POWER")
+record(bi, "$(P)ILK:TRANS")
 {
-    field(DESC, "Power")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
+    field(INP, "$(P)STA1.B7 CP MS")
+    field(DESC, "Transistor fault interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
+
+record(bi, "$(P)ILK:DCOC")
+{
+    field(INP, "$(P)STA1.B5 CP MS")
+    field(DESC, "DC overcurrent interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:DCOL")
+{
+    field(INP, "$(P)STA1.B4 CP MS")
+    field(DESC, "DC overload interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:REGMOD")
+{
+    field(INP, "$(P)STA1.B3 CP MS")
+    field(DESC, "Regulation modulator interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:PREREG")
+{
+    field(INP, "$(P)STA1.B2 CP MS")
+    field(DESC, "Preregulator interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:PHAS")
+{
+    field(INP, "$(P)STA1.B1 CP MS")
+    field(DESC, "Phase failure interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MPSWATER")
+{
+    field(INP, "$(P)STA1.B0 CP MS")
+    field(DESC, "MPS water flow interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:EARTHLEAK")
+{
+    field(INP, "$(P)STA2.BF CP MS")
+    field(DESC, "Earth leak interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:THERMAL")
+{
+    field(INP, "$(P)STA2.BE CP MS")
+    field(DESC, "Thermal breaker interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MPSTEMP")
+{
+    field(INP, "$(P)STA2.BD CP MS")
+    field(DESC, "MPS overtemp interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:DOOR")
+{
+    field(INP, "$(P)STA2.BC CP MS")
+    field(DESC, "Door switch interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MAGWATER")
+{
+    field(INP, "$(P)STA2.BB CP MS")
+    field(DESC, "Magnet waterflow interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MAGTEMP")
+{
+    field(INP, "$(P)STA2.BA CP MS")
+    field(DESC, "Magnet overtemp interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(calcout, "$(P)POWER:_CALC")
+{
+    field(INPA, "$(P)STA1.BF CP MS")
+	field(CALC, "!A")
+}
+
+record(bi, "$(P)POWER")
+{
+    field(INP, "$(P)POWER:_CALC CP MS")
+    field(DESC, "Power")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POWER CP")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+	
+}
 alias("$(P)POWER", "$(P)POWER:RBV")
 
-
-record(stringin, "$(P)STATUS")
+record(bi, "$(P)SIM:POWER")
 {
-    field(DESC, "Device Status Flags")
-    field(DTYP, "stream")
-    field(INP,  "@dfkps.proto status $(port) 0")
-    field(SCAN, "1 second")
-    field(FLNK, "$(P)CALPOWER")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:STATUS")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(scalcout, "$(P)CALPOWER")
-{
-    field(DESC, "Update Power Status")
-    field(OUT,  "$(P)POWER PP MS")
-    field(CALC, "BB==AA[$(powpos),$(powpos)] ? CC : DD")
-    field(INAA, "$(P)STATUS MS")
-    field(BB, "!")
-    field(CC, "Off")
-    field(DD, "On")
-    field(FLNK, "$(P)CALILK")
-}
-
-record(scalcout, "$(P)CALILK")
-{
-    field(DESC, "Update Interlock Status")
-    field(OUT,  "$(P)ILK PP MS")
-    field(CALC, "BB==AA[$(ilkpos),$(ilkpos)] ? CC : DD")
-    field(INAA, "$(P)STATUS MS")
-    field(BB, "!")
-    field(CC, "Interlock")
-    field(DD, "OK")
-}
-
-record(stringin, "$(P)SIM:STATUS"){
     field(DTYP, "Soft Channel")
+	field(DESC, "Power")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
 }
+alias("$(P)SIM:POWER", "$(P)SIM:POWER:SP")
 
 record(ao, "$(P)RAW:SP")
 {

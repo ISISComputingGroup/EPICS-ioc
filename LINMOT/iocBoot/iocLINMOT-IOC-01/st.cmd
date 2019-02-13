@@ -12,7 +12,7 @@ errlogInit2(65536, 256)
 dbLoadDatabase "$(TOP)/dbd/LINMOT-IOC-01.dbd"
 LINMOT_IOC_01_registerRecordDeviceDriver pdbbase
 
-# enable debugging
-var drvLinMotDebug 5
+# enable debugging by setting >1
+var drvLinMotDebug 0
 
 < st-common.cmd

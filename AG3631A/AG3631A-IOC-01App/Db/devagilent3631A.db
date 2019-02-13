@@ -4,13 +4,15 @@ record(bo, "$(P)SIM")
     field(DTYP, "Soft Channel")
     field(ZNAM, "NO")
     field(ONAM, "YES")
+	field(VAL, "$(RECSIM=0)")
+	field(PINI, "YES")
 }
 
 record(bo, "$(P)DISABLE") 
 {
     field(DESC, "Disable comms")
     field(PINI, "YES")
-    field(VAL, "0")
+    field(VAL, "$(DISABLE=0)")
     field(OMSL, "supervisory")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
@@ -85,7 +87,7 @@ record(bi, "$(P)OUTPUT_STATUS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURRENT")
     field(SDIS, "$(P)DISABLE")
-	field(EGU, "V")
+	info(alarm, "AG3631A")
 }
 
 record(bo, "$(P)OUTPUT_STATUS:SP")

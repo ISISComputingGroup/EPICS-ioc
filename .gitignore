@@ -30,3 +30,4 @@ relPaths.sh
 NULL
 GALIL/iocBoot/**/*.gmc
 */**/TEST-TestPVUnits-*.xml
+.vs/*

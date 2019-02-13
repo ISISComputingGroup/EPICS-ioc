@@ -1,0 +1,33 @@
+
+# Register 40650 continuously changes from 0 to 1 every second. By doing so,
+# this shows that the PLC program is running. If the register does not change, 
+# then the PLC has stopped running, and all other data may be incorrect.
+# holding registers (code 3) - subtract 40001
+record(bi, "$(P)$(R)HEARTBEAT") {
+    field(DTYP,"asynUInt32Digital")
+    field(INP,"@asynMask($(PORT)heartbeat,0,0x1)UINT16")
+	field(ZNAM, "0")
+	field(ONAM, "1")
+    field(SCAN,"I/O Intr")
+}   
+
+# Register 41315 shows the status of the gate valve. The Open and Closed 
+# contacts are linked to the two least significant bits meaning:
+# A value of 0 (00)= Fault (or traversing between open and closed)
+# A value of 1 (01) = Gate Valve Open
+# A value of 2 (10) = Gate Valve Closed
+# A value of 3 (11) = Fault with open and closed contacts.
+# holding registers (code 3) - subtract 40001
+record(mbbi, "$(P)$(R)GATE_VALVE:STAT") {
+    field(DTYP,"asynUInt32Digital")
+    field(ZRVL, 0)
+    field(ONVL, 1)
+    field(TWVL, 2)
+    field(THVL, 3)
+    field(ZRST, "Fault/Moving")
+    field(ONST, "Open")
+    field(TWST, "Closed")
+    field(THST, "Fault (OCC)")
+    field(INP,"@asynMask($(PORT)gatevalve,0,0x3)UINT16")
+    field(SCAN,"I/O Intr")
+}

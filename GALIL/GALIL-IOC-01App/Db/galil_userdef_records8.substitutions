@@ -56,6 +56,9 @@ pattern
 {"\$(P)", "MTR\$(CCP)",     "CP",  "Galil"   "Passive", "Motor off deadband", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", "",    "", "YES"}
 {"\$(P)", "MTR\$(CCP)",     "CT",  "Galil"   "Passive", "IL increment rate for CP", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", "",    "", "YES"}
 {"\$(P)", "MTR\$(CCP)",     "AF",  "Galil"   "Passive", "Analog Feedback", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "DS",  "Galil"   "Passive", "Off band", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "DB",  "Galil"   "Passive", "On band", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", "",    "", "YES"}
+
 }
 
 # end

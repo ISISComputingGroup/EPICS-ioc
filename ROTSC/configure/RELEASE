@@ -41,11 +41,29 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 -include $(TOP)/../RELEASE.local
 -include $(TOP)/configure/RELEASE.local
 
-# top level master release and local private options 
-include $(TOP)/../../../configure/MASTER_RELEASE
--include $(TOP)/../../../configure/MASTER_RELEASE.$(EPICS_HOST_ARCH)
--include $(TOP)/../../../configure/MASTER_RELEASE.private
--include $(TOP)/../../../configure/MASTER_RELEASE.private.$(EPICS_HOST_ARCH)
+# START OF AUTO GENERATED DEPENDENCIES
+ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
+ASYN=$(SUPPORT)/asyn/master
+ASYN=$(SUPPORT)/asyn/master
+ONCRPC=$(SUPPORT)/oncrpc/master
+AUTOSAVE=$(SUPPORT)/autosave/master
+CALC=$(SUPPORT)/calc/master
+CAPUTLOG=$(SUPPORT)/caPutLog/master
+DEVIOCSTATS=$(SUPPORT)/devIocStats/master
+ICPCONFIG=$(SUPPORT)/icpconfig/master
+LIBJSON=$(SUPPORT)/libjson/master
+MYSQL=$(SUPPORT)/MySQL/master
+PCRE=$(SUPPORT)/pcre/master
+PUGIXML=$(SUPPORT)/pugixml/master
+PVDUMP=$(SUPPORT)/pvdump/master
+ROTSC=$(SUPPORT)/rotating_sample_changer/master
+SNCSEQ=$(SUPPORT)/seq/master
+SQLITE=$(SUPPORT)/sqlite/master
+SSCAN=$(SUPPORT)/sscan/master
+STREAMDEVICE=$(SUPPORT)/StreamDevice/master
+UTILITIES=$(SUPPORT)/utilities/master
+ZLIB=$(SUPPORT)/zlib/master
+# END OF AUTO GENERATED DEPENDENCIES
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private

@@ -27,11 +27,11 @@ $(IFNOTSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"baud","$(BAUD=9600)") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"bits","$(BITS=7)") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"stop","$(STOP=1)") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"parity","(PARITY=even") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"parity","$(PARITY=even)")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"clocal","Y") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","Y") 
-$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","Y") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","D") 
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","N")
+$(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","N")
 
 # Test for Mclennan PM600 stepper motor controller
 # Note that setup must be done in sim mode too or unconfigured card will crash at first caput
@@ -41,7 +41,7 @@ $(IFNOTSIM) PM304Setup(1,5)
 < st-homing.cmd
 
 # PM304Config(card being configured, asyn port name,  number of axes)
-$(IFNOTSIM) PM304Config(0, "$(ASERIAL)", "$(NAXES=1)", "$(COMBINED_HOMING_MODES=0)")
+$(IFNOTSIM) PM304Config(0, "$(ASERIAL)", "$(NAXES=1)", "$(COMBINED_HOMING_MODES=0)", 1)
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 
@@ -53,6 +53,7 @@ epicsEnvSet("MCLENCONFIG","$(ICPCONFIGROOT)/mclennan")
 # motion set points
 < motionsetpoints.cmd
 < sampleChanger.cmd
+< motorExtensions.cmd
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")

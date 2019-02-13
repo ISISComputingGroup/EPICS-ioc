@@ -27,6 +27,11 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 # EPICS_BASE usually appears last so other apps can override stuff:
 EPICS_BASE=C:/Instrument/Apps/EPICS/base/master
 
+# to pick up VISA library at run time on a developer/test machine
+# on an instrument, $(ICPBINARYDIR) does not exist and so this will not
+# form part of dllPath 
+VISALIB=$(ICPBINARYDIR)/NIVISA
+
 # Set RULES here if you want to take build rules from somewhere
 # other than EPICS_BASE:
 #RULES=/path/to/epics/support/module/rules/x-y

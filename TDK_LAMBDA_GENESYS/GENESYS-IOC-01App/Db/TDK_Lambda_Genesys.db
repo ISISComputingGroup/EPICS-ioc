@@ -3,6 +3,7 @@ record (ao, "$(P)ADDRESS"){
     field(DTYP, "stream")
     field(OUT,  "@TDK_Lambda_Genesys.proto address $(PORT)")
     field(VAL,  "$(ADR)")
+    field(PINI, "YES")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:REMOTE")
     field(SDIS, "$(P)DISABLE")
@@ -67,11 +68,15 @@ record(ai, "$(P)VOLT") {
     field(SCAN, "1 second")
     field(DESC, "Actual voltage out")
     field(DTYP, "stream")
-    field(INP,  "@TDK_Lambda_Genesys.proto volt $(PORT)")
+    field(INP,  "@TDK_Lambda_Genesys.proto volt($(P)ADDRESS) $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLT")
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "V")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")
+	field(PREC, "3")
+    info(autosaveFields, "HIGH LOW")
     info(INTEREST, "HIGH")
     info(archive, "VAL")    
 }
@@ -86,6 +91,7 @@ record(ao, "$(P)VOLT:SP") {
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "V")
 	field(PINI, "$(SP_PINI)")
+    field(PREC, "3")             
 	info(autosaveFields, "VAL")
 }
 
@@ -93,10 +99,11 @@ record(ai, "$(P)VOLT:SP:RBV") {
     field(SCAN, "1 second")
     field(DESC, "Voltage out setpoint")
     field(DTYP, "stream")
-    field(INP,  "@TDK_Lambda_Genesys.proto voltsprbv $(PORT)")
+    field(INP,  "@TDK_Lambda_Genesys.proto voltsprbv($(P)ADDRESS) $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLT:SP:RBV")
     field(SDIS, "$(P)DISABLE")
+    field(PREC, "3")             
     field(EGU,  "V")
 }
 
@@ -111,12 +118,16 @@ record(ai, "$(P)CURR") {
     field(SCAN, "1 second")
     field(DESC, "Actual CURR out")
     field(DTYP, "stream")
-    field(INP,  "@TDK_Lambda_Genesys.proto CURR $(PORT)")
+    field(INP,  "@TDK_Lambda_Genesys.proto CURR($(P)ADDRESS) $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR")
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "A")
     info(INTEREST, "HIGH")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")
+	field(PREC, "3")
+    info(autosaveFields, "HIGH LOW")
     info(archive, "VAL")    
 }
 
@@ -130,6 +141,7 @@ record(ao, "$(P)CURR:SP") {
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "A")
     field(PINI, "$(SP_PINI)")
+    field(PREC, "3")             
     info(autosaveFields, "VAL")
 }
 
@@ -137,11 +149,12 @@ record(ai, "$(P)CURR:SP:RBV") {
     field(SCAN, "1 second")
     field(DESC, "CURR out setpoint")
     field(DTYP, "stream")
-    field(INP,  "@TDK_Lambda_Genesys.proto CURRsprbv $(PORT)")
+    field(INP,  "@TDK_Lambda_Genesys.proto CURRsprbv($(P)ADDRESS) $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR:SP:RBV")
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "A")
+    field(PREC, "3")             
 }
 
 record(ao, "$(P)SIM:CURR"){
@@ -157,7 +170,7 @@ record(bi, "$(P)POWER")
     field(SCAN, "1 second")
     field(DESC, "Power")
     field(DTYP, "stream")
-    field(INP,  "@TDK_Lambda_Genesys.proto power $(PORT)")
+    field(INP,  "@TDK_Lambda_Genesys.proto power($(P)ADDRESS) $(PORT)")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
     field(SIML, "$(P)SIM")

@@ -3,7 +3,12 @@ pattern {P,    M,         DTYP,      DESC,   EGU,  DIR,  VELO,  VBAS, ACCL, BDST
 {"\$(P)", "\$(M)", "LinMot", "\$(NAME) (LINMOT)",    "\$(EGU)",  "Pos",  "\$(VELO)",   "\$(VBAS)",  "\$(ACCL)",    0,    1,   0,   "\$(MRES)",   "\$(ERES)", "\$(UEIP)",    3,   "\$(DHLM)",   "\$(DLLM)",  "", "\$(C)", "\$(S)"}
 }
 
-file $(MOTOR)/db/linmot_extra.db {
-pattern {P, M, OFF}
-{"\$(P)", "\$(M)", "\$(OFF)"}
+file $(MOTOR)/db/motor_init_extra.db {
+pattern {P, M, OFF, JVEL}
+{"\$(P)", "\$(M)", "\$(OFF)", "\$(JVEL)"}
+}
+
+file $(MOTOR)/db/periodic_polling.db {
+pattern {P, M}
+{"\$(P)", "\$(M)"}
 }
