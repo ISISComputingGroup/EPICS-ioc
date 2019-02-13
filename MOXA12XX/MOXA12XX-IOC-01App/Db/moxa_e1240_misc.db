@@ -23,6 +23,7 @@ record(calc, "$(P):CH$(CHAN):AI:SCALED"){
     field(LOW, "$(LOWLIMIT)")
     field(LSV, "MAJOR")
 
+	field(ASG, "READONLY")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     info(alarm, "MOXA1240")
