@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application NIMATRO
+# Build the IOC application NIMATRO-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# NIMATRO.dbd will be created and installed
+# NIMATRO-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# NIMATRO.dbd will be made up from these files:
+# NIMATRO-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += devSequencer.dbd
@@ -41,9 +41,9 @@ $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
 $(APPNAME)_LIBS += calc
 $(APPNAME)_LIBS += lvDCOM
-#$(APPNAME)_LIBS += xxx
 
-# NIMATRO_registerRecordDeviceDriver.cpp derives from NIMATRO.dbd
+
+# NIMATRO-IOC-01_registerRecordDeviceDriver.cpp derives from NIMATRO-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.

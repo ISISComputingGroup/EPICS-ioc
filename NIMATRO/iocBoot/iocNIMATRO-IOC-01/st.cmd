@@ -11,8 +11,8 @@ errlogInit2(65536, 256)
 cd "${TOP}"
 
 ## Register all support components
-dbLoadDatabase "dbd/NIMATRO.dbd"
-NIMATRO_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/NIMATRO-IOC-01.dbd"
+NIMATRO_IOC_01_registerRecordDeviceDriver pdbbase
 
 ## calling common command file in ioc 01 boot dir
-< ${TOP}/iocBoot/iocNIMATRO/st-common.cmd
+< ${TOP}/iocBoot/iocNIMATRO-IOC-01/st-common.cmd
