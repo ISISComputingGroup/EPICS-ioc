@@ -323,13 +323,9 @@ record(ai,"$(P)SIM:SPEED")
     field(DTYP, "Soft Channel")
 }
 
-record(ao,"$(P)SIM:SPEED:SP")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
+alias("$(P)SIM:SPEED","$(P)SIM:SPEED:SP")
 
-alias("$(P)SIM:SPEED","$(P)SIM:SPEED:SP:RBV")
+alias("$(P)SIM:SPEED:SP","$(P)SIM:SPEED:SP:RBV")
 
 record(ai,"$(P)SIM:PRESSURE:TARGET")
 {
@@ -337,13 +333,9 @@ record(ai,"$(P)SIM:PRESSURE:TARGET")
     field(DTYP, "Soft Channel")
 }
 
-record(ao,"$(P)SIM:PRESSURE:TARGET:SP")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
+alias("$(P)SIM:PRESSURE:TARGET", "$(P)SIM:PRESSURE:TARGET:SP")
 
-alias("$(P)SIM:PRESSURE:TARGET", "$(P)SIM:PRESSURE:TARGET:SP:RBV")
+alias("$(P)SIM:PRESSURE:TARGET:SP", "$(P)SIM:PRESSURE:TARGET:SP:RBV")
 
 record(ai,"$(P)SIM:PRESSURE")
 {
@@ -357,13 +349,9 @@ record(ai,"$(P)SIM:AREA:TARGET")
     field(DTYP, "Soft Channel")
 }
 
-record(ai,"$(P)SIM:AREA:TARGET:SP")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
+alias("$(P)SIM:AREA:TARGET", "$(P)SIM:AREA:TARGET:SP")
 
-alias("$(P)SIM:AREA:TARGET", "$(P)SIM:AREA:TARGET:SP:RBV")
+alias("$(P)SIM:AREA:TARGET:SP", "$(P)SIM:AREA:TARGET:SP:RBV")
 
 record(ai,"$(P)SIM:AREA")
 {
@@ -413,8 +401,6 @@ record(bo,"$(P)SIM:BARRIER:STOP")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
-
-
 
 record(bo,"$(P)SIM:DELETE:RUNS")
 {

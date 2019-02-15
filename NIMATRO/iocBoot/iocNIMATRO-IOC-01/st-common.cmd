@@ -3,7 +3,9 @@ epicsEnvSet "DEVICE" "L0"
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-lvDCOMConfigure("lvfp", "frontpanel", "${TOP}/data/lv_controls.xml", "$(LVDCOM_HOST=)", $(LVDCOM_OPTIONS=2), "$(LVDCOM_PROGID=)", "$(LVDCOM_USER=)", "$(LVDCOM_PASS=)")
+lvDCOMConfigure("lvfp", "frontpanel", "${TOP}/data/lv_controls.xml", "$(LVDCOM_HOST=)", $(LVDCOM_OPTIONS=10), "$(LVDCOM_PROGID=)", "$(LVDCOM_USER=)", "$(LVDCOM_PASS=)")
+
+#$(IFRECSIM) drvAsynSerialPortConfigure("lvfp", "$(PORT=NUL)", 0, 1, 0, 0)
 
 ## Load record instances
 

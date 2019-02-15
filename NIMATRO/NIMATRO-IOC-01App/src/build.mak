@@ -27,6 +27,7 @@ $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += lvDCOM.dbd
+$(APPNAME)_DBD += drvAsynSerialPort.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
