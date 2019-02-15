@@ -31,6 +31,20 @@ record(bo, "$(P)DISABLE")
 # 
 
 # Write to LabVIEW control "Speed" on "C:/LabVIEW Modules/Drivers/Nima Trough/Nima Trough Code/VIs/Nima Trough Interface.vi"
+record(ai, "$(P)SPEED")
+{
+	field(DESC, "LabVIEW 'Speed'")
+    field(DTYP, "asynFloat64")
+	field(SCAN, ".5 second")
+    field(INP,  "@asyn(lvfp,0,0)Speed")
+    field(PREC, "3")
+    field(EGU, "cm^2/min")
+    info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPEED")
+    field(SDIS, "$(P)DISABLE")
+}
+
 record(ao, "$(P)SPEED:SP")
 {
 	field(DESC, "LabVIEW 'Speed'")
@@ -38,13 +52,115 @@ record(ao, "$(P)SPEED:SP")
     field(OUT,  "@asyn(lvfp,0,0)Speed")
     field(PREC, "3")
     field(EGU, "cm^2/min")
+	field(DRVH, "174.2")
+	field(DRVL, "-174.2")
     info(INTEREST, "HIGH")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED:SP")
     field(SDIS, "$(P)DISABLE")
 }
 
-alias("$(P)SPEED:SP", "$(P)SPEED:SP:RBV")
+alias("$(P)SPEED", "$(P)SPEED:SP:RBV")
+
+# Write to LabVIEW control "Target Pressure" on "C:/LabVIEW Modules/Drivers/Nima Trough/Nima Trough Code/VIs/Nima Trough Interface.vi"
+record(ai, "$(P)PRESSURE:TARGET")
+{
+	field(DESC, "LabVIEW 'Target Pressure'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Target_Pressure")
+    field(PREC, "3")
+    field(SCAN, ".5 second")
+    field(EGU, "mN/m")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PRESSURE:TARGET")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)PRESSURE:TARGET:SP")
+{
+	field(DESC, "LabVIEW 'Target Pressure'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Target_Pressure")
+    field(PREC, "3")
+    field(EGU, "mN/m")
+	field(DRVH, "75.0")
+	field(DRVL, "-75.0")
+    info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PRESSURE:TARGET:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)PRESSURE:TARGET", "$(P)PRESSURE:TARGET:SP:RBV")
+
+# Read LabVIEW control/indicator "pressure" on "C:/LabVIEW Modules/Drivers/Nima Trough/Nima Trough Code/VIs/Nima Trough Interface.vi"
+record(ai, "$(P)PRESSURE")
+{
+	field(DESC, "LabVIEW 'pressure'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)pressure")
+    field(PREC, "3")
+    field(SCAN, ".5 second")
+    field(EGU, "mN/m")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PRESSURE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+# Write to LabVIEW control "Target  Area" on "C:/LabVIEW Modules/Drivers/Nima Trough/Nima Trough Code/VIs/Nima Trough Interface.vi"
+record(ai, "$(P)AREA:TARGET")
+{
+	field(DESC, "LabVIEW 'Target Pressure'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)Target__Area")
+    field(PREC, "3")
+    field(SCAN, ".5 second")
+    field(EGU, "cm^2")
+    info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:AREA:TARGET")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)AREA:TARGET:SP")
+{
+	field(DESC, "LabVIEW 'Target  Area'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(lvfp,0,0)Target__Area")
+    field(PREC, "3")
+    field(EGU, "cm^2")
+	field(DRVH, "247.0")
+    field(DRVL, "36.0")	
+    info(INTEREST, "MEDIUM")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:AREA:TARGET:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)AREA:TARGET", "$(P)AREA:TARGET:SP:RBV")
+
+# Read LabVIEW control/indicator "area" on "C:/LabVIEW Modules/Drivers/Nima Trough/Nima Trough Code/VIs/Nima Trough Interface.vi"
+
+# EGU left blank: By default the area is cm^2. However this can be changed on the NIMA Trough.vi but doesn't pass the units
+# to the Nima Trough Interface (which we scan to populate records). 
+record(ai, "$(P)AREA")
+{
+	field(DESC, "LabVIEW 'area'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(lvfp,0,0)area")
+    field(PREC, "3")
+	field(EGU, "")
+    field(SCAN, ".5 second")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:AREA")
+    field(SDIS, "$(P)DISABLE")
+}
 
 # Read LabVIEW control/indicator "Trough Status" on "C:/LabVIEW Modules/Drivers/Nima Trough/Nima Trough Code/VIs/Nima Trough Interface.vi"
 record(stringin, "$(P)TROUGH:STAT")
@@ -110,68 +226,9 @@ record(mbbo, "$(P)MODE")
     field(SDIS, "$(P)DISABLE")
 }
 
-# Write to LabVIEW control "Target Pressure" on "C:/LabVIEW Modules/Drivers/Nima Trough/Nima Trough Code/VIs/Nima Trough Interface.vi"
-record(ao, "$(P)PRESSURE:SP")
-{
-	field(DESC, "LabVIEW 'Target Pressure'")
-    field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)Target_Pressure")
-    field(PREC, "3")
-    field(EGU, "mN/m")
-    info(INTEREST, "MEDIUM")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:PRESSURE:SP")
-    field(SDIS, "$(P)DISABLE")
-}
 
-# Read LabVIEW control/indicator "pressure" on "C:/LabVIEW Modules/Drivers/Nima Trough/Nima Trough Code/VIs/Nima Trough Interface.vi"
-record(ai, "$(P)PRESSURE")
-{
-	field(DESC, "LabVIEW 'pressure'")
-    field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)pressure")
-    field(PREC, "3")
-    field(SCAN, ".5 second")
-    field(EGU, "mN/m")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:PRESSURE")
-    field(SDIS, "$(P)DISABLE")
-}
 
-alias("$(P)PRESSURE:SP", "$(P)PRESSURE:SP:RBV")
 
-# Write to LabVIEW control "Target  Area" on "C:/LabVIEW Modules/Drivers/Nima Trough/Nima Trough Code/VIs/Nima Trough Interface.vi"
-record(ao, "$(P)AREA:SP")
-{
-	field(DESC, "LabVIEW 'Target  Area'")
-    field(DTYP, "asynFloat64")
-    field(OUT,  "@asyn(lvfp,0,0)Target__Area")
-    field(PREC, "3")
-    field(EGU, "cm^2")
-    info(INTEREST, "MEDIUM")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:AREA:SP")
-    field(SDIS, "$(P)DISABLE")
-}
-
-# Read LabVIEW control/indicator "area" on "C:/LabVIEW Modules/Drivers/Nima Trough/Nima Trough Code/VIs/Nima Trough Interface.vi"
-record(ai, "$(P)AREA")
-{
-	field(DESC, "LabVIEW 'area'")
-    field(DTYP, "asynFloat64")
-    field(INP,  "@asyn(lvfp,0,0)area")
-    field(PREC, "3")
-    field(SCAN, ".5 second")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:AREA")
-    field(SDIS, "$(P)DISABLE")
-}
-
-alias("$(P)AREA:SP", "$(P)AREA:SP:RBV")
 
 # Read LabVIEW control/indicator "Return Message" on "C:/LabVIEW Modules/Drivers/Nima Trough/Nima Trough Code/VIs/Nima Trough Interface.vi"
 record(waveform, "$(P)RETURN:MESSAGE")
@@ -260,15 +317,59 @@ record(bo, "$(P)DELETE:RUNS")
 
 ### SIMULATION RECORDS ###
 
+record(ai,"$(P)SIM:SPEED")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ao,"$(P)SIM:SPEED:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:SPEED","$(P)SIM:SPEED:SP:RBV")
+
+record(ai,"$(P)SIM:PRESSURE:TARGET")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ao,"$(P)SIM:PRESSURE:TARGET:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:PRESSURE:TARGET", "$(P)SIM:PRESSURE:TARGET:SP:RBV")
+
 record(ai,"$(P)SIM:PRESSURE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-alias("$(P)SIM:PRESSURE","$(P)SIM:PRESSURE:SP")
+record(ai,"$(P)SIM:AREA:TARGET")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
 
-alias("$(P)SIM:PRESSURE","$(P)SIM:PRESSURE:SP:RBV")
+record(ai,"$(P)SIM:AREA:TARGET:SP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:AREA:TARGET", "$(P)SIM:AREA:TARGET:SP:RBV")
+
+record(ai,"$(P)SIM:AREA")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
 
 record(waveform,"$(P)SIM:RETURN:MESSAGE")
 {
@@ -295,12 +396,6 @@ record(bi,"$(P)SIM:TARGET:REACHED")
     field(DTYP, "Soft Channel")
 }
 
-record(ao,"$(P)SIM:SPEED:SP")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
 record(stringin,"$(P)SIM:TROUGH:STAT")
 {
     field(SCAN, "Passive")
@@ -319,15 +414,7 @@ record(bo,"$(P)SIM:BARRIER:STOP")
     field(DTYP, "Soft Channel")
 }
 
-record(ai,"$(P)SIM:AREA")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
 
-alias("$(P)SIM:AREA","$(P)SIM:AREA:SP")
-
-alias("$(P)SIM:AREA","$(P)SIM:AREA:SP:RBV")
 
 record(bo,"$(P)SIM:DELETE:RUNS")
 {

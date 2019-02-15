@@ -5,12 +5,12 @@
   <extint path="$(LVDCOM)/lvDCOMApp/src/extint/Main/Library/External Interface - Set Value.vi"/>
   <!--Definition of a configSection, the second argument of the IOC lvDCOMConfigure() command -->
   <section name="frontpanel">
-    <vi path="C:/Instrument/Apps/EPICS/ioc/master/NIMATRO/NIMATRO-IOC-01App/protocol/Test.vi">
-      <!--<vi path="C:/LabVIEW Modules/Drivers/Nima Trough/Nima Trough Code/VIs/Nima Trough Interface.vi"> -->
+    <!--<vi path="C:/Instrument/Apps/EPICS/ioc/master/NIMATRO/NIMATRO-IOC-01App/protocol/Test.vi"> -->
+    <vi path="C:/LabVIEW Modules/Drivers/Nima Trough/Nima Trough Code/VIs/Nima Trough Interface.vi">
       <!--The <param /> maps an asyn driver parameter "name" (referenced in the EPICS .db) to the LabVIEW item "target" -->
       <param name="Speed" type="float64">
         <read method="GCV" target="Speed"/>
-        <set method="SCV" extint="false" target="Speed"/>
+        <set method="SCV" extint="true" target="Speed"/>
       </param>
       <param name="Trough_Status" type="string">
         <read method="GCV" target="Trough Status"/>
