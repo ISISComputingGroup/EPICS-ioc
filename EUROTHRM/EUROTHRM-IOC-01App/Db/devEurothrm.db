@@ -127,7 +127,8 @@ record(ai, "$(P)RATE")
     field(INP, "@asyn($(READ),0,1)RATE")
     field(EGU, "K/min")
     field(SCAN, "I/O Intr")
-    info(INTEREST, "MEDIUM")
+	field(PREC, "2")
+    info(INTEREST, "HIGH")
 }
 
 record(bi, "$(P)RAMPING")
@@ -483,7 +484,7 @@ record(longin, "$(P)LAD") {
 
 record(ai, "$(P)OUTPUT") {
     info(INTEREST, "MEDIUM")
-    field(DESC, "Output Readback")
+    field(DESC, "Heater output Readback")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@eurotherm2k.proto read($(P),OP,$(GAD),$(LAD)) $(PORT)")

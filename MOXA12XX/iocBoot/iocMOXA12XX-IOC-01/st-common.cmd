@@ -9,7 +9,7 @@ epicsEnvSet("E12XX_ASYNPORT","IP")
 # For dev sim devices
 $(IFDEVSIM) drvAsynIPPortConfigure("$(E12XX_ASYNPORT)", "localhost:$(EMULATOR_PORT=)")
 
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure ("$(E12XX_ASYNPORT)","$(IP_ADDR):$(PORT=502)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure ("$(E12XX_ASYNPORT)","$(ADDR):$(PORT=502)")
 
 modbusInterposeConfig("$(E12XX_ASYNPORT)", 0, 2000, 0)
 
