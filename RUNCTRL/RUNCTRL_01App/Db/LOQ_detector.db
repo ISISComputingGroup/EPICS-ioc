@@ -1,0 +1,6 @@
+record(fanout, "$(P)CS:OVERCOUNT:ALERT")
+{
+    field(SELM, "All")
+	field(LNK1, "$(P)APERTURE:CLOSEAPERTURE.PROC")
+	field(LNK2, "$(P)CS:DC:ALERTS:MESSAGE:SP.PROC")
+}
