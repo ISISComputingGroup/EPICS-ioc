@@ -25,6 +25,8 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += webget.dbd
+
 ## add other dbd here ##
 $(APPNAME)_DBD += asubFunctions.dbd
 $(APPNAME)_DBD += calcSupport.dbd
@@ -36,6 +38,7 @@ $(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
+$(APPNAME)_LIBS += webget htmltidy libcurl
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre
