@@ -41,13 +41,13 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += webget htmltidy
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre
+$(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += asyn
-
 $(APPNAME)_LIBS_WIN32 += libcurl
 $(APPNAME)_SYS_LIBS_Linux += curl
+$(APPNAME)_SYS_LIBS_WIN32 += wldap32 crypt32 Normaliz
 
 # RUNCTRL_01_registerRecordDeviceDriver.cpp derives from RUNCTRL_01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
