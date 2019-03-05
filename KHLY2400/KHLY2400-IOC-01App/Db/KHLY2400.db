@@ -108,7 +108,6 @@ record(seq, "$(P)_READ_MODES") {
     field(LNK5, "$(P)RES:RANGE.PROC")
     field(LNK6, "$(P)SOURCE:MODE.PROC")
     field(LNK7, "$(P)CURR:COMPLIANCE.PROC")
-    #field(LNK8, "$(P)_READ_SOURCES.PROC")
 
     field(SELM, "All")
 }
@@ -143,9 +142,6 @@ record(seq, "$(P)_READ_SOURCES") {
     field(LNK5, "$(P)VOLT:SOURCE:AUTORANGE.PROC")
     field(LNK6, "$(P)CURR:SOURCE:RANGE.PROC")
     field(LNK7, "$(P)VOLT:SOURCE:RANGE.PROC")
-    #field(LNK8, "$(P)_READ_MEASUR_SETTINGS.PROC")
-
-
 
     field(SELM, "All")
 }
@@ -177,8 +173,6 @@ record(seq, "$(P)_READ_MEASUR_SETTINGS") {
     field(LNK2, "$(P)CURR:MEAS:AUTORANGE.PROC")
     field(LNK3, "$(P)VOLT:MEAS:RANGE.PROC")
     field(LNK4, "$(P)CURR:MEAS:RANGE.PROC")
-    #field(LNK8, "$(P)_READ_MODES.PROC")
-
 
     field(SELM, "All")
 }
