@@ -37,9 +37,6 @@ dbLoadRecords("$(KEYLKG)/db/keylkg.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
-asynSetTraceIOMask("L0", -1, 0x2)
-asynSetTraceMask("L0", -1, 0x9)
-
 ## Start any sequence programs
 #seq sncxxx,"user=znx23966"
 
