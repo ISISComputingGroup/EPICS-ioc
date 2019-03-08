@@ -7,9 +7,15 @@ record(mbbi, "$(P):CH$(CHAN):AI:RANGESTAT"){
     field(THST, "UNDERRANGE")
 }
 
-record(ai, "$(P):CH$(CHAN):AI:RBV"){
-    field(DESC, "Readback value for channel $(CHAN)")
-    field(EGU, "V")
+record(calc, "$(P):CH$(CHAN):AI:SCALED"){
+    field(DESC, "Channel $(CHAN) with units")
+    field(EGU, "$(UNITS)")
+
+    field(INPA, "$(P):CH$(CHAN):AI:RBV CP MS")
+
+    field(CALC, "A * $(SCLEFACTR)")
+
+    field(PREC, "3")
 
     field(HIGH, "$(HIGHLIMIT)")
     field(HSV, "MAJOR")
@@ -17,6 +23,7 @@ record(ai, "$(P):CH$(CHAN):AI:RBV"){
     field(LOW, "$(LOWLIMIT)")
     field(LSV, "MAJOR")
 
+	field(ASG, "READONLY")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     info(alarm, "MOXA1240")
