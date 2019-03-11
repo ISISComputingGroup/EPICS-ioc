@@ -49,6 +49,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 ## Load our record instances
 dbLoadRecords("$(INDFURN)/db/indfurn.db","P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ARBITRARY_ASG=$(ARBITRARY_ASG=MANAGER)")
 dbLoadRecords("$(INDFURN)/db/indfurn_pid.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
+dbLoadRecords("$(INDFURN)/db/indfurn_thermocouple_faults.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

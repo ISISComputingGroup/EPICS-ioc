@@ -1,0 +1,6 @@
+file "$(RUNCONTROL)/db/gencontrol.db"
+{
+    pattern {    P,      PV,     MODE }
+	        { "\$(P)", "\$(PV)", "RC" }
+	        { "\$(P)", "\$(PV)", "AC" }
+}
