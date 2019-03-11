@@ -804,6 +804,7 @@ record(bo, "$(P)PERSISTENT") {
   field(DESC, "Set magnet to persistent")
   field(ZNAM, "NO")
   field(ONAM, "YES")
+  field(PINI, "YES")
   info(autosaveFields, "VAL")
   info(INTEREST, "HIGH")
   info(archive, "VAL")
