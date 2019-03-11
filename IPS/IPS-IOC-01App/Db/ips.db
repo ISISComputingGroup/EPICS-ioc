@@ -804,8 +804,7 @@ record(bo, "$(P)PERSISTENT") {
   field(DESC, "Set magnet to persistent")
   field(ZNAM, "NO")
   field(ONAM, "YES")
-  field(VAL, "1")
-  field(PINI, "YES")
+  info(autosaveFields, "VAL")
   info(INTEREST, "HIGH")
   info(archive, "VAL")
 }
@@ -843,6 +842,22 @@ record(mbbo, "$(P)STATEMACHINE") {
   
   info(archive, "VAL")
 }
+
+
+###
+### Records to be more "friendly" to the user.
+###
+
+record(calc, "$(P)FIELD:USER") {
+    field(INPA, "$(P)MAGNET:FIELD:PERSISTENT CP MS")
+    field(INPB, "$(P)FIELD CP MS")
+    field(INPC, "$(P)HEATER:STATUS CP MS")
+    field(CALC, "(C=0||C=2)?A:B")
+    field(ASG, "READONLY")
+    field(EGU, "T")
+}
+
+alias("$(P)FIELD:SP", "$(P)FIELD:USER:SP")  # "User" setpoint is same as "normal" setpoint
 
 
 ### Simulation record - Just to stop errors, doesn't do anything
