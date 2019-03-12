@@ -50,7 +50,7 @@ $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 
 $(APPNAME)_LIBS += Keithley2700
-$(APPNAME)_LIBS += calc sscan csmbase cvtRecord
+$(APPNAME)_LIBS += calc sscan csmbase cvtRecord gsl
 
 
 # KHLY2700-IOC-01_registerRecordDeviceDriver.cpp derives from KHLY2700-IOC-01.dbd
