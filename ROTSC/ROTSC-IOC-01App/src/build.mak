@@ -30,6 +30,7 @@ $(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += rotsc.dbd
 #$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
@@ -44,6 +45,7 @@ $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += rotsc
 
 # ROTSC-IOC-01_registerRecordDeviceDriver.cpp derives from ROTSC-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
