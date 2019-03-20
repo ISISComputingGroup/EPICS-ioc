@@ -66,7 +66,7 @@ cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
-seq rotsc,"P=$(MYPVPREFIX)"
+seq rotsc,"P=$(MYPVPREFIX)$(IOCNAME):"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs
 < $(IOCSTARTUP)/postiocinit.cmd
