@@ -93,6 +93,8 @@ record(stringout, "$(P)LKUP:RAMP_FILE:SP")
    field(DTYP, "asynOctetWrite")
    field(OUT,  "@asyn($(READ),0,1)DIR")
    field(SCAN, "I/O Intr")
+   field(VAL, "$(RAMP_FILE_NAME=Default.txt)")
+   field(PINI, "YES")
 }
 
 #
@@ -117,7 +119,9 @@ record(bo, "$(P)LKUP:LUTON:SP")
    field(DTYP, "asynInt32")
    field(OUT,  "@asyn($(READ),0,1)LUT")
    field(ZNAM, "Off")
-   field(ONAM, "On")
+   field(ONAM, "$(USE_RAMP_FILE)")
+   field(VAL, "$(USE_RAMP_FILE)")
+   field(PINI, "YES")
 }
 
 record(bi, "$(P)LKUP:LUTON")
