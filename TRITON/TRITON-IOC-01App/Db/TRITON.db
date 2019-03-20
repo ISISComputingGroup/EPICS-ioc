@@ -35,6 +35,8 @@ record(ao, "$(P)TEMP:SP")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:TEMP:SP")
     field(SDIS, "$(P)DISABLE")
+    
+    field(FLNK, "$(P)_CHECK_LOOP_ON")
 }
 
 record(ai, "$(P)TEMP:SP:RBV")
@@ -185,6 +187,13 @@ record(bo, "$(P)CLOSEDLOOP:SP")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CLOSEDLOOP:SP")
     field(SDIS, "$(P)DISABLE")
+}
+
+record(calcout, "$(P)_CHECK_LOOP_ON") {
+    field(INPA, "$(P)CLOSEDLOOP")
+    field(CALC, "!A")
+    field(OOPT, "When Non-zero")
+    field(OUT, "$(P)CLOSEDLOOP:SP PP")
 }
 
 
