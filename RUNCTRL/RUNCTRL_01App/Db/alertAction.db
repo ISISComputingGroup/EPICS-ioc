@@ -1,0 +1,7 @@
+record(printf,"$(P)$(Q)DO")
+{
+    field(INP0, "$(SOURCE)")
+    field(FMT, "%ls out of range")
+	field(SIZV, "1024")
+	field(OUT, "$(ACTION) PP")
+}
