@@ -380,7 +380,7 @@ record(ai,"$(P)SIM:PRESSURE")
     field(DTYP, "Soft Channel")
 }
 
-alias("$(P)SIM:PRESSURE", "$(P)SIM:PRESSURESP")
+alias("$(P)SIM:PRESSURE", "$(P)SIM:PRESSURE:SP")
 
 alias("$(P)SIM:PRESSURE", "$(P)SIM:PRESSURE:SP:RBV")
 
