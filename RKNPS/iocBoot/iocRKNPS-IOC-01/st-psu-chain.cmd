@@ -1,7 +1,7 @@
 epicsEnvSet "DEVICE" "L$(CHAIN)"
 
 ## use with emulator
-$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
+$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT$(CHAIN))")
 
 ## use with real device
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(CHAIN$(CHAIN)_PORT)", 0, 0, 0, 0)

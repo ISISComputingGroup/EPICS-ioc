@@ -164,78 +164,6 @@ record(calcout, "$(P)CURR")
 alias("$(P)CURR", "$(P)CURR:RBV")
 
 
-record(bi, "$(P)ILK")
-{
-    field(DESC, "Overall Interlock")
-    field(ZNAM, "OK")
-    field(ONAM, "Interlock")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-}
-
-record(bi, "$(P)POWER")
-{
-    field(DESC, "Power")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:POWER")
-    field(SDIS, "$(P)DISABLE")
-}
-alias("$(P)POWER", "$(P)POWER:RBV")
-
-
-record(stringin, "$(P)STATUS")
-{
-    field(DESC, "Device Status Flags")
-    field(DTYP, "stream")
-    field(INP,  "@dfkps_riken.proto status($(ADR)) $(port) 0")
-    field(SCAN, "5 second")
-    field(FLNK, "$(P)CALPOWER")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:STATUS")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(scalcout, "$(P)CALPOWER")
-{
-    field(DESC, "Update Power Status")
-    field(OUT,  "$(P)POWER PP MS")
-    field(CALC, "BB==AA[$(powpos),$(powpos)] ? CC : DD")
-    field(INAA, "$(P)STATUS MS")
-    field(BB, "!")
-    field(CC, "Off")
-    field(DD, "On")
-    field(FLNK, "$(P)CALILK")
-}
-
-record(scalcout, "$(P)CALILK")
-{
-    field(DESC, "Update Interlock Status")
-    field(OUT,  "$(P)ILK PP MS")
-    field(CALC, "BB==AA[$(ilkpos),$(ilkpos)] ? CC : DD")
-    field(INAA, "$(P)STATUS MS")
-    field(BB, "!")
-    field(CC, "Interlock")
-    field(DD, "OK")
-}
-
-record(stringin, "$(P)SIM:STATUS"){
-    field(DTYP, "Soft Channel")
-}
-
-record(ao, "$(P)RAW:SP")
-{
-    field(DESC, "Set Output Current")
-    field(EGU,  "mA")
-    field(DTYP, "stream")
-    field(OUT,  "@dfkps_riken.proto dac($(ADR)) $(port) 0")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RAW:SP")
-    field(SDIS, "$(P)DISABLE")
-}
 
 record(ao, "$(P)SIM:RAW"){
     field(DTYP, "Soft Channel")
@@ -268,7 +196,6 @@ record(ai, "$(P)RAW")
     field(EGU, "A")
     info(archive, "VAL")
 }
-
 
 record(bi, "$(P)POL")
 {
