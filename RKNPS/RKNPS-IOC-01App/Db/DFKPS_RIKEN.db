@@ -172,6 +172,17 @@ record(ao, "$(P)SIM:RAW"){
 alias("$(P)SIM:RAW", "$(P)SIM:RAW:SP")
 alias("$(P)SIM:RAW", "$(P)SIM:RA")
 
+record(ao, "$(P)RAW:SP")
+{
+    field(DESC, "Set Output Current")
+    field(EGU,  "mA")
+    field(DTYP, "stream")
+    field(OUT,  "@dfkps_riken.proto dac($(ADR)) $(port) 0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAW:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
 record(ao, "$(P)SIM:ADDRESS"){
     field(DTYP, "Soft Channel")
 }
