@@ -1,8 +1,9 @@
 record(bi, "$(P)POWER")
 {
+    field(INP, "$(P)ILK:POWER CP MS")
     field(DESC, "Power")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
+    field(ZNAM, "On")
+    field(ONAM, "Off")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 	field(SIML, "$(P)SIM")
@@ -22,126 +23,28 @@ record(longin, "$(P)STATUS")
 {
     field(DESC, "Device Status Flags")
     field(DTYP, "stream")
-    field(INP,  "@dfkps_riken.proto status($(ADR)) $(port) 0")
-    field(SCAN, "5 second")
-    field(FLNK, "$(P)CALPOWER")
+    field(INP,  "@dfkps_riken.proto status($(ADR),$(P)) $(port) 0")
+    field(SCAN, "1 second")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STATUS")
     field(SDIS, "$(P)DISABLE")
-}
-
-record(scalcout, "$(P)CALPOWER")
-{
-    field(DESC, "Update Power Status")
-    field(OUT,  "$(P)POWER PP MS")
-    field(CALC, "BB==AA[$(powpos),$(powpos)] ? CC : DD")
-    field(INAA, "$(P)STATUS MS")
-    field(BB, "!")
-    field(CC, "Off")
-    field(DD, "On")
-    field(FLNK, "$(P)CALILK")
-}
-
-record(scalcout, "$(P)CALILK")
-{
-    field(DESC, "Update Interlock Status")
-    field(OUT,  "$(P)ILK PP MS")
-    field(CALC, "BB==AA[$(ilkpos),$(ilkpos)] ? CC : DD")
-    field(INAA, "$(P)STATUS MS")
-    field(BB, "!")
-    field(CC, "Tripped")
-    field(DD, "OK")
 }
 
 record(stringin, "$(P)SIM:STATUS"){
     field(DTYP, "Soft Channel")
 }
 
-record(calcout, "$(P)CALSTA1")
-{
-    field(DESC, "Get Status Flags 1-16")
-    field(CALC, "(A>>8)&65535")
-    field(INPA, "$(P)STATUS CP MS")
-}
-
-record(calcout, "$(P)CALSTA2")
-{
-    field(DESC, "Get Status Flags 16-24")
-    field(CALC, "(A<<8)&65535")
-    field(INPA, "$(P)STATUS CP MS")
-}
-
-record(mbbiDirect, "$(P)STA1")
-{
-    field(DESC, "Status Flags 1-16")
-	field(INP, "$(P)CALSTA1 CP MS")
-	field(DTYP, "Raw Soft Channel")
-    # 0 = Main power off
-    # 1 = Polarity normal
-    # 2 = Polarity reversed
-    # 3 = Regulation transformer <> 0 * Main power
-    # 4 = !
-    # 5 = !
-    # 6 = High = %, low = amps/volts
-    # 7 = Spare interlock
-    # 8 = One transistor fault
-    # 9 = Sum interlocks
-    # A = DC Overcurrent
-    # B = DC Overload
-    # C = Regulation module failure
-    # D = Preregulator failure
-    # E = Phase failure
-    # F = MPS water flow failure
-}
-
-record(mbbiDirect, "$(P)STA2")
-{
-    field(DESC, "Status Flags 16-24")
-	field(INP, "$(P)CALSTA2 CP MS")
-	field(DTYP, "Raw Soft Channel")
-    # 8 = Earth leakage failure
-    # 9 = Thermal breaker / fuses
-    # A = MPS over temperature
-    # B = Panic button / door switch
-    # C = Magnet water flow failure
-    # D = Magnet over temperature
-    # E = MPS not ready
-    # F = .
-}
-
-record(bi, "$(P)ILK:TRANS")
-{
-    field(INP, "$(P)STA1.B7 CP MS")
-    field(DESC, "Transistor fault interlock")
-    field(ZNAM, "OK")
-    field(ONAM, "Tripped")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-}
-
-record(bi, "$(P)ILK:DCOC")
-{
-    field(INP, "$(P)STA1.B5 CP MS")
-    field(DESC, "DC overcurrent interlock")
-    field(ZNAM, "OK")
-    field(ONAM, "Tripped")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-}
-
 record(bi, "$(P)ILK:POWER")
 {
-    field(INP, "$(P)STA1.B0 CP MS")
-    field(DESC, "Main power off")
-    field(ZNAM, "OK")
-    field(ONAM, "Tripped")
+    field(DESC, "Main power")
+    field(ZNAM, "On")
+    field(ONAM, "Off")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
 
 record(bi, "$(P)ILK:POLNORM")
 {
-    field(INP, "$(P)STA1.B1 CP MS")
     field(DESC, "Polarity normal")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -151,7 +54,6 @@ record(bi, "$(P)ILK:POLNORM")
 
 record(bi, "$(P)ILK:POLREV")
 {
-    field(INP, "$(P)STA1.B2 CP MS")
     field(DESC, "Polarity reversed")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -161,7 +63,6 @@ record(bi, "$(P)ILK:POLREV")
 
 record(bi, "$(P)ILK:REGTRANSF")
 {
-    field(INP, "$(P)STA1.B3 CP MS")
     field(DESC, "Reg transformer * pwr")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -171,7 +72,6 @@ record(bi, "$(P)ILK:REGTRANSF")
 
 record(bi, "$(P)ILK:PERCENT")
 {
-    field(INP, "$(P)STA1.B6 CP MS")
     field(DESC, "Percent or decimal mode")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -181,7 +81,6 @@ record(bi, "$(P)ILK:PERCENT")
 
 record(bi, "$(P)ILK:TRANS")
 {
-    field(INP, "$(P)STA1.B8 CP MS")
     field(DESC, "Transistor fault interlock")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -191,7 +90,6 @@ record(bi, "$(P)ILK:TRANS")
 
 record(bi, "$(P)ILK")
 {
-    field(INP, "$(P)STA1.B9 CP MS")
     field(DESC, "Overall Interlock")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -201,7 +99,6 @@ record(bi, "$(P)ILK")
 
 record(bi, "$(P)ILK:DCOC")
 {
-    field(INP, "$(P)STA1.BA CP MS")
     field(DESC, "DC overcurrent interlock")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -211,7 +108,6 @@ record(bi, "$(P)ILK:DCOC")
 
 record(bi, "$(P)ILK:DCOLOAD")
 {
-    field(INP, "$(P)STA1.BB CP MS")
     field(DESC, "DC overload interlock")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -221,8 +117,7 @@ record(bi, "$(P)ILK:DCOLOAD")
 
 record(bi, "$(P)ILK:REGMOD")
 {
-    field(INP, "$(P)STA1.BC CP MS")
-    field(DESC, "DC overload interlock")
+    field(DESC, "Regulation mode fail")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
@@ -231,7 +126,6 @@ record(bi, "$(P)ILK:REGMOD")
 
 record(bi, "$(P)ILK:PREREG")
 {
-    field(INP, "$(P)STA1.BD CP MS")
     field(DESC, "Preregulator interlock")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -241,7 +135,6 @@ record(bi, "$(P)ILK:PREREG")
 
 record(bi, "$(P)ILK:PHAS")
 {
-    field(INP, "$(P)STA1.BE CP MS")
     field(DESC, "Phase failure interlock")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -251,7 +144,6 @@ record(bi, "$(P)ILK:PHAS")
 
 record(bi, "$(P)ILK:MPSWATER")
 {
-    field(INP, "$(P)STA1.BF CP MS")
     field(DESC, "MPS water flow interlock")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -261,7 +153,6 @@ record(bi, "$(P)ILK:MPSWATER")
 
 record(bi, "$(P)ILK:EARTHLEAK")
 {
-    field(INP, "$(P)STA2.B8 CP MS")
     field(DESC, "Earth leak interlock")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -271,7 +162,6 @@ record(bi, "$(P)ILK:EARTHLEAK")
 
 record(bi, "$(P)ILK:THERMAL")
 {
-    field(INP, "$(P)STA2.B9 CP MS")
     field(DESC, "Thermal breaker interlock")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -281,8 +171,7 @@ record(bi, "$(P)ILK:THERMAL")
 
 record(bi, "$(P)ILK:MPSTEMP")
 {
-    field(INP, "$(P)STA2.BA CP MS")
-    field(DESC, "")
+    field(DESC, "MPS Over temperature")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
@@ -291,7 +180,6 @@ record(bi, "$(P)ILK:MPSTEMP")
 
 record(bi, "$(P)ILK:DOOR")
 {
-    field(INP, "$(P)STA1.BB CP MS")
     field(DESC, "Panic button/door")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -301,7 +189,6 @@ record(bi, "$(P)ILK:DOOR")
 
 record(bi, "$(P)ILK:MAGWATER")
 {
-    field(INP, "$(P)STA1.BC CP MS")
     field(DESC, "Magnet water interlock")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -311,7 +198,6 @@ record(bi, "$(P)ILK:MAGWATER")
 
 record(bi, "$(P)ILK:MAGTEMP")
 {
-    field(INP, "$(P)STA1.BD CP MS")
     field(DESC, "Magnet overtemp interlock")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
@@ -321,7 +207,6 @@ record(bi, "$(P)ILK:MAGTEMP")
 
 record(bi, "$(P)ILK:MPSREADY")
 {
-    field(INP, "$(P)STA1.BE CP MS")
     field(DESC, "MPS not ready")
     field(ZNAM, "OK")
     field(ONAM, "Tripped")
