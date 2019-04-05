@@ -20,10 +20,17 @@ RUNCTRL_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(RUNCONTROL)/db/runcontrolMgr.db","P=$(MYPVPREFIX)")
 
+dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:AC:ALERTS:")
+dbLoadRecords("$(TOP)/db/alertAction.db","P=$(MYPVPREFIX),Q=CS:AC:ALERTS:ACTION:,SOURCE=$(MYPVPREFIX)CS:AC:OUT:LIST,ACTION=$(MYPVPREFIX)CS:AC:ALERTS:MESSAGE:SP")
+dbLoadRecords("$(TOP)/db/runcontrolMgr.db","P=$(MYPVPREFIX),ALERT_OUT=$(MYPVPREFIX)CS:AC:ALERTS:ACTION:DO.PROC,ALERT_IN=$(MYPVPREFIX)CS:AC:DUMMYACT:IN")
 ## load run control settings written by blockserver
-< ${ICPCONFIGROOT}/rc_settings.cmd
+iocshLoad "${ICPCONFIGROOT}/rc_settings.cmd", "RUNCONTROL=$(TOP)"
+
+#dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:DC:ALERTS:")
+#dbLoadRecords("$(RUNCONTROL)/db/gencontrolMgr.db","P=$(MYPVPREFIX),MODE=DC,OUT_ACTION=$(MYPVPREFIX)CS:DC:ALERTS:MESSAGE:SP.PROC")
+##dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:RATE")
+#dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)CS:SB:GoodFrames")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
