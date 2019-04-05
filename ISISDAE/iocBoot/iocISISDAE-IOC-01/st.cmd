@@ -41,7 +41,7 @@ webgetConfigure("arch2")
 
 ## local dae, no dcom/labview
 ## define max number of live detectos and max (x,y) size of each
-isisdaeConfigure("icp", $(DAEDCOM=1), $(DAEHOST=localhost), "spudulike", "reliablebeam", 2)
+isisdaeConfigure("icp", $(DAEDCOM=1), $(DAEHOST=localhost), "spudulike", "reliablebeam", 5)
 ## pass 1 as second arg to signify DCOM to either local or remote dae
 ## pass 2 as second arg to signify SECI mode
 #isisdaeConfigure("icp", 1, "localhost")
@@ -75,13 +75,19 @@ $(IFPARALLEL=) dbLoadRecords("$(ISISDAE)/db/dae3_parallel.db","P=$(MYPVPREFIX), 
 dbLoadRecords("$(ISISDAE)/db/isisdae.db","S=$(MYPVPREFIX), P=$(MYPVPREFIX), Q=$(Q), WIRINGLIST=WLIST, DETECTORLIST=DLIST, SPECTRALIST=SLIST, PERIODLIST=PLIST, TCBLIST=TLIST, BEGINRUNA=$(BEGINRUN_DAE3=$(MYPVPREFIX)$(Q)_BEGINRUN1), ENDRUNA=$(ENDRUN_DAE3=$(MYPVPREFIX)$(Q)_ENDRUN1)")
 dbLoadRecords("$(ISISDAE)/db/dae_diag.db","P=$(MYPVPREFIX),Q=DAE:")
 dbLoadRecords("$(ISISDAE)/db/veto.db","P=$(MYPVPREFIX),Q=DAE:")
+dbLoadRecords("$(ISISDAE)/db/inst_string_parameters.db","P=$(MYPVPREFIX)")
+dbLoadRecords("$(ISISDAE)/db/inst_alias_string_parameters.db","P=$(MYPVPREFIX)")
+dbLoadRecords("$(ISISDAE)/db/inst_real_parameters.db","P=$(MYPVPREFIX)")
 
 cd ${TOP}/iocBoot/${IOC}
 
-## uncomment to enable live view
 #ffmpegServerConfigure(8081)
+
 iocshLoad "liveview.cmd", "LVDET=1,LVADDR=0"
 iocshLoad "liveview.cmd", "LVDET=2,LVADDR=1"
+iocshLoad "liveview.cmd", "LVDET=3,LVADDR=2"
+iocshLoad "liveview.cmd", "LVDET=4,LVADDR=3"
+iocshLoad "liveview.cmd", "LVDET=5,LVADDR=4"
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -102,3 +108,5 @@ create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)$(Q)")
 
 # Save motor settings every 30 seconds
 create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)$(Q)")
+
+#startPVAServer
