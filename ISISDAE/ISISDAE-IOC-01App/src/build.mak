@@ -39,7 +39,7 @@ $(APPNAME)_DBD += ffmpegServer.dbd
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += webget htmltidy
-$(APPNAME)_LIBS += seqDev seq pv
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog

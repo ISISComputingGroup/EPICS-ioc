@@ -33,7 +33,7 @@ $(APPNAME)_DBD += drvAsynIPPort.dbd
 # Add all the support libraries needed by this IOC
 $(APPNAME)_LIBS += stream asyn
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seqDev seq pv
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog

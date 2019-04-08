@@ -35,7 +35,7 @@ $(APPNAME)_DBD += asubFunctions.dbd
 $(APPNAME)_LIBS += procServControl busy asyn
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += asubFunctions 
-$(APPNAME)_LIBS += seqDev seq pv
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
