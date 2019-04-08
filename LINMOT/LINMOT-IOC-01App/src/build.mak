@@ -43,7 +43,6 @@ $(APPNAME)_DBD += asyn.dbd
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += asubFunctions
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -61,6 +60,7 @@ $(APPNAME)_LIBS += sampleChanger
 $(APPNAME)_LIBS += busy asyn
 $(APPNAME)_LIBS += std sscan
 $(APPNAME)_LIBS += TinyXML
+$(APPNAME)_LIBS += seq pv
 
 # MCLEN-IOC-01_registerRecordDeviceDriver.cpp derives from MCLEN-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

@@ -47,7 +47,6 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += calc autosave
 $(APPNAME)_LIBS += asubFunctions utilities pcre libjson zlib
-$(APPNAME)_LIBS += seq pv
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 $(APPNAME)_LIBS += Newport
@@ -57,6 +56,7 @@ $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += motionSetPoints
 $(APPNAME)_LIBS += busy asyn
 $(APPNAME)_LIBS += std sscan
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
