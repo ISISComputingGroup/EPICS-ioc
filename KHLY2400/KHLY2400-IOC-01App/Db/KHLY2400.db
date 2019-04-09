@@ -52,6 +52,7 @@ record(bo, "$(P)OUTPUT:MODE:SP") {
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OUTPUT:MODE:SP")
+    field(FLNK, "$(P)OUTPUT:MODE")
     info(archive, "VAL")
 }
 
@@ -107,7 +108,6 @@ record(seq, "$(P)_READ_MODES") {
     field(LNK5, "$(P)RES:RANGE.PROC")
     field(LNK6, "$(P)SOURCE:MODE.PROC")
     field(LNK7, "$(P)CURR:COMPLIANCE.PROC")
-    field(LNK8, "$(P)_READ_SOURCES.PROC")
 
     field(SELM, "All")
 }
@@ -142,16 +142,13 @@ record(seq, "$(P)_READ_SOURCES") {
     field(LNK5, "$(P)VOLT:SOURCE:AUTORANGE.PROC")
     field(LNK6, "$(P)CURR:SOURCE:RANGE.PROC")
     field(LNK7, "$(P)VOLT:SOURCE:RANGE.PROC")
-    field(LNK8, "$(P)_READ_MEASUR_SETTINGS.PROC")
-
-
 
     field(SELM, "All")
 }
 
 record(seq, "$(P)_READ_MEASUR_SETTINGS") {
 
-    field(SCAN, "5 second")
+    field(SCAN, "10 second")
 
     field(DO1, "1")
     field(DO2, "1")
@@ -176,8 +173,6 @@ record(seq, "$(P)_READ_MEASUR_SETTINGS") {
     field(LNK2, "$(P)CURR:MEAS:AUTORANGE.PROC")
     field(LNK3, "$(P)VOLT:MEAS:RANGE.PROC")
     field(LNK4, "$(P)CURR:MEAS:RANGE.PROC")
-    field(LNK8, "$(P)_READ_MODES.PROC")
-
 
     field(SELM, "All")
 }
@@ -438,6 +433,7 @@ record(bo, "$(P)OCOM:SP") {
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:OCOM:SP")
+    field(FLNK, "$(P)OCOM")
     info(archive, "VAL")
 }
 
@@ -481,6 +477,7 @@ record(bo, "$(P)RES:MODE:SP") {
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RES:MODE:SP")
+    field(FLNK, "$(P)RES:MODE")
     info(archive, "VAL")
 }
 
@@ -524,6 +521,7 @@ record(bo, "$(P)SENS:MODE:SP") {
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SENS:MODE:SP")
+    field(FLNK, "$(P)SENS:MODE")
     info(archive, "VAL")
 }
 
@@ -567,6 +565,7 @@ record(bo, "$(P)RES:RANGE:AUTO:SP") {
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RES:RANGE:AUTO:SP")
+    field(FLNK, "$(P)RES:RANGE:AUTO")
     info(archive, "VAL")
 }
 
@@ -646,6 +645,7 @@ record(bo, "$(P)SOURCE:MODE:SP") {
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SOURCE:MODE:SP")
+    field(FLNK, "$(P)SOURCE:MODE")
     info(archive, "VAL")
 }
 
@@ -690,6 +690,7 @@ record(ao, "$(P)CURR:COMPLIANCE:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR:COMPLIANCE:SP")
     field(SDIS, "$(P)DISABLE")
+    field(FLNK, "$(P)CURR:COMPLIANCE")
     info(archive, "VAL")
 }
 
@@ -735,6 +736,7 @@ record(ao, "$(P)VOLT:COMPLIANCE:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLT:COMPLIANCE:SP")
     field(SDIS, "$(P)DISABLE")
+    field(FLNK, "$(P)VOLT:COMPLIANCE")
     info(archive, "VAL")
 }
 
@@ -778,6 +780,7 @@ record(ao, "$(P)CURR:MEAS:RANGE:SP")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR:MEAS:RANGE:SP")
+    field(FLNK, "$(P)CURR:MEAS:RANGE")
     info(archive, "VAL")
 }
 
@@ -814,6 +817,7 @@ record(ao, "$(P)VOLT:MEAS:RANGE:SP")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLT:MEAS:RANGE:SP")
+    field(FLNK, "$(P)VOLT:MEAS:RANGE")
     info(archive, "VAL")
 }
 
@@ -856,6 +860,7 @@ record(ao, "$(P)VOLT:SOURCE:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLT:SOURCE:SP")
     field(SDIS, "$(P)DISABLE")
+    field(FLNK, "$(P)VOLT:SOURCE")
     info(archive, "VAL")
 }
 
@@ -892,6 +897,7 @@ record(ao, "$(P)CURR:SOURCE:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR:SOURCE:SP")
     field(SDIS, "$(P)DISABLE")
+    field(FLNK, "$(P)CURR:SOURCE")
     info(archive, "VAL")
 }
 
@@ -932,6 +938,7 @@ record(ao, "$(P)CURR:SOURCE:RANGE:SP")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR:SOURCE:RANGE:SP")
+    field(FLNK, "$(P)CURR:SOURCE:RANGE")
     info(archive, "VAL")
 }
 
@@ -967,6 +974,7 @@ record(ao, "$(P)VOLT:SOURCE:RANGE:SP")
     field(PREC, "10")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
+    field(FLNK, "$(P)VOLT:SOURCE:RANGE")
     field(SIOL, "$(P)SIM:VOLT:SOURCE:RANGE:SP")
     info(archive, "VAL")
 }
@@ -1011,6 +1019,7 @@ record(bo, "$(P)CURR:SOURCE:AUTORANGE:SP")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR:SOURCE:AUTORANGE:SP")
+    field(FLNK, "$(P)CURR:SOURCE:AUTORANGE")
     info(archive, "VAL")
 }
 
@@ -1049,6 +1058,7 @@ record(bo, "$(P)VOLT:SOURCE:AUTORANGE:SP")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLT:SOURCE:AUTORANGE:SP")
+    field(FLNK, "$(P)VOLT:SOURCE:AUTORANGE")
     info(archive, "VAL")
 }
 
@@ -1092,6 +1102,7 @@ record(bo, "$(P)VOLT:MEAS:AUTORANGE:SP")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLT:MEAS:AUTORANGE:SP")
+    field(FLNK, "$(P)VOLT:MEAS:AUTORANGE")
     info(archive, "VAL")
 }
 
@@ -1132,6 +1143,7 @@ record(bo, "$(P)CURR:MEAS:AUTORANGE:SP")
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR:MEAS:AUTORANGE:SP")
+    field(FLNK, "$(P)CURR:MEAS:AUTORANGE")
     info(archive, "VAL")
 }
 

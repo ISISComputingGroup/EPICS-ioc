@@ -18,10 +18,10 @@ DBD += $(APPNAME).dbd
 # KHLY2700-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
+$(APPNAME)_DBD += cvtRecord.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
@@ -31,12 +31,12 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
-$(APPNAME)_DBD += Keithley_2700.dbd
+$(APPNAME)_DBD += Keithley2700.dbd
 
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seqDev seq pv 
+$(APPNAME)_LIBS += seq pv 
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -49,7 +49,7 @@ $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 
 $(APPNAME)_LIBS += Keithley2700
-$(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += calc sscan csmbase cvtRecord
 
 
 # KHLY2700-IOC-01_registerRecordDeviceDriver.cpp derives from KHLY2700-IOC-01.dbd
