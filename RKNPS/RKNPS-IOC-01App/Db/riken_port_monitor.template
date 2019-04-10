@@ -1,4 +1,4 @@
-record(calcout, "$(P)$(MODE)CALC")
+record(calcout, "$(P)$(MODE):CALC")
 {
     field(DESC, "Calculate which port is selected")
     field(INPA, "$(DAQMX)$(PORT)$(CHAN_A)DATA CP MS")
@@ -20,3 +20,4 @@ record(mbbi, "$(P)$(MODE)")
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
+
