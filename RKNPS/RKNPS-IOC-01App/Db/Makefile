@@ -16,6 +16,7 @@ DB += riken_changeover.db
 DB += riken_port_changeover_psus.db
 DB += riken_rb2_mode_changeover_psus.db
 DB += riken_psu_banner.db
+DB += riken_port_monitor.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
