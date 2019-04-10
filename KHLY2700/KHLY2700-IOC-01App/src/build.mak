@@ -36,21 +36,18 @@ $(APPNAME)_DBD += Keithley2700.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv 
+$(APPNAME)_LIBS += Keithley2700
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre libjson zlib
-## Add other libraries here ##
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
-
-$(APPNAME)_LIBS += Keithley2700
-$(APPNAME)_LIBS += calc sscan csmbase cvtRecord
-
+$(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += calc sscan cvtRecord csmbase
+$(APPNAME)_LIBS += seq pv 
 
 # KHLY2700-IOC-01_registerRecordDeviceDriver.cpp derives from KHLY2700-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
