@@ -233,6 +233,7 @@ record(bo, "$(P)POL:SP")
     field(ONAM, "-")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:POL:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)POL:SP", "$(P)POL:SP:RBV")
 
@@ -253,4 +254,11 @@ record(bi, "$(P)POL_TYPE") {
     field(ZNAM, "UNIPOLAR")
     field(ONAM, "BIPOLAR")
     field(PINI, "YES")
+}
+
+record(stringin, "$(P)DEV_TYPE")
+{
+	field(DESC, "Device type for Riken PSU")
+	field(VAL, "RKNPS")
+	field(PINI, "YES")
 }
