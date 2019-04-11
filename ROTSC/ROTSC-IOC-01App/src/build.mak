@@ -35,14 +35,14 @@ $(APPNAME)_DBD += rotsc.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += rotsc
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
-$(APPNAME)_LIBS += rotsc
+$(APPNAME)_LIBS += seq pv
 ## Add other libraries here ##
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += calc sscan
