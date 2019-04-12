@@ -296,7 +296,7 @@ record(ai, "$(P)BUFF:NEXT") {
   field(INP,  "@devKeithley_2700.proto getNextBufferReadingLoc $(PORT)")
   info(ARCHIVE, "VAL")
   info(INTEREST, "HIGH")
-  field(EGU, "") # Proto command uses this value
+  field(EGU, "")
 
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:BUFFER:NEXT")
