@@ -21,7 +21,6 @@ include $(ADCORE)/ADApp/commonDriverMakefile
 # isisdaeTest.dbd will be made up from these files:
 # we get base, asyn + areadetetor standard plugins as part of commonDriverMakefile include
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += caPutLog.dbd
@@ -36,7 +35,7 @@ $(APPNAME)_DBD += drvAsynIPPort.dbd
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += nGEM webget htmltidy
-$(APPNAME)_LIBS += seqDev seq pv
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
