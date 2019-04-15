@@ -1,0 +1,19 @@
+file $(UTILITIES)/db/error_setter.template {
+    pattern {P, STREAM_PV, PV_NAME}
+    
+    {"\$(P)", "STATUS", "ILK:TRANS"}
+    {"\$(P)", "STATUS", "ILK"}
+    {"\$(P)", "STATUS", "ILK:DCOC"}
+    {"\$(P)", "STATUS", "ILK:DCOL"}
+    {"\$(P)", "STATUS", "ILK:REGMOD"}
+    {"\$(P)", "STATUS", "ILK:PREREG"}
+    {"\$(P)", "STATUS", "ILK:PHAS"}
+    {"\$(P)", "STATUS", "ILK:MPSWATER"}
+    {"\$(P)", "STATUS", "ILK:EARTHLEAK"}
+    {"\$(P)", "STATUS", "ILK:THERMAL"}
+    {"\$(P)", "STATUS", "ILK:MPSTEMP"}
+    {"\$(P)", "STATUS", "ILK:DOOR"}
+    {"\$(P)", "STATUS", "ILK:MAGWATER"}
+    {"\$(P)", "STATUS", "ILK:MAGTEMP"}
+    {"\$(P)", "STATUS", "ILK:MPSREADY"}
+}

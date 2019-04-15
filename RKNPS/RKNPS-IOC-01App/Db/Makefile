@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 #DB += xxx.db
 DB += DFKPS_RIKEN.db
 DB += DFKPS_RIKEN_STATUS.db
+DB += DFKPS_RIKEN_STATUS_ERRORS.db
 DB += riken_changeover.db
 DB += riken_port_changeover_psus.db
 DB += riken_rb2_mode_changeover_psus.db
