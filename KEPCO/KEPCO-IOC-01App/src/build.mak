@@ -18,7 +18,6 @@ DBD += $(APPNAME).dbd
 # KEPCO-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += stream.dbd
@@ -35,7 +34,7 @@ $(APPNAME)_DBD += utilities.dbd
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += stream asyn
-$(APPNAME)_LIBS += seqDev seq pv
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog

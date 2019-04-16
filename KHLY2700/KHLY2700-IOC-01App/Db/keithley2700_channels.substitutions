@@ -1,24 +1,24 @@
 file keithley2700_channels.template {
 
-	pattern { P, PORT, RECSIM, DISABLE, CHANNEL }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:101" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:102" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:103" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:104" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:105" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:106" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:107" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:108" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:109" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:110" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:201" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:202" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:203" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:204" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:205" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:206" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:207" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:208" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:209" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:210" }
+	pattern { P, PORT, RECSIM, DISABLE, CHANNEL, CALIB_FILE }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:101", "1) Middle Coil B Base.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:102", "2) Outer Coil A Top.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:103", "3) Outer Coil A Base.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:104", "4) Outer Coil B Top.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:105", "5) Outer Coil B Base.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:106", "6) Shim Z Inner A.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:107", "7) Shim Z Inner B.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:108", "8) Shim XY.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:109", "9) Shim Z Outer A.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:110", "10) Shim Z Outer B.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:201", "11) 1st stage.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:202", "12) Shield I.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:203", "13) Switch.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:204", "14) 2nd Stage A.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:205", "15) 2nd Stage B.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:206", "16) Inner Coil A Base.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:207", "17) Inner Coil B Base.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:208", "18) Middle Coil A Base.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:209", "19) Middle Coil A Top.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:210", "20) Central Former.txt" }
 }
