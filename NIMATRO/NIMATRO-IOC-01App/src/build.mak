@@ -41,7 +41,7 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
 $(APPNAME)_LIBS += calc
-$(APPNAME)_LIBS += lvDCOM
+$(APPNAME)_LIBS += lvDCOM pcrecpp pcre
 
 
 # NIMATRO-IOC-01_registerRecordDeviceDriver.cpp derives from NIMATRO-IOC-01.dbd
