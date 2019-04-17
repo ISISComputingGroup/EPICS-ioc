@@ -44,7 +44,6 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 # START OF AUTO GENERATED DEPENDENCIES
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
 ASYN=$(SUPPORT)/asyn/master
-ASYN=$(SUPPORT)/asyn/master
 ONCRPC=$(SUPPORT)/oncrpc/master
 AUTOSAVE=$(SUPPORT)/autosave/master
 CALC=$(SUPPORT)/calc/master
@@ -63,6 +62,10 @@ SSCAN=$(SUPPORT)/sscan/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
+ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
+AUTOSAVE=$(SUPPORT)/autosave/master
+COMMON=$(ISISSUPPORT)/Common/master
+ONCRPC=$(SUPPORT)/oncrpc/master
 # END OF AUTO GENERATED DEPENDENCIES
 
 # optional extra local definitions here
