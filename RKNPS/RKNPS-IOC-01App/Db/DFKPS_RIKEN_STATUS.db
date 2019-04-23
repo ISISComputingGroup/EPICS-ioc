@@ -1,57 +1,38 @@
-record(bi, "$(P)POWER")
-{
-    field(INP, "$(P)ILK:POWER CP MS")
-    field(DESC, "Power")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:POWER")
-    field(SDIS, "$(P)DISABLE")
-}
 
-record(calcout, "$(P)POWER:_CALC")
+record(longin, "$(P)_READILKS")
 {
-    field(INPA, "$(P)STA1.BF CP MS")
-	field(CALC, "!A")
-}
-
-alias("$(P)POWER", "$(P)POWER:RBV")
-
-record(longin, "$(P)STATUS")
-{
-    field(DESC, "Device Status Flags")
+    field(DESC, "Read status flags")
     field(DTYP, "stream")
     field(INP,  "@dfkps_riken.proto status($(ADR),$(P)) $(port) 0")
-    field(SCAN, "1 second")
+    field(SCAN, "5 second")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:STATUS")
+    field(SIOL, "$(P)SIM:_READILKS")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(stringin, "$(P)SIM:STATUS"){
-    field(DTYP, "Soft Channel")
+record(stringin, "$(P)SIM:_READILKS"){
 }
 
-record(bi, "$(P)ILK:POWER")
-{
-    field(DESC, "Main power")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-
-    field(SIML, "$(P)SIM")
-    field(SDIS, "$(P)DISABLE")
-
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-}
+#record(bi, "$(P)POWER")
+#{
+#    field(DESC, "Main power")
+#    field(ZNAM, "Off")
+#    field(ONAM, "On")
+#
+#    field(SIML, "$(P)SIM")
+#    field(SDIS, "$(P)DISABLE")
+#
+#    info(INTEREST, "HIGH")
+#    info(archive, "VAL")
+#}
+#
+#alias("$(P)POWER", "$(P)POWER:RBV")
 
 record(bi, "$(P)ILK:POLNORM")
 {
     field(DESC, "Polarity normal")
-    field(ZNAM, "OK")
-    field(ONAM, "Tripped")
+    field(ZNAM, "Normal")
+    field(ONAM, "Reversed")
 
     field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
@@ -63,8 +44,8 @@ record(bi, "$(P)ILK:POLNORM")
 record(bi, "$(P)ILK:POLREV")
 {
     field(DESC, "Polarity reversed")
-    field(ZNAM, "OK")
-    field(ONAM, "Tripped")
+    field(ZNAM, "Reversed")
+    field(ONAM, "Normal")
 
     field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")
@@ -89,8 +70,8 @@ record(bi, "$(P)ILK:REGTRANSF")
 record(bi, "$(P)ILK:PERCENT")
 {
     field(DESC, "Percent or decimal mode")
-    field(ZNAM, "OK")
-    field(ONAM, "Tripped")
+    field(ZNAM, "Decimal")
+    field(ONAM, "Percent")
 
     field(SIML, "$(P)SIM")
     field(SDIS, "$(P)DISABLE")

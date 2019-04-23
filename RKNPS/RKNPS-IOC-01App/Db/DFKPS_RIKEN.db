@@ -25,6 +25,30 @@ record(bo, "$(P)POWER:SP")
 }
 alias("$(P)POWER:SP", "$(P)POWER:SP:RBV")
 
+record(bo, "$(P)SIM:POWER:SP"){
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+alias("$(P)SIM:POWER:SP", "$(P)SIM:POWER")
+
+record(bi, "$(P)POWER")
+{
+    field(DESC, "Main Power")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)POWER", "$(P)POWER:RBV")
+
+
 record(ai, "$(P)VRAW")
 {
     field(DESC, "ADC Channel 2 - VOLTAGE")
@@ -114,14 +138,6 @@ record(bo, "$(P)SIM:RESET"){
     field(DTYP, "Soft Channel")
 }
 
-record(bo, "$(P)SIM:POWER:SP"){
-    field(DTYP, "Soft Channel")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-}
-
-alias("$(P)SIM:POWER:SP", "$(P)SIM:POWER")
-
 record(ao, "$(P)SIM:VOLT"){
     field(DTYP, "Soft Channel")
     field(EGU, "V")
@@ -161,34 +177,10 @@ record(calcout, "$(P)CURR")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
+
 alias("$(P)CURR", "$(P)CURR:RBV")
 
-
-
-record(ao, "$(P)SIM:RAW"){
-    field(DTYP, "Soft Channel")
-    field(EGU, "A")
-}
-alias("$(P)SIM:RAW", "$(P)SIM:RAW:SP")
-alias("$(P)SIM:RAW", "$(P)SIM:RA")
-
-record(ao, "$(P)RAW:SP")
-{
-    field(DESC, "Set Output Current")
-    field(EGU,  "mA")
-    field(DTYP, "stream")
-    field(OUT,  "@dfkps_riken.proto dac($(ADR)) $(port) 0")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RAW:SP")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(ao, "$(P)SIM:ADDRESS"){
-    field(DTYP, "Soft Channel")
-}
-
-record(ai, "$(P)RAW")
-{
+record(ai, "$(P)RAW"){
     field(DESC, "ADC Channel 8")
     field(DTYP, "stream")
     field(INP, "@dfkps_riken.proto adc($(ADR),8) $(port) 0")
@@ -206,6 +198,29 @@ record(ai, "$(P)RAW")
     field(SDIS, "$(P)DISABLE")
     field(EGU, "A")
     info(archive, "VAL")
+}
+
+record(ao, "$(P)RAW:SP")
+{
+    field(DESC, "Set Output Current")
+    field(EGU,  "mA")
+    field(DTYP, "stream")
+    field(OUT,  "@dfkps_riken.proto dac($(ADR)) $(port) 0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAW:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)SIM:RAW"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "A")
+}
+
+alias("$(P)SIM:RAW", "$(P)SIM:RAW:SP")
+alias("$(P)SIM:RAW", "$(P)SIM:RA")
+
+record(ao, "$(P)SIM:ADDRESS"){
+    field(DTYP, "Soft Channel")
 }
 
 record(bi, "$(P)POL")
@@ -233,7 +248,6 @@ record(bo, "$(P)POL:SP")
     field(ONAM, "-")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:POL:SP")
-    field(SDIS, "$(P)DISABLE")
 }
 alias("$(P)POL:SP", "$(P)POL:SP:RBV")
 
@@ -254,11 +268,4 @@ record(bi, "$(P)POL_TYPE") {
     field(ZNAM, "UNIPOLAR")
     field(ONAM, "BIPOLAR")
     field(PINI, "YES")
-}
-
-record(stringin, "$(P)DEV_TYPE")
-{
-	field(DESC, "Device type for Riken PSU")
-	field(VAL, "RKNPS")
-	field(PINI, "YES")
 }
