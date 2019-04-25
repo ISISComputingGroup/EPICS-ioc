@@ -171,13 +171,13 @@ record(bo, "$(P)$(Q)BRAKE")
 
 ### SIMULATION RECORDS ###
 
-record(stringin,"$(P)$(Q)SIM:STATE")
+record(stringout,"$(P)$(Q)SIM:STATE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ai,"$(P)$(Q)SIM:FREQ")
+record(ao,"$(P)$(Q)SIM:FREQ")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -186,7 +186,7 @@ record(ai,"$(P)$(Q)SIM:FREQ")
 
 alias("$(P)$(Q)SIM:FREQ", "$(P)$(Q)SIM:FREQ:SP_ACTUAL")
 
-record(ai,"$(P)$(Q)SIM:PHASE")
+record(ao,"$(P)$(Q)SIM:PHASE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
