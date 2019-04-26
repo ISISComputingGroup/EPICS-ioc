@@ -15,11 +15,34 @@ getStatus {
 setFreq {
     out "FREQ %d";
     in $acc;
+    
+    # Give the device a chance to digest the new frequency setpoint
+    wait 100;
+    
+    # If speed is sent without then updating phase, it will phase to the wrong place.
+    # The phase setpoint will be correct, but it will actually phase somewhere else.
+    # So add a phase set here.
+    out "PHASE %(\$1)f";
+    in $acc;
 }
 
 setPhase {
     out "PHASE %f";
     in $acc;
+    
+    # Give the device a chance to digest the new phase setpoint
+    wait 100;
+    
+    # Update phase setpoint readback immediately after setting phase.
+    # This is important because we send the phase readback value back to the
+    # device as part of setFreq, and we don't want to get a race condition when
+    # setting phase and freq together. Having them both as part of the same protocol
+    # means it is uninterruptible.
+    
+    out "STATUS";
+    # Ignore everything except RPHASE.
+    in "#%*[^#]#ACCEPT CH=%*d# State= %*[^#]#ASPEED= %*f#RSPEED= %*f#APHASE= %*f#RPHASE= %(\$1)f#AVETO = %*f#DIR   = %*{CW|CCW}#MONIT = %*[^#]#FLOWR = %*f#WTEMP = %*f#MTEMP = %*f#MVIBR = %*f#MVACU = %*f#DATE%*[^#]#TIME%*#s";
+    
 }
 
 brake {

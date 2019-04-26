@@ -36,7 +36,7 @@ record(ao, "$(P)$(Q)FREQ:SP_ACTUAL")
     field(DESC, "The frequency of the chopper")
     field(DTYP, "stream")
     field(EGU, "Hz")
-    field(OUT, "@astrium.proto setFreq $(PORT) $(I)")
+    field(OUT, "@astrium.proto setFreq($(P)$(Q)PHASE:SP:RBV) $(PORT) $(I)")
     info(archive, "VAL")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)$(Q)SIM:FREQ:SP_ACTUAL PP")
@@ -78,7 +78,7 @@ record(ao, "$(P)$(Q)PHASE:SP")
     field(DESC, "The phase of the chopper")
     field(DTYP, "stream")
     field(EGU, "deg")
-    field(OUT, "@astrium.proto setPhase $(PORT) $(I)")
+    field(OUT, "@astrium.proto setPhase($(P)$(Q)PHASE:SP:RBV) $(PORT) $(I)")
     field(PREC, "2")
     field(FLNK, "$(P)$(Q)STATE")
     info(INTEREST, "HIGH")
@@ -171,13 +171,13 @@ record(bo, "$(P)$(Q)BRAKE")
 
 ### SIMULATION RECORDS ###
 
-record(stringout,"$(P)$(Q)SIM:STATE")
+record(stringin,"$(P)$(Q)SIM:STATE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-record(ao,"$(P)$(Q)SIM:FREQ")
+record(ai,"$(P)$(Q)SIM:FREQ")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -186,7 +186,7 @@ record(ao,"$(P)$(Q)SIM:FREQ")
 
 alias("$(P)$(Q)SIM:FREQ", "$(P)$(Q)SIM:FREQ:SP_ACTUAL")
 
-record(ao,"$(P)$(Q)SIM:PHASE")
+record(ai,"$(P)$(Q)SIM:PHASE")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
