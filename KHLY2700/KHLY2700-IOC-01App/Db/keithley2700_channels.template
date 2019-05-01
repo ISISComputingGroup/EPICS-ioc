@@ -65,8 +65,8 @@ record(cvt, "$(P)$(CHANNEL):TEMP:RAW")
   field(SCAN, "Passive")
   field(PREC, "5")
   field(EGU, "K")
-  field(INPY, "$(P)$(CHANNEL):READ")
-  field(METH, "1D TABLE INVERTED")
+  field(INPX, "$(P)$(CHANNEL):READ")
+  field(METH, "1D TABLE USER SUB")
   field(DRVL, "$(DRVLO)")
   field(DRVH, "$(DRVHI)")
   field(SPEC, "$(CALIB_FILE)")
@@ -76,18 +76,18 @@ record(cvt, "$(P)$(CHANNEL):TEMP:RAW")
   field(FLNK, "$(P)$(CHANNEL):TEMP:CHECK")
 }
 
-# 0 - 320 as zero is absolute 0 and 320 is around the limit of
+# 0 - 325 as zero is absolute 0 and 325 is the limit of
 # all the calib files
 record(calcout, "$(P)$(CHANNEL):TEMP:CHECK")
 {
 	field(DESC, "Check temp is within range")
 	field(OOPT, "Every Time")
 	field(INPA, "$(P)$(CHANNEL):TEMP:RAW")
-  field(HIGH, "320")
+  field(HIGH, "325")
   field(LOW,  "0")
   field(HSV,  "MAJOR")
   field(LSV,  "MAJOR")
-	field(CALC, "((A>=0)&&(A<320))?A:0")
+	field(CALC, "((A>=0)&&(A<325))?A:0")
 	field(OUT, "$(P)$(CHANNEL):TEMP PP")
 	field(FLNK, "$(P)$(CHANNEL):DRIFT:CALC")
 }
@@ -127,7 +127,7 @@ record(ao, "$(P)$(CHANNEL):DRIFT")
 {
 	field(DESC, "Drift value")
 	field(PREC, "6")
-	field(EGU, "")
+	field(EGU, "K/min")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
 }
