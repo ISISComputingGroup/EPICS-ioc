@@ -33,6 +33,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 
 ## Load our record instances
 dbLoadRecords("$(CHTOBISR)/db/chtobisr.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(CHTOBISR)/db/chtobisr_status.db","P=$(MYPVPREFIX)$(IOCNAME):")
+dbLoadRecords("$(CHTOBISR)/db/chtobisr_faults.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
