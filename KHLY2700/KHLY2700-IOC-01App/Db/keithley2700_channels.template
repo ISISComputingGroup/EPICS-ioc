@@ -127,7 +127,7 @@ record(ao, "$(P)$(CHANNEL):DRIFT")
 {
 	field(DESC, "Drift value")
 	field(PREC, "6")
-	field(EGU, "")
+	field(EGU, "K/min")
 	info(INTEREST, "HIGH")
 	info(ARCHIVE, "VAL")
 }
