@@ -17,7 +17,7 @@ setFreq {
     in $acc;
     
     # Give the device a chance to digest the new frequency setpoint
-    wait 100;
+    wait 1000;
     
     # If speed is sent without then updating phase, it will phase to the wrong place.
     # The phase setpoint will be correct, but it will actually phase somewhere else.
@@ -31,7 +31,7 @@ setPhase {
     in $acc;
     
     # Give the device a chance to digest the new phase setpoint
-    wait 100;
+    wait 1000;
     
     # Update phase setpoint readback immediately after setting phase.
     # This is important because we send the phase readback value back to the
