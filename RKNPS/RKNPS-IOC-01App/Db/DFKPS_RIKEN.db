@@ -269,3 +269,10 @@ record(bi, "$(P)POL_TYPE") {
     field(ONAM, "BIPOLAR")
     field(PINI, "YES")
 }
+
+record(stringin, "$(P)DEV_TYPE")
+{
+	field(DESC, "Device type for Riken PSU")
+	field(VAL, "RKNPS")
+	field(PINI, "YES")
+}
