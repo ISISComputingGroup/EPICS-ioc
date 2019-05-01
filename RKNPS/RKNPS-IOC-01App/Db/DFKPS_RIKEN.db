@@ -21,16 +21,40 @@ record(bo, "$(P)POWER:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:POWER:SP PP")
     field(SDIS, "$(P)DISABLE")
-    info(autosaveFields, "VAL")
+    field(TPRO, "1")  # Useful for diagnostics leaving in until we know it is working well
 }
 alias("$(P)POWER:SP", "$(P)POWER:SP:RBV")
+
+record(bo, "$(P)SIM:POWER:SP"){
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+alias("$(P)SIM:POWER:SP", "$(P)SIM:POWER")
+
+record(bi, "$(P)POWER")
+{
+    field(DESC, "Main Power")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+
+	field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)POWER", "$(P)POWER:RBV")
+
 
 record(ai, "$(P)VRAW")
 {
     field(DESC, "ADC Channel 2 - VOLTAGE")
     field(DTYP, "stream")
     field(INP,  "@dfkps_riken.proto adc($(ADR),$(VADC)) $(port) 0")
-    field(SCAN, "1 second")
+    field(SCAN, "5 second")
     field(LOLO, "-0.5")
     field(HIHI, "999.5")
     field(LLSV, "MAJOR")
@@ -63,7 +87,7 @@ record(ai, "$(P)RA")
     field(DESC, "Channel setpoint")
     field(DTYP, "stream")
     field(INP,  "@dfkps_riken.proto ra($(ADR)) $(port) 0")
-    field(SCAN, "1 second")
+    field(SCAN, "5 second")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RA")
     field(SDIS, "$(P)DISABLE")
@@ -72,9 +96,11 @@ record(ai, "$(P)RA")
 record(calcout, "$(P)VOLT")
 {
     field(DESC, "Convert Raw Val to VOLTAGE")
-    field(CALC, "A * $(FRV)")
-    field(INPA, "$(P)VRAW")
+    field(CALC, "A * (B=0?1:-1) * $(FRV)")
+    field(INPA, "$(P)VRAW MS")
+    field(INPB, "$(P)POL")
     field(EGU, "V")
+    field(PREC, "2")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -83,6 +109,7 @@ alias("$(P)VOLT", "$(P)VOLT:RBV")
 
 record(ao, "$(P)CURR:SP")
 {
+    field(PREC, "2")
     field(DESC, "Set Current")
     field(DTYP, "Soft Channel")
     field(OUT, "$(P)CURR:TORAW.A PP MS")
@@ -102,8 +129,6 @@ record(bo, "$(P)REMOTE")
     field(OUT, "@dfkps_riken.proto cmdsp($(ADR)) $(port) 0")
     field(ZNAM, "Local")
     field(ONAM, "Remote")
-    field(DOL, "1")
-    field(PINI, "YES")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:REMOTE")
     field(SDIS, "$(P)DISABLE")
@@ -112,14 +137,6 @@ record(bo, "$(P)REMOTE")
 record(bo, "$(P)SIM:RESET"){
     field(DTYP, "Soft Channel")
 }
-
-record(bo, "$(P)SIM:POWER:SP"){
-    field(DTYP, "Soft Channel")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-}
-
-alias("$(P)SIM:POWER:SP", "$(P)SIM:POWER")
 
 record(ao, "$(P)SIM:VOLT"){
     field(DTYP, "Soft Channel")
@@ -152,106 +169,22 @@ record(bo, "$(P)DISABLE")
 record(calcout, "$(P)CURR")
 {
     field(DESC, "Convert Raw Val to Current")
-    field(CALC, "A * $(FRI)")
-    field(INPA, "$(P)RAW")
+    field(CALC, "A * (B=0?1:-1) * $(FRI)")
+    field(INPA, "$(P)RAW MS")
+    field(INPB, "$(P)POL")
     field(EGU, "A")
+    field(PREC, "2")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
+
 alias("$(P)CURR", "$(P)CURR:RBV")
 
-
-record(bi, "$(P)ILK")
-{
-    field(DESC, "Overall Interlock")
-    field(ZNAM, "OK")
-    field(ONAM, "Interlock")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-}
-
-record(bi, "$(P)POWER")
-{
-    field(DESC, "Power")
-    field(ZNAM, "Off")
-    field(ONAM, "On")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:POWER")
-    field(SDIS, "$(P)DISABLE")
-}
-alias("$(P)POWER", "$(P)POWER:RBV")
-
-
-record(stringin, "$(P)STATUS")
-{
-    field(DESC, "Device Status Flags")
-    field(DTYP, "stream")
-    field(INP,  "@dfkps_riken.proto status($(ADR)) $(port) 0")
-    field(SCAN, "1 second")
-    field(FLNK, "$(P)CALPOWER")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:STATUS")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(scalcout, "$(P)CALPOWER")
-{
-    field(DESC, "Update Power Status")
-    field(OUT,  "$(P)POWER PP MS")
-    field(CALC, "BB==AA[$(powpos),$(powpos)] ? CC : DD")
-    field(INAA, "$(P)STATUS MS")
-    field(BB, "!")
-    field(CC, "Off")
-    field(DD, "On")
-    field(FLNK, "$(P)CALILK")
-}
-
-record(scalcout, "$(P)CALILK")
-{
-    field(DESC, "Update Interlock Status")
-    field(OUT,  "$(P)ILK PP MS")
-    field(CALC, "BB==AA[$(ilkpos),$(ilkpos)] ? CC : DD")
-    field(INAA, "$(P)STATUS MS")
-    field(BB, "!")
-    field(CC, "Interlock")
-    field(DD, "OK")
-}
-
-record(stringin, "$(P)SIM:STATUS"){
-    field(DTYP, "Soft Channel")
-}
-
-record(ao, "$(P)RAW:SP")
-{
-    field(DESC, "Set Output Current")
-    field(EGU,  "mA")
-    field(DTYP, "stream")
-    field(OUT,  "@dfkps_riken.proto dac($(ADR),0) $(port) 0")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:RAW:SP")
-    field(SDIS, "$(P)DISABLE")
-    info(autosaveFields, "VAL")
-}
-
-record(ao, "$(P)SIM:RAW"){
-    field(DTYP, "Soft Channel")
-    field(EGU, "A")
-}
-alias("$(P)SIM:RAW", "$(P)SIM:RAW:SP")
-alias("$(P)SIM:RAW", "$(P)SIM:RA")
-
-record(ao, "$(P)SIM:ADDRESS"){
-    field(DTYP, "Soft Channel")
-}
-
-record(ai, "$(P)RAW")
-{
+record(ai, "$(P)RAW"){
     field(DESC, "ADC Channel 8")
     field(DTYP, "stream")
     field(INP, "@dfkps_riken.proto adc($(ADR),8) $(port) 0")
-    field(SCAN, "1 second")
+    field(SCAN, "5 second")
     field(LOLO, "-999999.5")
     field(HIHI, "99999.5")
     field(LLSV, "MAJOR")
@@ -267,6 +200,28 @@ record(ai, "$(P)RAW")
     info(archive, "VAL")
 }
 
+record(ao, "$(P)RAW:SP")
+{
+    field(DESC, "Set Output Current")
+    field(EGU,  "mA")
+    field(DTYP, "stream")
+    field(OUT,  "@dfkps_riken.proto dac($(ADR)) $(port) 0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAW:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)SIM:RAW"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "A")
+}
+
+alias("$(P)SIM:RAW", "$(P)SIM:RAW:SP")
+alias("$(P)SIM:RAW", "$(P)SIM:RA")
+
+record(ao, "$(P)SIM:ADDRESS"){
+    field(DTYP, "Soft Channel")
+}
 
 record(bi, "$(P)POL")
 {
@@ -275,7 +230,7 @@ record(bi, "$(P)POL")
     field(INP, "@dfkps_riken.proto getpol($(ADR)) $(port) 0")
     field(ZNAM, "+")
     field(ONAM, "-")
-    field(SCAN, "1 second")
+    field(SCAN, "5 second")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:POL")
     field(SDIS, "$(P)DISABLE")
@@ -302,3 +257,22 @@ record(bo, "$(P)SIM:POL"){
     field(ONAM, "-")
 }
 alias("$(P)SIM:POL", "$(P)SIM:POL:SP")
+
+record(bi, "$(P)IS_CALIB") {
+    field(VAL, "0")
+    field(PINI, "YES")
+}
+
+record(bi, "$(P)POL_TYPE") {
+    field(VAL, "1")
+    field(ZNAM, "UNIPOLAR")
+    field(ONAM, "BIPOLAR")
+    field(PINI, "YES")
+}
+
+record(stringin, "$(P)DEV_TYPE")
+{
+	field(DESC, "Device type for Riken PSU")
+	field(VAL, "RKNPS")
+	field(PINI, "YES")
+}

@@ -1,0 +1,8 @@
+# This maps some unique PVs from the vendor code to the IBEX PV naming convention
+
+alias("$(NAME):$(ASYNPORT)_OctetAsyn", "$(NAME):OctetAsyn")
+
+# ao record template for poll delay
+alias("$(NAME):$(ASYNPORT)_DI_CHx_PollDelay", "$(NAME):DI:PollDelay")
+
+

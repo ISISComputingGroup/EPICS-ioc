@@ -20,6 +20,14 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)"
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetInputEos("$(DEVICE)", -1, "$(OEOS=\r)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetOutputEos("$(DEVICE)", -1, "$(IEOS=\r)")
 
+# Hardware flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "clocal", "Y")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
+
+# Software flow control off
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N") 
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
+
 asynSetTraceMask("L0",-1,0x9) 
 asynSetTraceIOMask("L0",-1,0x2)
 

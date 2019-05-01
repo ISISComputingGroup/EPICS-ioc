@@ -1,0 +1,20 @@
+file $(UTILITIES)/db/error_setter.template {
+    pattern {P, STREAM_PV, PV_NAME}
+    
+    {"\$(P)", "_READILKS", "ILK:TRANS"}
+    {"\$(P)", "_READILKS", "ILK"}
+    {"\$(P)", "_READILKS", "ILK:DCOC"}
+    {"\$(P)", "_READILKS", "ILK:DCOL"}
+    {"\$(P)", "_READILKS", "ILK:REGMOD"}
+    {"\$(P)", "_READILKS", "ILK:PREREG"}
+    {"\$(P)", "_READILKS", "ILK:PHAS"}
+    {"\$(P)", "_READILKS", "ILK:MPSWATER"}
+    {"\$(P)", "_READILKS", "ILK:EARTHLEAK"}
+    {"\$(P)", "_READILKS", "ILK:THERMAL"}
+    {"\$(P)", "_READILKS", "ILK:MPSTEMP"}
+    {"\$(P)", "_READILKS", "ILK:DOOR"}
+    {"\$(P)", "_READILKS", "ILK:MAGWATER"}
+    {"\$(P)", "_READILKS", "ILK:MAGTEMP"}
+    {"\$(P)", "_READILKS", "ILK:MPSREADY"}
+    {"\$(P)", "_READILKS", "POWER"}
+}
