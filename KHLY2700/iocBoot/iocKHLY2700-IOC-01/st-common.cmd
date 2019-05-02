@@ -1,4 +1,4 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(KHLY2700)/Keithley_2700Sup"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(KHLY2700)/data"
 epicsEnvSet "DEVICE" "L0"
 
 ## Environment Variables
