@@ -3,5 +3,5 @@ file riken_port_monitor.template {
 pattern {P, MODE, DAQMX, PORT, CHAN_A, CHAN_B, ZRO_ST, ONE_ST, TWO_ST, THR_ST, ZRO_ST_ALARM, ONE_ST_ALARM, TWO_ST_ALARM, THR_ST_ALARM}
 
     {"\$(P)", "RB2:MODE", "\$(DAQMX)", "\$(PORT)", "4:", "5:", "FAULT STATE", "BEND 1", "BEND 2", "SEPTUM", "MAJOR", "NO_ALARM", "NO_ALARM", "NO_ALARM"}
-    {"\$(P)", "PORT3_4", "\$(DAQMX)", "\$(PORT)", "2:", "3:", "FAULT (LOW)", "PORT 3 (RQ18-20)", "PORT 4 (RQ21-23)", "FAULT (HIGH)", "MAJOR", "NO_ALARM", "NO_ALARM", "MAJOR"}
+    {"\$(P)", "PORT3_4:MODE", "\$(DAQMX)", "\$(PORT)", "2:", "3:", "FAULT (LOW)", "PORT 3 (RQ18-20)", "PORT 4 (RQ21-23)", "FAULT (HIGH)", "MAJOR", "NO_ALARM", "NO_ALARM", "MAJOR"}
 }
