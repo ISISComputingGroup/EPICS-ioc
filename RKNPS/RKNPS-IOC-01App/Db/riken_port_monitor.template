@@ -3,9 +3,9 @@ record(calcout, "$(P)$(MODE):CALC")
     field(DESC, "Calculate which port is selected")
     field(INPA, "$(DAQMX)$(PORT)$(CHAN_A)DATA CP MS")
     field(INPB, "$(DAQMX)$(PORT)$(CHAN_B)DATA CP MS")
-	field(CALC, "A+(2*B)")
-	field(OUT, "$(P)$(MODE) PP MS")
-	field(OOPT, "Every Time")
+    field(CALC, "A+(2*B)")
+    field(OUT, "$(P)$(MODE) PP MS")
+    field(OOPT, "Every Time")
 }
 
 record(mbbi, "$(P)$(MODE)") 
