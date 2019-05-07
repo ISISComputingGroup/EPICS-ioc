@@ -93,6 +93,8 @@ record(stringout, "$(P)LKUP:RAMP_FILE:SP")
    field(DTYP, "asynOctetWrite")
    field(OUT,  "@asyn($(READ),0,1)DIR")
    field(SCAN, "I/O Intr")
+   field(VAL, "$(RAMP_FILE_NAME=Default.txt)")
+   field(PINI, "YES")
 }
 
 #
@@ -109,6 +111,23 @@ record(ao, "$(P)LKUP:TEMP:SP:RBV")
 	field(OUT, "@asyn($(READ),0,1)CUR")
 	field(EGU, "K")
 	field(FLNK, "$(P)LKUP:LUTON:SP")
+}
+
+#
+# This is a filthy hack but it's the only way I found to get
+# around ReadASCII's way of initializing records.
+#
+# Essentially, assume that ReadASCII will have finished initialising
+# by the time 10 seconds have elapsed, and then write to the LUTON:SP
+# record by channel access to force ReadASCII to recognise the value change.
+# 
+record(seq, "$(P)LKUP:LUTON:SP:_INIT")
+{
+   field(DO1, "$(USE_RAMP_FILE)")
+   field(LNK1, "$(P)LKUP:LUTON:SP CA")
+   field(DLY1, "10")
+   field(PINI, "YES")
+   field(FLNK, "$(P)LKUP:LUTON:SP.PROC CA")
 }
 
 record(bo, "$(P)LKUP:LUTON:SP")
