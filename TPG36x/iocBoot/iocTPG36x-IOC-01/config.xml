@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+    <config_part>
+        <ioc_desc>TPG 36X pressure sensor</ioc_desc>
+        <macros>
+            <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
+            <macro name="BAUD" pattern="^9600|19200|38400$" description="Baud rate, must be either 9600, 19200 or 38400 (default: 9600)" />
+            <macro name="PRES1ON" pattern="^Y|N$" description="Set to Y if pressure sensor 1 is connected (default:Y)" />
+            <macro name="PRES2ON" pattern="^Y|N$" description="Set to Y if pressure sensor 2 is connected (default:Y)" />
+        </macros>
+    </config_part>
+</ioc_config>
