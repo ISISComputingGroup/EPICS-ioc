@@ -21,9 +21,6 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
-$(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "\r\n")
-$(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "\r\n")
-
 stringiftest("PRESSUR1", $(PRES1ON="Y"), 5, "Y")
 stringiftest("PRESSUR2", $(PRES2ON="Y"), 5, "Y")
 
@@ -34,7 +31,7 @@ stringiftest("PRESSUR2", $(PRES2ON="Y"), 5, "Y")
 #####################
 ## Load record instances
 
-dbLoadRecords("$(TPG)/db/TPG36x.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),IFPRESSUR1=$(IFPRESSUR1),IFPRESSUR2=$(IFPRESSUR2)")
+dbLoadRecords("$(TPG)/db/tpg36x.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),IFPRESSUR1=$(IFPRESSUR1),IFPRESSUR2=$(IFPRESSUR2)")
 
 ## Finished loading record instances
 #########################
