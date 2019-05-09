@@ -37,6 +37,9 @@ dbLoadRecords("$(ALDN1000)/db/aldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFI
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
+asynSetTraceIOMask("L0", -1, 0x2)
+asynSetTraceMask("L0", -1, 0x9)
+
 ## Start any sequence programs
 #seq sncxxx,"user=znx23966"
 
