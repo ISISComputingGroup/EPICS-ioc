@@ -1,11 +1,11 @@
-## set positions of interlock and power flags in status string
+# Cast PSU address as 3-digit number
+calc("ADDRESS", "$(ADDRESS)", 2, 3)
 
-
-$(IFNOTRECSIM) asynOctetSetInputEos("L0",0,"$(IEOS=\\r\\n)")
-$(IFNOTRECSIM) asynOctetSetOutputEos("L0",0,"$(OEOS=\\r\\n)")
-
+# Send device initialisation commands
 asynOctetConnect("DFKINIT","L0")
-asynOctetWrite DFKINIT "REM\r\n"
+asynOctetWrite DFKINIT "ADR $(ADDRESS)$(IEOS=\\n\\r)"
+asynOctetWrite DFKINIT "UNLOCK$(IEOS=\\n\\r)"
+asynOctetWrite DFKINIT "REM$(IEOS=\\n\\r)"
 
 ## Load our record instances
 dbLoadRecords("$(TOP)/Db/DFKPS_8500_status.db", "device=$(MYPVPREFIX)$(IOCNAME), P=$(MYPVPREFIX)$(IOCNAME):, port=L0, SP_PINI=$(SP_PINI), ADDRESS=$(ADDRESS=0)")
