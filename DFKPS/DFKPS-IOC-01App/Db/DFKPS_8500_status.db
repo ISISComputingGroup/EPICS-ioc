@@ -11,19 +11,6 @@ record(longin, "$(P)ADDRESS")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(longout, "$(P)ADDRESS:SP")
-{
-    field(DESC, "Writes the PSU address")
-    field(VAL, "$(ADDRESS)")
-    field(DTYP, "stream")
-    field(OUT, "@dfkps.proto setadr $(port) 0")
-
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:ADDRESS")
-    field(SDIS, "$(P)DISABLE")
-}
-
-
 record(longin, "$(P)STATUS")
 {
     field(DESC, "Device Status Flags")
