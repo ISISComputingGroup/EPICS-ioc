@@ -285,8 +285,3 @@ field(EGU, "A")
 info(INTEREST, "HIGH")
 info(archive, "VAL")
 }
-
-record(bo, "$(P)POL:SP")
-{
-    field(OUT, "@dfkps.proto setpol $(port) 0")
-}
