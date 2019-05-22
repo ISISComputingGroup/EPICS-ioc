@@ -38,6 +38,7 @@ record(ai, "$(P)FIELD"){
     field(DESC, "Field")
     field(INP, "$(P)FIELD:TOUNIT PP MS")
     field(EGU, "")
+    field(PREC, "3")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -46,6 +47,7 @@ alias("$(P)FIELD", "$(P)FIELD:RBV")
 record(ao, "$(P)FIELD:SP") {
     field(FLNK, "$(P)FIELD:SP:FROMUNIT")
     field(EGU, "")
+    field(PREC, "3")
 }
 alias("$(P)FIELD:SP", "$(P)FIELD:SP:RBV")
 
@@ -77,6 +79,7 @@ record(calcout, "$(P)FIELD:SP:PRECALIB"){
     field(CALC, "A/1000000")
     field(OUT, "$(P)RAW:SP PP MS")
     field(EGU, "")
+    field(DRVH, "$(MAX_RAW_SETPOINT=1000000)")
 }
 
 record(mbbi, "$(P)FIELD:UNIT"){
@@ -90,6 +93,7 @@ record(mbbi, "$(P)FIELD:UNIT"){
     field(FLNK, "$(P)FIELD:TOUNIT")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+    info(autosaveFields, "VAL")
 }
 alias("$(P)FIELD:UNIT", "$(P)FIELD:UNIT:RBV")
 alias("$(P)FIELD:UNIT", "$(P)FIELD:UNIT:SP")
