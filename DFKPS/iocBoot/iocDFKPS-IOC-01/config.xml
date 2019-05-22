@@ -9,7 +9,7 @@
 
     <macro name="CALIBRATED" pattern="^(0|1)$" description="1 to use calibration file, 0 otherwise; defaults to 1" />
     <macro name="CALIB_FILE" description="Name of calibration File; defaults to default_calib.dat" />
-	<macro name="DEV_TYPE" pattern="^(8800|8000)$" description="Type of danfysik; default 8000" />
+	<macro name="DEV_TYPE" pattern="^(8800|8500|8000)$" description="Type of danfysik; default 8000" />
     <macro name="SP_AT_STARTUP" pattern="^(YES|NO)$" description="Apply last setpoints at startup; defaults to NO" />
 	
 	
@@ -18,6 +18,7 @@
 	<macro name="FACTOR_WRITE_I" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value; defaults to 1000" />
 	
     <macro name="LOCAL_CALIB" pattern="^(yes)|(no)$" description="Use local instrument calibration directory instead of common one? Default is no." />
+    <macro name="ADDRESS" pattern="^[0-9]+$" description="Address of the PSU; defaults to 0." />
 </macros>
 </config_part>
 </ioc_config>
