@@ -8,7 +8,14 @@
 
 record(calcout, "$(P)FIELD:PRECALIB"){
     field(INPA, "$(P)CURR")
-    field(CALC, "A*1000000")
+    # We multiply by FACTOR_READ_I to get current
+    # and then multiply back by FACTOR_WRITE_I to
+    # get the readings on the same scale as the sets
+    # so that they can use the same calibration file.
+    # 
+    # FACTOR_READ_I is not necessarily 1/FACTOR_WRITE_I
+    # (but it might be in some cases)
+    field(CALC, "A*$(FACTOR_WRITE_I")
 	field(FLNK, "$(P)FIELD:CALIB")
     field(EGU, "")
 }
@@ -76,7 +83,7 @@ record(cvt, "$(P)FIELD:SP:CALIB"){
 }
 
 record(calcout, "$(P)FIELD:SP:PRECALIB"){
-    field(CALC, "A/1000000")
+    field(CALC, "A")
     field(OUT, "$(P)RAW:SP PP MS")
     field(EGU, "")
 }
