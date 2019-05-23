@@ -16,6 +16,8 @@
 	<macro name="FACTOR_READ_I" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to current; defaults to 1" />
 	<macro name="FACTOR_READ_V" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to voltage; defaults to 1" />
 	<macro name="FACTOR_WRITE_I" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value; defaults to 1000" />
+    
+	<macro name="MAX_RAW_SETPOINT" pattern="^[0-9]+$" description="Maximum raw setpoint to send to the power supply, in ppm. Defaults to 1000000 (100% of full scale)." />
 	
     <macro name="LOCAL_CALIB" pattern="^(yes)|(no)$" description="Use local instrument calibration directory instead of common one? Default is no." />
     <macro name="ADDRESS" pattern="^[0-9]+$" description="Address of the PSU; defaults to 0." />
