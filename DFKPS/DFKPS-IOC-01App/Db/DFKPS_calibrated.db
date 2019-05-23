@@ -15,7 +15,7 @@ record(calcout, "$(P)FIELD:PRECALIB"){
     # 
     # FACTOR_READ_I is not necessarily 1/FACTOR_WRITE_I
     # (but it might be in some cases)
-    field(CALC, "A*$(FACTOR_WRITE_I")
+    field(CALC, "A*$(FWI)")
 	field(FLNK, "$(P)FIELD:CALIB")
     field(EGU, "")
 }
