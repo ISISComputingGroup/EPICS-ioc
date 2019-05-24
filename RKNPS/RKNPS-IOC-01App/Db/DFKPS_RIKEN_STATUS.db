@@ -1,0 +1,276 @@
+
+record(longin, "$(P)_READILKS")
+{
+    field(DESC, "Read status flags")
+    field(DTYP, "stream")
+    field(INP,  "@dfkps_riken.proto status($(ADR),$(P)) $(port) 0")
+    field(SCAN, "5 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:_READILKS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(stringin, "$(P)SIM:_READILKS"){
+}
+
+#record(bi, "$(P)POWER")
+#{
+#    field(DESC, "Main power")
+#    field(ZNAM, "Off")
+#    field(ONAM, "On")
+#
+#    field(SIML, "$(P)SIM")
+#    field(SDIS, "$(P)DISABLE")
+#
+#    info(INTEREST, "HIGH")
+#    info(archive, "VAL")
+#}
+#
+#alias("$(P)POWER", "$(P)POWER:RBV")
+
+record(bi, "$(P)ILK:POLNORM")
+{
+    field(DESC, "Polarity normal")
+    field(ZNAM, "Normal")
+    field(ONAM, "Reversed")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:POLREV")
+{
+    field(DESC, "Polarity reversed")
+    field(ZNAM, "Reversed")
+    field(ONAM, "Normal")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:REGTRANSF")
+{
+    field(DESC, "Reg transformer * pwr")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:PERCENT")
+{
+    field(DESC, "Percent or decimal mode")
+    field(ZNAM, "Decimal")
+    field(ONAM, "Percent")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:TRANS")
+{
+    field(DESC, "Transistor fault interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK")
+{
+    field(DESC, "Overall Interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:DCOC")
+{
+    field(DESC, "DC overcurrent interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:DCOL")
+{
+    field(DESC, "DC overload interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:REGMOD")
+{
+    field(DESC, "Regulation mode fail")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:PREREG")
+{
+    field(DESC, "Preregulator interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:PHAS")
+{
+    field(DESC, "Phase failure interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MPSWATER")
+{
+    field(DESC, "MPS water flow interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:EARTHLEAK")
+{
+    field(DESC, "Earth leak interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:THERMAL")
+{
+    field(DESC, "Thermal breaker interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MPSTEMP")
+{
+    field(DESC, "MPS Over temperature")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:DOOR")
+{
+    field(DESC, "Panic button/door")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MAGWATER")
+{
+    field(DESC, "Magnet water interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MAGTEMP")
+{
+    field(DESC, "Magnet overtemp interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MPSREADY")
+{
+    field(DESC, "MPS not ready")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+
+    field(SIML, "$(P)SIM")
+    field(SDIS, "$(P)DISABLE")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
