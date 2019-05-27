@@ -40,7 +40,6 @@ $(APPNAME)_DBD += CAENMCA.dbd
 ## ISIS standard libraries ##
 ## Stream device libraries ##
 $(APPNAME)_LIBS += CAENMCASup
-$(APPNAME)_LIBS += CAENMCA
 $(APPNAME)_LIBS += asyn
 ## other standard libraries here ##
 $(APPNAME)_LIBS += devIocStats 
@@ -65,6 +64,12 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
+
+# under linux we make CAENMCA a sys lib, this is so we 
+# get passed a -Wl,dynamic flag in all builds and avoids us
+# needing to provide a static library for CAENMCA. 
+$(APPNAME)_LIBS_WIN32 += CAENMCA
+$(APPNAME)_SYS_LIBS_Linux += CAENMCA
 
 $(APPNAME)_SYS_LIBS_Linux += xml2
 
