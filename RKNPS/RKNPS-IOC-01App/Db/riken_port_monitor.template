@@ -1,0 +1,25 @@
+record(calcout, "$(P)$(MODE):CALC")
+{
+    field(DESC, "Calculate which port is selected")
+    field(INPA, "$(DAQMX)$(PORT)$(CHAN_A)DATA CP MS")
+    field(INPB, "$(DAQMX)$(PORT)$(CHAN_B)DATA CP MS")
+    field(CALC, "A+(2*B)")
+    field(OUT, "$(P)$(MODE) PP MS")
+    field(OOPT, "Every Time")
+}
+
+record(mbbi, "$(P)$(MODE)") 
+{
+    field(DESC, "Current mode")
+    field(ZRST, "$(ZRO_ST)")
+    field(ONST, "$(ONE_ST)")
+    field(TWST, "$(TWO_ST)")
+    field(THST, "$(THR_ST)")
+    field(ZRSV, "$(ZRO_ST_ALARM)")
+    field(ONSV, "$(ONE_ST_ALARM)")
+    field(TWSV, "$(TWO_ST_ALARM)")
+    field(THSV, "$(THR_ST_ALARM)")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
