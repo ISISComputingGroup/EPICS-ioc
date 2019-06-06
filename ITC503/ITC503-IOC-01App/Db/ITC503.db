@@ -248,7 +248,7 @@ record(mbbi, "$(P)CTRL") {
   field(ONST, "Remote only")
   field(TWST, "Local only")
   field(THST, "Local and remote")
-  field(TWSV, "MINOR")
+  field(TWSV, "MAJOR")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CTRL")
   field(SDIS, "$(P)DISABLE")
