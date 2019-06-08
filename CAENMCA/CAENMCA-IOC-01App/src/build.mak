@@ -69,8 +69,8 @@ $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 # get passed a -Wl,dynamic flag in all builds and avoids us
 # needing to provide a static library for CAENMCA. 
 $(APPNAME)_LIBS_WIN32 += CAENMCA
-$(APPNAME)_SYS_LIBS_Linux += CAENMCA
 
+$(APPNAME)_SYS_LIBS_Linux += CAENMCA CAENUtility
 $(APPNAME)_SYS_LIBS_Linux += xml2
 
 #===========================
