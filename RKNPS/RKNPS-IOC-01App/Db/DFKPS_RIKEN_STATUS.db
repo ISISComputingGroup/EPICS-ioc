@@ -11,6 +11,7 @@ record(longin, "$(P)_READILKS")
 }
 
 record(stringin, "$(P)SIM:_READILKS"){
+    field(LNK1, "$(P)POWER")  # protocol would process this is real system
 }
 
 #record(bi, "$(P)POWER")
