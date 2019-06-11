@@ -6,12 +6,12 @@ record(longin, "$(P)_READILKS")
     field(INP,  "@dfkps_riken.proto status($(ADR),$(P)) $(port) 0")
     field(SCAN, "5 second")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:_READILKS")
+    field(SIOL, "$(P)SIM:_READILKS PP")
     field(SDIS, "$(P)DISABLE")
 }
 
 record(stringin, "$(P)SIM:_READILKS"){
-    field(LNK1, "$(P)POWER")  # protocol would process this is real system
+    field(FLNK, "$(P)POWER")  # protocol would process this is real system
 }
 
 #record(bi, "$(P)POWER")
