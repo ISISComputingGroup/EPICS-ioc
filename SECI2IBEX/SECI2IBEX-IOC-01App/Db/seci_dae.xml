@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lvinput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://epics.isis.rl.ac.uk/lvDCOMinput/1.0" xsi:schemaLocation="http://epics.isis.rl.ac.uk/lvDCOMinput/1.0 lvDCOMinput.xsd">
+  <extint path="c:/labview modules/Common/External Interface/External Interface.llb/External Interface - Set Value.vi"/>
+  <section name="frontpanel">
+    <vi path="c:/labview modules/DAE/DAE Control.vi">
+      <param name="DAE_EventMode" type="float64">
+        <read method="GCV" target="EventMode"/>
+      </param>
+      <param name="DAE_CountRate" type="float64">
+        <read method="GCV" target="CountRate"/>
+      </param>
+      <param name="DAE_RBNumber" type="string">
+        <read method="GCV" target="RBNumber"/>
+      </param>
+      <param name="DAE_GoodFramesTotal" type="int32">
+        <read method="GCV" target="GoodFramesTotal"/>
+      </param>
+      <param name="DAE_RawFramesTotal" type="int32">
+        <read method="GCV" target="RawFramesTotal"/>
+      </param>
+      <param name="DAE_GoodFramesPeriod" type="int32">
+        <read method="GCV" target="GoodFramesPeriod"/>
+      </param>
+      <param name="DAE_RawFramesPeriod" type="int32">
+        <read method="GCV" target="RawFramesPeriod"/>
+      </param>
+      <param name="DAE_RunDurationTotal" type="int32">
+        <read method="GCV" target="RunDurationTotal"/>
+      </param>
+      <param name="DAE_RunDurationPeriod" type="int32">
+        <read method="GCV" target="RunDurationPeriod"/>
+      </param>
+      <param name="DAE_NumberOfTimeChannels" type="int32">
+        <read method="GCV" target="NumberOfTimeChannels"/>
+      </param>
+      <param name="DAE_TotalUAmps" type="float64">
+        <read method="GCV" target="TotalUAmps"/>
+      </param>
+      <param name="DAE_NumberOfPeriods" type="int32">
+        <read method="GCV" target="NumberOfPeriods"/>
+      </param>
+      <param name="DAE_CurrentPeriod" type="int32">
+        <read method="GCV" target="CurrentPeriod"/>
+      </param>
+      <param name="DAE_NumberOfSpectra" type="int32">
+        <read method="GCV" target="NumberOfSpectra"/>
+      </param>
+      <param name="DAE_MonitorSpectrum" type="int32">
+        <read method="GCV" target="MonitorSpectrum"/>
+      </param>
+      <param name="DAE_MonitorCounts" type="int32">
+        <read method="GCV" target="MonitorCounts"/>
+      </param>
+      <param name="DAE_TotalDAECounts" type="int32">
+        <read method="GCV" target="TotalDAECounts"/>
+      </param>
+      <param name="DAE_StartTime" type="string">
+        <read method="GCV" target="StartTime"/>
+      </param>
+      <param name="DAE_RunNumber" type="string">
+        <read method="GCV" target="RunNumber"/>
+      </param>
+      <param name="DAE_RunStatus" type="int32">
+        <read method="GCV" target="RunStatus"/>
+      </param>
+      <param name="DAE_RunTitle" type="string">
+        <read method="GCV" target="RunTitle"/>
+      </param>
+    </vi>
+  </section>
+</lvinput>

@@ -215,10 +215,22 @@ record(bi, "$(P)POWER")
     field(DESC, "Power")
     field(ZNAM, "Off")
     field(ONAM, "On")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POWER CP")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+	
 }
 alias("$(P)POWER", "$(P)POWER:RBV")
+
+record(bi, "$(P)SIM:POWER")
+{
+    field(DTYP, "Soft Channel")
+	field(DESC, "Power")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+alias("$(P)SIM:POWER", "$(P)SIM:POWER:SP")
 
 record(ao, "$(P)RAW:SP")
 {
@@ -229,6 +241,8 @@ record(ao, "$(P)RAW:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAW:SP")
     field(SDIS, "$(P)DISABLE")
+    field(DRVL, "0")
+    field(DRVH, "$(MAX_RAW_SETPOINT)")
     field(PINI, "$(SP_PINI)")
     info(autosaveFields, "VAL")
 }
@@ -246,7 +260,7 @@ field(DTYP, "stream")
 field(INP, "@dfkps_common.proto adc(8) $(port) 0")
 field(SCAN, "1 second")
 field(LOLO, "-999999.5")
-field(HIHI, "99999.5")
+field(HIHI, "999999.5")
 field(LLSV, "MAJOR")
 field(HHSV, "MAJOR")
 field(HOPR, "100000")

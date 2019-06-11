@@ -19,6 +19,7 @@ relPaths.sh
 .cproject
 *.tags
 *.tag
+*.log
 #/MK3CHOPR/Mk3Wrapper/bin/
 #/MK3CHOPR/Mk3Wrapper/obj/
 #/MK3CHOPR/iocBoot/
@@ -30,3 +31,4 @@ relPaths.sh
 NULL
 GALIL/iocBoot/**/*.gmc
 */**/TEST-TestPVUnits-*.xml
+.vs/*

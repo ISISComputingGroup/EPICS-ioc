@@ -1,0 +1,31 @@
+file "${LVDCOM}/db/lvDCOM_float64.template" {
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="EVENTMODEFRACTION",NOSET="#",RPARAM="DAE_EventMode",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="COUNTRATE",NOSET="#",RPARAM="DAE_CountRate",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="GOODUAH",NOSET="#",RPARAM="DAE_TotalUAmps",SPARAM= }
+
+file "${LVDCOM}/db/lvDCOM_int32.template" {
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="GOODFRAMES",NOSET="#",RPARAM="DAE_GoodFramesTotal",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="RAWFRAMES",NOSET="#",RPARAM="DAE_RawFramesTotal",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="GOODFRAMES_PD",NOSET="#",RPARAM="DAE_GoodFramesPeriod",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="RAWFRAMES_PD",NOSET="#",RPARAM="DAE_RawFramesPeriod",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="RUNDURATION",NOSET="#",RPARAM="DAE_RunDurationTotal",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="RUNDURATION_PD",NOSET="#",RPARAM="DAE_RunDurationPeriod",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="NUMTIMECHANNELS",NOSET="#",RPARAM="DAE_NumberOfTimeChannels",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="NUMPERIODS",NOSET="#",RPARAM="DAE_NumberOfPeriods",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="PERIOD",NOSET="#",RPARAM="DAE_CurrentPeriod",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="NUMSPECTRA",NOSET="#",RPARAM="DAE_NumberOfSpectra",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="MONITORSPECTRUM",NOSET="#",RPARAM="DAE_MonitorSpectrum",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="MONITORCOUNTS",NOSET="#",RPARAM="DAE_MonitorCounts",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="TOTALDAECOUNTS",NOSET="#",RPARAM="DAE_TotalDAECounts",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="RUNSTATE",NOSET="#",RPARAM="DAE_RunStatus",SPARAM= }
+}
+
+file "${LVDCOM}/db/lvDCOM_string.template" {
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="_RBNUMBER",NOSET="#",RPARAM="DAE_RBNumber",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="RUNNUMBER",NOSET="#",RPARAM="DAE_RunNumber",SPARAM= }
+    { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="STARTTIME",NOSET="#",RPARAM="DAE_StartTime",SPARAM= }
+}
+ 
+file "${LVDCOM}/db/lvDCOM_charwaveform.template" {
+ { P="\$(P)DAE:",PORT="lvdae",SCAN="5 second",PARAM="TITLE",NOSET="#",RPARAM="DAE_RunTitle",SPARAM=,NELM=256 }
+}

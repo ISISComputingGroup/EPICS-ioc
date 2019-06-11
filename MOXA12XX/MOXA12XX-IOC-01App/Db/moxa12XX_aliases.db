@@ -1,0 +1,14 @@
+# These aliases map the DI channels to user-prescribed channel names
+$(IFALIASED) alias("$(P):CH$(CHAN):$(FNCTN)", "$(P):$(CHANNAME)" )
+
+record(stringin, "$(P):CH$(CHAN):$(FNCTN):NAME") {
+$(IFNOTALIASED)  field(VAL, "CH$(CHAN):$(FNCTN)")
+$(IFALIASED) field(VAL, "$(CHANNAME)")
+
+}
+
+record(ai, "$(P):CH$(CHAN):$(FNCTN):STAT") {
+$(IFALIASED) field(VAL, "1")
+$(IFNOTALIASED) field(VAL, "0")
+
+}

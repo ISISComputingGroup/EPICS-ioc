@@ -4,10 +4,10 @@
 
 file $(UTILITIES)/db/unit_setter.template { 
   pattern 
-    {P,    FROM, TO}
+    {P,    FROM, TO, PROCESS_FLAGS}
     
-    {"\$(P)", "UNITS", "READING"}
-    {"\$(P)", "UNITS", "SP"}
-	{"\$(P)", "UNITS", "SP:RBV"}    
+    {"\$(P)", "UNITS", "READING", "PP"}
+    {"\$(P)", "UNITS", "SP", ""}
+	{"\$(P)", "UNITS", "SP:RBV", "PP"}    
 }
 

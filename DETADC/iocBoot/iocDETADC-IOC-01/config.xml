@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Detector ADC</ioc_desc>
+<macros>
+
+<macro name="ADDR_1" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address for the 1st ADC" />
+<macro name="ADDR_2" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address for the 2nd ADC" />
+<macro name="ADDR_3" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address for the 3rd ADC" />
+<macro name="ADDR_4" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address for the 4th ADC" />
+<macro name="ADDR_5" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address for the 5th ADC" />
+<macro name="ADDR_6" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address for the 6th ADC" />
+<macro name="ADDR_7" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address for the 7th ADC" />
+<macro name="ADDR_8" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address for the 8th ADC" />
+<macro name="ADDR_9" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address for the 9th ADC" />
+
+</macros>
+</config_part>
+</ioc_config>

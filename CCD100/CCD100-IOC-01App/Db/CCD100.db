@@ -29,7 +29,7 @@ record(ai, "$(P)READING")
 {
     field(DESC, "The reading of the input channel")
     field(DTYP, "stream")
-    field(INP,  "@devCCD100.proto getCurrentRead $(PORT)")
+    field(INP,  "@devCCD100.proto getCurrRead($(ADDR)) $(PORT)")
 	field(SCAN, "1 second")
 	field(PREC, "3")
 	field(EGU, "") #Set from device
@@ -38,13 +38,14 @@ record(ai, "$(P)READING")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:READING")
     field(SDIS, "$(P)DISABLE")
+	info(alarm, "CCD100")
 }
 
 record(ao, "$(P)SP")
 {
     field(DESC, "The setpoint for the input channel")
     field(DTYP, "stream")
-    field(OUT,  "@devCCD100.proto setSP $(PORT)")
+    field(OUT,  "@devCCD100.proto setSP($(ADDR)) $(PORT)")
 	field(PREC, "3")
 	field(EGU, "") #Set from device
 	info(INTEREST, "HIGH")
@@ -53,11 +54,13 @@ record(ao, "$(P)SP")
     field(SDIS, "$(P)DISABLE")
 }
 
+alias("$(P)SP", "$(P)READING:SP") # Alias rather than rename to keep backwards compatibility
+
 record(ai, "$(P)SP:RBV")
 {
     field(DESC, "The SP readback for the input channel")
     field(DTYP, "stream")
-    field(INP,  "@devCCD100.proto getSP $(PORT)")
+    field(INP,  "@devCCD100.proto getSP($(ADDR)) $(PORT)")
 	field(SCAN, "1 second")
 	field(PREC, "3")
 	field(EGU, "") #Set from device
@@ -67,12 +70,14 @@ record(ai, "$(P)SP:RBV")
     field(SDIS, "$(P)DISABLE")
 }
 
+alias("$(P)SP:RBV", "$(P)READING:SP:RBV") # Alias rather than rename to keep backwards compatibility
+
 record(stringin, "$(P)UNITS") 
 {
     field(DESC, "Units of reading and SP")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@devCCD100.proto getUnits $(PORT)")
+    field(INP,  "@devCCD100.proto getUnits($(ADDR)) $(PORT)")
 	info(archive, "VAL")
 	info(INTEREST, "HIGH")
     field(SIML, "$(P)SIM")
@@ -84,7 +89,7 @@ record(stringout, "$(P)UNITS:SP")
 {
     field(DTYP, "stream")
     field(DESC, "Units of reading and SP")
-    field(OUT,  "@devCCD100.proto setUnits $(PORT)")
+    field(OUT,  "@devCCD100.proto setUnits($(ADDR)) $(PORT)")
 	info(archive, "VAL")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:UNITS:SP")

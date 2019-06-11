@@ -1,5 +1,4 @@
 include "base.dbd"
-include "devSequencer.dbd"
 include "asyn.dbd"
 include "icpconfig.dbd"
 include "pvdump.dbd"

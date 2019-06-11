@@ -3,230 +3,231 @@
 
 record(waveform, "$(P)RAMP_DIRBASE:SP")
 {
-   field(DESC, "Set directory of ramp files")
-   field(DTYP, "asynOctetWrite")
-   field(PINI, "NO")
-   field(INP, "@asyn($(RAMPLIST),0,1)DIRBASE")
-   field(FTVL, "CHAR")
-   field(NELM, 256)
+    field(DESC, "Set directory of ramp files")
+    field(DTYP, "asynOctetWrite")
+    field(PINI, "NO")
+    field(INP, "@asyn($(RAMPLIST),0,1)DIRBASE")
+    field(FTVL, "CHAR")
+    field(NELM, 256)
 }
 
 record(waveform, "$(P)RAMP_DIRBASE")
 {
-   field(DESC, "Get directory of ramp files")
-   field(DTYP, "asynOctetRead")
-   field(INP, "@asyn($(RAMPLIST),0,1)DIRBASE")
-   field(SCAN, "I/O Intr")
-   field(FTVL, "CHAR")
-   field(NELM, 256)
+    field(DESC, "Get directory of ramp files")
+    field(DTYP, "asynOctetRead")
+    field(INP, "@asyn($(RAMPLIST),0,1)DIRBASE")
+    field(SCAN, "I/O Intr")
+    field(FTVL, "CHAR")
+    field(NELM, 256)
 }
 
 record(waveform, "$(P)RAMP_FILES")
 {
-	field(DESC, "Compressed JSON list of ramp files")
-	field(FTVL, "CHAR")
-	field(DTYP, "asynOctetRead")
-    field(INP, "@asyn($(RAMPLIST),0,1)JARR")	
-	field(NELM, 16384)
-	field(SCAN, "I/O Intr")
+    field(DESC, "Compressed JSON list of ramp files")
+    field(FTVL, "CHAR")
+    field(DTYP, "asynOctetRead")
+    field(INP, "@asyn($(RAMPLIST),0,1)JARR")
+    field(NELM, 16384)
+    field(SCAN, "I/O Intr")
 }
 
 record(waveform, "$(P)RAMP_PATTERN:SP")
 {
-   field(DESC, "Set regex search of ramp files")  
-   field(DTYP, "asynOctetWrite")
-   field(INP, "@asyn($(RAMPLIST),0,1)SEARCH")
-   field(PINI, "NO")
-   field(FTVL, "CHAR")
-   field(NELM, 256)
+    field(DESC, "Set regex search of ramp files")
+    field(DTYP, "asynOctetWrite")
+    field(INP, "@asyn($(RAMPLIST),0,1)SEARCH")
+    field(PINI, "NO")
+    field(FTVL, "CHAR")
+    field(NELM, 256)
 }
 record(waveform, "$(P)RAMP_PATTERN")
 {
-   field(DESC, "Get regex search of ramp files")
-   field(DTYP, "asynOctetRead")
-   field(INP, "@asyn($(RAMPLIST),0,1)SEARCH")
-   field(PINI, "NO")
-   field(SCAN, "I/O Intr")
-   field(FTVL, "CHAR")
-   field(NELM, 256)
+    field(DESC, "Get regex search of ramp files")
+    field(DTYP, "asynOctetRead")
+    field(INP, "@asyn($(RAMPLIST),0,1)SEARCH")
+    field(PINI, "NO")
+    field(SCAN, "I/O Intr")
+    field(FTVL, "CHAR")
+    field(NELM, 256)
 }
 
 #ReadASCII
 ###################
 record(waveform, "$(P)READ_RAMP_DIRBASE:SP")
 {
-   field(DTYP, "asynOctetWrite")
-   field(INP, "@asyn($(READ),0,1)DIRBASE")
-   field(PINI, "NO")
-   field(FTVL, "CHAR")
-   field(NELM, 256)
-   
+    field(DTYP, "asynOctetWrite")
+    field(INP, "@asyn($(READ),0,1)DIRBASE")
+    field(PINI, "NO")
+    field(FTVL, "CHAR")
+    field(NELM, 256)
+
 }
 
 record(waveform, "$(P)READ_RAMP_DIRBASE")
 {
-   field(DTYP, "asynOctetRead")
-   field(INP, "@asyn($(READ),0,1)DIRBASE")
-   field(PINI, "YES")
-   field(FTVL, "CHAR")
-   field(NELM, 256)
-   field(SCAN, "I/O Intr")
+    field(DTYP, "asynOctetRead")
+    field(INP, "@asyn($(READ),0,1)DIRBASE")
+    field(PINI, "YES")
+    field(FTVL, "CHAR")
+    field(NELM, 256)
+    field(SCAN, "I/O Intr")
 }
 
 record(stringin, "$(P)RAMP_FILE")
 {
-   field(DTYP, "asynOctetRead")
-   field(INP,  "@asyn($(READ),0,1)DIR")
-   field(SCAN, "I/O Intr")
+    field(DTYP, "asynOctetRead")
+    field(INP,  "@asyn($(READ),0,1)DIR")
+    field(SCAN, "I/O Intr")
 }
 
 record(stringout, "$(P)RAMP_FILE:SP")
 {
-   field(DTYP, "asynOctetWrite")
-   field(OUT,  "@asyn($(READ),0,1)DIR")
-   field(SCAN, "I/O Intr")
+    field(DTYP, "asynOctetWrite")
+    field(OUT,  "@asyn($(READ),0,1)DIR")
+    field(SCAN, "I/O Intr")
 }
 
 # This set point is passed to the ReadASCII ramp, which decides what value to pass on to the device.
 record(ao, "$(P)TEMP:SP")
 {
-   field(DESC, "Temperature setpoint")
-   field(DTYP, "asynFloat64")
-   field(OUT, "@asyn($(READ),0,1)TGT")
-   # I/O intr FLNK won't process until we trigger PROC via CA
-   field(FLNK, "$(P)OUT_SP.PROC CA")
-   field(EGU, "K")
-   info(INTEREST, "HIGH")
-   info(archive, "VAL")
+    field(DESC, "Temperature setpoint")
+    field(DTYP, "asynFloat64")
+    field(OUT, "@asyn($(READ),0,1)TGT")
+# I/O intr FLNK won't process until we trigger PROC via CA
+    field(FLNK, "$(P)OUT_SP.PROC CA")
+    field(EGU, "K")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 # This set point is read back from the ReadASCII ramp to say where it is ramping to
 record(ao, "$(P)TEMP:SP:RBV")
 {
-   field(DESC, "Temperature setpoint readback")
-   field(DTYP, "asynFloat64")
-   field(OUT, "@asyn($(READ),0,1)TGT:RBV")
-   field(EGU, "K")
-   info(INTEREST, "MEDIUM")
-   info(archive, "VAL")
+    field(DESC, "Temperature setpoint readback")
+    field(DTYP, "asynFloat64")
+    field(OUT, "@asyn($(READ),0,1)TGT:RBV")
+    field(EGU, "K")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)RATE:SP")
 {
-   field(DESC, "Rate the ramp increases/decreases")
-   field(DTYP, "asynFloat64")
-   field(OUT, "@asyn($(READ),0,1)RATE")
-   field(EGU, "K/min")
-   info(INTEREST, "MEDIUM")
+    field(DESC, "Rate the ramp increases/decreases")
+    field(DTYP, "asynFloat64")
+    field(OUT, "@asyn($(READ),0,1)RATE")
+    field(EGU, "K/min")
+    info(INTEREST, "MEDIUM")
 }
 
 record(ai, "$(P)RATE")
 {
-   field(DESC, "Rate the ramp increases/decreases")
-   field(DTYP, "asynFloat64")
-   field(INP, "@asyn($(READ),0,1)RATE")
-   field(EGU, "K/min")
-   field(SCAN, "I/O Intr")
-   info(INTEREST, "MEDIUM")
+    field(DESC, "Rate the ramp increases/decreases")
+    field(DTYP, "asynFloat64")
+    field(INP, "@asyn($(READ),0,1)RATE")
+    field(EGU, "K/min")
+    field(SCAN, "I/O Intr")
+	field(PREC, "2")
+    info(INTEREST, "HIGH")
 }
 
 record(bi, "$(P)RAMPING")
 {
-   field(DESC, "High if ramp is executing")
-   field(DTYP, "asynInt32")
-   field(INP,  "@asyn($(READ),0,1)CURRMP")
-   field(SCAN, "I/O Intr")   
+    field(DESC, "High if ramp is executing")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(READ),0,1)CURRMP")
+    field(SCAN, "I/O Intr")
 }
 
 # This is the value that is being sent to the ReadASCII ramp to tell it at what temperature we currently are
 record(ao, "$(P)CURRENT_TEMP")
 {
     field(DESC, "The current temperature of the sensor")
-	field(DOL, "$(P)TEMP")
-	field(OMSL, "closed_loop")
-	field(DTYP, "asynFloat64")
-	field(OUT, "@asyn($(READ),0,1)CUR")
-	field(EGU, "K")
+    field(DOL, "$(P)TEMP")
+    field(OMSL, "closed_loop")
+    field(DTYP, "asynFloat64")
+    field(OUT, "@asyn($(READ),0,1)CUR")
+    field(EGU, "K")
 }
 
 record(bo, "$(P)RAMPON:SP")
 {
-   field(DESC, "Toggles the SP ramp")
-   field(DTYP, "asynInt32")
-   field(OUT,  "@asyn($(READ),0,1)RMP")
-   field(ZNAM, "OFF")
-   field(ONAM, "ON")
+    field(DESC, "Toggles the SP ramp")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(READ),0,1)RMP")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
 }
 
 record(bi, "$(P)RAMPON")
 {
-   field(DESC, "Toggles the SP ramp")
-   field(DTYP, "asynInt32")
-   field(INP,  "@asyn($(READ),0,1)RMP")
-   field(SCAN, "I/O Intr")
-   field(ZNAM, "OFF")
-   field(ONAM, "ON")
+    field(DESC, "Toggles the SP ramp")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(READ),0,1)RMP")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
 }
 
 record(bo, "$(P)LUTON:SP")
 {
-   field(DESC, "Toggles the PID lookup")
-   field(DTYP, "asynInt32")
-   field(OUT,  "@asyn($(READ),0,1)LUT")
+    field(DESC, "Toggles the PID lookup")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(READ),0,1)LUT")
 }
 
 record(bi, "$(P)LUTON")
 {
-   field(DESC, "Toggles the PID lookup")
-   field(DTYP, "asynInt32")
-   field(INP,  "@asyn($(READ),0,1)LUT")
-   field(SCAN, "I/O Intr")
+    field(DESC, "Toggles the PID lookup")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(READ),0,1)LUT")
+    field(SCAN, "I/O Intr")
 }
 
 record(ai, "$(P)OUT_SP")
 {
-   field(DTYP, "asynFloat64")
-   field(INP,  "@asyn($(READ),0,1)SP")
-   field(PREC, "5")
-   field(SCAN, "I/O Intr")
-   field(FLNK, "$(P)RAMP_SP.PROC PP")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(READ),0,1)SP")
+    field(PREC, "5")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P)RAMP_SP.PROC PP")
 }
 
 record(ai, "$(P)OUT_P")
 {
-   field(DTYP, "asynFloat64")
-   field(INP,  "@asyn($(READ),0,1)P")
-   field(PREC, "5")
-   field(SCAN, "I/O Intr")
-   field(FLNK, "$(P)RAMP_P")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(READ),0,1)P")
+    field(PREC, "5")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P)RAMP_P")
 }
 
 record(ai, "$(P)OUT_I")
 {
-   field(DTYP, "asynFloat64")
-   field(INP,  "@asyn($(READ),0,1)I")
-   field(PREC, "5")
-   field(SCAN, "I/O Intr")
-   field(FLNK, "$(P)RAMP_I")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(READ),0,1)I")
+    field(PREC, "5")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P)RAMP_I")
 }
 
 record(ai, "$(P)OUT_D")
 {
-   field(DTYP, "asynFloat64")
-   field(INP,  "@asyn($(READ),0,1)D")
-   field(PREC, "5")
-   field(SCAN, "I/O Intr")
-   field(FLNK, "$(P)RAMP_D")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(READ),0,1)D")
+    field(PREC, "5")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P)RAMP_D")
 }
 
 record(ai, "$(P)OUT_MAX")
 {
-   field(DTYP, "asynFloat64")
-   field(INP,  "@asyn($(READ),0,1)MH")
-   field(PREC, "5")
-   field(SCAN, "I/O Intr")
-   field(FLNK, "$(P)RAMP_MAXOUT")
-  }
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(READ),0,1)MH")
+    field(PREC, "5")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P)RAMP_MAXOUT")
+}
 
 ###########
 # Cache & disable ramp when sensor disconnected
@@ -240,71 +241,71 @@ record(ai, "$(P)NO_SENSOR_VALUE")
 
 record(calcout, "$(P)SENSOR_CONNECTED")
 {
-   field(DESC, "Check if temp sensor reconnected")
-   field(INPA, "$(P)RBV CP")
-   field(INPB, "$(P)NO_SENSOR_VALUE")
-   field(CALC, "A = B")
-   field(OOPT, "Transition To Zero")
-   field(OUT, "$(P)RAMPON:ENABLE PP")
-   info(archive, "VAL")
+    field(DESC, "Check if temp sensor reconnected")
+    field(INPA, "$(P)RBV CP")
+    field(INPB, "$(P)NO_SENSOR_VALUE")
+    field(CALC, "A = B")
+    field(OOPT, "Transition To Zero")
+    field(OUT, "$(P)RAMPON:ENABLE PP")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)RAMPON:ENABLE")
 {
-   field(DESC, "Enables Ramp setting control")
-   field(OUT,  "$(P)RAMPON:SP.DISP PP")
-   field(SCAN, "Passive")   
-   field(FLNK, "$(P)RAMPON:RETRIEVE")
+    field(DESC, "Enables Ramp setting control")
+    field(OUT,  "$(P)RAMPON:SP.DISP PP")
+    field(SCAN, "Passive")
+    field(FLNK, "$(P)RAMPON:RETRIEVE")
 }
 
 record(calcout, "$(P)RAMPON:RETRIEVE")
 {
-   # As calcout to add delay
-   field(DESC, "Retrieve and set ramp setting")
-   field(ODLY, "1")
-   field(INPA, "$(P)RAMPON:CACHE")
-   field(CALC, "A")
-   field(OUT, "$(P)RAMPON:SP PP")
+# As calcout to add delay
+    field(DESC, "Retrieve and set ramp setting")
+    field(ODLY, "1")
+    field(INPA, "$(P)RAMPON:CACHE")
+    field(CALC, "A")
+    field(OUT, "$(P)RAMPON:SP PP")
 }
 
 record(calcout, "$(P)SENSOR_DISCONNECTED")
 {
-   field(DESC, "Check temp sensor is disconnected")
-   field(INPA, "$(P)RBV CP")
-   field(INPB, "$(P)NO_SENSOR_VALUE")
-   field(CALC, "A = B")
-   field(OOPT, "Transition To Non-zero")
-   field(OUT, "$(P)RAMPON:CACHE.PROC PP")
-   info(archive, "VAL")
+    field(DESC, "Check temp sensor is disconnected")
+    field(INPA, "$(P)RBV CP")
+    field(INPB, "$(P)NO_SENSOR_VALUE")
+    field(CALC, "A = B")
+    field(OOPT, "Transition To Non-zero")
+    field(OUT, "$(P)RAMPON:CACHE.PROC PP")
+    info(archive, "VAL")
 }
 
 record(bi, "$(P)RAMPON:CACHE")
 {
-   field(DESC, "Caches the current Ramp setting")
-   field(DTYP, "Soft Channel")
-   field(INP,  "$(P)RAMPON")
-   field(SCAN, "Passive")
-   field(ZNAM, "OFF")
-   field(ONAM, "ON")
-   field(FLNK, "$(P)RAMPON:CLEAR")
+    field(DESC, "Caches the current Ramp setting")
+    field(DTYP, "Soft Channel")
+    field(INP,  "$(P)RAMPON")
+    field(SCAN, "Passive")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(FLNK, "$(P)RAMPON:CLEAR")
 }
 
 record(bo, "$(P)RAMPON:CLEAR")
 {
-   field(VAL, 0)
-   field(DESC, "Clears the current Ramp setting")
-   field(DTYP, "Soft Channel")
-   field(OUT,  "$(P)RAMPON:SP PP")
-   field(SCAN, "Passive")
-   field(FLNK, "$(P)RAMPON:DISABLE")
+    field(VAL, 0)
+    field(DESC, "Clears the current Ramp setting")
+    field(DTYP, "Soft Channel")
+    field(OUT,  "$(P)RAMPON:SP PP")
+    field(SCAN, "Passive")
+    field(FLNK, "$(P)RAMPON:DISABLE")
 }
 
 record(bo, "$(P)RAMPON:DISABLE")
 {
-   field(VAL, 1)
-   field(DESC, "Disables ramp setting control")
-   field(OUT,  "$(P)RAMPON:SP.DISP PP")
-   field(SCAN, "Passive")   
+    field(VAL, 1)
+    field(DESC, "Disables ramp setting control")
+    field(OUT,  "$(P)RAMPON:SP.DISP PP")
+    field(SCAN, "Passive")
 }
 
 ###########
@@ -313,46 +314,46 @@ record(bo, "$(P)RAMPON:DISABLE")
 record(ao, "$(P)RAMP_SP")
 {
     field(DTYP, "Soft Channel")
-	field(DOL, "$(P)OUT_SP")
-	field(FLNK, "$(P)TEMP:SP:CONV.PROC PP")	
-	field(OMSL, "closed_loop")
-	field(OIF, "Full")
+    field(DOL, "$(P)OUT_SP")
+    field(FLNK, "$(P)TEMP:SP:CONV.PROC PP")
+    field(OMSL, "closed_loop")
+    field(OIF, "Full")
 }
 
 record(ao, "$(P)RAMP_P")
 {
     field(DTYP, "Soft Channel")
-	field(DOL, "$(P)OUT_P")
-	field(OMSL, "closed_loop")
-	field(OIF, "Full")
-	field(OUT, "$(P)P:SP PP")
+    field(DOL, "$(P)OUT_P")
+    field(OMSL, "closed_loop")
+    field(OIF, "Full")
+    field(OUT, "$(P)P:SP PP")
 }
 
 record(ao, "$(P)RAMP_I")
 {
     field(DTYP, "Soft Channel")
-	field(DOL, "$(P)OUT_I")
-	field(OMSL, "closed_loop")
-	field(OIF, "Full")
-	field(OUT, "$(P)I:SP PP")
+    field(DOL, "$(P)OUT_I")
+    field(OMSL, "closed_loop")
+    field(OIF, "Full")
+    field(OUT, "$(P)I:SP PP")
 }
 
 record(ao, "$(P)RAMP_D")
 {
     field(DTYP, "Soft Channel")
-	field(DOL, "$(P)OUT_D")
-	field(OMSL, "closed_loop")
-	field(OIF, "Full")
-	field(OUT, "$(P)D:SP PP")
+    field(DOL, "$(P)OUT_D")
+    field(OMSL, "closed_loop")
+    field(OIF, "Full")
+    field(OUT, "$(P)D:SP PP")
 }
 
 record(ao, "$(P)RAMP_MAXOUT")
 {
     field(DTYP, "Soft Channel")
-	field(DOL, "$(P)OUT_MAX")
-	field(OMSL, "closed_loop")
-	field(OIF, "Full")
-	field(OUT, "$(P)MAX_OUTPUT:SP PP")
+    field(DOL, "$(P)OUT_MAX")
+    field(OMSL, "closed_loop")
+    field(OIF, "Full")
+    field(OUT, "$(P)MAX_OUTPUT:SP PP")
 }
 
 ##################
@@ -361,101 +362,101 @@ record(ao, "$(P)RAMP_MAXOUT")
 
 record(seq, "$(P)READ") {
 
-	field(SCAN, "Passive")
-	field(DO1, "1")
-	field(DO2, "1")
-	field(DO3, "1")
-	field(DO4, "1")
-	field(DO5, "1")
-	field(DO6, "1")
-	field(DO7, "1")
-	field(DO8, "1")
-	
-	field(DLY1, "$(TREAD)")
-	field(DLY2, "$(TREAD)")
-	field(DLY3, "$(TREAD)")
-	field(DLY4, "$(TREAD)")
-	field(DLY5, "$(TREAD)")
-	field(DLY6, "$(TREAD)")
-	field(DLY7, "$(TREAD)")
-	field(DLY8, "$(TREAD)")
-	
-	field(LNK1, "$(P)READ_FAST.PROC")
-	field(LNK2, "$(P)READ_SLOW1.PROC")
-	field(LNK3, "$(P)READ_FAST.PROC")
-	field(LNK4, "$(P)READ_SLOW2.PROC")
-	field(LNK5, "$(P)READ_FAST.PROC")
-	field(LNK6, "$(P)READ_SLOW3.PROC")
-	field(LNK7, "$(P)READ_FAST.PROC")
-	field(LNK8, "$(P)READ_SLOW4.PROC")
-	
-	field(SELM, "All")
+    field(SCAN, "Passive")
+    field(DO1, "1")
+    field(DO2, "1")
+    field(DO3, "1")
+    field(DO4, "1")
+    field(DO5, "1")
+    field(DO6, "1")
+    field(DO7, "1")
+    field(DO8, "1")
+
+    field(DLY1, "$(TREAD)")
+    field(DLY2, "$(TREAD)")
+    field(DLY3, "$(TREAD)")
+    field(DLY4, "$(TREAD)")
+    field(DLY5, "$(TREAD)")
+    field(DLY6, "$(TREAD)")
+    field(DLY7, "$(TREAD)")
+    field(DLY8, "$(TREAD)")
+
+    field(LNK1, "$(P)READ_FAST.PROC")
+    field(LNK2, "$(P)READ_SLOW1.PROC")
+    field(LNK3, "$(P)READ_FAST.PROC")
+    field(LNK4, "$(P)READ_SLOW2.PROC")
+    field(LNK5, "$(P)READ_FAST.PROC")
+    field(LNK6, "$(P)READ_SLOW3.PROC")
+    field(LNK7, "$(P)READ_FAST.PROC")
+    field(LNK8, "$(P)READ_SLOW4.PROC")
+
+    field(SELM, "All")
 }
 
 record(seq, "$(P)READ_RESTART"){
-	field(SCAN, "1 second")
-	field(LNK1, "$(P)READ.PROC")
+    field(SCAN, "1 second")
+    field(LNK1, "$(P)READ.PROC")
 }
 
 record(seq, "$(P)READ_FAST") {
-	field(SCAN, "Passive")
-	field(DO1, "1")
-	field(DO2, "1")
-	field(DLY1, "$(TDLY)")
-	field(DLY2, "$(TDLY)")
-	field(SELM, "All")
-	field(LNK1, "$(P)RBV.PROC")
-	field(LNK2, "$(P)OUTPUT.PROC")
+    field(SCAN, "Passive")
+    field(DO1, "1")
+    field(DO2, "1")
+    field(DLY1, "$(TDLY)")
+    field(DLY2, "$(TDLY)")
+    field(SELM, "All")
+    field(LNK1, "$(P)RBV.PROC")
+    field(LNK2, "$(P)OUTPUT.PROC")
 }
 
 record(seq, "$(P)READ_SLOW1") {
-	field(SCAN, "Passive")
-	field(DO1, "1")
-	field(DO2, "1")	
-	field(DLY1, "$(TDLY)")
-	field(DLY2, "$(TDLY)")
-	field(SELM, "All")
-	field(LNK1, "$(P)TEMP:HIGHLIMIT.PROC")	
-	field(LNK2, "$(P)TEMP:LOWLIMIT.PROC")		
+    field(SCAN, "Passive")
+    field(DO1, "1")
+    field(DO2, "1")
+    field(DLY1, "$(TDLY)")
+    field(DLY2, "$(TDLY)")
+    field(SELM, "All")
+    field(LNK1, "$(P)TEMP:HIGHLIMIT.PROC")
+    field(LNK2, "$(P)TEMP:LOWLIMIT.PROC")
 }
 
 record(seq, "$(P)READ_SLOW2") {
-	field(SCAN, "Passive")
-	field(DO1, "1")
-	field(DO2, "1")
-	field(DO3, "1")
-	field(DLY1, "$(TDLY)")
-	field(DLY2, "$(TDLY)")
-	field(DLY3, "$(TDLY)")
-	field(SELM, "All")	
-	field(LNK1, "$(P)CAL:SEL:RBV.PROC")
-	field(LNK2, "$(P)SP:RBV.PROC")
-	field(LNK3, "$(P)CAL:RBV.PROC")	
+    field(SCAN, "Passive")
+    field(DO1, "1")
+    field(DO2, "1")
+    field(DO3, "1")
+    field(DLY1, "$(TDLY)")
+    field(DLY2, "$(TDLY)")
+    field(DLY3, "$(TDLY)")
+    field(SELM, "All")
+    field(LNK1, "$(P)CAL:SEL:RBV.PROC")
+    field(LNK2, "$(P)SP:RBV.PROC")
+    field(LNK3, "$(P)CAL:RBV.PROC")
 }
 
 record(seq, "$(P)READ_SLOW3") {
-	field(SCAN, "Passive")
-	field(DO1, "1")
-	field(DO2, "1")
-	field(DLY1, "$(TDLY)")
-	field(DLY2, "$(TDLY)")
-	field(SELM, "All")
-	field(LNK1, "$(P)MAX_OUTPUT.PROC")
-	field(LNK2, "$(P)AUTOTUNE.PROC")
+    field(SCAN, "Passive")
+    field(DO1, "1")
+    field(DO2, "1")
+    field(DLY1, "$(TDLY)")
+    field(DLY2, "$(TDLY)")
+    field(SELM, "All")
+    field(LNK1, "$(P)MAX_OUTPUT.PROC")
+    field(LNK2, "$(P)AUTOTUNE.PROC")
 }
 
 record(seq, "$(P)READ_SLOW4") {
-	field(SCAN, "Passive")
-	field(DO1, "1")
-	field(DO2, "1")	
-	field(DO3, "1")	
-	field(DLY1, "$(TDLY)")
-	field(DLY2, "$(TDLY)")	
-	field(DLY3, "$(TDLY)")
-	field(SELM, "All")
-	field(LNK1, "$(P)P.PROC")	
-	field(LNK2, "$(P)I.PROC")	
-	field(LNK3, "$(P)D.PROC")		
+    field(SCAN, "Passive")
+    field(DO1, "1")
+    field(DO2, "1")
+    field(DO3, "1")
+    field(DLY1, "$(TDLY)")
+    field(DLY2, "$(TDLY)")
+    field(DLY3, "$(TDLY)")
+    field(SELM, "All")
+    field(LNK1, "$(P)P.PROC")
+    field(LNK2, "$(P)I.PROC")
+    field(LNK3, "$(P)D.PROC")
 }
 
 ####
@@ -483,7 +484,7 @@ record(longin, "$(P)LAD") {
 
 record(ai, "$(P)OUTPUT") {
     info(INTEREST, "MEDIUM")
-    field(DESC, "Output Readback")
+    field(DESC, "Heater output Readback")
     field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@eurotherm2k.proto read($(P),OP,$(GAD),$(LAD)) $(PORT)")
@@ -496,7 +497,7 @@ record(ai, "$(P)OUTPUT") {
 
 record(ai, "$(P)MAX_OUTPUT") {
     field(DESC, "Max Output Readback")
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@eurotherm2k.proto read($(P),HO,$(GAD),$(LAD)) $(PORT)")
     field(EGU, "%")
@@ -516,7 +517,7 @@ record(ao, "$(P)MAX_OUTPUT:SP") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:MAX_OUTPUT:SP")
     field(SDIS, "$(Q)DISABLE")
-	field(FLNK, "$(P)MAX_OUTPUT.PROC PP")
+    field(FLNK, "$(P)MAX_OUTPUT.PROC PP")
     info(archive, "VAL")
 }
 
@@ -537,14 +538,14 @@ record(mbbi, "$(P)ERR_READ") {
     field(EIVL, "8")
     field(EIST, "Limit Error")
     field(PINI, "YES")
-	field(FLNK, "$(P)ERR_READ_PUSH")
+    field(FLNK, "$(P)ERR_READ_PUSH")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:ERR")
     field(SDIS, "$(Q)DISABLE")
     info(archive, "VAL")
 }
 
-# This error record is usually written to by an error that happens during writing to the device 
+# This error record is usually written to by an error that happens during writing to the device
 # However when err_read is processed this also write to here.
 record(mbbi, "$(P)ERR") {
     field(DESC, "Last error message")
@@ -565,21 +566,21 @@ record(mbbi, "$(P)ERR") {
 
 record(mbbo, "$(P)ERR_READ_PUSH") {
     field(DESC, "Push error from device to error record")
-	field(DOL, "$(P)ERR_READ")
-	field(OUT, "$(P)ERR")
-	field(OMSL, "closed_loop")
+    field(DOL, "$(P)ERR_READ")
+    field(OUT, "$(P)ERR")
+    field(OMSL, "closed_loop")
 }
 
 record(ai, "$(P)P") {
     info(INTEREST, "MEDIUM")
     field(DESC, "P Param Readback")
-	field(SCAN, "Passive")		
+    field(SCAN, "Passive")
     field(DTYP, "stream")
-    field(INP, "@eurotherm2k.proto read($(P),XP,$(GAD),$(LAD)) $(PORT)")	
+    field(INP, "@eurotherm2k.proto read($(P),XP,$(GAD),$(LAD)) $(PORT)")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:P")
     field(SDIS, "$(Q)DISABLE")
-	field(EGU, "")
+    field(EGU, "")
     field(PREC, "3")
     info(archive, "VAL")
 }
@@ -591,7 +592,7 @@ record(ao, "$(P)P:SP") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:P:SP")
     field(SDIS, "$(Q)DISABLE")
-	field(FLNK, "$(P)P.PROC")
+    field(FLNK, "$(P)P.PROC")
 }
 
 alias("$(P)P", "$(P)P:SP:RBV")
@@ -599,13 +600,13 @@ alias("$(P)P", "$(P)P:SP:RBV")
 record(ai, "$(P)I") {
     info(INTEREST, "MEDIUM")
     field(DESC, "I Param Readback")
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@eurotherm2k.proto read($(P),TI,$(GAD),$(LAD)) $(PORT)")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:I")
     field(SDIS, "$(Q)DISABLE")
-	field(EGU, "")
+    field(EGU, "")
     field(PREC, "3")
     info(archive, "VAL")
 }
@@ -617,21 +618,21 @@ record(ao, "$(P)I:SP") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:I:SP")
     field(SDIS, "$(Q)DISABLE")
-	field(FLNK, "$(P)I.PROC")
+    field(FLNK, "$(P)I.PROC")
 }
 
 alias("$(P)I", "$(P)I:SP:RBV")
 
 record(ai, "$(P)D") {
     info(INTEREST, "MEDIUM")
-	field(DESC, "D Param Readback")
-	field(SCAN, "Passive")
+    field(DESC, "D Param Readback")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@eurotherm2k.proto read($(P),TD,$(GAD),$(LAD)) $(PORT)")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:D")
     field(SDIS, "$(Q)DISABLE")
-	field(EGU, "")
+    field(EGU, "")
     field(PREC, "3")
     info(archive, "VAL")
 }
@@ -643,7 +644,7 @@ record(ao, "$(P)D:SP") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:D:SP")
     field(SDIS, "$(Q)DISABLE")
-	field(FLNK, "$(P)D.PROC")
+    field(FLNK, "$(P)D.PROC")
 }
 
 alias("$(P)D", "$(P)D:SP:RBV")
@@ -657,7 +658,7 @@ record(ai, "$(P)AUTOTUNE") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:AUTOTUNE")
     field(SDIS, "$(Q)DISABLE")
-	field(EGU, "")
+    field(EGU, "")
 }
 
 record(ao, "$(P)AUTOTUNE:SP") {
@@ -667,8 +668,8 @@ record(ao, "$(P)AUTOTUNE:SP") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:AUTOTUNE:SP")
     field(SDIS, "$(Q)DISABLE")
-	field(FLNK, "$(P)AUTOTUNE.PROC")
-	field(EGU, "")
+    field(FLNK, "$(P)AUTOTUNE.PROC")
+    field(EGU, "")
 }
 
 alias("$(P)AUTOTUNE", "$(P)AUTOTUNE:SP:RBV")
@@ -677,9 +678,9 @@ record(stringin, "$(P)CAL:SEL:RBV") {
     info(INTEREST, "MEDIUM")
     field(DESC, "Calibration file")
     field(DTYP, "Soft Channel")
-	field(INP, "$(P)TEMP.NSPE MS")
-	field(PINI, "YES")
-	field(SCAN, "Passive")
+    field(INP, "$(P)TEMP.NSPE MS")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
     info(archive, "VAL")
 }
 
@@ -687,86 +688,93 @@ record(stringin, "$(P)CAL:RBV")
 {
     field(DESC, "Current Calibration file")
     field(DTYP, "Soft Channel")
-	field(INP, "$(P)TEMP.SPEC MS")
-	field(PINI, "YES")
-	field(SCAN, "Passive")
+    field(INP, "$(P)TEMP.SPEC MS")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
     info(archive, "VAL")
 }
 
 record(bi, "$(P)CAL:APPLY")
 {
     field(DTYP, "Soft Channel")
-	field(ZNAM, "WAIT")
+    field(ZNAM, "WAIT")
     field(ONAM, "APPLY")
-	field(VAL, "0")
-	field(FLNK, "$(P)CAL:APPLY:UPDATE.PROC")
+    field(VAL, "0")
+    field(FLNK, "$(P)CAL:APPLY:UPDATE.PROC")
 }
 
 record(bo, "$(P)CAL:APPLY:RST")
 {
     field(DTYP, "Soft Channel")
-	field(ZNAM, "STOP APPLY")
+    field(ZNAM, "STOP APPLY")
     field(ONAM, "")
-	field(VAL, "0")
-	field(OUT, "$(P)CAL:APPLY")
+    field(VAL, "0")
+    field(OUT, "$(P)CAL:APPLY")
 }
 
 record(stringout, "$(P)CAL:SEL")
 {
     field(DESC, "Set Calibration file")
     field(DTYP, "Soft Channel")
-	field(FLNK, "$(P)CAL:SEL:UPDATE.PROC")
+    field(FLNK, "$(P)CAL:SEL:UPDATE.PROC")
     field(PINI, "YES")
-	field(VAL, "None.txt")
+    field(VAL, "None.txt")
     info(archive, "VAL")
     info(autosaveFields, "VAL")
-#    info(autosaveFields_pass0, "VAL")
+#        info(autosaveFields_pass0, "VAL")
 }
 
 record(scalcout, "$(P)CAL:SEL:FMT")
 {
-	field(INPA, "$(P)CAL:SEL:VAL")
-	field(CALC, "$P('%s.test',A)")
+    field(INPA, "$(P)CAL:SEL:VAL")
+    field(CALC, "$P('%s.test',A)")
+}
+
+# calc needed here to make new EGU for RATE
+record(scalcout, "$(P)RATE:UPDATE_EGU")
+{
+    field(CALC, "AA+'/min'") # AA comes from st-euro.cmd
+    field(OUT, "$(P)RATE.EGU")
 }
 
 record(sseq, "$(P)CAL:SEL:UPDATE")
 {
-	field(DOL1, "$(P)CAL:SEL.VAL")
-	field(LNK1, "$(P)TEMP.NSPE")
-	field(DOL2, "$(P)CAL:SEL")
-	field(LNK2, "$(P)TEMP:SP:RBV:CONV.NSPE")
-	field(DOL3, "$(P)CAL:SEL")
-	field(LNK3, "$(P)TEMP:HIGHLIMIT.NSPE")
-	field(DOL4, "$(P)CAL:SEL")
-	field(LNK4, "$(P)TEMP:LOWLIMIT.NSPE")
-	field(DOL5, "$(P)CAL:SEL")
-	field(LNK5, "$(P)TEMP:SP:CONV.NSPE")
-	field(DOL6, "1")
-	field(LNK6, "$(P)CAL:SEL:UPDATE:NOW.PROC")
+    field(DOL1, "$(P)CAL:SEL.VAL")
+    field(LNK1, "$(P)TEMP.NSPE")
+    field(DOL2, "$(P)CAL:SEL")
+    field(LNK2, "$(P)TEMP:SP:RBV:CONV.NSPE")
+    field(DOL3, "$(P)CAL:SEL")
+    field(LNK3, "$(P)TEMP:HIGHLIMIT.NSPE")
+    field(DOL4, "$(P)CAL:SEL")
+    field(LNK4, "$(P)TEMP:LOWLIMIT.NSPE")
+    field(DOL5, "$(P)CAL:SEL")
+    field(LNK5, "$(P)TEMP:SP:CONV.NSPE")
+    field(DOL6, "1")
+    field(LNK6, "$(P)CAL:SEL:UPDATE:NOW.PROC")
 }
 
 record(dfanout, "$(P)CAL:SEL:UPDATE:NOW")
 {
-	field(VAL, "1")
-	field(OUTA, "$(P)CAL:APPLY.VAL")
-	field(OUTB, "$(P)CAL:APPLY.PROC")
+    field(VAL, "1")
+    field(OUTA, "$(P)CAL:APPLY.VAL")
+    field(OUTB, "$(P)CAL:APPLY.PROC")
 }
 
 record(seq, "$(P)CAL:APPLY:UPDATE")
 {
-	field(DOL1, "$(P)CAL:APPLY")
-	field(LNK1, "$(P)TEMP.INIT NPP")
-	field(DOL2, "$(P)CAL:APPLY")
-	field(LNK2, "$(P)TEMP:SP:RBV:CONV.INIT NPP")
-	field(DOL3, "$(P)CAL:APPLY")
-	field(LNK3, "$(P)TEMP:HIGHLIMIT.INIT NPP")
-	field(DOL4, "$(P)CAL:APPLY")
-	field(LNK4, "$(P)TEMP:LOWLIMIT.INIT NPP")
-	field(DOL5, "$(P)CAL:APPLY")
-	field(LNK5, "$(P)TEMP:SP:CONV.INIT NPP")
-	field(DOL6, "0")
-	field(DLY6, "2")
-	field(LNK6, "$(P)CAL:APPLY:RST.PROC")
+    field(DOL1, "$(P)CAL:APPLY")
+    field(LNK1, "$(P)TEMP.INIT NPP")
+    field(DOL2, "$(P)CAL:APPLY")
+    field(LNK2, "$(P)TEMP:SP:RBV:CONV.INIT NPP")
+    field(DOL3, "$(P)CAL:APPLY")
+    field(LNK3, "$(P)TEMP:HIGHLIMIT.INIT NPP")
+    field(DOL4, "$(P)CAL:APPLY")
+    field(LNK4, "$(P)TEMP:LOWLIMIT.INIT NPP")
+    field(DOL5, "$(P)CAL:APPLY")
+    field(LNK5, "$(P)TEMP:SP:CONV.INIT NPP")
+    field(DOL6, "0")
+    field(DLY6, "2")
+    field(LNK6, "$(P)CAL:APPLY:RST.PROC")
 }
 
 # FileList for sensor calibration
@@ -774,120 +782,120 @@ record(seq, "$(P)CAL:APPLY:UPDATE")
 
 record(waveform, "$(P)SENSOR_DIRBASE:SP")
 {
-   field(DESC, "Set directory of sensor calib files")
-   field(DTYP, "asynOctetWrite")
-   field(PINI, "NO")
-   field(INP, "@asyn($(SENSORLIST),0,1)DIRBASE")
-   field(FTVL, "CHAR")
-   field(NELM, 256)
+    field(DESC, "Set directory of sensor calib files")
+    field(DTYP, "asynOctetWrite")
+    field(PINI, "NO")
+    field(INP, "@asyn($(SENSORLIST),0,1)DIRBASE")
+    field(FTVL, "CHAR")
+    field(NELM, 256)
 }
 
 record(waveform, "$(P)SENSOR_DIRBASE")
 {
-   field(DESC, "Get directory of sensor calib files")
-   field(DTYP, "asynOctetRead")
-   field(INP, "@asyn($(SENSORLIST),0,1)DIRBASE")
-   field(SCAN, "I/O Intr")
-   field(FTVL, "CHAR")
-   field(NELM, 256)
+    field(DESC, "Get directory of sensor calib files")
+    field(DTYP, "asynOctetRead")
+    field(INP, "@asyn($(SENSORLIST),0,1)DIRBASE")
+    field(SCAN, "I/O Intr")
+    field(FTVL, "CHAR")
+    field(NELM, 256)
 }
 
 record(waveform, "$(P)SENSOR_FILES")
 {
-	field(DESC, "Compressed JSON list of sensor files")
-	field(FTVL, "CHAR")
-	field(DTYP, "asynOctetRead")
-    field(INP, "@asyn($(SENSORLIST),0,1)JARR")	
-	field(NELM, 16384)
-	field(SCAN, "I/O Intr")
+    field(DESC, "Compressed JSON list of sensor files")
+    field(FTVL, "CHAR")
+    field(DTYP, "asynOctetRead")
+    field(INP, "@asyn($(SENSORLIST),0,1)JARR")
+    field(NELM, 16384)
+    field(SCAN, "I/O Intr")
 }
 
 record(waveform, "$(P)SENSOR_PATTERN:SP")
 {
-   field(DESC, "Set regex search of sensor calib files")  
-   field(DTYP, "asynOctetWrite")
-   field(INP, "@asyn($(SENSORLIST),0,1)SEARCH")
-   field(FTVL, "CHAR")
-   field(NELM, 256)
+    field(DESC, "Set regex search of sensor calib files")
+    field(DTYP, "asynOctetWrite")
+    field(INP, "@asyn($(SENSORLIST),0,1)SEARCH")
+    field(FTVL, "CHAR")
+    field(NELM, 256)
 }
 record(waveform, "$(P)SENSOR_PATTERN")
 {
-   field(DESC, "Get regex search of sensor calib files")
-   field(DTYP, "asynOctetRead")
-   field(INP, "@asyn($(SENSORLIST),0,1)SEARCH")
-   field(PINI, "NO")
-   field(SCAN, "I/O Intr")
-   field(FTVL, "CHAR")
-   field(NELM, 256)
+    field(DESC, "Get regex search of sensor calib files")
+    field(DTYP, "asynOctetRead")
+    field(INP, "@asyn($(SENSORLIST),0,1)SEARCH")
+    field(PINI, "NO")
+    field(SCAN, "I/O Intr")
+    field(FTVL, "CHAR")
+    field(NELM, 256)
 }
 
 record(cvt, "$(P)TEMP")
 {
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(DESC, "Temperature")
     info(INTEREST, "HIGH")
-	field(INPY, "$(P)RBV")
+    field(INPY, "$(P)RBV")
     field(YSLO, 1)
-	field(METH, "1D TABLE INVERTED")
-	field(SPEC, "None.txt")
-	field(TDIR, "$(SDIR)")
+    field(METH, "1D TABLE INVERTED")
+    field(SPEC, "None.txt")
+    field(TDIR, "$(SDIR)")
     field(BDIR, "$(CALIB_BASE_DIR)")
     field(PREC, "3")
-	field(FLNK, "$(P)CURRENT_TEMP PP")
+    field(FLNK, "$(P)CURRENT_TEMP PP")
     info(archive, "VAL")
-	field(EGU, "K")
+    field(EGU, "K")
 }
 
 record(cvt, "$(P)TEMP:SP:RBV:CONV")
 {
-	field(SCAN, "Passive")
-	field(INPY, "$(P)SP:RBV")
-	field(OUT, "$(P)TEMP:SP:RBV PP")
+    field(SCAN, "Passive")
+    field(INPY, "$(P)SP:RBV")
+    field(OUT, "$(P)TEMP:SP:RBV PP")
     field(YSLO, 1)
-	field(METH, "1D TABLE INVERTED")
-	field(SPEC, "None.txt")	
+    field(METH, "1D TABLE INVERTED")
+    field(SPEC, "None.txt")
     field(PREC, "3")
-	field(TDIR, "$(SDIR)")
-	field(BDIR, "$(CALIB_BASE_DIR)")
+    field(TDIR, "$(SDIR)")
+    field(BDIR, "$(CALIB_BASE_DIR)")
 }
 
 record(cvt, "$(P)TEMP:HIGHLIMIT")
 {
-	field(SCAN, "Passive")
-	field(INPY, "$(P)HILIM PP")
+    field(SCAN, "Passive")
+    field(INPY, "$(P)HILIM PP")
     field(YSLO, 1)
-	field(METH, "1D TABLE INVERTED")
-	field(SPEC, "None.txt")
-	field(TDIR, "$(SDIR)")
-	field(BDIR, "$(CALIB_BASE_DIR)")
+    field(METH, "1D TABLE INVERTED")
+    field(SPEC, "None.txt")
+    field(TDIR, "$(SDIR)")
+    field(BDIR, "$(CALIB_BASE_DIR)")
     field(PREC, "3")
     info(archive, "VAL")
-	field(EGU, "K")
+    field(EGU, "K")
 }
 
 record(cvt, "$(P)TEMP:LOWLIMIT")
 {
-	field(SCAN, "Passive")
-	field(INPY, "$(P)LOWLIM PP")
+    field(SCAN, "Passive")
+    field(INPY, "$(P)LOWLIM PP")
     field(YSLO, 1)
-	field(METH, "1D TABLE INVERTED")
-	field(SPEC, "None.txt")
-	field(TDIR, "$(SDIR)")
-	field(BDIR, "$(CALIB_BASE_DIR)")
+    field(METH, "1D TABLE INVERTED")
+    field(SPEC, "None.txt")
+    field(TDIR, "$(SDIR)")
+    field(BDIR, "$(CALIB_BASE_DIR)")
     field(PREC, "3")
     info(archive, "VAL")
-	field(EGU, "K")
+    field(EGU, "K")
 }
 
 record(cvt, "$(P)TEMP:SP:CONV")
 {
-	field(OUT, "$(P)SP PP")
-	field(INPX, "$(P)RAMP_SP")
+    field(OUT, "$(P)SP PP")
+    field(INPX, "$(P)RAMP_SP")
     field(YSLO, 1)
-	field(METH, "1D TABLE")
-	field(SPEC, "None.txt")
-	field(TDIR, "$(SDIR)")
-	field(BDIR, "$(CALIB_BASE_DIR)")
+    field(METH, "1D TABLE")
+    field(SPEC, "None.txt")
+    field(TDIR, "$(SDIR)")
+    field(BDIR, "$(CALIB_BASE_DIR)")
     field(PREC, "3")
 }
 
@@ -895,16 +903,16 @@ record(ai, "$(P)RBV") {
     info(INTEREST, "HIGH")
     field(DESC, "Temperature Readback")
     field(DTYP, "stream")
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(INP, "@eurotherm2k.proto read($(P),PV,$(GAD),$(LAD)) $(PORT)")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP")
     field(SDIS, "$(Q)DISABLE")
-	field(EGU, "")
+    field(EGU, "")
     field(PREC, "3")
-	field(FLNK, "$(P)TEMP.PROC PP")
+    field(FLNK, "$(P)TEMP.PROC PP")
     info(archive, "VAL")
-	info(alarm, "Euro")
+    info(alarm, "Euro")
 }
 
 alias("$(P)RBV", "$(P)SENSOR")
@@ -912,65 +920,65 @@ alias("$(P)RBV", "$(P)SENSOR")
 record(ai, "$(P)SP:RBV") {
     info(INTEREST, "MEDIUM")
     field(DESC, "Temperature Setpoint Readback")
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@eurotherm2k.proto read($(P),SP,$(GAD),$(LAD)) $(PORT)")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:SP:RBV")
     field(SDIS, "$(Q)DISABLE")
-	field(EGU, "")
+    field(EGU, "")
     field(PREC, "3")
-	field(FLNK, "$(P)TEMP:SP:RBV:CONV")
+    field(FLNK, "$(P)TEMP:SP:RBV:CONV")
     info(archive, "VAL")
-	info(alarm, "Euro")
+    info(alarm, "Euro")
 }
 
 record(ao, "$(P)SP") {
     info(INTEREST, "MEDIUM")
     field(DESC, "Temperature Setpoint")
     field(OUT, "$(P)_SP NPP")
-	field(EGU, "")
+    field(EGU, "")
     field(PREC, "3")
     info(archive, "VAL")
-	field(FLNK, "$(P)_DOSP.PROC PP")
+    field(FLNK, "$(P)_DOSP.PROC PP")
 }
 
 record(longout, "$(P)_DOSP") {
     field(VAL, "0")
-	field(OUT, "$(P)SP:RETRYCNT PP")
-	field(FLNK, "$(P)_SP.PROC PP")
+    field(OUT, "$(P)SP:RETRYCNT PP")
+    field(FLNK, "$(P)_SP.PROC PP")
 }
 
 record(ao, "$(P)_SP") {
     field(DTYP, "stream")
     field(OUT, "@eurotherm2k.proto write($(P),SL,$(GAD),$(LAD)) $(PORT)")
-	field(SIML, "$(Q)SIM")
+    field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:SP")
     field(SDIS, "$(Q)DISABLE")
-	field(EGU, "")
+    field(EGU, "")
     field(PREC, "3")
-	field(FLNK, "$(P)_CHECKSP.PROC PP")
+    field(FLNK, "$(P)_CHECKSP.PROC PP")
     info(archive, "VAL")
-	info(alarm, "Euro")
+    info(alarm, "Euro")
 }
 
 ## how many times to resend a setpoint if it doesn't match readback
 record(longout, "$(P)SP:NRETRY") {
     field(VAL, "5")
-	field(OUT, "$(P)SP:RETRYCNT.HIGH")
-	field(PINI, "YES")
+    field(OUT, "$(P)SP:RETRYCNT.HIGH")
+    field(PINI, "YES")
 }
 
 ## current setpoint retry number
-## HIGH alarm value should be same as retry count NRETRY  
+## HIGH alarm value should be same as retry count NRETRY
 record(longout, "$(P)SP:RETRYCNT") {
     field(DESC, "Last setpoint retry count")
     field(VAL, "0")
-	field(PINI, "YES")
-	field(HIGH, "5")
-	field(HSV, "MINOR")
+    field(PINI, "YES")
+    field(HIGH, "5")
+    field(HSV, "MINOR")
     info(archive, "VAL")
-	info(alarm, "Euro")
+    info(alarm, "Euro")
 }
 
 ## difference between sent SP and readback SP to trigger a resend of SP
@@ -990,28 +998,28 @@ record(calcout, "$(P)_CHECKSP") {
     field(INPC, "$(P)SP:CHKTOL NPP")
     field(INPD, "$(P)SP:NRETRY NPP")
     field(INPE, "$(P)SP:RETRYCNT NPP")
-	field(CALC, "(ABS(A-B)>C)&&(E<D)?1:0")
-	field(OOPT, "When Non-zero")
-	# we need to use CA on OUT as otherwise SP will not reprocess as we are currently part of its existing processing chain
-	field(OUT, "$(P)_DORETRY.PROC PP")
-	field(HIGH, "0.5")
-	field(HSV, "MINOR")
-	field(ODLY, 1)
-   info(archive, "VAL")
+    field(CALC, "(ABS(A-B)>C)&&(E<D)?1:0")
+    field(OOPT, "When Non-zero")
+# we need to use CA on OUT as otherwise SP will not reprocess as we are currently part of its existing processing chain
+    field(OUT, "$(P)_DORETRY.PROC PP")
+    field(HIGH, "0.5")
+    field(HSV, "MINOR")
+    field(ODLY, 1)
+    info(archive, "VAL")
 }
 
 record(calcout, "$(P)_DORETRY") {
     field(INPA, "$(P)SP:RETRYCNT NPP")
-	field(CALC, "A+1")
-	field(OOPT, "Every Time")
-	field(OUT, "$(P)SP:RETRYCNT PP")
-	# we need to use CA on OUT as otherwise SP will not reprocess as we are currently part of its existing processing chain
-	field(FLNK, "$(P)_SP.PROC CA")
+    field(CALC, "A+1")
+    field(OOPT, "Every Time")
+    field(OUT, "$(P)SP:RETRYCNT PP")
+# we need to use CA on OUT as otherwise SP will not reprocess as we are currently part of its existing processing chain
+    field(FLNK, "$(P)_SP.PROC CA")
 }
 
 record(ai, "$(P)HILIM") {
     field(DESC, "Setpoint Highlimit Readback")
-	field(SCAN, "Passive")
+    field(SCAN, "Passive")
     field(DTYP, "stream")
     field(INP, "@eurotherm2k.proto read($(P),HS,$(GAD),$(LAD)) $(PORT)")
     field(SIML, "$(Q)SIM")
@@ -1022,13 +1030,27 @@ record(ai, "$(P)HILIM") {
 
 record(ai, "$(P)LOWLIM") {
     field(DESC, "Setpoint Lowlimit Readback")
-	field(SCAN, "Passive")    
-	field(DTYP, "stream")
+    field(SCAN, "Passive")
+    field(DTYP, "stream")
     field(INP, "@eurotherm2k.proto read($(P),LS,$(GAD),$(LAD)) $(PORT)")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:LOWLIMIT")
     field(SDIS, "$(Q)DISABLE")
     field(PREC, "3")
+}
+
+record(calc, "$(P)TEMP:RANGE:UNDER") {
+    field(DESC, "TEMP lower than min calibration value")
+    field(INPA, "$(P)TEMP CP")
+    # B is the minimum calibration value written to by the CAL:RANGE aSub record
+    field(CALC, "A < B")
+}
+
+record(calc, "$(P)TEMP:RANGE:OVER") {
+    field(DESC, "TEMP higher than max calibration value")
+    field(INPA, "$(P)TEMP CP")
+    # B is the maximum calibration value written to by the CAL:RANGE aSub record
+    field(CALC, "B < A")
 }
 
 ### SIMULATION RECORDS ###

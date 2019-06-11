@@ -1,3 +1,0 @@
-## Aliases string parameter PVs e.g. PARS:SAMPLE:SCRIPT:NAME* with PARS:SCRIPT:NAME*
-pattern { P, NEW, OLD }
-    { "\$(P)", "PARS:SAMPLE:SCRIPT:NAME", "PARS:SCRIPT:NAME" }

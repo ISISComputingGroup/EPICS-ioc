@@ -18,13 +18,13 @@ DBD += $(APPNAME).dbd
 # RKNPS-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += coord.dbd 
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 $(APPNAME)_DBD += stream.dbd
@@ -35,10 +35,11 @@ $(APPNAME)_DBD += cvtRecord.dbd
 $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
+$(APPNAME)_DBD += DAQmxSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seqDev seq pv
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -47,12 +48,13 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
-$(APPNAME)_LIBS += FileList ReadASCII
+$(APPNAME)_LIBS += FileList ReadASCII DAQmxSupport
 $(APPNAME)_LIBS += stream cvtRecord csmbase std calc sscan asyn 
 $(APPNAME)_LIBS += utilities pcre libjson zlib efsw
 
 # RKNPS-IOC-01_registerRecordDeviceDriver.cpp derives from RKNPS-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
+$(APPNAME)_SRCS += riken_changeover.st
 
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp
@@ -63,6 +65,13 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
+
+ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
+DAQMXLIB = $(ICPBINARYDIR)/NIDAQmx/lib/msvc64
+else
+DAQMXLIB = $(ICPBINARYDIR)/NIDAQmx/lib/msvc
+endif
+$(APPNAME)_SYS_LIBS_WIN32 += $(DAQMXLIB)/NIDAQmx
 
 #===========================
 

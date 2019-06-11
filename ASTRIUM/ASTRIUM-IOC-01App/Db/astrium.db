@@ -1,0 +1,203 @@
+record(bi, "$(P)$(Q)DIR")
+{
+    field(DESC, "The direction of the chopper")
+    field(ZNAM, "CW")
+    field(ONAM, "CCW")
+    info(INTEREST, "HIGH")
+}
+
+record(calc, "$(P)$(Q)STAT_CALC")
+{
+    field(DESC, "Splits the status of the chopper")
+}
+
+record(ao, "$(P)$(Q)FREQ:SP")
+{
+    field(DESC, "The frequency of the chopper")
+    field(EGU, "Hz")
+    field(DRVL, "0")
+    field(DRVH, "300")
+    field(OUT, "$(P)$(Q)FREQ:SP_CHECK.A PP")
+    field(FLNK, "$(P)$(Q)STATE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# The hardware doesn't like a speed of 180Hz being set so check this here
+record(calcout, "$(P)$(Q)FREQ:SP_CHECK")
+{
+    field(CALC, "A!=180?A:VAL")
+    field(OUT, "$(P)$(Q)FREQ:SP_ACTUAL PP")
+    field(OOPT, "On Change")
+}
+
+record(ao, "$(P)$(Q)FREQ:SP_ACTUAL")
+{
+    field(DESC, "The frequency of the chopper")
+    field(DTYP, "stream")
+    field(EGU, "Hz")
+    field(OUT, "@astrium.proto setFreq($(P)$(Q)PHASE:SP:RBV) $(PORT) $(I)")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(Q)SIM:FREQ:SP_ACTUAL PP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+# Can't read this from hardware due to bug in the device
+alias("$(P)$(Q)FREQ:SP_ACTUAL", "$(P)$(Q)FREQ:SP:RBV")
+
+record(ai, "$(P)$(Q)FREQ")
+{
+    field(DESC, "The frequency of the chopper")
+    field(EGU, "Hz")
+    field(INP, "$(P)$(Q)STAT_CALC.A CP")
+    field(PREC, "1")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+   	info(alarm, "ASTRIUM")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(Q)SIM:FREQ")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)$(Q)PHASE")
+{
+    field(DESC, "The phase of the chopper")
+    field(EGU, "deg")
+    field(INP, "$(P)$(Q)STAT_CALC.B CP")
+    field(PREC, "2")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(Q)SIM:PHASE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)$(Q)PHASE:SP")
+{
+    field(DESC, "The phase of the chopper")
+    field(DTYP, "stream")
+    field(EGU, "deg")
+    field(OUT, "@astrium.proto setPhase($(P)$(Q)PHASE:SP:RBV) $(PORT) $(I)")
+    field(PREC, "2")
+    field(FLNK, "$(P)$(Q)STATE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(Q)SIM:PHASE:SP PP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)$(Q)PHASE:SP:RBV")
+{
+    field(DESC, "The phase readback of the chopper")
+    field(EGU, "deg")
+    field(PREC, "2")
+    field(INP, "$(P)$(Q)STAT_CALC.C CP")
+    info(INTEREST, "MEDIUM")
+}
+
+record(ai, "$(P)$(Q)VETO")
+{
+    field(DESC, "The percentage time in gate")
+    field(EGU, "%")
+    field(INP, "$(P)$(Q)STAT_CALC.D CP")
+    info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)$(Q)MON:WATER:FLOW")
+{
+    field(DESC, "The cooling water flow rate")
+    field(EGU, "L/min")
+    field(INP, "$(P)$(Q)STAT_CALC.E CP")
+}
+
+record(ai, "$(P)$(Q)MON:WATER:TEMP")
+{
+    field(DESC, "The temperature of the cooling water")
+    field(EGU, "C")
+    field(INP, "$(P)$(Q)STAT_CALC.F CP")
+}
+
+record(ai, "$(P)$(Q)MON:MOTOR:TEMP")
+{
+    field(DESC, "The temperature of the motor")
+    field(EGU, "C")
+    field(INP, "$(P)$(Q)STAT_CALC.G CP")
+}
+
+record(ai, "$(P)$(Q)MON:VIBR")
+{
+    field(DESC, "The housing vibration speed")
+    field(EGU, "mm/s")
+    field(INP, "$(P)$(Q)STAT_CALC.H CP")
+}
+
+record(ai, "$(P)$(Q)MON:PRES")
+{
+    field(DESC, "The housing pressure")
+    field(EGU, "mbar")
+    field(INP, "$(P)$(Q)STAT_CALC.I CP")
+}
+
+record(stringin, "$(P)$(Q)MON:STAT")
+{
+    field(DESC, "The status of the monitoring")
+}
+
+record(stringin, "$(P)$(Q)STATE")
+{
+    field(DESC, "The state of the chopper")
+    field(DTYP, "stream")
+    field(INP,  "@astrium.proto getStatus($(P)$(Q),STAT_CALC,DIR,MON:STAT) $(PORT) $(I)")
+    field(SCAN, "1 second")
+    info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(Q)SIM:STATE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)$(Q)BRAKE")
+{
+    field(DESC, "Brakes the chopper")
+    field(DTYP, "stream")
+    field(OUT, "@astrium.proto brake $(PORT) $(I)")
+    field(FLNK, "$(P)$(Q)STATE")
+    info(INTEREST, "HIGH")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)$(Q)SIM:BRAKE")
+    field(SDIS, "$(P)DISABLE")
+}
+
+### SIMULATION RECORDS ###
+
+record(stringin,"$(P)$(Q)SIM:STATE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai,"$(P)$(Q)SIM:FREQ")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(FLNK, "$(P)$(Q)FREQ.PROC")
+}
+
+alias("$(P)$(Q)SIM:FREQ", "$(P)$(Q)SIM:FREQ:SP_ACTUAL")
+
+record(ai,"$(P)$(Q)SIM:PHASE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(FLNK, "$(P)$(Q)PHASE.PROC")
+}
+
+alias("$(P)$(Q)SIM:PHASE", "$(P)$(Q)SIM:PHASE:SP")
+
+record(bo,"$(P)$(Q)SIM:BRAKE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+

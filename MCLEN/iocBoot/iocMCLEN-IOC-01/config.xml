@@ -39,6 +39,15 @@
 <macro name="VELO7" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
 <macro name="VELO8" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" />
 
+<macro name="JVEL1" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO1/10)" />
+<macro name="JVEL2" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO2/10)" />
+<macro name="JVEL3" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO3/10)" />
+<macro name="JVEL4" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO4/10)" />
+<macro name="JVEL5" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO5/10)" />
+<macro name="JVEL6" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO6/10)" />
+<macro name="JVEL7" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO7/10)" />
+<macro name="JVEL8" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO8/10)" />
+
 <macro name="ACCL1" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
 <macro name="ACCL2" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
 <macro name="ACCL3" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" />
@@ -93,14 +102,14 @@
 <macro name="CMOD7" pattern="^(OPEN|CLOSED)$" description="Loop control mode (default: CLOSED)" />
 <macro name="CMOD8" pattern="^(OPEN|CLOSED)$" description="Loop control mode (default: CLOSED)" />
 
-<macro name="HOME1" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
-<macro name="HOME2" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
-<macro name="HOME3" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
-<macro name="HOME4" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
-<macro name="HOME5" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
-<macro name="HOME6" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
-<macro name="HOME7" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
-<macro name="HOME8" pattern="^([0-2])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero] (default: 1)" />
+<macro name="HOME1" pattern="^([0-3])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero, 3. Constant velocity move and zero] (default: 1)" />
+<macro name="HOME2" pattern="^([0-3])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero, 3. Constant velocity move and zero] (default: 1)" />
+<macro name="HOME3" pattern="^([0-3])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero, 3. Constant velocity move and zero] (default: 1)" />
+<macro name="HOME4" pattern="^([0-3])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero, 3. Constant velocity move and zero] (default: 1)" />
+<macro name="HOME5" pattern="^([0-3])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero, 3. Constant velocity move and zero] (default: 1)" />
+<macro name="HOME6" pattern="^([0-3])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero, 3. Constant velocity move and zero] (default: 1)" />
+<macro name="HOME7" pattern="^([0-3])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero, 3. Constant velocity move and zero] (default: 1)" />
+<macro name="HOME8" pattern="^([0-3])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero, 3. Constant velocity move and zero] (default: 1)" />
 
 <macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
 <macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
@@ -110,6 +119,15 @@
 <macro name="NAME6" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
 <macro name="NAME7" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
 <macro name="NAME8" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
+
+<macro name="OFST1" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)"/>
+<macro name="OFST2" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)"/>
+<macro name="OFST3" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)"/>
+<macro name="OFST4" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)"/>
+<macro name="OFST5" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)"/>
+<macro name="OFST6" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)"/>
+<macro name="OFST7" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)"/>
+<macro name="OFST8" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)"/>
 
 </macros>
 <pvsets>
