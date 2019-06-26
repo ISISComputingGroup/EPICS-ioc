@@ -19,7 +19,7 @@ record(bo, "$(P)POL:SP")
 {
     field(DESC, "Polarity")
     field(DTYP, "stream")
-    field(OUT, "@dfkps_common.proto setpol $(port) 0")
+    field(OUT, "@dfkps_common.proto setpol($(POLCMD=)) $(port) 0")
     field(ZNAM, "+")
     field(ONAM, "-")
     field(SIML, "$(P)SIM")
