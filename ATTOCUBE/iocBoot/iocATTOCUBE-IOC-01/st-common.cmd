@@ -1,7 +1,3 @@
-epicsEnvSet "DEVICE" "IP1"
-epicsEnvSet "MOTOR_PORT" "ANC1"
-epicsEnvSet "NUM_AXES" "3"
-
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
