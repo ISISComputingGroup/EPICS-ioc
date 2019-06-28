@@ -1,0 +1,17 @@
+file $(ATTOCUBE)/db/ancStepModule.template {
+pattern 
+{P,   PORT,   ADDR}
+{\$(P),  IP1,   0}
+{\$(P),  IP1,   1}
+{\$(P),  IP1,   2}
+{\$(P),  IP1,   3}
+}
+
+file $(MOTOR)/db/basic_asyn_motor.db {
+pattern
+{P,   M,    DESC, DTYP,      DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, PORT, ADDR, MRES,  PREC, EGU, DHLM,  DLLM,   INIT}
+{\$(MYPVPREFIX), MTR\$(MTRCTRL)01, Desc, asynMotor, 0,   300,  50,   1,    0,    0,    0,    ANC1, 0,    0.001, 3,    um,  10000, -10000, 0}
+{\$(MYPVPREFIX), MTR\$(MTRCTRL)02, Desc, asynMotor, 0,   300,  50,   1,    0,    0,    0,    ANC1, 1,    0.001, 3,    um,  10000, -10000, 0}
+{\$(MYPVPREFIX), MTR\$(MTRCTRL)03, Desc, asynMotor, 0,   300,  50,   1,    0,    0,    0,    ANC1, 2,    0.001, 3,    um,  10000, -10000, 0}
+{\$(MYPVPREFIX), MTR\$(MTRCTRL)04, Desc, asynMotor, 0,   300,  50,   1,    0,    0,    0,    ANC1, 3,    0.001, 3,    um,  10000, -10000, 0}
+}
