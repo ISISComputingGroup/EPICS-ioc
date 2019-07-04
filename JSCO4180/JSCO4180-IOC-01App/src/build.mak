@@ -30,6 +30,7 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += detect_jasco_error_state.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -48,6 +49,7 @@ $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
 $(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += jsco4180
 #$(APPNAME)_LIBS += xxx
 
 # JSCO4180-IOC-01_registerRecordDeviceDriver.cpp derives from JSCO4180-IOC-01.dbd
