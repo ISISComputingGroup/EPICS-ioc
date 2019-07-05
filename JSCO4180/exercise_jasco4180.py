@@ -4,9 +4,13 @@ from genie_python import genie as g
 attempts = 2000
 check_freq = attempts/10
 
+g.set_pv("JSCO4180_01:COMP:A:SP", 25, is_local=True)
+g.set_pv("JSCO4180_01:COMP:B:SP", 25, is_local=True)
+g.set_pv("JSCO4180_01:COMP:C:SP", 25, is_local=True)
+
 print("Starting crash test of JASCO PU-4180:")
 for i in range(attempts):
-    g.set_pv("JSCO4180_01:_CRASH", 1, is_local=True)
+    g.set_pv("JSCO4180_01:_EXERCISE", 1, is_local=True)
     if i%check_freq == 0:
         print("Current iteration: {0}".format(i))
         alarm = g.get_pv("JSCO4180_01:COMP:A.STAT", is_local=True)
