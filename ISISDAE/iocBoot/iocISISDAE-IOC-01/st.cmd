@@ -18,6 +18,10 @@ epicsEnvSet "PERIOD_PATTERN" ".*period.*"
 epicsEnvSet "TCB_DIR" "$(ICPCONFIGROOT)/tcb"
 epicsEnvSet "TCB_PATTERN" ".*tcb.*"
 
+## this needs to be large enouth for DAE spectra and
+## also for areaDetector (see liveview.cmd) 
+epicsEnvSet "EPICS_CA_MAX_ARRAY_BYTES" 1500000
+
 cd ${TOP}
 
 ## Register all support components
