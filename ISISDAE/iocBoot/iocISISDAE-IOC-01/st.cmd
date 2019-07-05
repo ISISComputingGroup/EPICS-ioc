@@ -18,6 +18,8 @@ epicsEnvSet "PERIOD_PATTERN" ".*period.*"
 epicsEnvSet "TCB_DIR" "$(ICPCONFIGROOT)/tcb"
 epicsEnvSet "TCB_PATTERN" ".*tcb.*"
 
+epicsEnvSet EPICS_CA_MAX_ARRAY_BYTES 1500000
+
 cd ${TOP}
 
 ## Register all support components
