@@ -5,6 +5,10 @@
 <ioc_details>Thurlby Thandar TTI EX355P series power supply unit.</ioc_details>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+<macro name="MAX_VOLT" pattern="^[0-9]+\.?[0-9]*$" description="Largest permissible voltage (default: 35.0)" />
+<macro name="MIN_VOLT" pattern="^[0-9]+\.?[0-9]*$" description="Smallest permissible voltage (default: 0.0)" />
+<macro name="MAX_CURR" pattern="^[0-9]+\.?[0-9]*$" description="Largest permissible current (default: 5.0)" />
+<macro name="MIN_CURR" pattern="^[0-9]+\.?[0-9]*$" description="Smallest permissible current (default: 0.01)" />
 </macros>
 <pvsets>
 </pvsets>
