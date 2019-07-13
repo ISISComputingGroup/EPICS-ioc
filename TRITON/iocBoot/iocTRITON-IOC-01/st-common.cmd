@@ -33,10 +33,9 @@ ReadASCIIConfigure("$(READASCII_NAME)", "$(RAMP_DIR)")
 < $(IOCSTARTUP)/dbload.cmd
 
 dbLoadRecords("../../db/TRITON.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),IPADDR=$(IPADDR=NUL)")
-dbLoadRecords("../../db/TRITON_valves.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 dbLoadRecords("../../db/TRITON_channels.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 dbLoadRecords("../../db/TRITON_pid.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
-dbLoadRecords("../../db/TRITON_pid_lookup.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE),READ=$(READASCII_NAME),RAMPLIST=$(FILELIST_NAME)")
+dbLoadRecords("../../db/TRITON_pid_lookup.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE),READ=$(READASCII_NAME),RAMPLIST=$(FILELIST_NAME),RAMP_FILE_NAME=$(RAMP_FILE_NAME=Default.txt),USE_RAMP_FILE=$(USE_RAMP_FILE=0)")
 dbLoadRecords("../../db/TRITON_temp_channels.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 dbLoadRecords("../../db/TRITON_pressure_channels.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 

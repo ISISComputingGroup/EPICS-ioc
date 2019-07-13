@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>The IOC for a Mezei spin flipper</ioc_desc>
+<ioc_details>The IOC for a Mezei spin flipper</ioc_details>
+<macros>
+<macro name="HOST" pattern=".*" description="IP Address or computer name to connect to" />
+<macro name="ANALYSERPRESENT" pattern="^(yes|no)$" description="Whether the analyser is present or not (default: yes)" />
+<macro name="POLARISERPRESENT" pattern="^(yes|no)$" description="Whether the polariser is present or not (default: yes)" />
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>

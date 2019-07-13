@@ -21,7 +21,6 @@ hscaenetlib_DIR = $(HVCAEN)/lib/$(EPICS_HOST_ARCH)
 # HVCAENSIM-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
@@ -38,7 +37,7 @@ $(APPNAME)_DBD += HVCAENx527Support.dbd
 $(APPNAME)_LIBS += HVCAENx527Sim HVCAENx527Summary CAENHVWrapperSim
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += asubFunctions
-$(APPNAME)_LIBS += seqDev seq pv
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
