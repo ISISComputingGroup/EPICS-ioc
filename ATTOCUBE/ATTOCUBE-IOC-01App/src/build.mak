@@ -40,9 +40,12 @@ $(APPNAME)_DBD += luaSupport.dbd
 ## Add additional libraries here ##
 #$(APPNAME)_LIBS += xxx
 
-## ISIS standard libraries ##
+$(APPNAME)_LIBS += anc350AsynMotor
+$(APPNAME)_LIBS += anc350
+$(APPNAME)_LIBS += softMotor 
+$(APPNAME)_LIBS += motorSimSupport
+$(APPNAME)_LIBS += motor 
 $(APPNAME)_LIBS += asyn
-## other standard libraries here ##
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -51,13 +54,8 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc
 $(APPNAME)_LIBS += pcrecpp pcre
-$(APPNAME)_LIBS += seq pv
-$(APPNAME)_LIBS += motor 
-$(APPNAME)_LIBS += softMotor 
-$(APPNAME)_LIBS += motorSimSupport
-$(APPNAME)_LIBS += anc350
-$(APPNAME)_LIBS += anc350AsynMotor
 $(APPNAME)_LIBS += lua
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 # ATTOCUBE-IOC-01_registerRecordDeviceDriver.cpp derives from ATTOCUBE-IOC-01.dbd
