@@ -29,7 +29,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 ## Load our record instances
 ############################
 
-dbLoadRecords("$(HELIOX)/db/heliox.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
+dbLoadRecords("$(HELIOX)/db/heliox.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PROTO=$(PROTO=heliox.proto)")
+dbLoadRecords("$(HELIOX)/db/heliox_channels.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PROTO=$(PROTO=heliox.proto)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -39,3 +40,6 @@ iocInit
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
+
+asynSetTraceMask("L0", -1, 0x9)
+asynSetTraceIOMask("L0", -1, 0x2)
