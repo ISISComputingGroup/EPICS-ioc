@@ -43,3 +43,4 @@ iocInit
 
 asynSetTraceMask("L0", -1, 0x9)
 asynSetTraceIOMask("L0", -1, 0x2)
+asynSetTraceIOTruncateSize("L0", -1, 1024)
