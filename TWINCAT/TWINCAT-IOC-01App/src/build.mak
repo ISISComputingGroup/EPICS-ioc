@@ -24,11 +24,16 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+
 ## Stream device support ##
 
 $(APPNAME)_DBD += calcSupport.dbd
 ## add other dbd here ##
+$(APPNAME)_DBD += motorSupport.dbd
+$(APPNAME)_DBD += motorSimSupport.dbd
+$(APPNAME)_DBD += devSoftMotor.dbd
 $(APPNAME)_DBD += tcIocSupport.dbd
+$(APPNAME)_DBD += tcIocMotorSupport.dbd
 
 # Add all the support libraries needed by this IOC
 
@@ -48,7 +53,11 @@ $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += softMotor 
+$(APPNAME)_LIBS += motorSimSupport
+$(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += tcIocSupport
+$(APPNAME)_LIBS += tcIocMotorSupport
 
 # TWINCAT-IOC-01_registerRecordDeviceDriver.cpp derives from TWINCAT-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
