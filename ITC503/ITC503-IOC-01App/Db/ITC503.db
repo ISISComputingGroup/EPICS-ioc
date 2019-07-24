@@ -248,6 +248,7 @@ record(mbbi, "$(P)CTRL") {
   field(ONST, "Remote only")
   field(TWST, "Local only")
   field(THST, "Local and remote")
+  field(TWSV, "MAJOR")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CTRL")
   field(SDIS, "$(P)DISABLE")
@@ -480,14 +481,14 @@ record(ai, "$(P)HEATERV") {
 #   info(archive, "VAL")
 # }
 
-record(ao, "$(P)HEATERV:SP") {
-  field(DESC, "Set man htr v")
+record(ao, "$(P)HEATERP:SP") {
+  field(DESC, "Set man htr %")
   field(SCAN, "Passive")
   field(DTYP, "stream")
   field(OUT, "@itc503.proto set_manv $(PORT)")
   field(OMSL, "supervisory")
   field(PREC, "1")
-  field(EGU, "V")
+  field(EGU, "%")
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HEATERV:SP")
   field(SDIS, "$(P)DISABLE")

@@ -6,7 +6,6 @@ NDStatsConfigure("AD$(LVDET)Stats1", 3, 0, "AD$(LVDET)ROI1", 0, 0)
   
 ## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
 ## also NELEMENTS needs to at least nx * ny
-epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES",  "1500000")
 
 ## This waveform 
 ##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
