@@ -31,6 +31,7 @@ $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
+$(APPNAME)_DBD += heliox.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -49,6 +50,7 @@ $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += pcre libjson zlib
 $(APPNAME)_LIBS += efsw
+$(APPNAME)_LIBS += HELIOX
 
 # HELIOX-IOC-01_registerRecordDeviceDriver.cpp derives from HELIOX-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

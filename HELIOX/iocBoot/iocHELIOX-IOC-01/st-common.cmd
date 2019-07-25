@@ -31,7 +31,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
 dbLoadRecords("$(HELIOX)/db/heliox.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PROTO=$(PROTO=heliox.proto)")
 dbLoadRecords("$(HELIOX)/db/heliox_channels.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PROTO=$(PROTO=heliox.proto)")
-dbLoadRecords("$(HELIOX)/db/heliox_regeneration.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PROTO=$(PROTO=heliox.proto),HE3POT_COARSE_TEMP_DELTA=$(HE3POT_COARSE_TEMP_DELTA=0.05),HE3POT_COARSE_TIME=$(HE3POT_COARSE_TIME=600)")
+dbLoadRecords("$(HELIOX)/db/heliox_regeneration.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PROTO=$(PROTO=heliox.proto),HE3POT_COARSE_TEMP_DELTA=$(HE3POT_COARSE_TEMP_DELTA=0.05),HE3POT_COARSE_TIME=$(HE3POT_COARSE_TIME=600),DRIFT_BUFFER_SIZE=$(DRIFT_BUFFER_SIZE=200),DRIFT_THRESHOLD_KMIN=$(DRIFT_THRESHOLD_KMIN=0.0005),TIME=$(MYPVPREFIX)CS:IOC:$(IOCNAME):DEVIOS:GTIM_TIME")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -42,6 +42,6 @@ iocInit
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
 
-asynSetTraceMask("L0", -1, 0x9)
-asynSetTraceIOMask("L0", -1, 0x2)
+# asynSetTraceMask("L0", -1, 0x9)
+# asynSetTraceIOMask("L0", -1, 0x2)
 asynSetTraceIOTruncateSize("L0", -1, 1024)
