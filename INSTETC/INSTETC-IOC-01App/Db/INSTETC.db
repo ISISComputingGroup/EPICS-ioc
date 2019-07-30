@@ -17,6 +17,16 @@ record (longin, "$(P)CS:MOT:STOP:ALL")
 	field(MDEL, -1)
 }
 
+## String field for the status of motor movement
+record(bi, "$(P)CS:MOT:MOVING:STR") 
+{
+	field(DESC, "IOCs with motion to complete")
+    field(INP, "$(P)CS:MOT:MOVING CP MS")
+	field(ZNAM, "STATIONARY")
+    field(ONAM, "MOVING")
+	info(archive, "VAL")
+}
+
 ## Are any motors moving
 ## A-J set by motors, L from _MOVING1
 record(calc, "$(P)CS:MOT:MOVING") 
