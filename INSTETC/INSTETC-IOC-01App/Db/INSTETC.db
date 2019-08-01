@@ -21,10 +21,10 @@ record (longin, "$(P)CS:MOT:STOP:ALL")
 record(bi, "$(P)CS:MOT:MOVING:STR") 
 {
 	field(DESC, "IOCs with motion to complete")
-    field(INP, "$(P)CS:MOT:MOVING CP MS")
+	field(INP, "$(P)CS:MOT:MOVING CP MS")
 	field(ZNAM, "STATIONARY")
-    field(ONAM, "MOVING")
-	info(archive, "VAL")
+	field(ONAM, "MOVING")
+	field(ASG, "NOTRAPW")
 }
 
 ## Are any motors moving
