@@ -4,7 +4,7 @@
 <ioc_desc>Ocean Optics DH-2000 BAL shutter control</ioc_desc>
 <ioc_details>Shutter control for DH-2000 light source</ioc_details>
 <macros>
-    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 </macros>
 <pvsets>
 </pvsets>

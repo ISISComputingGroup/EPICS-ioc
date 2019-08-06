@@ -3,7 +3,7 @@
     <config_part>
         <ioc_desc>TPG 300 pressure sensor</ioc_desc>
         <macros>
-            <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+            <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
             <macro name="PRESA1ON" pattern="^Y|N$" description="Set to Y if measurement circuit A1 is connected (default:Y)" defaultValue="Y" hasDefault="YES" />
             <macro name="PRESA2ON" pattern="^Y|N$" description="Set to Y if measurement circuit A2 is connected (default:Y)" defaultValue="Y" hasDefault="YES" />
             <macro name="PRESB1ON" pattern="^Y|N$" description="Set to Y if measurement circuit B1 is connected (default:Y)" defaultValue="Y" hasDefault="YES" />

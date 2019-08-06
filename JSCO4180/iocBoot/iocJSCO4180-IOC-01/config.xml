@@ -4,7 +4,7 @@
 <ioc_desc>JASCO PU-4180 Pump</ioc_desc>
 <ioc_details>JASCO PU-4180 high performance liquid chromatography pump.</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="UNKNOWN" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
 </macros>
 <pvsets>
 </pvsets>

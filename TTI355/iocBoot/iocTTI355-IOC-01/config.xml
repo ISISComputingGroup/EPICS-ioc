@@ -4,7 +4,7 @@
 <ioc_desc>TTEX355P</ioc_desc>
 <ioc_details>Thurlby Thandar TTI EX355P series power supply unit.</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="UNKNOWN" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
 <macro name="MAX_VOLT" pattern="^[0-9]+\.?[0-9]*$" description="Largest permissible voltage (default: 35.0)" defaultValue="35.0" hasDefault="YES" />
 <macro name="MIN_VOLT" pattern="^[0-9]+\.?[0-9]*$" description="Smallest permissible voltage (default: 0.0)" defaultValue="0.0" hasDefault="YES" />
 <macro name="MAX_CURR" pattern="^[0-9]+\.?[0-9]*$" description="Largest permissible current (default: 5.0)" defaultValue="5.0" hasDefault="YES" />

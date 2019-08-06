@@ -4,7 +4,7 @@
 <ioc_desc>The HRPD/GEM/POLARIS sample changer</ioc_desc>
 <ioc_details>The HRPD/GEM/POLARIS sample changer</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate (Default: 38400)." defaultValue="38400" hasDefault="YES" />
 <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits (Default: 8)." defaultValue="8" hasDefault="YES" />
 <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity (Default: None)." defaultValue="None" hasDefault="YES" />

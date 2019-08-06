@@ -3,7 +3,7 @@
 <config_part>
 <ioc_desc>MKS PDR 2000 pressure transducer</ioc_desc>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 </macros>
 </config_part>
 </ioc_config>

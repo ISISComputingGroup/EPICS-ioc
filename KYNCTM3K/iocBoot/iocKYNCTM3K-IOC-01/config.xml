@@ -4,7 +4,7 @@
 <ioc_desc>IOC for the Keyence TM-3001P Optical Micrometer controller</ioc_desc>
 <ioc_details>Keyence TM-3001P details</ioc_details>
 <macros>
-    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="UNKNOWN" />
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
     <macro name="DISCHAN01" pattern="#?" description="Disables alarms for channel 01, defaults to blank" defaultValue="blank" hasDefault="YES" />
     <macro name="DISCHAN02" pattern="#?" description="Disables alarms for channel 02, defaults to blank" defaultValue="blank" hasDefault="YES" />
     <macro name="DISCHAN03" pattern="#?" description="Disables alarms for channel 03, defaults to blank" defaultValue="blank" hasDefault="YES" />

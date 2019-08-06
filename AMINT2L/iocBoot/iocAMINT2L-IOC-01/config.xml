@@ -4,7 +4,7 @@
   <ioc_desc>Applied Measurements INT2-L pressure transducer</ioc_desc>
   <ioc_details>SKF Choppers</ioc_details>
   <macros>
-    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
     <macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 9600." defaultValue="9600" hasDefault="YES" />
     <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." defaultValue="8" hasDefault="YES" />
     <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." defaultValue="none" hasDefault="YES" />

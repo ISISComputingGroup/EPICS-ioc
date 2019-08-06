@@ -3,7 +3,7 @@
 <config_part>
 <ioc_desc>Danfysik power supply</ioc_desc>
 <macros>
-    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 	<macro name="POLARITY" pattern="^(BIPOLAR|UNIPOLAR)$" description="Polarity type, BIPOLAR - polarity is stable; defaults to BIPOLAR" defaultValue="BIPOLAR" hasDefault="YES" />
 	<macro name="USE_SLEW" pattern="^(0|1)$" description="1 to user slew, 0 otherwise; defaults to 0" defaultValue="0" hasDefault="YES" />
 

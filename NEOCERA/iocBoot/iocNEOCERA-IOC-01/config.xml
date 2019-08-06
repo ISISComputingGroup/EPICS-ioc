@@ -4,7 +4,7 @@
   <ioc_desc>Neocera LTC21</ioc_desc>
   <ioc_details>https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Neocera-LTC-21</ioc_details>
   <macros>
-    <macro name="PORT" pattern="^COM[0-9]+$" description="Com port for device." hasDefault="UNKNOWN" />
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Com port for device." hasDefault="NO" />
     <macro name="BAUD" pattern="^[A-Z0-9]+$" description="Baud rate for device (default: 9600)" defaultValue="9600" hasDefault="YES" />
   </macros>
  </config_part>

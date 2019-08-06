@@ -4,7 +4,7 @@
 <ioc_desc>Induction furnace</ioc_desc>
 <ioc_details>Induction furnace for GEM/POLARIS</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="UNKNOWN" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
 </macros>
 <pvsets>
 </pvsets>

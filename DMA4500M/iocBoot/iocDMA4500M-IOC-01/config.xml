@@ -4,7 +4,7 @@
 <ioc_desc>DMA4500 Density Meter (Unsupported)</ioc_desc>
 <ioc_details>DMA4500 Density Meter (Unsupported)</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="UNKNOWN" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
 </macros>
 <pvsets>
 </pvsets>

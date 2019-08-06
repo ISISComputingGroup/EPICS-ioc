@@ -4,7 +4,7 @@
 <ioc_desc>Oxford Instruments ITC503 Temperature controller</ioc_desc>
 <ioc_details></ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 </macros>
 <pvsets>
 </pvsets>
