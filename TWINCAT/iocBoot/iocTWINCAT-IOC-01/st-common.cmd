@@ -11,6 +11,9 @@ devMotorCreateAxis("MCU1", "0")
 
 dbLoadRecords("db/single_axis.db","MYPVPREFIX=$(MYPVPREFIX), MOTOR_PV=MTR0101, MOTOR_PORT=MCU1, ADDR=0")
 
+asynSetTraceIOMask("MCU1", -1, 0x2)
+asynSetTraceMask("MCU1", -1, 0x9)
+
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
