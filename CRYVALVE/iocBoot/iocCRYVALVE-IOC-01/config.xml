@@ -3,7 +3,7 @@
 <config_part>
 <ioc_desc>Iris cryogenics valve</ioc_desc>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
 </macros>
 </config_part>
 </ioc_config>

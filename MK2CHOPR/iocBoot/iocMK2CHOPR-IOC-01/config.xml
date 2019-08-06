@@ -3,9 +3,9 @@
 <config_part>
 <ioc_desc>ISIS MK2 Chopper</ioc_desc>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
-<macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 9600)" />
-<macro name="PARITY" pattern="^(even|odd)$" description="Parity (default: even)" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="UNKNOWN" />
+<macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
+<macro name="PARITY" pattern="^(even|odd)$" description="Parity (default: even)" defaultValue="even" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>

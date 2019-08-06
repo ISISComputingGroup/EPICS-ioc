@@ -4,7 +4,7 @@
 <ioc_desc>Knauer Electric Valve Drive K-6</ioc_desc>
 <ioc_details>Knauer Electric Valve Drive K-6</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="UNKNOWN" />
 </macros>
 <pvsets>
 </pvsets>

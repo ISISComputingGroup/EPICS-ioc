@@ -5,57 +5,57 @@
 <ioc_details>LinMot Motor Details</ioc_details>
 <macros>
 
-<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" />
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
-<macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 9600)" />
-<macro name="BITS" pattern="^[7-8]$" description="Data bits (default: 8)" />
-<macro name="PARITY" pattern="^(even|odd|none)$" description="Parity (default: none)" />
-<macro name="STOP" pattern="^[0-2]$" description="Stop bits (default: 1)" />
+<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="UNKNOWN" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="UNKNOWN" />
+<macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
+<macro name="BITS" pattern="^[7-8]$" description="Data bits (default: 8)" defaultValue="8" hasDefault="YES" />
+<macro name="PARITY" pattern="^(even|odd|none)$" description="Parity (default: none)" defaultValue="none" hasDefault="YES" />
+<macro name="STOP" pattern="^[0-2]$" description="Stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 
-<macro name="AXIS1" pattern="^(yes|no)$" description="Motor is attached to axis 1 (default: no)" />
-<macro name="AXIS2" pattern="^(yes|no)$" description="Motor is attached to axis 2 (default: no)" />
-<macro name="AXIS3" pattern="^(yes|no)$" description="Motor is attached to axis 3 (default: no)" />
-<macro name="AXIS4" pattern="^(yes|no)$" description="Motor is attached to axis 4 (default: no)" />
-<macro name="AXIS5" pattern="^(yes|no)$" description="Motor is attached to axis 5 (default: no)" />
-<macro name="AXIS6" pattern="^(yes|no)$" description="Motor is attached to axis 6 (default: no)" />
-<macro name="AXIS7" pattern="^(yes|no)$" description="Motor is attached to axis 7 (default: no)" />
-<macro name="AXIS8" pattern="^(yes|no)$" description="Motor is attached to axis 8 (default: no)" />
+<macro name="AXIS1" pattern="^(yes|no)$" description="Motor is attached to axis 1 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS2" pattern="^(yes|no)$" description="Motor is attached to axis 2 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS3" pattern="^(yes|no)$" description="Motor is attached to axis 3 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS4" pattern="^(yes|no)$" description="Motor is attached to axis 4 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS5" pattern="^(yes|no)$" description="Motor is attached to axis 5 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS6" pattern="^(yes|no)$" description="Motor is attached to axis 6 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS7" pattern="^(yes|no)$" description="Motor is attached to axis 7 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS8" pattern="^(yes|no)$" description="Motor is attached to axis 8 (default: no)" defaultValue="no" hasDefault="YES" />
 
-<macro name="OFST1" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)"/>
-<macro name="OFST2" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)"/>
-<macro name="OFST3" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)"/>
-<macro name="OFST4" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)"/>
-<macro name="OFST5" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)"/>
-<macro name="OFST6" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)"/>
-<macro name="OFST7" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)"/>
-<macro name="OFST8" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)"/>
+<macro name="OFST1" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST2" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST3" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST4" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST5" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST6" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST7" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST8" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
 
-<macro name="MRES1" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)"/>
-<macro name="MRES2" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)"/>
-<macro name="MRES3" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)"/>
-<macro name="MRES4" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)"/>
-<macro name="MRES5" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)"/>
-<macro name="MRES6" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)"/>
-<macro name="MRES7" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)"/>
-<macro name="MRES8" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)"/>
+<macro name="MRES1" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES2" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES3" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES4" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES5" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES6" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES7" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES8" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
 
-<macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)"/>
-<macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)"/>
-<macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)"/>
-<macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)"/>
-<macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)"/>
-<macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)"/>
-<macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)"/>
-<macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)"/>
+<macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
 
-<macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
-<macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
-<macro name="NAME3" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
-<macro name="NAME4" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
-<macro name="NAME5" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
-<macro name="NAME6" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
-<macro name="NAME7" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
-<macro name="NAME8" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
+<macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
+<macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
+<macro name="NAME3" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
+<macro name="NAME4" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
+<macro name="NAME5" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
+<macro name="NAME6" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
+<macro name="NAME7" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
+<macro name="NAME8" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
 
 </macros>
 <pvsets>

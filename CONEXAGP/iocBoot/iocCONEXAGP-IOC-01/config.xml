@@ -3,22 +3,22 @@
 <config_part>
 <ioc_desc>Newport CONEX-AGP controller</ioc_desc>
 <macros>
-<macro name="PORT1" pattern="^COM[0-9]+$" description="Serial COM Port" />
-<macro name="BAUD1" pattern="^[0-9]+$" description="port baud rate (default: 57600)" />
-<macro name="PORT2" pattern="^COM[0-9]+$" description="Serial COM Port" />
-<macro name="BAUD2" pattern="^[0-9]+$" description="port baud rate (default: 57600)" />
-<macro name="PORT3" pattern="^COM[0-9]+$" description="Serial COM Port" />
-<macro name="BAUD3" pattern="^[0-9]+$" description="port baud rate (default: 57600)" />
-<macro name="PORT4" pattern="^COM[0-9]+$" description="Serial COM Port" />
-<macro name="BAUD4" pattern="^[0-9]+$" description="port baud rate (default: 57600)" />
-<macro name="PORT5" pattern="^COM[0-9]+$" description="Serial COM Port" />
-<macro name="BAUD5" pattern="^[0-9]+$" description="port baud rate (default: 57600)" />
-<macro name="PORT6" pattern="^COM[0-9]+$" description="Serial COM Port" />
-<macro name="BAUD6" pattern="^[0-9]+$" description="port baud rate (default: 57600)" />
-<macro name="PORT7" pattern="^COM[0-9]+$" description="Serial COM Port" />
-<macro name="BAUD7" pattern="^[0-9]+$" description="port baud rate (default: 57600)" />
-<macro name="PORT8" pattern="^COM[0-9]+$" description="Serial COM Port" />
-<macro name="BAUD8" pattern="^[0-9]+$" description="port baud rate (default: 57600)" />
+<macro name="PORT1" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="BAUD1" pattern="^[0-9]+$" description="port baud rate (default: 57600)" defaultValue="57600" hasDefault="YES" />
+<macro name="PORT2" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="BAUD2" pattern="^[0-9]+$" description="port baud rate (default: 57600)" defaultValue="57600" hasDefault="YES" />
+<macro name="PORT3" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="BAUD3" pattern="^[0-9]+$" description="port baud rate (default: 57600)" defaultValue="57600" hasDefault="YES" />
+<macro name="PORT4" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="BAUD4" pattern="^[0-9]+$" description="port baud rate (default: 57600)" defaultValue="57600" hasDefault="YES" />
+<macro name="PORT5" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="BAUD5" pattern="^[0-9]+$" description="port baud rate (default: 57600)" defaultValue="57600" hasDefault="YES" />
+<macro name="PORT6" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="BAUD6" pattern="^[0-9]+$" description="port baud rate (default: 57600)" defaultValue="57600" hasDefault="YES" />
+<macro name="PORT7" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="BAUD7" pattern="^[0-9]+$" description="port baud rate (default: 57600)" defaultValue="57600" hasDefault="YES" />
+<macro name="PORT8" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="BAUD8" pattern="^[0-9]+$" description="port baud rate (default: 57600)" defaultValue="57600" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>

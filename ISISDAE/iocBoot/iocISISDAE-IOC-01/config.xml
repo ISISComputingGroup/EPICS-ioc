@@ -3,8 +3,8 @@
 <config_part>
 <ioc_desc>Instrument DAE information</ioc_desc>
 <macros>
-<macro name="DAEDCOM" description="Use DCOM to connect to ISISICP" />
-<macro name="DAEHOST" description="If using DCOM, host to connect to" />
+<macro name="DAEDCOM" description="Use DCOM to connect to ISISICP" hasDefault="UNKNOWN" />
+<macro name="DAEHOST" description="If using DCOM, host to connect to" hasDefault="UNKNOWN" />
 </macros>
 <pvsets />
 </config_part>

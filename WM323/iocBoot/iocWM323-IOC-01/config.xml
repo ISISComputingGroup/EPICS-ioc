@@ -4,7 +4,7 @@
 <ioc_desc>Watson-Marlow 323 Peristaltic Pump</ioc_desc>
 <ioc_details></ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
 </macros>
 <pvsets>
 </pvsets>

@@ -3,10 +3,10 @@
 <config_part>
 <ioc_desc>Schneider PLC</ioc_desc>
 <macros>
-<macro name="MODE" pattern="^(TCP|RTU|ASCII)$" description="Modbus connection mode (TCP, RTU or ASCII)" />
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port (for RTU or ASCII)" />
-<macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address (for TCP)" />
-<macro name="IPPORT" pattern="^[0-9]+$" description="Modbus TCP Port (default: 502)" />
+<macro name="MODE" pattern="^(TCP|RTU|ASCII)$" description="Modbus connection mode (TCP, RTU or ASCII)" hasDefault="UNKNOWN" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port (for RTU or ASCII)" hasDefault="UNKNOWN" />
+<macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address (for TCP)" hasDefault="UNKNOWN" />
+<macro name="IPPORT" pattern="^[0-9]+$" description="Modbus TCP Port (default: 502)" defaultValue="502" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>
