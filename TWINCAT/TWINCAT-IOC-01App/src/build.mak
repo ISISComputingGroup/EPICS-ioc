@@ -35,6 +35,7 @@ $(APPNAME)_DBD += motorSimSupport.dbd
 $(APPNAME)_DBD += devSoftMotor.dbd
 $(APPNAME)_DBD += tcIocSupport.dbd
 $(APPNAME)_DBD += tcIocMotorSupport.dbd
+$(APPNAME)_DBD += luaSupport.dbd
 
 # Add all the support libraries needed by this IOC
 
@@ -47,6 +48,7 @@ $(APPNAME)_LIBS += asyn
 ## other standard libraries here ##
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
+$(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig
 $(APPNAME)_LIBS += autosave

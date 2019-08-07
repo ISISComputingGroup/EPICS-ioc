@@ -2,14 +2,8 @@
 < $(IOCSTARTUP)/init.cmd
 
 ## Load record instances
-tcSetAlias("PLC:TEST:")
-tcSetScanRate(10, 5)
-tcLoadRecords ("$(TPY_FILE)", "-eo -devtc")
-
-devMotorCreateController("MCU1", "Controller", "1")
-devMotorCreateAxis("MCU1", "0")
-
-dbLoadRecords("db/single_axis.db","MYPVPREFIX=$(MYPVPREFIX), MOTOR_PV=MTR0101, MOTOR_PORT=MCU1, ADDR=0")
+epicsEnvSet("LUA_SCRIPT_PATH","${TOP}/iocBoot/${IOC}")
+luash("st-common.lua")
 
 asynSetTraceIOMask("MCU1", -1, 0x2)
 asynSetTraceMask("MCU1", -1, 0x9)
