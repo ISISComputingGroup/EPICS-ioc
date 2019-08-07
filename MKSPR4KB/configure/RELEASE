@@ -64,7 +64,7 @@ SNCSEQ=$(SUPPORT)/seq/master
 SQLITE=$(SUPPORT)/sqlite/master
 SSCAN=$(SUPPORT)/sscan/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
-PR4000=$(SUPPORT)/pr4000/master
+MKSPR4KB=$(SUPPORT)/pr4000/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 

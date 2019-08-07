@@ -32,6 +32,7 @@ $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
 $(APPNAME)_DBD += asubFunctions.dbd
+$(APPNAME)_DBD += pr4000.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -51,6 +52,7 @@ $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += pcre libjson zlib
 $(APPNAME)_LIBS += efsw
 $(APPNAME)_LIBS += asubFunctions
+$(APPNAME)_LIBS += pr4000
 
 # MKSPR4KB-IOC-01_registerRecordDeviceDriver.cpp derives from MKSPR4KB-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
