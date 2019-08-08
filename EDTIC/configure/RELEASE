@@ -51,6 +51,7 @@ CAPUTLOG=$(SUPPORT)/caPutLog/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master
 LIBJSON=$(SUPPORT)/libjson/master
+LUA=$(SUPPORT)/lua/master
 MYSQL=$(SUPPORT)/MySQL/master
 ONCRPC=$(SUPPORT)/oncrpc/master
 PCRE=$(SUPPORT)/pcre/master
