@@ -34,6 +34,11 @@ ifneq ($(findstring linux,$(EPICS_HOST_ARCH)),)
 DIRS_NOTBUILD += MK3CHOPR ECLAB GALIL HIFIMAG INSTRON SECI2IBEX FERMCHOP RKNPS SEPRTR KHLY2001 ASTRIUM
 endif
 
+## twincat sets TWINCAT3DIR and TWINCATSDK environment variables on windows
+ifeq ($(TWINCAT3DIR),)
+DIRS_NOTBUILD += TWINCAT
+endif
+
 ## modules not to build on windows 64bit
 ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
 DIRS_NOTBUILD += 
