@@ -2,9 +2,8 @@
 < $(IOCSTARTUP)/init.cmd
 
 ## Load record instances
-tcSetAlias("PLC:TEST:")
 tcSetScanRate(10, 5)
-tcLoadRecords ("$(TPY_FILE)", "-eo -devtc")
+tcLoadRecords ("$(TPY_FILE)", "-eo -devtc -p $(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
