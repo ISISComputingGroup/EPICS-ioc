@@ -35,6 +35,8 @@ dbLoadRecords("$(MKSPR4KB)/db/pr4000.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,REC
 dbLoadRecords("$(MKSPR4KB)/db/pr4000chan.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),CHAN=1")
 dbLoadRecords("$(MKSPR4KB)/db/pr4000chan.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),CHAN=2")
 
+dbLoadRecords("$(MKSPR4KB)/db/unit_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
+
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
