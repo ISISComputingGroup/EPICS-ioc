@@ -3,7 +3,7 @@
 <config_part>
 <ioc_desc>TDK Lambda Genesys power supply</ioc_desc>
 <macros>
-<macro name="PORT1" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="PORT1" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD1" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
 <macro name="BITS1" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
 <macro name="PARITY1" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
@@ -13,7 +13,7 @@
 <macro name="SP_AT_STARTUP1" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR1" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
-<macro name="PORT2" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="PORT2" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD2" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
 <macro name="BITS2" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
 <macro name="PARITY2" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
@@ -23,7 +23,7 @@
 <macro name="SP_AT_STARTUP2" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR2" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
-<macro name="PORT3" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="PORT3" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD3" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
 <macro name="BITS3" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
 <macro name="PARITY3" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
@@ -33,7 +33,7 @@
 <macro name="SP_AT_STARTUP3" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR3" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
-<macro name="PORT4" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="PORT4" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD4" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
 <macro name="BITS4" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
 <macro name="PARITY4" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
@@ -43,7 +43,7 @@
 <macro name="SP_AT_STARTUP4" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR4" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
-<macro name="PORT5" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="PORT5" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD5" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
 <macro name="BITS5" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
 <macro name="PARITY5" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
@@ -53,7 +53,7 @@
 <macro name="SP_AT_STARTUP5" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR5" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
-<macro name="PORT6" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="PORT6" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD6" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
 <macro name="BITS6" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
 <macro name="PARITY6" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
@@ -63,7 +63,7 @@
 <macro name="SP_AT_STARTUP6" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR6" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
-<macro name="PORT7" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="PORT7" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD7" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
 <macro name="BITS7" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
 <macro name="PARITY7" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
@@ -73,7 +73,7 @@
 <macro name="SP_AT_STARTUP7" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR7" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
-<macro name="PORT8" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="PORT8" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD8" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
 <macro name="BITS8" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
 <macro name="PARITY8" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
@@ -83,7 +83,7 @@
 <macro name="SP_AT_STARTUP8" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR8" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
-<macro name="PORT9" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="PORT9" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD9" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
 <macro name="BITS9" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
 <macro name="PARITY9" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
@@ -93,7 +93,7 @@
 <macro name="SP_AT_STARTUP9" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR9" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
-<macro name="PORT10" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="UNKNOWN" />
+<macro name="PORT10" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD10" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
 <macro name="BITS10" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
 <macro name="PARITY10" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />

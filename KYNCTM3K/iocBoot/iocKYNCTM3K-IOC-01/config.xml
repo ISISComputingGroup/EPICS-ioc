@@ -5,22 +5,22 @@
 <ioc_details>Keyence TM-3001P details</ioc_details>
 <macros>
     <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
-    <macro name="DISCHAN01" pattern="#?" description="Disables alarms for channel 01, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN02" pattern="#?" description="Disables alarms for channel 02, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN03" pattern="#?" description="Disables alarms for channel 03, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN04" pattern="#?" description="Disables alarms for channel 04, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN05" pattern="#?" description="Disables alarms for channel 05, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN06" pattern="#?" description="Disables alarms for channel 06, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN07" pattern="#?" description="Disables alarms for channel 07, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN08" pattern="#?" description="Disables alarms for channel 08, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN09" pattern="#?" description="Disables alarms for channel 09, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN10" pattern="#?" description="Disables alarms for channel 10, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN11" pattern="#?" description="Disables alarms for channel 11, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN12" pattern="#?" description="Disables alarms for channel 12, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN13" pattern="#?" description="Disables alarms for channel 13, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN14" pattern="#?" description="Disables alarms for channel 14, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN15" pattern="#?" description="Disables alarms for channel 15, defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="DISCHAN16" pattern="#?" description="Disables alarms for channel 16, defaults to blank" defaultValue="blank" hasDefault="YES" />
+    <macro name="DISCHAN01" pattern="#?" description="Disables alarms for channel 01, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN02" pattern="#?" description="Disables alarms for channel 02, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN03" pattern="#?" description="Disables alarms for channel 03, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN04" pattern="#?" description="Disables alarms for channel 04, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN05" pattern="#?" description="Disables alarms for channel 05, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN06" pattern="#?" description="Disables alarms for channel 06, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN07" pattern="#?" description="Disables alarms for channel 07, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN08" pattern="#?" description="Disables alarms for channel 08, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN09" pattern="#?" description="Disables alarms for channel 09, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN10" pattern="#?" description="Disables alarms for channel 10, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN11" pattern="#?" description="Disables alarms for channel 11, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN12" pattern="#?" description="Disables alarms for channel 12, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN13" pattern="#?" description="Disables alarms for channel 13, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN14" pattern="#?" description="Disables alarms for channel 14, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN15" pattern="#?" description="Disables alarms for channel 15, defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="DISCHAN16" pattern="#?" description="Disables alarms for channel 16, defaults to blank" defaultValue="" hasDefault="YES" />
     <macro name="CHAN_EGU01" pattern="^.*$" description="Measurement units for channel 01, defaults to mm" defaultValue="mm" hasDefault="YES" />
     <macro name="CHAN_EGU02" pattern="^.*$" description="Measurement units for channel 02, defaults to mm" defaultValue="mm" hasDefault="YES" />
     <macro name="CHAN_EGU03" pattern="^.*$" description="Measurement units for channel 03, defaults to mm" defaultValue="mm" hasDefault="YES" />

@@ -7,38 +7,38 @@
     <macro name="ADDR" pattern="^.*$" description="IP address to connect to." hasDefault="UNKNOWN" />
     <macro name="PORT" pattern="^[0-9]*$" description="Modbus Port number of device. Defaults to 502" defaultValue="502" hasDefault="YES" />
     <macro name="MODELNO" pattern="^12(10|40|62)+$" description="Moxa model number. 1210, 1240 or 1262." hasDefault="UNKNOWN" />
-    <macro name="CHAN0NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 0, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN1NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 1, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN2NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 2, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN3NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 3, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN4NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 4, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN5NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 5, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN6NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 6, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN7NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 7, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN8NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 8, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN9NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 9, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN10NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 10, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN11NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 11, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN12NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 12, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN13NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 13, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN14NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 14, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN15NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 15, max 39 characters. Defaults to blank" defaultValue="blank" hasDefault="YES" />
-    <macro name="CHAN0HILIMIT" pattern="^-?[.0-9]+$" description="Channel 0 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." defaultValue="10.0 for 1240 and 1100.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN1HILIMIT" pattern="^-?[.0-9]+$" description="Channel 1 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." defaultValue="10.0 for 1240 and 1100.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN2HILIMIT" pattern="^-?[.0-9]+$" description="Channel 2 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." defaultValue="10.0 for 1240 and 1100.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN3HILIMIT" pattern="^-?[.0-9]+$" description="Channel 3 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." defaultValue="10.0 for 1240 and 1100.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN4HILIMIT" pattern="^-?[.0-9]+$" description="Channel 4 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." defaultValue="10.0 for 1240 and 1100.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN5HILIMIT" pattern="^-?[.0-9]+$" description="Channel 5 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." defaultValue="10.0 for 1240 and 1100.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN6HILIMIT" pattern="^-?[.0-9]+$" description="Channel 6 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." defaultValue="10.0 for 1240 and 1100.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN7HILIMIT" pattern="^-?[.0-9]+$" description="Channel 7 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." defaultValue="10.0 for 1240 and 1100.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN0LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 0 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." defaultValue="0.0 for 1240 and -180.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN1LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 1 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." defaultValue="0.0 for 1240 and -180.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN2LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 2 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." defaultValue="0.0 for 1240 and -180.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN3LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 3 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." defaultValue="0.0 for 1240 and -180.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN4LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 4 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." defaultValue="0.0 for 1240 and -180.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN5LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 5 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." defaultValue="0.0 for 1240 and -180.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN6LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 6 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." defaultValue="0.0 for 1240 and -180.0 for 1262" hasDefault="YES" />
-    <macro name="CHAN7LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 7 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." defaultValue="0.0 for 1240 and -180.0 for 1262" hasDefault="YES" />
+    <macro name="CHAN0NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 0, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN1NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 1, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN2NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 2, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN3NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 3, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN4NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 4, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN5NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 5, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN6NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 6, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN7NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 7, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN8NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 8, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN9NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 9, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN10NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 10, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN11NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 11, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN12NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 12, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN13NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 13, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN14NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 14, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN15NAME" pattern="^[a-zA-Z0-9 \-\_]{0,39}+$" description="Name of channel 15, max 39 characters. Defaults to blank" defaultValue="" hasDefault="YES" />
+    <macro name="CHAN0HILIMIT" pattern="^-?[.0-9]+$" description="Channel 0 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN1HILIMIT" pattern="^-?[.0-9]+$" description="Channel 1 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN2HILIMIT" pattern="^-?[.0-9]+$" description="Channel 2 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN3HILIMIT" pattern="^-?[.0-9]+$" description="Channel 3 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN4HILIMIT" pattern="^-?[.0-9]+$" description="Channel 4 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN5HILIMIT" pattern="^-?[.0-9]+$" description="Channel 5 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN6HILIMIT" pattern="^-?[.0-9]+$" description="Channel 6 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN7HILIMIT" pattern="^-?[.0-9]+$" description="Channel 7 High alarm value. Defaults to 10.0 for 1240 and 1100.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN0LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 0 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN1LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 1 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN2LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 2 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN3LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 3 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN4LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 4 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN5LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 5 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN6LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 6 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." hasDefault="NO" />
+    <macro name="CHAN7LOWLIMIT" pattern="^-?[.0-9]+$" description="Channel 7 Low alarm value. Defaults to 0.0 for 1240 and -180.0 for 1262." hasDefault="NO" />
     <macro name="CHAN0UNITS" pattern="(V|mV|kV)" description="Channel 0 Units for model 1240. Defaults to V" defaultValue="V" hasDefault="YES" />
     <macro name="CHAN1UNITS" pattern="(V|mV|kV)" description="Channel 1 Units for model 1240. Defaults to V" defaultValue="V" hasDefault="YES" />
     <macro name="CHAN2UNITS" pattern="(V|mV|kV)" description="Channel 2 Units for model 1240. Defaults to V" defaultValue="V" hasDefault="YES" />
