@@ -43,6 +43,7 @@ record(bi, "$(P)POWER")
     info(archive, "VAL")
 
 	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POWER")
     field(SDIS, "$(P)DISABLE")
 }
 

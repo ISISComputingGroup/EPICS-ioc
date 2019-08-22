@@ -23,10 +23,44 @@ record(bo, "$(P)DISABLE")
 # Heater and temperature control
 #
 
-
-record(ao, "$(P)TEMP:SP")
+record(ao, "$(P)TEMP:SP") 
 {
     field(DESC, "Temperature setpoint")
+    field(OUT, "$(P)TEMP:SP:_CALC PP")
+	field(PREC, "3")
+	field(EGU, "K")
+}
+
+record(calc, "$(P)TEMP:SP:_CALC_LOOP")
+{
+    field(INPA, "$(P)CLOSEDLOOP CP MS")
+    field(CALC, "A+1")
+}
+
+record(dfanout, "$(P)TEMP:SP:_CALC") 
+{
+    field(SELL, "$(P)TEMP:SP:_CALC_LOOP")
+    field(SELM, "Specified")
+    field(OUTA, "$(P)TEMP:SP:_SET_LOOP_RAW PP")
+    field(OUTB, "$(P)TEMP:SP:_NO_SET_LOOP_RAW PP")
+    
+}
+
+record(ao, "$(P)TEMP:SP:_SET_LOOP_RAW")
+{
+    field(DTYP, "stream")
+    field(OUT, "@devtriton.proto setLoopThenTSetpoint($(P)) $(PORT)")
+	field(PREC, "3")
+	field(EGU, "K")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:TEMP:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
+record(ao, "$(P)TEMP:SP:_NO_SET_LOOP_RAW")
+{
     field(DTYP, "stream")
     field(OUT, "@devtriton.proto setTSetpoint($(P)) $(PORT)")
 	field(PREC, "3")

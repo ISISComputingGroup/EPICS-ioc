@@ -5,6 +5,8 @@
 <macros>
 <macro name="IPADDR" pattern="^.*$" description="IP address to connect to." />
 <macro name="IPPORT" pattern="^[0-9]+$" description="Port to connect to (defaults to 33576)." />
+<macro name="RAMP_FILE_NAME" pattern="^.*$" description="File name to use for ramp (defaults to Default.txt)." />
+<macro name="USE_RAMP_FILE" pattern="^(0|1)$" description="Whether to use (1) or not use (0) the ramp file specified above (defaults to 0)." />
 </macros>
 <pvsets>
 </pvsets>
