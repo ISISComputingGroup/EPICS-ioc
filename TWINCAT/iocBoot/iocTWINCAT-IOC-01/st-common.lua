@@ -3,7 +3,7 @@ num_axes = 8
 pv_prefix = os.getenv("MYPVPREFIX")
 tpy_file = os.getenv("TPY_FILE")
 
-iocsh.tcSetScanRate(10, 5)
+iocsh.tcSetScanRate(50, 5)
 iocsh.tcLoadRecords (tpy_file, string.format("-eo -devtc -p %s", pv_prefix))
 
 iocsh.devMotorCreateController(motor_port, "Controller", num_axes, pv_prefix)
