@@ -5,9 +5,6 @@
 epicsEnvSet("LUA_SCRIPT_PATH","${TOP}/iocBoot/${IOC}")
 luash("st-common.lua")
 
-asynSetTraceIOMask("MCU1", -1, 0x2)
-asynSetTraceMask("MCU1", -1, 0x9)
-
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
