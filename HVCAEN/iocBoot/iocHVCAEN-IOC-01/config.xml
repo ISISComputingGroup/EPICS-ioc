@@ -4,6 +4,7 @@
 		<ioc_desc>CAEN high voltage power supply</ioc_desc>
 		<macros>
 			<macro name ="HVCAENIP0" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the device." />
+			<macro name ="IFREADONLY" pattern="^ |#$" description="Whether device is readonly. Set to # for readonly, default is ' ' (just spacebar), for read and write" />
 		</macros>
 	</config_part>
 </ioc_config>
