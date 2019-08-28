@@ -1,5 +1,5 @@
 # Motor settings
-file "motor_settinzxdcvgs.req" P=$(P), M=MTR$(MTRCTRL)01
+file "motor_settings.req" P=$(P), M=MTR$(MTRCTRL)01
 file "motor_settings.req" P=$(P), M=MTR$(MTRCTRL)02
 file "motor_settings.req" P=$(P), M=MTR$(MTRCTRL)03
 file "motor_settings.req" P=$(P), M=MTR$(MTRCTRL)04
