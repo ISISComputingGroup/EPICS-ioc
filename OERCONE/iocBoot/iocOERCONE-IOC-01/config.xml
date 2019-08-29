@@ -4,6 +4,7 @@
 <ioc_desc>The Oerlikon Centre-One Pressure Gauge</ioc_desc>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+<macro name="BAUD" pattern="^[0-9]+$" description="Transmission/baud rate"/>
 </macros>
 <pvsets>
 </pvsets>
