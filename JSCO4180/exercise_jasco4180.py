@@ -1,6 +1,8 @@
 # Exercise the JASCO PU-4180
 ############################
-# The Jasco 4180 device software has a known race condition (see wiki) that causes the device 
+# The Jasco 4180 device software has a known race condition (see wiki:
+# https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/JASCO-PU--4180-HPLC-Pump#troubleshooting) 
+# that causes the device 
 # to freeze. This script attempts to crash the device and can be used for testing purposes 
 # in the event the driver is updated. The driver has been design to have resilience against 
 # this crash condition and should (in theory) never fail.
