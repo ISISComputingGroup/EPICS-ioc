@@ -32,7 +32,7 @@ $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
 $(APPNAME)_DBD += asubFunctions.dbd
-$(APPNAME)_DBD += gsl.dbd
+$(APPNAME)_DBD += gslSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
