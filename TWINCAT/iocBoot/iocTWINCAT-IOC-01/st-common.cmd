@@ -5,10 +5,6 @@
 epicsEnvSet("LUA_SCRIPT_PATH","${TOP}/iocBoot/${IOC}")
 luash("st-common.lua")
 
-tcSetScanRate(10, 5)
-tcLoadRecords ("$(TPY_FILE)", "-eo -devtc -p $(MYPVPREFIX)$(IOCNAME):")
-
-
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
