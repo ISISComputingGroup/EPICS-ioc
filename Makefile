@@ -23,6 +23,7 @@ IOCDIRS += ATTOCUBE
 IOCDIRS += HELIOX
 IOCDIRS += TWINCAT
 IOCDIRS += MKSPR4KB
+IOCDIRS += OERCONE
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
