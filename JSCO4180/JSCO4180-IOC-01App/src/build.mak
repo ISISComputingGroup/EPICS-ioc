@@ -36,20 +36,17 @@ $(APPNAME)_DBD += detect_jasco_error_state.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += jsco4180
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre libjson zlib
-## Stream device libraries ##
 $(APPNAME)_LIBS += stream
-$(APPNAME)_LIBS += pcre
+$(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += asyn
-## Add other libraries here ##
-$(APPNAME)_LIBS += calc
-$(APPNAME)_LIBS += jsco4180
+$(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += xxx
 
 # JSCO4180-IOC-01_registerRecordDeviceDriver.cpp derives from JSCO4180-IOC-01.dbd
