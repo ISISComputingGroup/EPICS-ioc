@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Edwards Turbo Instrument Controller (TIC)</ioc_desc>
+<macros>
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 9600." />
+<macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." />
+<macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." />
+<macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." />
+
+<macro name="USEGAUGE1" pattern="^(YES|NO)$" description="YES if gauge 1 is in use, defaults to NO" />
+<macro name="USEGAUGE2" pattern="^(YES|NO)$" description="YES if gauge 2 is in use, defaults to NO" />
+<macro name="USEGAUGE3" pattern="^(YES|NO)$" description="YES if gauge 3 is in use, defaults to NO" />
+
+</macros>
+</config_part>
+</ioc_config>
