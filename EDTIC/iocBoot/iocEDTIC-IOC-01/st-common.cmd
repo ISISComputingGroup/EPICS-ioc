@@ -38,9 +38,11 @@ $(IFGAUGE2) dbLoadRecords("$(EDTIC)/db/edwardsTicGauge.db","PVPREFIX=$(MYPVPREFI
 stringiftest("GAUGE3" "$(USEGAUGE3="NO")" 5 "YES")
 $(IFGAUGE3) dbLoadRecords("$(EDTIC)/db/edwardsTicGauge.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),GAUGE=3")
 
+dbLoadRecords("$(EDTIC)/db/edwardsTicUsedGauges.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),IFGAUGE1=$(IFGAUGE1),IFGAUGE2=$(IFGAUGE2),IFGAUGE3=$(IFGAUGE3)")
+
 dbLoadRecords("$(EDTIC)/db/edwardsTicTurbo.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 
-dbLoadRecords("$(EDTIC)/db/edwardsTicErrors.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(EDTIC)/db/edwardsTicErrorsUnits.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
