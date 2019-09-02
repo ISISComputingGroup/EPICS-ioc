@@ -51,7 +51,7 @@ $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += pcre libjson zlib
 $(APPNAME)_LIBS += efsw
-$(APPNAME)_LIBS += asubFunctions gsl gslSupport
+$(APPNAME)_LIBS += asubFunctions gslSupport gsl
 
 # HELIOX-IOC-01_registerRecordDeviceDriver.cpp derives from HELIOX-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
