@@ -5,6 +5,11 @@
 epicsEnvSet("LUA_SCRIPT_PATH","${TOP}/iocBoot/${IOC}")
 luash("st-common.lua")
 
+epicsEnvSet("TWINCATCONFIG","$(TWINCATCONFIG=$(ICPCONFIGROOT)/twincat)")
+
+## configure jaws
+< $(TWINCATCONFIG)/jaws.cmd
+
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
