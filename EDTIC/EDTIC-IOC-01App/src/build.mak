@@ -30,8 +30,8 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
-## add other dbd here ##
 $(APPNAME)_DBD += luaSupport.dbd
+## add other dbd here ##
 
 # Add all the support libraries needed by this IOC
 
@@ -41,6 +41,7 @@ $(APPNAME)_DBD += luaSupport.dbd
 ## ISIS standard libraries ##
 ## Stream device libraries ##
 $(APPNAME)_LIBS += stream
+$(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
 ## other standard libraries here ##
 $(APPNAME)_LIBS += devIocStats 
@@ -49,10 +50,9 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pugixml libjson zlib
-$(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
-$(APPNAME)_LIBS += lua
 
 # EDTIC-IOC-01_registerRecordDeviceDriver.cpp derives from EDTIC-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
