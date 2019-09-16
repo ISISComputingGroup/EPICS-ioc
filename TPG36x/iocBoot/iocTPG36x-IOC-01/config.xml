@@ -7,6 +7,7 @@
             <macro name="BAUD" pattern="^[0-9]+$" description="Serial baud rate (default: 9600)" />
             <macro name="PRES1ON" pattern="^Y|N$" description="Set to Y if pressure sensor 1 is connected (default:Y)" />
             <macro name="PRES2ON" pattern="^Y|N$" description="Set to Y if pressure sensor 2 is connected (default:Y)" />
+            <macro name="IS361" pattern="^Y|N$" description="If the device is the tpg361 yes, if not no (default:N)" />
         </macros>
     </config_part>
 </ioc_config>
