@@ -19,7 +19,13 @@ HVCAEN_IOC_01_registerRecordDeviceDriver pdbbase
 ## arguments to CAENx527ConfigureCreate are: name, ip_address, username, password
 ## username, password are optional and the crate factory default is used if these are not specified
 CAENx527ConfigureCreate "hv0", "$(HVCAENIP0)"
-#CAENx527ConfigureCreate "hv1", "halldcaenhv1"
+CAENx527ConfigureCreate "hv1", "$(HVCAENIP1)"
+CAENx527ConfigureCreate "hv2", "$(HVCAENIP2)"
+CAENx527ConfigureCreate "hv3", "$(HVCAENIP3)"
+CAENx527ConfigureCreate "hv4", "$(HVCAENIP4)"
+CAENx527ConfigureCreate "hv5", "$(HVCAENIP5)"
+CAENx527ConfigureCreate "hv6", "$(HVCAENIP6)"
+CAENx527ConfigureCreate "hv7", "$(HVCAENIP7)"
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
