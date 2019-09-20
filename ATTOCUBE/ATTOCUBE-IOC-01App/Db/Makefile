@@ -12,7 +12,6 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 DB += single_axis.db
 DB += common.db
-DB += all_axes.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
