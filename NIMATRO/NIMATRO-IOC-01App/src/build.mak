@@ -37,7 +37,7 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 $(APPNAME)_LIBS += seq pv
 

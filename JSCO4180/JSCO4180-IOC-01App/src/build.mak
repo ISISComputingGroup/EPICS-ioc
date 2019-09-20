@@ -45,6 +45,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += utilities pcre libjson zlib
 $(APPNAME)_LIBS += asyn
+
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += xxx
