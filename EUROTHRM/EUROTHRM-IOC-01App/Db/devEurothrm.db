@@ -572,7 +572,7 @@ record(mbbo, "$(P)ERR_READ_PUSH") {
 }
 
 record(ai, "$(P)P") {
-    info(INTEREST, "MEDIUM")
+    info(INTEREST, "HIGH")
     field(DESC, "P Param Readback")
     field(SCAN, "Passive")
     field(DTYP, "stream")
@@ -598,7 +598,7 @@ record(ao, "$(P)P:SP") {
 alias("$(P)P", "$(P)P:SP:RBV")
 
 record(ai, "$(P)I") {
-    info(INTEREST, "MEDIUM")
+    info(INTEREST, "HIGH")
     field(DESC, "I Param Readback")
     field(SCAN, "Passive")
     field(DTYP, "stream")
@@ -624,7 +624,7 @@ record(ao, "$(P)I:SP") {
 alias("$(P)I", "$(P)I:SP:RBV")
 
 record(ai, "$(P)D") {
-    info(INTEREST, "MEDIUM")
+    info(INTEREST, "HIGH")
     field(DESC, "D Param Readback")
     field(SCAN, "Passive")
     field(DTYP, "stream")
