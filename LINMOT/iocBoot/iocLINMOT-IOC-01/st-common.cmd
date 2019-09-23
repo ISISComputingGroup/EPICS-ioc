@@ -37,9 +37,6 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"ixon","N") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"ixoff","N") 
 
-asynSetTraceIOMask("$(ASERIAL)", -1, 0x2)
-asynSetTraceMask("$(ASERIAL)", -1, 0x9)
-
 # PM304Setup(controller count, poll rate (1 to 60Hz))
 $(IFNOTRECSIM) LinMotSetup(1,5)
 
