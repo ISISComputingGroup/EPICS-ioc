@@ -150,7 +150,7 @@ record(bi, "$(P)ILK")
 {
     field(DESC, "Overall Interlock")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
