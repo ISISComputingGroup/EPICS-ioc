@@ -3,6 +3,7 @@
 	<config_part>
 		<ioc_desc>CAEN high voltage power supply</ioc_desc>
 		<macros>
+			<macro name ="IFREADONLY" pattern="^ |#$" description="Whether device is readonly. Set to # for readonly, default is ' ' (just spacebar), for read and write" />
 			<macro name ="HVCAENIP0" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the first device." />
 			<macro name ="HVCAENIP1" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the second device." />
 			<macro name ="HVCAENIP2" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the third device." />
