@@ -20,7 +20,7 @@ $(IFRECSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
 $(IFRECSIM) motorSimCreateController("motorSim", $(NAXES))
 $(IFRECSIM) epicsEnvSet("SIMSFX","Sim")
 
-$(IFDEVSIM) drvAsynIPPortConfigure("$(ASERIAL)", "localhost:$(EMULATOR_PORT=)")
+$(IFDEVSIM) drvAsynIPPortConfigure("$(ASERIAL)", "localhost:$(EMULATOR_PORT=57677)")
 $(IFDEVSIM) epicsEnvSet("SIMSFX","")
 $(IFDEVSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\r") 
 $(IFDEVSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r\n")
