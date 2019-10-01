@@ -2,7 +2,7 @@
 < $(IOCSTARTUP)/init.cmd
 
 drvAsynIPPortConfigure("STREAM_PORT", "localhost:$(EMULATOR_PORT=57677)")
-CRYOSMSConfigure("ASYN_PORT")
+CRYOSMSConfigure("ASYN_PORT", "$(MYPVPREFIX)$(IOCNAME):")
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(CRYOSMS)/data"
 
