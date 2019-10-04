@@ -34,7 +34,7 @@ stringiftest("PRESSUR2", $(PRES2ON="Y"), 5, "Y")
 #####################
 ## Load record instances
 
-dbLoadRecords("$(TPG)/db/tpg26x.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),IFPRESSUR1=$(IFPRESSUR1),IFPRESSUR2=$(IFPRESSUR2)")
+dbLoadRecords("$(TPG)/db/tpg26x.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),IFPRESSUR1=$(IFPRESSUR1),IFPRESSUR2=$(IFPRESSUR2),IF361=#,IFNOT361=' '")
 
 ## Finished loading record instances
 #########################
