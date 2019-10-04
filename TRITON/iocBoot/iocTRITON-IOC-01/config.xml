@@ -3,10 +3,10 @@
 <config_part>
 <ioc_desc>Triton Dilution Fridge</ioc_desc>
 <macros>
-<macro name="IPADDR" pattern="^.*$" description="IP address to connect to." />
-<macro name="IPPORT" pattern="^[0-9]+$" description="Port to connect to (defaults to 33576)." />
-<macro name="RAMP_FILE_NAME" pattern="^.*$" description="File name to use for ramp (defaults to Default.txt)." />
-<macro name="USE_RAMP_FILE" pattern="^(0|1)$" description="Whether to use (1) or not use (0) the ramp file specified above (defaults to 0)." />
+<macro name="IPADDR" pattern="^.*$" description="IP address to connect to." hasDefault="UNKNOWN" />
+<macro name="IPPORT" pattern="^[0-9]+$" description="Port to connect to (defaults to 33576)." defaultValue="33576" hasDefault="YES" />
+<macro name="RAMP_FILE_NAME" pattern="^.*$" description="File name to use for ramp (defaults to Default.txt)." defaultValue="Default.txt" hasDefault="YES" />
+<macro name="USE_RAMP_FILE" pattern="^(0|1)$" description="Whether to use (1) or not use (0) the ramp file specified above (defaults to 0)." defaultValue="0" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>

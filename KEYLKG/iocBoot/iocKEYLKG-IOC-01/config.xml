@@ -4,9 +4,9 @@
 <ioc_desc>The Keyence LK-G laser positioning sensor</ioc_desc>
 <ioc_details>The Keyence LK-G laser positioning sensor</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
-<macro name="BAUD" pattern="^d+$" description="Baud rate, manual suggests one of 9600, 19200, 38400, 57600, 115200. Default 9600" />
-<macro name="PARITY" pattern="^none|even|odd$" description="Parity, default none" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<macro name="BAUD" pattern="^d+$" description="Baud rate, manual suggests one of 9600, 19200, 38400, 57600, 115200. Default 9600" defaultValue="9600" hasDefault="YES" />
+<macro name="PARITY" pattern="^none|even|odd$" description="Parity, default none" defaultValue="none" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>

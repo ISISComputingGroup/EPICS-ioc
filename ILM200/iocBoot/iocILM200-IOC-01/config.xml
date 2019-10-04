@@ -4,8 +4,8 @@
 <ioc_desc>ILM 200 series</ioc_desc>
 <ioc_details>Oxford instruments Intelligent Level Meter 200 series</ioc_details>
 <macros>
-    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
-    <macro name="ISOBUS" pattern="^[0-9]+$" description="ISOBUS address (default: 1)" />
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+    <macro name="ISOBUS" pattern="^[0-9]+$" description="ISOBUS address (default: 1)" defaultValue="1" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>

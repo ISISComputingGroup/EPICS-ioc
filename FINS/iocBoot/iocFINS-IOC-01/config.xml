@@ -4,7 +4,7 @@
     <ioc_desc>Omron PLCs</ioc_desc>
     <ioc_details>Driver to talk to fins activated from settings.</ioc_details>
     <macros>
-      <macro name="PLCIP" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of PLC" />
+      <macro name="PLCIP" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of PLC" hasDefault="UNKNOWN" />
     </macros>
   </config_part>
 </ioc_config>

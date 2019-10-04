@@ -3,9 +3,9 @@
 <config_part>
 <ioc_desc>Engin-X sample positioning system</ioc_desc>
 <macros>
-<macro name="LVDCOM_HOST" pattern=".*" description="The LVDCOM host." />
-<macro name="LVDCOM_OPTIONS" pattern=".*" description="The LVDCOM options." />
-<macro name="LVDCOM_PROGID" pattern=".*" description="The LVDCOM program ID." />
+<macro name="LVDCOM_HOST" pattern=".*" description="The LVDCOM host." hasDefault="UNKNOWN" />
+<macro name="LVDCOM_OPTIONS" pattern=".*" description="The LVDCOM options." hasDefault="UNKNOWN" />
+<macro name="LVDCOM_PROGID" pattern=".*" description="The LVDCOM program ID." hasDefault="UNKNOWN" />
 </macros>
 </config_part>
 </ioc_config>

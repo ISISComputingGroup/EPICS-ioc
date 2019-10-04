@@ -24,6 +24,7 @@ LIBXML2=$(SUPPORT)/libxml2/master
 LIBXSLT=$(SUPPORT)/libxslt/master
 MYSQL=$(SUPPORT)/MySQL/master
 NULLHTTPD=$(SUPPORT)/nullhttpd/master
+PCAS=$(SUPPORT)/pcas/master
 PCRE=$(SUPPORT)/pcre/master
 PUGIXML=$(SUPPORT)/pugixml/master
 PVCOMPLETE=$(SUPPORT)/pvcomplete/master
