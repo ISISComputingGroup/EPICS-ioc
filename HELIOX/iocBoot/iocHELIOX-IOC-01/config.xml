@@ -9,6 +9,10 @@
     <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." />
     <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." />
     <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 2." />
+    <macro name="HE3SORB_NAME" pattern=".*" description="Name of Helium-3 sorb channel. Defaults to 'He3Sorb'" />
+    <macro name="HE4POT_NAME" pattern=".*" description="Name of Helium-4 pot channel. Defaults to 'He4Pot'" />
+    <macro name="HEHIGH_NAME" pattern=".*" description="Name of Helium-3 pot high-temperature channel. Defaults to 'HeHigh'" />
+    <macro name="HELOW_NAME" pattern=".*" description="Name of Helium-3 pot low-temperature channel. Defaults to 'HeLow'" />
 </macros>
 <pvsets>
 </pvsets>

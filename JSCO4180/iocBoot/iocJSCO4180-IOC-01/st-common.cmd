@@ -37,8 +37,9 @@ dbLoadRecords("$(JSCO4180)/db/jsco4180.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFI
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
-## Start any sequence programs
-#seq sncxxx,"user=znx23966"
-
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
+epicsEnvSet "P" "$(MYPVPREFIX)$(IOCNAME):"
+
+## Start programs to keep setpoints and readbacks in sync with each other.
+seq detect_jasco_error_state, "SETPOINT=$(P)COMP:A:SP,READBACK=$(P)COMP:A,STATUS=$(P)STATUS,PUMPRUN=$(P)START:SP,TIMERUN=$(P)PUMP_FOR_TIME:SP,PUMPSTOP=$(P)STOP:SP,ERROR=$(P)ERROR:COMP,TOLERANCE=$(P)ERROR:TOL,DELAY=$(P)ERROR:DELAY,RESET=$(P)RESET:SP"

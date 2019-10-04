@@ -35,7 +35,6 @@ $(APPNAME)_DBD += VISAdrv.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -49,6 +48,7 @@ $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += calc
 $(APPNAME)_LIBS += sscan
+$(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += xxx
 
 include $(VISADRV)/visa_lib.mak

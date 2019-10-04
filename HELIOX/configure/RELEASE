@@ -67,6 +67,7 @@ STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 HELIOX=$(SUPPORT)/heliox/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
+GSL=$(SUPPORT)/gsl/master
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
