@@ -33,7 +33,6 @@ $(APPNAME)_DBD += drvAsynIPPort.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -43,8 +42,9 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
-$(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += modbus asyn
+$(APPNAME)_LIBS += seq pv
 
 
 # MOXA12XX-IOC-01_registerRecordDeviceDriver.cpp derives from MOXA12XX-IOC-01.dbd

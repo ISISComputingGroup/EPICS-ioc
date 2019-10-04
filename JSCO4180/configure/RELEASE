@@ -71,4 +71,3 @@ include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
 
 # IOC-specific support module
-JSCO4180=$(SUPPORT)/jsco4180/master

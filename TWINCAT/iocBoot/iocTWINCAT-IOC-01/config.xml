@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Twincat </ioc_desc>
+<macros>
+<macro name="TPY_FILE" pattern="^.+$" description="Path to the .tpy file describing the PLC" />
+<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" />
+</macros>
+</config_part>
+</ioc_config>
