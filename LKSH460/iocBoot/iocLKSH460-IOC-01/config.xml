@@ -3,11 +3,11 @@
 <config_part>
 <ioc_desc>Lakeshore460 </ioc_desc>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
-<macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 9600." />
-<macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 7." />
-<macro name="PARITY" pattern="^(odd)|(even)|(none)$" description="Serial communication parity, defaults to odd." />
-<macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
+<macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 9600." defaultValue="9600" hasDefault="YES" />
+<macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 7." defaultValue="7" hasDefault="YES" />
+<macro name="PARITY" pattern="^(odd)|(even)|(none)$" description="Serial communication parity, defaults to odd." defaultValue="odd" hasDefault="YES" />
+<macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
 
 </macros>
 </config_part>

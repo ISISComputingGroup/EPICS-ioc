@@ -4,14 +4,14 @@
 		<ioc_desc>CAEN high voltage power supply</ioc_desc>
 		<macros>
 			<macro name ="IFREADONLY" pattern="^ |#$" description="Whether device is readonly. Set to # for readonly, default is ' ' (just spacebar), for read and write" />
-			<macro name ="HVCAENIP0" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the first device." />
-			<macro name ="HVCAENIP1" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the second device." />
-			<macro name ="HVCAENIP2" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the third device." />
-			<macro name ="HVCAENIP3" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the fourth device." />
-			<macro name ="HVCAENIP4" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the fifth device." />
-			<macro name ="HVCAENIP5" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the sixth device." />
-			<macro name ="HVCAENIP6" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the seventh device." />
-			<macro name ="HVCAENIP7" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the eighth device." />
+			<macro name ="HVCAENIP0" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the first device." hasDefault="NO" />
+			<macro name ="HVCAENIP1" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the second device." hasDefault="NO" />
+			<macro name ="HVCAENIP2" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the third device." hasDefault="NO" />
+			<macro name ="HVCAENIP3" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the fourth device." hasDefault="NO" />
+			<macro name ="HVCAENIP4" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the fifth device." hasDefault="NO" />
+			<macro name ="HVCAENIP5" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the sixth device." hasDefault="NO" />
+			<macro name ="HVCAENIP6" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the seventh device." hasDefault="NO" />
+			<macro name ="HVCAENIP7" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the eighth device." hasDefault="NO" />
 		</macros>
 	</config_part>
 </ioc_config>

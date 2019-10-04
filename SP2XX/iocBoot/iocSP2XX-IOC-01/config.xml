@@ -3,7 +3,7 @@
 <config_part>
 <ioc_desc>A SP2XX syringe pump</ioc_desc>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
 </macros>
 <pvsets>
 </pvsets>
