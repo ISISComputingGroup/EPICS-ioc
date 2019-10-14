@@ -15,19 +15,15 @@ iocstartup = getMacroValue{macro="IOCSTARTUP"}
 emulator_port = getMacroValue{macro="EMULATOR_PORT", default="57677"}
 
 -- ## Set EPICS environment vars
-iocsh.epicsEnvSet("STREAM_PROTOCOL_PATH", string.format("%s/data", oercone))
-iocsh.epicsEnvSet("DEVICE", "L0")
-stream_protocol_path = getMacroValue{macro="STREAM_PROTOCOL_PATH"}
-device = getMacroValue{macro="DEVICE"}
+stream_protocol_path = string.format("%s/data", oercone)
+device = "L0"
 
 -- ##ISIS## Run IOC initialisation 
 iocsh.iocshLoad(string.format("%s/init.cmd", iocstartup))
 
 -- Get macros required and related vars that required init.cmd to run
-devsim = getMacroValue{macro="DEVSIM", default="0"}
-isDevsim = devsim == "1"
-recsim = getMacroValue{macro="RECSIM", default="0"}
-isRecsim = recsim == "1"
+isDevsim = getMacroValue{macro="DEVSIM", default="0"} == "1"
+isRecsim = getMacroValue{macro="RECSIM", default="0"} == "1"
 pvprefix = string.format("%s", getMacroValue{macro="MYPVPREFIX"})
 disable = getMacroValue{macro="DISABLE", default="0"}
 iocname = getMacroValue{macro="IOCNAME"}
@@ -78,11 +74,7 @@ iocsh.dbLoadRecords(
 -- ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 iocsh.iocshLoad(string.format("%s/preiocinit.cmd", iocstartup))
 
--- os.execute(string.format("cd %s/iocBoot/%s", getMacroValue{macro="TOP"}, getMacroValue{macro="IOC"}))
 iocsh.iocInit()
-
--- ## Start any sequence programs
--- #seq sncxxx,"user=ltu34219"
 
 -- ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 iocsh.iocshLoad(string.format("%s/postiocinit.cmd", iocstartup))
