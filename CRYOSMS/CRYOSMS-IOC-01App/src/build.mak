@@ -29,10 +29,6 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
-$(APPNAME)_DBD += ReadASCII.dbd
-$(APPNAME)_DBD += FileList.dbd
-$(APPNAME)_DBD += asubFunctions.dbd
-$(APPNAME)_DBD += gsl.dbd
 $(APPNAME)_DBD += CRYOSMS.dbd
 
 # Add all the support libraries needed by this IOC
@@ -45,14 +41,10 @@ $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 ## Add other libraries here ##
 $(APPNAME)_LIBS += stream
-$(APPNAME)_LIBS += ReadASCII
-$(APPNAME)_LIBS += FileList
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += pcre libjson zlib
-$(APPNAME)_LIBS += efsw
-$(APPNAME)_LIBS += asubFunctions gsl gslSupport
+$(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += cryosms
 
 # CRYOSMS-IOC-01_registerRecordDeviceDriver.cpp derives from CRYOSMS-IOC-01.dbd

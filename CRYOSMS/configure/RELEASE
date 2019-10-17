@@ -48,18 +48,14 @@ ASYN=$(SUPPORT)/asyn/master
 AUTOSAVE=$(SUPPORT)/autosave/master
 CALC=$(SUPPORT)/calc/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
-COMMON=$(ISISSUPPORT)/Common/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
-EFSW=$(SUPPORT)/efsw/master
-FILELIST=$(SUPPORT)/FileList/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master
 LIBJSON=$(SUPPORT)/libjson/master
-ONCRPC=$(SUPPORT)/oncrpc/master
 MYSQL=$(SUPPORT)/MySQL/master
+ONCRPC=$(SUPPORT)/oncrpc/master
 PCRE=$(SUPPORT)/pcre/master
 PUGIXML=$(SUPPORT)/pugixml/master
 PVDUMP=$(SUPPORT)/pvdump/master
-READASCII=$(SUPPORT)/ReadASCII/master
 SNCSEQ=$(SUPPORT)/seq/master
 SQLITE=$(SUPPORT)/sqlite/master
 SSCAN=$(SUPPORT)/sscan/master
@@ -67,8 +63,6 @@ STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 CRYOSMS=$(SUPPORT)/cryosms/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
-GSL=$(SUPPORT)/gsl/master
-GSL_SUPPORT=$(GSL)/EPICS
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
