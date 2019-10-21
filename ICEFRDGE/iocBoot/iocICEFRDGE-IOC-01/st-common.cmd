@@ -30,7 +30,6 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 
 ## Load our record instances
 dbLoadRecords("$(ICEFRDGE)/db/icefrdge.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
-dbLoadRecords("$(ICEFRDGE)/db/unit_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
