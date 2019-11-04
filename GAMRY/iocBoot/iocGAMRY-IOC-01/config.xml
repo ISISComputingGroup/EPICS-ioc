@@ -1,8 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
  <config_part>
-  <ioc_desc>Gamry</ioc_desc>
-  <ioc_details>This IOC is to support the ISIS Gamry trigger device. It is NOT for individual Gamry potentiostats.</ioc_details>
+  <ioc_desc>This IOC is to support the ISIS Gamry trigger device. It is NOT for individual Gamry potentiostats.</ioc_desc>
   <macros>
     <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 
