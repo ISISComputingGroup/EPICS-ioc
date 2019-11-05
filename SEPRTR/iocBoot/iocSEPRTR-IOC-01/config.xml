@@ -4,17 +4,17 @@
     <ioc_desc>Muon Separator PSU</ioc_desc>
     <ioc_details>Detailed status of PSU</ioc_details>
     <macros>
-        <macro name="DAQ_AI_PORT_NAME" pattern="^[a-zA-Z0-9_-]+$" description="Port name for AI DAQ Port. Defaults to cDAQ9185-MUONFEMod3" />
-        <macro name="DAQ_AO_PORT_NAME" pattern="^[a-zA-Z0-9_-]+$" description="Port name for AO DAQ Port. Defaults to cDAQ9185-MUONFEMod4" />
-        <macro name="FREQ" pattern="^[0-9]+$" description="Sample acquisition frequency. Defaults to 100"/>
-        <macro name="NELM" pattern="^[0-9]+$" description="Number of elements in sample data. Defaults to 100" />
-        <macro name="POWER_MIN_VOLT" pattern="^[0-9]+$" description="Voltage value (in kV) to determine when the separator is off. Defaults to 2" />
-        <macro name="VUPPERLIM" pattern="^[.0-9]+$" description="Voltage stability upper limit (kV). Defaults to 1"/>
-        <macro name="VLOWERLIM" pattern="^[.0-9]+$" description="Voltage stability lower limit (kV). Defaults to 0"/>
-        <macro name="ISTEADY" pattern="^[.0-9]+$" description="Nominal stable current value (mA). Defaults to 0"/>
-        <macro name="ILIMIT" pattern="^[.0-9]+$" description="Current stability tolerance (mA). Defaults to 1"/>
-        <macro name="WINDOWSIZE" pattern="^[0-9]+$" description="Number of seconds in moving window. Defaults to 600"/>
-        <macro name="MAXUNSTBL" pattern="^[0-9]+$" description="Maximum number of seconds allowed out of stability before alarm. Defaults to 30"/>
+        <macro name="DAQ_AI_PORT_NAME" pattern="^[a-zA-Z0-9_-]+$" description="Port name for AI DAQ Port. Defaults to cDAQ9185-MUONFEMod3" defaultValue="cDAQ9185-MUONFEMod3" hasDefault="YES" />
+        <macro name="DAQ_AO_PORT_NAME" pattern="^[a-zA-Z0-9_-]+$" description="Port name for AO DAQ Port. Defaults to cDAQ9185-MUONFEMod4" defaultValue="cDAQ9185-MUONFEMod4" hasDefault="YES" />
+        <macro name="FREQ" pattern="^[0-9]+$" description="Sample acquisition frequency. Defaults to 100" defaultValue="100" hasDefault="YES" />
+        <macro name="NELM" pattern="^[0-9]+$" description="Number of elements in sample data. Defaults to 100" defaultValue="100" hasDefault="YES" />
+        <macro name="POWER_MIN_VOLT" pattern="^[0-9]+$" description="Voltage value (in kV) to determine when the separator is off. Defaults to 2" defaultValue="2" hasDefault="YES" />
+        <macro name="VUPPERLIM" pattern="^[.0-9]+$" description="Voltage stability upper limit (kV). Defaults to 1" defaultValue="1" hasDefault="YES" />
+        <macro name="VLOWERLIM" pattern="^[.0-9]+$" description="Voltage stability lower limit (kV). Defaults to 0" defaultValue="0" hasDefault="YES" />
+        <macro name="ISTEADY" pattern="^[.0-9]+$" description="Nominal stable current value (mA). Defaults to 0" defaultValue="0" hasDefault="YES" />
+        <macro name="ILIMIT" pattern="^[.0-9]+$" description="Current stability tolerance (mA). Defaults to 1" defaultValue="1" hasDefault="YES" />
+        <macro name="WINDOWSIZE" pattern="^[0-9]+$" description="Number of seconds in moving window. Defaults to 600" defaultValue="600" hasDefault="YES" />
+        <macro name="MAXUNSTBL" pattern="^[0-9]+$" description="Maximum number of seconds allowed out of stability before alarm. Defaults to 30" defaultValue="30" hasDefault="YES" />
     </macros>
     <pvsets>
 

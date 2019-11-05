@@ -34,7 +34,6 @@ $(APPNAME)_DBD += luaSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -45,7 +44,8 @@ $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
-$(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += daedataSupport
 $(APPNAME)_LIBS_WIN32 += oncrpc
 

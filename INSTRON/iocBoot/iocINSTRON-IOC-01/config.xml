@@ -4,7 +4,7 @@
  <ioc_desc>Instron 8800 Stress Rig</ioc_desc>
  <ioc_details>Instron 8800 Stress Rig</ioc_details>
   <macros>  
-   <macro name="GPIBSTR" pattern="^.*$" description="GPIB connection string, defaults to GPIB0::3::INSTR" />
+   <macro name="GPIBSTR" pattern="^.*$" description="GPIB connection string, defaults to GPIB0::3::INSTR" defaultValue="GPIB0::3::INSTR" hasDefault="YES" />
   </macros>
  </config_part>
 </ioc_config>

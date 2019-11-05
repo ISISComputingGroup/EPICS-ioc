@@ -4,7 +4,7 @@
   <ioc_desc>Gamry</ioc_desc>
   <ioc_details>Gamry</ioc_details>
   <macros>
-    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 
   </macros>
  </config_part>

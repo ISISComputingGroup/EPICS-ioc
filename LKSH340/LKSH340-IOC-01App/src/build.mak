@@ -46,7 +46,7 @@ $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
-$(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += xxx
 

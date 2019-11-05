@@ -47,7 +47,6 @@ $(APPNAME)_LIBS += asubFunctions
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 $(APPNAME)_LIBS +=  asyn zlib efsw libjson pcrecpp pcre pugixml
-$(APPNAME)_LIBS += cas gdd 
 
 $(APPNAME)_LIBS_WIN32 += libcurl oncrpc
 $(APPNAME)_SYS_LIBS_Linux += curl

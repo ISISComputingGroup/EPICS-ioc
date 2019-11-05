@@ -24,6 +24,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 stringiftest("PRESSUR1", $(PRES1ON="Y"), 5, "Y")
 stringiftest("PRESSUR2", $(PRES2ON="Y"), 5, "Y")
 
+stringiftest("361", $(IS361="N"), 5, "Y")
+
 ## For debugging:
 #asynSetTraceMask("L0",-1,0x9) 
 #asynSetTraceIOMask("L0",-1,0x2)
@@ -31,7 +33,7 @@ stringiftest("PRESSUR2", $(PRES2ON="Y"), 5, "Y")
 #####################
 ## Load record instances
 
-dbLoadRecords("$(TPG)/db/tpg36x.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),IFPRESSUR1=$(IFPRESSUR1),IFPRESSUR2=$(IFPRESSUR2)")
+dbLoadRecords("$(TPG)/db/tpg36x.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),IFPRESSUR1=$(IFPRESSUR1),IFPRESSUR2=$(IFPRESSUR2),IF361=$(IF361),IFNOT361=$(IFNOT361)")
 
 ## Finished loading record instances
 #########################
