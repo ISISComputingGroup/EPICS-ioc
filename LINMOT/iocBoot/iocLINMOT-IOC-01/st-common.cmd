@@ -22,12 +22,11 @@ $(IFRECSIM) epicsEnvSet("SIMSFX","Sim")
 
 $(IFDEVSIM) drvAsynIPPortConfigure("$(ASERIAL)", "localhost:$(EMULATOR_PORT=57677)")
 $(IFDEVSIM) epicsEnvSet("SIMSFX","")
-$(IFDEVSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\r") 
-$(IFDEVSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r\n")
+ 
+$(IFNOTRECSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\r") 
+$(IFNOTRECSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r\n")
  
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT=NUL)", 0, 0, 0)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\r") 
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r\n")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"baud","$(BAUD=9600)") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"bits","$(BITS=8)") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"stop","$(STOP=1)") 
