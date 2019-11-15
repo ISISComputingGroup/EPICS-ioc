@@ -34,7 +34,7 @@ dbLoadRecords("$(ICEFRDGE)/db/loop.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(
 dbLoadRecords("$(ICEFRDGE)/db/valve.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 dbLoadRecords("$(ICEFRDGE)/db/proportional_valve.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 dbLoadRecords("$(ICEFRDGE)/db/solenoid_valve.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
-
+dbLoadRecords("$(ICEFRDGE)/db/icefrdge_error_setter.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
