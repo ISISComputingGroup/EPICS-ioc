@@ -2,8 +2,13 @@
 < $(IOCSTARTUP)/init.cmd
 
 ## Load record instances
-tcSetScanRate(10, 5)
-tcLoadRecords ("$(TPY_FILE)", "-eo -devtc -p $(MYPVPREFIX)$(IOCNAME):")
+epicsEnvSet("LUA_SCRIPT_PATH","${TOP}/iocBoot/${IOC}")
+luash("st-common.lua")
+
+epicsEnvSet("TWINCATCONFIG","$(TWINCATCONFIG=$(ICPCONFIGROOT)/twincat)")
+
+## configure jaws
+< $(TWINCATCONFIG)/jaws.cmd
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
@@ -16,3 +21,10 @@ iocInit
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
+
+## Make sure controller number is 2 digits long
+calc("MTRCTRL", "$(MTRCTRL)", 2, 2)
+
+# Save motor settings every 30 seconds
+set_requestfile_path("${MOTOR}/motorApp/Db", "")
+$(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,MTRCTRL=$(MTRCTRL)")

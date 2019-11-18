@@ -1,0 +1,2 @@
+# Attocube specific settings for an axis
+$(P)$(IOCNAME):ACT$(AXIS):CMD:WR_AMPL.VAL

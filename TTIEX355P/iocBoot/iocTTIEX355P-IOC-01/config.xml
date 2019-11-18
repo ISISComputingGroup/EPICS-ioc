@@ -3,7 +3,7 @@
 <config_part>
 <ioc_desc>TTI 355P power supply</ioc_desc>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 </macros>
 </config_part>
 </ioc_config>

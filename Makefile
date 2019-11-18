@@ -18,11 +18,15 @@ IOCDIRS += SP2XX RKNDIO NGPSPSU KYNCTM3K INDFURN SEPRTR DMA4500M QEPRO KHLY2001 
 IOCDIRS += KNR1050 TTIPLP DH2000 MOXA12XX JSCO4180 MEZFLIPR DETADC EDNEXT
 IOCDIRS += TTI355
 IOCDIRS += KNRK6 NGEM NIMATRO LKSH340 TPG36x CAENMCA ALDN1000
+IOCDIRS += CP2800
 IOCDIRS += CHTOBISR KEYLKG
 IOCDIRS += ATTOCUBE
 IOCDIRS += HELIOX
 IOCDIRS += TWINCAT
 IOCDIRS += MKSPR4KB
+IOCDIRS += OERCONE
+IOCDIRS += EDTIC
+IOCDIRS += CRYOSMS
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
@@ -39,13 +43,18 @@ ifeq ($(TWINCAT3DIR),)
 DIRS_NOTBUILD += TWINCAT
 endif
 
+## module decisions based on Visual Studio version
+ifneq ($(findstring 10.0,$(VCVERSION)),)
+# What not to build with VS2010
+DIRS_NOTBUILD += TWINCAT
+else
+# What not to build if do not have VS2010
+DIRS_NOTBUILD += MK3CHOPR ASTRIUM
+endif
+
 ## modules not to build on windows 64bit
 ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
 DIRS_NOTBUILD += 
-# don't build the mk3chopper if not using VS2010
-ifeq ($(findstring 10.0,$(VCVERSION)),)
-DIRS_NOTBUILD += MK3CHOPR ASTRIUM
-endif
 endif
 
 ## modules not to build on windows 32bit
@@ -69,6 +78,7 @@ DIRS_NOTBUILD += ISISDAE MERCURY_ITC STPS350 AG53220A STSR400 DELFTSHEAR DELFTDC
 endif
 
 DIRS := $(filter-out $(DIRS_NOTBUILD), $(IOCDIRS))
+DIRS := $(sort $(DIRS))
 
 include $(TOP)/configure/RULES_DIRS_INT
 
