@@ -71,4 +71,4 @@ include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
 
 # IOC-specific support module
-#FLDSTRN=$(SUPPORT)/separator/master
+#ZFMAGFLD=$(SUPPORT)/separator/master

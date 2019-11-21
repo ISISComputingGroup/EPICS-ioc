@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application FLDSTRN-IOC-01
+# Build the IOC application ZFMAGFLD-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# FLDSTRN-IOC-01.dbd will be created and installed
+# ZFMAGFLD-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# FLDSTRN-IOC-01.dbd will be made up from these files:
+# ZFMAGFLD-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += icpconfig.dbd
@@ -47,12 +47,12 @@ $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
-#$(APPNAME)_LIBS += FLDSTRN#separator#FLDSTRN
+#$(APPNAME)_LIBS += ZFMAGFLD#separator#ZFMAGFLD
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += xxx
 $(APPNAME)_LIBS += DAQmxSupport
-# FLDSTRN-IOC-01_registerRecordDeviceDriver.cpp derives from FLDSTRN-IOC-01.dbd
+# ZFMAGFLD-IOC-01_registerRecordDeviceDriver.cpp derives from ZFMAGFLD-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
