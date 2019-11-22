@@ -39,7 +39,7 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 ## Add other libraries here ##
-$(APPNAME)_LIBS += cryosms
+$(APPNAME)_LIBS += CRYOSMS
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asyn
