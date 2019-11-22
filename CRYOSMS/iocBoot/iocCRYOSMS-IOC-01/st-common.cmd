@@ -29,7 +29,7 @@ epicsEnvSet "STREAM_PROTOCOL_PATH" "$(CRYOSMS)/data"
 ############################
 ## Load our record instances
 ############################
-dbLoadRecords("$(CRYOSMS)/db/cryosms.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,ASYN_PORT=ASYN_PORT,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+dbLoadRecords("$(CRYOSMS)/db/cryosms.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,ASYN_PORT=ASYN_PORT,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PROTO==cryosms.proto,DISPLAY_UNIT=$(DISPLAY_UNIT),WRITE_UNIT=$(WRITE_UNIT),T_TO_A=$(T_TO_A)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
