@@ -26,6 +26,7 @@ IOCDIRS += TWINCAT
 IOCDIRS += MKSPR4KB
 IOCDIRS += OERCONE
 IOCDIRS += EDTIC
+IOCDIRS += ICEFRDGE
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)

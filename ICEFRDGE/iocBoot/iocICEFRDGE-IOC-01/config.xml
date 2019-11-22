@@ -4,7 +4,6 @@
 <ioc_desc>IOC for controlling ICECube PC that controls ICE Oxford dilution fridge</ioc_desc>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
-<macro name="BAUD" pattern="^[0-9]+$" description="Transmission/baud rate"/>
 </macros>
 <pvsets>
 </pvsets>
