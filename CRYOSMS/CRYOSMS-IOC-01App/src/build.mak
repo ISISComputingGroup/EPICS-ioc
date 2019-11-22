@@ -33,19 +33,21 @@ $(APPNAME)_DBD += CRYOSMS.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 ## Add other libraries here ##
+$(APPNAME)_LIBS += cryosms
 $(APPNAME)_LIBS += stream
-$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += pcre
-$(APPNAME)_LIBS += cryosms
+
+$(APPNAME)_LIBS_WIN32 += oncrpc
 
 # CRYOSMS-IOC-01_registerRecordDeviceDriver.cpp derives from CRYOSMS-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
