@@ -37,6 +37,7 @@ $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 ## Load our record instances
 dbLoadRecords("$(ZFMAGFLD)/db/zfmagfld.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 dbLoadRecords("$(ZFMAGFLD)/db/zfmagfld_axes.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),IFNOTRECSIM=$(IFNOTRECSIM),IFRECSIM=$(IFRECSIM),OFFSET_X=$(OFFSET_X),OFFSET_Y=$(OFFSET_Y),OFFSET_Z=$(OFFSET_Z)")
+dbLoadRecords("$(ZFMAGFLD)/db/zfmagfld_sensor_matrix.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):")
 
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
