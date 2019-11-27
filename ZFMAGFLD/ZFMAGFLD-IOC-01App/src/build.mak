@@ -32,7 +32,7 @@ $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += DAQmxSupport.dbd
 ## add other dbd here ##
-#$(APPNAME)_DBD += separator.dbd
+$(APPNAME)_DBD += zfmagfld.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -47,7 +47,7 @@ $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
-#$(APPNAME)_LIBS += ZFMAGFLD#separator#ZFMAGFLD
+$(APPNAME)_LIBS += ZFMAGFLD
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += xxx
