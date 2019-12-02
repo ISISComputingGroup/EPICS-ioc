@@ -24,7 +24,7 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
-$(APPNAME)_DBD += inhibitor.dbd 
+$(APPNAME)_DBD += zfcntrl.dbd 
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -42,7 +42,7 @@ $(APPNAME)_LIBS += utilities pcre libjson zlib
 
 # ZFCNTRL-IOC-01_registerRecordDeviceDriver.cpp derives from ZFCNTRL-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
-$(APPNAME)_SRCS += inhibitor.st
+$(APPNAME)_SRCS += zero_field.st
 
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp

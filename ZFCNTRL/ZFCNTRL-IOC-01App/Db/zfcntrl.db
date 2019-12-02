@@ -1,0 +1,118 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+    field(PINI, "YES")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+# Tell the magnetometer to process it's PVs and get new values from hardware
+record(bo, "$(P)TRIGGER_MAGNETOMETER_READ") {
+    field(FLNK, "$(P)MAGNETOMETER:Y")
+}
+
+# Processed from the magnetometer IOC when new readings are available
+record(bo, "$(P)INPUTS_UPDATED") {
+    field(FLNK, "$(P)MAGNETOMETER:X")
+}
+
+record(ai, "$(P)MAGNETOMETER:X") {
+    field(INP, "$(MAGNETOMETER_X) CA MSS")
+    field(EGU, "mG")
+    field(PREC, "5")
+    
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MAGNETOMETER:X")
+    field(SDIS, "$(P)DISABLE")
+    
+    field(FLNK, "$(P)MAGNETOMETER:Y")
+}
+
+record(ai, "$(P)MAGNETOMETER:Y") {
+    field(INP, "$(MAGNETOMETER_Y) CA MSS")
+    field(EGU, "mG")
+    field(PREC, "5")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MAGNETOMETER:Y")
+    field(SDIS, "$(P)DISABLE")
+    
+    field(FLNK, "$(P)MAGNETOMETER:Z")
+}
+
+record(ai, "$(P)MAGNETOMETER:Z") {
+    field(INP, "$(MAGNETOMETER_Z) CA MSS")
+    field(EGU, "mG")
+    field(PREC, "5")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MAGNETOMETER:Z")
+    field(SDIS, "$(P)DISABLE")
+    
+    field(FLNK, "$(P)_UPDATE_READINGS_READY")
+}
+
+record(bo, "$(P)_UPDATE_READINGS_READY") {
+    field(A, "1")
+    field(CALC, "A")
+    field(OUT, "$(P)_READINGS_READY PP")
+}
+
+record(bo, "$(P)_READINGS_READY") {
+    field(VAL, "0")
+}
+
+
+record(mbbo, "$(P)STATEMACHINE") {
+  field(DESC, "What the IOC is doing")
+  
+  field(ZRVL, "0")
+  field(ZRST, "initializing")
+  
+  field(ONVL, "1")
+  field(ONST, "inputs_invalid")
+
+  field(TWVL, "2")
+  field(TWST, "one")
+
+  field(THVL, "3")
+  field(THST, "two")
+
+  field(FRVL, "4")
+  field(FRST, "Turn heater on & wait")
+
+  field(FVVL, "5")
+  field(FVST, "Set PSU to setpoint")
+
+  field(SXVL, "6")
+  field(SXST, "Turn heater off & wait")
+
+  field(SVVL, "7")
+  field(SVST, "Set PSU to zero")
+  
+  info(archive, "VAL")
+}
+
+
+### Simulation records
+
+record(ao, "$(P)SIM:MAGNETOMETER:X") {}
+alias("$(P)SIM:MAGNETOMETER:X", "$(P)SIM:MAGNETOMETER:X:SP")
+
+record(ao, "$(P)SIM:MAGNETOMETER:Y") {}
+alias("$(P)SIM:MAGNETOMETER:Y", "$(P)SIM:MAGNETOMETER:Y:SP")
+
+record(ao, "$(P)SIM:MAGNETOMETER:Z") {}
+alias("$(P)SIM:MAGNETOMETER:Z", "$(P)SIM:MAGNETOMETER:Z:SP")
