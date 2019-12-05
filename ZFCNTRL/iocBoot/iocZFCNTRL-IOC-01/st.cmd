@@ -25,7 +25,7 @@ ZFCNTRL_IOC_01_registerRecordDeviceDriver pdbbase
 ## Load our record instances
 epicsEnvSet("P", "$(MYPVPREFIX)$(IOCNAME):")
 
-dbLoadRecords("$(TOP)/db/zfcntrl.db", "P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),MAGNETOMETER_X=$(MAGNETOMETER_X=not_set),MAGNETOMETER_Y=$(MAGNETOMETER_Y=not_set),MAGNETOMETER_Z=$(MAGNETOMETER_Z=not_set)")
+dbLoadRecords("$(TOP)/db/zfcntrl.db", "P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),MAGNETOMETER_X=$(MAGNETOMETER_X=not_set),MAGNETOMETER_Y=$(MAGNETOMETER_Y=not_set),MAGNETOMETER_Z=$(MAGNETOMETER_Z=not_set),MAGNETOMETER_OVERLOAD=$(MAGNETOMETER_OVERLOAD=not_set)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -36,4 +36,4 @@ iocInit
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
 
-seq zero_field, "MAGNETOMETER_X=$(P)MAGNETOMETER:X,MAGNETOMETER_Y=$(P)MAGNETOMETER:Y,MAGNETOMETER_Z=$(P)MAGNETOMETER:Z,STATE=$(P)STATEMACHINE,READINGS_READY=$(P)_READINGS_READY,TRIGGER_READ=$(P)TRIGGER_MAGNETOMETER_READ"
+seq zero_field, "P=$(P)"

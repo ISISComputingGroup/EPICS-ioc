@@ -18,9 +18,38 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
+record(bo, "$(P)DEBUG")
+{
+    field(DESC, "Debug mode")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "Debug disabled")
+    field(ONAM, "Debug enabled")
+}
+
+#
+#
+# PVs for reading values from magnetometer
+#
+#
+
+record(calc, "$(P)_TRIGGER_MAGNETOMETER_READ_CALC") {
+    field(INPA, "$(P)SIM CP MS")
+    field(CALC, "A+1")
+}
+
 # Tell the magnetometer to process it's PVs and get new values from hardware
-record(bo, "$(P)TRIGGER_MAGNETOMETER_READ") {
-    field(FLNK, "$(P)MAGNETOMETER:Y")
+record(fanout, "$(P)TRIGGER_MAGNETOMETER_READ") {
+    # TODO field(FLNK, "")
+    field(SELM, "Specified")
+    field(SELL, "$(P)_TRIGGER_MAGNETOMETER_READ_CALC")
+    
+    # Triggered in non-simulation mode
+    # TODO field(LNK1, "")
+    
+    # Triggered in simulation mode
+    field(LNK2, "$(P)SIM:MAGNETOMETER:X")
 }
 
 # Processed from the magnetometer IOC when new readings are available
@@ -61,10 +90,22 @@ record(ai, "$(P)MAGNETOMETER:Z") {
     field(SIOL, "$(P)SIM:MAGNETOMETER:Z")
     field(SDIS, "$(P)DISABLE")
     
+    field(FLNK, "$(P)MAGNETOMETER:OVERLOAD")
+}
+
+record(bi, "$(P)MAGNETOMETER:OVERLOAD") {
+    field(INP, "$(MAGNETOMETER_OVERLOAD) CA MSS")
+    field(ZNAM, "In range")
+    field(ONAM, "Out of range")
+    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MAGNETOMETER:OVERLOAD")
+    field(SDIS, "$(P)DISABLE")
+    
     field(FLNK, "$(P)_UPDATE_READINGS_READY")
 }
 
-record(bo, "$(P)_UPDATE_READINGS_READY") {
+record(calcout, "$(P)_UPDATE_READINGS_READY") {
     field(A, "1")
     field(CALC, "A")
     field(OUT, "$(P)_READINGS_READY PP")
@@ -73,6 +114,13 @@ record(bo, "$(P)_UPDATE_READINGS_READY") {
 record(bo, "$(P)_READINGS_READY") {
     field(VAL, "0")
 }
+
+
+#
+#
+# Statemachine status PVs
+#
+#
 
 
 record(mbbo, "$(P)STATEMACHINE") {
@@ -85,34 +133,121 @@ record(mbbo, "$(P)STATEMACHINE") {
   field(ONST, "inputs_invalid")
 
   field(TWVL, "2")
-  field(TWST, "one")
+  field(TWST, "trigger_mag_read")
 
   field(THVL, "3")
-  field(THST, "two")
+  field(THST, "wait_for_mag_read")
 
   field(FRVL, "4")
-  field(FRST, "Turn heater on & wait")
+  field(FRST, "check_corrected_field")
 
   field(FVVL, "5")
-  field(FVST, "Set PSU to setpoint")
+  field(FVST, "check_raw_field")
 
   field(SXVL, "6")
-  field(SXST, "Turn heater off & wait")
+  field(SXST, "check_auto_feedback")
 
   field(SVVL, "7")
-  field(SVST, "Set PSU to zero")
+  field(SVST, "everything_else")
   
   info(archive, "VAL")
 }
 
+#
+#
+# User facing setpoints/readbacks of field
+#
+#
+
+record(ao, "$(P)FIELD:X:SP") {
+  field(DESC, "Field setpoint X")
+  field(EGU, "mG")
+  field(PREC, "5")
+}
+
+alias("$(P)MAGNETOMETER:X", "$(P)FIELD:X")
+
+record(ao, "$(P)FIELD:Y:SP") {
+  field(DESC, "Field setpoint Y")
+  field(EGU, "mG")
+  field(PREC, "5")
+}
+
+alias("$(P)MAGNETOMETER:Y", "$(P)FIELD:Y")
+
+record(ao, "$(P)FIELD:Z:SP") {
+  field(DESC, "Field setpoint Z")
+  field(EGU, "mG")
+  field(PREC, "5")
+}
+
+record(bo, "$(P)STABLE") {
+  field(ZNAM, "Unstable")
+  field(ZSV, "MAJOR")
+  field(ONAM, "Stable")
+}
+
+record(bo, "$(P)AUTOFEEDBACK") {
+  field(ZNAM, "Manual")
+  field(ONAM, "Auto-feedback")
+}
+
+record(ao, "$(P)TOLERANCE") {
+  field(EGU, "mG")
+  field(PREC, "5")
+}
+
+record(mbbo, "$(P)STATUS") {
+  field(ZRST, "No error")
+  field(ONST, "Magnetometer read error")
+  field(ONSV, "MAJOR")
+  field(TWST, "Magnetometer overloaded")
+  field(TWSV, "MAJOR")
+}
+
+alias("$(P)MAGNETOMETER:Z", "$(P)FIELD:Z")
+
+#
+#
+# PVs for writing to power supplies
+#
+#
 
 ### Simulation records
 
-record(ao, "$(P)SIM:MAGNETOMETER:X") {}
+record(ao, "$(P)SIM:MAGNETOMETER:X") {
+    field(FLNK, "$(P)SIM:MAGNETOMETER:Y")
+}
 alias("$(P)SIM:MAGNETOMETER:X", "$(P)SIM:MAGNETOMETER:X:SP")
 
-record(ao, "$(P)SIM:MAGNETOMETER:Y") {}
+record(ao, "$(P)SIM:MAGNETOMETER:Y") {
+    field(FLNK, "$(P)SIM:MAGNETOMETER:Z")
+}
 alias("$(P)SIM:MAGNETOMETER:Y", "$(P)SIM:MAGNETOMETER:Y:SP")
 
-record(ao, "$(P)SIM:MAGNETOMETER:Z") {}
+record(ao, "$(P)SIM:MAGNETOMETER:Z") {
+    field(FLNK, "$(P)SIM:_INPUTS_UPDATED")
+}
 alias("$(P)SIM:MAGNETOMETER:Z", "$(P)SIM:MAGNETOMETER:Z:SP")
+
+# Set this to 1 to simulate the magnetometer IOC not being present
+record(bo, "$(P)SIM:MAGNETOMETER_DISCONNECTED") {}
+
+record(calc, "$(P)SIM:_INPUTS_UPDATED_CALC") {
+    field(INPA, "$(P)SIM:MAGNETOMETER_DISCONNECTED CP MS")
+    field(CALC, "A+1")
+}
+
+# Tell the magnetometer to process it's PVs and get new values from hardware
+record(fanout, "$(P)SIM:_INPUTS_UPDATED") {
+    field(SELM, "Specified")
+    field(SELL, "$(P)SIM:_INPUTS_UPDATED_CALC")
+    
+    # Triggered only if $(P)SIM:MAGNETOMETER_DISCONNECTED is False
+    field(LNK1, "$(P)INPUTS_UPDATED")
+}
+
+record(bo, "$(P)SIM:MAGNETOMETER:OVERLOAD") {
+  field(ZNAM, "In range")
+  field(ONAM, "Out of range")
+}
