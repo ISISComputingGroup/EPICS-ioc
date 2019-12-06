@@ -123,34 +123,31 @@ record(bo, "$(P)_READINGS_READY") {
 #
 
 
-record(mbbo, "$(P)STATEMACHINE") {
+record(mbbo, "$(P)STATEMACHINE:STATE") {
   field(DESC, "What the IOC is doing")
   
-  field(ZRVL, "0")
-  field(ZRST, "initializing")
-  
-  field(ONVL, "1")
-  field(ONST, "inputs_invalid")
-
-  field(TWVL, "2")
+  field(ZRST, "initializing")  field(ZRSV, "MAJOR")
+  field(ONST, "inputs_invalid")  field(ONSV, "MAJOR")
   field(TWST, "trigger_mag_read")
-
-  field(THVL, "3")
   field(THST, "wait_for_mag_read")
-
-  field(FRVL, "4")
   field(FRST, "check_corrected_field")
-
-  field(FVVL, "5")
   field(FVST, "check_raw_field")
-
-  field(SXVL, "6")
   field(SXST, "check_auto_feedback")
-
-  field(SVVL, "7")
-  field(SVST, "everything_else")
+  field(SVST, "check_output_psu_state")
+  field(EIST, "write_to_psu")
+  field(NIST, "loop_delay")
   
-  info(archive, "VAL")
+  # Do not archive unless needed for debugging - this PV changes very quickly
+  # and would fill up the archive database on an instrument if logged all the
+  # time.
+  # info(archive, "VAL")
+}
+
+record(ao, "$(P)STATEMACHINE:LOOP_DELAY")
+{
+  field(EGU, "s")
+  field(VAL, "0.1")
+  field(PINI, "YES")
 }
 
 #
@@ -181,6 +178,8 @@ record(ao, "$(P)FIELD:Z:SP") {
   field(PREC, "5")
 }
 
+alias("$(P)MAGNETOMETER:Z", "$(P)FIELD:Z")
+
 record(bo, "$(P)STABLE") {
   field(ZNAM, "Unstable")
   field(ZSV, "MAJOR")
@@ -203,15 +202,80 @@ record(mbbo, "$(P)STATUS") {
   field(ONSV, "MAJOR")
   field(TWST, "Magnetometer overloaded")
   field(TWSV, "MAJOR")
+  field(THST, "Power supply invalid")
+  field(THSV, "MAJOR")
+  field(FRST, "Power supply on limits")
+  field(FRSV, "MAJOR")
 }
 
-alias("$(P)MAGNETOMETER:Z", "$(P)FIELD:Z")
 
 #
 #
-# PVs for writing to power supplies
+# Feedback factors
 #
 #
+
+record(ao, "$(P)P:X") {
+  field(DESC, "Amps per mG - X axis")
+  field(EGU, "A/mG")
+}
+
+record(ao, "$(P)P:Y") {
+  field(DESC, "Amps per mG - Y axis")
+  field(EGU, "A/mG")
+}
+
+record(ao, "$(P)P:Z") {
+  field(DESC, "Amps per mG - Z axis")
+  field(EGU, "A/mG")
+}
+
+record(ao, "$(P)P:FIDDLE_FACTOR") {
+  field(DESC, "Proportional fiddle factor")
+  field(EGU, "")  # unitless
+}
+
+#
+#
+# PVs corresponding to power supplies
+#
+#
+
+record(ao, "$(P)OUTPUT:X") {
+  field(EGU, "A")
+}
+
+record(ao, "$(P)OUTPUT:Y") {
+  field(EGU, "A")
+}
+
+record(ao, "$(P)OUTPUT:Z") {
+  field(EGU, "A")
+}
+
+record(ao, "$(P)OUTPUT:X:SP") {
+  field(EGU, "A")
+}
+
+record(ao, "$(P)OUTPUT:Y:SP") {
+  field(EGU, "A")
+}
+
+record(ao, "$(P)OUTPUT:Z:SP") {
+  field(EGU, "A")
+}
+
+record(ao, "$(P)OUTPUT:X:SP:RBV") {
+  field(EGU, "A")
+}
+
+record(ao, "$(P)OUTPUT:Y:SP:RBV") {
+  field(EGU, "A")
+}
+
+record(ao, "$(P)OUTPUT:Z:SP:RBV") {
+  field(EGU, "A")
+}
 
 ### Simulation records
 
