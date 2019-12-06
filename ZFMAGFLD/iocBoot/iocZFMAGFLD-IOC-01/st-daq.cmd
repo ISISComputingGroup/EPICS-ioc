@@ -1,4 +1,4 @@
-epicsEnvSet("CDAQ","$(DAQ_NAME=cDAQ9181-1B0C1FCMod1)")
+epicsEnvSet("CDAQ","$(HOST=cDAQ9181-1B0C1FCMod1)")
 
 ## 3xAI inputs from a cDAQ 9181, one input per magnetometer channel
 $(IFNOTRECSIM) DAQmxConfig("R0", "$(CDAQ)/ai0", 0, "AI","OneShot TerminalDiff N=1 F=0") # X (L)

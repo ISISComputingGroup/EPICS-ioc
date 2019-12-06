@@ -4,12 +4,12 @@
     <ioc_desc>Zero Field Controller Field Strength</ioc_desc>
     <ioc_details>Reads and corrects magnetometer measurement</ioc_details>
     <macros>
+        <macro name="HOST" pattern="^[a-zA-Z0-9_-]+$" description="DAQ card hostname." defaultValue="cDAQ9181-1B0C1FCMod1" hasDefault="YES" />
         <macro name="OFFSETX" pattern="^[.0-9]+$" description="X component of measured field offset" hasDefault="NO" />
         <macro name="OFFSETY" pattern="^[.0-9]+$" description="Y component of measured field offset" hasDefault="NO" />
         <macro name="OFFSETZ" pattern="^[.0-9]+$" description="Z component of measured field offset" hasDefault="NO" />
         <macro name="RANGE" pattern="^[.0-9]+$" description="Range of the magnetometer" defaultValue="1" hasDefault="YES" />
         <macro name="SQNCR" pattern="^[a-zA-Z0-9_-]+$" description="PV in auto-feedback sequencer to process on new field values" defaultValue="$(PVPREFIX):ZFCNTRL_01:INPUTS_UPDATED.PROC", hasDefault="YES" />
-        <macro name="DAQ_NAME" pattern="^[a-zA-Z0-9_-]+$" description="DAQ card hostname." defaultValue="cDAQ9181-1B0C1FCMod1" hasDefault="YES" />
 
         <macro name="MATRIX_1_1" pattern="^[.0-9]+$" description="Element (1,1) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
         <macro name="MATRIX_1_2" pattern="^[.0-9]+$" description="Element (1,2) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
