@@ -88,9 +88,8 @@ PV(int, auto_feedback_enabled, "{P}AUTOFEEDBACK", Monitor);
 /* Statemachine debugging - e.g. logging of every state entry. Very verbose. */
 PV(int, debug, "{P}DEBUG", Monitor);
 
-/* Delay between statemachine loops. Adjustable by user, but adjusting it will
- * mean that "fiddle factor" will need to be adjusted accordingly.
- */
+/* Delay between statemachine loops. Adjustable by user, but changing it will
+ * mean that "fiddle factor" will need to be re-adjusted.  */
 PV(double, loop_delay, "{P}STATEMACHINE:LOOP_DELAY", Monitor);
 
 
@@ -195,7 +194,7 @@ ss zero_field
     
     when(magnetometer_overloaded) {
       PVPUTSTR(status, "Magnetometer overloaded");
-    } state trigger_mag_read
+    } state loop_delay
     
     when(!magnetometer_overloaded) {
       /* Intentionally empty */
@@ -214,7 +213,7 @@ ss zero_field
     when(!auto_feedback_enabled) {
       /* If we get to this point, there is no error. Clear any previous error states. */
       PVPUTSTR(status, "No error");
-    } state trigger_mag_read
+    } state loop_delay
   }
   
   state check_output_psu_state {
@@ -224,6 +223,7 @@ ss zero_field
     
     when(power_supplies_invalid(pVar)) {
       PVPUTSTR(status, "Power supply invalid");
+      errlogSevPrintf(errlogMajor, "%s: Power supply is in invalid alarm. Not writing to power supplies.", PROGRAM_NAME);
     } state trigger_mag_read
     
     when(!power_supplies_invalid(pVar)) {
@@ -250,9 +250,9 @@ ss zero_field
       double existing_output_y = (output_psu_y_sp_sevr == INVALID_ALARM) ? output_psu_y_sp_rbv : output_psu_y_sp;
       double existing_output_z = (output_psu_z_sp_sevr == INVALID_ALARM) ? output_psu_z_sp_rbv : output_psu_z_sp;
       
-      double change_x = (magnetometer_x - existing_output_x) * p_x * fiddle_factor;
-      double change_y = (magnetometer_y - existing_output_y) * p_y * fiddle_factor;
-      double change_z = (magnetometer_z - existing_output_z) * p_z * fiddle_factor;
+      double change_x = (setpoint_x - magnetometer_x) * p_x * fiddle_factor;
+      double change_y = (setpoint_y - magnetometer_y) * p_y * fiddle_factor;
+      double change_z = (setpoint_z - magnetometer_z) * p_z * fiddle_factor;
       
       double new_x = existing_output_x + change_x;
       double new_y = existing_output_y + change_y;
@@ -262,20 +262,22 @@ ss zero_field
       double coerced_y = coerceToRange(new_y, output_psu_y_sp_drvl, output_psu_y_sp_drvh);
       double coerced_z = coerceToRange(new_z, output_psu_z_sp_drvl, output_psu_z_sp_drvh);
       
-      int x_on_limit = (new_x == coerced_x);
-      int y_on_limit = (new_y == coerced_y);
-      int z_on_limit = (new_z == coerced_z);
+      int x_on_limit = (new_x != coerced_x);
+      int y_on_limit = (new_y != coerced_y);
+      int z_on_limit = (new_z != coerced_z);
       
       if (x_on_limit || y_on_limit || z_on_limit) {
-        errlogSevPrintf(errlogMajor, "%s: power supply outputs on limits: X=%s, Y=%s, Z=%s (limits: X=%f, Y=%f, Z=%f)", 
-          PROGRAM_NAME, x_on_limit ? "True" : "False", y_on_limit ? "True" : "False", z_on_limit ? "True" : "False", 
-          coerced_x, coerced_y, coerced_z);
+        errlogSevPrintf(errlogMajor, "%s: power supply outputs on limits. Attempted to set (X=%f, Y=%f, Z=%f) but instead set (X=%f, Y=%f, Z=%f)", 
+          PROGRAM_NAME, new_x, new_y, new_z, coerced_x, coerced_y, coerced_z);
         PVPUTSTR(status, "Power supply on limits");
       } else {
         /* If we get here, there has been no error so clear error flags */
         PVPUTSTR(status, "No error");
       }
       
+      if (debug) {
+        errlogSevPrintf(errlogInfo, "%s: Writing to power supplies X=%f, Y=%f, Z=%f", PROGRAM_NAME, coerced_x, coerced_y, coerced_z); 
+      }
       PVPUT(output_psu_x_sp, coerced_x);
       PVPUT(output_psu_y_sp, coerced_y);
       PVPUT(output_psu_z_sp, coerced_z);
@@ -289,7 +291,6 @@ ss zero_field
     }
     
     when(delay(loop_delay)) {
-      PVPUTSTR(status, "No error");
     } state trigger_mag_read
   }
 }
@@ -304,7 +305,8 @@ ss zero_field
     strncpy(pVar->statemachine_state, new_state_name, MAX_STRING_SIZE);
 	seq_pvPut(ssId, index, SYNC);
     if (pVar->debug) {
-	  errlogSevPrintf(errlogInfo, "%s: Entering state %s", PROGRAM_NAME, new_state_name);
+      /* Too verbose, hangs the ioc as it prints way too much output. */
+	  /* errlogSevPrintf(errlogInfo, "%s: Entering state %s", PROGRAM_NAME, new_state_name); */
     }
   }
   
@@ -336,9 +338,9 @@ ss zero_field
       return value;
     }
     
-    if (value >= high_limit) {
+    if (value > high_limit) {
         return high_limit;
-    } else if (value <= low_limit) {
+    } else if (value < low_limit) {
         return low_limit;
     } else {
         return value;

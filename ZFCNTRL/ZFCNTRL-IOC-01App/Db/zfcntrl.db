@@ -1,31 +1,37 @@
 record(bo, "$(P)SIM")
 {
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-    field(ZNAM, "NO")
-    field(ONAM, "YES")
-    field(VAL, "$(RECSIM=0)")
-    field(PINI, "YES")
+  field(SCAN, "Passive")
+  field(DTYP, "Soft Channel")
+  field(ZNAM, "NO")
+  field(ONAM, "YES")
+  field(VAL, "$(RECSIM=0)")
+  field(PINI, "YES")
+  
+  info(archive, "VAL")
 }
 
 record(bo, "$(P)DISABLE")
 {
-    field(DESC, "Disable comms")
-    field(PINI, "YES")
-    field(VAL, "$(DISABLE=0)")
-    field(OMSL, "supervisory")
-    field(ZNAM, "COMMS ENABLED")
-    field(ONAM, "COMMS DISABLED")
+  field(DESC, "Disable comms")
+  field(PINI, "YES")
+  field(VAL, "$(DISABLE=0)")
+  field(OMSL, "supervisory")
+  field(ZNAM, "COMMS ENABLED")
+  field(ONAM, "COMMS DISABLED")
+  
+  info(archive, "VAL")
 }
 
 record(bo, "$(P)DEBUG")
 {
-    field(DESC, "Debug mode")
-    field(PINI, "YES")
-    field(VAL, "0")
-    field(OMSL, "supervisory")
-    field(ZNAM, "Debug disabled")
-    field(ONAM, "Debug enabled")
+  field(DESC, "Debug mode")
+  field(PINI, "YES")
+  field(VAL, "1")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Debug disabled")
+  field(ONAM, "Debug enabled")
+  
+  info(archive, "VAL")
 }
 
 #
@@ -35,84 +41,90 @@ record(bo, "$(P)DEBUG")
 #
 
 record(calc, "$(P)_TRIGGER_MAGNETOMETER_READ_CALC") {
-    field(INPA, "$(P)SIM CP MS")
-    field(CALC, "A+1")
+  field(INPA, "$(P)SIM CP MS")
+  field(CALC, "A+1")
 }
 
 # Tell the magnetometer to process it's PVs and get new values from hardware
 record(fanout, "$(P)TRIGGER_MAGNETOMETER_READ") {
-    # TODO field(FLNK, "")
-    field(SELM, "Specified")
-    field(SELL, "$(P)_TRIGGER_MAGNETOMETER_READ_CALC")
-    
-    # Triggered in non-simulation mode
-    # TODO field(LNK1, "")
-    
-    # Triggered in simulation mode
-    field(LNK2, "$(P)SIM:MAGNETOMETER:X")
+  # TODO field(FLNK, "")
+  field(SELM, "Specified")
+  field(SELL, "$(P)_TRIGGER_MAGNETOMETER_READ_CALC")
+  
+  # Triggered in non-simulation mode
+  # TODO field(LNK1, "")
+  
+  # Triggered in simulation mode
+  field(LNK2, "$(P)SIM:MAGNETOMETER:X")
 }
 
 # Processed from the magnetometer IOC when new readings are available
 record(bo, "$(P)INPUTS_UPDATED") {
-    field(FLNK, "$(P)MAGNETOMETER:X")
+  field(FLNK, "$(P)MAGNETOMETER:X")
 }
 
 record(ai, "$(P)MAGNETOMETER:X") {
-    field(INP, "$(MAGNETOMETER_X) CA MSS")
-    field(EGU, "mG")
-    field(PREC, "5")
-    
-	field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:MAGNETOMETER:X")
-    field(SDIS, "$(P)DISABLE")
-    
-    field(FLNK, "$(P)MAGNETOMETER:Y")
+  field(INP, "$(MAGNETOMETER_X) CA MSS")
+  field(EGU, "mG")
+  field(PREC, "5")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:MAGNETOMETER:X")
+  field(SDIS, "$(P)DISABLE")
+  
+  field(FLNK, "$(P)MAGNETOMETER:Y")
+  
+  info(archive, "VAL")
 }
 
 record(ai, "$(P)MAGNETOMETER:Y") {
-    field(INP, "$(MAGNETOMETER_Y) CA MSS")
-    field(EGU, "mG")
-    field(PREC, "5")
-    
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:MAGNETOMETER:Y")
-    field(SDIS, "$(P)DISABLE")
-    
-    field(FLNK, "$(P)MAGNETOMETER:Z")
+  field(INP, "$(MAGNETOMETER_Y) CA MSS")
+  field(EGU, "mG")
+  field(PREC, "5")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:MAGNETOMETER:Y")
+  field(SDIS, "$(P)DISABLE")
+  
+  field(FLNK, "$(P)MAGNETOMETER:Z")
+  
+  info(archive, "VAL")
 }
 
 record(ai, "$(P)MAGNETOMETER:Z") {
-    field(INP, "$(MAGNETOMETER_Z) CA MSS")
-    field(EGU, "mG")
-    field(PREC, "5")
-    
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:MAGNETOMETER:Z")
-    field(SDIS, "$(P)DISABLE")
-    
-    field(FLNK, "$(P)MAGNETOMETER:OVERLOAD")
+  field(INP, "$(MAGNETOMETER_Z) CA MSS")
+  field(EGU, "mG")
+  field(PREC, "5")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:MAGNETOMETER:Z")
+  field(SDIS, "$(P)DISABLE")
+  
+  field(FLNK, "$(P)MAGNETOMETER:OVERLOAD")
+  
+  info(archive, "VAL")
 }
 
 record(bi, "$(P)MAGNETOMETER:OVERLOAD") {
-    field(INP, "$(MAGNETOMETER_OVERLOAD) CA MSS")
-    field(ZNAM, "In range")
-    field(ONAM, "Out of range")
-    
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:MAGNETOMETER:OVERLOAD")
-    field(SDIS, "$(P)DISABLE")
-    
-    field(FLNK, "$(P)_UPDATE_READINGS_READY")
+  field(INP, "$(MAGNETOMETER_OVERLOAD) CA MSS")
+  field(ZNAM, "In range")
+  field(ONAM, "Out of range")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:MAGNETOMETER:OVERLOAD")
+  field(SDIS, "$(P)DISABLE")
+  
+  field(FLNK, "$(P)_UPDATE_READINGS_READY")
 }
 
 record(calcout, "$(P)_UPDATE_READINGS_READY") {
-    field(A, "1")
-    field(CALC, "A")
-    field(OUT, "$(P)_READINGS_READY PP")
+  field(A, "1")
+  field(CALC, "A")
+  field(OUT, "$(P)_READINGS_READY PP")
 }
 
 record(bo, "$(P)_READINGS_READY") {
-    field(VAL, "0")
+  field(VAL, "0")
 }
 
 
@@ -160,6 +172,8 @@ record(ao, "$(P)FIELD:X:SP") {
   field(DESC, "Field setpoint X")
   field(EGU, "mG")
   field(PREC, "5")
+  
+  info(archive, "VAL")
 }
 
 alias("$(P)MAGNETOMETER:X", "$(P)FIELD:X")
@@ -168,6 +182,8 @@ record(ao, "$(P)FIELD:Y:SP") {
   field(DESC, "Field setpoint Y")
   field(EGU, "mG")
   field(PREC, "5")
+  
+  info(archive, "VAL")
 }
 
 alias("$(P)MAGNETOMETER:Y", "$(P)FIELD:Y")
@@ -176,27 +192,43 @@ record(ao, "$(P)FIELD:Z:SP") {
   field(DESC, "Field setpoint Z")
   field(EGU, "mG")
   field(PREC, "5")
+  
+  info(archive, "VAL")
 }
 
 alias("$(P)MAGNETOMETER:Z", "$(P)FIELD:Z")
 
 record(bo, "$(P)STABLE") {
+  field(DESC, "Stability of ZF system")
   field(ZNAM, "Unstable")
   field(ZSV, "MAJOR")
   field(ONAM, "Stable")
+  
+  info(interest, "HIGH")
+  info(archive, "VAL")
 }
 
 record(bo, "$(P)AUTOFEEDBACK") {
+  field(DESC, "Mode of ZF system")
   field(ZNAM, "Manual")
   field(ONAM, "Auto-feedback")
+  
+  info(interest, "HIGH")
+  info(archive, "VAL")
 }
+
+alias("$(P)AUTOFEEDBACK", "$(P)AUTOFEEDBACK:SP")
 
 record(ao, "$(P)TOLERANCE") {
   field(EGU, "mG")
   field(PREC, "5")
+  
+  info(interest, "HIGH")
+  info(archive, "VAL")
 }
 
 record(mbbo, "$(P)STATUS") {
+  field(DESC, "Status of ZF system")
   field(ZRST, "No error")
   field(ONST, "Magnetometer read error")
   field(ONSV, "MAJOR")
@@ -206,6 +238,9 @@ record(mbbo, "$(P)STATUS") {
   field(THSV, "MAJOR")
   field(FRST, "Power supply on limits")
   field(FRSV, "MAJOR")
+  
+  info(interest, "HIGH")
+  info(archive, "VAL")
 }
 
 
@@ -218,22 +253,42 @@ record(mbbo, "$(P)STATUS") {
 record(ao, "$(P)P:X") {
   field(DESC, "Amps per mG - X axis")
   field(EGU, "A/mG")
+  
+  info(interest, "HIGH")
+  info(archive, "VAL")
 }
+
+alias("$(P)P:X", "$(P)P:X:SP")
 
 record(ao, "$(P)P:Y") {
   field(DESC, "Amps per mG - Y axis")
   field(EGU, "A/mG")
+  
+  info(interest, "HIGH")
+  info(archive, "VAL")
 }
+
+alias("$(P)P:Y", "$(P)P:Y:SP")
 
 record(ao, "$(P)P:Z") {
   field(DESC, "Amps per mG - Z axis")
   field(EGU, "A/mG")
+  
+  info(interest, "HIGH")
+  info(archive, "VAL")
 }
+
+alias("$(P)P:Z", "$(P)P:Z:SP")
 
 record(ao, "$(P)P:FIDDLE_FACTOR") {
   field(DESC, "Proportional fiddle factor")
   field(EGU, "")  # unitless
+  
+  info(interest, "HIGH")
+  info(archive, "VAL")
 }
+
+alias("$(P)P:FIDDLE_FACTOR", "$(P)P:FIDDLE_FACTOR:SP")
 
 #
 #
@@ -241,56 +296,193 @@ record(ao, "$(P)P:FIDDLE_FACTOR") {
 #
 #
 
-record(ao, "$(P)OUTPUT:X") {
+record(ai, "$(P)OUTPUT:X") {
   field(EGU, "A")
+  field(SCAN, ".1 second")
+  field(INP, "$(PSU_X) CA MSS")
+  field(PREC, "6")
+  field(DRVL, "$(OUTPUT_X_MIN)")
+  field(DRVH, "$(OUTPUT_X_MAX)")
+  field(LOLO, "$(OUTPUT_X_MIN)")
+  field(HIHI, "$(OUTPUT_X_MAX)")
+  field(HHSV, "MAJOR")
+  field(LLSV, "MAJOR")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:OUTPUT:X")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(interest, "MEDIUM")
+  info(archive, "VAL")
 }
 
-record(ao, "$(P)OUTPUT:Y") {
+record(ai, "$(P)OUTPUT:Y") {
   field(EGU, "A")
+  field(SCAN, ".1 second")
+  field(INP, "$(PSU_Y) CA MSS")
+  field(PREC, "6")
+  field(DRVL, "$(OUTPUT_Y_MIN)")
+  field(DRVH, "$(OUTPUT_Y_MAX)")
+  field(LOLO, "$(OUTPUT_Y_MIN)")
+  field(HIHI, "$(OUTPUT_Y_MAX)")
+  field(HHSV, "MAJOR")
+  field(LLSV, "MAJOR")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:OUTPUT:Y")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(interest, "MEDIUM")
+  info(archive, "VAL")
 }
 
-record(ao, "$(P)OUTPUT:Z") {
+record(ai, "$(P)OUTPUT:Z") {
   field(EGU, "A")
+  field(SCAN, ".1 second")
+  field(INP, "$(PSU_Z) CA MSS")
+  field(PREC, "6")
+  field(DRVL, "$(OUTPUT_Z_MIN)")
+  field(DRVH, "$(OUTPUT_Z_MAX)")
+  field(LOLO, "$(OUTPUT_Z_MIN)")
+  field(HIHI, "$(OUTPUT_Z_MAX)")
+  field(HHSV, "MAJOR")
+  field(LLSV, "MAJOR")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:OUTPUT:Z")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(interest, "MEDIUM")
+  info(archive, "VAL")
 }
 
 record(ao, "$(P)OUTPUT:X:SP") {
   field(EGU, "A")
+  field(DRVL, "$(OUTPUT_X_MIN)")
+  field(DRVH, "$(OUTPUT_X_MAX)")
+  field(LOLO, "$(OUTPUT_X_MIN)")
+  field(HIHI, "$(OUTPUT_X_MAX)")
+  field(HHSV, "MAJOR")
+  field(LLSV, "MAJOR")
+  field(OUT, "$(PSU_X):SP CA PP")
+  field(PREC, "6")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:OUTPUT:X:SP")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL DRVL DRVH")
 }
 
 record(ao, "$(P)OUTPUT:Y:SP") {
   field(EGU, "A")
+  field(DRVL, "$(OUTPUT_Y_MIN)")
+  field(DRVH, "$(OUTPUT_Y_MAX)")
+  field(LOLO, "$(OUTPUT_Y_MIN)")
+  field(HIHI, "$(OUTPUT_Y_MAX)")
+  field(HHSV, "MAJOR")
+  field(LLSV, "MAJOR")
+  field(OUT, "$(PSU_Y):SP CA PP")
+  field(PREC, "6")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:OUTPUT:Y:SP")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL DRVL DRVH")
 }
 
 record(ao, "$(P)OUTPUT:Z:SP") {
   field(EGU, "A")
+  field(DRVL, "$(OUTPUT_Z_MIN)")
+  field(DRVH, "$(OUTPUT_Z_MAX)")
+  field(LOLO, "$(OUTPUT_Z_MIN)")
+  field(HIHI, "$(OUTPUT_Z_MAX)")
+  field(HHSV, "MAJOR")
+  field(LLSV, "MAJOR")
+  field(OUT, "$(PSU_Z):SP CA PP")
+  field(PREC, "6")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:OUTPUT:Z:SP")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL DRVL DRVH")
 }
 
-record(ao, "$(P)OUTPUT:X:SP:RBV") {
+record(ai, "$(P)OUTPUT:X:SP:RBV") {
   field(EGU, "A")
+  field(SCAN, ".1 second")
+  field(INP, "$(PSU_X):SP:RBV CA MSS")
+  field(PREC, "6")
+  field(DRVL, "$(OUTPUT_X_MIN)")
+  field(DRVH, "$(OUTPUT_X_MAX)")
+  field(LOLO, "$(OUTPUT_X_MIN)")
+  field(HIHI, "$(OUTPUT_X_MAX)")
+  field(HHSV, "MAJOR")
+  field(LLSV, "MAJOR")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:OUTPUT:X:SP:RBV")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
-record(ao, "$(P)OUTPUT:Y:SP:RBV") {
+record(ai, "$(P)OUTPUT:Y:SP:RBV") {
   field(EGU, "A")
+  field(SCAN, ".1 second")
+  field(INP, "$(PSU_Y):SP:RBV CA MSS")
+  field(PREC, "6")
+  field(DRVL, "$(OUTPUT_Y_MIN)")
+  field(DRVH, "$(OUTPUT_Y_MAX)")
+  field(LOLO, "$(OUTPUT_Y_MIN)")
+  field(HIHI, "$(OUTPUT_Y_MAX)")
+  field(HHSV, "MAJOR")
+  field(LLSV, "MAJOR")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:OUTPUT:Y:SP:RBV")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(archive, "VAL")
 }
 
-record(ao, "$(P)OUTPUT:Z:SP:RBV") {
+record(ai, "$(P)OUTPUT:Z:SP:RBV") {
   field(EGU, "A")
+  field(SCAN, ".1 second")
+  field(INP, "$(PSU_Z):SP:RBV CA MSS")
+  
+  
+  field(PREC, "6")
+  field(DRVL, "$(OUTPUT_Z_MIN)")
+  field(DRVH, "$(OUTPUT_Z_MAX)")
+  field(LOLO, "$(OUTPUT_Z_MIN)")
+  field(HIHI, "$(OUTPUT_Z_MAX)")
+  field(HHSV, "MAJOR")
+  field(LLSV, "MAJOR")
+  
+  field(SDIS, "$(P)DISABLE")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:OUTPUT:Z:SP:RBV")
+  
+  info(archive, "VAL")
 }
 
 ### Simulation records
 
 record(ao, "$(P)SIM:MAGNETOMETER:X") {
-    field(FLNK, "$(P)SIM:MAGNETOMETER:Y")
+  field(FLNK, "$(P)SIM:MAGNETOMETER:Y")
 }
 alias("$(P)SIM:MAGNETOMETER:X", "$(P)SIM:MAGNETOMETER:X:SP")
 
 record(ao, "$(P)SIM:MAGNETOMETER:Y") {
-    field(FLNK, "$(P)SIM:MAGNETOMETER:Z")
+  field(FLNK, "$(P)SIM:MAGNETOMETER:Z")
 }
 alias("$(P)SIM:MAGNETOMETER:Y", "$(P)SIM:MAGNETOMETER:Y:SP")
 
 record(ao, "$(P)SIM:MAGNETOMETER:Z") {
-    field(FLNK, "$(P)SIM:_INPUTS_UPDATED")
+  field(FLNK, "$(P)SIM:_INPUTS_UPDATED")
 }
 alias("$(P)SIM:MAGNETOMETER:Z", "$(P)SIM:MAGNETOMETER:Z:SP")
 
@@ -298,20 +490,32 @@ alias("$(P)SIM:MAGNETOMETER:Z", "$(P)SIM:MAGNETOMETER:Z:SP")
 record(bo, "$(P)SIM:MAGNETOMETER_DISCONNECTED") {}
 
 record(calc, "$(P)SIM:_INPUTS_UPDATED_CALC") {
-    field(INPA, "$(P)SIM:MAGNETOMETER_DISCONNECTED CP MS")
-    field(CALC, "A+1")
+  field(INPA, "$(P)SIM:MAGNETOMETER_DISCONNECTED CP MS")
+  field(CALC, "A+1")
 }
 
 # Tell the magnetometer to process it's PVs and get new values from hardware
 record(fanout, "$(P)SIM:_INPUTS_UPDATED") {
-    field(SELM, "Specified")
-    field(SELL, "$(P)SIM:_INPUTS_UPDATED_CALC")
-    
-    # Triggered only if $(P)SIM:MAGNETOMETER_DISCONNECTED is False
-    field(LNK1, "$(P)INPUTS_UPDATED")
+  field(SELM, "Specified")
+  field(SELL, "$(P)SIM:_INPUTS_UPDATED_CALC")
+  
+  # Triggered only if $(P)SIM:MAGNETOMETER_DISCONNECTED is False
+  field(LNK1, "$(P)INPUTS_UPDATED")
 }
 
 record(bo, "$(P)SIM:MAGNETOMETER:OVERLOAD") {
   field(ZNAM, "In range")
   field(ONAM, "Out of range")
 }
+
+record(ao, "$(P)SIM:OUTPUT:X") {}
+alias("$(P)SIM:OUTPUT:X", "$(P)SIM:OUTPUT:X:SP")
+alias("$(P)SIM:OUTPUT:X", "$(P)SIM:OUTPUT:X:SP:RBV")
+
+record(ao, "$(P)SIM:OUTPUT:Y") {}
+alias("$(P)SIM:OUTPUT:Y", "$(P)SIM:OUTPUT:Y:SP")
+alias("$(P)SIM:OUTPUT:Y", "$(P)SIM:OUTPUT:Y:SP:RBV")
+
+record(ao, "$(P)SIM:OUTPUT:Z") {}
+alias("$(P)SIM:OUTPUT:Z", "$(P)SIM:OUTPUT:Z:SP")
+alias("$(P)SIM:OUTPUT:Z", "$(P)SIM:OUTPUT:Z:SP:RBV")
