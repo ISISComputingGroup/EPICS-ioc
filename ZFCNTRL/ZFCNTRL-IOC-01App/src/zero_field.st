@@ -123,20 +123,6 @@ ss zero_field
     when (){} state trigger_mag_read
   }
   
-  state inputs_invalid
-  {
-    entry {
-      TRANSITION_TO_STATE("inputs_invalid");
-      errlogSevPrintf(errlogMajor, "%s: Magnetometer inputs invalid. Inputs: (X=%f, Y=%f, Z=%f) Severities: (X=%d, Y=%d, Z=%d).\n", 
-          PROGRAM_NAME, magnetometer_x, magnetometer_y, magnetometer_z, magnetometer_x_sevr, magnetometer_y_sevr, magnetometer_z_sevr);
-    }
-    
-    when(delay(10)) {
-      /* Retry getting values from magnetometer every 10 seconds */
-    } state trigger_mag_read
-    
-  }
-  
   state trigger_mag_read
   {
     entry {
@@ -165,15 +151,15 @@ ss zero_field
     
     when(new_readings_available && (magnetometer_x_sevr == INVALID_ALARM || magnetometer_y_sevr == INVALID_ALARM || magnetometer_z_sevr == INVALID_ALARM)) {
       PVPUT(stable, 0);
-      PVPUTSTR(status, "Magnetometer read error");
+      PVPUTSTR(status, "Magnetometer data invalid");
       errlogSevPrintf(errlogMajor, "%s: Magnetometer read error: new reading became available but severities were invalid.\n", PROGRAM_NAME);
-    } state inputs_invalid
+    } state trigger_mag_read
     
     when(delay(5)) {
       PVPUT(stable, 0);
       PVPUTSTR(status, "Magnetometer read error");
       errlogSevPrintf(errlogMajor, "%s: Magnetometer read error: new reading did not become available.\n", PROGRAM_NAME);
-    } state inputs_invalid
+    } state trigger_mag_read
     
     exit {
       /* Reset new readings back to unavailable no matter how we leave this state. */
