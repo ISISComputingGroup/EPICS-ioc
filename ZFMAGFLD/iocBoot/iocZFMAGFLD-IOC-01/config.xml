@@ -1,20 +1,28 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-    <ioc_desc>Muon Separator PSU</ioc_desc>
-    <ioc_details>Detailed status of PSU</ioc_details>
+    <ioc_desc>Zero Field Controller Field Strength</ioc_desc>
+    <ioc_details>Reads and corrects magnetometer measurement</ioc_details>
     <macros>
-        <macro name="DAQ_AI_PORT_NAME" pattern="^[a-zA-Z0-9_-]+$" description="Port name for AI DAQ Port. Defaults to cDAQ9185-MUONFEMod3" defaultValue="cDAQ9185-MUONFEMod3" hasDefault="YES" />
-        <macro name="DAQ_AO_PORT_NAME" pattern="^[a-zA-Z0-9_-]+$" description="Port name for AO DAQ Port. Defaults to cDAQ9185-MUONFEMod4" defaultValue="cDAQ9185-MUONFEMod4" hasDefault="YES" />
-        <macro name="FREQ" pattern="^[0-9]+$" description="Sample acquisition frequency. Defaults to 100" defaultValue="100" hasDefault="YES" />
-        <macro name="NELM" pattern="^[0-9]+$" description="Number of elements in sample data. Defaults to 100" defaultValue="100" hasDefault="YES" />
-        <macro name="POWER_MIN_VOLT" pattern="^[0-9]+$" description="Voltage value (in kV) to determine when the separator is off. Defaults to 2" defaultValue="2" hasDefault="YES" />
-        <macro name="VUPPERLIM" pattern="^[.0-9]+$" description="Voltage stability upper limit (kV). Defaults to 1" defaultValue="1" hasDefault="YES" />
-        <macro name="VLOWERLIM" pattern="^[.0-9]+$" description="Voltage stability lower limit (kV). Defaults to 0" defaultValue="0" hasDefault="YES" />
-        <macro name="ISTEADY" pattern="^[.0-9]+$" description="Nominal stable current value (mA). Defaults to 0" defaultValue="0" hasDefault="YES" />
-        <macro name="ILIMIT" pattern="^[.0-9]+$" description="Current stability tolerance (mA). Defaults to 1" defaultValue="1" hasDefault="YES" />
-        <macro name="WINDOWSIZE" pattern="^[0-9]+$" description="Number of seconds in moving window. Defaults to 600" defaultValue="600" hasDefault="YES" />
-        <macro name="MAXUNSTBL" pattern="^[0-9]+$" description="Maximum number of seconds allowed out of stability before alarm. Defaults to 30" defaultValue="30" hasDefault="YES" />
+        <macro name="HOST" pattern="^[a-zA-Z0-9_-]+$" description="DAQ card hostname." defaultValue="cDAQ9181-1B0C1FCMod1" hasDefault="YES" />
+        <macro name="OFFSETX" pattern="^[.0-9]+$" description="X component of measured field offset" hasDefault="NO" />
+        <macro name="OFFSETY" pattern="^[.0-9]+$" description="Y component of measured field offset" hasDefault="NO" />
+        <macro name="OFFSETZ" pattern="^[.0-9]+$" description="Z component of measured field offset" hasDefault="NO" />
+        <macro name="RANGE" pattern="^[.0-9]+$" description="Range of the magnetometer" defaultValue="1" hasDefault="YES" />
+        <macro name="SQNCR" pattern="^[a-zA-Z0-9_-]+$" description="PV in auto-feedback sequencer to process on new field values" defaultValue="$(PVPREFIX):ZFCNTRL_01:INPUTS_UPDATED.PROC", hasDefault="YES" />
+
+        <macro name="MATRIX_1_1" pattern="^[.0-9]+$" description="Element (1,1) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        <macro name="MATRIX_1_2" pattern="^[.0-9]+$" description="Element (1,2) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        <macro name="MATRIX_1_3" pattern="^[.0-9]+$" description="Element (1,3) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+
+        <macro name="MATRIX_2_1" pattern="^[.0-9]+$" description="Element (2,1) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        <macro name="MATRIX_2_2" pattern="^[.0-9]+$" description="Element (2,2) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        <macro name="MATRIX_2_3" pattern="^[.0-9]+$" description="Element (2,3) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+
+        <macro name="MATRIX_3_1" pattern="^[.0-9]+$" description="Element (3,1) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        <macro name="MATRIX_3_2" pattern="^[.0-9]+$" description="Element (3,2) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        <macro name="MATRIX_3_3" pattern="^[.0-9]+$" description="Element (3,3) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+
     </macros>
     <pvsets>
 

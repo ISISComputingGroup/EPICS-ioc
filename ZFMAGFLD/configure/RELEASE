@@ -50,6 +50,7 @@ CALC=$(SUPPORT)/calc/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
 DAQMXBASE=$(SUPPORT)/DAQmxBase/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
+GSL=$(SUPPORT)/gsl/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master
 LIBJSON=$(SUPPORT)/libjson/master
 MYSQL=$(SUPPORT)/MySQL/master
