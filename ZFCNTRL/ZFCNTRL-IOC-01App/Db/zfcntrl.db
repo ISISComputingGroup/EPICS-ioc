@@ -66,7 +66,7 @@ record(bo, "$(P)INPUTS_UPDATED") {
 record(ai, "$(P)MAGNETOMETER:X") {
   field(INP, "$(MAGNETOMETER_X) CA MSS")
   field(EGU, "mG")
-  field(PREC, "5")
+  field(PREC, "1")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MAGNETOMETER:X")
@@ -80,7 +80,7 @@ record(ai, "$(P)MAGNETOMETER:X") {
 record(ai, "$(P)MAGNETOMETER:Y") {
   field(INP, "$(MAGNETOMETER_Y) CA MSS")
   field(EGU, "mG")
-  field(PREC, "5")
+  field(PREC, "1")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MAGNETOMETER:Y")
@@ -94,7 +94,7 @@ record(ai, "$(P)MAGNETOMETER:Y") {
 record(ai, "$(P)MAGNETOMETER:Z") {
   field(INP, "$(MAGNETOMETER_Z) CA MSS")
   field(EGU, "mG")
-  field(PREC, "5")
+  field(PREC, "1")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MAGNETOMETER:Z")
@@ -155,11 +155,30 @@ record(mbbo, "$(P)STATEMACHINE:STATE") {
   # info(archive, "VAL")
 }
 
+record(bo, "$(P)STATEMACHINE:ACTIVITY") {
+  field(DESC, "Blinking if IOC is active")
+}
+
+record(ao, "$(P)STATEMACHINE:LOOP_TIME") {
+  field(DESC, "Time between magnetometer readings")
+  field(EGU, "ms")
+  field(PREC, "0")
+  
+  field(HIHI, "1000")
+  field(LOLO, "1")
+  field(HHSV, "MAJOR")
+  field(LLSV, "MAJOR")
+  
+  field(ADEL, "5")  # Only log if changes by more than 5ms
+  info(archive, "VAL")
+}
+
 record(ao, "$(P)STATEMACHINE:LOOP_DELAY")
 {
-  field(EGU, "s")
-  field(VAL, "0.1")
+  field(EGU, "ms")
+  field(VAL, "100")
   field(PINI, "YES")
+  field(PREC, "0")
 }
 
 #
@@ -171,7 +190,7 @@ record(ao, "$(P)STATEMACHINE:LOOP_DELAY")
 record(ao, "$(P)FIELD:X:SP") {
   field(DESC, "Field setpoint X")
   field(EGU, "mG")
-  field(PREC, "5")
+  field(PREC, "1")
   
   info(archive, "VAL")
 }
@@ -181,7 +200,7 @@ alias("$(P)MAGNETOMETER:X", "$(P)FIELD:X")
 record(ao, "$(P)FIELD:Y:SP") {
   field(DESC, "Field setpoint Y")
   field(EGU, "mG")
-  field(PREC, "5")
+  field(PREC, "1")
   
   info(archive, "VAL")
 }
@@ -191,7 +210,7 @@ alias("$(P)MAGNETOMETER:Y", "$(P)FIELD:Y")
 record(ao, "$(P)FIELD:Z:SP") {
   field(DESC, "Field setpoint Z")
   field(EGU, "mG")
-  field(PREC, "5")
+  field(PREC, "1")
   
   info(archive, "VAL")
 }
@@ -253,6 +272,7 @@ record(mbbo, "$(P)STATUS") {
 record(ao, "$(P)P:X") {
   field(DESC, "Amps per mG - X axis")
   field(EGU, "A/mG")
+  field(PREC, "6")
   
   info(interest, "HIGH")
   info(archive, "VAL")
@@ -263,6 +283,7 @@ alias("$(P)P:X", "$(P)P:X:SP")
 record(ao, "$(P)P:Y") {
   field(DESC, "Amps per mG - Y axis")
   field(EGU, "A/mG")
+  field(PREC, "6")
   
   info(interest, "HIGH")
   info(archive, "VAL")
@@ -273,6 +294,7 @@ alias("$(P)P:Y", "$(P)P:Y:SP")
 record(ao, "$(P)P:Z") {
   field(DESC, "Amps per mG - Z axis")
   field(EGU, "A/mG")
+  field(PREC, "6")
   
   info(interest, "HIGH")
   info(archive, "VAL")
@@ -280,15 +302,16 @@ record(ao, "$(P)P:Z") {
 
 alias("$(P)P:Z", "$(P)P:Z:SP")
 
-record(ao, "$(P)P:FIDDLE_FACTOR") {
-  field(DESC, "Proportional fiddle factor")
+record(ao, "$(P)P:FEEDBACK") {
+  field(DESC, "Proportional feedback factor")
   field(EGU, "")  # unitless
+  field(PREC, "6")
   
   info(interest, "HIGH")
   info(archive, "VAL")
 }
 
-alias("$(P)P:FIDDLE_FACTOR", "$(P)P:FIDDLE_FACTOR:SP")
+alias("$(P)P:FEEDBACK", "$(P)P:FEEDBACK:SP")
 
 #
 #
@@ -301,8 +324,6 @@ record(ai, "$(P)OUTPUT:X") {
   field(SCAN, ".1 second")
   field(INP, "$(PSU_X) CA MSS")
   field(PREC, "6")
-  field(DRVL, "$(OUTPUT_X_MIN)")
-  field(DRVH, "$(OUTPUT_X_MAX)")
   field(LOLO, "$(OUTPUT_X_MIN)")
   field(HIHI, "$(OUTPUT_X_MAX)")
   field(HHSV, "MAJOR")
@@ -321,8 +342,6 @@ record(ai, "$(P)OUTPUT:Y") {
   field(SCAN, ".1 second")
   field(INP, "$(PSU_Y) CA MSS")
   field(PREC, "6")
-  field(DRVL, "$(OUTPUT_Y_MIN)")
-  field(DRVH, "$(OUTPUT_Y_MAX)")
   field(LOLO, "$(OUTPUT_Y_MIN)")
   field(HIHI, "$(OUTPUT_Y_MAX)")
   field(HHSV, "MAJOR")
@@ -341,8 +360,6 @@ record(ai, "$(P)OUTPUT:Z") {
   field(SCAN, ".1 second")
   field(INP, "$(PSU_Z) CA MSS")
   field(PREC, "6")
-  field(DRVL, "$(OUTPUT_Z_MIN)")
-  field(DRVH, "$(OUTPUT_Z_MAX)")
   field(LOLO, "$(OUTPUT_Z_MIN)")
   field(HIHI, "$(OUTPUT_Z_MAX)")
   field(HHSV, "MAJOR")
@@ -415,8 +432,6 @@ record(ai, "$(P)OUTPUT:X:SP:RBV") {
   field(SCAN, ".1 second")
   field(INP, "$(PSU_X):SP:RBV CA MSS")
   field(PREC, "6")
-  field(DRVL, "$(OUTPUT_X_MIN)")
-  field(DRVH, "$(OUTPUT_X_MAX)")
   field(LOLO, "$(OUTPUT_X_MIN)")
   field(HIHI, "$(OUTPUT_X_MAX)")
   field(HHSV, "MAJOR")
@@ -434,8 +449,6 @@ record(ai, "$(P)OUTPUT:Y:SP:RBV") {
   field(SCAN, ".1 second")
   field(INP, "$(PSU_Y):SP:RBV CA MSS")
   field(PREC, "6")
-  field(DRVL, "$(OUTPUT_Y_MIN)")
-  field(DRVH, "$(OUTPUT_Y_MAX)")
   field(LOLO, "$(OUTPUT_Y_MIN)")
   field(HIHI, "$(OUTPUT_Y_MAX)")
   field(HHSV, "MAJOR")
@@ -455,8 +468,6 @@ record(ai, "$(P)OUTPUT:Z:SP:RBV") {
   
   
   field(PREC, "6")
-  field(DRVL, "$(OUTPUT_Z_MIN)")
-  field(DRVH, "$(OUTPUT_Z_MAX)")
   field(LOLO, "$(OUTPUT_Z_MIN)")
   field(HIHI, "$(OUTPUT_Z_MAX)")
   field(HHSV, "MAJOR")

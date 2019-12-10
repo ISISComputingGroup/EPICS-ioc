@@ -65,14 +65,16 @@ PV(int, output_psu_z_sp_rbv_sevr, "{P}OUTPUT:Z:SP:RBV.SEVR", Monitor);
 PV(double, p_x, "{P}P:X", Monitor);
 PV(double, p_y, "{P}P:Y", Monitor);
 PV(double, p_z, "{P}P:Z", Monitor);
-PV(double, fiddle_factor, "{P}P:FIDDLE_FACTOR", Monitor);
+PV(double, feedback, "{P}P:FEEDBACK", Monitor);
 
 /* Tolerance of (actual-setpoint) for field to be considered stable */
 PV(double, tolerance, "{P}TOLERANCE", Monitor);
 
 /* Statuses for feedback to OPI etc */
 PV(string, statemachine_state, "{P}STATEMACHINE:STATE", NoMon);
-PV(string, status, "{P}STATUS", Monitor);
+PV(int, statemachine_activity, "{P}STATEMACHINE:ACTIVITY", Monitor);
+PV(double, statemachine_measured_loop_time, "{P}STATEMACHINE:LOOP_TIME", NoMon);
+PV(string, status, "{P}STATUS", NoMon);
 
 /* Whether the field is "stable" or not */
 PV(int, stable, "{P}STABLE", Monitor);
@@ -105,6 +107,7 @@ PV(double, loop_delay, "{P}STATEMACHINE:LOOP_DELAY", Monitor);
   static int power_supplies_invalid(struct seqg_vars* const pVar);
   static int isWithinTolerance(double setpoint, double readback, double tolerance);
   static double coerceToRange(double value, double low_limit, double high_limit);
+  clock_t time_of_last_mag_read_trigger;
 }%
 
 ss zero_field
@@ -115,6 +118,7 @@ ss zero_field
   {
     entry {
       TRANSITION_TO_STATE("initializing");
+      time_of_last_mag_read_trigger = clock();
     }
     when (){} state trigger_mag_read
   }
@@ -137,6 +141,11 @@ ss zero_field
   {
     entry {
       TRANSITION_TO_STATE("trigger_mag_read");
+      PVPUT(statemachine_activity, !statemachine_activity);
+      %% clock_t new_time = clock();
+      PVPUT(statemachine_measured_loop_time, 1000.0 * (new_time - time_of_last_mag_read_trigger) / CLOCKS_PER_SEC);
+      time_of_last_mag_read_trigger = new_time;
+      
     }
     
     when() {
@@ -250,9 +259,9 @@ ss zero_field
       double existing_output_y = (output_psu_y_sp_sevr == INVALID_ALARM) ? output_psu_y_sp_rbv : output_psu_y_sp;
       double existing_output_z = (output_psu_z_sp_sevr == INVALID_ALARM) ? output_psu_z_sp_rbv : output_psu_z_sp;
       
-      double change_x = (setpoint_x - magnetometer_x) * p_x * fiddle_factor;
-      double change_y = (setpoint_y - magnetometer_y) * p_y * fiddle_factor;
-      double change_z = (setpoint_z - magnetometer_z) * p_z * fiddle_factor;
+      double change_x = (setpoint_x - magnetometer_x) * p_x * feedback;
+      double change_y = (setpoint_y - magnetometer_y) * p_y * feedback;
+      double change_z = (setpoint_z - magnetometer_z) * p_z * feedback;
       
       double new_x = existing_output_x + change_x;
       double new_y = existing_output_y + change_y;
@@ -290,7 +299,7 @@ ss zero_field
       TRANSITION_TO_STATE("loop_delay");
     }
     
-    when(delay(loop_delay)) {
+    when(delay(loop_delay/1000.0)) {
     } state trigger_mag_read
   }
 }
