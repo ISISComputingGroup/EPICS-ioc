@@ -12,14 +12,14 @@ option +r;
 option +s;
 
 /* Field readings from magnetometer */
-PV(double, magnetometer_x, "{P}MAGNETOMETER:X", Monitor);
-PV(double, magnetometer_y, "{P}MAGNETOMETER:Y", Monitor);
-PV(double, magnetometer_z, "{P}MAGNETOMETER:Z", Monitor);
+PV(double, magnetometer_x, "{P}MAGNETOMETER:X:_RAW", Monitor);
+PV(double, magnetometer_y, "{P}MAGNETOMETER:Y:_RAW", Monitor);
+PV(double, magnetometer_z, "{P}MAGNETOMETER:Z:_RAW", Monitor);
 
 /* Severities from magnetometer */
-PV(int, magnetometer_x_sevr, "{P}MAGNETOMETER:X.SEVR", Monitor);
-PV(int, magnetometer_y_sevr, "{P}MAGNETOMETER:Y.SEVR", Monitor);
-PV(int, magnetometer_z_sevr, "{P}MAGNETOMETER:Z.SEVR", Monitor);
+PV(int, magnetometer_x_sevr, "{P}MAGNETOMETER:X:_RAW.SEVR", Monitor);
+PV(int, magnetometer_y_sevr, "{P}MAGNETOMETER:Y:_RAW.SEVR", Monitor);
+PV(int, magnetometer_z_sevr, "{P}MAGNETOMETER:Z:_RAW.SEVR", Monitor);
 
 /* Magnetometer overload */
 PV(int, magnetometer_overloaded, "{P}MAGNETOMETER:OVERLOAD", Monitor);
@@ -153,12 +153,13 @@ ss zero_field
       PVPUT(stable, 0);
       PVPUTSTR(status, "Magnetometer data invalid");
       errlogSevPrintf(errlogMajor, "%s: Magnetometer read error: new reading became available but severities were invalid.\n", PROGRAM_NAME);
-    } state trigger_mag_read
+    } state loop_delay
     
     when(delay(5)) {
       PVPUT(stable, 0);
-      PVPUTSTR(status, "Magnetometer read error");
+      PVPUTSTR(status, "No new magnetometer data");
       errlogSevPrintf(errlogMajor, "%s: Magnetometer read error: new reading did not become available.\n", PROGRAM_NAME);
+      /* After this state go straight to trigger_mag_read rather than loop_delay as we have already waited 5 seconds */
     } state trigger_mag_read
     
     exit {

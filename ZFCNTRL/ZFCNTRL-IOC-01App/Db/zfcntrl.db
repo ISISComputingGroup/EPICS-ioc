@@ -47,30 +47,50 @@ record(bo, "$(P)TRIGGER_MAGNETOMETER_READ") {
 
 # Processed from the magnetometer IOC when new readings are available
 record(bo, "$(P)INPUTS_UPDATED") {
-  field(FLNK, "$(P)MAGNETOMETER:X")
+  field(FLNK, "$(P)MAGNETOMETER:X:_RAW")
 }
 
-record(ai, "$(P)MAGNETOMETER:X") {
+record(ai, "$(P)MAGNETOMETER:X:_RAW") {
   field(INP, "$(MAGNETOMETER_X) CA MSS")
   field(EGU, "mG")
   field(PREC, "1")
   
-  field(FLNK, "$(P)MAGNETOMETER:Y")
+  field(FLNK, "$(P)MAGNETOMETER:Y:_RAW")
   
   info(archive, "VAL")
 }
 
-record(ai, "$(P)MAGNETOMETER:Y") {
+record(calc, "$(P)MAGNETOMETER:X") {
+  field(INPA, "$(P)MAGNETOMETER:X:_RAW CP MS")
+  field(INPB, "$(P)STATUS CP MS")
+  field(CALC, "A")
+  field(EGU, "mG")
+  field(PREC, "1")
+  info(archive, "VAL")
+  
+}
+
+record(ai, "$(P)MAGNETOMETER:Y:_RAW") {
   field(INP, "$(MAGNETOMETER_Y) CA MSS")
   field(EGU, "mG")
   field(PREC, "1")
   
-  field(FLNK, "$(P)MAGNETOMETER:Z")
+  field(FLNK, "$(P)MAGNETOMETER:Z:_RAW")
   
   info(archive, "VAL")
 }
 
-record(ai, "$(P)MAGNETOMETER:Z") {
+record(calc, "$(P)MAGNETOMETER:Y") {
+  field(INPA, "$(P)MAGNETOMETER:Y:_RAW CP MS")
+  field(INPB, "$(P)STATUS CP MS")
+  field(CALC, "A")
+  field(EGU, "mG")
+  field(PREC, "1")
+  info(archive, "VAL")
+  
+}
+
+record(ai, "$(P)MAGNETOMETER:Z:_RAW") {
   field(INP, "$(MAGNETOMETER_Z) CA MSS")
   field(EGU, "mG")
   field(PREC, "1")
@@ -78,6 +98,16 @@ record(ai, "$(P)MAGNETOMETER:Z") {
   field(FLNK, "$(P)MAGNETOMETER:OVERLOAD")
   
   info(archive, "VAL")
+}
+
+record(calc, "$(P)MAGNETOMETER:Z") {
+  field(INPA, "$(P)MAGNETOMETER:Z:_RAW CP MS")
+  field(INPB, "$(P)STATUS CP MS")
+  field(CALC, "A")
+  field(EGU, "mG")
+  field(PREC, "1")
+  info(archive, "VAL")
+  
 }
 
 record(bi, "$(P)MAGNETOMETER:OVERLOAD") {
@@ -220,7 +250,7 @@ record(ao, "$(P)TOLERANCE") {
 record(mbbo, "$(P)STATUS") {
   field(DESC, "Status of ZF system")
   field(ZRST, "No error")
-  field(ONST, "Magnetometer read error")
+  field(ONST, "No new magnetometer data")
   field(ONSV, "MAJOR")
   field(TWST, "Magnetometer overloaded")
   field(TWSV, "MAJOR")
