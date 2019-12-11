@@ -53,7 +53,7 @@ record(bo, "$(P)INPUTS_UPDATED") {
 record(ai, "$(P)MAGNETOMETER:X:_RAW") {
   field(INP, "$(MAGNETOMETER_X) CA MSS")
   field(EGU, "mG")
-  field(PREC, "1")
+  field(PREC, "4")
   
   field(FLNK, "$(P)MAGNETOMETER:Y:_RAW")
   
@@ -65,7 +65,7 @@ record(calc, "$(P)MAGNETOMETER:X") {
   field(INPB, "$(P)STATUS CP MS")
   field(CALC, "A")
   field(EGU, "mG")
-  field(PREC, "1")
+  field(PREC, "4")
   info(archive, "VAL")
   
 }
@@ -73,7 +73,7 @@ record(calc, "$(P)MAGNETOMETER:X") {
 record(ai, "$(P)MAGNETOMETER:Y:_RAW") {
   field(INP, "$(MAGNETOMETER_Y) CA MSS")
   field(EGU, "mG")
-  field(PREC, "1")
+  field(PREC, "4")
   
   field(FLNK, "$(P)MAGNETOMETER:Z:_RAW")
   
@@ -85,7 +85,7 @@ record(calc, "$(P)MAGNETOMETER:Y") {
   field(INPB, "$(P)STATUS CP MS")
   field(CALC, "A")
   field(EGU, "mG")
-  field(PREC, "1")
+  field(PREC, "4")
   info(archive, "VAL")
   
 }
@@ -93,7 +93,7 @@ record(calc, "$(P)MAGNETOMETER:Y") {
 record(ai, "$(P)MAGNETOMETER:Z:_RAW") {
   field(INP, "$(MAGNETOMETER_Z) CA MSS")
   field(EGU, "mG")
-  field(PREC, "1")
+  field(PREC, "4")
   
   field(FLNK, "$(P)MAGNETOMETER:OVERLOAD")
   
@@ -105,7 +105,7 @@ record(calc, "$(P)MAGNETOMETER:Z") {
   field(INPB, "$(P)STATUS CP MS")
   field(CALC, "A")
   field(EGU, "mG")
-  field(PREC, "1")
+  field(PREC, "4")
   info(archive, "VAL")
   
 }
@@ -191,7 +191,7 @@ record(ao, "$(P)STATEMACHINE:LOOP_DELAY")
 record(ao, "$(P)FIELD:X:SP") {
   field(DESC, "Field setpoint X")
   field(EGU, "mG")
-  field(PREC, "1")
+  field(PREC, "4")
   
   info(archive, "VAL")
 }
@@ -201,7 +201,7 @@ alias("$(P)MAGNETOMETER:X", "$(P)FIELD:X")
 record(ao, "$(P)FIELD:Y:SP") {
   field(DESC, "Field setpoint Y")
   field(EGU, "mG")
-  field(PREC, "1")
+  field(PREC, "4")
   
   info(archive, "VAL")
 }
@@ -211,7 +211,7 @@ alias("$(P)MAGNETOMETER:Y", "$(P)FIELD:Y")
 record(ao, "$(P)FIELD:Z:SP") {
   field(DESC, "Field setpoint Z")
   field(EGU, "mG")
-  field(PREC, "1")
+  field(PREC, "4")
   
   info(archive, "VAL")
 }

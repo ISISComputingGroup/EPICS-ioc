@@ -220,7 +220,7 @@ ss zero_field
     when(power_supplies_invalid(pVar)) {
       PVPUTSTR(status, "Power supply invalid");
       errlogSevPrintf(errlogMajor, "%s: Power supply is in invalid alarm. Not writing to power supplies.", PROGRAM_NAME);
-    } state trigger_mag_read
+    } state loop_delay
     
     when(!power_supplies_invalid(pVar)) {
       /* Intentionally empty */
