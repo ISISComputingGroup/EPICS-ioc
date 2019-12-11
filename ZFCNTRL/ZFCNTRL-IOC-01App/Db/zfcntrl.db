@@ -22,12 +22,13 @@ record(bo, "$(P)DEBUG")
   info(archive, "VAL")
 }
 
-# Tell the magnetometer to process it's PVs and get new values from hardware
+# Tell the magnetometer to process it's PVs and get new values from hardware. This PV is processed
+# from the state machine in this IOC.
 record(bo, "$(P)TRIGGER_MAGNETOMETER_READ") {
   field(FLNK, "$(MAGNETOMETER_TRIGGER).PROC CA")
 }
 
-# Processed from the magnetometer IOC when new readings are available
+# This record is processed from the magnetometer IOC when new readings are available
 record(bo, "$(P)INPUTS_UPDATED") {
   field(FLNK, "$(P)MAGNETOMETER:X:_RAW")
 }
@@ -129,13 +130,13 @@ record(mbbo, "$(P)STATUS") {
   field(DESC, "Status of ZF system")
   field(ZRST, "No error")
   field(ONST, "No new magnetometer data")
-  field(ONSV, "MAJOR")
+  field(ONSV, "INVALID")
   field(TWST, "Magnetometer overloaded")
   field(TWSV, "MAJOR")
   field(THST, "Magnetometer data invalid")
-  field(THSV, "MAJOR")
+  field(THSV, "INVALID")
   field(FRST, "Power supply invalid")
-  field(FRSV, "MAJOR")
+  field(FRSV, "INVALID")
   field(FVST, "Power supply on limits")
   field(FVSV, "MAJOR")
   

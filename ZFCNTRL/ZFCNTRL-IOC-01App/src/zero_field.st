@@ -30,36 +30,36 @@ PV(double, setpoint_y, "{P}FIELD:Y:SP", Monitor);
 PV(double, setpoint_z, "{P}FIELD:Z:SP", Monitor);
 
 /* Power supply currents */
-PV(double, output_psu_x, "{P}OUTPUT:X", Monitor);
-PV(double, output_psu_y, "{P}OUTPUT:Y", Monitor);
-PV(double, output_psu_z, "{P}OUTPUT:Z", Monitor);
-PV(int, output_psu_x_sevr, "{P}OUTPUT:X.SEVR", Monitor);
-PV(int, output_psu_y_sevr, "{P}OUTPUT:Y.SEVR", Monitor);
-PV(int, output_psu_z_sevr, "{P}OUTPUT:Z.SEVR", Monitor);
+PV(double, output_psu_x, "{P}OUTPUT:X:CURR", Monitor);
+PV(double, output_psu_y, "{P}OUTPUT:Y:CURR", Monitor);
+PV(double, output_psu_z, "{P}OUTPUT:Z:CURR", Monitor);
+PV(int, output_psu_x_sevr, "{P}OUTPUT:X:CURR.SEVR", Monitor);
+PV(int, output_psu_y_sevr, "{P}OUTPUT:Y:CURR.SEVR", Monitor);
+PV(int, output_psu_z_sevr, "{P}OUTPUT:Z:CURR.SEVR", Monitor);
 
 /* Power supply setpoints */
-PV(double, output_psu_x_sp, "{P}OUTPUT:X:SP", Monitor);
-PV(double, output_psu_y_sp, "{P}OUTPUT:Y:SP", Monitor);
-PV(double, output_psu_z_sp, "{P}OUTPUT:Z:SP", Monitor);
-PV(int, output_psu_x_sp_sevr, "{P}OUTPUT:X:SP.SEVR", Monitor);
-PV(int, output_psu_y_sp_sevr, "{P}OUTPUT:Y:SP.SEVR", Monitor);
-PV(int, output_psu_z_sp_sevr, "{P}OUTPUT:Z:SP.SEVR", Monitor);
+PV(double, output_psu_x_sp, "{P}OUTPUT:X:CURR:SP", Monitor);
+PV(double, output_psu_y_sp, "{P}OUTPUT:Y:CURR:SP", Monitor);
+PV(double, output_psu_z_sp, "{P}OUTPUT:Z:CURR:SP", Monitor);
+PV(int, output_psu_x_sp_sevr, "{P}OUTPUT:X:CURR:SP.SEVR", Monitor);
+PV(int, output_psu_y_sp_sevr, "{P}OUTPUT:Y:CURR:SP.SEVR", Monitor);
+PV(int, output_psu_z_sp_sevr, "{P}OUTPUT:Z:CURR:SP.SEVR", Monitor);
 
 /* Power supply setpoint limits */
-PV(double, output_psu_x_sp_drvh, "{P}OUTPUT:X:SP.DRVH", Monitor);
-PV(double, output_psu_y_sp_drvh, "{P}OUTPUT:Y:SP.DRVH", Monitor);
-PV(double, output_psu_z_sp_drvh, "{P}OUTPUT:Z:SP.DRVH", Monitor);
-PV(double, output_psu_x_sp_drvl, "{P}OUTPUT:X:SP.DRVL", Monitor);
-PV(double, output_psu_y_sp_drvl, "{P}OUTPUT:Y:SP.DRVL", Monitor);
-PV(double, output_psu_z_sp_drvl, "{P}OUTPUT:Z:SP.DRVL", Monitor);
+PV(double, output_psu_x_sp_drvh, "{P}OUTPUT:X:CURR:SP.DRVH", Monitor);
+PV(double, output_psu_y_sp_drvh, "{P}OUTPUT:Y:CURR:SP.DRVH", Monitor);
+PV(double, output_psu_z_sp_drvh, "{P}OUTPUT:Z:CURR:SP.DRVH", Monitor);
+PV(double, output_psu_x_sp_drvl, "{P}OUTPUT:X:CURR:SP.DRVL", Monitor);
+PV(double, output_psu_y_sp_drvl, "{P}OUTPUT:Y:CURR:SP.DRVL", Monitor);
+PV(double, output_psu_z_sp_drvl, "{P}OUTPUT:Z:CURR:SP.DRVL", Monitor);
 
 /* Power supply setpoint readbacks */
-PV(double, output_psu_x_sp_rbv, "{P}OUTPUT:X:SP:RBV", Monitor);
-PV(double, output_psu_y_sp_rbv, "{P}OUTPUT:Y:SP:RBV", Monitor);
-PV(double, output_psu_z_sp_rbv, "{P}OUTPUT:Z:SP:RBV", Monitor);
-PV(int, output_psu_x_sp_rbv_sevr, "{P}OUTPUT:X:SP:RBV.SEVR", Monitor);
-PV(int, output_psu_y_sp_rbv_sevr, "{P}OUTPUT:Y:SP:RBV.SEVR", Monitor);
-PV(int, output_psu_z_sp_rbv_sevr, "{P}OUTPUT:Z:SP:RBV.SEVR", Monitor);
+PV(double, output_psu_x_sp_rbv, "{P}OUTPUT:X:CURR:SP:RBV", Monitor);
+PV(double, output_psu_y_sp_rbv, "{P}OUTPUT:Y:CURR:SP:RBV", Monitor);
+PV(double, output_psu_z_sp_rbv, "{P}OUTPUT:Z:CURR:SP:RBV", Monitor);
+PV(int, output_psu_x_sp_rbv_sevr, "{P}OUTPUT:X:CURR:SP:RBV.SEVR", Monitor);
+PV(int, output_psu_y_sp_rbv_sevr, "{P}OUTPUT:Y:CURR:SP:RBV.SEVR", Monitor);
+PV(int, output_psu_z_sp_rbv_sevr, "{P}OUTPUT:Z:CURR:SP:RBV.SEVR", Monitor);
 
 /* Proportional feedback factors and fiddle factors */
 PV(double, p_x, "{P}P:X", Monitor);

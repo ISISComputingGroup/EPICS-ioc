@@ -3,7 +3,7 @@
 record(ai, "$(P)MAGNETOMETER:$(AXIS):_RAW") {
   field(INP, "$(MAGNETOMETER_$(AXIS)) CA MSS")
   field(EGU, "mG")
-  field(PREC, "4")
+  field(PREC, "6")
   
   field(FLNK, "$(RAW_RECORD_FLNK)")
   
@@ -15,7 +15,7 @@ record(calc, "$(P)MAGNETOMETER:$(AXIS)") {
   field(INPB, "$(P)STATUS CP MS")
   field(CALC, "A")
   field(EGU, "mG")
-  field(PREC, "4")
+  field(PREC, "6")
   info(archive, "VAL")
 }
 
@@ -24,7 +24,7 @@ record(calc, "$(P)MAGNETOMETER:$(AXIS)") {
 record(ao, "$(P)FIELD:$(AXIS):SP") {
   field(DESC, "Field setpoint $(AXIS)")
   field(EGU, "mG")
-  field(PREC, "4")
+  field(PREC, "6")
   
   info(archive, "VAL")
 }
@@ -46,10 +46,10 @@ alias("$(P)P:$(AXIS)", "$(P)P:$(AXIS):SP")
 
 # Power supply outputs - axis $(AXIS)
 
-record(ai, "$(P)OUTPUT:$(AXIS)") {
+record(ai, "$(P)OUTPUT:$(AXIS):CURR") {
   field(EGU, "A")
   field(SCAN, ".1 second")
-  field(INP, "$(PSU_$(AXIS)) CA MSS")
+  field(INP, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME) CA MSS")
   field(PREC, "6")
   field(LOLO, "$(OUTPUT_$(AXIS)_MIN)")
   field(HIHI, "$(OUTPUT_$(AXIS)_MAX)")
@@ -60,7 +60,7 @@ record(ai, "$(P)OUTPUT:$(AXIS)") {
   info(archive, "VAL")
 }
 
-record(ao, "$(P)OUTPUT:$(AXIS):SP") {
+record(ao, "$(P)OUTPUT:$(AXIS):CURR:SP") {
   field(EGU, "A")
   field(DRVL, "$(OUTPUT_$(AXIS)_MIN)")
   field(DRVH, "$(OUTPUT_$(AXIS)_MAX)")
@@ -68,21 +68,30 @@ record(ao, "$(P)OUTPUT:$(AXIS):SP") {
   field(HIHI, "$(OUTPUT_$(AXIS)_MAX)")
   field(HHSV, "MAJOR")
   field(LLSV, "MAJOR")
-  field(OUT, "$(PSU_$(AXIS)):SP CA PP")
+  field(OUT, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME):SP CA PP")
   field(PREC, "6")
   
   info(archive, "VAL DRVL DRVH")
 }
 
-record(ai, "$(P)OUTPUT:$(AXIS):SP:RBV") {
+record(ai, "$(P)OUTPUT:$(AXIS):CURR:SP:RBV") {
   field(EGU, "A")
   field(SCAN, ".1 second")
-  field(INP, "$(PSU_$(AXIS)):SP:RBV CA MSS")
+  field(INP, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME):SP:RBV CA MSS")
   field(PREC, "6")
   field(LOLO, "$(OUTPUT_$(AXIS)_MIN)")
   field(HIHI, "$(OUTPUT_$(AXIS)_MAX)")
   field(HHSV, "MAJOR")
   field(LLSV, "MAJOR")
+  
+  info(archive, "VAL")
+}
+
+record(ai, "$(P)OUTPUT:$(AXIS):VOLT") {
+  field(EGU, "V")
+  field(SCAN, ".1 second")
+  field(INP, "$(PSU_$(AXIS)):$(VOLTAGE_PV_NAME) CA MSS")
+  field(PREC, "6")
   
   info(archive, "VAL")
 }
