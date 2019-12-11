@@ -1,0 +1,7 @@
+file zfcntrl_axis.template {
+
+pattern {P, AXIS, RAW_RECORD_FLNK}
+  {"\$(P)", "X", "$(P)MAGNETOMETER:Y:_RAW"}
+  {"\$(P)", "Y", "$(P)MAGNETOMETER:Z:_RAW"}
+  {"\$(P)", "Z", "$(P)MAGNETOMETER:OVERLOAD"}
+}

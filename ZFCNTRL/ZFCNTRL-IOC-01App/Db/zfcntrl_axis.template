@@ -1,0 +1,88 @@
+# Magnetometer reads - axis $(AXIS)
+
+record(ai, "$(P)MAGNETOMETER:$(AXIS):_RAW") {
+  field(INP, "$(MAGNETOMETER_$(AXIS)) CA MSS")
+  field(EGU, "mG")
+  field(PREC, "4")
+  
+  field(FLNK, "$(RAW_RECORD_FLNK)")
+  
+  info(archive, "VAL")
+}
+
+record(calc, "$(P)MAGNETOMETER:$(AXIS)") {
+  field(INPA, "$(P)MAGNETOMETER:$(AXIS):_RAW CP MS")
+  field(INPB, "$(P)STATUS CP MS")
+  field(CALC, "A")
+  field(EGU, "mG")
+  field(PREC, "4")
+  info(archive, "VAL")
+}
+
+# Field setpoints/readbacks - axis $(AXIS)
+
+record(ao, "$(P)FIELD:$(AXIS):SP") {
+  field(DESC, "Field setpoint $(AXIS)")
+  field(EGU, "mG")
+  field(PREC, "4")
+  
+  info(archive, "VAL")
+}
+
+alias("$(P)MAGNETOMETER:$(AXIS)", "$(P)FIELD:$(AXIS)")
+
+# Proportional feedback factors - axis $(AXIS)
+
+record(ao, "$(P)P:$(AXIS)") {
+  field(DESC, "Amps per mG - $(AXIS) axis")
+  field(EGU, "A/mG")
+  field(PREC, "6")
+  
+  info(interest, "HIGH")
+  info(archive, "VAL")
+}
+
+alias("$(P)P:$(AXIS)", "$(P)P:$(AXIS):SP")
+
+# Power supply outputs - axis $(AXIS)
+
+record(ai, "$(P)OUTPUT:$(AXIS)") {
+  field(EGU, "A")
+  field(SCAN, ".1 second")
+  field(INP, "$(PSU_$(AXIS)) CA MSS")
+  field(PREC, "6")
+  field(LOLO, "$(OUTPUT_$(AXIS)_MIN)")
+  field(HIHI, "$(OUTPUT_$(AXIS)_MAX)")
+  field(HHSV, "MAJOR")
+  field(LLSV, "MAJOR")
+  
+  info(interest, "MEDIUM")
+  info(archive, "VAL")
+}
+
+record(ao, "$(P)OUTPUT:$(AXIS):SP") {
+  field(EGU, "A")
+  field(DRVL, "$(OUTPUT_$(AXIS)_MIN)")
+  field(DRVH, "$(OUTPUT_$(AXIS)_MAX)")
+  field(LOLO, "$(OUTPUT_$(AXIS)_MIN)")
+  field(HIHI, "$(OUTPUT_$(AXIS)_MAX)")
+  field(HHSV, "MAJOR")
+  field(LLSV, "MAJOR")
+  field(OUT, "$(PSU_$(AXIS)):SP CA PP")
+  field(PREC, "6")
+  
+  info(archive, "VAL DRVL DRVH")
+}
+
+record(ai, "$(P)OUTPUT:$(AXIS):SP:RBV") {
+  field(EGU, "A")
+  field(SCAN, ".1 second")
+  field(INP, "$(PSU_$(AXIS)):SP:RBV CA MSS")
+  field(PREC, "6")
+  field(LOLO, "$(OUTPUT_$(AXIS)_MIN)")
+  field(HIHI, "$(OUTPUT_$(AXIS)_MAX)")
+  field(HHSV, "MAJOR")
+  field(LLSV, "MAJOR")
+  
+  info(archive, "VAL")
+}
