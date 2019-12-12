@@ -1,7 +1,27 @@
 # Magnetometer reads - axis $(AXIS)
 
 record(ai, "$(P)MAGNETOMETER:$(AXIS):_RAW") {
-  field(INP, "$(MAGNETOMETER_$(AXIS)) CA MSS")
+  field(INP, "$(MAGNETOMETER):$(AXIS):CORRECTEDFIELD CA MSS")
+  field(EGU, "mG")
+  field(PREC, "6")
+  
+  field(FLNK, "$(P)MAGNETOMETER:$(AXIS):MEAS:_RAW")
+  
+  info(archive, "VAL")
+}
+
+record(calc, "$(P)MAGNETOMETER:$(AXIS)") {
+  field(INPA, "$(P)MAGNETOMETER:$(AXIS):_RAW CP MS")
+  field(INPB, "$(P)STATUS CP MS")
+  field(CALC, "A")
+  field(EGU, "mG")
+  field(PREC, "6")
+  info(archive, "VAL")
+}
+
+
+record(ai, "$(P)MAGNETOMETER:$(AXIS):MEAS:_RAW") {
+  field(INP, "$(MAGNETOMETER):$(AXIS):APPLYOFFSET CA MSS")
   field(EGU, "mG")
   field(PREC, "6")
   
@@ -10,8 +30,8 @@ record(ai, "$(P)MAGNETOMETER:$(AXIS):_RAW") {
   info(archive, "VAL")
 }
 
-record(calc, "$(P)MAGNETOMETER:$(AXIS)") {
-  field(INPA, "$(P)MAGNETOMETER:$(AXIS):_RAW CP MS")
+record(calc, "$(P)MAGNETOMETER:$(AXIS):MEAS") {
+  field(INPA, "$(P)MAGNETOMETER:$(AXIS):MEAS:_RAW CP MS")
   field(INPB, "$(P)STATUS CP MS")
   field(CALC, "A")
   field(EGU, "mG")
@@ -30,6 +50,7 @@ record(ao, "$(P)FIELD:$(AXIS):SP") {
 }
 
 alias("$(P)MAGNETOMETER:$(AXIS)", "$(P)FIELD:$(AXIS)")
+alias("$(P)MAGNETOMETER:$(AXIS):MEAS", "$(P)FIELD:$(AXIS):MEAS")
 
 # Proportional feedback factors - axis $(AXIS)
 
@@ -37,6 +58,8 @@ record(ao, "$(P)P:$(AXIS)") {
   field(DESC, "Amps per mG - $(AXIS) axis")
   field(EGU, "A/mG")
   field(PREC, "6")
+  field(VAL, "$(AMPS_PER_MG_$(AXIS))")
+  field(PINI, "YES")
   
   info(interest, "HIGH")
   info(archive, "VAL")
@@ -48,7 +71,7 @@ alias("$(P)P:$(AXIS)", "$(P)P:$(AXIS):SP")
 
 record(ai, "$(P)OUTPUT:$(AXIS):CURR") {
   field(EGU, "A")
-  field(INP, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME) CPP MSS")
+  field(INP, "$(PSU_$(AXIS)):CURRENT CPP MSS")
   field(PREC, "6")
   field(LOLO, "$(OUTPUT_$(AXIS)_MIN)")
   field(HIHI, "$(OUTPUT_$(AXIS)_MAX)")
@@ -67,19 +90,19 @@ record(ao, "$(P)OUTPUT:$(AXIS):CURR:SP") {
   field(HIHI, "$(OUTPUT_$(AXIS)_MAX)")
   field(HHSV, "MAJOR")
   field(LLSV, "MAJOR")
-  field(OUT, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME):SP CA")
+  field(OUT, "$(PSU_$(AXIS)):CURRENT:SP CA")
   field(PREC, "6")
   
   # Explicitly process it, as EPICS documentation suggests PP over CA
   # may not necessarily cause the record on the other end to process.
-  field(FLNK, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME):SP.PROC CA")
+  field(FLNK, "$(PSU_$(AXIS)):CURRENT:SP.PROC CA")
   
   info(archive, "VAL DRVL DRVH")
 }
 
 record(ai, "$(P)OUTPUT:$(AXIS):CURR:SP:RBV") {
   field(EGU, "A")
-  field(INP, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME):SP:RBV CPP MSS")
+  field(INP, "$(PSU_$(AXIS)):CURRENT:SP:RBV CPP MSS")
   field(PREC, "6")
   field(LOLO, "$(OUTPUT_$(AXIS)_MIN)")
   field(HIHI, "$(OUTPUT_$(AXIS)_MAX)")
@@ -131,8 +154,27 @@ record(bo, "$(P)OUTPUT:$(AXIS):MODE:SP") {
 
 record(ai, "$(P)OUTPUT:$(AXIS):VOLT") {
   field(EGU, "V")
-  field(SCAN, ".1 second")
-  field(INP, "$(PSU_$(AXIS)):$(VOLTAGE_PV_NAME) CA MSS")
+  field(INP, "$(PSU_$(AXIS)):VOLTAGE CPP MSS")
+  field(PREC, "6")
+  
+  info(archive, "VAL")
+}
+
+record(ao, "$(P)OUTPUT:$(AXIS):VOLT:SP") {
+  field(EGU, "V")
+  field(OUT, "$(PSU_$(AXIS)):VOLTAGE:SP CA")
+  field(PREC, "6")
+  
+  # Explicitly process it, as EPICS documentation suggests PP over CA
+  # may not necessarily cause the record on the other end to process.
+  field(FLNK, "$(PSU_$(AXIS)):VOLTAGE:SP.PROC CA")
+  
+  info(archive, "VAL")
+}
+
+record(ai, "$(P)OUTPUT:$(AXIS):VOLT:SP:RBV") {
+  field(EGU, "V")
+  field(INP, "$(PSU_$(AXIS)):VOLTAGE:SP:RBV CPP MSS")
   field(PREC, "6")
   
   info(archive, "VAL")

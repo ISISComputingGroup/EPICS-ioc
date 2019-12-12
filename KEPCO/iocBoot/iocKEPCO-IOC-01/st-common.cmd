@@ -6,7 +6,7 @@ cd ${TOP}
 < $(IOCSTARTUP)/init.cmd
 
 # For dev sim devices
-$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT)")
 
 # Fake port for recsim
 $(IFRECSIM) drvAsynSerialPortConfigure("L0", "NO_PORT", 0, 0, 0, 0)

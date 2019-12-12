@@ -25,9 +25,9 @@ PV(int, output_psu_y_sevr, "{P}OUTPUT:Y:CURR.SEVR", Monitor);
 PV(int, output_psu_z_sevr, "{P}OUTPUT:Z:CURR.SEVR", Monitor);
 
 /* Power supply setpoints */
-PV(double, output_psu_x_sp, "{P}OUTPUT:X:CURR:SP", Monitor);
-PV(double, output_psu_y_sp, "{P}OUTPUT:Y:CURR:SP", Monitor);
-PV(double, output_psu_z_sp, "{P}OUTPUT:Z:CURR:SP", Monitor);
+PV(double, output_psu_x_sp, "{P}OUTPUT:X:CURR:SP", NoMon);
+PV(double, output_psu_y_sp, "{P}OUTPUT:Y:CURR:SP", NoMon);
+PV(double, output_psu_z_sp, "{P}OUTPUT:Z:CURR:SP", NoMon);
 PV(int, output_psu_x_sp_sevr, "{P}OUTPUT:X:CURR:SP.SEVR", Monitor);
 PV(int, output_psu_y_sp_sevr, "{P}OUTPUT:Y:CURR:SP.SEVR", Monitor);
 PV(int, output_psu_z_sp_sevr, "{P}OUTPUT:Z:CURR:SP.SEVR", Monitor);
@@ -74,9 +74,9 @@ PV(int, output_psu_z_mode_sp, "{P}OUTPUT:Z:MODE:SP", NoMon);
 PV(double, output_psu_tolerance, "{P}OUTPUT:PSU_WRITE_TOLERANCE", Monitor);
 
 /* Proportional feedback factors and fiddle factors */
-PV(double, p_x, "{P}P:X", Monitor);
-PV(double, p_y, "{P}P:Y", Monitor);
-PV(double, p_z, "{P}P:Z", Monitor);
+PV(double, amps_per_mg_x, "{P}P:X", Monitor);
+PV(double, amps_per_mg_y, "{P}P:Y", Monitor);
+PV(double, amps_per_mg_z, "{P}P:Z", Monitor);
 PV(double, feedback, "{P}P:FEEDBACK", Monitor);
 
 /* Tolerance of (actual-setpoint) for field to be considered stable */
@@ -85,10 +85,10 @@ PV(double, tolerance, "{P}TOLERANCE", Monitor);
 /* Statuses for feedback to OPI etc */
 PV(string, statemachine_state, "{P}STATEMACHINE:STATE", NoMon);
 PV(int, statemachine_activity, "{P}STATEMACHINE:ACTIVITY", Monitor);
-PV(double, statemachine_measured_loop_time, "{P}STATEMACHINE:LOOP_TIME", NoMon);
+PV(double, statemachine_measured_loop_time, "{P}STATEMACHINE:LOOP_TIME", NoMon); /* msec */
+PV(double, loop_delay, "{P}STATEMACHINE:LOOP_DELAY", Monitor); /* msec */
+PV(double, read_timeout, "{P}STATEMACHINE:READ_TIMEOUT", Monitor); /* sec */
 PV(string, status, "{P}STATUS", NoMon);
-
-/* Whether the field is "stable" or not */
 PV(int, stable, "{P}STABLE", Monitor);
 
 /* Whether new readings are available from the magnetometer */
@@ -101,7 +101,3 @@ PV(int, auto_feedback_enabled, "{P}AUTOFEEDBACK", Monitor);
 
 /* Statemachine debugging - e.g. logging of every state entry. Very verbose. */
 PV(int, debug, "{P}DEBUG", Monitor);
-
-/* Delay between statemachine loops. Adjustable by user, but changing it will
- * mean that "fiddle factor" will need to be re-adjusted. */
-PV(double, loop_delay, "{P}STATEMACHINE:LOOP_DELAY", Monitor);

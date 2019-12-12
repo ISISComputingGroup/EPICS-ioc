@@ -32,7 +32,7 @@ record(bo, "$(P)DEBUG")
 # Tell the magnetometer to process it's PVs and get new values from hardware. This PV is processed
 # from the state machine in this IOC.
 record(bo, "$(P)TRIGGER_MAGNETOMETER_READ") {
-  field(FLNK, "$(MAGNETOMETER_TRIGGER).PROC CA")
+  field(FLNK, "$(MAGNETOMETER):TAKEDATA.PROC CA")
 }
 
 # This record is processed from the magnetometer IOC when new readings are available
@@ -41,7 +41,7 @@ record(bo, "$(P)INPUTS_UPDATED") {
 }
 
 record(bi, "$(P)MAGNETOMETER:OVERLOAD") {
-  field(INP, "$(MAGNETOMETER_OVERLOAD) CA MSS")
+  field(INP, "$(MAGNETOMETER):OVERLOAD CA MSS")
   field(ZNAM, "In range")
   field(ONAM, "Out of range")
   
@@ -101,10 +101,29 @@ record(ao, "$(P)STATEMACHINE:LOOP_TIME") {
   info(archive, "VAL")
 }
 
+# Sleep after each statemachine loop. Making this too small will mean the 
+# power supplies and/or magnetometer cannot keep up with the command rate
+#
+# Scientists expect something around 2-10Hz. i.e. 100-500 msec
 record(ao, "$(P)STATEMACHINE:LOOP_DELAY")
 {
   field(EGU, "ms")
   field(VAL, "100")
+  field(PINI, "YES")
+  field(PREC, "0")
+}
+
+# Timeout in seconds to get readbacks from external IOCs
+# 
+# Used for:
+#  - acquiring magnetometer readings
+#  - checking new current setpoint has been accepted by PSU
+#  - checking on/off command has been accepted by PSU
+#  - checking current/voltage mode changes have been accepted by PSU
+record(ao, "$(P)STATEMACHINE:READ_TIMEOUT")
+{
+  field(EGU, "s")
+  field(VAL, "5")
   field(PINI, "YES")
   field(PREC, "0")
 }
@@ -153,7 +172,7 @@ record(mbbo, "$(P)STATUS") {
   field(FVST, "Power supply on limits")
   field(FVSV, "MAJOR")
   field(SXST, "Power supply write failed")
-  field(SXSV, "MAJOR")
+  field(SXSV, "INVALID")
   
   info(interest, "HIGH")
   info(archive, "VAL")
@@ -163,6 +182,8 @@ record(ao, "$(P)P:FEEDBACK") {
   field(DESC, "Proportional feedback factor")
   field(EGU, "")  # unitless
   field(PREC, "6")
+  field(VAL, "$(FEEDBACK)")
+  field(PINI, "YES")
   
   info(interest, "HIGH")
   info(archive, "VAL")
@@ -184,6 +205,16 @@ record(calc, "$(P)FIELD:MAGNITUDE") {
   field(INPA, "$(P)FIELD:X CP MS")
   field(INPB, "$(P)FIELD:Y CP MS")
   field(INPC, "$(P)FIELD:Z CP MS")
+  field(CALC, "SQRT(A*A + B*B + C*C)")
+  field(EGU, "mG")
+  field(PREC, "6")
+  info(archive, "VAL")
+}
+
+record(calc, "$(P)FIELD:MAGNITUDE:MEAS") {
+  field(INPA, "$(P)FIELD:X:MEAS CP MS")
+  field(INPB, "$(P)FIELD:Y:MEAS CP MS")
+  field(INPC, "$(P)FIELD:Z:MEAS CP MS")
   field(CALC, "SQRT(A*A + B*B + C*C)")
   field(EGU, "mG")
   field(PREC, "6")

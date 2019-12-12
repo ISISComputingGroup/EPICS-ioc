@@ -33,15 +33,21 @@ option +s;
 
   /* This needs to be a macro as the call to pvIndex has to happen from SNL code, not C code. */
   /* See https://www-csr.bessy.de/control/SoftDist/sequencer/EscapeToC.html?highlight=pvindex#calling-pv-functions-from-c */
-  #define TRANSITION_TO_STATE(x) state_transition(ssId, pVar, pvIndex(statemachine_state), (x))
+  #define ZF_TRANSITION_TO_STATE(x) zf_state_transition(ssId, pVar, pvIndex(statemachine_state), (x))
 
   /* Some necessary function forward-declarations - for implementations see end of file. */
-  static void state_transition(SS_ID ssId, struct seqg_vars* const pVar, CH_ID index, const char* const new_state_name);
+  static void zf_state_transition(SS_ID ssId, struct seqg_vars* const pVar, CH_ID index, const char* const new_state_name);
   static int power_supplies_invalid(struct seqg_vars* const pVar);
   static int magnetometer_invalid(struct seqg_vars* const pVar);
-  static int isWithinTolerance(double setpoint, double readback, double tolerance);
-  static double coerceToRange(double value, double low_limit, double high_limit);
-  clock_t time_of_last_mag_read_trigger;
+  static int is_within_tolerance(double setpoint, double readback, double tolerance);
+  static int all_power_suppies_on(struct seqg_vars* const pVar);
+  static int all_power_suppies_in_current_mode(struct seqg_vars* const pVar);
+  static double coerce_to_range(double value, double low_limit, double high_limit);
+  
+  /* A timestamp from the last time we asked the magnetometer to take data. Used for loop time calculation. */
+  clock_t _time_of_last_mag_read_trigger;
+  
+  /* flag to track whether power supply outputs were limited or not. Need this flag to be able to set correct errors. */
   int _output_on_limit = 0;
 }%
 
@@ -52,8 +58,8 @@ ss zero_field
   state initializing
   {
     entry {
-      TRANSITION_TO_STATE("initializing");
-      time_of_last_mag_read_trigger = clock();
+      ZF_TRANSITION_TO_STATE("initializing");
+      _time_of_last_mag_read_trigger = clock();
     }
     when (){} state trigger_mag_read
   }
@@ -61,17 +67,19 @@ ss zero_field
   state trigger_mag_read
   {
     entry {
-      TRANSITION_TO_STATE("trigger_mag_read");
+      ZF_TRANSITION_TO_STATE("trigger_mag_read");
+      
+      /* inverts each time around the main statemachine loop, giving a flashing effect if everything is working correctly. */
       PVPUT(statemachine_activity, !statemachine_activity);
       %% clock_t new_time = clock();
-      %% double time_taken = 1000.0 * (new_time - time_of_last_mag_read_trigger) / CLOCKS_PER_SEC;
+      %% double time_taken = 1000.0 * (new_time - _time_of_last_mag_read_trigger) / CLOCKS_PER_SEC;
       PVPUT(statemachine_measured_loop_time, time_taken);
       
       if (debug) {
         errlogSevPrintf(errlogInfo, "%s: Loop took %f ms.\n", PROGRAM_NAME, time_taken);
       }
       
-      time_of_last_mag_read_trigger = new_time;
+      _time_of_last_mag_read_trigger = new_time;
       
     }
     
@@ -83,7 +91,7 @@ ss zero_field
   state wait_for_mag_read
   {
     entry {
-      TRANSITION_TO_STATE("wait_for_mag_read");
+      ZF_TRANSITION_TO_STATE("wait_for_mag_read");
     }
     
     when(new_readings_available && !magnetometer_invalid(pVar)) {
@@ -96,7 +104,7 @@ ss zero_field
       errlogSevPrintf(errlogMajor, "%s: Magnetometer read error: new reading became available but severities were invalid.\n", PROGRAM_NAME);
     } state loop_delay
     
-    when(delay(5)) {
+    when(delay(read_timeout)) {
       PVPUT(stable, 0);
       PVPUTSTR(status, ZF_STAT_MAGNETOMETER_DATA_STALE);
       errlogSevPrintf(errlogMajor, "%s: Magnetometer read error: new reading did not become available.\n", PROGRAM_NAME);
@@ -111,13 +119,13 @@ ss zero_field
   
   state check_corrected_field {
     entry {
-      TRANSITION_TO_STATE("check_corrected_field");
+      ZF_TRANSITION_TO_STATE("check_corrected_field");
     }
     
     when() {
-      int within_tolerance = isWithinTolerance(setpoint_x, magnetometer_x, tolerance) && 
-          isWithinTolerance(setpoint_y, magnetometer_y, tolerance) && 
-          isWithinTolerance(setpoint_z, magnetometer_z, tolerance);
+      int within_tolerance = is_within_tolerance(setpoint_x, magnetometer_x, tolerance) && 
+          is_within_tolerance(setpoint_y, magnetometer_y, tolerance) && 
+          is_within_tolerance(setpoint_z, magnetometer_z, tolerance);
           
       PVPUT(stable, within_tolerance);
       
@@ -130,7 +138,7 @@ ss zero_field
   
   state check_raw_field {
     entry {
-      TRANSITION_TO_STATE("check_raw_field");
+      ZF_TRANSITION_TO_STATE("check_raw_field");
     }
     
     when(magnetometer_overloaded) {
@@ -147,7 +155,7 @@ ss zero_field
   
   state check_auto_feedback {
     entry {
-      TRANSITION_TO_STATE("check_auto_feedback");
+      ZF_TRANSITION_TO_STATE("check_auto_feedback");
     }
     
     when(auto_feedback_enabled) {
@@ -165,7 +173,7 @@ ss zero_field
   
   state check_output_psu_state {
     entry {
-      TRANSITION_TO_STATE("check_output_psu_state");
+      ZF_TRANSITION_TO_STATE("check_output_psu_state");
     }
     
     when(power_supplies_invalid(pVar)) {
@@ -180,14 +188,14 @@ ss zero_field
   
   state ensure_mode_current {
     entry {
-      TRANSITION_TO_STATE("ensure_mode_current");
+      ZF_TRANSITION_TO_STATE("ensure_mode_current");
     } 
     
-    when (output_psu_x_mode == PSU_MODE_CURRENT && output_psu_y_mode == PSU_MODE_CURRENT && output_psu_z_mode == PSU_MODE_CURRENT) {
+    when (all_power_suppies_in_current_mode(pVar)) {
       /* outputs already in correct mode, nothing to do here */
     } state ensure_outputs_on
     
-    when (delay(1)) {
+    when (!all_power_suppies_in_current_mode(pVar)) {
       PVPUT(output_psu_x_mode_sp, PSU_MODE_CURRENT);
       PVPUT(output_psu_y_mode_sp, PSU_MODE_CURRENT);
       PVPUT(output_psu_z_mode_sp, PSU_MODE_CURRENT);
@@ -196,15 +204,15 @@ ss zero_field
   
   state wait_for_mode_current {
     entry {
-      TRANSITION_TO_STATE("wait_for_mode_current");
+      ZF_TRANSITION_TO_STATE("wait_for_mode_current");
     }
     
-    when (output_psu_x_mode == PSU_MODE_CURRENT && output_psu_y_mode == PSU_MODE_CURRENT && output_psu_z_mode == PSU_MODE_CURRENT) {
+    when (all_power_suppies_in_current_mode(pVar)) {
       /* modes are now correct */
       errlogSevPrintf(errlogInfo, "%s: Power supply outputs switched on successfully.\n", PROGRAM_NAME);
     } state ensure_outputs_on
     
-    when (delay(5)) {
+    when (delay(read_timeout)) {
       errlogSevPrintf(errlogMajor, "%s: Cannot get power supply into current mode.\n", PROGRAM_NAME);
       PVPUTSTR(status, ZF_STAT_PSU_WRITE_FAILED);   
     } state trigger_mag_read
@@ -212,14 +220,14 @@ ss zero_field
   
   state ensure_outputs_on {
     entry {
-      TRANSITION_TO_STATE("turn_power_supplies_on");
+      ZF_TRANSITION_TO_STATE("ensure_outputs_on");
     } 
     
-    when (output_psu_x_on == PSU_STATUS_ON && output_psu_y_on == PSU_STATUS_ON && output_psu_z_on == PSU_STATUS_ON) {
+    when (all_power_suppies_on(pVar)) {
       /* outputs already on, nothing to do here */
     } state write_to_psu
     
-    when (delay(1)) {
+    when (!all_power_suppies_on(pVar)) {
       PVPUT(output_psu_x_on_sp, PSU_STATUS_ON);
       PVPUT(output_psu_y_on_sp, PSU_STATUS_ON);
       PVPUT(output_psu_z_on_sp, PSU_STATUS_ON);
@@ -228,15 +236,15 @@ ss zero_field
   
   state wait_for_outputs_on {
     entry {
-      TRANSITION_TO_STATE("wait_for_outputs_on");
+      ZF_TRANSITION_TO_STATE("wait_for_outputs_on");
     }
     
-    when (output_psu_x_on == PSU_STATUS_ON && output_psu_y_on == PSU_STATUS_ON && output_psu_z_on == PSU_STATUS_ON) {
+    when (all_power_suppies_on(pVar)) {
       /* outputs have now turned on */
       errlogSevPrintf(errlogInfo, "%s: Power supply outputs switched on successfully.\n", PROGRAM_NAME);
     } state write_to_psu
     
-    when (delay(5)) {
+    when (delay(read_timeout)) {
       errlogSevPrintf(errlogMajor, "%s: Cannot turn power supplies on.\n", PROGRAM_NAME);
       PVPUTSTR(status, ZF_STAT_PSU_WRITE_FAILED);   
     } state trigger_mag_read
@@ -244,17 +252,17 @@ ss zero_field
   
   state write_to_psu {
     entry {
-      TRANSITION_TO_STATE("write_to_psu");
+      ZF_TRANSITION_TO_STATE("write_to_psu");
     }
     
     when() {
-      double new_x = output_psu_x_sp_rbv + ((setpoint_x - magnetometer_x) * p_x * feedback);
-      double new_y = output_psu_y_sp_rbv + ((setpoint_y - magnetometer_y) * p_y * feedback);
-      double new_z = output_psu_z_sp_rbv + ((setpoint_z - magnetometer_z) * p_z * feedback);
+      double new_x = output_psu_x_sp_rbv + ((setpoint_x - magnetometer_x) * amps_per_mg_x * feedback);
+      double new_y = output_psu_y_sp_rbv + ((setpoint_y - magnetometer_y) * amps_per_mg_y * feedback);
+      double new_z = output_psu_z_sp_rbv + ((setpoint_z - magnetometer_z) * amps_per_mg_z * feedback);
       
-      double coerced_x = coerceToRange(new_x, output_psu_x_sp_drvl, output_psu_x_sp_drvh);
-      double coerced_y = coerceToRange(new_y, output_psu_y_sp_drvl, output_psu_y_sp_drvh);
-      double coerced_z = coerceToRange(new_z, output_psu_z_sp_drvl, output_psu_z_sp_drvh);
+      double coerced_x = coerce_to_range(new_x, output_psu_x_sp_drvl, output_psu_x_sp_drvh);
+      double coerced_y = coerce_to_range(new_y, output_psu_y_sp_drvl, output_psu_y_sp_drvh);
+      double coerced_z = coerce_to_range(new_z, output_psu_z_sp_drvl, output_psu_z_sp_drvh);
       
       int x_on_limit = (new_x != coerced_x);
       int y_on_limit = (new_y != coerced_y);
@@ -282,16 +290,15 @@ ss zero_field
   
   state check_psu_writes {
       entry {
-        TRANSITION_TO_STATE("check_psu_writes"); 
+        ZF_TRANSITION_TO_STATE("check_psu_writes"); 
       }
       
       when(
-        isWithinTolerance(output_psu_x_sp, output_psu_x_sp_rbv, output_psu_tolerance) &&
-        isWithinTolerance(output_psu_y_sp, output_psu_y_sp_rbv, output_psu_tolerance) &&
-        isWithinTolerance(output_psu_z_sp, output_psu_z_sp_rbv, output_psu_tolerance)
+        is_within_tolerance(output_psu_x_sp, output_psu_x_sp_rbv, output_psu_tolerance) &&
+        is_within_tolerance(output_psu_y_sp, output_psu_y_sp_rbv, output_psu_tolerance) &&
+        is_within_tolerance(output_psu_z_sp, output_psu_z_sp_rbv, output_psu_tolerance)
       ) {
-        
-        
+                
         if (_output_on_limit) {
           PVPUTSTR(status, ZF_STAT_PSU_ON_LIMITS);
         } else {
@@ -304,7 +311,7 @@ ss zero_field
         }
       } state loop_delay
       
-      when(delay(5)) {
+      when(delay(read_timeout)) {
         PVPUTSTR(status, ZF_STAT_PSU_WRITE_FAILED);
         errlogSevPrintf(errlogMajor, "%s: Power supply writes failed to get within tolerance. Setpoints = (X=%f, Y=%f, Z=%f), setpoint readbacks = (X=%f, Y=%f, Z=%f). Tolerance=%f\n", 
           PROGRAM_NAME, output_psu_x_sp, output_psu_y_sp, output_psu_z_sp, output_psu_x_sp_rbv, output_psu_y_sp_rbv, output_psu_z_sp_rbv, output_psu_tolerance); 
@@ -315,7 +322,7 @@ ss zero_field
   
   state loop_delay {
     entry {
-      TRANSITION_TO_STATE("loop_delay");
+      ZF_TRANSITION_TO_STATE("loop_delay");
     }
     
     when(delay(loop_delay/1000.0)) { } state trigger_mag_read
@@ -327,7 +334,7 @@ ss zero_field
   /**
    * Called on any state transitions that occur in the state machine - primarily for debugging.
    */
-  static void state_transition(SS_ID ssId, struct seqg_vars* const pVar, CH_ID index, const char* const new_state_name)
+  static void zf_state_transition(SS_ID ssId, struct seqg_vars* const pVar, CH_ID index, const char* const new_state_name)
   {
     strncpy(pVar->statemachine_state, new_state_name, MAX_STRING_SIZE);
 	seq_pvPut(ssId, index, SYNC);
@@ -366,16 +373,16 @@ ss zero_field
   /**
    * Returns 1 if the first two arguments are within tolerance of each other, else 0.
    */
-  static int isWithinTolerance(double setpoint, double readback, double tolerance) {
+  static int is_within_tolerance(double setpoint, double readback, double tolerance) {
     return fabs(setpoint - readback) <= tolerance;
   }
   
   /**
    * Coerces a floating point number to be within given low and high limits.
    */
-  static double coerceToRange(double value, double low_limit, double high_limit) {
+  static double coerce_to_range(double value, double low_limit, double high_limit) {
     if (high_limit < low_limit) {
-      errlogSevPrintf(errlogMajor, "%s: coerceToRange called with high < low. Returning value anyway.", PROGRAM_NAME);
+      errlogSevPrintf(errlogMajor, "%s: coerce_to_range called with high < low. Returning value anyway.", PROGRAM_NAME);
       return value;
     }
     
@@ -386,5 +393,17 @@ ss zero_field
     } else {
         return value;
     }
+  }
+  
+  static int all_power_suppies_on(struct seqg_vars* const pVar) {
+      return pVar->output_psu_x_on == PSU_STATUS_ON
+          && pVar->output_psu_y_on == PSU_STATUS_ON
+          && pVar->output_psu_z_on == PSU_STATUS_ON;
+  }
+  
+  static int all_power_suppies_in_current_mode(struct seqg_vars* const pVar) {
+      return pVar->output_psu_x_mode == PSU_MODE_CURRENT
+          && pVar->output_psu_y_mode == PSU_MODE_CURRENT
+          && pVar->output_psu_z_mode == PSU_MODE_CURRENT;
   }
 }%
