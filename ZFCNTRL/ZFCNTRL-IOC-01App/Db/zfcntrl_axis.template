@@ -89,6 +89,46 @@ record(ai, "$(P)OUTPUT:$(AXIS):CURR:SP:RBV") {
   info(archive, "VAL")
 }
 
+record(bi, "$(P)OUTPUT:$(AXIS):STATUS") {
+  field(INP, "$(PSU_$(AXIS)):OUTPUTSTATUS CPP MSS")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+  
+  info(archive, "VAL")
+}
+
+record(bo, "$(P)OUTPUT:$(AXIS):STATUS:SP") {
+  field(OUT, "$(PSU_$(AXIS)):OUTPUTSTATUS:SP CA")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+  
+  # Explicitly process it, as EPICS documentation suggests PP over CA
+  # may not necessarily cause the record on the other end to process.
+  field(FLNK, "$(PSU_$(AXIS)):OUTPUTSTATUS:SP.PROC CA")
+  
+  info(archive, "VAL")
+}
+
+record(bi, "$(P)OUTPUT:$(AXIS):MODE") {
+  field(INP, "$(PSU_$(AXIS)):OUTPUTMODE CPP MSS")
+  field(ZNAM, "Voltage")  field(ZSV, "MAJOR")  # Should never be in Voltage mode for the IOC to work correctly.
+  field(ONAM, "Current")
+  
+  info(archive, "VAL")
+}
+
+record(bo, "$(P)OUTPUT:$(AXIS):MODE:SP") {
+  field(OUT, "$(PSU_$(AXIS)):OUTPUTMODE:SP CA")
+  field(ZNAM, "Voltage")
+  field(ONAM, "Current")
+  
+  # Explicitly process it, as EPICS documentation suggests PP over CA
+  # may not necessarily cause the record on the other end to process.
+  field(FLNK, "$(PSU_$(AXIS)):OUTPUTMODE:SP.PROC CA")
+  
+  info(archive, "VAL")
+}
+
 record(ai, "$(P)OUTPUT:$(AXIS):VOLT") {
   field(EGU, "V")
   field(SCAN, ".1 second")

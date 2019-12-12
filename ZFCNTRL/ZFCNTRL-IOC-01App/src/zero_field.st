@@ -1,6 +1,7 @@
 program zero_field("P")
 
 #include "seqPVmacros.h"
+#include "zf_pv_definitions.h"
 %% #include "seq_snc.h"
 %% #include "time.h"
 %% #include "string.h"
@@ -10,92 +11,6 @@ program zero_field("P")
 option +d;
 option +r;
 option +s;
-
-/* Field readings from magnetometer */
-PV(double, magnetometer_x, "{P}MAGNETOMETER:X:_RAW", Monitor);
-PV(double, magnetometer_y, "{P}MAGNETOMETER:Y:_RAW", Monitor);
-PV(double, magnetometer_z, "{P}MAGNETOMETER:Z:_RAW", Monitor);
-
-/* Severities from magnetometer */
-PV(int, magnetometer_x_sevr, "{P}MAGNETOMETER:X:_RAW.SEVR", Monitor);
-PV(int, magnetometer_y_sevr, "{P}MAGNETOMETER:Y:_RAW.SEVR", Monitor);
-PV(int, magnetometer_z_sevr, "{P}MAGNETOMETER:Z:_RAW.SEVR", Monitor);
-
-/* Magnetometer overload */
-PV(int, magnetometer_overloaded, "{P}MAGNETOMETER:OVERLOAD", Monitor);
-
-/* Field setpoints */
-PV(double, setpoint_x, "{P}FIELD:X:SP", Monitor);
-PV(double, setpoint_y, "{P}FIELD:Y:SP", Monitor);
-PV(double, setpoint_z, "{P}FIELD:Z:SP", Monitor);
-
-/* Power supply currents */
-PV(double, output_psu_x, "{P}OUTPUT:X:CURR", Monitor);
-PV(double, output_psu_y, "{P}OUTPUT:Y:CURR", Monitor);
-PV(double, output_psu_z, "{P}OUTPUT:Z:CURR", Monitor);
-PV(int, output_psu_x_sevr, "{P}OUTPUT:X:CURR.SEVR", Monitor);
-PV(int, output_psu_y_sevr, "{P}OUTPUT:Y:CURR.SEVR", Monitor);
-PV(int, output_psu_z_sevr, "{P}OUTPUT:Z:CURR.SEVR", Monitor);
-
-/* Power supply setpoints */
-PV(double, output_psu_x_sp, "{P}OUTPUT:X:CURR:SP", Monitor);
-PV(double, output_psu_y_sp, "{P}OUTPUT:Y:CURR:SP", Monitor);
-PV(double, output_psu_z_sp, "{P}OUTPUT:Z:CURR:SP", Monitor);
-PV(int, output_psu_x_sp_sevr, "{P}OUTPUT:X:CURR:SP.SEVR", Monitor);
-PV(int, output_psu_y_sp_sevr, "{P}OUTPUT:Y:CURR:SP.SEVR", Monitor);
-PV(int, output_psu_z_sp_sevr, "{P}OUTPUT:Z:CURR:SP.SEVR", Monitor);
-
-/* Power supply setpoint limits */
-PV(double, output_psu_x_sp_drvh, "{P}OUTPUT:X:CURR:SP.DRVH", Monitor);
-PV(double, output_psu_y_sp_drvh, "{P}OUTPUT:Y:CURR:SP.DRVH", Monitor);
-PV(double, output_psu_z_sp_drvh, "{P}OUTPUT:Z:CURR:SP.DRVH", Monitor);
-PV(double, output_psu_x_sp_drvl, "{P}OUTPUT:X:CURR:SP.DRVL", Monitor);
-PV(double, output_psu_y_sp_drvl, "{P}OUTPUT:Y:CURR:SP.DRVL", Monitor);
-PV(double, output_psu_z_sp_drvl, "{P}OUTPUT:Z:CURR:SP.DRVL", Monitor);
-
-/* Power supply setpoint readbacks */
-PV(double, output_psu_x_sp_rbv, "{P}OUTPUT:X:CURR:SP:RBV", Monitor);
-PV(double, output_psu_y_sp_rbv, "{P}OUTPUT:Y:CURR:SP:RBV", Monitor);
-PV(double, output_psu_z_sp_rbv, "{P}OUTPUT:Z:CURR:SP:RBV", Monitor);
-PV(int, output_psu_x_sp_rbv_sevr, "{P}OUTPUT:X:CURR:SP:RBV.SEVR", Monitor);
-PV(int, output_psu_y_sp_rbv_sevr, "{P}OUTPUT:Y:CURR:SP:RBV.SEVR", Monitor);
-PV(int, output_psu_z_sp_rbv_sevr, "{P}OUTPUT:Z:CURR:SP:RBV.SEVR", Monitor);
-
-/* Power supply write tolerance */
-PV(double, output_psu_tolerance, "{P}OUTPUT:PSU_WRITE_TOLERANCE", Monitor);
-
-/* Proportional feedback factors and fiddle factors */
-PV(double, p_x, "{P}P:X", Monitor);
-PV(double, p_y, "{P}P:Y", Monitor);
-PV(double, p_z, "{P}P:Z", Monitor);
-PV(double, feedback, "{P}P:FEEDBACK", Monitor);
-
-/* Tolerance of (actual-setpoint) for field to be considered stable */
-PV(double, tolerance, "{P}TOLERANCE", Monitor);
-
-/* Statuses for feedback to OPI etc */
-PV(string, statemachine_state, "{P}STATEMACHINE:STATE", NoMon);
-PV(int, statemachine_activity, "{P}STATEMACHINE:ACTIVITY", Monitor);
-PV(double, statemachine_measured_loop_time, "{P}STATEMACHINE:LOOP_TIME", NoMon);
-PV(string, status, "{P}STATUS", NoMon);
-
-/* Whether the field is "stable" or not */
-PV(int, stable, "{P}STABLE", Monitor);
-
-/* Whether new readings are available from the magnetometer */
-PV(int, new_readings_available, "{P}_READINGS_READY", Monitor);
-/* Trigger the magnetometer to take new readings */
-PV(int, trigger_read, "{P}TRIGGER_MAGNETOMETER_READ", NoMon);
-
-/* Whether the controller is in auto-feedback mode */
-PV(int, auto_feedback_enabled, "{P}AUTOFEEDBACK", Monitor);
-
-/* Statemachine debugging - e.g. logging of every state entry. Very verbose. */
-PV(int, debug, "{P}DEBUG", Monitor);
-
-/* Delay between statemachine loops. Adjustable by user, but changing it will
- * mean that "fiddle factor" will need to be re-adjusted. */
-PV(double, loop_delay, "{P}STATEMACHINE:LOOP_DELAY", Monitor);
 
 
 %{
@@ -109,6 +24,12 @@ PV(double, loop_delay, "{P}STATEMACHINE:LOOP_DELAY", Monitor);
   static const char* const ZF_STAT_PSU_INVALID = "Power supply invalid";
   static const char* const ZF_STAT_PSU_ON_LIMITS = "Power supply on limits";
   static const char* const ZF_STAT_PSU_WRITE_FAILED = "Power supply write failed";
+  
+  static const int PSU_MODE_VOLTAGE = 0;  
+  static const int PSU_MODE_CURRENT = 1;  
+  
+  static const int PSU_STATUS_OFF = 0;  
+  static const int PSU_STATUS_ON = 1;  
 
   /* This needs to be a macro as the call to pvIndex has to happen from SNL code, not C code. */
   /* See https://www-csr.bessy.de/control/SoftDist/sequencer/EscapeToC.html?highlight=pvindex#calling-pv-functions-from-c */
@@ -254,7 +175,71 @@ ss zero_field
     
     when(!power_supplies_invalid(pVar)) {
       /* Intentionally empty */
+    } state ensure_mode_current
+  }
+  
+  state ensure_mode_current {
+    entry {
+      TRANSITION_TO_STATE("ensure_mode_current");
+    } 
+    
+    when (output_psu_x_mode == PSU_MODE_CURRENT && output_psu_y_mode == PSU_MODE_CURRENT && output_psu_z_mode == PSU_MODE_CURRENT) {
+      /* outputs already in correct mode, nothing to do here */
+    } state ensure_outputs_on
+    
+    when (delay(1)) {
+      PVPUT(output_psu_x_mode_sp, PSU_MODE_CURRENT);
+      PVPUT(output_psu_y_mode_sp, PSU_MODE_CURRENT);
+      PVPUT(output_psu_z_mode_sp, PSU_MODE_CURRENT);
+    } state wait_for_mode_current
+  }
+  
+  state wait_for_mode_current {
+    entry {
+      TRANSITION_TO_STATE("wait_for_mode_current");
+    }
+    
+    when (output_psu_x_mode == PSU_MODE_CURRENT && output_psu_y_mode == PSU_MODE_CURRENT && output_psu_z_mode == PSU_MODE_CURRENT) {
+      /* modes are now correct */
+      errlogSevPrintf(errlogInfo, "%s: Power supply outputs switched on successfully.\n", PROGRAM_NAME);
+    } state ensure_outputs_on
+    
+    when (delay(5)) {
+      errlogSevPrintf(errlogMajor, "%s: Cannot get power supply into current mode.\n", PROGRAM_NAME);
+      PVPUTSTR(status, ZF_STAT_PSU_WRITE_FAILED);   
+    } state trigger_mag_read
+  }
+  
+  state ensure_outputs_on {
+    entry {
+      TRANSITION_TO_STATE("turn_power_supplies_on");
+    } 
+    
+    when (output_psu_x_on == PSU_STATUS_ON && output_psu_y_on == PSU_STATUS_ON && output_psu_z_on == PSU_STATUS_ON) {
+      /* outputs already on, nothing to do here */
     } state write_to_psu
+    
+    when (delay(1)) {
+      PVPUT(output_psu_x_on_sp, PSU_STATUS_ON);
+      PVPUT(output_psu_y_on_sp, PSU_STATUS_ON);
+      PVPUT(output_psu_z_on_sp, PSU_STATUS_ON);
+    } state wait_for_outputs_on
+  }
+  
+  state wait_for_outputs_on {
+    entry {
+      TRANSITION_TO_STATE("wait_for_outputs_on");
+    }
+    
+    when (output_psu_x_on == PSU_STATUS_ON && output_psu_y_on == PSU_STATUS_ON && output_psu_z_on == PSU_STATUS_ON) {
+      /* outputs have now turned on */
+      errlogSevPrintf(errlogInfo, "%s: Power supply outputs switched on successfully.\n", PROGRAM_NAME);
+    } state write_to_psu
+    
+    when (delay(5)) {
+      errlogSevPrintf(errlogMajor, "%s: Cannot turn power supplies on.\n", PROGRAM_NAME);
+      PVPUTSTR(status, ZF_STAT_PSU_WRITE_FAILED);   
+    } state trigger_mag_read
   }
   
   state write_to_psu {
@@ -358,6 +343,12 @@ ss zero_field
     return pVar->output_psu_x_sevr == INVALID_ALARM 
         || pVar->output_psu_y_sevr == INVALID_ALARM 
         || pVar->output_psu_z_sevr == INVALID_ALARM 
+        || pVar->output_psu_x_on_sevr == INVALID_ALARM 
+        || pVar->output_psu_x_on_sevr == INVALID_ALARM 
+        || pVar->output_psu_x_on_sevr == INVALID_ALARM 
+        || pVar->output_psu_x_mode_sevr == INVALID_ALARM 
+        || pVar->output_psu_y_mode_sevr == INVALID_ALARM 
+        || pVar->output_psu_z_mode_sevr == INVALID_ALARM
         || pVar->output_psu_x_sp_rbv_sevr == INVALID_ALARM 
         || pVar->output_psu_y_sp_rbv_sevr == INVALID_ALARM 
         || pVar->output_psu_z_sp_rbv_sevr == INVALID_ALARM;

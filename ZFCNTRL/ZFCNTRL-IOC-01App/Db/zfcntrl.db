@@ -72,6 +72,10 @@ record(mbbo, "$(P)STATEMACHINE:STATE") {
   field(EIST, "write_to_psu")
   field(NIST, "check_psu_writes")
   field(TEST, "loop_delay")
+  field(ELST, "ensure_mode_current")
+  field(TVST, "wait_for_mode_current")
+  field(TTST, "ensure_outputs_on")
+  field(FTST, "wait_for_outputs_on")
   
   # Do not archive unless needed for debugging - this PV changes very quickly
   # and would fill up the archive database on an instrument if logged all the
@@ -155,13 +159,6 @@ record(mbbo, "$(P)STATUS") {
   info(archive, "VAL")
 }
 
-
-#
-#
-# Feedback factors
-#
-#
-
 record(ao, "$(P)P:FEEDBACK") {
   field(DESC, "Proportional feedback factor")
   field(EGU, "")  # unitless
@@ -180,5 +177,15 @@ record(ao, "$(P)OUTPUT:PSU_WRITE_TOLERANCE") {
   field(EGU, "A")
   field(VAL, "0.000001")
   field(PINI, "YES")
+  info(archive, "VAL")
+}
+
+record(calc, "$(P)FIELD:MAGNITUDE") {
+  field(INPA, "$(P)FIELD:X CP MS")
+  field(INPB, "$(P)FIELD:Y CP MS")
+  field(INPC, "$(P)FIELD:Z CP MS")
+  field(CALC, "SQRT(A*A + B*B + C*C)")
+  field(EGU, "mG")
+  field(PREC, "6")
   info(archive, "VAL")
 }
