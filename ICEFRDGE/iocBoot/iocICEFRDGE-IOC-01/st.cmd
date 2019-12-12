@@ -10,6 +10,9 @@ errlogInit2(65536, 256)
 
 cd "${TOP}"
 
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "clocal", "Y")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
+
 ## Register all support components
 dbLoadDatabase "dbd/ICEFRDGE-IOC-01.dbd"
 ICEFRDGE_IOC_01_registerRecordDeviceDriver pdbbase
