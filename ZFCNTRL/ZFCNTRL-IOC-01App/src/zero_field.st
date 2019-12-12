@@ -61,6 +61,9 @@ PV(int, output_psu_x_sp_rbv_sevr, "{P}OUTPUT:X:CURR:SP:RBV.SEVR", Monitor);
 PV(int, output_psu_y_sp_rbv_sevr, "{P}OUTPUT:Y:CURR:SP:RBV.SEVR", Monitor);
 PV(int, output_psu_z_sp_rbv_sevr, "{P}OUTPUT:Z:CURR:SP:RBV.SEVR", Monitor);
 
+/* Power supply write tolerance */
+PV(double, output_psu_tolerance, "{P}OUTPUT:PSU_WRITE_TOLERANCE", Monitor);
+
 /* Proportional feedback factors and fiddle factors */
 PV(double, p_x, "{P}P:X", Monitor);
 PV(double, p_y, "{P}P:Y", Monitor);
@@ -91,23 +94,34 @@ PV(int, auto_feedback_enabled, "{P}AUTOFEEDBACK", Monitor);
 PV(int, debug, "{P}DEBUG", Monitor);
 
 /* Delay between statemachine loops. Adjustable by user, but changing it will
- * mean that "fiddle factor" will need to be re-adjusted.  */
+ * mean that "fiddle factor" will need to be re-adjusted. */
 PV(double, loop_delay, "{P}STATEMACHINE:LOOP_DELAY", Monitor);
 
 
-#define PROGRAM_NAME "zero_field.st"
-
-/* This needs to be a macro as the call to pvIndex has to happen from SNL code, not C code. */
-/* See https://www-csr.bessy.de/control/SoftDist/sequencer/EscapeToC.html?highlight=pvindex#calling-pv-functions-from-c */
-#define TRANSITION_TO_STATE(x) state_transition(ssId, pVar, pvIndex(statemachine_state), (x))
-
 %{
+  static const char* const PROGRAM_NAME = "zero_field.st";
+
+/* Define some error statuses. These should match the strings in $(P)STATUS */
+  static const char* const ZF_STAT_NO_ERROR = "No error";
+  static const char* const ZF_STAT_MAGNETOMETER_DATA_INVALID = "Magnetometer data invalid";
+  static const char* const ZF_STAT_MAGNETOMETER_DATA_STALE = "No new magnetometer data";
+  static const char* const ZF_STAT_MAGNETOMETER_OVERLOADED = "Magnetometer overloaded";
+  static const char* const ZF_STAT_PSU_INVALID = "Power supply invalid";
+  static const char* const ZF_STAT_PSU_ON_LIMITS = "Power supply on limits";
+  static const char* const ZF_STAT_PSU_WRITE_FAILED = "Power supply write failed";
+
+  /* This needs to be a macro as the call to pvIndex has to happen from SNL code, not C code. */
+  /* See https://www-csr.bessy.de/control/SoftDist/sequencer/EscapeToC.html?highlight=pvindex#calling-pv-functions-from-c */
+  #define TRANSITION_TO_STATE(x) state_transition(ssId, pVar, pvIndex(statemachine_state), (x))
+
   /* Some necessary function forward-declarations - for implementations see end of file. */
   static void state_transition(SS_ID ssId, struct seqg_vars* const pVar, CH_ID index, const char* const new_state_name);
   static int power_supplies_invalid(struct seqg_vars* const pVar);
+  static int magnetometer_invalid(struct seqg_vars* const pVar);
   static int isWithinTolerance(double setpoint, double readback, double tolerance);
   static double coerceToRange(double value, double low_limit, double high_limit);
   clock_t time_of_last_mag_read_trigger;
+  int _output_on_limit = 0;
 }%
 
 ss zero_field
@@ -129,7 +143,13 @@ ss zero_field
       TRANSITION_TO_STATE("trigger_mag_read");
       PVPUT(statemachine_activity, !statemachine_activity);
       %% clock_t new_time = clock();
-      PVPUT(statemachine_measured_loop_time, 1000.0 * (new_time - time_of_last_mag_read_trigger) / CLOCKS_PER_SEC);
+      %% double time_taken = 1000.0 * (new_time - time_of_last_mag_read_trigger) / CLOCKS_PER_SEC;
+      PVPUT(statemachine_measured_loop_time, time_taken);
+      
+      if (debug) {
+        errlogSevPrintf(errlogInfo, "%s: Loop took %f ms.\n", PROGRAM_NAME, time_taken);
+      }
+      
       time_of_last_mag_read_trigger = new_time;
       
     }
@@ -145,19 +165,19 @@ ss zero_field
       TRANSITION_TO_STATE("wait_for_mag_read");
     }
     
-    when(new_readings_available && !(magnetometer_x_sevr == INVALID_ALARM || magnetometer_y_sevr == INVALID_ALARM || magnetometer_z_sevr == INVALID_ALARM)) {
+    when(new_readings_available && !magnetometer_invalid(pVar)) {
       /* intentionally empty */
     } state check_corrected_field
     
-    when(new_readings_available && (magnetometer_x_sevr == INVALID_ALARM || magnetometer_y_sevr == INVALID_ALARM || magnetometer_z_sevr == INVALID_ALARM)) {
+    when(new_readings_available && magnetometer_invalid(pVar)) {
       PVPUT(stable, 0);
-      PVPUTSTR(status, "Magnetometer data invalid");
+      PVPUTSTR(status, ZF_STAT_MAGNETOMETER_DATA_INVALID);
       errlogSevPrintf(errlogMajor, "%s: Magnetometer read error: new reading became available but severities were invalid.\n", PROGRAM_NAME);
     } state loop_delay
     
     when(delay(5)) {
       PVPUT(stable, 0);
-      PVPUTSTR(status, "No new magnetometer data");
+      PVPUTSTR(status, ZF_STAT_MAGNETOMETER_DATA_STALE);
       errlogSevPrintf(errlogMajor, "%s: Magnetometer read error: new reading did not become available.\n", PROGRAM_NAME);
       /* After this state go straight to trigger_mag_read rather than loop_delay as we have already waited 5 seconds */
     } state trigger_mag_read
@@ -180,6 +200,10 @@ ss zero_field
           
       PVPUT(stable, within_tolerance);
       
+      if (debug) {
+        errlogSevPrintf(errlogInfo, "%s: Magnetometer within tolerance: %s\n", PROGRAM_NAME, within_tolerance ? "True" : "False");
+      }
+      
     } state check_raw_field
   }
   
@@ -189,7 +213,10 @@ ss zero_field
     }
     
     when(magnetometer_overloaded) {
-      PVPUTSTR(status, "Magnetometer overloaded");
+      PVPUTSTR(status, ZF_STAT_MAGNETOMETER_OVERLOADED);
+      if (debug) {
+        errlogSevPrintf(errlogInfo, "%s: Magnetometer overloaded - skipping PSU writes\n", PROGRAM_NAME);
+      }
     } state loop_delay
     
     when(!magnetometer_overloaded) {
@@ -208,7 +235,10 @@ ss zero_field
         
     when(!auto_feedback_enabled) {
       /* If we get to this point, there is no error. Clear any previous error states. */
-      PVPUTSTR(status, "No error");
+      PVPUTSTR(status, ZF_STAT_NO_ERROR);
+      if (debug) {
+        errlogSevPrintf(errlogMajor, "%s: Auto-feedback disabled - skipping PSU writes\n", PROGRAM_NAME);
+      }
     } state loop_delay
   }
   
@@ -218,8 +248,8 @@ ss zero_field
     }
     
     when(power_supplies_invalid(pVar)) {
-      PVPUTSTR(status, "Power supply invalid");
-      errlogSevPrintf(errlogMajor, "%s: Power supply is in invalid alarm. Not writing to power supplies.", PROGRAM_NAME);
+      PVPUTSTR(status, ZF_STAT_PSU_INVALID);
+      errlogSevPrintf(errlogMajor, "%s: Power supply is in invalid alarm. Not writing to power supplies.\n", PROGRAM_NAME);
     } state loop_delay
     
     when(!power_supplies_invalid(pVar)) {
@@ -232,27 +262,10 @@ ss zero_field
       TRANSITION_TO_STATE("write_to_psu");
     }
     
-    when(1) {
-      /* If setpoints are in INVALID alarm, this may be the first time around the 
-       * loop or the output power supply ioc may have been rebooted.
-       *
-       * In this case, use the setpoint readback value instead.
-       *
-       * We don't always use the setpoint readback value as this loop may be updating faster than the
-       * scan period of the setpoint readback, and we don't want to use a potentially out-of-date setpoint
-       * as the basis for these calculations.
-       */
-      double existing_output_x = (output_psu_x_sp_sevr == INVALID_ALARM) ? output_psu_x_sp_rbv : output_psu_x_sp;
-      double existing_output_y = (output_psu_y_sp_sevr == INVALID_ALARM) ? output_psu_y_sp_rbv : output_psu_y_sp;
-      double existing_output_z = (output_psu_z_sp_sevr == INVALID_ALARM) ? output_psu_z_sp_rbv : output_psu_z_sp;
-      
-      double change_x = (setpoint_x - magnetometer_x) * p_x * feedback;
-      double change_y = (setpoint_y - magnetometer_y) * p_y * feedback;
-      double change_z = (setpoint_z - magnetometer_z) * p_z * feedback;
-      
-      double new_x = existing_output_x + change_x;
-      double new_y = existing_output_y + change_y;
-      double new_z = existing_output_z + change_z;
+    when() {
+      double new_x = output_psu_x_sp_rbv + ((setpoint_x - magnetometer_x) * p_x * feedback);
+      double new_y = output_psu_y_sp_rbv + ((setpoint_y - magnetometer_y) * p_y * feedback);
+      double new_z = output_psu_z_sp_rbv + ((setpoint_z - magnetometer_z) * p_z * feedback);
       
       double coerced_x = coerceToRange(new_x, output_psu_x_sp_drvl, output_psu_x_sp_drvh);
       double coerced_y = coerceToRange(new_y, output_psu_y_sp_drvl, output_psu_y_sp_drvh);
@@ -263,12 +276,13 @@ ss zero_field
       int z_on_limit = (new_z != coerced_z);
       
       if (x_on_limit || y_on_limit || z_on_limit) {
-        errlogSevPrintf(errlogMajor, "%s: power supply outputs on limits. Attempted to set (X=%f, Y=%f, Z=%f) but instead set (X=%f, Y=%f, Z=%f)", 
+        errlogSevPrintf(errlogMajor, "%s: power supply outputs on limits. Attempted to set (X=%f, Y=%f, Z=%f) but instead set (X=%f, Y=%f, Z=%f)\n", 
           PROGRAM_NAME, new_x, new_y, new_z, coerced_x, coerced_y, coerced_z);
-        PVPUTSTR(status, "Power supply on limits");
+          
+        /* error set in check_psu_writes based on this flag */
+        _output_on_limit = 1;
       } else {
-        /* If we get here, there has been no error so clear error flags */
-        PVPUTSTR(status, "No error");
+        _output_on_limit = 0;
       }
       
       if (debug) {
@@ -278,7 +292,40 @@ ss zero_field
       PVPUT(output_psu_y_sp, coerced_y);
       PVPUT(output_psu_z_sp, coerced_z);
       
-    } state loop_delay
+    } state check_psu_writes
+  }
+  
+  state check_psu_writes {
+      entry {
+        TRANSITION_TO_STATE("check_psu_writes"); 
+      }
+      
+      when(
+        isWithinTolerance(output_psu_x_sp, output_psu_x_sp_rbv, output_psu_tolerance) &&
+        isWithinTolerance(output_psu_y_sp, output_psu_y_sp_rbv, output_psu_tolerance) &&
+        isWithinTolerance(output_psu_z_sp, output_psu_z_sp_rbv, output_psu_tolerance)
+      ) {
+        
+        
+        if (_output_on_limit) {
+          PVPUTSTR(status, ZF_STAT_PSU_ON_LIMITS);
+        } else {
+          /* If we get to this state, there has been no error */
+          PVPUTSTR(status, ZF_STAT_NO_ERROR);   
+        }
+        
+        if (debug) {
+          errlogSevPrintf(errlogInfo, "%s: power supply writes successful\n", PROGRAM_NAME);
+        }
+      } state loop_delay
+      
+      when(delay(5)) {
+        PVPUTSTR(status, ZF_STAT_PSU_WRITE_FAILED);
+        errlogSevPrintf(errlogMajor, "%s: Power supply writes failed to get within tolerance. Setpoints = (X=%f, Y=%f, Z=%f), setpoint readbacks = (X=%f, Y=%f, Z=%f). Tolerance=%f\n", 
+          PROGRAM_NAME, output_psu_x_sp, output_psu_y_sp, output_psu_z_sp, output_psu_x_sp_rbv, output_psu_y_sp_rbv, output_psu_z_sp_rbv, output_psu_tolerance); 
+          
+        /* don't go to loop_delay in this case as we have already waited 5 seconds */
+      } state trigger_mag_read
   }
   
   state loop_delay {
@@ -286,8 +333,7 @@ ss zero_field
       TRANSITION_TO_STATE("loop_delay");
     }
     
-    when(delay(loop_delay/1000.0)) {
-    } state trigger_mag_read
+    when(delay(loop_delay/1000.0)) { } state trigger_mag_read
   }
 }
 
@@ -301,8 +347,7 @@ ss zero_field
     strncpy(pVar->statemachine_state, new_state_name, MAX_STRING_SIZE);
 	seq_pvPut(ssId, index, SYNC);
     if (pVar->debug) {
-      /* Too verbose, hangs the ioc as it prints way too much output. */
-	  /* errlogSevPrintf(errlogInfo, "%s: Entering state %s", PROGRAM_NAME, new_state_name); */
+	  errlogSevPrintf(errlogInfo, "%s: Entering state %s\n", PROGRAM_NAME, new_state_name);
     }
   }
   
@@ -316,6 +361,15 @@ ss zero_field
         || pVar->output_psu_x_sp_rbv_sevr == INVALID_ALARM 
         || pVar->output_psu_y_sp_rbv_sevr == INVALID_ALARM 
         || pVar->output_psu_z_sp_rbv_sevr == INVALID_ALARM;
+  }
+  
+  /**
+   * Return 1 if any of the magnetometer readbacks are invalid - else return 0.
+   */
+  static int magnetometer_invalid(struct seqg_vars* const pVar) {
+    return pVar->magnetometer_x_sevr == INVALID_ALARM 
+        || pVar->magnetometer_y_sevr == INVALID_ALARM 
+        || pVar->magnetometer_z_sevr == INVALID_ALARM;
   }
   
   /**

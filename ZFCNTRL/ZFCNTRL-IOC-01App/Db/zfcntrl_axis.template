@@ -48,8 +48,7 @@ alias("$(P)P:$(AXIS)", "$(P)P:$(AXIS):SP")
 
 record(ai, "$(P)OUTPUT:$(AXIS):CURR") {
   field(EGU, "A")
-  field(SCAN, ".1 second")
-  field(INP, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME) CA MSS")
+  field(INP, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME) CPP MSS")
   field(PREC, "6")
   field(LOLO, "$(OUTPUT_$(AXIS)_MIN)")
   field(HIHI, "$(OUTPUT_$(AXIS)_MAX)")
@@ -68,16 +67,19 @@ record(ao, "$(P)OUTPUT:$(AXIS):CURR:SP") {
   field(HIHI, "$(OUTPUT_$(AXIS)_MAX)")
   field(HHSV, "MAJOR")
   field(LLSV, "MAJOR")
-  field(OUT, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME):SP CA PP")
+  field(OUT, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME):SP CA")
   field(PREC, "6")
+  
+  # Explicitly process it, as EPICS documentation suggests PP over CA
+  # may not necessarily cause the record on the other end to process.
+  field(FLNK, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME):SP.PROC CA")
   
   info(archive, "VAL DRVL DRVH")
 }
 
 record(ai, "$(P)OUTPUT:$(AXIS):CURR:SP:RBV") {
   field(EGU, "A")
-  field(SCAN, ".1 second")
-  field(INP, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME):SP:RBV CA MSS")
+  field(INP, "$(PSU_$(AXIS)):$(CURRENT_PV_NAME):SP:RBV CPP MSS")
   field(PREC, "6")
   field(LOLO, "$(OUTPUT_$(AXIS)_MIN)")
   field(HIHI, "$(OUTPUT_$(AXIS)_MAX)")
