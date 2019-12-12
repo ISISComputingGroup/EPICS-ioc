@@ -14,6 +14,9 @@ epicsEnvSet(IOC_NUM,1)
 dbLoadDatabase "dbd/MUONJAWS-IOC-01.dbd"
 MUONJAWS_IOC_01_registerRecordDeviceDriver pdbbase
 
+# Configure lvDCOM interface
+lvDCOMConfigure("lvfp", "frontpanel", "${MUONJAWS}/data/lv_MuonJaws.xml", "$(LVDCOM_HOST="")", $(LVDCOM_OPTIONS=2))
+
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
@@ -22,16 +25,13 @@ MUONJAWS_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-dbLoadRecords("db/MuonJaws.db", "P=$(MYPVPREFIX)$(IOCNAME):")
+dbLoadRecords("$(MUONJAWS)/db/MuonJaws.db", "P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit
-
-## Start any sequence programs
-#seq sncxxx,"user=hgv27692Host"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
