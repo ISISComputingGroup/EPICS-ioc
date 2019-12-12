@@ -27,6 +27,7 @@ IOCDIRS += MKSPR4KB
 IOCDIRS += OERCONE
 IOCDIRS += EDTIC
 IOCDIRS += ICEFRDGE
+IOCDIRS += CRYOSMS
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
@@ -78,6 +79,7 @@ DIRS_NOTBUILD += ISISDAE MERCURY_ITC STPS350 AG53220A STSR400 DELFTSHEAR DELFTDC
 endif
 
 DIRS := $(filter-out $(DIRS_NOTBUILD), $(IOCDIRS))
+DIRS := $(sort $(DIRS))
 
 include $(TOP)/configure/RULES_DIRS_INT
 

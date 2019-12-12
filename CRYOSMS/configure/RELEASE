@@ -60,9 +60,9 @@ SNCSEQ=$(SUPPORT)/seq/master
 SQLITE=$(SUPPORT)/sqlite/master
 SSCAN=$(SUPPORT)/sscan/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
+CRYOSMS=$(SUPPORT)/cryosms/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
-LUA=$(SUPPORT)/lua/master
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
@@ -71,4 +71,3 @@ include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
 
 # IOC-specific support module
-OERCONE=$(SUPPORT)/oercone/master
