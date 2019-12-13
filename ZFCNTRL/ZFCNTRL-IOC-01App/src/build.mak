@@ -24,12 +24,14 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
-$(APPNAME)_DBD += zfcntrl.dbd 
+$(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += zfcntrl.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
+$(APPNAME)_LIBS += zfcntrl
 $(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
@@ -37,12 +39,12 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += calc sscan
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 
 # ZFCNTRL-IOC-01_registerRecordDeviceDriver.cpp derives from ZFCNTRL-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
-$(APPNAME)_SRCS += zero_field.st
 
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp
