@@ -28,6 +28,7 @@ IOCDIRS += OERCONE
 IOCDIRS += EDTIC
 IOCDIRS += CRYOSMS
 IOCDIRS += ZFMAGFLD
+IOCDIRS += ZFCNTRL
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)

@@ -44,6 +44,7 @@ record(bi, "$(P)MAGNETOMETER:OVERLOAD") {
   field(INP, "$(MAGNETOMETER):OVERLOAD CA MSS")
   field(ZNAM, "In range")
   field(ONAM, "Out of range")
+  field(OSV, "MAJOR")
   
   field(FLNK, "$(P)_UPDATE_READINGS_READY")
 }
@@ -54,6 +55,8 @@ record(calcout, "$(P)_UPDATE_READINGS_READY") {
   field(OUT, "$(P)_READINGS_READY PP")
 }
 
+# 1 if new readings are available from the magnetometer but have not yet been consumed
+# by the state machine.
 record(bo, "$(P)_READINGS_READY") {
   field(VAL, "0")
 }
@@ -61,25 +64,22 @@ record(bo, "$(P)_READINGS_READY") {
 record(mbbo, "$(P)STATEMACHINE:STATE") {
   field(DESC, "What the IOC is doing")
   
-  field(ZRST, "initializing")  field(ZRSV, "MINOR")
-  field(ONST, "inputs_invalid")  field(ONSV, "MAJOR")
-  field(TWST, "trigger_mag_read")
-  field(THST, "wait_for_mag_read")
-  field(FRST, "check_corrected_field")
-  field(FVST, "check_raw_field")
-  field(SXST, "check_auto_feedback")
-  field(SVST, "check_output_psu_state")
-  field(EIST, "write_to_psu")
-  field(NIST, "check_psu_writes")
-  field(TEST, "loop_delay")
-  field(ELST, "ensure_mode_current")
-  field(TVST, "wait_for_mode_current")
-  field(TTST, "ensure_outputs_on")
-  field(FTST, "wait_for_outputs_on")
+  field(ZRST, "initializing")
+  field(ONST, "trigger_mag_read")
+  field(TWST, "wait_for_mag_read")
+  field(THST, "check_corrected_field")
+  field(FRST, "check_raw_field")
+  field(FVST, "check_auto_feedback")
+  field(SXST, "check_output_psu_state")
+  field(SVST, "write_to_psu")
+  field(EIST, "check_psu_writes")
+  field(NIST, "loop_delay")
+  field(TEST, "ensure_mode_current")
+  field(ELST, "wait_for_mode_current")
+  field(TVST, "ensure_outputs_on")
+  field(TTST, "wait_for_outputs_on")
   
-  # Do not archive unless needed for debugging - this PV changes very quickly
-  # and would fill up the archive database on an instrument if logged all the
-  # time.
+  # Do not archive unless needed for debugging - this PV can change very quickly (~100Hz)
   # info(archive, "VAL")
 }
 
@@ -97,8 +97,11 @@ record(ao, "$(P)STATEMACHINE:LOOP_TIME") {
   field(HHSV, "MINOR")
   field(LLSV, "MINOR")
   
-  field(ADEL, "5")  # Only log if changes by more than 5ms
+  # Only log if changes by more than 5ms, otherwise database could fill with small fluctuations.
+  field(ADEL, "5")
   info(archive, "VAL")
+  info(alarm, "ZFCNTRL")
+  info(interest, "LOW")
 }
 
 # Sleep after each statemachine loop. Making this too small will mean the 
@@ -107,10 +110,14 @@ record(ao, "$(P)STATEMACHINE:LOOP_TIME") {
 # Scientists expect something around 2-10Hz. i.e. 100-500 msec
 record(ao, "$(P)STATEMACHINE:LOOP_DELAY")
 {
+  field(DESC, "Wait between statemachine loops")
   field(EGU, "ms")
   field(VAL, "100")
   field(PINI, "YES")
   field(PREC, "0")
+  
+  info(archive, "VAL")
+  info(interest, "LOW")
 }
 
 # Timeout in seconds to get readbacks from external IOCs
@@ -126,6 +133,9 @@ record(ao, "$(P)STATEMACHINE:READ_TIMEOUT")
   field(VAL, "5")
   field(PINI, "YES")
   field(PREC, "0")
+  
+  info(archive, "VAL")
+  info(interest, "LOW")
 }
 
 record(bo, "$(P)STABLE") {
@@ -136,12 +146,17 @@ record(bo, "$(P)STABLE") {
   
   info(interest, "HIGH")
   info(archive, "VAL")
+  info(alarm, "ZFCNTRL")
 }
 
 record(bo, "$(P)AUTOFEEDBACK") {
   field(DESC, "Mode of ZF system")
   field(ZNAM, "Manual")
   field(ONAM, "Auto-feedback")
+  
+  # There is a requirement to force manual mode on IOC start.
+  field(VAL, "0")
+  field(PINI, "YES")
   
   info(interest, "HIGH")
   info(archive, "VAL")
@@ -175,7 +190,8 @@ record(mbbo, "$(P)STATUS") {
   field(SXSV, "INVALID")
   
   info(interest, "HIGH")
-  info(archive, "VAL")
+  info(archive, "VAL SEVR")
+  info(alarm, "ZFCNTRL")
 }
 
 record(ao, "$(P)P:FEEDBACK") {
@@ -198,10 +214,13 @@ record(ao, "$(P)OUTPUT:PSU_WRITE_TOLERANCE") {
   field(EGU, "A")
   field(VAL, "0.000001")
   field(PINI, "YES")
+  
   info(archive, "VAL")
+  info(interest, "LOW")
 }
 
 record(calc, "$(P)FIELD:MAGNITUDE") {
+  field(DESC, "Magnitude of corrected field")
   field(INPA, "$(P)FIELD:X CP MS")
   field(INPB, "$(P)FIELD:Y CP MS")
   field(INPC, "$(P)FIELD:Z CP MS")
@@ -209,9 +228,13 @@ record(calc, "$(P)FIELD:MAGNITUDE") {
   field(EGU, "mG")
   field(PREC, "6")
   info(archive, "VAL")
+  info(alarm, "ZFCNTRL")
+  info(interest, "HIGH")
+  field(ASG, "READONLY")
 }
 
 record(calc, "$(P)FIELD:MAGNITUDE:MEAS") {
+  field(DESC, "Magnitude of uncorrected field")
   field(INPA, "$(P)FIELD:X:MEAS CP MS")
   field(INPB, "$(P)FIELD:Y:MEAS CP MS")
   field(INPC, "$(P)FIELD:Z:MEAS CP MS")
@@ -219,4 +242,7 @@ record(calc, "$(P)FIELD:MAGNITUDE:MEAS") {
   field(EGU, "mG")
   field(PREC, "6")
   info(archive, "VAL")
+  info(alarm, "ZFCNTRL")
+  info(interest, "HIGH")
+  field(ASG, "READONLY")
 }

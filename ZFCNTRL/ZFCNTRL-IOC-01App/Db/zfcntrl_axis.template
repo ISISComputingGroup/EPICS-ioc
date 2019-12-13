@@ -1,45 +1,47 @@
-# Magnetometer reads - axis $(AXIS)
+# Field setpoints/readbacks - axis $(AXIS)
 
-record(ai, "$(P)MAGNETOMETER:$(AXIS):_RAW") {
+record(ai, "$(P)FIELD:$(AXIS):_RAW") {
   field(INP, "$(MAGNETOMETER):$(AXIS):CORRECTEDFIELD CA MSS")
   field(EGU, "mG")
   field(PREC, "6")
   
   field(FLNK, "$(P)MAGNETOMETER:$(AXIS):MEAS:_RAW")
-  
-  info(archive, "VAL")
 }
 
-record(calc, "$(P)MAGNETOMETER:$(AXIS)") {
-  field(INPA, "$(P)MAGNETOMETER:$(AXIS):_RAW CP MS")
+record(calc, "$(P)FIELD:$(AXIS)") {
+  field(DESC, "Corrected field - axis $(AXIS)")
+  field(INPA, "$(P)FIELD:$(AXIS):_RAW CP MS")
   field(INPB, "$(P)STATUS CP MS")
   field(CALC, "A")
   field(EGU, "mG")
   field(PREC, "6")
   info(archive, "VAL")
+  info(interest, "HIGH")
+  info(alarm, "ZFCNTRL")
+  field(ASG, "READONLY")
 }
 
 
-record(ai, "$(P)MAGNETOMETER:$(AXIS):MEAS:_RAW") {
+record(ai, "$(P)FIELD:$(AXIS):MEAS:_RAW") {
   field(INP, "$(MAGNETOMETER):$(AXIS):APPLYOFFSET CA MSS")
   field(EGU, "mG")
   field(PREC, "6")
   
   field(FLNK, "$(RAW_RECORD_FLNK)")
-  
-  info(archive, "VAL")
 }
 
-record(calc, "$(P)MAGNETOMETER:$(AXIS):MEAS") {
-  field(INPA, "$(P)MAGNETOMETER:$(AXIS):MEAS:_RAW CP MS")
+record(calc, "$(P)FIELD:$(AXIS):MEAS") {
+  field(DESC, "Measured field - axis $(AXIS)")
+  field(INPA, "$(P)FIELD:$(AXIS):MEAS:_RAW CP MS")
   field(INPB, "$(P)STATUS CP MS")
   field(CALC, "A")
   field(EGU, "mG")
   field(PREC, "6")
   info(archive, "VAL")
+  info(interest, "HIGH")
+  info(alarm, "ZFCNTRL")
+  field(ASG, "READONLY")
 }
-
-# Field setpoints/readbacks - axis $(AXIS)
 
 record(ao, "$(P)FIELD:$(AXIS):SP") {
   field(DESC, "Field setpoint $(AXIS)")
@@ -48,9 +50,6 @@ record(ao, "$(P)FIELD:$(AXIS):SP") {
   
   info(archive, "VAL")
 }
-
-alias("$(P)MAGNETOMETER:$(AXIS)", "$(P)FIELD:$(AXIS)")
-alias("$(P)MAGNETOMETER:$(AXIS):MEAS", "$(P)FIELD:$(AXIS):MEAS")
 
 # Proportional feedback factors - axis $(AXIS)
 
@@ -70,6 +69,7 @@ alias("$(P)P:$(AXIS)", "$(P)P:$(AXIS):SP")
 # Power supply outputs - axis $(AXIS)
 
 record(ai, "$(P)OUTPUT:$(AXIS):CURR") {
+  field(DESC, "Current - axis $(AXIS)")
   field(EGU, "A")
   field(INP, "$(PSU_$(AXIS)):CURRENT CPP MSS")
   field(PREC, "6")
@@ -80,9 +80,11 @@ record(ai, "$(P)OUTPUT:$(AXIS):CURR") {
   
   info(interest, "MEDIUM")
   info(archive, "VAL")
+  info(alarm, "ZFCNTRL")
 }
 
 record(ao, "$(P)OUTPUT:$(AXIS):CURR:SP") {
+  field(DESC, "Current setpoint - axis $(AXIS)")
   field(EGU, "A")
   field(DRVL, "$(OUTPUT_$(AXIS)_MIN)")
   field(DRVH, "$(OUTPUT_$(AXIS)_MAX)")
@@ -101,6 +103,7 @@ record(ao, "$(P)OUTPUT:$(AXIS):CURR:SP") {
 }
 
 record(ai, "$(P)OUTPUT:$(AXIS):CURR:SP:RBV") {
+  field(DESC, "Current setpoint readback- axis $(AXIS)")
   field(EGU, "A")
   field(INP, "$(PSU_$(AXIS)):CURRENT:SP:RBV CPP MSS")
   field(PREC, "6")
@@ -110,17 +113,22 @@ record(ai, "$(P)OUTPUT:$(AXIS):CURR:SP:RBV") {
   field(LLSV, "MAJOR")
   
   info(archive, "VAL")
+  info(alarm, "ZFCNTRL")
 }
 
 record(bi, "$(P)OUTPUT:$(AXIS):STATUS") {
+  field(DESC, "Output status - axis $(AXIS)")
   field(INP, "$(PSU_$(AXIS)):OUTPUTSTATUS CPP MSS")
   field(ZNAM, "Off")
   field(ONAM, "On")
   
   info(archive, "VAL")
+  info(alarm, "ZFCNTRL")
+  info(interest, "LOW")
 }
 
 record(bo, "$(P)OUTPUT:$(AXIS):STATUS:SP") {
+  field(DESC, "Output status setpoint - axis $(AXIS)")
   field(OUT, "$(PSU_$(AXIS)):OUTPUTSTATUS:SP CA")
   field(ZNAM, "Off")
   field(ONAM, "On")
@@ -133,14 +141,18 @@ record(bo, "$(P)OUTPUT:$(AXIS):STATUS:SP") {
 }
 
 record(bi, "$(P)OUTPUT:$(AXIS):MODE") {
+  field(DESC, "Output mode - axis $(AXIS)")
   field(INP, "$(PSU_$(AXIS)):OUTPUTMODE CPP MSS")
   field(ZNAM, "Voltage")  field(ZSV, "MAJOR")  # Should never be in Voltage mode for the IOC to work correctly.
   field(ONAM, "Current")
   
   info(archive, "VAL")
+  info(alarm, "ZFCNTRL")
+  info(interest, "LOW")
 }
 
 record(bo, "$(P)OUTPUT:$(AXIS):MODE:SP") {
+  field(DESC, "Output mode setpoint - axis $(AXIS)")
   field(OUT, "$(PSU_$(AXIS)):OUTPUTMODE:SP CA")
   field(ZNAM, "Voltage")
   field(ONAM, "Current")
@@ -153,14 +165,17 @@ record(bo, "$(P)OUTPUT:$(AXIS):MODE:SP") {
 }
 
 record(ai, "$(P)OUTPUT:$(AXIS):VOLT") {
+  field(DESC, "Voltage - axis $(AXIS)")
   field(EGU, "V")
   field(INP, "$(PSU_$(AXIS)):VOLTAGE CPP MSS")
   field(PREC, "6")
   
   info(archive, "VAL")
+  info(interest, "LOW")
 }
 
 record(ao, "$(P)OUTPUT:$(AXIS):VOLT:SP") {
+  field(DESC, "Voltage setpoint - axis $(AXIS)")
   field(EGU, "V")
   field(OUT, "$(PSU_$(AXIS)):VOLTAGE:SP CA")
   field(PREC, "6")
@@ -173,6 +188,7 @@ record(ao, "$(P)OUTPUT:$(AXIS):VOLT:SP") {
 }
 
 record(ai, "$(P)OUTPUT:$(AXIS):VOLT:SP:RBV") {
+  field(DESC, "Voltage setpoint readback - axis $(AXIS)")
   field(EGU, "V")
   field(INP, "$(PSU_$(AXIS)):VOLTAGE:SP:RBV CPP MSS")
   field(PREC, "6")
