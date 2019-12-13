@@ -1,7 +1,7 @@
 file zfcntrl_axis.template {
 
 pattern {P, AXIS, RAW_RECORD_FLNK, CURRENT_PV_NAME, VOLTAGE_PV_NAME}
-  {"\$(P)", "X", "\$(P)MAGNETOMETER:Y:_RAW", "\$(CURRENT_PV_NAME)", "\$(VOLTAGE_PV_NAME)"}
-  {"\$(P)", "Y", "\$(P)MAGNETOMETER:Z:_RAW", "\$(CURRENT_PV_NAME)", "\$(VOLTAGE_PV_NAME)"}
+  {"\$(P)", "X", "\$(P)FIELD:Y:_RAW", "\$(CURRENT_PV_NAME)", "\$(VOLTAGE_PV_NAME)"}
+  {"\$(P)", "Y", "\$(P)FIELD:Z:_RAW", "\$(CURRENT_PV_NAME)", "\$(VOLTAGE_PV_NAME)"}
   {"\$(P)", "Z", "\$(P)MAGNETOMETER:OVERLOAD", "\$(CURRENT_PV_NAME)", "\$(VOLTAGE_PV_NAME)"}
 }

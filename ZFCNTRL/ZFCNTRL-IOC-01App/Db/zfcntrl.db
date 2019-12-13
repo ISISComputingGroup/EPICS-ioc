@@ -37,7 +37,7 @@ record(bo, "$(P)TRIGGER_MAGNETOMETER_READ") {
 
 # This record is processed from the magnetometer IOC when new readings are available
 record(bo, "$(P)INPUTS_UPDATED") {
-  field(FLNK, "$(P)MAGNETOMETER:X:_RAW")
+  field(FLNK, "$(P)FIELD:X:_RAW")
 }
 
 record(bi, "$(P)MAGNETOMETER:OVERLOAD") {

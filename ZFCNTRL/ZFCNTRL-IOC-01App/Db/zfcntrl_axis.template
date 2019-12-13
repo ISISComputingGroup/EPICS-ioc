@@ -5,7 +5,7 @@ record(ai, "$(P)FIELD:$(AXIS):_RAW") {
   field(EGU, "mG")
   field(PREC, "6")
   
-  field(FLNK, "$(P)MAGNETOMETER:$(AXIS):MEAS:_RAW")
+  field(FLNK, "$(P)FIELD:$(AXIS):MEAS:_RAW")
 }
 
 record(calc, "$(P)FIELD:$(AXIS)") {
