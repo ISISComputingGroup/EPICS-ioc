@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 #DB += xxx.db
 DB += $(MERCURY_ITC)/db/MercuryTemp.db
 DB += $(MERCURY_ITC)/db/MercuryLevel.db
+DB += $(MERCURY_ITC)/db/MercuryPressure.db
 DB += $(MERCURY_ITC)/db/MercuryGlobal.db
 
 #----------------------------------------------------
