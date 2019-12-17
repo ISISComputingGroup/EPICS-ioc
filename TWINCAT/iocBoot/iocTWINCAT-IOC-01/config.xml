@@ -5,6 +5,7 @@
 <macros>
 <macro name="TPY_FILE" pattern="^.+$" description="Path to the .tpy file describing the PLC" />
 <macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" />
+<macro name="PLC_VERSION" pattern="^[0|1]$" description="The PLC version to communicate with: 0 for the new code and 1 for the old ISIS code" defaultValue="0" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>
