@@ -48,6 +48,7 @@ $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
 $(APPNAME)_LIBS += ZFMAGFLD
+$(APPNAME)_LIBS += gsl
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += xxx
