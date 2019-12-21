@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+ <config_part>
+  <ioc_desc>Muon zero field controller</ioc_desc>
+    <macros>
+    <macro name="MAGNETOMETER" pattern="^[0-9a-zA-Z:\._]+$" description="Magnetometer PV prefix, e.g. IN:INSTNAME:ZFMAGFLD_01" hasDefault="NO" />
+    <macro name="PSU_X" pattern="^[0-9a-zA-Z:\._]+$" description="X axis power supply prefix, e.g. IN:INSTNAME:KEPCO_01" hasDefault="NO" />
+    <macro name="PSU_Y" pattern="^[0-9a-zA-Z:\._]+$" description="Y axis power supply prefix, e.g. IN:INSTNAME:KEPCO_01" hasDefault="NO" />
+    <macro name="PSU_Z" pattern="^[0-9a-zA-Z:\._]+$" description="Z axis power supply prefix, e.g. IN:INSTNAME:KEPCO_01" hasDefault="NO" />
+    
+    <macro name="OUTPUT_X_MIN" pattern="^-?[0-9]+\.?[0-9]*$" description="Minimum allowable current on X power supply" hasDefault="YES" defaultValue="0" />
+    <macro name="OUTPUT_X_MAX" pattern="^-?[0-9]+\.?[0-9]*$" description="Maximum allowable current on X power supply" hasDefault="YES" defaultValue="0" />
+    <macro name="OUTPUT_Y_MIN" pattern="^-?[0-9]+\.?[0-9]*$" description="Minimum allowable current on Y power supply" hasDefault="YES" defaultValue="0" />
+    <macro name="OUTPUT_Y_MAX" pattern="^-?[0-9]+\.?[0-9]*$" description="Maximum allowable current on Y power supply" hasDefault="YES" defaultValue="0" />
+    <macro name="OUTPUT_Z_MIN" pattern="^-?[0-9]+\.?[0-9]*$" description="Minimum allowable current on Z power supply" hasDefault="YES" defaultValue="0" />
+    <macro name="OUTPUT_Z_MAX" pattern="^-?[0-9]+\.?[0-9]*$" description="Maximum allowable current on Z power supply" hasDefault="YES" defaultValue="0" />
+    
+    <macro name="AMPS_PER_MG_X" pattern="^-?[0-9]+\.?[0-9]*$" description="Amps per mG calibration factor, axis X" hasDefault="YES" defaultValue="0" />
+    <macro name="AMPS_PER_MG_Y" pattern="^-?[0-9]+\.?[0-9]*$" description="Amps per mG calibration factor, axis Y" hasDefault="YES" defaultValue="0" />
+    <macro name="AMPS_PER_MG_Z" pattern="^-?[0-9]+\.?[0-9]*$" description="Amps per mG calibration factor, axis Z" hasDefault="YES" defaultValue="0" />
+    <macro name="FEEDBACK" pattern="^-?[0-9]+\.?[0-9]_*$" description="Feedback factor" hasDefault="YES" defaultValue="0" />
+  </macros>
+ </config_part>
+</ioc_config>
