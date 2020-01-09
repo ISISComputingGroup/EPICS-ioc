@@ -28,5 +28,13 @@ $(IFPORT) $(IFNOTRECSIM) asynOctetSetOutputEos("L$(PS)",0,"$(OEOS$(PS)=\\r)")
 $(IFPORT) $(IFNOTRECSIM) asynOctetConnect("GENESYS_01$(PS)","L$(PS)")
 $(IFPORT) $(IFNOTRECSIM) asynOctetWrite GENESYS_01$(PS) "ADR $(ADDR$(PS))"
 
+stringiftest("FIELD_CONV_DEFINED", "$(AMPSTOGAUSS$(PS)=)")
+
+# Need to set the conversion factor to something to avoid errors - doesn't matter what, as it won't be used. Choose 1 as this is a safe no-op.
+$(IFNOTFIELD_CONV_DEFINED) epicsEnvSet("$(AMPSTOGAUSS$(PS)", "1")
+$(IFNOTFIELD_CONV_DEFINED) epicsEnvSet("FIELD_CONV_DEFINED", "0")
+
+$(IFFIELD_CONV_DEFINED) epicsEnvSet("FIELD_CONV_DEFINED", "1")
+
 ## Load record instances for connected psu
-$(IFPORT)  dbLoadRecords("$(TOP)/db/TDK_LAMBDA_GENESYS.db", "P=$(MYPVPREFIX)$(IOCNAME):$(PS):,RECSIM=$(RECSIM=0), PORT=L$(PS), ADR=$(ADDR$(PS)), SP_PINI=$(SP_AT_STARTUP$(PS)=NO),AMPSTOGAUSS=$(AMPSTOGAUSS$(PS)=1)")
+$(IFPORT)  dbLoadRecords("$(TOP)/db/TDK_LAMBDA_GENESYS.db", "P=$(MYPVPREFIX)$(IOCNAME):$(PS):,RECSIM=$(RECSIM=0), PORT=L$(PS), ADR=$(ADDR$(PS)), SP_PINI=$(SP_AT_STARTUP$(PS)=NO),AMPSTOGAUSS=$(AMPSTOGAUSS$(PS)),FIELD_CONV_DEFINED=$(FIELD_CONV_DEFINED)")

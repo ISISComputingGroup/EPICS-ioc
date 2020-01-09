@@ -164,6 +164,13 @@ record(ao, "$(P)SIM:CURR"){
 alias("$(P)SIM:CURR", "$(P)SIM:CURR:SP")
 alias("$(P)SIM:CURR", "$(P)SIM:CURR:SP:RBV")
 
+record(bo, "$(P)FIELD_CONV_DEFINED") {
+    field(DESC, "Whether field conversion is defined")
+    field(VAL, "$(FIELD_CONV_DEFINED)")
+    field(PINI, "YES")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
 
 record(ao, "$(P)AMPSTOGAUSS"){
     field(SCAN, "Passive")
