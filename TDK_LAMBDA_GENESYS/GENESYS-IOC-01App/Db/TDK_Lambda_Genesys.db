@@ -165,6 +165,60 @@ alias("$(P)SIM:CURR", "$(P)SIM:CURR:SP")
 alias("$(P)SIM:CURR", "$(P)SIM:CURR:SP:RBV")
 
 
+record(ao, "$(P)AMPSTOGAUSS"){
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(VAL, "$(AMPSTOGAUSS)")
+    field(PINI, "YES")
+    field(EGU, "G/A")
+    field(PREC, "3")
+}
+
+record(calcout, "$(P)FIELD:SP:_CALC") {
+    field(INPA, "$(P)FIELD:SP")
+    field(INPB, "$(P)AMPSTOGAUSS")
+    field(CALC, "A/B")
+    field(OUT, "$(P)CURR:SP PP")
+}
+
+record(ao, "$(P)FIELD:SP") {
+    field(FLNK, "$(P)FIELD:SP:_CALC")
+    field(EGU, "G")
+    field(PREC, "3")
+    field(DESC, "field setpoint")
+
+}
+
+record(calc, "$(P)FIELD:_CALC") {
+    field(INPA, "$(P)CURR CP MS")
+    field(INPB, "$(P)AMPSTOGAUSS CP MS")
+    field(CALC, "A*B")
+}
+
+record(ai, "$(P)FIELD") {
+    field(INP, "$(P)FIELD:_CALC CP MS")
+    field(EGU, "G")
+    field(PREC, "3")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+    field(DESC, "field")
+}
+
+record(calc, "$(P)FIELD:SP:RBV:_CALC") {
+    field(INPA, "$(P)CURR:SP:RBV CP MS")
+    field(INPB, "$(P)AMPSTOGAUSS CP MS")
+    field(CALC, "A*B")
+}
+
+record(ai, "$(P)FIELD:SP:RBV") {    
+    field(INP, "$(P)FIELD:SP:RBV:_CALC CP MS")
+    field(EGU, "G")
+    field(PREC, "3")
+    info(archive, "VAL")
+    field(DESC, "field setpoint readback")
+}
+
+
 record(bi, "$(P)POWER")
 {
     field(SCAN, "1 second")
