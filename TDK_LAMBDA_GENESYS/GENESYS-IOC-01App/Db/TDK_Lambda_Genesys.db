@@ -129,6 +129,8 @@ record(ai, "$(P)CURR") {
 	field(PREC, "3")
     info(autosaveFields, "HIGH LOW")
     info(archive, "VAL")    
+    
+    field(FLNK, "$(P)STAB:SCANNOW")
 }
 
 record(ao, "$(P)CURR:SP") {
@@ -210,6 +212,12 @@ record(ai, "$(P)FIELD") {
     info(INTEREST, "HIGH")
     field(DESC, "field")
 }
+
+record(bi, "$(P)FIELD_READY") {
+    field(INP, "$(P)STAB:IS_STABLE CP")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+} 
 
 record(calc, "$(P)FIELD:SP:RBV:_CALC") {
     field(INPA, "$(P)CURR:SP:RBV CP MS")

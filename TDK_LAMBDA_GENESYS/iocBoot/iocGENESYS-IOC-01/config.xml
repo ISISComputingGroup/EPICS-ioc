@@ -10,7 +10,7 @@
 <macro name="STOP1" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS1" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS1" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS1" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="1" hasDefault="YES" />
+<macro name="AMPSTOGAUSS1" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP1" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR1" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
@@ -21,7 +21,7 @@
 <macro name="STOP2" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS2" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS2" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS2" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="1" hasDefault="YES" />
+<macro name="AMPSTOGAUSS2" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP2" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR2" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
@@ -32,7 +32,7 @@
 <macro name="STOP3" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS3" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS3" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS3" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="1" hasDefault="YES" />
+<macro name="AMPSTOGAUSS3" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP3" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR3" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
@@ -43,7 +43,7 @@
 <macro name="STOP4" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS4" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS4" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS4" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="1" hasDefault="YES" />
+<macro name="AMPSTOGAUSS4" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP4" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR4" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
@@ -54,7 +54,7 @@
 <macro name="STOP5" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS5" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS5" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS5" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="1" hasDefault="YES" />
+<macro name="AMPSTOGAUSS5" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP5" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR5" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
@@ -65,7 +65,7 @@
 <macro name="STOP6" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS6" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS6" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS6" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="1" hasDefault="YES" />
+<macro name="AMPSTOGAUSS6" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP6" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR6" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
@@ -76,7 +76,7 @@
 <macro name="STOP7" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS7" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS7" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS7" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="1" hasDefault="YES" />
+<macro name="AMPSTOGAUSS7" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP7" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR7" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
@@ -87,7 +87,7 @@
 <macro name="STOP8" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS8" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS8" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS8" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="1" hasDefault="YES" />
+<macro name="AMPSTOGAUSS8" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP8" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR8" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
@@ -98,7 +98,7 @@
 <macro name="STOP9" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS9" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS9" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS9" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="1" hasDefault="YES" />
+<macro name="AMPSTOGAUSS9" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP9" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR9" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 
@@ -109,7 +109,7 @@
 <macro name="STOP10" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS10" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS10" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS10" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="1" hasDefault="YES" />
+<macro name="AMPSTOGAUSS10" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP10" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR10" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
 </macros>
