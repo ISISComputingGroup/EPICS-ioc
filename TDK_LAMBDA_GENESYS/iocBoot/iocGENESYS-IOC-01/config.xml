@@ -10,9 +10,13 @@
 <macro name="STOP1" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS1" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS1" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS1" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
+<macro name="AMPSTOGAUSS1" pattern="^-?[0-9]*\.?[0-9]*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP1" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR1" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
+<macro name="MAX_VOLTAGE1" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum voltage of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="MAX_CURRENT1" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="READ_OFFSET1" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="WRITE_OFFSET1" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 
 <macro name="PORT2" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD2" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -21,9 +25,13 @@
 <macro name="STOP2" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS2" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS2" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS2" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
+<macro name="AMPSTOGAUSS2" pattern="^-?[0-9]*\.?[0-9]*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP2" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR2" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
+<macro name="MAX_VOLTAGE2" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum voltage of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="MAX_CURRENT2" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="READ_OFFSET2" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="WRITE_OFFSET2" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 
 <macro name="PORT3" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD3" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -32,9 +40,13 @@
 <macro name="STOP3" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS3" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS3" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS3" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
+<macro name="AMPSTOGAUSS3" pattern="^-?[0-9]*\.?[0-9]*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP3" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR3" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
+<macro name="MAX_VOLTAGE3" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum voltage of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="MAX_CURRENT3" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="READ_OFFSET3" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="WRITE_OFFSET3" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 
 <macro name="PORT4" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD4" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -43,9 +55,13 @@
 <macro name="STOP4" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS4" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS4" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS4" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
+<macro name="AMPSTOGAUSS4" pattern="^-?[0-9]*\.?[0-9]*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP4" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR4" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
+<macro name="MAX_VOLTAGE4" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum voltage of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="MAX_CURRENT4" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="READ_OFFSET4" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="WRITE_OFFSET4" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 
 <macro name="PORT5" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD5" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -54,9 +70,13 @@
 <macro name="STOP5" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS5" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS5" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS5" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
+<macro name="AMPSTOGAUSS5" pattern="^-?[0-9]*\.?[0-9]*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP5" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR5" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
+<macro name="MAX_VOLTAGE5" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum voltage of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="MAX_CURRENT5" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="READ_OFFSET5" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="WRITE_OFFSET5" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 
 <macro name="PORT6" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD6" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -65,9 +85,13 @@
 <macro name="STOP6" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS6" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS6" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS6" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
+<macro name="AMPSTOGAUSS6" pattern="^-?[0-9]*\.?[0-9]*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP6" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR6" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
+<macro name="MAX_VOLTAGE6" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum voltage of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="MAX_CURRENT6" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="READ_OFFSET6" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="WRITE_OFFSET6" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 
 <macro name="PORT7" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD7" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -76,9 +100,13 @@
 <macro name="STOP7" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS7" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS7" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS7" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
+<macro name="AMPSTOGAUSS7" pattern="^-?[0-9]*\.?[0-9]*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP7" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR7" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
+<macro name="MAX_VOLTAGE7" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum voltage of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="MAX_CURRENT7" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="READ_OFFSET7" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="WRITE_OFFSET7" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 
 <macro name="PORT8" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD8" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -87,9 +115,13 @@
 <macro name="STOP8" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS8" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS8" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS8" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
+<macro name="AMPSTOGAUSS8" pattern="^-?[0-9]*\.?[0-9]*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP8" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR8" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
+<macro name="MAX_VOLTAGE8" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum voltage of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="MAX_CURRENT8" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="READ_OFFSET8" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="WRITE_OFFSET8" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 
 <macro name="PORT9" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD9" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -98,9 +130,13 @@
 <macro name="STOP9" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS9" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS9" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS9" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
+<macro name="AMPSTOGAUSS9" pattern="^-?[0-9]*\.?[0-9]*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP9" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR9" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
+<macro name="MAX_VOLTAGE9" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum voltage of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="MAX_CURRENT9" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="READ_OFFSET9" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="WRITE_OFFSET9" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 
 <macro name="PORT10" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD10" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -109,9 +145,13 @@
 <macro name="STOP10" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="OEOS10" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS10" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
-<macro name="AMPSTOGAUSS10" pattern="^.*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
+<macro name="AMPSTOGAUSS10" pattern="^-?[0-9]*\.?[0-9]*$" description="Amps to Gauss conversion factor or empty string for no calibration (default: '')" defaultValue="" hasDefault="YES" />
 <macro name="SP_AT_STARTUP10" pattern="^(YES|NO)$" description="Apply last setpoints at startup (default NO)" defaultValue="NO" hasDefault="YES" />
 <macro name="ADDR10" pattern="^[0-9]+$" description="ADDRress of device in daisy chain" hasDefault="UNKNOWN" />
+<macro name="MAX_VOLTAGE10" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum voltage of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="MAX_CURRENT10" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
+<macro name="READ_OFFSET10" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="WRITE_OFFSET10" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>

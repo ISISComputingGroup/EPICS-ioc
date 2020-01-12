@@ -73,12 +73,14 @@ record(ai, "$(P)VOLT") {
     field(SIOL, "$(P)SIM:VOLT")
     field(SDIS, "$(P)DISABLE")
     field(EGU,  "V")
-    field(HSV, "MINOR")
-    field(LSV, "MINOR")
 	field(PREC, "3")
-    info(autosaveFields, "HIGH LOW")
     info(INTEREST, "HIGH")
-    info(archive, "VAL")    
+    info(archive, "VAL")  
+
+    field(HIGH, "$(MAX_VOLTAGE)")
+    field(LOW, "-$(MAX_VOLTAGE)")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")    
 }
 
 record(ao, "$(P)VOLT:SP") {
@@ -93,6 +95,13 @@ record(ao, "$(P)VOLT:SP") {
 	field(PINI, "$(SP_PINI)")
     field(PREC, "3")             
 	info(autosaveFields, "VAL")
+    
+    field(HIGH, "$(MAX_VOLTAGE)")
+    field(LOW, "-$(MAX_VOLTAGE)")
+    field(DRVH, "$(MAX_VOLTAGE)")
+    field(DRVL, "-$(MAX_VOLTAGE)")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")
 }
 
 record(ai, "$(P)VOLT:SP:RBV") {
@@ -105,6 +114,11 @@ record(ai, "$(P)VOLT:SP:RBV") {
     field(SDIS, "$(P)DISABLE")
     field(PREC, "3")             
     field(EGU,  "V")
+    
+    field(HIGH, "$(MAX_VOLTAGE)")
+    field(LOW, "-$(MAX_VOLTAGE)")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")
 }
 
 record(ao, "$(P)SIM:VOLT"){
@@ -114,49 +128,104 @@ record(ao, "$(P)SIM:VOLT"){
 alias("$(P)SIM:VOLT", "$(P)SIM:VOLT:SP")
 alias("$(P)SIM:VOLT", "$(P)SIM:VOLT:SP:RBV")
 
-record(ai, "$(P)CURR") {
+record(ai, "$(P)CURR:_RAW") {
     field(SCAN, "1 second")
-    field(DESC, "Actual CURR out")
     field(DTYP, "stream")
     field(INP,  "@TDK_Lambda_Genesys.proto CURR($(P)ADDRESS) $(PORT)")
+    
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR")
     field(SDIS, "$(P)DISABLE")
-    field(EGU,  "A")
-    info(INTEREST, "HIGH")
-    field(HSV, "MINOR")
-    field(LSV, "MINOR")
-	field(PREC, "3")
-    info(autosaveFields, "HIGH LOW")
-    info(archive, "VAL")    
     
     field(FLNK, "$(P)STAB:SCANNOW")
 }
 
-record(ao, "$(P)CURR:SP") {
-    field(SCAN, "Passive")
-    field(DESC, "Set CURR out")
+record(calc, "$(P)CURR:_CALC") {
+    field(INPA, "$(P)CURR:_RAW CP MSS")
+    field(B, "$(READ_OFFSET)")
+    field(CALC, "A+B")
+}
+
+record(ai, "$(P)CURR") {
+    field(DESC, "Actual CURR out")
+    field(INP,  "$(P)CURR:_CALC CP MSS")
+    field(EGU,  "A")
+    info(INTEREST, "HIGH")
+    field(HIGH, "$(MAX_CURRENT)")
+    field(LOW, "-$(MAX_CURRENT)")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")
+	field(PREC, "3")
+    info(archive, "VAL")
+}
+
+record(calc, "$(P)CURR:PERCENT") {
+    field(INPA, "$(P)CURR CP MSS")
+    field(B, "$(MAX_CURRENT)")
+    field(CALC, "ABS(100.0*A/B)")
+    field(HOPR, "$(MAX_CURRENT)")
+    field(LOPR, "0")
+    field(EGU, "%")
+}
+
+record(ao, "$(P)CURR:SP:_RAW") {
     field(DTYP, "stream")
     field(OUT,  "@TDK_Lambda_Genesys.proto CURRsp $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR:SP")
     field(SDIS, "$(P)DISABLE")
+}
+
+record(calcout, "$(P)CURR:SP:_CALC") {
+    field(INPA, "$(P)CURR:SP")
+    field(B, "$(WRITE_OFFSET)")
+    field(CALC, "A+B")
+    field(OUT, "$(P)CURR:SP:_RAW PP")
+}
+
+record(ao, "$(P)CURR:SP") {
+    field(SCAN, "Passive")
+    field(DESC, "Set CURR out")
     field(EGU,  "A")
+    field(OUT, "$(P)CURR:SP:_CALC.A PP")
     field(PINI, "$(SP_PINI)")
-    field(PREC, "3")             
+    field(PREC, "3")           
+    field(HIGH, "$(MAX_CURRENT)")
+    field(LOW, "-$(MAX_CURRENT)")
+    field(DRVH, "$(MAX_CURRENT)")
+    field(DRVL, "-$(MAX_CURRENT)")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")    
     info(autosaveFields, "VAL")
 }
 
-record(ai, "$(P)CURR:SP:RBV") {
+
+record(ai, "$(P)CURR:SP:RBV:_RAW") {
     field(SCAN, "1 second")
-    field(DESC, "CURR out setpoint")
     field(DTYP, "stream")
-    field(INP,  "@TDK_Lambda_Genesys.proto CURRsprbv($(P)ADDRESS) $(PORT)")
+    field(INP, "@TDK_Lambda_Genesys.proto CURRsprbv($(P)ADDRESS) $(PORT)")
+    
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURR:SP:RBV")
     field(SDIS, "$(P)DISABLE")
+}
+
+record(calc, "$(P)CURR:SP:RBV:_CALC") {
+    field(INPA, "$(P)CURR:SP:RBV:_RAW CP MSS")
+    field(B, "$(READ_OFFSET)")
+    field(CALC, "A+B")
+}
+
+record(ai, "$(P)CURR:SP:RBV") {
+    field(DESC, "CURR out setpoint")
+    field(INP,  "$(P)CURR:SP:RBV:_CALC CP MSS")
     field(EGU,  "A")
-    field(PREC, "3")             
+    field(PREC, "3") 
+
+    field(HIGH, "$(MAX_CURRENT)")
+    field(LOW, "-$(MAX_CURRENT)")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")    
 }
 
 record(ao, "$(P)SIM:CURR"){
