@@ -283,9 +283,13 @@ record(ai, "$(P)FIELD") {
 }
 
 record(bi, "$(P)FIELD_READY") {
+    field(DESC, "Whether the field is currently stable")
     field(INP, "$(P)STAB:IS_STABLE CP")
     field(ZNAM, "No")
     field(ONAM, "Yes")
+    info(archive, "VAL")
+    info(interest, "HIGH")
+    
 } 
 
 record(calc, "$(P)FIELD:SP:RBV:_CALC") {
