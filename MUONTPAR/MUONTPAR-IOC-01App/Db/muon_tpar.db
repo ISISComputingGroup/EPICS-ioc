@@ -1,0 +1,5 @@
+record(stringout, "$(P)TPAR_FILE") {
+    field(VAL, "$(TPAR_FILE)")
+    field(PINI, "YES")
+    field(ASG, "READONLY")
+}
