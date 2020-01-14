@@ -48,6 +48,32 @@ record(ai, "$(P)VRAW")
     info(archive, "VAL")
 }
 
+record(bo, "$(P)AUTOONOFF")
+{
+    field(DESC, "Toggle auto on/off")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(DOL, "1")
+    field(PINI, "YES")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:AUTOONOFF")
+    field(SDIS, "$(P)DISABLE")
+    info(autosaveFields, "VAL")
+}
+
+record(calcout, "$(P)CALCONOFF")
+{
+    field(DESC, "Automatically toggles power status")
+    field(CALC, "(A)")
+    field(OCAL, "(B > 0)")
+    field(INPA, "$(P)AUTOONOFF CP")
+    field(INPB, "$(P)RAW:SP CP")
+    field(OUT, "$(P)POWER:SP PP")
+    field(OOPT, "When Non-zero")
+    field(DOPT, "Use OCAL")
+}
+
 record(calcout, "$(P)VOLT")
 {
     field(DESC, "Convert Raw Val to VOLTAGE")
@@ -151,9 +177,18 @@ record(stringin, "$(P)DEV_TYPE")
 record(bi, "$(P)IS_CALIB")
 {
 	field(DESC, "Is this device calibrated?")
-    field(ZNAM, "Calibrated")
-    field(ONAM, "Uncalibrated")
+    field(ZNAM, "Uncalibrated")
+    field(ONAM, "Calibrated")
 	field(VAL, "$(CALIBRATED)")
+	field(PINI, "YES")
+}
+
+record(bi, "$(P)USE_SLEW")
+{
+	field(DESC, "Is this device using slew?")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+	field(VAL, "$(USE_SLEW)")
 	field(PINI, "YES")
 }
 
