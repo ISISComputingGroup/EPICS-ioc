@@ -9,7 +9,7 @@
 <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." defaultValue="none" hasDefault="YES" />
 <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
 <macro name="ADDRESS" pattern="^[a-h]$" description="The address of the CCD100, defaults to a." defaultValue="a" hasDefault="YES" />
-<macro name="DEV_NAME" pattern="^\w*$" description="A user friendly name for the device, defaults to blank." defaultValue="" hasDefault="YES" />
+<macro name="DEV_NAME" pattern="^\w{0,40}$" description="A user friendly name for the device, defaults to blank." defaultValue="" hasDefault="YES" />
 
 </macros>
 </config_part>
