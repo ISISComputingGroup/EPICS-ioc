@@ -17,6 +17,7 @@
 <macro name="MAX_CURRENT1" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
 <macro name="READ_OFFSET1" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 <macro name="WRITE_OFFSET1" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="TOLERANCE1" pattern="^-?[0-9]*\.?[0-9]*$" description="Field tolerance in Gauss to declare the field stable" defaultValue="1" hasDefault="YES" />
 
 <macro name="PORT2" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD2" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -32,6 +33,7 @@
 <macro name="MAX_CURRENT2" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
 <macro name="READ_OFFSET2" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 <macro name="WRITE_OFFSET2" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="TOLERANCE2" pattern="^-?[0-9]*\.?[0-9]*$" description="Field tolerance in Gauss to declare the field stable" defaultValue="1" hasDefault="YES" />
 
 <macro name="PORT3" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD3" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -47,6 +49,7 @@
 <macro name="MAX_CURRENT3" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
 <macro name="READ_OFFSET3" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 <macro name="WRITE_OFFSET3" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="TOLERANCE3" pattern="^-?[0-9]*\.?[0-9]*$" description="Field tolerance in Gauss to declare the field stable" defaultValue="1" hasDefault="YES" />
 
 <macro name="PORT4" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD4" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -62,6 +65,7 @@
 <macro name="MAX_CURRENT4" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
 <macro name="READ_OFFSET4" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 <macro name="WRITE_OFFSET4" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="TOLERANCE4" pattern="^-?[0-9]*\.?[0-9]*$" description="Field tolerance in Gauss to declare the field stable" defaultValue="1" hasDefault="YES" />
 
 <macro name="PORT5" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD5" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -77,6 +81,7 @@
 <macro name="MAX_CURRENT5" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
 <macro name="READ_OFFSET5" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 <macro name="WRITE_OFFSET5" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="TOLERANCE5" pattern="^-?[0-9]*\.?[0-9]*$" description="Field tolerance in Gauss to declare the field stable" defaultValue="1" hasDefault="YES" />
 
 <macro name="PORT6" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD6" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -92,6 +97,7 @@
 <macro name="MAX_CURRENT6" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
 <macro name="READ_OFFSET6" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 <macro name="WRITE_OFFSET6" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="TOLERANCE6" pattern="^-?[0-9]*\.?[0-9]*$" description="Field tolerance in Gauss to declare the field stable" defaultValue="1" hasDefault="YES" />
 
 <macro name="PORT7" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD7" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -107,6 +113,7 @@
 <macro name="MAX_CURRENT7" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
 <macro name="READ_OFFSET7" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 <macro name="WRITE_OFFSET7" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="TOLERANCE7" pattern="^-?[0-9]*\.?[0-9]*$" description="Field tolerance in Gauss to declare the field stable" defaultValue="1" hasDefault="YES" />
 
 <macro name="PORT8" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD8" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -122,6 +129,7 @@
 <macro name="MAX_CURRENT8" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
 <macro name="READ_OFFSET8" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 <macro name="WRITE_OFFSET8" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="TOLERANCE8" pattern="^-?[0-9]*\.?[0-9]*$" description="Field tolerance in Gauss to declare the field stable" defaultValue="1" hasDefault="YES" />
 
 <macro name="PORT9" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD9" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -137,6 +145,7 @@
 <macro name="MAX_CURRENT9" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
 <macro name="READ_OFFSET9" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 <macro name="WRITE_OFFSET9" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="TOLERANCE9" pattern="^-?[0-9]*\.?[0-9]*$" description="Field tolerance in Gauss to declare the field stable" defaultValue="1" hasDefault="YES" />
 
 <macro name="PORT10" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="BAUD10" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
@@ -152,6 +161,7 @@
 <macro name="MAX_CURRENT10" pattern="^-?[0-9]*\.?[0-9]*$" description="Maximum current of this power supply" defaultValue="1000000" hasDefault="YES" />
 <macro name="READ_OFFSET10" pattern="^-?[0-9]*\.?[0-9]*$" description="Read offset, in Amps, to apply to readings from this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
 <macro name="WRITE_OFFSET10" pattern="^-?[0-9]*\.?[0-9]*$" description="Write offset, in Amps, to apply to setpoints to this power supply (Default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="TOLERANCE10" pattern="^-?[0-9]*\.?[0-9]*$" description="Field tolerance in Gauss to declare the field stable" defaultValue="1" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>
