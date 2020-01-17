@@ -22,6 +22,10 @@
         <macro name="MATRIX_3_1" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (3,1) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
         <macro name="MATRIX_3_2" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (3,2) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
         <macro name="MATRIX_3_3" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (3,3) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        
+        <macro name="X_DAQ_CHANNEL" pattern="^ai[0-9]+$" description="DAQ channel to read for the X axis" defaultValue="ai0" hasDefault="YES" />
+        <macro name="Y_DAQ_CHANNEL" pattern="^ai[0-9]+$" description="DAQ channel to read for the Y axis" defaultValue="ai1" hasDefault="YES" />
+        <macro name="Z_DAQ_CHANNEL" pattern="^ai[0-9]+$" description="DAQ channel to read for the Z axis" defaultValue="ai2" hasDefault="YES" />
 
     </macros>
     <pvsets>
