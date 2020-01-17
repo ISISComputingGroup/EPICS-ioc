@@ -9,13 +9,13 @@
 record(calcout, "$(P)FIELD:PRECALIB"){
     field(INPA, "$(P)CURR")
     # We multiply by FACTOR_READ_I to get current
-    # and then multiply back by FACTOR_WRITE_I to
+    # and then divide back by FACTOR_WRITE_I to
     # get the readings on the same scale as the sets
     # so that they can use the same calibration file.
     # 
     # FACTOR_READ_I is not necessarily 1/FACTOR_WRITE_I
     # (but it might be in some cases)
-    field(CALC, "A*$(FWI)")
+    field(CALC, "A/$(FWI)")
 	field(FLNK, "$(P)FIELD:CALIB")
     field(EGU, "")
 }
@@ -51,12 +51,49 @@ record(ai, "$(P)FIELD"){
 }
 alias("$(P)FIELD", "$(P)FIELD:RBV")
 
+record(calcout, "$(P)FIELD:SP:RBV:PRECAL"){
+    field(INPA, "$(P)CURR:SP:RBV")
+    field(CALC, "A/$(FWI)")
+	field(FLNK, "$(P)FIELD:SP:RBV:CAL")
+    field(EGU, "")
+}
+
+record(cvt, "$(P)FIELD:SP:RBV:CAL"){
+    field(INPX, "$(P)FIELD:SP:RBV:PRECAL")
+    field(Y, 1)
+    field(METH, "1D TABLE")
+    field(DRVL, "$(DRVLO)")
+    field(DRVH, "$(DRVHI)")
+    field(SPEC, "$(CALIB_FILE)")
+	field(TDIR, "$(CALIB_DIR)")
+    field(BDIR, "$(CALIB_BASE_DIR)")
+    field(FLNK, "$(P)FIELD:SP:RBV:TOUNIT")
+    field(EGU, "")
+}
+
+record(calc, "$(P)FIELD:SP:RBV:TOUNIT"){
+    field(INPA, "$(P)FIELD:UNIT PP")
+    field(INPB, "$(P)FIELD:SP:RBV:CAL PP")
+    field(CALC, "A==2?B/10000:B")
+    field(FLNK, "$(P)FIELD:SP:RBV")
+    field(EGU, "")
+}
+
+record(ai, "$(P)FIELD:SP:RBV"){
+    field(DESC, "Field")
+    field(INP, "$(P)FIELD:SP:RBV:TOUNIT PP MS")
+    field(EGU, "")
+    field(PREC, "3")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)FIELD", "$(P)FIELD:RBV")
+
 record(ao, "$(P)FIELD:SP") {
     field(FLNK, "$(P)FIELD:SP:FROMUNIT")
     field(EGU, "")
     field(PREC, "3")
 }
-alias("$(P)FIELD:SP", "$(P)FIELD:SP:RBV")
 
 record(calc, "$(P)FIELD:SP:FROMUNIT"){
     field(INPA, "$(P)FIELD:UNIT PP")
@@ -108,17 +145,23 @@ alias("$(P)FIELD:UNIT:SP", "$(P)FIELD:UNIT:SP:RBV")
 record(stringin, "$(P)CFILE"){
 	field(DESC, "Calibration File Name")
 	field(VAL, "$(CALIB_FILE)")
+	field(FLNK, "$(P)CFILE:_FAN")
+}
+
+record(fanout, "$(P)CFILE:_FAN") {
+    field(LNK1, "$(P)CFILE:UPD1")
+    field(LNK2, "$(P)CFILE:UPD2")
 }
 
 record(stringout, "$(P)CFILE:UPD1"){
-	field(DOL, "$(P)CFILE CP")
+	field(DOL, "$(P)CFILE")
     field(OMSL, "closed_loop")
 	field(OUT, "$(P)FIELD:CALIB.NSPE PP")
 	field(FLNK, "$(P)CINIT1")
 }
 
 record(stringout, "$(P)CFILE:UPD2"){
-	field(DOL, "$(P)CFILE CP")
+	field(DOL, "$(P)CFILE")
     field(OMSL, "closed_loop")
 	field(OUT, "$(P)FIELD:SP:CALIB.NSPE PP")
 	field(FLNK, "$(P)CINIT2")

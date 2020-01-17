@@ -65,11 +65,11 @@ record(bo, "$(P)AUTOONOFF")
 record(calcout, "$(P)CALCONOFF")
 {
     field(DESC, "Automatically toggles power status")
-    field(CALC, "(A)")
-    field(OCAL, "(B > 0) ? 1 : (C # 0)")
+    field(CALC, "(A) && ((B > 0) || C)")
+    field(OCAL, "B > $(OFF_TOLERANCE)")
     field(INPA, "$(P)AUTOONOFF CP")
-    field(INPB, "$(P)RAW:SP CP")
-    field(INPC, "$(P)RAW CP")
+    field(INPB, "$(P)CURR:SP:RBV CP")
+    field(INPC, "$(P)STAB:IS_STABLE CP")
     field(OUT, "$(P)POWER:SP PP")
     field(OOPT, "When Non-zero")
     field(DOPT, "Use OCAL")
@@ -104,6 +104,22 @@ record(calcout, "$(P)CURR:TORAW")
     field(DESC, "Convert Current to Raw Val")
     field(CALC, "A * $(FWI)")
     field(OUT, "$(P)RAW:SP PP MS")
+}
+
+record(longin, "$(P)RAW:SP:RBV") {
+    field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(INP, "@dfkps_common.proto rawsprbv $(port)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)RAW:SP")
+}
+
+record(calc, "$(P)CURR:SP:RBV") {
+    field(INPA, "$(P)RAW:SP:RBV CP MS")
+    field(CALC, "A * $(FWI)")
+    field(EGU, "A")
+    field(PREC, "3")
+    field(FLNK, "$(P)FIELD:SP:RBV:PRECAL")
 }
 
 record(bo, "$(P)REMOTE")
@@ -195,7 +211,7 @@ record(bi, "$(P)IS_CALIB")
 record(calc, "$(P)RAW:PERCENT") {
     field(INPA, "$(P)RAW CP MSS")
     field(B, "$(MAX_RAW_SETPOINT)")
-    field(CALC, "ABS(100.0*A/B)")
+    field(CALC, "ABS(100.0*A/(B*$(FWI)/$(FRI)))")
     field(HOPR, "100")
     field(LOPR, "0")
     field(DISP, "1")
