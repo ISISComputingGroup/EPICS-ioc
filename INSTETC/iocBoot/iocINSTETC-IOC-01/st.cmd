@@ -44,6 +44,8 @@ $(IFEX4) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE4=)
 
 dbLoadRecordsLoop("db/user_parameters.db","P=$(MYPVPREFIX)", "INDEX", 0, $(NUM_USER_VARS=4), 1)
 
+dbLoadRecords("$(ICPCONFIGROOT)/dashboard.db", "P=$(MYPVPREFIX)")
+
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
