@@ -8,13 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application CRYOSMS-IOC-01
+# Build the IOC application ICEFRDGE-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# CRYOSMS-IOC-01.dbd will be created and installed
+# ICEFRDGE-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
+# ICEFRDGE-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += icpconfig.dbd
@@ -23,33 +24,36 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
-## add other dbd here ##
+## Stream device support ##
 $(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
-$(APPNAME)_DBD += CRYOSMS.dbd
+## add other dbd here ##
+#$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
+
+## Add additional libraries here ##
+#$(APPNAME)_LIBS += xxx
+
 ## ISIS standard libraries ##
+## Stream device libraries ##
+$(APPNAME)_LIBS += stream
+$(APPNAME)_LIBS += asyn
+## other standard libraries here ##
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
-$(APPNAME)_LIBS += icpconfig pugixml
+$(APPNAME)_LIBS += icpconfig
 $(APPNAME)_LIBS += autosave
-## Add other libraries here ##
-$(APPNAME)_LIBS += CRYOSMS
-$(APPNAME)_LIBS += stream
-$(APPNAME)_LIBS += utilities
-$(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
-$(APPNAME)_LIBS += pcre
 
-$(APPNAME)_LIBS_WIN32 += oncrpc
-
-# CRYOSMS-IOC-01_registerRecordDeviceDriver.cpp derives from CRYOSMS-IOC-01.dbd
+# ICEFRDGE-IOC-01_registerRecordDeviceDriver.cpp derives from ICEFRDGE-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
