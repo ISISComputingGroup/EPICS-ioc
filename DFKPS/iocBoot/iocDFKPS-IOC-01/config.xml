@@ -21,6 +21,9 @@
 	
     <macro name="LOCAL_CALIB" pattern="^(yes)|(no)$" description="Use local instrument calibration directory instead of common one? Default is no." defaultValue="no" hasDefault="YES" />
     <macro name="ADDRESS" pattern="^[0-9]+$" description="Address of the PSU; defaults to 0." defaultValue="0" hasDefault="YES" />
+    
+	<macro name="STAB_TOLERANCE" pattern="^-?[0-9]+\.?[0-9]*$" description="If value of current in Gauss is within this tolerance of the setpoint, consider the field as stable" defaultValue="2" hasDefault="YES" />
+	<macro name="OFF_TOLERANCE" pattern="^-?[0-9]+\.?[0-9]*$" description="If value of current in Gauss is within this tolerance of 0, consider the field as off." defaultValue="1" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>

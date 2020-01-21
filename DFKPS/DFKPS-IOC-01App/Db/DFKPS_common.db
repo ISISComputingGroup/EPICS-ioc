@@ -48,6 +48,33 @@ record(ai, "$(P)VRAW")
     info(archive, "VAL")
 }
 
+record(bo, "$(P)AUTOONOFF")
+{
+    field(DESC, "Toggle auto on/off")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Disabled")
+    field(ONAM, "Enabled")
+    field(DOL, "1")
+    field(PINI, "YES")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:AUTOONOFF")
+    field(SDIS, "$(P)DISABLE")
+    info(autosaveFields, "VAL")
+}
+
+record(calcout, "$(P)CALCONOFF")
+{
+    field(DESC, "Automatically toggles power status")
+    field(CALC, "(A) && ((B > 0) || C)")
+    field(OCAL, "B > $(OFF_TOLERANCE)")
+    field(INPA, "$(P)AUTOONOFF CP")
+    field(INPB, "$(P)CURR:SP:RBV CP")
+    field(INPC, "$(P)STAB:IS_STABLE CP")
+    field(OUT, "$(P)POWER:SP PP")
+    field(OOPT, "When Non-zero")
+    field(DOPT, "Use OCAL")
+}
+
 record(calcout, "$(P)VOLT")
 {
     field(DESC, "Convert Raw Val to VOLTAGE")
@@ -77,6 +104,22 @@ record(calcout, "$(P)CURR:TORAW")
     field(DESC, "Convert Current to Raw Val")
     field(CALC, "A * $(FWI)")
     field(OUT, "$(P)RAW:SP PP MS")
+}
+
+record(longin, "$(P)RAW:SP:RBV") {
+    field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(INP, "@dfkps_common.proto rawsprbv $(port)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)RAW:SP")
+}
+
+record(calc, "$(P)CURR:SP:RBV") {
+    field(INPA, "$(P)RAW:SP:RBV CP MS")
+    field(CALC, "A * $(FWI)")
+    field(EGU, "A")
+    field(PREC, "3")
+    field(FLNK, "$(P)FIELD:SP:RBV:PRECAL")
 }
 
 record(bo, "$(P)REMOTE")
@@ -141,6 +184,14 @@ info(autosaveFields, "HIGH LOW")
 }
 alias("$(P)CURR", "$(P)CURR:RBV")
 
+record(fanout, "$(P)RBVCHANGED")
+{
+    field(DESC, "Notifies records of changed RBV")
+    field(SELM, "All")
+    field(LNK1, "$(P)CURR")
+    field(LNK2, "$(P)STAB:SCANNOW")
+}
+
 record(stringin, "$(P)DEV_TYPE")
 {
 	field(DESC, "Device type, e.g. 8800")
@@ -151,9 +202,45 @@ record(stringin, "$(P)DEV_TYPE")
 record(bi, "$(P)IS_CALIB")
 {
 	field(DESC, "Is this device calibrated?")
-    field(ZNAM, "Calibrated")
-    field(ONAM, "Uncalibrated")
+    field(ZNAM, "Uncalibrated")
+    field(ONAM, "Calibrated")
 	field(VAL, "$(CALIBRATED)")
+	field(PINI, "YES")
+}
+
+record(calc, "$(P)RAW:PERCENT") {
+    field(INPA, "$(P)RAW CP MSS")
+    field(B, "$(MAX_RAW_SETPOINT)")
+    field(CALC, "ABS(100.0*A/(B*$(FWI)/$(FRI)))")
+    field(HOPR, "100")
+    field(LOPR, "0")
+    field(DISP, "1")
+    field(EGU, "%")
+}
+
+record(seq, "$(P)SWEEP_OFF")
+{
+    field(DESC, "Trigger sweep to 0 and turn off")
+    field(SELM, "All")
+    
+    field(LNK1, "$(P)AUTOONOFF PP")
+    field(DO1, "1")
+    
+    field(LNK2, "$(P)FIELD:SP PP")
+    field(DO2, "0")
+    field(DLY2, "0.5")
+    
+    field(LNK3, "$(P)CURR:SP PP")
+    field(DO3, "0")
+    field(DLY3, "0.5")
+}
+
+record(bi, "$(P)USE_SLEW")
+{
+	field(DESC, "Is this device using slew?")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+	field(VAL, "$(USE_SLEW)")
 	field(PINI, "YES")
 }
 
