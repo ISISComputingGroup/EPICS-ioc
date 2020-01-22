@@ -116,7 +116,7 @@ record(longin, "$(P)RAW:SP:RBV") {
 
 record(calc, "$(P)CURR:SP:RBV") {
     field(INPA, "$(P)RAW:SP:RBV CP MS")
-    field(CALC, "A * $(FWI)")
+    field(CALC, "A / $(FWI)")
     field(EGU, "A")
     field(PREC, "3")
     field(FLNK, "$(P)FIELD:SP:RBV:PRECAL")
@@ -211,7 +211,7 @@ record(bi, "$(P)IS_CALIB")
 record(calc, "$(P)RAW:PERCENT") {
     field(INPA, "$(P)RAW CP MSS")
     field(B, "$(MAX_RAW_SETPOINT)")
-    field(CALC, "ABS(100.0*A/(B*$(FWI)/$(FRI)))")
+    field(CALC, "ABS(100.0*(A*$(FWI)*$(FRI))/B)")
     field(HOPR, "100")
     field(LOPR, "0")
     field(DISP, "1")

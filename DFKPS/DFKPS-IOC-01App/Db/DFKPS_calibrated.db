@@ -9,13 +9,13 @@
 record(calcout, "$(P)FIELD:PRECALIB"){
     field(INPA, "$(P)CURR")
     # We multiply by FACTOR_READ_I to get current
-    # and then divide back by FACTOR_WRITE_I to
+    # and then multiply back by FACTOR_WRITE_I to
     # get the readings on the same scale as the sets
     # so that they can use the same calibration file.
     # 
     # FACTOR_READ_I is not necessarily 1/FACTOR_WRITE_I
     # (but it might be in some cases)
-    field(CALC, "A/$(FWI)")
+    field(CALC, "A*$(FWI)")
 	field(FLNK, "$(P)FIELD:CALIB")
     field(EGU, "")
 }
@@ -53,7 +53,7 @@ alias("$(P)FIELD", "$(P)FIELD:RBV")
 
 record(calcout, "$(P)FIELD:SP:RBV:PRECAL"){
     field(INPA, "$(P)CURR:SP:RBV")
-    field(CALC, "A/$(FWI)")
+    field(CALC, "A*$(FWI)")
 	field(FLNK, "$(P)FIELD:SP:RBV:CAL")
     field(EGU, "")
 }
