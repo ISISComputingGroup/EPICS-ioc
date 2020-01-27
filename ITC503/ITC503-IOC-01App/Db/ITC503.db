@@ -461,25 +461,24 @@ record(ai, "$(P)HEATERV") {
 
 
 #
-# At ISIS this should only be set by cryogenics and never by the user.
+# This should not be exposed as a user-facing option on the OPI, nor made "interesting".
 #
-# There is potential for damaging cryostats if this is set incorrectly so
-# remove this PV for now. If it is needed, this record can be uncommented.
+# There is potential for damaging cryostats if this is set incorrectly. A voltage which
+# is too high can burn out the heater, which is a lengthy repair.
 # 
-# record(ao, "$(P)HEATERV:MAX") {
-#   field(DESC, "Set max htr v")
-#   field(SCAN, "Passive")
-#   field(DTYP, "stream")
-#   field(OUT, "@itc503.proto set_maxv $(PORT)")
-#   field(OMSL, "supervisory")
-#   field(PREC, "1")
-#   field(EGU, "V")
-#   field(SIML, "$(P)SIM")
-#   field(SIOL, "$(P)SIM:HEATERV:MAX")
-#   field(SDIS, "$(P)DISABLE")
-#   info(INTEREST, "MEDIUM")
-#   info(archive, "VAL")
-# }
+record(ao, "$(P)HEATERV:MAX") {
+  field(DESC, "Set max htr v")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(OUT, "@itc503.proto set_maxv $(PORT)")
+  field(OMSL, "supervisory")
+  field(PREC, "1")
+  field(EGU, "V")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:HEATERV:MAX")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
 
 record(ao, "$(P)HEATERP:SP") {
   field(DESC, "Set man htr %")
