@@ -31,6 +31,7 @@ IOCDIRS += CRYOSMS
 IOCDIRS += ZFMAGFLD
 IOCDIRS += ZFCNTRL
 IOCDIRS += MUONTPAR
+IOCDIRS += LKSH372
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
