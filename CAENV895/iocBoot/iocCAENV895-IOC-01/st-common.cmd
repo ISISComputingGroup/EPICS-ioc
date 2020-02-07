@@ -13,8 +13,8 @@ CAENVMEConfigure("CRATE0", 0, 0, 0, 0x10000, $(CAENVMESIM=0))
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-set_pass0_restoreFile("auto_settings.sav")
-set_pass1_restoreFile("auto_settings.sav")
+#set_pass0_restoreFile("auto_settings.sav")
+#set_pass1_restoreFile("auto_settings.sav")
 
 ## Load our record instances
 dbLoadRecords("$(CAENVME)/db/v895Crate.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0")
@@ -27,7 +27,7 @@ dbLoadRecords("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0
 dbLoadRecords("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=6")
 
 ## load autosave configMenu for managing sets of PVs
-dbLoadRecords("$(AUTOSAVE)/db/configMenu.db","P=$(MYPVPREFIX)AS:$(IOCNAME):,CONFIG=vmeconfig")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/configMenu.db","P=$(MYPVPREFIX)AS:$(IOCNAME):,CONFIG=vmeconfig")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -41,4 +41,7 @@ iocInit
 makeAutosaveFileFromDbInfo("vmeconfig_settings.req", "vmeconfig")
 create_manual_set("vmeconfigMenu.req","P=$(MYPVPREFIX)AS:$(IOCNAME):,CONFIG=vmeconfig,CONFIGMENU=1")
 
-create_monitor_set("auto_settings.req", 30, "P=$(MYPVPREFIX)AS:$(IOCNAME):")
+#create_monitor_set("auto_settings.req", 30, "P=$(MYPVPREFIX)AS:$(IOCNAME")
+
+# load default settings
+dbpf "$(MYPVPREFIX)AS:$(IOCNAME):vmeconfigMenu" "defaults"
