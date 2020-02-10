@@ -2,7 +2,6 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 ONCRPC=$(SUPPORT)/oncrpc/master
 
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
-AREA_DETECTOR=$(SUPPORT)/areaDetector/master
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
 ASYN=$(SUPPORT)/asyn/master
 AUTOSAVE=$(SUPPORT)/autosave/master
@@ -18,12 +17,8 @@ FILESERVER=$(SUPPORT)/FileServer/master
 HTMLTIDY=$(SUPPORT)/htmltidy/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master
 ISISDAE=$(SUPPORT)/isisdae/master
-LIBICONV=$(SUPPORT)/libiconv/master
 LIBJSON=$(SUPPORT)/libjson/master
-LIBXML2=$(SUPPORT)/libxml2/master
-LIBXSLT=$(SUPPORT)/libxslt/master
 MYSQL=$(SUPPORT)/MySQL/master
-NULLHTTPD=$(SUPPORT)/nullhttpd/master
 PCAS=$(SUPPORT)/pcas/master
 PCRE=$(SUPPORT)/pcre/master
 PUGIXML=$(SUPPORT)/pugixml/master
@@ -38,15 +33,9 @@ UTILITIES=$(SUPPORT)/utilities/master
 WEBGET=$(SUPPORT)/webget/master
 ZLIB=$(SUPPORT)/zlib/master
 
-# EPICS v4
-EV4_BASE=$(SUPPORT)/EPICS_V4/master
-PVDATABASE=$(EV4_BASE)/pvDatabaseCPP
-PVASRV=$(EV4_BASE)/pvaSrv
-PVACLIENT=$(EV4_BASE)/pvaClientCPP
-PVACCESS=$(EV4_BASE)/pvAccessCPP
-NORMATIVETYPES=$(EV4_BASE)/normativeTypesCPP
-PVDATA=$(EV4_BASE)/pvDataCPP
-PVCOMMON=$(EV4_BASE)/pvCommonCPP
+AREA_DETECTOR=$(SUPPORT)/areaDetector/master
+ADNED=$(AREA_DETECTOR)/ADnED
+FFMPEGSERVER=$(AREA_DETECTOR)/ffmpegServer
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
@@ -54,6 +43,6 @@ PVCOMMON=$(EV4_BASE)/pvCommonCPP
 include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
 
+include $(AREA_DETECTOR)/configure/RELEASE_SUPPORT.local
+-include $(AREA_DETECTOR)/configure/RELEASE_SUPPORT.local.$(EPICS_HOST_ARCH)
 include $(AREA_DETECTOR)/configure/RELEASE_LIBS.local
-include $(AREA_DETECTOR)/configure/RELEASE.local
--include $(AREA_DETECTOR)/configure/RELEASE.local.$(EPICS_HOST_ARCH)
