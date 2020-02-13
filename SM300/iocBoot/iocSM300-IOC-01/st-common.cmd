@@ -60,14 +60,18 @@ iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 
 epicsEnvSet("SM300CONFIG","$(ICPCONFIGROOT)/$(IOCNAME)")
 
-# configure axes
+# axes (if configured otherwise this will error)
 < $(SM300CONFIG)/axes.cmd
 
-# motion set points
+# motion set points (if configured otherwise this will error)
 < $(SM300CONFIG)/motionsetpoints.cmd
 
-# sample changer
+# sample changer (if configured otherwise this will error)
 < $(SM300CONFIG)/sampleChanger.cmd
+
+# sample changer (if configured otherwise this will error)
+< $(SM300CONFIG)/motorextensions.cmd
+
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
