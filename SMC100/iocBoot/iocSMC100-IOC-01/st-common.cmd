@@ -35,6 +35,21 @@ epicsEnvSet(PN,8)
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
+
+epicsEnvSet("SMC100CONFIG","$(ICPCONFIGROOT)/$(IOCNAME)")
+
+# axes (if configured otherwise this will error)
+< $(SMC100CONFIG)/axes.cmd
+
+# motion set points (if configured otherwise this will error)
+< $(SMC100CONFIG)/motionsetpoints.cmd
+
+# sample changer (if configured otherwise this will error)
+< $(SMC100CONFIG)/sampleChanger.cmd
+
+# sample changer (if configured otherwise this will error)
+< $(SMC100CONFIG)/motorextensions.cmd
+
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
@@ -64,3 +79,5 @@ $(IFPORT7) create_monitor_set("$(IOCNAME)_7_built_settings.req", 30, "P=$(MYPVPR
 $(IFPORT8) create_monitor_set("$(IOCNAME)_8_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
 
 #create_monitor_set("$(IOCNAME)_settings.req", 5, "P=$(MYPVPREFIX)MOT:")
+
+
