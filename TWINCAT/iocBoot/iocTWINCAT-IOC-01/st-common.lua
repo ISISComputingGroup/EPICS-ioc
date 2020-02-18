@@ -7,7 +7,7 @@ function twincat_stcommon_main()
 	local num_axes = 8
 	local pv_prefix = getMacroValue{macro="MYPVPREFIX"}
 	local tpy_file = getMacroValue{macro="TPY_FILE"}
-	local plc_version = getMacroValue{macro="PLC_VERSION", default="0"}
+	local plc_version = getMacroValue{macro="PLC_VERSION", default="1"}
 
 	iocsh.tcSetScanRate(150, 2)
 	iocsh.tcLoadRecords (tpy_file, string.format("-eo -devtc -p %s", pv_prefix))
