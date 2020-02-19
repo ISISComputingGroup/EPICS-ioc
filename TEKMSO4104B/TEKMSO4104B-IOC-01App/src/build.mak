@@ -36,7 +36,6 @@ $(APPNAME)_DBD += asubFunctions.dbd
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += asubFunctions
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -46,9 +45,10 @@ $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
 $(APPNAME)_LIBS += stream 
 $(APPNAME)_LIBS += pcre 
-$(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += sscan
 $(APPNAME)_LIBS += asyn 
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS_WIN32 += oncrpc
 
 # TEKMSO4104B-IOC-01_registerRecordDeviceDriver.cpp derives from TEKMSO4104B-IOC-01.dbd

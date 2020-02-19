@@ -39,7 +39,6 @@ $(APPNAME)_DBD += keithley_2001_state_machine.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv 
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -51,8 +50,9 @@ $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn 
 $(APPNAME)_LIBS += asubFunctions 
-$(APPNAME)_LIBS += calc
+$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += VISAdrv
+$(APPNAME)_LIBS += seq pv 
 ## IOC support LIB
 $(APPNAME)_LIBS += Keithley_2001
 

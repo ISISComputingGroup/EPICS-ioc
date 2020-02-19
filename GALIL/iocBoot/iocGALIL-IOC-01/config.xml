@@ -4,8 +4,8 @@
 <ioc_desc>Galil motor controller</ioc_desc>
 <ioc_details>Galil Motor Details</ioc_details>
 <macros>
-<macro name="GALILADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller (MTR01* PVs)" />
-<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" />
+<macro name="GALILADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller (MTR01* PVs)" hasDefault="UNKNOWN" />
+<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="UNKNOWN" />
 </macros>
 <pvsets>
 <pvset name="Motor Limits" description="Motor high and low limits" />

@@ -19,11 +19,13 @@ epicsEnvSet("ASERIAL", "serial$(MTRCTRL)")
 $(IFRECSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
 $(IFRECSIM) motorSimCreateController("motorSim", $(NAXES))
 $(IFRECSIM) epicsEnvSet("SIMSFX","Sim")
- 
+
+$(IFDEVSIM) drvAsynIPPortConfigure("$(ASERIAL)", "localhost:$(EMULATOR_PORT=57677)")
+$(IFDEVSIM) epicsEnvSet("SIMSFX","")
+  
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT=NUL)", 0, 0, 0)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceIOMask("$(ASERIAL)", -1, 0xFF )
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\r") 
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r\n")
+$(IFNOTRECSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\r") 
+$(IFNOTRECSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r\n")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"baud","$(BAUD=9600)") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"bits","$(BITS=8)") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"stop","$(STOP=1)") 
@@ -34,10 +36,10 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"ixon","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"ixoff","N") 
 
 # PM304Setup(controller count, poll rate (1 to 60Hz))
-$(IFNOTDEVSIM) $(IFNOTRECSIM) LinMotSetup(1,5)
+$(IFNOTRECSIM) LinMotSetup(1,5)
 
 # LinMotConfig(card being configured, asyn port name,  number of axes)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) LinMotConfig(0, "$(ASERIAL)", "$(NAXES=1)")
+$(IFNOTRECSIM) LinMotConfig(0, "$(ASERIAL)", "$(NAXES=1)")
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 

@@ -3,7 +3,7 @@
 	<config_part>
 		<ioc_desc>NGEM detector</ioc_desc>
 		<macros>
-			<macro name ="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+$" description="IP address and port of the device (default: localhost:61000)" />
+			<macro name ="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+$" description="IP address and port of the device (default: localhost:61000)" defaultValue="localhost:61000" hasDefault="YES" />
 		</macros>
 	</config_part>
 </ioc_config>

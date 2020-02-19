@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+    <ioc_desc>Zero Field Controller Field Strength</ioc_desc>
+    <ioc_details>Reads and corrects magnetometer measurement</ioc_details>
+    <macros>
+        <macro name="HOST" pattern="^[a-zA-Z0-9_-]+$" description="DAQ card hostname." defaultValue="cDAQ9181-1B0C1FCMod1" hasDefault="YES" />
+        <macro name="OFFSETX" pattern="^-?[0-9]+\.?[0-9]*$" description="X component of measured field offset" defaultValue="0" hasDefault="YES" />
+        <macro name="OFFSETY" pattern="^-?[0-9]+\.?[0-9]*$" description="Y component of measured field offset" defaultValue="0" hasDefault="YES" />
+        <macro name="OFFSETZ" pattern="^-?[0-9]+\.?[0-9]*$" description="Z component of measured field offset" defaultValue="0" hasDefault="YES" />
+        <macro name="RANGE" pattern="^-?[0-9]+\.?[0-9]*$" description="Range of the magnetometer" defaultValue="1" hasDefault="YES" />
+        <macro name="SQNCR" pattern="^[:a-zA-Z0-9_-\. ]+$" description="PV in auto-feedback sequencer to process on new field values" defaultValue="$(PVPREFIX):ZFCNTRL_01:INPUTS_UPDATED.PROC" hasDefault="YES" />
+
+        <macro name="MATRIX_1_1" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (1,1) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        <macro name="MATRIX_1_2" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (1,2) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        <macro name="MATRIX_1_3" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (1,3) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+
+        <macro name="MATRIX_2_1" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (2,1) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        <macro name="MATRIX_2_2" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (2,2) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        <macro name="MATRIX_2_3" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (2,3) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+
+        <macro name="MATRIX_3_1" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (3,1) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        <macro name="MATRIX_3_2" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (3,2) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        <macro name="MATRIX_3_3" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (3,3) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
+        
+        <macro name="X_DAQ_CHANNEL" pattern="^ai[0-9]+$" description="DAQ channel to read for the X axis" defaultValue="ai0" hasDefault="YES" />
+        <macro name="Y_DAQ_CHANNEL" pattern="^ai[0-9]+$" description="DAQ channel to read for the Y axis" defaultValue="ai1" hasDefault="YES" />
+        <macro name="Z_DAQ_CHANNEL" pattern="^ai[0-9]+$" description="DAQ channel to read for the Z axis" defaultValue="ai2" hasDefault="YES" />
+
+    </macros>
+    <pvsets>
+
+    </pvsets>
+</config_part>
+</ioc_config>

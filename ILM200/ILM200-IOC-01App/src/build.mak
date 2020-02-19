@@ -35,7 +35,6 @@ $(APPNAME)_DBD += calcSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -49,6 +48,7 @@ $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += calc
 $(APPNAME)_LIBS += sscan
+$(APPNAME)_LIBS += seq pv
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 

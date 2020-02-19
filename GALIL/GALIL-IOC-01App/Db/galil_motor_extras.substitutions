@@ -54,4 +54,16 @@ pattern
  {  "\$(PVPREFIX)", "\$(P)", "\$(ASG08=DEFAULT)", "MTR\$(CCP)08",  "Galil", 7,    3,    "Passive",  "3",     "0",   "mm" }
 }
 
+file "$(UTILITIES)/utilitiesApp/db/field_setter.template" {
+    pattern
+    {P, FROM, TO, FIELD}
+    {"\$(P):", MTR\$(CCP)01, MTR\$(CCP)01_MTRENC_DRIFT, ADEL}
+    {"\$(P):", MTR\$(CCP)02, MTR\$(CCP)02_MTRENC_DRIFT, ADEL}
+    {"\$(P):", MTR\$(CCP)03, MTR\$(CCP)03_MTRENC_DRIFT, ADEL}
+    {"\$(P):", MTR\$(CCP)04, MTR\$(CCP)04_MTRENC_DRIFT, ADEL}
+    {"\$(P):", MTR\$(CCP)05, MTR\$(CCP)05_MTRENC_DRIFT, ADEL}
+    {"\$(P):", MTR\$(CCP)06, MTR\$(CCP)06_MTRENC_DRIFT, ADEL}
+    {"\$(P):", MTR\$(CCP)07, MTR\$(CCP)07_MTRENC_DRIFT, ADEL}
+    {"\$(P):", MTR\$(CCP)08, MTR\$(CCP)08_MTRENC_DRIFT, ADEL}
+}
 # end

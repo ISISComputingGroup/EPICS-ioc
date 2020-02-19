@@ -3,24 +3,27 @@
 <config_part>
 <ioc_desc>Danfysik power supply</ioc_desc>
 <macros>
-    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
-	<macro name="POLARITY" pattern="^(BIPOLAR|UNIPOLAR)$" description="Polarity type, BIPOLAR - polarity is stable; defaults to BIPOLAR" />
-	<macro name="USE_SLEW" pattern="^(0|1)$" description="1 to user slew, 0 otherwise; defaults to 0" />
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
+	<macro name="POLARITY" pattern="^(BIPOLAR|UNIPOLAR)$" description="Polarity type, BIPOLAR - polarity is stable; defaults to BIPOLAR" defaultValue="BIPOLAR" hasDefault="YES" />
+	<macro name="USE_SLEW" pattern="^(0|1)$" description="1 to user slew, 0 otherwise; defaults to 0" defaultValue="0" hasDefault="YES" />
 
-    <macro name="CALIBRATED" pattern="^(0|1)$" description="1 to use calibration file, 0 otherwise; defaults to 1" />
-    <macro name="CALIB_FILE" description="Name of calibration File; defaults to default_calib.dat" />
-	<macro name="DEV_TYPE" pattern="^(8800|8500|8000)$" description="Type of danfysik; default 8000" />
-    <macro name="SP_AT_STARTUP" pattern="^(YES|NO)$" description="Apply last setpoints at startup; defaults to NO" />
+    <macro name="CALIBRATED" pattern="^(0|1)$" description="1 to use calibration file, 0 otherwise; defaults to 1" defaultValue="1" hasDefault="YES" />
+    <macro name="CALIB_FILE" pattern="^\w{0,40}$" description="Name of calibration File; defaults to default_calib.dat" defaultValue="default_calib.dat" hasDefault="YES" />
+	<macro name="DEV_TYPE" pattern="^(8800|8500|8000)$" description="Type of danfysik; default 8000" defaultValue="8000" hasDefault="YES" />
+    <macro name="SP_AT_STARTUP" pattern="^(YES|NO)$" description="Apply last setpoints at startup; defaults to NO" defaultValue="NO" hasDefault="YES" />
 	
 	
-	<macro name="FACTOR_READ_I" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to current; defaults to 1" />
-	<macro name="FACTOR_READ_V" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to voltage; defaults to 1" />
-	<macro name="FACTOR_WRITE_I" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value; defaults to 1000" />
+	<macro name="FACTOR_READ_I" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to current; defaults to 1" defaultValue="1" hasDefault="YES" />
+	<macro name="FACTOR_READ_V" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting reading to voltage; defaults to 1" defaultValue="1" hasDefault="YES" />
+	<macro name="FACTOR_WRITE_I" pattern="^-?[0-9]+\.?[0-9]*$" description="Factor to apply when converting current to set value; defaults to 1000" defaultValue="1000" hasDefault="YES" />
     
-	<macro name="MAX_RAW_SETPOINT" pattern="^[0-9]+$" description="Maximum raw setpoint to send to the power supply, in ppm. Defaults to 1000000 (100% of full scale)." />
+	<macro name="MAX_RAW_SETPOINT" pattern="^[0-9]+$" description="Maximum raw setpoint to send to the power supply, in ppm. Defaults to 1000000 (100% of full scale)." defaultValue="1000000" hasDefault="YES" />
 	
-    <macro name="LOCAL_CALIB" pattern="^(yes)|(no)$" description="Use local instrument calibration directory instead of common one? Default is no." />
-    <macro name="ADDRESS" pattern="^[0-9]+$" description="Address of the PSU; defaults to 0." />
+    <macro name="LOCAL_CALIB" pattern="^(yes)|(no)$" description="Use local instrument calibration directory instead of common one? Default is no." defaultValue="no" hasDefault="YES" />
+    <macro name="ADDRESS" pattern="^[0-9]+$" description="Address of the PSU; defaults to 0." defaultValue="0" hasDefault="YES" />
+    
+	<macro name="STAB_TOLERANCE" pattern="^-?[0-9]+\.?[0-9]*$" description="If value of current in Amps is within this tolerance of the setpoint, consider the field as stable" defaultValue="2" hasDefault="YES" />
+	<macro name="OFF_TOLERANCE" pattern="^-?[0-9]+\.?[0-9]*$" description="If value of current in Amps is within this tolerance of 0, consider the field as off." defaultValue="1" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>

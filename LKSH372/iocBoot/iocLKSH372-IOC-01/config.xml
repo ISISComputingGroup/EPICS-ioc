@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Lakeshore 372 temperature monitor</ioc_desc>
+<macros>
+    <macro name="IPADDR" pattern="^.*$" description="IP address or hostname to connect to" hasDefault="NO" />
+    <macro name="IPPORT" pattern="^[0-9]+$" description="IP port to connect to, defaults to 7777." defaultValue="7777" hasDefault="YES" />
+</macros>
+</config_part>
+</ioc_config>
