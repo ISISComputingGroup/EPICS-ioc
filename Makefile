@@ -46,7 +46,9 @@ endif
 
 ## twincat sets TWINCAT3DIR and TWINCATSDK environment variables on windows
 ifeq ($(TWINCAT3DIR),)
+ifeq ($(findstring linux,$(EPICS_HOST_ARCH)),)
 DIRS_NOTBUILD += TWINCAT
+endif
 endif
 
 ## module decisions based on Visual Studio version
