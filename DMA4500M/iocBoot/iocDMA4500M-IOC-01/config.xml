@@ -5,6 +5,7 @@
 <ioc_details>DMA4500 Density Meter (Unsupported)</ioc_details>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<macro name="MEASUREMENT_MODE" pattern="^(DENSITY_ONLY|DENSITY_AND_SPICIFIC_GRAV)$" description="What should the densiometer measure? default is density only" defaultValue="DENSITY_ONLY" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>
