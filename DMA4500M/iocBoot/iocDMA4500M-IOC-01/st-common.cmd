@@ -1,4 +1,4 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DMA4500M)/protocol"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DMA4500M)/data"
 epicsEnvSet "DEVICE" "L0"
 
 ##ISIS## Run IOC initialisation 
