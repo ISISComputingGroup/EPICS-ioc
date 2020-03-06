@@ -37,6 +37,11 @@ AREA_DETECTOR=$(SUPPORT)/areaDetector/master
 ADNED=$(AREA_DETECTOR)/ADnED
 FFMPEGSERVER=$(AREA_DETECTOR)/ffmpegServer
 
+ADKAFKAINTERFACE=$(SUPPORT)/ad_kafka_interface/master
+ADPLUGINKAFKA=$(ADKAFKAINTERFACE)/ADPluginKafka
+LIBRDKAFKA=$(SUPPORT)/librdkafka/master
+OPENSSL=$(SUPPORT)/OpenSSL/master
+
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
 

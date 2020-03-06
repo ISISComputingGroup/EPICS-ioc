@@ -112,5 +112,3 @@ create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)$(Q)")
 
 # Save motor settings every 30 seconds
 create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)$(Q)")
-
-#startPVAServer

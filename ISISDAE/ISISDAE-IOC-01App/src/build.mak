@@ -34,6 +34,7 @@ $(APPNAME)_DBD += webget.dbd
 $(APPNAME)_DBD += FileList.dbd
 $(APPNAME)_DBD += ADnEDSupport.dbd
 $(APPNAME)_DBD += ffmpegServer.dbd
+$(APPNAME)_DBD += ADPluginKafka.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -57,6 +58,11 @@ $(APPNAME)_LIBS += avutil
 $(APPNAME)_LIBS += swscale
 $(APPNAME)_LIBS += ADnEDSupport
 $(APPNAME)_LIBS += ADnEDTransform
+$(APPNAME)_LIBS += ADPluginKafka
+$(APPNAME)_LIBS += rdkafka++
+$(APPNAME)_LIBS += rdkafka
+
+$(APPNAME)_LIBS += ssleay32 libeay32
 
 # ISISDAE-IOC-01_registerRecordDeviceDriver.cpp derives from ISISDAE-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
