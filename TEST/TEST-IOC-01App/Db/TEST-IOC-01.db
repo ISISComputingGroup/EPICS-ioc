@@ -1,10 +1,15 @@
 record(lso,"$(P)LSOVAL:SP")
 {
+    field(DTYP, "stream")
+    field(OUT,  "@test.proto writeString $(PORT)")
     field(SIZV, "1024")
+	field(FLNK, "$(P)LSIVAL")
 }
 
-record(lsi,"$(P)LSIVAL:SP")
+record(lsi,"$(P)LSIVAL")
 {
+    field(DTYP, "stream")
+    field(INP,  "@test.proto readString $(PORT)")
     field(SIZV, "1024")
 }
 
