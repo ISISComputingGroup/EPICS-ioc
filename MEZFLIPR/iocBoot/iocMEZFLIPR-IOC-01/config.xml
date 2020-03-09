@@ -5,8 +5,6 @@
 <ioc_details>The IOC for a Mezei spin flipper</ioc_details>
 <macros>
 <macro name="HOST" pattern=".*" description="IP Address or computer name to connect to" hasDefault="UNKNOWN" />
-<macro name="ANALYSERPRESENT" pattern="^(yes|no)$" description="Whether the analyser is present or not (default: yes)" defaultValue="yes" hasDefault="YES" />
-<macro name="POLARISERPRESENT" pattern="^(yes|no)$" description="Whether the polariser is present or not (default: yes)" defaultValue="yes" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>
