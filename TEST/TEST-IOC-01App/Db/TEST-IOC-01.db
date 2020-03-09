@@ -1,3 +1,29 @@
+record(lso,"$(P)LSOVAL:SP")
+{
+    field(SIZV, "1024")
+}
+
+record(lsi,"$(P)LSIVAL:SP")
+{
+    field(SIZV, "1024")
+}
+
+record(waveform,"$(P)WFVAL:SP")
+{
+    field(NELM , "1024")
+	field(FTVL, "CHAR")
+    field(DTYP, "stream")
+    field(INP,  "@test.proto writeString $(PORT)")
+	field(FLNK, "$(P)WFVAL")
+}
+
+record(waveform,"$(P)WFVAL")
+{
+    field(NELM , "1024")
+	field(FTVL, "CHAR")
+    field(DTYP, "stream")
+    field(INP,  "@test.proto readString $(PORT)")
+}
 
 record(ai,"$(P)VAL")
 {

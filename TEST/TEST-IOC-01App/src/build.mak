@@ -25,18 +25,22 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
+$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += randomSupport.dbd
-$(APPNAME)_DBD += PVAServerRegister.dbd
+$(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += drvAsynEcho.dbd
+$(APPNAME)_DBD += stream.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += stream asyn asynEcho
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
-$(APPNAME)_LIBS += autosave
+$(APPNAME)_LIBS += autosave calc sscan
 $(APPNAME)_LIBS += utilities pcre
+$(APPNAME)_LIBS += seq pv
 ## Add other libraries here ##
 $(APPNAME)_LIBS += random
 ifdef EPICS_BASE_PVA_CORE_LIBS

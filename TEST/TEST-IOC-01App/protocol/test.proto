@@ -1,0 +1,9 @@
+Terminator = LF;
+
+writeString {
+    out "%s";
+}
+
+readString {
+    in "%s";
+}

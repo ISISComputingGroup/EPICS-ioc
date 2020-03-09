@@ -11,6 +11,10 @@ cd ${TOP}
 dbLoadDatabase "dbd/TEST-IOC-01.dbd"
 TEST_IOC_01_registerRecordDeviceDriver pdbbase
 
+epicsEnvSet ("STREAM_PROTOCOL_PATH", "$(TOP)/data")
+
+echoDriverInit("L0", 0.1, 0, 0)
+
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
@@ -20,7 +24,7 @@ TEST_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/TEST-IOC-01.db","P=$(MYPVPREFIX)$(IOCNAME):, RANDDEV=Random Async, RANDSEED=324235")
+dbLoadRecords("db/TEST-IOC-01.db","P=$(MYPVPREFIX)$(IOCNAME):,RANDDEV=Random Async,RANDSEED=324235,PORT=L0")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -33,5 +37,3 @@ iocInit
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
-
-startPVAServer
