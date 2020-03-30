@@ -2,6 +2,7 @@ program keep_sp_and_rbv_in_sync("SETPOINT,READBACK,TOLERANCE,DELAY")
 
 #include "seqPVmacros.h"
 %% #include "errlog.h"
+%% #include <math.h>
 
 /* Turn on run-time debug messages */
 option +d;
