@@ -474,7 +474,7 @@ record(ai, "$(P)HEATER:CURR") {
   field(DESC, "Heater current readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getHeaterCurrent  $(PORT)")
+  field(INP,  "@OxInstIPS.protocol getHeaterCurrent $(PORT)")
   field(EGU,  "mA")
   field(PREC, "4")
   
