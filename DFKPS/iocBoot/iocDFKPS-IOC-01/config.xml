@@ -24,6 +24,9 @@
     
 	<macro name="STAB_TOLERANCE" pattern="^-?[0-9]+\.?[0-9]*$" description="If value of current in Amps is within this tolerance of the setpoint, consider the field as stable" defaultValue="2" hasDefault="YES" />
 	<macro name="OFF_TOLERANCE" pattern="^-?[0-9]+\.?[0-9]*$" description="If value of current in Amps is within this tolerance of 0, consider the field as off." defaultValue="0" hasDefault="YES" />
+    
+    <macro name="DISABLE_AUTOONOFF" pattern="^(0|1)$" description="Disable automatic PSU on/off feature" defaultValue="1" hasDefault="YES" />
+
 </macros>
 </config_part>
 </ioc_config>
