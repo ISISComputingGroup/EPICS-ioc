@@ -22,7 +22,7 @@ PV(double, readback, "{READBACK}", Monitor);
 
 /* system pvs */
 PV(double, tolerance, "{TOLERANCE}", Monitor);
-PV(double, delay, "{DELAY}", Monitor);
+PV(double, delay_time, "{DELAY}", Monitor);
 
 %{
 int notWithinTolerance(double setpoint, double readback, double tolerance) {
@@ -39,10 +39,15 @@ ss keep_sp_and_rbv_in_sync
     /* setpoint alarm must be zero to avoid sending zero to device when first starting driver (SP will be UDF_alarm) */
     when(notWithinTolerance(setpoint, readback, tolerance) && setpoint_alarm == 0) 
 	{
-      errlogSevPrintf(errlogMinor, "Keep SP and RBV in sync: setpoint ('%s') not equal readback ('%s'). Reprocessing setpoint in %f seconds if still not the same.\n", setpoint_description, readback_description, delay);
+      errlogSevPrintf(errlogMinor, "Keep SP and RBV in sync: setpoint ('%s') not equal readback ('%s'). Reprocessing setpoint in %f seconds if still not the same.\n", setpoint_description, readback_description, delay_time);
 	  
-	  epicsThreadSleep(delay);
-	  
+    } state checksp
+  }
+
+  state checksp
+  {
+    when(delay(delay_time))
+	{
 	  if (notWithinTolerance(setpoint, readback, tolerance) && setpoint_alarm == 0) {
 	      errlogSevPrintf(errlogMinor, "Keep SP and RBV in sync: setpoint ('%s') not equal readback ('%s'). Reprocessing setpoint now.\n", setpoint_description, readback_description);
 	      PVPUT(setpoint_proc, 1);
@@ -54,9 +59,9 @@ ss keep_sp_and_rbv_in_sync
   
   state wait
   {
-    when(1)
+    when(delay(delay_time))
 	{
-	  epicsThreadSleep(delay);
+	  ;
 	} state idle
   }
 }
