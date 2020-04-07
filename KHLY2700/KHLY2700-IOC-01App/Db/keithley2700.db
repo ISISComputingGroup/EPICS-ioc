@@ -373,7 +373,7 @@ record(calcout, "$(P)INDEX:START:UPDATE") {  # this needs to be triggered at the
   field(DESC, "Update start index after reads")
   field(INPA, "$(P)BUFF:NEXT") # May not work if record scans before read op completes
   field(CALC, "A")
-  field(OUT, "$(P)INDEX:START PP")
+  field(OUT, "$(P)INDEX:START")
 }
 
 # These aSub records parse BUFF:READ into
