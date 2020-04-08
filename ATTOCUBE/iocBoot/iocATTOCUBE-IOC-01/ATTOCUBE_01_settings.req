@@ -1,8 +1,0 @@
-# Motor settings
-file "motor_settings.req" P=$(P), M=MOT:MTR$(MTRCTRL)01
-file "motor_settings.req" P=$(P), M=MOT:MTR$(MTRCTRL)02
-file "motor_settings.req" P=$(P), M=MOT:MTR$(MTRCTRL)03
-
-file "ATTOCUBE_01_axis_settings.req" P=$(P), IOCNAME=$(IOCNAME), AXIS=0
-file "ATTOCUBE_01_axis_settings.req" P=$(P), IOCNAME=$(IOCNAME), AXIS=1
-file "ATTOCUBE_01_axis_settings.req" P=$(P), IOCNAME=$(IOCNAME), AXIS=2

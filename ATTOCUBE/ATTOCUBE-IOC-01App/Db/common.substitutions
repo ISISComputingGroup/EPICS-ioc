@@ -1,5 +1,0 @@
-file $(ATTOCUBE)/db/ancController.template {
-pattern
-{P,   PORT}
-{\$(P), \$(PORT)}
-}
