@@ -33,6 +33,7 @@ IOCDIRS += MUONTPAR
 IOCDIRS += LKSH372
 IOCDIRS += CAENV895
 IOCDIRS += LSICORR
+IOCDIRS += BGRSCRPT
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
