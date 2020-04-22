@@ -86,6 +86,8 @@
 # WR500.04          Guide start (momentary)
 # WR500.05          Guide stop (momentary)
 
+# WR500.06          Overcount reset (momentary)
+
 file "$(TOP)/FINS-IOC-01App/Db/sans2d-pump-basics.template" {
     { FULL_PREFIX=$(P)$(Q), ADDR=1008, PUMP_NUM=1 }
     { FULL_PREFIX=$(P)$(Q), ADDR=1009, PUMP_NUM=2 }
@@ -105,4 +107,9 @@ file "$(TOP)/FINS-IOC-01App/Db/sans2d-pump-valve-status.template" {
     { FULL_PREFIX=$(P)$(Q), ADDR=1009, PUMP_NUM=2, VALVE_NUM=2, BIT0=FINS_DM_READ_B5, BIT1=FINS_DM_READ_B6 }
 	{ FULL_PREFIX=$(P)$(Q), ADDR=1010, PUMP_NUM=3, VALVE_NUM=2, BIT0=FINS_DM_READ_B5, BIT1=FINS_DM_READ_B6 }
 	{ FULL_PREFIX=$(P)$(Q), ADDR=1006, PUMP_NUM=4, VALVE_NUM=6, BIT0=FINS_DM_READ_B2, BIT1=FINS_DM_READ_B3 }
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/sans2d-vac-status.template" {
+    { FULL_PREFIX=$(P)$(Q), ADDR=1005, SYSTEM=GUIDE }
+    { FULL_PREFIX=$(P)$(Q), ADDR=1011, SYSTEM=TANK }
 }
