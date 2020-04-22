@@ -1,0 +1,108 @@
+#
+# Read addresses
+# 
+# DM1000               General                  Heartbeat 
+               
+# DM1001.00            General                  Monitor 3 IN beam
+# DM1001.01            General                  Monitor 3 OUT beam
+# DM1001.02            General                  Monitor 3 Error beam
+# DM1001.03            General                  Fast Shutter Open
+# DM1001.04            General                  Fast Shutter Error
+# DM1001.05            General                  Detector Overcount
+# DM1001.06            General                  Galil permission to move interlock
+# DM1001.07            General                  V8 Open
+# DM1001.08            General                  V8 Error
+# DM1001.15            General                  Common Alarm signal
+
+# DM1002               Seal supply pressure     0-4000 = 0-10 bar (BCD)
+# DM1003               Seal inflation pressure  0-4000 = 0-10 bar (BCD)
+
+# DM1004.00            Seal system status       Deflated
+# DM1004.01            Seal system status       Inflating
+# DM1004.02            Seal system status       Inflated
+# DM1004.03            Seal system status       Deflating
+
+# DM1005.00            Guide system status      at Atmosphere
+# DM1005.01            Guide system status      Vacing down
+# DM1005.02            Guide system status      at Vacuum
+# DM1005.03            Guide system status      Venting
+
+# DM1006.00            Pump 4 status      		Pump running
+# DM1006.01            Pump 4 status            Overload tripped
+# DM1006.02            Pump 4 status            V6 open indication
+# DM1006.03            Pump 4 status            V6 error indication
+
+# DM1007.00            Guage status      		G1 - pump 1 piranni
+# DM1007.01            Guage status      		G2 - pump 3 piranni
+# DM1007.02            Guage status      		G3 - pump 3 piranni
+# DM1007.03            Guage status      		G5 - tank piranni
+# DM1007.04            Guage status      		TPG300-1 OK
+# DM1007.05            Guage status      		G4 - Guide piranni
+# DM1007.06            Guage status      		G7 - Tank pipe work piranni
+# DM1007.07            Guage status      		G11 - Pump piranni
+# DM1007.08            Guage status      		G10 - Buffer (pump 1) Piranni
+# DM1007.09            Guage status      		TPG300-2 OK
+
+# DM1008.00	           Pump 1 status            Pump running
+# DM1008.01	           Pump 1 status            Overload tripped
+# DM1008.02	           Pump 1 status            Emergency stop button - OK
+# DM1008.03	           Pump 1 status            SP Guard Warning
+# DM1008.04	           Pump 1 status            SP Guard Fault
+# DM1008.05	           Pump 1 status            V1 open indication
+# DM1008.06	           Pump 1 status            V1 error indication
+# DM1008.07	           Pump 1 status            V5 open indication
+# DM1008.08	           Pump 1 status            V5 error indication
+
+# DM1009.00	           Pump 2 status            Pump running
+# DM1009.01	           Pump 2 status            Overload tripped
+# DM1009.02	           Pump 2 status            Emergency stop button - OK
+# DM1009.03	           Pump 2 status            SP Guard Warning
+# DM1009.04	           Pump 2 status            SP Guard Fault
+# DM1009.05	           Pump 2 status            V2 open indication
+# DM1009.06	           Pump 2 status            V2 error indication
+
+# DM1010.00	           Pump 3 status            Pump running
+# DM1010.01	           Pump 3 status            Overload tripped
+# DM1010.02	           Pump 3 status            Emergency stop button - OK
+# DM1010.03	           Pump 3 status            SP Guard Warning
+# DM1010.04	           Pump 3 status            SP Guard Fault
+# DM1010.05	           Pump 3 status            V2 open indication
+# DM1010.06	           Pump 3 status            V2 error indication
+
+# DM1011.00            Tank system status       at Atmosphere
+# DM1011.01            Tank system status       Vacing down
+# DM1011.02            Tank system status       at Vacuum
+# DM1011.03            Tank system status       Venting
+
+
+# Write address:
+# 
+# WR500.00          Open fast shutter (momentary)
+# WR500.01          Close fast shutter (momentary)
+
+# WR500.02          Insert monitor 3 (momentary)
+# WR500.03          Insert monitor 3 (momentary)
+
+# WR500.04          Guide start (momentary)
+# WR500.05          Guide stop (momentary)
+
+file "$(TOP)/FINS-IOC-01App/Db/sans2d-pump-basics.template" {
+    { FULL_PREFIX=$(P)$(Q), ADDR=1008, PUMP_NUM=1 }
+    { FULL_PREFIX=$(P)$(Q), ADDR=1009, PUMP_NUM=2 }
+    { FULL_PREFIX=$(P)$(Q), ADDR=1010, PUMP_NUM=3 }
+	{ FULL_PREFIX=$(P)$(Q), ADDR=1006, PUMP_NUM=4 }
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/sans2d-pump-add.template" {
+    { FULL_PREFIX=$(P)$(Q), ADDR=1008, PUMP_NUM=1 }
+    { FULL_PREFIX=$(P)$(Q), ADDR=1009, PUMP_NUM=2 }
+    { FULL_PREFIX=$(P)$(Q), ADDR=1010, PUMP_NUM=3 }
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/sans2d-pump-valve-status.template" {
+    { FULL_PREFIX=$(P)$(Q), ADDR=1008, PUMP_NUM=1, VALVE_NUM=1, BIT0=FINS_DM_READ_B5, BIT1=FINS_DM_READ_B6 }
+    { FULL_PREFIX=$(P)$(Q), ADDR=1008, PUMP_NUM=1, VALVE_NUM=5, BIT0=FINS_DM_READ_B7, BIT1=FINS_DM_READ_B8 }
+    { FULL_PREFIX=$(P)$(Q), ADDR=1009, PUMP_NUM=2, VALVE_NUM=2, BIT0=FINS_DM_READ_B5, BIT1=FINS_DM_READ_B6 }
+	{ FULL_PREFIX=$(P)$(Q), ADDR=1010, PUMP_NUM=3, VALVE_NUM=2, BIT0=FINS_DM_READ_B5, BIT1=FINS_DM_READ_B6 }
+	{ FULL_PREFIX=$(P)$(Q), ADDR=1006, PUMP_NUM=4, VALVE_NUM=6, BIT0=FINS_DM_READ_B2, BIT1=FINS_DM_READ_B3 }
+}
