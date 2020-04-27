@@ -1,0 +1,9 @@
+record(bo, "$(FULL_PREFIX)$(NAME):SP")
+{
+    field(DESC, "$(DESC)")
+    field(DTYP, "asynInt32")
+    field(ZNAM, "$(ZNAM=...)")
+    field(ONAM, "$(ONAM)")
+    field(OUT,  "@asyn($(PORT=PLC), $(ADDR), 5.0) FINS_WR_WRITE_B$(BIT)")
+}
+

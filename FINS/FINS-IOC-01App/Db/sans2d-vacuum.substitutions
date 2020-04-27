@@ -112,8 +112,8 @@ file "$(TOP)/FINS-IOC-01App/Db/read-bits.template" {
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/sans2d-pressure-read.template" {
-    { FULL_PREFIX=$(P)$(Q), ADDR=1002, NAME=supply }
-    { FULL_PREFIX=$(P)$(Q), ADDR=1003, NAME=inflation }
+    { FULL_PREFIX=$(P)$(Q), ADDR=1002, NAME=SUPPLY }
+    { FULL_PREFIX=$(P)$(Q), ADDR=1003, NAME=INFLATION }
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/sans2d-pump-basics.template" {
@@ -140,4 +140,16 @@ file "$(TOP)/FINS-IOC-01App/Db/sans2d-pump-valve-status.template" {
 file "$(TOP)/FINS-IOC-01App/Db/sans2d-vac-status.template" {
     { FULL_PREFIX=$(P)$(Q), ADDR=1005, SYSTEM=GUIDE }
     { FULL_PREFIX=$(P)$(Q), ADDR=1011, SYSTEM=TANK }
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/write-bit.template" {
+	pattern{ FULL_PREFIX, ADDR, BIT, NAME, DESC, ONAM }
+
+	{ "$(P)$(Q)", "500", "0", "SHUTTER:OPEN", "Opens the fast shutter", "OPEN"}
+	{ "$(P)$(Q)", "500", "1", "SHUTTER:CLOSE", "Closes the fast shutter", "CLOSE"}
+	{ "$(P)$(Q)", "500", "2", "MONITOR3:INSERT", "Inserts monitor 3", "INSERT"}
+	{ "$(P)$(Q)", "500", "3", "MONITOR3:EXTRACT", "Extracts monitor 3", "EXTRACT"}
+	{ "$(P)$(Q)", "500", "4", "GUIDE:START", "Starts the guide", "START"}
+	{ "$(P)$(Q)", "500", "5", "GUIDE:STOP", "Stops the guide", "STOP"}
+	{ "$(P)$(Q)", "500", "6", "OVERCOUNT:RESET", "Resets the overcount", "RESET"}
 }

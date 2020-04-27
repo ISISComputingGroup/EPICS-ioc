@@ -108,7 +108,7 @@ record(bi, "$(FULL_PREFIX)MONITOR3:ERROR")
     info(INTEREST, "HIGH")
 }
 
-record(mbbi, "$(FULL_PREFIX)FAST_SHUTTER:STATUS") 
+record(mbbi, "$(FULL_PREFIX)SHUTTER:STATUS") 
 {
     field(DESC, "Fast shutter status")
     field(DTYP, "asynInt32")
@@ -122,38 +122,38 @@ record(mbbi, "$(FULL_PREFIX)FAST_SHUTTER:STATUS")
 	field(TWST, "ERROR")
 	
     field(SIML, "$(FULL_PREFIX)SIM")
-    field(SIOL, "$(FULL_PREFIX)SIM:FAST_SHUTTER:STATUS")
+    field(SIOL, "$(FULL_PREFIX)SIM:SHUTTER:STATUS")
 	field(SDIS, "$(FULL_PREFIX)DISABLE")
 	
-	field(FLNK, "$(FULL_PREFIX)FAST_SHUTTER:_STATUSD.PROC")
+	field(FLNK, "$(FULL_PREFIX)SHUTTER:_STATUSD.PROC")
 
     info(INTEREST, "HIGH")
 }
 
-record(mbbiDirect, "$(FULL_PREFIX)FAST_SHUTTER:_STATUSD")
+record(mbbiDirect, "$(FULL_PREFIX)SHUTTER:_STATUSD")
 {
     field(DESC, "Fast shutter bits")
     field(DTYP, "Soft Channel")
-    field(INP,  "$(FULL_PREFIX)FAST_SHUTTER:STATUS NPP")
-	field(FLNK, "$(FULL_PREFIX)FAST_SHUTTER:OPEN.PROC")
+    field(INP,  "$(FULL_PREFIX)SHUTTER:STATUS NPP")
+	field(FLNK, "$(FULL_PREFIX)SHUTTER:OPEN.PROC")
 }
 
-record(bi, "$(FULL_PREFIX)FAST_SHUTTER:OPEN")
+record(bi, "$(FULL_PREFIX)SHUTTER:OPEN")
 {
     field(DESC, "Fast shutter open")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "$(FULL_PREFIX)FAST_SHUTTER:_STATUSD.B0 NPP")
+    field(INP,  "$(FULL_PREFIX)SHUTTER:_STATUSD.B0 NPP")
     info(INTEREST, "HIGH")
-	field(FLNK, "$(FULL_PREFIX)FAST_SHUTTER:ERROR.PROC")
+	field(FLNK, "$(FULL_PREFIX)SHUTTER:ERROR.PROC")
 }
 
-record(bi, "$(FULL_PREFIX)FAST_SHUTTER:ERROR")
+record(bi, "$(FULL_PREFIX)SHUTTER:ERROR")
 {
     field(DESC, "Fast shutter error")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "$(FULL_PREFIX)FAST_SHUTTER:_STATUSD.B1 NPP")
+    field(INP,  "$(FULL_PREFIX)SHUTTER:_STATUSD.B1 NPP")
     info(INTEREST, "HIGH")
 }
 
@@ -286,7 +286,7 @@ record(mbbi, "$(FULL_PREFIX)SIM:SEAL:STATUS")
     field(DTYP, "Soft Channel")
 }
 
-record(mbbi, "$(FULL_PREFIX)SIM:FAST_SHUTTER:STATUS")
+record(mbbi, "$(FULL_PREFIX)SIM:SHUTTER:STATUS")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
