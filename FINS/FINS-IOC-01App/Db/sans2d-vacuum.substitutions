@@ -111,6 +111,11 @@ file "$(TOP)/FINS-IOC-01App/Db/read-bits.template" {
 	{ "\$(P)", "\$(Q)", "ADDR:1007.B9", "TPG300_2:OK", "OK", "ERROR", "TPG300-2 OK"}
 }
 
+file "$(TOP)/FINS-IOC-01App/Db/sans2d-pressure-read.template" {
+    { FULL_PREFIX=$(P)$(Q), ADDR=1002, NAME=supply }
+    { FULL_PREFIX=$(P)$(Q), ADDR=1003, NAME=inflation }
+}
+
 file "$(TOP)/FINS-IOC-01App/Db/sans2d-pump-basics.template" {
     { FULL_PREFIX=$(P)$(Q), ADDR=1008, PUMP_NUM=1 }
     { FULL_PREFIX=$(P)$(Q), ADDR=1009, PUMP_NUM=2 }

@@ -11,9 +11,6 @@
 # DM1001.08            General                  V8 Error
 # DM1001.15            General                  Common Alarm signal
 
-# DM1002               Seal supply pressure     0-4000 = 0-10 bar (BCD)
-# DM1003               Seal inflation pressure  0-4000 = 0-10 bar (BCD)
-
 # DM1004.00            Seal system status       Deflated
 # DM1004.01            Seal system status       Inflating
 # DM1004.02            Seal system status       Inflated
@@ -243,10 +240,6 @@ record(bi, "$(FULL_PREFIX)COMMON_ALARM") {
     field(SDIS, "$(FULL_PREFIX)DISABLE")
     info(INTEREST, "HIGH")
 }
-# DM1002               Seal supply pressure     0-4000 = 0-10 bar (BCD)
-# DM1003               Seal inflation pressure  0-4000 = 0-10 bar (BCD)
-
-
 
 # DM1004.00            Seal system status       Deflated
 # DM1004.01            Seal system status       Inflating
