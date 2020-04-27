@@ -1,0 +1,325 @@
+# DM1000               General                  Heartbeat 
+               
+# DM1001.00            General                  Monitor 3 IN beam
+# DM1001.01            General                  Monitor 3 OUT beam
+# DM1001.02            General                  Monitor 3 Error beam
+# DM1001.03            General                  Fast Shutter Open
+# DM1001.04            General                  Fast Shutter Error
+# DM1001.05            General                  Detector Overcount
+# DM1001.06            General                  Galil permission to move interlock
+# DM1001.07            General                  V8 Open
+# DM1001.08            General                  V8 Error
+# DM1001.15            General                  Common Alarm signal
+
+# DM1002               Seal supply pressure     0-4000 = 0-10 bar (BCD)
+# DM1003               Seal inflation pressure  0-4000 = 0-10 bar (BCD)
+
+# DM1004.00            Seal system status       Deflated
+# DM1004.01            Seal system status       Inflating
+# DM1004.02            Seal system status       Inflated
+# DM1004.03            Seal system status       Deflating
+
+# FULL_PREFIX = Instrument and IOC prefix
+
+record(bo, "$(FULL_PREFIX)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(FULL_PREFIX)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(longin, "$(FULL_PREFIX)HEARTBEAT")
+{
+    field(DESC, "Heartbeat of the FINS PLC")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, 1000, 5.0) FINS_DM_READ")
+    field(SCAN, "1 second")
+    field(EGU, "")
+    info(INTEREST, "HIGH")
+    field(SIML, "$(FULL_PREFIX)SIM")
+    field(SIOL, "$(FULL_PREFIX)SIM:HEARTBEAT")
+    field(SDIS, "$(FULL_PREFIX)DISABLE")
+}
+
+record(mbbi, "$(FULL_PREFIX)MONITOR3:STATUS") 
+{
+    field(DESC, "Monitor 3 system status")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ")
+    field(SCAN, "1 second")
+	field(NOBT, 3)
+	
+	field(ONST, "IN")
+	field(TWST, "OUT")
+	field(FRST, "ERROR")
+	
+    field(SIML, "$(FULL_PREFIX)SIM")
+    field(SIOL, "$(FULL_PREFIX)SIM:MONITOR3:STATUS")
+	field(SDIS, "$(FULL_PREFIX)DISABLE")
+	
+	field(FLNK, "$(FULL_PREFIX)MONITOR3:_STATUSD.PROC")
+	
+    info(INTEREST, "HIGH")
+}
+
+record(mbbiDirect, "$(FULL_PREFIX)MONITOR3:_STATUSD")
+{
+    field(DESC, "Monitor Bits")
+    field(DTYP, "Soft Channel")
+    field(INP,  "$(FULL_PREFIX)MONITOR3:STATUS NPP")
+	field(FLNK, "$(FULL_PREFIX)MONITOR3:IN.PROC")
+}
+
+record(bi, "$(FULL_PREFIX)MONITOR3:IN")
+{
+    field(DESC, "Monitor 3 in beam")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(INP,  "$(FULL_PREFIX)MONITOR3:_STATUSD.B0 NPP")
+    info(INTEREST, "HIGH")
+	field(FLNK, "$(FULL_PREFIX)MONITOR3:OUT.PROC")
+}
+
+record(bi, "$(FULL_PREFIX)MONITOR3:OUT")
+{
+    field(DESC, "Monitor 3 out of beam")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(INP,  "$(FULL_PREFIX)MONITOR3:_STATUSD.B1 NPP")
+    info(INTEREST, "HIGH")
+	field(FLNK, "$(FULL_PREFIX)MONITOR3:ERROR.PROC")
+}
+
+record(bi, "$(FULL_PREFIX)MONITOR3:ERROR")
+{
+    field(DESC, "Monitor 3 error")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(INP,  "$(FULL_PREFIX)MONITOR3:_STATUSD.B2 NPP")
+    info(INTEREST, "HIGH")
+}
+
+record(mbbi, "$(FULL_PREFIX)FAST_SHUTTER:STATUS") 
+{
+    field(DESC, "Fast shutter status")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ")
+    field(SCAN, "1 second")
+	field(SHFT, 3)
+	field(NOBT, 2)
+	
+	field(ZRST, "CLOSED")
+	field(ONST, "OPEN")
+	field(TWST, "ERROR")
+	
+    field(SIML, "$(FULL_PREFIX)SIM")
+    field(SIOL, "$(FULL_PREFIX)SIM:FAST_SHUTTER:STATUS")
+	field(SDIS, "$(FULL_PREFIX)DISABLE")
+	
+	field(FLNK, "$(FULL_PREFIX)FAST_SHUTTER:_STATUSD.PROC")
+
+    info(INTEREST, "HIGH")
+}
+
+record(mbbiDirect, "$(FULL_PREFIX)FAST_SHUTTER:_STATUSD")
+{
+    field(DESC, "Fast shutter bits")
+    field(DTYP, "Soft Channel")
+    field(INP,  "$(FULL_PREFIX)FAST_SHUTTER:STATUS NPP")
+	field(FLNK, "$(FULL_PREFIX)FAST_SHUTTER:OPEN.PROC")
+}
+
+record(bi, "$(FULL_PREFIX)FAST_SHUTTER:OPEN")
+{
+    field(DESC, "Fast shutter open")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(INP,  "$(FULL_PREFIX)FAST_SHUTTER:_STATUSD.B0 NPP")
+    info(INTEREST, "HIGH")
+	field(FLNK, "$(FULL_PREFIX)FAST_SHUTTER:ERROR.PROC")
+}
+
+record(bi, "$(FULL_PREFIX)FAST_SHUTTER:ERROR")
+{
+    field(DESC, "Fast shutter error")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(INP,  "$(FULL_PREFIX)FAST_SHUTTER:_STATUSD.B1 NPP")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(FULL_PREFIX)DET_OVERCOUNT") {
+	field(DESC, "Detector overcount")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ_B5")
+	field(SCAN, "1 second")
+	field(SIML, "$(FULL_PREFIX)SIM")
+    field(SIOL, "$(FULL_PREFIX)SIM:DET_OVERCOUNT")
+    field(SDIS, "$(FULL_PREFIX)DISABLE")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(FULL_PREFIX)GALIL_INTERLOCK") {
+	field(DESC, "Galil permission to move")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ_B6")
+	field(SCAN, "1 second")
+	field(ONAM, "CAN_MOVE")
+	field(ZNAM, "CAN'T_MOVE")
+	field(SIML, "$(FULL_PREFIX)SIM")
+    field(SIOL, "$(FULL_PREFIX)SIM:GALIL_INTERLOCK")
+    field(SDIS, "$(FULL_PREFIX)DISABLE")
+    info(INTEREST, "HIGH")
+}
+
+record(mbbi, "$(FULL_PREFIX)V8:STATUS") 
+{
+    field(DESC, "V8 status")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ")
+    field(SCAN, "1 second")
+	field(SHFT, 7)
+	field(NOBT, 2)
+	
+	field(ZRST, "CLOSED")
+	field(ONST, "OPEN")
+	field(TWST, "ERROR")
+	
+    field(SIML, "$(FULL_PREFIX)SIM")
+    field(SIOL, "$(FULL_PREFIX)SIM:V8:STATUS")
+	field(SDIS, "$(FULL_PREFIX)DISABLE")
+	
+	field(FLNK, "$(FULL_PREFIX)V8:_STATUSD.PROC")
+
+    info(INTEREST, "HIGH")
+}
+
+record(mbbiDirect, "$(FULL_PREFIX)V8:_STATUSD")
+{
+    field(DESC, "V8 bits")
+    field(DTYP, "Soft Channel")
+    field(INP,  "$(FULL_PREFIX)V8:STATUS NPP")
+	field(FLNK, "$(FULL_PREFIX)V8:OPEN.PROC")
+}
+
+record(bi, "$(FULL_PREFIX)V8:OPEN")
+{
+    field(DESC, "V8 open")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(INP,  "$(FULL_PREFIX)V8:_STATUSD.B0 NPP")
+    info(INTEREST, "HIGH")
+	field(FLNK, "$(FULL_PREFIX)V8:ERROR.PROC")
+}
+
+record(bi, "$(FULL_PREFIX)V8:ERROR")
+{
+    field(DESC, "V8 error")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(INP,  "$(FULL_PREFIX)V8:_STATUSD.B1 NPP")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(FULL_PREFIX)COMMON_ALARM") {
+	field(DESC, "Common alarm signal")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ_B15")
+	field(SCAN, "1 second")
+	field(SIML, "$(FULL_PREFIX)SIM")
+    field(SIOL, "$(FULL_PREFIX)SIM:COMMON_ALARM")
+    field(SDIS, "$(FULL_PREFIX)DISABLE")
+    info(INTEREST, "HIGH")
+}
+# DM1002               Seal supply pressure     0-4000 = 0-10 bar (BCD)
+# DM1003               Seal inflation pressure  0-4000 = 0-10 bar (BCD)
+
+
+
+# DM1004.00            Seal system status       Deflated
+# DM1004.01            Seal system status       Inflating
+# DM1004.02            Seal system status       Inflated
+# DM1004.03            Seal system status       Deflating
+
+record(mbbi, "$(FULL_PREFIX)SEAL:STATUS") {
+    field(DESC, "Seal system status")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, 1004, 5.0) FINS_DM_READ")
+    field(SCAN, "1 second")
+	field(NOBT, 4)
+	
+	field(ONST, "DEFLATED")
+	field(TWST, "INFLATING")
+	field(FRST, "INFLATED")
+	field(EIST, "DEFLATING")
+	
+    field(SIML, "$(FULL_PREFIX)SIM")
+    field(SIOL, "$(FULL_PREFIX)SIM:SEAL:STATUS")
+    field(SDIS, "$(FULL_PREFIX)DISABLE")
+	
+    info(INTEREST, "HIGH")
+}
+
+
+### Simulation Records ###
+
+record(longin, "$(FULL_PREFIX)SIM:HEARTBEAT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(FULL_PREFIX)SIM:MONITOR3:STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(FULL_PREFIX)SIM:SEAL:STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(FULL_PREFIX)SIM:FAST_SHUTTER:STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(FULL_PREFIX)SIM:MONITOR3:STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(FULL_PREFIX)SIM:DET_OVERCOUNT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(FULL_PREFIX)SIM:GALIL_INTERLOCK")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(FULL_PREFIX)SIM:COMMON_ALARM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+

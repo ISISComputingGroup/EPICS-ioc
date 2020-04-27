@@ -88,6 +88,29 @@
 
 # WR500.06          Overcount reset (momentary)
 
+file "$(TOP)/FINS-IOC-01App/Db/sans2d-general-status.template" {
+	{ FULL_PREFIX=$(P)$(Q), RECSIM="\$(RECSIM)", DEVSIM="\$(DEVSIM)" }
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/address-read.template" {
+	{ P="\$(P)", Q="\$(Q)", PORT="PLC", NAME="ADDR:1007", DESC="Read PLC address 1007", ADDR="1007" }
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/read-bits.template" {
+	pattern{ P, Q, READPV, NAME, ZNAM, ONAM, DESC }
+
+	{ "\$(P)", "\$(Q)", "ADDR:1007.B0", "G1:P1:PIRANNI", "ON", "OFF", "G1 - pump 1 piranni"}
+	{ "\$(P)", "\$(Q)", "ADDR:1007.B1", "G2:P3:PIRANNI", "ON", "OFF", "G2 - pump 3 piranni"}
+	{ "\$(P)", "\$(Q)", "ADDR:1007.B2", "G3:P3:PIRANNI", "ON", "OFF", "G3 - pump 3 piranni"}
+	{ "\$(P)", "\$(Q)", "ADDR:1007.B3", "G5:TANK:PIRANNI", "ON", "OFF", "G5 - tank piranni"}
+	{ "\$(P)", "\$(Q)", "ADDR:1007.B4", "TPG300_1:OK", "OK", "ERROR", "TPG300-1 OK"}
+	{ "\$(P)", "\$(Q)", "ADDR:1007.B5", "G4:GUIDE:PIRANNI", "ON", "OFF", "G4 - Guide piranni"}
+	{ "\$(P)", "\$(Q)", "ADDR:1007.B6", "G7:PIPE:PIRANNI", "ON", "OFF", "G7 - Tank pipe work piranni"}
+	{ "\$(P)", "\$(Q)", "ADDR:1007.B7", "G11:PUMP:PIRANNI", "ON", "OFF", "G11 - Pump piranni"}
+	{ "\$(P)", "\$(Q)", "ADDR:1007.B8", "G10:BUFFER:PIRANNI", "ON", "OFF", "G10 - Buffer (pump 1) Piranni"}
+	{ "\$(P)", "\$(Q)", "ADDR:1007.B9", "TPG300_2:OK", "OK", "ERROR", "TPG300-2 OK"}
+}
+
 file "$(TOP)/FINS-IOC-01App/Db/sans2d-pump-basics.template" {
     { FULL_PREFIX=$(P)$(Q), ADDR=1008, PUMP_NUM=1 }
     { FULL_PREFIX=$(P)$(Q), ADDR=1009, PUMP_NUM=2 }

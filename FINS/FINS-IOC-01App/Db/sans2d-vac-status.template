@@ -14,8 +14,8 @@ record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
 	
 	field(ONST, "ATMOSPHERE")
 	field(TWST, "VAC DOWN")
-	field(FRVL, "AT VACUUM")
-	field(EIVL, "VENTING")
+	field(FRST, "AT VACUUM")
+	field(EIST, "VENTING")
 	
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(SYSTEM):STATUS")
