@@ -1,0 +1,8 @@
+record(longin, "$(P)$(Q)HEARTBEAT")
+{
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, 19500, 5.0) FINS_DM_READ")
+	field(SCAN, ".5 second")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:HEARTBEAT")
+}

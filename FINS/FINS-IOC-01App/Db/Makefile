@@ -15,6 +15,7 @@ DB += wish-vacuum.db
 DB += zoom-vacuum.db
 DB += imat-plc-attn.db
 DB += imat-plc-press.db
+DB += he-recovery.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
