@@ -22,7 +22,7 @@ record(bi, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:STOP_OK") {
 
 record(calc, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:STOP_BAD") {
 	field(DESC, "Pump $(PUMP_NUM) emergency stop bad")
-	field(INPA,  "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:STOP_OK")
+	field(INPA,  "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:STOP_OK MS")
 	field(CALC, "!A")
 	field(ASG, "READONLY")
     info(INTEREST, "HIGH")

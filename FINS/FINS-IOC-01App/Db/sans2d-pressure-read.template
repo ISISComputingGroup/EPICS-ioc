@@ -17,7 +17,7 @@ record(ai, "$(FULL_PREFIX)SEAL:$(NAME):PRESS:RAW")
 record(calc, "$(FULL_PREFIX)SEAL:$(NAME):PRESS")
 {
     field(DESC, "Seal $(NAME) Pressure")
-	field(INPA, "$(FULL_PREFIX)SEAL:$(NAME):PRESS:RAW")
+	field(INPA, "$(FULL_PREFIX)SEAL:$(NAME):PRESS:RAW MS")
     field(EGU, "mbar")
     field(HOPR, "10000")
     field(LOPR, "0")

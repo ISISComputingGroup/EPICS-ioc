@@ -10,7 +10,7 @@ record(mbbiDirect, "$(P)$(Q)$(NAME)")
 {
     field(DESC, "$(DESC)")
     field(DTYP, "Soft Channel")
-    field(INP,  "$(P)$(Q)$(NAME):RAW CPP")
+    field(INP,  "$(P)$(Q)$(NAME):RAW CPP MS")
     field(SCAN, ".1 second")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(NAME)")
