@@ -50,41 +50,13 @@ record(longin, "$(FULL_PREFIX)HEARTBEAT")
     field(SDIS, "$(FULL_PREFIX)DISABLE")
 }
 
-record(mbbi, "$(FULL_PREFIX)MONITOR3:STATUS") 
-{
-    field(DESC, "Monitor 3 system status")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ")
-    field(SCAN, "1 second")
-	field(NOBT, 3)
-	
-	field(ONST, "IN")
-	field(TWST, "OUT")
-	field(FRST, "ERROR")
-	
-    field(SIML, "$(FULL_PREFIX)SIM")
-    field(SIOL, "$(FULL_PREFIX)SIM:MONITOR3:STATUS")
-	field(SDIS, "$(FULL_PREFIX)DISABLE")
-	
-	field(FLNK, "$(FULL_PREFIX)MONITOR3:_STATUSD.PROC")
-	
-    info(INTEREST, "HIGH")
-}
-
-record(mbbiDirect, "$(FULL_PREFIX)MONITOR3:_STATUSD")
-{
-    field(DESC, "Monitor Bits")
-    field(DTYP, "Soft Channel")
-    field(INP,  "$(FULL_PREFIX)MONITOR3:STATUS NPP")
-	field(FLNK, "$(FULL_PREFIX)MONITOR3:IN.PROC")
-}
-
 record(bi, "$(FULL_PREFIX)MONITOR3:IN")
 {
     field(DESC, "Monitor 3 in beam")
+	field(SCAN, ".5 second")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "$(FULL_PREFIX)MONITOR3:_STATUSD.B0 NPP")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B0 PP")
     info(INTEREST, "HIGH")
 	field(FLNK, "$(FULL_PREFIX)MONITOR3:OUT.PROC")
 }
@@ -94,7 +66,7 @@ record(bi, "$(FULL_PREFIX)MONITOR3:OUT")
     field(DESC, "Monitor 3 out of beam")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "$(FULL_PREFIX)MONITOR3:_STATUSD.B1 NPP")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B1 PP")
     info(INTEREST, "HIGH")
 	field(FLNK, "$(FULL_PREFIX)MONITOR3:ERROR.PROC")
 }
@@ -104,46 +76,33 @@ record(bi, "$(FULL_PREFIX)MONITOR3:ERROR")
     field(DESC, "Monitor 3 error")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "$(FULL_PREFIX)MONITOR3:_STATUSD.B2 NPP")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B2 PP")
     info(INTEREST, "HIGH")
+	field(FLNK, "$(FULL_PREFIX)MONITOR3:STATUS")
 }
 
-record(mbbi, "$(FULL_PREFIX)SHUTTER:STATUS") 
+record(mbbi, "$(FULL_PREFIX)MONITOR3:STATUS")
 {
-    field(DESC, "Fast shutter status")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ")
-    field(SCAN, "1 second")
-	field(SHFT, 3)
-	field(NOBT, 2)
-	
-	field(ZRST, "CLOSED")
-	field(ONST, "OPEN")
-	field(TWST, "ERROR")
-	
-    field(SIML, "$(FULL_PREFIX)SIM")
-    field(SIOL, "$(FULL_PREFIX)SIM:SHUTTER:STATUS")
-	field(SDIS, "$(FULL_PREFIX)DISABLE")
-	
-	field(FLNK, "$(FULL_PREFIX)SHUTTER:_STATUSD.PROC")
-
-    info(INTEREST, "HIGH")
-}
-
-record(mbbiDirect, "$(FULL_PREFIX)SHUTTER:_STATUSD")
-{
-    field(DESC, "Fast shutter bits")
-    field(DTYP, "Soft Channel")
-    field(INP,  "$(FULL_PREFIX)SHUTTER:STATUS NPP")
-	field(FLNK, "$(FULL_PREFIX)SHUTTER:OPEN.PROC")
+	field(DTYP, "Raw Soft Channel")
+    field(DESC, "Monitor 3 status")
+	field(INP,  "$(FULL_PREFIX)ADDR:1001 PP")
+	field(NOBT, "3")
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(FRST, "4")	
+    field(ONST, "IN")
+    field(TWST, "OUT")
+	field(FRST, "ERROR")
+    info(INTEREST, "MEDIUM")
 }
 
 record(bi, "$(FULL_PREFIX)SHUTTER:OPEN")
 {
     field(DESC, "Fast shutter open")
+	field(SCAN, ".5 second")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "$(FULL_PREFIX)SHUTTER:_STATUSD.B0 NPP")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B3 PP")
     info(INTEREST, "HIGH")
 	field(FLNK, "$(FULL_PREFIX)SHUTTER:ERROR.PROC")
 }
@@ -153,62 +112,41 @@ record(bi, "$(FULL_PREFIX)SHUTTER:ERROR")
     field(DESC, "Fast shutter error")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "$(FULL_PREFIX)SHUTTER:_STATUSD.B1 NPP")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B4 PP")
+	field(FLNK, "$(FULL_PREFIX)SHUTTER:STATUS.PROC")
     info(INTEREST, "HIGH")
+}
+
+record(mbbi, "$(FULL_PREFIX)SHUTTER:STATUS")
+{
+	field(DTYP, "Raw Soft Channel")
+    field(DESC, "Shutter status")
+	field(INP,  "$(FULL_PREFIX)ADDR:1001 PP")
+	field(SHFT, "3")
+	field(NOBT, "2")
+	field(ZRVL, "0")
+	field(ONVL, "1")
+	field(TWVL, "2")
+    field(ZRST, "CLOSED")	
+    field(ONST, "OPEN")
+    field(TWST, "ERROR")
+    info(INTEREST, "MEDIUM")
 }
 
 record(bi, "$(FULL_PREFIX)DET_OVERCOUNT") {
 	field(DESC, "Detector overcount")
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ_B5")
-	field(SCAN, "1 second")
-	field(SIML, "$(FULL_PREFIX)SIM")
-    field(SIOL, "$(FULL_PREFIX)SIM:DET_OVERCOUNT")
-    field(SDIS, "$(FULL_PREFIX)DISABLE")
+	field(INP,  "$(FULL_PREFIX)ADDR:1001.B5 PP")
+	field(SCAN, ".5 second")
     info(INTEREST, "HIGH")
 }
 
 record(bi, "$(FULL_PREFIX)GALIL_INTERLOCK") {
 	field(DESC, "Galil permission to move")
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ_B6")
-	field(SCAN, "1 second")
+	field(INP,  "$(FULL_PREFIX)ADDR:1001.B6 PP")
+	field(SCAN, ".5 second")
 	field(ONAM, "CAN_MOVE")
 	field(ZNAM, "CAN'T_MOVE")
-	field(SIML, "$(FULL_PREFIX)SIM")
-    field(SIOL, "$(FULL_PREFIX)SIM:GALIL_INTERLOCK")
-    field(SDIS, "$(FULL_PREFIX)DISABLE")
     info(INTEREST, "HIGH")
-}
-
-record(mbbi, "$(FULL_PREFIX)V8:STATUS") 
-{
-    field(DESC, "V8 status")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ")
-    field(SCAN, "1 second")
-	field(SHFT, 7)
-	field(NOBT, 2)
-	
-	field(ZRST, "CLOSED")
-	field(ONST, "OPEN")
-	field(TWST, "ERROR")
-	
-    field(SIML, "$(FULL_PREFIX)SIM")
-    field(SIOL, "$(FULL_PREFIX)SIM:V8:STATUS")
-	field(SDIS, "$(FULL_PREFIX)DISABLE")
-	
-	field(FLNK, "$(FULL_PREFIX)V8:_STATUSD.PROC")
-
-    info(INTEREST, "HIGH")
-}
-
-record(mbbiDirect, "$(FULL_PREFIX)V8:_STATUSD")
-{
-    field(DESC, "V8 bits")
-    field(DTYP, "Soft Channel")
-    field(INP,  "$(FULL_PREFIX)V8:STATUS NPP")
-	field(FLNK, "$(FULL_PREFIX)V8:OPEN.PROC")
 }
 
 record(bi, "$(FULL_PREFIX)V8:OPEN")
@@ -216,7 +154,8 @@ record(bi, "$(FULL_PREFIX)V8:OPEN")
     field(DESC, "V8 open")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "$(FULL_PREFIX)V8:_STATUSD.B0 NPP")
+	field(SCAN, ".5 second")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B7 PP")
     info(INTEREST, "HIGH")
 	field(FLNK, "$(FULL_PREFIX)V8:ERROR.PROC")
 }
@@ -226,18 +165,14 @@ record(bi, "$(FULL_PREFIX)V8:ERROR")
     field(DESC, "V8 error")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "$(FULL_PREFIX)V8:_STATUSD.B1 NPP")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B8 PP")
     info(INTEREST, "HIGH")
 }
 
 record(bi, "$(FULL_PREFIX)COMMON_ALARM") {
 	field(DESC, "Common alarm signal")
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ_B15")
-	field(SCAN, "1 second")
-	field(SIML, "$(FULL_PREFIX)SIM")
-    field(SIOL, "$(FULL_PREFIX)SIM:COMMON_ALARM")
-    field(SDIS, "$(FULL_PREFIX)DISABLE")
+	field(SCAN, ".5 second")
+	field(INP,  "$(FULL_PREFIX)ADDR:1001.B15 PP")
     info(INTEREST, "HIGH")
 }
 
@@ -305,12 +240,6 @@ record(bi, "$(FULL_PREFIX)SIM:DET_OVERCOUNT")
 }
 
 record(bi, "$(FULL_PREFIX)SIM:GALIL_INTERLOCK")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-}
-
-record(bi, "$(FULL_PREFIX)SIM:COMMON_ALARM")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")

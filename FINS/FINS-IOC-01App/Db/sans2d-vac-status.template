@@ -12,6 +12,11 @@ record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
     field(SCAN, "1 second")
 	field(NOBT, 4)
 	
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(FRVL, "4")
+	field(EIVL, "8")
+	
 	field(ONST, "ATMOSPHERE")
 	field(TWST, "VAC DOWN")
 	field(FRST, "AT VACUUM")

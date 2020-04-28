@@ -1,4 +1,4 @@
-# DM$(ADDR)               Seal $(NAME) pressure     0-4000 = 0-10 bar (BCD)
+# DM$(ADDR)               Seal $(NAME) pressure     0-4000 = 0-10,000 bar (BCD)
 
 # FULL_PREFIX = Instrument and IOC prefix
 
@@ -6,7 +6,7 @@ record(ai, "$(FULL_PREFIX)SEAL:$(NAME):PRESS:RAW")
 {
 	field(DTYP, "asynInt32")
 	field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ")
-	field(SCAN, "1 second")
+	field(SCAN, ".5 second")
     field(HOPR, "4000")
     field(LOPR, "0")
     field(FLNK, "$(FULL_PREFIX)SEAL:$(NAME):PRESS")
@@ -18,10 +18,10 @@ record(calc, "$(FULL_PREFIX)SEAL:$(NAME):PRESS")
 {
     field(DESC, "Seal $(NAME) Pressure")
 	field(INPA, "$(FULL_PREFIX)SEAL:$(NAME):PRESS:RAW")
-    field(EGU, "bar")
-    field(HOPR, "10")
+    field(EGU, "mbar")
+    field(HOPR, "10000")
     field(LOPR, "0")
-    field(CALC, "A * 10 / 4000")
+    field(CALC, "A * 2.5")
     field(ASG, "READONLY")
 	info(archive, "VAL")
     info(INTEREST, "HIGH")
