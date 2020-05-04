@@ -6,3 +6,11 @@ record(longin, "$(P)$(Q)HEARTBEAT")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:HEARTBEAT")
 }
+
+### SIMULATION RECORDS ###
+
+record(longin, ""$(P)$(Q)SIM:HEARTBEAT"")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
