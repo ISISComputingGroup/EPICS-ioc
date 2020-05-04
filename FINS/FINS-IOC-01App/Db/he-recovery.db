@@ -18,6 +18,16 @@ record(longin, "$(P)$(Q)HE_PURITY")
     field(SIOL, "$(P)$(Q)SIM:HE_PURITY")
 }
 
+record(longin, "$(P)$(Q)DEW_POINT")
+{
+	field(DESC, "Dew Point the recovered helium gas")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, 19534, 5.0) FINS_DM_READ")
+	field(SCAN, ".5 second")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:DEW_POINT")
+}
+
 ### SIMULATION RECORDS ###
 
 record(bo, "$(P)$(Q)SIM")
@@ -31,6 +41,12 @@ record(bo, "$(P)$(Q)SIM")
 }
 
 record(longin, ""$(P)$(Q)SIM:HEARTBEAT"")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
+
+record(longin, ""$(P)$(Q)SIM:DEW_POINT"")
 {
 	field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")
