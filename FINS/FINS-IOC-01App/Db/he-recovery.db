@@ -1,5 +1,6 @@
 record(longin, "$(P)$(Q)HEARTBEAT")
 {
+	field(DESC, "Heartbeat to show PLC is online")
 	field(DTYP, "asynInt32")
 	field(INP,  "@asyn(PLC, 19500, 5.0) FINS_DM_READ")
 	field(SCAN, ".5 second")
@@ -9,6 +10,7 @@ record(longin, "$(P)$(Q)HEARTBEAT")
 
 record(longin, "$(P)$(Q)HE_PURITY")
 {
+	field(DESC, "Purity of the recovered helium gas")
 	field(DTYP, "asynInt32")
 	field(INP,  "@asyn(PLC, 19533, 5.0) FINS_DM_READ")
 	field(SCAN, ".5 second")
