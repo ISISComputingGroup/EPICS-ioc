@@ -7,7 +7,26 @@ record(longin, "$(P)$(Q)HEARTBEAT")
     field(SIOL, "$(P)$(Q)SIM:HEARTBEAT")
 }
 
+record(longin, "$(P)$(Q)HE_PURITY")
+{
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, 19533, 5.0) FINS_DM_READ")
+	field(SCAN, ".5 second")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:HE_PURITY")
+}
+
 ### SIMULATION RECORDS ###
+
+record(bo, "$(P)$(Q)SIM")
+{
+	field(DESC, "Enables recsim mode")
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+	field(ZNAM, "NO")
+    field(ONAM, "YES")
+	field(VAL, "$(RECSIM=0)")	
+}
 
 record(longin, ""$(P)$(Q)SIM:HEARTBEAT"")
 {
