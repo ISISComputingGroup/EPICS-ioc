@@ -24,6 +24,7 @@ record(bo, "$(P)POL:SP")
     field(ONAM, "-")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:POL:SP")
+    info(archive, "VAL")
 }
 alias("$(P)POL:SP", "$(P)POL:SP:RBV")
 
