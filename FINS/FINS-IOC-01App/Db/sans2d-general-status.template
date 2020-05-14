@@ -76,7 +76,6 @@ record(bi, "$(FULL_PREFIX)MONITOR3:ERROR")
     field(ONAM, "ERROR")
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B2 PP MS")
     field(OSV, "MAJOR")
-    info(alarm, "Vacuum")
     info(INTEREST, "MEDIUM")
     field(FLNK, "$(FULL_PREFIX)MONITOR3:STATUS")
 }
@@ -89,22 +88,31 @@ record(mbbi, "$(FULL_PREFIX)MONITOR3:STATUS")
     field(NOBT, "3")
     field(ONVL, "1")
     field(TWVL, "2")
-    field(FRVL, "4")    
+    field(THVL, "3")
+    field(FRVL, "4")
+    field(FVVL, "5")
+    field(SXVL, "6")
     field(ONST, "IN")
     field(TWST, "OUT")
+    field(THST, "UNKNOWN")
+    field(THSV, "MAJOR")
     field(FRST, "ERROR")
     field(FRSV, "MAJOR")
+    field(FVST, "ERROR(IN)")
+    field(FVSV, "MAJOR")
+    field(SXST, "ERROR(OUT)")
+    field(SXSV, "MAJOR")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
+    info(alarm, "Vacuum")
 }
 
 record(bi, "$(FULL_PREFIX)SHUTTER:OPEN")
 {
     field(DESC, "Fast shutter open")
-    field(SCAN, ".5 second")
     field(ZNAM, "")
     field(ONAM, "OPEN")
-    field(INP,  "$(FULL_PREFIX)ADDR:1001.B3 PP MS")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B3 CP MS")
     info(INTEREST, "HIGH")
     field(FLNK, "$(FULL_PREFIX)SHUTTER:ERROR.PROC")
 }
@@ -131,16 +139,20 @@ record(mbbi, "$(FULL_PREFIX)SHUTTER:STATUS")
     field(ZRVL, "0")
     field(ONVL, "1")
     field(TWVL, "2")
+    field(THVL, "3")
     field(ZRST, "CLOSED")
     field(ONST, "OPEN")
     field(TWST, "ERROR")
+    field(TWSV, "MAJOR")
+    field(THST, "ERROR(OPEN)")
+    field(THSV, "MAJOR")
     info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }
 
 record(bi, "$(FULL_PREFIX)GALIL_INTERLOCK") {
     field(DESC, "Galil permission to move")
-    field(INP,  "$(FULL_PREFIX)ADDR:1001.B6 PP MS")
-    field(SCAN, ".5 second")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B6 CP MS")
     field(ONAM, "CAN MOVE")
     field(ZNAM, "CAN NOT MOVE")
     info(INTEREST, "HIGH")
@@ -150,8 +162,7 @@ record(bi, "$(FULL_PREFIX)V8:OPEN")
 {
     field(DESC, "V8 open")
     field(ONAM, "OPEN")
-    field(SCAN, ".5 second")
-    field(INP,  "$(FULL_PREFIX)ADDR:1001.B7 PP MS")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B7 CP MS")
     info(INTEREST, "HIGH")
     field(FLNK, "$(FULL_PREFIX)V8:ERROR.PROC")
 }
@@ -177,19 +188,22 @@ record(mbbi, "$(FULL_PREFIX)V8:STATUS")
     field(ZRVL, "0")
     field(ONVL, "1")
     field(TWVL, "2")
+    field(THVL, "3")
     field(ZRST, "CLOSED")
     field(ONST, "OPEN")
     field(TWST, "ERROR")
+    field(TWSV, "MAJOR")
+    field(THST, "ERROR(OPEN)")
+    field(THSV, "MAJOR")
     info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }
 
 record(bi, "$(FULL_PREFIX)COMMON_ALARM") {
     field(DESC, "Common alarm signal")
-    field(SCAN, "1 second")
-    field(DTYP, "asynInt32")
     field(ZNAM, "ERROR")
     field(ONAM, "OK")
-    field(INP,  "$(FULL_PREFIX)ADDR:1001.BF PP MS")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.BF CP MS")
     field(FLNK, "$(FULL_PREFIX)COMMON_ALARM:BAD.PROC")
     field(ZSV, "MAJOR")
     info(alarm, "Vacuum")
@@ -198,10 +212,11 @@ record(bi, "$(FULL_PREFIX)COMMON_ALARM") {
 
 record(calc, "$(FULL_PREFIX)COMMON_ALARM:BAD") {
     field(DESC, "Common alarm bad")
-    field(INPA, "$(FULL_PREFIX)COMMON_ALARM MS")
+    field(INPA, "$(FULL_PREFIX)COMMON_ALARM CP MS")
     field(CALC, "!A")
     field(ASG, "READONLY")
     info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 # DM1004.00            Seal system status       Deflated
@@ -216,6 +231,11 @@ record(mbbi, "$(FULL_PREFIX)SEAL:STATUS") {
     field(SCAN, "1 second")
     field(NOBT, 4)
     
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(FRVL, "4")
+    field(EIST, "8")
+    
     field(ONST, "DEFLATED")
     field(TWST, "INFLATING")
     field(FRST, "INFLATED")
@@ -226,6 +246,7 @@ record(mbbi, "$(FULL_PREFIX)SEAL:STATUS") {
     field(SDIS, "$(FULL_PREFIX)DISABLE")
     
     info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 
@@ -241,5 +262,10 @@ record(mbbi, "$(FULL_PREFIX)SIM:SEAL:STATUS")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
+    
+    field(ONST, "DEFLATED")
+    field(TWST, "INFLATING")
+    field(FRST, "INFLATED")
+    field(EIST, "DEFLATING")
 }
 
