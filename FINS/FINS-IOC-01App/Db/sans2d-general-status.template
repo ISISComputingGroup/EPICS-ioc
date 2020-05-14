@@ -52,12 +52,12 @@ record(longin, "$(FULL_PREFIX)HEARTBEAT")
 record(bi, "$(FULL_PREFIX)MONITOR3:IN")
 {
     field(DESC, "Monitor 3 in beam")
-	field(SCAN, ".5 second")
+    field(SCAN, ".5 second")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B0 PP MS")
     info(INTEREST, "HIGH")
-	field(FLNK, "$(FULL_PREFIX)MONITOR3:OUT.PROC")
+    field(FLNK, "$(FULL_PREFIX)MONITOR3:OUT.PROC")
 }
 
 record(bi, "$(FULL_PREFIX)MONITOR3:OUT")
@@ -67,7 +67,7 @@ record(bi, "$(FULL_PREFIX)MONITOR3:OUT")
     field(ONAM, "YES")
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B1 PP MS")
     info(INTEREST, "HIGH")
-	field(FLNK, "$(FULL_PREFIX)MONITOR3:ERROR.PROC")
+    field(FLNK, "$(FULL_PREFIX)MONITOR3:ERROR.PROC")
 }
 
 record(bi, "$(FULL_PREFIX)MONITOR3:ERROR")
@@ -76,36 +76,36 @@ record(bi, "$(FULL_PREFIX)MONITOR3:ERROR")
     field(ZNAM, "OK")
     field(ONAM, "ERROR")
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B2 PP MS")
-	field(OSV, "MAJOR")
-	info(alarm, "Vacuum")
+    field(OSV, "MAJOR")
+    info(alarm, "Vacuum")
     info(INTEREST, "HIGH")
-	field(FLNK, "$(FULL_PREFIX)MONITOR3:STATUS")
+    field(FLNK, "$(FULL_PREFIX)MONITOR3:STATUS")
 }
 
 record(mbbi, "$(FULL_PREFIX)MONITOR3:STATUS")
 {
-	field(DTYP, "Raw Soft Channel")
+    field(DTYP, "Raw Soft Channel")
     field(DESC, "Monitor 3 status")
-	field(INP,  "$(FULL_PREFIX)ADDR:1001 PP MS")
-	field(NOBT, "3")
-	field(ONVL, "1")
-	field(TWVL, "2")
-	field(FRVL, "4")	
+    field(INP,  "$(FULL_PREFIX)ADDR:1001 PP MS")
+    field(NOBT, "3")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(FRVL, "4")    
     field(ONST, "IN")
     field(TWST, "OUT")
-	field(FRST, "ERROR")
+    field(FRST, "ERROR")
     info(INTEREST, "HIGH")
 }
 
 record(bi, "$(FULL_PREFIX)SHUTTER:OPEN")
 {
     field(DESC, "Fast shutter open")
-	field(SCAN, ".5 second")
+    field(SCAN, ".5 second")
     field(ZNAM, "")
     field(ONAM, "OPEN")
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B3 PP MS")
     info(INTEREST, "HIGH")
-	field(FLNK, "$(FULL_PREFIX)SHUTTER:ERROR.PROC")
+    field(FLNK, "$(FULL_PREFIX)SHUTTER:ERROR.PROC")
 }
 
 record(bi, "$(FULL_PREFIX)SHUTTER:ERROR")
@@ -114,41 +114,41 @@ record(bi, "$(FULL_PREFIX)SHUTTER:ERROR")
     field(ZNAM, "OK")
     field(ONAM, "ERROR")
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B4 PP MS")
-	field(FLNK, "$(FULL_PREFIX)SHUTTER:STATUS.PROC")
-	field(OSV, "MAJOR")
-	info(alarm, "Vacuum")
+    field(FLNK, "$(FULL_PREFIX)SHUTTER:STATUS.PROC")
+    field(OSV, "MAJOR")
+    info(alarm, "Vacuum")
     info(INTEREST, "HIGH")
 }
 
 record(mbbi, "$(FULL_PREFIX)SHUTTER:STATUS")
 {
-	field(DTYP, "Raw Soft Channel")
+    field(DTYP, "Raw Soft Channel")
     field(DESC, "Shutter status")
-	field(INP,  "$(FULL_PREFIX)ADDR:1001 PP MS")
-	field(SHFT, "3")
-	field(NOBT, "2")
-	field(ZRVL, "0")
-	field(ONVL, "1")
-	field(TWVL, "2")
-    field(ZRST, "CLOSED")	
+    field(INP,  "$(FULL_PREFIX)ADDR:1001 PP MS")
+    field(SHFT, "3")
+    field(NOBT, "2")
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(ZRST, "CLOSED")   
     field(ONST, "OPEN")
     field(TWST, "ERROR")
     info(INTEREST, "MEDIUM")
 }
 
 record(bi, "$(FULL_PREFIX)DET_OVERCOUNT") {
-	field(DESC, "Detector overcount")
-	field(INP,  "$(FULL_PREFIX)ADDR:1001.B5 PP MS")
-	field(SCAN, ".5 second")
+    field(DESC, "Detector overcount")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B5 PP MS")
+    field(SCAN, ".5 second")
     info(INTEREST, "HIGH")
 }
 
 record(bi, "$(FULL_PREFIX)GALIL_INTERLOCK") {
-	field(DESC, "Galil permission to move")
-	field(INP,  "$(FULL_PREFIX)ADDR:1001.B6 PP MS")
-	field(SCAN, ".5 second")
-	field(ONAM, "CAN MOVE")
-	field(ZNAM, "CAN'T MOVE")
+    field(DESC, "Galil permission to move")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B6 PP MS")
+    field(SCAN, ".5 second")
+    field(ONAM, "CAN MOVE")
+    field(ZNAM, "CAN'T MOVE")
     info(INTEREST, "HIGH")
 }
 
@@ -156,10 +156,10 @@ record(bi, "$(FULL_PREFIX)V8:OPEN")
 {
     field(DESC, "V8 open")
     field(ONAM, "OPEN")
-	field(SCAN, ".5 second")
+    field(SCAN, ".5 second")
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B7 PP MS")
     info(INTEREST, "HIGH")
-	field(FLNK, "$(FULL_PREFIX)V8:ERROR.PROC")
+    field(FLNK, "$(FULL_PREFIX)V8:ERROR.PROC")
 }
 
 record(bi, "$(FULL_PREFIX)V8:ERROR")
@@ -168,29 +168,29 @@ record(bi, "$(FULL_PREFIX)V8:ERROR")
     field(ZNAM, "OK")
     field(ONAM, "ERROR")
     field(INP, "$(FULL_PREFIX)ADDR:1001.B8 PP MS")
-	field(OSV, "MAJOR")
-	info(alarm, "Vacuum")
+    field(OSV, "MAJOR")
+    info(alarm, "Vacuum")
     info(INTEREST, "HIGH")
 }
 
 record(bi, "$(FULL_PREFIX)COMMON_ALARM") {
-	field(DESC, "Common alarm signal")
-	field(SCAN, "1 second")
-	field(DTYP, "asynInt32")
-	field(ZNAM, "ERROR")
+    field(DESC, "Common alarm signal")
+    field(SCAN, "1 second")
+    field(DTYP, "asynInt32")
+    field(ZNAM, "ERROR")
     field(ONAM, "OK")
-	field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ_B15")
-	field(FLNK, "$(FULL_PREFIX)COMMON_ALARM:BAD.PROC")
-	field(ZSV, "MAJOR")
-	info(alarm, "Vacuum")
+    field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ_B15")
+    field(FLNK, "$(FULL_PREFIX)COMMON_ALARM:BAD.PROC")
+    field(ZSV, "MAJOR")
+    info(alarm, "Vacuum")
     info(INTEREST, "LOW")
 }
 
 record(calc, "$(FULL_PREFIX)COMMON_ALARM:BAD") {
-	field(DESC, "Common alarm bad")
-	field(INPA, "$(FULL_PREFIX)COMMON_ALARM MS")
-	field(CALC, "!A")
-	field(ASG, "READONLY")
+    field(DESC, "Common alarm bad")
+    field(INPA, "$(FULL_PREFIX)COMMON_ALARM MS")
+    field(CALC, "!A")
+    field(ASG, "READONLY")
     info(INTEREST, "HIGH")
 }
 
@@ -204,17 +204,17 @@ record(mbbi, "$(FULL_PREFIX)SEAL:STATUS") {
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(PLC, 1004, 5.0) FINS_DM_READ")
     field(SCAN, "1 second")
-	field(NOBT, 4)
-	
-	field(ONST, "DEFLATED")
-	field(TWST, "INFLATING")
-	field(FRST, "INFLATED")
-	field(EIST, "DEFLATING")
-	
+    field(NOBT, 4)
+    
+    field(ONST, "DEFLATED")
+    field(TWST, "INFLATING")
+    field(FRST, "INFLATED")
+    field(EIST, "DEFLATING")
+    
     field(SIML, "$(FULL_PREFIX)SIM")
     field(SIOL, "$(FULL_PREFIX)SIM:SEAL:STATUS")
     field(SDIS, "$(FULL_PREFIX)DISABLE")
-	
+    
     info(INTEREST, "HIGH")
 }
 

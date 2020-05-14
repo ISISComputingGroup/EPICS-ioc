@@ -10,21 +10,21 @@ record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ")
     field(SCAN, "1 second")
-	field(NOBT, 4)
-	
-	field(ONVL, "1")
-	field(TWVL, "2")
-	field(FRVL, "4")
-	field(EIVL, "8")
-	
-	field(ONST, "ATMOSPHERE")
-	field(TWST, "VAC DOWN")
-	field(FRST, "AT VACUUM")
-	field(EIST, "VENTING")
-	
+    field(NOBT, 4)
+    
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(FRVL, "4")
+    field(EIVL, "8")
+    
+    field(ONST, "ATMOSPHERE")
+    field(TWST, "VAC DOWN")
+    field(FRST, "AT VACUUM")
+    field(EIST, "VENTING")
+    
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(SYSTEM):STATUS")
-	
+    
     info(INTEREST, "HIGH")
 }
 

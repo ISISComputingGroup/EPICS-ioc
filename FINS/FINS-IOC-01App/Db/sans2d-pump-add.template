@@ -1,61 +1,61 @@
-# $(ADDR).02	           Pump $(PUMP_NUM) status            Emergency stop button - OK
-# $(ADDR).03	           Pump $(PUMP_NUM) status            SP Guard Warning
-# $(ADDR).04	           Pump $(PUMP_NUM) status            SP Guard Fault
+# $(ADDR).02               Pump $(PUMP_NUM) status            Emergency stop button - OK
+# $(ADDR).03               Pump $(PUMP_NUM) status            SP Guard Warning
+# $(ADDR).04               Pump $(PUMP_NUM) status            SP Guard Fault
 
 # FULL_PREFIX = Instrument and IOC prefix
 
 record(bi, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:STOP_OK") {
-	field(DESC, "Pump $(PUMP_NUM) emergency stop OK")
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ_B2")
-	field(ZNAM, "STOP BAD")
-	field(ONAM, "STOP OK")
-	field(SCAN, "1 second")
-	field(SIML, "$(FULL_PREFIX)SIM")
+    field(DESC, "Pump $(PUMP_NUM) emergency stop OK")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ_B2")
+    field(ZNAM, "STOP BAD")
+    field(ONAM, "STOP OK")
+    field(SCAN, "1 second")
+    field(SIML, "$(FULL_PREFIX)SIM")
     field(SIOL, "$(FULL_PREFIX)SIM:PUMP$(PUMP_NUM)_STAT:STOP_OK")
     field(SDIS, "$(FULL_PREFIX)DISABLE")
-	field(FLNK, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:STOP_BAD.PROC")
+    field(FLNK, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:STOP_BAD.PROC")
     info(INTEREST, "LOW")
-	field(ZSV, "MAJOR")
-	info(alarm, "Vacuum")
+    field(ZSV, "MAJOR")
+    info(alarm, "Vacuum")
 }
 
 record(calc, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:STOP_BAD") {
-	field(DESC, "Pump $(PUMP_NUM) emergency stop bad")
-	field(INPA,  "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:STOP_OK MS")
-	field(CALC, "!A")
-	field(ASG, "READONLY")
+    field(DESC, "Pump $(PUMP_NUM) emergency stop bad")
+    field(INPA,  "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:STOP_OK MS")
+    field(CALC, "!A")
+    field(ASG, "READONLY")
     info(INTEREST, "HIGH")
 }
 
 record(bi, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:GUARD_WARN") {
-	field(DESC, "Pump $(PUMP_NUM) SP guard warning")
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ_B3")
-	field(SCAN, "1 second")
-	field(ZNAM, "OK")
-	field(ONAM, "WARN")
-	field(SIML, "$(FULL_PREFIX)SIM")
+    field(DESC, "Pump $(PUMP_NUM) SP guard warning")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ_B3")
+    field(SCAN, "1 second")
+    field(ZNAM, "OK")
+    field(ONAM, "WARN")
+    field(SIML, "$(FULL_PREFIX)SIM")
     field(SIOL, "$(FULL_PREFIX)SIM:PUMP$(PUMP_NUM)_STAT:GUARD_WARN")
     field(SDIS, "$(FULL_PREFIX)DISABLE")
     info(INTEREST, "HIGH")
-	field(OSV, "MINOR")
-	info(alarm, "Vacuum")
+    field(OSV, "MINOR")
+    info(alarm, "Vacuum")
 }
 
 record(bi, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:GUARD_FAULT") {
-	field(DESC, "Pump $(PUMP_NUM) SP guard warning")
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ_B4")
-	field(SCAN, "1 second")
-	field(ZNAM, "OK")
-	field(ONAM, "ERROR")
-	field(SIML, "$(FULL_PREFIX)SIM")
+    field(DESC, "Pump $(PUMP_NUM) SP guard warning")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ_B4")
+    field(SCAN, "1 second")
+    field(ZNAM, "OK")
+    field(ONAM, "ERROR")
+    field(SIML, "$(FULL_PREFIX)SIM")
     field(SIOL, "$(FULL_PREFIX)SIM:PUMP$(PUMP_NUM)_STAT:GUARD_FAULT")
     field(SDIS, "$(FULL_PREFIX)DISABLE")
     info(INTEREST, "HIGH")
-	field(OSV, "MAJOR")
-	info(alarm, "Vacuum")
+    field(OSV, "MAJOR")
+    info(alarm, "Vacuum")
 }
 
 ### Simulation Records ###
