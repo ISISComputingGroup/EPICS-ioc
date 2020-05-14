@@ -22,6 +22,8 @@ record(bi, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:OVERLOAD") {
     field(SIML, "$(FULL_PREFIX)SIM")
     field(SIOL, "$(FULL_PREFIX)SIM:PUMP$(PUMP_NUM)_STAT:OVERLOAD")
     field(SDIS, "$(FULL_PREFIX)DISABLE")
+    field(OSV, "MAJOR")
+    info(alarm, "Vacuum")
     info(INTEREST, "HIGH")
 }
 

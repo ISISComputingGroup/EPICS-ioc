@@ -9,6 +9,7 @@ record(bi, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:V$(VALVE_NUM)_OPEN") {
     field(INP,  "@asyn(PLC, $(ADDR), 5.0) $(BIT0)")
     field(SCAN, "1 second")
     field(ONAM, "OPEN")
+    field(ZNAM, "CLOSED")
     field(SIML, "$(FULL_PREFIX)SIM")
     field(SIOL, "$(FULL_PREFIX)SIM:PUMP$(PUMP_NUM)_STAT:V$(VALVE_NUM)_OPEN")
     field(SDIS, "$(FULL_PREFIX)DISABLE")

@@ -5,7 +5,7 @@
 # DM1001.02            General                  Monitor 3 Error beam
 # DM1001.03            General                  Fast Shutter Open
 # DM1001.04            General                  Fast Shutter Error
-# DM1001.05            General                  Detector Overcount
+# DM1001.05            General                  Detector Overcount (no longer used)
 # DM1001.06            General                  Galil permission to move interlock
 # DM1001.07            General                  V8 Open
 # DM1001.08            General                  V8 Error
@@ -52,11 +52,10 @@ record(longin, "$(FULL_PREFIX)HEARTBEAT")
 record(bi, "$(FULL_PREFIX)MONITOR3:IN")
 {
     field(DESC, "Monitor 3 in beam")
-    field(SCAN, ".5 second")
     field(ZNAM, "NO")
     field(ONAM, "YES")
-    field(INP,  "$(FULL_PREFIX)ADDR:1001.B0 PP MS")
-    info(INTEREST, "HIGH")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B0 CP MS")
+    info(INTEREST, "MEDIUM")
     field(FLNK, "$(FULL_PREFIX)MONITOR3:OUT.PROC")
 }
 
@@ -66,7 +65,7 @@ record(bi, "$(FULL_PREFIX)MONITOR3:OUT")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B1 PP MS")
-    info(INTEREST, "HIGH")
+    info(INTEREST, "MEDIUM")
     field(FLNK, "$(FULL_PREFIX)MONITOR3:ERROR.PROC")
 }
 
@@ -78,7 +77,7 @@ record(bi, "$(FULL_PREFIX)MONITOR3:ERROR")
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B2 PP MS")
     field(OSV, "MAJOR")
     info(alarm, "Vacuum")
-    info(INTEREST, "HIGH")
+    info(INTEREST, "MEDIUM")
     field(FLNK, "$(FULL_PREFIX)MONITOR3:STATUS")
 }
 
@@ -94,7 +93,9 @@ record(mbbi, "$(FULL_PREFIX)MONITOR3:STATUS")
     field(ONST, "IN")
     field(TWST, "OUT")
     field(FRST, "ERROR")
+    field(FRSV, "MAJOR")
     info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(bi, "$(FULL_PREFIX)SHUTTER:OPEN")
@@ -130,17 +131,10 @@ record(mbbi, "$(FULL_PREFIX)SHUTTER:STATUS")
     field(ZRVL, "0")
     field(ONVL, "1")
     field(TWVL, "2")
-    field(ZRST, "CLOSED")   
+    field(ZRST, "CLOSED")
     field(ONST, "OPEN")
     field(TWST, "ERROR")
     info(INTEREST, "MEDIUM")
-}
-
-record(bi, "$(FULL_PREFIX)DET_OVERCOUNT") {
-    field(DESC, "Detector overcount")
-    field(INP,  "$(FULL_PREFIX)ADDR:1001.B5 PP MS")
-    field(SCAN, ".5 second")
-    info(INTEREST, "HIGH")
 }
 
 record(bi, "$(FULL_PREFIX)GALIL_INTERLOCK") {
@@ -148,7 +142,7 @@ record(bi, "$(FULL_PREFIX)GALIL_INTERLOCK") {
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B6 PP MS")
     field(SCAN, ".5 second")
     field(ONAM, "CAN MOVE")
-    field(ZNAM, "CAN'T MOVE")
+    field(ZNAM, "CAN NOT MOVE")
     info(INTEREST, "HIGH")
 }
 
@@ -173,13 +167,29 @@ record(bi, "$(FULL_PREFIX)V8:ERROR")
     info(INTEREST, "HIGH")
 }
 
+record(mbbi, "$(FULL_PREFIX)V8:STATUS")
+{
+    field(DTYP, "Raw Soft Channel")
+    field(DESC, "V8 status")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001 PP MS")
+    field(SHFT, "7")
+    field(NOBT, "2")
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(ZRST, "CLOSED")
+    field(ONST, "OPEN")
+    field(TWST, "ERROR")
+    info(INTEREST, "MEDIUM")
+}
+
 record(bi, "$(FULL_PREFIX)COMMON_ALARM") {
     field(DESC, "Common alarm signal")
     field(SCAN, "1 second")
     field(DTYP, "asynInt32")
     field(ZNAM, "ERROR")
     field(ONAM, "OK")
-    field(INP,  "@asyn(PLC, 1001, 5.0) FINS_DM_READ_B15")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.BF PP MS")
     field(FLNK, "$(FULL_PREFIX)COMMON_ALARM:BAD.PROC")
     field(ZSV, "MAJOR")
     info(alarm, "Vacuum")

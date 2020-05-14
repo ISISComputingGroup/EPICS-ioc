@@ -8,7 +8,7 @@
 # DM1001.02            General                  Monitor 3 Error beam
 # DM1001.03            General                  Fast Shutter Open
 # DM1001.04            General                  Fast Shutter Error
-# DM1001.05            General                  Detector Overcount
+# DM1001.05            General                  Detector Overcount (no longer used)
 # DM1001.06            General                  Galil permission to move interlock
 # DM1001.07            General                  V8 Open
 # DM1001.08            General                  V8 Error
@@ -98,7 +98,7 @@ file "$(TOP)/FINS-IOC-01App/Db/sans2d-general-status.template" {
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/read-bits.template" {
-    pattern{ P, Q, READPV, NAME, ZNAM, ONAM, DESC }
+    pattern{ P, Q, READPV, NAME, ONAM, ZNAM, DESC }
 
     { "\$(P)", "\$(Q)", "ADDR:1007.B0", "G1:P1:PIRANNI", "ON", "OFF", "G1 - pump 1 piranni"}
     { "\$(P)", "\$(Q)", "ADDR:1007.B1", "G2:P3:PIRANNI", "ON", "OFF", "G2 - pump 3 piranni"}
