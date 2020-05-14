@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>This is a template description</ioc_desc>
-<ioc_details>These are template details</ioc_details>
+<ioc_desc>CRISP Flipper system IOC</ioc_desc>
+<ioc_details>An IOC for the Flipper used in CRISP</ioc_details>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
 </macros>
