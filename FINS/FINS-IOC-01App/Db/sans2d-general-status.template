@@ -154,7 +154,7 @@ record(bi, "$(FULL_PREFIX)GALIL_INTERLOCK") {
     field(DESC, "Galil permission to move")
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B6 CP MS")
     field(ONAM, "CAN MOVE")
-    field(ZNAM, "CAN NOT MOVE")
+    field(ZNAM, "CANNOT MOVE")
     info(INTEREST, "HIGH")
 }
 
@@ -212,7 +212,7 @@ record(bi, "$(FULL_PREFIX)COMMON_ALARM") {
 
 record(calc, "$(FULL_PREFIX)COMMON_ALARM:BAD") {
     field(DESC, "Common alarm bad")
-    field(INPA, "$(FULL_PREFIX)COMMON_ALARM CP MS")
+    field(INPA, "$(FULL_PREFIX)COMMON_ALARM PP MS")
     field(CALC, "!A")
     field(ASG, "READONLY")
     info(INTEREST, "HIGH")

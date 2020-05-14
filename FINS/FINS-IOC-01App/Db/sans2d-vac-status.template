@@ -24,7 +24,8 @@ record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
     
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(SYSTEM):STATUS")
-    
+
+    info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 

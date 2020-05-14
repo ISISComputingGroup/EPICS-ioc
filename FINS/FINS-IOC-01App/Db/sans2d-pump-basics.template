@@ -11,6 +11,7 @@ record(bi, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:RUNNING") {
     field(SIML, "$(FULL_PREFIX)SIM")
     field(SIOL, "$(FULL_PREFIX)SIM:PUMP$(PUMP_NUM)_STAT:RUNNING")
     field(SDIS, "$(FULL_PREFIX)DISABLE")
+    info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
