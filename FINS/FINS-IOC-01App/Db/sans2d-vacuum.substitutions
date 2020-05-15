@@ -89,8 +89,9 @@
 # WR500.06          Overcount reset (momentary)
 
 file "$(TOP)/FINS-IOC-01App/Db/address-read.template" {
-    { P="\$(P)", Q="\$(Q)", PORT="PLC", NAME="ADDR:1007", DESC="Read PLC address 1007", ADDR="1007" }
     { P="\$(P)", Q="\$(Q)", PORT="PLC", NAME="ADDR:1001", DESC="Read PLC address 1001", ADDR="1001" }
+    { P="\$(P)", Q="\$(Q)", PORT="PLC", NAME="ADDR:1004", DESC="Read PLC address 1004", ADDR="1004" }
+    { P="\$(P)", Q="\$(Q)", PORT="PLC", NAME="ADDR:1007", DESC="Read PLC address 1007", ADDR="1007" }
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/sans2d-general-status.template" {

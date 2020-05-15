@@ -176,6 +176,7 @@ record(bi, "$(FULL_PREFIX)V8:ERROR")
     field(OSV, "MAJOR")
     info(alarm, "Vacuum")
     info(INTEREST, "HIGH")
+    field(FLNK, "$(P)$(Q)V8:STATUS.PROC")
 }
 
 record(mbbi, "$(FULL_PREFIX)V8:STATUS")
@@ -226,24 +227,19 @@ record(calc, "$(FULL_PREFIX)COMMON_ALARM:BAD") {
 
 record(mbbi, "$(FULL_PREFIX)SEAL:STATUS") {
     field(DESC, "Seal system status")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn(PLC, 1004, 5.0) FINS_DM_READ")
-    field(SCAN, "1 second")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(P)$(Q)ADDR:1004 CP MS")
     field(NOBT, 4)
     
     field(ONVL, "1")
     field(TWVL, "2")
     field(FRVL, "4")
-    field(EIST, "8")
+    field(EIVL, "8")
     
     field(ONST, "DEFLATED")
     field(TWST, "INFLATING")
     field(FRST, "INFLATED")
     field(EIST, "DEFLATING")
-    
-    field(SIML, "$(FULL_PREFIX)SIM")
-    field(SIOL, "$(FULL_PREFIX)SIM:SEAL:STATUS")
-    field(SDIS, "$(FULL_PREFIX)DISABLE")
     
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -256,16 +252,5 @@ record(longin, "$(FULL_PREFIX)SIM:HEARTBEAT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
-}
-
-record(mbbi, "$(FULL_PREFIX)SIM:SEAL:STATUS")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-    
-    field(ONST, "DEFLATED")
-    field(TWST, "INFLATING")
-    field(FRST, "INFLATED")
-    field(EIST, "DEFLATING")
 }
 

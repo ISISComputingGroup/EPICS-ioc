@@ -4,13 +4,10 @@
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-epicsEnvSet("FINSCONFIG","$(ICPCONFIGROOT)/fins")
+epicsEnvSet("FINSCONFIG","$(FINSCONFIGDIR=$(ICPCONFIGROOT)/fins)")
 
 ## configure PLCs - will look for FINS_01.cmd etc based on IOC name
-$(IFNOTRECSIM) $(IFNOTDEVSIM) < $(FINSCONFIG)/$(IOCNAME).cmd
-
-$(IFRECSIM) < fins-sim.cmd
-$(IFDEVSIM) < fins-sim.cmd
+< $(FINSCONFIG)/$(IOCNAME).cmd
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
