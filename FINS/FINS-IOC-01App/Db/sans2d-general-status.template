@@ -113,7 +113,7 @@ record(bi, "$(FULL_PREFIX)SHUTTER:OPEN")
     field(ZNAM, "")
     field(ONAM, "OPEN")
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B3 CP MS")
-    info(INTEREST, "HIGH")
+    info(INTEREST, "MEDIUM")
     field(FLNK, "$(FULL_PREFIX)SHUTTER:ERROR.PROC")
 }
 
@@ -126,7 +126,7 @@ record(bi, "$(FULL_PREFIX)SHUTTER:ERROR")
     field(FLNK, "$(FULL_PREFIX)SHUTTER:STATUS.PROC")
     field(OSV, "MAJOR")
     info(alarm, "Vacuum")
-    info(INTEREST, "HIGH")
+    info(INTEREST, "MEDIUM")
 }
 
 record(mbbi, "$(FULL_PREFIX)SHUTTER:STATUS")
@@ -146,8 +146,47 @@ record(mbbi, "$(FULL_PREFIX)SHUTTER:STATUS")
     field(TWSV, "MAJOR")
     field(THST, "ERROR(OPEN)")
     field(THSV, "MAJOR")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(mbbo, "$(FULL_PREFIX)SHUTTER:STATUS:SP")
+{
+    field(DESC, "Set shutter status")
+    field(OUT,  "$(FULL_PREFIX)SHUTTER:STATUS:SP_CALC.PROC")
+    field(ZRVL, "1")
+    field(ONVL, "2")
+    field(ZRST, "CLOSE")
+    field(ONST, "OPEN")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+}
+
+record(dfanout, "$(FULL_PREFIX)SHUTTER:STATUS:SP_CALC")
+{
+    field(DOL,  1)
+    field(SELM, "Specified")
+    field(SELL, "$(FULL_PREFIX)SHUTTER:STATUS:SP.RVAL NPP")
+    field(OUTA, "$(FULL_PREFIX)SHUTTER:CLOSE:SP_SEQ PP")
+    field(OUTB, "$(FULL_PREFIX)SHUTTER:OPEN:SP_SEQ PP")
+}
+
+record(seq, "$(FULL_PREFIX)SHUTTER:OPEN:SP_SEQ")
+{
+    field(DOL1, 1)
+    field(LNK1, "$(FULL_PREFIX)SHUTTER:OPEN:SP PP")
+    field(DLY2, 0.01)
+    field(DOL2, 0)
+    field(LNK2, "$(FULL_PREFIX)SHUTTER:OPEN:SP PP")
+}
+
+record(seq, "$(FULL_PREFIX)SHUTTER:CLOSE:SP_SEQ")
+{
+    field(DOL1, 1)
+    field(LNK1, "$(FULL_PREFIX)SHUTTER:CLOSE:SP PP")
+    field(DLY2, 0.01)
+    field(DOL2, 0)
+    field(LNK2, "$(FULL_PREFIX)SHUTTER:CLOSE:SP PP")
 }
 
 record(bi, "$(FULL_PREFIX)GALIL_INTERLOCK") {
