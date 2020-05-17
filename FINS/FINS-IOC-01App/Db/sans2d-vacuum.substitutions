@@ -98,6 +98,14 @@ file "$(TOP)/FINS-IOC-01App/Db/sans2d-general-status.template" {
     { FULL_PREFIX=$(P)$(Q), RECSIM="\$(RECSIM)", DEVSIM="\$(DEVSIM)" }
 }
 
+file "$(TOP)/FINS-IOC-01App/Db/sans2d-set-point.template" {
+    pattern{ FULL_PREFIX,  DEVICE,     ZERO_STRING,  ONE_STRING,  ZERO_ACTION,  ONE_ACTION }
+           
+           { "$(P)$(Q)",   "SHUTTER",  "CLOSE",      "OPEN",      "CLOSE",      "OPEN"}
+           { "$(P)$(Q)",   "MONITOR",  "IN",         "OUT",       "INSERT",     "EXTRACT"}
+           { "$(P)$(Q)",   "GUIDE",    "STOP",       "START",     "STOP",       "START"}
+}
+
 file "$(TOP)/FINS-IOC-01App/Db/read-bits.template" {
     pattern{ P, Q, READPV, NAME, ONAM, ZNAM, DESC }
 

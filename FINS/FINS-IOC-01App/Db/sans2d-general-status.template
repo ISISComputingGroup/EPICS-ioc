@@ -171,24 +171,6 @@ record(dfanout, "$(FULL_PREFIX)SHUTTER:STATUS:SP_CALC")
     field(OUTB, "$(FULL_PREFIX)SHUTTER:OPEN:SP_SEQ PP")
 }
 
-record(seq, "$(FULL_PREFIX)SHUTTER:OPEN:SP_SEQ")
-{
-    field(DOL1, 1)
-    field(LNK1, "$(FULL_PREFIX)SHUTTER:OPEN:SP PP")
-    field(DLY2, 0.01)
-    field(DOL2, 0)
-    field(LNK2, "$(FULL_PREFIX)SHUTTER:OPEN:SP PP")
-}
-
-record(seq, "$(FULL_PREFIX)SHUTTER:CLOSE:SP_SEQ")
-{
-    field(DOL1, 1)
-    field(LNK1, "$(FULL_PREFIX)SHUTTER:CLOSE:SP PP")
-    field(DLY2, 0.01)
-    field(DOL2, 0)
-    field(LNK2, "$(FULL_PREFIX)SHUTTER:CLOSE:SP PP")
-}
-
 record(bi, "$(FULL_PREFIX)GALIL_INTERLOCK") {
     field(DESC, "Galil permission to move")
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B6 CP MS")

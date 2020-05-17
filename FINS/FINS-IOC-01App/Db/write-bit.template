@@ -7,3 +7,12 @@ record(bo, "$(FULL_PREFIX)$(NAME):SP")
     field(OUT,  "@asyn($(PORT=PLC), $(ADDR), 5.0) FINS_WR_WRITE_B$(BIT)")
 }
 
+record(seq, "$(FULL_PREFIX)$(NAME):SP_SEQ")
+{
+    field(DOL1, 1)
+    field(LNK1, "$(FULL_PREFIX)$(NAME):SP PP")
+    field(DLY2, 0.01)
+    field(DOL2, 0)
+    field(LNK2, "$(FULL_PREFIX)$(NAME):SP PP")
+}
+
