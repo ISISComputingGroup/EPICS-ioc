@@ -1,13 +1,12 @@
 package.path = package.path .. ';' .. os.getenv("UTILITIES") .. '/lua/luaUtils.lua;'
-local utils = require("luaUtils")
-local getMacroValue = utils.getMacroValue
+ibex_utils = require "luaUtils"
 
 function twincat_stcommon_main()
 	local motor_port = "L0"
 	local num_axes = 8
-	local pv_prefix = getMacroValue{macro="MYPVPREFIX"}
-	local tpy_file = getMacroValue{macro="TPY_FILE"}
-	local plc_version = getMacroValue{macro="PLC_VERSION", default="1"}
+	local pv_prefix = ibex_utils.getMacroValue{macro="MYPVPREFIX"}
+	local tpy_file = ibex_utils.getMacroValue{macro="TPY_FILE"}
+	local plc_version = ibex_utils.getMacroValue{macro="PLC_VERSION", default="1"}
 
 	iocsh.tcSetScanRate(150, 2)
 	iocsh.tcLoadRecords (tpy_file, string.format("-eo -devtc -p %s", pv_prefix))
