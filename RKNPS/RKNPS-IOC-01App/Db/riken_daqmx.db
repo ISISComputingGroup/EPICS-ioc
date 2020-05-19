@@ -1,7 +1,7 @@
 #
 # Check if the DaqMX is in alarm, and output status to PV that can be used as a block
 #
-record(calc, "$(P)DAQMX_STATUS_CALC")
+record(calc, "$(P)DAQMX_STATUS:_CALC")
 {
     field(DESC, "Are either of the DaqMX's in alarm?")
     field(PINI, "YES")
@@ -17,7 +17,7 @@ record(bi, "$(P)DAQMX_STATUS")
     field(DTYP, "Soft Channel")
     field(PINI, "YES")
     field(SCAN, "10 second")
-    field(INP, "$(P)DAQMX_STATUS_CALC")
+    field(INP, "$(P)DAQMX_STATUS:_CALC")
 
     field(ZNAM, "Good")
     field(ONAM, "Bad")
