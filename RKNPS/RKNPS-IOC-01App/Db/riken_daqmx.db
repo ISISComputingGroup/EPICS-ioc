@@ -18,10 +18,12 @@ record(bi, "$(P)DAQMX_STATUS")
     field(PINI, "YES")
     field(SCAN, "10 second")
     field(INP, "$(P)DAQMX_STATUS_CALC")
+
     field(ZNAM, "Good")
     field(ONAM, "Bad")
     field(ZSV, "NO_ALARM")
     field(OSV, "MAJOR")
+
     info(INTEREST, "HIGH")
     info(alarm, "RKNPS_01")
 }
