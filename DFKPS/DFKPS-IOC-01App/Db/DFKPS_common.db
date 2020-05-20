@@ -59,7 +59,7 @@ record(bo, "$(P)AUTOONOFF")
     field(PINI, "YES")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:AUTOONOFF")
-    field(SDIS, "$(P)DISABLE")
+    field(DISP, "$(DISABLE_AUTOONOFF)")
     info(autosaveFields, "VAL")
     info(archive, "VAL")
 }
