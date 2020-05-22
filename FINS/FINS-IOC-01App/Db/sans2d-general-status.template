@@ -150,27 +150,6 @@ record(mbbi, "$(FULL_PREFIX)SHUTTER:STATUS")
     info(archive, "VAL")
 }
 
-record(mbbo, "$(FULL_PREFIX)SHUTTER:STATUS:SP")
-{
-    field(DESC, "Set shutter status")
-    field(OUT,  "$(FULL_PREFIX)SHUTTER:STATUS:SP_CALC.PROC")
-    field(ZRVL, "1")
-    field(ONVL, "2")
-    field(ZRST, "CLOSE")
-    field(ONST, "OPEN")
-    info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
-}
-
-record(dfanout, "$(FULL_PREFIX)SHUTTER:STATUS:SP_CALC")
-{
-    field(DOL,  1)
-    field(SELM, "Specified")
-    field(SELL, "$(FULL_PREFIX)SHUTTER:STATUS:SP.RVAL NPP")
-    field(OUTA, "$(FULL_PREFIX)SHUTTER:CLOSE:SP_SEQ PP")
-    field(OUTB, "$(FULL_PREFIX)SHUTTER:OPEN:SP_SEQ PP")
-}
-
 record(bi, "$(FULL_PREFIX)GALIL_INTERLOCK") {
     field(DESC, "Galil permission to move")
     field(INP,  "$(FULL_PREFIX)ADDR:1001.B6 CP MS")

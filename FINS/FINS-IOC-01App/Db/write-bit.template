@@ -5,6 +5,9 @@ record(bo, "$(FULL_PREFIX)$(NAME):SP")
     field(ZNAM, "$(ZNAM=...)")
     field(ONAM, "$(ONAM)")
     field(OUT,  "@asyn($(PORT=PLC), $(ADDR), 5.0) FINS_WR_WRITE_B$(BIT)")
+    field(SIML, "$(FULL_PREFIX)SIM")
+    field(SIOL, "$(FULL_PREFIX)SIM:$(NAME):SP PP")
+    field(SDIS, "$(FULL_PREFIX)DISABLE")
 }
 
 record(seq, "$(FULL_PREFIX)$(NAME):SP_SEQ")
@@ -16,3 +19,9 @@ record(seq, "$(FULL_PREFIX)$(NAME):SP_SEQ")
     field(LNK2, "$(FULL_PREFIX)$(NAME):SP PP")
 }
 
+## Simulated records
+
+record(bi, "$(FULL_PREFIX)SIM:$(NAME):SP") {
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
