@@ -93,6 +93,7 @@ record(ao, "$(P)FIELD:SP") {
     field(FLNK, "$(P)FIELD:SP:FROMUNIT")
     field(EGU, "")
     field(PREC, "3")
+    info(archive, "VAL")
 }
 
 record(calc, "$(P)FIELD:SP:FROMUNIT"){

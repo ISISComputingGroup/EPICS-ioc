@@ -1,0 +1,43 @@
+# $(ADDR).00               Pump $(PUMP_NUM) status            Pump running
+# $(ADDR).01               Pump $(PUMP_NUM) status            Overload tripped
+
+# FULL_PREFIX = Instrument and IOC prefix
+
+record(bi, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:RUNNING") {
+    field(DESC, "Pump $(PUMP_NUM) running")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ_B0")
+    field(SCAN, "1 second")
+    field(SIML, "$(FULL_PREFIX)SIM")
+    field(SIOL, "$(FULL_PREFIX)SIM:PUMP$(PUMP_NUM)_STAT:RUNNING")
+    field(SDIS, "$(FULL_PREFIX)DISABLE")
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:OVERLOAD") {
+    field(DESC, "Pump $(PUMP_NUM) overload tripped")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ_B1")
+    field(SCAN, "1 second")
+    field(SIML, "$(FULL_PREFIX)SIM")
+    field(SIOL, "$(FULL_PREFIX)SIM:PUMP$(PUMP_NUM)_STAT:OVERLOAD")
+    field(SDIS, "$(FULL_PREFIX)DISABLE")
+    field(OSV, "MAJOR")
+    info(alarm, "Vacuum")
+    info(INTEREST, "HIGH")
+}
+
+### Simulation Records ###
+
+record(bi, "$(FULL_PREFIX)SIM:PUMP$(PUMP_NUM)_STAT:RUNNING")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(bi, "$(FULL_PREFIX)SIM:PUMP$(PUMP_NUM)_STAT:OVERLOAD")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
