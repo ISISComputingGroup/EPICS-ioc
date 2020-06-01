@@ -62,6 +62,12 @@ record(longin, "$(P)$(Q)SIM:HEARTBEAT")
 	field(SCAN, "Passive")
 }
 
+record(longin, "$(P)$(Q)SIM:HE_PURITY")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
+
 record(longin, "$(P)$(Q)SIM:DEW_POINT")
 {
 	field(DTYP, "Soft Channel")
