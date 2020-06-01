@@ -54,18 +54,6 @@ record(longin, "$(P)$(Q)DEW_POINT")
     field(SIOL, "$(P)$(Q)SIM:DEW_POINT")
 }
 
-record(longin, "$(P)$(Q)HE_BAG_PR_BE_ATM")
-{
-	field(DESC, "")
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 19900, 5.0) FINS_DM_READ")
-	field(SCAN, ".5 second")
-
-	field(SDIS, "$(P)DISABLE")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:HE_BAG_PR_BE_ATM")
-}
-
 ### SIMULATION RECORDS ###
 
 record(longin, "$(P)$(Q)SIM:HEARTBEAT")
@@ -75,12 +63,6 @@ record(longin, "$(P)$(Q)SIM:HEARTBEAT")
 }
 
 record(longin, "$(P)$(Q)SIM:DEW_POINT")
-{
-	field(DTYP, "Soft Channel")
-	field(SCAN, "Passive")
-}
-
-record(longin, "$(P)$(Q)SIM:HE_BAG_PR_BE_ATM")
 {
 	field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")
