@@ -1,0 +1,39 @@
+record(bo, "$(P)$(Q)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(bo, "$(P)$(Q)SIM")
+{
+	field(DESC, "Enables recsim mode")
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+	field(ZNAM, "NO")
+    field(ONAM, "YES")
+	field(VAL, "$(RECSIM=0)")	
+}
+
+record(longin, "$(P)$(Q)HEARTBEAT")
+{
+	field(DESC, "Hearbeat to show PLC is online")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, 19500, 5.0) FINS_DM_READ")
+	field(SCAN, ".5 second")
+
+	field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:HEARTBEAT")
+}
+
+### SIMULATION RECORDS ###
+
+record(longin, "$(P)$(Q)SIM:HEARTBEAT")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
