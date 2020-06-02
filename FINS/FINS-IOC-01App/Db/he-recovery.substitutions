@@ -1,0 +1,6 @@
+
+file "$(TOP)/FINS-IOC-01App/Db/he-recovery.template" {
+    { P=\$(P), Q=\$(Q), PV_NAME=HEARTBEAT, DESCRIPTION=Hearbeat to show PLC is online, MEMORY_ADDRESS=19500 }
+    { P=\$(P), Q=\$(Q), PV_NAME=HE_PURITY, DESCRIPTION=Incoming Helium Gas Purity, MEMORY_ADDRESS=19533 }
+    { P=\$(P), Q=\$(Q), PV_NAME=DEW_POINT, DESCRIPTION=Incoming Helium Gas Moisture Level, MEMORY_ADDRESS=19534 }
+}
