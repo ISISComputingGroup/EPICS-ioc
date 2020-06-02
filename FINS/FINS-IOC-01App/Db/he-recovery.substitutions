@@ -4,6 +4,7 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-header.template" {
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-template.template" {
+	{ P=\$(P), Q=\$(Q), PV_NAME=MCP:BANK1:TS2, DESCRIPTION="MCP Bank 1 TS2 Helium Gas Resupply", MEMORY_ADDRESS=19501 }
     { P=\$(P), Q=\$(Q), PV_NAME=HE_PURITY, DESCRIPTION="Incoming Helium Gas Purity", MEMORY_ADDRESS=19533 }
     { P=\$(P), Q=\$(Q), PV_NAME=DEW_POINT, DESCRIPTION="Incoming Helium Gas Moisture Level", MEMORY_ADDRESS=19534 }
 }
