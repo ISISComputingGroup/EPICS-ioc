@@ -4,7 +4,7 @@ record(longin, "$(P)$(Q)$(PV_NAME)")
 	field(DESC, "$(DESCRIPTION)")
 	field(DTYP, "asynInt32")
 	field(INP,  "@asyn(PLC, $(MEMORY_ADDRESS), 5.0) FINS_DM_READ")
-	field(SCAN, ".5 second")
+	field(SCAN, "5 second")
 
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
