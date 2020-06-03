@@ -18,6 +18,14 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-template.template" {
 		{ "\$(P)", "\$(Q)", "MCP2:BANK5:SPARE_STORAGE", "MCP 2 Bank 5 Spare Storage", "19510" }
 		{ "\$(P)", "\$(Q)", "MCP1:BANK6:SPARE_STORAGE", "MCP 1 Bank 6 Spare Storage", "19511" }
 		{ "\$(P)", "\$(Q)", "MCP2:BANK6:SPARE_STORAGE", "MCP 2 Bank 6 Spare Storage", "19512" }
+		{ "\$(P)", "\$(Q)", "MCP1:BANK7:SPARE_STORAGE", "MCP 1 Bank 7 Spare Storage", "19513" }
+		{ "\$(P)", "\$(Q)", "MCP2:BANK7:SPARE_STORAGE", "MCP 2 Bank 7 Spare Storage", "19514" }
+		{ "\$(P)", "\$(Q)", "MCP1:BANK8:SPARE_STORAGE", "MCP 1 Bank 8 Spare Storage", "19515" }
+		{ "\$(P)", "\$(Q)", "MCP2:BANK8:SPARE_STORAGE", "MCP 2 Bank 8 Spare Storage", "19516" }
+		{ "\$(P)", "\$(Q)", "MCP:INLET:PRESSURE", "MCP Manifold compressors inlet pressure", "19517" }
+		{ "\$(P)", "\$(Q)", "MCP:EXTERNAL_TEMP", "MCP external temperature", "19518" }
+		{ "\$(P)", "\$(Q)", "MASS_FLOW:GAS_LIQUEFACTION", "Mass flow meter gas flow liquefaction", "19521" }
+		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_FILLS", "Mass flow meter for helium fills", "19522" }
     	{ "\$(P)", "\$(Q)", "HE_PURITY", "Incoming Helium Gas Purity", "19533" }
     	{ "\$(P)", "\$(Q)", "DEW_POINT", "Incoming Helium Gas Moisture Level", "19534" }
 }
