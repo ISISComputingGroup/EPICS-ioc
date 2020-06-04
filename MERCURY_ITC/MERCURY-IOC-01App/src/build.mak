@@ -32,6 +32,7 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += MercuryiTC.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -49,6 +50,7 @@ $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += pcre libjson zlib
 $(APPNAME)_LIBS += efsw
+$(APPNAME)_LIBS += MercuryiTC
 	
 # MERCURY-IOC-01_registerRecordDeviceDriver.cpp derives from MERCURY-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
