@@ -26,10 +26,19 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-template.template" {
 		{ "\$(P)", "\$(Q)", "MCP:EXTERNAL_TEMP", "MCP external temperature", "19518" }
 		{ "\$(P)", "\$(Q)", "MASS_FLOW:GAS_LIQUEFACTION", "Mass flow meter gas flow liquefaction", "19521" }
 		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_FILLS", "Mass flow meter for helium fills", "19522" }
-		{ "\$(P)", "\$(Q)", "KAISER_COMPR:INTERNAL_TEMP", "Kaiser Compressor Container Intrnl Temp", "19523" }
+		{ "\$(P)", "\$(Q)", "COMPRESSOR:INTERNAL_TEMP", "Kaiser Compressor Container Intrnl Temp", "19523" }
 		{ "\$(P)", "\$(Q)", "COLDBOX:HE_TEMP", "Coldbox Helium Temperature", "19524" }
 		{ "\$(P)", "\$(Q)", "COLDBOX:HE_TEMP:LIMIT", "Coldbox Helium Temperature Limit", "19525" }
 		{ "\$(P)", "\$(Q)", "TRANSPORT_DEWAR:PRESSURE", "Transport Dewar Flash Pressure", "19526" }
     	{ "\$(P)", "\$(Q)", "HE_PURITY", "Incoming Helium Gas Purity", "19533" }
     	{ "\$(P)", "\$(Q)", "DEW_POINT", "Incoming Helium Gas Moisture Level", "19534" }
+    	{ "\$(P)", "\$(Q)", "TS2:EAST:FLOW_METER", "TS2 East flow meter" , "19652" }
+    	{ "\$(P)", "\$(Q)", "TS2:EAST:O2", "TS2 East Oxygen 2 level", "19653" }
+    	{ "\$(P)", "\$(Q)", "TS2:WEST:FLOW_METER", "TS2 West flow meter", "19662" }
+    	{ "\$(P)", "\$(Q)", "TS2:WEST:O2", "TS2 West Oxygen 2 level", "19663" }
+    	{ "\$(P)", "\$(Q)", "TS1:NORTH:O2", "TS1 North O2 level", "19668" }
+    	{ "\$(P)", "\$(Q)", "TS1:SOUTH:O2", "TS1 South O2 level", "19669" }
+    	{ "\$(P)", "\$(Q)", "TS1:WINDOW:FLOW_METER", "TS1 window flow meter", "19697" }
+    	{ "\$(P)", "\$(Q)", "TS1:SHUTTER:FLOW_METER", "TS1 shutter flow meter", "19698" }
+    	{ "\$(P)", "\$(Q)", "TS1:VOID:FLOW_METER", "TS1 void flow meter", "19699" }
 }
