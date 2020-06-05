@@ -3,15 +3,13 @@ record(longin, "$(P)$(Q)$(PV_NAME)")
 {
 	field(DESC, "$(DESCRIPTION)")
 	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, $(MEMORY_ADDRESS), 5.0) FINS_DM_READ")
-	field(SCAN, "5 second")
+	field(INP,  "@asyn(PLC, $(MEMORY_ADDRESS), 5.0) FINS_DM_READ_32")
+	field(SCAN, "10 second")
 
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(PV_NAME)")
 }
-
-### SIMULATION RECORDS ###
 
 record(longin, "$(P)$(Q)SIM:$(PV_NAME)")
 {

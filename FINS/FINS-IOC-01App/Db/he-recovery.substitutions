@@ -3,7 +3,7 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-header.template" {
     { P=\$(P), Q=\$(Q), RECSIM=\$(RECSIM), DEVSIM=\$(DEVSIM), DISABLE=\$(DISABLE) }
 }
 
-file "$(TOP)/FINS-IOC-01App/Db/he-recovery-template.template" {
+file "$(TOP)/FINS-IOC-01App/Db/he-recovery-int.template" {
 	pattern { P, Q, PV_NAME, DESCRIPTION, MEMORY_ADDRESS}
 
 		{ "\$(P)", "\$(Q)", "MCP:BANK1:TS2", "MCP Bank 1 TS2 Helium Gas Resupply", "19501" }
@@ -56,3 +56,23 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-template.template" {
     	{ "\$(P)", "\$(Q)", "GC:CRISP_AND_LOQ", "Gas counter CRISP and LOQ", "19730" }
     	{ "\$(P)", "\$(Q)", "GC:IRIS_AND_OSIRIS", "Gas counter IRIS and OSIRIS", "19734" }
 }
+
+file "$(TOP)/FINS-IOC-01App/Db/he-recovery-dword.template" {
+	pattern { P, Q, PV_NAME, DESCRIPTION, MEMORY_ADDRESS}
+
+    	{ "\$(P)", "\$(Q)", "GC:R108:U40", "R108 U40 gas counter", "19700" }
+    	{ "\$(P)", "\$(Q)", "GC:R108:DEWAR_FARM", "R108 dewar farm gas counter", "19702" }
+    	{ "\$(P)", "\$(Q)", "GC:R55:TOTAL", "Gas counter R55 Total", "19704" }
+    	{ "\$(P)", "\$(Q)", "GC:R55:NORTH", "Gas counter R55 North", "19706" }
+    	{ "\$(P)", "\$(Q)", "GC:R55:SOUTH", "Gas counter R55 South", "19708" }
+    	{ "\$(P)", "\$(Q)", "GC:MICE_HALL", "Gas counter Mice hall", "19710" }
+    	{ "\$(P)", "\$(Q)", "GC:MUON", "Gas counter Muon", "19712" }
+    	{ "\$(P)", "\$(Q)", "GC:PEARL_HRPD_MARI_ENGINX", "Gas counter PEARL HRPD MARI ENGINX GEM", "19714" }
+    	{ "\$(P)", "\$(Q)", "GC:SXD_AND_MERLIN", "Gas counter SXD and MERLIN", "19720" }
+    	{ "\$(P)", "\$(Q)", "GC:CRYO_LAB", "Gas counter Cryo Laboratory", "19724" }
+    	{ "\$(P)", "\$(Q)", "GC:MAPS_AND_VESUVIO", "Gas counter MAPS and VESUVIO", "19726" }
+    	{ "\$(P)", "\$(Q)", "GC:SANDALS", "Gas counter SANDALS", "19728" }
+    	{ "\$(P)", "\$(Q)", "GC:CRISP_AND_LOQ", "Gas counter CRISP and LOQ", "19730" }
+    	{ "\$(P)", "\$(Q)", "GC:IRIS_AND_OSIRIS", "Gas counter IRIS and OSIRIS", "19734" }
+}
+
