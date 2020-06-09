@@ -60,5 +60,13 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-dword.template" {
     	{ "\$(P)", "\$(Q)", "GC:SANDALS", "Gas counter SANDALS", "19728" }
     	{ "\$(P)", "\$(Q)", "GC:CRISP_AND_LOQ", "Gas counter CRISP and LOQ", "19730" }
     	{ "\$(P)", "\$(Q)", "GC:IRIS_AND_OSIRIS", "Gas counter IRIS and OSIRIS", "19734" }
+    	{ "\$(P)", "\$(Q)", "GC:INES", "Gas counter INES", "19736" }
+    	{ "\$(P)", "\$(Q)", "GC:RIKEN", "Gas counter RIKEN", "19738" }
+    	{ "\$(P)", "\$(Q)", "GC:R80:TOTAL", "Gas counteR R80 total", "19746" }
+    	{ "\$(P)", "\$(Q)", "GC:R53", "Gas counter R53", "19748" }
+    	{ "\$(P)", "\$(Q)", "GC:R80:EAST", "Gas counter R80 East", "19750" }
+    	{ "\$(P)", "\$(Q)", "GC:WISH", "Gas counter WISH", "19752" }
+    	{ "\$(P)", "\$(Q)", "GC:WISH:DEWAR_FARM", "Gas counter WISH dewar farm", "19754" }
+    	{ "\$(P)", "\$(Q)", "GC:LARMOR_AND_OFFSPEC", "Gas counter LARMOR and OFFSPEC", "19756" }
 }
 
