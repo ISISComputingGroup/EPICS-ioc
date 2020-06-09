@@ -68,5 +68,10 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-dword.template" {
     	{ "\$(P)", "\$(Q)", "GC:WISH", "Gas counter WISH", "19752" }
     	{ "\$(P)", "\$(Q)", "GC:WISH:DEWAR_FARM", "Gas counter WISH dewar farm", "19754" }
     	{ "\$(P)", "\$(Q)", "GC:LARMOR_AND_OFFSPEC", "Gas counter LARMOR and OFFSPEC", "19756" }
+    	{ "\$(P)", "\$(Q)", "GC:ZOOM_SANS2D_AND_POLREF", "Gas counter ZOOM, SANS2D and POLREF", "19758" }
+    	{ "\$(P)", "\$(Q)", "GC:MAGNET_LAB", "Gas counter magnet lab", "19762" }
+    	{ "\$(P)", "\$(Q)", "GC:IMAT", "Gas counter IMAT", "19766" }
+    	{ "\$(P)", "\$(Q)", "GC:LET_AND_NIMROD", "Gas counter LET and NIMROD", "19768" }
+    	{ "\$(P)", "\$(Q)", "GC:R80:WEST", "Gas counter R80 west", "19772" }
 }
 
