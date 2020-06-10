@@ -67,12 +67,18 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-int.template" {
     	{ "\$(P)", "\$(Q)", "COLDBOX:PT112:PRESSURE", "Coldbox pressure PT112", "19954" }
     	{ "\$(P)", "\$(Q)", "LIQUEFIER:COLDBOX:CV103", "Liquefier Coldbox CV103 %", "19955" }
     	{ "\$(P)", "\$(Q)", "LIQUEFIER:COLDBOX:CV111", "Liquefier Coldbox CV111 %", "19956" }
-    	{ "\$(P)", "\$(Q)", "LIQUEFIER:COLDBOX:CV112", "Liquefier Coldbox CV112 %", "19957" }
-    	{ "\$(P)", "\$(Q)", "MOTHER_DEWAR:HE_LEVEL", "Mother dewar helium level", "19958" }
+       	{ "\$(P)", "\$(Q)", "MOTHER_DEWAR:HE_LEVEL", "Mother dewar helium level", "19958" }
     	{ "\$(P)", "\$(Q)", "PURIFIER:LEVEL", "Purifier level %", "19961" }
     	{ "\$(P)", "\$(Q)", "IMPURE_HE_SUPPLY:PRESSURE", "Impure helium supply pressure", "19962" }
     	{ "\$(P)", "\$(Q)", "CMPRSSR:LOW_CNTRL_PRESSURE", "Compressor low pressure control pressure", "19963" }
-    	{ "\$(P)", "\$(Q)", "CMPRSSR:HIGH_CNTRL_PRESSURE", "Compressor high control pressure", "19964" }	
+    	{ "\$(P)", "\$(Q)", "CMPRSSR:HIGH_CNTRL_PRESSURE", "Compressor high control pressure", "19964" }
+    	{ "\$(P)", "\$(Q)", "CV2250", "CV2250 %", "19972" }
+    	{ "\$(P)", "\$(Q)", "CV2150", "CV2150 %", "19974" }
+    	{ "\$(P)", "\$(Q)", "CV2160", "CV2160 %", "19975" }	
+    	{ "\$(P)", "\$(Q)", "LIQUID_NITROGEN:STATUS", "Liquid nitrogen status", "19979" }
+    	{ "\$(P)", "\$(Q)", "LIQUEFIER:ALARM1", "Liquefier alarm 1", "19982" }
+    	{ "\$(P)", "\$(Q)", "LIQUEFIER:ALARM2", "Liquefier alarm 2", "19983" }
+    	{ "\$(P)", "\$(Q)", "MCP:LIQUID_HE_INVENTORY", "MCP liquid helium inventory", "19996" }							
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-dword.template" {
