@@ -24,15 +24,15 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-int.template" {
 		{ "\$(P)", "\$(Q)", "MCP2:BANK8:SPARE_STORAGE", "MCP 2 Bank 8 Spare Storage", "19516" }
 		{ "\$(P)", "\$(Q)", "MCP:INLET:PRESSURE", "MCP Manifold compressors inlet pressure", "19517" }
 		{ "\$(P)", "\$(Q)", "MCP:EXTERNAL_TEMP", "MCP external temperature", "19518" }
-		{ "\$(P)", "\$(Q)", "MASS_FLOW:GAS_LIQUEFACTION", "Mass flow meter gas flow liquefaction", "19521" }
-		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_FILLS", "Mass flow meter for helium fills", "19522" }
+		{ "\$(P)", "\$(Q)", "GAS_LIQUEFACTION:MASS_FLOW", "Mass flow meter gas flow liquefaction", "19521" }
+		{ "\$(P)", "\$(Q)", "HE_FILLS:MASS_FLOW", "Mass flow meter for helium fills", "19522" }
 		{ "\$(P)", "\$(Q)", "COMPRESSOR:INTERNAL_TEMP", "Kaiser Compressor Container Intrnl Temp", "19523" }
 		{ "\$(P)", "\$(Q)", "COLDBOX:HE_TEMP", "Coldbox Helium Temperature", "19524" }
 		{ "\$(P)", "\$(Q)", "COLDBOX:HE_TEMP:LIMIT", "Coldbox Helium Temperature Limit", "19525" }
 		{ "\$(P)", "\$(Q)", "TRANSPORT_DEWAR:PRESSURE", "Transport Dewar Flash Pressure", "19526" }
     	{ "\$(P)", "\$(Q)", "HE_PURITY", "Incoming Helium Gas Purity", "19533" }
     	{ "\$(P)", "\$(Q)", "DEW_POINT", "Incoming Helium Gas Moisture Level", "19534" }
-    	{ "\$(P)", "\$(Q)", "TS2:EAST:FLOW_METER", "TS2 East flow meter" , "19652" }
+    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS2:EAST", "TS2 East flow meter" , "19652" }
     	{ "\$(P)", "\$(Q)", "TS2:EAST:O2", "TS2 East Oxygen 2 level", "19653" }
     	{ "\$(P)", "\$(Q)", "TS2:WEST:FLOW_METER", "TS2 West flow meter", "19662" }
     	{ "\$(P)", "\$(Q)", "TS2:WEST:O2", "TS2 West Oxygen 2 level", "19663" }
