@@ -41,6 +41,11 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-int.template" {
     	{ "\$(P)", "\$(Q)", "TS1:WINDOW:FLOW_METER", "TS1 window flow meter", "19697" }
     	{ "\$(P)", "\$(Q)", "TS1:SHUTTER:FLOW_METER", "TS1 shutter flow meter", "19698" }
     	{ "\$(P)", "\$(Q)", "TS1:VOID:FLOW_METER", "TS1 void flow meter", "19699" }
+    	{ "\$(P)", "\$(Q)", "LIQUEFIER:COLDBOX:CV112", "Liquefier coldbox CV112 %", "19871" }
+    	{ "\$(P)", "\$(Q)", "LIQUEFIER:COMPRESSOR:CV2150", "Liquefier compressor CV2150 %", "19872" }
+    	{ "\$(P)", "\$(Q)", "LIQUEFIER:COMPRESSOR:CV2160", "Liquefier compressor CV2160 %", "19873" }
+    	{ "\$(P)", "\$(Q)", "LIQUEFIER:COMPRESSOR:CV2250", "Liquefier compressor CV2250 %", "19874" }
+    	{ "\$(P)", "\$(Q)", "LIQUEFIER:COLDBOX:MV108", "Liquefier coldbox MV108 Open/Close", "19875" }
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-dword.template" {
@@ -74,4 +79,3 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-dword.template" {
     	{ "\$(P)", "\$(Q)", "GC:LET_AND_NIMROD", "Gas counter LET and NIMROD", "19768" }
     	{ "\$(P)", "\$(Q)", "GC:R80:WEST", "Gas counter R80 west", "19772" }
 }
-
