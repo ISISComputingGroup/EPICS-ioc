@@ -55,6 +55,16 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-int.template" {
     	{ "\$(P)", "\$(Q)", "BANK6:SPARE_STORA:AVG_PURITY", "Bank 6 Helium spare storage avg purity", "19939" }
     	{ "\$(P)", "\$(Q)", "BANK7:SPARE_STORA:AVG_PURITY", "Bank 7 Helium spare storage avg purity", "19941" }
     	{ "\$(P)", "\$(Q)", "BANK8:SPARE_STORA:AVG_PURITY", "Bank 8 Helium spare storage avg purity", "19943" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:TURBINE_100:SPEED", "Coldbox Turbine 100 Speed", "19945" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:TURBINE_101:SPEED", "Coldbox Turbine 101 Speed", "19946" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:T106:TEMP", "Coldbox T106 Temperature", "19947" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:TT111:TEMP", "Coldbox TT111 Temperature", "19948" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:PT102:PRESSURE", "Coldbox PT102 pressure", "19949" }
+    	{ "\$(P)", "\$(Q)", "PT203:BUFFER_PRESSURE", "Buffer pressure PT203", "19950" }
+    	{ "\$(P)", "\$(Q)", "TT104:PURIFIER_TEMP", "Purifier temperature TT104", "19951" }
+    	{ "\$(P)", "\$(Q)", "TT102:PURIFIER_TEMP", "Purifier temperature TT102", "19952" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:TT108:TEMP", "Coldbox temperature TT108", "19953" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:PT112:PRESSURE", "Coldbox pressure PT112", "19954" }
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-dword.template" {
