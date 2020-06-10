@@ -46,6 +46,15 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-int.template" {
     	{ "\$(P)", "\$(Q)", "LIQUEFIER:COMPRESSOR:CV2160", "Liquefier compressor CV2160 %", "19873" }
     	{ "\$(P)", "\$(Q)", "LIQUEFIER:COMPRESSOR:CV2250", "Liquefier compressor CV2250 %", "19874" }
     	{ "\$(P)", "\$(Q)", "LIQUEFIER:COLDBOX:MV108", "Liquefier coldbox MV108 Open/Close", "19875" }
+    	{ "\$(P)", "\$(Q)", "BANK1:TS2:RESPPLY:AVG_PURITY", "Bank 1 TS2 He gas resupply avg purity", "19929" }
+    	{ "\$(P)", "\$(Q)", "BANK1:TS1:RESPPLY:AVG_PURITY", "Bank 1 TS1 He gas resupply avg purity", "19930" }
+    	{ "\$(P)", "\$(Q)", "BANK2:IMPURE_HE:AVG_PURITY", "Bank 2 impure helium purity average", "19931" }
+    	{ "\$(P)", "\$(Q)", "BANK3:MAIN_STRAGE:AVG_PURITY", "Bank 3 main Helium storage avg purity", "19933" }
+    	{ "\$(P)", "\$(Q)", "BANK4:DLS_STORAGE:AVG_PURITY", "Bank 4 DLS main He storage avg purity", "19935" }
+    	{ "\$(P)", "\$(Q)", "BANK5:SPARE_STORA:AVG_PURITY", "Bank 5 Helium spare storage avg purity", "19937" }
+    	{ "\$(P)", "\$(Q)", "BANK6:SPARE_STORA:AVG_PURITY", "Bank 6 Helium spare storage avg purity", "19939" }
+    	{ "\$(P)", "\$(Q)", "BANK7:SPARE_STORA:AVG_PURITY", "Bank 7 Helium spare storage avg purity", "19941" }
+    	{ "\$(P)", "\$(Q)", "BANK8:SPARE_STORA:AVG_PURITY", "Bank 8 Helium spare storage avg purity", "19943" }
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-dword.template" {
