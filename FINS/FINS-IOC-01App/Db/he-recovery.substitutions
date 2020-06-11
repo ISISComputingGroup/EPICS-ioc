@@ -34,13 +34,13 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-int.template" {
     	{ "\$(P)", "\$(Q)", "DEW_POINT", "Incoming Helium Gas Moisture Level", "19534" }
     	{ "\$(P)", "\$(Q)", "FLOW_METER:TS2:EAST", "TS2 East flow meter" , "19652" }
     	{ "\$(P)", "\$(Q)", "TS2:EAST:O2", "TS2 East Oxygen 2 level", "19653" }
-    	{ "\$(P)", "\$(Q)", "TS2:WEST:FLOW_METER", "TS2 West flow meter", "19662" }
+    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS2:WEST", "TS2 West flow meter", "19662" }
     	{ "\$(P)", "\$(Q)", "TS2:WEST:O2", "TS2 West Oxygen 2 level", "19663" }
     	{ "\$(P)", "\$(Q)", "TS1:NORTH:O2", "TS1 North O2 level", "19668" }
     	{ "\$(P)", "\$(Q)", "TS1:SOUTH:O2", "TS1 South O2 level", "19669" }
-    	{ "\$(P)", "\$(Q)", "TS1:WINDOW:FLOW_METER", "TS1 window flow meter", "19697" }
-    	{ "\$(P)", "\$(Q)", "TS1:SHUTTER:FLOW_METER", "TS1 shutter flow meter", "19698" }
-    	{ "\$(P)", "\$(Q)", "TS1:VOID:FLOW_METER", "TS1 void flow meter", "19699" }
+    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS1:WINDOW", "TS1 window flow meter", "19697" }
+    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS1:SHUTTER", "TS1 shutter flow meter", "19698" }
+    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS1:VOID", "TS1 void flow meter", "19699" }
     	{ "\$(P)", "\$(Q)", "LIQUEFIER:COLDBOX:CV112", "Liquefier coldbox CV112 %", "19871" }
     	{ "\$(P)", "\$(Q)", "LIQUEFIER:COMPRESSOR:CV2150", "Liquefier compressor CV2150 %", "19872" }
     	{ "\$(P)", "\$(Q)", "LIQUEFIER:COMPRESSOR:CV2160", "Liquefier compressor CV2160 %", "19873" }
