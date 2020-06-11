@@ -112,3 +112,14 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-dword.template" {
     	{ "\$(P)", "\$(Q)", "GC:LET_AND_NIMROD", "Gas counter LET and NIMROD", "19768" }
     	{ "\$(P)", "\$(Q)", "GC:R80:WEST", "Gas counter R80 west", "19772" }
 }
+
+file "$(TOP)/FINS-IOC-01App/Db/he-recovery-auto-manual.template" {
+	pattern { P, Q, PV_NAME, DESCRIPTION, MEMORY_ADDRESS}
+
+		{ "\$(P)", "\$(Q)", "CV120", "CV120", "19967" }
+		{ "\$(P)", "\$(Q)", "CV121", "CV120", "19969" }
+		{ "\$(P)", "\$(Q)", "LOW_PRESSURE", "Low pressure", "19971" }
+		{ "\$(P)", "\$(Q)", "HIGH_PRESSURE", "High pressure", "19973" }
+		{ "\$(P)", "\$(Q)", "TIC106", "TIC106", "19976" }
+		{ "\$(P)", "\$(Q)", "PIC112", "PIC112", "19977" }
+}

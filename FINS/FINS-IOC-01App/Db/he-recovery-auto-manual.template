@@ -1,0 +1,21 @@
+
+record(bi, "$(P)$(Q)$(PV_NAME):MODE")
+{
+	field(DESC, "$(DESCRIPTION) automatic/manual")
+	field(DTYP, "asynInt32")
+	field(INP, "@asyn(PLC, $(MEMORY_ADDRESS), 5.0) FINS_DM_READ")
+	field(SCAN, "10 second")
+
+	field(ZNAM, "MANUAL")
+    field(ONAM, "AUTO")
+
+	field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(PV_NAME):MODE")
+}
+
+record(bi, "$(P)$(Q)SIM:$(PV_NAME):MODE")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
