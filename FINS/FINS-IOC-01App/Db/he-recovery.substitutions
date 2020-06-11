@@ -26,7 +26,7 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-int.template" {
 		{ "\$(P)", "\$(Q)", "MCP:EXTERNAL_TEMP", "MCP external temperature", "19518" }
 		{ "\$(P)", "\$(Q)", "GAS_LIQUEFACTION:MASS_FLOW", "Mass flow meter gas flow liquefaction", "19521" }
 		{ "\$(P)", "\$(Q)", "HE_FILLS:MASS_FLOW", "Mass flow meter for helium fills", "19522" }
-		{ "\$(P)", "\$(Q)", "COMPRESSOR:INTERNAL_TEMP", "Kaiser Compressor Container Intrnl Temp", "19523" }
+		{ "\$(P)", "\$(Q)", "CMPRSSR:INTERNAL_TEMP", "Kaiser Compressor Container Intrnl Temp", "19523" }
 		{ "\$(P)", "\$(Q)", "COLDBOX:HE_TEMP", "Coldbox Helium Temperature", "19524" }
 		{ "\$(P)", "\$(Q)", "COLDBOX:HE_TEMP:LIMIT", "Coldbox Helium Temperature Limit", "19525" }
 		{ "\$(P)", "\$(Q)", "TRANSPORT_DEWAR:PRESSURE", "Transport Dewar Flash Pressure", "19526" }
@@ -42,9 +42,9 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-int.template" {
     	{ "\$(P)", "\$(Q)", "FLOW_METER:TS1:SHUTTER", "TS1 shutter flow meter", "19698" }
     	{ "\$(P)", "\$(Q)", "FLOW_METER:TS1:VOID", "TS1 void flow meter", "19699" }
     	{ "\$(P)", "\$(Q)", "LIQUEFIER:COLDBOX:CV112", "Liquefier coldbox CV112 %", "19871" }
-    	{ "\$(P)", "\$(Q)", "LIQUEFIER:COMPRESSOR:CV2150", "Liquefier compressor CV2150 %", "19872" }
-    	{ "\$(P)", "\$(Q)", "LIQUEFIER:COMPRESSOR:CV2160", "Liquefier compressor CV2160 %", "19873" }
-    	{ "\$(P)", "\$(Q)", "LIQUEFIER:COMPRESSOR:CV2250", "Liquefier compressor CV2250 %", "19874" }
+    	{ "\$(P)", "\$(Q)", "LIQUEFIER:CMPRSSR:CV2150", "Liquefier compressor CV2150 %", "19872" }
+    	{ "\$(P)", "\$(Q)", "LIQUEFIER:CMPRSSR:CV2160", "Liquefier compressor CV2160 %", "19873" }
+    	{ "\$(P)", "\$(Q)", "LIQUEFIER:CMPRSSR:CV2250", "Liquefier compressor CV2250 %", "19874" }
     	{ "\$(P)", "\$(Q)", "LIQUEFIER:COLDBOX:MV108", "Liquefier coldbox MV108 Open/Close", "19875" }
     	{ "\$(P)", "\$(Q)", "BANK1:TS2:RSPPL:AVG_PURITY", "Bank 1 TS2 He gas resupply avg purity", "19929" }
     	{ "\$(P)", "\$(Q)", "BANK1:TS1:RSPPL:AVG_PURITY", "Bank 1 TS1 He gas resupply avg purity", "19930" }
