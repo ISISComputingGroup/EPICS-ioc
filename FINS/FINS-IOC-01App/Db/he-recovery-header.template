@@ -1,3 +1,4 @@
+
 record(bo, "$(P)$(Q)DISABLE")
 {
     field(DESC, "Disable comms")
@@ -18,6 +19,8 @@ record(bo, "$(P)$(Q)SIM")
 	field(VAL, "$(RECSIM=0)")	
 }
 
+# the heartbeat is not in the substitutions file since unlike the other PVs, 
+# it needs a 0.5 seconds scan rate
 record(longin, "$(P)$(Q)HEARTBEAT")
 {
 	field(DESC, "Hearbeat to show PLC is online")
@@ -30,6 +33,47 @@ record(longin, "$(P)$(Q)HEARTBEAT")
     field(SIOL, "$(P)$(Q)SIM:HEARTBEAT")
 }
 
+record(mbbi, "$(P)$(Q)CV120:POSITION")
+{
+	field(DESC, "1=opening, 2=closing, 3=no movement")
+	field(DTYP, "asynInt32")
+	field(INP, "@asyn(PLC, 19968, 5.0) FINS_DM_READ")
+	field(SCAN, "10 second")
+
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
+
+	field(ONST, "Opening")
+	field(TWST, "Closing")
+	field(THST, "No movement")
+
+	field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:CV120:POSITION")
+}
+
+record(mbbi, "$(P)$(Q)CV121:POSITION")
+{
+	field(DESC, "1=opening, 2=closing, 3=no movement")
+	field(DTYP, "asynInt32")
+	field(INP, "@asyn(PLC, 19970, 5.0) FINS_DM_READ")
+	field(SCAN, "10 second")
+
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
+
+	field(ONST, "Opening")
+	field(TWST, "Closing")
+	field(THST, "No movement")
+
+	field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:CV121:POSITION")
+}
+
+
 ### SIMULATION RECORDS ###
 
 record(longin, "$(P)$(Q)SIM:HEARTBEAT")
@@ -37,3 +81,16 @@ record(longin, "$(P)$(Q)SIM:HEARTBEAT")
 	field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")
 }
+
+record(mbbi, "$(P)$(Q)SIM:CV120:POSITION")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
+
+record(mbbi, "$(P)$(Q)SIM:CV121:POSITION")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
+
