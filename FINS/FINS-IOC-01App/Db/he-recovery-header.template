@@ -101,6 +101,31 @@ record(mbbi, "$(P)$(Q)PURIFIER:STATUS")
     field(SIOL, "$(P)$(Q)SIM:PURIFIER:STATUS")
 }
 
+record(mbbi, "$(P)$(Q)CMPRSSR:STATUS")
+{
+	field(DESC, "Compressor status")
+	field(DTYP, "asynInt32")
+	field(INP, "@asyn(PLC, 19980, 5.0) FINS_DM_READ")
+	field(SCAN, "10 second")
+
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
+	
+	# compressor nor running, interlocks not clear
+	field(ONST, "NOT READY TO START")
+
+	# compressor not running, but interlocks clear, compressor ready to start
+	field(TWST, "READY TO START")
+
+	# compressor running
+	field(THST, "RUNNING")
+
+	field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:CMPRSSR:STATUS")
+}
+
 
 ### SIMULATION RECORDS ###
 
@@ -123,6 +148,12 @@ record(mbbi, "$(P)$(Q)SIM:CV121:POSITION")
 }
 
 record(mbbi, "$(P)$(Q)SIM:PURIFIER:STATUS")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
+
+record(mbbi, "$(P)$(Q)SIM:CMPRSSR:STATUS")
 {
 	field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")
