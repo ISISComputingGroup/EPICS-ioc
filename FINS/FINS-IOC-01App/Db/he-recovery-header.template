@@ -73,6 +73,34 @@ record(mbbi, "$(P)$(Q)CV121:POSITION")
     field(SIOL, "$(P)$(Q)SIM:CV121:POSITION")
 }
 
+record(mbbi, "$(P)$(Q)PURIFIER:STATUS")
+{
+	field(DESC, "Purifier status")
+	field(DTYP, "asynInt32")
+	field(INP, "@asyn(PLC, 19978, 5.0) FINS_DM_READ")
+	field(SCAN, "10 second")
+
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
+	field(FRVL, "4")
+	field(FVVL, "5")
+	field(SXVL, "6")
+	field(SVVL, "7")
+
+	field(ONST, "OFF")
+	field(TWST, "FLUSHING")
+	field(THST, "COOLDOWN 1")
+	field(FRST, "COOLDOWN 2")
+	field(FVST, "CLEANING MODE")
+	field(SXST, "REGENERATION")
+	field(SVST, "STANDBY")
+
+	field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:PURIFIER:STATUS")
+}
+
 
 ### SIMULATION RECORDS ###
 
@@ -94,3 +122,8 @@ record(mbbi, "$(P)$(Q)SIM:CV121:POSITION")
 	field(SCAN, "Passive")
 }
 
+record(mbbi, "$(P)$(Q)SIM:PURIFIER:STATUS")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
