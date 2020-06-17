@@ -127,6 +127,27 @@ record(mbbi, "$(P)$(Q)CMPRSSR:STATUS")
 }
 
 
+record(mbbi, "$(P)$(Q)COLDBOX:STATUS")
+{
+	field(DESC, "Coldbox status")
+	field(DTYP, "asynInt32")
+	field(INP, "@asyn(PLC, 19981, 5.0) FINS_DM_READ")
+	field(SCAN, "10 second")
+
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
+	
+	field(ONST, "IN COOLDOWN")
+	field(TWST, "RUNNING")
+	field(THST, "NOT RUNNING")
+
+	field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:COLDBOX:STATUS")
+}
+
+
 ### SIMULATION RECORDS ###
 
 record(longin, "$(P)$(Q)SIM:HEARTBEAT")
@@ -154,6 +175,12 @@ record(mbbi, "$(P)$(Q)SIM:PURIFIER:STATUS")
 }
 
 record(mbbi, "$(P)$(Q)SIM:CMPRSSR:STATUS")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
+
+record(mbbi, "$(P)$(Q)SIM:COLDBOX:STATUS")
 {
 	field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")
