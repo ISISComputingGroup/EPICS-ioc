@@ -1,0 +1,30 @@
+
+record(mbbi, "$(P)$(Q)$(VALVE_NAME):STATUS")
+{
+	field(DESC, "$(DESCRIPTION) status")
+	field(DTYP, "asynInt32")
+	field(INP, "@asyn(PLC, $(MEMORY_ADDRESS), 5.0) FINS_DM_READ")
+	field(SCAN, "$(SCAN)")
+
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
+	field(FVVL, "4")
+	
+	field(ONST, "OPENING")
+	field(TWST, "SWEEPING")
+	field(THST, "CLOSED")
+	field(FVST, "FAULT")
+
+	field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(VALVE_NAME):STATUS")
+}
+
+### SIMULATION RECORDS ###
+
+record(longin, "$(P)$(Q)SIM:$(VALVE_NAME):STATUS")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
