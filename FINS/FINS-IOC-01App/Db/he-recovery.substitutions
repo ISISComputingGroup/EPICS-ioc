@@ -139,4 +139,6 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-valve.template" {
     	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_176", "Motorised valve 176", "19991" }
     	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_177", "Motorised valve 177", "19992" }
 		{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_178", "Motorised valve 178", "19993" }
+		{ "\$(P)", "\$(Q)", "CNTRL_VALVE_103", "Control valve 103", "19994" }
+		{ "\$(P)", "\$(Q)", "CNTRL_VALVE_111", "Control valve 111", "19995" }
 }
