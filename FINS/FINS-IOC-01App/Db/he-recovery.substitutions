@@ -111,6 +111,16 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-dword.template" {
     	{ "\$(P)", "\$(Q)", "GC:R80:WEST", "Gas counter R80 west", "19772" }
 }
 
+file "$(TOP)/FINS-IOC-01App/Db/he-recovery-real.template" {
+	pattern { P, Q, PV_NAME, DESCRIPTION, MEMORY_ADDRESS}
+
+		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS2:EAST", "Mass flow total helium resupply TS2 east", "19876" }
+		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS2:WEST", "Mass flow total helium resupply TS2 west", "19878" }
+		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS1:VOID", "Mass flow target group resupply TS1 void", "19880" }
+		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS1:WNDW", "Mass flow target resupply TS1 window", "19882" }
+		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS1:SHTR", "Mass flow target resupply TS1 shutter", "19884" }
+}
+
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-auto-manual.template" {
 	pattern { P, Q, PV_NAME, DESCRIPTION, MEMORY_ADDRESS}
 
