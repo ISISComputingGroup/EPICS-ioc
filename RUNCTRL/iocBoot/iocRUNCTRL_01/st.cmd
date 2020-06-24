@@ -24,10 +24,11 @@ RUNCTRL_01_registerRecordDeviceDriver pdbbase
 dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:AC:ALERTS:")
 dbLoadRecords("$(TOP)/db/alertAction.db","P=$(MYPVPREFIX),Q=CS:AC:ALERTS:ACTION:,SOURCE=$(MYPVPREFIX)CS:AC:OUT:LIST,ACTION=$(MYPVPREFIX)CS:AC:ALERTS:MESSAGE:SP")
 dbLoadRecords("$(TOP)/db/runcontrolMgr.db","P=$(MYPVPREFIX),ALERT_OUT=$(MYPVPREFIX)CS:AC:ALERTS:ACTION:DO.PROC,ALERT_IN=$(MYPVPREFIX)CS:AC:DUMMYACT:IN")
+
 ## load run control settings written by blockserver
 iocshLoad "${ICPCONFIGROOT}/rc_settings.cmd", "RUNCONTROL=$(TOP)"
 
-## detector overcount alert for LOQ
+## load LOQ specific detector control, this puts in the aperture if the detctor count rate is exceeded
 stringiftest("LOQ", "$(ICPCONFIGHOST)", 5, "NDXLOQ")
 $(IFLOQ) dbLoadRecords("$(TOP)/db/LOQ_detector.db","P=$(MYPVPREFIX)")
 $(IFLOQ) dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:DC:ALERTS:")
