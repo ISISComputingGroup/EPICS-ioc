@@ -130,7 +130,6 @@ record(mbbi, "$(P)$(Q)CMPRSSR:STATUS")
     field(SIOL, "$(P)$(Q)SIM:CMPRSSR:STATUS")
 }
 
-
 record(mbbi, "$(P)$(Q)COLDBOX:STATUS")
 {
 	field(DESC, "Coldbox status")
@@ -150,7 +149,6 @@ record(mbbi, "$(P)$(Q)COLDBOX:STATUS")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:COLDBOX:STATUS")
 }
-
 
 ### SIMULATION RECORDS ###
 
