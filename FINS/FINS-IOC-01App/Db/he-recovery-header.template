@@ -33,10 +33,6 @@ record(longin, "$(P)$(Q)HEARTBEAT")
     field(SIOL, "$(P)$(Q)SIM:HEARTBEAT")
 }
 
-# the following mbbi records are not in the substitution file since they either have 
-# unique sets of values, or because having a template for only two records does not 
-# make sense
-
 record(mbbi, "$(P)$(Q)CNTRL_VALVE_120:POSITION")
 {
 	field(DESC, "Control valve 120 position")
@@ -44,13 +40,13 @@ record(mbbi, "$(P)$(Q)CNTRL_VALVE_120:POSITION")
 	field(INP, "@asyn(PLC, 19968, 5.0) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
-	field(ZRVL, "1")
-	field(ONVL, "2")
-	field(TWVL, "3")
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
 
-	field(ZRST, "Opening")
-	field(ONST, "Closing")
-	field(TWST, "No movement")
+	field(ONST, "Opening")
+	field(TWST, "Closing")
+	field(THST, "No movement")
 
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
@@ -64,13 +60,13 @@ record(mbbi, "$(P)$(Q)CNTRL_VALVE_121:POSITION")
 	field(INP, "@asyn(PLC, 19970, 5.0) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
-	field(ZRVL, "1")
-	field(ONVL, "2")
-	field(TWVL, "3")
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
 
-	field(ZRST, "Opening")
-	field(ONST, "Closing")
-	field(TWST, "No movement")
+	field(ONST, "Opening")
+	field(TWST, "Closing")
+	field(THST, "No movement")
 
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
@@ -84,21 +80,21 @@ record(mbbi, "$(P)$(Q)PURIFIER:STATUS")
 	field(INP, "@asyn(PLC, 19978, 5.0) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
-	field(ZRVL, "1")
-	field(ONVL, "2")
-	field(TWVL, "3")
-	field(THVL, "4")
-	field(FRVL, "5")
-	field(FVVL, "6")
-	field(SXVL, "7")
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
+	field(FRVL, "4")
+	field(FVVL, "5")
+	field(SXVL, "6")
+	field(SVVL, "7")
 
-	field(ZRST, "OFF")
-	field(ONST, "FLUSHING")
-	field(TWST, "COOLDOWN 1")
-	field(THST, "COOLDOWN 2")
-	field(FRST, "CLEANING MODE")
-	field(FVST, "REGENERATION")
-	field(SXST, "STANDBY")
+	field(ONST, "OFF")
+	field(TWST, "FLUSHING")
+	field(THST, "COOLDOWN 1")
+	field(FRST, "COOLDOWN 2")
+	field(FVST, "CLEANING MODE")
+	field(SXST, "REGENERATION")
+	field(SVST, "STANDBY")
 
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
@@ -112,18 +108,18 @@ record(mbbi, "$(P)$(Q)CMPRSSR:STATUS")
 	field(INP, "@asyn(PLC, 19980, 5.0) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
-	field(ZRVL, "1")
-	field(ONVL, "2")
-	field(TWVL, "3")
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
 	
-	# compressor not running, interlocks not clear
-	field(ZRST, "NOT READY TO START")
+	# compressor nor running, interlocks not clear
+	field(ONST, "NOT READY TO START")
 
 	# compressor not running, but interlocks clear, compressor ready to start
-	field(ONST, "READY TO START")
+	field(TWST, "READY TO START")
 
 	# compressor running
-	field(TWST, "RUNNING")
+	field(THST, "RUNNING")
 
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
@@ -137,13 +133,13 @@ record(mbbi, "$(P)$(Q)COLDBOX:STATUS")
 	field(INP, "@asyn(PLC, 19981, 5.0) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
-	field(ZRVL, "1")
-	field(ONVL, "2")
-	field(TWVL, "3")
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
 	
-	field(ZRST, "IN COOLDOWN")
-	field(ONST, "RUNNING")
-	field(TWST, "NOT RUNNING")
+	field(ONST, "IN COOLDOWN")
+	field(TWST, "RUNNING")
+	field(THST, "NOT RUNNING")
 
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
