@@ -23,6 +23,7 @@ record(bo, "$(P)POWER:SP")
     field(SDIS, "$(P)DISABLE")
     field(PINI, "$(SP_PINI)")
     info(autosaveFields, "VAL")
+    info(archive, "VAL")
 }
 alias("$(P)POWER:SP", "$(P)POWER:SP:RBV")
 
@@ -58,8 +59,9 @@ record(bo, "$(P)AUTOONOFF")
     field(PINI, "YES")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:AUTOONOFF")
-    field(SDIS, "$(P)DISABLE")
+    field(DISP, "$(DISABLE_AUTOONOFF)")
     info(autosaveFields, "VAL")
+    info(archive, "VAL")
 }
 
 record(calcout, "$(P)CALCONOFF")
@@ -74,6 +76,7 @@ record(calcout, "$(P)CALCONOFF")
     field(OUT, "$(P)POWER:SP PP")
     field(OOPT, "When Non-zero")
     field(DOPT, "Use OCAL")
+    info(archive, "A B C D VAL")
 }
 
 record(calcout, "$(P)VOLT")
@@ -98,6 +101,7 @@ record(ao, "$(P)CURR:SP")
     field(DTYP, "Soft Channel")
     field(OUT, "$(P)CURR:TORAW.A PP MS")
     field(PREC, "3")
+    info(archive, "VAL")
 }
 
 record(calcout, "$(P)CURR:TORAW")
@@ -113,6 +117,7 @@ record(longin, "$(P)RAW:SP:RBV") {
     field(INP, "@dfkps_common.proto rawsprbv $(port)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)RAW:SP")
+    info(archive, "VAL")
 }
 
 record(calc, "$(P)CURR:SP:RBV") {
@@ -121,6 +126,7 @@ record(calc, "$(P)CURR:SP:RBV") {
     field(EGU, "A")
     field(PREC, "3")
     field(FLNK, "$(P)FIELD:SP:RBV:PRECAL")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)REMOTE")
@@ -135,6 +141,7 @@ record(bo, "$(P)REMOTE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:REMOTE")
     field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)SIM:RESET"){

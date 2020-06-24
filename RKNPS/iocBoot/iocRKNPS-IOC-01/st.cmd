@@ -55,6 +55,8 @@ dbLoadRecords("$(TOP)/db/riken_psu_banner.db","P=$(MYPVPREFIX)$(IOCNAME):")
 # Riken RB2 mode and port 3/4 monitoring
 dbLoadRecords("$(TOP)/db/riken_port_monitor.db","P=$(MYPVPREFIX)$(IOCNAME):,DAQMX=$(MYPVPREFIX)$(IOCNAME):DAQ:,PORT=R0")
 
+# Riken DaqMx connection monitoring
+dbLoadRecords("$(TOP)/db/riken_daqmx.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
