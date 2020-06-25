@@ -1,5 +1,5 @@
 
-global{SCAN="1 second"}
+global{SCAN="\$(SCAN)"}
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-header.template" {
     { P=\$(P), Q=\$(Q), RECSIM=\$(RECSIM), DEVSIM=\$(DEVSIM), DISABLE=\$(DISABLE) }
 }

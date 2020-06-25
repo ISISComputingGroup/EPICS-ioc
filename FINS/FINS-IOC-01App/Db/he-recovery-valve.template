@@ -19,6 +19,9 @@ record(mbbi, "$(P)$(Q)$(VALVE_NAME):STATUS")
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(VALVE_NAME):STATUS")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 ### SIMULATION RECORDS ###

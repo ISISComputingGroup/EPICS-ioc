@@ -4,4 +4,4 @@ $(IFRECSIM) finsUDPInit("PLC", "$(PLCIP):$(EMULATOR_PORT=)", "TCPNOHEAD", 1, "$(
 $(IFNOTDEVSIM) $(IFNOTRECSIM) finsUDPInit("PLC", "$(PLCIP)", "TCP", 0, "$(PLCNODE=)")
 
 ## Load our record instances
-dbLoadRecords("${TOP}/db/he-recovery.db","P=$(MYPVPREFIX),Q=$(IOCNAME):HE_RCVRY:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+dbLoadRecords("${TOP}/db/he-recovery.db","P=$(MYPVPREFIX),Q=$(IOCNAME):HE_RCVRY:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),SCAN=1 second")

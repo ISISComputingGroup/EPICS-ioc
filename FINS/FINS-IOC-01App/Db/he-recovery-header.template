@@ -31,7 +31,13 @@ record(longin, "$(P)$(Q)HEARTBEAT")
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:HEARTBEAT")
+
+    info(INTEREST, "HIGH")
 }
+
+# the following mbbi records are not in the substitution file since they either have 
+# unique sets of values, or because having a template for only two records does not 
+# make sense
 
 record(mbbi, "$(P)$(Q)CNTRL_VALVE_120:POSITION")
 {
@@ -51,6 +57,9 @@ record(mbbi, "$(P)$(Q)CNTRL_VALVE_120:POSITION")
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:CNTRL_VALVE_120:POSITION")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)$(Q)CNTRL_VALVE_121:POSITION")
@@ -71,6 +80,9 @@ record(mbbi, "$(P)$(Q)CNTRL_VALVE_121:POSITION")
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:CNTRL_VALVE_121:POSITION")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)$(Q)PURIFIER:STATUS")
@@ -99,6 +111,9 @@ record(mbbi, "$(P)$(Q)PURIFIER:STATUS")
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:PURIFIER:STATUS")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)$(Q)CMPRSSR:STATUS")
@@ -124,6 +139,9 @@ record(mbbi, "$(P)$(Q)CMPRSSR:STATUS")
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:CMPRSSR:STATUS")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)$(Q)COLDBOX:STATUS")
@@ -144,6 +162,9 @@ record(mbbi, "$(P)$(Q)COLDBOX:STATUS")
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:COLDBOX:STATUS")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 ### SIMULATION RECORDS ###

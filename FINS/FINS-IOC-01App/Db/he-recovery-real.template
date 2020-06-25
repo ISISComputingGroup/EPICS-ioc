@@ -9,6 +9,9 @@ record(ai, "$(P)$(Q)$(PV_NAME)")
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(PV_NAME)")
+
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)$(Q)SIM:$(PV_NAME)")
