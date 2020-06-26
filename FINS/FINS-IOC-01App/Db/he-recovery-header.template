@@ -33,6 +33,7 @@ record(longin, "$(P)$(Q)HEARTBEAT")
     field(SIOL, "$(P)$(Q)SIM:HEARTBEAT")
 
     info(INTEREST, "HIGH")
+    info(alarm, "FINS")
 }
 
 # the following mbbi records are not in the substitution file since they either have 
