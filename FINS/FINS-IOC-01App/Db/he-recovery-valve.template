@@ -21,7 +21,7 @@ record(mbbi, "$(P)$(Q)$(VALVE_NAME):STATUS")
     field(SIOL, "$(P)$(Q)SIM:$(VALVE_NAME):STATUS")
 
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    info(archive, "10 VAL")
 }
 
 ### SIMULATION RECORDS ###

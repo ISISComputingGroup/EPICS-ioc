@@ -13,7 +13,7 @@ record(ai, "$(P)$(Q)$(PV_NAME)")
     field(SIOL, "$(P)$(Q)SIM:$(PV_NAME)")
 
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    info(archive, "10 VAL")
 }
 
 record(ai, "$(P)$(Q)SIM:$(PV_NAME)")

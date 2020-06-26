@@ -60,7 +60,7 @@ record(mbbi, "$(P)$(Q)CNTRL_VALVE_120:POSITION")
     field(SIOL, "$(P)$(Q)SIM:CNTRL_VALVE_120:POSITION")
 
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    info(archive, "10 VAL")
 }
 
 record(mbbi, "$(P)$(Q)CNTRL_VALVE_121:POSITION")
@@ -83,7 +83,7 @@ record(mbbi, "$(P)$(Q)CNTRL_VALVE_121:POSITION")
     field(SIOL, "$(P)$(Q)SIM:CNTRL_VALVE_121:POSITION")
 
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    info(archive, "10 VAL")
 }
 
 record(mbbi, "$(P)$(Q)PURIFIER:STATUS")
@@ -114,7 +114,7 @@ record(mbbi, "$(P)$(Q)PURIFIER:STATUS")
     field(SIOL, "$(P)$(Q)SIM:PURIFIER:STATUS")
 
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    info(archive, "10 VAL")
 }
 
 record(mbbi, "$(P)$(Q)CMPRSSR:STATUS")
@@ -142,7 +142,7 @@ record(mbbi, "$(P)$(Q)CMPRSSR:STATUS")
     field(SIOL, "$(P)$(Q)SIM:CMPRSSR:STATUS")
 
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    info(archive, "10 VAL")
 }
 
 record(mbbi, "$(P)$(Q)COLDBOX:STATUS")
@@ -165,7 +165,7 @@ record(mbbi, "$(P)$(Q)COLDBOX:STATUS")
     field(SIOL, "$(P)$(Q)SIM:COLDBOX:STATUS")
 
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    info(archive, "10 VAL")
 }
 
 ### SIMULATION RECORDS ###
