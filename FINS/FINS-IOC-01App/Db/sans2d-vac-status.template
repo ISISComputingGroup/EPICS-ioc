@@ -29,6 +29,23 @@ record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
     info(INTEREST, "HIGH")
 }
 
+
+record(bo, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM") {
+    field(DESC, "At Vacuum or not")
+    field(VAL, 0)
+    info(archive, "VAL")
+}
+ 
+
+record(calcout,"$(FULL_PREFIX)$(SYSTEM):STATUS:VAC_STATUS_CALC" ) {
+    field(DESC, "Check if vessel is under vacuum")
+    field(INPA, "$(FULL_PREFIX)$(SYSTEM):STATUS CP MS")
+    field(CALC, "A==4")
+    field(OOPT, "On Change")
+    field(OUT, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM PP")
+}
+
+
 ### Simulation Records ###
 
 record(mbbi, "$(FULL_PREFIX)SIM:$(SYSTEM):STATUS")
