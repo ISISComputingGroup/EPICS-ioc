@@ -1,0 +1,67 @@
+## Distances (intervals) between baffles and detectors
+
+record(calc, "$(FULL_PREFIX)FDFB:INTERVAL"){
+    field(DESC, "The distance between the front detector and front baffle")
+    field(INPA, "$(P)MOT:FRONTDETZ")
+    field(INPB, "$(P)MOT:FRONTBAFFLEZ")
+    field(CALC, "b-a")
+    field(HIGH, "$(INTERVAL_MAJOR_WARNING)")
+    field(HSV, "MAJOR")
+    field(LOW, "$(INTERVAL_MINOR_WARNING)")
+    field(LSV, "MINOR")
+}
+
+record(calc, "$(FULL_PREFIX)FDFBSP:INTERVAL"){
+    field(DESC, "The distance between the front detector setpoint and front baffle setpoint")
+    field(INPA, "$(P)MOT:FRONTDETZ:SP")
+    field(INPB, "$(P)MOT:FRONTBAFFLEZ:SP")
+    field(CALC, "b-a")
+    field(HIGH, "$(INTERVAL_MAJOR_WARNING)")
+    field(HSV, "MAJOR")
+    field(LOW, "$(INTERVAL_MINOR_WARNING)")
+    field(LSV, "MINOR")
+}
+
+record(calc, "$(FULL_PREFIX)FBRB:INTERVAL"){
+    field(DESC, "The distance between the front baffle and rear baffle")
+    field(INPA, "$(P)MOT:FRONTBAFFLEZ")
+    field(INPB, "$(P)MOT:REARBAFFLEZ")
+    field(CALC, "b-a")
+    field(HIGH, "$(INTERVAL_MAJOR_WARNING)")
+    field(HSV, "MAJOR")
+    field(LOW, "$(INTERVAL_MINOR_WARNING)")
+    field(LSV, "MINOR")
+}
+
+record(calc, "$(FULL_PREFIX)FBRBSP:INTERVAL"){
+    field(DESC, "The distance between the front baffle setpoint and rear baffle setpoint")
+    field(INPA, "$(P)MOT:FRONTBAFFLEZ:SP")
+    field(INPB, "$(P)MOT:REARBAFFLEZ:SP")
+    field(CALC, "b-a")
+    field(HIGH, "$(INTERVAL_MAJOR_WARNING)")
+    field(HSV, "MAJOR")
+    field(LOW, "$(INTERVAL_MINOR_WARNING)")
+    field(LSV, "MINOR")
+}
+
+record(calc, "$(FULL_PREFIX)RBRD:INTERVAL"){
+    field(DESC, "The distance between the rear baffle and rear detector")
+    field(INPA, "$(P)MOT:REARBAFFLEZ")
+    field(INPB, "$(P)MOT:REARDETZ")
+    field(CALC, "b-a")
+    field(HIGH, "$(INTERVAL_MAJOR_WARNING)")
+    field(HSV, "MAJOR")
+    field(LOW, "$(INTERVAL_MINOR_WARNING)")
+    field(LSV, "MINOR")
+}
+
+record(calc, "$(FULL_PREFIX)RBRDSP:INTERVAL"){
+    field(DESC, "The distance between the rear baffle setpoint and rear detector setpoint")
+    field(INPA, "$(P)MOT:REARBAFFLEZ:SP")
+    field(INPB, "$(P)MOT:REARDETZ:SP")
+    field(CALC, "b-a")
+    field(HIGH, "$(INTERVAL_MAJOR_WARNING)")
+    field(HSV, "MAJOR")
+    field(LOW, "$(INTERVAL_MINOR_WARNING)")
+    field(LSV, "MINOR")
+}

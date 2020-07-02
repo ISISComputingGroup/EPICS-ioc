@@ -163,3 +163,7 @@ file "$(TOP)/FINS-IOC-01App/Db/write-bit.template" {
     { "$(P)$(Q)", "500", "5", "GUIDE:STOP", "Stops the guide", "STOP"}
     { "$(P)$(Q)", "500", "6", "OVERCOUNT:RESET", "Resets the overcount", "RESET"}
 }
+
+file "$(TOP)/FINS-IOC-01App/Db/sans2d-vac-intervals.template" {
+    { FULL_PREFIX=$(P)$(Q), INTERVAL_MAJOR_WARNING="\$(SANS2D_VACUUM_TANK_INTERVAL_MINOR_WARNING)", INTERVAL_MINOR_WARNING="\$(SANS2D_VACUUM_TANK_INTERVAL_MAJOR_WARNING)" }
+}
