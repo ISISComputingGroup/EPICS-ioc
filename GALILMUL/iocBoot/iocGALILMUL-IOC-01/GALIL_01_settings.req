@@ -1,0 +1,1 @@
+file "GALIL_controller_settings.req" "P=$(P),CCP=$(CCP)"
