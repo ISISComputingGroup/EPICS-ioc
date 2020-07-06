@@ -163,3 +163,12 @@ file "$(TOP)/FINS-IOC-01App/Db/write-bit.template" {
     { "$(P)$(Q)", "500", "5", "GUIDE:STOP", "Stops the guide", "STOP"}
     { "$(P)$(Q)", "500", "6", "OVERCOUNT:RESET", "Resets the overcount", "RESET"}
 }
+
+file "$(TOP)/FINS-IOC-01App/Db/sans2d-vac-status.template" {
+    { FULL_PREFIX=$(P)$(Q), ADDR=1005, SYSTEM=GUIDE }
+    { FULL_PREFIX=$(P)$(Q), ADDR=1011, SYSTEM=TANK }
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/sans2d-vac-stop-motors.template" {
+    { FULL_PREFIX=$(P)$(Q) }
+}

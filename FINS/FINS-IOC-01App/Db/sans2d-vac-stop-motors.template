@@ -1,0 +1,46 @@
+record(fanout, "$(FULL_PREFIX)STOP_MOTORS:ALL") {
+    field(LNK1, "$(FULL_PREFIX)STOP_MOTORS:BAFFLES.PROC")
+    field(LNK2, "$(FULL_PREFIX)STOP_MOTORS:DETECTORS.PROC")
+    field(LNK3, "$(FULL_PREFIX)STOP_MOTORS:BEAMSTOPS.PROC")
+    field(LNK4, "$(FULL_PREFIX)STOP_MOTORS:JAWS.PROC")
+    field(LNK5, "$(FULL_PREFIX)STOP_MOTORS:STRIPS.PROC")
+    field(SELM, "All")
+}
+
+record(fanout, "$(FULL_PREFIX)STOP_MOTORS:BAFFLES"){
+    field(LNK1, "$(P)MOT:REARBAFFLEZ:STOP.PROC")
+    field(LNK2, "$(P)MOT:FRONTBAFFLEZ:STOP.PROC")
+    field(SELM, "All")
+}
+
+record(fanout, "$(FULL_PREFIX)STOP_MOTORS:DETECTORS"){
+    field(LNK1, "$(P)MOT:FRONTDETZ:STOP.PROC")
+    field(LNK2, "$(P)MOT:FRONTDETX:STOP.PROC")
+    field(LNK3, "$(P)MOT:FRONTDETROT:STOP.PROC")
+    field(LNK4, "$(P)MOT:REARDETZ:STOP.PROC")
+    field(LNK5, "$(P)MOT:REARDETX:STOP.PROC")
+    field(SELM, "All")
+}
+
+record(fanout, "$(FULL_PREFIX)STOP_MOTORS:BEAMSTOPS"){
+    field(LNK1, "$(P)MOT:BEAMSTOPX:STOP.PROC")
+    field(LNK2, "$(P)MOT:BEAMSTOP2Y:STOP.PROC")
+    field(LNK3, "$(P)MOT:BEAMSTOP1Y:STOP.PROC")
+    field(LNK4, "$(P)MOT:BEAMSTOP3Y:STOP.PROC")
+    field(LNK5, "$(P)MOT:FRONTBEAMSTOP:STOP.PROC")
+    field(SELM, "All")
+}
+
+record(fanout, "$(FULL_PREFIX)STOP_MOTORS:JAWS") {
+    field(LNK1, "$(P)MOT:JAWRIGHT:STOP.PROC")
+    field(LNK2, "$(P)MOT:JAWLEFT:STOP.PROC")
+    field(LNK3, "$(P)MOT:JAWUP:STOP.PROC")
+    field(LNK4, "$(P)MOT:JAWDOWN:STOP.PROC")
+    field(SELM, "All")
+}
+
+record(fanout, "$(FULL_PREFIX)STOP_MOTORS:STRIPS") {
+    field(LNK1, "$(P)MOT:FRONTSTRIP:STOP.PROC")
+    field(LNK2, "$(P)MOT:REARSTRIP:STOP.PROC")
+    field(SELM, "All")
+}
