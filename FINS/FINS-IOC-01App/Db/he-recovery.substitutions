@@ -109,7 +109,7 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-dword.template" {
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-real.template" {
-	pattern { P, Q, PV_NAME, DESCRIPTION, MEMORY_ADDRESS}
+	pattern { P, Q, PV_NAME, DESCRIPTION, MEMORY_ADDRESS, UNIT}
 
 		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS2:EAST", "Mass flow total helium resupply TS2 east", "19876", "m^3" }
 		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS2:WEST", "Mass flow total helium resupply TS2 west", "19878", "m^3" }

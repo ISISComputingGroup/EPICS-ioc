@@ -177,6 +177,8 @@ record(longin, "$(P)$(Q)LIQUEFIER:ALARM1")
 	field(INP,  "@asyn(PLC, 19982, 5.0) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
+	field(EGU, "")
+
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:LIQUEFIER:ALARM1")
@@ -191,6 +193,8 @@ record(longin, "$(P)$(Q)LIQUEFIER:ALARM2")
 	field(DTYP, "asynInt32")
 	field(INP,  "@asyn(PLC, 19983, 5.0) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
+
+	field(EGU, "")
 
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
