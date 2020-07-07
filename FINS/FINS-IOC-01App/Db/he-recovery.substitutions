@@ -5,118 +5,117 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-header.template" {
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-int.template" {
-	pattern { P, Q, PV_NAME, DESCRIPTION, MEMORY_ADDRESS}
+	pattern { P, Q, PV_NAME, DESCRIPTION, MEMORY_ADDRESS, UNIT}
 
-		{ "\$(P)", "\$(Q)", "MCP:BANK1:TS2", "MCP Bank 1 TS2 Helium Gas Resupply", "19501" }
-		{ "\$(P)", "\$(Q)", "MCP:BANK1:TS1", "MCP Bank 1 TS1 Helium Gas Resupply", "19502" }
-		{ "\$(P)", "\$(Q)", "MCP1:BANK2:IMPURE_HE", "MCP 1 Bank 2 Impure Helium <98%", "19503" }
-		{ "\$(P)", "\$(Q)", "MCP2:BANK2:IMPURE_HE", "MCP 2 Bank 2 Impure Helium <98%", "19504" }
-		{ "\$(P)", "\$(Q)", "MCP1:BANK3:MAIN_HE_STORAGE", "MCP 1 Bank 3 ISIS Main Hellium Storage", "19505" }
-		{ "\$(P)", "\$(Q)", "MCP2:BANK3:MAIN_HE_STORAGE", "MCP 2 Bank 3 ISIS Main Hellium Storage", "19506" }
-		{ "\$(P)", "\$(Q)", "MCP1:BANK4:DLS_HE_STORAGE", "MCP 1 Bank 4 DLS Helium Storage", "19507" }
-		{ "\$(P)", "\$(Q)", "MCP2:BANK4:DLS_HE_STORAGE", "MCP 2 Bank 4 DLS Helium Storage", "19508" }
-		{ "\$(P)", "\$(Q)", "MCP1:BANK5:SPARE_STORAGE", "MCP 1 Bank 5 Spare Storage", "19509" }
-		{ "\$(P)", "\$(Q)", "MCP2:BANK5:SPARE_STORAGE", "MCP 2 Bank 5 Spare Storage", "19510" }
-		{ "\$(P)", "\$(Q)", "MCP1:BANK6:SPARE_STORAGE", "MCP 1 Bank 6 Spare Storage", "19511" }
-		{ "\$(P)", "\$(Q)", "MCP2:BANK6:SPARE_STORAGE", "MCP 2 Bank 6 Spare Storage", "19512" }
-		{ "\$(P)", "\$(Q)", "MCP1:BANK7:SPARE_STORAGE", "MCP 1 Bank 7 Spare Storage", "19513" }
-		{ "\$(P)", "\$(Q)", "MCP2:BANK7:SPARE_STORAGE", "MCP 2 Bank 7 Spare Storage", "19514" }
-		{ "\$(P)", "\$(Q)", "MCP1:BANK8:SPARE_STORAGE", "MCP 1 Bank 8 Spare Storage", "19515" }
-		{ "\$(P)", "\$(Q)", "MCP2:BANK8:SPARE_STORAGE", "MCP 2 Bank 8 Spare Storage", "19516" }
-		{ "\$(P)", "\$(Q)", "MCP:INLET:PRESSURE", "MCP Manifold compressors inlet pressure", "19517" }
-		{ "\$(P)", "\$(Q)", "MCP:EXTERNAL_TEMP", "MCP external temperature", "19518" }
-		{ "\$(P)", "\$(Q)", "GAS_LIQUEFACTION:MASS_FLOW", "Mass flow meter gas flow liquefaction", "19521" }
-		{ "\$(P)", "\$(Q)", "HE_FILLS:MASS_FLOW", "Mass flow meter for helium fills", "19522" }
-		{ "\$(P)", "\$(Q)", "CMPRSSR:INTERNAL_TEMP", "Kaiser Compressor Container Intrnl Temp", "19523" }
-		{ "\$(P)", "\$(Q)", "COLDBOX:HE_TEMP", "Coldbox Helium Temperature", "19524" }
-		{ "\$(P)", "\$(Q)", "COLDBOX:HE_TEMP:LIMIT", "Coldbox Helium Temperature Limit", "19525" }
-		{ "\$(P)", "\$(Q)", "TRANSPORT_DEWAR:PRESSURE", "Transport Dewar Flash Pressure", "19526" }
-    	{ "\$(P)", "\$(Q)", "HE_PURITY", "Incoming Helium Gas Purity", "19533" }
-    	{ "\$(P)", "\$(Q)", "DEW_POINT", "Incoming Helium Gas Moisture Level", "19534" }
-    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS2:EAST", "TS2 East flow meter" , "19652" }
-    	{ "\$(P)", "\$(Q)", "TS2:EAST:O2", "TS2 East Oxygen 2 level", "19653" }
-    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS2:WEST", "TS2 West flow meter", "19662" }
-    	{ "\$(P)", "\$(Q)", "TS2:WEST:O2", "TS2 West Oxygen 2 level", "19663" }
-    	{ "\$(P)", "\$(Q)", "TS1:NORTH:O2", "TS1 North O2 level", "19668" }
-    	{ "\$(P)", "\$(Q)", "TS1:SOUTH:O2", "TS1 South O2 level", "19669" }
-    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS1:WINDOW", "TS1 window flow meter", "19697" }
-    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS1:SHUTTER", "TS1 shutter flow meter", "19698" }
-    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS1:VOID", "TS1 void flow meter", "19699" }
-    	{ "\$(P)", "\$(Q)", "COLDBOX:MV108", "Liquefier coldbox MV108 Open/Close", "19875" }
-    	{ "\$(P)", "\$(Q)", "BANK1:TS2:RSPPL:AVG_PURITY", "Bank 1 TS2 He gas resupply avg purity", "19929" }
-    	{ "\$(P)", "\$(Q)", "BANK1:TS1:RSPPL:AVG_PURITY", "Bank 1 TS1 He gas resupply avg purity", "19930" }
-    	{ "\$(P)", "\$(Q)", "BANK2:IMPURE_HE:AVG_PURITY", "Bank 2 impure helium purity average", "19931" }
-    	{ "\$(P)", "\$(Q)", "BANK3:MAIN_STRG:AVG_PURITY", "Bank 3 main Helium storage avg purity", "19933" }
-    	{ "\$(P)", "\$(Q)", "BANK4:DLS_STRG:AVG_PURITY", "Bank 4 DLS main He storage avg purity", "19935" }
-    	{ "\$(P)", "\$(Q)", "BANK5:SPR_STRG:AVG_PURITY", "Bank 5 Helium spare storage avg purity", "19937" }
-    	{ "\$(P)", "\$(Q)", "BANK6:SPR_STRG:AVG_PURITY", "Bank 6 Helium spare storage avg purity", "19939" }
-    	{ "\$(P)", "\$(Q)", "BANK7:SPR_STRG:AVG_PURITY", "Bank 7 Helium spare storage avg purity", "19941" }
-    	{ "\$(P)", "\$(Q)", "BANK8:SPR_STRG:AVG_PURITY", "Bank 8 Helium spare storage avg purity", "19943" }
-    	{ "\$(P)", "\$(Q)", "COLDBOX:TURBINE_100:SPEED", "Coldbox Turbine 100 Speed", "19945" }
-    	{ "\$(P)", "\$(Q)", "COLDBOX:TURBINE_101:SPEED", "Coldbox Turbine 101 Speed", "19946" }
-    	{ "\$(P)", "\$(Q)", "COLDBOX:T106:TEMP", "Coldbox T106 temperature", "19947" }
-    	{ "\$(P)", "\$(Q)", "COLDBOX:TT111:TEMP", "Coldbox temperature transducer 111", "19948" }
-    	{ "\$(P)", "\$(Q)", "COLDBOX:PT102:PRESSURE", "Coldbox pressure transducer 102", "19949" }
-    	{ "\$(P)", "\$(Q)", "BUFFER:PT203:PRESSURE", "Buffer pressure PT203", "19950" }
-    	{ "\$(P)", "\$(Q)", "PURIFIER:TT104:TEMP", "Purifier temperature transducer 104", "19951" }
-    	{ "\$(P)", "\$(Q)", "PURIFIER:TT102:TEMP", "Purifier temperature transducer 102", "19952" }
-    	{ "\$(P)", "\$(Q)", "COLDBOX:TT108:TEMP", "Coldbox temperature transducer 108", "19953" }
-    	{ "\$(P)", "\$(Q)", "COLDBOX:PT112:PRESSURE", "Coldbox pressure tranducer 112", "19954" }
-    	{ "\$(P)", "\$(Q)", "COLDBOX:CNTRL_VALVE_103", "Liquefier Coldbox control valve 103 %", "19955" }
-       	{ "\$(P)", "\$(Q)", "COLDBOX:CNTRL_VALVE_111", "Liquefier Coldbox control valve 111 %", "19956" }
-       	{ "\$(P)", "\$(Q)", "COLDBOX:CNTRL_VALVE_112", "Liquefier Coldbox control valve 112 %", "19957" }
-       	{ "\$(P)", "\$(Q)", "MOTHER_DEWAR:HE_LEVEL", "Mother dewar helium level", "19958" }
-    	{ "\$(P)", "\$(Q)", "PURIFIER:LEVEL", "Purifier level %", "19961" }
-    	{ "\$(P)", "\$(Q)", "IMPURE_HE_SUPPLY:PRESSURE", "Impure helium supply pressure", "19962" }
-    	{ "\$(P)", "\$(Q)", "CMPRSSR:LOW_CNTRL_PRESSURE", "Compressor low pressure control pressure", "19963" }
-    	{ "\$(P)", "\$(Q)", "CMPRSSR:HIGH_CNTRL_PRESSURE", "Compressor high control pressure", "19964" }
-    	{ "\$(P)", "\$(Q)", "CNTRL_VALVE_2250", "control valve 2250 %", "19972" }
-    	{ "\$(P)", "\$(Q)", "CNTRL_VALVE_2150", "control valve 2150 %", "19974" }
-    	{ "\$(P)", "\$(Q)", "CNTRL_VALVE_2160", "control valve 2160 %", "19975" }	
-    	{ "\$(P)", "\$(Q)", "LIQUID_NITROGEN:STATUS", "Liquid nitrogen status", "19979" }
-    	{ "\$(P)", "\$(Q)", "MCP:LIQUID_HE_INVENTORY", "MCP liquid helium inventory", "19996" }							
+		{ "\$(P)", "\$(Q)", "MCP:BANK1:TS2", "MCP Bank 1 TS2 Helium Gas Resupply", "19501", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP:BANK1:TS1", "MCP Bank 1 TS1 Helium Gas Resupply", "19502", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP1:BANK2:IMPURE_HE", "MCP 1 Bank 2 Impure Helium <98%", "19503", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP2:BANK2:IMPURE_HE", "MCP 2 Bank 2 Impure Helium <98%", "19504", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP1:BANK3:MAIN_HE_STORAGE", "MCP 1 Bank 3 ISIS Main Hellium Storage", "19505", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP2:BANK3:MAIN_HE_STORAGE", "MCP 2 Bank 3 ISIS Main Hellium Storage", "19506", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP1:BANK4:DLS_HE_STORAGE", "MCP 1 Bank 4 DLS Helium Storage", "19507", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP2:BANK4:DLS_HE_STORAGE", "MCP 2 Bank 4 DLS Helium Storage", "19508", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP1:BANK5:SPARE_STORAGE", "MCP 1 Bank 5 Spare Storage", "19509", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP2:BANK5:SPARE_STORAGE", "MCP 2 Bank 5 Spare Storage", "19510", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP1:BANK6:SPARE_STORAGE", "MCP 1 Bank 6 Spare Storage", "19511", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP2:BANK6:SPARE_STORAGE", "MCP 2 Bank 6 Spare Storage", "19512", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP1:BANK7:SPARE_STORAGE", "MCP 1 Bank 7 Spare Storage", "19513", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP2:BANK7:SPARE_STORAGE", "MCP 2 Bank 7 Spare Storage", "19514", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP1:BANK8:SPARE_STORAGE", "MCP 1 Bank 8 Spare Storage", "19515", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP2:BANK8:SPARE_STORAGE", "MCP 2 Bank 8 Spare Storage", "19516", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP:INLET:PRESSURE", "MCP Manifold compressors inlet pressure", "19517", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP:EXTERNAL_TEMP", "MCP external temperature", "19518", "C" }
+		{ "\$(P)", "\$(Q)", "GAS_LIQUEFACTION:MASS_FLOW", "Mass flow meter gas flow liquefaction", "19521", "L/minute"}
+		{ "\$(P)", "\$(Q)", "HE_FILLS:MASS_FLOW", "Mass flow meter for helium fills", "19522", "L/minute"}
+		{ "\$(P)", "\$(Q)", "CMPRSSR:INTERNAL_TEMP", "Kaiser Compressor Container Intrnl Temp", "19523", "C" }
+		{ "\$(P)", "\$(Q)", "COLDBOX:HE_TEMP", "Coldbox Helium Temperature", "19524", "C" }
+		{ "\$(P)", "\$(Q)", "COLDBOX:HE_TEMP:LIMIT", "Coldbox Helium Temperature Limit", "19525", "C" }
+		{ "\$(P)", "\$(Q)", "TRANSPORT_DEWAR:PRESSURE", "Transport Dewar Flash Pressure", "19526", "mbar" }
+    	{ "\$(P)", "\$(Q)", "HE_PURITY", "Incoming Helium Gas Purity", "19533", "%" }
+    	{ "\$(P)", "\$(Q)", "DEW_POINT", "Incoming Helium Gas Moisture Level", "19534", "K" }
+    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS2:EAST", "TS2 East flow meter" , "19652", "L/minute" }
+    	{ "\$(P)", "\$(Q)", "TS2:EAST:O2", "TS2 East Oxygen 2 level", "19653", "%" }
+    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS2:WEST", "TS2 West flow meter", "19662", "L/minute" }
+    	{ "\$(P)", "\$(Q)", "TS2:WEST:O2", "TS2 West Oxygen 2 level", "19663", "%" }
+    	{ "\$(P)", "\$(Q)", "TS1:NORTH:O2", "TS1 North O2 level", "19668", "%" }
+    	{ "\$(P)", "\$(Q)", "TS1:SOUTH:O2", "TS1 South O2 level", "19669", "%" }
+    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS1:WINDOW", "TS1 window flow meter", "19697", "L/minute" }
+    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS1:SHUTTER", "TS1 shutter flow meter", "19698", "L/minute" }
+    	{ "\$(P)", "\$(Q)", "FLOW_METER:TS1:VOID", "TS1 void flow meter", "19699", "L/minute" }
+    	{ "\$(P)", "\$(Q)", "BANK1:TS2:RSPPL:AVG_PURITY", "Bank 1 TS2 He gas resupply avg purity", "19929", "%" }
+    	{ "\$(P)", "\$(Q)", "BANK1:TS1:RSPPL:AVG_PURITY", "Bank 1 TS1 He gas resupply avg purity", "19930", "%" }
+    	{ "\$(P)", "\$(Q)", "BANK2:IMPURE_HE:AVG_PURITY", "Bank 2 impure helium purity average", "19931", "%" }
+    	{ "\$(P)", "\$(Q)", "BANK3:MAIN_STRG:AVG_PURITY", "Bank 3 main Helium storage avg purity", "19933", "%" }
+    	{ "\$(P)", "\$(Q)", "BANK4:DLS_STRG:AVG_PURITY", "Bank 4 DLS main He storage avg purity", "19935", "%" }
+    	{ "\$(P)", "\$(Q)", "BANK5:SPR_STRG:AVG_PURITY", "Bank 5 Helium spare storage avg purity", "19937", "%" }
+    	{ "\$(P)", "\$(Q)", "BANK6:SPR_STRG:AVG_PURITY", "Bank 6 Helium spare storage avg purity", "19939", "%" }
+    	{ "\$(P)", "\$(Q)", "BANK7:SPR_STRG:AVG_PURITY", "Bank 7 Helium spare storage avg purity", "19941", "%" }
+    	{ "\$(P)", "\$(Q)", "BANK8:SPR_STRG:AVG_PURITY", "Bank 8 Helium spare storage avg purity", "19943", "%" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:TURBINE_100:SPEED", "Coldbox Turbine 100 Speed", "19945", "rps" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:TURBINE_101:SPEED", "Coldbox Turbine 101 Speed", "19946", "rps" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:T106:TEMP", "Coldbox T106 temperature", "19947", "K" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:TT111:TEMP", "Coldbox temperature transducer 111", "19948", "K" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:PT102:PRESSURE", "Coldbox pressure transducer 102", "19949", "bar" }
+    	{ "\$(P)", "\$(Q)", "BUFFER:PT203:PRESSURE", "Buffer pressure PT203", "19950", "bar" } 
+    	{ "\$(P)", "\$(Q)", "PURIFIER:TT104:TEMP", "Purifier temperature transducer 104", "19951", "K" }
+    	{ "\$(P)", "\$(Q)", "PURIFIER:TT102:TEMP", "Purifier temperature transducer 102", "19952", "K" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:TT108:TEMP", "Coldbox temperature transducer 108", "19953", "K" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:PT112:PRESSURE", "Coldbox pressure tranducer 112", "19954", "mbar" }
+    	{ "\$(P)", "\$(Q)", "COLDBOX:CNTRL_VALVE_103", "Liquefier Coldbox control valve 103 %", "19955", "%" }
+       	{ "\$(P)", "\$(Q)", "COLDBOX:CNTRL_VALVE_111", "Liquefier Coldbox control valve 111 %", "19956", "%" }
+       	{ "\$(P)", "\$(Q)", "COLDBOX:CNTRL_VALVE_112", "Liquefier Coldbox control valve 112 %", "19957", "%" }
+       	{ "\$(P)", "\$(Q)", "MOTHER_DEWAR:HE_LEVEL", "Mother dewar helium level", "19958", "%"}
+    	{ "\$(P)", "\$(Q)", "PURIFIER:LEVEL", "Purifier level %", "19961", "%" }
+    	{ "\$(P)", "\$(Q)", "IMPURE_HE_SUPPLY:PRESSURE", "Impure helium supply pressure", "19962", "bar" }
+    	{ "\$(P)", "\$(Q)", "CMPRSSR:LOW_CNTRL_PRESSURE", "Compressor low pressure control pressure", "19963", "bar" }
+    	{ "\$(P)", "\$(Q)", "CMPRSSR:HIGH_CNTRL_PRESSURE", "Compressor high control pressure", "19964", "bar" }
+    	{ "\$(P)", "\$(Q)", "CNTRL_VALVE_2250", "control valve 2250 %", "19972", "%" }
+    	{ "\$(P)", "\$(Q)", "CNTRL_VALVE_2150", "control valve 2150 %", "19974", "%" }
+    	{ "\$(P)", "\$(Q)", "CNTRL_VALVE_2160", "control valve 2160 %", "19975", "%" }
+    	{ "\$(P)", "\$(Q)", "LIQUID_NITROGEN:STATUS", "Liquid nitrogen status", "19979", "" }
+        { "\$(P)", "\$(Q)", "MCP:LIQUID_HE_INVENTORY", "MCP liquid helium inventory", "19996", "L" }					
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-dword.template" {
-	pattern { P, Q, PV_NAME, DESCRIPTION, MEMORY_ADDRESS}
+	pattern { P, Q, PV_NAME, DESCRIPTION, MEMORY_ADDRESS, UNIT}
 
-    	{ "\$(P)", "\$(Q)", "GC:R108:U40", "R108 U40 gas counter", "19700" }
-    	{ "\$(P)", "\$(Q)", "GC:R108:DEWAR_FARM", "R108 dewar farm gas counter", "19702" }
-    	{ "\$(P)", "\$(Q)", "GC:R55:TOTAL", "Gas counter R55 Total", "19704" }
-    	{ "\$(P)", "\$(Q)", "GC:R55:NORTH", "Gas counter R55 North", "19706" }
-    	{ "\$(P)", "\$(Q)", "GC:R55:SOUTH", "Gas counter R55 South", "19708" }
-    	{ "\$(P)", "\$(Q)", "GC:MICE_HALL", "Gas counter Mice hall", "19710" }
-    	{ "\$(P)", "\$(Q)", "GC:MUON", "Gas counter Muon", "19712" }
-    	{ "\$(P)", "\$(Q)", "GC:PEARL_HRPD_MARI_ENGINX", "Gas counter PEARL HRPD MARI ENGINX GEM", "19714" }
-    	{ "\$(P)", "\$(Q)", "GC:SXD_AND_MERLIN", "Gas counter SXD and MERLIN", "19720" }
-    	{ "\$(P)", "\$(Q)", "GC:CRYO_LAB", "Gas counter Cryo Laboratory", "19724" }
-    	{ "\$(P)", "\$(Q)", "GC:MAPS_AND_VESUVIO", "Gas counter MAPS and VESUVIO", "19726" }
-    	{ "\$(P)", "\$(Q)", "GC:SANDALS", "Gas counter SANDALS", "19728" }
-    	{ "\$(P)", "\$(Q)", "GC:CRISP_AND_LOQ", "Gas counter CRISP and LOQ", "19730" }
-    	{ "\$(P)", "\$(Q)", "GC:IRIS_AND_OSIRIS", "Gas counter IRIS and OSIRIS", "19734" }
-    	{ "\$(P)", "\$(Q)", "GC:INES", "Gas counter INES", "19736" }
-    	{ "\$(P)", "\$(Q)", "GC:RIKEN", "Gas counter RIKEN", "19738" }
-    	{ "\$(P)", "\$(Q)", "GC:R80:TOTAL", "Gas counteR R80 total", "19746" }
-    	{ "\$(P)", "\$(Q)", "GC:R53", "Gas counter R53", "19748" }
-    	{ "\$(P)", "\$(Q)", "GC:R80:EAST", "Gas counter R80 East", "19750" }
-    	{ "\$(P)", "\$(Q)", "GC:WISH", "Gas counter WISH", "19752" }
-    	{ "\$(P)", "\$(Q)", "GC:WISH:DEWAR_FARM", "Gas counter WISH dewar farm", "19754" }
-    	{ "\$(P)", "\$(Q)", "GC:LARMOR_AND_OFFSPEC", "Gas counter LARMOR and OFFSPEC", "19756" }
-    	{ "\$(P)", "\$(Q)", "GC:ZOOM_SANS2D_AND_POLREF", "Gas counter ZOOM, SANS2D and POLREF", "19758" }
-    	{ "\$(P)", "\$(Q)", "GC:MAGNET_LAB", "Gas counter magnet lab", "19762" }
-    	{ "\$(P)", "\$(Q)", "GC:IMAT", "Gas counter IMAT", "19766" }
-    	{ "\$(P)", "\$(Q)", "GC:LET_AND_NIMROD", "Gas counter LET and NIMROD", "19768" }
-    	{ "\$(P)", "\$(Q)", "GC:R80:WEST", "Gas counter R80 west", "19772" }
+    	{ "\$(P)", "\$(Q)", "GC:R108:U40", "R108 U40 gas counter", "19700", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:R108:DEWAR_FARM", "R108 dewar farm gas counter", "19702", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:R55:TOTAL", "Gas counter R55 Total", "19704", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:R55:NORTH", "Gas counter R55 North", "19706", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:R55:SOUTH", "Gas counter R55 South", "19708", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:MICE_HALL", "Gas counter Mice hall", "19710", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:MUON", "Gas counter Muon", "19712", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:PEARL_HRPD_MARI_ENGINX", "Gas counter PEARL HRPD MARI ENGINX GEM", "19714", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:SXD_AND_MERLIN", "Gas counter SXD and MERLIN", "19720", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:CRYO_LAB", "Gas counter Cryo Laboratory", "19724", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:MAPS_AND_VESUVIO", "Gas counter MAPS and VESUVIO", "19726", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:SANDALS", "Gas counter SANDALS", "19728", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:CRISP_AND_LOQ", "Gas counter CRISP and LOQ", "19730", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:IRIS_AND_OSIRIS", "Gas counter IRIS and OSIRIS", "19734", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:INES_AND_TOSCA", "Gas counter INES", "19736", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:RIKEN", "Gas counter RIKEN", "19738", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:R80:TOTAL", "Gas counteR R80 total", "19746", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:R53", "Gas counter R53", "19748", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:R80:EAST", "Gas counter R80 East", "19750", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:WISH", "Gas counter WISH", "19752", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:WISH:DEWAR_FARM", "Gas counter WISH dewar farm", "19754", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:LARMOR_AND_OFFSPEC", "Gas counter LARMOR and OFFSPEC", "19756", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:ZOOM_SANS2D_AND_POLREF", "Gas counter ZOOM, SANS2D and POLREF", "19758", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:MAGNET_LAB", "Gas counter magnet lab", "19762", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:IMAT", "Gas counter IMAT", "19766", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:LET_AND_NIMROD", "Gas counter LET and NIMROD", "19768", "L" }
+    	{ "\$(P)", "\$(Q)", "GC:R80:WEST", "Gas counter R80 west", "19772", "L" }
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-real.template" {
 	pattern { P, Q, PV_NAME, DESCRIPTION, MEMORY_ADDRESS}
 
-		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS2:EAST", "Mass flow total helium resupply TS2 east", "19876" }
-		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS2:WEST", "Mass flow total helium resupply TS2 west", "19878" }
-		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS1:VOID", "Mass flow target group resupply TS1 void", "19880" }
-		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS1:WNDW", "Mass flow target resupply TS1 window", "19882" }
-		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS1:SHTR", "Mass flow target resupply TS1 shutter", "19884" }
+		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS2:EAST", "Mass flow total helium resupply TS2 east", "19876", "m^3" }
+		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS2:WEST", "Mass flow total helium resupply TS2 west", "19878", "m^3" }
+		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS1:VOID", "Mass flow target group resupply TS1 void", "19880", "m^3" }
+		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS1:WNDW", "Mass flow target resupply TS1 window", "19882", "m^3" }
+		{ "\$(P)", "\$(Q)", "MASS_FLOW:HE_RSPPL:TS1:SHTR", "Mass flow target resupply TS1 shutter", "19884", "m^3" }
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-auto-manual.template" {
@@ -133,20 +132,21 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-auto-manual.template" {
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-valve.template" {
 	pattern { P, Q, VALVE_NAME, DESCRIPTION, MEMORY_ADDRESS}
 
-		{ "\$(P)", "\$(Q)", "CNTRL_VALVE_112", "Control valve 112", "19871" }
-		{ "\$(P)", "\$(Q)", "CNTRL_VALVE_2150", "Control valve 2150", "19872" }
-    	{ "\$(P)", "\$(Q)", "CNTRL_VALVE_2160", "Control valve 2160", "19873" }
-    	{ "\$(P)", "\$(Q)", "CNTRL_VALVE_2250", "Control valve 2250", "19874" }
-    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_110", "Motorised valve 110", "19984" }
-    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_160", "Motorised valve 160", "19985" }
-    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_163", "Motorised valve 163", "19986" }
-    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_167", "Motorised valve 167", "19987" }
-    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_172", "Motorised valve 172", "19988" }
-    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_174", "Motorised valve 174", "19989" }
-    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_175", "Motorised valve 175", "19990" }
-    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_176", "Motorised valve 176", "19991" }
-    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_177", "Motorised valve 177", "19992" }
-		{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_178", "Motorised valve 178", "19993" }
-		{ "\$(P)", "\$(Q)", "CNTRL_VALVE_103", "Control valve 103", "19994" }
-		{ "\$(P)", "\$(Q)", "CNTRL_VALVE_111", "Control valve 111", "19995" }
+        { "\$(P)", "\$(Q)", "MOTORISED_VALVE_108", "Coldbox motorised valve 108", "19875" }
+		{ "\$(P)", "\$(Q)", "CNTRL_VALVE_112", "Coldbox control valve 112", "19871" }		
+        { "\$(P)", "\$(Q)", "CNTRL_VALVE_2150", "Compressor control valve 2150", "19872" }
+    	{ "\$(P)", "\$(Q)", "CNTRL_VALVE_2160", "Compressor control valve 2160", "19873" }
+    	{ "\$(P)", "\$(Q)", "CNTRL_VALVE_2250", "Compressor control valve 2250", "19874" }
+    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_110", "Coldbox motorised valve 110", "19984" }
+    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_160", "Purifier motorised valve 160", "19985" }
+    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_163", "Purifier motorised valve 163", "19986" }
+    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_167", "Purifier motorised valve 167", "19987" }
+    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_172", "Purifier motorised valve 172", "19988" }
+    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_174", "Purifier motorised valve 174", "19989" }
+    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_175", "Purifier motorised valve 175", "19990" }
+    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_176", "Purifier motorised valve 176", "19991" }
+    	{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_177", "Purifier motorised valve 177", "19992" }
+		{ "\$(P)", "\$(Q)", "MOTORISED_VALVE_178", "Purifier motorised valve 178", "19993" }
+		{ "\$(P)", "\$(Q)", "CNTRL_VALVE_103", "Coldbox control valve 103", "19994" }
+		{ "\$(P)", "\$(Q)", "CNTRL_VALVE_111", "Coldbox control valve 111", "19995" }
 }

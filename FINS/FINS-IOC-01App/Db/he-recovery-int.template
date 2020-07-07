@@ -18,6 +18,8 @@ record(longin, "$(P)$(Q)$(PV_NAME)")
 	field(DTYP, "Soft Channel")
 	field(INP, "$(P)$(Q)$(PV_NAME):RAW CP MS")
 
+	field(EGU, "$(UNIT)")
+
 	field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(PV_NAME)")
 

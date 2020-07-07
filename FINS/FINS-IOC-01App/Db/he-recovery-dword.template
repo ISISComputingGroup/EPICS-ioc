@@ -6,6 +6,8 @@ record(longin, "$(P)$(Q)$(PV_NAME)")
 	field(INP,  "@asyn(PLC, $(MEMORY_ADDRESS), 5.0) FINS_DM_READ_32")
 	field(SCAN, "$(SCAN)")
 
+	field(EGU, "$(UNIT)")
+
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(PV_NAME)")
