@@ -28,6 +28,8 @@ record(longin, "$(P)$(Q)HEARTBEAT")
 	field(INP,  "@asyn(PLC, 19500, 5.0) FINS_DM_READ")
 	field(SCAN, ".5 second")
 
+	field(EGU, "")
+
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:HEARTBEAT")
@@ -168,6 +170,36 @@ record(mbbi, "$(P)$(Q)COLDBOX:STATUS")
     info(archive, "10 VAL")
 }
 
+record(longin, "$(P)$(Q)LIQUEFIER:ALARM1")
+{
+	field(DESC, "Liquefier alarm 1")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, 19982, 5.0) FINS_DM_READ")
+	field(SCAN, "$(SCAN)")
+
+	field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:LIQUEFIER:ALARM1")
+
+    info(INTEREST, "HIGH")
+    info(archive, "10 VAL")
+}
+
+record(longin, "$(P)$(Q)LIQUEFIER:ALARM2")
+{
+	field(DESC, "Liquefier alarm 2")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, 19983, 5.0) FINS_DM_READ")
+	field(SCAN, "$(SCAN)")
+
+	field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:LIQUEFIER:ALARM2")
+
+    info(INTEREST, "HIGH")
+    info(archive, "10 VAL")
+}
+
 ### SIMULATION RECORDS ###
 
 record(longin, "$(P)$(Q)SIM:HEARTBEAT")
@@ -201,6 +233,18 @@ record(mbbi, "$(P)$(Q)SIM:CMPRSSR:STATUS")
 }
 
 record(mbbi, "$(P)$(Q)SIM:COLDBOX:STATUS")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
+
+record(longin, "$(P)$(Q)SIM:LIQUEFIER:ALARM1")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
+
+record(longin, "$(P)$(Q)SIM:LIQUEFIER:ALARM2")
 {
 	field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")
