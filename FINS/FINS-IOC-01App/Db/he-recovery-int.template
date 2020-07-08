@@ -1,5 +1,5 @@
 
-record(waveform, "$(P)$(Q)$(PV_NAME):RAW")
+record(waveform, "$(P)$(Q)$(PV_NAME):_WAVE")
 {
 	field(DESC, "$(DESCRIPTION)")
 	field(DTYP, "asynInt16ArrayIn")
@@ -12,19 +12,37 @@ record(waveform, "$(P)$(Q)$(PV_NAME):RAW")
 	field(SDIS, "$(P)DISABLE")
 }
 
-record(longin, "$(P)$(Q)$(PV_NAME)")
+#record(longin, "$(P)$(Q)$(PV_NAME):_RAW")
+#{
+#	field(DESC, "$(DESCRIPTION)")
+#	field(DTYP, "Soft Channel")
+#	field(INP, "$(P)$(Q)$(PV_NAME):_WAVE CP MS")
+#
+#	field(EGU, "$(UNIT)")
+#
+#	field(SIML, "$(P)$(Q)SIM")
+#    field(SIOL, "$(P)$(Q)SIM:$(PV_NAME)")
+#
+#    info(INTEREST, "HIGH")
+#    info(archive, "10 VAL")
+#}
+
+record(calc, "$(P)$(Q)$(PV_NAME)")
 {
 	field(DESC, "$(DESCRIPTION)")
 	field(DTYP, "Soft Channel")
-	field(INP, "$(P)$(Q)$(PV_NAME):RAW CP MS")
+	field(INPA, "$(P)$(Q)$(PV_NAME):_WAVE CP MS")
+
+	field(CALC, "A/10")
 
 	field(EGU, "$(UNIT)")
+	field(ASG, "READONLY")
 
 	field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(PV_NAME)")
 
-    info(INTEREST, "HIGH")
-    info(archive, "10 VAL")
+	info(INTEREST, "HIGH")
+	info(archive, "10 VAL")
 }
 
 record(longin, "$(P)$(Q)SIM:$(PV_NAME)")
