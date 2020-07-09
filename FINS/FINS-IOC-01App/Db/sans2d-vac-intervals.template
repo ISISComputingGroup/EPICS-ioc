@@ -2,10 +2,9 @@
 
 record(calc, "$(FULL_PREFIX)$(ASHORT)$(BSHORT):INTERVAL"){
     field(DESC, "Dist between $(ASHORT) and $(BSHORT)")
-    field(SCAN, ".1 second")
     field(EGU, "mm")
-    field(INPA, "$(P)MOT:$(APV)")
-    field(INPB, "$(P)MOT:$(BPV)")
+    field(INPA, "$(P)MOT:$(APV) CP")
+    field(INPB, "$(P)MOT:$(BPV) CP")
     field(CALC, "b-a")
     field(LOLO, "$(INTERVAL_MAJOR_WARNING)")
     field(LLSV, "MAJOR")
