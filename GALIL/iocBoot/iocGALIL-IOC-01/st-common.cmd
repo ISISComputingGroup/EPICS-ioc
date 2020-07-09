@@ -109,7 +109,5 @@ $(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_set
 
 $(IFHASMTRCTRL) $(IFMOTORCONFIG) create_manual_set("$(MOTORCONFIG=)Menu.req","P=$(MYPVPREFIX)MOT:,CMP=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=),IOCNAME=$(IOCNAME),MTRCTRL=$(MTRCTRL),CONFIGMENU=1")
 
-< $(GALILCONFIG)/axes_postiocinit.cmd
-
 ## Start any sequence programs
 #seq sncxxx,"user=icsHost"
