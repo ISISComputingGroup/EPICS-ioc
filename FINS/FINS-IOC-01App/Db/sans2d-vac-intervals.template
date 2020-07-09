@@ -1,11 +1,11 @@
 ## Distances (intervals) between baffles and detectors
 
-record(calc, "$(FULL_PREFIX)FDFB:INTERVAL"){
-    field(DESC, "Dist between front det and front baf")
+record(calc, "$(FULL_PREFIX)$(ASHORT)$(BSHORT):INTERVAL"){
+    field(DESC, "Dist between $(ASHORT) and $(BSHORT)")
     field(SCAN, ".1 second")
     field(EGU, "mm")
-    field(INPA, "$(P)MOT:FRONTDETZ")
-    field(INPB, "$(P)MOT:FRONTBAFFLEZ")
+    field(INPA, "$(P)MOT:$(APV)")
+    field(INPB, "$(P)MOT:$(BPV)")
     field(CALC, "b-a")
     field(LOLO, "$(INTERVAL_MAJOR_WARNING)")
     field(LLSV, "MAJOR")
@@ -13,67 +13,3 @@ record(calc, "$(FULL_PREFIX)FDFB:INTERVAL"){
     field(LSV, "MINOR")
 }
 
-record(calc, "$(FULL_PREFIX)FDFBSP:INTERVAL"){
-    field(DESC, "Dist between front det and front baf sp")
-    field(SCAN, ".1 second")
-    field(EGU, "mm")
-    field(INPA, "$(P)MOT:FRONTDETZ:SP")
-    field(INPB, "$(P)MOT:FRONTBAFFLEZ:SP")
-    field(CALC, "b-a")
-    field(LOLO, "$(INTERVAL_MAJOR_WARNING)")
-    field(LLSV, "MAJOR")
-    field(LOW, "$(INTERVAL_MINOR_WARNING)")
-    field(LSV, "MINOR")
-}
-
-record(calc, "$(FULL_PREFIX)FBRB:INTERVAL"){
-    field(DESC, "Dist between front baf and rear baf")
-    field(SCAN, ".1 second")
-    field(EGU, "mm")
-    field(INPA, "$(P)MOT:FRONTBAFFLEZ")
-    field(INPB, "$(P)MOT:REARBAFFLEZ")
-    field(CALC, "b-a")
-    field(LOLO, "$(INTERVAL_MAJOR_WARNING)")
-    field(LLSV, "MAJOR")
-    field(LOW, "$(INTERVAL_MINOR_WARNING)")
-    field(LSV, "MINOR")
-}
-
-record(calc, "$(FULL_PREFIX)FBRBSP:INTERVAL"){
-    field(DESC, "Dist between front baf and rear baf sp")
-    field(SCAN, ".1 second")
-    field(EGU, "mm")
-    field(INPA, "$(P)MOT:FRONTBAFFLEZ:SP")
-    field(INPB, "$(P)MOT:REARBAFFLEZ:SP")
-    field(CALC, "b-a")
-    field(LOLO, "$(INTERVAL_MAJOR_WARNING)")
-    field(LLSV, "MAJOR")
-    field(LOW, "$(INTERVAL_MINOR_WARNING)")
-    field(LSV, "MINOR")
-}
-
-record(calc, "$(FULL_PREFIX)RBRD:INTERVAL"){
-    field(DESC, "Dist between rear baf and rear det")
-    field(SCAN, ".1 second")
-    field(EGU, "mm")
-    field(INPA, "$(P)MOT:REARBAFFLEZ")
-    field(INPB, "$(P)MOT:REARDETZ")
-    field(CALC, "b-a")
-    field(LOLO, "$(INTERVAL_MAJOR_WARNING)")
-    field(LLSV, "MAJOR")
-    field(LOW, "$(INTERVAL_MINOR_WARNING)")
-    field(LSV, "MINOR")
-}
-
-record(calc, "$(FULL_PREFIX)RBRDSP:INTERVAL"){
-    field(DESC, "Dist between rear baf and rear det sp")
-    field(SCAN, ".1 second")
-    field(EGU, "mm")
-    field(INPA, "$(P)MOT:REARBAFFLEZ:SP")
-    field(INPB, "$(P)MOT:REARDETZ:SP")
-    field(CALC, "b-a")
-    field(LOLO, "$(INTERVAL_MAJOR_WARNING)")
-    field(LLSV, "MAJOR")
-    field(LOW, "$(INTERVAL_MINOR_WARNING)")
-    field(LSV, "MINOR")
-}
