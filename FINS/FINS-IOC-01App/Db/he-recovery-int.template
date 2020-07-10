@@ -10,22 +10,9 @@ record(waveform, "$(P)$(Q)$(PV_NAME):_WAVE")
 	field(FTVL, "SHORT")
 
 	field(SDIS, "$(P)DISABLE")
+	field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(PV_NAME)")
 }
-
-#record(longin, "$(P)$(Q)$(PV_NAME):_RAW")
-#{
-#	field(DESC, "$(DESCRIPTION)")
-#	field(DTYP, "Soft Channel")
-#	field(INP, "$(P)$(Q)$(PV_NAME):_WAVE CP MS")
-#
-#	field(EGU, "$(UNIT)")
-#
-#	field(SIML, "$(P)$(Q)SIM")
-#    field(SIOL, "$(P)$(Q)SIM:$(PV_NAME)")
-#
-#    info(INTEREST, "HIGH")
-#    info(archive, "10 VAL")
-#}
 
 record(calc, "$(P)$(Q)$(PV_NAME)")
 {
@@ -37,9 +24,6 @@ record(calc, "$(P)$(Q)$(PV_NAME)")
 
 	field(EGU, "$(UNIT)")
 	field(ASG, "READONLY")
-
-	field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:$(PV_NAME)")
 
 	info(INTEREST, "HIGH")
 	info(archive, "10 VAL")
