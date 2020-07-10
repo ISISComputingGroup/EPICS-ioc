@@ -30,9 +30,11 @@ record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
 }
 
 
-record(bo, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM") {
+record(bi, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM") {
     field(DESC, "At Vacuum or not")
     field(VAL, 0)
+    field(ZNAM, "NOT AT VACUUM")
+    field(ONAM, "AT VACUUM")
     info(archive, "VAL")
 }
  
