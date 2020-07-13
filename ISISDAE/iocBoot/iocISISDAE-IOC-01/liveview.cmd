@@ -4,7 +4,8 @@ NDROIConfigure("AD$(LVDET)ROI1", 3, 0, "AD$(LVDET)RawImage1", 0, 0)
 NDStdArraysConfigure("AD$(LVDET)Image1", 3, 0, "AD$(LVDET)ROI1", 0, 0)
 NDStatsConfigure("AD$(LVDET)Stats1", 3, 0, "AD$(LVDET)ROI1", 0, 0)
 NDTimeSeriesConfigure("AD$(LVDET)Stats1_TS", 100, 0, "AD$(LVDET)ROI1", 0, 22, 0, 0, 0, 0)
-KafkaPluginConfigure("AD$(LVDET)KFK", 3, 1, "AD$(LVDET)RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "TEST_areaDetector")
+## There is a TEST_areaDetector Kafka topic that can be used for testing
+KafkaPluginConfigure("AD$(LVDET)KFK", 3, 1, "AD$(LVDET)RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "$(INSTRUMENT=TEST)_areaDetector")
 NDPvaConfigure("AD$(LVDET)PVA1", 3, 0, "AD$(LVDET)ROI1", 0, "$(MYPVPREFIX)DAE:AD$(LVDET):pva1:pvadata", 0)
 
 ## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
