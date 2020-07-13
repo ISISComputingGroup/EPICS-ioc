@@ -1,3 +1,5 @@
+## generates a simple alert message to send
+
 record(printf,"$(P)$(Q)DO")
 {
     field(INP0, "$(SOURCE)")

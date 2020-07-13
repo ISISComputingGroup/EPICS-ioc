@@ -13,7 +13,7 @@ NDPvaConfigure("AD$(LVDET)PVA1", 3, 0, "AD$(LVDET)ROI1", 0, "$(MYPVPREFIX)DAE:AD
 ## This waveform 
 ##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
 ##  TYPE=Int32,FTVL=LONG for 32 bit integer
-##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float 
+##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float
 dbLoadRecords("$(ISISDAE)/db/ADisisdae.template","P=$(MYPVPREFIX),R=DAE:AD$(LVDET):,PORT=icp,ADDR=$(LVADDR),TIMEOUT=1,DATATYPE=8")
 dbLoadRecords("NDTransform.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):rawimage1:,PORT=AD$(LVDET)RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=$(LVADDR),DATATYPE=8,ENABLED=1")
 dbLoadRecords("NDROI.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):roi1:,PORT=AD$(LVDET)ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
@@ -29,7 +29,6 @@ dbLoadRecords("NDPva.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):pva1:,PORT=AD$
 ## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
 #ffmpegFileConfigure("C$(LVDET).FILE", 16, 0, "AD$(LVDET)ROI1", 0)
 #dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):file1:,PORT=C$(LVDET).FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
-
 
 ## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
 #asynSetTraceMask("AD$(LVDET)Image1", -1, 0x11)
