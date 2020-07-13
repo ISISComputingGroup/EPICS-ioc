@@ -51,8 +51,6 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-int.template" {
     	{ "\$(P)", "\$(Q)", "BANK6:SPR_STRG:AVG_PURITY", "Bank 6 Helium spare storage avg purity", "19939", "%" }
     	{ "\$(P)", "\$(Q)", "BANK7:SPR_STRG:AVG_PURITY", "Bank 7 Helium spare storage avg purity", "19941", "%" }
     	{ "\$(P)", "\$(Q)", "BANK8:SPR_STRG:AVG_PURITY", "Bank 8 Helium spare storage avg purity", "19943", "%" }
-    	{ "\$(P)", "\$(Q)", "COLDBOX:TURBINE_100:SPEED", "Coldbox Turbine 100 Speed", "19945", "rps" }
-    	{ "\$(P)", "\$(Q)", "COLDBOX:TURBINE_101:SPEED", "Coldbox Turbine 101 Speed", "19946", "rps" }
     	{ "\$(P)", "\$(Q)", "COLDBOX:T106:TEMP", "Coldbox T106 temperature", "19947", "K" }
     	{ "\$(P)", "\$(Q)", "COLDBOX:TT111:TEMP", "Coldbox temperature transducer 111", "19948", "K" }
     	{ "\$(P)", "\$(Q)", "COLDBOX:PT102:PRESSURE", "Coldbox pressure transducer 102", "19949", "bar" }

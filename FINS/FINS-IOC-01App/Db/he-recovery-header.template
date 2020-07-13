@@ -38,6 +38,67 @@ record(longin, "$(P)$(Q)HEARTBEAT")
     info(alarm, "FINS")
 }
 
+# The folowwing 4 records are for two memory locations that store 16 bit integers. 
+# They are not in the he-recovery-int template because all 16 bit integer memeory locations, 
+# except these two, store a scaled integer the represents a real number with one decimal point.
+
+record(waveform, "$(P)$(Q)COLDBOX:TURBINE_100:SPEED:_RAW")
+{
+	field(DESC, "Coldbox Turbine 100 Speed 16 bit array")
+	field(DTYP, "asynInt16ArrayIn")
+	field(INP,  "@asyn(PLC, 19945, 5.0) FINS_DM_READ")
+	field(SCAN, "$(SCAN)")
+
+	field(NELM, "1")
+	field(FTVL, "SHORT")
+
+	field(SDIS, "$(P)DISABLE")
+}
+
+record(longin, "$(P)$(Q)COLDBOX:TURBINE_100:SPEED")
+{
+	field(DESC, "Coldbox Turbine 100 Speed")
+	field(DTYP, "Soft Channel")
+	field(INP, "$(P)$(Q)COLDBOX:TURBINE_100:SPEED:_RAW CP MS")
+
+	field(EGU, "rps")
+
+	field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:COLDBOX:TURBINE_100:SPEED")
+
+    info(INTEREST, "HIGH")
+    info(archive, "10 VAL")
+}
+
+record(waveform, "$(P)$(Q)COLDBOX:TURBINE_101:SPEED:_RAW")
+{
+	field(DESC, "Coldbox Turbine 101 Speed 16 bit array")
+	field(DTYP, "asynInt16ArrayIn")
+	field(INP,  "@asyn(PLC, 19946, 5.0) FINS_DM_READ")
+	field(SCAN, "$(SCAN)")
+
+	field(NELM, "1")
+	field(FTVL, "SHORT")
+
+	field(SDIS, "$(P)DISABLE")
+}
+
+record(longin, "$(P)$(Q)COLDBOX:TURBINE_101:SPEED")
+{
+	field(DESC, "Coldbox Turbine 101 Speed")
+	field(DTYP, "Soft Channel")
+	field(INP, "$(P)$(Q)COLDBOX:TURBINE_101:SPEED:_RAW CP MS")
+
+	field(EGU, "rps")
+
+	field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:COLDBOX:TURBINE_101:SPEED")
+
+    info(INTEREST, "HIGH")
+    info(archive, "10 VAL")
+}
+
+
 # the following mbbi records are not in the substitution file since they either have 
 # unique sets of values, or because having a template for only two records does not 
 # make sense
@@ -249,6 +310,18 @@ record(longin, "$(P)$(Q)SIM:LIQUEFIER:ALARM1")
 }
 
 record(longin, "$(P)$(Q)SIM:LIQUEFIER:ALARM2")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
+
+record(longin, "$(P)$(Q)SIM:COLDBOX:TURBINE_100:SPEED")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
+
+record(longin, "$(P)$(Q)SIM:COLDBOX:TURBINE_101:SPEED")
 {
 	field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")
