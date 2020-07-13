@@ -10,8 +10,7 @@ record(dfanout, "$(FULL_PREFIX)_INHIBIT_FRONTBEAMSTOP") {
     field(DESC, "Stop and inhibit fbs movement")
     field(DOL, "$(FULL_PREFIX)INHIBIT_FRONTBEAMSTOP")
     field(OUTA, "$(P)MOT:FRONTBEAMSTOP:MTR.STOP PP")
-    field(OUTB, "$(P)MOT:FRONTBEAMSTOP:MTR.DISP")
-    field(OUTD, "$(P)MOT:FRONTBEAMSTOP:SP.DISP")
+    field(OUTB, "$(P)MOT:FRONTBEAMSTOP:SP.DISP")
     field(OUTC, "$(P)MOT:FRONTBEAMSTOP.DISP")
     field(SELM, "All")
 }
