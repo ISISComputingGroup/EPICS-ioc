@@ -31,6 +31,7 @@ $(APPNAME)_DBD += nGEM.dbd
 $(APPNAME)_DBD += webget.dbd
 $(APPNAME)_DBD += FileList.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += ADPluginKafka.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -47,6 +48,11 @@ $(APPNAME)_LIBS += asubFunctions
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 $(APPNAME)_LIBS +=  asyn zlib efsw libjson pcrecpp pcre pugixml
+$(APPNAME)_LIBS += ADPluginKafka
+$(APPNAME)_LIBS += rdkafka++
+$(APPNAME)_LIBS += rdkafka
+
+$(APPNAME)_LIBS += ssleay32 libeay32
 
 $(APPNAME)_LIBS_WIN32 += libcurl oncrpc
 $(APPNAME)_SYS_LIBS_Linux += curl

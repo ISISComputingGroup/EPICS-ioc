@@ -33,8 +33,10 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(MYPVPREFIX),R=$(IOCNAME):ASYN,PORT
 NDTransformConfigure("RawImage1", 3, 0, "NGEM", 0, 0)
 NDROIConfigure("ROI1", 3, 0, "RawImage1", 0, 0)
 NDStatsConfigure("Stats1", 3, 0, "ROI1", 0, 0)
+NDTimeSeriesConfigure("Stats1_TS", 100, 0, "ROI1", 0, 22, 0, 0, 0, 0)
 NDStdArraysConfigure("Image1", 3, 0, "ROI1", 0, 0)
 NDPvaConfigure("PVA1", 3, 0, "ROI1", 0, "$(MYPVPREFIX)$(IOCNAME):AD:pva1:pvaData", 0)
+KafkaPluginConfigure("KFK", 3, 1, "RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "$(INSTRUMENT=TEST)_areaDetector")
 
 dbLoadRecords("$(NGEM)/db/nGEMAD.template","P=$(MYPVPREFIX),R=$(IOCNAME):AD:,PORT=NGEM,ADDR=0,TIMEOUT=1,DATATYPE=7")
 dbLoadRecords("NDTransform.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:rawimage1:,PORT=RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=NGEM,NDARRAY_ADDR=0,DATATYPE=7,ENABLED=1")
@@ -42,6 +44,7 @@ dbLoadRecords("NDROI.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:roi1:,PORT=ROI1
 dbLoadRecords("NDStats.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:stats1:,PORT=Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROI1,NDARRAY_ADDR=0,DATATYPE=7,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
 dbLoadRecords("NDStdArrays.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:image1:,PORT=Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROI1,NDARRAY_ADDR=0,DATATYPE=7,ENABLED=1,TYPE=Float64,FTVL=DOUBLE,NELEMENTS=50000")
 dbLoadRecords("NDPva.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:pva1:,PORT=PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROI1,NDARRAY_ADDR=0,DATATYPE=7,ENABLED=1")
+dbLoadRecords("$(ADPLUGINKAFKA)/db/ADPluginKafka.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:KFK:,PORT=KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=RawImage1,ENABLED=1")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
