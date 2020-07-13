@@ -31,8 +31,8 @@ file "$(GALIL)/GalilSup/Db/galil_coordinate_system.template"
 { 
    pattern { P,          R,    PORT,    ADDR,  SCAN }
 
-	   { "DMC01",    "S",  "Galil", "0",   ".1 second"  }
-	   { "DMC01",    "T",  "Galil", "1",   ".1 second"  }
+	   { "DMC01",    "S",  "\$(PORT=Galil)", "0",   ".1 second"  }
+	   { "DMC01",    "T",  "\$(PORT=Galil)", "1",   ".1 second"  }
 }
 
 # Coordinate system variables
@@ -50,16 +50,16 @@ file "$(GALIL)/GalilSup/Db/galil_coordinate_system_variables.template"
 { 
    pattern { P,           R,    PORT,    ADDR,  PREC }
 
-	   { "DMC01",     "Q",  "Galil", "0",   "5"  }
-	   { "DMC01",     "R",  "Galil", "1",   "5"  }
-	   { "DMC01",     "S",  "Galil", "2",   "5"  }
-	   { "DMC01",     "T",  "Galil", "3",   "5"  }
-	   { "DMC01",     "U",  "Galil", "4",   "5"  }
-	   { "DMC01",     "V",  "Galil", "5",   "5"  }
-	   { "DMC01",     "W",  "Galil", "6",   "5"  }
-	   { "DMC01",     "X",  "Galil", "7",   "5"  }
-           { "DMC01",     "Y",  "Galil", "8",   "5"  }
-	   { "DMC01",     "Z",  "Galil", "9",   "5"  }
+	   { "DMC01",     "Q",  "\$(PORT=Galil)", "0",   "5"  }
+	   { "DMC01",     "R",  "\$(PORT=Galil)", "1",   "5"  }
+	   { "DMC01",     "S",  "\$(PORT=Galil)", "2",   "5"  }
+	   { "DMC01",     "T",  "\$(PORT=Galil)", "3",   "5"  }
+	   { "DMC01",     "U",  "\$(PORT=Galil)", "4",   "5"  }
+	   { "DMC01",     "V",  "\$(PORT=Galil)", "5",   "5"  }
+	   { "DMC01",     "W",  "\$(PORT=Galil)", "6",   "5"  }
+	   { "DMC01",     "X",  "\$(PORT=Galil)", "7",   "5"  }
+           { "DMC01",     "Y",  "\$(PORT=Galil)", "8",   "5"  }
+	   { "DMC01",     "Z",  "\$(PORT=Galil)", "9",   "5"  }
 
 }
 
