@@ -1,8 +1,8 @@
 record(calcout, "$(FULL_PREFIX)INHIBIT_FRONTBEAMSTOP") {
-    field(DESC, "Inhibit fbs movement if det rot > 0")
+    field(DESC, "Inhibit fbs move if -2 > det rot < 2")
     field(INPA, "$(P)MOT:FRONTDETROT CP")
     field(INPB, "$(P)MOT:FRONTDETROT:SP CP")
-    field(CALC, "A > 0 || B > 0")
+    field(CALC, "A < -2 || A > 2 || B < -2 || B > 2")
     field(OUT, "$(FULL_PREFIX)_INHIBIT_FRONTBEAMSTOP PP MS")
 }
 
