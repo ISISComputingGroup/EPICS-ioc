@@ -1,3 +1,6 @@
+## triggered by :DC: alert control setup in st.cmd
+## will close aperture on overcount and send a message
+
 record(fanout, "$(P)CS:OVERCOUNT:ALERT")
 {
     field(SELM, "All")
