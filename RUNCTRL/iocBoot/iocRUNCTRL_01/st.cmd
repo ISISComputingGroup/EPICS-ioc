@@ -41,6 +41,8 @@ $(IFLOQ) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC
 cd ${TOP}/iocBoot/${IOC}
 iocInit
 
+dbpf "$(MYPVPREFIX)CS:AC:ALERTS:INST:SP", "$(INSTRUMENT)"
+
 ## Start any sequence programs
 #seq sncxxx,"user=faa59Host"
 
