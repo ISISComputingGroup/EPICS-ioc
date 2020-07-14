@@ -252,38 +252,62 @@ record(mbbi, "$(P)$(Q)COLDBOX:STATUS")
     info(archive, "10 VAL")
 }
 
-record(longin, "$(P)$(Q)LIQUEFIER:ALARM1")
+record(mbbiDirect, "$(P)LIQUEFIER:ALARM1")
 {
-	field(DESC, "Liquefier alarm 1")
+    field(DESC, "Liquefier alarms 1")
 	field(DTYP, "asynInt32")
 	field(INP,  "@asyn(PLC, 19982, 5.0) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
-
-	field(EGU, "")
-
-	field(SDIS, "$(P)DISABLE")
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:LIQUEFIER:ALARM1")
-
-    info(INTEREST, "HIGH")
-    info(archive, "10 VAL")
-}
-
-record(longin, "$(P)$(Q)LIQUEFIER:ALARM2")
-{
-	field(DESC, "Liquefier alarm 2")
-	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 19983, 5.0) FINS_DM_READ")
-	field(SCAN, "$(SCAN)")
-
-	field(EGU, "")
 
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:LIQUEFIER:ALARM2")
 
-    info(INTEREST, "HIGH")
-    info(archive, "10 VAL")
+	# 0 = spare
+	# 1 = Power failure
+	# 2 = Turbine 1 brake temperature high
+	# 3 = Turbine 2 brake temperature high 
+	# 4 = Turbine 1 overspeed
+	# 5 = Turbine 1 triped compressor
+	# 6 = Turbine 2 overspeed
+	# 7 = Turbine 2 triped compressor
+	# 8 = Backing pressure high
+	# 9 = ORS coalescer level high
+	# 10 = ORS temperature high
+	# 11 = TS105 undercooled
+	# 12 = TTX108 undercooled
+	# 13 = Turbine undercool
+	# 14 = Turbine malfunction
+	# 15 = Purifier undercool       
+}
+
+record(mbbiDirect, "$(P)LIQUEFIER:ALARM2")
+{
+    field(DESC, "Liquefier alarms 2")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, 19983, 5.0) FINS_DM_READ")
+	field(SCAN, "$(SCAN)")
+
+	field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:LIQUEFIER:ALARM2")
+
+	# 0 = LIS107 high warning
+	# 1 = Operator selected plant autostop time out
+	# 2 = Emergency stop
+	# 3 = 230Vac Fuse
+	# 4 = 24VDC Fuse
+	# 5 = LTX107 Fuse
+	# 6 = Safty Chain Turbine
+	# 7 = PSL2951 instrument air not OK
+	# 8 = FI3100 Cooling Water Flow to low
+	# 9 = spare
+	# 10 = spare
+	# 11 = spare
+	# 12 = spare
+	# 13 = spare
+	# 14 = spare
+	# 15 = spare    
 }
 
 ### SIMULATION RECORDS ###
@@ -330,18 +354,6 @@ record(mbbi, "$(P)$(Q)SIM:COLDBOX:STATUS")
 	field(SCAN, "Passive")
 }
 
-record(longin, "$(P)$(Q)SIM:LIQUEFIER:ALARM1")
-{
-	field(DTYP, "Soft Channel")
-	field(SCAN, "Passive")
-}
-
-record(longin, "$(P)$(Q)SIM:LIQUEFIER:ALARM2")
-{
-	field(DTYP, "Soft Channel")
-	field(SCAN, "Passive")
-}
-
 record(longin, "$(P)$(Q)SIM:COLDBOX:TURBINE_100:SPEED")
 {
 	field(DTYP, "Soft Channel")
@@ -349,6 +361,18 @@ record(longin, "$(P)$(Q)SIM:COLDBOX:TURBINE_100:SPEED")
 }
 
 record(longin, "$(P)$(Q)SIM:COLDBOX:TURBINE_101:SPEED")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
+
+record(mbbiDirect, "$(P)$(Q)SIM:LIQUEFIER:ALARM1")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
+
+record(mbbiDirect, "$(P)$(Q)SIM:LIQUEFIER:ALARM2")
 {
 	field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")

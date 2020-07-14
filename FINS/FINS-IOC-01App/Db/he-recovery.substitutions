@@ -4,6 +4,35 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-header.template" {
     { P=\$(P), Q=\$(Q), RECSIM=\$(RECSIM), DEVSIM=\$(DEVSIM), DISABLE=\$(DISABLE) }
 }
 
+file "$(TOP)/FINS-IOC-01App/Db/he-recovery-alarm.template" {
+    pattern { P, Q, PV_NAME, DESCRIPTION, ALARM_NUM, BIT_NUM}
+
+        { "\$(P)", "\$(Q)", "POWER_FAILURE", "Power failure", "1", "1" }
+        { "\$(P)", "\$(Q)", "TURBINE1:BRAKE_TEMP", "Turbine 1 brake temperature high", "1", "2" }
+        { "\$(P)", "\$(Q)", "TURBINE2:BRAKE_TEMP", "Turbine 2 brake temperature high", "1", "3" }
+        { "\$(P)", "\$(Q)", "TURBINE1:OVERSPEED", "Turbine 1 overspeed", "1", "4" }
+        { "\$(P)", "\$(Q)", "TURBINE1:TRIPPED_CMPRSSR", "Turbine 1 tripped compressor", "1", "5" }
+        { "\$(P)", "\$(Q)", "TURBINE2:OVERSPEED", "Turbine 2 overspeed", "1", "6" }
+        { "\$(P)", "\$(Q)", "TURBINE2:TRIPPED_CMPRSSR", "Turbine 2 tripped compressor", "1", "7" }
+        { "\$(P)", "\$(Q)", "BACKING_PRESSURE", "Backing pressure high", "1", "8" }
+        { "\$(P)", "\$(Q)", "ORS_COALESCER:LEVEL", "ORS coalescer level high", "1", "9" }
+        { "\$(P)", "\$(Q)", "ORS:TEMPERATURE", "ORS temperature high", "1", "10" }
+        { "\$(P)", "\$(Q)", "TS105:UNDERCOOL", "TS105 undercooled", "1", "11" }
+        { "\$(P)", "\$(Q)", "TTX108:UNDERCOOL", "TTX108 undercooled", "1", "12" }
+        { "\$(P)", "\$(Q)", "TURBINE:UNDERCOOL", "Turbine undercooled", "1", "13" }
+        { "\$(P)", "\$(Q)", "TURBINE:MALFUNCTION", "Turbine malfunction", "1", "14" }
+        { "\$(P)", "\$(Q)", "PURIFIER:UNDERCOOL", "Purifier undercooled", "1", "15" }
+        { "\$(P)", "\$(Q)", "LIS107", "LIS107 high warning", "2", "0" }
+        { "\$(P)", "\$(Q)", "PLANT_AUTOSTOP:TIMEOUT", "Operator plant autostop timeout", "2", "1" }
+        { "\$(P)", "\$(Q)", "EMERGENCY_STOP", "Emergency stop", "2", "2" }
+        { "\$(P)", "\$(Q)", "230VAC:FUSE", "230Vac fuse", "2", "3" }
+        { "\$(P)", "\$(Q)", "24VDC:FUSE", "24VDC fuse", "2", "4" }
+        { "\$(P)", "\$(Q)", "LTX107:FUSE", "LTX107 fuse", "2", "5" }
+        { "\$(P)", "\$(Q)", "SAFTY_CHAIN_TURBINE", "Safty chain turbine", "2", "6" }
+        { "\$(P)", "\$(Q)", "PSL2951", "PSL2951 instrument air", "2", "7" }
+        { "\$(P)", "\$(Q)", "FI3100:COOLING", "FI3100 cooling water flow too low", "2", "8" }
+}
+
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-int.template" {
 	pattern { P, Q, PV_NAME, DESCRIPTION, MEMORY_ADDRESS, UNIT}
 
