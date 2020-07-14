@@ -103,6 +103,27 @@ record(longin, "$(P)$(Q)COLDBOX:TURBINE_101:SPEED")
 # unique sets of values, or because having a template for only two records does not 
 # make sense
 
+record(mbbi, "$(P)$(Q)LIQUID_NITROGEN:STATUS")
+{
+	field(DESC, "Liquid nitrogen status")
+	field(DTYP, "asynInt32")
+	field(INP, "@asyn(PLC, 19979, 5.0) FINS_DM_READ")
+	field(SCAN, "$(SCAN)")
+
+	field(ZRVL, "1")
+	field(ONVL, "2")
+
+	field(ZRST, "Not selected")
+	field(ONST, "Selected")
+
+	field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:LIQUID_NITROGEN:STATUS")
+
+    info(INTEREST, "HIGH")
+    info(archive, "10 VAL")
+}
+
 record(mbbi, "$(P)$(Q)CNTRL_VALVE_120:POSITION")
 {
 	field(DESC, "Control valve 120 position")
@@ -268,6 +289,12 @@ record(longin, "$(P)$(Q)LIQUEFIER:ALARM2")
 ### SIMULATION RECORDS ###
 
 record(longin, "$(P)$(Q)SIM:HEARTBEAT")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}
+
+record(longin, "$(P)$(Q)SIM:LIQUID_NITROGEN:STATUS")
 {
 	field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")
