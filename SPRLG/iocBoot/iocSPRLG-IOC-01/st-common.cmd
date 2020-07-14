@@ -40,7 +40,7 @@ $(IFCHANNEL2) dbLoadRecords("${SPRLG}/db/superlogics_address.db","P=$(MYPVPREFIX
 $(IFCHANNEL2) dbLoadRecords("${SPRLG}/db/superlogics_channel.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0),ADDR=02,UNITS=C")
 
 # Top-level DBs e.g. DISABLE, SIM, which channels are present
-dbLoadRecords("${SPRLG}/db/superlogics.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0),HAS_CHAN1=$(HAS_CHAN1=Y),HAS_CHAN2=$(HAS_CHAN2=Y)")
+dbLoadRecords("${SPRLG}/db/superlogics.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
