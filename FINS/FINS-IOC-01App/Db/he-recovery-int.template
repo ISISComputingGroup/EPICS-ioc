@@ -17,7 +17,6 @@ record(waveform, "$(P)$(Q)$(PV_NAME):_RAW")
 record(calc, "$(P)$(Q)$(PV_NAME)")
 {
 	field(DESC, "$(DESCRIPTION)")
-	field(DTYP, "Soft Channel")
 	field(INPA, "$(P)$(Q)$(PV_NAME):_RAW CP MS")
 
 	field(CALC, "A/10")

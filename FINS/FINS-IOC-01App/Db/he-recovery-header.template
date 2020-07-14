@@ -252,16 +252,23 @@ record(mbbi, "$(P)$(Q)COLDBOX:STATUS")
     info(archive, "10 VAL")
 }
 
-record(mbbiDirect, "$(P)LIQUEFIER:ALARM1")
+record(longin, "$(P)$(Q)LIQUEFIER:ALARM1:_RAW")
 {
-    field(DESC, "Liquefier alarms 1")
+    field(DESC, "Liquefier alarms 1 raw int 16")
 	field(DTYP, "asynInt32")
 	field(INP,  "@asyn(PLC, 19982, 5.0) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:LIQUEFIER:ALARM2")
+    field(SIOL, "$(P)$(Q)SIM:LIQUEFIER:ALARM1")     
+}
+
+record(mbbiDirect, "$(P)$(Q)LIQUEFIER:ALARM1")
+{
+    field(DESC, "Liquefier alarms 1")
+	field(DTYP, "Soft Channel")
+	field(INP, "$(P)$(Q)LIQUEFIER:ALARM1:_RAW CP MS")
 
 	# 0 = spare
 	# 1 = Power failure
@@ -281,16 +288,23 @@ record(mbbiDirect, "$(P)LIQUEFIER:ALARM1")
 	# 15 = Purifier undercool       
 }
 
-record(mbbiDirect, "$(P)LIQUEFIER:ALARM2")
+record(longin, "$(P)$(Q)LIQUEFIER:ALARM2:_RAW")
 {
-    field(DESC, "Liquefier alarms 2")
+    field(DESC, "Liquefier alarms 2 raw int 16")
 	field(DTYP, "asynInt32")
 	field(INP,  "@asyn(PLC, 19983, 5.0) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
 	field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:LIQUEFIER:ALARM2")
+    field(SIOL, "$(P)$(Q)SIM:LIQUEFIER:ALARM2")     
+}
+
+record(mbbiDirect, "$(P)$(Q)LIQUEFIER:ALARM2")
+{
+    field(DESC, "Liquefier alarms 2")
+	field(DTYP, "Soft Channel")
+	field(INP, "$(P)$(Q)LIQUEFIER:ALARM2:_RAW CP MS")
 
 	# 0 = LIS107 high warning
 	# 1 = Operator selected plant autostop time out
@@ -366,13 +380,13 @@ record(longin, "$(P)$(Q)SIM:COLDBOX:TURBINE_101:SPEED")
 	field(SCAN, "Passive")
 }
 
-record(mbbiDirect, "$(P)$(Q)SIM:LIQUEFIER:ALARM1")
+record(longin, "$(P)$(Q)SIM:LIQUEFIER:ALARM1")
 {
 	field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")
 }
 
-record(mbbiDirect, "$(P)$(Q)SIM:LIQUEFIER:ALARM2")
+record(longin, "$(P)$(Q)SIM:LIQUEFIER:ALARM2")
 {
 	field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")
