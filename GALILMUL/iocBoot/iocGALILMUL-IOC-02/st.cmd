@@ -11,6 +11,6 @@ cd ${TOP}
 dbLoadDatabase "dbd/GALILMUL-IOC-02.dbd"
 GALILMUL_IOC_02_registerRecordDeviceDriver pdbbase
 
-cd "${TOP}/iocBoot/iocGALIL-IOC-02"
+cd "${TOP}/iocBoot/iocGALILMUL-IOC-01"
 
 < st-common.cmd
