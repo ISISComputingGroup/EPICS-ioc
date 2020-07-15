@@ -1,3 +1,8 @@
+## Define RC and AC namespaces for generic control logic based on a values going in and out of range
+
+## RC is used for run control, AC is used for alerts. They only differ in the final actions to do when valeus go in and
+## out of range i.e. set dae WAITING or send a message
+
 file "$(RUNCONTROL)/db/gencontrol.db"
 {
     pattern {    P,      PV,     MODE }

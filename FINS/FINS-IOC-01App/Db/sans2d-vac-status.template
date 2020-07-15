@@ -1,0 +1,58 @@
+# DM$(ADDR).00            $(SYSTEM) system status       at Atmosphere
+# DM$(ADDR).01            $(SYSTEM) system status       Vacing down
+# DM$(ADDR).02            $(SYSTEM) system status       at Vacuum
+# DM$(ADDR).03            $(SYSTEM) system status       Venting
+
+# FULL_PREFIX = Instrument and IOC prefix
+
+record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
+    field(DESC, "$(SYSTEM) Status")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ")
+    field(SCAN, "1 second")
+    field(NOBT, 4)
+    
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(FRVL, "4")
+    field(EIVL, "8")
+    
+    field(ONST, "ATMOSPHERE")
+    field(TWST, "VAC DOWN")
+    field(FRST, "AT VACUUM")
+    field(EIST, "VENTING")
+    
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(SYSTEM):STATUS")
+
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+}
+
+
+record(bi, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM") {
+    field(DESC, "At Vacuum or not")
+    field(VAL, 0)
+    field(ZNAM, "NOT AT VACUUM")
+    field(ONAM, "AT VACUUM")
+    info(archive, "VAL")
+}
+ 
+
+record(calcout,"$(FULL_PREFIX)$(SYSTEM):STATUS:VAC_STATUS_CALC" ) {
+    field(DESC, "Check if vessel is under vacuum")
+    field(INPA, "$(FULL_PREFIX)$(SYSTEM):STATUS CP MS")
+    field(CALC, "A==4")
+    field(OOPT, "On Change")
+    field(OUT, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM PP")
+}
+
+
+### Simulation Records ###
+
+record(mbbi, "$(FULL_PREFIX)SIM:$(SYSTEM):STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+

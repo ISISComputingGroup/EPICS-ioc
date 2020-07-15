@@ -1,8 +1,10 @@
 Run control is set up using PVs of the form 
 
+```
 %MYPVPREFIX%CS:SB:GoodFrames:RC:HIGH
 %MYPVPREFIX%CS:SB:GoodFrames:RC:LOW
 %MYPVPREFIX%CS:SB:GoodFrames:RC:ENABLE
+```
 
 as detailed elsewhere. Alerts use a similar format but with AC
 (alert control) as the prefix. The all use the same underlying
@@ -10,7 +12,12 @@ framework, but the "action" is different. For run control (RC) the
 action casuses DAE to go into a waiting state. For alerts (AC)
 it will send a text/email alert.
 
-Some initial setup needs to be done to configure email alerts.  
+Both :RC: and :AC: PVs are created by loading gencontrol and gencontrolMgr.db 
+from support/RunControl 
+
+Some initial setup needs to be done to configure email alerts and define addresses to use.
+These values are autosaved on the machine. The  INST:SP is used to determin a slack/teams channel to post to.
+The URL is the generic central server to handle messages  
 ```
 caput -S %MYPVPREFIX%CS:AC:ALERTS:MOBILES:SP 12345678;64535353
 caput -S %MYPVPREFIX%CS:AC:ALERTS:EMAILS:SP user1@host;user2@host

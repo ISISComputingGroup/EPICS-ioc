@@ -1,18 +1,13 @@
 -- ## Import lua utility functions
 
 package.path = package.path .. ';' .. os.getenv("UTILITIES") .. '/lua/luaUtils.lua;'
-local utils = require("luaUtils")
-local getMacroValue = utils.getMacroValue
-local setAsynOptions = utils.setAsynOptions
-local setHardwareFlowControl = utils.setHardwareFlowControl
-local setSoftwareFlowControl = utils.setSoftwareFlowControl
+ibex_utils = require "luaUtils"
 
 function oercone_stcommon_main()
-
     -- ## Get required macros and related vars
-    local oercone = getMacroValue{macro="OERCONE"}
-    local iocstartup = getMacroValue{macro="IOCSTARTUP"}
-    local emulator_port = getMacroValue{macro="EMULATOR_PORT", default="57677"}
+    local oercone = ibex_utils.getMacroValue{macro="OERCONE"}
+    local iocstartup = ibex_utils.getMacroValue{macro="IOCSTARTUP"}
+    local emulator_port = ibex_utils.getMacroValue{macro="EMULATOR_PORT", default="57677"}
 
     -- ## Set EPICS environment vars
     iocsh.epicsEnvSet("STREAM_PROTOCOL_PATH", string.format("%s/data", oercone))
@@ -23,12 +18,12 @@ function oercone_stcommon_main()
     iocsh.iocshLoad(string.format("%s/init.cmd", iocstartup))
 
     -- Get macros required and related vars that required init.cmd to run
-    local recsim = getMacroValue{macro="RECSIM", default="0"}
+    local recsim = ibex_utils.getMacroValue{macro="RECSIM", default="0"}
     local isRecsim = recsim == "1"
-    local isDevsim = getMacroValue{macro="DEVSIM", default="0"} == "1"
-    local disable = getMacroValue{macro="DISABLE", default="0"}
-    local iocname = getMacroValue{macro="IOCNAME"}
-    local pvprefix = getMacroValue{macro="MYPVPREFIX"}
+    local isDevsim = ibex_utils.getMacroValue{macro="DEVSIM", default="0"} == "1"
+    local disable = ibex_utils.getMacroValue{macro="DISABLE", default="0"}
+    local iocname = ibex_utils.getMacroValue{macro="IOCNAME"}
+    local pvprefix = ibex_utils.getMacroValue{macro="MYPVPREFIX"}
 
     -- ## Device simulation mode IP configuration
     if (isDevsim) then
@@ -37,23 +32,23 @@ function oercone_stcommon_main()
 
     -- ## For recsim:
     if (isRecsim) then
-        local port = getMacroValue{macro="PORT", default="NUL"}
+        local port = ibex_utils.getMacroValue{macro="PORT", default="NUL"}
         iocsh.drvAsynSerialPortConfigure(device, port, 0, 1 ,0 ,0)
     end
 
     -- ## For real device:
     if (not isRecsim and not isDevsim) then
-        local port = getMacroValue{macro="PORT", default="NO_PORT_MACRO"}
-        local baud = getMacroValue{macro="BAUD", default="9600"}
-        local bits = getMacroValue{macro="BITS", default="8"}
-        local parity = getMacroValue{macro="PARITY", default="none"}
-        local stop = getMacroValue{macro="STOP", default="1"}
-        setAsynOptions(device, port, baud, bits, parity, stop)
+        local port = ibex_utils.getMacroValue{macro="PORT", default="NO_PORT_MACRO"}
+        local baud = ibex_utils.getMacroValue{macro="BAUD", default="9600"}
+        local bits = ibex_utils.getMacroValue{macro="BITS", default="8"}
+        local parity = ibex_utils.getMacroValue{macro="PARITY", default="none"}
+        local stop = ibex_utils.getMacroValue{macro="STOP", default="1"}
+        ibex_utils.setAsynOptions(device, port, baud, bits, parity, stop)
         -- Hardware flow control off
         local flowControlOn = false
-        setHardwareFlowControl(device, flowControlOn)
+        ibex_utils.setHardwareFlowControl(device, flowControlOn)
         -- Software flow control off
-        setSoftwareFlowControl(device, flowControlOn)
+        ibex_utils.setSoftwareFlowControl(device, flowControlOn)
     end
 
     -- ## Load record instances
