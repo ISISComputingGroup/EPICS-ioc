@@ -16,12 +16,12 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-alarm.template" {
         { "\$(P)", "\$(Q)", "TURBINE2:TRIPPED_CMPRSSR", "Turbine 2 tripped compressor", "1", "7" }
         { "\$(P)", "\$(Q)", "BACKING_PRESSURE", "Backing pressure high", "1", "8" }
         { "\$(P)", "\$(Q)", "ORS_COALESCER:LEVEL", "ORS coalescer level high", "1", "9" }
-        { "\$(P)", "\$(Q)", "ORS:TEMPERATURE", "ORS temperature high", "1", "10" }
-        { "\$(P)", "\$(Q)", "TS105:UNDERCOOL", "TS105 undercooled", "1", "11" }
-        { "\$(P)", "\$(Q)", "TTX108:UNDERCOOL", "TTX108 undercooled", "1", "12" }
-        { "\$(P)", "\$(Q)", "TURBINE:UNDERCOOL", "Turbine undercooled", "1", "13" }
-        { "\$(P)", "\$(Q)", "TURBINE:MALFUNCTION", "Turbine malfunction", "1", "14" }
-        { "\$(P)", "\$(Q)", "PURIFIER:UNDERCOOL", "Purifier undercooled", "1", "15" }
+        { "\$(P)", "\$(Q)", "ORS:TEMPERATURE", "ORS temperature high", "1", "A" }
+        { "\$(P)", "\$(Q)", "TS105:UNDERCOOL", "TS105 undercooled", "1", "B" }
+        { "\$(P)", "\$(Q)", "TTX108:UNDERCOOL", "TTX108 undercooled", "1", "C" }
+        { "\$(P)", "\$(Q)", "TURBINE:UNDERCOOL", "Turbine undercooled", "1", "D" }
+        { "\$(P)", "\$(Q)", "TURBINE:MALFUNCTION", "Turbine malfunction", "1", "E" }
+        { "\$(P)", "\$(Q)", "PURIFIER:UNDERCOOL", "Purifier undercooled", "1", "F" }
         { "\$(P)", "\$(Q)", "LIS107", "LIS107 high warning", "2", "0" }
         { "\$(P)", "\$(Q)", "PLANT_AUTOSTOP:TIMEOUT", "Operator plant autostop timeout", "2", "1" }
         { "\$(P)", "\$(Q)", "EMERGENCY_STOP", "Emergency stop", "2", "2" }

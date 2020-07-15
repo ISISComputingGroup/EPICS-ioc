@@ -1,7 +1,8 @@
+
 record(bi, "$(P)$(Q)$(PV_NAME):ALARM")
 {
 	field(DESC, "$(DESCRIPTION) alarm")
-	field(INP, "$(P)$(Q)LIQUEFIER:ALARM$(ALARM_NUM).B$(BIT_NUM) CP MS")
+	field(INP, "$(P)$(Q)LIQUEFIER:_ALARM$(ALARM_NUM).B$(BIT_NUM) CP MS")
 
 	field(ZNAM, "OK")
 	field(ONAM, "IN ALARM")
