@@ -1,0 +1,14 @@
+## Distances (intervals) between baffles and detectors
+
+record(calc, "$(FULL_PREFIX)$(ASHORT)$(BSHORT):INTERVAL"){
+    field(DESC, "Dist between $(ASHORT) and $(BSHORT)")
+    field(EGU, "mm")
+    field(INPA, "$(P)MOT:$(APV) CP")
+    field(INPB, "$(P)MOT:$(BPV) CP")
+    field(CALC, "b-a")
+    field(LOLO, "$(INTERVAL_MAJOR_WARNING)")
+    field(LLSV, "MAJOR")
+    field(LOW, "$(INTERVAL_MINOR_WARNING)")
+    field(LSV, "MINOR")
+}
+
