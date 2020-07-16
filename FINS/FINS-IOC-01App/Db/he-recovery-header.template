@@ -40,7 +40,8 @@ record(longin, "$(P)$(Q)HEARTBEAT")
 
 # The folowwing 4 records are for two memory locations that store 16 bit integers. 
 # They are not in the he-recovery-int template because all 16 bit integer memeory locations, 
-# except these two, store a scaled integer the represents a real number with one decimal point.
+# except these two, store a scaled integer the represents a real number with one decimal 
+# point and thus they need a calc record.
 
 record(waveform, "$(P)$(Q)COLDBOX:TURBINE_100:SPEED:_RAW")
 {
@@ -97,7 +98,6 @@ record(longin, "$(P)$(Q)COLDBOX:TURBINE_101:SPEED")
     info(INTEREST, "HIGH")
     info(archive, "10 VAL")
 }
-
 
 # the following mbbi records are not in the substitution file since they either have 
 # unique sets of values, or because having a template for only two records does not 
