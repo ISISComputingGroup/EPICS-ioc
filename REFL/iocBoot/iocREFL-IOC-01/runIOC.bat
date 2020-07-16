@@ -1,4 +1,4 @@
-@echo off
+REM @echo off
 setlocal
 set MYDIRBLOCK=%~dp0
 call C:\Instrument\Apps\EPICS\config_env_base.bat
@@ -13,10 +13,17 @@ set PYTHONUNBUFFERED=TRUE
 set "GETMACROS=C:\Instrument\Apps\EPICS\support\icpconfig\master\bin\%EPICS_HOST_ARCH%\icpconfigGetMacros.exe"
 set "MYIOCNAME=REFL_01"
 
-REM need this funny syntax to be able to set eol correctly - see google
-for /f usebackq^ tokens^=*^ delims^=^ eol^= %%a in ( `%GETMACROS% %MYIOCNAME%`  ) do ( set "MACROS=%%a" )
+echo PRE %REFL_MACROS%
 
-echo Macro JSON is %MACROS%
+if "%REFL_MACROS%"=="" (
+    REM need this funny syntax to be able to set eol correctly - see google
+    for /f usebackq^ tokens^=*^ delims^=^ eol^= %%a in ( `%GETMACROS% %MYIOCNAME%`  ) do ( set "REFL_MACROS=%%a" )
+    echo Defining macros
+) else (
+    echo Macros already defined
+)
+
+echo Macro JSON is %REFL_MACROS%
 
 
-%PYTHON3W% %EPICS_KIT_ROOT%/support/refl/master/reflectometry_server.py
+%PYTHON3W% %EPICS_KIT_ROOT%/support/refl/master/reflectometry_server.py 
