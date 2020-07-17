@@ -12,21 +12,33 @@ record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
     field(SCAN, "1 second")
     field(NOBT, 4)
     
+    field(ZRVL, "0")
     field(ONVL, "1")
     field(TWVL, "2")
     field(FRVL, "4")
     field(EIVL, "8")
     
+    field(ZRST, "ERROR: STATUS UNKNOWN")
     field(ONST, "ATMOSPHERE")
     field(TWST, "VAC DOWN")
     field(FRST, "AT VACUUM")
     field(EIST, "VENTING")
+
+    field(ZRSV, "MINOR")
     
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(SYSTEM):STATUS")
 
     info(archive, "VAL")
     info(INTEREST, "HIGH")
+}
+
+record(calcout, "$(FULL_PREFIX)$(SYSTEM):STATUS:_UNKNOWN_CHECK"){
+    field(DESC, "If $(SYSTEM) unknown set status")
+    field(INPA, "$(FULL_PREFIX)$(SYSTEM):STATUS CP MS")
+    field(CALC, "(A == 1 || A == 2 || A == 4 || A == 8) ? A : 0")
+    field(OOPT, "On Change")
+    field(OUT, "$(FULL_PREFIX)$(SYSTEM):STATUS")
 }
 
 
