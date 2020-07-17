@@ -7,10 +7,7 @@
 
 record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
     field(DESC, "$(SYSTEM) Status")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ")
-    field(SCAN, "1 second")
-    field(NOBT, 4)
+    field(INP, "$(FULL_PREFIX)$(SYSTEM):STATUS:_SET_UNKNOWN CP MS")
     
     field(ZRVL, "0")
     field(ONVL, "1")
@@ -25,20 +22,36 @@ record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
     field(EIST, "VENTING")
 
     field(ZRSV, "MINOR")
-    
-    field(SIML, "$(P)$(Q)SIM")
-    field(SIOL, "$(P)$(Q)SIM:$(SYSTEM):STATUS")
 
     info(archive, "VAL")
     info(INTEREST, "HIGH")
 }
 
-record(calcout, "$(FULL_PREFIX)$(SYSTEM):STATUS:_UNKNOWN_CHECK"){
-    field(DESC, "If $(SYSTEM) unknown set status")
-    field(INPA, "$(FULL_PREFIX)$(SYSTEM):STATUS CP MS")
+record(longin, "$(FULL_PREFIX)$(SYSTEM):STATUS:_RAW") {
+    field(DESC, "Raw $(SYSTEM) status from device")
+    field(SCAN, "1 second")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ")
+}
+
+record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS:_SET") {
+    field(DESC, "$(SYSTEM) Status")
+    field(INP, "$(FULL_PREFIX)$(SYSTEM):STATUS:_RAW CP MS")
+    field(NOBT, 4)
+    
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(FRVL, "4")
+    field(EIVL, "8")
+
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(SYSTEM):STATUS CP MS")
+}
+
+record(calc, "$(FULL_PREFIX)$(SYSTEM):STATUS:_SET_UNKNOWN") {
+    field(DESC, "Set status unknown when not value")
+    field(INPA, "$(FULL_PREFIX)$(SYSTEM):STATUS:_SET CP MS")
     field(CALC, "(A == 1 || A == 2 || A == 4 || A == 8) ? A : 0")
-    field(OOPT, "On Change")
-    field(OUT, "$(FULL_PREFIX)$(SYSTEM):STATUS")
 }
 
 
@@ -62,7 +75,7 @@ record(calcout,"$(FULL_PREFIX)$(SYSTEM):STATUS:VAC_STATUS_CALC" ) {
 
 ### Simulation Records ###
 
-record(mbbi, "$(FULL_PREFIX)SIM:$(SYSTEM):STATUS")
+record(mbbo, "$(FULL_PREFIX)SIM:$(SYSTEM):STATUS")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
