@@ -34,7 +34,9 @@ $(APPNAME)_DBD += webget.dbd
 $(APPNAME)_DBD += FileList.dbd
 $(APPNAME)_DBD += ADnEDSupport.dbd
 $(APPNAME)_DBD += ffmpegServer.dbd
+ifeq ($(findstring 10.0,$(VCVERSION)),)
 $(APPNAME)_DBD += ADPluginKafka.dbd
+endif
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -58,9 +60,11 @@ $(APPNAME)_LIBS += avutil
 $(APPNAME)_LIBS += swscale
 $(APPNAME)_LIBS += ADnEDSupport
 $(APPNAME)_LIBS += ADnEDTransform
+ifeq ($(findstring 10.0,$(VCVERSION)),)
 $(APPNAME)_LIBS += ADPluginKafka
 $(APPNAME)_LIBS += rdkafka++
 $(APPNAME)_LIBS += rdkafka
+endif
 
 $(APPNAME)_LIBS += ssleay32 libeay32
 
