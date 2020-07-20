@@ -2,7 +2,7 @@ REM @echo off
 setlocal
 set MYDIRBLOCK=%~dp0
 call C:\Instrument\Apps\EPICS\config_env_base.bat
-
+call dllPath.bat
 %HIDEWINDOW% h
 
 set EPICS_CAS_INTF_ADDR_LIST=127.0.0.1
