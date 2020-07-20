@@ -37,6 +37,7 @@ IOCDIRS += BGRSCRPT
 IOCDIRS += MECFRF
 IOCDIRS += FLIPPRPS
 IOCDIRS += GALILMUL
+IOCDIRS += REFL
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
