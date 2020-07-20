@@ -1,0 +1,10 @@
+motorSimCreateController("$(GALIL_MTR_PORT=GalilSim)", 8) 
+
+motorSimConfigAxis("$(GALIL_MTR_PORT=GalilSim)", 0, 32000, -32000,  0, 0) 
+motorSimConfigAxis("$(GALIL_MTR_PORT=GalilSim)", 1, 32000, -32000,  0, 0) 
+motorSimConfigAxis("$(GALIL_MTR_PORT=GalilSim)", 2, 32000, -32000,  0, 0) 
+motorSimConfigAxis("$(GALIL_MTR_PORT=GalilSim)", 3, 32000, -32000,  0, 0) 
+motorSimConfigAxis("$(GALIL_MTR_PORT=GalilSim)", 4, 32000, -32000,  0, 0) 
+motorSimConfigAxis("$(GALIL_MTR_PORT=GalilSim)", 5, 32000, -32000,  0, 0) 
+motorSimConfigAxis("$(GALIL_MTR_PORT=GalilSim)", 6, 32000, -32000,  0, 0) 
+motorSimConfigAxis("$(GALIL_MTR_PORT=GalilSim)", 7, 32000, -32000,  0, 0) 

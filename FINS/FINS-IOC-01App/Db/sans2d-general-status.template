@@ -107,6 +107,32 @@ record(mbbi, "$(FULL_PREFIX)MONITOR3:STATUS")
     info(alarm, "Vacuum")
 }
 
+record(bo, "$(FULL_PREFIX)SHUTTER:AUTO") {
+    field(ZNAM, "Manual")
+    field(ONAM, "Auto")
+    info(autosaveFields, "VAL")
+}
+
+# Should be processed by ISISDAE via $(POST_BEGIN_x) macros
+record(calcout, "$(FULL_PREFIX)SHUTTER:OPEN_IF_AUTO") {
+    field(INPA, "$(FULL_PREFIX)SHUTTER:AUTO")
+    field(CALC, "A")
+    field(OCAL, "1")
+    field(OOPT, "When Non-zero")
+    field(DOPT, "Use OCAL")
+    field(OUT, "$(FULL_PREFIX)SHUTTER:STATUS:SP PP")
+}
+
+# Should be processed by ISISDAE via $(POST_BEGIN_x) macros
+record(calcout, "$(FULL_PREFIX)SHUTTER:CLOSE_IF_AUTO") {
+    field(INPA, "$(FULL_PREFIX)SHUTTER:AUTO")
+    field(CALC, "A")
+    field(OCAL, "0")
+    field(OOPT, "When Non-zero")
+    field(DOPT, "Use OCAL")
+    field(OUT, "$(FULL_PREFIX)SHUTTER:STATUS:SP PP")
+}
+
 record(bi, "$(FULL_PREFIX)SHUTTER:OPEN")
 {
     field(DESC, "Fast shutter open")
