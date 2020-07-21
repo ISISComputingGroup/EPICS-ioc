@@ -21,7 +21,7 @@ record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
     field(FRST, "AT VACUUM")
     field(EIST, "VENTING")
 
-    field(ZRSV, "MINOR")
+    field(ZRSV, "MAJOR")
 
     info(archive, "VAL")
     info(INTEREST, "HIGH")
