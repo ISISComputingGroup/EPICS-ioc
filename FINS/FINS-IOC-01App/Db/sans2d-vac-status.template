@@ -25,19 +25,15 @@ record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
 
     info(archive, "VAL")
     info(INTEREST, "HIGH")
+    info(alarm, "FINS")
 }
 
-record(longin, "$(FULL_PREFIX)$(SYSTEM):STATUS:_RAW") {
-    field(DESC, "Raw $(SYSTEM) status from device")
-    field(SCAN, "1 second")
+record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS:_RAW") {
+    field(DESC, "Raw $(SYSTEM) Status from device")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ")
-}
-
-record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS:_SET") {
-    field(DESC, "$(SYSTEM) Status")
-    field(INP, "$(FULL_PREFIX)$(SYSTEM):STATUS:_RAW CP MS")
     field(NOBT, 4)
+    field(SCAN, "1 second")
     
     field(ONVL, "1")
     field(TWVL, "2")
@@ -50,10 +46,9 @@ record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS:_SET") {
 
 record(calc, "$(FULL_PREFIX)$(SYSTEM):STATUS:_SET_UNKNOWN") {
     field(DESC, "Set status unknown when not value")
-    field(INPA, "$(FULL_PREFIX)$(SYSTEM):STATUS:_SET CP MS")
+    field(INPA, "$(FULL_PREFIX)$(SYSTEM):STATUS:_RAW CP MS")
     field(CALC, "(A == 1 || A == 2 || A == 4 || A == 8) ? A : 0")
 }
-
 
 record(bi, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM") {
     field(DESC, "At Vacuum or not")
@@ -63,7 +58,6 @@ record(bi, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM") {
     info(archive, "VAL")
 }
  
-
 record(calcout,"$(FULL_PREFIX)$(SYSTEM):STATUS:VAC_STATUS_CALC" ) {
     field(DESC, "Check if vessel is under vacuum")
     field(INPA, "$(FULL_PREFIX)$(SYSTEM):STATUS CP MS")
@@ -71,7 +65,6 @@ record(calcout,"$(FULL_PREFIX)$(SYSTEM):STATUS:VAC_STATUS_CALC" ) {
     field(OOPT, "On Change")
     field(OUT, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM PP")
 }
-
 
 ### Simulation Records ###
 
