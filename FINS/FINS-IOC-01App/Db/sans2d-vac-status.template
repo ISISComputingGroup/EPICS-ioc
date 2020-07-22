@@ -75,7 +75,7 @@ record(calcout,"$(FULL_PREFIX)$(SYSTEM):STATUS:VAC_STATUS_CALC" ) {
 
 ### Simulation Records ###
 
-record(mbbo, "$(FULL_PREFIX)SIM:$(SYSTEM):STATUS")
+record(mbbi, "$(FULL_PREFIX)SIM:$(SYSTEM):STATUS")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
