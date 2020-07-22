@@ -1,4 +1,4 @@
-REM @echo off
+@echo off
 setlocal
 set MYDIRBLOCK=%~dp0
 call C:\Instrument\Apps\EPICS\config_env_base.bat
@@ -12,8 +12,6 @@ set PYTHONUNBUFFERED=TRUE
 
 set "GETMACROS=C:\Instrument\Apps\EPICS\support\icpconfig\master\bin\%EPICS_HOST_ARCH%\icpconfigGetMacros.exe"
 set "MYIOCNAME=REFL_01"
-
-echo PRE %REFL_MACROS%
 
 if "%REFL_MACROS%"=="" (
     REM need this funny syntax to be able to set eol correctly - see google
