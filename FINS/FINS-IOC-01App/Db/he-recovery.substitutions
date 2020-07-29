@@ -40,8 +40,8 @@ file "$(TOP)/FINS-IOC-01App/Db/he-recovery-int.template" {
 		{ "\$(P)", "\$(Q)", "MCP:BANK1:TS1", "MCP Bank 1 TS1 Helium Gas Resupply", "19502", "bar" }
 		{ "\$(P)", "\$(Q)", "MCP1:BANK2:IMPURE_HE", "MCP 1 Bank 2 Impure Helium <98%", "19503", "bar" }
 		{ "\$(P)", "\$(Q)", "MCP2:BANK2:IMPURE_HE", "MCP 2 Bank 2 Impure Helium <98%", "19504", "bar" }
-		{ "\$(P)", "\$(Q)", "MCP1:BANK3:MAIN_HE_STORAGE", "MCP 1 Bank 3 ISIS Main Hellium Storage", "19505", "bar" }
-		{ "\$(P)", "\$(Q)", "MCP2:BANK3:MAIN_HE_STORAGE", "MCP 2 Bank 3 ISIS Main Hellium Storage", "19506", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP1:BANK3:MAIN_HE_STORAGE", "MCP 1 Bank 3 ISIS Main Helium Storage", "19505", "bar" }
+		{ "\$(P)", "\$(Q)", "MCP2:BANK3:MAIN_HE_STORAGE", "MCP 2 Bank 3 ISIS Main Helium Storage", "19506", "bar" }
 		{ "\$(P)", "\$(Q)", "MCP1:BANK4:DLS_HE_STORAGE", "MCP 1 Bank 4 DLS Helium Storage", "19507", "bar" }
 		{ "\$(P)", "\$(Q)", "MCP2:BANK4:DLS_HE_STORAGE", "MCP 2 Bank 4 DLS Helium Storage", "19508", "bar" }
 		{ "\$(P)", "\$(Q)", "MCP1:BANK5:SPARE_STORAGE", "MCP 1 Bank 5 Spare Storage", "19509", "bar" }
