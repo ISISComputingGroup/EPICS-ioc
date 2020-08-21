@@ -5,6 +5,6 @@ record(bi, "$(P)$(Q)$(NAME)")
     field(DESC, "$(DESC)")
     field(ZNAM, "$(ZNAM)")
     field(ONAM, "$(ONAM)")
-    field(INP,  "$(P)$(Q)$(READPV) PP")
+    field(INP,  "$(P)$(Q)$(READPV) MS")
     info(INTEREST, "HIGH")
 }
