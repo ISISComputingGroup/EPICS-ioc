@@ -32,8 +32,8 @@ ss inhibitor
   {
     entry {
       errlogSevPrintf(errlogInfo, "Entering state pv_one_off_pv_two_off");
-      PVPUT(pvone_disp, 0, SYNC);
-      PVPUT(pvtwo_disp, 0, SYNC);
+      PVPUT(pvone_disp, 0);
+      PVPUT(pvtwo_disp, 0);
     }
   
     when(pvone != 0) {} state pv_one_on_pv_two_off
@@ -44,8 +44,8 @@ ss inhibitor
   {
     entry {
       errlogSevPrintf(errlogInfo, "Entering state pv_one_on_pv_two_off");
-      PVPUT(pvone_disp, 0, SYNC);
-      PVPUT(pvtwo_disp, 1, SYNC);
+      PVPUT(pvone_disp, 0);
+      PVPUT(pvtwo_disp, 1);
     }
   
 	when(pvone == 0) {} state pv_one_off_pv_two_off
@@ -56,8 +56,8 @@ ss inhibitor
   {
     entry {
       errlogSevPrintf(errlogInfo, "Entering state pv_one_off_pv_two_on");
-      PVPUT(pvone_disp, 1, SYNC);
-      PVPUT(pvtwo_disp, 0, SYNC);
+      PVPUT(pvone_disp, 1);
+      PVPUT(pvtwo_disp, 0);
     }
     
     when(pvone != 0) {} state pv_one_on_pv_two_on
@@ -69,8 +69,8 @@ ss inhibitor
     entry {
       errlogSevPrintf(errlogInfo, "Entering state pv_one_on_pv_two_on");
       errlogSevPrintf(errlogMajor, "WARNING: A transition occured that should not have been possible.");
-      PVPUT(pvone_disp, 0, SYNC);
-      PVPUT(pvtwo_disp, 0, SYNC);
+      PVPUT(pvone_disp, 0);
+      PVPUT(pvtwo_disp, 0);
     }
   
     /* 
