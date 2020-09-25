@@ -4,6 +4,7 @@
 <ioc_desc>Kepco power supply unit</ioc_desc>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
+<macro name="ON_START" pattern="^0|1|2$" description="What to do on start? 0 for nothing, 1 for reset and resend parameters and 2 for set to remote mode" hasDefault="YES" defaultValue="2" />
 </macros>
 </config_part>
 </ioc_config>
