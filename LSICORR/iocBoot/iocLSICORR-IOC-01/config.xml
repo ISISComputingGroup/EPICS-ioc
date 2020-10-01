@@ -4,6 +4,7 @@
   <ioc_desc>LSI Correlator</ioc_desc>
   <ioc_details>LSI Correlator component of SANS-DLS</ioc_details>
   <macros>
+    <macro name="SIM" pattern="^(YES)|(NO)$" description="Is device in simulaton mode?" hasDefault="YES" defaultValue="NO" />
   </macros>
  </config_part>
 </ioc_config>
