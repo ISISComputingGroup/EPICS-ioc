@@ -6,7 +6,7 @@
   <macros>
     <macro name="FILEPATH" pattern="^.*$" description="Directory in which to save data files." hasDefault="UNKNOWN"/>
     <macro name="ADDR" pattern="^.*$" description="IP address to connect to." hasDefault="UNKNOWN" />
-    <macro name="FIRMWARE_REVISION" pattern="^.*$" description="IP address to connect to." hasDefault="YES" defaultValue="4.0.0.3"/>
+    <macro name="FIRMWARE_REVISION" pattern="^.*$" description="The revision of the devices firmware." hasDefault="YES" defaultValue="4.0.0.3"/>
   </macros>
  </config_part>
 </ioc_config>
