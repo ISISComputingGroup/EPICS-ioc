@@ -20,6 +20,5 @@ if "%REFL_MACROS%"=="" (
 ) else (
     echo Macros already defined
 )
-echo Macro JSON is %REFL_MACROS%
 
 %PYTHON3W% %EPICS_KIT_ROOT%/support/lsicorr/master/correlator_pcaspy.py --pv_prefix %MYPVPREFIX% --ioc_number 1
