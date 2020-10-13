@@ -53,6 +53,7 @@ $(APPNAME)_LIBS += pcre libjson zlib
 $(APPNAME)_LIBS += efsw
 $(APPNAME)_LIBS += cvtRecord csmbase
 $(APPNAME)_LIBS += MercuryiTC
+
 	
 # MERCURY-IOC-01_registerRecordDeviceDriver.cpp derives from MERCURY-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
