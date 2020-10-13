@@ -4,7 +4,7 @@
 <ioc_desc>Kepco power supply unit</ioc_desc>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
-<macro name="ON_START" pattern="^0|1|2|3$" description="What to do on start? 0 for use firmware, 1 for reset and resend parameters, 2 for set to remote mode, 3 for do nothing" hasDefault="YES" defaultValue="0" />
+<macro name="RESET_ON_START" pattern="^0|1|2$" description="Whether to reset and resend setpoints at ioc start. 0 to not. 1 to do so if firmware is less than version 2.0. 2 to do so and disregard firmware version" hasDefault="YES" defaultValue="1" />
 </macros>
 </config_part>
 </ioc_config>
