@@ -255,7 +255,7 @@ record(ao, "$(P)RAW:SP")
     field(SIOL, "$(P)SIM:RAW:SP")
     field(SDIS, "$(P)DISABLE")
     field(PINI, "$(SP_PINI)")
-    field(DRVL, "0")
+    field(DRVL, "$(MIN_RAW_SETPOINT)")
     field(DRVH, "$(MAX_RAW_SETPOINT)")
     info(autosaveFields, "VAL")
 }

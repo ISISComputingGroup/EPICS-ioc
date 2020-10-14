@@ -41,6 +41,10 @@ stringiftest  "POLAR"  "$(POLARITY="BIPOLAR")"  5  "BIPOLAR"
 stringiftest  "CALIB"  "$(CALIBRATED=1)"  5  "1"
 stringiftest  "SLEW"  "$(USE_SLEW=0)"  5  "1"
 
+epicsEnvSet "MAX_RAW_SETPOINT" "$(MAX_RAW_SETPOINT=1000000)"
+$(IFPOLAR) epicsEnvSet "MIN_RAW_SETPOINT" "-$(MAX_RAW_SETPOINT)"
+$(IFNOTPOLAR) epicsEnvSet "MIN_RAW_SETPOINT" "0"
+
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 

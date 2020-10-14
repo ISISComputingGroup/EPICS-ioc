@@ -216,7 +216,8 @@ record(bi, "$(P)IS_CALIB")
 	field(PINI, "YES")
 }
 
-record(calc, "$(P)RAW:PERCENT") {
+record(calc, "$(P)RAW:PERCENT") 
+{
     field(INPA, "$(P)RAW CP MSS")
     field(B, "$(MAX_RAW_SETPOINT)")
     field(CALC, "ABS(100.0*(A*$(FWI)*$(FRI))/B)")
