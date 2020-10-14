@@ -21,4 +21,4 @@ if "%REFL_MACROS%"=="" (
     echo Macros already defined
 )
 
-%PYTHON3W% %EPICS_KIT_ROOT%/support/lsicorr/master/correlator_pcaspy.py --pv_prefix %MYPVPREFIX% --ioc_number 1
+%PYTHON3W% %EPICS_KIT_ROOT%/support/lsicorr/master/correlator_pcaspy.py --pv_prefix %MYPVPREFIX% --ioc_name %MYIOCNAME%
