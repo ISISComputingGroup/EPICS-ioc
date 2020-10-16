@@ -180,3 +180,22 @@ record (mbbo, "$(P)SIM:CS:SHUTTER")
 	field(SCAN, "Passive")
 	field(DTYP, "Soft Channel")	
 }
+
+# User records
+record (longin, "$(P)PARS:USER:MAX") 
+{
+	field(DESC, "Highest index of user variable")
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(VAL, "$(NUM_USER_VARS)")
+	field(PINI, "YES")
+}
+
+record (longin, "$(P)PARS:USER:BUTTONS:MAX") 
+{
+	field(DESC, "Highest index of user variable")
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(VAL, "$(NUM_USER_BUTTONS)")
+	field(PINI, "YES")
+}
