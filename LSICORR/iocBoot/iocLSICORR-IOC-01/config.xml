@@ -4,8 +4,8 @@
   <ioc_desc>LSI Correlator</ioc_desc>
   <ioc_details>LSI Correlator component of SANS-DLS</ioc_details>
   <macros>
-    <macro name="FILEPATH" pattern="^.*$" description="Directory in which to save data files." hasDefault="UNKNOWN"/>
-    <macro name="ADDR" pattern="^.*$" description="IP address to connect to." hasDefault="UNKNOWN" />
+    <macro name="FILEPATH" pattern="^.*$" description="Directory in which to save data files." hasDefault="NO"/>
+    <macro name="ADDR" pattern="^.*$" description="IP address to connect to." hasDefault="NO" />
     <macro name="FIRMWARE_REVISION" pattern="^.*$" description="The revision of the devices firmware." hasDefault="YES" defaultValue="4.0.0.3"/>
   </macros>
  </config_part>

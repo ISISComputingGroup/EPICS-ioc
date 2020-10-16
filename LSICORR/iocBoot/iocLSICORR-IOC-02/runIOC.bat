@@ -12,10 +12,10 @@ set PYTHONUNBUFFERED=TRUE
 
 set "GETMACROS=C:\Instrument\Apps\EPICS\support\icpconfig\master\bin\%EPICS_HOST_ARCH%\icpconfigGetMacros.exe"
 set "MYIOCNAME=LSICORR_02"
-echo PRE %REFL_MACROS%
-if "%REFL_MACROS%"=="" (
+
+if "%MACROS%"=="" (
     REM need this funny syntax to be able to set eol correctly - see google
-    for /f usebackq^ tokens^=*^ delims^=^ eol^= %%a in ( `%GETMACROS% %MYIOCNAME%`  ) do ( set "REFL_MACROS=%%a" )
+    for /f usebackq^ tokens^=*^ delims^=^ eol^= %%a in ( `%GETMACROS% %MYIOCNAME%`  ) do ( set "MACROS=%%a" )
     echo Defining macros
 ) else (
     echo Macros already defined
