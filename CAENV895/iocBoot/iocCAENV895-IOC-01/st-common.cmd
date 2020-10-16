@@ -42,3 +42,8 @@ makeAutosaveFileFromDbInfo("vmeconfig_settings.req", "vmeconfig")
 create_manual_set("vmeconfigMenu.req","P=$(MYPVPREFIX)AS:$(IOCNAME):,CONFIG=vmeconfig,CONFIGMENU=1")
 
 create_monitor_set("auto_settings.req", 30, "P=$(MYPVPREFIX)AS:$(IOCNAME):")
+
+## this would load last settings (kept here incase we need to swap back to it)
+#fdbrestore("vmeconfigMenu.sav")
+## this loads "defaults" config
+dbpf("$(MYPVPREFIX)AS:$(IOCNAME):vmeconfigMenu:name", "defaults")
