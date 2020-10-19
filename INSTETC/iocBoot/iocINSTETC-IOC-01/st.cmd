@@ -33,7 +33,7 @@ stringtest("IFEX3", "$(EXCLUSIVE3=)")
 stringtest("IFEX4", "$(EXCLUSIVE4=)")
 
 ## Load our record instances
-dbLoadRecords("db/INSTETC.db","P=$(MYPVPREFIX),IOC=$(IOCNAME),RECSIM=$(RECSIM=0)")
+dbLoadRecords("db/INSTETC.db","P=$(MYPVPREFIX),IOC=$(IOCNAME),RECSIM=$(RECSIM=0),NUM_USER_BUTTONS=$(NUM_USER_BUTTONS=4),NUM_USER_VARS=$(NUM_USER_VARS=4)")
 dbLoadRecords("db/svn-revision.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/build-id.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/experiment_data.db","P=$(MYPVPREFIX)")
@@ -44,6 +44,7 @@ $(IFEX3) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE3=)
 $(IFEX4) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE4=)")
 
 dbLoadRecordsLoop("db/user_parameters.db","P=$(MYPVPREFIX)", "INDEX", 0, $(NUM_USER_VARS=4), 1)
+dbLoadRecordsLoop("db/user_buttons.db","P=$(MYPVPREFIX)", "INDEX", 0, $(NUM_USER_BUTTONS=4), 1)
 
 dbLoadRecords("$(ICPCONFIGROOT)/dashboard.db", "P=$(MYPVPREFIX)")
 
