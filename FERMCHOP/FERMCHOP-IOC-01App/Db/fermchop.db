@@ -33,7 +33,7 @@ record(waveform, "$(P)STATUS:RAW")
 {
     field(DESC, "Raw response from chopper")
     field(DTYP, "stream")
-    field(NELM, "100")
+    field(NELM, "20")
     field(FTVL, "STRING")
     field(INP,  "@fc_$(INST=merlin).proto getStatus $(PORT)")
     field(SCAN, "1 second")
@@ -41,8 +41,6 @@ record(waveform, "$(P)STATUS:RAW")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STATUS:RAW")
     field(SDIS, "$(P)DISABLE")
-	
-	info(archive, "VAL")
 }
 
 record(ao, "$(P)_MHZ") {
