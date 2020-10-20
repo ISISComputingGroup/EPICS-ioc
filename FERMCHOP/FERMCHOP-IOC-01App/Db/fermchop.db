@@ -41,8 +41,6 @@ record(waveform, "$(P)STATUS:RAW")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STATUS:RAW")
     field(SDIS, "$(P)DISABLE")
-	
-	info(archive, "VAL")
 }
 
 record(ao, "$(P)_MHZ") {
