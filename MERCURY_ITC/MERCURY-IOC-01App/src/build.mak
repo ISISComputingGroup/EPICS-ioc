@@ -51,7 +51,6 @@ $(APPNAME)_LIBS += efsw
 $(APPNAME)_LIBS += cvtRecord csmbase
 $(APPNAME)_LIBS += MercuryiTC
 $(APPNAME)_LIBS += seq pv
-
 	
 # MERCURY-IOC-01_registerRecordDeviceDriver.cpp derives from MERCURY-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
@@ -65,11 +64,9 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
-$(APPNAME)_SYS_LIBS_WIN32 += msxml2
 
 #===========================
 
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
-
