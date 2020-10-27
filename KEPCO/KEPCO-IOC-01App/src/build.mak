@@ -28,6 +28,10 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += FileList.dbd
+$(APPNAME)_DBD += cvtRecord.dbd
+$(APPNAME)_DBD += calcSupport.dbd
+
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -40,7 +44,8 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre
+$(APPNAME)_LIBS += utilities pcre std sscan calc
+$(APPNAME)_LIBS += FileList cvtRecord csmbase
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 

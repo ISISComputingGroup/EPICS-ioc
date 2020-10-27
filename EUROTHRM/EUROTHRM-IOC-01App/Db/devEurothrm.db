@@ -692,7 +692,6 @@ record(ai, "$(P)RBV") {
     field(SDIS, "$(Q)DISABLE")
     field(EGU, "")
     field(PREC, "3")
-    field(FLNK, "$(P)TEMP.PROC PP")
     info(archive, "VAL")
     info(alarm, "Euro")
 }
