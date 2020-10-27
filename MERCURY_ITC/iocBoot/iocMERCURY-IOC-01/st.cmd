@@ -14,4 +14,6 @@ epicsEnvSet(IOC_NUM,1)
 dbLoadDatabase "dbd/MERCURY-IOC-01.dbd"
 MERCURY_IOC_01_registerRecordDeviceDriver pdbbase
 
-< $(MERCURY_ITC)/iocBoot/iocMercuryiTC/st-common.cmd
+cd ${TOP}/iocBoot/iocMERCURY-IOC-01
+ 
+< st-common.cmd
