@@ -14,7 +14,7 @@ epicsEnvSet "SENS_PAT" ".*"
 $(IFDEVSIM) epicsEnvSet "CALIB_BASE_DIR" "$(SUPPORT)"
 $(IFDEVSIM) epicsEnvSet "SENS_DIR" "kepco/master/example_calibration"
 
-FileListConfigure("SENSORFILELIST", "$(CALIB_BASE_DIR)/$(SENS_DIR)", "$(SENS_PAT)", 1) 
+FileListConfigure("SENSORFILELIST", "$(CALIB_BASE_DIR)/$(SENS_DIR)", "$(SENS_PAT)", 0) 
 
 # For dev sim devices
 $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT)")
