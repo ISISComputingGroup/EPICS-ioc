@@ -1,6 +1,15 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
  <config_part>
-  <ioc_desc>Inhibitor</ioc_desc>
+  <ioc_desc>TiZr Cell Monitoring</ioc_desc>
+  <macros>
+    <macro name="PVONE" pattern="^[0-9a-zA-Z:\._]+$" description="A setpoint PV to monitor, e.g. IN:INSTNAME:EUROTHRM_01:A01:TEMP:SP" hasDefault="NO" />
+    <macro name="PVTWO" pattern="^^[0-9a-zA-Z:\._]+$" description="A readback PV to monitor, e.g. IN:INSTNAME:EUROTHRM_01:A02:TEMP" hasDefault="NO" />
+
+    <macro name="PVONE_MAX" pattern="^[0-9.]+$" description="Maximum safe value for PVONE" hasDefault="NO" />
+    <macro name="PVTWO_MAX" pattern="^[0-9.]+$" description="Maximum safe value for PVTWO" hasDefault="NO" />
+
+    <macro name="SAFE_VALUE" pattern="^[0-9.]+$" description="Value written to PVONE when both PVs are above their maximum limits" hasDefault="NO" />
+  </macros>
  </config_part>
 </ioc_config>
