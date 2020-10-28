@@ -1,4 +1,4 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(_SUPPORT_MACRO_)/data"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(SMARTMON)/data"
 epicsEnvSet "DEVICE" "L0"
 
 ##ISIS## Run IOC initialisation 
