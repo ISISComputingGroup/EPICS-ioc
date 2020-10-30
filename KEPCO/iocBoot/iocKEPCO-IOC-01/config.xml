@@ -5,7 +5,7 @@
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 <macro name="CURRENT_MAX" pattern="^[0-9.]+$" description="The maximum current you can set on the device, 0 for no max" hasDefault="YES" defaultValue="0" />
-<macro name="STEP_NUMBER" pattern="^[0-9]+$" description="Number of steps the ramp does per second" hasDefault="YES" defaultValue="20" />
+<macro name="STEP_NUMBER" pattern="^[0-9]+$" description="Number of steps the ramp does per minute" hasDefault="YES" defaultValue="20" />
 </macros>
 </config_part>
 </ioc_config>
