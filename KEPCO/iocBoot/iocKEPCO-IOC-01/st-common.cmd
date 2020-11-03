@@ -27,11 +27,11 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "ixoff", "Y")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-ReadASCIIConfigure("READASCII", "")
+ReadASCIIConfigure("READASCII", "", $(STEP_NUMBER=20))
 
 ## Load record instances
 dbLoadRecords("$(KEPCO)/db/kepco.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RESET=NO, DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0)")
-dbLoadRecords("$(KEPCO)/db/kepco_ramping.db","P=$(MYPVPREFIX)$(IOCNAME):, READ=READASCII, STEPS_NUM=$(STEP_NUMBER=20), CURRENT_MAX=$(CURRENT_MAX=0)")
+dbLoadRecords("$(KEPCO)/db/kepco_ramping.db","P=$(MYPVPREFIX)$(IOCNAME):, READ=READASCII, CURRENT_MAX=$(CURRENT_MAX=0)")
 
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
