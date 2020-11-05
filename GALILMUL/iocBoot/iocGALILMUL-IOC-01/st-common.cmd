@@ -64,14 +64,8 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
 
-stringiftest("HASMTRCTRL1", "$(MTRCTRL1=)", 0, 0)
-$(IFNOTHASMTRCTRL1) errlogSev(2, "MTRCTRL1 has not been set")
-
-stringiftest("HASMTRCTRL2", "$(MTRCTRL2=)", 0, 0)
-$(IFNOTHASMTRCTRL2) errlogSev(2, "MTRCTRL2 has not been set")
-
 # Save motor positions every 5 seconds
-$(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,MTRCTRL1=$(MTRCTRL1),MTRCTRL2=$(MTRCTRL2),IFHASMTRCTRL1=$(IFHASMTRCTRL1),IFHASMTRCTRL2=$(IFHASMTRCTRL2)")
+$(IFNOTDEVSIM)$(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,MTRCTRL1=$(MTRCTRL1=),MTRCTRL2=$(MTRCTRL2=)")
 
 # Save motor settings every 30 seconds
-$(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,MTRCTRL1=$(MTRCTRL1),MTRCTRL2=$(MTRCTRL2),IFHASMTRCTRL1=$(IFHASMTRCTRL1),IFHASMTRCTRL2=$(IFHASMTRCTRL2)")
+$(IFNOTDEVSIM)$(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,MTRCTRL1=$(MTRCTRL1=),MTRCTRL2=$(MTRCTRL2=)")
