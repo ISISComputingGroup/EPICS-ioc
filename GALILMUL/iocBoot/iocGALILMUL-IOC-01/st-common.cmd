@@ -65,12 +65,13 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 < $(IOCSTARTUP)/postiocinit.cmd
 
 stringiftest("HASMTRCTRL1", "$(MTRCTRL1=)", 0, 0)
-$(IFNOTHASMTRCTRL1) errlogSev(2, "MTRCTRL has not been set")
+$(IFNOTHASMTRCTRL1) errlogSev(2, "MTRCTRL1 has not been set")
+
+stringiftest("HASMTRCTRL2", "$(MTRCTRL2=)", 0, 0)
+$(IFNOTHASMTRCTRL2) errlogSev(2, "MTRCTRL2 has not been set")
 
 # Save motor positions every 5 seconds
-$(IFHASMTRCTRL1) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+$(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,MTRCTRL1=$(MTRCTRL1),MTRCTRL2=$(MTRCTRL2),IFHASMTRCTRL1=$(IFHASMTRCTRL1),IFHASMTRCTRL2=$(IFHASMTRCTRL2)")
 
 # Save motor settings every 30 seconds
-$(IFHASMTRCTRL1) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
-
-$(IFHASMTRCTRL1) $(IFMOTORCONFIG) create_manual_set("$(MOTORCONFIG=)Menu.req","P=$(MYPVPREFIX)MOT:,CMP=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=),IOCNAME=$(IOCNAME),MTRCTRL=$(MTRCTRL),CONFIGMENU=1")
+$(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,MTRCTRL1=$(MTRCTRL1),MTRCTRL2=$(MTRCTRL2),IFHASMTRCTRL1=$(IFHASMTRCTRL1),IFHASMTRCTRL2=$(IFHASMTRCTRL2)")
