@@ -1,0 +1,45 @@
+OutTerminator = '\n';
+ReplyTimeout = 1000;
+
+getIDN {
+    out "*IDN?";
+    #Read no more that 39 chars (EPICS limit)
+    in "%/(.{0,39})/";
+    ExtraInput = Ignore;
+}
+
+getXINC {
+	#get x increment for plot
+	out ":DATa:SOUrce CH\$1;:WFMOutpre:XINcr?";
+	in "%f";
+	ExtraInput = Ignore;
+}
+
+getYMULT {
+	#get y multiplier for plot
+	out ":DATa:SOUrce CH\$1;:WFMOutpre:YMUlt?";
+	in "%f";
+	ExtraInput = Ignore;
+}
+
+getXUNIT {
+	#get x unit for plot
+	out ":DATa:SOUrce CH\$1;:WFMOutpre:XUNit?";
+	in '%/([a-zA-Z]+)/';
+	ExtraInput = Ignore;
+}
+
+getYUNIT {
+	#get y unit for plot
+	out ":DATa:SOUrce CH\$1;:WFMOutpre:YUNit?";
+	in '%/([a-zA-Z]+)/';
+	ExtraInput = Ignore;
+}
+
+getYDATA {
+	#ask scope for y data points
+	out ":VERBOSE 0;:HEADER 0;:DATa:SOUrce CH\$1;:DATa:STARt 1;:DATa:STOP 10000;:DATa:ENCdg ASCIi;:DATa:WIDth 1;:CURVe?";
+	separator=",";
+	in "%d";
+	ExtraInput = Ignore;
+}	
