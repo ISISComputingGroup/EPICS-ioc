@@ -30,7 +30,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "ixoff", "Y")
 ReadASCIIConfigure("READASCII", "", $(STEP_NUMBER=20))
 
 ## Load record instances
-dbLoadRecords("$(KEPCO)/db/kepco.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RESET=NO, DISABLE=$(DISABLE=0), RECSIM=$(RECSIM=0)")
+
+dbLoadRecords("$(KEPCO)/db/kepco.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RESET=NO, DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0), RESET_ON_START=$(RESET_ON_START=1)")
 dbLoadRecords("$(KEPCO)/db/kepco_ramping.db","P=$(MYPVPREFIX)$(IOCNAME):, READ=READASCII, CURRENT_MAX=$(CURRENT_MAX=0)")
 
 
