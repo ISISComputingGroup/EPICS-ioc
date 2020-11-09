@@ -28,6 +28,7 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += ReadASCII.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -40,7 +41,7 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre
+$(APPNAME)_LIBS += utilities pcre ReadASCII
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 
