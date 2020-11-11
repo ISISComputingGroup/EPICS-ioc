@@ -1,5 +1,6 @@
 
 < $(IOCSTARTUP)/init.cmd
+stringiftest("GEMJAWS", "$(IFGEMJAWS=#)", 5, "#")
 
 < $(IOCSTARTUP)/dbload.cmd
 
