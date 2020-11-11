@@ -55,7 +55,7 @@ iocshCmdLoop("< st-pressure.cmd", "PRESSURE_NUM=\$(I)", "I", 1, 2)
 
 iocshCmdLoop("< st-temp-spc.cmd", "TEMP_NUM=\$(J)", "J", 1, 4)
 
-dbLoadRecords("$(TOP)/db/MercuryGlobal.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM),DISABLE=$(DISABLE)")
+dbLoadRecords("$(MERCURY_ITC)/db/MercuryGlobal.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM),DISABLE=$(DISABLE)")
 
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
