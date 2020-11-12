@@ -28,6 +28,7 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
 $(APPNAME)_DBD += cvtRecord.dbd
 $(APPNAME)_DBD += calcSupport.dbd
@@ -46,6 +47,7 @@ $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcre std sscan calc
 $(APPNAME)_LIBS += FileList cvtRecord csmbase
+$(APPNAME)_LIBS += ReadASCII
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 

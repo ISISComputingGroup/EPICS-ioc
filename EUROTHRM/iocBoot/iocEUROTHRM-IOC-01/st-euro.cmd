@@ -12,7 +12,7 @@ $(IFACTIVE) FileListConfigure("SENSORFILELIST$(EURO_NUM)", "$(CALIB_BASE_DIR)/$(
 
 ## Load ReadASCII
 ## A seperate instance must be created for each Eurothrm
-$(IFACTIVE) ReadASCIIConfigure("READASCII$(EURO_NUM)", "$(RAMP_DIR)")
+$(IFACTIVE) ReadASCIIConfigure("READASCII$(EURO_NUM)", "$(RAMP_DIR)", 20)
 
 epicsEnvSet("P","$(MYPVPREFIX)$(IOCNAME):A0$(EURO_NUM):")
 
