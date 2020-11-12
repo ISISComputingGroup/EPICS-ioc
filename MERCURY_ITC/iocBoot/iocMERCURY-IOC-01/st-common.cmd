@@ -4,8 +4,8 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(MERCURY_ITC)/data"
 
 ## Environment Variables
-epicsEnvSet "CALIB_BASE_DIR" "$(ICPCONFIGBASE)/common"
-epicsEnvSet "CALIB_DIR" "other_devices"
+epicsEnvSet "CALIB_BASE_DIR" "$(CALIB_BASE_DIR=$(ICPCONFIGBASE)/common)"
+epicsEnvSet "CALIB_DIR" "$(CALIB_DIR=other_devices)"
 
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NUL)", 0, 1, 0, 0)
