@@ -5,8 +5,13 @@ cd ${TOP}
 ##ISIS## Run IOC initialisation
 < $(IOCSTARTUP)/init.cmd
 
-epicsEnvSet "CALIB_BASE_DIR" "$(ICPCONFIGBASE)/$(INSTRUMENT)"
-epicsEnvSet "SENS_DIR" "calib/kepco"
+stringiftest  "LOCALCALIB"  "$(LOCAL_CALIB="no")"  5  "yes"
+
+$(IFNOTLOCALCALIB) epicsEnvSet "CALIB_BASE_DIR" "$(ICPSETTINGSDIR)/config/common"
+$(IFNOTLOCALCALIB) epicsEnvSet "SENS_DIR" "magnets"
+
+$(IFLOCALCALIB) epicsEnvSet "CALIB_BASE_DIR" "$(ICPCONFIGBASE)/$(INSTRUMENT)"
+$(IFLOCALCALIB) epicsEnvSet "SENS_DIR" "calib/magnets"
 
 epicsEnvSet "SENS_PAT" ".*"
 
@@ -40,7 +45,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "ixoff", "Y")
 
 ## Load record instances
 dbLoadRecords("$(KEPCO)/db/kepco.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RESET=NO, DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0)")
-dbLoadRecords($(FILELIST)/db/calibration.db, "P=$(MYPVPREFIX)$(IOCNAME):, CALIB_BASE_DIR=$(CALIB_BASE_DIR), SDIR=$(SENS_DIR), CALIBLIST=SENSORFILELIST, CONV_TO_PV=FIELD, CONV_FROM_PV=CURRENT:, CONV_TO_DESC=Field, CONV_TO_EGU=G")
+dbLoadRecords($(FILELIST)/db/calibration.db, "P=$(MYPVPREFIX)$(IOCNAME):, DEFAULT_FILE=default_calib.dat, CALIB_BASE_DIR=$(CALIB_BASE_DIR), SDIR=$(SENS_DIR), CALIBLIST=SENSORFILELIST, CONV_TO_PV=FIELD, CONV_FROM_PV=CURRENT:, CONV_TO_DESC=Field, CONV_TO_EGU=G")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
