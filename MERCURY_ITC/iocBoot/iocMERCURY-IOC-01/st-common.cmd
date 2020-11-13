@@ -4,8 +4,8 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(MERCURY_ITC)/data"
 
 ## Environment Variables
-epicsEnvSet "CALIB_BASE_DIR" "$(ICPCONFIGBASE)/common"
-epicsEnvSet "CALIB_DIR" "other_devices"
+epicsEnvSet "CALIB_BASE_DIR" "$(CALIB_BASE_DIR=$(ICPCONFIGBASE)/common)"
+epicsEnvSet "CALIB_DIR" "$(CALIB_DIR=other_devices)"
 
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NUL)", 0, 1, 0, 0)
@@ -55,7 +55,7 @@ iocshCmdLoop("< st-pressure.cmd", "PRESSURE_NUM=\$(I)", "I", 1, 2)
 
 iocshCmdLoop("< st-temp-spc.cmd", "TEMP_NUM=\$(J)", "J", 1, 4)
 
-dbLoadRecords("$(TOP)/db/MercuryGlobal.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM),DISABLE=$(DISABLE)")
+dbLoadRecords("$(MERCURY_ITC)/db/MercuryGlobal.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM),DISABLE=$(DISABLE)")
 
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
