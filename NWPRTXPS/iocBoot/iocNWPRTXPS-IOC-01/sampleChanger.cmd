@@ -1,1 +1,1 @@
-< $(MCLENCONFIG)/sampleChanger.cmd
+< $(NEWPORTCONFIG)/sampleChanger.cmd

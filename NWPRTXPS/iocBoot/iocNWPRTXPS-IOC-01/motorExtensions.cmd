@@ -1,1 +1,1 @@
-< $(MCLENCONFIG)/motorextensions.cmd
+< $(NEWPORTCONFIG)/motorextensions.cmd

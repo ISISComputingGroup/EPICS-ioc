@@ -1,1 +1,1 @@
-< $(MCLENCONFIG)/axes.cmd
+< $(NEWPORTCONFIG)/axes.cmd

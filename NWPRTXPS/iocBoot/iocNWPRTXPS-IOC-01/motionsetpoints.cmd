@@ -1,1 +1,1 @@
-< $(MCLENCONFIG)/motionsetpoints.cmd
+< $(NEWPORTCONFIG)/motionsetpoints.cmd
