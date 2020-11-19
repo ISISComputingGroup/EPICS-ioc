@@ -1,0 +1,117 @@
+file "$(MOTOR)/motorApp/Db/XPSAuxLi.db"
+{
+pattern
+{P,     R,          PORT,       CHAN,   SCAN}
+{IOC:,  XPSAux1Li,  "\$(AUX_PORT)",   0,      "I/O Intr"}
+{IOC:,  XPSAux2Li,  "\$(AUX_PORT)",   1,      "I/O Intr"}
+{IOC:,  XPSAux3Li,  "\$(AUX_PORT)",   2,      "I/O Intr"}
+{IOC:,  XPSAux4Li,  "\$(AUX_PORT)",   3,      "I/O Intr"}
+}
+
+file "$(MOTOR)/motorApp/Db/XPSAuxBi.db"
+{
+pattern
+{P,    R,           PORT,     CHAN,  MASK,     SCAN}
+{IOC:, XPSAux1Bi0,  "\$(AUX_PORT)", 0,     0x000001, "I/O Intr"}
+{IOC:, XPSAux1Bi1,  "\$(AUX_PORT)", 0,     0x000002, "I/O Intr"}
+{IOC:, XPSAux1Bi2,  "\$(AUX_PORT)", 0,     0x000004, "I/O Intr"}
+{IOC:, XPSAux1Bi3,  "\$(AUX_PORT)", 0,     0x000008, "I/O Intr"}
+{IOC:, XPSAux1Bi4,  "\$(AUX_PORT)", 0,     0x000010, "I/O Intr"}
+{IOC:, XPSAux1Bi5,  "\$(AUX_PORT)", 0,     0x000020, "I/O Intr"}
+{IOC:, XPSAux1Bi6,  "\$(AUX_PORT)", 0,     0x000040, "I/O Intr"}
+{IOC:, XPSAux1Bi7,  "\$(AUX_PORT)", 0,     0x000080, "I/O Intr"}
+{IOC:, XPSAux2Bi0,  "\$(AUX_PORT)", 1,     0x000001, "I/O Intr"}
+{IOC:, XPSAux2Bi1,  "\$(AUX_PORT)", 1,     0x000002, "I/O Intr"}
+{IOC:, XPSAux2Bi2,  "\$(AUX_PORT)", 1,     0x000004, "I/O Intr"}
+{IOC:, XPSAux2Bi3,  "\$(AUX_PORT)", 1,     0x000008, "I/O Intr"}
+{IOC:, XPSAux2Bi4,  "\$(AUX_PORT)", 1,     0x000010, "I/O Intr"}
+{IOC:, XPSAux2Bi5,  "\$(AUX_PORT)", 1,     0x000020, "I/O Intr"}
+{IOC:, XPSAux3Bi0,  "\$(AUX_PORT)", 2,     0x000001, "I/O Intr"}
+{IOC:, XPSAux3Bi1,  "\$(AUX_PORT)", 2,     0x000002, "I/O Intr"}
+{IOC:, XPSAux3Bi2,  "\$(AUX_PORT)", 2,     0x000004, "I/O Intr"}
+{IOC:, XPSAux3Bi3,  "\$(AUX_PORT)", 2,     0x000008, "I/O Intr"}
+{IOC:, XPSAux3Bi4,  "\$(AUX_PORT)", 2,     0x000010, "I/O Intr"}
+{IOC:, XPSAux3Bi5,  "\$(AUX_PORT)", 2,     0x000020, "I/O Intr"}
+{IOC:, XPSAux4Bi0,  "\$(AUX_PORT)", 3,     0x000001, "I/O Intr"}
+{IOC:, XPSAux4Bi1,  "\$(AUX_PORT)", 3,     0x000002, "I/O Intr"}
+{IOC:, XPSAux4Bi2,  "\$(AUX_PORT)", 3,     0x000004, "I/O Intr"}
+{IOC:, XPSAux4Bi3,  "\$(AUX_PORT)", 3,     0x000008, "I/O Intr"}
+{IOC:, XPSAux4Bi4,  "\$(AUX_PORT)", 3,     0x000010, "I/O Intr"}
+{IOC:, XPSAux4Bi5,  "\$(AUX_PORT)", 3,     0x000020, "I/O Intr"}
+{IOC:, XPSAux4Bi6,  "\$(AUX_PORT)", 3,     0x000040, "I/O Intr"}
+{IOC:, XPSAux4Bi7,  "\$(AUX_PORT)", 3,     0x000080, "I/O Intr"}
+{IOC:, XPSAux4Bi8,  "\$(AUX_PORT)", 3,     0x000100, "I/O Intr"}
+{IOC:, XPSAux4Bi9,  "\$(AUX_PORT)", 3,     0x000200, "I/O Intr"}
+{IOC:, XPSAux4Bi10, "\$(AUX_PORT)", 3,     0x000400, "I/O Intr"}
+{IOC:, XPSAux4Bi11, "\$(AUX_PORT)", 3,     0x000800, "I/O Intr"}
+{IOC:, XPSAux4Bi12, "\$(AUX_PORT)", 3,     0x001000, "I/O Intr"}
+{IOC:, XPSAux4Bi13, "\$(AUX_PORT)", 3,     0x002000, "I/O Intr"}
+{IOC:, XPSAux4Bi14, "\$(AUX_PORT)", 3,     0x004000, "I/O Intr"}
+{IOC:, XPSAux4Bi15, "\$(AUX_PORT)", 3,     0x008000, "I/O Intr"}
+}
+
+file "$(MOTOR)/motorApp/Db/XPSAuxBo.db"
+{
+pattern
+{P,    R,           PORT,     CHAN, MASK}
+{IOC:, XPSAux1Bo0,  "\$(AUX_PORT)", 0,    0x000001}
+{IOC:, XPSAux1Bo1,  "\$(AUX_PORT)", 0,    0x000002}
+{IOC:, XPSAux1Bo2,  "\$(AUX_PORT)", 0,    0x000004}
+{IOC:, XPSAux1Bo3,  "\$(AUX_PORT)", 0,    0x000008}
+{IOC:, XPSAux1Bo4,  "\$(AUX_PORT)", 0,    0x000010}
+{IOC:, XPSAux1Bo5,  "\$(AUX_PORT)", 0,    0x000020}
+{IOC:, XPSAux1Bo6,  "\$(AUX_PORT)", 0,    0x000040}
+{IOC:, XPSAux1Bo7,  "\$(AUX_PORT)", 0,    0x000080}
+{IOC:, XPSAux3Bo0,  "\$(AUX_PORT)", 1,    0x000001}
+{IOC:, XPSAux3Bo1,  "\$(AUX_PORT)", 1,    0x000002}
+{IOC:, XPSAux3Bo2,  "\$(AUX_PORT)", 1,    0x000004}
+{IOC:, XPSAux3Bo3,  "\$(AUX_PORT)", 1,    0x000008}
+{IOC:, XPSAux3Bo4,  "\$(AUX_PORT)", 1,    0x000010}
+{IOC:, XPSAux3Bo5,  "\$(AUX_PORT)", 1,    0x000020}
+{IOC:, XPSAux4Bo0,  "\$(AUX_PORT)", 2,    0x000001}
+{IOC:, XPSAux4Bo1,  "\$(AUX_PORT)", 2,    0x000002}
+{IOC:, XPSAux4Bo2,  "\$(AUX_PORT)", 2,    0x000004}
+{IOC:, XPSAux4Bo3,  "\$(AUX_PORT)", 2,    0x000008}
+{IOC:, XPSAux4Bo4,  "\$(AUX_PORT)", 2,    0x000010}
+{IOC:, XPSAux4Bo5,  "\$(AUX_PORT)", 2,    0x000020}
+{IOC:, XPSAux4Bo6,  "\$(AUX_PORT)", 2,    0x000040}
+{IOC:, XPSAux4Bo7,  "\$(AUX_PORT)", 2,    0x000080}
+{IOC:, XPSAux4Bo8,  "\$(AUX_PORT)", 2,    0x000100}
+{IOC:, XPSAux4Bo9,  "\$(AUX_PORT)", 2,    0x000200}
+{IOC:, XPSAux4Bo10, "\$(AUX_PORT)", 2,    0x000400}
+{IOC:, XPSAux4Bo11, "\$(AUX_PORT)", 2,    0x000800}
+{IOC:, XPSAux4Bo12, "\$(AUX_PORT)", 2,    0x001000}
+{IOC:, XPSAux4Bo13, "\$(AUX_PORT)", 2,    0x002000}
+{IOC:, XPSAux4Bo14, "\$(AUX_PORT)", 2,    0x004000}
+{IOC:, XPSAux4Bo15, "\$(AUX_PORT)", 2,    0x008000}
+}
+
+file "$(MOTOR)/motorApp/Db/XPSAuxLo.db"
+{
+pattern
+{P,     R,         PORT,     CHAN}
+{IOC:,  XPSAux1Lo, "\$(AUX_PORT)", 0}
+{IOC:,  XPSAux3Lo, "\$(AUX_PORT)", 1}
+{IOC:,  XPSAux4Lo, "\$(AUX_PORT)", 2}
+}
+
+
+file "$(MOTOR)/motorApp/Db/XPSAuxAi.db"
+{
+pattern
+{P,    R,          PORT,     CHAN, LOPR,   HOPR,  PREC, SCAN}
+{IOC:, XPSAuxAi0,  "\$(AUX_PORT)", 0,    -10.0,  10.0,  4,    "1 second"}
+{IOC:, XPSAuxAi1,  "\$(AUX_PORT)", 1,    -10.0,  10.0,  4,    "1 second"}
+{IOC:, XPSAuxAi2,  "\$(AUX_PORT)", 2,    -10.0,  10.0,  4,    "1 second"}
+{IOC:, XPSAuxAi3,  "\$(AUX_PORT)", 3,    -10.0,  10.0,  4,    "1 second"}
+}
+
+file "$(MOTOR)/motorApp/Db/XPSAuxAo.db"
+{
+pattern
+{P,    R,          PORT,     CHAN, DRVL,   LOPR,   DRVH,  HOPR,  PREC}
+{IOC:, XPSAuxAo0,  "\$(AUX_PORT)", 0,    -10.0,  -10.0,  10.0,  10.0,   4}
+{IOC:, XPSAuxAo1,  "\$(AUX_PORT)", 1,    -10.0,  -10.0,  10.0,  10.0,   4}
+{IOC:, XPSAuxAo2,  "\$(AUX_PORT)", 2,    -10.0,  -10.0,  10.0,  10.0,   4}
+{IOC:, XPSAuxAo3,  "\$(AUX_PORT)", 3,    -10.0,  -10.0,  10.0,  10.0    4}
+}

@@ -14,27 +14,32 @@ iocshCmdLoop("< st-max-axis.cmd", "MN=\$(I)", "I", 1, 4)
 # Make sure controller number is 2 digits long
 calc("MTRCTRL", "$(MTRCTRL=11)", 2, 2)
 ## asyn port name 
-#epicsEnvSet("XPS", "XPS1")
+epicsEnvSet("XPS_PORT", "XPS1")
+epicsEnvSet("AUX_PORT", "XPS_AUX1")
+epicsEnvSet("IP_PORT", "5001")
+epicsEnvSet("MOVING_POLL", "10")
+epicsEnvSet("IDLE_POLL", "10")
 
-#XPSAuxConfig("XPS_AUX1", "XPS-6be9", 5001, 50)
+$(IFSIM) drvAsynSerialPortConfigure("$(XPS_PORT)", "NUL", 0, 1)
+$(IFSIM) motorSimCreateController("motorSim", $(NAXES))
+$(IFSIM) epicsEnvSet("SIMSFX","Sim")
 
-XPSSetup(1)
+$(IFNOTSIM) XPSAuxConfig("$(AUX_PORT)", "$(HOSTNAME)", $(IP_PORT), $(IDLE_POLL))
+$(IFNOTSIM) XPSSetup(1)
+$(IFNOTSIM) XPSConfig(0, "$(HOSTNAME)", $(IP_PORT), $(NAXES), $(MOVING_POLL), $(IDLE_POLL))
+$(IFNOTSIM) drvAsynMotorConfigure("$(XPS_PORT)", "motorXPS", 0, 1)
+$(IFNOTSIM) XPSInterpose("$(XPS_PORT)")
 
-XPSConfig(0, "XPS-6be9", 5001, 1, 10, 5000)
+iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 4)
 
-drvAsynMotorConfigure("XPS1", "motorXPS", 0, 1)
-XPSInterpose("XPS1")
-
-XPSConfigAxis(0,0,"Axis.Pos",1000)
-
-dbLoadRecords("$(TOP)/db/motor$(SIMSFX=).db", "P=$(MYPVPREFIX),M=0101,DIR=Pos")
+$(IFNOTSIM) dbLoadRecords("$(TOP)/db/controller.db", "P=$(MYPVPREFIX),AUX_PORT=$(AUX_PORT)")
 
 epicsEnvSet("NEWPORTCONFIG","$(ICPCONFIGROOT)/newport")
 
 # configure axes
 < axes.cmd
 
-# motion set points
+# motion set points etc.
 < motionsetpoints.cmd
 < sampleChanger.cmd
 < motorExtensions.cmd
@@ -45,3 +50,5 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,
 iocInit()
 
 < $(IOCSTARTUP)/postiocinit.cmd
+
+$(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")

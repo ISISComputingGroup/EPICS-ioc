@@ -8,10 +8,10 @@
 <macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="UNKNOWN" />
 <macro name="HOSTNAME" pattern="^.*$" description="Hostname of the controller" hasDefault="NO" />
 
-<macro name="AXIS1" pattern="^(yes|no)$" description="Motor is attached to axis 1 (default: no)" defaultValue="no" hasDefault="YES" />
-<macro name="AXIS2" pattern="^(yes|no)$" description="Motor is attached to axis 2 (default: no)" defaultValue="no" hasDefault="YES" />
-<macro name="AXIS3" pattern="^(yes|no)$" description="Motor is attached to axis 3 (default: no)" defaultValue="no" hasDefault="YES" />
-<macro name="AXIS4" pattern="^(yes|no)$" description="Motor is attached to axis 4 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS1_ID" pattern="^.*[.].*$" description="The ID of the axis as set in the controller, looks like Group1.Axis1. Leave blank for no axis (default: )" defaultValue="" hasDefault="YES" />
+<macro name="AXIS2_ID" pattern="^.*[.].*$" description="The ID of the axis as set in the controller, looks like Group1.Axis1. Leave blank for no axis (default: )" defaultValue="" hasDefault="YES" />
+<macro name="AXIS3_ID" pattern="^.*[.].*$" description="The ID of the axis as set in the controller, looks like Group1.Axis1. Leave blank for no axis (default: )" defaultValue="" hasDefault="YES" />
+<macro name="AXIS4_ID" pattern="^.*[.].*$" description="The ID of the axis as set in the controller, looks like Group1.Axis1. Leave blank for no axis (default: )" defaultValue="" hasDefault="YES" />
 
 <macro name="UNIT1" pattern="^[A-Za-z]*$" description="Units (default: mm)" defaultValue="mm" hasDefault="YES" />
 <macro name="UNIT2" pattern="^[A-Za-z]*$" description="Units (default: mm)" defaultValue="mm" hasDefault="YES" />
@@ -32,16 +32,6 @@
 <macro name="ACCL2" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="ACCL3" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="ACCL4" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" defaultValue="1" hasDefault="YES" />
-
-<macro name="MSTP1" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" defaultValue="4000" hasDefault="YES" />
-<macro name="MSTP2" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" defaultValue="4000" hasDefault="YES" />
-<macro name="MSTP3" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" defaultValue="4000" hasDefault="YES" />
-<macro name="MSTP4" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 4000)" defaultValue="4000" hasDefault="YES" />
-
-<macro name="ERES1" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" defaultValue="400/4096" hasDefault="YES" />
-<macro name="ERES2" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" defaultValue="400/4096" hasDefault="YES" />
-<macro name="ERES3" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" defaultValue="400/4096" hasDefault="YES" />
-<macro name="ERES4" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" defaultValue="400/4096" hasDefault="YES" />
 
 <macro name="DHLM1" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
 <macro name="DHLM2" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
