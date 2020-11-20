@@ -6,7 +6,7 @@ epicsEnvSet "READASCII_NAME" "READASCII"
 epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
 $(IFNOTDEVSIM) epicsEnvSet "RAMP_DIR" "$(CALIB_BASE_DIR)/ramps"
 $(IFDEVSIM) epicsEnvSet "RAMP_DIR" "$(READASCII)/example_settings"
-ReadASCIIConfigure("$(READASCII_NAME)", "$(RAMP_DIR)")
+ReadASCIIConfigure("$(READASCII_NAME)", "$(RAMP_DIR)", 20)
 
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NUL)", 0, 1, 0, 0)
