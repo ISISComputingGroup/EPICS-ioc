@@ -264,7 +264,7 @@ record(stringin, "$(P)POL_TYPE")
 
 record(bo, "$(P)POL:HIDE")
 {
-	field(DESC, "Show polarity setpoint?")
+	field(DESC, "Hide polarity setpoint?")
     field(ZNAM, "No")
     field(ONAM, "Yes")
 	field(VAL, "1")
