@@ -13,46 +13,6 @@
 <macro name="AXIS3_ID" pattern="^.*[.].*$" description="The ID of the axis as set in the controller, looks like Group1.Axis1. Leave blank for no axis (default: )" defaultValue="" hasDefault="YES" />
 <macro name="AXIS4_ID" pattern="^.*[.].*$" description="The ID of the axis as set in the controller, looks like Group1.Axis1. Leave blank for no axis (default: )" defaultValue="" hasDefault="YES" />
 
-<macro name="UNIT1" pattern="^[A-Za-z]*$" description="Units (default: mm)" defaultValue="mm" hasDefault="YES" />
-<macro name="UNIT2" pattern="^[A-Za-z]*$" description="Units (default: mm)" defaultValue="mm" hasDefault="YES" />
-<macro name="UNIT3" pattern="^[A-Za-z]*$" description="Units (default: mm)" defaultValue="mm" hasDefault="YES" />
-<macro name="UNIT4" pattern="^[A-Za-z]*$" description="Units (default: mm)" defaultValue="mm" hasDefault="YES" />
-
-<macro name="VELO1" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" defaultValue="1" hasDefault="YES" />
-<macro name="VELO2" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" defaultValue="1" hasDefault="YES" />
-<macro name="VELO3" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" defaultValue="1" hasDefault="YES" />
-<macro name="VELO4" pattern="^[0-9]*\.?[0-9]*$" description="Velocity, units/s, where length units are defined in the corresponding MSTP macro (default: 1)" defaultValue="1" hasDefault="YES" />
-
-<macro name="JVEL1" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO1/10)" defaultValue="VELO1/10" hasDefault="YES" />
-<macro name="JVEL2" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO2/10)" defaultValue="VELO2/10" hasDefault="YES" />
-<macro name="JVEL3" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO3/10)" defaultValue="VELO3/10" hasDefault="YES" />
-<macro name="JVEL4" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO4/10)" defaultValue="VELO4/10" hasDefault="YES" />
-
-<macro name="ACCL1" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" defaultValue="1" hasDefault="YES" />
-<macro name="ACCL2" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" defaultValue="1" hasDefault="YES" />
-<macro name="ACCL3" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" defaultValue="1" hasDefault="YES" />
-<macro name="ACCL4" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" defaultValue="1" hasDefault="YES" />
-
-<macro name="DHLM1" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
-<macro name="DHLM2" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
-<macro name="DHLM3" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
-<macro name="DHLM4" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
-
-<macro name="DLLM1" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" defaultValue="-200" hasDefault="YES" />
-<macro name="DLLM2" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" defaultValue="-200" hasDefault="YES" />
-<macro name="DLLM3" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" defaultValue="-200" hasDefault="YES" />
-<macro name="DLLM4" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" defaultValue="-200" hasDefault="YES" />
-
-<macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME3" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME4" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-
-<macro name="OFST1" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
-<macro name="OFST2" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
-<macro name="OFST3" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
-<macro name="OFST4" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
-
 </macros>
 <pvsets>
 </pvsets>

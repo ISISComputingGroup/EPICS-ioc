@@ -1,1 +1,0 @@
-< $(NEWPORTCONFIG)/motorextensions.cmd

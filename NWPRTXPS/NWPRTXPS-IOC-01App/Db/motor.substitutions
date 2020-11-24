@@ -1,25 +1,9 @@
 file $(MOTOR)/motorApp/Db/basic_asyn_motor.db {
-
-pattern {P,    M,         ADDR, DTYP,      PORT, DESC,   EGU,  VELO,  VBAS, ACCL, BDST, BVEL, BACC,    MRES,    ERES,  PREC, DHLM, DLLM, INIT}
-{"\$(P)", "\$(M)", 0, "asynMotor", "\$(XPS_PORT)", "DESC",    "mm",   "100",   "0",  "1",    0,    1,   0,   "0.001",   "0.001",    3,   "360",   "0",  ""}
-
+    pattern {P,    M,         ADDR, DTYP,      PORT, DESC,   EGU,  VELO,  VBAS, ACCL, BDST, BVEL, BACC,    MRES,    ERES,  PREC, DHLM, DLLM, INIT}
+         {"\$(P)", "\$(M)", 0, "asynMotor", "\$(XPS_PORT)", "DESC",    "mm",   "100",   "0",  "1",    0,    1,   0,   "\$(MRES)",   "\$(ERES)",    3,   "360",   "0",  ""}
 }
 
-file "$(MOTOR)/motorApp/Db/XPS_extra.db"
-{
-pattern
-{P,     R,  PORT,  ADDR}
-{"\$(P)",  m1, "\$(XPS_PORT)",  0}
-
+file "$(MOTOR)/motorApp/Db/XPS_extra.db"{
+    pattern {P,     R,  PORT,  ADDR}
+        {"\$(P)",  m1, "\$(XPS_PORT)",  0}
 }
-
-
-#file $(MOTOR)/db/motor_init_extra.db {
-#pattern {P, M, OFF, JVEL}
-#{"\$(P)", "\$(M)", "\$(OFF)", "\$(JVEL)"}
-#}
-
-#file $(MOTOR)/db/periodic_polling.db {
-#pattern {P, M}
-#{"\$(P)", "\$(M)"}
-#}

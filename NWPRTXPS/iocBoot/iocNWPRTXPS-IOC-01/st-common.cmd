@@ -17,8 +17,8 @@ calc("MTRCTRL", "$(MTRCTRL=11)", 2, 2)
 epicsEnvSet("XPS_PORT", "XPS1")
 epicsEnvSet("AUX_PORT", "XPS_AUX1")
 epicsEnvSet("IP_PORT", "5001")
-epicsEnvSet("MOVING_POLL", "10")
-epicsEnvSet("IDLE_POLL", "10")
+epicsEnvSet("MOVING_POLL", "50")
+epicsEnvSet("IDLE_POLL", "500")
 
 $(IFSIM) drvAsynSerialPortConfigure("$(XPS_PORT)", "NUL", 0, 1)
 $(IFSIM) motorSimCreateController("motorSim", $(NAXES))
@@ -40,9 +40,9 @@ epicsEnvSet("NEWPORTCONFIG","$(ICPCONFIGROOT)/newport")
 < axes.cmd
 
 # motion set points etc.
-< motionsetpoints.cmd
-< sampleChanger.cmd
-< motorExtensions.cmd
+< $(NEWPORTCONFIG)/motionsetpoints.cmd
+< $(NEWPORTCONFIG)/sampleChanger.cmd
+< $(NEWPORTCONFIG)/motorExtensions.cmd
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
@@ -51,4 +51,4 @@ iocInit()
 
 < $(IOCSTARTUP)/postiocinit.cmd
 
-$(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+$(IFHASMTRCTRL) $(IFNOTSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
