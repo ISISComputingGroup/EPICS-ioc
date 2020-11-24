@@ -9,8 +9,8 @@
     <macro name="PVONE_MAX" pattern="^[0-9.]+$" description="Maximum safe value for PVONE" hasDefault="NO" />
     <macro name="PVTWO_MAX" pattern="^[0-9.]+$" description="Maximum safe value for PVTWO" hasDefault="NO" />
 
-    <macro name="SAFE_VALUE" pattern="^[0-9.]+$" description="Value written to PVONE when both PVs are above their maximum limits. Defaults to PVONE_MAX." hasDefault="YES" />
-    <macro name="MONITORING_ON" pattern="^(0)|(1)$" description="Whether to monitor the PVs and write the safe value or not. 1 for Yes, 0 for No. Default is 0." hasDefault="YES" />
+    <macro name="SAFE_VALUE" pattern="^[0-9.]+$" description="Value written to PVONE when both PVs are above their maximum limits." defaultValue="$(PVONE_MAX)" hasDefault="YES" />
+    <macro name="MONITORING_ON" pattern="^(0|1)$" description="Whether to monitor the PVs and write the safe value or not. 1 for Yes, 0 for No." defaultValue="0" hasDefault="YES" />
   </macros>
  </config_part>
 </ioc_config>
