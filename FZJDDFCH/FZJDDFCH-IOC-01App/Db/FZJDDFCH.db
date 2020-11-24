@@ -206,7 +206,7 @@ record(ai, "$(P)FREQ")
     info(archive, "VAL")
 }
 #
-# setpoint phase [º]
+# setpoint phase [deg]
 # SPHA?
 # 0.01 to 359.99
 # two decimal places
@@ -220,7 +220,7 @@ record(ai, "$(P)PHAS:SP:RBV")
     info(archive, "VAL")
 }
 #
-# current phase [º]
+# current phase [deg]
 # PHAS?
 # 0.00 to 360.00 or –1.00
 # if the current rotary frequency did not reach the setpoint frequency, the value is –1.00
@@ -238,7 +238,7 @@ record(ai, "$(P)PHAS")
 # status of phase
 # PHOK?
 # OK or NOK
-# phase deviation = 0.1º means that the phase is OK
+# phase deviation = 0.1deg means that the phase is OK
 #
 record(bi, "$(P)PHAS:STAT")
 {
@@ -363,10 +363,10 @@ record(bi, "$(P)DRIVE:DIR")
 }
 alias("$(P)DRIVE:DIR", "$(P)DRV:DIR")
 #
-# drive temperature [ºC]
+# drive temperature [deg C]
 # DRIT?
 # 0.00 to 150.00
-# error if higher than 70.00ºC,
+# error if higher than 70.00 degrees C,
 # two decimal places
 #
 record(ai, "$(P)DRIVE:TEMP")
