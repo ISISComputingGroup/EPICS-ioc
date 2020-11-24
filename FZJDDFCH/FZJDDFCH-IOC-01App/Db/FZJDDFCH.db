@@ -222,8 +222,8 @@ record(ai, "$(P)PHAS:SP:RBV")
 #
 # current phase [deg]
 # PHAS?
-# 0.00 to 360.00 or –1.00
-# if the current rotary frequency did not reach the setpoint frequency, the value is –1.00
+# 0.00 to 360.00 or -1.00
+# if the current rotary frequency did not reach the setpoint frequency, the value is -1.00
 # two decimal places
 #
 record(ai, "$(P)PHAS")
