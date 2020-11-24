@@ -20,8 +20,8 @@ $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
-$(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += asSupport.dbd
@@ -34,14 +34,14 @@ $(APPNAME)_DBD += ReadASCII.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += stream asyn
-$(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += ReadASCII stream asyn
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre ReadASCII
+$(APPNAME)_LIBS += utilities pcre
+$(APPNAME)_LIBS += seq pv
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 
