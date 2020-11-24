@@ -44,8 +44,6 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 # Macros required for basic ioc/stream device
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
-ASYN=$(SUPPORT)/asyn/master
-AUTOSAVE=$(SUPPORT)/autosave/master
 CALC=$(SUPPORT)/calc/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
@@ -59,7 +57,6 @@ PVDUMP=$(SUPPORT)/pvdump/master
 SNCSEQ=$(SUPPORT)/seq/master
 SQLITE=$(SUPPORT)/sqlite/master
 SSCAN=$(SUPPORT)/sscan/master
-STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 
