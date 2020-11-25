@@ -122,7 +122,7 @@ record(longin, "$(P)RAW:SP:RBV") {
 
 record(calc, "$(P)CURR:SP:RBV") {
     field(INPA, "$(P)RAW:SP:RBV CP MS")
-    field(INPB, "$(P)POL")
+    field(INPB, "$(P)POL CP MS")
     field(CALC, "A / $(FWI) * (B=0?1:-1)")
     field(EGU, "A")
     field(PREC, "3")
