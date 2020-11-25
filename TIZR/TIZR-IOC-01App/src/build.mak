@@ -8,50 +8,41 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application KEPCO-IOC-01
+# Build the IOC application TIZR-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# KEPCO-IOC-01.dbd will be created and installed
+# TIZR-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# KEPCO-IOC-01.dbd will be made up from these files:
+# TIZR-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
-$(APPNAME)_DBD += asyn.dbd
-$(APPNAME)_DBD += stream.dbd
-$(APPNAME)_DBD += drvAsynSerialPort.dbd
-$(APPNAME)_DBD += drvAsynIPPort.dbd
-$(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
-$(APPNAME)_DBD += ReadASCII.dbd
-$(APPNAME)_DBD += FileList.dbd
-$(APPNAME)_DBD += cvtRecord.dbd
+## Stream device support ##
 $(APPNAME)_DBD += calcSupport.dbd
-
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += ReadASCII stream asyn
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
-$(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre std sscan calc
-$(APPNAME)_LIBS += FileList cvtRecord csmbase
-$(APPNAME)_LIBS += ReadASCII
-$(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += utilities pcre libjson zlib
+## Stream device libraries ##
+$(APPNAME)_LIBS += pcre
 ## Add other libraries here ##
+$(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += xxx
 
-# KEPCO-IOC-01_registerRecordDeviceDriver.cpp derives from KEPCO-IOC-01.dbd
+# TIZR-IOC-01_registerRecordDeviceDriver.cpp derives from TIZR-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
