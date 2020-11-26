@@ -5,8 +5,8 @@
 <ioc_details>IOC to control the Newport XPS-D and connected axes</ioc_details>
 <macros>
 
-<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="UNKNOWN" />
-<macro name="HOSTNAME" pattern="^.*$" description="Hostname of the controller" hasDefault="NO" />
+<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="NO" />
+<macro name="IP_ADDRESS" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the controller" hasDefault="NO" />
 
 <macro name="AXIS1_ID" pattern="^.*[.].*$" description="The ID of the axis as set in the controller, looks like Group1.Axis1. Leave blank for no axis (default: )" defaultValue="" hasDefault="YES" />
 <macro name="AXIS2_ID" pattern="^.*[.].*$" description="The ID of the axis as set in the controller, looks like Group1.Axis1. Leave blank for no axis (default: )" defaultValue="" hasDefault="YES" />

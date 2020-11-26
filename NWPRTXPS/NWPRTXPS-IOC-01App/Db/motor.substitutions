@@ -1,6 +1,6 @@
 file $(MOTOR)/motorApp/Db/basic_asyn_motor.db {
-    pattern {P,    M,         ADDR, DTYP,      PORT, DESC,   EGU,  VELO,  VBAS, ACCL, BDST, BVEL, BACC,    MRES,    ERES,  PREC, DHLM, DLLM, INIT}
-         {"\$(P)", "\$(M)", 0, "asynMotor", "\$(XPS_PORT)", "DESC",    "mm",   "100",   "0",  "1",    0,    1,   0,   "\$(MRES)",   "\$(ERES)",    3,   "360",   "0",  ""}
+    pattern {P,    M,         ADDR, DTYP,      PORT, DESC,   EGU,  VELO,  VBAS, ACCL, BDST, BVEL, BACC,    MRES,    ERES,  PREC, DHLM, DLLM, INIT, DIR}
+         {"\$(P)", "\$(M)", 0, "asynMotor", "\$(XPS_PORT)", "DESC",    "mm",   "100",   "0",  "1",    0,    1,   0,   "\$(MRES)",   "\$(ERES)",    3,   "360",   "0",  "", "Pos"}
 }
 
 file "$(MOTOR)/motorApp/Db/XPS_extra.db"{

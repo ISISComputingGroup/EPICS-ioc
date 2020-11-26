@@ -24,20 +24,17 @@ $(IFSIM) drvAsynSerialPortConfigure("$(XPS_PORT)", "NUL", 0, 1)
 $(IFSIM) motorSimCreateController("motorSim", $(NAXES))
 $(IFSIM) epicsEnvSet("SIMSFX","Sim")
 
-$(IFNOTSIM) XPSAuxConfig("$(AUX_PORT)", "$(HOSTNAME)", $(IP_PORT), $(IDLE_POLL))
 $(IFNOTSIM) XPSSetup(1)
-$(IFNOTSIM) XPSConfig(0, "$(HOSTNAME)", $(IP_PORT), $(NAXES), $(MOVING_POLL), $(IDLE_POLL))
+$(IFNOTSIM) XPSConfig(0, "$(IP_ADDRESS)", $(IP_PORT), $(NAXES), $(MOVING_POLL), $(IDLE_POLL))
 $(IFNOTSIM) drvAsynMotorConfigure("$(XPS_PORT)", "motorXPS", 0, 1)
 $(IFNOTSIM) XPSInterpose("$(XPS_PORT)")
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 4)
 
-$(IFNOTSIM) dbLoadRecords("$(TOP)/db/controller.db", "P=$(MYPVPREFIX),AUX_PORT=$(AUX_PORT)")
-
 epicsEnvSet("NEWPORTCONFIG","$(ICPCONFIGROOT)/newport")
 
 # configure axes
-< axes.cmd
+< $(NEWPORTCONFIG)/axes.cmd
 
 # motion set points etc.
 < $(NEWPORTCONFIG)/motionsetpoints.cmd
@@ -51,4 +48,6 @@ iocInit()
 
 < $(IOCSTARTUP)/postiocinit.cmd
 
+stringiftest("HASMTRCTRL", "$(MTRCTRL=)", 0, 0)
+$(IFNOTHASMTRCTRL) errlogSev(2, "MTRCTRL has not been set")
 $(IFHASMTRCTRL) $(IFNOTSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
