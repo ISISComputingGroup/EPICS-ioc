@@ -40,6 +40,7 @@ IOCDIRS += GALILMUL
 IOCDIRS += REFL
 IOCDIRS += SMRTMON
 IOCDIRS += TIZR
+IOCDIRS += PT2025
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
