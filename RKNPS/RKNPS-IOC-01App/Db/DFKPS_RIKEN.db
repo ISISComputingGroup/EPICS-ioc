@@ -271,6 +271,16 @@ record(bi, "$(P)POL_TYPE") {
     field(PINI, "YES")
 }
 
+record(bo, "$(P)POL:HIDE")
+{
+	field(DESC, "Show polarity setpoint?")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+	field(VAL, "0")
+    field(DISP, "1")
+	field(PINI, "YES")
+}
+
 record(stringin, "$(P)DEV_TYPE")
 {
 	field(DESC, "Device type for Riken PSU")
