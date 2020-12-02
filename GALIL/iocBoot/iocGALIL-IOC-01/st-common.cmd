@@ -75,6 +75,9 @@ iocshCmdLoop("< st-axis.cmd", "MN=\$(I)", "I", 1, 8)
 # motor extensions
 < $(GALILCONFIG)/motorExtensions.cmd
 
+## motion set points
+< $(GALILCONFIG)/bumpStop.cmd
+
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
