@@ -12,7 +12,7 @@ iocshCmdLoop("< st-ctrl.cmd", "CNUM=\$(I)", "I", 1, 24)
 iocshCmdLoop("< st-max-axis.cmd", "MN=\$(I)", "I", 1, 4)
 
 # Make sure controller number is 2 digits long
-calc("MTRCTRL", "$(MTRCTRL=11)", 2, 2)
+calc("MTRCTRL", "$(MTRCTRL=)", 2, 2)
 ## asyn port name 
 epicsEnvSet("XPS_PORT", "XPS1")
 epicsEnvSet("AUX_PORT", "XPS_AUX1")
@@ -45,6 +45,8 @@ epicsEnvSet("NEWPORTCONFIG","$(ICPCONFIGROOT)/newport")
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
 iocInit()
+
+motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 < $(IOCSTARTUP)/postiocinit.cmd
 

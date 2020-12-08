@@ -25,6 +25,7 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += pvcomplete.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 $(APPNAME)_DBD += motorSupport.dbd
@@ -37,7 +38,6 @@ $(APPNAME)_DBD += busySupport.dbd
 $(APPNAME)_DBD += motionSetPoints.dbd
 $(APPNAME)_DBD += sampleChanger.dbd 
 $(APPNAME)_DBD += stdSupport.dbd
-$(APPNAME)_DBD += asubFunctions.dbd 
 $(APPNAME)_DBD += asyn.dbd 
 
 # Add all the support libraries needed by this IOC
