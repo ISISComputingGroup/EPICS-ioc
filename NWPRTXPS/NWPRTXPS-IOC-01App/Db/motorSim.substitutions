@@ -1,0 +1,4 @@
+file $(MOTOR)/motorApp/Db/asyn_motor.db {
+    pattern {P,       M,         DTYP,        DESC,          EGU,    DIR,    VELO,    VBAS, ACCL, BDST, BVEL, BACC,    MRES,    ERES,       PREC, DHLM,   DLLM, INIT, C,   S,          MOTORSIM, PORT, ADDR }
+            {"\$(P)", "\$(M)",   "asynMotor", "DESC",    "deg",  "Pos",  "100",   0,  "1",    0,    1,   0,   "\$(MRES)",   "\$(ERES)", 3,   "360",   "0",  "",   "0", "\$(CARD)", "motorSim", "motorSim", "0" }
+}
