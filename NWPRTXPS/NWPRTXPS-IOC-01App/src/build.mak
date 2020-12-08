@@ -25,7 +25,6 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += calcSupport.dbd
-$(APPNAME)_DBD += pvcomplete.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 $(APPNAME)_DBD += motorSupport.dbd
