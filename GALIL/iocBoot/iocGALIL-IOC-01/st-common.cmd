@@ -76,7 +76,7 @@ iocshCmdLoop("< st-axis.cmd", "MN=\$(I)", "I", 1, 8)
 < $(GALILCONFIG)/motorExtensions.cmd
 
 # Load bump stop input source macro BUMPSTOP_IN (if any exists)
-< $(GALILCONFIG)/bumpStop.cmd
+$(IFIOC_GALIL_01) < $(GALILCONFIG)/bumpStop.cmd
 
 $(IFIOC_GALIL_01) dbLoadRecords("$(COMMON)/db/bump_stop.db", "P=$(MYPVPREFIX)MOT:,BMPSTP=$(BUMPSTOP_IN="")")
 

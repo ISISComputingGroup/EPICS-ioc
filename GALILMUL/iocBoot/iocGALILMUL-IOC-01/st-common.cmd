@@ -42,7 +42,7 @@ iocshCmdLoop("< st-motor-controller.cmd", "CN=\$(I)", "I", 1, 2)
 < $(GALILCONFIG)/motorExtensions.cmd
 
 # Load bump stop input source macro BUMPSTOP_IN (if any exists)
-< $(GALILCONFIG)/bumpStop.cmd
+$(IFIOC_GALIL_01) < $(GALILCONFIG)/bumpStop.cmd
 
 $(IFIOC_GALILMUL_01) dbLoadRecords("$(COMMON)/db/bump_stop.db", "P=$(MYPVPREFIX)MOT:,BMPSTP=$(BUMPSTOP_IN="")")
 
