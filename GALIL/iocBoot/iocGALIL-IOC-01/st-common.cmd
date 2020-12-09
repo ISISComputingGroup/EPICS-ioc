@@ -51,9 +51,6 @@ $(IFDEVSIM) epicsEnvSet("GALIL_MTR_PORT", "GalilSim")
 $(IFRECSIM) epicsEnvSet("GALIL_MTR_PORT", "GalilSim")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet("GALIL_MTR_PORT", "Galil")
 
-# Load macro for bump stop input (if any)
-< $(GALILCONFIG)/bumpStop.cmd
-
 ## load the galil db files
 < galildb.cmd
 
@@ -78,6 +75,10 @@ iocshCmdLoop("< st-axis.cmd", "MN=\$(I)", "I", 1, 8)
 # motor extensions
 < $(GALILCONFIG)/motorExtensions.cmd
 
+# Load bump stop input source macro BUMPSTOP_IN (if any exists)
+< $(GALILCONFIG)/bumpStop.cmd
+
+$(IFIOC_GALIL_01) dbLoadRecords("$(COMMON)/db/bump_stop.db", "P=$(MYPVPREFIX)MOT:,BMPSTP=$(BUMPSTOP_IN="")")
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")

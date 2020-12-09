@@ -20,5 +20,3 @@ dbLoadRecords("$(TOP)/db/galil_userdef_records8.db", "P=$(MYPVPREFIX)MOT,CCP=$(M
 
 dbLoadRecords("$(TOP)/db/galil_profileMoveController.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 dbLoadRecords("$(TOP)/db/galil_profileMoveAxis.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
-
-dbLoadRecords("$(COMMON)/db/bump_stop.db", "P=$(MYPVPREFIX)MOT:DMC$(MTRCTRL):,BMPSTP=$(BUMPSTOP_IN)")
