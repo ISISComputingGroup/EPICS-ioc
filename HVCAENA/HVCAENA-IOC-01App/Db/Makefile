@@ -18,6 +18,7 @@ DB_INSTALLS += $(HVCAEN)/db/longin.template
 DB_INSTALLS += $(HVCAEN)/db/longout.template
 DB_INSTALLS += $(HVCAEN)/db/stringin.template
 DB_INSTALLS += $(HVCAEN)/db/stringout.template
+DB_INSTALLS += $(HVCAEN)/db/mbbi.template
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
