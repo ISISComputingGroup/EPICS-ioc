@@ -6,6 +6,6 @@
 file "$(RUNCONTROL)/db/gencontrolMgr.db"
 {
     pattern {   P,     MODE, IN_ACTION,             OUT_ACTION,     CHANGE_ACTION  }
-	        { "\$(P)", "RC", "\$(P)DAE:ENDSEWAIT", "\$(P)DAE:STARTSEWAIT", "\$(P)CS:RC:DUMMYACT:CHANGE" }
+	        { "\$(P)", "RC", "\$(P)DAE:ENDSEWAIT.PROC", "\$(P)DAE:STARTSEWAIT.PROC", "\$(P)CS:RC:DUMMYACT:CHANGE" }
 	        { "\$(P)", "AC", "\$(ALERT_IN)", "\$(ALERT_OUT)", "\$(ALERT_CHANGE)" }
 }
