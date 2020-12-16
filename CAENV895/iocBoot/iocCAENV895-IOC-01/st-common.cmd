@@ -52,4 +52,5 @@ create_monitor_set("auto_settings.req", 30, "P=$(MYPVPREFIX)AS:$(IOCNAME):")
 ## this would load last settings i.e. including your change, kept here in case we wish to swap back to it
 #fdbrestore("vmeconfigMenu.sav")
 ## this loads the original "defaults" config, so discards any changes that have not been manually saved
-dbpf("$(MYPVPREFIX)AS:$(IOCNAME):vmeconfigMenu:name", "defaults")
+## macro DEFAULTCFG is really for use by testing framework
+dbpf("$(MYPVPREFIX)AS:$(IOCNAME):vmeconfigMenu:name", "$(DEFAULTCFG=defaults)")
