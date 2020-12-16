@@ -14,11 +14,11 @@ epicsEnvSet(IOC_NUM,1)
 dbLoadDatabase "dbd/FMR-IOC-01.dbd"
 FMR_IOC_01_registerRecordDeviceDriver pdbbase
 
-# Configure lvDCOM interface
-lvDCOMConfigure("lvfp", "frontpanel", "${FMR}/data/lv_FMR.xml", "$(LVDCOM_HOST="")", $(LVDCOM_OPTIONS=2))
-
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
+
+# Configure lvDCOM interface
+lvDCOMConfigure("lvfp", "frontpanel", "${FMR}/data/lv_FMR.xml", "$(LVDCOM_HOST=)", $(LVDCOM_OPTIONS=2))
 
 ## Load record instances
 
