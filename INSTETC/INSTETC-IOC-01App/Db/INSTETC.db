@@ -225,14 +225,6 @@ record (mbbi, "$(P)CS:SHUTTER")
 
 ### SIMULATION RECORDS ###
 
-record(bo, "$(P)SIM")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-    field(ZNAM, "NO")
-    field(ONAM, "YES")
-}
-
 record(mbbi, "$(P)SIM:BUMP_STOP")
 {
 	field(SCAN, "Passive")
