@@ -1,6 +1,9 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(HIFIMAGS)/data"
 epicsEnvSet "DEVICE" "L0"
 
+## This will come from elsewhere eventually
+epicsEnvSet "X_IOC" "Macro"
+
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
@@ -29,7 +32,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(HIFIMAGS)/db/hifimags.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(TOP)/db/hifimags.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(TOP)/db/hifimags_magnet.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
