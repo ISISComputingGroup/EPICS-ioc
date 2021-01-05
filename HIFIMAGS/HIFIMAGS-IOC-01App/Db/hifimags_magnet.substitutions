@@ -1,0 +1,9 @@
+file hifimags_magnet.template { 
+  pattern 
+    {P, MAG, PSU_IOC}
+    
+    {"\$(P)", "X", "\$(X_IOC)"}
+    {"\$(P)", "Y", "\$(Y_IOC)"}
+    {"\$(P)", "Z", "\$(Z_IOC)"}
+
+}

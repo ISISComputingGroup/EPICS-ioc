@@ -1,0 +1,111 @@
+### STAT Fields
+
+record(stringin, "$(P)$(MAG):STAT") {
+  field(DESC, "Status of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PSU_IOC):STAT")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):STAT")
+  field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)$(MAG):STAT","$(P)$(MAG):STAT:RBV")
+
+record(stringin, "$(P)SIM:$(MAG):STAT") {
+  field(DESC, "Simulated status of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(VAL, "Simulation")
+}
+
+### READY Fields
+
+record(bi, "$(P)$(MAG):READY") {
+  field(DESC, "Readiness of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZNAM, "Not Ready")
+  field(ONAM, "Ready")
+  
+  field(INP,"$(PSU_IOC):READY")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):READY")
+  field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)$(MAG):READY","$(P)$(MAG):READY:RBV")
+
+record(bi, "$(P)SIM:$(MAG):READY") {
+  field(DESC, "Simulated Readiness of $(MAG)")
+  field(DTYP, "Soft Channel")
+
+  field(ZNAM, "Not Ready")
+  field(ONAM, "Ready")
+}
+
+### ERROR Fields
+record(bi, "$(P)$(MAG):ERROR") {
+  field(DESC, "Error state of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZNAM, "No Error")
+  field(ONAM, "Error")
+  
+  field(INP,"$(PSU_IOC):ERROR")
+  
+  field(FLNK, "$(P)$(MAG):ERRORS:_CALC MS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):ERROR")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(stringin, "$(P)$(MAG):ERRORS:RBV") {
+  field(DESC, "Backward compatible error report")
+  field(INP, "$(P)$(MAG):ERRORS:_CALC.SVAL MS")
+}
+
+record(scalcout, "$(P)$(MAG):ERRORS:_CALC")
+{
+    field(SCAN,"Passive")
+    field(INAA,"$(P)$(MAG):ERROR MS")
+    field(INBB,"$(P)$(MAG):STAT")
+    field(CALC, "AA = 'Error'? BB : ''")
+    field(FLNK, "$(P)$(MAG):ERRORS:RBV")
+}
+
+record(bi, "$(P)SIM:$(MAG):ERROR") {
+  field(DESC, "Simulated Error Status of $(MAG)")
+  field(DTYP, "Soft Channel")
+
+  field(ZNAM, "No Error")
+  field(ONAM, "Error")
+}
+
+### Output Fields
+
+record(ai, "$(P)$(MAG):OUTPUT:FIELD:GAUSS") {
+  field(DESC, "Simulated Output Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "Gauss")
+  
+  field(INP,"$(PSU_IOC):OUTPUT:FIELD:GAUSS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS")
+  field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)$(MAG):OUTPUT:FIELD:GAUSS","$(P)$(MAG):OUT:RBV")
+
+record(ai, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS") {
+  field(DESC, "Simulated Output Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(EGU,"Gauss")
+}
