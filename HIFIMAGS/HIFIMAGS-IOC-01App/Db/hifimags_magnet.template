@@ -87,7 +87,7 @@ record(bi, "$(P)SIM:$(MAG):ERROR") {
   field(ONAM, "Error")
 }
 
-### Output Fields
+### Output - Field in Gauss
 
 record(ai, "$(P)$(MAG):OUTPUT:FIELD:GAUSS") {
   field(DESC, "Simulated Output Field of $(MAG) in Gauss")
@@ -108,4 +108,46 @@ record(ai, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS") {
   field(DESC, "Simulated Output Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(EGU,"Gauss")
+}
+
+### Output - Current
+
+record(ai, "$(P)$(MAG):OUTPUT:CURR") {
+  field(DESC, "Simulated Output Field of $(MAG) in Amps")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "A")
+  
+  field(INP,"$(PSU_IOC):OUTPUT:CURR")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):OUTPUT:CURR")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)SIM:$(MAG):OUTPUT:CURR") {
+  field(DESC, "Simulated Output Field of $(MAG) in Amps")
+  field(DTYP, "Soft Channel")
+  field(EGU,"A")
+}
+
+### Output - Voltage
+
+record(ai, "$(P)$(MAG):OUTPUT:VOLT") {
+  field(DESC, "Simulated Output Field of $(MAG) in Volts")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "V")
+  
+  field(INP,"$(PSU_IOC):OUTPUT:VOLT")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):OUTPUT:VOLT")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)SIM:$(MAG):OUTPUT:VOLT") {
+  field(DESC, "Simulated Output Field of $(MAG) in Volts")
+  field(DTYP, "Soft Channel")
+  field(EGU,"V")
 }
