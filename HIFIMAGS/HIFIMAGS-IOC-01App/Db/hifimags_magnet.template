@@ -208,6 +208,7 @@ record(bo, "$(P)$(MAG):ABORT") {
   field(SIOL, "$(P)SIM:$(MAG):ABORT")
   field(SDIS, "$(P)DISABLE")
 }
+alias("$(P)$(MAG):ABORT","$(P)$(MAG):ABORT:SP")
 
 record(bo, "$(P)SIM:$(MAG):ABORT") {
   field(DESC, "Simulated Abort Status of $(MAG)")
@@ -215,4 +216,28 @@ record(bo, "$(P)SIM:$(MAG):ABORT") {
 
   field(ZNAM, "$(MAG) is Idle")
   field(ONAM, "Aborting $(MAG)")
+}
+
+### Quench
+record(bi, "$(P)$(MAG):QUENCH") {
+  field(DESC, "Quench status of $(MAG) ramp")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZNAM, "")
+  field(ONAM, "Quenched")
+  
+  field(INP,"$(PSU_IOC):QUENCH")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):QUENCH")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)SIM:$(MAG):QUENCH") {
+  field(DESC, "Simulated quench Status of $(MAG)")
+  field(DTYP, "Soft Channel")
+
+  field(ZNAM, "")
+  field(ONAM, "Quenched")
 }
