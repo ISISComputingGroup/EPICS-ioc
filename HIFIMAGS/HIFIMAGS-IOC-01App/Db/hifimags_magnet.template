@@ -151,3 +151,22 @@ record(ai, "$(P)SIM:$(MAG):OUTPUT:VOLT") {
   field(DTYP, "Soft Channel")
   field(EGU,"V")
 }
+
+### Target - Time to reach
+
+record(stringin, "$(P)$(MAG):TARGET:TIME") {
+  field(DESC, "Simulated Time to Target of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PSU_IOC):TARGET:TIME")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):TARGET:TIME")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(stringin, "$(P)SIM:$(MAG):TARGET:TIME") {
+  field(DESC, "Simulated Time to Target of $(MAG)")
+  field(DTYP, "Soft Channel")
+}
