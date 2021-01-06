@@ -10,6 +10,7 @@ include $(TOP)/configure/CONFIG
 DB += hifimags.db
 DB += hifimags_magnet.db
 DB += switching.db
+DB += mainpsu.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
