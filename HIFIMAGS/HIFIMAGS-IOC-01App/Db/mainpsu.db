@@ -1,0 +1,7 @@
+### Status
+
+alias("$(P)$(MAG):STAT","$(P)MAIN:STAT:RBV")
+alias("$(P)$(MAG):READY","$(P)MAIN:READY:RBV")
+alias("$(P)$(MAG):ERRORS:RBV", "$(P)MAIN:ERRORS:RBV")
+alias("$(P)$(MAG):OUTPUT:FIELD:GAUSS","$(P)MAIN:OUT:RBV")
+alias("$(P)$(MAG):TARGET:TIME","$(P)MAIN:MINTO:RBV")
