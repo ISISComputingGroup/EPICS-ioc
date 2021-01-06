@@ -185,9 +185,34 @@ record(ao, "$(P)$(MAG):TARGET") {
   field(SIOL, "$(P)SIM:$(MAG):TARGET")
   field(SDIS, "$(P)DISABLE")
 }
+alias("$(P)$(MAG):TARGET","$(P)$(MAG):TARGET:SP")
 
 record(ai, "$(P)SIM:$(MAG):TARGET") {
   field(DESC, "Simulated Target of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(EGU,"Gauss")
+}
+
+### Abort Ramp
+record(bo, "$(P)$(MAG):ABORT") {
+  field(DESC, "Abort $(MAG) ramp")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZNAM, "Idle")
+  field(ONAM, "Abort")
+  
+  field(OUT,"$(PSU_IOC):ABORT")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):ABORT")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)SIM:$(MAG):ABORT") {
+  field(DESC, "Simulated Abort Status of $(MAG)")
+  field(DTYP, "Soft Channel")
+
+  field(ZNAM, "$(MAG) is Idle")
+  field(ONAM, "Aborting $(MAG)")
 }
