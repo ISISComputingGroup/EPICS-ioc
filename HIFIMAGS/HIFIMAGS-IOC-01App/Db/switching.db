@@ -1,0 +1,34 @@
+### Switching - Ramp Rate
+
+record(ao, "$(P)$(MAG):RAMP:RATE:SP") {
+  field(DESC, "Ramp Rate of $(MAG) in A/s")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "A/s")
+  
+  field(OUT,"$(PSU_IOC):RAMP:RATE:SP")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):RAMP:RATE")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)$(MAG):RAMP:RATE") {
+  field(DESC, "Ramp Rate of $(MAG) in A/s")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "A/s")
+  
+  field(INP,"$(PSU_IOC):RAMP:RATE")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):RAMP:RATE")
+  field(SDIS, "$(P)DISABLE")
+}
+
+
+record(ao, "$(P)SIM:$(MAG):RAMP:RATE") {
+  field(DESC, "Simulated Ramp Rate of $(MAG) in A/s")
+  field(DTYP, "Soft Channel")
+  field(EGU,"A/s")
+}
