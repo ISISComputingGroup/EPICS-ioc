@@ -179,7 +179,7 @@ record(ao, "$(P)$(MAG):TARGET") {
   field(SCAN, "1 second")
   field(EGU, "Gauss")
   
-  field(OUTP,"$(PSU_IOC):TARGET")
+  field(OUT,"$(PSU_IOC):TARGET")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):TARGET")
@@ -187,7 +187,7 @@ record(ao, "$(P)$(MAG):TARGET") {
 }
 alias("$(P)$(MAG):TARGET","$(P)$(MAG):TARGET:SP")
 
-record(ai, "$(P)SIM:$(MAG):TARGET") {
+record(ao, "$(P)SIM:$(MAG):TARGET") {
   field(DESC, "Simulated Target of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(EGU,"Gauss")
@@ -234,7 +234,7 @@ record(bi, "$(P)$(MAG):QUENCH") {
   field(SDIS, "$(P)DISABLE")
 }
 
-record(bo, "$(P)SIM:$(MAG):QUENCH") {
+record(bi, "$(P)SIM:$(MAG):QUENCH") {
   field(DESC, "Simulated quench Status of $(MAG)")
   field(DTYP, "Soft Channel")
 

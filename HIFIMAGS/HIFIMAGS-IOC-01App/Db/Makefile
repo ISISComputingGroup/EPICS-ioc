@@ -9,6 +9,7 @@ include $(TOP)/configure/CONFIG
 #DB += xxx.db
 DB += hifimags.db
 DB += hifimags_magnet.db
+DB += switching.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
