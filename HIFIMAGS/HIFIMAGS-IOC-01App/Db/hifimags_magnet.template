@@ -90,7 +90,7 @@ record(bi, "$(P)SIM:$(MAG):ERROR") {
 ### Output - Field in Gauss
 
 record(ai, "$(P)$(MAG):OUTPUT:FIELD:GAUSS") {
-  field(DESC, "Simulated Output Field of $(MAG) in Gauss")
+  field(DESC, "Output Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "Gauss")
@@ -113,7 +113,7 @@ record(ai, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS") {
 ### Output - Current
 
 record(ai, "$(P)$(MAG):OUTPUT:CURR") {
-  field(DESC, "Simulated Output Field of $(MAG) in Amps")
+  field(DESC, "Output Field of $(MAG) in Amps")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "A")
@@ -134,7 +134,7 @@ record(ai, "$(P)SIM:$(MAG):OUTPUT:CURR") {
 ### Output - Voltage
 
 record(ai, "$(P)$(MAG):OUTPUT:VOLT") {
-  field(DESC, "Simulated Output Field of $(MAG) in Volts")
+  field(DESC, "Output Field of $(MAG) in Volts")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "V")
@@ -155,7 +155,7 @@ record(ai, "$(P)SIM:$(MAG):OUTPUT:VOLT") {
 ### Target - Time to reach
 
 record(stringin, "$(P)$(MAG):TARGET:TIME") {
-  field(DESC, "Simulated Time to Target of $(MAG)")
+  field(DESC, "Time to Target of $(MAG)")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
@@ -169,4 +169,25 @@ record(stringin, "$(P)$(MAG):TARGET:TIME") {
 record(stringin, "$(P)SIM:$(MAG):TARGET:TIME") {
   field(DESC, "Simulated Time to Target of $(MAG)")
   field(DTYP, "Soft Channel")
+}
+
+### Target - Value in Gauss
+
+record(ao, "$(P)$(MAG):TARGET") {
+  field(DESC, "Target of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "Gauss")
+  
+  field(OUTP,"$(PSU_IOC):TARGET")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):TARGET")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)SIM:$(MAG):TARGET") {
+  field(DESC, "Simulated Target of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(EGU,"Gauss")
 }
