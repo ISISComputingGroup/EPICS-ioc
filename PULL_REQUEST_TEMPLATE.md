@@ -23,7 +23,7 @@
     - [Finishing touches](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/IOC-Finishing-Touches)
 - [ ] If an OPI has been modified, does it conform to the [style guidelines](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/OPI-Creation)?
 - [ ] Do the IOC and support module conform to the new [build guidelines](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Reducing-Build-Dependencies)
-- [ ] Have the changes been recorded appropriately in the [release notes](https://github.com/ISISComputingGroup/IBEX/wiki/ReleaseNotes_Dev)?
+- [ ] Have the changes been recorded appropriately in a PR for [release notes](https://github.com/ISISComputingGroup/IBEX/blob/master/release_notes/ReleaseNotes_Upcoming.md)?
 - [ ] Is the device's flow control setting correct? [For most devices flow control should be OFF](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Flow-control).
 
 ### Functional Tests
@@ -38,4 +38,4 @@
 ### Final steps
 
 - [ ] Update the IOC submodule in the main EPICS repo. See [Git workflow](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Git-workflow) page for details.
-- [ ] Reviewer has moved the [release notes](https://github.com/ISISComputingGroup/IBEX/wiki/ReleaseNotes_Dev) entry for this ticket in the "Changes merged into master" section
+- [ ] Reviewer has merged the associated PR for the [release notes](https://github.com/ISISComputingGroup/IBEX/blob/master/release_notes/ReleaseNotes_Upcoming.md)
