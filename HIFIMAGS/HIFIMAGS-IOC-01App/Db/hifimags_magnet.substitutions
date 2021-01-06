@@ -5,5 +5,5 @@ file hifimags_magnet.template {
     {"\$(P)", "X", "\$(X_IOC)"}
     {"\$(P)", "Y", "\$(Y_IOC)"}
     {"\$(P)", "Z", "\$(Z_IOC)"}
-
+    {"\$(P)", "M", "\$(M_IOC)"}
 }

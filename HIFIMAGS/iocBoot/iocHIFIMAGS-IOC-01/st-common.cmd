@@ -33,7 +33,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 
 ## Load our record instances
 dbLoadRecords("$(TOP)/db/hifimags.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
-dbLoadRecords("$(TOP)/db/hifimags_magnet.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),X_IOC=$(X_IOC=),Y_IOC=$(Y_IOC=),Z_IOC=$(Z_IOC=)")
+dbLoadRecords("$(TOP)/db/hifimags_magnet.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),X_IOC=$(X_IOC=),Y_IOC=$(Y_IOC=),Z_IOC=$(Z_IOC=),M_IOC=$(M_IOC=)")
 dbLoadRecords("$(TOP)/db/switching.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),MAG=$(MAG=Z),PSU_IOC=$(Z_IOC=))")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
