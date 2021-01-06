@@ -67,3 +67,38 @@ record(ao, "$(P)SIM:$(MAG):FIELD:MAX") {
   field(DTYP, "Soft Channel")
   field(EGU,"Gauss")
 }
+
+### Switching - Mid Field
+
+record(ao, "$(P)$(MAG):FIELD:MID:SP") {
+  field(DESC, "Mid Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "Gauss")
+  
+  field(OUT,"$(PSU_IOC):FIELD:MID:SP")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):FIELD:MID")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)$(MAG):FIELD:MID") {
+  field(DESC, "Mix Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "Gauss")
+  
+  field(INP,"$(PSU_IOC):FIELD:MID")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):FIELD:MID")
+  field(SDIS, "$(P)DISABLE")
+}
+
+
+record(ao, "$(P)SIM:$(MAG):FIELD:MID") {
+  field(DESC, "Simulated Mid Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(EGU,"Gauss")
+}
