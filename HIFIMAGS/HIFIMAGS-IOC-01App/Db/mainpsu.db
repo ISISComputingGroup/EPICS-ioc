@@ -1,7 +1,49 @@
-### Status
+### Main Readbacks for backwards compatibility
 
 alias("$(P)$(MAG):STAT","$(P)MAIN:STAT:RBV")
 alias("$(P)$(MAG):READY","$(P)MAIN:READY:RBV")
 alias("$(P)$(MAG):ERRORS:RBV", "$(P)MAIN:ERRORS:RBV")
 alias("$(P)$(MAG):OUTPUT:FIELD:GAUSS","$(P)MAIN:OUT:RBV")
 alias("$(P)$(MAG):TARGET:TIME","$(P)MAIN:MINTO:RBV")
+
+### Main - Ramp Leads
+### Switching - Mid Field
+
+record(bo, "$(P)$(MAG):RAMP:LEADS:SP") {
+  field(DESC, "Ramp Leads of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(OUT,"$(PSU_IOC):RAMP:LEADS:SP")
+  
+  field(ZNAM, "Not Ramping")
+  field(ONAM, "Ramping")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):RAMP:LEADS")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)$(MAG):RAMP:LEADS") {
+  field(DESC, "Wehter or not $(MAG) leads will be ramped")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PSU_IOC):RAMP:LEADS")
+  
+  field(ZNAM, "Not Ramping")
+  field(ONAM, "Ramping")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):RAMP:LEADS")
+  field(SDIS, "$(P)DISABLE")
+}
+
+
+record(bi, "$(P)SIM:$(MAG):RAMP:LEADS") {
+  field(DESC, "Simulated lead ramping of $(MAG)")
+  field(DTYP, "Soft Channel")
+  
+  field(ZNAM, "Not Ramping")
+  field(ONAM, "Ramping")
+}
