@@ -7,7 +7,6 @@ alias("$(P)$(MAG):OUTPUT:FIELD:GAUSS","$(P)MAIN:OUT:RBV")
 alias("$(P)$(MAG):TARGET:TIME","$(P)MAIN:MINTO:RBV")
 
 ### Main - Ramp Leads
-### Switching - Mid Field
 
 record(bo, "$(P)$(MAG):RAMP:LEADS:SP") {
   field(DESC, "Ramp Leads of $(MAG)")
@@ -25,7 +24,7 @@ record(bo, "$(P)$(MAG):RAMP:LEADS:SP") {
 }
 
 record(bi, "$(P)$(MAG):RAMP:LEADS") {
-  field(DESC, "Wehter or not $(MAG) leads will be ramped")
+  field(DESC, "Whether or not $(MAG) leads will be ramped")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
@@ -46,4 +45,45 @@ record(bi, "$(P)SIM:$(MAG):RAMP:LEADS") {
   
   field(ZNAM, "Not Ramping")
   field(ONAM, "Ramping")
+}
+
+### Main - Persist Mode
+
+record(bo, "$(P)$(MAG):PERSIST:SP") {
+  field(DESC, "Persist Mode of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(OUT,"$(PSU_IOC):PERSIST:SP")
+  
+  field(ZNAM, "Non persisting")
+  field(ONAM, "Persisting")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):PERSIST")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)$(MAG):PERSIST") {
+  field(DESC, "Whether or not $(MAG) is persisting")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PSU_IOC):PERSIST")
+  
+  field(ZNAM, "Non persisting")
+  field(ONAM, "Persisting")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):PERSIST")
+  field(SDIS, "$(P)DISABLE")
+}
+
+
+record(bi, "$(P)SIM:$(MAG):PERSIST") {
+  field(DESC, "Simulated persistent mode of $(MAG)")
+  field(DTYP, "Soft Channel")
+  
+  field(ZNAM, "Non persisting")
+  field(ONAM, "Persisting")
 }
