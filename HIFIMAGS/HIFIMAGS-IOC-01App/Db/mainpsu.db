@@ -87,3 +87,24 @@ record(bi, "$(P)SIM:$(MAG):PERSIST") {
   field(ZNAM, "Non persisting")
   field(ONAM, "Persisting")
 }
+
+### Main - Persistent Field value
+
+record(ai, "$(P)$(MAG):OUTPUT:FIELD:PERSIST:GAUSS") {
+  field(DESC, "Persistent Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "Gauss")
+  
+  field(INP,"$(PSU_IOC):OUTPUT:FIELD:PERSIST:GAUSS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):OUTPUT:FIELD:PERSIST:GAUSS")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)SIM:$(MAG):OUTPUT:FIELD:PERSIST:GAUSS") {
+  field(DESC, "Simulated Persistent Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(EGU,"Gauss")
+}
