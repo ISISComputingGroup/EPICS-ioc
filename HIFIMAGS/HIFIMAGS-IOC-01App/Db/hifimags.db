@@ -1,4 +1,4 @@
-### SIMULATION RECORDS ###
+### Generic Records
 
 record(bo, "$(P)SIM")
 {
@@ -18,4 +18,46 @@ record(bo, "$(P)DISABLE")
     field(OMSL, "supervisory")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
+}
+
+### Operation Mode
+record(mbbo, "$(P)OPMODE:SP") {
+  field(DESC, "Operation Mode")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZRST, "Idle")
+  field(ONST, "High Field")
+  field(TWST, "Low Field")
+  field(THST, "Z Switching")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:OPMODE")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(mbbi, "$(P)OPMODE") {
+  field(DESC, "Operation Mode")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZRST, "Idle")
+  field(ONST, "High Field")
+  field(TWST, "Low Field")
+  field(THST, "Z Switching")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:OPMODE")
+  field(SDIS, "$(P)DISABLE")
+}
+alias("$(P)OPMODE", "$(P)OPMODE:RBV")
+
+record(mbbi, "$(P)SIM:OPMODE") {
+  field(DESC, "Simulated Operation Mode")
+  field(DTYP, "Soft Channel")
+  
+  field(ZRST, "Idle")
+  field(ONST, "High Field")
+  field(TWST, "Low Field")
+  field(THST, "Z Switching")
 }
