@@ -27,30 +27,29 @@ $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += coord.dbd 
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += cvtRecord.dbd
-$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
 $(APPNAME)_DBD += DAQmxSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre libjson zlib
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 $(APPNAME)_LIBS += FileList ReadASCII DAQmxSupport
-$(APPNAME)_LIBS += stream cvtRecord csmbase std calc sscan asyn 
-$(APPNAME)_LIBS += utilities pcre libjson zlib efsw
+$(APPNAME)_LIBS += stream cvtRecord csmbase std asyn calc sscan
+$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib efsw
+$(APPNAME)_LIBS += seq pv
 
 # RKNPS-IOC-01_registerRecordDeviceDriver.cpp derives from RKNPS-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
