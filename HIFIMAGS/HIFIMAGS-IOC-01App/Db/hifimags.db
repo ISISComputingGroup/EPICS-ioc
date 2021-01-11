@@ -71,7 +71,7 @@ record(ai, "$(P)HALL:SENS1") {
   field(SCAN, "1 second")
   field(EGU, "Gauss")
   
-  field(INP,"$(GM_IOC):X:FIELD:GAUSS")
+  field(INP,"$(PVPREFIX)$(GM_IOC):X:FIELD:GAUSS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HALL:SENS1")
@@ -92,7 +92,7 @@ record(ai, "$(P)HALL:SENS2") {
   field(SCAN, "1 second")
   field(EGU, "Gauss")
   
-  field(INP,"$(GM_IOC):Y:FIELD:GAUSS")
+  field(INP,"$(PVPREFIX)$(GM_IOC):Y:FIELD:GAUSS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HALL:SENS2")
@@ -105,4 +105,134 @@ record(ai, "$(P)SIM:HALL:SENS2") {
   field(DESC, "Simulated Hall Probe reading in Y")
   field(DTYP, "Soft Channel")
   field(EGU,"Gauss")
+}
+
+### Compressor values for backwards compatibility with SECI
+
+record(stringin, "$(P)COMP:R:ERROR:TEXT:RBV") {
+  field(DESC, "Error Status of Right Compressor")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PVPREFIX)$(RCOMP_IOC):RESPONSE")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:COMP:R:ERROR:TEXT:RBV")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(stringin, "$(P)SIM:COMP:R:ERROR:TEXT:RBV") {
+  field(DESC, "Simulated Error status of Right Compressor")
+  field(DTYP, "Soft Channel")
+  field(VAL, "Simulation")
+}
+
+record(stringin, "$(P)COMP:L:ERROR:TEXT:RBV") {
+  field(DESC, "Error Status of Left Compressor")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PVPREFIX)$(LCOMP_IOC):RESPONSE")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:COMP:L:ERROR:TEXT:RBV")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(stringin, "$(P)SIM:COMP:L:ERROR:TEXT:RBV") {
+  field(DESC, "Simulated Error status of Left Compressor")
+  field(DTYP, "Soft Channel")
+  field(VAL, "Simulation")
+}
+
+record(bi, "$(P)COMP:R:ERROR:STAT:RBV") {
+  field(DESC, "Right Compmressor Error")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZNAM, "No Error")
+  field(ONAM, "Error")
+  
+  field(INP,"$(PVPREFIX)$(RCOMP_IOC):ERR")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:COMP:R:ERROR:STAT:RBV")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)SIM:COMP:R:ERROR:STAT:RBV") {
+  field(DESC, "Simulated Right Compressor Error")
+  field(DTYP, "Soft Channel")
+
+  field(ZNAM, "No Error")
+  field(ONAM, "Error")
+}
+
+record(bi, "$(P)COMP:L:ERROR:STAT:RBV") {
+  field(DESC, "Left Compmressor Error")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZNAM, "No Error")
+  field(ONAM, "Error")
+  
+  field(INP,"$(PVPREFIX)$(LCOMP_IOC):ERR")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:COMP:L:ERROR:STAT:RBV")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)SIM:COMP:L:ERROR:STAT:RBV") {
+  field(DESC, "Simulated Left Compmressor Error")
+  field(DTYP, "Soft Channel")
+
+  field(ZNAM, "No Error")
+  field(ONAM, "Error")
+}
+
+record(bi, "$(P)COMP:R:ON:RBV") {
+  field(DESC, "Power Status of the Right Compmressor")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+  
+  field(INP,"$(PVPREFIX)$(RCOMP_IOC):POWER")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:COMP:R:ON:RBV")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)SIM:COMP:R:ON:RBV") {
+  field(DESC, "Simulated Power Status of the Right Compmressor")
+  field(DTYP, "Soft Channel")
+
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+}
+
+record(bi, "$(P)COMP:L:ON:RBV") {
+  field(DESC, "Power Status of the Left Compmressor")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+  
+  field(INP,"$(PVPREFIX)$(LCOMP_IOC):POWER")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:COMP:L:ON:RBV")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(bi, "$(P)SIM:COMP:L:ON:RBV") {
+  field(DESC, "Simulated Power Status of the Left Compmressor")
+  field(DTYP, "Soft Channel")
+
+  field(ZNAM, "Off")
+  field(ONAM, "On")
 }

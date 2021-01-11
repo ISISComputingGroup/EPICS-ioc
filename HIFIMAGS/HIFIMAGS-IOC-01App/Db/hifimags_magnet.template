@@ -5,7 +5,7 @@ record(stringin, "$(P)$(MAG):STAT") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
-  field(INP,"$(PSU_IOC):STAT")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):STAT")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):STAT")
@@ -30,7 +30,7 @@ record(bi, "$(P)$(MAG):READY") {
   field(ZNAM, "Not Ready")
   field(ONAM, "Ready")
   
-  field(INP,"$(PSU_IOC):READY")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):READY")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):READY")
@@ -56,9 +56,9 @@ record(bi, "$(P)$(MAG):ERROR") {
   field(ZNAM, "No Error")
   field(ONAM, "Error")
   
-  field(INP,"$(PSU_IOC):ERROR")
+  field(INP,"$(PVPREFIX))$(PSU_IOC):ERROR")
   
-  field(FLNK, "$(P)$(MAG):ERRORS:_CALC MS")
+  field(FLNK, "$(PVPREFIX)$(MAG):ERRORS:_CALC MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):ERROR")
@@ -67,7 +67,7 @@ record(bi, "$(P)$(MAG):ERROR") {
 
 record(stringin, "$(P)$(MAG):ERRORS:RBV") {
   field(DESC, "Backward compatible error report")
-  field(INP, "$(P)$(MAG):ERRORS:_CALC.SVAL MS")
+  field(INP, "$(PVPREFIX)$(MAG):ERRORS:_CALC.SVAL MS")
 }
 
 record(scalcout, "$(P)$(MAG):ERRORS:_CALC")
@@ -95,7 +95,7 @@ record(ai, "$(P)$(MAG):OUTPUT:FIELD:GAUSS") {
   field(SCAN, "1 second")
   field(EGU, "Gauss")
   
-  field(INP,"$(PSU_IOC):OUTPUT:FIELD:GAUSS")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:FIELD:GAUSS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS")
@@ -118,7 +118,7 @@ record(ai, "$(P)$(MAG):OUTPUT:CURR") {
   field(SCAN, "1 second")
   field(EGU, "A")
   
-  field(INP,"$(PSU_IOC):OUTPUT:CURR")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:CURR")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):OUTPUT:CURR")
@@ -139,7 +139,7 @@ record(ai, "$(P)$(MAG):OUTPUT:VOLT") {
   field(SCAN, "1 second")
   field(EGU, "V")
   
-  field(INP,"$(PSU_IOC):OUTPUT:VOLT")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:VOLT")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):OUTPUT:VOLT")
@@ -159,7 +159,7 @@ record(stringin, "$(P)$(MAG):TARGET:TIME") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
-  field(INP,"$(PSU_IOC):TARGET:TIME")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):TARGET:TIME")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):TARGET:TIME")
@@ -179,7 +179,7 @@ record(ao, "$(P)$(MAG):TARGET") {
   field(SCAN, "1 second")
   field(EGU, "Gauss")
   
-  field(OUT,"$(PSU_IOC):TARGET")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):TARGET")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):TARGET")
@@ -202,7 +202,7 @@ record(bo, "$(P)$(MAG):ABORT") {
   field(ZNAM, "Idle")
   field(ONAM, "Abort")
   
-  field(OUT,"$(PSU_IOC):ABORT")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):ABORT")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):ABORT")
@@ -227,7 +227,7 @@ record(bi, "$(P)$(MAG):QUENCH") {
   field(ZNAM, "")
   field(ONAM, "Quenched")
   
-  field(INP,"$(PSU_IOC):QUENCH")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):QUENCH")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):QUENCH")

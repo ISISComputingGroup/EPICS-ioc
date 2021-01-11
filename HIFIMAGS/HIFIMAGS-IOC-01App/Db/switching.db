@@ -6,7 +6,7 @@ record(ao, "$(P)$(MAG):RAMP:RATE:SP") {
   field(SCAN, "1 second")
   field(EGU, "A/s")
   
-  field(OUT,"$(PSU_IOC):RAMP:RATE:SP")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):RAMP:RATE:SP")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):RAMP:RATE")
@@ -19,7 +19,7 @@ record(ai, "$(P)$(MAG):RAMP:RATE") {
   field(SCAN, "1 second")
   field(EGU, "A/s")
   
-  field(INP,"$(PSU_IOC):RAMP:RATE")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:RATE")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):RAMP:RATE")
@@ -41,7 +41,7 @@ record(ao, "$(P)$(MAG):FIELD:MAX:SP") {
   field(SCAN, "1 second")
   field(EGU, "Gauss")
   
-  field(OUT,"$(PSU_IOC):FIELD:MAX:SP")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):FIELD:MAX:SP")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MAX")
@@ -54,7 +54,7 @@ record(ai, "$(P)$(MAG):FIELD:MAX") {
   field(SCAN, "1 second")
   field(EGU, "Gauss")
   
-  field(INP,"$(PSU_IOC):FIELD:MAX")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MAX")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MAX")
@@ -76,7 +76,7 @@ record(ao, "$(P)$(MAG):FIELD:MID:SP") {
   field(SCAN, "1 second")
   field(EGU, "Gauss")
   
-  field(OUT,"$(PSU_IOC):FIELD:MID:SP")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):FIELD:MID:SP")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MID")
@@ -89,7 +89,7 @@ record(ai, "$(P)$(MAG):FIELD:MID") {
   field(SCAN, "1 second")
   field(EGU, "Gauss")
   
-  field(INP,"$(PSU_IOC):FIELD:MID")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MID")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MID")
