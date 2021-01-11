@@ -41,7 +41,7 @@ $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += pcre
+$(APPNAME)_LIBS += pcrecpp pcre
 
 # TTIEX355P-IOC-01_registerRecordDeviceDriver.cpp derives from TTIEX355P-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

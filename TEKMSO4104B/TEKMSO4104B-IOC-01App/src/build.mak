@@ -44,7 +44,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
 $(APPNAME)_LIBS += stream 
-$(APPNAME)_LIBS += pcre 
+$(APPNAME)_LIBS += pcrecpp pcre 
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += sscan
 $(APPNAME)_LIBS += asyn 

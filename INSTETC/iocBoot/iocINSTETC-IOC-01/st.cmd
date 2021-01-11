@@ -26,6 +26,9 @@ instetcConfigure("daelog", "${ICPVARDIR}/logs/ioc/ISISDAE_01-%Y%m%d.log", 100, 3
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+## Load macro for bump stop input source BUMPSTOP_IN (if any exists)
+< $(ICPCONFIGROOT)/galil/bumpStop.cmd
+
 ## Check for extra exclusive records
 stringtest("IFEX1", "$(EXCLUSIVE1=)")
 stringtest("IFEX2", "$(EXCLUSIVE2=)")
@@ -33,11 +36,11 @@ stringtest("IFEX3", "$(EXCLUSIVE3=)")
 stringtest("IFEX4", "$(EXCLUSIVE4=)")
 
 ## Load our record instances
-dbLoadRecords("db/INSTETC.db","P=$(MYPVPREFIX),IOC=$(IOCNAME),RECSIM=$(RECSIM=0),NUM_USER_BUTTONS=$(NUM_USER_BUTTONS=4),NUM_USER_VARS=$(NUM_USER_VARS=4)")
+dbLoadRecords("db/INSTETC.db","P=$(MYPVPREFIX),IOC=$(IOCNAME),RECSIM=$(RECSIM=0),NUM_USER_BUTTONS=$(NUM_USER_BUTTONS=4),NUM_USER_VARS=$(NUM_USER_VARS=4),BMPSTP=$(BUMPSTOP_IN="")")
 dbLoadRecords("db/svn-revision.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/build-id.db","P=$(MYPVPREFIX)")
 dbLoadRecords("db/experiment_data.db","P=$(MYPVPREFIX)")
-dbLoadRecords("$(ICPCONFIGROOT)/custom_records.db","P=$(MYPVPREFIX)")
+dbLoadRecords("$(ICPCONFIGROOT)/custom_records.db","P=$(MYPVPREFIX),$(CUSTOM_RECORD_MACROS)")
 $(IFEX1) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE1=)")
 $(IFEX2) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE2=)")
 $(IFEX3) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE3=)")

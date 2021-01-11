@@ -46,7 +46,7 @@ $(APPNAME)_LIBS += FileList
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += pcre libjson zlib
+$(APPNAME)_LIBS += pcrecpp pcre libjson zlib
 $(APPNAME)_LIBS += efsw
 
 # FERMCHOP-IOC-01_registerRecordDeviceDriver.cpp derives from IPS-IOC-01.dbd
