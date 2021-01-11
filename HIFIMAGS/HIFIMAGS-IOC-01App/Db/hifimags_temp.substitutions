@@ -1,0 +1,11 @@
+file hifimags_temp.template { 
+  pattern 
+    {P, SENSOR, PV}
+    
+    {"\$(P)", "STAGE1", "\$(STAGE1)"}
+    {"\$(P)", "SHIELD", "\$(SHIELD)"}
+    {"\$(P)", "SWITCH", "\$(SWITCH)"}
+    {"\$(P)", "STAGE2A", "\$(STAGE2A)"}
+    {"\$(P)", "STAGE2B", "\$(STAGE2B)"}
+    {"\$(P)", "INRABAS", "\$(INRABAS)"}
+}

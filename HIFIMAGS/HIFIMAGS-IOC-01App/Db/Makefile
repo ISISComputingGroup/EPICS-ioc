@@ -11,6 +11,7 @@ DB += hifimags.db
 DB += hifimags_magnet.db
 DB += switching.db
 DB += mainpsu.db
+DB += hifimags_temp.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
