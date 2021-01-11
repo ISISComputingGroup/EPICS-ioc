@@ -122,7 +122,7 @@ record(stringin, "$(P)COMP:R:ERROR:TEXT:RBV") {
 }
 
 record(stringin, "$(P)SIM:COMP:R:ERROR:TEXT:RBV") {
-  field(DESC, "Simulated Error status of Right Compressor")
+  field(DESC, "Simulated Error Right Compressor")
   field(DTYP, "Soft Channel")
   field(VAL, "Simulation")
 }
@@ -140,7 +140,7 @@ record(stringin, "$(P)COMP:L:ERROR:TEXT:RBV") {
 }
 
 record(stringin, "$(P)SIM:COMP:L:ERROR:TEXT:RBV") {
-  field(DESC, "Simulated Error status of Left Compressor")
+  field(DESC, "Simulated Error Left Compressor")
   field(DTYP, "Soft Channel")
   field(VAL, "Simulation")
 }
@@ -207,7 +207,7 @@ record(bi, "$(P)COMP:R:ON:RBV") {
 }
 
 record(bi, "$(P)SIM:COMP:R:ON:RBV") {
-  field(DESC, "Simulated Power Status of the Right Compmressor")
+  field(DESC, "Simulated Power Right Compmressor")
   field(DTYP, "Soft Channel")
 
   field(ZNAM, "Off")
@@ -230,9 +230,67 @@ record(bi, "$(P)COMP:L:ON:RBV") {
 }
 
 record(bi, "$(P)SIM:COMP:L:ON:RBV") {
-  field(DESC, "Simulated Power Status of the Left Compmressor")
+  field(DESC, "Simulated Power Left Compmressor")
   field(DTYP, "Soft Channel")
 
   field(ZNAM, "Off")
   field(ONAM, "On")
 }
+
+### Magnets Off
+
+record(bo, "$(P)MAGNETS:OFF:SP") {
+  field(DESC, "Turn off all the magnets")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZNAM, "")
+  field(ONAM, "Off")
+  
+  field(FLNK,"$(P)MAGNETS:OFF:ZERO:TARGETS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:MAGNETS:OFF")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(dfanout, "$(P)MAGNETS:OFF:ZERO:TARGETS") {
+  field(DESC, "Set all magnet targets to 0")
+  field(DOL, "Constant")
+  field(VAL, 0)
+  field(OUTA, "$(P):X:TARGET:SP")
+  field(OUTB, "$(P):Y:TARGET:SP")
+  field(OUTC, "$(P):Z:TARGET:SP")
+  field(OUTD, "$(P):M:TARGET:SP")
+  field(OUTE, "$(P):X:SET:SP")
+  field(OUTF, "$(P):Y:SET:SP")
+  field(OUTG, "$(P):Z:SET:SP")
+  field(OUTH, "$(P):M:SET:SP")
+}
+
+record(fanout, "$(P)SIM:MAGNETS:OFF") {
+  field (DESC, "Simulate the mangets going off")
+  field (LNK1, "$(P)SIM:MAGNETS:OFF:READY")
+  field (LNK2, "$(P)SIM:MAGNETS:OFF:OUTPUT")
+}
+
+record(dfanout, "$(P)SIM:MAGNETS:OFF:READY") {
+  field(DESC, "Set all magnets to ready")
+  field(DOL, "Constant")
+  field(VAL, 1)
+  field(OUTA, "$(P)SIM:X:READY")
+  field(OUTB, "$(P)SIM:Y:READY")
+  field(OUTC, "$(P)SIM:Z:READY")
+  field(OUTD, "$(P)SIM:M:READY")
+}
+
+record(dfanout, "$(P)SIM:MAGNETS:OFF:OUTPUT") {
+  field(DESC, "Set all magnet outputs to 0")
+  field(DOL, "Constant")
+  field(VAL, 0)
+  field(OUTA, "$(P)SIM:X:OUTPUT:FIELD:GAUSS")
+  field(OUTB, "$(P)SIM:Y:OUTPUT:FIELD:GAUSS")
+  field(OUTC, "$(P)SIM:Z:OUTPUT:FIELD:GAUSS")
+  field(OUTD, "$(P)SIM:M:OUTPUT:FIELD:GAUSS")
+}
+
