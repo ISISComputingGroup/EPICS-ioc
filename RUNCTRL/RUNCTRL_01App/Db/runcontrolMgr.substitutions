@@ -1,11 +1,12 @@
 ## Define RC and AC namespaces (MODE) for generic control logic based on a values going in and out of range
 
 ## IN_ACTION and OUT_ACTION are actions to run when values go in and out of range in the AC alert namespace (ALERT_OUT will send a warning message)
+## OUT_ACTION will get sent 1 on out of range, IN_ACTION will get sent 0 on in range, using the same PV for both IN and OUT is recommended to avoid race conditions  
 ## RC is used for run control, hence actions for in and out of range are to process DAE start sample environment wait 
 
 file "$(RUNCONTROL)/db/gencontrolMgr.db"
 {
     pattern {   P,     MODE, IN_ACTION,             OUT_ACTION,     CHANGE_ACTION  }
-	        { "\$(P)", "RC", "\$(P)DAE:ENDSEWAIT.PROC", "\$(P)DAE:STARTSEWAIT.PROC", "\$(P)CS:RC:DUMMYACT:CHANGE" }
+	        { "\$(P)", "RC", "\$(P)DAE:SEWAIT", "\$(P)DAE:SEWAIT", "\$(P)CS:RC:DUMMYACT:CHANGE" }
 	        { "\$(P)", "AC", "\$(ALERT_IN)", "\$(ALERT_OUT)", "\$(ALERT_CHANGE)" }
 }
