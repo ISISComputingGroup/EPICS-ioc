@@ -21,6 +21,7 @@ record(bo, "$(P)DISABLE")
 }
 
 ### Operation Mode
+
 record(mbbo, "$(P)OPMODE:SP") {
   field(DESC, "Operation Mode")
   field(DTYP, "Soft Channel")
@@ -60,4 +61,48 @@ record(mbbi, "$(P)SIM:OPMODE") {
   field(ONST, "High Field")
   field(TWST, "Low Field")
   field(THST, "Z Switching")
+}
+
+### Hall Sensors
+
+record(ai, "$(P)HALL:SENS1") {
+  field(DESC, "Hall Probe reading in X")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "Gauss")
+  
+  field(INP,"$(GM_IOC):X:FIELD:GAUSS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:HALL:SENS1")
+  field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)HALL:SENS1","$(P)HALL:SENS1:RBV")
+
+record(ai, "$(P)SIM:HALL:SENS1") {
+  field(DESC, "Simulated Hall Probe reading in X")
+  field(DTYP, "Soft Channel")
+  field(EGU,"Gauss")
+}
+
+record(ai, "$(P)HALL:SENS2") {
+  field(DESC, "Hall Probe reading in Y")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "Gauss")
+  
+  field(INP,"$(GM_IOC):Y:FIELD:GAUSS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:HALL:SENS2")
+  field(SDIS, "$(P)DISABLE")
+}
+
+alias("$(P)HALL:SENS2","$(P)HALL:SENS2:RBV")
+
+record(ai, "$(P)SIM:HALL:SENS2") {
+  field(DESC, "Simulated Hall Probe reading in Y")
+  field(DTYP, "Soft Channel")
+  field(EGU,"Gauss")
 }
