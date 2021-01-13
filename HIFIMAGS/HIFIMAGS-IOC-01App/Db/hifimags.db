@@ -246,7 +246,7 @@ record(bo, "$(P)MAGNETS:OFF:SP") {
   field(ZNAM, "")
   field(ONAM, "Off")
   
-  field(FLNK,"$(P)MAGNETS:OFF:ZERO:TARGETS PP")
+  field(FLNK,"$(P)MAGNETS:OFF:ZERO:TARGETS.PROC")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MAGNETS:OFF PP")
@@ -257,7 +257,7 @@ record(dfanout, "$(P)MAGNETS:OFF:ZERO:TARGETS") {
   field(DESC, "Set all magnet targets to 0")
   field(DOL, "constant")
   field(VAL, 0)
-  field(OUTA, "$(P):X:TARGET:SP")
+  field(OUTA, "$(P):X:TARGET:SP PP")
   field(OUTB, "$(P):Y:TARGET:SP")
   field(OUTC, "$(P):Z:TARGET:SP")
   field(OUTD, "$(P):M:TARGET:SP")
@@ -268,7 +268,7 @@ record(dfanout, "$(P)MAGNETS:OFF:ZERO:RAMP") {
   field(DESC, "Set all magnets ramping to 0")
   field(DOL, "constant")
   field(VAL, 1)
-  field(OUTA, "$(P):X:SET:SP")
+  field(OUTA, "$(P):X:SET:SP PP")
   field(OUTB, "$(P):Y:SET:SP")
   field(OUTC, "$(P):Z:SET:SP")
   field(OUTD, "$(P):M:SET:SP")
