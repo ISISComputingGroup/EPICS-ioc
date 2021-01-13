@@ -58,7 +58,7 @@ record(bi, "$(P)$(MAG):ERROR") {
   
   field(INP,"$(PVPREFIX))$(PSU_IOC):ERROR")
   
-  field(FLNK, "$(PVPREFIX)$(MAG):ERRORS:_CALC MS")
+  field(FLNK, "$(PVPREFIX)$(MAG):ERRORS:_CALC.PROC MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):ERROR")
@@ -241,3 +241,51 @@ record(bi, "$(P)SIM:$(MAG):QUENCH") {
   field(ZNAM, "")
   field(ONAM, "Quenched")
 }
+
+### Start Ramp
+record(bo, "$(P)$(MAG):SET:SP") {
+  field(DESC, "Start $(MAG) ramp")
+  field(DTYP, "Soft Channel")
+  
+  field(ZNAM, "Idle")
+  field(ONAM, "Ramp")
+  
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):START:SP")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):SET:SP PP")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(bo, "$(P)SIM:$(MAG):SET:SP") {
+  field(DESC, "Simulated Ramp Status of $(MAG)")
+  field(DTYP, "Soft Channel")
+  
+  field(FLNK, "$(P)SIM:$(MAG):MAGNETS:READY.PROC")
+
+  field(ZNAM, "$(MAG) is Idle")
+  field(ONAM, "Ramping $(MAG)")
+}
+
+record(fanout, "$(P)SIM:$(MAG):MAGNETS:READY") {
+  field (DESC, "Simulate the $(MAG) magnet going to setpoint")
+  field (SELM, "All")
+  field (LNK1, "$(P)SIM:$(MAG):MAGNETS:SET:OUTPUT")
+  field (LNK2, "$(P)SIM:$(MAG):MAGNETS:SET:READY")
+}
+
+record(dfanout, "$(P)SIM:$(MAG):MAGNETS:SET:READY") {
+  field(DESC, "Set $(MAG) to ready")
+  field(DOL, "Constant")
+  field(VAL, 1)
+  field(OUTA, "$(P)SIM:$(MAG):READY")
+}
+
+record(dfanout, "$(P)SIM:$(MAG):MAGNETS:SET:OUTPUT") {
+  field(DESC, "Set $(MAG) magnet output to target")
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P)$(MAG):TARGET:SP MS")
+  field(OUTA, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS")
+}
+
+
