@@ -26,6 +26,8 @@
         <macro name="X_DAQ_CHANNEL" pattern="^ai[0-9]+$" description="DAQ channel to read for the X axis" defaultValue="ai0" hasDefault="YES" />
         <macro name="Y_DAQ_CHANNEL" pattern="^ai[0-9]+$" description="DAQ channel to read for the Y axis" defaultValue="ai1" hasDefault="YES" />
         <macro name="Z_DAQ_CHANNEL" pattern="^ai[0-9]+$" description="DAQ channel to read for the Z axis" defaultValue="ai2" hasDefault="YES" />
+        
+        <macro name="EXTRA_DAQ_CHANNEL" pattern="^.*$" description="DAQ channel for the optional extra channel. Leave empty to disable. (e.g. ai3)" defaultValue="" hasDefault="YES" />
 
     </macros>
     <pvsets>
