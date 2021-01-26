@@ -237,7 +237,7 @@ record(bi, "$(P)SIM:COMP:L:ON:RBV") {
   field(ONAM, "On")
 }
 
-### Magnets Off
+### Magnets Off - triggers SNL action
 
 record(bo, "$(P)MAGNETS:OFF:SP") {
   field(DESC, "Turn off all the magnets")
@@ -245,27 +245,5 @@ record(bo, "$(P)MAGNETS:OFF:SP") {
   
   field(ZNAM, "")
   field(ONAM, "Off")
-  
-}
-
-record(dfanout, "$(P)MAGNETS:OFF:ZERO:TARGETS") {
-  field(DESC, "Set all magnet targets to 0")
-  field(DOL, "constant")
-  field(VAL, 0)
-  field(OUTA, "$(P):X:TARGET:SP PP")
-  field(OUTB, "$(P):Y:TARGET:SP")
-  field(OUTC, "$(P):Z:TARGET:SP")
-  field(OUTD, "$(P):M:TARGET:SP")
-  field(FLNK, "$(P)MAGNETS:OFF:ZERO:RAMP PP")
-}
-
-record(dfanout, "$(P)MAGNETS:OFF:ZERO:RAMP") {
-  field(DESC, "Set all magnets ramping to 0")
-  field(DOL, "constant")
-  field(VAL, 1)
-  field(OUTA, "$(P):X:SET:SP PP")
-  field(OUTB, "$(P):Y:SET:SP")
-  field(OUTC, "$(P):Z:SET:SP")
-  field(OUTD, "$(P):M:SET:SP")
 }
 

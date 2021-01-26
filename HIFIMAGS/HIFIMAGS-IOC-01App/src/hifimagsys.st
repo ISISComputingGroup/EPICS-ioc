@@ -1,4 +1,4 @@
-program hifimagsys("PVONE,XTARGET,XSET,P")
+program hifimagsys("P")
 
 #include "seqPVmacros.h"
 %% #include "errlog.h"
@@ -16,17 +16,32 @@ option +r;
 /* Environment Variables */
 
 /* PVs */
-PV(int, pvone, "{PVONE}", Monitor);
-
+PV(int, magoff, "{P}MAGNETS:OFF:SP", Monitor);
+PV(double, xtarget, "{P}X:TARGET:SP", Monitor);
+PV(int, xset, "{P}X:SET:SP", Monitor);
+PV(double, ytarget, "{P}Y:TARGET:SP", Monitor);
+PV(int, yset, "{P}Y:SET:SP", Monitor);
+PV(double, ztarget, "{P}Z:TARGET:SP", Monitor);
+PV(int, zset, "{P}Z:SET:SP", Monitor);
+PV(double, mtarget, "{P}M:TARGET:SP", Monitor);
+PV(int, mset, "{P}M:SET:SP", Monitor);
 
 /* STATE SETS */
 
 /* Magnets Off - Ramp all magnets to 0 */
-ss off {
+ss working {
   state waiting {
-    when (pvone == 1) {
-      PVPUT(pvone, 0);
+    when (magoff == 1) {
+      PVPUT(magoff, 0);
       puts ("Magnet Off requested");
+      PVPUT(xtarget, 0);
+      PVPUT(xset, 1);
+      PVPUT(ytarget, 0);
+      PVPUT(yset, 1);
+      PVPUT(ztarget, 0);
+      PVPUT(zset, 1);
+      PVPUT(mtarget, 0);
+      PVPUT(mset, 1);
     } state waiting
   }
 }
