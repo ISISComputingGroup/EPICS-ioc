@@ -246,7 +246,7 @@ record(bo, "$(P)MAGNETS:OFF:SP") {
   field(ZNAM, "")
   field(ONAM, "Off")
   
-  field(FLNK,"$(P)MAGNETS:OFF:ZERO:TARGETS.PROC")
+  field(FLNK,"$(P)MAGNETS:OFF:ZERO:TARGETS PP")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MAGNETS:OFF PP")

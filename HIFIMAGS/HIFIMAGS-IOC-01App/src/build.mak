@@ -33,6 +33,7 @@ $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += stream.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
+$(APPNAME)_DBD += hifimagsys.dbd
 
 # Add all the support libraries needed by this IOC
 
@@ -45,6 +46,7 @@ $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
 ## other standard libraries here ##
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -53,10 +55,26 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
-$(APPNAME)_LIBS += seq pv
+
 
 # HIFIMAGS-IOC-01_registerRecordDeviceDriver.cpp derives from HIFIMAGS-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
+$(APPNAME)_SRCS += hifimagsys.st
+
+# The Sequencer items
+#ifneq ($(SNCSEQ),)
+#    LIBRARY_IOC += MagSys
+#    DBD += hifimagsys.dbd
+#
+#    hifimagsys_SNCFLAGS += +r
+#    MagSys_SRCS += hifimagsys.st
+#    MagSys_SRCS += seqPVmacros.h
+#    MagSYS_DBD += hifimagsys.dbd
+#    MagSys_LIBS += seq pv
+#    
+#    $(APPNAME)_LIBS += MagSys
+#    
+#endif
 
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp
