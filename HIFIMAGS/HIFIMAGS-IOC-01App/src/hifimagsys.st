@@ -14,21 +14,17 @@ option +r;
 /* Variables */
 
 /* Environment Variables */
-char *prefix;
 
 /* PVs */
-int all_off;
-assign all_off to "${P}MAGNETS:OFF:SP";
-monitor all_off;
-PV(int, pvone, "{PVONE}", Monitor)
+PV(int, pvone, "{PVONE}", Monitor);
 
 /* STATE SETS */
 
 /* Magnets Off - Ramp all magnets to 0 */
 ss off {
   state waiting {
-    when (all_off == 1 || pvone == 1) {
-      printf ("Magnet Off requested")
-    }
+    when (pvone == 1) {
+      puts ("Magnet Off requested");
+    } state waiting
   }
 }

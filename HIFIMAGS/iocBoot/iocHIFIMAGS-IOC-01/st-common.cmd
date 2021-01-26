@@ -46,7 +46,7 @@ iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=kvlb23"
-seq HIFIMAGSYS, "P=$(MYPVPREFIX)TEST"
+seq hifimagsys, "P=$(MYPVPREFIX)TEST"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
