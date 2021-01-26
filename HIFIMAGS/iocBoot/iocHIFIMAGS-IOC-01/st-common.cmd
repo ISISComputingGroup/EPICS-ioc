@@ -44,9 +44,13 @@ dbLoadRecords("$(TOP)/db/hifimags_temp.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFI
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
+epicsEnvSet(PVONE,$(MYPVPREFIX)$(IOCNAME):MAGNETS:OFF:SP)
+epicsEnvSet(XTARGET,$(MYPVPREFIX)$(IOCNAME):X:TARGET:SP)
+epicsEnvSet(XSET,$(MYPVPREFIX)$(IOCNAME):X:OFF:SP)
+
 ## Start any sequence programs
 #seq sncxxx,"user=kvlb23"
-seq hifimagsys, "P=$(MYPVPREFIX)TEST"
+seq hifimagsys, "PVONE=$(PVONE),XTARGET=$(XTARGET),XSET=$(XSET),P=$(MYPVPREFIX)$(IOCNAME):"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
