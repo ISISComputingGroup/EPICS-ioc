@@ -17,14 +17,14 @@ option +r;
 
 /* PVs */
 PV(int, magoff, "{P}MAGNETS:OFF:SP", Monitor);
-PV(double, xtarget, "{P}X:TARGET:SP", Monitor);
-PV(int, xset, "{P}X:SET:SP", Monitor);
-PV(double, ytarget, "{P}Y:TARGET:SP", Monitor);
-PV(int, yset, "{P}Y:SET:SP", Monitor);
-PV(double, ztarget, "{P}Z:TARGET:SP", Monitor);
-PV(int, zset, "{P}Z:SET:SP", Monitor);
-PV(double, mtarget, "{P}M:TARGET:SP", Monitor);
-PV(int, mset, "{P}M:SET:SP", Monitor);
+PV(double, xtarget, "{P}X:TARGET:SP", NoMon);
+PV(int, xset, "{P}X:SET:SP", NoMon);
+PV(double, ytarget, "{P}Y:TARGET:SP", NoMon);
+PV(int, yset, "{P}Y:SET:SP", NoMon);
+PV(double, ztarget, "{P}Z:TARGET:SP", NoMon);
+PV(int, zset, "{P}Z:SET:SP", NoMon);
+PV(double, mtarget, "{P}M:TARGET:SP", NoMon);
+PV(int, mset, "{P}M:SET:SP", NoMon);
 
 /* STATE SETS */
 
