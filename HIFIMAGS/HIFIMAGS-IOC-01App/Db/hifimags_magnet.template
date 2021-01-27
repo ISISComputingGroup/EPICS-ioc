@@ -183,7 +183,7 @@ record(ao, "$(P)$(MAG):TARGET") {
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):TARGET")
-  field(SDIS, "$(P)DISABLE")
+  field(SDIS, "$(P)$(MAG):DIS")
 }
 alias("$(P)$(MAG):TARGET","$(P)$(MAG):TARGET:SP")
 
@@ -254,7 +254,7 @@ record(bo, "$(P)$(MAG):SET:SP") {
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):SET:SP PP")
-  field(SDIS, "$(P)DISABLE")
+  field(SDIS, "$(P)$(MAG):DIS")
 }
 
 record(bo, "$(P)SIM:$(MAG):SET:SP") {
@@ -288,4 +288,13 @@ record(dfanout, "$(P)SIM:$(MAG):MAGNETS:SET:OUTPUT") {
   field(OUTA, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS")
 }
 
-
+### Disable Magnet
+record(bo, "$(P)$(MAG):DIS") 
+{
+    field(DESC, "Disable $(MAG)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "$(MAG) ENABLED")
+    field(ONAM, "$(MAG) DISABLED")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE)")
+}
