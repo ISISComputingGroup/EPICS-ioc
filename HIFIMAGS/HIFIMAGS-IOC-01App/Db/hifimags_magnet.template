@@ -58,7 +58,7 @@ record(bi, "$(P)$(MAG):ERROR") {
   
   field(INP,"$(PVPREFIX))$(PSU_IOC):ERROR")
   
-  field(FLNK, "$(PVPREFIX)$(MAG):ERRORS:_CALC.PROC MS")
+  field(FLNK, "$(P)$(MAG):ERRORS:_CALC MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):ERROR")
@@ -67,7 +67,7 @@ record(bi, "$(P)$(MAG):ERROR") {
 
 record(stringin, "$(P)$(MAG):ERRORS:RBV") {
   field(DESC, "Backward compatible error report")
-  field(INP, "$(PVPREFIX)$(MAG):ERRORS:_CALC.SVAL MS")
+  field(INP, "$(P)$(MAG):ERRORS:_CALC.SVAL MS")
 }
 
 record(scalcout, "$(P)$(MAG):ERRORS:_CALC")
