@@ -173,19 +173,19 @@ record(stringin, "$(P)SIM:$(MAG):TARGET:TIME") {
 
 ### Target - Value in Gauss
 
-record(ao, "$(P)$(MAG):TARGET") {
+record(ao, "$(P)$(MAG):TARGET:SP") {
   field(DESC, "Target of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "Gauss")
   
-  field(OUT,"$(PVPREFIX)$(PSU_IOC):TARGET")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):TARGET:SP")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):TARGET")
   field(SDIS, "$(P)$(MAG):DIS")
 }
-alias("$(P)$(MAG):TARGET","$(P)$(MAG):TARGET:SP")
+alias("$(P)$(MAG):TARGET:SP","$(P)$(MAG):TARGET")
 
 record(ao, "$(P)SIM:$(MAG):TARGET") {
   field(DESC, "Simulated Target of $(MAG) in Gauss")
@@ -289,12 +289,19 @@ record(dfanout, "$(P)SIM:$(MAG):MAGNETS:SET:OUTPUT") {
 }
 
 ### Disable Magnet
-record(bo, "$(P)$(MAG):DIS") 
-{
+record(bo, "$(P)$(MAG):DIS") {
     field(DESC, "Disable $(MAG)")
     field(OMSL, "supervisory")
     field(ZNAM, "$(MAG) ENABLED")
     field(ONAM, "$(MAG) DISABLED")
     field(PINI, "YES")
     field(VAL, "$(DISABLE)")
+    field(FLNK, "$(P)$(MAG):DIS:DISABLE PP")
+}
+
+record(dfanout, "$(P)$(MAG):DIS:DISABLE"){
+  field (DOL, "$(P)$(MAG):DIS")
+  field (OMSL, "closed_loop")
+  field (OUTA, "$(P)$(MAG):TARGET:SP.DISP")
+  field (OUTB, "$(P)$(MAG):SET:SP.DISP")
 }

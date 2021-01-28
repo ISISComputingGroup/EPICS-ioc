@@ -14,7 +14,7 @@ record(bo, "$(P)DISABLE")
 {
     field(DESC, "Disable comms")
     field(PINI, "YES")
-    field(VAL, "0")
+    field(VAL, "$(DISABLE)")
     field(OMSL, "supervisory")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")

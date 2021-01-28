@@ -20,7 +20,7 @@ record(bo, "$(P)$(MAG):RAMP:LEADS:SP") {
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):RAMP:LEADS")
-  field(SDIS, "$(P)DISABLE")
+  field(SDIS, "$(P)$(MAG):EXTRAS:DIS")
 }
 
 record(bi, "$(P)$(MAG):RAMP:LEADS") {
@@ -61,7 +61,7 @@ record(bo, "$(P)$(MAG):PERSIST:SP") {
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):PERSIST")
-  field(SDIS, "$(P)DISABLE")
+  field(SDIS, "$(P)$(MAG):EXTRAS:DIS")
 }
 
 record(bi, "$(P)$(MAG):PERSIST") {
@@ -107,4 +107,22 @@ record(ai, "$(P)SIM:$(MAG):OUTPUT:FIELD:PERSIST:GAUSS") {
   field(DESC, "Simulated Persistent Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(EGU,"Gauss")
+}
+
+### Extra Disables
+record(bo, "$(P)$(MAG):EXTRAS:DIS") {
+    field(DESC, "Disable $(MAG)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "$(MAG) ENABLED")
+    field(ONAM, "$(MAG) DISABLED")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE)")
+    field(FLNK, "$(P)$(MAG):EXTRAS:DIS:DISABLE PP")
+}
+
+record(dfanout, "$(P)$(MAG):EXTRAS:DIS:DISABLE"){
+  field (DOL, "$(P)$(MAG):EXTRAS:DIS")
+  field (OMSL, "closed_loop")
+  field (OUTA, "$(P)$(MAG):RAMP:LEADS:SP.DISP")
+  field (OUTB, "$(P)$(MAG):PERSIST:SP.DISP")
 }

@@ -12,7 +12,7 @@ option +r;
 /* Constants */
 
 /* Variables */
-int prev_opmode=0;
+int prev_opmode = -1;
 
 /* Environment Variables */
 
@@ -31,6 +31,11 @@ PV(int, mset, "{P}M:SET:SP", NoMon);
 /* Opmode Changes */
 PV(int, opmode, "{P}OPMODE:SP", Monitor);
 PV(int, xdis, "{P}X:DIS", NoMon);
+PV(int, ydis, "{P}Y:DIS", NoMon);
+PV(int, zdis, "{P}Z:DIS", NoMon);
+PV(int, mdis, "{P}M:DIS", NoMon);
+PV(int, mextradis, "{P}M:EXTRAS:DIS", NoMon);
+PV(int, zswitchdis, "{P}Z:SWITCH:DIS", NoMon);
 
 /* STATE SETS */
 
@@ -40,20 +45,36 @@ ss working {
     when (magoff == 1) {
       PVPUT(magoff, 0);
       puts ("Magnet Off requested");
+      PVPUT(xdis, 0);
       PVPUT(xtarget, 0);
       PVPUT(xset, 1);
+      PVPUT(xdis, 1);
+      PVPUT(ydis, 0);
       PVPUT(ytarget, 0);
       PVPUT(yset, 1);
+      PVPUT(ydis, 1);
+      PVPUT(zdis, 0);
       PVPUT(ztarget, 0);
       PVPUT(zset, 1);
+      PVPUT(zdis, 1);
+      PVPUT(mdis, 0);
       PVPUT(mtarget, 0);
       PVPUT(mset, 1);
+      PVPUT(mdis, 1);
     } state waiting
-    when (opmode != prev_opmode){
-      prev_opmode = opmode;
-      if (opmode == 0) {
-        puts ("Idle Mode");
-        PVPUT(xdis, 1);
+    when (){
+      if (opmode != prev_opmode){
+        puts ("Looking at the opmode");
+        prev_opmode = opmode;
+        if (opmode == 0) {
+          puts ("Idle Mode");
+          PVPUT(xdis, 1);
+          PVPUT(ydis, 1);
+          PVPUT(zdis, 1);
+          PVPUT(mdis, 1);
+          PVPUT(mextradis, 1);
+          PVPUT(zswitchdis, 1);
+        }
       }
     } state waiting
   }
