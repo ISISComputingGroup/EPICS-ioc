@@ -45,7 +45,7 @@ $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += seq pv
-$(APPNAME)_LIBS += pcre
+$(APPNAME)_LIBS += pcrecpp pcre
 
 $(APPNAME)_LIBS_WIN32 += oncrpc
 

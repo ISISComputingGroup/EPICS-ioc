@@ -46,7 +46,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += std calc sscan
-$(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 
 # SPRLG-IOC-01_registerRecordDeviceDriver.cpp derives from SPRLG-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

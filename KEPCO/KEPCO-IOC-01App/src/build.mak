@@ -44,7 +44,7 @@ $(APPNAME)_LIBS += devIocStats
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave std calc sscan
-$(APPNAME)_LIBS += utilities  libjson zlib efsw pcre
+$(APPNAME)_LIBS += utilities  libjson zlib efsw pcrecpp pcre
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += seq pv
 ## Add other libraries here ##

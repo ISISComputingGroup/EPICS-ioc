@@ -6,6 +6,54 @@ record(bo, "$(P)SIM")
 	field(ONAM, "YES")
 	field(VAL, "$(RECSIM=0)")
 }
+record(mbbi, "$(P)MOT:BUMP_STOP")
+{
+    field(DESC, "Is Bump Stop tripped?")
+    field(ZRST, "TRIPPED")
+    field(ONST, "NOT_TRIPPED")
+    field(TWST, "UNAVAILABLE")
+    field(ZRVL, 0)
+    field(ONVL, 1)
+    field(TWVL, 2)
+    
+	field(VAL, 2)
+    field(PINI, 1)
+	field(ZRSV, "MAJOR")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:MOT:BUMP_STOP")
+	field(FLNK, "$(P)MOT:MESSAGE_FORWARD_CALC")
+}
+
+record(calcout, "$(P)MOT:BUMP_STOP_READ")
+{
+    field(DESC, "Get Status of Bump Stop")
+	field(INPA, "$(P)$(BMPSTP) CP")
+	field(CALC, "A = 0 ? 1 : 0")
+    field(OUT, "$(P)MOT:BUMP_STOP PP MS")
+    field(IVOA, "Set output to IVOV")
+    field(IVOV, "2")
+}
+
+record(calc, "$(P)MOT:MESSAGE_FORWARD_CALC")
+{
+	field(INPA, "$(P)MOT:BUMP_STOP")
+	field(CALC, "A+1")
+	field(FLNK, "$(P)MOT:MESSAGE_SELECT")
+}
+
+record(fanout, "$(P)MOT:MESSAGE_SELECT")
+{
+	field(LNK1, "$(P)MOT:BUMP_TRIPPED_MESSAGE")
+	field(SELM, "Specified")
+	field(SELL, "$(P)MOT:MESSAGE_FORWARD_CALC")
+}
+
+record(stringout, "$(P)MOT:BUMP_TRIPPED_MESSAGE")
+{
+	field(DTYP, "stdio")
+	field(OUT, "@errlog")
+	field(VAL, "BUMP STOP TRIPPED")
+}
 
 ## Stop all motion
 record (longin, "$(P)CS:MOT:STOP:ALL") 
@@ -174,6 +222,23 @@ record (mbbi, "$(P)CS:SHUTTER")
 	field(SIOL, "$(P)SIM:CS:SHUTTER CP")
 	info(archive, "VAL")
 }
+
+### SIMULATION RECORDS ###
+
+record(mbbi, "$(P)SIM:BUMP_STOP")
+{
+	field(SCAN, "Passive")
+    field(ZRST, "TRIPPED")
+    field(ONST, "NOT_TRIPPED")
+    field(TWST, "UNAVAILABLE")
+    field(ZRVL, 0)
+    field(ONVL, 1)
+    field(TWVL, 2)
+	field(VAL, 2)
+	field(DTYP, "Soft Channel")
+	field(FLNK, "$(P)BUMP_STOP")
+}
+
 
 record (mbbo, "$(P)SIM:CS:SHUTTER")
 {

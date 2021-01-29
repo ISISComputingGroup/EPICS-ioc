@@ -45,7 +45,7 @@ $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += FileList ReadASCII
 $(APPNAME)_LIBS += stream cvtRecord csmbase std calc sscan asyn 
-$(APPNAME)_LIBS += utilities pcre libjson zlib efsw
+$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib efsw
 $(APPNAME)_LIBS += $(MYSQLLIB) easySQLite sqlite
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx

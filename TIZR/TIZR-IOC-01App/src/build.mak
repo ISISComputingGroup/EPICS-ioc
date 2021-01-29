@@ -34,9 +34,9 @@ $(APPNAME)_LIBS += devIocStats
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
-$(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 ## Stream device libraries ##
-$(APPNAME)_LIBS += pcre
+$(APPNAME)_LIBS += pcrecpp pcre
 ## Add other libraries here ##
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += seq pv

@@ -40,10 +40,10 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 ## Stream device libraries ##
 $(APPNAME)_LIBS += stream
-$(APPNAME)_LIBS += pcre
+$(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += calc
