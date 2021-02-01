@@ -95,6 +95,7 @@ record(ai, "$(P)$(MAG):OUTPUT:FIELD:PERSIST:GAUSS") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "Gauss")
+  field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:FIELD:PERSIST:GAUSS")
   
@@ -107,6 +108,7 @@ record(ai, "$(P)SIM:$(MAG):OUTPUT:FIELD:PERSIST:GAUSS") {
   field(DESC, "Simulated Persistent Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(EGU,"Gauss")
+  field(PREC, "3")
 }
 
 ### Extra Disables

@@ -13,6 +13,10 @@ option +r;
 
 /* Variables */
 int prev_opmode = -1;
+int prev_xdis;
+int prev_ydis;
+int prev_zdis;
+int prev_mdis;
 
 /* Environment Variables */
 
@@ -36,6 +40,9 @@ PV(int, zdis, "{P}Z:DIS", NoMon);
 PV(int, mdis, "{P}M:DIS", NoMon);
 PV(int, mextradis, "{P}M:EXTRAS:DIS", NoMon);
 PV(int, zswitchdis, "{P}Z:SWITCH:DIS", NoMon);
+PV(float, xzero, "{P}X:ZERO", Monitor);
+PV(float, yzero, "{P}Y:ZERO", Monitor);
+PV(float, zzero, "{P}Z:ZERO", Monitor);
 
 /* STATE SETS */
 
@@ -45,26 +52,47 @@ ss working {
     when (magoff == 1) {
       PVPUT(magoff, 0);
       puts ("Magnet Off requested");
-      PVPUT(xdis, 0);
+      
+      prev_xdis = 0;
+      if (xdis == 1) {
+        PVPUT(xdis, 0);
+        prev_xdis = 1;
+      }
       PVPUT(xtarget, 0);
       PVPUT(xset, 1);
-      PVPUT(xdis, 1);
-      PVPUT(ydis, 0);
+      PVPUT(xdis, prev_xdis);
+      
+      prev_ydis = 0;
+      if (ydis == 1){
+        PVPUT(ydis, 0);
+        prev_ydis = 1;
+      }
       PVPUT(ytarget, 0);
       PVPUT(yset, 1);
-      PVPUT(ydis, 1);
-      PVPUT(zdis, 0);
+      PVPUT(ydis, prev_ydis);
+      
+      prev_zdis = 0;
+      if (zdis == 1){
+        PVPUT(zdis, 0);
+        prev_zdis = 1;
+      }
       PVPUT(ztarget, 0);
       PVPUT(zset, 1);
-      PVPUT(zdis, 1);
-      PVPUT(mdis, 0);
+      PVPUT(zdis, prev_zdis);
+      
+      prev_mdis = 0;
+      if (mdis == 1){
+        PVPUT(mdis, 0);
+        prev_mdis = 1;
+      }
       PVPUT(mtarget, 0);
       PVPUT(mset, 1);
-      PVPUT(mdis, 1);
+      PVPUT(mdis, prev_mdis);
+
     } state waiting
+
     when (){
       if (opmode != prev_opmode){
-        puts ("Looking at the opmode");
         prev_opmode = opmode;
         if (opmode == 0) {
           puts ("Idle Mode");
@@ -74,6 +102,24 @@ ss working {
           PVPUT(mdis, 1);
           PVPUT(mextradis, 1);
           PVPUT(zswitchdis, 1);
+        }
+        if (opmode == 1) {
+          puts ("High Field Mode");
+          PVPUT(xdis, 0);
+          PVPUT(ydis, 0);
+          PVPUT(zdis, 0);
+          PVPUT(mdis, 0);
+          PVPUT(mextradis, 0);
+          PVPUT(zswitchdis, 1);
+          PVPUT(xtarget, xzero);
+          PVPUT(ytarget, yzero);
+          PVPUT(ztarget, zzero);
+          PVPUT(xset, 1);
+          PVPUT(yset, 1);
+          PVPUT(zset, 1);
+          PVPUT(mset, 1);
+          PVPUT(xdis, 1);
+          PVPUT(ydis, 1);
         }
       }
     } state waiting

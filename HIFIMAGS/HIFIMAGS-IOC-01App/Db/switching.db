@@ -5,6 +5,7 @@ record(ao, "$(P)$(MAG):RAMP:RATE:SP") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "A/s")
+  field(PREC, "3")
   
   field(OUT,"$(PVPREFIX)$(PSU_IOC):RAMP:RATE:SP")
   
@@ -18,6 +19,7 @@ record(ai, "$(P)$(MAG):RAMP:RATE") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "A/s")
+  field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:RATE")
   
@@ -31,6 +33,7 @@ record(ao, "$(P)SIM:$(MAG):RAMP:RATE") {
   field(DESC, "Simulated Ramp Rate of $(MAG) in A/s")
   field(DTYP, "Soft Channel")
   field(EGU,"A/s")
+  field(PREC, "3")
 }
 
 ### Switching - Max Field
@@ -40,6 +43,7 @@ record(ao, "$(P)$(MAG):FIELD:MAX:SP") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "Gauss")
+  field(PREC, "3")
   
   field(OUT,"$(PVPREFIX)$(PSU_IOC):FIELD:MAX:SP")
   
@@ -53,6 +57,7 @@ record(ai, "$(P)$(MAG):FIELD:MAX") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "Gauss")
+  field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MAX")
   
@@ -66,6 +71,7 @@ record(ao, "$(P)SIM:$(MAG):FIELD:MAX") {
   field(DESC, "Simulated Max Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(EGU,"Gauss")
+  field(PREC, "3")
 }
 
 ### Switching - Mid Field
@@ -75,6 +81,7 @@ record(ao, "$(P)$(MAG):FIELD:MID:SP") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "Gauss")
+  field(PREC, "3")
   
   field(OUT,"$(PVPREFIX)$(PSU_IOC):FIELD:MID:SP")
   
@@ -88,6 +95,7 @@ record(ai, "$(P)$(MAG):FIELD:MID") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "Gauss")
+  field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MID")
   
@@ -101,6 +109,7 @@ record(ao, "$(P)SIM:$(MAG):FIELD:MID") {
   field(DESC, "Simulated Mid Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(EGU,"Gauss")
+  field(PREC, "3")
 }
 
 ### Switching Disables

@@ -94,6 +94,7 @@ record(ai, "$(P)$(MAG):OUTPUT:FIELD:GAUSS") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "Gauss")
+  field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:FIELD:GAUSS")
   
@@ -108,6 +109,7 @@ record(ai, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS") {
   field(DESC, "Simulated Output Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(EGU,"Gauss")
+  field(PREC, "3")
 }
 
 ### Output - Current
@@ -117,6 +119,7 @@ record(ai, "$(P)$(MAG):OUTPUT:CURR") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "A")
+  field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:CURR")
   
@@ -129,6 +132,7 @@ record(ai, "$(P)SIM:$(MAG):OUTPUT:CURR") {
   field(DESC, "Simulated Output Field of $(MAG) in Amps")
   field(DTYP, "Soft Channel")
   field(EGU,"A")
+  field(PREC, "3")
 }
 
 ### Output - Voltage
@@ -138,6 +142,7 @@ record(ai, "$(P)$(MAG):OUTPUT:VOLT") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "V")
+  field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:VOLT")
   
@@ -150,6 +155,7 @@ record(ai, "$(P)SIM:$(MAG):OUTPUT:VOLT") {
   field(DESC, "Simulated Output Field of $(MAG) in Volts")
   field(DTYP, "Soft Channel")
   field(EGU,"V")
+  field(PREC, "3")
 }
 
 ### Target - Time to reach
@@ -178,6 +184,7 @@ record(ao, "$(P)$(MAG):TARGET:SP") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "Gauss")
+  field(PREC, "3")
   
   field(OUT,"$(PVPREFIX)$(PSU_IOC):TARGET:SP")
   
@@ -191,6 +198,7 @@ record(ao, "$(P)SIM:$(MAG):TARGET") {
   field(DESC, "Simulated Target of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(EGU,"Gauss")
+  field(PREC, "3")
 }
 
 ### Abort Ramp
@@ -304,4 +312,10 @@ record(dfanout, "$(P)$(MAG):DIS:DISABLE"){
   field (OMSL, "closed_loop")
   field (OUTA, "$(P)$(MAG):TARGET:SP.DISP")
   field (OUTB, "$(P)$(MAG):SET:SP.DISP")
+}
+
+### Magnet Zero point
+record(ao, "$(P)$(MAG):ZERO") {
+  field(DESC, "Zero position for $(MAG)")
+  field(PREC, "3")
 }

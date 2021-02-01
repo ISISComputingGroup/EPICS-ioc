@@ -70,6 +70,7 @@ record(ai, "$(P)HALL:SENS1") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "Gauss")
+  field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(GM_IOC):X:FIELD:GAUSS")
   
@@ -84,6 +85,7 @@ record(ai, "$(P)SIM:HALL:SENS1") {
   field(DESC, "Simulated Hall Probe reading in X")
   field(DTYP, "Soft Channel")
   field(EGU,"Gauss")
+  field(PREC, "3")
 }
 
 record(ai, "$(P)HALL:SENS2") {
@@ -91,6 +93,7 @@ record(ai, "$(P)HALL:SENS2") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   field(EGU, "Gauss")
+  field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(GM_IOC):Y:FIELD:GAUSS")
   
@@ -105,6 +108,7 @@ record(ai, "$(P)SIM:HALL:SENS2") {
   field(DESC, "Simulated Hall Probe reading in Y")
   field(DTYP, "Soft Channel")
   field(EGU,"Gauss")
+  field(PREC, "3")
 }
 
 ### Compressor values for backwards compatibility with SECI
