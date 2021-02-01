@@ -56,7 +56,7 @@ record(bo, "$(P)$(MAG):PERSIST:SP") {
   
   field(OUT,"$(PVPREFIX)$(PSU_IOC):PERSIST:SP")
   
-  field(ZNAM, "Non persisting")
+  field(ZNAM, "Non Persisting")
   field(ONAM, "Persisting")
   
   field(SIML, "$(P)SIM")
@@ -71,7 +71,7 @@ record(bi, "$(P)$(MAG):PERSIST") {
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):PERSIST")
   
-  field(ZNAM, "Non persisting")
+  field(ZNAM, "Non Persisting")
   field(ONAM, "Persisting")
   
   field(SIML, "$(P)SIM")
@@ -84,7 +84,7 @@ record(bi, "$(P)SIM:$(MAG):PERSIST") {
   field(DESC, "Simulated persistent mode of $(MAG)")
   field(DTYP, "Soft Channel")
   
-  field(ZNAM, "Non persisting")
+  field(ZNAM, "Non Persisting")
   field(ONAM, "Persisting")
 }
 
