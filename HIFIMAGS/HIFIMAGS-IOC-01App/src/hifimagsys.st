@@ -147,6 +147,22 @@ ss working {
           PVPUT(mpersist, 0);
           PVPUT(mdis, 1);
         }
+        if (opmode == 3) {
+          /*Z Switching Mode*/
+          PVPUT(xdis, 0);
+          PVPUT(ydis, 0);
+          PVPUT(zdis, 0);
+          PVPUT(mdis, 0);
+          PVPUT(mextradis, 0);
+          PVPUT(zswitchdis, 0);
+          PVPUT(xtarget, xzero);
+          PVPUT(ytarget, yzero);
+          PVPUT(xset, 1);
+          PVPUT(yset, 1);
+          PVPUT(xdis, 1);
+          PVPUT(ydis, 1);
+          PVPUT(zdis, 1);
+        }
       }
     } state waiting
   }
