@@ -64,7 +64,7 @@ endif
 ## module decisions based on Visual Studio version
 ifneq ($(findstring 10.0,$(VCVERSION)),)
 # What not to build with VS2010
-DIRS_NOTBUILD += TWINCAT
+DIRS_NOTBUILD += TWINCAT HVCAENA
 else
 # What not to build if do not have VS2010
 DIRS_NOTBUILD += MK3CHOPR ASTRIUM
