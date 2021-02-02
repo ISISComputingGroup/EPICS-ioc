@@ -50,6 +50,13 @@ PV(float, zzerofield, "{P}Z:ZEROFIELD", Monitor);
 PV(int, mramp, "{P}M:RAMP:LEADS:SP", NoMon);
 PV(int, mpersist, "{P}M:PERSIST:SP", NoMon);
 
+/* Quench Checks */
+PV(int, xquench, "{P}X:QUENCH", Monitor);
+PV(int, yquench, "{P}Y:QUENCH", Monitor);
+PV(int, zquench, "{P}Z:QUENCH", Monitor);
+PV(int, mquench, "{P}M:QUENCH", Monitor);
+
+
 /* STATE SETS */
 
 /* Magnets Off - Ramp all magnets to 0 */
@@ -98,6 +105,10 @@ ss working {
     } state waiting
 
     when (){
+      if (xquench == 1 || yquench == 1 || zquench == 1 || mquench == 1){
+        PVPUT(opmode, 0);
+      }
+    
       if (opmode != prev_opmode){
         prev_opmode = opmode;
         if (opmode == 0) {

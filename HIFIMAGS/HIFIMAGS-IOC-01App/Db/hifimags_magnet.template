@@ -233,7 +233,7 @@ record(bi, "$(P)$(MAG):QUENCH") {
   field(SCAN, "1 second")
   
   field(ZNAM, "")
-  field(ONAM, "Quenched")
+  field(ONAM, "$(MAG) Quenched")
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):QUENCH")
   
@@ -247,7 +247,7 @@ record(bi, "$(P)SIM:$(MAG):QUENCH") {
   field(DTYP, "Soft Channel")
 
   field(ZNAM, "")
-  field(ONAM, "Quenched")
+  field(ONAM, "$(MAG) Quenched")
 }
 
 ### Start Ramp
