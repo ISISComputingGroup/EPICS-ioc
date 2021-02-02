@@ -34,6 +34,7 @@ record(mbbo, "$(P)OPMODE:SP") {
 }
 alias("$(P)OPMODE:SP", "$(P)OPMODE")
 alias("$(P)OPMODE:SP", "$(P)OPMODE:RBV")
+alias("$(P)OPMODE:SP", "$(P)SIM:OPMODE")
 
 ### Hall Sensors
 

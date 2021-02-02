@@ -33,7 +33,7 @@ PV(double, mtarget, "{P}M:TARGET:SP", NoMon);
 PV(int, mset, "{P}M:SET:SP", NoMon);
 
 /* Opmode Changes */
-PV(int, opmode, "{P}OPMODE:SP", Monitor);
+PV(int, opmode, "{P}OPMODE", Monitor);
 PV(int, xdis, "{P}X:DIS", NoMon);
 PV(int, ydis, "{P}Y:DIS", NoMon);
 PV(int, zdis, "{P}Z:DIS", NoMon);
@@ -51,6 +51,7 @@ PV(int, mramp, "{P}M:RAMP:LEADS:SP", NoMon);
 PV(int, mpersist, "{P}M:PERSIST:SP", NoMon);
 
 /* Quench Checks */
+PV(int, setopmode, "{P}OPMODE:SP", NoMon);
 PV(int, xquench, "{P}X:QUENCH", Monitor);
 PV(int, yquench, "{P}Y:QUENCH", Monitor);
 PV(int, zquench, "{P}Z:QUENCH", Monitor);
@@ -106,10 +107,13 @@ ss working {
 
     when (){
       if (xquench == 1 || yquench == 1 || zquench == 1 || mquench == 1){
-        PVPUT(opmode, 0);
+        puts ("Quench seen");
+        PVPUT(setopmode, 0);
+        prev_opmode = -1;
       }
     
       if (opmode != prev_opmode){
+        puts ("Opmode has changed");
         prev_opmode = opmode;
         if (opmode == 0) {
           /*Idle Mode*/
