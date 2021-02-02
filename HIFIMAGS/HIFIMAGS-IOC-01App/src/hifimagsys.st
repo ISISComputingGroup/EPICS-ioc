@@ -43,6 +43,12 @@ PV(int, zswitchdis, "{P}Z:SWITCH:DIS", NoMon);
 PV(float, xzero, "{P}X:ZERO", Monitor);
 PV(float, yzero, "{P}Y:ZERO", Monitor);
 PV(float, zzero, "{P}Z:ZERO", Monitor);
+PV(float, mzero, "{P}M:ZERO", Monitor);
+PV(float, xzerofield, "{P}X:ZEROFIELD", Monitor);
+PV(float, yzerofield, "{P}Y:ZEROFIELD", Monitor);
+PV(float, zzerofield, "{P}Z:ZEROFIELD", Monitor);
+PV(int, mramp, "{P}M:RAMP:LEADS:SP", NoMon);
+PV(int, mpersist, "{P}M:PERSIST:SP", NoMon);
 
 /* STATE SETS */
 
@@ -95,7 +101,7 @@ ss working {
       if (opmode != prev_opmode){
         prev_opmode = opmode;
         if (opmode == 0) {
-          puts ("Idle Mode");
+          /*Idle Mode*/
           PVPUT(xdis, 1);
           PVPUT(ydis, 1);
           PVPUT(zdis, 1);
@@ -104,7 +110,7 @@ ss working {
           PVPUT(zswitchdis, 1);
         }
         if (opmode == 1) {
-          puts ("High Field Mode");
+          /*High Field Mode*/
           PVPUT(xdis, 0);
           PVPUT(ydis, 0);
           PVPUT(zdis, 0);
@@ -120,6 +126,26 @@ ss working {
           PVPUT(mset, 1);
           PVPUT(xdis, 1);
           PVPUT(ydis, 1);
+        }
+        if (opmode == 2){
+          /*Low Field Mode*/
+          PVPUT(xdis, 0);
+          PVPUT(ydis, 0);
+          PVPUT(zdis, 0);
+          PVPUT(mdis, 0);
+          PVPUT(mextradis, 0);
+          PVPUT(zswitchdis, 1);
+          PVPUT(xtarget, xzerofield);
+          PVPUT(ytarget, yzerofield);
+          PVPUT(ztarget, zzerofield);
+          PVPUT(mtarget, mzero);
+          PVPUT(xset, 1);
+          PVPUT(yset, 1);
+          PVPUT(zset, 1);
+          PVPUT(mset, 1);
+          PVPUT(mramp, 1);
+          PVPUT(mpersist, 0);
+          PVPUT(mdis, 1);
         }
       }
     } state waiting
