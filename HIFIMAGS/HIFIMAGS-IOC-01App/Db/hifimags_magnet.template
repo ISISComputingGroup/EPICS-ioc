@@ -319,3 +319,9 @@ record(ao, "$(P)$(MAG):ZERO") {
   field(DESC, "Zero position for $(MAG)")
   field(PREC, "3")
 }
+
+### Magnet Zerofield point
+record(ao, "$(P)$(MAG):ZEROFIELD") {
+  field(DESC, "Zerofield position for $(MAG)")
+  field(PREC, "3")
+}
