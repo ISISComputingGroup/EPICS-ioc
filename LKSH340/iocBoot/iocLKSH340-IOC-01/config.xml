@@ -8,6 +8,8 @@
     <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 7." defaultValue="7" hasDefault="YES" />
     <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to odd." defaultValue="odd" hasDefault="YES" />
     <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
+    <macro name="EXCITATION_THRESHOLD_FILE" pattern="^.*" description="The file to get temperature thresholds and excitation values to set from." hasDefault="NO" />
+    <macro name="USE_EXCITATION_THRESHOLD_FILE" pattern="^.*" description="Whether to use the EXCITATION_THRESHOLD_FILE. YES to use or NO to not. Defaults to NO." defaultValue="NO", hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>

@@ -28,8 +28,10 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+stringiftest("USE_EXCITATION_FILE" "$(USE_EXCITATION_THRESHOLD_FILE=NO)" 5 "YES")
+
 ## Load our record instances
-dbLoadRecords("$(LKSH340)/db/Lakeshore340.db","P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(LKSH340)/db/Lakeshore340.db","P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),IFUSE_EXCITATION_FILE=$(IFUSE_EXCITATION_FILE),IFNOTUSE_EXCITATION_FILE=$(IFNOTUSE_EXCITATION_FILE)")
 dbLoadRecords("$(LKSH340)/db/Lakeshore340_channel.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
@@ -37,6 +39,13 @@ dbLoadRecords("$(LKSH340)/db/Lakeshore340_channel.db","P=$(MYPVPREFIX)$(IOCNAME)
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
+
+$(IFUSE_EXCITATION_FILE) $(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet "EXCITATION_THRESHOLD_DIR" "$(ICPCONFIGBASE)/$(INSTRUMENT)"
+$(IFUSE_EXCITATION_FILE) $(IFRECSIM) epicsEnvSet "EXCITATION_THRESHOLD_DIR" "$(LKSH340)"
+$(IFUSE_EXCITATION_FILE) $(IFDEVSIM) epicsEnvSet "EXCITATION_THRESHOLD_DIR" "$(LKSH340)"
+$(IFUSE_EXCITATION_FILE) epicsEnvSet "EXCITATION_THRESHOLD_DIR_AND_FILE" "$(EXCITATION_THRESHOLD_DIR=)/excitation_thresholds/$(EXCITATION_THRESHOLD_FILE=)"
+
+$(IFUSE_EXCITATION_FILE) dbpf "$(MYPVPREFIX)$(IOCNAME):THRESHOLDS:FILE" "$(EXCITATION_THRESHOLD_DIR_AND_FILE=)"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
