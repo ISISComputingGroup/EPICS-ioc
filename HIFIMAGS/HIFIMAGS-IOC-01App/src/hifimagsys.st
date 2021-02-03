@@ -62,10 +62,121 @@ PV(int, mquench, "{P}M:QUENCH", Monitor);
 
 /* Magnets Off - Ramp all magnets to 0 */
 ss working {
+
+  state monitoring {
+    when (xquench == 1 || yquench == 1 || zquench == 1 || mquench == 1){
+    } state quench
+    when (opmode != prev_opmode) {
+      prev_opmode = opmode;
+
+    } state opmode
+    when (opmode == prev_opmode) {
+      
+    } state waiting
+  }
+  
+  state quench {
+    when (xquench == 1 || yquench == 1 || zquench == 1 || mquench == 1){
+
+        PVPUT(setopmode, 0);
+        prev_opmode = -1;
+    } state waiting
+  }
+  
+  state opmode {
+    when (opmode == 0) {
+
+    } state idlemode
+    when (opmode == 1) {
+
+    } state highfieldmode
+    when (opmode == 2) {
+
+    } state lowfieldmode
+    when (opmode == 3) {
+
+    } state zswitchmode
+  }
+  
+  state idlemode {
+    when () {
+
+      PVPUT(xdis, 1);
+      PVPUT(ydis, 1);
+      PVPUT(zdis, 1);
+      PVPUT(mdis, 1);
+      PVPUT(mextradis, 1);
+      PVPUT(zswitchdis, 1);
+    } state waiting
+  }
+  
+  state highfieldmode {
+    when () {
+
+      PVPUT(xdis, 0);
+      PVPUT(ydis, 0);
+      PVPUT(zdis, 0);
+      PVPUT(mdis, 0);
+      PVPUT(mextradis, 0);
+      PVPUT(zswitchdis, 1);
+      PVPUT(xtarget, xzero);
+      PVPUT(ytarget, yzero);
+      PVPUT(ztarget, zzero);
+      PVPUT(xset, 1);
+      PVPUT(yset, 1);
+      PVPUT(zset, 1);
+      PVPUT(mset, 1);
+      PVPUT(xdis, 1);
+      PVPUT(ydis, 1);
+    } state waiting
+  }
+
+  state lowfieldmode {
+    when () {
+
+      PVPUT(xdis, 0);
+      PVPUT(ydis, 0);
+      PVPUT(zdis, 0);
+      PVPUT(mdis, 0);
+      PVPUT(mextradis, 0);
+      PVPUT(zswitchdis, 1);
+      PVPUT(xtarget, xzerofield);
+      PVPUT(ytarget, yzerofield);
+      PVPUT(ztarget, zzerofield);
+      PVPUT(mtarget, mzero);
+      PVPUT(xset, 1);
+      PVPUT(yset, 1);
+      PVPUT(zset, 1);
+      PVPUT(mset, 1);
+      PVPUT(mramp, 1);
+      PVPUT(mpersist, 0);
+      PVPUT(mdis, 1);
+    } state waiting
+  }  
+  
+  state zswitchmode {
+    when () {
+
+      PVPUT(xdis, 0);
+      PVPUT(ydis, 0);
+      PVPUT(zdis, 0);
+      PVPUT(mdis, 0);
+      PVPUT(mextradis, 0);
+      PVPUT(zswitchdis, 0);
+      PVPUT(xtarget, xzero);
+      PVPUT(ytarget, yzero);
+      PVPUT(xset, 1);
+      PVPUT(yset, 1);
+      PVPUT(xdis, 1);
+      PVPUT(ydis, 1);
+      PVPUT(zdis, 1);
+    } state waiting
+  }
+  
   state waiting {
     when (magoff == 1) {
       PVPUT(magoff, 0);
-      puts ("Magnet Off requested");
+
       
       prev_xdis = 0;
       if (xdis == 1) {
@@ -103,82 +214,10 @@ ss working {
       PVPUT(mset, 1);
       PVPUT(mdis, prev_mdis);
 
-    } state waiting
-
-    when (){
-      if (xquench == 1 || yquench == 1 || zquench == 1 || mquench == 1){
-        puts ("Quench seen");
-        PVPUT(setopmode, 0);
-        prev_opmode = -1;
-      }
+    } state monitoring
     
-      if (opmode != prev_opmode){
-        puts ("Opmode has changed");
-        prev_opmode = opmode;
-        if (opmode == 0) {
-          /*Idle Mode*/
-          PVPUT(xdis, 1);
-          PVPUT(ydis, 1);
-          PVPUT(zdis, 1);
-          PVPUT(mdis, 1);
-          PVPUT(mextradis, 1);
-          PVPUT(zswitchdis, 1);
-        }
-        if (opmode == 1) {
-          /*High Field Mode*/
-          PVPUT(xdis, 0);
-          PVPUT(ydis, 0);
-          PVPUT(zdis, 0);
-          PVPUT(mdis, 0);
-          PVPUT(mextradis, 0);
-          PVPUT(zswitchdis, 1);
-          PVPUT(xtarget, xzero);
-          PVPUT(ytarget, yzero);
-          PVPUT(ztarget, zzero);
-          PVPUT(xset, 1);
-          PVPUT(yset, 1);
-          PVPUT(zset, 1);
-          PVPUT(mset, 1);
-          PVPUT(xdis, 1);
-          PVPUT(ydis, 1);
-        }
-        if (opmode == 2){
-          /*Low Field Mode*/
-          PVPUT(xdis, 0);
-          PVPUT(ydis, 0);
-          PVPUT(zdis, 0);
-          PVPUT(mdis, 0);
-          PVPUT(mextradis, 0);
-          PVPUT(zswitchdis, 1);
-          PVPUT(xtarget, xzerofield);
-          PVPUT(ytarget, yzerofield);
-          PVPUT(ztarget, zzerofield);
-          PVPUT(mtarget, mzero);
-          PVPUT(xset, 1);
-          PVPUT(yset, 1);
-          PVPUT(zset, 1);
-          PVPUT(mset, 1);
-          PVPUT(mramp, 1);
-          PVPUT(mpersist, 0);
-          PVPUT(mdis, 1);
-        }
-        if (opmode == 3) {
-          /*Z Switching Mode*/
-          PVPUT(xdis, 0);
-          PVPUT(ydis, 0);
-          PVPUT(zdis, 0);
-          PVPUT(mdis, 0);
-          PVPUT(mextradis, 0);
-          PVPUT(zswitchdis, 0);
-          PVPUT(xtarget, xzero);
-          PVPUT(ytarget, yzero);
-          PVPUT(xset, 1);
-          PVPUT(yset, 1);
-          PVPUT(xdis, 1);
-          PVPUT(ydis, 1);
-          PVPUT(zdis, 1);
-        }
-      }
-    } state waiting
+    when () {
+    } state monitoring
+
   }
 }
