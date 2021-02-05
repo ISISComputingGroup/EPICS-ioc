@@ -13,55 +13,55 @@ option +r;
 
 /* Variables */
 int prev_opmode = -1;
-int prev_xdis;
-int prev_ydis;
-int prev_zdis;
-int prev_mdis;
+
+int i;
+char mags[4] = {'X', 'Y', 'Z', 'M'};
+int setmag;
+double target;
+int disable;
+assign setmag to "";
+assign target to "";
+assign disable to "";
+string pvName;
+string *prefix;
+int prevdis;
+
+char inactive_in_high[2] = {'X', 'Y'};
+char zero_in_high[3] = {'X', 'Y', 'Z'};
+char set_zerofield[3] = {'X', 'Y', 'Z'};
+char zero_in_switching[2] = {'X', 'Y'};
+char inactive_in_switching[3] = {'X', 'Y', 'Z'};
+
+float val;
+assign val to "";
+
+int length;
 
 /* Environment Variables */
 
 /* PVs */
-/* Magnets Off */
 PV(int, magoff, "{P}MAGNETS:OFF:SP", Monitor);
-PV(double, xtarget, "{P}X:TARGET:SP", NoMon);
-PV(int, xset, "{P}X:SET:SP", NoMon);
-PV(double, ytarget, "{P}Y:TARGET:SP", NoMon);
-PV(int, yset, "{P}Y:SET:SP", NoMon);
-PV(double, ztarget, "{P}Z:TARGET:SP", NoMon);
-PV(int, zset, "{P}Z:SET:SP", NoMon);
-PV(double, mtarget, "{P}M:TARGET:SP", NoMon);
-PV(int, mset, "{P}M:SET:SP", NoMon);
-
-/* Opmode Changes */
 PV(int, opmode, "{P}OPMODE", Monitor);
-PV(int, xdis, "{P}X:DIS", NoMon);
-PV(int, ydis, "{P}Y:DIS", NoMon);
-PV(int, zdis, "{P}Z:DIS", NoMon);
-PV(int, mdis, "{P}M:DIS", NoMon);
-PV(int, mextradis, "{P}M:EXTRAS:DIS", NoMon);
-PV(int, zswitchdis, "{P}Z:SWITCH:DIS", NoMon);
-PV(float, xzero, "{P}X:ZERO", Monitor);
-PV(float, yzero, "{P}Y:ZERO", Monitor);
-PV(float, zzero, "{P}Z:ZERO", Monitor);
-PV(float, mzero, "{P}M:ZERO", Monitor);
-PV(float, xzerofield, "{P}X:ZEROFIELD", Monitor);
-PV(float, yzerofield, "{P}Y:ZEROFIELD", Monitor);
-PV(float, zzerofield, "{P}Z:ZEROFIELD", Monitor);
-PV(int, mramp, "{P}M:RAMP:LEADS:SP", NoMon);
-PV(int, mpersist, "{P}M:PERSIST:SP", NoMon);
-
-/* Quench Checks */
 PV(int, setopmode, "{P}OPMODE:SP", NoMon);
 PV(int, xquench, "{P}X:QUENCH", Monitor);
 PV(int, yquench, "{P}Y:QUENCH", Monitor);
 PV(int, zquench, "{P}Z:QUENCH", Monitor);
 PV(int, mquench, "{P}M:QUENCH", Monitor);
-
+PV(int, mextradis, "{P}M:EXTRAS:DIS", NoMon);
+PV(int, zswitchdis, "{P}Z:SWITCH:DIS", NoMon);
+PV(int, mramp, "{P}M:RAMP:LEADS:SP", NoMon);
+PV(int, mpersist, "{P}M:PERSIST:SP", NoMon);
 
 /* STATE SETS */
 
 /* Magnets Off - Ramp all magnets to 0 */
 ss working {
+
+  state init {
+    when () {
+      prefix = macValueGet("P");
+    } state monitoring
+  }
 
   state monitoring {
     when (xquench == 1 || yquench == 1 || zquench == 1 || mquench == 1){
@@ -70,16 +70,13 @@ ss working {
     } state turnmagoff
     when (opmode != prev_opmode) {
       prev_opmode = opmode;
-
     } state opmode
-    when (opmode == prev_opmode) {
-      
+    when (opmode == prev_opmode) {      
     } state monitoring
   }
   
   state quench {
     when (xquench == 1 || yquench == 1 || zquench == 1 || mquench == 1){
-
         PVPUT(setopmode, 0);
         prev_opmode = -1;
     } state monitoring
@@ -88,132 +85,186 @@ ss working {
   state turnmagoff {
     when (magoff == 1){
       PVPUT(magoff, 0);
-      
-      prev_xdis = 0;
-      if (xdis == 1) {
-        PVPUT(xdis, 0);
-        prev_xdis = 1;
+      length = sizeof(mags)/sizeof(mags[0]);
+      for (i = 0; i < length; i++) {
+        sprintf (pvName, "%s%c:DIS", prefix, mags[i]);
+        pvAssign (disable, pvName);
+        sprintf (pvName, "%s%c:TARGET:SP", prefix, mags[i]);
+        pvAssign (target, pvName);
+        sprintf (pvName, "%s%c:SET:SP", prefix, mags[i]);
+        pvAssign (setmag, pvName);
+        
+        pvGet(disable);
+        prevdis = 0;
+        if (disable == 1) {
+          disable = 0;
+          pvPut(disable);
+          prevdis = 1;
+        }
+        target = 0;
+        pvPut(target);
+        setmag = 1;
+        pvPut(setmag);
+        disable = prevdis;
+        pvPut(disable);
       }
-      PVPUT(xtarget, 0);
-      PVPUT(xset, 1);
-      PVPUT(xdis, prev_xdis);
-      
-      prev_ydis = 0;
-      if (ydis == 1){
-        PVPUT(ydis, 0);
-        prev_ydis = 1;
-      }
-      PVPUT(ytarget, 0);
-      PVPUT(yset, 1);
-      PVPUT(ydis, prev_ydis);
-      
-      prev_zdis = 0;
-      if (zdis == 1){
-        PVPUT(zdis, 0);
-        prev_zdis = 1;
-      }
-      PVPUT(ztarget, 0);
-      PVPUT(zset, 1);
-      PVPUT(zdis, prev_zdis);
-      
-      prev_mdis = 0;
-      if (mdis == 1){
-        PVPUT(mdis, 0);
-        prev_mdis = 1;
-      }
-      PVPUT(mtarget, 0);
-      PVPUT(mset, 1);
-      PVPUT(mdis, prev_mdis);
     } state monitoring
   }
   
   state opmode {
     when (opmode == 0) {
-
     } state idlemode
     when (opmode == 1) {
-
     } state highfieldmode
     when (opmode == 2) {
-
     } state lowfieldmode
     when (opmode == 3) {
-
     } state zswitchmode
   }
   
   state idlemode {
     when () {
-
-      PVPUT(xdis, 1);
-      PVPUT(ydis, 1);
-      PVPUT(zdis, 1);
-      PVPUT(mdis, 1);
+      length = sizeof(mags)/sizeof(mags[0]);
+      for (i = 0; i < length; i++) {
+        sprintf (pvName, "%s%c:DIS", prefix, mags[i]);
+        pvAssign (disable, pvName);
+        
+        disable = 1;
+        pvPut (disable);
+      }
       PVPUT(mextradis, 1);
       PVPUT(zswitchdis, 1);
     } state monitoring
   }
   
   state highfieldmode {
+  char inactive_in_high[2] = {'X', 'Y'};
+  char zero_in_high[3] = {'X', 'Y', 'Z'};
     when () {
+      length = sizeof(mags)/sizeof(mags[0]);
+      for (i = 0; i < length; i++) {
+        sprintf (pvName, "%s%c:DIS", prefix, mags[i]);
+        pvAssign (disable, pvName);
+        disable = 0;
+        pvPut (disable);
+      }
+      
+      length = sizeof(zero_in_high)/sizeof(zero_in_high[0]);
+      for (i = 0; i < length; i++){
+        sprintf (pvName, "%s%c:TARGET:SP", prefix, zero_in_high[i]);
+        pvAssign (target, pvName);
+        sprintf (pvName, "%s%c:SET:SP", prefix, zero_in_high[i]);
+        pvAssign (setmag, pvName);
+        sprintf (pvName, "%s%c:ZERO", prefix, zero_in_high[i]);
+        pvAssign (val, pvName);
+        
+        pvGet(val);
+        target = val;
+        pvPut (target);
+        setmag = 1;
+        pvPut (setmag);
+      }
 
-      PVPUT(xdis, 0);
-      PVPUT(ydis, 0);
-      PVPUT(zdis, 0);
-      PVPUT(mdis, 0);
+      length = sizeof(inactive_in_high)/sizeof(inactive_in_high[0]);
+      for (i = 0; i < length; i++){
+        sprintf (pvName, "%s%c:DIS", prefix, inactive_in_high[i]);
+        pvAssign (disable, pvName);
+        disable = 1;
+        pvPut (disable);
+      }
+      
       PVPUT(mextradis, 0);
       PVPUT(zswitchdis, 1);
-      PVPUT(xtarget, xzero);
-      PVPUT(ytarget, yzero);
-      PVPUT(ztarget, zzero);
-      PVPUT(xset, 1);
-      PVPUT(yset, 1);
-      PVPUT(zset, 1);
-      PVPUT(mset, 1);
-      PVPUT(xdis, 1);
-      PVPUT(ydis, 1);
+
     } state monitoring
   }
 
   state lowfieldmode {
     when () {
 
-      PVPUT(xdis, 0);
-      PVPUT(ydis, 0);
-      PVPUT(zdis, 0);
-      PVPUT(mdis, 0);
-      PVPUT(mextradis, 0);
-      PVPUT(zswitchdis, 1);
-      PVPUT(xtarget, xzerofield);
-      PVPUT(ytarget, yzerofield);
-      PVPUT(ztarget, zzerofield);
-      PVPUT(mtarget, mzero);
-      PVPUT(xset, 1);
-      PVPUT(yset, 1);
-      PVPUT(zset, 1);
-      PVPUT(mset, 1);
+      length = sizeof(set_zerofield)/sizeof(set_zerofield[0]);
+      for (i = 0; i < length; i++){
+        sprintf (pvName, "%s%c:TARGET:SP", prefix, zero_in_high[i]);
+        pvAssign (target, pvName);
+        sprintf (pvName, "%s%c:SET:SP", prefix, zero_in_high[i]);
+        pvAssign (setmag, pvName);
+        sprintf (pvName, "%s%c:ZEROFIELD", prefix, zero_in_high[i]);
+        pvAssign (val, pvName);
+        sprintf (pvName, "%s%c:DIS", prefix, inactive_in_high[i]);
+        pvAssign (disable, pvName);
+        
+        disable = 0;
+        pvPut(disable);
+        pvGet(val);
+        target = val;
+        pvPut (target);
+        setmag = 1;
+        pvPut (setmag);
+      }
+      
+      sprintf (pvName, "%sM:DIS", prefix);
+      pvAssign (disable, pvName);
+      sprintf (pvName, "%sM:TARGET:SP", prefix);
+      pvAssign (target, pvName);
+      sprintf (pvName, "%sM:SET:SP", prefix);
+      pvAssign (setmag, pvName);
+      sprintf (pvName, "%sM:ZERO", prefix);
+      pvAssign (val, pvName);
+      disable = 0;
+      pvPut (disable);
+      pvGet(val);
+      target = val;
+      pvPut (target);
+      setmag = 1;
+      pvPut (setmag);
+      disable = 1;
+      pvPut (disable);
+      
       PVPUT(mramp, 1);
       PVPUT(mpersist, 0);
-      PVPUT(mdis, 1);
+      PVPUT(mextradis, 0);
+      PVPUT(zswitchdis, 1);
     } state monitoring
   }  
   
   state zswitchmode {
     when () {
+    
+      length = sizeof(zero_in_switching)/sizeof(zero_in_switching[0]);
+      for (i = 0; i < length; i++){
+        sprintf (pvName, "%s%c:DIS", prefix, zero_in_switching[i]);
+        pvAssign (disable, pvName);
+        sprintf (pvName, "%s%c:TARGET:SP", prefix, zero_in_switching[i]);
+        pvAssign (target, pvName);
+        sprintf (pvName, "%s%c:SET:SP", prefix, zero_in_switching[i]);
+        pvAssign (setmag, pvName);
+        sprintf (pvName, "%s%c:ZERO", prefix, zero_in_switching[i]);
+        pvAssign (val, pvName);
+        
+        disable = 0;
+        pvPut (disable);
+        pvGet(val);
+        target = val;
+        pvPut (target);
+        setmag = 1;
+        pvPut (setmag);
+      }
 
-      PVPUT(xdis, 0);
-      PVPUT(ydis, 0);
-      PVPUT(zdis, 0);
-      PVPUT(mdis, 0);
+      length = sizeof(inactive_in_switching)/sizeof(inactive_in_switching[0]);
+      for (i = 0; i < length; i++){
+        sprintf (pvName, "%s%c:DIS", prefix, inactive_in_switching[i]);
+        pvAssign (disable, pvName);
+        disable = 1;
+        pvPut (disable);
+      }
+      
+      sprintf (pvName, "%sM:DIS", prefix);
+      pvAssign (disable, pvName);
+      disable = 0;
+      pvPut (disable);
+      
       PVPUT(mextradis, 0);
       PVPUT(zswitchdis, 0);
-      PVPUT(xtarget, xzero);
-      PVPUT(ytarget, yzero);
-      PVPUT(xset, 1);
-      PVPUT(yset, 1);
-      PVPUT(xdis, 1);
-      PVPUT(ydis, 1);
-      PVPUT(zdis, 1);
     } state monitoring
   }
 }
