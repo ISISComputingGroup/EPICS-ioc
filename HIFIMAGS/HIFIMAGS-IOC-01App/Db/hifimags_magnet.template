@@ -10,6 +10,8 @@ record(stringin, "$(P)$(MAG):STAT") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):STAT")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 alias("$(P)$(MAG):STAT","$(P)$(MAG):STAT:RBV")
@@ -35,6 +37,8 @@ record(bi, "$(P)$(MAG):READY") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):READY")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 alias("$(P)$(MAG):READY","$(P)$(MAG):READY:RBV")
@@ -63,6 +67,8 @@ record(bi, "$(P)$(MAG):ERROR") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):ERROR")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 record(stringin, "$(P)$(MAG):ERRORS:RBV") {
@@ -93,7 +99,7 @@ record(ai, "$(P)$(MAG):OUTPUT:FIELD:GAUSS") {
   field(DESC, "Output Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
-  field(EGU, "Gauss")
+  field(EGU, "G")
   field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:FIELD:GAUSS")
@@ -101,6 +107,8 @@ record(ai, "$(P)$(MAG):OUTPUT:FIELD:GAUSS") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 alias("$(P)$(MAG):OUTPUT:FIELD:GAUSS","$(P)$(MAG):OUT:RBV")
@@ -108,7 +116,7 @@ alias("$(P)$(MAG):OUTPUT:FIELD:GAUSS","$(P)$(MAG):OUT:RBV")
 record(ai, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS") {
   field(DESC, "Simulated Output Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
-  field(EGU,"Gauss")
+  field(EGU,"G")
   field(PREC, "3")
 }
 
@@ -126,6 +134,8 @@ record(ai, "$(P)$(MAG):OUTPUT:CURR") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):OUTPUT:CURR")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:$(MAG):OUTPUT:CURR") {
@@ -149,6 +159,8 @@ record(ai, "$(P)$(MAG):OUTPUT:VOLT") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):OUTPUT:VOLT")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:$(MAG):OUTPUT:VOLT") {
@@ -170,6 +182,8 @@ record(stringin, "$(P)$(MAG):TARGET:TIME") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):TARGET:TIME")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 record(stringin, "$(P)SIM:$(MAG):TARGET:TIME") {
@@ -183,7 +197,7 @@ record(ao, "$(P)$(MAG):TARGET:SP") {
   field(DESC, "Target of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
-  field(EGU, "Gauss")
+  field(EGU, "G")
   field(PREC, "3")
   
   field(OUT,"$(PVPREFIX)$(PSU_IOC):TARGET:SP")
@@ -191,18 +205,35 @@ record(ao, "$(P)$(MAG):TARGET:SP") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):TARGET")
   field(SDIS, "$(P)$(MAG):DIS")
+  
+  info(INTEREST, "HIGH")
 }
-alias("$(P)$(MAG):TARGET:SP","$(P)$(MAG):TARGET")
+
+record(ai, "$(P)$(MAG):TARGET") {
+  field(DESC, "Target of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "G")
+  field(PREC, "3")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):TARGET")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):TARGET")
+  field(SDIS, "$(P)$(MAG):DIS")
+  
+  info(INTEREST, "HIGH")
+}
 
 record(ao, "$(P)SIM:$(MAG):TARGET") {
   field(DESC, "Simulated Target of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
-  field(EGU,"Gauss")
+  field(EGU,"G")
   field(PREC, "3")
 }
 
 ### Abort Ramp
-record(bo, "$(P)$(MAG):ABORT") {
+record(bo, "$(P)$(MAG):ABORT:SP") {
   field(DESC, "Abort $(MAG) ramp")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
@@ -215,8 +246,10 @@ record(bo, "$(P)$(MAG):ABORT") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):ABORT")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "MEDIUM")
 }
-alias("$(P)$(MAG):ABORT","$(P)$(MAG):ABORT:SP")
+alias("$(P)$(MAG):ABORT:SP","$(P)$(MAG):ABORT")
 
 record(bo, "$(P)SIM:$(MAG):ABORT") {
   field(DESC, "Simulated Abort Status of $(MAG)")
@@ -240,6 +273,8 @@ record(bi, "$(P)$(MAG):QUENCH") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):QUENCH")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "MEDIUM")
 }
 
 record(bi, "$(P)SIM:$(MAG):QUENCH") {
@@ -263,6 +298,8 @@ record(bo, "$(P)$(MAG):SET:SP") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):SET:SP PP")
   field(SDIS, "$(P)$(MAG):DIS")
+  
+  info(INTEREST, "MEDIUM")
 }
 
 record(bo, "$(P)SIM:$(MAG):SET:SP") {
@@ -317,11 +354,17 @@ record(dfanout, "$(P)$(MAG):DIS:DISABLE"){
 ### Magnet Zero point
 record(ao, "$(P)$(MAG):ZERO") {
   field(DESC, "Zero position for $(MAG)")
+  field(EGU,"G")
   field(PREC, "3")
+  
+  info(INTEREST, "HIGH")
 }
 
 ### Magnet Zerofield point
 record(ao, "$(P)$(MAG):ZEROFIELD") {
   field(DESC, "Zerofield position for $(MAG)")
+  field(EGU,"G")
   field(PREC, "3")
+  
+  info(INTEREST, "HIGH")
 }

@@ -14,6 +14,20 @@ record(ao, "$(P)$(MAG):RAMP:RATE:SP") {
   field(SDIS, "$(P)$(MAG):SWITCH:DIS")
 }
 
+record(ai, "$(P)$(MAG):RAMP:RATE:SP:RBV") {
+  field(DESC, "Ramp Rate of $(MAG) in A/s")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "A/s")
+  field(PREC, "3")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:RATE:SP:RBV")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):RAMP:RATE")
+  field(SDIS, "$(P)$(MAG):SWITCH:DIS")
+}
+
 record(ai, "$(P)$(MAG):RAMP:RATE") {
   field(DESC, "Ramp Rate of $(MAG) in A/s")
   field(DTYP, "Soft Channel")
@@ -26,6 +40,8 @@ record(ai, "$(P)$(MAG):RAMP:RATE") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):RAMP:RATE")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 
@@ -42,10 +58,24 @@ record(ao, "$(P)$(MAG):FIELD:MAX:SP") {
   field(DESC, "Max Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
-  field(EGU, "Gauss")
+  field(EGU, "G")
   field(PREC, "3")
   
   field(OUT,"$(PVPREFIX)$(PSU_IOC):FIELD:MAX:SP")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):FIELD:MAX")
+  field(SDIS, "$(P)$(MAG):SWITCH:DIS")
+}
+
+record(ai, "$(P)$(MAG):FIELD:MAX:SP:RBV") {
+  field(DESC, "Max Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "G")
+  field(PREC, "3")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MAX:SP:RBV")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MAX")
@@ -56,7 +86,7 @@ record(ai, "$(P)$(MAG):FIELD:MAX") {
   field(DESC, "Max Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
-  field(EGU, "Gauss")
+  field(EGU, "G")
   field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MAX")
@@ -64,13 +94,15 @@ record(ai, "$(P)$(MAG):FIELD:MAX") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MAX")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 
 record(ao, "$(P)SIM:$(MAG):FIELD:MAX") {
   field(DESC, "Simulated Max Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
-  field(EGU,"Gauss")
+  field(EGU,"G")
   field(PREC, "3")
 }
 
@@ -80,10 +112,24 @@ record(ao, "$(P)$(MAG):FIELD:MID:SP") {
   field(DESC, "Mid Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
-  field(EGU, "Gauss")
+  field(EGU, "G")
   field(PREC, "3")
   
   field(OUT,"$(PVPREFIX)$(PSU_IOC):FIELD:MID:SP")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):FIELD:MID")
+  field(SDIS, "$(P)$(MAG):SWITCH:DIS")
+}
+
+record(ai, "$(P)$(MAG):FIELD:MID:SP:RBV") {
+  field(DESC, "Mid Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "G")
+  field(PREC, "3")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MID:SP:RBV")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MID")
@@ -94,7 +140,7 @@ record(ai, "$(P)$(MAG):FIELD:MID") {
   field(DESC, "Mix Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
-  field(EGU, "Gauss")
+  field(EGU, "G")
   field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MID")
@@ -102,13 +148,15 @@ record(ai, "$(P)$(MAG):FIELD:MID") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MID")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 
 record(ao, "$(P)SIM:$(MAG):FIELD:MID") {
   field(DESC, "Simulated Mid Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
-  field(EGU,"Gauss")
+  field(EGU,"G")
   field(PREC, "3")
 }
 

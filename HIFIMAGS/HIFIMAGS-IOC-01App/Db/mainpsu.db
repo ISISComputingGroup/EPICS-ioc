@@ -23,6 +23,21 @@ record(bo, "$(P)$(MAG):RAMP:LEADS:SP") {
   field(SDIS, "$(P)$(MAG):EXTRAS:DIS")
 }
 
+record(bi, "$(P)$(MAG):RAMP:LEADS:SP:RBV") {
+  field(DESC, "Ramp Leads of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:LEADS:SP:RBV")
+  
+  field(ZNAM, "Not Ramping")
+  field(ONAM, "Ramping")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):RAMP:LEADS")
+  field(SDIS, "$(P)$(MAG):EXTRAS:DIS")
+}
+
 record(bi, "$(P)$(MAG):RAMP:LEADS") {
   field(DESC, "Whether or not $(MAG) leads will be ramped")
   field(DTYP, "Soft Channel")
@@ -36,6 +51,8 @@ record(bi, "$(P)$(MAG):RAMP:LEADS") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):RAMP:LEADS")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 
@@ -64,6 +81,21 @@ record(bo, "$(P)$(MAG):PERSIST:SP") {
   field(SDIS, "$(P)$(MAG):EXTRAS:DIS")
 }
 
+record(bi, "$(P)$(MAG):PERSIST:SP:RBV") {
+  field(DESC, "Persist Mode of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):PERSIST:SP:RBV")
+  
+  field(ZNAM, "Non Persisting")
+  field(ONAM, "Persisting")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):PERSIST")
+  field(SDIS, "$(P)$(MAG):EXTRAS:DIS")
+}
+
 record(bi, "$(P)$(MAG):PERSIST") {
   field(DESC, "Whether or not $(MAG) is persisting")
   field(DTYP, "Soft Channel")
@@ -77,6 +109,8 @@ record(bi, "$(P)$(MAG):PERSIST") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):PERSIST")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 
@@ -94,7 +128,7 @@ record(ai, "$(P)$(MAG):OUTPUT:FIELD:PERSIST:GAUSS") {
   field(DESC, "Persistent Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
-  field(EGU, "Gauss")
+  field(EGU, "G")
   field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:FIELD:PERSIST:GAUSS")
@@ -102,12 +136,14 @@ record(ai, "$(P)$(MAG):OUTPUT:FIELD:PERSIST:GAUSS") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):OUTPUT:FIELD:PERSIST:GAUSS")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:$(MAG):OUTPUT:FIELD:PERSIST:GAUSS") {
   field(DESC, "Simulated Persistent Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
-  field(EGU,"Gauss")
+  field(EGU,"G")
   field(PREC, "3")
 }
 

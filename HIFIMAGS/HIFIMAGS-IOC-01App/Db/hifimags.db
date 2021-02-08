@@ -36,13 +36,14 @@ alias("$(P)OPMODE:SP", "$(P)OPMODE")
 alias("$(P)OPMODE:SP", "$(P)OPMODE:RBV")
 alias("$(P)OPMODE:SP", "$(P)SIM:OPMODE")
 
+
 ### Hall Sensors
 
 record(ai, "$(P)HALL:SENS1") {
   field(DESC, "Hall Probe reading in X")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
-  field(EGU, "Gauss")
+  field(EGU, "G")
   field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(GM_IOC):X:FIELD:GAUSS")
@@ -50,6 +51,8 @@ record(ai, "$(P)HALL:SENS1") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HALL:SENS1")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 alias("$(P)HALL:SENS1","$(P)HALL:SENS1:RBV")
@@ -57,7 +60,7 @@ alias("$(P)HALL:SENS1","$(P)HALL:SENS1:RBV")
 record(ai, "$(P)SIM:HALL:SENS1") {
   field(DESC, "Simulated Hall Probe reading in X")
   field(DTYP, "Soft Channel")
-  field(EGU,"Gauss")
+  field(EGU,"G")
   field(PREC, "3")
 }
 
@@ -65,7 +68,7 @@ record(ai, "$(P)HALL:SENS2") {
   field(DESC, "Hall Probe reading in Y")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
-  field(EGU, "Gauss")
+  field(EGU, "G")
   field(PREC, "3")
   
   field(INP,"$(PVPREFIX)$(GM_IOC):Y:FIELD:GAUSS")
@@ -73,6 +76,8 @@ record(ai, "$(P)HALL:SENS2") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HALL:SENS2")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 alias("$(P)HALL:SENS2","$(P)HALL:SENS2:RBV")
@@ -80,7 +85,7 @@ alias("$(P)HALL:SENS2","$(P)HALL:SENS2:RBV")
 record(ai, "$(P)SIM:HALL:SENS2") {
   field(DESC, "Simulated Hall Probe reading in Y")
   field(DTYP, "Soft Channel")
-  field(EGU,"Gauss")
+  field(EGU,"G")
   field(PREC, "3")
 }
 
@@ -135,6 +140,8 @@ record(bi, "$(P)COMP:R:ERROR:STAT:RBV") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:COMP:R:ERROR:STAT:RBV")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 record(bi, "$(P)SIM:COMP:R:ERROR:STAT:RBV") {
@@ -158,6 +165,8 @@ record(bi, "$(P)COMP:L:ERROR:STAT:RBV") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:COMP:L:ERROR:STAT:RBV")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 record(bi, "$(P)SIM:COMP:L:ERROR:STAT:RBV") {
@@ -181,6 +190,8 @@ record(bi, "$(P)COMP:R:ON:RBV") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:COMP:R:ON:RBV")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 record(bi, "$(P)SIM:COMP:R:ON:RBV") {
@@ -204,6 +215,8 @@ record(bi, "$(P)COMP:L:ON:RBV") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:COMP:L:ON:RBV")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 record(bi, "$(P)SIM:COMP:L:ON:RBV") {
@@ -223,4 +236,4 @@ record(bo, "$(P)MAGNETS:OFF:SP") {
   field(ZNAM, "")
   field(ONAM, "Off")
 }
-
+alias("$(P)MAGNETS:OFF:SP", "$(P)MAGNETS:OFF")

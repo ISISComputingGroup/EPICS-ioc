@@ -9,6 +9,8 @@ record(ai, "$(P)TEMP:$(SENSOR)") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:TEMP:$(SENSOR)")
   field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)SIM:TEMP:$(SENSOR)") {

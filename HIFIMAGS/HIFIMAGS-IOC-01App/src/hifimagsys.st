@@ -9,35 +9,31 @@ option +d;
 /* Make code reentrant. This is needed to run more than one instance of this program. */
 option +r;
 
-/* Constants */
-
 /* Variables */
 int prev_opmode = -1;
-
 int i;
-char mags[4] = {'X', 'Y', 'Z', 'M'};
+int length;
+string pvName;
+int prevdis;
+
 int setmag;
 double target;
 int disable;
+float val;
 assign setmag to "";
 assign target to "";
 assign disable to "";
-string pvName;
-string *prefix;
-int prevdis;
+assign val to "";
 
+char mags[4] = {'X', 'Y', 'Z', 'M'};
 char inactive_in_high[2] = {'X', 'Y'};
 char zero_in_high[3] = {'X', 'Y', 'Z'};
 char set_zerofield[3] = {'X', 'Y', 'Z'};
 char zero_in_switching[2] = {'X', 'Y'};
 char inactive_in_switching[3] = {'X', 'Y', 'Z'};
 
-float val;
-assign val to "";
-
-int length;
-
 /* Environment Variables */
+string *prefix;
 
 /* PVs */
 PV(int, magoff, "{P}MAGNETS:OFF:SP", Monitor);
@@ -55,7 +51,7 @@ PV(int, mpersist, "{P}M:PERSIST:SP", NoMon);
 /* STATE SETS */
 
 /* Magnets Off - Ramp all magnets to 0 */
-ss working {
+ss systemManager {
 
   state init {
     when () {
