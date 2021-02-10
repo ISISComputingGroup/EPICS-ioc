@@ -180,13 +180,13 @@ ss systemManager {
 
       length = sizeof(set_zerofield)/sizeof(set_zerofield[0]);
       for (i = 0; i < length; i++){
-        sprintf (pvName, "%s%c:TARGET:SP", prefix, zero_in_high[i]);
+        sprintf (pvName, "%s%c:TARGET:SP", prefix, set_zerofield[i]);
         pvAssign (target, pvName);
-        sprintf (pvName, "%s%c:SET:SP", prefix, zero_in_high[i]);
+        sprintf (pvName, "%s%c:SET:SP", prefix, set_zerofield[i]);
         pvAssign (setmag, pvName);
-        sprintf (pvName, "%s%c:ZEROFIELD", prefix, zero_in_high[i]);
+        sprintf (pvName, "%s%c:ZEROFIELD", prefix, set_zerofield[i]);
         pvAssign (val, pvName);
-        sprintf (pvName, "%s%c:DIS", prefix, inactive_in_high[i]);
+        sprintf (pvName, "%s%c:DIS", prefix, set_zerofield[i]);
         pvAssign (disable, pvName);
         
         disable = 0;
