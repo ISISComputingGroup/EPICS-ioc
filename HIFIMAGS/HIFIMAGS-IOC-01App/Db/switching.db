@@ -6,6 +6,21 @@ record(ao, "$(P)$(MAG):RAMP:RATE:SP") {
   field(SCAN, "1 second")
   field(EGU, "A/s")
   field(PREC, "3")
+}
+
+record(dfanout, "$(P)$(MAG):RAMP:RATE:FWD") {
+  field(DESC, "Forward value from one record to another")
+  field (DOL, "$(P)$(MAG):RAMP:RATE:SP")
+  field (OMSL, "closed_loop")
+  field (OUTA, "$(P)$(MAG):RAMP:RATE:SP:RAW")
+}
+
+record(ao, "$(P)$(MAG):RAMP:RATE:SP:RAW") {
+  field(DESC, "Ramp Rate of $(MAG) in A/s")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "A/s")
+  field(PREC, "3")
   
   field(OUT,"$(PVPREFIX)$(PSU_IOC):RAMP:RATE:SP")
   
@@ -55,6 +70,21 @@ record(ao, "$(P)SIM:$(MAG):RAMP:RATE") {
 ### Switching - Max Field
 
 record(ao, "$(P)$(MAG):FIELD:MAX:SP") {
+  field(DESC, "Max Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "A/s")
+  field(PREC, "3")
+}
+
+record(dfanout, "$(P)$(MAG):FIELD:MAX:FWD") {
+  field(DESC, "Forward value from one record to another")
+  field (DOL, "$(P)$(MAG):FIELD:MAX:SP")
+  field (OMSL, "closed_loop")
+  field (OUTA, "$(P)$(MAG):FIELD:MAX:SP:RAW")
+}
+
+record(ao, "$(P)$(MAG):FIELD:MAX:SP:RAW") {
   field(DESC, "Max Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
@@ -112,6 +142,21 @@ record(ao, "$(P)$(MAG):FIELD:MID:SP") {
   field(DESC, "Mid Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
+  field(EGU, "A/s")
+  field(PREC, "3")
+}
+
+record(dfanout, "$(P)$(MAG):FIELD:MID:FWD") {
+  field(DESC, "Forward value from one record to another")
+  field (DOL, "$(P)$(MAG):FIELD:MID:SP")
+  field (OMSL, "closed_loop")
+  field (OUTA, "$(P)$(MAG):FIELD:MID:SP:RAW")
+}
+
+record(ao, "$(P)$(MAG):FIELD:MID:SP:RAW") {
+  field(DESC, "Mid Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
   field(EGU, "G")
   field(PREC, "3")
   
@@ -158,6 +203,23 @@ record(ao, "$(P)SIM:$(MAG):FIELD:MID") {
   field(DTYP, "Soft Channel")
   field(EGU,"G")
   field(PREC, "3")
+}
+
+### Switching Set
+record(bo, "$(P)$(MAG):SWITCH:SET:SP") {
+    field(DESC, "Set the switch mode values of $(MAG)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "")
+    field(ONAM, "")
+    field(FLNK, "$(P)$(MAG):SWITCH:SEND:VALS PP")
+}
+
+record(fanout, "$(P)$(MAG):SWITCH:SEND:VALS"){
+    field(DESC, "Triggers sending the values on")
+    field(SELM, "All")
+    field (LNK1, "$(P)$(MAG):RAMP:RATE:FWD")
+    field (LNK2, "$(P)$(MAG):FIELD:MAX:FWD")
+    field (LNK3, "$(P)$(MAG):FIELD:MID:FWD")
 }
 
 ### Switching Disables
