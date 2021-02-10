@@ -1,0 +1,30 @@
+# % macro, P, device prefix
+# % macro, INDEX, user variable index number
+
+## User settable button
+## Description are autosaved
+record (stringin, "$(P)PARS:USER:BUTTON$(INDEX)") 
+{
+	field(DESC, "Button $(INDEX) status text")
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+    field(PINI, "YES")
+    field(VAL, "")
+	info(archive, "VAL")
+	info(INTEREST, "MEDIUM")
+}
+
+## User settable button
+## Description are autosaved
+record (bi, "$(P)PARS:USER:BUTTON$(INDEX):SP") 
+{
+	field(DESC, "Button $(INDEX)")
+	field(SCAN, "Passive")
+	field(DTYP, "Soft Channel")
+	field(ZNAM, "")
+	field(ONAM, "Running")
+    field(PINI, "YES")
+    field(VAL, "0")
+    info(archive, "VAL")
+    info(autosaveFields, "DESC")
+}

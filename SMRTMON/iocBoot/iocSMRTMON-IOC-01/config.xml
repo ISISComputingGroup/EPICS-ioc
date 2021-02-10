@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>HTS Magnet Smart Monitor</ioc_desc>
+<macros>
+<macro name="IP_ADDRESS" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address" hasDefault="NO" />
+</macros>
+</config_part>
+</ioc_config>

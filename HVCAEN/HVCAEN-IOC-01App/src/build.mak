@@ -55,7 +55,7 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre
+$(APPNAME)_LIBS += utilities pcrecpp pcre
 $(APPNAME)_LIBS_WIN32 += caenhvwrapper # hscaenetlib
 $(APPNAME)_SYS_LIBS_Linux += caenhvwrapper hscaenetlib
 

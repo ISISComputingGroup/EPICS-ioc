@@ -16,7 +16,6 @@ DB += DFKPS_8500_status.db
 DB += DFKPS_8800_status.db
 DB += DFKPS_calibrated.db
 DB += DFKPS_common.db
-DB += DFKPS_polarity.db
 DB += DFKPS_slew.db
 
 #----------------------------------------------------
