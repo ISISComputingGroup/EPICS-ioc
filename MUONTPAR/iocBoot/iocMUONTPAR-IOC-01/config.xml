@@ -4,7 +4,7 @@
     <ioc_desc>Provides the muon TPAR files</ioc_desc>
     <macros>
       <macro name="TPAR_FILE" pattern="^.{0,40}$" description="TPAR file name in directory C:\\Instrument\\Settings. 40 Character maximum." hasDefault="NO" />
-      <macro name="TPAR_FILE_2" pattern="^.{0,40}$" description="Second TPAR file name in directory C:\\Instrument\\Settings. 40 Character maximum." hasDefault="YES" defaultValue="" />
+      <macro name="BOOSTER_TPAR_FILE" pattern="^.{0,40}$" description="Booster heater TPAR file name in directory C:\\Instrument\\Settings. 40 Character maximum." hasDefault="YES" defaultValue="" />
     </macros>
   </config_part>
 </ioc_config>
