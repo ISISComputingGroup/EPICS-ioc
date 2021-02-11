@@ -1,4 +1,4 @@
-record(stringout, "$(P)$(TPAR_FILE_NAME)") {
+record(stringout, "$(P)$(TPAR_FILE_PV_NAME)") {
     field(VAL, "$(TPAR_FILE)")
     field(PINI, "YES")
     field(DESC, "filename of tpar file")
