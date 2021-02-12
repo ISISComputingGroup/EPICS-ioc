@@ -11,7 +11,7 @@
 <macro name="LCOMP_IOC" pattern="[a-zA-Z]*_\d\d" description="Left Compressor" defaultValue="CP280001_01" hasDefault="YES" />
 <macro name="RCOMP_IOC" pattern="[a-zA-Z]*_\d\d" description="Right Compressor" defaultValue="CP280001_01" hasDefault="YES" />
 <macro name="TEMP_STAGE1" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback" defaultValue="KHLY270001:01:READ" hasDefault="YES" />
-<macro name="TEMP:SHIELD" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback" defaultValue="KHLY270001:01:READ" hasDefault="YES" />
+<macro name="TEMP_SHIELD" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback" defaultValue="KHLY270001:01:READ" hasDefault="YES" />
 <macro name="TEMP:SWITCH" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback" defaultValue="KHLY270001:01:READ" hasDefault="YES" />
 <macro name="TEMP:STAGE2A" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback" defaultValue="KHLY270001:01:READ" hasDefault="YES" />
 <macro name="TEMP:STAGE2B" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback" defaultValue="KHLY270001:01:READ" hasDefault="YES" />
