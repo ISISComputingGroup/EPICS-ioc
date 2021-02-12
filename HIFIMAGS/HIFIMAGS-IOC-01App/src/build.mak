@@ -61,21 +61,6 @@ $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 $(APPNAME)_SRCS += hifimagsys.st
 
-# The Sequencer items
-#ifneq ($(SNCSEQ),)
-#    LIBRARY_IOC += MagSys
-#    DBD += hifimagsys.dbd
-#
-#    hifimagsys_SNCFLAGS += +r
-#    MagSys_SRCS += hifimagsys.st
-#    MagSys_SRCS += seqPVmacros.h
-#    MagSYS_DBD += hifimagsys.dbd
-#    MagSys_LIBS += seq pv
-#    
-#    $(APPNAME)_LIBS += MagSys
-#    
-#endif
-
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp
 $(APPNAME)_SRCS_vxWorks += -nil-

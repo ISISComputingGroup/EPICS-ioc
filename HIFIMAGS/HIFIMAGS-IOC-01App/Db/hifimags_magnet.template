@@ -5,7 +5,7 @@ record(stringin, "$(P)$(MAG):STAT") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):STAT")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):STAT MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):STAT")
@@ -32,7 +32,7 @@ record(bi, "$(P)$(MAG):READY") {
   field(ZNAM, "Not Ready")
   field(ONAM, "Ready")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):READY")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):READY MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):READY")
@@ -60,7 +60,7 @@ record(bi, "$(P)$(MAG):ERROR") {
   field(ZNAM, "No Error")
   field(ONAM, "Error")
   
-  field(INP,"$(PVPREFIX))$(PSU_IOC):ERROR")
+  field(INP,"$(PVPREFIX))$(PSU_IOC):ERROR MS")
   
   field(FLNK, "$(P)$(MAG):ERRORS:_CALC MS")
   
@@ -102,7 +102,7 @@ record(ai, "$(P)$(MAG):OUTPUT:FIELD:GAUSS") {
   field(EGU, "G")
   field(PREC, "3")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:FIELD:GAUSS")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:FIELD:GAUSS MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS")
@@ -129,7 +129,7 @@ record(ai, "$(P)$(MAG):OUTPUT:CURR") {
   field(EGU, "A")
   field(PREC, "3")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:CURR")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:CURR MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):OUTPUT:CURR")
@@ -154,7 +154,7 @@ record(ai, "$(P)$(MAG):OUTPUT:VOLT") {
   field(EGU, "V")
   field(PREC, "3")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:VOLT")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:VOLT MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):OUTPUT:VOLT")
@@ -177,7 +177,7 @@ record(stringin, "$(P)$(MAG):TARGET:TIME") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):TARGET:TIME")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):TARGET:TIME MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):TARGET:TIME")
@@ -216,7 +216,7 @@ record(ai, "$(P)$(MAG):TARGET") {
   field(EGU, "G")
   field(PREC, "3")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):TARGET")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):TARGET MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):TARGET")
@@ -268,7 +268,7 @@ record(bi, "$(P)$(MAG):QUENCH") {
   field(ZNAM, "")
   field(ONAM, "Quenched")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):QUENCH")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):QUENCH MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):QUENCH")

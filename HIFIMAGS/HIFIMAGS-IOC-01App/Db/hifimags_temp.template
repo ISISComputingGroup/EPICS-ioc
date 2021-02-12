@@ -4,7 +4,7 @@ record(ai, "$(P)TEMP:$(SENSOR)") {
   field(SCAN, "1 second")
   field(EGU, "K")
   
-  field(INP,"$(PVPREFIX)$(PV)")
+  field(INP,"$(PVPREFIX)$(PV) MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:TEMP:$(SENSOR)")

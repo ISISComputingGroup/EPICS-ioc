@@ -25,12 +25,14 @@ record(bo, "$(P)DISABLE")
 record(mbbo, "$(P)OPMODE:SP") {
   field(DESC, "Operation Mode")
   field(DTYP, "Soft Channel")
-  field(SCAN, "1 second")
   
   field(ZRST, "Idle")
   field(ONST, "High Field")
   field(TWST, "Low Field")
   field(THST, "Z Switching")
+  
+  info(archive, "VAL")
+  info(INTEREST, "HIGH")
 }
 alias("$(P)OPMODE:SP", "$(P)OPMODE")
 alias("$(P)OPMODE:SP", "$(P)OPMODE:RBV")
@@ -46,7 +48,7 @@ record(ai, "$(P)HALL:SENS1") {
   field(EGU, "G")
   field(PREC, "3")
   
-  field(INP,"$(PVPREFIX)$(GM_IOC):X:FIELD:GAUSS")
+  field(INP,"$(PVPREFIX)$(GM_IOC):X:FIELD:GAUSS MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HALL:SENS1")
@@ -71,7 +73,7 @@ record(ai, "$(P)HALL:SENS2") {
   field(EGU, "G")
   field(PREC, "3")
   
-  field(INP,"$(PVPREFIX)$(GM_IOC):Y:FIELD:GAUSS")
+  field(INP,"$(PVPREFIX)$(GM_IOC):Y:FIELD:GAUSS MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:HALL:SENS2")
@@ -96,7 +98,7 @@ record(stringin, "$(P)COMP:R:ERROR:TEXT:RBV") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
-  field(INP,"$(PVPREFIX)$(RCOMP_IOC):RESPONSE")
+  field(INP,"$(PVPREFIX)$(RCOMP_IOC):RESPONSE MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:COMP:R:ERROR:TEXT:RBV")
@@ -114,7 +116,7 @@ record(stringin, "$(P)COMP:L:ERROR:TEXT:RBV") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
-  field(INP,"$(PVPREFIX)$(LCOMP_IOC):RESPONSE")
+  field(INP,"$(PVPREFIX)$(LCOMP_IOC):RESPONSE MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:COMP:L:ERROR:TEXT:RBV")
@@ -135,7 +137,7 @@ record(bi, "$(P)COMP:R:ERROR:STAT:RBV") {
   field(ZNAM, "No Error")
   field(ONAM, "Error")
   
-  field(INP,"$(PVPREFIX)$(RCOMP_IOC):ERR")
+  field(INP,"$(PVPREFIX)$(RCOMP_IOC):ERR MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:COMP:R:ERROR:STAT:RBV")
@@ -160,7 +162,7 @@ record(bi, "$(P)COMP:L:ERROR:STAT:RBV") {
   field(ZNAM, "No Error")
   field(ONAM, "Error")
   
-  field(INP,"$(PVPREFIX)$(LCOMP_IOC):ERR")
+  field(INP,"$(PVPREFIX)$(LCOMP_IOC):ERR MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:COMP:L:ERROR:STAT:RBV")
@@ -185,7 +187,7 @@ record(bi, "$(P)COMP:R:ON:RBV") {
   field(ZNAM, "Off")
   field(ONAM, "On")
   
-  field(INP,"$(PVPREFIX)$(RCOMP_IOC):POWER")
+  field(INP,"$(PVPREFIX)$(RCOMP_IOC):POWER MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:COMP:R:ON:RBV")
@@ -210,7 +212,7 @@ record(bi, "$(P)COMP:L:ON:RBV") {
   field(ZNAM, "Off")
   field(ONAM, "On")
   
-  field(INP,"$(PVPREFIX)$(LCOMP_IOC):POWER")
+  field(INP,"$(PVPREFIX)$(LCOMP_IOC):POWER MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:COMP:L:ON:RBV")

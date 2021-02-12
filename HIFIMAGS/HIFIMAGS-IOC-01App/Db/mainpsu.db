@@ -28,7 +28,7 @@ record(bi, "$(P)$(MAG):RAMP:LEADS:SP:RBV") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:LEADS:SP:RBV")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:LEADS:SP:RBV MS")
   
   field(ZNAM, "Not Ramping")
   field(ONAM, "Ramping")
@@ -43,7 +43,7 @@ record(bi, "$(P)$(MAG):RAMP:LEADS") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:LEADS")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:LEADS MS")
   
   field(ZNAM, "Not Ramping")
   field(ONAM, "Ramping")
@@ -86,7 +86,7 @@ record(bi, "$(P)$(MAG):PERSIST:SP:RBV") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):PERSIST:SP:RBV")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):PERSIST:SP:RBV MS")
   
   field(ZNAM, "Non Persisting")
   field(ONAM, "Persisting")
@@ -101,7 +101,7 @@ record(bi, "$(P)$(MAG):PERSIST") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):PERSIST")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):PERSIST MS")
   
   field(ZNAM, "Non Persisting")
   field(ONAM, "Persisting")
@@ -131,7 +131,7 @@ record(ai, "$(P)$(MAG):OUTPUT:FIELD:PERSIST:GAUSS") {
   field(EGU, "G")
   field(PREC, "3")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:FIELD:PERSIST:GAUSS")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:FIELD:PERSIST:GAUSS MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):OUTPUT:FIELD:PERSIST:GAUSS")

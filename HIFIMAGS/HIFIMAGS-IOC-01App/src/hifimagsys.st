@@ -15,11 +15,13 @@ int i;
 int length;
 string pvName;
 int prevdis;
+int quench_message_printed = 0;
 
 int setmag;
 double target;
 int disable;
 float val;
+/* Initial assignment to empty PVs so that they can be reassigned on the fly later */
 assign setmag to "";
 assign target to "";
 assign disable to "";
@@ -61,13 +63,18 @@ ss systemManager {
 
   state monitoring {
     when (xquench == 1 || yquench == 1 || zquench == 1 || mquench == 1){
+      if (quench_message_printed == 0) {
+        printf("QUENCH seen, quench values in following states (1 = quenched): x=%d, y=%d, z=%d, m=%d\r\n", xquench, yquench, zquench, mquench);
+        quench_message_printed = 1;
+      }
     } state quench
     when (magoff == 1) {
     } state turnmagoff
     when (opmode != prev_opmode) {
       prev_opmode = opmode;
+      quench_message_printed = 0;
     } state opmode
-    when (opmode == prev_opmode) {      
+    when (opmode == prev_opmode) { 
     } state monitoring
   }
   
@@ -134,8 +141,6 @@ ss systemManager {
   }
   
   state highfieldmode {
-  char inactive_in_high[2] = {'X', 'Y'};
-  char zero_in_high[3] = {'X', 'Y', 'Z'};
     when () {
       length = sizeof(mags)/sizeof(mags[0]);
       for (i = 0; i < length; i++) {

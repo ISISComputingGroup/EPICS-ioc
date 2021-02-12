@@ -3,19 +3,19 @@
 <config_part>
 <ioc_desc>System Manager for the HIFI Cryomag</ioc_desc>
 <macros>
-<macro name="X_IOC" pattern="[a-zA-Z]*_\d\d" description="The IOC name for the X PSU" defaultValue="CRYOSMS01_01" hasDefault="YES" />
-<macro name="Y_IOC" pattern="[a-zA-Z]*_\d\d" description="The IOC name for the Y PSU" defaultValue="CRYOSMS01_01" hasDefault="YES" />
-<macro name="Z_IOC" pattern="[a-zA-Z]*_\d\d" description="The IOC name for the Z PSU" defaultValue="CRYOSMS01_01" hasDefault="YES" />
-<macro name="SMS_IOC" pattern="[a-zA-Z]*_\d\d" description="The IOC name for the Main PSU" defaultValue="CRYOSMS01_01" hasDefault="YES" />
-<macro name="GM_IOC" pattern="[a-zA-Z]*_\d\d" description="The IOC for the LakeShore 460" defaultValue="LS46001_01" hasDefault="YES" />
-<macro name="LCOMP_IOC" pattern="[a-zA-Z]*_\d\d" description="Left Compressor" defaultValue="CP280001_01" hasDefault="YES" />
-<macro name="RCOMP_IOC" pattern="[a-zA-Z]*_\d\d" description="Right Compressor" defaultValue="CP280001_01" hasDefault="YES" />
-<macro name="TEMP_STAGE1" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback" defaultValue="KHLY270001:01:READ" hasDefault="YES" />
-<macro name="TEMP:SHIELD" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback" defaultValue="KHLY270001:01:READ" hasDefault="YES" />
-<macro name="TEMP:SWITCH" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback" defaultValue="KHLY270001:01:READ" hasDefault="YES" />
-<macro name="TEMP:STAGE2A" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback" defaultValue="KHLY270001:01:READ" hasDefault="YES" />
-<macro name="TEMP:STAGE2B" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback" defaultValue="KHLY270001:01:READ" hasDefault="YES" />
-<macro name="TEMP:INRABAS" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback" defaultValue="KHLY270001:01:READ" hasDefault="YES" />
+<macro name="X_IOC" pattern="[a-zA-Z]*_\d\d" description="The IOC name for the X PSU" defaultValue="CRYOSMS_01" hasDefault="YES" />
+<macro name="Y_IOC" pattern="[a-zA-Z]*_\d\d" description="The IOC name for the Y PSU" defaultValue="CRYOSMS_01" hasDefault="YES" />
+<macro name="Z_IOC" pattern="[a-zA-Z]*_\d\d" description="The IOC name for the Z PSU" defaultValue="CRYOSMS_01" hasDefault="YES" />
+<macro name="SMS_IOC" pattern="[a-zA-Z]*_\d\d" description="The IOC name for the Main PSU" defaultValue="CRYOSMS_01" hasDefault="YES" />
+<macro name="GM_IOC" pattern="[a-zA-Z]*_\d\d" description="The IOC for the LakeShore 460" defaultValue="LS460_01" hasDefault="YES" />
+<macro name="LCOMP_IOC" pattern="[a-zA-Z]*_\d\d" description="Left Compressor" defaultValue="CP2800_01" hasDefault="YES" />
+<macro name="RCOMP_IOC" pattern="[a-zA-Z]*_\d\d" description="Right Compressor" defaultValue="CP2800_01" hasDefault="YES" />
+<macro name="TEMP_STAGE1" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback - Stage 1" defaultValue="KHLY2700_01:01:READ" hasDefault="YES" />
+<macro name="TEMP_SHIELD" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback - Shield" defaultValue="KHLY2700_01:01:READ" hasDefault="YES" />
+<macro name="TEMP_SWITCH" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback - Switch" defaultValue="KHLY2700_01:01:READ" hasDefault="YES" />
+<macro name="TEMP_STAGE2A" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback - Stage 2A" defaultValue="KHLY2700_01:01:READ" hasDefault="YES" />
+<macro name="TEMP_STAGE2B" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback - Stage 2B" defaultValue="KHLY2700_01:01:READ" hasDefault="YES" />
+<macro name="TEMP_INRABAS" pattern="[a-zA-Z0-9]*:\d\d:[a-zA-Z]*" description="Temperature Sensor Readback - Inner A Base" defaultValue="KHLY2700_01:01:READ" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>

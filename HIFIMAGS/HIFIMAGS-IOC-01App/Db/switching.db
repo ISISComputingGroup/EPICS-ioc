@@ -36,7 +36,7 @@ record(ai, "$(P)$(MAG):RAMP:RATE:SP:RBV") {
   field(EGU, "A/s")
   field(PREC, "3")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:RATE:SP:RBV")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:RATE:SP:RBV MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):RAMP:RATE")
@@ -50,7 +50,7 @@ record(ai, "$(P)$(MAG):RAMP:RATE") {
   field(EGU, "A/s")
   field(PREC, "3")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:RATE")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:RATE MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):RAMP:RATE")
@@ -105,7 +105,7 @@ record(ai, "$(P)$(MAG):FIELD:MAX:SP:RBV") {
   field(EGU, "G")
   field(PREC, "3")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MAX:SP:RBV")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MAX:SP:RBV MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MAX")
@@ -119,7 +119,7 @@ record(ai, "$(P)$(MAG):FIELD:MAX") {
   field(EGU, "G")
   field(PREC, "3")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MAX")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MAX MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MAX")
@@ -174,7 +174,7 @@ record(ai, "$(P)$(MAG):FIELD:MID:SP:RBV") {
   field(EGU, "G")
   field(PREC, "3")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MID:SP:RBV")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MID:SP:RBV MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MID")
@@ -188,7 +188,7 @@ record(ai, "$(P)$(MAG):FIELD:MID") {
   field(EGU, "G")
   field(PREC, "3")
   
-  field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MID")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):FIELD:MID MS")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MID")
