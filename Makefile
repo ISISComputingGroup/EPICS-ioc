@@ -44,6 +44,7 @@ IOCDIRS += TIZR
 IOCDIRS += HVCAENA
 IOCDIRS += PT2025
 IOCDIRS += FMR
+IOCDIRS += HIFIMAGS
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)

@@ -1,0 +1,370 @@
+### STAT Fields
+
+record(stringin, "$(P)$(MAG):STAT") {
+  field(DESC, "Status of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):STAT MS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):STAT")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
+}
+
+alias("$(P)$(MAG):STAT","$(P)$(MAG):STAT:RBV")
+
+record(stringin, "$(P)SIM:$(MAG):STAT") {
+  field(DESC, "Simulated status of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(VAL, "Simulation")
+}
+
+### READY Fields
+
+record(bi, "$(P)$(MAG):READY") {
+  field(DESC, "Readiness of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZNAM, "Not Ready")
+  field(ONAM, "Ready")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):READY MS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):READY")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
+}
+
+alias("$(P)$(MAG):READY","$(P)$(MAG):READY:RBV")
+
+record(bi, "$(P)SIM:$(MAG):READY") {
+  field(DESC, "Simulated Readiness of $(MAG)")
+  field(DTYP, "Soft Channel")
+
+  field(ZNAM, "Not Ready")
+  field(ONAM, "Ready")
+}
+
+### ERROR Fields
+record(bi, "$(P)$(MAG):ERROR") {
+  field(DESC, "Error state of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZNAM, "No Error")
+  field(ONAM, "Error")
+  
+  field(INP,"$(PVPREFIX))$(PSU_IOC):ERROR MS")
+  
+  field(FLNK, "$(P)$(MAG):ERRORS:_CALC MS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):ERROR")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
+}
+
+record(stringin, "$(P)$(MAG):ERRORS:RBV") {
+  field(DESC, "Backward compatible error report")
+  field(INP, "$(P)$(MAG):ERRORS:_CALC.SVAL MS")
+}
+
+record(scalcout, "$(P)$(MAG):ERRORS:_CALC")
+{
+    field(SCAN,"Passive")
+    field(INAA,"$(P)$(MAG):ERROR MS")
+    field(INBB,"$(P)$(MAG):STAT")
+    field(CALC, "AA = 'Error'? BB : ''")
+    field(FLNK, "$(P)$(MAG):ERRORS:RBV")
+}
+
+record(bi, "$(P)SIM:$(MAG):ERROR") {
+  field(DESC, "Simulated Error Status of $(MAG)")
+  field(DTYP, "Soft Channel")
+
+  field(ZNAM, "No Error")
+  field(ONAM, "Error")
+}
+
+### Output - Field in Gauss
+
+record(ai, "$(P)$(MAG):OUTPUT:FIELD:GAUSS") {
+  field(DESC, "Output Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "G")
+  field(PREC, "3")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:FIELD:GAUSS MS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
+}
+
+alias("$(P)$(MAG):OUTPUT:FIELD:GAUSS","$(P)$(MAG):OUT:RBV")
+
+record(ai, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS") {
+  field(DESC, "Simulated Output Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(EGU,"G")
+  field(PREC, "3")
+}
+
+### Output - Current
+
+record(ai, "$(P)$(MAG):OUTPUT:CURR") {
+  field(DESC, "Output Field of $(MAG) in Amps")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "A")
+  field(PREC, "3")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:CURR MS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):OUTPUT:CURR")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)SIM:$(MAG):OUTPUT:CURR") {
+  field(DESC, "Simulated Output Field of $(MAG) in Amps")
+  field(DTYP, "Soft Channel")
+  field(EGU,"A")
+  field(PREC, "3")
+}
+
+### Output - Voltage
+
+record(ai, "$(P)$(MAG):OUTPUT:VOLT") {
+  field(DESC, "Output Field of $(MAG) in Volts")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "V")
+  field(PREC, "3")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:VOLT MS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):OUTPUT:VOLT")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)SIM:$(MAG):OUTPUT:VOLT") {
+  field(DESC, "Simulated Output Field of $(MAG) in Volts")
+  field(DTYP, "Soft Channel")
+  field(EGU,"V")
+  field(PREC, "3")
+}
+
+### Target - Time to reach
+
+record(stringin, "$(P)$(MAG):TARGET:TIME") {
+  field(DESC, "Time to Target of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):TARGET:TIME MS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):TARGET:TIME")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
+}
+
+record(stringin, "$(P)SIM:$(MAG):TARGET:TIME") {
+  field(DESC, "Simulated Time to Target of $(MAG)")
+  field(DTYP, "Soft Channel")
+}
+
+### Target - Value in Gauss
+
+record(ao, "$(P)$(MAG):TARGET:SP") {
+  field(DESC, "Target of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "G")
+  field(PREC, "3")
+  
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):TARGET:SP")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):TARGET")
+  field(SDIS, "$(P)$(MAG):DIS")
+  
+  info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)$(MAG):TARGET") {
+  field(DESC, "Target of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "G")
+  field(PREC, "3")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):TARGET MS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):TARGET")
+  field(SDIS, "$(P)$(MAG):DIS")
+  
+  info(INTEREST, "HIGH")
+}
+
+record(ao, "$(P)SIM:$(MAG):TARGET") {
+  field(DESC, "Simulated Target of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(EGU,"G")
+  field(PREC, "3")
+}
+
+### Abort Ramp
+record(bo, "$(P)$(MAG):ABORT:SP") {
+  field(DESC, "Abort $(MAG) ramp")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZNAM, "Idle")
+  field(ONAM, "Abort")
+  
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):ABORT")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):ABORT")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "MEDIUM")
+}
+alias("$(P)$(MAG):ABORT:SP","$(P)$(MAG):ABORT")
+
+record(bo, "$(P)SIM:$(MAG):ABORT") {
+  field(DESC, "Simulated Abort Status of $(MAG)")
+  field(DTYP, "Soft Channel")
+
+  field(ZNAM, "$(MAG) is Idle")
+  field(ONAM, "Aborting $(MAG)")
+}
+
+### Quench
+record(bi, "$(P)$(MAG):QUENCH") {
+  field(DESC, "Quench status of $(MAG) ramp")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(ZNAM, "")
+  field(ONAM, "Quenched")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):QUENCH MS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):QUENCH")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "MEDIUM")
+}
+
+record(bi, "$(P)SIM:$(MAG):QUENCH") {
+  field(DESC, "Simulated quench Status of $(MAG)")
+  field(DTYP, "Soft Channel")
+
+  field(ZNAM, "")
+  field(ONAM, "Quenched")
+}
+
+### Start Ramp
+record(bo, "$(P)$(MAG):SET:SP") {
+  field(DESC, "Start $(MAG) ramp")
+  field(DTYP, "Soft Channel")
+  
+  field(ZNAM, "Idle")
+  field(ONAM, "Ramp")
+  
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):START:SP")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):SET:SP PP")
+  field(SDIS, "$(P)$(MAG):DIS")
+  
+  info(INTEREST, "MEDIUM")
+}
+
+record(bo, "$(P)SIM:$(MAG):SET:SP") {
+  field(DESC, "Simulated Ramp Status of $(MAG)")
+  field(DTYP, "Soft Channel")
+  
+  field(FLNK, "$(P)SIM:$(MAG):MAGNETS:READY.PROC")
+
+  field(ZNAM, "$(MAG) is Idle")
+  field(ONAM, "Ramping $(MAG)")
+}
+
+record(fanout, "$(P)SIM:$(MAG):MAGNETS:READY") {
+  field (DESC, "Simulate the $(MAG) magnet going to setpoint")
+  field (SELM, "All")
+  field (LNK1, "$(P)SIM:$(MAG):MAGNETS:SET:OUTPUT")
+  field (LNK2, "$(P)SIM:$(MAG):MAGNETS:SET:READY")
+}
+
+record(dfanout, "$(P)SIM:$(MAG):MAGNETS:SET:READY") {
+  field(DESC, "Set $(MAG) to ready")
+  field(DOL, "Constant")
+  field(VAL, 1)
+  field(OUTA, "$(P)SIM:$(MAG):READY")
+}
+
+record(dfanout, "$(P)SIM:$(MAG):MAGNETS:SET:OUTPUT") {
+  field(DESC, "Set $(MAG) magnet output to target")
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P)$(MAG):TARGET:SP MS")
+  field(OUTA, "$(P)SIM:$(MAG):OUTPUT:FIELD:GAUSS")
+}
+
+### Disable Magnet
+record(bo, "$(P)$(MAG):DIS") {
+    field(DESC, "Disable $(MAG)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "$(MAG) ENABLED")
+    field(ONAM, "$(MAG) DISABLED")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE)")
+    field(FLNK, "$(P)$(MAG):DIS:DISABLE PP")
+}
+
+record(dfanout, "$(P)$(MAG):DIS:DISABLE"){
+  field (DOL, "$(P)$(MAG):DIS")
+  field (OMSL, "closed_loop")
+  field (OUTA, "$(P)$(MAG):TARGET:SP.DISP")
+  field (OUTB, "$(P)$(MAG):SET:SP.DISP")
+}
+
+### Magnet Zero point
+record(ao, "$(P)$(MAG):ZERO") {
+  field(DESC, "Zero position for $(MAG)")
+  field(EGU,"G")
+  field(PREC, "3")
+  
+  info(INTEREST, "HIGH")
+}
+
+### Magnet Zerofield point
+record(ao, "$(P)$(MAG):ZEROFIELD") {
+  field(DESC, "Zerofield position for $(MAG)")
+  field(EGU,"G")
+  field(PREC, "3")
+  
+  info(INTEREST, "HIGH")
+}
