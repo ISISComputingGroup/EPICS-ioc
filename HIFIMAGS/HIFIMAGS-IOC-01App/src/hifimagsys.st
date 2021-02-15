@@ -64,7 +64,7 @@ ss systemManager {
   state monitoring {
     when (xquench == 1 || yquench == 1 || zquench == 1 || mquench == 1){
       if (quench_message_printed == 0) {
-        printf("QUENCH seen, quench values in following states (1 = quenched): x=%d, y=%d, z=%d, m=%d\r\n", xquench, yquench, zquench, mquench);
+        errlogSevPrintf(errlogMajor, "QUENCH seen, quench values in following states (1 = quenched): x=%d, y=%d, z=%d, m=%d\r\n", xquench, yquench, zquench, mquench);
         quench_message_printed = 1;
       }
     } state quench
@@ -74,8 +74,6 @@ ss systemManager {
       prev_opmode = opmode;
       quench_message_printed = 0;
     } state opmode
-    when (opmode == prev_opmode) { 
-    } state monitoring
   }
   
   state quench {

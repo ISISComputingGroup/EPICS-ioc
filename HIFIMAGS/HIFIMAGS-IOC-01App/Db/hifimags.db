@@ -7,7 +7,6 @@ record(bo, "$(P)SIM")
     field(ZNAM, "NO")
     field(ONAM, "YES")
     field(VAL, "$(RECSIM)")
-    info("testparam","testvalue")
 }
 
 record(bo, "$(P)DISABLE") 
