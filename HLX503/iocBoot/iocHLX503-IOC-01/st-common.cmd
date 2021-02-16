@@ -29,7 +29,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(HLX503)/db/hlx503.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(HLX503)/db/hlx503.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),HE3POT_HIGHT_ITC=$(HE3POT_HIGHT_ITC),HE3POT_LOWT_ITC=$(HE3POT_LOWT_ITC),1KPOT_ITC=$(1KPOT_ITC),SORB_ITC=$(SORB_ITC),HE3POT_HIGHT_CH=$(HE3POT_HIGHT_CH),HE3POT_LOWT_CH=$(HE3POT_LOWT_CH),1KPOT_CH=$(1KPOT_CH),SORB_CH=$(SORB_CH)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
