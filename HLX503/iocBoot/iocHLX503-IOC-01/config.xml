@@ -9,14 +9,10 @@
     <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." defaultValue="8" hasDefault="YES" />
     <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." defaultValue="none" hasDefault="YES" />
     <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
-    <macro name="HE3POT_HIGHT_ITC" pattern="[0-9]+$" description="Number of the ITC503 used to control the Helium-3 Pot at high temperatures." hasDefault="YES" defaultValue="1" />
-    <macro name="HE3POT_HIGHT_CH" pattern="[0-9]+$" description="Channel number of the Helium-3 Pot at high temperatures." hasDefault="YES" defaultValue="3" />
-    <macro name="HE3POT_LOWT_ITC" pattern="[0-9]+$" description="Number of the ITC503 used to control the Helium-3 Pot at low temperatures." hasDefault="YES" defaultValue="0" />
-    <macro name="HE3POT_LOWT_CH" pattern="[0-9]+$" description="Channel number of the Helium-3 Pot at low temperatures." hasDefault="YES" defaultValue="2" />
-    <macro name="1KPOT_ITC" pattern="[0-9]+$" description="Number of the ITC503 used to control the 1K Pot." hasDefault="YES" defaultValue="1" />
-    <macro name="1KPOT_CH" pattern="[0-9]+$" description="Channel number of the 1k Pot." hasDefault="YES" defaultValue="2" />
-    <macro name="SORB_ITC" pattern="[0-9]+$" description="Number of the ITC503 used to control the Sorb." hasDefault="YES" defaultValue="0" />
-    <macro name="SORB_CH" pattern="[0-9]+$" description="Channel number of the Sorb." hasDefault="YES" defaultValue="1" />
+    <macro name="HE3POT_HIGHT_ISOBUS" pattern="[0-9]+$" description="ISOBUS Address of the ITC503 used to control the Helium-3 Pot at high temperatures." hasDefault="No" />
+    <macro name="HE3POT_LOWT_ISOBUS" pattern="[0-9]+$" description="ISOBUS Address of the ITC503 used to control the Helium-3 Pot at low temperatures." hasDefault="No" />
+    <macro name="1KPOT_ISOBUS" pattern="[0-9]+$" description="ISOBUS Address of the ITC503 used to control the 1K Pot." hasDefault="No" />
+    <macro name="SORB_ISOBUS" pattern="[0-9]+$" description="ISOBUS Address of the ITC503 used to control the Sorb." hasDefault="No" />
   </macros>
  </config_part>
 </ioc_config>
