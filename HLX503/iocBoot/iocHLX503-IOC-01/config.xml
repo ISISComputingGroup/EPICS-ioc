@@ -10,9 +10,13 @@
     <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." defaultValue="none" hasDefault="YES" />
     <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
     <macro name="HE3POT_HIGHT_ISOBUS" pattern="[0-9]+$" description="ISOBUS Address of the ITC503 used to control the Helium-3 Pot at high temperatures." hasDefault="No" />
+    <macro name="HE3POT_HIGHT_CHANNEL" pattern="[0-9]+$" description="Channel on the ITC503 used to control the Helium-3 Pot at high temperatures." hasDefault="No" />
     <macro name="HE3POT_LOWT_ISOBUS" pattern="[0-9]+$" description="ISOBUS Address of the ITC503 used to control the Helium-3 Pot at low temperatures." hasDefault="No" />
+    <macro name="HE3POT_LOWT_CHANNEL" pattern="[0-9]+$" description="Channel on the ITC503 used to control the Helium-3 Pot at low temperatures." hasDefault="No" />
     <macro name="1KPOT_ISOBUS" pattern="[0-9]+$" description="ISOBUS Address of the ITC503 used to control the 1K Pot." hasDefault="No" />
+    <macro name="1KPOT_CHANNEL" pattern="[0-9]+$" description="Channel on the ITC503 used to control the 1K Pot." hasDefault="No" />
     <macro name="SORB_ISOBUS" pattern="[0-9]+$" description="ISOBUS Address of the ITC503 used to control the Sorb." hasDefault="No" />
+    <macro name="SORB_CHANNEL" pattern="[0-9]+$" description="Channel on the ITC503 used to control the Sorb." hasDefault="No" />
   </macros>
  </config_part>
 </ioc_config>
