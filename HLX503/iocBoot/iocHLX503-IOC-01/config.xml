@@ -11,16 +11,12 @@
     <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
     <macro name="HE3POT_HIGHT_ISOBUS" pattern="[0-9]+$" description="ISOBUS Address of the ITC used to control the Helium-3 Pot at high temperatures." hasDefault="No" />
     <macro name="HE3POT_HIGHT_CHANNEL" pattern="[0-9]+$" description="Channel on the ITC used to control the Helium-3 Pot at high temperatures." hasDefault="No" />
-    <macro name="HE3POT_HIGHT_VERSION" pattern="^(502)|(503)|(601)$" description="Version on the ITC used to control the Helium-3 Pot at high temperatures. Default is 503, other options are 502 and 601." hasDefault="YES" defaultValue="503" />
     <macro name="HE3POT_LOWT_ISOBUS" pattern="[0-9]+$" description="ISOBUS Address of the ITC used to control the Helium-3 Pot at low temperatures." hasDefault="No" />
     <macro name="HE3POT_LOWT_CHANNEL" pattern="[0-9]+$" description="Channel on the ITC used to control the Helium-3 Pot at low temperatures." hasDefault="No" />
-    <macro name="HE3POT_LOWT_VERSION" pattern="^(502)|(503)|(601)$" description="Version on the ITC used to control the Helium-3 Pot at low temperatures. Default is 503, other options are 502 and 601." hasDefault="YES" defaultValue="503" />
     <macro name="1KPOT_ISOBUS" pattern="[0-9]+$" description="ISOBUS Address of the ITC used to control the 1K Pot." hasDefault="No" />
     <macro name="1KPOT_CHANNEL" pattern="[0-9]+$" description="Channel on the ITC used to control the 1K Pot." hasDefault="No" />
-    <macro name="1KPOT_VERSION" pattern="^(502)|(503)|(601)$" description="Version on the ITC used to control the 1KPOT. Default is 503, other options are 502 and 601." hasDefault="YES" defaultValue="503" />
     <macro name="SORB_ISOBUS" pattern="[0-9]+$" description="ISOBUS Address of the ITC used to control the Sorb." hasDefault="No" />
     <macro name="SORB_CHANNEL" pattern="[0-9]+$" description="Channel on the ITC used to control the Sorb." hasDefault="No" />
-    <macro name="SORB_VERSION" pattern="^(502)|(503)|(601)$" description="Version on the ITC used to control the SORB. Default is 503, other options are 502 and 601." hasDefault="YES" defaultValue="503" />
   </macros>
  </config_part>
 </ioc_config>
