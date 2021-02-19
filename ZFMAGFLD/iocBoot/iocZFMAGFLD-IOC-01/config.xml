@@ -29,7 +29,7 @@
         
         <macro name="EXTRA_DAQ_CHANNEL" pattern="^.*$" description="DAQ channel for the optional extra channel. Leave empty to disable. (e.g. ai3)" defaultValue="" hasDefault="YES" />
 		
-		<macro name="SAMPLE_NUM" pattern="" description="The number of samples to compress into 1 record for smoothing" defaultValue="1" hasDefault="YES" />
+		<macro name="NUM_SAMPLES" pattern="" description="The number of samples to compress into 1 record for smoothing" defaultValue="1" hasDefault="YES" />
 
     </macros>
     <pvsets>
