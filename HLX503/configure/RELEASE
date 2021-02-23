@@ -63,6 +63,8 @@ SSCAN=$(SUPPORT)/sscan/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
+READASCII=$(SUPPORT)/ReadASCII/master
+ITC503=$(SUPPORT)/itc503/master
 HLX503=$(SUPPORT)/hlx503/master
 
 # optional extra local definitions here

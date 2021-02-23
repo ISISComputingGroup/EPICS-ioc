@@ -1,41 +1,58 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(HLX503)/data"
-epicsEnvSet "DEVICE" "L0"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(ITC503)/data"
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
-
-## Device simulation mode IP configuration
-$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=57677)")
-
-## For recsim:
-$(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
-
-## For real device:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
-## Hardware flow control off
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", 0, "clocal", "Y")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
-## Software flow control off
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
-
-## Load record instances
-# asynSetTraceIOMask("L0", -1, 0x2)
-# asynSetTraceMask("L0", -1, 0x9)
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(HLX503)/db/hlx503.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
-dbLoadRecords("$(HLX503)/db/hlx503_itc.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),NAME=HE3POT_HIGHT,ISOBUS=$(HE3POT_HIGHT_ISOBUS),CHANNEL=$(HE3POT_HIGHT_CHANNEL)")
-dbLoadRecords("$(HLX503)/db/hlx503_itc.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),NAME=HE3POT_LOWT,ISOBUS=$(HE3POT_LOWT_ISOBUS),CHANNEL=$(HE3POT_LOWT_CHANNEL)")
-dbLoadRecords("$(HLX503)/db/hlx503_itc.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),NAME=1KPOT,ISOBUS=$(1KPOT_ISOBUS),CHANNEL=$(1KPOT_CHANNEL)")
-dbLoadRecords("$(HLX503)/db/hlx503_itc.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),NAME=SORB,ISOBUS=$(SORB_ISOBUS),CHANNEL=$(SORB_CHANNEL)")
+epicsEnvSet "DEVICE" "L0"
+epicsEnvSet "NAME" "HE3POT_HIGHT"
+epicsEnvSet "PORT" "$(HE3POT_HIGHT_PORT=NO_PORT_MACRO)"
+epicsEnvSet "BAUD" "$(HE3POT_HIGHT_BAUD=9600)"
+epicsEnvSet "BITS" "$(HE3POT_HIGHT_BITS=8)"
+epicsEnvSet "PARITY" "$(HE3POT_HIGHT_PARITY=none)"
+epicsEnvSet "STOP" "$(HE3POT_HIGHT_STOP=2)"
+epicsEnvSet "EMULATOR_PORT" "$(HE3POT_HIGHT_EMULATOR_PORT=)"
+epicsEnvSet "READASCII_NAME" "HE3POT_HIGHT_READASCII"
+< ${TOP}/iocBoot/iocHLX503-IOC-01/st-itc.cmd
+
+epicsEnvSet "DEVICE" "L1"
+epicsEnvSet "NAME" "HE3POT_LOWT"
+epicsEnvSet "PORT" "$(HE3POT_LOWT_PORT=NO_PORT_MACRO)"
+epicsEnvSet "BAUD" "$(HE3POT_LOWT_BAUD=9600)"
+epicsEnvSet "BITS" "$(HE3POT_LOWT_BITS=8)"
+epicsEnvSet "PARITY" "$(HE3POT_LOWT_PARITY=none)"
+epicsEnvSet "STOP" "$(HE3POT_LOWT_STOP=2)"
+epicsEnvSet "EMULATOR_PORT" "$(HE3POT_LOWT_EMULATOR_PORT=)"
+epicsEnvSet "READASCII_NAME" "HE3POT_LOWT_READASCII"
+< ${TOP}/iocBoot/iocHLX503-IOC-01/st-itc.cmd
+
+epicsEnvSet "DEVICE" "L2"
+epicsEnvSet "NAME" "1KPOT"
+epicsEnvSet "PORT" "$(1KPOT_PORT=NO_PORT_MACRO)"
+epicsEnvSet "BAUD" "$(1KPOT_BAUD=9600)"
+epicsEnvSet "BITS" "$(1KPOT_BITS=8)"
+epicsEnvSet "PARITY" "$(1KPOT_PARITY=none)"
+epicsEnvSet "STOP" "$(1KPOT_STOP=2)"
+epicsEnvSet "EMULATOR_PORT" "$(1KPOT_EMULATOR_PORT=)"
+epicsEnvSet "READASCII_NAME" "1KPOT_READASCII"
+< ${TOP}/iocBoot/iocHLX503-IOC-01/st-itc.cmd
+
+epicsEnvSet "DEVICE" "L3"
+epicsEnvSet "NAME" "SORB"
+epicsEnvSet "PORT" "$(SORB_PORT=NO_PORT_MACRO)"
+epicsEnvSet "BAUD" "$(SORB_BAUD=9600)"
+epicsEnvSet "BITS" "$(SORB_BITS=8)"
+epicsEnvSet "PARITY" "$(SORB_PARITY=none)"
+epicsEnvSet "STOP" "$(SORB_HIGHT_STOP=2)"
+epicsEnvSet "EMULATOR_PORT" "$(SORB_EMULATOR_PORT=)"
+epicsEnvSet "READASCII_NAME" "SORB_READASCII"
+< ${TOP}/iocBoot/iocHLX503-IOC-01/st-itc.cmd
+
+
+dbLoadRecords("$(HLX503)/db/hlx503.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
 
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
