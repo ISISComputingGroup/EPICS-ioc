@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
  <config_part>
-  <ioc_desc>ITC/Heliox based cryogenic refrigerator</ioc_desc>
+  <ioc_desc>ITC503/Heliox based cryogenic refrigerator</ioc_desc>
   <ioc_details></ioc_details>
   <macros>
     <macro name="HE3POT_HIGHT_PORT" pattern="^COM[0-9]+$" description="Serial COM port of the ITC used to control the Helium-3 Pot at high temperatures." hasDefault="No" />
