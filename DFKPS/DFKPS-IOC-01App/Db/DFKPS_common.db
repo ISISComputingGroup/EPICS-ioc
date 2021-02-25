@@ -23,6 +23,7 @@ record(bo, "$(P)POWER:SP")
     field(SDIS, "$(P)DISABLE")
     field(PINI, "$(SP_PINI)")
     info(autosaveFields, "VAL")
+    info(archive, "VAL")
 }
 alias("$(P)POWER:SP", "$(P)POWER:SP:RBV")
 
@@ -54,12 +55,13 @@ record(bo, "$(P)AUTOONOFF")
     field(DTYP, "Soft Channel")
     field(ZNAM, "Disabled")
     field(ONAM, "Enabled")
-    field(DOL, "1")
+    field(VAL, "0")
     field(PINI, "YES")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:AUTOONOFF")
-    field(SDIS, "$(P)DISABLE")
+    field(DISP, "$(DISABLE_AUTOONOFF)")
     info(autosaveFields, "VAL")
+    info(archive, "VAL")
 }
 
 record(calcout, "$(P)CALCONOFF")
@@ -74,6 +76,7 @@ record(calcout, "$(P)CALCONOFF")
     field(OUT, "$(P)POWER:SP PP")
     field(OOPT, "When Non-zero")
     field(DOPT, "Use OCAL")
+    info(archive, "A B C D VAL")
 }
 
 record(calcout, "$(P)VOLT")
@@ -98,6 +101,7 @@ record(ao, "$(P)CURR:SP")
     field(DTYP, "Soft Channel")
     field(OUT, "$(P)CURR:TORAW.A PP MS")
     field(PREC, "3")
+    info(archive, "VAL")
 }
 
 record(calcout, "$(P)CURR:TORAW")
@@ -113,14 +117,17 @@ record(longin, "$(P)RAW:SP:RBV") {
     field(INP, "@dfkps_common.proto rawsprbv $(port)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)RAW:SP")
+    info(archive, "VAL")
 }
 
 record(calc, "$(P)CURR:SP:RBV") {
     field(INPA, "$(P)RAW:SP:RBV CP MS")
-    field(CALC, "A / $(FWI)")
+    field(INPB, "$(P)POL CP MS")
+    field(CALC, "A / $(FWI) * (B=0?1:-1)")
     field(EGU, "A")
     field(PREC, "3")
     field(FLNK, "$(P)FIELD:SP:RBV:PRECAL")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)REMOTE")
@@ -135,6 +142,7 @@ record(bo, "$(P)REMOTE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:REMOTE")
     field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)SIM:RESET"){
@@ -171,17 +179,18 @@ record(bo, "$(P)DISABLE")
 
 record(calcout, "$(P)CURR")
 {
-field(DESC, "Convert Raw Val to Current")
-field(CALC, "A * $(FRI)")
-field(INPA, "$(P)RAW MS")
-field(FLNK, "$(P)FIELD:PRECALIB")
-field(EGU, "A")
-field(HSV, "MINOR")
-field(LSV, "MINOR")
-field(PREC, "3")
-info(INTEREST, "HIGH")
-info(archive, "VAL")
-info(autosaveFields, "HIGH LOW")
+    field(DESC, "Convert Raw Val to Current")
+    field(CALC, "A * (B=0?1:-1) * $(FRI)")
+    field(INPA, "$(P)RAW MS")
+    field(INPB, "$(P)POL CP MS")
+    field(FLNK, "$(P)FIELD:PRECALIB")
+    field(EGU, "A")
+    field(HSV, "MINOR")
+    field(LSV, "MINOR")
+    field(PREC, "3")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    info(autosaveFields, "HIGH LOW")
 }
 alias("$(P)CURR", "$(P)CURR:RBV")
 
@@ -209,7 +218,8 @@ record(bi, "$(P)IS_CALIB")
 	field(PINI, "YES")
 }
 
-record(calc, "$(P)RAW:PERCENT") {
+record(calc, "$(P)RAW:PERCENT") 
+{
     field(INPA, "$(P)RAW CP MSS")
     field(B, "$(MAX_RAW_SETPOINT)")
     field(CALC, "ABS(100.0*(A*$(FWI)*$(FRI))/B)")
@@ -251,3 +261,47 @@ record(stringin, "$(P)POL_TYPE")
 	field(VAL, "$(POLARITY)")
 	field(PINI, "YES")
 }
+
+record(bo, "$(P)POL:HIDE")
+{
+	field(DESC, "Hide polarity setpoint?")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+	field(VAL, "1")
+    field(DISP, "1")
+	field(PINI, "YES")
+}
+
+record(bi, "$(P)POL")
+{
+    field(DESC, "Polarity")
+    field(DTYP, "stream")
+    field(INP, "@dfkps_common.proto getpol $(port) 0")
+    field(ZNAM, "+")
+    field(ONAM, "-")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POL")
+    field(SDIS, "$(P)DISABLE")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+alias("$(P)POL", "$(P)POL:RBV")
+
+record(bo, "$(P)POL:SP")
+{
+    field(DESC, "Polarity")
+    field(DTYP, "stream")
+    field(OUT, "@dfkps_common.proto setpol($(POLCMD=PO)) $(port) 0")
+    field(ZNAM, "+")
+    field(ONAM, "-")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POL:SP")
+    info(archive, "VAL")
+}
+alias("$(P)POL:SP", "$(P)POL:SP:RBV")
+
+record(bo, "$(P)SIM:POL"){
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:POL", "$(P)SIM:POL:SP")

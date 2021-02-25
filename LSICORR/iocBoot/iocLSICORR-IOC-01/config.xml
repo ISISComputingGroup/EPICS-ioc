@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+ <config_part>
+  <ioc_desc>LSI Correlator</ioc_desc>
+  <ioc_details>LSI Correlator component of SANS-DLS</ioc_details>
+  <macros>
+    <macro name="FILEPATH" pattern="^.*$" description="Directory in which to save data files." hasDefault="NO"/>
+    <macro name="ADDR" pattern="^.*$" description="IP address to connect to." hasDefault="NO" />
+    <macro name="FIRMWARE_REVISION" pattern="^.*$" description="The revision of the devices firmware." hasDefault="YES" defaultValue="4.0.0.3"/>
+  </macros>
+ </config_part>
+</ioc_config>

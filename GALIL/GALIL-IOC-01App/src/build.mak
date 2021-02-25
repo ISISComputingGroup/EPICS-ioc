@@ -53,7 +53,7 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB)
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre
+$(APPNAME)_LIBS += utilities pcrecpp pcre
 ## Add other libraries here ##
 $(APPNAME)_LIBS += GalilSupport calc sscan
 $(APPNAME)_LIBS += motorSimSupport

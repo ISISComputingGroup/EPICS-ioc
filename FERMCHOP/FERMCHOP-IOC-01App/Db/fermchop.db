@@ -41,8 +41,6 @@ record(waveform, "$(P)STATUS:RAW")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STATUS:RAW")
     field(SDIS, "$(P)DISABLE")
-	
-	info(archive, "VAL")
 }
 
 record(ao, "$(P)_MHZ") {
@@ -518,9 +516,9 @@ record(calcout, "$(P)SPEED:SP:_SEND_IF_OK")
 {
     field(INPA, "$(P)SPEED:SP")
     field(INPB, "$(P)SPEED:SP:RBV")
-	field(CALC, "A!=B") # Prevents resending a setpoint if that setpoint was already set.
+	field(CALC, "ABS(A-B) > .01") # Prevents resending a setpoint if that setpoint was already set.
 	field(OOPT, "When Non-zero")
-	field(OUT, "$(P)SPEED:SP:CALC.PROC CA PP")
+	field(OUT, "$(P)SPEED:SP:CALC.PROC PP")
 }
 
 record(ao, "$(P)SPEED:SP")
@@ -530,12 +528,12 @@ record(ao, "$(P)SPEED:SP")
 	field(ASG, "$(ASG)")
 	field(DTYP, "Soft Channel")
 	field(PREC, "1")
-	field(FLNK, "$(P)SPEED:SP:_SEND_IF_OK")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED:SP")
     field(SDIS, "$(P)DISABLE")
-	info(archive, "VAL")
     field(ADEL, "0.1")
+	field(FLNK, "$(P)SPEED:SP:_SEND_IF_OK")
+	info(archive, "VAL")
 }
 
 record(mbbo, "$(P)SPEED:SP:GUI")

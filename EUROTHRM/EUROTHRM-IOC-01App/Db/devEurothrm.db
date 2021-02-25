@@ -143,7 +143,7 @@ record(bi, "$(P)RAMPING")
 record(ao, "$(P)CURRENT_TEMP")
 {
     field(DESC, "The current temperature of the sensor")
-    field(DOL, "$(P)TEMP")
+    field(DOL, "$(P)TEMP CP")
     field(OMSL, "closed_loop")
     field(DTYP, "asynFloat64")
     field(OUT, "@asyn($(READ),0,1)CUR")
@@ -674,229 +674,11 @@ record(ao, "$(P)AUTOTUNE:SP") {
 
 alias("$(P)AUTOTUNE", "$(P)AUTOTUNE:SP:RBV")
 
-record(stringin, "$(P)CAL:SEL:RBV") {
-    info(INTEREST, "MEDIUM")
-    field(DESC, "Calibration file")
-    field(DTYP, "Soft Channel")
-    field(INP, "$(P)TEMP.NSPE MS")
-    field(PINI, "YES")
-    field(SCAN, "Passive")
-    info(archive, "VAL")
-}
-
-record(stringin, "$(P)CAL:RBV")
-{
-    field(DESC, "Current Calibration file")
-    field(DTYP, "Soft Channel")
-    field(INP, "$(P)TEMP.SPEC MS")
-    field(PINI, "YES")
-    field(SCAN, "Passive")
-    info(archive, "VAL")
-}
-
-record(bi, "$(P)CAL:APPLY")
-{
-    field(DTYP, "Soft Channel")
-    field(ZNAM, "WAIT")
-    field(ONAM, "APPLY")
-    field(VAL, "0")
-    field(FLNK, "$(P)CAL:APPLY:UPDATE.PROC")
-}
-
-record(bo, "$(P)CAL:APPLY:RST")
-{
-    field(DTYP, "Soft Channel")
-    field(ZNAM, "STOP APPLY")
-    field(ONAM, "")
-    field(VAL, "0")
-    field(OUT, "$(P)CAL:APPLY")
-}
-
-record(stringout, "$(P)CAL:SEL")
-{
-    field(DESC, "Set Calibration file")
-    field(DTYP, "Soft Channel")
-    field(FLNK, "$(P)CAL:SEL:UPDATE.PROC")
-    field(PINI, "YES")
-    field(VAL, "None.txt")
-    info(archive, "VAL")
-    info(autosaveFields, "VAL")
-#        info(autosaveFields_pass0, "VAL")
-}
-
-record(scalcout, "$(P)CAL:SEL:FMT")
-{
-    field(INPA, "$(P)CAL:SEL:VAL")
-    field(CALC, "$P('%s.test',A)")
-}
-
 # calc needed here to make new EGU for RATE
 record(scalcout, "$(P)RATE:UPDATE_EGU")
 {
     field(CALC, "AA+'/min'") # AA comes from st-euro.cmd
     field(OUT, "$(P)RATE.EGU")
-}
-
-record(sseq, "$(P)CAL:SEL:UPDATE")
-{
-    field(DOL1, "$(P)CAL:SEL.VAL")
-    field(LNK1, "$(P)TEMP.NSPE")
-    field(DOL2, "$(P)CAL:SEL")
-    field(LNK2, "$(P)TEMP:SP:RBV:CONV.NSPE")
-    field(DOL3, "$(P)CAL:SEL")
-    field(LNK3, "$(P)TEMP:HIGHLIMIT.NSPE")
-    field(DOL4, "$(P)CAL:SEL")
-    field(LNK4, "$(P)TEMP:LOWLIMIT.NSPE")
-    field(DOL5, "$(P)CAL:SEL")
-    field(LNK5, "$(P)TEMP:SP:CONV.NSPE")
-    field(DOL6, "1")
-    field(LNK6, "$(P)CAL:SEL:UPDATE:NOW.PROC")
-}
-
-record(dfanout, "$(P)CAL:SEL:UPDATE:NOW")
-{
-    field(VAL, "1")
-    field(OUTA, "$(P)CAL:APPLY.VAL")
-    field(OUTB, "$(P)CAL:APPLY.PROC")
-}
-
-record(seq, "$(P)CAL:APPLY:UPDATE")
-{
-    field(DOL1, "$(P)CAL:APPLY")
-    field(LNK1, "$(P)TEMP.INIT NPP")
-    field(DOL2, "$(P)CAL:APPLY")
-    field(LNK2, "$(P)TEMP:SP:RBV:CONV.INIT NPP")
-    field(DOL3, "$(P)CAL:APPLY")
-    field(LNK3, "$(P)TEMP:HIGHLIMIT.INIT NPP")
-    field(DOL4, "$(P)CAL:APPLY")
-    field(LNK4, "$(P)TEMP:LOWLIMIT.INIT NPP")
-    field(DOL5, "$(P)CAL:APPLY")
-    field(LNK5, "$(P)TEMP:SP:CONV.INIT NPP")
-    field(DOL6, "0")
-    field(DLY6, "2")
-    field(LNK6, "$(P)CAL:APPLY:RST.PROC")
-}
-
-# FileList for sensor calibration
-#######################
-
-record(waveform, "$(P)SENSOR_DIRBASE:SP")
-{
-    field(DESC, "Set directory of sensor calib files")
-    field(DTYP, "asynOctetWrite")
-    field(PINI, "NO")
-    field(INP, "@asyn($(SENSORLIST),0,1)DIRBASE")
-    field(FTVL, "CHAR")
-    field(NELM, 256)
-}
-
-record(waveform, "$(P)SENSOR_DIRBASE")
-{
-    field(DESC, "Get directory of sensor calib files")
-    field(DTYP, "asynOctetRead")
-    field(INP, "@asyn($(SENSORLIST),0,1)DIRBASE")
-    field(SCAN, "I/O Intr")
-    field(FTVL, "CHAR")
-    field(NELM, 256)
-}
-
-record(waveform, "$(P)SENSOR_FILES")
-{
-    field(DESC, "Compressed JSON list of sensor files")
-    field(FTVL, "CHAR")
-    field(DTYP, "asynOctetRead")
-    field(INP, "@asyn($(SENSORLIST),0,1)JARR")
-    field(NELM, 16384)
-    field(SCAN, "I/O Intr")
-}
-
-record(waveform, "$(P)SENSOR_PATTERN:SP")
-{
-    field(DESC, "Set regex search of sensor calib files")
-    field(DTYP, "asynOctetWrite")
-    field(INP, "@asyn($(SENSORLIST),0,1)SEARCH")
-    field(FTVL, "CHAR")
-    field(NELM, 256)
-}
-record(waveform, "$(P)SENSOR_PATTERN")
-{
-    field(DESC, "Get regex search of sensor calib files")
-    field(DTYP, "asynOctetRead")
-    field(INP, "@asyn($(SENSORLIST),0,1)SEARCH")
-    field(PINI, "NO")
-    field(SCAN, "I/O Intr")
-    field(FTVL, "CHAR")
-    field(NELM, 256)
-}
-
-record(cvt, "$(P)TEMP")
-{
-    field(SCAN, "Passive")
-    field(DESC, "Temperature")
-    info(INTEREST, "HIGH")
-    field(INPY, "$(P)RBV MS")
-    field(YSLO, 1)
-    field(METH, "1D TABLE INVERTED")
-    field(SPEC, "None.txt")
-    field(TDIR, "$(SDIR)")
-    field(BDIR, "$(CALIB_BASE_DIR)")
-    field(PREC, "3")
-    field(FLNK, "$(P)CURRENT_TEMP PP")
-    info(archive, "VAL")
-    field(EGU, "K")
-}
-
-record(cvt, "$(P)TEMP:SP:RBV:CONV")
-{
-    field(SCAN, "Passive")
-    field(INPY, "$(P)SP:RBV MS")
-    field(OUT, "$(P)TEMP:SP:RBV PP MS")
-    field(YSLO, 1)
-    field(METH, "1D TABLE INVERTED")
-    field(SPEC, "None.txt")
-    field(PREC, "3")
-    field(TDIR, "$(SDIR)")
-    field(BDIR, "$(CALIB_BASE_DIR)")
-}
-
-record(cvt, "$(P)TEMP:HIGHLIMIT")
-{
-    field(SCAN, "Passive")
-    field(INPY, "$(P)HILIM PP")
-    field(YSLO, 1)
-    field(METH, "1D TABLE INVERTED")
-    field(SPEC, "None.txt")
-    field(TDIR, "$(SDIR)")
-    field(BDIR, "$(CALIB_BASE_DIR)")
-    field(PREC, "3")
-    info(archive, "VAL")
-    field(EGU, "K")
-}
-
-record(cvt, "$(P)TEMP:LOWLIMIT")
-{
-    field(SCAN, "Passive")
-    field(INPY, "$(P)LOWLIM PP")
-    field(YSLO, 1)
-    field(METH, "1D TABLE INVERTED")
-    field(SPEC, "None.txt")
-    field(TDIR, "$(SDIR)")
-    field(BDIR, "$(CALIB_BASE_DIR)")
-    field(PREC, "3")
-    info(archive, "VAL")
-    field(EGU, "K")
-}
-
-record(cvt, "$(P)TEMP:SP:CONV")
-{
-    field(OUT, "$(P)SP PP")
-    field(INPX, "$(P)RAMP_SP")
-    field(YSLO, 1)
-    field(METH, "1D TABLE")
-    field(SPEC, "None.txt")
-    field(TDIR, "$(SDIR)")
-    field(BDIR, "$(CALIB_BASE_DIR)")
-    field(PREC, "3")
 }
 
 record(ai, "$(P)RBV") {
@@ -910,7 +692,6 @@ record(ai, "$(P)RBV") {
     field(SDIS, "$(Q)DISABLE")
     field(EGU, "")
     field(PREC, "3")
-    field(FLNK, "$(P)TEMP.PROC PP")
     info(archive, "VAL")
     info(alarm, "Euro")
 }

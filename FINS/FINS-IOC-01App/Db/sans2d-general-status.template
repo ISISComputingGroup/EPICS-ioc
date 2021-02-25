@@ -1,0 +1,282 @@
+# DM1000               General                  Heartbeat 
+               
+# DM1001.00            General                  Monitor 3 IN beam
+# DM1001.01            General                  Monitor 3 OUT beam
+# DM1001.02            General                  Monitor 3 Error beam
+# DM1001.03            General                  Fast Shutter Open
+# DM1001.04            General                  Fast Shutter Error
+# DM1001.05            General                  Detector Overcount (no longer used)
+# DM1001.06            General                  Galil permission to move interlock
+# DM1001.07            General                  V8 Open
+# DM1001.08            General                  V8 Error
+# DM1001.15            General                  Common Alarm signal
+
+# DM1004.00            Seal system status       Deflated
+# DM1004.01            Seal system status       Inflating
+# DM1004.02            Seal system status       Inflated
+# DM1004.03            Seal system status       Deflating
+
+# FULL_PREFIX = Instrument and IOC prefix
+
+record(bo, "$(FULL_PREFIX)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(FULL_PREFIX)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+record(longin, "$(FULL_PREFIX)HEARTBEAT")
+{
+    field(DESC, "Heartbeat of the FINS PLC")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, 1000, 5.0) FINS_DM_READ")
+    field(SCAN, "1 second")
+    field(EGU, "")
+    field(SIML, "$(FULL_PREFIX)SIM")
+    field(SIOL, "$(FULL_PREFIX)SIM:HEARTBEAT")
+    field(SDIS, "$(FULL_PREFIX)DISABLE")
+}
+
+record(bi, "$(FULL_PREFIX)MONITOR3:IN")
+{
+    field(DESC, "Monitor 3 in beam")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B0 CP MS")
+    info(INTEREST, "MEDIUM")
+    field(FLNK, "$(FULL_PREFIX)MONITOR3:OUT.PROC")
+}
+
+record(bi, "$(FULL_PREFIX)MONITOR3:OUT")
+{
+    field(DESC, "Monitor 3 out of beam")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B1 CP MS")
+    info(INTEREST, "MEDIUM")
+    field(FLNK, "$(FULL_PREFIX)MONITOR3:ERROR.PROC")
+}
+
+record(bi, "$(FULL_PREFIX)MONITOR3:ERROR")
+{
+    field(DESC, "Monitor 3 error")
+    field(ZNAM, "OK")
+    field(ONAM, "ERROR")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B2 CP MS")
+    field(OSV, "MAJOR")
+    info(INTEREST, "MEDIUM")
+    field(FLNK, "$(FULL_PREFIX)MONITOR3:STATUS")
+}
+
+record(mbbi, "$(FULL_PREFIX)MONITOR3:STATUS")
+{
+    field(DTYP, "Raw Soft Channel")
+    field(DESC, "Monitor 3 status")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001 CP MS")
+    field(NOBT, "3")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+    field(FRVL, "4")
+    field(FVVL, "5")
+    field(SXVL, "6")
+    field(ONST, "IN")
+    field(TWST, "OUT")
+    field(THST, "UNKNOWN")
+    field(THSV, "MAJOR")
+    field(FRST, "ERROR")
+    field(FRSV, "MAJOR")
+    field(FVST, "ERROR(IN)")
+    field(FVSV, "MAJOR")
+    field(SXST, "ERROR(OUT)")
+    field(SXSV, "MAJOR")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    info(alarm, "Vacuum")
+}
+
+record(bo, "$(FULL_PREFIX)SHUTTER:AUTO") {
+    field(ZNAM, "Manual")
+    field(ONAM, "Auto")
+    info(autosaveFields, "VAL")
+}
+
+# Should be processed by ISISDAE via $(POST_BEGIN_x) macros
+record(calcout, "$(FULL_PREFIX)SHUTTER:OPEN_IF_AUTO") {
+    field(INPA, "$(FULL_PREFIX)SHUTTER:AUTO")
+    field(CALC, "A")
+    field(OCAL, "1")
+    field(OOPT, "When Non-zero")
+    field(DOPT, "Use OCAL")
+    field(OUT, "$(FULL_PREFIX)SHUTTER:STATUS:SP PP")
+}
+
+# Should be processed by ISISDAE via $(POST_BEGIN_x) macros
+record(calcout, "$(FULL_PREFIX)SHUTTER:CLOSE_IF_AUTO") {
+    field(INPA, "$(FULL_PREFIX)SHUTTER:AUTO")
+    field(CALC, "A")
+    field(OCAL, "0")
+    field(OOPT, "When Non-zero")
+    field(DOPT, "Use OCAL")
+    field(OUT, "$(FULL_PREFIX)SHUTTER:STATUS:SP PP")
+}
+
+record(bi, "$(FULL_PREFIX)SHUTTER:OPEN")
+{
+    field(DESC, "Fast shutter open")
+    field(ZNAM, "")
+    field(ONAM, "OPEN")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B3 CP MS")
+    info(INTEREST, "MEDIUM")
+    field(FLNK, "$(FULL_PREFIX)SHUTTER:ERROR.PROC")
+}
+
+record(bi, "$(FULL_PREFIX)SHUTTER:ERROR")
+{
+    field(DESC, "Fast shutter error")
+    field(ZNAM, "OK")
+    field(ONAM, "ERROR")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B4 CP MS")
+    field(FLNK, "$(FULL_PREFIX)SHUTTER:STATUS.PROC")
+    field(OSV, "MAJOR")
+    info(alarm, "Vacuum")
+    info(INTEREST, "MEDIUM")
+}
+
+record(mbbi, "$(FULL_PREFIX)SHUTTER:STATUS")
+{
+    field(DTYP, "Raw Soft Channel")
+    field(DESC, "Shutter status")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001 CP MS")
+    field(SHFT, "3")
+    field(NOBT, "2")
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+    field(ZRST, "CLOSED")
+    field(ONST, "OPEN")
+    field(TWST, "ERROR")
+    field(TWSV, "MAJOR")
+    field(THST, "ERROR(OPEN)")
+    field(THSV, "MAJOR")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(FULL_PREFIX)GALIL_INTERLOCK") {
+    field(DESC, "Galil permission to move")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B6 CP MS")
+    field(ONAM, "CAN MOVE")
+    field(ZNAM, "CANNOT MOVE")
+    info(INTEREST, "HIGH")
+}
+
+record(bi, "$(FULL_PREFIX)V8:OPEN")
+{
+    field(DESC, "V8 open")
+    field(ONAM, "OPEN")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.B7 CP MS")
+    info(INTEREST, "HIGH")
+    field(FLNK, "$(FULL_PREFIX)V8:ERROR.PROC")
+}
+
+record(bi, "$(FULL_PREFIX)V8:ERROR")
+{
+    field(DESC, "V8 error")
+    field(ZNAM, "OK")
+    field(ONAM, "ERROR")
+    field(INP, "$(FULL_PREFIX)ADDR:1001.B8 CP MS")
+    field(OSV, "MAJOR")
+    info(alarm, "Vacuum")
+    info(INTEREST, "HIGH")
+    field(FLNK, "$(P)$(Q)V8:STATUS.PROC")
+}
+
+record(mbbi, "$(FULL_PREFIX)V8:STATUS")
+{
+    field(DTYP, "Raw Soft Channel")
+    field(DESC, "V8 status")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001 CP MS")
+    field(SHFT, "7")
+    field(NOBT, "2")
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+    field(ZRST, "CLOSED")
+    field(ONST, "OPEN")
+    field(TWST, "ERROR")
+    field(TWSV, "MAJOR")
+    field(THST, "ERROR(OPEN)")
+    field(THSV, "MAJOR")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(bi, "$(FULL_PREFIX)COMMON_ALARM") {
+    field(DESC, "Common alarm signal")
+    field(ZNAM, "ERROR")
+    field(ONAM, "OK")
+    field(INP,  "$(FULL_PREFIX)ADDR:1001.BF CP MS")
+    field(FLNK, "$(FULL_PREFIX)COMMON_ALARM:BAD.PROC")
+    field(ZSV, "MAJOR")
+    info(alarm, "Vacuum")
+    info(INTEREST, "LOW")
+}
+
+record(calc, "$(FULL_PREFIX)COMMON_ALARM:BAD") {
+    field(DESC, "Common alarm bad")
+    field(INPA, "$(FULL_PREFIX)COMMON_ALARM CP MS")
+    field(CALC, "!A")
+    field(ASG, "READONLY")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+# DM1004.00            Seal system status       Deflated
+# DM1004.01            Seal system status       Inflating
+# DM1004.02            Seal system status       Inflated
+# DM1004.03            Seal system status       Deflating
+
+record(mbbi, "$(FULL_PREFIX)SEAL:STATUS") {
+    field(DESC, "Seal system status")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(P)$(Q)ADDR:1004 CP MS")
+    field(NOBT, 4)
+    
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(FRVL, "4")
+    field(EIVL, "8")
+    
+    field(ONST, "DEFLATED")
+    field(TWST, "INFLATING")
+    field(FRST, "INFLATED")
+    field(EIST, "DEFLATING")
+    
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+
+### Simulation Records ###
+
+record(longin, "$(FULL_PREFIX)SIM:HEARTBEAT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+

@@ -16,7 +16,6 @@ PROD_IOC = $(APPNAME)
 DBD += $(APPNAME).dbd
 
 caenhvwrapper_DIR = $(HVCAEN)/lib/$(EPICS_HOST_ARCH)
-hscaenetlib_DIR = $(HVCAEN)/lib/$(EPICS_HOST_ARCH)
 
 # HVCAENSIM-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
@@ -43,11 +42,11 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre
+$(APPNAME)_LIBS += utilities pcrecpp pcre
 ## Add other libraries here ##
 
-$(APPNAME)_LIBS_WIN32 += caenhvwrapper # hscaenetlib
-$(APPNAME)_SYS_LIBS_Linux += caenhvwrapper hscaenetlib
+$(APPNAME)_LIBS_WIN32 += caenhvwrapper
+$(APPNAME)_SYS_LIBS_Linux += caenhvwrapper
 
 # HVCAENSIM-IOC-01_registerRecordDeviceDriver.cpp derives from HVCAENSIM-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

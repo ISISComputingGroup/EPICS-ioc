@@ -34,17 +34,16 @@ iocInit
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
 
-# These PVs will make it so the inhibitor will only let one motor be non-zero at a time
-#epicsEnvSet(PVONE,$(MYPVPREFIX)MOT:MTR0407)
-#epicsEnvSet(PVTWO,$(MYPVPREFIX)MOT:MTR0408)
-#epicsEnvSet(PVONE_DISP,$(MYPVPREFIX)MOT:MTR0407.DISP)
-#epicsEnvSet(PVTWO_DISP,$(MYPVPREFIX)MOT:MTR0408.DISP)
+# Load a config from the instrument's config area. This allows each instrument to configure the inhibitor for it's needs.
+< $(ICPCONFIGROOT)/INHIBITR/inhibitr.cmd
 
-# These PVs will prevent a motor from moving while the CAEN is on
-#epicsEnvSet(PVONE,$(MYPVPREFIX)MOT:MTR0407.MOVN)
-#epicsEnvSet(PVTWO,$(MYPVPREFIX)CAEN:hv0:0:0:status.RVAL)
-#epicsEnvSet(PVONE_DISP,$(MYPVPREFIX)MOT:MTR0407.DISP)
-#epicsEnvSet(PVTWO_DISP,$(MYPVPREFIX)CAEN:hv0:0:0:pwonoff.DISP)
+# Example config:
 
-## Start any sequence programs
-seq inhibitor, "PVONE=$(PVONE),PVTWO=$(PVTWO),PVONE_DISP=$(PVONE_DISP),PVTWO_DISP=$(PVTWO_DISP)"
+### # These PVs will prevent a motor from moving while the CAEN is on
+### epicsEnvSet(PVONE,$(MYPVPREFIX)MOT:MTR0407.MOVN)
+### epicsEnvSet(PVTWO,$(MYPVPREFIX)CAEN:hv0:0:0:status.RVAL)
+### epicsEnvSet(PVONE_DISP,$(MYPVPREFIX)MOT:MTR0407.DISP)
+### epicsEnvSet(PVTWO_DISP,$(MYPVPREFIX)CAEN:hv0:0:0:pwonoff.DISP)
+### 
+### ## Start any sequence programs
+### seq inhibitor, "PVONE=$(PVONE),PVTWO=$(PVTWO),PVONE_DISP=$(PVONE_DISP),PVTWO_DISP=$(PVTWO_DISP)"

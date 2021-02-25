@@ -2,7 +2,7 @@
 
 stringiftest  "LOCALCALIB"  "$(LOCAL_CALIB="no")"  5  "yes"
 
-$(IFNOTLOCALCALIB) epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
+$(IFNOTLOCALCALIB) epicsEnvSet "CALIB_BASE_DIR" "$(ICPSETTINGSDIR)/config/common"
 $(IFNOTLOCALCALIB) epicsEnvSet "SENS_DIR" "temp_sensors"
 $(IFNOTLOCALCALIB) epicsEnvSet "RAMP_DIR" "$(CALIB_BASE_DIR)/ramps"
 

@@ -1,0 +1,23 @@
+
+record(longin, "$(P)$(Q)$(PV_NAME)")
+{
+	field(DESC, "$(DESCRIPTION)")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn(PLC, $(MEMORY_ADDRESS), 5.0) FINS_DM_READ_32")
+	field(SCAN, "$(SCAN)")
+
+	field(EGU, "$(UNIT)")
+
+	field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(PV_NAME)")
+
+    info(INTEREST, "HIGH")
+    info(archive, "10 VAL")
+}
+
+record(longin, "$(P)$(Q)SIM:$(PV_NAME)")
+{
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+}

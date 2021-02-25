@@ -38,23 +38,23 @@ $(APPNAME)_DBD += keithley_2001_buffer_parsing.dbd
 $(APPNAME)_DBD += keithley_2001_state_machine.dbd
 
 # Add all the support libraries needed by this IOC
+## IOC support LIB
+$(APPNAME)_LIBS += Keithley_2001
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 ## Add other libraries here ##
 $(APPNAME)_LIBS += stream
-$(APPNAME)_LIBS += pcre
+$(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += asyn 
 $(APPNAME)_LIBS += asubFunctions 
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += VISAdrv
-$(APPNAME)_LIBS += seq pv 
-## IOC support LIB
-$(APPNAME)_LIBS += Keithley_2001
+$(APPNAME)_LIBS += seq pv
 
 include $(VISADRV)/visa_lib.mak
 

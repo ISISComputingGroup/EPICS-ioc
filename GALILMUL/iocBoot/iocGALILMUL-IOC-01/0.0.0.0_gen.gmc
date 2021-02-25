@@ -1,0 +1,179 @@
+#AUTO
+MG "homedA",homedA
+XQ #THREADB,1;MG "homedB",homedB
+XQ #THREADC,2;MG "homedC",homedC
+XQ #THREADD,3;MG "homedD",homedD
+XQ #THREADE,4;MG "homedE",homedE
+XQ #THREADF,5;MG "homedF",homedF
+XQ #THREADG,6;MG "homedG",homedG
+XQ #THREADH,7;MG "homedH",homedH
+#THREADA
+IF ((homeA=1))
+IF ((homeA=1) & (_MOA=0) & (hjogA=0) & (_BGA=0) & ((_LRA=0) | (_LFA=0)))
+speedA=_SPA;DCA=hjgdcA;JGA=hjgspA;WT10;BGA;hjogA=1;ENDIF
+IF ((_LRA=1) & (_LFA=1) & (hjogA=1) & (_BGA=1))
+STA;ENDIF
+IF ((_LRA=1) & (_LFA=1) & (hjogA=1) & (_BGA=0))
+IF ((homeA=1) & (_MOA=0) & (ueipA=1) & (uiA=1))
+SPA=speedA;DCA=67107840;FIA;WT10;BGA;hjogA=2
+ELSE
+hjogA=3;ENDIF;ENDIF
+IF ((hjogA=2) & (_BGA=0))
+hjogA=3;ENDIF
+IF ((_LRA=1) & (_LFA=1) & (hjogA=3) & (_BGA=0))
+WT10;hjogA=0;SPA=speedA;homeA=0
+homedA=1;MG "homedA",homedA;MG "homeA",homeA;ENDIF
+ENDIF
+counter=counter+1
+IF (mlock=1)
+II ,,dpon,dvalues
+ENDIF
+JP #THREADA
+#THREADB
+IF ((homeB=1))
+IF ((homeB=1) & (_MOB=0) & (hjogB=0) & (_BGB=0) & ((_LRB=0) | (_LFB=0)))
+speedB=_SPB;DCB=hjgdcB;JGB=hjgspB;WT10;BGB;hjogB=1;ENDIF
+IF ((_LRB=1) & (_LFB=1) & (hjogB=1) & (_BGB=1))
+STB;ENDIF
+IF ((_LRB=1) & (_LFB=1) & (hjogB=1) & (_BGB=0))
+IF ((homeB=1) & (_MOB=0) & (ueipB=1) & (uiB=1))
+SPB=speedB;DCB=67107840;FIB;WT10;BGB;hjogB=2
+ELSE
+hjogB=3;ENDIF;ENDIF
+IF ((hjogB=2) & (_BGB=0))
+hjogB=3;ENDIF
+IF ((_LRB=1) & (_LFB=1) & (hjogB=3) & (_BGB=0))
+WT10;hjogB=0;SPB=speedB;homeB=0
+homedB=1;MG "homedB",homedB;MG "homeB",homeB;ENDIF
+ENDIF
+JP #THREADB
+#THREADC
+IF ((homeC=1))
+IF ((homeC=1) & (_MOC=0) & (hjogC=0) & (_BGC=0) & ((_LRC=0) | (_LFC=0)))
+speedC=_SPC;DCC=hjgdcC;JGC=hjgspC;WT10;BGC;hjogC=1;ENDIF
+IF ((_LRC=1) & (_LFC=1) & (hjogC=1) & (_BGC=1))
+STC;ENDIF
+IF ((_LRC=1) & (_LFC=1) & (hjogC=1) & (_BGC=0))
+IF ((homeC=1) & (_MOC=0) & (ueipC=1) & (uiC=1))
+SPC=speedC;DCC=67107840;FIC;WT10;BGC;hjogC=2
+ELSE
+hjogC=3;ENDIF;ENDIF
+IF ((hjogC=2) & (_BGC=0))
+hjogC=3;ENDIF
+IF ((_LRC=1) & (_LFC=1) & (hjogC=3) & (_BGC=0))
+WT10;hjogC=0;SPC=speedC;homeC=0
+homedC=1;MG "homedC",homedC;MG "homeC",homeC;ENDIF
+ENDIF
+JP #THREADC
+#THREADD
+IF ((homeD=1))
+IF ((homeD=1) & (_MOD=0) & (hjogD=0) & (_BGD=0) & ((_LRD=0) | (_LFD=0)))
+speedD=_SPD;DCD=hjgdcD;JGD=hjgspD;WT10;BGD;hjogD=1;ENDIF
+IF ((_LRD=1) & (_LFD=1) & (hjogD=1) & (_BGD=1))
+STD;ENDIF
+IF ((_LRD=1) & (_LFD=1) & (hjogD=1) & (_BGD=0))
+IF ((homeD=1) & (_MOD=0) & (ueipD=1) & (uiD=1))
+SPD=speedD;DCD=67107840;FID;WT10;BGD;hjogD=2
+ELSE
+hjogD=3;ENDIF;ENDIF
+IF ((hjogD=2) & (_BGD=0))
+hjogD=3;ENDIF
+IF ((_LRD=1) & (_LFD=1) & (hjogD=3) & (_BGD=0))
+WT10;hjogD=0;SPD=speedD;homeD=0
+homedD=1;MG "homedD",homedD;MG "homeD",homeD;ENDIF
+ENDIF
+JP #THREADD
+#THREADE
+IF ((homeE=1))
+IF ((homeE=1) & (_MOE=0) & (hjogE=0) & (_BGE=0) & ((_LRE=0) | (_LFE=0)))
+speedE=_SPE;DCE=hjgdcE;JGE=hjgspE;WT10;BGE;hjogE=1;ENDIF
+IF ((_LRE=1) & (_LFE=1) & (hjogE=1) & (_BGE=1))
+STE;ENDIF
+IF ((_LRE=1) & (_LFE=1) & (hjogE=1) & (_BGE=0))
+IF ((homeE=1) & (_MOE=0) & (ueipE=1) & (uiE=1))
+SPE=speedE;DCE=67107840;FIE;WT10;BGE;hjogE=2
+ELSE
+hjogE=3;ENDIF;ENDIF
+IF ((hjogE=2) & (_BGE=0))
+hjogE=3;ENDIF
+IF ((_LRE=1) & (_LFE=1) & (hjogE=3) & (_BGE=0))
+WT10;hjogE=0;SPE=speedE;homeE=0
+homedE=1;MG "homedE",homedE;MG "homeE",homeE;ENDIF
+ENDIF
+JP #THREADE
+#THREADF
+IF ((homeF=1))
+IF ((homeF=1) & (_MOF=0) & (hjogF=0) & (_BGF=0) & ((_LRF=0) | (_LFF=0)))
+speedF=_SPF;DCF=hjgdcF;JGF=hjgspF;WT10;BGF;hjogF=1;ENDIF
+IF ((_LRF=1) & (_LFF=1) & (hjogF=1) & (_BGF=1))
+STF;ENDIF
+IF ((_LRF=1) & (_LFF=1) & (hjogF=1) & (_BGF=0))
+IF ((homeF=1) & (_MOF=0) & (ueipF=1) & (uiF=1))
+SPF=speedF;DCF=67107840;FIF;WT10;BGF;hjogF=2
+ELSE
+hjogF=3;ENDIF;ENDIF
+IF ((hjogF=2) & (_BGF=0))
+hjogF=3;ENDIF
+IF ((_LRF=1) & (_LFF=1) & (hjogF=3) & (_BGF=0))
+WT10;hjogF=0;SPF=speedF;homeF=0
+homedF=1;MG "homedF",homedF;MG "homeF",homeF;ENDIF
+ENDIF
+JP #THREADF
+#THREADG
+IF ((homeG=1))
+IF ((homeG=1) & (_MOG=0) & (hjogG=0) & (_BGG=0) & ((_LRG=0) | (_LFG=0)))
+speedG=_SPG;DCG=hjgdcG;JGG=hjgspG;WT10;BGG;hjogG=1;ENDIF
+IF ((_LRG=1) & (_LFG=1) & (hjogG=1) & (_BGG=1))
+STG;ENDIF
+IF ((_LRG=1) & (_LFG=1) & (hjogG=1) & (_BGG=0))
+IF ((homeG=1) & (_MOG=0) & (ueipG=1) & (uiG=1))
+SPG=speedG;DCG=67107840;FIG;WT10;BGG;hjogG=2
+ELSE
+hjogG=3;ENDIF;ENDIF
+IF ((hjogG=2) & (_BGG=0))
+hjogG=3;ENDIF
+IF ((_LRG=1) & (_LFG=1) & (hjogG=3) & (_BGG=0))
+WT10;hjogG=0;SPG=speedG;homeG=0
+homedG=1;MG "homedG",homedG;MG "homeG",homeG;ENDIF
+ENDIF
+JP #THREADG
+#THREADH
+IF ((homeH=1))
+IF ((homeH=1) & (_MOH=0) & (hjogH=0) & (_BGH=0) & ((_LRH=0) | (_LFH=0)))
+speedH=_SPH;DCH=hjgdcH;JGH=hjgspH;WT10;BGH;hjogH=1;ENDIF
+IF ((_LRH=1) & (_LFH=1) & (hjogH=1) & (_BGH=1))
+STH;ENDIF
+IF ((_LRH=1) & (_LFH=1) & (hjogH=1) & (_BGH=0))
+IF ((homeH=1) & (_MOH=0) & (ueipH=1) & (uiH=1))
+SPH=speedH;DCH=67107840;FIH;WT10;BGH;hjogH=2
+ELSE
+hjogH=3;ENDIF;ENDIF
+IF ((hjogH=2) & (_BGH=0))
+hjogH=3;ENDIF
+IF ((_LRH=1) & (_LFH=1) & (hjogH=3) & (_BGH=0))
+WT10;hjogH=0;SPH=speedH;homeH=0
+homedH=1;MG "homedH",homedH;MG "homeH",homeH;ENDIF
+ENDIF
+JP #THREADH
+#CMDERR
+errstr=_ED;errcde=_TC;cmderr=cmderr+1
+EN
+#LIMSWI
+IF (((_SCA=2) | (_SCA=3)) & (_BGA=1))
+oldecelA=_DCA;DCA=limdcA;WT2;STA;DCA=oldecelA;ENDIF
+IF (((_SCB=2) | (_SCB=3)) & (_BGB=1))
+oldecelB=_DCB;DCB=limdcB;WT2;STB;DCB=oldecelB;ENDIF
+IF (((_SCC=2) | (_SCC=3)) & (_BGC=1))
+oldecelC=_DCC;DCC=limdcC;WT2;STC;DCC=oldecelC;ENDIF
+IF (((_SCD=2) | (_SCD=3)) & (_BGD=1))
+oldecelD=_DCD;DCD=limdcD;WT2;STD;DCD=oldecelD;ENDIF
+IF (((_SCE=2) | (_SCE=3)) & (_BGE=1))
+oldecelE=_DCE;DCE=limdcE;WT2;STE;DCE=oldecelE;ENDIF
+IF (((_SCF=2) | (_SCF=3)) & (_BGF=1))
+oldecelF=_DCF;DCF=limdcF;WT2;STF;DCF=oldecelF;ENDIF
+IF (((_SCG=2) | (_SCG=3)) & (_BGG=1))
+oldecelG=_DCG;DCG=limdcG;WT2;STG;DCG=oldecelG;ENDIF
+IF (((_SCH=2) | (_SCH=3)) & (_BGH=1))
+oldecelH=_DCH;DCH=limdcH;WT2;STH;DCH=oldecelH;ENDIF
+RE 1
+EN

@@ -1,0 +1,20 @@
+# Creates a corresponding set point for the status mbbis
+
+record(mbbo, "$(FULL_PREFIX)$(DEVICE):STATUS:SP")
+{
+    field(DESC, "Set $(DEVICE) status")
+    field(FLNK,  "$(FULL_PREFIX)$(DEVICE):STATUS:SP_CALC")
+    field(ZRVL, "1")
+    field(ONVL, "2")
+    field(ZRST, "$(ZERO_STRING)")
+    field(ONST, "$(ONE_STRING)")
+    info(archive, "VAL")
+}
+
+record(fanout, "$(FULL_PREFIX)$(DEVICE):STATUS:SP_CALC")
+{
+    field(SELM, "Specified")
+    field(SELL, "$(FULL_PREFIX)$(DEVICE):STATUS:SP.RVAL NPP")
+    field(LNK1, "$(FULL_PREFIX)$(DEVICE):$(ZERO_ACTION):SP_SEQ PP")
+    field(LNK2, "$(FULL_PREFIX)$(DEVICE):$(ONE_ACTION):SP_SEQ PP")
+}

@@ -6,7 +6,6 @@ record(bo, "$(P)SIM")
     field(ONAM, "YES")
     field(VAL, "$(RECSIM=0)")
 	field(PINI, "YES")
-    field(FLNK, "$(P)VERSION")
 }
 
 record(bo, "$(P)DISABLE") 
