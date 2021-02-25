@@ -31,8 +31,8 @@ file "$(GALIL)/GalilSup/Db/galil_coordinate_system.template"
 { 
 pattern { P,           R,    PORT,    ADDR,  SCAN         }
 
-        { "\$(P)DMC\$(CCP):",    "S",  "Galil", "0",   ".1 second"  }
-        { "\$(P)DMC\$(CCP):",    "T",  "Galil", "1",   ".1 second"  }
+        { "\$(P)DMC\$(CCP):",    "S",  "\$(PORT=Galil)", "0",   ".1 second"  }
+        { "\$(P)DMC\$(CCP):",    "T",  "\$(PORT=Galil)", "1",   ".1 second"  }
 }
 
 # end

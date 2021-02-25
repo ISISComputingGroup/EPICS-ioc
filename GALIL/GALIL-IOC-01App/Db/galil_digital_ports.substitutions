@@ -35,32 +35,50 @@ pattern {P,       R,          PORT,  BYTE,  MASK,     ZNAM,  ONAM,  ZSV,        
 
 # DMC = Digital motor controller
 # DMC binary inputs are organized in bytes
-	{\$(P)DMC\$(CCP):,  Galil0Bi0,  Galil, 0,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi1,  Galil, 0,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi2,  Galil, 0,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi3,  Galil, 0,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi4,  Galil, 0,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi5,  Galil, 0,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi6,  Galil, 0,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi7,  Galil, 0,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi0,  "\$(PORT=Galil)", 0,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi1,  "\$(PORT=Galil)", 0,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi2,  "\$(PORT=Galil)", 0,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi3,  "\$(PORT=Galil)", 0,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi4,  "\$(PORT=Galil)", 0,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi5,  "\$(PORT=Galil)", 0,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi6,  "\$(PORT=Galil)", 0,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi7,  "\$(PORT=Galil)", 0,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
 
-	{\$(P)DMC\$(CCP):,  Galil1Bi0,  Galil, 1,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi1,  Galil, 1,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi2,  Galil, 1,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi3,  Galil, 1,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi4,  Galil, 1,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi5,  Galil, 1,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi6,  Galil, 1,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi7,  Galil, 1,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi0,  "\$(PORT=Galil)", 1,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi1,  "\$(PORT=Galil)", 1,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi2,  "\$(PORT=Galil)", 1,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi3,  "\$(PORT=Galil)", 1,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi4,  "\$(PORT=Galil)", 1,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi5,  "\$(PORT=Galil)", 1,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi6,  "\$(PORT=Galil)", 1,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi7,  "\$(PORT=Galil)", 1,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
 
-	{\$(P)DMC\$(CCP):,  Galil2Bi0,  Galil, 2,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi1,  Galil, 2,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi2,  Galil, 2,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi3,  Galil, 2,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi4,  Galil, 2,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi5,  Galil, 2,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi6,  Galil, 2,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi7,  Galil, 2,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi0,  "\$(PORT=Galil)", 2,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi1,  "\$(PORT=Galil)", 2,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi2,  "\$(PORT=Galil)", 2,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi3,  "\$(PORT=Galil)", 2,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi4,  "\$(PORT=Galil)", 2,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi5,  "\$(PORT=Galil)", 2,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi6,  "\$(PORT=Galil)", 2,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi7,  "\$(PORT=Galil)", 2,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+
+	{\$(P)DMC\$(CCP):,  Galil3Bi0,  "\$(PORT=Galil)", 3,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi1,  "\$(PORT=Galil)", 3,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi2,  "\$(PORT=Galil)", 3,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi3,  "\$(PORT=Galil)", 3,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi4,  "\$(PORT=Galil)", 3,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi5,  "\$(PORT=Galil)", 3,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi6,  "\$(PORT=Galil)", 3,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi7,  "\$(PORT=Galil)", 3,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+
+	{\$(P)DMC\$(CCP):,  Galil4Bi0,  "\$(PORT=Galil)", 4,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi1,  "\$(PORT=Galil)", 4,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi2,  "\$(PORT=Galil)", 4,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi3,  "\$(PORT=Galil)", 4,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi4,  "\$(PORT=Galil)", 4,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi5,  "\$(PORT=Galil)", 4,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi6,  "\$(PORT=Galil)", 4,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi7,  "\$(PORT=Galil)", 4,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
 
 }
 
@@ -75,40 +93,90 @@ file "$(GALIL)/GalilSup/Db/galil_digital_out_bit.template"
 pattern {P,       R,           PORT,  WORD,  MASK,     ZNAM,  ONAM,  ZSV,        OSV         }
 
 # DMC binary outputs are organized in 16bit words
-	{\$(P)DMC\$(CCP):,  Galil0Bo0,   Galil, 0,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo1,   Galil, 0,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo2,   Galil, 0,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo3,   Galil, 0,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo4,   Galil, 0,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo5,   Galil, 0,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo6,   Galil, 0,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo7,   Galil, 0,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo8,   Galil, 0,     0x000100, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo9,   Galil, 0,     0x000200, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo10,  Galil, 0,     0x000400, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo11,  Galil, 0,     0x000800, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo12,  Galil, 0,     0x001000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo13,  Galil, 0,     0x002000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo14,  Galil, 0,     0x004000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil0Bo15,  Galil, 0,     0x008000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo0,   "\$(PORT=Galil)", 0,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo1,   "\$(PORT=Galil)", 0,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo2,   "\$(PORT=Galil)", 0,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo3,   "\$(PORT=Galil)", 0,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo4,   "\$(PORT=Galil)", 0,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo5,   "\$(PORT=Galil)", 0,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo6,   "\$(PORT=Galil)", 0,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo7,   "\$(PORT=Galil)", 0,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo8,   "\$(PORT=Galil)", 0,     0x000100, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo9,   "\$(PORT=Galil)", 0,     0x000200, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo10,  "\$(PORT=Galil)", 0,     0x000400, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo11,  "\$(PORT=Galil)", 0,     0x000800, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo12,  "\$(PORT=Galil)", 0,     0x001000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo13,  "\$(PORT=Galil)", 0,     0x002000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo14,  "\$(PORT=Galil)", 0,     0x004000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bo15,  "\$(PORT=Galil)", 0,     0x008000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
 
-	{\$(P)DMC\$(CCP):,  Galil1Bo0,   Galil, 1,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo1,   Galil, 1,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo2,   Galil, 1,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo3,   Galil, 1,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo4,   Galil, 1,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo5,   Galil, 1,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo6,   Galil, 1,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo7,   Galil, 1,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo8,   Galil, 1,     0x000100, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo9,   Galil, 1,     0x000200, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo10,  Galil, 1,     0x000400, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo11,  Galil, 1,     0x000800, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo12,  Galil, 1,     0x001000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo13,  Galil, 1,     0x002000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo14,  Galil, 1,     0x004000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
-	{\$(P)DMC\$(CCP):,  Galil1Bo15,  Galil, 1,     0x008000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo0,   "\$(PORT=Galil)", 1,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo1,   "\$(PORT=Galil)", 1,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo2,   "\$(PORT=Galil)", 1,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo3,   "\$(PORT=Galil)", 1,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo4,   "\$(PORT=Galil)", 1,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo5,   "\$(PORT=Galil)", 1,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo6,   "\$(PORT=Galil)", 1,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo7,   "\$(PORT=Galil)", 1,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo8,   "\$(PORT=Galil)", 1,     0x000100, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo9,   "\$(PORT=Galil)", 1,     0x000200, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo10,  "\$(PORT=Galil)", 1,     0x000400, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo11,  "\$(PORT=Galil)", 1,     0x000800, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo12,  "\$(PORT=Galil)", 1,     0x001000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo13,  "\$(PORT=Galil)", 1,     0x002000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo14,  "\$(PORT=Galil)", 1,     0x004000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bo15,  "\$(PORT=Galil)", 1,     0x008000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
 
+	{\$(P)DMC\$(CCP):,  Galil2Bo0,   "\$(PORT=Galil)", 2,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo1,   "\$(PORT=Galil)", 2,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo2,   "\$(PORT=Galil)", 2,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo3,   "\$(PORT=Galil)", 2,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo4,   "\$(PORT=Galil)", 2,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo5,   "\$(PORT=Galil)", 2,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo6,   "\$(PORT=Galil)", 2,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo7,   "\$(PORT=Galil)", 2,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo8,   "\$(PORT=Galil)", 2,     0x000100, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo9,   "\$(PORT=Galil)", 2,     0x000200, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo10,  "\$(PORT=Galil)", 2,     0x000400, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo11,  "\$(PORT=Galil)", 2,     0x000800, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo12,  "\$(PORT=Galil)", 2,     0x001000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo13,  "\$(PORT=Galil)", 2,     0x002000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo14,  "\$(PORT=Galil)", 2,     0x004000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bo15,  "\$(PORT=Galil)", 2,     0x008000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+
+	{\$(P)DMC\$(CCP):,  Galil3Bo0,   "\$(PORT=Galil)", 3,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo1,   "\$(PORT=Galil)", 3,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo2,   "\$(PORT=Galil)", 3,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo3,   "\$(PORT=Galil)", 3,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo4,   "\$(PORT=Galil)", 3,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo5,   "\$(PORT=Galil)", 3,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo6,   "\$(PORT=Galil)", 3,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo7,   "\$(PORT=Galil)", 3,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo8,   "\$(PORT=Galil)", 3,     0x000100, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo9,   "\$(PORT=Galil)", 3,     0x000200, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo10,  "\$(PORT=Galil)", 3,     0x000400, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo11,  "\$(PORT=Galil)", 3,     0x000800, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo12,  "\$(PORT=Galil)", 3,     0x001000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo13,  "\$(PORT=Galil)", 3,     0x002000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo14,  "\$(PORT=Galil)", 3,     0x004000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bo15,  "\$(PORT=Galil)", 3,     0x008000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+
+	{\$(P)DMC\$(CCP):,  Galil4Bo0,   "\$(PORT=Galil)", 4,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo1,   "\$(PORT=Galil)", 4,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo2,   "\$(PORT=Galil)", 4,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo3,   "\$(PORT=Galil)", 4,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo4,   "\$(PORT=Galil)", 4,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo5,   "\$(PORT=Galil)", 4,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo6,   "\$(PORT=Galil)", 4,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo7,   "\$(PORT=Galil)", 4,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo8,   "\$(PORT=Galil)", 4,     0x000100, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo9,   "\$(PORT=Galil)", 4,     0x000200, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo10,  "\$(PORT=Galil)", 4,     0x000400, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo11,  "\$(PORT=Galil)", 4,     0x000800, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo12,  "\$(PORT=Galil)", 4,     0x001000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo13,  "\$(PORT=Galil)", 4,     0x002000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo14,  "\$(PORT=Galil)", 4,     0x004000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bo15,  "\$(PORT=Galil)", 4,     0x008000, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
 
 }
 

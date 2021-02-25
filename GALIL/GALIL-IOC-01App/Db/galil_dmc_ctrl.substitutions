@@ -37,7 +37,7 @@ file "$(GALIL)/GalilSup/Db/galil_dmc_ctrl.template"
 {
 pattern
 {   P,	      PORT,    SCAN, 	   DEFAULT_HOMETYPE, DEFAULT_LIMITTYPE, PREC}
- {  "\$(P)DMC\$(CCP):", "Galil", "Passive",  1,                1,                 5 }
+ {  "\$(P)DMC\$(CCP):", "\$(PORT=Galil)", "Passive",  0,                0,                 5 }
 }
 
 # end
