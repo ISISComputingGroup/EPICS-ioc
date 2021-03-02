@@ -35,14 +35,14 @@ file "$(GALIL)/GalilSup/Db/galil_forward_transform.template"
 {
    pattern { P,            M,    PORT,    ADDR }
 # CS motors (forward transforms)
-           { "\$(P)",     "MTR\$(CCP)I",  "Galil", "8"   }
-           { "\$(P)",     "MTR\$(CCP)J",  "Galil", "9"   }
-           { "\$(P)",     "MTR\$(CCP)K",  "Galil", "10"  }
-           { "\$(P)",     "MTR\$(CCP)L",  "Galil", "11"  }
-           { "\$(P)",     "MTR\$(CCP)M",  "Galil", "12"  }
-           { "\$(P)",     "MTR\$(CCP)N",  "Galil", "13"  }
-           { "\$(P)",     "MTR\$(CCP)O",  "Galil", "14"  }
-           { "\$(P)",     "MTR\$(CCP)P",  "Galil", "15"  }
+           { "\$(P)",     "MTR\$(CCP)09",  "Galil", "8"   }
+           { "\$(P)",     "MTR\$(CCP)10",  "Galil", "9"   }
+           { "\$(P)",     "MTR\$(CCP)11",  "Galil", "10"  }
+           { "\$(P)",     "MTR\$(CCP)12",  "Galil", "11"  }
+           { "\$(P)",     "MTR\$(CCP)13",  "Galil", "12"  }
+           { "\$(P)",     "MTR\$(CCP)14",  "Galil", "13"  }
+           { "\$(P)",     "MTR\$(CCP)15",  "Galil", "14"  }
+           { "\$(P)",     "MTR\$(CCP)16",  "Galil", "15"  }
 
 }
 
@@ -62,14 +62,14 @@ file "$(GALIL)/GalilSup/Db/galil_reverse_transforms.template"
 {
    pattern { P,            M,    PORT,    ADDR }
 # CS motors (reverse transforms)
-           { "\$(P)",     "MTR\$(CCP)I",  "Galil", "8"   }
-           { "\$(P)",     "MTR\$(CCP)J",  "Galil", "9"   }
-           { "\$(P)",     "MTR\$(CCP)K",  "Galil", "10"  }
-           { "\$(P)",     "MTR\$(CCP)L",  "Galil", "11"  }
-           { "\$(P)",     "MTR\$(CCP)M",  "Galil", "12"  }
-           { "\$(P)",     "MTR\$(CCP)N",  "Galil", "13"  }
-           { "\$(P)",     "MTR\$(CCP)O",  "Galil", "14"  }
-           { "\$(P)",     "MTR\$(CCP)P",  "Galil", "15"  }
+           { "\$(P)",     "MTR\$(CCP)09",  "Galil", "8"   }
+           { "\$(P)",     "MTR\$(CCP)10",  "Galil", "9"   }
+           { "\$(P)",     "MTR\$(CCP)11",  "Galil", "10"  }
+           { "\$(P)",     "MTR\$(CCP)12",  "Galil", "11"  }
+           { "\$(P)",     "MTR\$(CCP)13",  "Galil", "12"  }
+           { "\$(P)",     "MTR\$(CCP)14",  "Galil", "13"  }
+           { "\$(P)",     "MTR\$(CCP)15",  "Galil", "14"  }
+           { "\$(P)",     "MTR\$(CCP)16",  "Galil", "15"  }
 
 }
 
