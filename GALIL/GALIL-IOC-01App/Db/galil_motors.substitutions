@@ -29,7 +29,7 @@
 # 800 Blackburn Road, Clayton, Victoria 3168, Australia.
 #
 
-file "$(GALIL)/GalilSup/Db/galil_motor-v6-9down.template"
+file "$(GALIL)/GalilSup/Db/galil_motor-v6-10up.template"
 {
 pattern
 {   P,    ASG,    M,   PORT,    ADDR, EGU, DESC, VELO,  VMAX,  ACCL,  BDST,  BVEL,  BACC,  MRES,  SREV, ERES,     PREC, DHLM,    DLLM,     OFF,     UEIP, RTRY, NTM,   PCOF, ICOF, DCOF}

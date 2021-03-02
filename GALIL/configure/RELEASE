@@ -8,6 +8,7 @@ CALC=$(SUPPORT)/calc/master
 MOTOR=$(SUPPORT)/motor/master
 SSCAN=$(SUPPORT)/sscan/master
 GALIL=$(SUPPORT)/galil/master
+AXIS=$(SUPPORT)/axis/master
 
 ## other ISIS modules used
 MOTIONSETPOINTS=$(SUPPORT)/motionSetPoints/master
