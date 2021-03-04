@@ -18,12 +18,14 @@ epicsEnvSet("IFIOC_GALIL_10", "#")
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
 # 1D data, but it doesn't store anything to disk.  (See 'saveData' below for that.)
-#dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=$(MYPVPREFIX)$(IOCNAME):,MAXPTS1=8000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=8000")
+#dbLoadRecords("$(SSCAN)/sscanApp/Db/standardScans.db","P=$(MYPVPREFIX)$(IOCNAME):,MAXPTS1=8000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=8000")
+#dbLoadRecords("$(SSCAN)/sscanApp/Db/saveData.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ### autosave
 # specify additional directories in which to to search for included request files
 set_requestfile_path("${GALIL}/GalilSup/Db", "")
 set_requestfile_path("${MOTOR}/motorApp/Db", "")
+set_requestfile_path("${SSCAN}/sscanApp/Db", "")
 
 ## as all Galils cd to GALIL-IOC-01 need to add this explicitly so info generated req files are found
 set_requestfile_path("${TOP}/iocBoot/iocGALIL-IOC-01", "")
@@ -101,13 +103,19 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 stringiftest("HASMTRCTRL", "$(MTRCTRL=)", 0, 0)
 $(IFNOTHASMTRCTRL) errlogSev(2, "MTRCTRL has not been set")
 
-# Save motor positions every 5 seconds
+# Save motor positions every 5 seconds - these could be used for restore, see contents of file
 $(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+
+# Save motor positions every 5 seconds, these are not used for restore, but just for information
+$(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_positions_norestore.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
 # Save motor settings every 30 seconds
 $(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
 $(IFHASMTRCTRL) $(IFMOTORCONFIG) create_manual_set("$(MOTORCONFIG=)Menu.req","P=$(MYPVPREFIX)MOT:,CMP=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=),IOCNAME=$(IOCNAME),MTRCTRL=$(MTRCTRL),CONFIGMENU=1")
+
+# Initialize saveData for step scans
+#saveData_Init("saveData.req", "P=$(MYPVPREFIX)$(IOCNAME):")
 
 ## Start any sequence programs
 #seq sncxxx,"user=icsHost"
