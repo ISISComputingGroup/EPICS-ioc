@@ -15,6 +15,10 @@ epicsEnvSet("IFIOC_GALIL_10", "#")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+## override address in simulation mode - used in galil1.cmd etc
+$(IFDEVSIM) epicsEnvSet("GALILADDR", "127.0.0.1")
+$(IFRECSIM) epicsEnvSet("GALILADDR", "127.0.0.1")
+
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
 # 1D data, but it doesn't store anything to disk.  (See 'saveData' below for that.)
@@ -38,15 +42,6 @@ epicsEnvSet("GALILCONFIG","$(GALILCONFIGDIR=$(ICPCONFIGROOT)/galil)")
 ## uncomment to see every command sent to every galil, of define in st.cmd for just one galil
 #epicsEnvSet("GALIL_DEBUG_FILE", "galil_debug.txt")
 
-## create simulated motor if required (asyn port "GalilSim")
-$(IFDEVSIM) < motorsim.cmd
-$(IFRECSIM) < motorsim.cmd
-
-## configure the galil, if we are simulated this will not be used to drive the 
-## actual device, but creating this asyn port at least allows record initialisation 
-## to complete
-< $(GALILCONFIG)/galil$(MTRCTRL).cmd
-
 ## GALIL_MTR_PORT is the asyn port used to load just the motor record, other records 
 ## are loaded with "Galil" as the asyn port
 $(IFDEVSIM) epicsEnvSet("GALIL_MTR_PORT", "GalilSim")
@@ -55,6 +50,21 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet("GALIL_MTR_PORT", "Galil")
 
 ## load the galil db files
 < galildb.cmd
+
+## motor util package
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
+
+stringiftest("MOTORCONFIG", "$(MOTORCONFIG=)", 0, 0)
+$(IFMOTORCONFIG) dbLoadRecords("$(AUTOSAVE)/asApp/Db/configMenu.db","P=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=)")
+
+## create simulated motor if required (asyn port "GalilSim")
+$(IFDEVSIM) < motorsim.cmd
+$(IFRECSIM) < motorsim.cmd
+
+## configure the galil, if we are simulated this will not be used to drive the 
+## actual device, but creating this asyn port at least allows record initialisation 
+## to complete
+< $(GALILCONFIG)/galil$(MTRCTRL).cmd
 
 ## load the generic ISIS axis db for each axis
 iocshCmdLoop("< st-axis.cmd", "MN=\$(I)", "I", 1, 8)
@@ -76,12 +86,6 @@ iocshCmdLoop("< st-axis.cmd", "MN=\$(I)", "I", 1, 8)
 
 # motor extensions
 < $(GALILCONFIG)/motorExtensions.cmd
-
-## motor util package
-dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
-
-stringiftest("MOTORCONFIG", "$(MOTORCONFIG=)", 0, 0)
-$(IFMOTORCONFIG) dbLoadRecords("$(AUTOSAVE)/asApp/Db/configMenu.db","P=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
