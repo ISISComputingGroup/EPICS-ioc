@@ -32,47 +32,47 @@ file "$(MOTOR)/db/profileMoveAxis.template"
 {
 pattern
 {P,       R,      M,  PORT,     ADDR, NPOINTS,   NREADBACK,  MOTOR,    PREC,    TIMEOUT}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)01:,  Galil,    0,    1441,       1441,      \$(P)MTR\$(CCP)01,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)02:,  Galil,    1,    1441,       1441,      \$(P)MTR\$(CCP)02,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)03:,  Galil,    2,    1441,       1441,      \$(P)MTR\$(CCP)03,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)04:,  Galil,    3,    1441,       1441,      \$(P)MTR\$(CCP)04,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)05:,  Galil,    4,    1441,       1441,      \$(P)MTR\$(CCP)05,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)06:,  Galil,    5,    1441,       1441,      \$(P)MTR\$(CCP)06,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)07:,  Galil,    6,    1441,       1441,      \$(P)MTR\$(CCP)07,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)08:,  Galil,    7,    1441,       1441,      \$(P)MTR\$(CCP)08,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)01:,  "\$(PORT=Galil)",    0,    1441,       1441,      \$(P)MTR\$(CCP)01,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)02:,  "\$(PORT=Galil)",    1,    1441,       1441,      \$(P)MTR\$(CCP)02,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)03:,  "\$(PORT=Galil)",    2,    1441,       1441,      \$(P)MTR\$(CCP)03,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)04:,  "\$(PORT=Galil)",    3,    1441,       1441,      \$(P)MTR\$(CCP)04,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)05:,  "\$(PORT=Galil)",    4,    1441,       1441,      \$(P)MTR\$(CCP)05,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)06:,  "\$(PORT=Galil)",    5,    1441,       1441,      \$(P)MTR\$(CCP)06,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)07:,  "\$(PORT=Galil)",    6,    1441,       1441,      \$(P)MTR\$(CCP)07,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)08:,  "\$(PORT=Galil)",    7,    1441,       1441,      \$(P)MTR\$(CCP)08,  4,       1}
 
 #CSAxis
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)09:,  Galil,    8,    1441,       1441,      \$(P)MTR\$(CCP)09,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)10:, Galil,    9,    1441,       1441,      \$(P)MTR\$(CCP)10,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)11:, Galil,    10,   1441,       1441,      \$(P)MTR\$(CCP)11,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)12:, Galil,    11,   1441,       1441,      \$(P)MTR\$(CCP)12,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)13:, Galil,    12,   1441,       1441,      \$(P)MTR\$(CCP)13,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)14:, Galil,    13,   1441,       1441,      \$(P)MTR\$(CCP)14,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)15:, Galil,    14,   1441,       1441,      \$(P)MTR\$(CCP)15,  4,       1}
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)16:, Galil,    15,   1441,       1441,      \$(P)MTR\$(CCP)16,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)09:, "\$(PORT=Galil)",    8,    1441,       1441,      \$(P)MTR\$(CCP)09,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)10:, "\$(PORT=Galil)",    9,    1441,       1441,      \$(P)MTR\$(CCP)10,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)11:, "\$(PORT=Galil)",    10,   1441,       1441,      \$(P)MTR\$(CCP)11,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)12:, "\$(PORT=Galil)",    11,   1441,       1441,      \$(P)MTR\$(CCP)12,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)13:, "\$(PORT=Galil)",    12,   1441,       1441,      \$(P)MTR\$(CCP)13,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)14:, "\$(PORT=Galil)",    13,   1441,       1441,      \$(P)MTR\$(CCP)14,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)15:, "\$(PORT=Galil)",    14,   1441,       1441,      \$(P)MTR\$(CCP)15,  4,       1}
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)16:, "\$(PORT=Galil)",    15,   1441,       1441,      \$(P)MTR\$(CCP)16,  4,       1}
 }
 
 file "$(GALIL)/GalilSup/Db/galil_profileMoveAxis.template"
 {
 pattern
 {P,       R,      M,  PORT,     ADDR,  NREADBACK,  ZNAM,       ONAM,       PREC,    TIMEOUT }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)01:,  Galil,    0,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)02:,  Galil,    1,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)03:,  Galil,    2,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)04:,  Galil,    3,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)05:,  Galil,    4,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)06:,  Galil,    5,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)07:,  Galil,    6,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)08:,  Galil,    7,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)01:,  "\$(PORT=Galil)",    0,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)02:,  "\$(PORT=Galil)",    1,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)03:,  "\$(PORT=Galil)",    2,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)04:,  "\$(PORT=Galil)",    3,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)05:,  "\$(PORT=Galil)",    4,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)06:,  "\$(PORT=Galil)",    5,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)07:,  "\$(PORT=Galil)",    6,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)08:,  "\$(PORT=Galil)",    7,     "1441",     "Relative", "Absolute", 4,       1       }
 
 #CSAxis
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)09:,  Galil,    8,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)10:, Galil,    9,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)11:, Galil,   10,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)12:, Galil,   11,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)13:, Galil,   12,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)14:, Galil,   13,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)15:, Galil,   14,     "1441",     "Relative", "Absolute", 4,       1       }
-{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)16:, Galil,   15,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)09:, "\$(PORT=Galil)",    8,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)10:, "\$(PORT=Galil)",    9,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)11:, "\$(PORT=Galil)",   10,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)12:, "\$(PORT=Galil)",   11,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)13:, "\$(PORT=Galil)",   12,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)14:, "\$(PORT=Galil)",   13,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)15:, "\$(PORT=Galil)",   14,     "1441",     "Relative", "Absolute", 4,       1       }
+{"\$(P)DMC\$(CCP):",  Prof1:, TR\$(CCP)16:, "\$(PORT=Galil)",   15,     "1441",     "Relative", "Absolute", 4,       1       }
 }
 

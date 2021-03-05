@@ -34,14 +34,14 @@ file "$(GALIL)/GalilSup/Db/galil_user_array.template"
 {
 pattern
 {   P,	      PORT,    ADDR,  NELM } 
- {  "\$(P)DMC\$(CCP):", "Galil", "0",   1000 }
- {  "\$(P)DMC\$(CCP):", "Galil", "1",   1000 }
- {  "\$(P)DMC\$(CCP):", "Galil", "2",   1000 }
- {  "\$(P)DMC\$(CCP):", "Galil", "3",   1000 }
- {  "\$(P)DMC\$(CCP):", "Galil", "4",   1000 }
- {  "\$(P)DMC\$(CCP):", "Galil", "5",   1000 }
- {  "\$(P)DMC\$(CCP):", "Galil", "6",   1000 }
- {  "\$(P)DMC\$(CCP):", "Galil", "7",   1000 }
+ {  "\$(P)DMC\$(CCP):", "\$(PORT=Galil)", "0",   1000 }
+ {  "\$(P)DMC\$(CCP):", "\$(PORT=Galil)", "1",   1000 }
+ {  "\$(P)DMC\$(CCP):", "\$(PORT=Galil)", "2",   1000 }
+ {  "\$(P)DMC\$(CCP):", "\$(PORT=Galil)", "3",   1000 }
+ {  "\$(P)DMC\$(CCP):", "\$(PORT=Galil)", "4",   1000 }
+ {  "\$(P)DMC\$(CCP):", "\$(PORT=Galil)", "5",   1000 }
+ {  "\$(P)DMC\$(CCP):", "\$(PORT=Galil)", "6",   1000 }
+ {  "\$(P)DMC\$(CCP):", "\$(PORT=Galil)", "7",   1000 }
 }
 
 # end

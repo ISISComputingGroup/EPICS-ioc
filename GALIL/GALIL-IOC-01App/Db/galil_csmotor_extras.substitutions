@@ -36,14 +36,14 @@ file "$(GALIL)/GalilSup/Db/galil_csmotor_extras.template"
 {
 pattern
 {   P,        M,    PORT,    ADDR, PREC, SCAN,      EGU  }
- {  "\$(P)", "MTR\$(CCP)09",  "Galil", 8,    3,    "Passive", "mm" }
- {  "\$(P)", "MTR\$(CCP)10",  "Galil", 9,    3,    "Passive", "mm" }
- {  "\$(P)", "MTR\$(CCP)11",  "Galil", 10,   3,    "Passive", "mm" }
- {  "\$(P)", "MTR\$(CCP)12",  "Galil", 11,   3,    "Passive", "mm" }
- {  "\$(P)", "MTR\$(CCP)13",  "Galil", 12,   3,    "Passive", "mm" }
- {  "\$(P)", "MTR\$(CCP)14",  "Galil", 13,   3,    "Passive", "mm" }
- {  "\$(P)", "MTR\$(CCP)15",  "Galil", 14,   3,    "Passive", "mm" }
- {  "\$(P)", "MTR\$(CCP)16",  "Galil", 15,   3,    "Passive", "mm" }
+ {  "\$(P)", "MTR\$(CCP)09",  "\$(PORT=Galil)", 8,    3,    "Passive", "mm" }
+ {  "\$(P)", "MTR\$(CCP)10",  "\$(PORT=Galil)", 9,    3,    "Passive", "mm" }
+ {  "\$(P)", "MTR\$(CCP)11",  "\$(PORT=Galil)", 10,   3,    "Passive", "mm" }
+ {  "\$(P)", "MTR\$(CCP)12",  "\$(PORT=Galil)", 11,   3,    "Passive", "mm" }
+ {  "\$(P)", "MTR\$(CCP)13",  "\$(PORT=Galil)", 12,   3,    "Passive", "mm" }
+ {  "\$(P)", "MTR\$(CCP)14",  "\$(PORT=Galil)", 13,   3,    "Passive", "mm" }
+ {  "\$(P)", "MTR\$(CCP)15",  "\$(PORT=Galil)", 14,   3,    "Passive", "mm" }
+ {  "\$(P)", "MTR\$(CCP)16",  "\$(PORT=Galil)", 15,   3,    "Passive", "mm" }
 }
 
 # end

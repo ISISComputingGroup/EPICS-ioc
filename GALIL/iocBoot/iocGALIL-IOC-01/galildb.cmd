@@ -30,7 +30,7 @@ dbLoadRecords("$(TOP)/db/galil_analog_ports.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRC
 #Load user defined functions
 dbLoadRecords("$(TOP)/db/galil_userdef_records8.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
-#load user arrays - not done yet
+#load user arrays
 dbLoadRecords("$(TOP)/db/galil_user_array.db","P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
 #Load profiles

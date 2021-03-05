@@ -31,7 +31,7 @@ file "$(MOTOR)/db/profileMoveController.template"
 {
 pattern
 {P,       R,      PORT,   NAXES, NPOINTS, NPULSES,  TIMEOUT}
-{"\$(P)DMC\$(CCP):", Prof1:, Galil,  8,     1441,    1441,     1}
+{"\$(P)DMC\$(CCP):", Prof1:, "\$(PORT=Galil)",  8,     1441,    1441,     1}
 }
 
 # Profile Galilcontroller
@@ -44,6 +44,6 @@ file "$(GALIL)/GalilSup/Db/galil_profileMoveController.template"
 {
 pattern
 {P,       R,      PORT,   TIMEOUT}
-{"\$(P)DMC\$(CCP):",  Prof1:, Galil,  1}
+{"\$(P)DMC\$(CCP):",  Prof1:, "\$(PORT=Galil)",  1}
 }
 
