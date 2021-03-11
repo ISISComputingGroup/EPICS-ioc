@@ -1,6 +1,7 @@
 
 record(ai, "$(P)SLEW1")
 {
+	field(SCAN, "5 second")
     field(DESC, "Slew DAC 1")
     field(DTYP, "stream")
     field(PINI, "YES")
@@ -23,6 +24,7 @@ record(ao, "$(P)SLEW1:SP")
 
 record(ai, "$(P)SLEW2")
 {
+	field(SCAN, "5 second")
     field(DESC, "Slew DAC 2")
     field(DTYP, "stream")
     field(PINI, "YES")
@@ -45,6 +47,7 @@ record(ao, "$(P)SLEW2:SP")
 
 record(ai, "$(P)SLEWABS")
 {
+	field(SCAN, "5 second")
     field(DESC, "Slew Absolute")
     field(DTYP, "stream")
     field(PINI, "YES")
