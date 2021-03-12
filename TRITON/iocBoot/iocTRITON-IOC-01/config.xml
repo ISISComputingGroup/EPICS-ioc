@@ -8,7 +8,7 @@
 <macro name="RAMP_FILE_NAME" pattern="^\w{0,40}$" description="File name to use for ramp (defaults to Default.txt)." defaultValue="Default.txt" hasDefault="YES" />
 <macro name="USE_RAMP_FILE" pattern="^(0|1)$" description="Whether to use (1) or not use (0) the ramp file specified above (defaults to 0)." defaultValue="0" hasDefault="YES" />
 <macro name="POLL_RATE" pattern="^.*$" description="The poll rate of non-channel values." hasDefault="YES" defaultValue="1 second"/>
-<macro name="CHANNEL_POLL_RATE" pattern="^.*$" description="The poll rate of channel values." hasDefault="YES" defaultValue="2 second"/>
+<macro name="CHANNEL_POLL_RATE" pattern="^.*$" description="The poll rate of channel values." hasDefault="YES" defaultValue="15 second"/>
 </macros>
 <pvsets>
 </pvsets>
