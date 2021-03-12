@@ -46,8 +46,9 @@ $(IFEX2) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE2=)
 $(IFEX3) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE3=)")
 $(IFEX4) dbLoadRecords("db/inst_exclusive.db","P=$(MYPVPREFIX),ID=$(EXCLUSIVE4=)")
 
-dbLoadRecordsLoop("db/user_parameters.db","P=$(MYPVPREFIX)", "INDEX", 0, $(NUM_USER_VARS=4), 1)
-dbLoadRecordsLoop("db/user_buttons.db","P=$(MYPVPREFIX)", "INDEX", 0, $(NUM_USER_BUTTONS=4), 1)
+dbLoadRecordsLoop("db/john.db","P=$(MYPVPREFIX),SLOT=0", "INDEX", 0, 23, 1)
+dbLoadRecordsLoop("db/john.db","P=$(MYPVPREFIX),SLOT=12", "INDEX", 0, 23, 1)
+dbLoadRecordsLoop("db/john.db","P=$(MYPVPREFIX),SLOT=4", "INDEX", 0, 23, 1)
 
 dbLoadRecords("$(ICPCONFIGROOT)/dashboard.db", "P=$(MYPVPREFIX)")
 
