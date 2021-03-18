@@ -16,7 +16,7 @@ record(ai, "$(P)$(CTRL)")
     field(DESC, "$(CTRL)")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto get$(CTRL)($(P)) $(PORT)")
-    field(SCAN, "$(POLL_RATE=1 second)")
+    field(SCAN, "$(POLL_RATE)")
     field(PREC, "3")	
     field(EGU, "")
 	
