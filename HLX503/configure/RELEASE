@@ -64,6 +64,8 @@ STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 READASCII=$(SUPPORT)/ReadASCII/master
+EFSW=$(SUPPORT)/efsw/master
+FILELIST=$(SUPPORT)/FileList/master
 ITC503=$(SUPPORT)/itc503/master
 HLX503=$(SUPPORT)/hlx503/master
 
