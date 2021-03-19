@@ -20,6 +20,7 @@
 
     <macro name="MAX_TEMP_FOR_HE3_COOLING" pattern="^.*$" description="The temperature below which He3 cooling is to be used." hasDefault="NO"/>
     <macro name="MAX_OPERATING_TEMP_FOR_HELIOX" pattern="^.*$" description="The maximum temperature at which the heliox can be operated at." hasDefault="NO"/>
+    <macro name="DEFAULT_POST_CONDENSE_TEMP_SETPOINT" pattern="^.*$" description="The default temperature setpoint to set just after a recondense" hasDefault="YES" defaultValue="0.3"/>
   </macros>
  </config_part>
 </ioc_config>
