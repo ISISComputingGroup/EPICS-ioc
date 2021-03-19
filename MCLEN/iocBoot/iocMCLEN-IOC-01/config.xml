@@ -111,14 +111,14 @@
 <macro name="HOME7" pattern="^([0-3])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero, 3. Constant velocity move and zero] (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="HOME8" pattern="^([0-3])$" description="Homing mode [0: Hardware defined, 1: Constant velocity move, 2: Reverse home and zero, 3. Constant velocity move and zero] (default: 1)" defaultValue="1" hasDefault="YES" />
 
-<macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME3" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME4" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME5" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME6" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME7" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME8" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
+<macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="YES" defaultValue=""/>
+<macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="YES" defaultValue=""/>
+<macro name="NAME3" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="YES" defaultValue=""/>
+<macro name="NAME4" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="YES" defaultValue=""/>
+<macro name="NAME5" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="YES" defaultValue=""/>
+<macro name="NAME6" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="YES" defaultValue=""/>
+<macro name="NAME7" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="YES" defaultValue=""/>
+<macro name="NAME8" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="YES" defaultValue=""/>
 
 <macro name="OFST1" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
 <macro name="OFST2" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />

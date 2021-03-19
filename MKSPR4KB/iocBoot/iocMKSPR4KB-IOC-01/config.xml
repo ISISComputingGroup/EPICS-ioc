@@ -4,11 +4,11 @@
 <ioc_desc>MKS PR4000B gas panel controller</ioc_desc>
 <ioc_details></ioc_details>
 <macros>
-    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" />
-    <macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 57600." />
-    <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." />
-    <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." />
-    <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 2." />
+    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO"/>
+    <macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 57600." hasDefault="YES" defaultValue="57600"/>
+    <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." hasDefault="YES" defaultValue="8"/>
+    <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." hasDefault="YES" defaultValue="none"/>
+    <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 2." hasDefault="YES" defaultValue="2"/>
 </macros>
 <pvsets>
 </pvsets>
