@@ -4,6 +4,46 @@
 <ioc_desc>Cryogenic Ltd. SMS series PSU</ioc_desc>
 <macros>
   <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
+  <macro name="T_TO_A" pattern="^[0-9]+.?[0-9]*$" description="Tesla - Amp conversion rate" defaultValue="0.037" hasDefault="YES" />
+  <macro name="DISPLAY_UNIT" pattern="^GAUSS|TESLA|AMPS$" description="Unit in which to display values" defaultValue="GAUSS" hasDefault="YES" />
+  <macro name="WRITE_UNIT" pattern="^TESLA|AMPS$" description="Unit in which to write to the device" defaultValue="AMPS" hasDefault="YES" />
+  <macro name="RESTORE_WRITE_UNIT_TIMEOUT" pattern="^[0-9]+.?[0-9]*$" description="The number of seconds to allow before restoring the write unit" defaultValue="10" hasDefault="YES" />
+  <macro name="MAX_CURR" pattern="^[0-9]+.?[0-9]*$" description="Max supplied current" defaultValue="135" hasDefault="YES" />
+  <macro name="MAX_VOLT" pattern="^[0-9]+.?[0-9]*$" description="Max supplied voltage" defaultValue="5" hasDefault="YES" />
+  <macro name="MID_TOLERANCE" pattern="^[0-9]+.?[0-9]*$" description="The tolerance to use before setting a new target value during a ramp" defaultValue="0.1" hasDefault="YES" />
+  <macro name="TARGET_TOLERANCE" pattern="^[0-9]+.?[0-9]*$" description="The tolerance to define the target as reached" defaultValue="0.1" hasDefault="YES" />
+  <macro name="ALLOW_PERSIST" pattern="^Yes|No$" description="Whether persistent mode is enabled" defaultValue="No" hasDefault="YES" />
+  <macro name="USE_SWITCH" pattern="^Yes|No$" description="Whether or not to monitor and set switches on and off" defaultValue="No" hasDefault="YES" />
+  <macro name="FAST_FILTER_VALUE" pattern="^[0-9]+.?[0-9]*$" description="The value to use to filter the target reached calculation when ramping fast to a target" defaultValue="1" hasDefault="YES" />
+  <macro name="FILTER_VALUE" pattern="^[0-9]+.?[0-9]*$" description="The value to use to filter the target reached calculation" defaultValue="0.1" hasDefault="YES" />
+  <macro name="NPP" pattern="^[0-9]+.?[0-9]*$" description="The npp value when calculating whether or not the target has been reached" defaultValue="0.0005" hasDefault="YES" />
+  <macro name="FAST_RATE" pattern="^[0-9]+.?[0-9]*$" description="The ramp rate to use for the fast ramps" defaultValue="0.5" hasDefault="YES" />
+  <macro name="FAST_PERSISTENT_SETTLETIME" pattern="^[0-9]+.?[0-9]*$" description="The number of seconds to settle after a ramp fast to persist" defaultValue="5" hasDefault="YES" />
+  <macro name="PERSISTENT_SETTLETIME" pattern="^[0-9]+.?[0-9]*$" description="The number of seconds to settle after a ramp to persist" defaultValue="60" hasDefault="YES" />
+  <macro name="NON_PERSISTENT_SETTLETIME" pattern="^[0-9]+.?[0-9]*$" description="The number of seconds to settle after a ramp" defaultValue="30" hasDefault="YES" />
+  <macro name="SWITCH_TEMP_PV" pattern="^[0-9A-Z:_]+$" description="The PV for the switch temperature" hasDefault="NO" />
+  <macro name="SWITCH_HIGH" pattern="^[0-9]+.?[0-9]*$" description="The value at which to consider the switch as being warm" defaultValue="3.7" hasDefault="YES" />
+  <macro name="SWITCH_LOW" pattern="^[0-9]+.?[0-9]*$" description="The value at which to consider the switch as being cold" defaultValue="3.65" hasDefault="YES" />
+  <macro name="SWITCH_STABLE_NUMBER" pattern="^[0-9]+$" description="The number of readings to consider whether or not the switch is stable as warm or cold" defaultValue="10" hasDefault="YES" />
+  <macro name="SWITCH_TIMEOUT" pattern="^[0-9]+.?[0-9]*$" description="The time to allow for the switch to warm or cold after turning the heater on/off before considering there to be an error situation" defaultValue="300" hasDefault="YES" />
+  <macro name="HEATER_TOLERANCE" pattern="^[0-9]+.?[0-9]*$" description="The tolerance between the magnet and lead currents before considering them as close enough to allow the leads to warm" defaultValue="0.2" hasDefault="YES" />
+  <macro name="HEATER_OFF_TEMP" pattern="^[0-9]+.?[0-9]*$" description="The value to turn the heater off at" defaultValue="3.65" hasDefault="YES" />
+  <macro name="HEATER_ON_TEMP" pattern="^[0-9]+.?[0-9]*$" description="The value for the heater on temperature" defaultValue="3.7" hasDefault="YES" />
+  <macro name="HEATER_OUT" pattern="^[0-9A-Z:_]+$" description="The heater output to be used" defaultValue="No" hasDefault="YES" />
+  <macro name="USE_MAGNET_TEMP" pattern="^Yes|No$" description="Act if the Magnet Temperature is out of range" defaultValue="No" hasDefault="YES" />
+  <macro name="MAGNET_TEMP_PV" pattern="^[0-9A-Z:_]+$" description="The PV for the magnet temperature" hasDefault="NO" />
+  <macro name="MAX_MAGNET_TEMP" pattern="^[0-9]+.?[0-9]*$" description="The maximum temperature allowed for the magnet" defaultValue="5.5" hasDefault="YES" />
+  <macro name="MIN_MAGNET_TEMP" pattern="^[0-9]+.?[0-9]*$" description="Indicate that there is potentially an issue reading from the magnet" defaultValue="1" hasDefault="YES" />
+  <macro name="COMP_OFF_ACT" pattern="^Yes|No" description="Do something if the compressors are off" defaultValue="No" hasDefault="YES" />
+  <macro name="NO_OF_COMP" pattern="^0|1|2$" description="The number of compressors in the system" defaultValue="0" hasDefault="YES" />
+  <macro name="MIN_NO_OF_COMP" pattern="^0|1|2$" description="The minimum number of compressors that need to be running" defaultValue="0" hasDefault="YES" />
+  <macro name="COMP_1_STAT_PV" pattern="^[0-9A-Z:_]+$" description="The PV for the status of the first compressor" hasDefault="NO" />
+  <macro name="COMP_2_STAT_PV" pattern="^[0-9A-Z:_]+$" description="The PV for the status of the second compressor" hasDefault="NO" />
+  <macro name="HOLD_TIME_ZERO" pattern="^[0-9]+.?[0-9]*$" description="The number of seconds after which the hold at zero will be considered stable" defaultValue="12" hasDefault="YES" />
+  <macro name="HOLD_TIME" pattern="^[0-9]+.?[0-9]*$" description="The number of seconds after which the hold at a value other than zero will be considered stable" defaultValue="30" hasDefault="YES" />
+  <macro name="VOLT_STABILITY_DURATION" pattern="^[0-9]+.?[0-9]*$" description="The number of seconds over which to consider the voltage stability" defaultValue="300" hasDefault="YES" />
+  <macro name="VOLT_TOLERANCE" pattern="^[0-9]+.?[0-9]*$" description="The tolerance to define voltage stability" defaultValue="0.2" hasDefault="YES" />
+  <macro name="RAMP_FILE" pattern="^.*$" description="The default ramp table file to use" defaultValue="C:\Instrument\Apps\Epics\support\cryosms\master\ramps" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>
