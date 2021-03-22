@@ -4,14 +4,14 @@
 <ioc_desc>Simple IOC for talking to any serial device</ioc_desc>
 <macros>
 <!-- check st-port.cmd for defaults -->
-<macro name="PORT1" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="UNKNOWN" />
-<macro name="PORT2" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="UNKNOWN" />
-<macro name="PORT3" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="UNKNOWN" />
-<macro name="PORT4" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="UNKNOWN" />
-<macro name="PORT5" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="UNKNOWN" />
-<macro name="PORT6" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="UNKNOWN" />
-<macro name="PORT7" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="UNKNOWN" />
-<macro name="PORT8" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="UNKNOWN" />
+<macro name="PORT1" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT2" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT3" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT4" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT5" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT6" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT7" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT8" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
 <macro name="PTYPE1" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" defaultValue="serial" hasDefault="YES" />
 <macro name="PTYPE2" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" defaultValue="serial" hasDefault="YES" />
 <macro name="PTYPE3" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" defaultValue="serial" hasDefault="YES" />
