@@ -15,8 +15,8 @@ record(bo, "$(P)$(MAG):RAMP:LEADS:SP") {
   
   field(OUT,"$(PVPREFIX)$(PSU_IOC):RAMP:LEADS:SP")
   
-  field(ZNAM, "Not Ramping")
-  field(ONAM, "Ramping")
+  field(ZNAM, "Leads at B")
+  field(ONAM, "Leads to 0")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):RAMP:LEADS")
@@ -30,8 +30,8 @@ record(bi, "$(P)$(MAG):RAMP:LEADS:SP:RBV") {
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:LEADS:SP:RBV MS")
   
-  field(ZNAM, "Not Ramping")
-  field(ONAM, "Ramping")
+  field(ZNAM, "Leads at B")
+  field(ONAM, "Leads to 0")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):RAMP:LEADS")
@@ -45,8 +45,8 @@ record(bi, "$(P)$(MAG):RAMP:LEADS") {
   
   field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:LEADS MS")
   
-  field(ZNAM, "Not Ramping")
-  field(ONAM, "Ramping")
+  field(ZNAM, "Leads at B")
+  field(ONAM, "Leads to 0")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):RAMP:LEADS")
@@ -60,8 +60,8 @@ record(bi, "$(P)SIM:$(MAG):RAMP:LEADS") {
   field(DESC, "Simulated lead ramping of $(MAG)")
   field(DTYP, "Soft Channel")
   
-  field(ZNAM, "Not Ramping")
-  field(ONAM, "Ramping")
+  field(ZNAM, "Leads at B")
+  field(ONAM, "Leads to 0")
 }
 
 ### Main - Persist Mode

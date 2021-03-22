@@ -4,6 +4,8 @@ include $(TOP)/../../../configure/MASTER_RELEASE
 -include $(TOP)/../../../configure/MASTER_RELEASE.private
 -include $(TOP)/../../../configure/MASTER_RELEASE.private.$(EPICS_HOST_ARCH)
 
+GALILIOC=$(TOP)/../GALIL
+
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
 
