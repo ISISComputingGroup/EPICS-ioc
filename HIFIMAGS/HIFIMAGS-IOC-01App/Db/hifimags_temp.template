@@ -1,0 +1,20 @@
+record(ai, "$(P)TEMP:$(SENSOR)") {
+  field(DESC, "Temperature of $(SENSOR)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "K")
+  
+  field(INP,"$(PVPREFIX)$(PV) MS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:TEMP:$(SENSOR)")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)SIM:TEMP:$(SENSOR)") {
+  field(DESC, "Simulated Temperature of $(SENSOR)")
+  field(DTYP, "Soft Channel")
+  field(EGU,"K")
+}

@@ -19,7 +19,6 @@ include $(TOP)/configure/CONFIG
 #endif
 #USR_INCLUDES += -I$(CAENHVWRAPPER)/include
 caenhvwrapper_DIR = $(HVCAEN)/lib/$(EPICS_HOST_ARCH)
-hscaenetlib_DIR = $(HVCAEN)/lib/$(EPICS_HOST_ARCH)
 
 #=============================
 # Build the IOC application HVCAEN-IOC-01
@@ -56,8 +55,8 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcrecpp pcre
-$(APPNAME)_LIBS_WIN32 += caenhvwrapper # hscaenetlib
-$(APPNAME)_SYS_LIBS_Linux += caenhvwrapper hscaenetlib
+$(APPNAME)_LIBS_WIN32 += caenhvwrapper
+$(APPNAME)_SYS_LIBS_Linux += caenhvwrapper
 
 # HVCAEN-IOC-01_registerRecordDeviceDriver.cpp derives from HVCAEN-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

@@ -19,6 +19,9 @@ RUNCTRL_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+# if you wish to debug autosave
+#save_restoreSet_Debug(2)
+
 ## Load our record instances
 
 dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:AC:ALERTS:,INST=$(INSTRUMENT=Unknown),SOURCE=IBEX")
@@ -35,7 +38,7 @@ stringiftest("LOQ", "$(ICPCONFIGHOST)", 5, "NDXLOQ")
 $(IFLOQ) dbLoadRecords("$(TOP)/db/LOQ_detector.db","P=$(MYPVPREFIX)")
 $(IFLOQ) dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:DC:ALERTS:,INST=$(INSTRUMENT=Unknown),SOURCE=IBEX")
 $(IFLOQ) dbLoadRecords("$(RUNCONTROL)/db/gencontrolMgr.db","P=$(MYPVPREFIX),MODE=DC,OUT_ACTION=$(MYPVPREFIX)CS:OVERCOUNT:ALERT.PROC")
-$(IFLOQ) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:SPEC:RATE")
+$(IFLOQ) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:SPEC:RATE,NOALIAS=#")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

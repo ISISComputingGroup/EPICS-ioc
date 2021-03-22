@@ -10,7 +10,7 @@
     <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." defaultValue="none" hasDefault="YES" />
     <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
     
-    <macro name="ADDR" pattern="^[0-9A-F][0-9A-F]$" description="Internal address of the unit." hasDefault="UNKNOWN" />   
+    <macro name="ADDR" pattern="^[0-9A-F][0-9A-F]$" description="Internal address of the unit." hasDefault="NO" />   
 
   </macros>
  </config_part>

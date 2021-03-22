@@ -10,10 +10,10 @@
     <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." defaultValue="none" hasDefault="YES" />
     <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
     
-    <macro name="HIHI_LEVEL_ALARM" pattern="^[-+]?[0-9]*\.?[0-9]+$" description="Level above which a major alarm should be triggered." hasDefault="UNKNOWN" />
-    <macro name="HIGH_LEVEL_ALARM" pattern="^[-+]?[0-9]*\.?[0-9]+$" description="Level above which a minor alarm should be triggered." hasDefault="UNKNOWN" />
-    <macro name="LOW_LEVEL_ALARM" pattern="^[-+]?[0-9]*\.?[0-9]+$" description="Level below which a minor alarm should be triggered." hasDefault="UNKNOWN" />
-    <macro name="LOLO_LEVEL_ALARM" pattern="^[-+]?[0-9]*\.?[0-9]+$" description="Level below which a major alarm should be triggered." hasDefault="UNKNOWN" />
+    <macro name="HIHI_LEVEL_ALARM" pattern="^[-+]?[0-9]*\.?[0-9]+$" description="Level above which a major alarm should be triggered." hasDefault="NO" />
+    <macro name="HIGH_LEVEL_ALARM" pattern="^[-+]?[0-9]*\.?[0-9]+$" description="Level above which a minor alarm should be triggered." hasDefault="NO" />
+    <macro name="LOW_LEVEL_ALARM" pattern="^[-+]?[0-9]*\.?[0-9]+$" description="Level below which a minor alarm should be triggered." hasDefault="NO" />
+    <macro name="LOLO_LEVEL_ALARM" pattern="^[-+]?[0-9]*\.?[0-9]+$" description="Level below which a major alarm should be triggered." hasDefault="NO" />
   </macros>
  </config_part>
 </ioc_config>
