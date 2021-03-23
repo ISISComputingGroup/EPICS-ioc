@@ -20,7 +20,12 @@
 
     <macro name="MAX_TEMP_FOR_HE3_COOLING" pattern="^.*$" description="The temperature below which He3 cooling is to be used." hasDefault="NO"/>
     <macro name="MAX_OPERATING_TEMP_FOR_HELIOX" pattern="^.*$" description="The maximum temperature at which the heliox can be operated at." hasDefault="NO"/>
+
     <macro name="DEFAULT_POST_CONDENSE_TEMP_SETPOINT" pattern="^.*$" description="The default temperature setpoint to set just after a recondense" hasDefault="YES" defaultValue="0.3"/>
+    <macro name="RECONDENSE_SORB_TEMP_SET" pattern="^.*$" description="The temperature setpoint to set for the sorb in a recondense" hasDefault="YES" defaultValue="33"/>
+    <macro name="RECONDENSE_SORB_P" pattern="^.*$" description="The proportional to set for the sorb in a recodense" hasDefault="YES" defaultValue="1.2"/>
+    <macro name="RECONDENSE_SORB_I" pattern="^.*$" description="The integral to set for the sorb in a recodense" hasDefault="YES" defaultValue="1.2"/>
+    <macro name="RECONDENSE_SORB_D" pattern="^.*$" description="The derivative to set for the sorb in a recodense" hasDefault="YES" defaultValue="1.2"/>
   </macros>
  </config_part>
 </ioc_config>
