@@ -32,6 +32,7 @@ $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
+$(APPNAME)_DBD += FileList.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -54,8 +55,8 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
-$(APPNAME)_LIBS += seq pv
-$(APPNAME)_LIBS += ReadASCII
+$(APPNAME)_LIBS += seq pv efsw
+$(APPNAME)_LIBS += FileList ReadASCII
 
 # HLX503-IOC-01_registerRecordDeviceDriver.cpp derives from HLX503-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
