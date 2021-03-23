@@ -10,9 +10,9 @@
     <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." defaultValue="none" hasDefault="YES" />
     <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 2." defaultValue="2" hasDefault="YES" />
     <macro name="ADDRESS" pattern="^[0-9]*$" description="Internal address of the unit, defaults to 1." defaultValue="1" hasDefault="YES" />   
-    <macro name="PARKPOS" pattern="^[0-9]*$" description="Whether the chopper should park open (1) or closed (0)." hasDefault="UNKNOWN" /> 
-    <macro name="PARKCLOSED" pattern="^.*$" description="Angle at which to park if PARKPOS = 0." hasDefault="UNKNOWN" />   	
-    <macro name="PARKOPEN" pattern="^.*$" description="Angle at which to park if PARKPOS = 1." hasDefault="UNKNOWN" />   
+    <macro name="PARKPOS" pattern="^[0-9]*$" description="Whether the chopper should park open (1) or closed (0)." hasDefault="NO" /> 
+    <macro name="PARKCLOSED" pattern="^.*$" description="Angle at which to park if PARKPOS = 0." hasDefault="NO" />   	
+    <macro name="PARKOPEN" pattern="^.*$" description="Angle at which to park if PARKPOS = 1." hasDefault="NO" />   
   </macros>
  </config_part>
 </ioc_config>
