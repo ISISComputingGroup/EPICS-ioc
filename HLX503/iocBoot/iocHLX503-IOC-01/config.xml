@@ -29,7 +29,9 @@
     <macro name="RECONDENSE_SORB_TEMP_FINAL" pattern="^.*$" description="The final temperature of the sorb to wait for in part 3" hasDefault="YES" defaultValue="20.0"/>
     <macro name="RECONDENSE_HE3POT_TARGET_TEMP_PART1" pattern="^.*$" description="The target temperature of the He3Pot to wait for in part 1" hasDefault="YES" defaultValue="1.5"/>
     <macro name="RECONDENSE_HE3POT_TARGET_TEMP_PART2" pattern="^.*$" description="The target temperature of the He3Pot to wait for in part 2" hasDefault="YES" defaultValue="1.6"/>
-    <macro name="RECONDENSE_POST_PART2_WAIT_TIME" pattern="^.*$" description="The time in seconds to wait after part 2 of a recondense" hasDefault="YES" defaultValue="10"/>  
+    <macro name="RECONDENSE_POST_PART2_WAIT_TIME" pattern="^.*$" description="The time in seconds to wait after part 2 of a recondense" hasDefault="YES" defaultValue="10"/> 
+    <macro name="RECONDENSE_PART_TIMEOUT"  pattern="^.*$" description="The time to wait before timing out a part in a recondense. Defaults to 1800 seconds (30 minutes)." hasDefault="YES" defaultValue="1800"/> 
+    <macro name="RECONDENSE_PART_TIMEOUT_ON"  pattern="^.*$" description="Whether to timeout parts of the recondense." hasDefault="YES" defaultValue="YES"/> 
   </macros>
  </config_part>
 </ioc_config>
