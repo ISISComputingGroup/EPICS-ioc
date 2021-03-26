@@ -43,7 +43,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "ixoff", "Y")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-ReadASCIIConfigure("READASCII", "", $(STEP_NUMBER=20))
+ReadASCIIConfigure("READASCII", "", $(STEP_NUMBER=20), 1)
 
 ## Load record instances
 dbLoadRecords($(FILELIST)/db/calibration.db, "P=$(MYPVPREFIX)$(IOCNAME):, DEFAULT_FILE=default_calib.dat, CALIB_BASE_DIR=$(CALIB_BASE_DIR), SDIR=$(SENS_DIR), CALIBLIST=SENSORFILELIST, CONV_TO_PV=FIELD, CONV_FROM_PV=CURRENT:, CONV_TO_DESC=Field, CONV_TO_EGU=G")
