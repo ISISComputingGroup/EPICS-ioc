@@ -14,12 +14,12 @@
     <macro name="HE3POTHI_SENSOR" pattern="^[1-3]$" description="The sensor corresponding to the the He3 Pot at high temperatures." hasDefault="NO" />
     <macro name="1KPOTHE3POTLO_SENSOR" pattern="^[1-3]$" description="The corresponding to the the 1K Pot/He3 Pot at low temperatures." hasDefault="NO" />
 
-    <macro name="SORB_CHANNEL" pattern="^[1-3]$" description="The channel to use when controlling the sorb." hasDefault="NO">
-    <macro name="HE3POTHI_CHANNEL" pattern="^[1-3]$" description="The channel to use when controlling the He3Pot at high temperatures." hasDefault="NO">
-    <macro name="1KPOTHE3POTLO_CHANNEL" pattern="^[1-3]$" description="The channel to use when controlling the 1K Pot/He3Pot at low temperatures." hasDefault="NO">
+    <macro name="SORB_CHANNEL" pattern="^[1-3]$" description="The channel to use when controlling the sorb." hasDefault="NO" />
+    <macro name="HE3POTHI_CHANNEL" pattern="^[1-3]$" description="The channel to use when controlling the He3Pot at high temperatures." hasDefault="NO" />
+    <macro name="1KPOTHE3POTLO_CHANNEL" pattern="^[1-3]$" description="The channel to use when controlling the 1K Pot/He3Pot at low temperatures." hasDefault="NO" />
 
-    <macro name="MAX_TEMP_FOR_HE3_COOLING" pattern="^.*$" description="The temperature below which He3 cooling is to be used." hasDefault="NO"/>
-    <macro name="MAX_OPERATING_TEMP_FOR_HELIOX" pattern="^.*$" description="The maximum temperature at which the heliox can be operated at." hasDefault="NO"/>
+    <macro name="MAX_TEMP_FOR_HE3_COOLING" pattern="^.*$" description="The temperature below which He3 cooling is to be used." hasDefault="NO" />
+    <macro name="MAX_OPERATING_TEMP_FOR_HELIOX" pattern="^.*$" description="The maximum temperature at which the heliox can be operated at." hasDefault="NO" />
   </macros>
  </config_part>
 </ioc_config>
