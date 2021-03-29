@@ -53,7 +53,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetTraceIOMask("$(DEVICE)", 0, 2)
 #asynSetTraceIOMask("L0",-1,0x2)
 
 # (driver port, serial port, axis num, ms mov poll, ms idle poll, egu per step)
-$(IFNOTRECSIM) HUBERCreateController("$(AMOTOR)", "$(DEVICE)", "$(NAXES=1)", 100, 1000)
+$(IFNOTRECSIM) HuberCreateController("$(AMOTOR)", "$(DEVICE)", "$(NAXES=1)", 100, 1000)
 
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
