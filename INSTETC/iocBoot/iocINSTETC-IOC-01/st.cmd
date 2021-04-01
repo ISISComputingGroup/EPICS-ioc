@@ -65,6 +65,10 @@ iocInit
 < $(IOCSTARTUP)/postiocinit.cmd
 sqlexec "$(IOCSTARTUP)/facility_pvs.sql"
 
+set_requestfile_path("$(ICPCONFIGROOT)/")
+set_savefile_path("$(ICPCONFIGROOT)/")
+create_triggered_set("$(ICPCONFIGROOT)/musr_steering_defaults.req", "$(MYPVPREFIX)MUSR_STEERING_SAVE", "P=$(MYPVPREFIX)")
+
 # only log value changes
 # this command does not seem to be implemented!
 #$(IFISISINSTSTARTUP=#) caPutLogReconf 0
