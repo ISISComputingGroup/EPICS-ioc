@@ -28,7 +28,8 @@ vxi11Configure("IP", "130.246.49.179", 0, 0.0,"inst0", 0, 0)
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/devTektronix_MSO_4104B.db","P=$(MYPVPREFIX)$(IOCNAME), PORT=IP")
+dbLoadRecords("db/devTektronix_MSO_4104B.db","P=$(MYPVPREFIX)$(IOCNAME),PORT=IP,NELM=10000,RECSIM=$(RECSIM)")
+dbLoadRecords("db/devTektronix_MSO_4104B_ch.db","P=$(MYPVPREFIX)$(IOCNAME),PORT=IP,NELM=10000")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
