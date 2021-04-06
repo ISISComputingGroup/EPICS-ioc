@@ -54,6 +54,7 @@ dbLoadRecords("$(ICPCONFIGROOT)/dashboard.db", "P=$(MYPVPREFIX)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
+set_requestfile_path("$(ICPCONFIGROOT)")
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit
@@ -65,9 +66,8 @@ iocInit
 < $(IOCSTARTUP)/postiocinit.cmd
 sqlexec "$(IOCSTARTUP)/facility_pvs.sql"
 
-set_requestfile_path("$(ICPCONFIGROOT)/")
-set_savefile_path("$(ICPCONFIGROOT)/")
-create_triggered_set("$(ICPCONFIGROOT)/musr_steering_defaults.req", "$(MYPVPREFIX)MUSR_STEERING_SAVE", "P=$(MYPVPREFIX)")
+
+create_triggered_set("musr_steering_defaults.req", "$(MYPVPREFIX)MUSR_STEERING_SAVE", "P=$(MYPVPREFIX)")
 
 # only log value changes
 # this command does not seem to be implemented!
