@@ -67,7 +67,7 @@ iocInit
 sqlexec "$(IOCSTARTUP)/facility_pvs.sql"
 
 
-create_triggered_set("musr_steering_defaults.req", "$(MYPVPREFIX)MUSR_STEERING_SAVE", "P=$(MYPVPREFIX)")
+create_triggered_set("musr_steering_defaults.req", "$(MYPVPREFIX)MUSR_STEERING_SAVE.PROC", "P=$(MYPVPREFIX)")
 
 # only log value changes
 # this command does not seem to be implemented!
