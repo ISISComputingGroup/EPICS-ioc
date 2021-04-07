@@ -2,7 +2,7 @@
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
 <macros>
-<macro name="IP" pattern="^[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}$" description="IP address for the NANODAC" hasDefault="UNKNOWN" />
+<macro name="IP" pattern="^[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}$" description="IP address for the NANODAC" hasDefault="NO" />
 
 </macros>
 </config_part>

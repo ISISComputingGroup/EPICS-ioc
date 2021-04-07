@@ -228,6 +228,12 @@ record(bi, "$(P)SIM:COMP:L:ON:RBV") {
   field(ONAM, "On")
 }
 
+### Added aliases for use with LabVIEW as new PV names are too long for CALab
+alias("$(P)COMP:R:ERROR:TEXT:RBV", "$(P)COMP:R:E:TEXT")
+alias("$(P)COMP:R:ERROR:STAT:RBV", "$(P)COMP:R:E:STAT")
+alias("$(P)COMP:L:ERROR:TEXT:RBV", "$(P)COMP:L:E:TEXT")
+alias("$(P)COMP:L:ERROR:STAT:RBV", "$(P)COMP:L:E:STAT")
+
 ### Magnets Off - triggers SNL action
 
 record(bo, "$(P)MAGNETS:OFF:SP") {

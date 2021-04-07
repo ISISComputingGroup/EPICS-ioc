@@ -4,9 +4,9 @@
  <ioc_desc>Engin-X Collimators</ioc_desc>		
  <macros>		
  <!-- check st-port.cmd for defaults -->		
- <macro name="LVDCOM_HOST" pattern="^[A-Z0-9]+$" description="lvDCOM host" hasDefault="UNKNOWN" />		
- <macro name="LVDCOM_OPTIONS" pattern="^[A-Z0-9]+$" description="lvDCOM options" hasDefault="UNKNOWN" />		
- <macro name="LVDCOM_PROGID" pattern="^[A-Z0-9]+$" description="lvDCOM program ID" hasDefault="UNKNOWN" />		
+ <macro name="LVDCOM_HOST" pattern="^[A-Z0-9]+$" description="lvDCOM host" hasDefault="NO" />		
+ <macro name="LVDCOM_OPTIONS" pattern="^[A-Z0-9]+$" description="lvDCOM options" hasDefault="NO" />		
+ <macro name="LVDCOM_PROGID" pattern="^[A-Z0-9]+$" description="lvDCOM program ID" hasDefault="NO" />		
  </macros>		
  </config_part>		
 </ioc_config>
