@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Driver no longer in use, in favour of EDTIC (https://github.com/ISISComputingGroup/EPICS-EdwardsTIC)</ioc_desc>
+</config_part>
+</ioc_config>

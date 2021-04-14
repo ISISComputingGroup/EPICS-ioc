@@ -4,11 +4,11 @@
 <ioc_desc>Galil multiple motor controller</ioc_desc>
 <ioc_details>Galil Motor Details</ioc_details>
 <macros>
-<macro name="GALILADDR1" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 1" hasDefault="UNKNOWN" />
-<macro name="MTRCTRL1" pattern="^[0-9]{1,2}$" description="Controller number 1 used in motor address assignment" hasDefault="UNKNOWN" />
+<macro name="GALILADDR1" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 1" hasDefault="NO" />
+<macro name="MTRCTRL1" pattern="^[0-9]{1,2}$" description="Controller number 1 used in motor address assignment" hasDefault="NO" />
 
-<macro name="GALILADDR2" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 2" hasDefault="UNKNOWN" />
-<macro name="MTRCTRL2" pattern="^[0-9]{1,2}$" description="Controller number 2 used in motor address assignment" hasDefault="UNKNOWN" />
+<macro name="GALILADDR2" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of Galil controller 2" hasDefault="NO" />
+<macro name="MTRCTRL2" pattern="^[0-9]{1,2}$" description="Controller number 2 used in motor address assignment" hasDefault="NO" />
 </macros>
 <pvsets>
 <pvset name="Motor Limits" description="Motor high and low limits" />

@@ -39,7 +39,7 @@ $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
-$(APPNAME)_LIBS += stream pcre
+$(APPNAME)_LIBS += stream pcrecpp pcre
 $(APPNAME)_LIBS += asyn
 
 # AG3631A-IOC-01_registerRecordDeviceDriver.cpp derives from AG3631A-IOC-01.dbd

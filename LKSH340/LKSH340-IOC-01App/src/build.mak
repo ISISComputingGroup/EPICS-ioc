@@ -30,6 +30,7 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += Lakeshore340.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -40,14 +41,15 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 ## Stream device libraries ##
 $(APPNAME)_LIBS += stream
-$(APPNAME)_LIBS += pcre
+$(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += Lakeshore340
 #$(APPNAME)_LIBS += xxx
 
 # LKSH340-IOC-01_registerRecordDeviceDriver.cpp derives from LKSH340-IOC-01.dbd

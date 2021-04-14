@@ -3,8 +3,8 @@
 <config_part>
 <ioc_desc>A NGPS power supply unit</ioc_desc>
 <macros>
-<macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address to connect to" hasDefault="UNKNOWN" />
-<macro name="IPPORT" pattern="^[0-9]+$" description="IP Port to connect to" hasDefault="UNKNOWN" />
+<macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address to connect to" hasDefault="NO" />
+<macro name="IPPORT" pattern="^[0-9]+$" description="IP Port to connect to" hasDefault="NO" />
 </macros>
 <pvsets>
 </pvsets>

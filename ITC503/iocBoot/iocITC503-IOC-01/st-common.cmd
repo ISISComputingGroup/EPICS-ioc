@@ -6,7 +6,7 @@ epicsEnvSet "READASCII_NAME" "READASCII"
 epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/common"
 $(IFNOTDEVSIM) epicsEnvSet "RAMP_DIR" "$(CALIB_BASE_DIR)/ramps"
 $(IFDEVSIM) epicsEnvSet "RAMP_DIR" "$(READASCII)/example_settings"
-ReadASCIIConfigure("$(READASCII_NAME)", "$(RAMP_DIR)")
+ReadASCIIConfigure("$(READASCII_NAME)", "$(RAMP_DIR)", 20)
 
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NUL)", 0, 1, 0, 0)
@@ -34,7 +34,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 ## Load our record instances
 ############################
 
-dbLoadRecords("../../db/ITC503.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0), READ=$(READASCII_NAME)")
+dbLoadRecords("$(ITC503)/db/ITC503.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0), READ=$(READASCII_NAME)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

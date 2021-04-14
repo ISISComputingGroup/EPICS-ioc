@@ -1,0 +1,33 @@
+ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
+ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
+ASYN=$(SUPPORT)/asyn/master
+ASYN=$(SUPPORT)/asyn/master
+ONCRPC=$(SUPPORT)/oncrpc/master
+AUTOSAVE=$(SUPPORT)/autosave/master
+AXIS=$(SUPPORT)/axis/master
+BUSY=$(SUPPORT)/busy/master
+CALC=$(SUPPORT)/calc/master
+CAPUTLOG=$(SUPPORT)/caPutLog/master
+DEVIOCSTATS=$(SUPPORT)/devIocStats/master
+ICPCONFIG=$(SUPPORT)/icpconfig/master
+LIBJSON=$(SUPPORT)/libjson/master
+MOTIONSETPOINTS=$(SUPPORT)/motionSetPoints/master
+MOTOR=$(SUPPORT)/motor/master
+MYSQL=$(SUPPORT)/MySQL/master
+PCRE=$(SUPPORT)/pcre/master
+PUGIXML=$(SUPPORT)/pugixml/master
+PVDUMP=$(SUPPORT)/pvdump/master
+SAMPLECHANGER=$(SUPPORT)/sampleChanger/master
+SNCSEQ=$(SUPPORT)/seq/master
+SQLITE=$(SUPPORT)/sqlite/master
+SSCAN=$(SUPPORT)/sscan/master
+STD=$(SUPPORT)/std/master
+TINYXML=$(SUPPORT)/TinyXML/master
+UTILITIES=$(SUPPORT)/utilities/master
+ZLIB=$(SUPPORT)/zlib/master
+
+# optional extra local definitions here
+-include $(TOP)/configure/RELEASE.private
+
+include $(TOP)/../../../ISIS_CONFIG
+-include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)

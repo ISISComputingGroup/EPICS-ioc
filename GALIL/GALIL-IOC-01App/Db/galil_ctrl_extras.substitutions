@@ -36,7 +36,7 @@ file "$(GALIL)/GalilSup/Db/galil_ctrl_extras.template"
 {
 pattern
 {   P,	     PORT,    SCAN, 	    DEFAULT_HOMETYPE, DEFAULT_LIMITTYPE, PREC}
- {  "\$(P):DMC\$(CCP)", "Galil", ".1 second",  0,                0,                 5 }
+ {  "\$(P):DMC\$(CCP)", "\$(PORT=Galil)", ".1 second",  0,                0,                 5 }
 }
 
 

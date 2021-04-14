@@ -87,7 +87,6 @@ record(ai, "$(P)FIELD:SP:RBV"){
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
-alias("$(P)FIELD", "$(P)FIELD:RBV")
 
 record(ao, "$(P)FIELD:SP") {
     field(FLNK, "$(P)FIELD:SP:FROMUNIT")

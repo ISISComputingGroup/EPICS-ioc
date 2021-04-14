@@ -47,7 +47,7 @@ $(APPNAME)_LIBS += FileList
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += pcre libjson zlib
+$(APPNAME)_LIBS += pcrecpp pcre libjson zlib
 $(APPNAME)_LIBS += efsw
 
 # WM323-IOC-01_registerRecordDeviceDriver.cpp derives from WM323-IOC-01.dbd

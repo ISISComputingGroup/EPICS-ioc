@@ -5,7 +5,7 @@
 <ioc_details>LinMot Motor Details</ioc_details>
 <macros>
 
-<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="UNKNOWN" />
+<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="NO" />
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
 <macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
 <macro name="BITS" pattern="^[7-8]$" description="Data bits (default: 8)" defaultValue="8" hasDefault="YES" />
@@ -48,14 +48,14 @@
 <macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
 <macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
 
-<macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME3" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME4" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME5" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME6" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME7" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
-<macro name="NAME8" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="UNKNOWN" />
+<macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME3" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME4" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME5" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME6" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME7" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME8" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
 
 </macros>
 <pvsets>

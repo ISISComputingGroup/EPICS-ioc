@@ -41,7 +41,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
 $(APPNAME)_LIBS += stream 
-$(APPNAME)_LIBS += pcre
+$(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += asyn
 
 # TEKDMM4040-IOC-01_registerRecordDeviceDriver.cpp derives from TEKDMM4040-IOC-01.dbd

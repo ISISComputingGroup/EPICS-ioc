@@ -1,0 +1,166 @@
+### Main Readbacks for backwards compatibility
+
+alias("$(P)$(MAG):STAT","$(P)MAIN:STAT:RBV")
+alias("$(P)$(MAG):READY","$(P)MAIN:READY:RBV")
+alias("$(P)$(MAG):ERRORS:RBV", "$(P)MAIN:ERRORS:RBV")
+alias("$(P)$(MAG):OUTPUT:FIELD:GAUSS","$(P)MAIN:OUT:RBV")
+alias("$(P)$(MAG):TARGET:TIME","$(P)MAIN:MINTO:RBV")
+
+### Main - Ramp Leads
+
+record(bo, "$(P)$(MAG):RAMP:LEADS:SP") {
+  field(DESC, "Ramp Leads of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):RAMP:LEADS:SP")
+  
+  field(ZNAM, "Leads at B")
+  field(ONAM, "Leads to 0")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):RAMP:LEADS")
+  field(SDIS, "$(P)$(MAG):EXTRAS:DIS")
+}
+
+record(bi, "$(P)$(MAG):RAMP:LEADS:SP:RBV") {
+  field(DESC, "Ramp Leads of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:LEADS:SP:RBV MS")
+  
+  field(ZNAM, "Leads at B")
+  field(ONAM, "Leads to 0")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):RAMP:LEADS")
+  field(SDIS, "$(P)$(MAG):EXTRAS:DIS")
+}
+
+record(bi, "$(P)$(MAG):RAMP:LEADS") {
+  field(DESC, "Whether or not $(MAG) leads will be ramped")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):RAMP:LEADS MS")
+  
+  field(ZNAM, "Leads at B")
+  field(ONAM, "Leads to 0")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):RAMP:LEADS")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
+}
+
+
+record(bi, "$(P)SIM:$(MAG):RAMP:LEADS") {
+  field(DESC, "Simulated lead ramping of $(MAG)")
+  field(DTYP, "Soft Channel")
+  
+  field(ZNAM, "Leads at B")
+  field(ONAM, "Leads to 0")
+}
+
+### Main - Persist Mode
+
+record(bo, "$(P)$(MAG):PERSIST:SP") {
+  field(DESC, "Persist Mode of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):PERSIST:SP")
+  
+  field(ZNAM, "Non Persisting")
+  field(ONAM, "Persisting")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):PERSIST")
+  field(SDIS, "$(P)$(MAG):EXTRAS:DIS")
+}
+
+record(bi, "$(P)$(MAG):PERSIST:SP:RBV") {
+  field(DESC, "Persist Mode of $(MAG)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):PERSIST:SP:RBV MS")
+  
+  field(ZNAM, "Non Persisting")
+  field(ONAM, "Persisting")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):PERSIST")
+  field(SDIS, "$(P)$(MAG):EXTRAS:DIS")
+}
+
+record(bi, "$(P)$(MAG):PERSIST") {
+  field(DESC, "Whether or not $(MAG) is persisting")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):PERSIST MS")
+  
+  field(ZNAM, "Non Persisting")
+  field(ONAM, "Persisting")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):PERSIST")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
+}
+
+
+record(bi, "$(P)SIM:$(MAG):PERSIST") {
+  field(DESC, "Simulated persistent mode of $(MAG)")
+  field(DTYP, "Soft Channel")
+  
+  field(ZNAM, "Non Persisting")
+  field(ONAM, "Persisting")
+}
+
+### Main - Persistent Field value
+
+record(ai, "$(P)$(MAG):OUTPUT:FIELD:PERSIST:GAUSS") {
+  field(DESC, "Persistent Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "1 second")
+  field(EGU, "G")
+  field(PREC, "3")
+  
+  field(INP,"$(PVPREFIX)$(PSU_IOC):OUTPUT:FIELD:PERSIST:GAUSS MS")
+  
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(MAG):OUTPUT:FIELD:PERSIST:GAUSS")
+  field(SDIS, "$(P)DISABLE")
+  
+  info(INTEREST, "HIGH")
+}
+
+record(ai, "$(P)SIM:$(MAG):OUTPUT:FIELD:PERSIST:GAUSS") {
+  field(DESC, "Simulated Persistent Field of $(MAG) in Gauss")
+  field(DTYP, "Soft Channel")
+  field(EGU,"G")
+  field(PREC, "3")
+}
+
+### Extra Disables
+record(bo, "$(P)$(MAG):EXTRAS:DIS") {
+    field(DESC, "Disable $(MAG)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "$(MAG) ENABLED")
+    field(ONAM, "$(MAG) DISABLED")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE)")
+    field(FLNK, "$(P)$(MAG):EXTRAS:DIS:DISABLE PP")
+}
+
+record(dfanout, "$(P)$(MAG):EXTRAS:DIS:DISABLE"){
+  field (DOL, "$(P)$(MAG):EXTRAS:DIS")
+  field (OMSL, "closed_loop")
+  field (OUTA, "$(P)$(MAG):RAMP:LEADS:SP.DISP")
+  field (OUTB, "$(P)$(MAG):PERSIST:SP.DISP")
+}

@@ -56,7 +56,7 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre
+$(APPNAME)_LIBS += utilities pcrecpp pcre
 ## Add other libraries here ##
 $(APPNAME)_LIBS += GalilSupport calc sscan
 $(APPNAME)_LIBS += motorSimSupport
@@ -87,9 +87,15 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 ifeq ($(STATIC_BUILD),YES)
-$(APPNAME)_LIBS_WIN32 += Galil1 # galil2
+# For VS2010 use Standard Galil COmmunication Library Galil1.dll
+# for Other VC version, build Galil2.dll from galil c library wrappers
+ifneq ($(findstring 10.0,$(VCVERSION)),)
+$(APPNAME)_LIBS_WIN32 += Galil1
 $(APPNAME)_SYS_LIBS_WIN32 += delayimp
 $(APPNAME)_LDFLAGS_WIN32 += /DELAYLOAD:Galil1.dll
+else
+$(APPNAME)_LIBS_WIN32 += Galil2
+endif
 endif
 
 $(APPNAME)_SYS_LIBS_Linux += Galil

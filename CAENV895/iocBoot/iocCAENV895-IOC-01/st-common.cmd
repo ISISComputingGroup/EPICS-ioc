@@ -8,7 +8,9 @@
 ## able here to map it back to our own crate number so the PVs remain the same.  
 ## CAENVMEConfigure(const char *portName, int crate, int board_id, unsigned base_address, unsigned card_increment, bool simulate)
 
-CAENVMEConfigure("CRATE0", 0, 0, 0, 0x10000, $(CAENVMESIM=0))
+$(IFDEVSIM) CAENVMEConfigure("CRATE0", 0, 0, 0, 0x10000, 1)
+$(IFRECSIM) CAENVMEConfigure("CRATE0", 0, 0, 0, 0x10000, 1)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) CAENVMEConfigure("CRATE0", 0, 0, 0, 0x10000, 0)
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
@@ -26,6 +28,8 @@ dbLoadRecords("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0
 dbLoadRecords("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=5")
 dbLoadRecords("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=6")
 
+$(IFDEVSIM) dbLoadRecords("$(CAENVME)/db/v895SimTest.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=0")
+
 ## load autosave configMenu for managing sets of PVs
 dbLoadRecords("$(AUTOSAVE)/db/configMenu.db","P=$(MYPVPREFIX)AS:$(IOCNAME):,CONFIG=vmeconfig")
 
@@ -42,3 +46,11 @@ makeAutosaveFileFromDbInfo("vmeconfig_settings.req", "vmeconfig")
 create_manual_set("vmeconfigMenu.req","P=$(MYPVPREFIX)AS:$(IOCNAME):,CONFIG=vmeconfig,CONFIGMENU=1")
 
 create_monitor_set("auto_settings.req", 30, "P=$(MYPVPREFIX)AS:$(IOCNAME):")
+
+## choice: if you have loaded "defaults" config, make a change but do not save it back to defults, and restart ioc.
+## what do you want to happen? 
+## this would load last settings i.e. including your change, kept here in case we wish to swap back to it
+#fdbrestore("vmeconfigMenu.sav")
+## this loads the original "defaults" config, so discards any changes that have not been manually saved
+## macro DEFAULTCFG is really for use by testing framework
+dbpf("$(MYPVPREFIX)AS:$(IOCNAME):vmeconfigMenu:name", "$(DEFAULTCFG=defaults)")
