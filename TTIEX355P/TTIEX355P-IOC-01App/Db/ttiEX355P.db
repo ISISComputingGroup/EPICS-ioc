@@ -32,8 +32,8 @@ record(ao, "$(P)VOLTAGE:SP")
 {
     field(DESC, "Output voltage")
     field(EGU, "V")
-    field(HOPR, "35.0")
-    field(LOPR, "0.0")    
+    field(DRVH, "35.0")
+    field(DRVL, "0.0")    
     field(PREC, "2")
     field(SCAN, "Passive")
     field(DTYP, "stream")
@@ -42,6 +42,8 @@ record(ao, "$(P)VOLTAGE:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLTAGE:SP")
     field(SDIS, "$(P)DISABLE")
+
+$(IFDOAUTOSAVESETPOINTS) info(autosaveFields, "VAL")
 }
 
 # The desired output current.
@@ -49,8 +51,8 @@ record(ao, "$(P)CURRENT:SP")
 {
     field(DESC, "Output current")
     field(EGU, "A")
-    field(HOPR, "5.0")
-    field(LOPR, "0.01")    
+    field(DRVH, "5.0")
+    field(DRVL, "0.01")    
     field(PREC, "2")
     field(SCAN, "Passive")
     field(DTYP, "stream")
@@ -59,6 +61,7 @@ record(ao, "$(P)CURRENT:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURRENT:SP")
     field(SDIS, "$(P)DISABLE")
+$(IFDOAUTOSAVESETPOINTS) info(autosaveFields, "VAL")
 }
 
 # The read back setpoint voltage
