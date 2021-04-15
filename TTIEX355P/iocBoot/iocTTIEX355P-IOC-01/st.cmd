@@ -46,9 +46,6 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-asynSetTraceIOMask("L0", -1, 0x2)
-asynSetTraceMask("L0", -1, 0x9)
-
 # The field conversion is not defined if the macro is unset or set to the empty string.
 stringiftest("FIELD_CONV_DEFINED", "$(AMPSTOGAUSS=)")
 
