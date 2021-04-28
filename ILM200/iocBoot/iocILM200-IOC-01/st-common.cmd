@@ -30,9 +30,13 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+stringiftest("USE_ISOBUS", "$(USE_ISOBUS="Yes")", 5, "Yes")
+$(IFUSE_ISOBUS) epicsEnvSet("ISOBUS", "@$(ISOBUS=1)")
+$(IFNOT_USE_ISOBUS) epicsEnvSet("ISOBUS", "")
+
 ## Load our record instances
-dbLoadRecords("${TOP}/db/ILM200_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ISO=$(ISOBUS=1)")
-dbLoadRecordsLoop("${TOP}/db/ILM200_channel.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,N=\$(N), PORT=$(DEVICE), ISO=$(ISOBUS=1),CH1_ALARM_THRESHOLD=$(CH1_ALARM_THRESHOLD=0.0),CH2_ALARM_THRESHOLD=$(CH2_ALARM_THRESHOLD=0.0),CH3_ALARM_THRESHOLD=$(CH3_ALARM_THRESHOLD=0.0)", "N", 1, 3, 1)
+dbLoadRecords("${TOP}/db/ILM200_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ISO=$(ISOBUS)")
+dbLoadRecordsLoop("${TOP}/db/ILM200_channel.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,N=\$(N), PORT=$(DEVICE), ISO=$(ISOBUS),CH1_ALARM_THRESHOLD=$(CH1_ALARM_THRESHOLD=0.0),CH2_ALARM_THRESHOLD=$(CH2_ALARM_THRESHOLD=0.0),CH3_ALARM_THRESHOLD=$(CH3_ALARM_THRESHOLD=0.0)", "N", 1, 3, 1)
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
