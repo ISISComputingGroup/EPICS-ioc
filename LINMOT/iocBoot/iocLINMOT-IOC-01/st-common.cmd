@@ -43,7 +43,7 @@ $(IFNOTRECSIM) LinMotConfig(0, "$(ASERIAL)", "$(NAXES=1)")
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 
-epicsEnvSet("LINMOTCONFIG","$(ICPCONFIGROOT)/linmot")
+epicsEnvSet("LINMOTCONFIG","$(LINMOTCONFIGDIR=$(ICPCONFIGROOT)/linmot)")
 
 # Special configurations
 < axes.cmd
