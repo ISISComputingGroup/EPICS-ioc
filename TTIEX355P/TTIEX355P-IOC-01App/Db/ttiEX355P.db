@@ -43,7 +43,7 @@ record(ao, "$(P)VOLTAGE:SP")
     field(SIOL, "$(P)SIM:VOLTAGE:SP")
     field(SDIS, "$(P)DISABLE")
 
-$(IFDOAUTOSAVESETPOINTS) info(autosaveFields, "VAL")
+$(IFAUTOSAVESETPOINTS=#) info(autosaveFields, "VAL")
 }
 
 # The desired output current.
@@ -61,7 +61,7 @@ record(ao, "$(P)CURRENT:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURRENT:SP")
     field(SDIS, "$(P)DISABLE")
-$(IFDOAUTOSAVESETPOINTS) info(autosaveFields, "VAL")
+$(IFAUTOSAVESETPOINTS=#) info(autosaveFields, "VAL")
 }
 
 # The read back setpoint voltage
