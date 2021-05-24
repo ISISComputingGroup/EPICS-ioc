@@ -21,6 +21,17 @@ asynOctetSetOutputEos("$(DEVICE)", -1, "$(OEOS=\\r\\n)")
 ## Check if hardware flow control is used
 stringiftest("HARDCNTL", "$(HARDFLOWCNTL=N)",5,"Y")
 
+## Model protocol differences
+stringiftest("IS2410", "$(MODEL=2400)", 5, "2410")
+## DEFAULT values
+epicsEnvSet("GET_V_COMMAND", ":READ?")
+epicsEnvSet("GET_I_COMMAND", ":READ?")
+epicsEnvSet("GET_R_COMMAND", ":READ?")
+## MODEL 2410
+$(IFIS2410) epicsEnvSet("GET_V_COMMAND", ":MEAS:VOLT?")
+$(IFIS2410) epicsEnvSet("GET_I_COMMAND", ":MEAS:CURR?")
+$(IFIS2410) epicsEnvSet("GET_R_COMMAND", ":MEAS:RES?")
+
 # Hardware flow control
 $(IFNOTHARDCNTL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "clocal", "Y")
 $(IFNOTHARDCNTL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
@@ -38,7 +49,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","$(SOFTFLOWCNTL=N)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/KHLY2400.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0)")
+dbLoadRecords("db/KHLY2400.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=$(DEVICE), DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0),GET_V_COMMAND=$(GET_V_COMMAND),GET_I_COMMAND=$(GET_V_COMMAND),GET_R_COMMAND=$(GET_V_COMMAND)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
 < $(IOCSTARTUP)/preiocinit.cmd
