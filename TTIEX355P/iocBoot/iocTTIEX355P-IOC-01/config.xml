@@ -7,6 +7,7 @@
 <macro name="AMPSTOGAUSS" pattern="^.*$" description="Amps to Gauss conversion factor, or empty to disable field calibration" hasDefault="YES" defaultValue="" />
 <macro name="MAXFIELD" pattern="^-?[0-9]+\.?[0-9]*$" description="Maximum field in Gauss for this magnet" hasDefault="YES" defaultValue="1000000000" />
 <macro name="DISABLE_AUTOONOFF" pattern="^(0|1)$" description="1 to disable auto on/off related functionality, 0 to enable it" hasDefault="YES" defaultValue="1" />
+<macro name="AUTOSAVESETPOINTS" pattern="^(YES|NO)$" description="YES to autosave and reapply setpoints at IOC startup, NO to not. NO is default." hasDefault="YES" defaultValue="NO" />
 </macros>
 </config_part>
 </ioc_config>
