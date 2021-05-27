@@ -73,7 +73,7 @@ record(ao, "$(P)$(MAG):FIELD:MAX:SP") {
   field(DESC, "Max Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
-  field(EGU, "A/s")
+  field(EGU, "G")
   field(PREC, "3")
 }
 
@@ -142,7 +142,7 @@ record(ao, "$(P)$(MAG):FIELD:MID:SP") {
   field(DESC, "Mid Field of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
-  field(EGU, "A/s")
+  field(EGU, "G")
   field(PREC, "3")
 }
 

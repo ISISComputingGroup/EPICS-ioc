@@ -42,7 +42,7 @@ dbLoadRecords("$(ZFMAGFLD)/db/zfmagfld_sensor_matrix.db","PVPREFIX=$(MYPVPREFIX)
 dbLoadRecords("$(ZFMAGFLD)/db/zfmagfld.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),SQNCR=$(SQNCR=$(MYPVPREFIX)ZFCNTRL_01:INPUTS_UPDATED.PROC CA),RANGE=$(RANGE=1)")
 dbLoadRecords("$(ZFMAGFLD)/db/zfmagfld_errors.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):")
 
-$(IFHAS_EXTRA_DAQ_CHANNEL) dbLoadRecords("$(ZFMAGFLD)/db/zfmagfld_extra_axis.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,IFNOTRECSIM=$(IFNOTRECSIM),IFRECSIM=$(IFRECSIM)")
+$(IFHAS_EXTRA_DAQ_CHANNEL) dbLoadRecords("$(ZFMAGFLD)/db/zfmagfld_extra_axis.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,IFNOTRECSIM=$(IFNOTRECSIM),IFRECSIM=$(IFRECSIM),NUM_SAMPLES=$(NUM_SAMPLES=1)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

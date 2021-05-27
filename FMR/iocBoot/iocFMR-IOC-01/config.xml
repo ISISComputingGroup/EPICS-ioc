@@ -3,9 +3,9 @@
     <config_part>
     <ioc_desc>FMR (via LVDCOM)</ioc_desc>
         <macros>
-            <macro name="LVDCOM_OPTIONS" pattern="^\d?\d?$" description="Options that define how the VI is started. Add selected options together to make the final value. 1 - warn if idle, 2 - start if idle, 4 - stop VIs if started on exit, 8 - stop VI on exit. (Default 1)" />
-            <macro name="LVDCOM_HOST" pattern="^.*$" description="Host on which the vi is running, blank for localhost (Default '')" />
-            <macro name="PATH_TO_VI" pattern="^.*$" description="Full VI path including filename (Default '')" />
+            <macro name="LVDCOM_OPTIONS" pattern="^\d?\d?$" description="Options that define how the VI is started. Add selected options together to make the final value. 1 - warn if idle, 2 - start if idle, 4 - stop VIs if started on exit, 8 - stop VI on exit. (Default 1)" hasDefault="YES" defaultValue="1"/>
+            <macro name="LVDCOM_HOST" pattern="^.*$" description="Host on which the vi is running, blank for localhost (Default '')" hasDefault="YES" defaultValue=""/>
+            <macro name="PATH_TO_VI" pattern="^.*$" description="Full VI path including filename (Default '')" hasDefault="YES" defaultValue=""/>
         </macros>
     </config_part>
 </ioc_config>
