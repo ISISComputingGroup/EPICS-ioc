@@ -11,9 +11,7 @@ include $(TOP)/configure/CONFIG
 # Build the IOC application GALIL-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
-ifeq ($(STATIC_BUILD),NO)
-PROD_IOC_WIN32 = $(APPNAME)
-endif
+PROD_IOC = $(APPNAME)
 # GALIL-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
@@ -21,7 +19,6 @@ DBD += $(APPNAME).dbd
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += icpconfig.dbd
-$(APPNAME)_DBD += pvcomplete.dbd 
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
@@ -51,8 +48,8 @@ $(APPNAME)_DBD += cvtRecord.dbd
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
-$(APPNAME)_LIBS += pvcomplete
-$(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
+$(APPNAME)_LIBS += pvdump $(MYSQLLIB) 
+#$(APPNAME)_LIBS += easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
@@ -85,20 +82,6 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
-
-ifeq ($(STATIC_BUILD),YES)
-# For VS2010 use Standard Galil COmmunication Library Galil1.dll
-# for Other VC version, build Galil2.dll from galil c library wrappers
-ifneq ($(findstring 10.0,$(VCVERSION)),)
-$(APPNAME)_LIBS_WIN32 += Galil1
-$(APPNAME)_SYS_LIBS_WIN32 += delayimp
-$(APPNAME)_LDFLAGS_WIN32 += /DELAYLOAD:Galil1.dll
-else
-$(APPNAME)_LIBS_WIN32 += Galil2
-endif
-endif
-
-$(APPNAME)_SYS_LIBS_Linux += Galil
 
 #===========================
 

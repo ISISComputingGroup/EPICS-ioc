@@ -3,7 +3,7 @@
 ## MTRCTRL is the galil crate number - 01, 02, ...
 
 ## GALIL_MTR_PORT will be Galil or GalilSim
-dbLoadRecords("$(GALILIOC)/db/galil_motor.db", "PORT=$(GALIL_MTR_PORT),P=$(MYPVPREFIX)MOT,CCP=$(MTRCTRL)")
+dbLoadRecords("$(GALILIOC)/db/galil_motor.db", "GPORT=$(GALIL_MTR_PORT),P=$(MYPVPREFIX)MOT,CCP=$(MTRCTRL)")
 
 #Load extra functionality, untop of motorRecord features for axis/motors (eg. runtime gear ratio changes between master & slaves)
 dbLoadRecords("$(GALILIOC)/db/galil_ctrl_extras.db", "P=$(MYPVPREFIX)MOT,CCP=$(MTRCTRL),PORT=$(GALIL_MTR_PORT)")
