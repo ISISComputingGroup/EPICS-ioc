@@ -16,6 +16,7 @@
 #include "epicsThread.h"
 #include "epicsExit.h"
 #include "iocsh.h"
+#include "shareLib.h"
 
 #ifdef _WIN32
 #define snprintf _snprintf
