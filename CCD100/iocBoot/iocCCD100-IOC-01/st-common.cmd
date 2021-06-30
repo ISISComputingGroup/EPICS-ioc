@@ -7,8 +7,9 @@ epicsEnvSet "STREAM_PROTOCOL_PATH" "$(CCD100)/data"
 $(IFRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NUL)", 0, 1, 0, 0)
 
 # For dev sim devices
-$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
-
+drvAsynIPPortConfigure("L0", "192.168.1.180:101")
+asynSetTraceIOMask("L0", -1, 0x2)
+asynSetTraceMask("L0", -1, 0x9)
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NUL)", 0, 0, 0, 0)
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=57600)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
