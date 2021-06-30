@@ -75,7 +75,7 @@ alias("$(P)SP:RBV", "$(P)READING:SP:RBV") # Alias rather than rename to keep bac
 record(stringin, "$(P)UNITS") 
 {
     field(DESC, "Units of reading and SP")
-	field(SCAN, "I/O Intr")
+	field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@devCCD100.proto getUnits($(ADDR)) $(PORT)")
 	info(archive, "VAL")
