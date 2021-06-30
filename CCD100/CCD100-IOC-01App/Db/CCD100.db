@@ -61,13 +61,13 @@ record(ai, "$(P)SP:RBV")
     field(DESC, "The SP readback for the input channel")
     field(DTYP, "stream")
     field(INP,  "@devCCD100.proto getSP($(ADDR)) $(PORT)")
-	field(SCAN, "1 second")
 	field(PREC, "3")
 	field(EGU, "") #Set from device
 	info(INTEREST, "HIGH")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SP:RBV")
     field(SDIS, "$(P)DISABLE")
+	field(SCAN, "1 second")
 }
 
 alias("$(P)SP:RBV", "$(P)READING:SP:RBV") # Alias rather than rename to keep backwards compatibility
@@ -75,7 +75,7 @@ alias("$(P)SP:RBV", "$(P)READING:SP:RBV") # Alias rather than rename to keep bac
 record(stringin, "$(P)UNITS") 
 {
     field(DESC, "Units of reading and SP")
-    field(SCAN, "1 second")
+	field(SCAN, "I/O Intr")
     field(DTYP, "stream")
     field(INP,  "@devCCD100.proto getUnits($(ADDR)) $(PORT)")
 	info(archive, "VAL")
