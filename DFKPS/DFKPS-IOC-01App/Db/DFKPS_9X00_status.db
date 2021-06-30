@@ -1,0 +1,325 @@
+record(longin, "$(P)ADDRESS")
+{
+    field(DESC, "Reads PSU address")
+    field(VAL, "$(ADDRESS)")
+#    field(DTYP, "stream")
+
+#    field(INP, "@dfkps.proto getadr $(port) 0")
+
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ADDRESS")
+    field(SDIS, "$(P)DISABLE")
+}
+
+record(longin, "$(P)STATUS")
+{
+    field(DESC, "Device Status Flags")
+    field(DTYP, "stream")
+    field(INP,  "@dfkps.proto status($(P)ADDRESS) $(port) 0")
+    field(SCAN, "1 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:STATUS")
+    field(SDIS, "$(P)DISABLE")
+    field(EGU, "")
+}
+
+
+record(calcout, "$(P)CALSTA1")
+{
+    field(DESC, "Get Status Flags 1-16")
+    field(CALC, "(A>>8)&65535")
+    field(INPA, "$(P)STATUS CP MS")
+}
+
+record(calcout, "$(P)CALSTA2")
+{
+    field(DESC, "Get Status Flags 16-24")
+    field(CALC, "(A<<8)&65535")
+    field(INPA, "$(P)STATUS CP MS")
+}
+
+record(mbbiDirect, "$(P)STA1")
+{
+    field(DESC, "Status Flags 1-16")
+	field(INP, "$(P)CALSTA1 CP MS")
+	field(DTYP, "Raw Soft Channel")
+	# F = Power off
+	# E = Polarity normal
+	# D = Polarity reversed
+	# C = Spare
+	# B = Crowbar on
+	# A = I-mode
+	# 9 = Amps and Volts
+	# 8 = External Interlock 0
+	# 7 = Spare
+	# 6 = Sum interlocks
+	# 5 = Over voltage
+	# 4 = Over Current
+	# 3 = Under volatage
+	# 2 = spare
+	# 1 = Phase failure
+	# 0 = spare	
+}
+
+record(mbbiDirect, "$(P)STA2")
+{
+    field(DESC, "Status Flags 16-24")
+	field(INP, "$(P)CALSTA2 CP MS")
+	field(DTYP, "Raw Soft Channel")
+	# F = Earth leakage failure
+	# E = Fan
+	# D = MPS over temperature
+	# C = External Interlock 1
+	# B = External Interlock 2
+	# A = External Interlock 3
+	# 9 = MPS not ready
+	# 8 = spare
+}
+
+record(calcout, "$(P)POWER:_CALC")
+{
+    field(INPA, "$(P)STA1.BF CP MS")
+	field(CALC, "!A")
+}
+
+record(bi, "$(P)POLARITY:NORMAL")
+{
+    field(INP, "$(P)STA1.BE CP MS")
+    field(DESC, "Polarity Normal")
+    field(ZNAM, "Polarity Normal")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)POLARITY:REVERSED")
+{
+    field(INP, "$(P)STA1.BD CP MS")
+    field(DESC, "Polarity Reversed")
+    field(ZNAM, "Polarity Reversed")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)CROWBAR")
+{
+    field(INP, "$(P)STA1.BB CP MS")
+    field(DESC, "Crowbar")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)IMODE")
+{
+    field(INP, "$(P)STA1.BA CP MS")
+    field(DESC, "I-Mode")
+    field(ZNAM, "I mode")
+    field(ONAM, "V mode")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)PERCENT")
+{
+    field(INP, "$(P)STA1.B9 CP MS")
+    field(DESC, "Percentage")
+    field(ZNAM, "%")
+    field(ONAM, "AMPS/VOLTS")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:EXT:0")
+{
+    field(INP, "$(P)STA1.B8 CP MS")
+    field(DESC, "External Interlock 0")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK")
+{
+    field(INP, "$(P)STA1.B6 CP MS")
+    field(DESC, "Overall Interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:OV")
+{
+    field(INP, "$(P)STA1.B5 CP MS")
+    field(DESC, "over volatage interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:DCOC")
+{
+    field(INP, "$(P)STA1.B4 CP MS")
+    field(DESC, "over current interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:DCUV")
+{
+    field(INP, "$(P)STA1.B3 CP MS")
+    field(DESC, "under voltage")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:PHAS")
+{
+    field(INP, "$(P)STA1.B1 CP MS")
+    field(DESC, "Phase failure interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:EARTHLEAK")
+{
+    field(INP, "$(P)STA2.BF CP MS")
+    field(DESC, "Earth leak interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:FAN")
+{
+    field(INP, "$(P)STA2.BE CP MS")
+    field(DESC, "Fan")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:MPSTEMP")
+{
+    field(INP, "$(P)STA2.BD CP MS")
+    field(DESC, "MPS overtemp interlock")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:EXT:1")
+{
+    field(INP, "$(P)STA2.BC CP MS")
+    field(DESC, "External Interlock 1")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:EXT:2")
+{
+    field(INP, "$(P)STA2.BB CP MS")
+    field(DESC, "External Interlock 2")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)ILK:EXT:3")
+{
+    field(INP, "$(P)STA2.BA CP MS")
+    field(DESC, "External Interlock 3")
+    field(ZNAM, "OK")
+    field(ONAM, "Tripped")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)MPS:NOTREADY")
+{
+    field(INP, "$(P)STA2.B9 CP MS")
+    field(DESC, "MPS Not Ready")
+    field(ZNAM, "Ready")
+    field(ONAM, "Not Ready")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)POWER")
+{
+    field(INP, "$(P)POWER:_CALC CP MS")
+    field(DESC, "Power")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POWER CP")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+	
+}
+alias("$(P)POWER", "$(P)POWER:RBV")
+
+record(bi, "$(P)SIM:POWER")
+{
+    field(DTYP, "Soft Channel")
+	field(DESC, "Power")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+alias("$(P)SIM:POWER", "$(P)SIM:POWER:SP")
+
+record(ao, "$(P)RAW:SP")
+{
+    field(DESC, "Set Output Current")
+    field(EGU,  "mA")
+    field(DTYP, "stream")
+    field(OUT,  "@dfkps.proto dac(0) $(port) 0")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAW:SP")
+    field(SDIS, "$(P)DISABLE")
+    field(PINI, "$(SP_PINI)")
+    field(DRVL, "$(MIN_RAW_SETPOINT)")
+    field(DRVH, "$(MAX_RAW_SETPOINT)")
+    info(autosaveFields, "VAL")
+}
+
+record(ao, "$(P)SIM:RAW"){
+field(DTYP, "Soft Channel")
+field(EGU, "A")
+}
+alias("$(P)SIM:RAW", "$(P)SIM:RAW:SP")
+
+record(ai, "$(P)RAW")
+{
+field(DESC, "ADC Channel 8")
+field(DTYP, "stream")
+field(INP, "@dfkps_common.proto adc(8) $(port) 0")
+field(SCAN, "1 second")
+field(LOLO, "-999999.5")
+field(HIHI, "999999.5")
+field(LLSV, "MAJOR")
+field(HHSV, "MAJOR")
+field(PREC, "0")
+field(FLNK, "$(P)RBVCHANGED")
+field(SIML, "$(P)SIM")
+field(SIOL, "$(P)SIM:RAW")
+field(SDIS, "$(P)DISABLE")
+field(EGU, "A")
+info(INTEREST, "HIGH")
+info(archive, "VAL")
+}
