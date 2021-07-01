@@ -96,6 +96,7 @@ record(bi, "$(P)MODE")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
     field(DESC, "Julabo mode")
+    info(archive, "VAL")
 }
 
 record(bo, "$(P)MODE:SP") 
