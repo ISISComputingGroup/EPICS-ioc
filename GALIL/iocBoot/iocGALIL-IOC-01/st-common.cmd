@@ -102,10 +102,10 @@ stringiftest("HASMTRCTRL", "$(MTRCTRL=)", 0, 0)
 $(IFNOTHASMTRCTRL) errlogSev(2, "MTRCTRL has not been set")
 
 # Save motor positions every 5 seconds
-$(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+$(IFHASMTRCTRL) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
 # Save motor settings every 30 seconds
-$(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+$(IFHASMTRCTRL) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
 $(IFHASMTRCTRL) $(IFMOTORCONFIG) create_manual_set("$(MOTORCONFIG=)Menu.req","P=$(MYPVPREFIX)MOT:,CMP=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=),IOCNAME=$(IOCNAME),MTRCTRL=$(MTRCTRL),CONFIGMENU=1")
 
