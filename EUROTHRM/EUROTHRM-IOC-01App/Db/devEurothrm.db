@@ -690,7 +690,7 @@ record(ai, "$(P)RBV") {
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP")
     field(SDIS, "$(Q)DISABLE")
-    field(EGU, "")
+    field(EGU, "mV")
     field(PREC, "3")
     info(archive, "VAL")
     info(alarm, "Euro")
