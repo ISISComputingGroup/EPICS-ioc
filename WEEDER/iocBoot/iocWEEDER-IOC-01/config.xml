@@ -5,6 +5,7 @@
 <ioc_details>Shutter control for DH-2000 light source</ioc_details>
 <macros>
     <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
+    <macro name="ADDRESS" pattern="^[A-Pa-p]$" description="The address of the WEEDER, defaults to A." defaultValue="" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>
