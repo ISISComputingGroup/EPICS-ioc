@@ -1,0 +1,888 @@
+=========================
+Crate object information:
+=========================
+  handle = 0
+  Number of slots  : 6
+  Number of boards : 2
+  Properties:
+  ---------------------------
+    Number of properties of type integer: 8
+      Name = GenSignCfg, Handle = 0, Mode = RO, epicsParamName = C_GENSIGNCFG, epicsRecordName = C:GENSIGNCFG
+      Name = FrontPanIn, Handle = 0, Mode = RO, epicsParamName = C_FRONTPANIN, epicsRecordName = C:FRONTPANIN
+      Name = FrontPanOut, Handle = 0, Mode = RO, epicsParamName = C_FRONTPANOUT, epicsRecordName = C:FRONTPANOUT
+      Name = ResFlagCfg, Handle = 0, Mode = RO, epicsParamName = C_RESFLAGCFG, epicsRecordName = C:RESFLAGCFG
+      Name = ResFlag, Handle = 0, Mode = RO, epicsParamName = C_RESFLAG, epicsRecordName = C:RESFLAG
+      Name = ClkFreq, Handle = 0, Mode = RO, epicsParamName = C_CLKFREQ, epicsRecordName = C:CLKFREQ
+      Name = CnetCrNum, Handle = 0, Mode = RO, epicsParamName = C_CNETCRNUM, epicsRecordName = C:CNETCRNUM
+      Name = CmdQueueStatus, Handle = 0, Mode = RO, epicsParamName = C_CMDQUEUESTATUS, epicsRecordName = C:CMDQUEUESTATUS
+    Number of properties of type float: 0
+    Number of properties of type string: 13
+      Name = Sessions, Handle = 0, Mode = RO, epicsParamName = C_SESSIONS, epicsRecordName = C:SESSIONS
+      Name = ModelName, Handle = 0, Mode = RO, epicsParamName = C_MODELNAME, epicsRecordName = C:MODELNAME
+      Name = SwRelease, Handle = 0, Mode = RO, epicsParamName = C_SWRELEASE, epicsRecordName = C:SWRELEASE
+      Name = HvPwSM, Handle = 0, Mode = RO, epicsParamName = C_HVPWSM, epicsRecordName = C:HVPWSM
+      Name = FanStat, Handle = 0, Mode = RO, epicsParamName = C_FANSTAT, epicsRecordName = C:FANSTAT
+      Name = HVClkConf, Handle = 0, Mode = RO, epicsParamName = C_HVCLKCONF, epicsRecordName = C:HVCLKCONF
+      Name = IPAddr, Handle = 0, Mode = RO, epicsParamName = C_IPADDR, epicsRecordName = C:IPADDR
+      Name = IPNetMsk, Handle = 0, Mode = RO, epicsParamName = C_IPNETMSK, epicsRecordName = C:IPNETMSK
+      Name = IPGw, Handle = 0, Mode = RO, epicsParamName = C_IPGW, epicsRecordName = C:IPGW
+      Name = RS232Par, Handle = 0, Mode = RO, epicsParamName = C_RS232PAR, epicsRecordName = C:RS232PAR
+      Name = SymbolicName, Handle = 0, Mode = RO, epicsParamName = C_SYMBOLICNAME, epicsRecordName = C:SYMBOLICNAME
+      Name = CPULoad, Handle = 0, Mode = RO, epicsParamName = C_CPULOAD, epicsRecordName = C:CPULOAD
+      Name = MemoryStatus, Handle = 0, Mode = RO, epicsParamName = C_MEMORYSTATUS, epicsRecordName = C:MEMORYSTATUS
+  Board information: 
+  ---------------------------
+    Slot: 3, Model: A1733, Description: A1733, Number of channels: 12, Serial Number: 437, Firmware release: 3.1
+    Board parameters:
+    ...........................
+      Number of Numeric parameters: 2
+        Param = HVMax, Mode  = RO, Minval = 0, Maxval = 4200, Units  = V, epicsParamName = S03_HVMAX, epicsRecordName = S03:HVMAX
+        Param = Temp, Mode  = RO, Minval = 5, Maxval = 65, Units  = C, epicsParamName = S03_TEMP, epicsRecordName = S03:TEMP
+      Number of OnOff parameters: 0
+      Number of ChStatus parameters: 0
+      Number of BdStatus parameters: 1
+        Param = BdStatus, Mode = RO, Value = 0, epicsParamName = S03_BDSTATUS, epicsRecordName = S03:BDSTATUS
+    Channel parameters:
+    ...........................
+      Slot = 3, Channel = 0
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = M3, epicsParamName = S03_C00_NAME, epicsRecordName = S03:C00:NAME
+        Number of Numeric parameters: 12
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 1860, epicsParamName = S03_C00_V0SET, epicsRecordName = S03:C00:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 500, epicsParamName = S03_C00_I0SET, epicsRecordName = S03:C00:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C00_V1SET, epicsRecordName = S03:C00:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 200, epicsParamName = S03_C00_I1SET, epicsRecordName = S03:C00:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C00_RUP, epicsRecordName = S03:C00:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C00_RDWN, epicsRecordName = S03:C00:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 100, epicsParamName = S03_C00_TRIP, epicsRecordName = S03:C00:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 4000, epicsParamName = S03_C00_SVMAX, epicsRecordName = S03:C00:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 1859.25, epicsParamName = S03_C00_VMON, epicsRecordName = S03:C00:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 346.8, epicsParamName = S03_C00_IMON, epicsRecordName = S03:C00:IMON
+          Param = TripInt, Mode  = RO, Minval = 0, Maxval = 4095, Units = , Value = 0, epicsParamName = S03_C00_TRIPINT, epicsRecordName = S03:C00:TRIPINT
+          Param = TripExt, Mode  = RO, Minval = 0, Maxval = 255, Units = , Value = 16, epicsParamName = S03_C00_TRIPEXT, epicsRecordName = S03:C00:TRIPEXT
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 1, epicsParamName = S03_C00_PW, epicsRecordName = S03:C00:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S03_C00_PON, epicsRecordName = S03:C00:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S03_C00_PDWN, epicsRecordName = S03:C00:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 1, epicsParamName = S03_C00_STATUS, epicsRecordName = S03:C00:STATUS
+        Number of Binary parameters: 0
+      Slot = 3, Channel = 1
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = M4, epicsParamName = S03_C01_NAME, epicsRecordName = S03:C01:NAME
+        Number of Numeric parameters: 12
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 2100, epicsParamName = S03_C01_V0SET, epicsRecordName = S03:C01:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 500, epicsParamName = S03_C01_I0SET, epicsRecordName = S03:C01:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C01_V1SET, epicsRecordName = S03:C01:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 200, epicsParamName = S03_C01_I1SET, epicsRecordName = S03:C01:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C01_RUP, epicsRecordName = S03:C01:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C01_RDWN, epicsRecordName = S03:C01:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S03_C01_TRIP, epicsRecordName = S03:C01:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 4000, epicsParamName = S03_C01_SVMAX, epicsRecordName = S03:C01:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 2098, epicsParamName = S03_C01_VMON, epicsRecordName = S03:C01:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 421.4, epicsParamName = S03_C01_IMON, epicsRecordName = S03:C01:IMON
+          Param = TripInt, Mode  = RO, Minval = 0, Maxval = 4095, Units = , Value = 0, epicsParamName = S03_C01_TRIPINT, epicsRecordName = S03:C01:TRIPINT
+          Param = TripExt, Mode  = RO, Minval = 0, Maxval = 255, Units = , Value = 16, epicsParamName = S03_C01_TRIPEXT, epicsRecordName = S03:C01:TRIPEXT
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 1, epicsParamName = S03_C01_PW, epicsRecordName = S03:C01:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S03_C01_PON, epicsRecordName = S03:C01:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S03_C01_PDWN, epicsRecordName = S03:C01:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 1, epicsParamName = S03_C01_STATUS, epicsRecordName = S03:C01:STATUS
+        Number of Binary parameters: 0
+      Slot = 3, Channel = 2
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S03_C02_NAME, epicsRecordName = S03:C02:NAME
+        Number of Numeric parameters: 12
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C02_V0SET, epicsRecordName = S03:C02:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 5, epicsParamName = S03_C02_I0SET, epicsRecordName = S03:C02:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C02_V1SET, epicsRecordName = S03:C02:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 200, epicsParamName = S03_C02_I1SET, epicsRecordName = S03:C02:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C02_RUP, epicsRecordName = S03:C02:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C02_RDWN, epicsRecordName = S03:C02:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S03_C02_TRIP, epicsRecordName = S03:C02:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 4000, epicsParamName = S03_C02_SVMAX, epicsRecordName = S03:C02:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0.75, epicsParamName = S03_C02_VMON, epicsRecordName = S03:C02:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 0, epicsParamName = S03_C02_IMON, epicsRecordName = S03:C02:IMON
+          Param = TripInt, Mode  = RO, Minval = 0, Maxval = 4095, Units = , Value = 0, epicsParamName = S03_C02_TRIPINT, epicsRecordName = S03:C02:TRIPINT
+          Param = TripExt, Mode  = RO, Minval = 0, Maxval = 255, Units = , Value = 16, epicsParamName = S03_C02_TRIPEXT, epicsRecordName = S03:C02:TRIPEXT
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S03_C02_PW, epicsRecordName = S03:C02:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S03_C02_PON, epicsRecordName = S03:C02:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S03_C02_PDWN, epicsRecordName = S03:C02:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S03_C02_STATUS, epicsRecordName = S03:C02:STATUS
+        Number of Binary parameters: 0
+      Slot = 3, Channel = 3
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S03_C03_NAME, epicsRecordName = S03:C03:NAME
+        Number of Numeric parameters: 12
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C03_V0SET, epicsRecordName = S03:C03:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 5, epicsParamName = S03_C03_I0SET, epicsRecordName = S03:C03:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C03_V1SET, epicsRecordName = S03:C03:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 200, epicsParamName = S03_C03_I1SET, epicsRecordName = S03:C03:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C03_RUP, epicsRecordName = S03:C03:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C03_RDWN, epicsRecordName = S03:C03:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S03_C03_TRIP, epicsRecordName = S03:C03:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 4000, epicsParamName = S03_C03_SVMAX, epicsRecordName = S03:C03:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C03_VMON, epicsRecordName = S03:C03:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 0, epicsParamName = S03_C03_IMON, epicsRecordName = S03:C03:IMON
+          Param = TripInt, Mode  = RO, Minval = 0, Maxval = 4095, Units = , Value = 0, epicsParamName = S03_C03_TRIPINT, epicsRecordName = S03:C03:TRIPINT
+          Param = TripExt, Mode  = RO, Minval = 0, Maxval = 255, Units = , Value = 16, epicsParamName = S03_C03_TRIPEXT, epicsRecordName = S03:C03:TRIPEXT
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S03_C03_PW, epicsRecordName = S03:C03:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S03_C03_PON, epicsRecordName = S03:C03:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S03_C03_PDWN, epicsRecordName = S03:C03:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S03_C03_STATUS, epicsRecordName = S03:C03:STATUS
+        Number of Binary parameters: 0
+      Slot = 3, Channel = 4
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S03_C04_NAME, epicsRecordName = S03:C04:NAME
+        Number of Numeric parameters: 12
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C04_V0SET, epicsRecordName = S03:C04:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 5, epicsParamName = S03_C04_I0SET, epicsRecordName = S03:C04:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C04_V1SET, epicsRecordName = S03:C04:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 200, epicsParamName = S03_C04_I1SET, epicsRecordName = S03:C04:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C04_RUP, epicsRecordName = S03:C04:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C04_RDWN, epicsRecordName = S03:C04:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S03_C04_TRIP, epicsRecordName = S03:C04:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 4000, epicsParamName = S03_C04_SVMAX, epicsRecordName = S03:C04:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C04_VMON, epicsRecordName = S03:C04:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 0, epicsParamName = S03_C04_IMON, epicsRecordName = S03:C04:IMON
+          Param = TripInt, Mode  = RO, Minval = 0, Maxval = 4095, Units = , Value = 0, epicsParamName = S03_C04_TRIPINT, epicsRecordName = S03:C04:TRIPINT
+          Param = TripExt, Mode  = RO, Minval = 0, Maxval = 255, Units = , Value = 16, epicsParamName = S03_C04_TRIPEXT, epicsRecordName = S03:C04:TRIPEXT
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S03_C04_PW, epicsRecordName = S03:C04:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S03_C04_PON, epicsRecordName = S03:C04:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S03_C04_PDWN, epicsRecordName = S03:C04:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S03_C04_STATUS, epicsRecordName = S03:C04:STATUS
+        Number of Binary parameters: 0
+      Slot = 3, Channel = 5
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S03_C05_NAME, epicsRecordName = S03:C05:NAME
+        Number of Numeric parameters: 12
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C05_V0SET, epicsRecordName = S03:C05:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 5, epicsParamName = S03_C05_I0SET, epicsRecordName = S03:C05:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C05_V1SET, epicsRecordName = S03:C05:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 200, epicsParamName = S03_C05_I1SET, epicsRecordName = S03:C05:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C05_RUP, epicsRecordName = S03:C05:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C05_RDWN, epicsRecordName = S03:C05:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S03_C05_TRIP, epicsRecordName = S03:C05:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 4000, epicsParamName = S03_C05_SVMAX, epicsRecordName = S03:C05:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C05_VMON, epicsRecordName = S03:C05:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 0, epicsParamName = S03_C05_IMON, epicsRecordName = S03:C05:IMON
+          Param = TripInt, Mode  = RO, Minval = 0, Maxval = 4095, Units = , Value = 0, epicsParamName = S03_C05_TRIPINT, epicsRecordName = S03:C05:TRIPINT
+          Param = TripExt, Mode  = RO, Minval = 0, Maxval = 255, Units = , Value = 16, epicsParamName = S03_C05_TRIPEXT, epicsRecordName = S03:C05:TRIPEXT
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S03_C05_PW, epicsRecordName = S03:C05:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S03_C05_PON, epicsRecordName = S03:C05:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S03_C05_PDWN, epicsRecordName = S03:C05:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S03_C05_STATUS, epicsRecordName = S03:C05:STATUS
+        Number of Binary parameters: 0
+      Slot = 3, Channel = 6
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S03_C06_NAME, epicsRecordName = S03:C06:NAME
+        Number of Numeric parameters: 12
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C06_V0SET, epicsRecordName = S03:C06:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 5, epicsParamName = S03_C06_I0SET, epicsRecordName = S03:C06:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C06_V1SET, epicsRecordName = S03:C06:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 200, epicsParamName = S03_C06_I1SET, epicsRecordName = S03:C06:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C06_RUP, epicsRecordName = S03:C06:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C06_RDWN, epicsRecordName = S03:C06:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S03_C06_TRIP, epicsRecordName = S03:C06:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 4000, epicsParamName = S03_C06_SVMAX, epicsRecordName = S03:C06:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C06_VMON, epicsRecordName = S03:C06:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 0, epicsParamName = S03_C06_IMON, epicsRecordName = S03:C06:IMON
+          Param = TripInt, Mode  = RO, Minval = 0, Maxval = 4095, Units = , Value = 0, epicsParamName = S03_C06_TRIPINT, epicsRecordName = S03:C06:TRIPINT
+          Param = TripExt, Mode  = RO, Minval = 0, Maxval = 255, Units = , Value = 16, epicsParamName = S03_C06_TRIPEXT, epicsRecordName = S03:C06:TRIPEXT
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S03_C06_PW, epicsRecordName = S03:C06:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S03_C06_PON, epicsRecordName = S03:C06:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S03_C06_PDWN, epicsRecordName = S03:C06:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S03_C06_STATUS, epicsRecordName = S03:C06:STATUS
+        Number of Binary parameters: 0
+      Slot = 3, Channel = 7
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S03_C07_NAME, epicsRecordName = S03:C07:NAME
+        Number of Numeric parameters: 12
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C07_V0SET, epicsRecordName = S03:C07:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 5, epicsParamName = S03_C07_I0SET, epicsRecordName = S03:C07:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C07_V1SET, epicsRecordName = S03:C07:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 200, epicsParamName = S03_C07_I1SET, epicsRecordName = S03:C07:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C07_RUP, epicsRecordName = S03:C07:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C07_RDWN, epicsRecordName = S03:C07:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S03_C07_TRIP, epicsRecordName = S03:C07:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 4000, epicsParamName = S03_C07_SVMAX, epicsRecordName = S03:C07:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C07_VMON, epicsRecordName = S03:C07:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 0, epicsParamName = S03_C07_IMON, epicsRecordName = S03:C07:IMON
+          Param = TripInt, Mode  = RO, Minval = 0, Maxval = 4095, Units = , Value = 0, epicsParamName = S03_C07_TRIPINT, epicsRecordName = S03:C07:TRIPINT
+          Param = TripExt, Mode  = RO, Minval = 0, Maxval = 255, Units = , Value = 16, epicsParamName = S03_C07_TRIPEXT, epicsRecordName = S03:C07:TRIPEXT
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S03_C07_PW, epicsRecordName = S03:C07:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S03_C07_PON, epicsRecordName = S03:C07:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S03_C07_PDWN, epicsRecordName = S03:C07:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S03_C07_STATUS, epicsRecordName = S03:C07:STATUS
+        Number of Binary parameters: 0
+      Slot = 3, Channel = 8
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S03_C08_NAME, epicsRecordName = S03:C08:NAME
+        Number of Numeric parameters: 12
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C08_V0SET, epicsRecordName = S03:C08:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 5, epicsParamName = S03_C08_I0SET, epicsRecordName = S03:C08:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C08_V1SET, epicsRecordName = S03:C08:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 200, epicsParamName = S03_C08_I1SET, epicsRecordName = S03:C08:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C08_RUP, epicsRecordName = S03:C08:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C08_RDWN, epicsRecordName = S03:C08:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S03_C08_TRIP, epicsRecordName = S03:C08:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 4000, epicsParamName = S03_C08_SVMAX, epicsRecordName = S03:C08:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C08_VMON, epicsRecordName = S03:C08:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 0, epicsParamName = S03_C08_IMON, epicsRecordName = S03:C08:IMON
+          Param = TripInt, Mode  = RO, Minval = 0, Maxval = 4095, Units = , Value = 0, epicsParamName = S03_C08_TRIPINT, epicsRecordName = S03:C08:TRIPINT
+          Param = TripExt, Mode  = RO, Minval = 0, Maxval = 255, Units = , Value = 16, epicsParamName = S03_C08_TRIPEXT, epicsRecordName = S03:C08:TRIPEXT
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S03_C08_PW, epicsRecordName = S03:C08:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S03_C08_PON, epicsRecordName = S03:C08:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S03_C08_PDWN, epicsRecordName = S03:C08:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S03_C08_STATUS, epicsRecordName = S03:C08:STATUS
+        Number of Binary parameters: 0
+      Slot = 3, Channel = 9
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S03_C09_NAME, epicsRecordName = S03:C09:NAME
+        Number of Numeric parameters: 12
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C09_V0SET, epicsRecordName = S03:C09:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 5, epicsParamName = S03_C09_I0SET, epicsRecordName = S03:C09:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C09_V1SET, epicsRecordName = S03:C09:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 200, epicsParamName = S03_C09_I1SET, epicsRecordName = S03:C09:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C09_RUP, epicsRecordName = S03:C09:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C09_RDWN, epicsRecordName = S03:C09:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S03_C09_TRIP, epicsRecordName = S03:C09:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 4000, epicsParamName = S03_C09_SVMAX, epicsRecordName = S03:C09:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C09_VMON, epicsRecordName = S03:C09:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 0, epicsParamName = S03_C09_IMON, epicsRecordName = S03:C09:IMON
+          Param = TripInt, Mode  = RO, Minval = 0, Maxval = 4095, Units = , Value = 0, epicsParamName = S03_C09_TRIPINT, epicsRecordName = S03:C09:TRIPINT
+          Param = TripExt, Mode  = RO, Minval = 0, Maxval = 255, Units = , Value = 16, epicsParamName = S03_C09_TRIPEXT, epicsRecordName = S03:C09:TRIPEXT
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S03_C09_PW, epicsRecordName = S03:C09:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S03_C09_PON, epicsRecordName = S03:C09:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S03_C09_PDWN, epicsRecordName = S03:C09:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S03_C09_STATUS, epicsRecordName = S03:C09:STATUS
+        Number of Binary parameters: 0
+      Slot = 3, Channel = 10
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S03_C10_NAME, epicsRecordName = S03:C10:NAME
+        Number of Numeric parameters: 12
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C10_V0SET, epicsRecordName = S03:C10:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 5, epicsParamName = S03_C10_I0SET, epicsRecordName = S03:C10:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C10_V1SET, epicsRecordName = S03:C10:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 200, epicsParamName = S03_C10_I1SET, epicsRecordName = S03:C10:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C10_RUP, epicsRecordName = S03:C10:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C10_RDWN, epicsRecordName = S03:C10:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S03_C10_TRIP, epicsRecordName = S03:C10:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 4000, epicsParamName = S03_C10_SVMAX, epicsRecordName = S03:C10:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C10_VMON, epicsRecordName = S03:C10:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 0, epicsParamName = S03_C10_IMON, epicsRecordName = S03:C10:IMON
+          Param = TripInt, Mode  = RO, Minval = 0, Maxval = 4095, Units = , Value = 0, epicsParamName = S03_C10_TRIPINT, epicsRecordName = S03:C10:TRIPINT
+          Param = TripExt, Mode  = RO, Minval = 0, Maxval = 255, Units = , Value = 16, epicsParamName = S03_C10_TRIPEXT, epicsRecordName = S03:C10:TRIPEXT
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S03_C10_PW, epicsRecordName = S03:C10:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S03_C10_PON, epicsRecordName = S03:C10:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S03_C10_PDWN, epicsRecordName = S03:C10:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S03_C10_STATUS, epicsRecordName = S03:C10:STATUS
+        Number of Binary parameters: 0
+      Slot = 3, Channel = 11
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S03_C11_NAME, epicsRecordName = S03:C11:NAME
+        Number of Numeric parameters: 12
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C11_V0SET, epicsRecordName = S03:C11:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 5, epicsParamName = S03_C11_I0SET, epicsRecordName = S03:C11:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C11_V1SET, epicsRecordName = S03:C11:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 200, epicsParamName = S03_C11_I1SET, epicsRecordName = S03:C11:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C11_RUP, epicsRecordName = S03:C11:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 300, epicsParamName = S03_C11_RDWN, epicsRecordName = S03:C11:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S03_C11_TRIP, epicsRecordName = S03:C11:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 4000, epicsParamName = S03_C11_SVMAX, epicsRecordName = S03:C11:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 4000, Units = V, Value = 0, epicsParamName = S03_C11_VMON, epicsRecordName = S03:C11:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 2000, Units = uA, Value = 0, epicsParamName = S03_C11_IMON, epicsRecordName = S03:C11:IMON
+          Param = TripInt, Mode  = RO, Minval = 0, Maxval = 4095, Units = , Value = 0, epicsParamName = S03_C11_TRIPINT, epicsRecordName = S03:C11:TRIPINT
+          Param = TripExt, Mode  = RO, Minval = 0, Maxval = 255, Units = , Value = 16, epicsParamName = S03_C11_TRIPEXT, epicsRecordName = S03:C11:TRIPEXT
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S03_C11_PW, epicsRecordName = S03:C11:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S03_C11_PON, epicsRecordName = S03:C11:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S03_C11_PDWN, epicsRecordName = S03:C11:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S03_C11_STATUS, epicsRecordName = S03:C11:STATUS
+        Number of Binary parameters: 0
+    Slot: 4, Model: A1535, Description: A1535, Number of channels: 24, Serial Number: 757, Firmware release: 3.2
+    Board parameters:
+    ...........................
+      Number of Numeric parameters: 2
+        Param = HVMax, Mode  = RO, Minval = 0, Maxval = 3700, Units  = V, epicsParamName = S04_HVMAX, epicsRecordName = S04:HVMAX
+        Param = Temp, Mode  = RO, Minval = 5, Maxval = 65, Units  = C, epicsParamName = S04_TEMP, epicsRecordName = S04:TEMP
+      Number of OnOff parameters: 0
+      Number of ChStatus parameters: 0
+      Number of BdStatus parameters: 1
+        Param = BdStatus, Mode = RO, Value = 0, epicsParamName = S04_BDSTATUS, epicsRecordName = S04:BDSTATUS
+    Channel parameters:
+    ...........................
+      Slot = 4, Channel = 0
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = ZOOM_D1, epicsParamName = S04_C00_NAME, epicsRecordName = S04:C00:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1450, epicsParamName = S04_C00_V0SET, epicsRecordName = S04:C00:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 100, epicsParamName = S04_C00_I0SET, epicsRecordName = S04:C00:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C00_V1SET, epicsRecordName = S04:C00:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 10, epicsParamName = S04_C00_I1SET, epicsRecordName = S04:C00:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 20, epicsParamName = S04_C00_RUP, epicsRecordName = S04:C00:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C00_RDWN, epicsRecordName = S04:C00:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 1, epicsParamName = S04_C00_TRIP, epicsRecordName = S04:C00:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1500, epicsParamName = S04_C00_SVMAX, epicsRecordName = S04:C00:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1452.5, epicsParamName = S04_C00_VMON, epicsRecordName = S04:C00:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C00_IMON, epicsRecordName = S04:C00:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 1, epicsParamName = S04_C00_PW, epicsRecordName = S04:C00:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C00_PON, epicsRecordName = S04:C00:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C00_PDWN, epicsRecordName = S04:C00:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 1, epicsParamName = S04_C00_STATUS, epicsRecordName = S04:C00:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C00_TRIPINT, epicsRecordName = S04:C00:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C00_TRIPEXT, epicsRecordName = S04:C00:TRIPEXT
+      Slot = 4, Channel = 1
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = ZOOM_D2, epicsParamName = S04_C01_NAME, epicsRecordName = S04:C01:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1450, epicsParamName = S04_C01_V0SET, epicsRecordName = S04:C01:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 100, epicsParamName = S04_C01_I0SET, epicsRecordName = S04:C01:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C01_V1SET, epicsRecordName = S04:C01:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 10, epicsParamName = S04_C01_I1SET, epicsRecordName = S04:C01:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 20, epicsParamName = S04_C01_RUP, epicsRecordName = S04:C01:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C01_RDWN, epicsRecordName = S04:C01:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 1, epicsParamName = S04_C01_TRIP, epicsRecordName = S04:C01:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1500, epicsParamName = S04_C01_SVMAX, epicsRecordName = S04:C01:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1452, epicsParamName = S04_C01_VMON, epicsRecordName = S04:C01:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C01_IMON, epicsRecordName = S04:C01:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 1, epicsParamName = S04_C01_PW, epicsRecordName = S04:C01:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C01_PON, epicsRecordName = S04:C01:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C01_PDWN, epicsRecordName = S04:C01:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 1, epicsParamName = S04_C01_STATUS, epicsRecordName = S04:C01:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C01_TRIPINT, epicsRecordName = S04:C01:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C01_TRIPEXT, epicsRecordName = S04:C01:TRIPEXT
+      Slot = 4, Channel = 2
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = ZOOM_D3, epicsParamName = S04_C02_NAME, epicsRecordName = S04:C02:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1450, epicsParamName = S04_C02_V0SET, epicsRecordName = S04:C02:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 100, epicsParamName = S04_C02_I0SET, epicsRecordName = S04:C02:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C02_V1SET, epicsRecordName = S04:C02:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 10, epicsParamName = S04_C02_I1SET, epicsRecordName = S04:C02:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 20, epicsParamName = S04_C02_RUP, epicsRecordName = S04:C02:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C02_RDWN, epicsRecordName = S04:C02:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 1, epicsParamName = S04_C02_TRIP, epicsRecordName = S04:C02:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1500, epicsParamName = S04_C02_SVMAX, epicsRecordName = S04:C02:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1452.5, epicsParamName = S04_C02_VMON, epicsRecordName = S04:C02:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C02_IMON, epicsRecordName = S04:C02:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 1, epicsParamName = S04_C02_PW, epicsRecordName = S04:C02:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C02_PON, epicsRecordName = S04:C02:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C02_PDWN, epicsRecordName = S04:C02:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 1, epicsParamName = S04_C02_STATUS, epicsRecordName = S04:C02:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C02_TRIPINT, epicsRecordName = S04:C02:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C02_TRIPEXT, epicsRecordName = S04:C02:TRIPEXT
+      Slot = 4, Channel = 3
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = ZOOM_D4, epicsParamName = S04_C03_NAME, epicsRecordName = S04:C03:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1450, epicsParamName = S04_C03_V0SET, epicsRecordName = S04:C03:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 100, epicsParamName = S04_C03_I0SET, epicsRecordName = S04:C03:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C03_V1SET, epicsRecordName = S04:C03:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 10, epicsParamName = S04_C03_I1SET, epicsRecordName = S04:C03:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 20, epicsParamName = S04_C03_RUP, epicsRecordName = S04:C03:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C03_RDWN, epicsRecordName = S04:C03:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 1, epicsParamName = S04_C03_TRIP, epicsRecordName = S04:C03:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1500, epicsParamName = S04_C03_SVMAX, epicsRecordName = S04:C03:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1453, epicsParamName = S04_C03_VMON, epicsRecordName = S04:C03:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C03_IMON, epicsRecordName = S04:C03:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 1, epicsParamName = S04_C03_PW, epicsRecordName = S04:C03:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C03_PON, epicsRecordName = S04:C03:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C03_PDWN, epicsRecordName = S04:C03:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 1, epicsParamName = S04_C03_STATUS, epicsRecordName = S04:C03:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C03_TRIPINT, epicsRecordName = S04:C03:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C03_TRIPEXT, epicsRecordName = S04:C03:TRIPEXT
+      Slot = 4, Channel = 4
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = ZOOM_D5, epicsParamName = S04_C04_NAME, epicsRecordName = S04:C04:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1450, epicsParamName = S04_C04_V0SET, epicsRecordName = S04:C04:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 100, epicsParamName = S04_C04_I0SET, epicsRecordName = S04:C04:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C04_V1SET, epicsRecordName = S04:C04:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 10, epicsParamName = S04_C04_I1SET, epicsRecordName = S04:C04:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 20, epicsParamName = S04_C04_RUP, epicsRecordName = S04:C04:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C04_RDWN, epicsRecordName = S04:C04:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 1, epicsParamName = S04_C04_TRIP, epicsRecordName = S04:C04:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1500, epicsParamName = S04_C04_SVMAX, epicsRecordName = S04:C04:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1451.5, epicsParamName = S04_C04_VMON, epicsRecordName = S04:C04:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C04_IMON, epicsRecordName = S04:C04:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 1, epicsParamName = S04_C04_PW, epicsRecordName = S04:C04:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C04_PON, epicsRecordName = S04:C04:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C04_PDWN, epicsRecordName = S04:C04:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 1, epicsParamName = S04_C04_STATUS, epicsRecordName = S04:C04:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C04_TRIPINT, epicsRecordName = S04:C04:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C04_TRIPEXT, epicsRecordName = S04:C04:TRIPEXT
+      Slot = 4, Channel = 5
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = ZOOM_D6, epicsParamName = S04_C05_NAME, epicsRecordName = S04:C05:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1450, epicsParamName = S04_C05_V0SET, epicsRecordName = S04:C05:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 100, epicsParamName = S04_C05_I0SET, epicsRecordName = S04:C05:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C05_V1SET, epicsRecordName = S04:C05:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 10, epicsParamName = S04_C05_I1SET, epicsRecordName = S04:C05:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 20, epicsParamName = S04_C05_RUP, epicsRecordName = S04:C05:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C05_RDWN, epicsRecordName = S04:C05:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 1, epicsParamName = S04_C05_TRIP, epicsRecordName = S04:C05:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1500, epicsParamName = S04_C05_SVMAX, epicsRecordName = S04:C05:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1452, epicsParamName = S04_C05_VMON, epicsRecordName = S04:C05:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C05_IMON, epicsRecordName = S04:C05:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 1, epicsParamName = S04_C05_PW, epicsRecordName = S04:C05:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C05_PON, epicsRecordName = S04:C05:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C05_PDWN, epicsRecordName = S04:C05:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 1, epicsParamName = S04_C05_STATUS, epicsRecordName = S04:C05:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C05_TRIPINT, epicsRecordName = S04:C05:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C05_TRIPEXT, epicsRecordName = S04:C05:TRIPEXT
+      Slot = 4, Channel = 6
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = ZOOM_D7, epicsParamName = S04_C06_NAME, epicsRecordName = S04:C06:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1450, epicsParamName = S04_C06_V0SET, epicsRecordName = S04:C06:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 100, epicsParamName = S04_C06_I0SET, epicsRecordName = S04:C06:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C06_V1SET, epicsRecordName = S04:C06:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 10, epicsParamName = S04_C06_I1SET, epicsRecordName = S04:C06:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 20, epicsParamName = S04_C06_RUP, epicsRecordName = S04:C06:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C06_RDWN, epicsRecordName = S04:C06:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 1, epicsParamName = S04_C06_TRIP, epicsRecordName = S04:C06:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1500, epicsParamName = S04_C06_SVMAX, epicsRecordName = S04:C06:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1452, epicsParamName = S04_C06_VMON, epicsRecordName = S04:C06:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C06_IMON, epicsRecordName = S04:C06:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 1, epicsParamName = S04_C06_PW, epicsRecordName = S04:C06:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C06_PON, epicsRecordName = S04:C06:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C06_PDWN, epicsRecordName = S04:C06:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 1, epicsParamName = S04_C06_STATUS, epicsRecordName = S04:C06:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C06_TRIPINT, epicsRecordName = S04:C06:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C06_TRIPEXT, epicsRecordName = S04:C06:TRIPEXT
+      Slot = 4, Channel = 7
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = ZOOM_D8, epicsParamName = S04_C07_NAME, epicsRecordName = S04:C07:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1450, epicsParamName = S04_C07_V0SET, epicsRecordName = S04:C07:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 100, epicsParamName = S04_C07_I0SET, epicsRecordName = S04:C07:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C07_V1SET, epicsRecordName = S04:C07:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 10, epicsParamName = S04_C07_I1SET, epicsRecordName = S04:C07:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 20, epicsParamName = S04_C07_RUP, epicsRecordName = S04:C07:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C07_RDWN, epicsRecordName = S04:C07:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 1, epicsParamName = S04_C07_TRIP, epicsRecordName = S04:C07:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1500, epicsParamName = S04_C07_SVMAX, epicsRecordName = S04:C07:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 1452.5, epicsParamName = S04_C07_VMON, epicsRecordName = S04:C07:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C07_IMON, epicsRecordName = S04:C07:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 1, epicsParamName = S04_C07_PW, epicsRecordName = S04:C07:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C07_PON, epicsRecordName = S04:C07:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C07_PDWN, epicsRecordName = S04:C07:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 1, epicsParamName = S04_C07_STATUS, epicsRecordName = S04:C07:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C07_TRIPINT, epicsRecordName = S04:C07:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C07_TRIPEXT, epicsRecordName = S04:C07:TRIPEXT
+      Slot = 4, Channel = 8
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S04_C08_NAME, epicsRecordName = S04:C08:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C08_V0SET, epicsRecordName = S04:C08:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C08_I0SET, epicsRecordName = S04:C08:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C08_V1SET, epicsRecordName = S04:C08:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C08_I1SET, epicsRecordName = S04:C08:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C08_RUP, epicsRecordName = S04:C08:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C08_RDWN, epicsRecordName = S04:C08:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C08_TRIP, epicsRecordName = S04:C08:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C08_SVMAX, epicsRecordName = S04:C08:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C08_VMON, epicsRecordName = S04:C08:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C08_IMON, epicsRecordName = S04:C08:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S04_C08_PW, epicsRecordName = S04:C08:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C08_PON, epicsRecordName = S04:C08:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C08_PDWN, epicsRecordName = S04:C08:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S04_C08_STATUS, epicsRecordName = S04:C08:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C08_TRIPINT, epicsRecordName = S04:C08:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C08_TRIPEXT, epicsRecordName = S04:C08:TRIPEXT
+      Slot = 4, Channel = 9
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S04_C09_NAME, epicsRecordName = S04:C09:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C09_V0SET, epicsRecordName = S04:C09:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C09_I0SET, epicsRecordName = S04:C09:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C09_V1SET, epicsRecordName = S04:C09:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C09_I1SET, epicsRecordName = S04:C09:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C09_RUP, epicsRecordName = S04:C09:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C09_RDWN, epicsRecordName = S04:C09:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C09_TRIP, epicsRecordName = S04:C09:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C09_SVMAX, epicsRecordName = S04:C09:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C09_VMON, epicsRecordName = S04:C09:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C09_IMON, epicsRecordName = S04:C09:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S04_C09_PW, epicsRecordName = S04:C09:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C09_PON, epicsRecordName = S04:C09:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C09_PDWN, epicsRecordName = S04:C09:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S04_C09_STATUS, epicsRecordName = S04:C09:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C09_TRIPINT, epicsRecordName = S04:C09:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C09_TRIPEXT, epicsRecordName = S04:C09:TRIPEXT
+      Slot = 4, Channel = 10
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S04_C10_NAME, epicsRecordName = S04:C10:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C10_V0SET, epicsRecordName = S04:C10:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C10_I0SET, epicsRecordName = S04:C10:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C10_V1SET, epicsRecordName = S04:C10:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C10_I1SET, epicsRecordName = S04:C10:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C10_RUP, epicsRecordName = S04:C10:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C10_RDWN, epicsRecordName = S04:C10:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C10_TRIP, epicsRecordName = S04:C10:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C10_SVMAX, epicsRecordName = S04:C10:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C10_VMON, epicsRecordName = S04:C10:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C10_IMON, epicsRecordName = S04:C10:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S04_C10_PW, epicsRecordName = S04:C10:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C10_PON, epicsRecordName = S04:C10:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C10_PDWN, epicsRecordName = S04:C10:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S04_C10_STATUS, epicsRecordName = S04:C10:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C10_TRIPINT, epicsRecordName = S04:C10:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C10_TRIPEXT, epicsRecordName = S04:C10:TRIPEXT
+      Slot = 4, Channel = 11
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S04_C11_NAME, epicsRecordName = S04:C11:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C11_V0SET, epicsRecordName = S04:C11:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C11_I0SET, epicsRecordName = S04:C11:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C11_V1SET, epicsRecordName = S04:C11:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C11_I1SET, epicsRecordName = S04:C11:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C11_RUP, epicsRecordName = S04:C11:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C11_RDWN, epicsRecordName = S04:C11:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C11_TRIP, epicsRecordName = S04:C11:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C11_SVMAX, epicsRecordName = S04:C11:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C11_VMON, epicsRecordName = S04:C11:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C11_IMON, epicsRecordName = S04:C11:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S04_C11_PW, epicsRecordName = S04:C11:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C11_PON, epicsRecordName = S04:C11:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C11_PDWN, epicsRecordName = S04:C11:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S04_C11_STATUS, epicsRecordName = S04:C11:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C11_TRIPINT, epicsRecordName = S04:C11:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C11_TRIPEXT, epicsRecordName = S04:C11:TRIPEXT
+      Slot = 4, Channel = 12
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S04_C12_NAME, epicsRecordName = S04:C12:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C12_V0SET, epicsRecordName = S04:C12:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C12_I0SET, epicsRecordName = S04:C12:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C12_V1SET, epicsRecordName = S04:C12:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C12_I1SET, epicsRecordName = S04:C12:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C12_RUP, epicsRecordName = S04:C12:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C12_RDWN, epicsRecordName = S04:C12:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C12_TRIP, epicsRecordName = S04:C12:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C12_SVMAX, epicsRecordName = S04:C12:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C12_VMON, epicsRecordName = S04:C12:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C12_IMON, epicsRecordName = S04:C12:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S04_C12_PW, epicsRecordName = S04:C12:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C12_PON, epicsRecordName = S04:C12:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C12_PDWN, epicsRecordName = S04:C12:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S04_C12_STATUS, epicsRecordName = S04:C12:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C12_TRIPINT, epicsRecordName = S04:C12:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C12_TRIPEXT, epicsRecordName = S04:C12:TRIPEXT
+      Slot = 4, Channel = 13
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S04_C13_NAME, epicsRecordName = S04:C13:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C13_V0SET, epicsRecordName = S04:C13:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C13_I0SET, epicsRecordName = S04:C13:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C13_V1SET, epicsRecordName = S04:C13:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C13_I1SET, epicsRecordName = S04:C13:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C13_RUP, epicsRecordName = S04:C13:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C13_RDWN, epicsRecordName = S04:C13:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C13_TRIP, epicsRecordName = S04:C13:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C13_SVMAX, epicsRecordName = S04:C13:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C13_VMON, epicsRecordName = S04:C13:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C13_IMON, epicsRecordName = S04:C13:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S04_C13_PW, epicsRecordName = S04:C13:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C13_PON, epicsRecordName = S04:C13:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C13_PDWN, epicsRecordName = S04:C13:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S04_C13_STATUS, epicsRecordName = S04:C13:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C13_TRIPINT, epicsRecordName = S04:C13:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C13_TRIPEXT, epicsRecordName = S04:C13:TRIPEXT
+      Slot = 4, Channel = 14
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S04_C14_NAME, epicsRecordName = S04:C14:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C14_V0SET, epicsRecordName = S04:C14:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C14_I0SET, epicsRecordName = S04:C14:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C14_V1SET, epicsRecordName = S04:C14:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C14_I1SET, epicsRecordName = S04:C14:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C14_RUP, epicsRecordName = S04:C14:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C14_RDWN, epicsRecordName = S04:C14:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C14_TRIP, epicsRecordName = S04:C14:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C14_SVMAX, epicsRecordName = S04:C14:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C14_VMON, epicsRecordName = S04:C14:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C14_IMON, epicsRecordName = S04:C14:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S04_C14_PW, epicsRecordName = S04:C14:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C14_PON, epicsRecordName = S04:C14:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C14_PDWN, epicsRecordName = S04:C14:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S04_C14_STATUS, epicsRecordName = S04:C14:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C14_TRIPINT, epicsRecordName = S04:C14:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C14_TRIPEXT, epicsRecordName = S04:C14:TRIPEXT
+      Slot = 4, Channel = 15
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S04_C15_NAME, epicsRecordName = S04:C15:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C15_V0SET, epicsRecordName = S04:C15:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C15_I0SET, epicsRecordName = S04:C15:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C15_V1SET, epicsRecordName = S04:C15:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C15_I1SET, epicsRecordName = S04:C15:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C15_RUP, epicsRecordName = S04:C15:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C15_RDWN, epicsRecordName = S04:C15:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C15_TRIP, epicsRecordName = S04:C15:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C15_SVMAX, epicsRecordName = S04:C15:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C15_VMON, epicsRecordName = S04:C15:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C15_IMON, epicsRecordName = S04:C15:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S04_C15_PW, epicsRecordName = S04:C15:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C15_PON, epicsRecordName = S04:C15:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C15_PDWN, epicsRecordName = S04:C15:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S04_C15_STATUS, epicsRecordName = S04:C15:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C15_TRIPINT, epicsRecordName = S04:C15:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C15_TRIPEXT, epicsRecordName = S04:C15:TRIPEXT
+      Slot = 4, Channel = 16
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S04_C16_NAME, epicsRecordName = S04:C16:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C16_V0SET, epicsRecordName = S04:C16:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C16_I0SET, epicsRecordName = S04:C16:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C16_V1SET, epicsRecordName = S04:C16:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C16_I1SET, epicsRecordName = S04:C16:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C16_RUP, epicsRecordName = S04:C16:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C16_RDWN, epicsRecordName = S04:C16:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C16_TRIP, epicsRecordName = S04:C16:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C16_SVMAX, epicsRecordName = S04:C16:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C16_VMON, epicsRecordName = S04:C16:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C16_IMON, epicsRecordName = S04:C16:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S04_C16_PW, epicsRecordName = S04:C16:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C16_PON, epicsRecordName = S04:C16:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C16_PDWN, epicsRecordName = S04:C16:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S04_C16_STATUS, epicsRecordName = S04:C16:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C16_TRIPINT, epicsRecordName = S04:C16:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C16_TRIPEXT, epicsRecordName = S04:C16:TRIPEXT
+      Slot = 4, Channel = 17
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S04_C17_NAME, epicsRecordName = S04:C17:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C17_V0SET, epicsRecordName = S04:C17:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C17_I0SET, epicsRecordName = S04:C17:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C17_V1SET, epicsRecordName = S04:C17:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C17_I1SET, epicsRecordName = S04:C17:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C17_RUP, epicsRecordName = S04:C17:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C17_RDWN, epicsRecordName = S04:C17:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C17_TRIP, epicsRecordName = S04:C17:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C17_SVMAX, epicsRecordName = S04:C17:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C17_VMON, epicsRecordName = S04:C17:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C17_IMON, epicsRecordName = S04:C17:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S04_C17_PW, epicsRecordName = S04:C17:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C17_PON, epicsRecordName = S04:C17:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C17_PDWN, epicsRecordName = S04:C17:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S04_C17_STATUS, epicsRecordName = S04:C17:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C17_TRIPINT, epicsRecordName = S04:C17:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C17_TRIPEXT, epicsRecordName = S04:C17:TRIPEXT
+      Slot = 4, Channel = 18
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S04_C18_NAME, epicsRecordName = S04:C18:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C18_V0SET, epicsRecordName = S04:C18:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C18_I0SET, epicsRecordName = S04:C18:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C18_V1SET, epicsRecordName = S04:C18:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C18_I1SET, epicsRecordName = S04:C18:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C18_RUP, epicsRecordName = S04:C18:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C18_RDWN, epicsRecordName = S04:C18:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C18_TRIP, epicsRecordName = S04:C18:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C18_SVMAX, epicsRecordName = S04:C18:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C18_VMON, epicsRecordName = S04:C18:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C18_IMON, epicsRecordName = S04:C18:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S04_C18_PW, epicsRecordName = S04:C18:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C18_PON, epicsRecordName = S04:C18:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C18_PDWN, epicsRecordName = S04:C18:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S04_C18_STATUS, epicsRecordName = S04:C18:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C18_TRIPINT, epicsRecordName = S04:C18:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C18_TRIPEXT, epicsRecordName = S04:C18:TRIPEXT
+      Slot = 4, Channel = 19
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = Zoom_M1, epicsParamName = S04_C19_NAME, epicsRecordName = S04:C19:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 660, epicsParamName = S04_C19_V0SET, epicsRecordName = S04:C19:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C19_I0SET, epicsRecordName = S04:C19:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C19_V1SET, epicsRecordName = S04:C19:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C19_I1SET, epicsRecordName = S04:C19:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C19_RUP, epicsRecordName = S04:C19:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C19_RDWN, epicsRecordName = S04:C19:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C19_TRIP, epicsRecordName = S04:C19:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C19_SVMAX, epicsRecordName = S04:C19:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 660.5, epicsParamName = S04_C19_VMON, epicsRecordName = S04:C19:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 156.5, epicsParamName = S04_C19_IMON, epicsRecordName = S04:C19:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 1, epicsParamName = S04_C19_PW, epicsRecordName = S04:C19:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C19_PON, epicsRecordName = S04:C19:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C19_PDWN, epicsRecordName = S04:C19:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 1, epicsParamName = S04_C19_STATUS, epicsRecordName = S04:C19:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C19_TRIPINT, epicsRecordName = S04:C19:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C19_TRIPEXT, epicsRecordName = S04:C19:TRIPEXT
+      Slot = 4, Channel = 20
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = Zoom_M2, epicsParamName = S04_C20_NAME, epicsRecordName = S04:C20:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 765, epicsParamName = S04_C20_V0SET, epicsRecordName = S04:C20:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C20_I0SET, epicsRecordName = S04:C20:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C20_V1SET, epicsRecordName = S04:C20:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C20_I1SET, epicsRecordName = S04:C20:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C20_RUP, epicsRecordName = S04:C20:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C20_RDWN, epicsRecordName = S04:C20:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C20_TRIP, epicsRecordName = S04:C20:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C20_SVMAX, epicsRecordName = S04:C20:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 767, epicsParamName = S04_C20_VMON, epicsRecordName = S04:C20:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 183.5, epicsParamName = S04_C20_IMON, epicsRecordName = S04:C20:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 1, epicsParamName = S04_C20_PW, epicsRecordName = S04:C20:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C20_PON, epicsRecordName = S04:C20:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C20_PDWN, epicsRecordName = S04:C20:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 1, epicsParamName = S04_C20_STATUS, epicsRecordName = S04:C20:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C20_TRIPINT, epicsRecordName = S04:C20:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C20_TRIPEXT, epicsRecordName = S04:C20:TRIPEXT
+      Slot = 4, Channel = 21
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S04_C21_NAME, epicsRecordName = S04:C21:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C21_V0SET, epicsRecordName = S04:C21:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C21_I0SET, epicsRecordName = S04:C21:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C21_V1SET, epicsRecordName = S04:C21:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 1000, epicsParamName = S04_C21_I1SET, epicsRecordName = S04:C21:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C21_RUP, epicsRecordName = S04:C21:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C21_RDWN, epicsRecordName = S04:C21:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C21_TRIP, epicsRecordName = S04:C21:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C21_SVMAX, epicsRecordName = S04:C21:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C21_VMON, epicsRecordName = S04:C21:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C21_IMON, epicsRecordName = S04:C21:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S04_C21_PW, epicsRecordName = S04:C21:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C21_PON, epicsRecordName = S04:C21:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C21_PDWN, epicsRecordName = S04:C21:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S04_C21_STATUS, epicsRecordName = S04:C21:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C21_TRIPINT, epicsRecordName = S04:C21:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C21_TRIPEXT, epicsRecordName = S04:C21:TRIPEXT
+      Slot = 4, Channel = 22
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = x, epicsParamName = S04_C22_NAME, epicsRecordName = S04:C22:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C22_V0SET, epicsRecordName = S04:C22:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C22_I0SET, epicsRecordName = S04:C22:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C22_V1SET, epicsRecordName = S04:C22:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 1000, epicsParamName = S04_C22_I1SET, epicsRecordName = S04:C22:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C22_RUP, epicsRecordName = S04:C22:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C22_RDWN, epicsRecordName = S04:C22:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C22_TRIP, epicsRecordName = S04:C22:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C22_SVMAX, epicsRecordName = S04:C22:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C22_VMON, epicsRecordName = S04:C22:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 0, epicsParamName = S04_C22_IMON, epicsRecordName = S04:C22:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 0, epicsParamName = S04_C22_PW, epicsRecordName = S04:C22:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C22_PON, epicsRecordName = S04:C22:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C22_PDWN, epicsRecordName = S04:C22:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 0, epicsParamName = S04_C22_STATUS, epicsRecordName = S04:C22:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C22_TRIPINT, epicsRecordName = S04:C22:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C22_TRIPEXT, epicsRecordName = S04:C22:TRIPEXT
+      Slot = 4, Channel = 23
+        Number of String parameters: 1
+          Param = NAME, Mode  = RW, Value = Zoom_M5, epicsParamName = S04_C23_NAME, epicsRecordName = S04:C23:NAME
+        Number of Numeric parameters: 10
+          Param = V0Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 775, epicsParamName = S04_C23_V0SET, epicsRecordName = S04:C23:V0SET
+          Param = I0Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 500, epicsParamName = S04_C23_I0SET, epicsRecordName = S04:C23:I0SET
+          Param = V1Set, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 0, epicsParamName = S04_C23_V1SET, epicsRecordName = S04:C23:V1SET
+          Param = I1Set, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 300, epicsParamName = S04_C23_I1SET, epicsRecordName = S04:C23:I1SET
+          Param = RUp, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C23_RUP, epicsRecordName = S04:C23:RUP
+          Param = RDWn, Mode  = RO, Minval = 1, Maxval = 500, Units = VPS, Value = 500, epicsParamName = S04_C23_RDWN, epicsRecordName = S04:C23:RDWN
+          Param = Trip, Mode  = RO, Minval = 0, Maxval = 1000, Units = s, Value = 10, epicsParamName = S04_C23_TRIP, epicsRecordName = S04:C23:TRIP
+          Param = SVMax, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 3500, epicsParamName = S04_C23_SVMAX, epicsRecordName = S04:C23:SVMAX
+          Param = VMon, Mode  = RO, Minval = 0, Maxval = 3500, Units = V, Value = 777, epicsParamName = S04_C23_VMON, epicsRecordName = S04:C23:VMON
+          Param = IMon, Mode  = RO, Minval = 0, Maxval = 3000, Units = uA, Value = 183, epicsParamName = S04_C23_IMON, epicsRecordName = S04:C23:IMON
+        Number of OnOff parameters: 3
+          Param = Pw, Mode = RO, On state = On, Off state = Off, Value = 1, epicsParamName = S04_C23_PW, epicsRecordName = S04:C23:PW
+          Param = POn, Mode = RO, On state = En, Off state = Dis, Value = 1, epicsParamName = S04_C23_PON, epicsRecordName = S04:C23:PON
+          Param = PDwn, Mode = RO, On state = Ramp, Off state = Kill, Value = 0, epicsParamName = S04_C23_PDWN, epicsRecordName = S04:C23:PDWN
+        Number of ChStatus parameters: 1
+          Param = Status, Mode  = RO, Value = 1, epicsParamName = S04_C23_STATUS, epicsRecordName = S04:C23:STATUS
+        Number of Binary parameters: 2
+          Param = TripInt, Mode  = RO, Value = 0, epicsParamName = S04_C23_TRIPINT, epicsRecordName = S04:C23:TRIPINT
+          Param = TripExt, Mode  = RO, Value = 16, epicsParamName = S04_C23_TRIPEXT, epicsRecordName = S04:C23:TRIPEXT
+=========================
+
