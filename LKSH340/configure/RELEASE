@@ -27,6 +27,7 @@ SSCAN=$(SUPPORT)/sscan/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
+LUA=$(SUPPORT)/lua/master
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
