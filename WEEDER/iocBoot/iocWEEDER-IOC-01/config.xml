@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>Ocean Optics DH-2000 BAL shutter control</ioc_desc>
-<ioc_details>Shutter control for DH-2000 light source</ioc_details>
+<ioc_desc>Weeder WTDAC-M Analog Output Module</ioc_desc>
+<ioc_details>Set distinct DC voltage levels at the output channls</ioc_details>
 <macros>
     <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
-    <macro name="ADDRESS" pattern="^[A-Pa-p]$" description="The address of the WEEDER, defaults to A." defaultValue="" hasDefault="YES" />
+    <macro name="ADDRESS" pattern="^[A-Pa-p]$" description="The address of the WEEDER, defaults to A." defaultValue="A" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>
