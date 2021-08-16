@@ -25,12 +25,21 @@ record(stringin, "$(P)NAME")
 	info(INTEREST, "HIGH")
 }
 
+#record(ao, "$(P)START_STREAMING")
+#{
+#    field(DESC, "Start streaming readback values")
+#    field(DTYP, "stream")
+#    field(OUT,  "@devCCD100.proto startStreaming($(ADDR)) $(PORT)")
+#	field(PINI, "YES")
+#	field(VAL, "0")
+#}
+
 record(ai, "$(P)READING")
 {
     field(DESC, "The reading of the input channel")
     field(DTYP, "stream")
     field(INP,  "@devCCD100.proto getCurrRead($(ADDR)) $(PORT)")
-	field(SCAN, "1 second")
+	field(SCAN, "I/O Intr")
 	field(PREC, "3")
 	field(EGU, "") #Set from device
 	info(INTEREST, "HIGH")
@@ -61,7 +70,7 @@ record(ai, "$(P)SP:RBV")
     field(DESC, "The SP readback for the input channel")
     field(DTYP, "stream")
     field(INP,  "@devCCD100.proto getSP($(ADDR)) $(PORT)")
-	field(SCAN, "1 second")
+	field(SCAN, "2 second")
 	field(PREC, "3")
 	field(EGU, "") #Set from device
 	info(INTEREST, "HIGH")
@@ -75,7 +84,7 @@ alias("$(P)SP:RBV", "$(P)READING:SP:RBV") # Alias rather than rename to keep bac
 record(stringin, "$(P)UNITS") 
 {
     field(DESC, "Units of reading and SP")
-    field(SCAN, "1 second")
+    field(SCAN, "2 second")
     field(DTYP, "stream")
     field(INP,  "@devCCD100.proto getUnits($(ADDR)) $(PORT)")
 	info(archive, "VAL")
