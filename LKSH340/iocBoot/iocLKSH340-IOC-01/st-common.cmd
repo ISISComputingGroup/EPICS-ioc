@@ -25,7 +25,7 @@ stringiftest("USE_EXCITATION_FILE" "$(USE_EXCITATION_THRESHOLD_FILE=NO)" 5 "YES"
 
 ## Load our record instances
 dbLoadRecords("$(LKSH340)/db/Lakeshore340.db","P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),IFUSE_EXCITATION_FILE=$(IFUSE_EXCITATION_FILE),IFNOTUSE_EXCITATION_FILE=$(IFNOTUSE_EXCITATION_FILE)")
-dbLoadRecords("$(LKSH340)/db/Lakeshore340_channel.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
+dbLoadRecords("$(LKSH340)/db/Lakeshore3X0_channel.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
