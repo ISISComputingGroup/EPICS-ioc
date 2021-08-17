@@ -56,6 +56,7 @@ ONCRPC=$(SUPPORT)/oncrpc/master
 PCRE=$(SUPPORT)/pcre/master
 PUGIXML=$(SUPPORT)/pugixml/master
 PVDUMP=$(SUPPORT)/pvdump/master
+READASCII=$(SUPPORT)/ReadASCII/master
 SNCSEQ=$(SUPPORT)/seq/master
 SQLITE=$(SUPPORT)/sqlite/master
 SSCAN=$(SUPPORT)/sscan/master

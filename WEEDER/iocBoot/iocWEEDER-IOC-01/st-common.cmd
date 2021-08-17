@@ -28,8 +28,11 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+ReadASCIIConfigure("READASCII", "", $(STEP_NUMBER=20), 1)
+
 ## Load our record instances
 dbLoadRecords("$(WEEDER)/db/devWeeder.db","P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ADDRESS=$(ADDRESS=A)")
+dbLoadRecords("$(WEEDER)/db/devWeeder_ramping.db","P=$(MYPVPREFIX)$(IOCNAME):, READ=READASCII")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

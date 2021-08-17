@@ -30,6 +30,7 @@ $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += ReadASCII.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -42,7 +43,7 @@ $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 ## Stream device libraries ##
-$(APPNAME)_LIBS += stream
+$(APPNAME)_LIBS += stream ReadASCII
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
