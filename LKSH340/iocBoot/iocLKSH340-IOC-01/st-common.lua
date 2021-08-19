@@ -17,7 +17,8 @@ function set_up_coms()
 	  ibex_utils.setSoftwareFlowControl{addr, false}
 	else
 	  print("IP selected")
-	  drvAsynIPPortConfigure(device, addr)
+	  iocsh.drvAsynIPPortConfigure(device, addr)
+	  iocsh.epicsEnvSet("IS_MODEL_350", "YES")
 	end
 end
 
