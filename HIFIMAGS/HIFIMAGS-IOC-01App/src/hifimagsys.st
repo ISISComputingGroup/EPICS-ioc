@@ -81,6 +81,9 @@ ss systemManager {
         PVPUT(setopmode, 0);
         prev_opmode = -1;
     } state monitoring
+    when (xquench == 0 && yquench == 0 && zquench == 0 && mquench == 0) {
+      errlogSevPrintf(errlogMajor, "Back to monitoring from quench");
+    } state monitoring
   }
   
   state turnmagoff {
