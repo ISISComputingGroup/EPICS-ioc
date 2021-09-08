@@ -70,7 +70,7 @@ ifneq ($(findstring 10.0,$(VCVERSION)),)
 DIRS_NOTBUILD += TWINCAT HVCAENA
 else
 # What not to build if do not have VS2010
-DIRS_NOTBUILD += MK3CHOPR ASTRIUM
+#DIRS_NOTBUILD += MK3CHOPR ASTRIUM
 endif
 
 ## modules not to build on windows 64bit
