@@ -46,27 +46,27 @@ $(APPNAME)_DBD += cvtRecord.dbd
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += asubFunctions
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) 
 #$(APPNAME)_LIBS += easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
-$(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcrecpp pcre
 ## Add other libraries here ##
-$(APPNAME)_LIBS += GalilSupport calc sscan
+$(APPNAME)_LIBS += GalilSupport
 $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += motionSetPoints
 $(APPNAME)_LIBS += sampleChanger
 $(APPNAME)_LIBS += busy asyn
+$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += std
-$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += TinyXML
 #libs for barndoors
 $(APPNAME)_LIBS += cvtRecord csmbase
+$(APPNAME)_LIBS += autosave
+$(APPNAME)_LIBS += utilities pcrecpp pcre
+$(APPNAME)_LIBS += seq pv
 
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
