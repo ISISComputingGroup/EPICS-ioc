@@ -36,6 +36,15 @@ MOTOREXT=$(SUPPORT)/motorExtensions/master
 ## this is nedeed for linking asyn statically on windows if asyn has vxi11 support
 ONCRPC=$(SUPPORT)/oncrpc/master
 
+## may be needed too
+BARNDOORS=$(SUPPORT)/barndoors/master
+GEMORC=$(SUPPORT)/gemorc/master
+JAWS=$(SUPPORT)/jaws/master
+LIBJSON=$(SUPPORT)/libjson/master
+ROTSC=$(SUPPORT)/rotating_sample_changer/master
+SQLITE=$(SUPPORT)/sqlite/master
+ZLIB=$(SUPPORT)/zlib/master
+
 ## optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
 

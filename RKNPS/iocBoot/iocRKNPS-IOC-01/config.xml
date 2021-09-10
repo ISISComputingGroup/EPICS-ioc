@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
-<config_part>
-<ioc_desc>RIKEN power supply</ioc_desc>
-<macros>
-    <!-- Since the RIKEN setup is very complicated, and not something that scientists or users would ever want to change, define everything in globals.txt for RIKEN -->
-</macros>
-</config_part>
-</ioc_config>

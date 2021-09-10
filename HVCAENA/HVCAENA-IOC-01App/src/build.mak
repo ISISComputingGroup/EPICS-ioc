@@ -45,7 +45,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS_WIN32 += caenhvwrapper # hscaenetlib
-$(APPNAME)_SYS_LIBS_Linux += caenhvwrapper hscaenetlib
+$(APPNAME)_SYS_LIBS_Linux += caenhvwrapper # hscaenetlib
 
 # HVCAEN-IOC-01_registerRecordDeviceDriver.cpp derives from HVCAEN-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
