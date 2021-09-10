@@ -54,7 +54,7 @@ pattern
  {  "\$(PVPREFIX)", "\$(P)", "\$(ASG08=DEFAULT)", "MTR\$(CCP)08",  "\$(PORT=Galil)", 7,    3,    "Passive",  "3",     "0",   "mm" }
 }
 
-file "$(UTILITIES)/utilitiesApp/db/field_setter.template" {
+file "$(UTILITIES)/db/field_setter.template" {
     pattern
     {P, FROM, TO, FIELD}
     {"\$(P)", MTR\$(CCP)01, MTR\$(CCP)01_MTRENC_DRIFT, ADEL}
