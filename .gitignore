@@ -29,7 +29,10 @@ relPaths.sh
 *_built_positions.req
 *_built_settings.req
 NULL
-GALIL/iocBoot/**/*.gmc
+/GALIL/iocBoot/**/*.gmc
+/GALILMUL/iocBoot/**/*.gmc
 */**/TEST-TestPVUnits-*.xml
 .vs/*
 .idea
+/GALIL-OLD/
+/GALILMUL-OLD/
