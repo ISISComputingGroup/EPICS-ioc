@@ -40,3 +40,4 @@ iocInit
 < $(IOCSTARTUP)/postiocinit.cmd
 
 seq zero_field, "P=$(P)"
+seq zero_field_setpoint_readback_diagnostics, "P=$(P)"
