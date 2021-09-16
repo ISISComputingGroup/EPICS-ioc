@@ -11,6 +11,7 @@ $(IFHASMTRCTRL$(CN)) ## are loaded with "Galil" as the asyn port
 $(IFHASMTRCTRL$(CN)) $(IFDEVSIM) epicsEnvSet("GALIL_MTR_PORT", "GalilSim$(CN)")
 $(IFHASMTRCTRL$(CN)) $(IFRECSIM) epicsEnvSet("GALIL_MTR_PORT", "GalilSim$(CN)")
 $(IFHASMTRCTRL$(CN)) $(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet("GALIL_MTR_PORT", "Galil$(CN)")
+$(IFHASMTRCTRL$(CN)) epicsEnvSet("GALIL_PORT", "Galil$(CN)")
 $(IFHASMTRCTRL$(CN)) 
 $(IFHASMTRCTRL$(CN)) ## create simulated motor if required (asyn port "$(GALIL_MTR_PORT)")
 $(IFHASMTRCTRL$(CN)) $(IFSIM) < motorsim.cmd
@@ -18,7 +19,7 @@ $(IFHASMTRCTRL$(CN))
 $(IFHASMTRCTRL$(CN)) ## configure the galil, if we are simulated this will not be used to drive the 
 $(IFHASMTRCTRL$(CN)) ## actual device, but creating this asyn port at least allows record initialisation 
 $(IFHASMTRCTRL$(CN)) ## to complete
-$(IFHASMTRCTRL$(CN)) < $(GALILCONFIG)/galilmul$(CN).cmd
+$(IFHASMTRCTRL$(CN)) $(IFNOTDEVSIM) $(IFNOTRECSIM) < $(GALILCONFIG)/galilmul$(CN).cmd
 $(IFHASMTRCTRL$(CN)) ## load the galil db files
 $(IFHASMTRCTRL$(CN)) < galildb.cmd
 $(IFHASMTRCTRL$(CN)) 

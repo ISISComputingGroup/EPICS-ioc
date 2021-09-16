@@ -15,7 +15,7 @@ epicsEnvSet("IFIOC_GALIL_10", "#")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-## override address in simulation mode - used in galil1.cmd etc
+## override address in simulation mode - used in galil1.cmd etc, but we should not now be loading this
 $(IFDEVSIM) epicsEnvSet("GALILADDR", "127.0.0.1")
 $(IFRECSIM) epicsEnvSet("GALILADDR", "127.0.0.1")
 
@@ -64,7 +64,7 @@ $(IFRECSIM) < motorsim.cmd
 ## configure the galil, if we are simulated this will not be used to drive the 
 ## actual device, but creating this asyn port at least allows record initialisation 
 ## to complete
-< $(GALILCONFIG)/galil$(MTRCTRL).cmd
+$(IFNOTDEVSIM) $(IFNOTRECSIM) < $(GALILCONFIG)/galil$(MTRCTRL).cmd
 
 ## load the generic ISIS axis db for each axis
 iocshCmdLoop("< st-axis.cmd", "MN=\$(I)", "I", 1, 8)

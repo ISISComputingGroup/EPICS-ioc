@@ -31,6 +31,8 @@ relPaths.sh
 NULL
 /GALIL/iocBoot/**/*.gmc
 /GALILMUL/iocBoot/**/*.gmc
+/GALIL/iocBoot/**/*.dmc
+/GALILMUL/iocBoot/**/*.dmc
 */**/TEST-TestPVUnits-*.xml
 .vs/*
 .idea
