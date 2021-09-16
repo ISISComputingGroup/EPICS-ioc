@@ -1,0 +1,62 @@
+# $File: //ASP/Dev/SBS/4_Controls/4_3_Network_Infrastructure/4_3_1_Comms_Common_Services/sw/device_drivers/Galil/1-5/galilTestApp/Db/galil_motor_withwrappers.substitutions $
+# $Revision: #3 $
+# $DateTime: 2012/03/22 09:46:31 $
+# $Author: cliftm $
+#
+# Description
+# Substitution file for motor_withwrappers.template
+#
+# MOVNFLNK FLNK when moving status is updated
+# LIMITFLNK FLNK when limits are updated
+# READBACK used to set read back to user or dial coordinates
+# 
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# Licence as published by the Free Software Foundation; either
+# version 2.1 of the Licence, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public Licence for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# Licence along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+# 
+# Contact details:
+# mark.clift@synchrotron.org.au
+# 800 Blackburn Road, Clayton, Victoria 3168, Australia.
+#
+
+file "$(GALIL)/GalilSup/Db/galil_motor-v6-10up.template"
+{
+pattern
+{   P,    ASG,    M,   GPORT,    PORT,    ADDR, EGU, DESC, VELO,  VMAX,  ACCL,  BDST,  BVEL,  BACC,  MRES,  SREV, ERES,     PREC, DHLM,    DLLM,     OFF,     UEIP, RTRY, NTM,   PCOF, ICOF, DCOF}
+
+# Real motors
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)01", "\$(GPORT=Galil)", "\$(PORT=Galil)", 0,    mm,  "MTR\$(CCP)01 (GALIL)",   20,    20,    1,     0,     0,     5,     .0025, 1000, 0.001,    5,    42273.3, -42273.3, 0,       0,    0   , "YES", 0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)02", "\$(GPORT=Galil)", "\$(PORT=Galil)", 1,    mm,  "MTR\$(CCP)02 (GALIL)",   .2,    .2,    1,     0,     0,     5,     .0025, 1000, 0.001,    5,    42273.3, -42273.3, 0,       0,    0   , "YES", 0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)03", "\$(GPORT=Galil)", "\$(PORT=Galil)", 2,    mm,  "MTR\$(CCP)03 (GALIL)",   .2,    .2,    1,     0,     0,     5,     .0025, 400,  0.001,    5,    42273.3, -42273.3, 0,       0,    0   , "YES", 0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)04", "\$(GPORT=Galil)", "\$(PORT=Galil)", 3,    mm,  "MTR\$(CCP)04 (GALIL)",   .2,    .2,    1,     0,     0,     5,     .0025, 400,  0.001,    5,    42273.3, -42273.3, 0,       0,    0   , "YES", 0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)05", "\$(GPORT=Galil)", "\$(PORT=Galil)", 4,    mm,  "MTR\$(CCP)05 (GALIL)",   .2,    .2,    1,     0,     0,     5,     .0025, 400,  0.001,    5,    42273.3, -42273.3, 0,       0,    0   , "YES", 0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)06", "\$(GPORT=Galil)", "\$(PORT=Galil)", 5,    mm,  "MTR\$(CCP)06 (GALIL)",   .2,    .2,    1,     0,     0,     5,     .0025, 400,  0.001,    5,    42273.3, -42273.3, 0,       0,    0   , "YES", 0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)07", "\$(GPORT=Galil)", "\$(PORT=Galil)", 6,    mm,  "MTR\$(CCP)07 (GALIL)",   .2,    .2,    1,     0,     0,     5,     .0025, 400,  0.001,    5,    42273.3, -42273.3, 0,       0,    0   , "YES", 0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)08", "\$(GPORT=Galil)", "\$(PORT=Galil)", 7,    mm,  "MTR\$(CCP)08 (GALIL)",   .2,    .2,    1,     0,     0,     5,     .0025, 400,  0.001,    5,    42273.3, -42273.3, 0,       0,    0   , "YES", 0,    0,    0}
+
+# Coordinate system (CS) motors
+# If real motors in CSAxis require backlash correction then NTM must be NO
+# If only CSAxis requires backlash correction NTM can be any value
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)09", "\$(GPORT=Galil)", "\$(PORT=Galil)", 8,    mm,  "MTR\$(CCP)09 (GALIL)",   20,    20,    1,     0,     0,     5,     .001,  1000, 0.001,     5,    42273.3, -42273.3, 0,       0,    0   , "NO",  0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)10", "\$(GPORT=Galil)", "\$(PORT=Galil)", 9,    mm,  "MTR\$(CCP)10 (GALIL)",   20,    20,    1,     0,     0,     5,     .001,  1000, 0.001,     5,    42273.3, -42273.3, 0,       0,    0   , "NO",  0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)11", "\$(GPORT=Galil)", "\$(PORT=Galil)", 10,   mm,  "MTR\$(CCP)11 (GALIL)",   20,    20,    1,     0,     0,     5,     .001,  1000, 0.001,     5,    42273.3, -42273.3, 0,       0,    0   , "NO",  0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)12", "\$(GPORT=Galil)", "\$(PORT=Galil)", 11,   mm,  "MTR\$(CCP)12 (GALIL)",   20,    20,    1,     0,     0,     5,     .001,  1000, 0.001,     5,    42273.3, -42273.3, 0,       0,    0   , "NO",  0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)13", "\$(GPORT=Galil)", "\$(PORT=Galil)", 12,   mm,  "MTR\$(CCP)13 (GALIL)",   20,    20,    1,     0,     0,     5,     .001,  1000, 0.001,     5,    42273.3, -42273.3, 0,       0,    0   , "NO",  0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)14", "\$(GPORT=Galil)", "\$(PORT=Galil)", 13,   mm,  "MTR\$(CCP)14 (GALIL)",   20,    20,    1,     0,     0,     5,     .001,  1000, 0.001,     5,    42273.3, -42273.3, 0,       0,    0   , "NO",  0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)15", "\$(GPORT=Galil)", "\$(PORT=Galil)", 14,   mm,  "MTR\$(CCP)15 (GALIL)",   20,    20,    1,     0,     0,     5,     .001,  1000, 0.001,     5,    42273.3, -42273.3, 0,       0,    0   , "NO",  0,    0,    0}
+   {"\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)16", "\$(GPORT=Galil)", "\$(PORT=Galil)", 15,   mm,  "MTR\$(CCP)16 (GALIL)",   20,    20,    1,     0,     0,     5,     .001,  1000, 0.001,     5,    42273.3, -42273.3, 0,       0,    0   , "NO",  0,    0,    0}
+
+}
+
+# end
+

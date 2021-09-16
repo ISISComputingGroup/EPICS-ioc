@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application GALIL-IOC-01
+# Build the IOC application WEEDER-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# GALIL-IOC-01.dbd will be created and installed
+# DH2000-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# GALIL-IOC-01.dbd will be made up from these files:
+# DH2000-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += icpconfig.dbd
@@ -24,53 +24,34 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
-## add other dbd here ##
-$(APPNAME)_DBD += motorSupport.dbd
-$(APPNAME)_DBD += motorSimSupport.dbd
-$(APPNAME)_DBD += devSoftMotor.dbd
+## Stream device support ##
+$(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
-$(APPNAME)_DBD += busySupport.dbd
-$(APPNAME)_DBD += GalilSupport.dbd
-$(APPNAME)_DBD += calcSupport.dbd 
-$(APPNAME)_DBD += sscanSupport.dbd 
-$(APPNAME)_DBD += motionSetPoints.dbd
-$(APPNAME)_DBD += sampleChanger.dbd 
-$(APPNAME)_DBD += stdSupport.dbd 
-$(APPNAME)_DBD += asubFunctions.dbd 
-$(APPNAME)_DBD += asyn.dbd 
-## dbd for barndoors
-$(APPNAME)_DBD += cvtRecord.dbd
-
+$(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += ReadASCII.dbd
+## add other dbd here ##
+#$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += devIocStats 
-$(APPNAME)_LIBS += pvdump $(MYSQLLIB) 
-#$(APPNAME)_LIBS += easySQLite sqlite 
+$(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
-## Add other libraries here ##
-$(APPNAME)_LIBS += GalilSupport
-$(APPNAME)_LIBS += motorSimSupport
-$(APPNAME)_LIBS += softMotor
-$(APPNAME)_LIBS += motor
-$(APPNAME)_LIBS += motionSetPoints
-$(APPNAME)_LIBS += sampleChanger
-$(APPNAME)_LIBS += busy asyn
-$(APPNAME)_LIBS += calc sscan
-$(APPNAME)_LIBS += std
-$(APPNAME)_LIBS += TinyXML
-#libs for barndoors
-$(APPNAME)_LIBS += cvtRecord csmbase
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcrecpp pcre
+$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
+## Stream device libraries ##
+$(APPNAME)_LIBS += stream ReadASCII
+$(APPNAME)_LIBS += pcrecpp pcre
+$(APPNAME)_LIBS += asyn
+## Add other libraries here ##
+$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += seq pv
+#$(APPNAME)_LIBS += xxx
 
-$(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
-
-# GALIL-IOC-01_registerRecordDeviceDriver.cpp derives from GALIL-IOC-01.dbd
+# WEEDER-IOC-01_registerRecordDeviceDriver.cpp derives from WEEDER-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
