@@ -1,9 +1,13 @@
 #Makefile at top of application tree
 TOP = .
 include $(TOP)/configure/CONFIG
+
+## only build on VS2010
+ifneq ($(findstring 10.0,$(VCVERSION)),)
 DIRS := $(DIRS) $(filter-out $(DIRS), configure)
 DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard *App))
 DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard iocBoot))
+endif
 
 define DIR_template
  $(1)_DEPEND_DIRS = configure
