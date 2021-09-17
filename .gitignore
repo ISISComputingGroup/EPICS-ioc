@@ -33,8 +33,12 @@ NULL
 /GALILMUL/iocBoot/**/*.gmc
 /GALIL/iocBoot/**/*.dmc
 /GALILMUL/iocBoot/**/*.dmc
+/GALIL/GALIL_OLD.txt
+/GALILMUL/GALIL_OLD.txt
 */**/TEST-TestPVUnits-*.xml
 .vs/*
 .idea
 /GALIL-OLD/
 /GALILMUL-OLD/
+/GALIL-NEW/
+/GALILMUL-NEW/
