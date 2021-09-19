@@ -1,3 +1,5 @@
+.PHONY: install clean distclean uninstall runtests ioctests
+
 install:
 	echo Nothing to be done for install
 
@@ -12,3 +14,6 @@ uninstall:
 
 runtests:
 	echo Nothing to be done for runtests
+
+ioctests:
+	echo Nothing to be done for ioctests
