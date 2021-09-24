@@ -25,16 +25,16 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
-$(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd 
 $(APPNAME)_DBD += modbusSupport.dbd
+$(APPNAME)_DBD += stream.dbd
 #$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -45,7 +45,8 @@ $(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += modbus
-$(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += asyn calc sscan
+$(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += xxx
 
 # NANODAC-IOC-01_registerRecordDeviceDriver.cpp derives from NANODAC-IOC-01.dbd

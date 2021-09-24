@@ -24,6 +24,7 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += motionSetPoints.dbd
@@ -33,7 +34,6 @@ $(APPNAME)_DBD += asubFunctions.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += axis.dbd
 $(APPNAME)_DBD += eemcuSupport.dbd
-$(APPNAME)_DBD += calcSupport.dbd 
 $(APPNAME)_DBD += motorSupport.dbd
 $(APPNAME)_DBD += motorSimSupport.dbd
 

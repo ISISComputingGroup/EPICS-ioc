@@ -46,7 +46,7 @@ $(APPNAME)_LIBS += devIocStats
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
-$(APPNAME)_LIBS += calc autosave
+$(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
@@ -57,7 +57,7 @@ $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += motionSetPoints
 $(APPNAME)_LIBS += sampleChanger
 $(APPNAME)_LIBS += busy asyn
-$(APPNAME)_LIBS += std sscan
+$(APPNAME)_LIBS += std calc sscan
 $(APPNAME)_LIBS += TinyXML
 $(APPNAME)_LIBS += seq pv
 

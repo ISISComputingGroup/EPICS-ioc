@@ -25,11 +25,11 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## Stream device support ##
-$(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
-$(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += Lakeshore340.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
@@ -48,8 +48,8 @@ $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
 $(APPNAME)_LIBS += calc sscan
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += Lakeshore340
+$(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += xxx
 
 # LKSH340-IOC-01_registerRecordDeviceDriver.cpp derives from LKSH340-IOC-01.dbd

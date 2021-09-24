@@ -42,8 +42,8 @@ $(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += pcrecpp pcre
-$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += modbus asyn
+$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += seq pv
 
 

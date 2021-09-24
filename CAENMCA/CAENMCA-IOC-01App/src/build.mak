@@ -25,8 +25,8 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## Stream device support ##
-$(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += CAENMCA.dbd
 
 ## add other dbd here ##
