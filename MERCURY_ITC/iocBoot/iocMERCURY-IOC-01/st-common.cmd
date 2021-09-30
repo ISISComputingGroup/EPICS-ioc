@@ -1,7 +1,11 @@
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(MERCURY_ITC)/data"
+
+stringiftest("RETRY_PROTO", "$(USE_RETRY_PROTO_FILE=NO)", 5, "YES")
+$(IFRETRY_PROTO) epicsEnvSet "PROTO_DIR" "with_retry"
+$(IFNOTRETRY_PROTO) epicsEnvSet "PROTO_DIR" "normal"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(MERCURY_ITC)/MercuryiTCApp/protocol/$(PROTO_DIR)"
 
 ## Environment Variables
 epicsEnvSet "CALIB_BASE_DIR" "$(CALIB_BASE_DIR=$(ICPCONFIGBASE)/common)"

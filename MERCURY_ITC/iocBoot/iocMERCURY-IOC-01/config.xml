@@ -26,6 +26,7 @@
 <macro name="SPC_GAIN" pattern="^[0-9]+\.?[0-9]*$" description="Software pressure control offset gain for extra pressure based on how far away from set point the temperature is." hasDefault="NO" />
 <macro name="SPC_TABLE_FILE" pattern="^\.*$" description="File to load to related temperature to pressure from calibration directory other_devices." hasDefault="YES" defaultValue="little_blue_cryostat.txt" />
 
+<macro name="USE_RETRY_PROTO_FILE" pattern="^.*$" description="If yes protocol will retry communication 3 times." hasDefault="YES" defaultValue="NO" />
 </macros>
 </config_part>
 </ioc_config>
