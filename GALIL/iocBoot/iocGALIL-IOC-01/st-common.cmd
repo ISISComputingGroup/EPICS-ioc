@@ -101,8 +101,12 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 stringiftest("HASMTRCTRL", "$(MTRCTRL=)", 0, 0)
 $(IFNOTHASMTRCTRL) errlogSev(2, "MTRCTRL has not been set")
 
-# Save motor positions every 5 seconds
+# Save motor positions every 5 seconds - these could be used for restore on controller reset, but req file contents currently disable this
 $(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+
+# Save motor positions every 5 seconds, these are not used for automatic restore, they are just for information
+# They could be manually applied for a restore, or used with autosave asVerify to check current positions  
+$(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_positions_norestore.req", 5, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
 # Save motor settings every 30 seconds
 $(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")

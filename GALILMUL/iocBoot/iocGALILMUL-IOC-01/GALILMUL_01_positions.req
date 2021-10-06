@@ -1,2 +1,2 @@
-file "GALIL_controller_positions.req" "P=$(P),CCP=$(MTRCTRL1)"
-file "GALIL_controller_positions.req" "P=$(P),CCP=$(MTRCTRL2)"
+#file "GALIL_controller_positions.req" "P=$(P),CCP=$(MTRCTRL1)"
+#file "GALIL_controller_positions.req" "P=$(P),CCP=$(MTRCTRL2)"

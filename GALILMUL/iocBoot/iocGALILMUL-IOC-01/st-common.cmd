@@ -64,8 +64,12 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
 
-# Save motor positions every 5 seconds
+# Save motor positions every 5 seconds - these could be used for restore on controller reset, but req file contents currently disable this
 $(IFNOTDEVSIM)$(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)MOT:,MTRCTRL1=$(MTRCTRL1=),MTRCTRL2=$(MTRCTRL2=)")
+
+# Save motor positions every 5 seconds, these are not used for automatic restore, they are just for information
+# They could be manually applied for a restore, or used with autosave asVerify to check current positions  
+$(IFNOTDEVSIM)$(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_positions_norestore.req", 5, "P=$(MYPVPREFIX)MOT:,MTRCTRL1=$(MTRCTRL1=),MTRCTRL2=$(MTRCTRL2=)")
 
 # Save motor settings every 30 seconds
 $(IFNOTDEVSIM)$(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,MTRCTRL1=$(MTRCTRL1=),MTRCTRL2=$(MTRCTRL2=)")
