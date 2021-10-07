@@ -23,7 +23,7 @@ function twincat_stcommon_main()
 
 	iocsh.tcSetScanRate(150, 2)
 
-	local full_tpy_path = ibex_utils.getMacroValue{macro="ICPCONFIGROOT"} .. "beckhoff" .. tpy_file
+	local full_tpy_path = ibex_utils.getMacroValue{macro="ICPCONFIGROOT"} .. "/beckhoff/" .. tpy_file
 	if not exists(full_tpy_path) then
 		print("invalid TPY file given: " .. full_tpy_path)
 		iocsh.exit()
