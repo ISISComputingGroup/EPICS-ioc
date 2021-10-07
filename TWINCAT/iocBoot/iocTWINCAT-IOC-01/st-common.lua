@@ -1,6 +1,19 @@
 package.path = package.path .. ';' .. os.getenv("UTILITIES") .. '/lua/luaUtils.lua;'
 ibex_utils = require "luaUtils"
 
+--- Check if a file or directory exists in this path
+function exists(file)
+	local ok, err, code = os.rename(file, file)
+	if not ok then
+	   if code == 13 then
+		  -- Permission denied, but it exists
+		  return true
+	   end
+	end
+	return ok, err
+ end
+ 
+
 function twincat_stcommon_main()
 	local motor_port = "L0"
 	local num_axes = 8
@@ -9,7 +22,14 @@ function twincat_stcommon_main()
 	local plc_version = ibex_utils.getMacroValue{macro="PLC_VERSION", default="1"}
 
 	iocsh.tcSetScanRate(150, 2)
-	iocsh.tcLoadRecords (tpy_file, string.format("-eo -devtc -p %s", pv_prefix))
+
+	local full_tpy_path = ibex_utils.getMacroValue{macro="ICPCONFIGROOT"} .. "beckhoff" .. tpy_file
+	if not exists(full_tpy_path) then
+		print("invalid TPY file given: " .. full_tpy_path)
+		iocsh.exit()
+	end
+	
+	iocsh.tcLoadRecords (full_tpy_path, string.format("-eo -devtc -p %s", pv_prefix))
 
 	iocsh.devMotorCreateController(motor_port, "Controller", num_axes, pv_prefix)
 
