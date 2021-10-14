@@ -1,16 +1,9 @@
 package.path = package.path .. ';' .. os.getenv("UTILITIES") .. '/lua/luaUtils.lua;'
 ibex_utils = require "luaUtils"
 
---- Check if a file or directory exists in this path
 function exists(file)
-	local ok, err, code = os.rename(file, file)
-	if not ok then
-	   if code == 13 then
-		  -- Permission denied, but it exists
-		  return true
-	   end
-	end
-	return ok, err
+	local f=io.open(file,"r")
+    if f~=nil then io.close(f) return true else return false end
  end
  
 
