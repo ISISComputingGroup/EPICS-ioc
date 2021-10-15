@@ -9,8 +9,8 @@ $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=57677)")
 ## For real device use:
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=7)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=even)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=none)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
 ## Hardware flow control off
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "clocal", "Y")
@@ -19,7 +19,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
-CRYOSMSConfigure("ASYN_PORT", "$(MYPVPREFIX)$(IOCNAME):")
+CRYOSMSConfigure("ASYN_PORT", "$(MYPVPREFIX)$(IOCNAME):", "$(T_TO_A)","$(WRITE_UNIT)","$(DISPLAY_UNIT)","$(RESTORE_WRITE_UNIT_TIMEOUT)","$(MAX_CURR)","$(MAX_VOLT)","$(ALLOW_PERSIST)","$(FAST_FILTER_VALUE)","$(FILTER_VALUE)","$(NPP)","$(FAST_PERSISTENT_SETTLETIME)","$(PERSISTENT_SETTLETIME)","$(NON_PERSISTENT_SETTLETIME)","$(FAST_RATE)","$(USE_SWITCH)","$(MYPVPREFIX)$(SWITCH_TEMP_PV)","$(SWITCH_HIGH)","$(SWITCH_LOW)","$(SWITCH_STABLE_NUMBER)","$(HEATER_TOLERANCE)","$(SWITCH_TIMEOUT)","$(HEATER_OUT)","$(USE_MAGNET_TEMP)","$(MAGNET_TEMP_PV)","$(MAX_MAGNET_TEMP)","$(MIN_MAGNET_TEMP)","$(COMP_OFF_ACT)","$(NO_OF_COMP)","$(MIN_NO_OF_COMP)","$(COMP_1_STAT_PV)","$(COMP_2_STAT_PV)","$(RAMP_FILE)","$(CRYOMAGNET)","$(VOLT_TOLERANCE)","$(VOLT_STABILITY_DURATION)","$(MID_TOLERANCE)","$(TARGET_TOLERANCE)","$(HOLD_TIME)","$(HOLD_TIME_ZERO)")
+
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(CRYOSMS)/data"
 
