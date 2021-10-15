@@ -44,6 +44,7 @@
   <macro name="VOLT_STABILITY_DURATION" pattern="^[0-9]+.?[0-9]*$" description="The number of seconds over which to consider the voltage stability" defaultValue="300" hasDefault="YES" />
   <macro name="VOLT_TOLERANCE" pattern="^[0-9]+.?[0-9]*$" description="The tolerance to define voltage stability" defaultValue="0.2" hasDefault="YES" />
   <macro name="RAMP_FILE" pattern="^.*$" description="The default ramp table file to use" defaultValue="C:\Instrument\Apps\Epics\support\cryosms\master\ramps" hasDefault="YES" />
+  <macro name="CRYOMAGNET" pattern="^Yes|No$" description="Whether this IOC is attached to a Cryomagnet" defaultValue="No" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>
