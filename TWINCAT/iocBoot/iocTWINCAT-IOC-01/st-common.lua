@@ -1,6 +1,12 @@
 package.path = package.path .. ';' .. os.getenv("UTILITIES") .. '/lua/luaUtils.lua;'
 ibex_utils = require "luaUtils"
 
+function exists(file)
+	local f=io.open(file,"r")
+    if f~=nil then io.close(f) return true else return false end
+ end
+ 
+
 function twincat_stcommon_main()
 	local motor_port = "L0"
 	local pv_prefix = ibex_utils.getMacroValue{macro="MYPVPREFIX"}
@@ -9,7 +15,14 @@ function twincat_stcommon_main()
 	local plc_version = ibex_utils.getMacroValue{macro="PLC_VERSION", default="1"}
 
 	iocsh.tcSetScanRate(150, 2)
-	iocsh.tcLoadRecords(tpy_file, string.format("-eo -devtc -p %s", pv_prefix))
+
+	local full_tpy_path = ibex_utils.getMacroValue{macro="ICPCONFIGROOT"} .. "/beckhoff/" .. tpy_file
+	if not exists(full_tpy_path) then
+		print("invalid TPY file given: " .. full_tpy_path)
+		iocsh.exit()
+	end
+	
+	iocsh.tcLoadRecords(full_tpy_path, string.format("-eo -devtc -p %s", pv_prefix))
 
 	iocsh.countdbgrep("AXES_NUM", "*ASTAXES_*:STCONTROL-BENABLE*")
 
