@@ -18,21 +18,19 @@ DBD += $(APPNAME).dbd
 # SCIMAG3D-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += lvDCOM.dbd
-$(APPNAME)_DBD += calcSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -43,6 +41,7 @@ $(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 $(APPNAME)_LIBS += lvDCOM 
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += seq pv
 
 # SCIMAG3D-IOC-01_registerRecordDeviceDriver.cpp derives from SCIMAG3D-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

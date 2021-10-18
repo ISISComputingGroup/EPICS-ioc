@@ -18,7 +18,6 @@ DBD += $(APPNAME).dbd
 # MERCURY-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
@@ -26,22 +25,32 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += asubFunctions.dbd
-$(APPNAME)_DBD += asyn.dbd
 ## add other dbd here ##
-$(APPNAME)_DBD += lvDCOM.dbd
+$(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += drvAsynSerialPort.dbd
+$(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += cvtRecord.dbd
+$(APPNAME)_DBD += MercuryiTC.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave asubFunctions
-$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 ## Add other libraries here ##
-$(APPNAME)_LIBS += lvDCOM 
-$(APPNAME)_LIBS += asyn 
+$(APPNAME)_LIBS += stream
+$(APPNAME)_LIBS += utilities
+$(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += pcrecpp pcre libjson zlib
+$(APPNAME)_LIBS += efsw
+$(APPNAME)_LIBS += cvtRecord csmbase
+$(APPNAME)_LIBS += MercuryiTC
+$(APPNAME)_LIBS += seq pv
 	
 # MERCURY-IOC-01_registerRecordDeviceDriver.cpp derives from MERCURY-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
@@ -55,11 +64,9 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
-$(APPNAME)_SYS_LIBS_WIN32 += msxml2
 
 #===========================
 
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
-

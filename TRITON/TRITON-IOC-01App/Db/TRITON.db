@@ -23,10 +23,44 @@ record(bo, "$(P)DISABLE")
 # Heater and temperature control
 #
 
-
-record(ao, "$(P)TEMP:SP")
+record(ao, "$(P)TEMP:SP") 
 {
     field(DESC, "Temperature setpoint")
+    field(OUT, "$(P)TEMP:SP:_CALC PP")
+	field(PREC, "3")
+	field(EGU, "K")
+}
+
+record(calc, "$(P)TEMP:SP:_CALC_LOOP")
+{
+    field(INPA, "$(P)CLOSEDLOOP CP MS")
+    field(CALC, "A+1")
+}
+
+record(dfanout, "$(P)TEMP:SP:_CALC") 
+{
+    field(SELL, "$(P)TEMP:SP:_CALC_LOOP")
+    field(SELM, "Specified")
+    field(OUTA, "$(P)TEMP:SP:_SET_LOOP_RAW PP")
+    field(OUTB, "$(P)TEMP:SP:_NO_SET_LOOP_RAW PP")
+    
+}
+
+record(ao, "$(P)TEMP:SP:_SET_LOOP_RAW")
+{
+    field(DTYP, "stream")
+    field(OUT, "@devtriton.proto setLoopThenTSetpoint($(P)) $(PORT)")
+	field(PREC, "3")
+	field(EGU, "K")
+	
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:TEMP:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+
+
+record(ao, "$(P)TEMP:SP:_NO_SET_LOOP_RAW")
+{
     field(DTYP, "stream")
     field(OUT, "@devtriton.proto setTSetpoint($(P)) $(PORT)")
 	field(PREC, "3")
@@ -42,7 +76,7 @@ record(ai, "$(P)TEMP:SP:RBV")
     field(DESC, "Temperature setpoint readback")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getTSetpoint($(P)) $(PORT)")
-    field(SCAN, "1 second") 
+    field(SCAN, "$(POLL_RATE)") 
 	field(PREC, "3")
 	field(EGU, "K")
 	
@@ -83,7 +117,7 @@ record(ai, "$(P)HEATER:RANGE")
     field(DESC, "Heater range")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getHtrRange($(P)) $(PORT)")
-    field(SCAN, "1 second") 
+    field(SCAN, "$(POLL_RATE)") 
 	field(PREC, "3")
 	field(EGU, "mA")
 	
@@ -100,7 +134,7 @@ record(ai, "$(P)HEATER:POWER")
     field(DESC, "Heater power")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getHtrPower($(P)) $(PORT)")
-    field(SCAN, "1 second")
+    field(SCAN, "$(POLL_RATE)")
 	field(PREC, "3")
 	field(EGU, "uW")
 	
@@ -117,7 +151,7 @@ record(ai, "$(P)HEATER:RES")
     field(DESC, "Heater resistance")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getHtrRes($(P)) $(PORT)")
-    field(SCAN, "1 second")
+    field(SCAN, "$(POLL_RATE)")
 	field(PREC, "3")
 	field(EGU, "ohm")
 	
@@ -160,7 +194,7 @@ record(bi, "$(P)CLOSEDLOOP")
     field(DESC, "Closed loop mode")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getClosedLoop($(P)) $(PORT)")
-    field(SCAN, "1 second")
+    field(SCAN, "$(POLL_RATE)")
     
     field(ZNAM, "Off")
     field(ONAM, "On")
@@ -200,7 +234,7 @@ record(waveform, "$(P)STATUS")
     field(NELM, "512")
     field(FTVL, "CHAR")
     field(INP,  "@devtriton.proto getStatus $(PORT)")
-    field(SCAN, "1 second")
+    field(SCAN, "$(POLL_RATE)")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")
@@ -217,7 +251,7 @@ record(waveform, "$(P)AUTOMATION")
     field(NELM, "512")
     field(FTVL, "CHAR")
     field(INP,  "@devtriton.proto getAutomation $(PORT)")
-    field(SCAN, "1 second")
+    field(SCAN, "$(POLL_RATE)")
 	
 	info(INTEREST, "MEDIUM")
 	info(archive, "VAL")

@@ -5,7 +5,12 @@ pattern {P,    M,         DTYP,      DESC,   EGU,  DIR,  VELO,  VBAS, ACCL, BDST
 
 }
 
+file $(MOTOR)/db/motor_init_extra.db {
+pattern {P, M, OFF, JVEL}
+{"\$(P)", "\$(M)", "\$(OFF)", "\$(JVEL)"}
+}
+
 file $(MOTOR)/db/periodic_polling.db {
-pattern {P, M}
-{"\$(P)", "\$(M)"}
+pattern {P, M, POLL_RATE}
+{"\$(P)", "\$(M)", "\$(POLL_RATE=10)"}
 }

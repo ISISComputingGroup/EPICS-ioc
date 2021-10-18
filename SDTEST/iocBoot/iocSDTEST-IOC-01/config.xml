@@ -4,102 +4,110 @@
 <ioc_desc>Simple IOC for talking to any serial device</ioc_desc>
 <macros>
 <!-- check st-port.cmd for defaults -->
-<macro name="PORT1" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT2" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT3" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT4" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT5" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT6" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT7" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="PORT8" pattern="^COM[0-9]+$" description="Serial COM port to connect to" />
-<macro name="BAUD1" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
-<macro name="BAUD2" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
-<macro name="BAUD3" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
-<macro name="BAUD4" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
-<macro name="BAUD5" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
-<macro name="BAUD6" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
-<macro name="BAUD7" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
-<macro name="BAUD8" pattern="^[0-9]+$" description="port baud rate (default: 9600)" />
-<macro name="BITS1" pattern="^[7-8]$" description="port data bits (default: 8)" />
-<macro name="BITS2" pattern="^[7-8]$" description="port data bits (default: 8)" />
-<macro name="BITS3" pattern="^[7-8]$" description="port data bits (default: 8)" />
-<macro name="BITS4" pattern="^[7-8]$" description="port data bits (default: 8)" />
-<macro name="BITS5" pattern="^[7-8]$" description="port data bits (default: 8)" />
-<macro name="BITS6" pattern="^[7-8]$" description="port data bits (default: 8)" />
-<macro name="BITS7" pattern="^[7-8]$" description="port data bits (default: 8)" />
-<macro name="BITS8" pattern="^[7-8]$" description="port data bits (default: 8)" />
-<macro name="PARITY1" pattern="^(even|odd|none)$" description="port parity (default: none)" />
-<macro name="PARITY2" pattern="^(even|odd|none)$" description="port parity (default: none)" />
-<macro name="PARITY3" pattern="^(even|odd|none)$" description="port parity (default: none)" />
-<macro name="PARITY4" pattern="^(even|odd|none)$" description="port parity (default: none)" />
-<macro name="PARITY5" pattern="^(even|odd|none)$" description="port parity (default: none)" />
-<macro name="PARITY6" pattern="^(even|odd|none)$" description="port parity (default: none)" />
-<macro name="PARITY7" pattern="^(even|odd|none)$" description="port parity (default: none)" />
-<macro name="PARITY8" pattern="^(even|odd|none)$" description="port parity (default: none)" />
-<macro name="STOP1" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="STOP2" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="STOP3" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="STOP4" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="STOP5" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="STOP6" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="STOP7" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="STOP8" pattern="^[0-2]$" description="port stop bits (default: 1)" />
-<macro name="OEOS1" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
-<macro name="OEOS2" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
-<macro name="OEOS3" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
-<macro name="OEOS4" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
-<macro name="OEOS5" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
-<macro name="OEOS6" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
-<macro name="OEOS7" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
-<macro name="OEOS8" pattern="^.*$" description="output end of line separator (default: \\r\\n)" />
-<macro name="IEOS1" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
-<macro name="IEOS2" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
-<macro name="IEOS3" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
-<macro name="IEOS4" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
-<macro name="IEOS5" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
-<macro name="IEOS6" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
-<macro name="IEOS7" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
-<macro name="IEOS8" pattern="^.*$" description="input end of line separator (default: \\r\\n)" />
-<macro name="CLOCAL1" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" />
-<macro name="CLOCAL2" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" />
-<macro name="CLOCAL3" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" />
-<macro name="CLOCAL4" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" />
-<macro name="CLOCAL5" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" />
-<macro name="CLOCAL6" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" />
-<macro name="CLOCAL7" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" />
-<macro name="CLOCAL8" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" />
-<macro name="CRTSCTS1" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" />
-<macro name="CRTSCTS2" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" />
-<macro name="CRTSCTS3" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" />
-<macro name="CRTSCTS4" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" />
-<macro name="CRTSCTS5" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" />
-<macro name="CRTSCTS6" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" />
-<macro name="CRTSCTS7" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" />
-<macro name="CRTSCTS8" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" />
-<macro name="IXON1" pattern="^[YN]$" description="Y for output software flow control (default: N)" />
-<macro name="IXON2" pattern="^[YN]$" description="Y for output software flow control (default: N)" />
-<macro name="IXON3" pattern="^[YN]$" description="Y for output software flow control (default: N)" />
-<macro name="IXON4" pattern="^[YN]$" description="Y for output software flow control (default: N)" />
-<macro name="IXON5" pattern="^[YN]$" description="Y for output software flow control (default: N)" />
-<macro name="IXON6" pattern="^[YN]$" description="Y for output software flow control (default: N)" />
-<macro name="IXON7" pattern="^[YN]$" description="Y for output software flow control (default: N)" />
-<macro name="IXON8" pattern="^[YN]$" description="Y for output software flow control (default: N)" />
-<macro name="IXOFF1" pattern="^[YN]$" description="Y for input software flow control (default: N)" />
-<macro name="IXOFF2" pattern="^[YN]$" description="Y for input software flow control (default: N)" />
-<macro name="IXOFF3" pattern="^[YN]$" description="Y for input software flow control (default: N)" />
-<macro name="IXOFF4" pattern="^[YN]$" description="Y for input software flow control (default: N)" />
-<macro name="IXOFF5" pattern="^[YN]$" description="Y for input software flow control (default: N)" />
-<macro name="IXOFF6" pattern="^[YN]$" description="Y for input software flow control (default: N)" />
-<macro name="IXOFF7" pattern="^[YN]$" description="Y for input software flow control (default: N)" />
-<macro name="IXOFF8" pattern="^[YN]$" description="Y for input software flow control (default: N)" />
-<macro name="PROTO1" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
-<macro name="PROTO2" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
-<macro name="PROTO3" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
-<macro name="PROTO4" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
-<macro name="PROTO5" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
-<macro name="PROTO6" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
-<macro name="PROTO7" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
-<macro name="PROTO8" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" />
+<macro name="PORT1" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT2" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT3" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT4" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT5" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT6" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT7" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PORT8" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />
+<macro name="PTYPE1" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" defaultValue="serial" hasDefault="YES" />
+<macro name="PTYPE2" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" defaultValue="serial" hasDefault="YES" />
+<macro name="PTYPE3" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" defaultValue="serial" hasDefault="YES" />
+<macro name="PTYPE4" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" defaultValue="serial" hasDefault="YES" />
+<macro name="PTYPE5" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" defaultValue="serial" hasDefault="YES" />
+<macro name="PTYPE6" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" defaultValue="serial" hasDefault="YES" />
+<macro name="PTYPE7" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" defaultValue="serial" hasDefault="YES" />
+<macro name="PTYPE8" pattern="^(serial|ip|ipcom)$" description="Port device type (default:serial)" defaultValue="serial" hasDefault="YES" />
+<macro name="BAUD1" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
+<macro name="BAUD2" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
+<macro name="BAUD3" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
+<macro name="BAUD4" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
+<macro name="BAUD5" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
+<macro name="BAUD6" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
+<macro name="BAUD7" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
+<macro name="BAUD8" pattern="^[0-9]+$" description="port baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
+<macro name="BITS1" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
+<macro name="BITS2" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
+<macro name="BITS3" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
+<macro name="BITS4" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
+<macro name="BITS5" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
+<macro name="BITS6" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
+<macro name="BITS7" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
+<macro name="BITS8" pattern="^[7-8]$" description="port data bits (default: 8)" defaultValue="8" hasDefault="YES" />
+<macro name="PARITY1" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
+<macro name="PARITY2" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
+<macro name="PARITY3" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
+<macro name="PARITY4" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
+<macro name="PARITY5" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
+<macro name="PARITY6" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
+<macro name="PARITY7" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
+<macro name="PARITY8" pattern="^(even|odd|none)$" description="port parity (default: none)" defaultValue="none" hasDefault="YES" />
+<macro name="STOP1" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
+<macro name="STOP2" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
+<macro name="STOP3" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
+<macro name="STOP4" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
+<macro name="STOP5" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
+<macro name="STOP6" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
+<macro name="STOP7" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
+<macro name="STOP8" pattern="^[0-2]$" description="port stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
+<macro name="OEOS1" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="OEOS2" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="OEOS3" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="OEOS4" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="OEOS5" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="OEOS6" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="OEOS7" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="OEOS8" pattern="^.*$" description="output end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="IEOS1" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="IEOS2" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="IEOS3" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="IEOS4" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="IEOS5" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="IEOS6" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="IEOS7" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="IEOS8" pattern="^.*$" description="input end of line separator (default: \\r\\n)" defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="CLOCAL1" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" defaultValue="Y" hasDefault="YES" />
+<macro name="CLOCAL2" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" defaultValue="Y" hasDefault="YES" />
+<macro name="CLOCAL3" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" defaultValue="Y" hasDefault="YES" />
+<macro name="CLOCAL4" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" defaultValue="Y" hasDefault="YES" />
+<macro name="CLOCAL5" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" defaultValue="Y" hasDefault="YES" />
+<macro name="CLOCAL6" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" defaultValue="Y" hasDefault="YES" />
+<macro name="CLOCAL7" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" defaultValue="Y" hasDefault="YES" />
+<macro name="CLOCAL8" pattern="^[YN]$" description="N for output flow control using DSR (default: Y)" defaultValue="Y" hasDefault="YES" />
+<macro name="CRTSCTS1" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="CRTSCTS2" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="CRTSCTS3" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="CRTSCTS4" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="CRTSCTS5" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="CRTSCTS6" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="CRTSCTS7" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="CRTSCTS8" pattern="^[YN]$" description="Y for RTS/CTS hardware flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXON1" pattern="^[YN]$" description="Y for output software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXON2" pattern="^[YN]$" description="Y for output software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXON3" pattern="^[YN]$" description="Y for output software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXON4" pattern="^[YN]$" description="Y for output software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXON5" pattern="^[YN]$" description="Y for output software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXON6" pattern="^[YN]$" description="Y for output software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXON7" pattern="^[YN]$" description="Y for output software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXON8" pattern="^[YN]$" description="Y for output software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXOFF1" pattern="^[YN]$" description="Y for input software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXOFF2" pattern="^[YN]$" description="Y for input software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXOFF3" pattern="^[YN]$" description="Y for input software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXOFF4" pattern="^[YN]$" description="Y for input software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXOFF5" pattern="^[YN]$" description="Y for input software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXOFF6" pattern="^[YN]$" description="Y for input software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXOFF7" pattern="^[YN]$" description="Y for input software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="IXOFF8" pattern="^[YN]$" description="Y for input software flow control (default: N)" defaultValue="N" hasDefault="YES" />
+<macro name="PROTO1" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" defaultValue="SDTEST-default.proto" hasDefault="YES" />
+<macro name="PROTO2" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" defaultValue="SDTEST-default.proto" hasDefault="YES" />
+<macro name="PROTO3" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" defaultValue="SDTEST-default.proto" hasDefault="YES" />
+<macro name="PROTO4" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" defaultValue="SDTEST-default.proto" hasDefault="YES" />
+<macro name="PROTO5" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" defaultValue="SDTEST-default.proto" hasDefault="YES" />
+<macro name="PROTO6" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" defaultValue="SDTEST-default.proto" hasDefault="YES" />
+<macro name="PROTO7" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" defaultValue="SDTEST-default.proto" hasDefault="YES" />
+<macro name="PROTO8" pattern="^.*$" description="Stream device protocol file (default: SDTEST-default.proto)" defaultValue="SDTEST-default.proto" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>

@@ -1,0 +1,13 @@
+file "IBEX_PVs_channels.template" {
+
+pattern {NAME, P, ASYNPORT, OLDFNCTN, CHAN, NEWFNCTN}
+
+# Scaled values
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "0", "TEMP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "1", "TEMP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "2", "TEMP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "3", "TEMP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "4", "TEMP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "5", "TEMP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "6", "TEMP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "AI", "7", "TEMP"}

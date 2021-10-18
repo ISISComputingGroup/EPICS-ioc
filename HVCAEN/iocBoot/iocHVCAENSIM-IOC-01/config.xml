@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
-<config_part>
-<ioc_desc>Simulated CAEN high voltage power supply</ioc_desc>
-</config_part>
+	<config_part>
+		<ioc_desc>Simulated CAEN high voltage power supply</ioc_desc>
+		<macros>
+			<macro name ="IFREADONLY" pattern="^ |#$" description="Whether device is readonly. Set to # for readonly, default is ' ' (just spacebar), for read and write" hasDefault="YES" defaultValue=" "/>
+		</macros>
+	</config_part>
 </ioc_config>

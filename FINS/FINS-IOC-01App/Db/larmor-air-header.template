@@ -10,7 +10,7 @@
 # DM0006               Valve2 Position                 0-6000 = 0-100% open
 # DM0007               Valve3 Position                 0-6000 = 0-100% open
 # DM0008               Valve4 Position                 0-6000 = 0-100% open
-# DM0099               PLC “Heart Beat” (1s pulse)     0 to 65535
+# DM0099               PLC "Heart Beat" (1s pulse)     0 to 65535
 # 
 # CIO0100.06           ON = Table lifted (valve open & pressure OK)
 # 

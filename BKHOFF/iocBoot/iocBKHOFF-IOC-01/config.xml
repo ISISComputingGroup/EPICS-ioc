@@ -4,7 +4,7 @@
 <ioc_desc>Beckhoff Motor Controller</ioc_desc>
 <ioc_details>Beckhoff Motor</ioc_details>
 <macros>
-    <macro name="HOST" description="Host name or ip address with port for the motor controller" />
+    <macro name="HOST" description="Host name or ip address with port for the motor controller" hasDefault="NO" />
 </macros>
 <pvsets>
 </pvsets>

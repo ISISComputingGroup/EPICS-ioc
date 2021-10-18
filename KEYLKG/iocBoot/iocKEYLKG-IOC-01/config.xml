@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>The Keyence LK-G laser positioning sensor</ioc_desc>
+<ioc_details>The Keyence LK-G laser positioning sensor</ioc_details>
+<macros>
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO"/>
+<macro name="BAUD" pattern="^[0-9]+$" description="Baud rate, manual suggests one of 9600, 19200, 38400, 57600, 115200. Default 38400" hasDefault="YES" defaultValue="38400"/>
+<macro name="PARITY" pattern="^none|even|odd$" description="Parity, default none" hasDefault="YES" defaultValue="none"/>
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>

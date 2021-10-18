@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+ <config_part>
+  <ioc_desc>Reflectometry Server</ioc_desc>
+  <ioc_details>Reflectometry Server bla</ioc_details>
+  <macros>
+    <macro name="CONFIG_FILE" pattern="^[\w\-]+\.py$" description="Reflectometry configuration to use. Default is config.py" defaultValue="config.py" hasDefault="YES" />
+    <macro name="OPTIONAL_1" pattern="^True|False$" description="Boolean flag 1 for use inside reflectometry configuration." defaultValue="False" hasDefault="YES" />
+    <macro name="OPTIONAL_2" pattern="^True|False$" description="Boolean flag 2 for use inside reflectometry configuration." defaultValue="False" hasDefault="YES" />
+    <macro name="OPTIONAL_3" pattern="^True|False$" description="Boolean flag 3 for use inside reflectometry configuration." defaultValue="False" hasDefault="YES" />
+    <macro name="OPTIONAL_4" pattern="^True|False$" description="Boolean flag 4 for use inside reflectometry configuration." defaultValue="False" hasDefault="YES" />
+  </macros>
+ </config_part>
+</ioc_config>

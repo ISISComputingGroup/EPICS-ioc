@@ -18,7 +18,6 @@ DBD += $(APPNAME).dbd
 # CONEXAGP-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
@@ -43,13 +42,11 @@ $(APPNAME)_DBD += asyn.dbd
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += asubFunctions
-$(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
-$(APPNAME)_LIBS += calc autosave
-$(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += utilities
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 $(APPNAME)_LIBS += Newport
@@ -58,7 +55,10 @@ $(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += motionSetPoints
 $(APPNAME)_LIBS += busy asyn
-$(APPNAME)_LIBS += std sscan
+$(APPNAME)_LIBS += std
+$(APPNAME)_LIBS += calc sscan autosave
+$(APPNAME)_LIBS += pcrecpp pcre libjson zlib
+$(APPNAME)_LIBS += seq pv
 # CONEXAGP-IOC-01_registerRecordDeviceDriver.cpp derives from CONEXAGP-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 

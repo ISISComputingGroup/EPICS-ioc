@@ -9,10 +9,10 @@ record(ai, "$(P)$(AXIS):RAW")
 
 record(calcout, "$(P)$(AXIS):CALC")
 {
-	field(INPA, "$(P)$(AXIS):RAW")
+	field(INPA, "$(P)$(AXIS):RAW MS")
 	field(CALC, "A/$(SCALE)")
 	
-	field(OUT, "$(P)$(AXIS) PP")
+	field(OUT, "$(P)$(AXIS) PP MS")
 	field(OOPT, "Every Time")
 }
 
@@ -22,6 +22,7 @@ record(ai, "$(P)$(AXIS)")
 	field(PREC, "3")
 	info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "cybaman")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(AXIS)")
     field(SDIS, "$(P)DISABLE")

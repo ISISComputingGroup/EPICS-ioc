@@ -23,7 +23,6 @@ include $(ADCORE)/ADApp/commonDriverMakefile
 # ISISDAE-IOC-01.dbd will be made up from these files:
 # we get base, asyn + areadetetor standard plugins as part of commonDriverMakefile include
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += caPutLog.dbd
@@ -35,12 +34,15 @@ $(APPNAME)_DBD += webget.dbd
 $(APPNAME)_DBD += FileList.dbd
 $(APPNAME)_DBD += ADnEDSupport.dbd
 $(APPNAME)_DBD += ffmpegServer.dbd
+ifeq ($(findstring 10.0,$(VCVERSION)),)
+$(APPNAME)_DBD += ADPluginKafka.dbd
+endif
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += webget htmltidy
-$(APPNAME)_LIBS += seqDev seq pv
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -58,6 +60,13 @@ $(APPNAME)_LIBS += avutil
 $(APPNAME)_LIBS += swscale
 $(APPNAME)_LIBS += ADnEDSupport
 $(APPNAME)_LIBS += ADnEDTransform
+ifeq ($(findstring 10.0,$(VCVERSION)),)
+$(APPNAME)_LIBS += ADPluginKafka
+$(APPNAME)_LIBS += rdkafka++
+$(APPNAME)_LIBS += rdkafka
+endif
+
+$(APPNAME)_LIBS += ssleay32 libeay32
 
 # ISISDAE-IOC-01_registerRecordDeviceDriver.cpp derives from ISISDAE-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

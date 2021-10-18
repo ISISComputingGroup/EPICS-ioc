@@ -26,11 +26,11 @@ include $(TOP)/../../../ISIS_CONFIG
 
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
 ASYN=$(SUPPORT)/asyn/master
-ASYN=$(SUPPORT)/asyn/master
 ONCRPC=$(SUPPORT)/oncrpc/master
 AUTOSAVE=$(SUPPORT)/autosave/master
 CALC=$(SUPPORT)/calc/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
+CSM=$(SUPPORT)/csm/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master
 KHLY2700=$(SUPPORT)/Keithley_2700/master
@@ -45,3 +45,4 @@ SSCAN=$(SUPPORT)/sscan/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
+GSL=$(SUPPORT)/gsl/master

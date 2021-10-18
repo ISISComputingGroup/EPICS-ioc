@@ -1,0 +1,37 @@
+# EPICS_BASE should appear last so earlier modules can override stuff:
+EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
+
+# These allow developers to override the RELEASE variable settings
+# without having to modify the configure/RELEASE file itself.
+-include $(TOP)/../RELEASE.local
+-include $(TOP)/configure/RELEASE.local
+
+# Macros required for basic ioc/stream device
+ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
+ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
+ASYN=$(SUPPORT)/asyn/master
+AUTOSAVE=$(SUPPORT)/autosave/master
+CALC=$(SUPPORT)/calc/master
+CAPUTLOG=$(SUPPORT)/caPutLog/master
+DEVIOCSTATS=$(SUPPORT)/devIocStats/master
+ICPCONFIG=$(SUPPORT)/icpconfig/master
+LIBJSON=$(SUPPORT)/libjson/master
+MYSQL=$(SUPPORT)/MySQL/master
+ONCRPC=$(SUPPORT)/oncrpc/master
+PCRE=$(SUPPORT)/pcre/master
+PUGIXML=$(SUPPORT)/pugixml/master
+PVDUMP=$(SUPPORT)/pvdump/master
+SNCSEQ=$(SUPPORT)/seq/master
+SQLITE=$(SUPPORT)/sqlite/master
+SSCAN=$(SUPPORT)/sscan/master
+STREAMDEVICE=$(SUPPORT)/StreamDevice/master
+UTILITIES=$(SUPPORT)/utilities/master
+ZLIB=$(SUPPORT)/zlib/master
+
+# optional extra local definitions here
+-include $(TOP)/configure/RELEASE.private
+
+include $(TOP)/../../../ISIS_CONFIG
+-include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
+
+LKSH340=$(SUPPORT)/lakeshore340/master

@@ -6,9 +6,6 @@
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
 errlogInit2(65536, 256)
 
-## Set the specific db file to use here because the command set can vary across models
-epicsEnvSet "DB_FILE" "db/FP50_MH.db"
-
 < envPaths
 
 cd ${TOP}

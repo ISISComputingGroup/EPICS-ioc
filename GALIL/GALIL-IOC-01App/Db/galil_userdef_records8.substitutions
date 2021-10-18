@@ -37,26 +37,27 @@
 # DRVCMD = VAR (GalilStr is a galil variable)
 # DRVCMD = CMD (GalilStr is a galil command)
 
+
 file "$(GALIL)/db/galil_userdef_records8.template"
 {
 pattern
 { P,               EN,            GS, PORT, SCAN,   DESC,     DRVL, DRVH, LOW,  HIGH, LSV,     HSV,     ZNAM,      ONAM,  ZSV,        OSV,        C, DEFAULT, EGU,  PINI}
-{"\$(P)", "MTR\$(CCP)",     "K1",  "Galil"   "Passive", "P gain during motion", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "K2",  "Galil"   "Passive", "I gain during motion", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "K3",  "Galil"   "Passive", "D gain during motion", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "IL",  "Galil"   "Passive", "Integrator Limit", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "FV",  "Galil"   "Passive", "Feedforward Velocity", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "FC",  "Galil"   "Passive", "Distance-selectable FV gain", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "FA",  "Galil"   "Passive", "Feedforward Acceleration", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "FN",  "Galil"   "Passive", "Distance when FC engaged", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "ZP",  "Galil"   "Passive", "Positive antifriction bias", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "ZN",  "Galil"   "Passive", "Negative antifriction bias", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "TL",  "Galil"   "Passive", "Torque Limit", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "CP",  "Galil"   "Passive", "Motor off deadband", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "CT",  "Galil"   "Passive", "IL increment rate for CP", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "AF",  "Galil"   "Passive", "Analog Feedback", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "DS",  "Galil"   "Passive", "Off band", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
-{"\$(P)", "MTR\$(CCP)",     "DB",  "Galil"   "Passive", "On band", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "K1",  "\$(PORT=Galil)",   "Passive", "P gain during motion", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "K2",  "\$(PORT=Galil)",   "Passive", "I gain during motion", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "K3",  "\$(PORT=Galil)",   "Passive", "D gain during motion", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "IL",  "\$(PORT=Galil)",   "Passive", "Integrator Limit", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "FV",  "\$(PORT=Galil)",   "Passive", "Feedforward Velocity", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "FC",  "\$(PORT=Galil)",   "Passive", "Distance-selectable FV gain", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "FA",  "\$(PORT=Galil)",   "Passive", "Feedforward Acceleration", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "FN",  "\$(PORT=Galil)",   "Passive", "Distance when FC engaged", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "ZP",  "\$(PORT=Galil)",   "Passive", "Positive antifriction bias", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "ZN",  "\$(PORT=Galil)",   "Passive", "Negative antifriction bias", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "TL",  "\$(PORT=Galil)",   "Passive", "Torque Limit", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "CP",  "\$(PORT=Galil)",   "Passive", "Motor off deadband", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "-1.0",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "CT",  "\$(PORT=Galil)",   "Passive", "IL increment rate for CP", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "AF",  "\$(PORT=Galil)",   "Passive", "Analog Feedback", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "DS",  "\$(PORT=Galil)",   "Passive", "Off band", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
+{"\$(P)", "MTR\$(CCP)",     "DB",  "\$(PORT=Galil)",   "Passive", "On band", "",    "", "",    "", "MINOR", "MINOR", "Invalid", "Ok",  "MAJOR",    "NO_ALARM", $(CC), "",    "", "YES"}
 
 }
 

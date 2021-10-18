@@ -5,19 +5,19 @@
 <ioc_details>SM300 motor controller used for sample changer</ioc_details>
 <macros>
 
-<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" />
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
-<macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 9600)" />
-<macro name="BITS" pattern="^[7-8]$" description="Data bits (default: 8)" />
-<macro name="PARITY" pattern="^(even|odd|none)$" description="Parity (default: none)" />
-<macro name="STOP" pattern="^[0-2]$" description="Stop bits (default: 2)" />
+<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="NO" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
+<macro name="BITS" pattern="^[7-8]$" description="Data bits (default: 8)" defaultValue="8" hasDefault="YES" />
+<macro name="PARITY" pattern="^(even|odd|none)$" description="Parity (default: none)" defaultValue="none" hasDefault="YES" />
+<macro name="STOP" pattern="^[0-2]$" description="Stop bits (default: 2)" defaultValue="2" hasDefault="YES" />
 
-<macro name="MSTP1" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" />
-<macro name="MSTP2" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" />
+<macro name="MSTP1" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" defaultValue="200" hasDefault="YES" />
+<macro name="MSTP2" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" defaultValue="200" hasDefault="YES" />
 
 
-<macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
-<macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" />
+<macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
 
 </macros>
 <pvsets>

@@ -1,0 +1,51 @@
+TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
+ONCRPC=$(SUPPORT)/oncrpc/master
+
+ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
+AREA_DETECTOR=$(SUPPORT)/areaDetector/master
+ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
+ASYN=$(SUPPORT)/asyn/master
+AUTOSAVE=$(SUPPORT)/autosave/master
+BOOST=$(EPICS_ROOT)/libraries/master/boost
+BUSY=$(SUPPORT)/busy/master
+CALC=$(SUPPORT)/calc/master
+CAPUTLOG=$(SUPPORT)/caPutLog/master
+CURL=$(SUPPORT)/curl/master
+DEVIOCSTATS=$(SUPPORT)/devIocStats/master
+EFSW=$(SUPPORT)/efsw/master
+FILELIST=$(SUPPORT)/FileList/master
+FILESERVER=$(SUPPORT)/FileServer/master
+HTMLTIDY=$(SUPPORT)/htmltidy/master
+ICPCONFIG=$(SUPPORT)/icpconfig/master
+ISISDAE=$(SUPPORT)/isisdae/master
+LIBJSON=$(SUPPORT)/libjson/master
+MYSQL=$(SUPPORT)/MySQL/master
+PCRE=$(SUPPORT)/pcre/master
+PUGIXML=$(SUPPORT)/pugixml/master
+PVCOMPLETE=$(SUPPORT)/pvcomplete/master
+PVDUMP=$(SUPPORT)/pvdump/master
+READASCII=$(SUPPORT)/ReadASCII/master
+SNCSEQ=$(SUPPORT)/seq/master
+SQLITE=$(SUPPORT)/sqlite/master
+SSCAN=$(SUPPORT)/sscan/master
+STD=$(SUPPORT)/std/master
+UTILITIES=$(SUPPORT)/utilities/master
+WEBGET=$(SUPPORT)/webget/master
+ZLIB=$(SUPPORT)/zlib/master
+
+NGEM=$(SUPPORT)/nGEM-BBTX/master
+
+ADKAFKAINTERFACE=$(SUPPORT)/ad_kafka_interface/master
+ADPLUGINKAFKA=$(ADKAFKAINTERFACE)/ADPluginKafka
+LIBRDKAFKA=$(SUPPORT)/librdkafka/master
+OPENSSL=$(SUPPORT)/OpenSSL/master
+
+# optional extra local definitions here
+-include $(TOP)/configure/RELEASE.private
+
+include $(TOP)/../../../ISIS_CONFIG
+-include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
+
+include $(AREA_DETECTOR)/configure/RELEASE_SUPPORT.local
+-include $(AREA_DETECTOR)/configure/RELEASE_SUPPORT.local.$(EPICS_HOST_ARCH)
+include $(AREA_DETECTOR)/configure/RELEASE_LIBS.local

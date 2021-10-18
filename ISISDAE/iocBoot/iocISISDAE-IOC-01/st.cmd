@@ -18,6 +18,10 @@ epicsEnvSet "PERIOD_PATTERN" ".*period.*"
 epicsEnvSet "TCB_DIR" "$(ICPCONFIGROOT)/tcb"
 epicsEnvSet "TCB_PATTERN" ".*tcb.*"
 
+## this needs to be large enouth for DAE spectra and
+## also for areaDetector (see liveview.cmd) 
+epicsEnvSet "EPICS_CA_MAX_ARRAY_BYTES" 1500000
+
 cd ${TOP}
 
 ## Register all support components
@@ -41,7 +45,7 @@ webgetConfigure("arch2")
 
 ## local dae, no dcom/labview
 ## define max number of live detectos and max (x,y) size of each
-isisdaeConfigure("icp", $(DAEDCOM=1), $(DAEHOST=localhost), "spudulike", "reliablebeam", 2, 512, 512)
+isisdaeConfigure("icp", $(DAEDCOM=1), $(DAEHOST=localhost), "spudulike", "reliablebeam", 5)
 ## pass 1 as second arg to signify DCOM to either local or remote dae
 ## pass 2 as second arg to signify SECI mode
 #isisdaeConfigure("icp", 1, "localhost")
@@ -72,15 +76,22 @@ $(IFPARALLEL=) epicsEnvSet("BEGINRUN_DAE3","$(MYPVPREFIX)DAE:BEGINRUN_DAE3")
 ## Load our record instances
 $(IFPARALLEL=) dbLoadRecords("$(ISISDAE)/db/dae3_parallel.db","P=$(MYPVPREFIX), Q=$(Q), OTHER_DAE=$(OTHER_DAE=), VETO_1=$(VETO_1=), VETO_2=$(VETO_2=), VETO_DELAY=$(VETO_DELAY=)")
 
-dbLoadRecords("$(ISISDAE)/db/isisdae.db","S=$(MYPVPREFIX), P=$(MYPVPREFIX), Q=$(Q), WIRINGLIST=WLIST, DETECTORLIST=DLIST, SPECTRALIST=SLIST, PERIODLIST=PLIST, TCBLIST=TLIST, BEGINRUNA=$(BEGINRUN_DAE3=$(MYPVPREFIX)$(Q)_BEGINRUN1), ENDRUNA=$(ENDRUN_DAE3=$(MYPVPREFIX)$(Q)_ENDRUN1)")
+dbLoadRecords("$(ISISDAE)/db/isisdae.db","S=$(MYPVPREFIX), P=$(MYPVPREFIX), Q=$(Q), WIRINGLIST=WLIST, DETECTORLIST=DLIST, SPECTRALIST=SLIST, PERIODLIST=PLIST, TCBLIST=TLIST, BEGINRUNA=$(BEGINRUN_DAE3=$(MYPVPREFIX)$(Q)_BEGINRUN1), ENDRUNA=$(ENDRUN_DAE3=$(MYPVPREFIX)$(Q)_ENDRUN1),POST_BEGIN_1=$(POST_BEGIN_1=),POST_BEGIN_2=$(POST_BEGIN_2=),POST_BEGIN_3=$(POST_BEGIN_3=),POST_BEGIN_4=$(POST_BEGIN_4=),POST_END_1=$(POST_END_1=),POST_END_2=$(POST_END_2=),POST_END_3=$(POST_END_3=),POST_END_4=$(POST_END_4=),POST_ABORT_1=$(POST_ABORT_1=),POST_ABORT_2=$(POST_ABORT_2=),POST_ABORT_3=$(POST_ABORT_3=),POST_ABORT_4=$(POST_ABORT_4=),POST_PAUSE_1=$(POST_PAUSE_1=),POST_PAUSE_2=$(POST_PAUSE_2=),POST_PAUSE_3=$(POST_PAUSE_3=),POST_PAUSE_4=$(POST_PAUSE_4=),POST_RESUME_1=$(POST_RESUME_1=),POST_RESUME_2=$(POST_RESUME_2=),POST_RESUME_3=$(POST_RESUME_3=),POST_RESUME_4=$(POST_RESUME_4=)")
 dbLoadRecords("$(ISISDAE)/db/dae_diag.db","P=$(MYPVPREFIX),Q=DAE:")
 dbLoadRecords("$(ISISDAE)/db/veto.db","P=$(MYPVPREFIX),Q=DAE:")
+dbLoadRecords("$(ISISDAE)/db/inst_string_parameters.db","P=$(MYPVPREFIX)")
+dbLoadRecords("$(ISISDAE)/db/inst_alias_string_parameters.db","P=$(MYPVPREFIX)")
+dbLoadRecords("$(ISISDAE)/db/inst_real_parameters.db","P=$(MYPVPREFIX)")
 
 cd ${TOP}/iocBoot/${IOC}
 
-## uncomment to enable live view
+#ffmpegServerConfigure(8081)
+
 iocshLoad "liveview.cmd", "LVDET=1,LVADDR=0"
 iocshLoad "liveview.cmd", "LVDET=2,LVADDR=1"
+iocshLoad "liveview.cmd", "LVDET=3,LVADDR=2"
+iocshLoad "liveview.cmd", "LVDET=4,LVADDR=3"
+iocshLoad "liveview.cmd", "LVDET=5,LVADDR=4"
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

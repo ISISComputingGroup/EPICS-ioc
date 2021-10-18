@@ -15,7 +15,6 @@ DBD += $(APPNAME).dbd
 
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
@@ -23,17 +22,16 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
-$(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
-$(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -43,11 +41,12 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += ReadASCII
 $(APPNAME)_LIBS += FileList
-$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += pcre libjson zlib
+$(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += pcrecpp pcre libjson zlib
 $(APPNAME)_LIBS += efsw
+$(APPNAME)_LIBS += seq pv
 
 # FERMCHOP-IOC-01_registerRecordDeviceDriver.cpp derives from FERMCHOP-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

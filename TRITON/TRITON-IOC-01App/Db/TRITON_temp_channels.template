@@ -47,7 +47,7 @@ record(ai, "$(P)$(CHAN):TEMP")
     field(DESC, "Temperature of $(CHAN)")
     field(DTYP, "stream")
     field(INP, "@devtriton.proto getChanTemp($(P)$(CHAN):UID) $(PORT)")
-    field(SCAN, "1 second")
+    field(SCAN, "$(POLL_RATE)")
 	field(PREC, "3")
 	field(EGU, "K")
 	# Alarm on sample temperature only (this should always exist and be valid)
@@ -60,6 +60,8 @@ record(ai, "$(P)$(CHAN):TEMP")
     field(SIOL, "$(P)SIM:$(CHAN):TEMP")
     field(SDIS, "$(P)DISABLE")
 }
+
+alias("$(P)TEMP:SP", "$(P)$(CHAN):TEMP:SP")
 
 
 #

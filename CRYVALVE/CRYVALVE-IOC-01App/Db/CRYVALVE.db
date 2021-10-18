@@ -42,7 +42,9 @@ record(stringin, "$(P)STAT")
     field(SDIS, "$(P)DISABLE")
     info(INTEREST, "HIGH")
 	info(archive, "VAL")
+	info(alarm, "CRYVALVE")
     field(DESC, "Iris cryo valve status")
+	
 }
 
 # Preserve old PV for backwards-compatibility

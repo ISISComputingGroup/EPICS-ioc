@@ -18,7 +18,6 @@ DBD += $(APPNAME).dbd
 # SCHNDR-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
@@ -35,15 +34,15 @@ $(APPNAME)_DBD += asubFunctions.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 ## Add other libraries here ##
 $(APPNAME)_LIBS += modbus asyn asubFunctions
+$(APPNAME)_LIBS += seq pv
 
 # SCHNDR-IOC-01_registerRecordDeviceDriver.cpp derives from SCHNDR-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

@@ -1,0 +1,76 @@
+# DM$(ADDR).00            $(SYSTEM) system status       at Atmosphere
+# DM$(ADDR).01            $(SYSTEM) system status       Vacing down
+# DM$(ADDR).02            $(SYSTEM) system status       at Vacuum
+# DM$(ADDR).03            $(SYSTEM) system status       Venting
+
+# FULL_PREFIX = Instrument and IOC prefix
+
+record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
+    field(DESC, "$(SYSTEM) Status")
+    field(INP, "$(FULL_PREFIX)$(SYSTEM):STATUS:_SET_UNKNOWN CP MS")
+    
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(FRVL, "4")
+    field(EIVL, "8")
+    
+    field(ZRST, "ERROR: STATUS UNKNOWN")
+    field(ONST, "ATMOSPHERE")
+    field(TWST, "VAC DOWN")
+    field(FRST, "AT VACUUM")
+    field(EIST, "VENTING")
+
+    field(ZRSV, "MAJOR")
+
+    info(archive, "VAL")
+    info(INTEREST, "HIGH")
+    info(alarm, "FINS")
+}
+
+record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS:_RAW") {
+    field(DESC, "Raw $(SYSTEM) Status from device")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ")
+    field(NOBT, 4)
+    field(SCAN, "1 second")
+    
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(FRVL, "4")
+    field(EIVL, "8")
+
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(SYSTEM):STATUS CP MS")
+}
+
+record(calc, "$(FULL_PREFIX)$(SYSTEM):STATUS:_SET_UNKNOWN") {
+    field(DESC, "Set status unknown when not value")
+    field(INPA, "$(FULL_PREFIX)$(SYSTEM):STATUS:_RAW CP MS")
+    field(CALC, "(A == 1 || A == 2 || A == 4 || A == 8) ? A : 0")
+}
+
+record(bi, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM") {
+    field(DESC, "At Vacuum or not")
+    field(VAL, 0)
+    field(ZNAM, "NOT AT VACUUM")
+    field(ONAM, "AT VACUUM")
+    info(archive, "VAL")
+}
+ 
+record(calcout,"$(FULL_PREFIX)$(SYSTEM):STATUS:VAC_STATUS_CALC" ) {
+    field(DESC, "Check if vessel is under vacuum")
+    field(INPA, "$(FULL_PREFIX)$(SYSTEM):STATUS CP MS")
+    field(CALC, "A==4")
+    field(OOPT, "On Change")
+    field(OUT, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM PP")
+}
+
+### Simulation Records ###
+
+record(mbbi, "$(FULL_PREFIX)SIM:$(SYSTEM):STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+

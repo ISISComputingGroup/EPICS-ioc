@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>The Oerlikon Centre-One Pressure Gauge</ioc_desc>
+<macros>
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO"/>
+<macro name="BAUD" pattern="^[0-9]+$" description="Transmission/baud rate" hasDefault="YES" defaultValue="9600"/>
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>

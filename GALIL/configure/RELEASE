@@ -1,11 +1,55 @@
-# top level master release and local private options 
-include $(TOP)/../../../configure/MASTER_RELEASE
--include $(TOP)/../../../configure/MASTER_RELEASE.$(EPICS_HOST_ARCH)
--include $(TOP)/../../../configure/MASTER_RELEASE.private
--include $(TOP)/../../../configure/MASTER_RELEASE.private.$(EPICS_HOST_ARCH)
+TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 
-# optional extra local definitions here
+## needed for galil
+ASYN=$(SUPPORT)/asyn/master
+AUTOSAVE=$(SUPPORT)/autosave/master
+BUSY=$(SUPPORT)/busy/master
+CALC=$(SUPPORT)/calc/master
+MOTOR=$(SUPPORT)/motor/master
+SSCAN=$(SUPPORT)/sscan/master
+GALIL=$(SUPPORT)/galil/master
+AXIS=$(SUPPORT)/axis/master
+
+## other ISIS modules used
+MOTIONSETPOINTS=$(SUPPORT)/motionSetPoints/master
+SNCSEQ=$(SUPPORT)/seq/master
+CSM=$(SUPPORT)/csm/master
+SAMPLECHANGER=$(SUPPORT)/sampleChanger/master
+STD=$(SUPPORT)/std/master
+
+## standard ISIS IOC modules, either needed for standard
+## linking or loaded vi the common .cmd files 
+ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
+ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
+CAPUTLOG=$(SUPPORT)/caPutLog/master
+DEVIOCSTATS=$(SUPPORT)/devIocStats/master
+ICPCONFIG=$(SUPPORT)/icpconfig/master
+MYSQL=$(SUPPORT)/MySQL/master
+PCRE=$(SUPPORT)/pcre/master
+PUGIXML=$(SUPPORT)/pugixml/master
+PVDUMP=$(SUPPORT)/pvdump/master
+UTILITIES=$(SUPPORT)/utilities/master
+TINYXML=$(SUPPORT)/TinyXML/master
+COMMON=$(ISISSUPPORT)/Common/master
+MOTOREXT=$(SUPPORT)/motorExtensions/master
+
+## this is nedeed for linking asyn statically on windows if asyn has vxi11 support
+ONCRPC=$(SUPPORT)/oncrpc/master
+
+## may be needed too
+BARNDOORS=$(SUPPORT)/barndoors/master
+GEMORC=$(SUPPORT)/gemorc/master
+JAWS=$(SUPPORT)/jaws/master
+LIBJSON=$(SUPPORT)/libjson/master
+ROTSC=$(SUPPORT)/rotating_sample_changer/master
+SQLITE=$(SUPPORT)/sqlite/master
+ZLIB=$(SUPPORT)/zlib/master
+
+## optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
+
+GALILIOC=$(TOP)
 
 include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
+

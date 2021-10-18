@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+    <config_part>
+        <ioc_desc>Keithley 2001 Digital Multimeter</ioc_desc>
+        <macros>
+            <macro name="GPIBSTR" pattern="^.*$" description="GPIB connection string. Defaults to GPIB0::16::INSTR" defaultValue="GPIB0::16::INSTR" hasDefault="YES" />
+            <macro name="SCAN_DELAY" pattern="^[0-9.]*$" description="Delay between scans of the IOC in seconds. Defaults to 1 second." defaultValue="1" hasDefault="YES" />
+            <macro name="ACTIVATE_CHAN_01" pattern="^(0|1)$" description="Activate channel 1. Defaults to 0." defaultValue="0" hasDefault="YES" />
+            <macro name="ACTIVATE_CHAN_02" pattern="^(0|1)$" description="Activate channel 2. Defaults to 0." defaultValue="0" hasDefault="YES" />
+            <macro name="ACTIVATE_CHAN_03" pattern="^(0|1)$" description="Activate channel 3. Defaults to 0." defaultValue="0" hasDefault="YES" />
+            <macro name="ACTIVATE_CHAN_04" pattern="^(0|1)$" description="Activate channel 4. Defaults to 0." defaultValue="0" hasDefault="YES" />
+            <macro name="ACTIVATE_CHAN_06" pattern="^(0|1)$" description="Activate channel 6. Defaults to 0." defaultValue="0" hasDefault="YES" />
+            <macro name="ACTIVATE_CHAN_07" pattern="^(0|1)$" description="Activate channel 7. Defaults to 0." defaultValue="0" hasDefault="YES" />
+            <macro name="ACTIVATE_CHAN_08" pattern="^(0|1)$" description="Activate channel 8. Defaults to 0." defaultValue="0" hasDefault="YES" />
+            <macro name="ACTIVATE_CHAN_09" pattern="^(0|1)$" description="Activate channel 9. Defaults to 0." defaultValue="0" hasDefault="YES" />
+        </macros>
+        <pvsets />
+    </config_part>
+</ioc_config>

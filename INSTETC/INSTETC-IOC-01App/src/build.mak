@@ -24,13 +24,13 @@ DBD += $(APPNAME).dbd
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += asubFunctions
-$(APPNAME)_LIBS += seqDev seq pv
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre
+$(APPNAME)_LIBS += utilities pcrecpp pcre
 ## Add other libraries here ##
 $(APPNAME)_LIBS += instetcSupport asyn calc busy sscan
 

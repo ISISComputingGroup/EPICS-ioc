@@ -19,7 +19,6 @@ include $(TOP)/configure/CONFIG
 #endif
 #USR_INCLUDES += -I$(CAENHVWRAPPER)/include
 caenhvwrapper_DIR = $(HVCAEN)/lib/$(EPICS_HOST_ARCH)
-hscaenetlib_DIR = $(HVCAEN)/lib/$(EPICS_HOST_ARCH)
 
 #=============================
 # Build the IOC application HVCAEN-IOC-01
@@ -32,7 +31,6 @@ DBD += $(APPNAME).dbd
 # HVCAEN-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
@@ -50,15 +48,15 @@ $(APPNAME)_DBD += HVCAENx527Support.dbd
 $(APPNAME)_LIBS += HVCAENx527 HVCAENx527Summary
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += asubFunctions
-$(APPNAME)_LIBS += seqDev seq pv
+$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre
-$(APPNAME)_LIBS_WIN32 += caenhvwrapper # hscaenetlib
-$(APPNAME)_SYS_LIBS_Linux += caenhvwrapper hscaenetlib
+$(APPNAME)_LIBS += utilities pcrecpp pcre
+$(APPNAME)_LIBS_WIN32 += caenhvwrapper
+$(APPNAME)_SYS_LIBS_Linux += caenhvwrapper
 
 # HVCAEN-IOC-01_registerRecordDeviceDriver.cpp derives from HVCAEN-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

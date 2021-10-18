@@ -25,20 +25,22 @@ epicsEnvSet "READASCII_NAME" "READASCII"
 epicsEnvSet "FILELIST_NAME" "RAMPFILELIST"
 
 FileListConfigure("$(FILELIST_NAME)", "$(RAMP_DIR)", "$(RAMP_PAT)") 
-ReadASCIIConfigure("$(READASCII_NAME)", "$(RAMP_DIR)")
+ReadASCIIConfigure("$(READASCII_NAME)", "$(RAMP_DIR)", 20)
 
 ## Load record instances
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-dbLoadRecords("../../db/TRITON.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),IPADDR=$(IPADDR=NUL)")
-dbLoadRecords("../../db/TRITON_valves.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
-dbLoadRecords("../../db/TRITON_channels.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
-dbLoadRecords("../../db/TRITON_pid.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
-dbLoadRecords("../../db/TRITON_pid_lookup.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE),READ=$(READASCII_NAME),RAMPLIST=$(FILELIST_NAME)")
-dbLoadRecords("../../db/TRITON_temp_channels.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
-dbLoadRecords("../../db/TRITON_pressure_channels.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE)")
+epicsEnvSet "POLL_RATE" "$(POLL_RATE=1 second)"
+epicsEnvSet "CHANNEL_POLL_RATE" "$(CHANNEL_POLL_RATE=10 second)"
+
+dbLoadRecords("../../db/TRITON.db", "P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),IPADDR=$(IPADDR=NUL),POLL_RATE=$(POLL_RATE),CHANNEL_POLL_RATE=$(CHANNEL_POLL_RATE)")
+dbLoadRecords("../../db/TRITON_channels.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE),POLL_RATE=$(POLL_RATE),CHANNEL_POLL_RATE=$(CHANNEL_POLL_RATE)")
+dbLoadRecords("../../db/TRITON_pid.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE),POLL_RATE=$(POLL_RATE),CHANNEL_POLL_RATE=$(CHANNEL_POLL_RATE)")
+dbLoadRecords("../../db/TRITON_pid_lookup.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE),READ=$(READASCII_NAME),RAMPLIST=$(FILELIST_NAME),RAMP_FILE_NAME=$(RAMP_FILE_NAME=Default.txt),USE_RAMP_FILE=$(USE_RAMP_FILE=0),POLL_RATE=$(POLL_RATE),CHANNEL_POLL_RATE=$(CHANNEL_POLL_RATE)")
+dbLoadRecords("../../db/TRITON_temp_channels.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE),POLL_RATE=$(POLL_RATE),CHANNEL_POLL_RATE=$(CHANNEL_POLL_RATE)")
+dbLoadRecords("../../db/TRITON_pressure_channels.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(DEVICE),POLL_RATE=$(POLL_RATE),CHANNEL_POLL_RATE=$(CHANNEL_POLL_RATE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

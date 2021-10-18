@@ -19,14 +19,32 @@ RUNCTRL_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+# if you wish to debug autosave
+#save_restoreSet_Debug(2)
+
 ## Load our record instances
-dbLoadRecords("$(RUNCONTROL)/db/runcontrolMgr.db","P=$(MYPVPREFIX)")
+
+dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:AC:ALERTS:,INST=$(INSTRUMENT=Unknown),SOURCE=IBEX")
+dbLoadRecords("$(TOP)/db/alertAction.db","P=$(MYPVPREFIX),Q=CS:AC:ALERTS:ACTION:OUT:,SOURCE=$(MYPVPREFIX)CS:AC:OUT:LIST,MESS=blocks out of range,ACTION=$(MYPVPREFIX)CS:AC:ALERTS:MESSAGE:SP")
+dbLoadRecords("$(TOP)/db/alertAction.db","P=$(MYPVPREFIX),Q=CS:AC:ALERTS:ACTION:IN:,SOURCE=$(MYPVPREFIX)CS:AC:OUT:LIST,MESS=blocks now in range,ACTION=$(MYPVPREFIX)CS:AC:ALERTS:MESSAGE:SP")
+## set out of range action for AC to dummy as we are using change action
+dbLoadRecords("$(TOP)/db/runcontrolMgr.db","P=$(MYPVPREFIX),ALERT_OUT=$(MYPVPREFIX)CS:AC:DUMMYACT:OUT.PROC,ALERT_IN=$(MYPVPREFIX)CS:AC:ALERTS:ACTION:IN:DO.PROC,ALERT_CHANGE=$(MYPVPREFIX)CS:AC:ALERTS:ACTION:OUT:DO.PROC")
 
 ## load run control settings written by blockserver
-< ${ICPCONFIGROOT}/rc_settings.cmd
+iocshLoad "${ICPCONFIGROOT}/rc_settings.cmd", "RUNCONTROL=$(TOP)"
+
+## load LOQ specific detector control, this puts in the aperture if the detctor count rate is exceeded
+stringiftest("LOQ", "$(ICPCONFIGHOST)", 5, "NDXLOQ")
+$(IFLOQ) dbLoadRecords("$(TOP)/db/LOQ_detector.db","P=$(MYPVPREFIX)")
+$(IFLOQ) dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:DC:ALERTS:,INST=$(INSTRUMENT=Unknown),SOURCE=IBEX")
+$(IFLOQ) dbLoadRecords("$(RUNCONTROL)/db/gencontrolMgr.db","P=$(MYPVPREFIX),MODE=DC,OUT_ACTION=$(MYPVPREFIX)CS:OVERCOUNT:ALERT.PROC")
+$(IFLOQ) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:SPEC:RATE,NOALIAS=#")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
+
+## set this to print out web POST contents
+#epicsEnvSet("WEBGET_POST_DEBUG", 1)
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit

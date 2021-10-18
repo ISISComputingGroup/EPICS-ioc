@@ -18,7 +18,6 @@ DBD += $(APPNAME).dbd
 # ILM200-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
-$(APPNAME)_DBD += devSequencer.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
@@ -26,30 +25,30 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## Stream device support ##
-$(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
-$(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += stream.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seqDev seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcre libjson zlib
+$(APPNAME)_LIBS += utilities
 ## Stream device libraries ##
 $(APPNAME)_LIBS += stream
-$(APPNAME)_LIBS += pcre
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += calc
 $(APPNAME)_LIBS += sscan
+$(APPNAME)_LIBS += pcrecpp pcre libjson zlib
+$(APPNAME)_LIBS += seq pv
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 

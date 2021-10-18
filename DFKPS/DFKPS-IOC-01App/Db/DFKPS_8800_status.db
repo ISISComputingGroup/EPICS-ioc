@@ -150,7 +150,7 @@ record(bi, "$(P)ILK")
 {
     field(DESC, "Overall Interlock")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -159,7 +159,7 @@ record(bi, "$(P)ILK:USER1")
 {
     field(DESC, "User Interlock 1")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -168,7 +168,7 @@ record(bi, "$(P)ILK:USER2")
 {
     field(DESC, "User Interlock 2")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -177,7 +177,7 @@ record(bi, "$(P)ILK:USER3")
 {
     field(DESC, "User Interlock 3")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -186,7 +186,7 @@ record(bi, "$(P)ILK:USER4")
 {
     field(DESC, "User Interlock 4")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -195,7 +195,7 @@ record(bi, "$(P)ILK:USER5")
 {
     field(DESC, "User Interlock 5")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -204,7 +204,7 @@ record(bi, "$(P)ILK:USER6")
 {
     field(DESC, "User Interlock 6")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -213,7 +213,7 @@ record(bi, "$(P)ILK:FWDI")
 {
     field(DESC, "Freewheel Diode Overtemp")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -222,7 +222,7 @@ record(bi, "$(P)ILK:WATER")
 {
     field(DESC, "Low Water Flow")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -231,7 +231,7 @@ record(bi, "$(P)ILK:DOOR")
 {
     field(DESC, "Door Open")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -240,7 +240,7 @@ record(bi, "$(P)ILK:HSDI")
 {
     field(DESC, "Heatsink Diode Overtemp")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -249,7 +249,7 @@ record(bi, "$(P)ILK:CHASSIS")
 {
     field(DESC, "Chassis Overtemp")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -258,7 +258,7 @@ record(bi, "$(P)ILK:IGBTHS")
 {
     field(DESC, "IGBT Heatsink Overtemp")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -267,7 +267,7 @@ record(bi, "$(P)ILK:HFDI")
 {
     field(DESC, "HF Diode Overtemp")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -276,7 +276,7 @@ record(bi, "$(P)ILK:DCCT")
 {
     field(DESC, "Switch Reg DCCT Fail")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -285,7 +285,7 @@ record(bi, "$(P)ILK:REGSUP")
 {
     field(DESC, "Switch Reg Supply Fail")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -294,7 +294,7 @@ record(bi, "$(P)ILK:IGBT")
 {
     field(DESC, "IGBT Driver Failure")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -303,7 +303,7 @@ record(bi, "$(P)ILK:OVERC")
 {
     field(DESC, "Overcurrent")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -312,7 +312,7 @@ record(bi, "$(P)ILK:NEUTRAL")
 {
 	field(DESC, "Neutral Polarity")
     field(ZNAM, "OK")
-    field(ONAM, "Interlock")
+    field(ONAM, "Tripped")
     info(INTEREST, "HIGH")
 }
 
@@ -328,6 +328,8 @@ record(bi, "$(P)POWER")
     field(DESC, "Power")
     field(ZNAM, "Off")
     field(ONAM, "On")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:POWER:SP PP")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -343,6 +345,8 @@ record(ao, "$(P)RAW:SP")
     field(SIOL, "$(P)SIM:RAW:SP")
     field(SDIS, "$(P)DISABLE")
     field(PINI, "$(SP_PINI)")
+    field(DRVL, "$(MIN_RAW_SETPOINT)")
+    field(DRVH, "$(MAX_RAW_SETPOINT)")
     info(autosaveFields, "VAL")
 }
 
@@ -379,13 +383,11 @@ record(ai, "$(P)RAW")
     field(INP,  "@dfkps.proto adcv $(port) 0")
     field(SCAN, "1 second")
     field(LOLO, "-999999.5")
-    field(HIHI, "99999.5")
+    field(HIHI, "999999.5")
     field(LLSV, "MAJOR")
     field(HHSV, "MAJOR")
-    field(HOPR, "100000")
-    field(LOPR, "0")
     field(PREC, "0")
-    field(FLNK, "$(P)CURR")
+    field(FLNK, "$(P)RBVCHANGED")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAW")
     field(SDIS, "$(P)DISABLE")
