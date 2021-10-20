@@ -47,6 +47,7 @@ IOCDIRS += FMR
 IOCDIRS += HIFIMAGS
 IOCDIRS += HLX503
 IOCDIRS += WEEDER
+IOCDIRS += DG645
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
