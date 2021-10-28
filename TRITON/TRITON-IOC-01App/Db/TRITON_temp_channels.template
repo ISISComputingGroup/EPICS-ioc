@@ -23,7 +23,7 @@ record(scalcout, "$(P)$(CHAN):UID:CORRECT")
 	# Only do this correction if this is the SAMPLE channel.
 	#
     field(INAA, "$(P)$(CHAN):UID:RAW MS")
-	field(CALC, "(AA=\"T0\" && \"$(IFSAMPLE)\"=\"#\")?\"T1\":AA")
+	field(CALC, "(AA=\"T0\" && \"$(IFSAMPLE)\"!=\"#\")?\"T1\":AA")
 	
 	field(FLNK, "$(P)$(CHAN):UID")
 }
