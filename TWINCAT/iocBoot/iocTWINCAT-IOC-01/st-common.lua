@@ -39,6 +39,8 @@ function twincat_stcommon_main()
 		db_args = string.format("MYPVPREFIX=%s,MOTOR_PV=%s,MOTOR_PORT=%s,ADDR=%s", pv_prefix, motor_pv, motor_port, axis_num-1)
 		iocsh.devMotorCreateAxis(motor_port, axis_num-1, plc_version)
 		iocsh.dbLoadRecords(single_axis_db, db_args)
+		auto_power_db_args = string.format("P=%s,M=%s,PORT=%s,ADDR=%s", pv_prefix, motor_pv, motor_port, axis_num-1)
+		iocsh.dbLoadRecords("$(MOTOR)/db/asyn_auto_power.db", auto_power_db_args)
 		autosave_file:write(string.format("file \"motor_settings.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
 	end
 	autosave_file:close()
