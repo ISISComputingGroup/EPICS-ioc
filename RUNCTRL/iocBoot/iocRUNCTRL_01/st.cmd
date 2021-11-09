@@ -33,12 +33,17 @@ dbLoadRecords("$(TOP)/db/runcontrolMgr.db","P=$(MYPVPREFIX),ALERT_OUT=$(MYPVPREF
 ## load run control settings written by blockserver
 iocshLoad "${ICPCONFIGROOT}/rc_settings.cmd", "RUNCONTROL=$(TOP)"
 
-## load LOQ specific detector control, this puts in the aperture if the detctor count rate is exceeded
-stringiftest("LOQ", "$(ICPCONFIGHOST)", 5, "NDXLOQ")
-$(IFLOQ) dbLoadRecords("$(TOP)/db/LOQ_detector.db","P=$(MYPVPREFIX)")
-$(IFLOQ) dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:DC:ALERTS:,INST=$(INSTRUMENT=Unknown),SOURCE=IBEX")
-$(IFLOQ) dbLoadRecords("$(RUNCONTROL)/db/gencontrolMgr.db","P=$(MYPVPREFIX),MODE=DC,OUT_ACTION=$(MYPVPREFIX)CS:OVERCOUNT:ALERT.PROC")
-$(IFLOQ) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:SPEC:RATE,NOALIAS=#")
+## load detector control, this puts in the aperture if the detctor count rate is exceeded
+stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXLOQ")
+stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
+stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
+$(IFDETECT) dbLoadRecords("$(TOP)/db/detector.db","P=$(MYPVPREFIX)")
+$(IFDETECT) dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:DC:ALERTS:,INST=$(INSTRUMENT=Unknown),SOURCE=IBEX")
+$(IFDETECT) dbLoadRecords("$(RUNCONTROL)/db/gencontrolMgr.db","P=$(MYPVPREFIX),MODE=DC,OUT_ACTION=$(MYPVPREFIX)CS:OVERCOUNT:ALERT.PROC")
+$(IFDETECT) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:SPEC:RATE,NOALIAS=#")
+$(IFSANS) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:RATE,NOALIAS=#")
+$(IFSANS) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:SPEC:RATE,NOALIAS=#")
+$(IFSANS) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:RATE,NOALIAS=#")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
