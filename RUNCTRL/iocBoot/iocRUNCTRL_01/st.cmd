@@ -35,8 +35,8 @@ iocshLoad "${ICPCONFIGROOT}/rc_settings.cmd", "RUNCONTROL=$(TOP)"
 
 ## load detector control, this puts in the aperture if the detctor count rate is exceeded
 stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXLOQ")
-stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
-stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
+stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDW1798")
+stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "NDW1798")
 $(IFDETECT) dbLoadRecords("$(TOP)/db/detector.db","P=$(MYPVPREFIX)")
 $(IFDETECT) dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:DC:ALERTS:,INST=$(INSTRUMENT=Unknown),SOURCE=IBEX")
 $(IFDETECT) dbLoadRecords("$(RUNCONTROL)/db/gencontrolMgr.db","P=$(MYPVPREFIX),MODE=DC,OUT_ACTION=$(MYPVPREFIX)CS:OVERCOUNT:ALERT.PROC")
@@ -44,6 +44,11 @@ $(IFDETECT) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE
 $(IFSANS) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:RATE,NOALIAS=#")
 $(IFSANS) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:SPEC:RATE,NOALIAS=#")
 $(IFSANS) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:RATE,NOALIAS=#")
+# RBV records for testing only
+$(IFRECSIM) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:SPEC:RATE:RBV,NOALIAS=#")
+$(IFRECSIM) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:RATE:RBV,NOALIAS=#")
+$(IFRECSIM) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:SPEC:RATE:RBV,NOALIAS=#")
+$(IFRECSIM) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:RATE:RBV,NOALIAS=#")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
