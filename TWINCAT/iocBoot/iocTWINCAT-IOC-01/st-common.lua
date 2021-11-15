@@ -32,6 +32,9 @@ function twincat_stcommon_main()
 	
 	autosave_file = io.open (ioc_name .. "_settings.req", "w")
 	
+	db_args = string.format("P=%s::,$(IFIOC)= ,PVPREFIX=%s,MTRCTRL=%02i,AXES_NUM=%s", pv_prefix, pv_prefix, os.getenv("MTRCTRL"), num_axes)
+	iocsh.dbLoadRecords("$(MOTOR)/db/motorUtil.db", db_args)
+	
 	for axis_num=1,num_axes,1
 	do
 		motor_pv = string.format("MTR%02i%02i", os.getenv("MTRCTRL"), axis_num)

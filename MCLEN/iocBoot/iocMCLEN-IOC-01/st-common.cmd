@@ -63,7 +63,7 @@ epicsEnvSet("MCLENCONFIG","$(ICPCONFIGROOT)/mclennan")
 < motorExtensions.cmd
 
 ## motor util package
-dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX),MTRCTRL=$(MTRCTRL)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
