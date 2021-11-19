@@ -14,6 +14,6 @@ The PEARL pressure controller is an ISIS-designed device.
 
 https://github.com/ISISComputingGroup/IBEX/wiki/PEARL-Instrument-Details
 
-### IOC Repository: 
+### Support and LEWIS Emulator Repository: 
 
-https://github.com/ISISComputingGroup/EPICS-ioc/tree/4cd6b6a481666ea77c155126b5114b4ca3714eb3/PEARLPC
+https://github.com/ISISComputingGroup/EPICS_PearlPressure
