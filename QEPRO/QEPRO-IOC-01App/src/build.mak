@@ -24,10 +24,10 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
-$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += busySupport.dbd
 $(APPNAME)_DBD += sscanSupport.dbd
 $(APPNAME)_DBD += drvUSBQEProSupport.dbd
@@ -36,7 +36,6 @@ $(APPNAME)_DBD += drvUSBQEProSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
@@ -49,6 +48,7 @@ $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += busy asyn
 ## Add other libraries here ##
 $(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += xxx
 
 # QEPRO-IOC-01_registerRecordDeviceDriver.cpp derives from QEPRO-IOC-01.dbd

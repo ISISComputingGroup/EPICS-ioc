@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>Lakeshore 336 temperature monitor</ioc_desc>
+<ioc_desc>Lakeshore 336/350 temperature monitor</ioc_desc>
 <macros>
-<macro name="HOST" description="Host name of Lakeshore 336 controller" hasDefault="NO" />
+<macro name="HOST" description="Host name of Lakeshore 336/350 controller" hasDefault="NO" />
 </macros>
 </config_part>
 </ioc_config>

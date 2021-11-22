@@ -19,7 +19,7 @@ $(IFHASMTRCTRL$(CN))
 $(IFHASMTRCTRL$(CN)) ## configure the galil, if we are simulated this will not be used to drive the 
 $(IFHASMTRCTRL$(CN)) ## actual device, but creating this asyn port at least allows record initialisation 
 $(IFHASMTRCTRL$(CN)) ## to complete
-$(IFHASMTRCTRL$(CN)) $(IFNOTDEVSIM) $(IFNOTRECSIM) < $(GALILCONFIG)/galilmul$(CN).cmd
+$(IFHASMTRCTRL$(CN)) $(IFNOTDEVSIM) $(IFNOTRECSIM) < $(GALILCONFIG)/galilmul$(MTRCTRL$(CN)).cmd
 $(IFHASMTRCTRL$(CN)) ## load the galil db files
 $(IFHASMTRCTRL$(CN)) < galildb.cmd
 $(IFHASMTRCTRL$(CN)) 

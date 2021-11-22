@@ -4,6 +4,7 @@
 <ioc_desc>Danfysik power supply</ioc_desc>
 <macros>
     <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
+    <macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 9600 for most Danfysiks, 115200 for the 9X00 versions" defaultValue="9600" hasDefault="YES" />
 	<macro name="POLARITY" pattern="^(BIPOLAR|UNIPOLAR)$" description="Polarity type, BIPOLAR - polarity is stable; defaults to BIPOLAR" defaultValue="BIPOLAR" hasDefault="YES" />
 	<macro name="USE_SLEW" pattern="^(0|1)$" description="1 to user slew, 0 otherwise; defaults to 0" defaultValue="0" hasDefault="YES" />
 

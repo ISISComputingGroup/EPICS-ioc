@@ -32,7 +32,6 @@ $(APPNAME)_DBD += zfcntrl.dbd
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += zfcntrl
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -40,6 +39,7 @@ $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 $(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += seq pv
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 
