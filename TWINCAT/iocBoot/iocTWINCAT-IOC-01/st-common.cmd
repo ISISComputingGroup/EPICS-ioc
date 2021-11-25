@@ -11,11 +11,20 @@ luash("st-common.lua")
 ## configure jaws
 < $(TWINCATCONFIG)/jaws.cmd
 
+## configure barndoors
+< $(TWINCATCONFIG)/barndoors.cmd
+
 ## configure axes
 < $(TWINCATCONFIG)/axes.cmd
 
 ## motion set points 
 < $(TWINCATCONFIG)/motionsetpoints.cmd
+
+## sample changer
+< $(TWINCATCONFIG)/sampleChanger.cmd
+
+## motor extensions
+< $(TWINCATCONFIG)/motorExtensions.cmd
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
