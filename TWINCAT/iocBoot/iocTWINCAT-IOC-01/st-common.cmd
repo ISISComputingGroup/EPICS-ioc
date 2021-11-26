@@ -29,11 +29,15 @@ luash("st-common.lua")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
+
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
+
+motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
