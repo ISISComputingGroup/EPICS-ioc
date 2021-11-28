@@ -23,6 +23,9 @@ $(IFHASMTRCTRL$(CN)) $(IFNOTDEVSIM) $(IFNOTRECSIM) < $(GALILCONFIG)/galilmul$(MT
 $(IFHASMTRCTRL$(CN)) ## load the galil db files
 $(IFHASMTRCTRL$(CN)) < galildb.cmd
 $(IFHASMTRCTRL$(CN)) 
+$(IFHASMTRCTRL$(CN)) ## per controller PVs
+$(IFHASMTRCTRL$(CN)) dbLoadRecords("$(MOTOR)/db/motorController.db","P=$(MYPVPREFIX),Q=MOT:MTR$(MTRCTRL):")
+$(IFHASMTRCTRL$(CN))
 $(IFHASMTRCTRL$(CN)) ## load the generic ISIS axis db for each axis
 $(IFHASMTRCTRL$(CN)) iocshCmdLoop("< st-axis.cmd", "MN=\$(I)", "I", 1, 8)
 $(IFHASMTRCTRL$(CN)) 
