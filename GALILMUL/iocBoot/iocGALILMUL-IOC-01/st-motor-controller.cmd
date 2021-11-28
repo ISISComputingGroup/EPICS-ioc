@@ -11,6 +11,8 @@ $(IFHASMTRCTRL$(CN)) ## are loaded with "Galil" as the asyn port
 $(IFHASMTRCTRL$(CN)) $(IFDEVSIM) epicsEnvSet("GALIL_MTR_PORT", "GalilSim$(CN)")
 $(IFHASMTRCTRL$(CN)) $(IFRECSIM) epicsEnvSet("GALIL_MTR_PORT", "GalilSim$(CN)")
 $(IFHASMTRCTRL$(CN)) $(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet("GALIL_MTR_PORT", "Galil$(CN)")
+$(IFHASMTRCTRL$(CN)) epicsEnvSet("GALIL_PORT", "Galil$(CN)")
+$(IFHASMTRCTRL$(CN)) epicsEnvSet("GALIL_ADDR", "$(GALILADDR$(CN))")
 $(IFHASMTRCTRL$(CN)) 
 $(IFHASMTRCTRL$(CN)) ## create simulated motor if required (asyn port "$(GALIL_MTR_PORT)")
 $(IFHASMTRCTRL$(CN)) $(IFSIM) < motorsim.cmd
