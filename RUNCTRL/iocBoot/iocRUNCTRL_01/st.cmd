@@ -35,8 +35,8 @@ iocshLoad "${ICPCONFIGROOT}/rc_settings.cmd", "RUNCONTROL=$(TOP)"
 
 ## load detector control, this puts in the aperture if the detctor count rate is exceeded
 stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXLOQ")
-stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDW1798")
-stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "NDW1798")
+stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
+stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
 $(IFDETECT) dbLoadRecords("$(TOP)/db/detector.db","P=$(MYPVPREFIX)")
 $(IFDETECT) dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:DC:ALERTS:,INST=$(INSTRUMENT=Unknown),SOURCE=IBEX")
 $(IFDETECT) dbLoadRecords("$(RUNCONTROL)/db/gencontrolMgr.db","P=$(MYPVPREFIX),MODE=DC,OUT_ACTION=$(MYPVPREFIX)CS:OVERCOUNT:ALERT.PROC")
