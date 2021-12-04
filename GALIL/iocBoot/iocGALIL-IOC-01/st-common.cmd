@@ -60,18 +60,6 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,
 ## per controller PVs
 dbLoadRecords("$(MOTOR)/db/motorController.db","P=$(MYPVPREFIX),Q=MOT:MTR$(MTRCTRL):")
 
-stringiftest("MOTORCONFIG", "$(MOTORCONFIG=)", 0, 0)
-$(IFMOTORCONFIG) dbLoadRecords("$(AUTOSAVE)/asApp/Db/configMenu.db","P=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=)")
-
-## create simulated motor if required (asyn port "GalilSim")
-$(IFDEVSIM) < motorsim.cmd
-$(IFRECSIM) < motorsim.cmd
-
-## configure the galil, if we are simulated this will not be used to drive the 
-## actual device, but creating this asyn port at least allows record initialisation 
-## to complete
-$(IFNOTDEVSIM) $(IFNOTRECSIM) < $(GALILCONFIG)/galil$(MTRCTRL).cmd
-
 ## load the generic ISIS axis db for each axis
 iocshCmdLoop("< st-axis.cmd", "MN=\$(I)", "I", 1, 8)
 
