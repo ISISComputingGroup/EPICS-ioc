@@ -37,6 +37,8 @@ NULL
 /GALILMUL-OLD/
 /GALIL-NEW/
 /GALILMUL-NEW/
+/DG645/iocBoot/iocDG645-IOC-01/dgconfig_settings.req
+/DG645/iocBoot/iocDG645-IOC-01/vmeconfig_settings.req
 */**/TEST-TestPVUnits-*.xml
 .vs/*
 .idea
