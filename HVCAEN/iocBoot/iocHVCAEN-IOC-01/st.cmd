@@ -30,14 +30,14 @@ stringiftest("IP7Present", "$(HVCAENIP7="")", 13, "")
 
 ## arguments to CAENx527ConfigureCreate are: name, ip_address, username, password
 ## username, password are optional and the crate factory default is used if these are not specified
-$(IFIP0Present) CAENx527ConfigureCreate "hv0", "$(HVCAENIP0="")"
-$(IFIP1Present) CAENx527ConfigureCreate "hv1", "$(HVCAENIP1="")"
-$(IFIP2Present) CAENx527ConfigureCreate "hv2", "$(HVCAENIP2="")"
-$(IFIP3Present) CAENx527ConfigureCreate "hv3", "$(HVCAENIP3="")"
-$(IFIP4Present) CAENx527ConfigureCreate "hv4", "$(HVCAENIP4="")"
-$(IFIP5Present) CAENx527ConfigureCreate "hv5", "$(HVCAENIP5="")"
-$(IFIP6Present) CAENx527ConfigureCreate "hv6", "$(HVCAENIP6="")"
-$(IFIP7Present) CAENx527ConfigureCreate "hv7", "$(HVCAENIP7="")"
+$(IFIP0Present) CAENx527ConfigureCreate "hv0!$(HVCAENSYSTYPE0=SY1527)", "$(HVCAENIP0="")"
+$(IFIP1Present) CAENx527ConfigureCreate "hv1!$(HVCAENSYSTYPE1=SY1527)", "$(HVCAENIP1="")"
+$(IFIP2Present) CAENx527ConfigureCreate "hv2!$(HVCAENSYSTYPE2=SY1527)", "$(HVCAENIP2="")"
+$(IFIP3Present) CAENx527ConfigureCreate "hv3!$(HVCAENSYSTYPE3=SY1527)", "$(HVCAENIP3="")"
+$(IFIP4Present) CAENx527ConfigureCreate "hv4!$(HVCAENSYSTYPE4=SY1527)", "$(HVCAENIP4="")"
+$(IFIP5Present) CAENx527ConfigureCreate "hv5!$(HVCAENSYSTYPE5=SY1527)", "$(HVCAENIP5="")"
+$(IFIP6Present) CAENx527ConfigureCreate "hv6!$(HVCAENSYSTYPE6=SY1527)", "$(HVCAENIP6="")"
+$(IFIP7Present) CAENx527ConfigureCreate "hv7!$(HVCAENSYSTYPE7=SY1527)", "$(HVCAENIP7="")"
 
 
 ##ISIS## Load common DB records 

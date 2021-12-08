@@ -27,10 +27,9 @@ $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
-$(APPNAME)_LIBS += sscan
 ## Add other libraries here ##
-$(APPNAME)_LIBS += asyn AstriumBridgeLib
-$(APPNAME)_LIBS += stream calc pcrecpp pcre
+$(APPNAME)_LIBS += stream asyn AstriumBridgeLib
+$(APPNAME)_LIBS += calc sscan pcrecpp pcre
 
 # ASTRIUM-IOC-01_registerRecordDeviceDriver.cpp derives from ASTRIUM-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp astriumDriver.cpp astriumInterface.cpp

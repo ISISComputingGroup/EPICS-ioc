@@ -1,1 +1,2 @@
-file "GALIL_controller_positions.req" "P=$(P),CCP=$(CCP)"
+# we do not want to restore positions
+#file "GALIL_controller_positions.req" "P=$(P),CCP=$(CCP)"

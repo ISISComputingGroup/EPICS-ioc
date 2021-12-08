@@ -1,7 +1,7 @@
 # START OF AUTO GENERATED DEPENDENCIES
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
 ASYN=$(SUPPORT)/asyn/master
-ASYN=$(SUPPORT)/asyn/master
+CALC=$(SUPPORT)/calc/master
 ONCRPC=$(SUPPORT)/oncrpc/master
 AUTOSAVE=$(SUPPORT)/autosave/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
@@ -13,6 +13,7 @@ PUGIXML=$(SUPPORT)/pugixml/master
 PVDUMP=$(SUPPORT)/pvdump/master
 SNCSEQ=$(SUPPORT)/seq/master
 SQLITE=$(SUPPORT)/sqlite/master
+SSCAN=$(SUPPORT)/sscan/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 TPG=$(SUPPORT)/TPG/master
 UTILITIES=$(SUPPORT)/utilities/master

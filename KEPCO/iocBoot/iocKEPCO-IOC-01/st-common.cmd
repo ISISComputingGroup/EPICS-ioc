@@ -16,8 +16,8 @@ $(IFLOCALCALIB) epicsEnvSet "SENS_DIR" "calib/magnets"
 epicsEnvSet "SENS_PAT" ".*"
 
 ## Use the example sensor files
-$(IFDEVSIM) epicsEnvSet "CALIB_BASE_DIR" "$(SUPPORT)"
-$(IFDEVSIM) epicsEnvSet "SENS_DIR" "kepco/master/example_calibration"
+$(IFSIM) epicsEnvSet "CALIB_BASE_DIR" "$(SUPPORT)"
+$(IFSIM) epicsEnvSet "SENS_DIR" "kepco/master/example_calibration"
 
 FileListConfigure("SENSORFILELIST", "$(CALIB_BASE_DIR)/$(SENS_DIR)", "$(SENS_PAT)", 0) 
 

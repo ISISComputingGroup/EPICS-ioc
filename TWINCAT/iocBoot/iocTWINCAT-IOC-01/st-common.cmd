@@ -3,15 +3,33 @@
 
 ## Load record instances
 epicsEnvSet("LUA_SCRIPT_PATH","${TOP}/iocBoot/${IOC}")
-luash("st-common.lua")
 
 epicsEnvSet("TWINCATCONFIG","$(TWINCATCONFIG=$(ICPCONFIGROOT)/twincat)")
+
+luash("st-common.lua")
 
 ## configure jaws
 < $(TWINCATCONFIG)/jaws.cmd
 
+## configure barndoors
+< $(TWINCATCONFIG)/barndoors.cmd
+
+## configure axes
+< $(TWINCATCONFIG)/axes.cmd
+
+## motion set points 
+< $(TWINCATCONFIG)/motionsetpoints.cmd
+
+## sample changer
+< $(TWINCATCONFIG)/sampleChanger.cmd
+
+## motor extensions
+< $(TWINCATCONFIG)/motorExtensions.cmd
+
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
+
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -19,12 +37,12 @@ epicsEnvSet("TWINCATCONFIG","$(TWINCATCONFIG=$(ICPCONFIGROOT)/twincat)")
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
+motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
+
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
 
-## Make sure controller number is 2 digits long
-calc("MTRCTRL", "$(MTRCTRL)", 2, 2)
-
-# Save motor settings every 30 seconds
+# Save motor settings every 30 seconds, this requests file is written dynamically by LUA
 set_requestfile_path("${MOTOR}/motorApp/Db", "")
-$(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,MTRCTRL=$(MTRCTRL)")
+set_requestfile_path("$(TOP)")
+$(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30)
