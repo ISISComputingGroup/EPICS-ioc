@@ -1,1 +1,1 @@
-file configMenu_settings.req P=$(P),CONFIG=vmeconfig
+file configMenu_settings.req P=$(P),CONFIG=dgconfig

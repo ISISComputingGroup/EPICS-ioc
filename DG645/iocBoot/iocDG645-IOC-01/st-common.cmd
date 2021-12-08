@@ -1,5 +1,6 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DG645)/data"
 epicsEnvSet "DEVICE" "L0"
+epicsEnvSet "ASYNPORT" "DG1"
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
@@ -30,7 +31,7 @@ asynOctetSetOutputEos("$(DEVICE)",0,"\n")
 #       ioport  - Comm asyn port name (i.e. "L2")
 #       ioaddr  - Comm asyn port addr
 #
-drvAsynDG645("DG1","$(DEVICE)",-1);
+drvAsynDG645("$(ASYNPORT)","$(DEVICE)",-1);
 
 ## Load record instances
 
@@ -38,11 +39,12 @@ drvAsynDG645("DG1","$(DEVICE)",-1);
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(DELAYGEN)/db/drvDG645.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=DG1")
-dbLoadRecords("$(DG645)/db/dg645.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=DG1")
-dbLoadRecordsList("$(DG645)/db/dg645_logic.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=DG1", "Q", "T0;AB;CD;EF", ";")
-dbLoadRecordsList("$(DG645)/db/dg645_delay.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=DG1", "Q", "T0;T1;A;B;C;D;E;F;G;H", ";")
-dbLoadRecordsList("$(DG645)/db/dg645_width.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=DG1", "Q", "TRG;AB;CD;EF", ";")
+dbLoadRecords("$(DELAYGEN)/db/drvDG645.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)")
+dbLoadRecords("$(DG645)/db/dg645.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)")
+dbLoadRecordsList("$(DG645)/db/dg645_logic.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;AB;CD;EF", ";")
+dbLoadRecordsList("$(DG645)/db/dg645_delay.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;T1;A;B;C;D;E;F;G;H", ";")
+dbLoadRecordsList("$(DG645)/db/dg645_width.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "TRG;AB;CD;EF", ";")
+dbLoadRecordsList("$(DG645)/db/dg645_delay_width_shared.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;T1;A;B;C;D;E;F;G;H;TRG;AB;CD;EF", ";")
 
 ## load autosave configMenu for managing sets of PVs
 dbLoadRecords("$(AUTOSAVE)/db/configMenu.db","P=$(MYPVPREFIX)AS:$(IOCNAME):,CONFIG=dgconfig")
