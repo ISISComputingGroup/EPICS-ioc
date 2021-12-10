@@ -33,7 +33,7 @@ dbLoadRecords("$(TOP)/db/runcontrolMgr.db","P=$(MYPVPREFIX),ALERT_OUT=$(MYPVPREF
 ## load run control settings written by blockserver
 iocshLoad "${ICPCONFIGROOT}/rc_settings.cmd", "RUNCONTROL=$(TOP)"
 
-## load detector control, this closes the shutter if the detctor count rate is exceeded
+## load detector control, this closes the shutter if the detector count rate is exceeded
 stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXLOQ")
 stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
 stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
