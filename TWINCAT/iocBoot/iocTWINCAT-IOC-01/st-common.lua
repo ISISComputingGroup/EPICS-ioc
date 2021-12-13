@@ -16,7 +16,7 @@ function twincat_stcommon_main()
 
 	iocsh.tcSetScanRate(150, 2)
 
-	local full_tpy_path = ibex_utils.getMacroValue{macro="ICPCONFIGROOT"} .. "/beckhoff/" .. tpy_file
+	local full_tpy_path = ibex_utils.getMacroValue{macro="TWINCATCONFIG"} .. "/" .. tpy_file
 	if not exists(full_tpy_path) then
 		print("invalid TPY file given: " .. full_tpy_path)
 		iocsh.exit()
@@ -31,6 +31,9 @@ function twincat_stcommon_main()
 	iocsh.devMotorCreateController(motor_port, "Controller", num_axes, pv_prefix)
 	
 	autosave_file = io.open (ioc_name .. "_settings.req", "w")
+	
+	db_args = string.format("P=%s::,$(IFIOC)= ,PVPREFIX=%s,MTRCTRL=%02i,AXES_NUM=%s", pv_prefix, pv_prefix, os.getenv("MTRCTRL"), num_axes)
+	iocsh.dbLoadRecords("$(MOTOR)/db/motorUtil.db", db_args)
 	
 	for axis_num=1,num_axes,1
 	do
