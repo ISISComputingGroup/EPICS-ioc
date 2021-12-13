@@ -18,7 +18,7 @@ file keithley2700_channels.template {
 	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:205", "15) 2nd Stage B.txt" }
 	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:206", "16) Inner Coil A Base.txt" }
 	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:207", "17) Inner Coil B Base.txt" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:208", "19) Middle Coil A Top.txt" }
-	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:209", "18) Middle Coil A Base.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:208", "18) Middle Coil A Base.txt" }
+	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:209", "19) Middle Coil A Top.txt" }
 	{ "\$(P)", "\$(PORT)", "\$(RECSIM=0)", "\$(DISABLE=0)", "CHNL:210", "20) Central Former.txt" }
 }

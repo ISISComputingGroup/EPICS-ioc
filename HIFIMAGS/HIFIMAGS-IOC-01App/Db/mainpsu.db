@@ -13,7 +13,7 @@ record(bo, "$(P)$(MAG):RAMP:LEADS:SP") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
-  field(OUT,"$(PVPREFIX)$(PSU_IOC):RAMP:LEADS:SP PP")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):RAMP:LEADS:SP")
   
   field(ZNAM, "Leads at B")
   field(ONAM, "Leads to 0")
@@ -71,7 +71,7 @@ record(bo, "$(P)$(MAG):PERSIST:SP") {
   field(DTYP, "Soft Channel")
   field(SCAN, "1 second")
   
-  field(OUT,"$(PVPREFIX)$(PSU_IOC):PERSIST:SP PP")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):PERSIST:SP")
   
   field(ZNAM, "Non Persisting")
   field(ONAM, "Persisting")
