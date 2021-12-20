@@ -43,6 +43,12 @@ function twincat_stcommon_main()
 		iocsh.devMotorCreateAxis(motor_port, axis_num-1, plc_version)
 		iocsh.dbLoadRecords(single_axis_db, db_args)
 		autosave_file:write(string.format("file \"motor_settings.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
+
+		if axis_num > 8 then
+			alias_args_orig = string.format("$(MYPVPREFIX)MOT:%s(.*)", motor_pv)
+			alias_args_aliased = string.format("$(MYPVPREFIX)MOT:MTR%02i%02i\\1", ((axis_num -1)//8)+1, axis_num%8)
+			iocsh.dbAliasRecordsRE(alias_args_orig, alias_args_aliased)
+		end
 	end
 	autosave_file:close()
 
