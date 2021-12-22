@@ -1,0 +1,8 @@
+
+record(calcout, "$(P)MOT:$(MOTOR_PV):ENABLE_MON")
+{
+    field(DESC, "Flip and Forward PLC BENABLED to _able")
+    field(INPA, "$(P)ASTAXES_$(AXIS_NUM):STSTATUS-BENABLED CP")
+    field(CALC, "!A")
+    field(OUT,  "$(P)MOT:$(MOTOR_PV)_able PP")
+}
