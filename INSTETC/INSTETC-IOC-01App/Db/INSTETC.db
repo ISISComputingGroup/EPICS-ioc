@@ -231,6 +231,7 @@ record (waveform, "$(P)CS:PERSP:SETTINGS")
 	field(DTYP, "Soft Channel")
 	field(SDIS, "$(P)CS:MANAGER")
 	field(DISV, "0")
+	field(NELM, "1024")
 	info(autosaveFields, "VAL")
 }
 
