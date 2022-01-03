@@ -27,22 +27,29 @@ function twincat_stcommon_main()
 	iocsh.countdbgrep("AXES_NUM", "*ASTAXES_*:STCONTROL-BENABLE*")
 
 	local num_axes = ibex_utils.getMacroValue{macro="AXES_NUM", default="8"}
+	local mtrctrl = os.getenv("MTRCTRL")
 
 	iocsh.devMotorCreateController(motor_port, "Controller", num_axes, pv_prefix)
 	
 	autosave_file = io.open (ioc_name .. "_settings.req", "w")
 	
-	db_args = string.format("P=%s,Q=MOT:MTR%02i:,AXES_NUM=%s", pv_prefix, os.getenv("MTRCTRL"), num_axes)
+	db_args = string.format("P=%s,Q=MOT:MTR%02i:,AXES_NUM=%s", pv_prefix, mtrctrl, num_axes)
 	iocsh.dbLoadRecords("$(MOTOR)/db/motorController.db", db_args)
 	
 	for axis_num=1,num_axes,1
 	do
-		motor_pv = string.format("MTR%02i%02i", os.getenv("MTRCTRL"), axis_num)
+		motor_pv = string.format("MTR%02i%02i", mtrctrl, axis_num)
 		single_axis_db = "db/single_axis.db"
 		db_args = string.format("MYPVPREFIX=%s,MOTOR_PV=%s,MOTOR_PORT=%s,ADDR=%s", pv_prefix, motor_pv, motor_port, axis_num-1)
 		iocsh.devMotorCreateAxis(motor_port, axis_num-1, plc_version)
 		iocsh.dbLoadRecords(single_axis_db, db_args)
 		autosave_file:write(string.format("file \"motor_settings.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
+
+		if axis_num > 8 then
+			alias_args_orig = string.format("$(MYPVPREFIX)MOT:%s(.*)", motor_pv)
+			alias_args_aliased = string.format("$(MYPVPREFIX)MOT:MTR%02i%02i\\1", ((axis_num-1)//8) + mtrctrl, (axis_num-1)%8 + 1)
+			iocsh.dbAliasRecordsRE(alias_args_orig, alias_args_aliased)
+		end
 	end
 	autosave_file:close()
 
