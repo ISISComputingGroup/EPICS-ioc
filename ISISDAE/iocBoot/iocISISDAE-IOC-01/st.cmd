@@ -45,7 +45,8 @@ webgetConfigure("arch2")
 
 ## local dae, no dcom/labview
 ## define max number of live detectos and max (x,y) size of each
-isisdaeConfigure("icp", $(DAEDCOM=1), $(DAEHOST=localhost), "spudulike", "reliablebeam", 5)
+## we no longer support DAEDCOM macro, all access is via DCOM
+isisdaeConfigure("icp", 1, $(DAEHOST=localhost), "spudulike", "reliablebeam", 5)
 ## pass 1 as second arg to signify DCOM to either local or remote dae
 ## pass 2 as second arg to signify SECI mode
 #isisdaeConfigure("icp", 1, "localhost")
