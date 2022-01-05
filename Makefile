@@ -88,9 +88,9 @@ DIRS_NOTBUILD += ISISDAE MK3CHOPR ASTRIUM
 endif
 
 ## modules not to build if static
-ifeq ($(BUILDING_SHARED),NO)
-DIRS_NOTBUILD += ISISDAE
-endif
+#ifeq ($(BUILDING_SHARED),NO)
+#DIRS_NOTBUILD += ISISDAE
+#endif
 
 ## modules not to build if shared
 ifeq ($(BUILDING_SHARED),YES)
