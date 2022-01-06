@@ -39,9 +39,9 @@ stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
 stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
 
 # also load the records for tests
-$(IFDEVSIM) epicsEnvSet("TESTENV", "TRUE")
-$(IFRECSIM) epicsEnvSet("TESTENV", "TRUE")
-$(IFNOTRECSIM) $(IFNOTDEVSIM) epicsEnvSet("TESTENV", "FALSE")
+$(IFTESTDEVSIM) epicsEnvSet("TESTENV", "TRUE")
+$(IFTESTRECSIM) epicsEnvSet("TESTENV", "TRUE")
+$(IFNOTTESTRECSIM) $(IFNOTTESTDEVSIM) epicsEnvSet("TESTENV", "FALSE")
 stringiftest("DETECT", "$(TESTENV)", 5, "TRUE")
 stringiftest("SANS", "$(TESTENV)", 5, "TRUE")
 
