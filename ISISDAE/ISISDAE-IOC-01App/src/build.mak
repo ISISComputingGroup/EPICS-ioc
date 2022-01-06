@@ -47,7 +47,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asubFunctions
 ## Add other libraries here ##
-$(APPNAME)_LIBS +=  isisdae FileList asyn oncrpc zlib efsw pcrecpp pcre cas gdd
+$(APPNAME)_LIBS +=  isisdae FileList asyn oncrpc zlib efsw libjson pcrecpp pcre cas gdd
 $(APPNAME)_LIBS += ffmpegServer
 $(APPNAME)_LIBS += avdevice
 $(APPNAME)_LIBS += avformat
