@@ -42,7 +42,6 @@ stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
 $(IFDEVSIM) epicsEnvSet("TESTENV", "TRUE")
 $(IFRECSIM) epicsEnvSet("TESTENV", "TRUE")
 $(IFNOTRECSIM) $(IFNOTDEVSIM) epicsEnvSet("TESTENV", "FALSE")
-stringiftest("LOADTST", "$(TESTENV)", 5, "TRUE")
 stringiftest("DETECT", "$(TESTENV)", 5, "TRUE")
 stringiftest("SANS", "$(TESTENV)", 5, "TRUE")
 
@@ -53,11 +52,6 @@ $(IFDETECT) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE
 $(IFSANS) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:RATE,NOALIAS=#")
 $(IFSANS) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:SPEC:RATE,NOALIAS=#")
 $(IFSANS) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:RATE,NOALIAS=#")
-# RBV records for testing only
-$(IFLOADTST) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:SPEC:RATE:RBV,NOALIAS=#")
-$(IFLOADTST) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:RATE:RBV,NOALIAS=#")
-$(IFLOADTST) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:SPEC:RATE:RBV,NOALIAS=#")
-$(IFLOADTST) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:RATE:RBV,NOALIAS=#")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
