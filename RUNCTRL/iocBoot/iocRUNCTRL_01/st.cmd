@@ -38,12 +38,11 @@ stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXLOQ")
 stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
 stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
 
-# also load the records for tests
-$(IFTESTDEVSIM) epicsEnvSet("TESTENV", "TRUE")
-$(IFTESTRECSIM) epicsEnvSet("TESTENV", "TRUE")
-$(IFNOTTESTRECSIM) $(IFNOTTESTDEVSIM) epicsEnvSet("TESTENV", "FALSE")
-stringiftest("DETECT", "$(TESTENV)", 5, "TRUE")
-stringiftest("SANS", "$(TESTENV)", 5, "TRUE")
+## also load the records for tests
+$(IFTESTDEVSIM) stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "$(ICPCONFIGHOST)")
+$(IFTESTDEVSIM) stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "$(ICPCONFIGHOST)")
+$(IFTESTRECSIM) stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "$(ICPCONFIGHOST)")
+$(IFTESTRECSIM) stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "$(ICPCONFIGHOST)")
 
 $(IFDETECT) dbLoadRecords("$(TOP)/db/detector.db","P=$(MYPVPREFIX)")
 $(IFDETECT) dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:DC:ALERTS:,INST=$(INSTRUMENT=Unknown),SOURCE=IBEX")
