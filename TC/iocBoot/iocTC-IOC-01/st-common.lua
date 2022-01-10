@@ -22,7 +22,7 @@ function twincat_stcommon_main()
 		iocsh.exit()
 	end
 	
-	iocsh.tcLoadRecords(full_tpy_path, string.format("-eo -devtc -p %s", pv_prefix))
+	iocsh.tcLoadRecords(full_tpy_path, string.format("-eo -devtc -p %s", pv_prefix .. ioc_name .. ":"))
 
 	iocsh.countdbgrep("AXES_NUM", "*ASTAXES_*:STCONTROL-BENABLE*")
 

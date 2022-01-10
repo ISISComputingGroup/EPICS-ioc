@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application TWINCAT-IOC-01
+# Build the IOC application TC-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# TWINCAT-IOC-01.dbd will be created and installed
+# TC-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# TWINCAT-IOC-01.dbd will be made up from these files:
+# TC-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += icpconfig.dbd
@@ -62,7 +62,7 @@ $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
 
-# TWINCAT-IOC-01_registerRecordDeviceDriver.cpp derives from TWINCAT-IOC-01.dbd
+# TC-IOC-01_registerRecordDeviceDriver.cpp derives from TC-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
