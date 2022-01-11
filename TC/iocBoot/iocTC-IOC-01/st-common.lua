@@ -21,15 +21,17 @@ function twincat_stcommon_main()
 		print("invalid TPY file given: " .. full_tpy_path)
 		iocsh.exit()
 	end
+
+	local ioc_prefix = pv_prefix .. ioc_name .. ":"
 	
-	iocsh.tcLoadRecords(full_tpy_path, string.format("-eo -devtc -p %s", pv_prefix .. ioc_name .. ":"))
+	iocsh.tcLoadRecords(full_tpy_path, string.format("-eo -devtc -p %s", ioc_prefix))
 
 	iocsh.countdbgrep("AXES_NUM", "*ASTAXES_*:STCONTROL-BENABLE*")
 
 	local num_axes = ibex_utils.getMacroValue{macro="AXES_NUM", default="8"}
 	local mtrctrl = os.getenv("MTRCTRL")
 
-	iocsh.devMotorCreateController(motor_port, "Controller", num_axes, pv_prefix)
+	iocsh.devMotorCreateController(motor_port, "Controller", num_axes, ioc_prefix)
 	
 	autosave_file = io.open (ioc_name .. "_settings.req", "w")
 	
