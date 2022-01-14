@@ -38,13 +38,11 @@ stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXLOQ")
 stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
 stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "NDXSANS2D")
 
-# also load the records for tests
-$(IFDEVSIM) epicsEnvSet("TESTENV", "TRUE")
-$(IFRECSIM) epicsEnvSet("TESTENV", "TRUE")
-$(IFNOTRECSIM) $(IFNOTDEVSIM) epicsEnvSet("TESTENV", "FALSE")
-stringiftest("LOADTST", "$(TESTENV)", 5, "TRUE")
-stringiftest("DETECT", "$(TESTENV)", 5, "TRUE")
-stringiftest("SANS", "$(TESTENV)", 5, "TRUE")
+## also load the records for tests
+$(IFTESTDEVSIM) stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "$(ICPCONFIGHOST)")
+$(IFTESTDEVSIM) stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "$(ICPCONFIGHOST)")
+$(IFTESTRECSIM) stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "$(ICPCONFIGHOST)")
+$(IFTESTRECSIM) stringiftest("SANS", "$(ICPCONFIGHOST)", 5, "$(ICPCONFIGHOST)")
 
 $(IFDETECT) dbLoadRecords("$(TOP)/db/detector.db","P=$(MYPVPREFIX)")
 $(IFDETECT) dbLoadRecords("$(WEBGET)/db/sendAlert.db","P=$(MYPVPREFIX),Q=CS:DC:ALERTS:,INST=$(INSTRUMENT=Unknown),SOURCE=IBEX")
@@ -53,11 +51,6 @@ $(IFDETECT) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE
 $(IFSANS) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:RATE,NOALIAS=#")
 $(IFSANS) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:SPEC:RATE,NOALIAS=#")
 $(IFSANS) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:RATE,NOALIAS=#")
-# RBV records for testing only
-$(IFLOADTST) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:SPEC:RATE:RBV,NOALIAS=#")
-$(IFLOADTST) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD1:INTG:RATE:RBV,NOALIAS=#")
-$(IFLOADTST) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:SPEC:RATE:RBV,NOALIAS=#")
-$(IFLOADTST) dbLoadRecords("$(RUNCONTROL)/db/gencontrol.db","P=$(MYPVPREFIX),MODE=DC,PV=$(MYPVPREFIX)DAE:AD2:INTG:RATE:RBV,NOALIAS=#")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

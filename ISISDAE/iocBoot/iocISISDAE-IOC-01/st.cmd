@@ -20,7 +20,7 @@ epicsEnvSet "TCB_PATTERN" ".*tcb.*"
 
 ## this needs to be large enouth for DAE spectra and
 ## also for areaDetector (see liveview.cmd) 
-epicsEnvSet "EPICS_CA_MAX_ARRAY_BYTES" 1500000
+epicsEnvSet "EPICS_CA_MAX_ARRAY_BYTES" 20000000
 
 cd ${TOP}
 
@@ -45,11 +45,12 @@ webgetConfigure("arch2")
 
 ## local dae, no dcom/labview
 ## define max number of live detectos and max (x,y) size of each
-isisdaeConfigure("icp", $(DAEDCOM=1), $(DAEHOST=localhost), "spudulike", "reliablebeam", 5)
+## we no longer support DAEDCOM macro, all access is via DCOM
 ## pass 1 as second arg to signify DCOM to either local or remote dae
 ## pass 2 as second arg to signify SECI mode
-#isisdaeConfigure("icp", 1, "localhost")
-#isisdaeConfigure("icp", 1, "ndxchipir", "spudulike", "reliablebeam")
+## args: port,options,host,user,password,num_liveview
+##   num_liveview should match number of  liveview.cmd loaded later
+isisdaeConfigure("icp", 1, "$(DAEHOST=)", "$(DAEUSER=)", "$(DAEPW=)", 5)
 
 ## Load the FileLists
 FileListConfigure("WLIST", "$(WIRING_DIR)", "$(WIRING_PATTERN)", 1)
@@ -87,6 +88,7 @@ cd ${TOP}/iocBoot/${IOC}
 
 #ffmpegServerConfigure(8081)
 
+## load same number of instances as specified to isisdaeConfigure() above
 iocshLoad "liveview.cmd", "LVDET=1,LVADDR=0"
 iocshLoad "liveview.cmd", "LVDET=2,LVADDR=1"
 iocshLoad "liveview.cmd", "LVDET=3,LVADDR=2"

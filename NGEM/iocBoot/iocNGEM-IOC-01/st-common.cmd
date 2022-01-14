@@ -2,7 +2,7 @@
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES", "500000")
+epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES", "20000000")
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 asynSetMinTimerPeriod(0.001)
 
