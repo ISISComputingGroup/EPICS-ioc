@@ -63,6 +63,10 @@ SSCAN=$(SUPPORT)/sscan/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
+CSM=$(SUPPORT)/csm/master
+EFSW=$(SUPPORT)/efsw/master
+STD=$(SUPPORT)/std/master
+FILELIST=$(SUPPORT)/FileList/master
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
@@ -72,3 +76,4 @@ include $(TOP)/../../../ISIS_CONFIG
 
 # IOC-specific support module
 ROTSTIRR=$(SUPPORT)/rotstirr/master
+TTIPLP=$(SUPPORT)/ttiplp/master
