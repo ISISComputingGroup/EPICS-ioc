@@ -48,7 +48,7 @@ function twincat_stcommon_main()
 		iocsh.dbLoadRecords(single_axis_db, db_args)
 
 		enabled_monitor_db = "db/enabled_monitor.db"
-		enabled_monitor_db_args = string.format("P=%s,AXIS_NUM=%s,MOTOR_PV=%s", ioc_prefix, axis_num, motor_pv)
+		enabled_monitor_db_args = string.format("P=%s,I=%s,AXIS_NUM=%s,MOTOR_PV=%s", pv_prefix, ioc_name, axis_num, motor_pv)
 		iocsh.dbLoadRecords(enabled_monitor_db, enabled_monitor_db_args)
 		autosave_file:write(string.format("file \"motor_settings.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
 		-- wrap around to next MTRCTRL - this is so we can show >8 axes in the IBEX table of motors. 
