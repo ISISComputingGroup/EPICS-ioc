@@ -31,7 +31,7 @@ dbLoadRecords("$(TOP)/db/alertAction.db","P=$(MYPVPREFIX),Q=CS:AC:ALERTS:ACTION:
 dbLoadRecords("$(TOP)/db/runcontrolMgr.db","P=$(MYPVPREFIX),ALERT_OUT=$(MYPVPREFIX)CS:AC:DUMMYACT:OUT.PROC,ALERT_IN=$(MYPVPREFIX)CS:AC:ALERTS:ACTION:IN:DO.PROC,ALERT_CHANGE=$(MYPVPREFIX)CS:AC:ALERTS:ACTION:OUT:DO.PROC")
 
 ## load run control settings written by blockserver
-iocshLoad "${ICPCONFIGROOT}/rc_settings.cmd", "RUNCONTROL=$(TOP)"
+iocshLoad "${ICPCONFIGROOT}/rc_settings.cmd", "RUNCONTROL=$(TOP),NOARCHIVE=$(NOARCHIVE=)"
 
 ## load detector control, this closes the shutter if the detector count rate is exceeded
 stringiftest("DETECT", "$(ICPCONFIGHOST)", 5, "NDXLOQ")
