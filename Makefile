@@ -21,7 +21,7 @@ IOCDIRS += KNRK6 NGEM NIMATRO LKSH340 TPG36x CAENMCA ALDN1000
 IOCDIRS += CP2800
 IOCDIRS += CHTOBISR KEYLKG
 IOCDIRS += HELIOX
-IOCDIRS += TWINCAT
+IOCDIRS += TC
 IOCDIRS += MKSPR4KB
 IOCDIRS += OERCONE
 IOCDIRS += EDTIC
@@ -66,13 +66,13 @@ endif
 
 ## twincat sets TWINCAT3DIR and TWINCATSDK environment variables on windows
 ifeq ($(TWINCAT3DIR),)
-DIRS_NOTBUILD += TWINCAT
+DIRS_NOTBUILD += TC
 endif
 
 ## module decisions based on Visual Studio version
 ifneq ($(findstring 10.0,$(VCVERSION)),)
 # What not to build with VS2010
-DIRS_NOTBUILD += TWINCAT HVCAENA GALIL GALILMUL
+DIRS_NOTBUILD += TC HVCAENA GALIL GALILMUL
 else
 # What not to build if do not have VS2010
 #DIRS_NOTBUILD += MK3CHOPR ASTRIUM
@@ -89,9 +89,9 @@ DIRS_NOTBUILD += ISISDAE MK3CHOPR ASTRIUM
 endif
 
 ## modules not to build if static
-ifeq ($(BUILDING_SHARED),NO)
-DIRS_NOTBUILD += ISISDAE
-endif
+#ifeq ($(BUILDING_SHARED),NO)
+#DIRS_NOTBUILD += ISISDAE
+#endif
 
 ## modules not to build if shared
 ifeq ($(BUILDING_SHARED),YES)

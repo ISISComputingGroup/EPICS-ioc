@@ -60,6 +60,9 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
+# copy in the caenhvwrapper we used - this is so we do not pick up a system installed one
+BIN_INSTALLS_WIN32 += $(HVCAEN)/bin/$(EPICS_HOST_ARCH)/CAENHVWrapper.dll
+
 #===========================
 
 include $(TOP)/configure/RULES

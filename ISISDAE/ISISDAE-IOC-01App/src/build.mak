@@ -11,9 +11,7 @@ include $(TOP)/configure/CONFIG
 # Build the IOC application ISISDAE-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
-ifeq ($(STATIC_BUILD),NO)
 PROD_IOC_WIN32 = $(APPNAME)
-endif
 # ISISDAE-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
@@ -40,9 +38,7 @@ endif
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += webget htmltidy
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -51,7 +47,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asubFunctions
 ## Add other libraries here ##
-$(APPNAME)_LIBS += FileList isisdae asyn oncrpc zlib efsw pcrecpp pcre cas gdd
+$(APPNAME)_LIBS +=  isisdae FileList asyn oncrpc zlib efsw libjson pcrecpp pcre cas gdd
 $(APPNAME)_LIBS += ffmpegServer
 $(APPNAME)_LIBS += avdevice
 $(APPNAME)_LIBS += avformat
@@ -65,8 +61,14 @@ $(APPNAME)_LIBS += ADPluginKafka
 $(APPNAME)_LIBS += rdkafka++
 $(APPNAME)_LIBS += rdkafka
 endif
+$(APPNAME)_LIBS += seq pv
+
+$(APPNAME)_LIBS_WIN32 += libcurl
+$(APPNAME)_SYS_LIBS_Linux += curl
 
 $(APPNAME)_LIBS += ssleay32 libeay32
+
+$(APPNAME)_SYS_LIBS_WIN32 += psapi wldap32 ws2_32 crypt32 Normaliz # advapi32 user32 msxml2
 
 # ISISDAE-IOC-01_registerRecordDeviceDriver.cpp derives from ISISDAE-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
