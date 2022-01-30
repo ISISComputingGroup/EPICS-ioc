@@ -92,6 +92,13 @@ endif
 #DIRS_NOTBUILD += ISISDAE
 #endif
 
+## modules not to build if debug static
+ifeq ($(BUILDING_SHARED),NO)
+ifneq ($(findstring debug,$(EPICS_HOST_ARCH)),)
+DIRS_NOTBUILD += TC
+endif
+endif
+
 ## modules not to build if shared
 ifeq ($(BUILDING_SHARED),YES)
 DIRS_NOTBUILD += 
