@@ -15,7 +15,7 @@ function twincat_stcommon_main()
 	local ioc_name = ibex_utils.getMacroValue{macro="IOCNAME"}
 	local plc_version = ibex_utils.getMacroValue{macro="PLC_VERSION", default="1"}
 	-- Set TcIoc's scan rate to 10ms for ADS and 50ms for EPICS - this is to avoid ADS fields not updating in channel access quickly enough. 
-	iocsh.tcSetScanRate(10, 5)
+	iocsh.tcSetScanRate(150, 2)
 
 	local full_tpy_path = ibex_utils.getMacroValue{macro="TWINCATCONFIG"} .. "/" .. tpy_file
 	if not exists(full_tpy_path) then
