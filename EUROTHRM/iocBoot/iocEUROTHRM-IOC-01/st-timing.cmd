@@ -15,6 +15,9 @@ $(IFACTIVE) calc("NUM_SENSORS", "$(NUM_SENSORS)+1",1,1)
 stringiftest("ACTIVE", "$(ADDR_7=)")
 $(IFACTIVE) calc("NUM_SENSORS", "$(NUM_SENSORS)+1",1,1)
 
+stringiftest("ACTIVE", "$(ADDR_8=)")
+$(IFACTIVE) calc("NUM_SENSORS", "$(NUM_SENSORS)+1",1,1)
+
 epicsEnvSet "MAX_RECORDS_PER_READ" 3
 
 ## Edit this one if you want to tune the Eurotherm performance.
