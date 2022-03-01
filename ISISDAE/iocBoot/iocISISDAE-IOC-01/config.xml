@@ -5,7 +5,7 @@
 <macros>
 <macro name="DAEDCOM" description="Use DCOM to connect to ISISICP" defaultValue="1" hasDefault="YES" />
 <macro name="DAEHOST" description="If using DCOM, host to connect to" defaultValue="localhost" hasDefault="YES" />
-<macro name="LIVEVIEW_NELEMENTS" description="Max num array elements in liveview" defaultValue="100000" hasDefault="YES" />
+<macro name="LIVEVIEW_NELEMENTS" description="Max num array elements in liveview (at least SizeX * SizeY)" defaultValue="100000" hasDefault="YES" />
 <macro name="PRE_BEGIN_1" description="PV to write to before executing BEGIN" defaultValue="" hasDefault="YES" />
 <macro name="POST_BEGIN_1" description="PV to write to after executing BEGIN" defaultValue="" hasDefault="YES" />
 <macro name="PRE_END_1" description="PV to write to before executing END" defaultValue="" hasDefault="YES" />
