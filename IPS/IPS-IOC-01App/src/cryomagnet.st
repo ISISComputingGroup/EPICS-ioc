@@ -81,19 +81,30 @@ ss cryomagnet
 
   state at_field
   {
-  
     entry {
       PVPUT(statemachine_pv, 1);
       epicsThreadSleep(1.0);
     }
-    
+  
     when(
       !within_tolerance(field_setpoint, field_setpoint_readback, field_tolerance)
       && field_setpoint_alarm == 0
-      )
-    {
-      print_transition("at_field", "set_psu_to_match_magnet");
+      && (heater == 0 || heater == 2)
+    )
+   {
+    print_transition("at_field", "set_psu_to_match_magnet");
     } state set_psu_to_match_magnet
+  
+    when(
+      !within_tolerance(field_setpoint, field_setpoint_readback, field_tolerance)
+      && field_setpoint_alarm == 0
+      && heater == 1
+    )
+    
+    {
+     print_transition("at_field", "set_psu_output");
+  
+    } state set_psu_output
   }
   
   state set_psu_to_match_magnet
