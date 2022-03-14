@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Stanford DG645 IOC</ioc_desc>
+<ioc_details></ioc_details>
+<macros>
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+<macro name="BAUD" pattern="^[0-9]+$" description="Port BAUD rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>
