@@ -45,6 +45,7 @@ $(APPNAME)_DBD += delaygenSupport.dbd
 
 ## ISIS standard libraries ##
 ## Stream device libraries ##
+$(APPNAME)_LIBS += delaygen
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
@@ -59,7 +60,6 @@ $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
-$(APPNAME)_LIBS += delaygen
 
 # DG645-IOC-01_registerRecordDeviceDriver.cpp derives from DG645-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
