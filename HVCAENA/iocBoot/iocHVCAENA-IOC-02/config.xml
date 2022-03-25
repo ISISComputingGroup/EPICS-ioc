@@ -1,6 +1,4 @@
 <?xml version="1.0" ?>
-<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
-	<config_part>
-		<ioc_desc>CAEN high voltage power supply driver New</ioc_desc>
-	</config_part>
+<ioc_config xmlns="http://epics.isis.rl.ac.uk/schema/ioc_config/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <xi:include href="../iocHVCAENA-IOC-01/config.xml"  />
 </ioc_config>
