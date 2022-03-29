@@ -2,5 +2,8 @@
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
 <ioc_desc>Tektronix function generator</ioc_desc>
+<macros>
+<macro name="ADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the device" hasDefault="NO" />
+</macros>
 </config_part>
 </ioc_config>
