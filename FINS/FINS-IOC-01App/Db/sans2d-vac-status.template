@@ -8,6 +8,7 @@
 record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
     field(DESC, "$(SYSTEM) Status")
     field(INP, "$(FULL_PREFIX)$(SYSTEM):STATUS:_SET_UNKNOWN CP MS")
+	field(DTYP, "Raw Soft Channel")
     
     field(ZRVL, "0")
     field(ONVL, "1")
@@ -39,6 +40,10 @@ record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS:_RAW") {
     field(TWVL, "2")
     field(FRVL, "4")
     field(EIVL, "8")
+    field(ONST, "ATMOSPHERE")
+    field(TWST, "VAC DOWN")
+    field(FRST, "AT VACUUM")
+    field(EIST, "VENTING")
 
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(SYSTEM):STATUS CP MS")
@@ -50,20 +55,22 @@ record(calc, "$(FULL_PREFIX)$(SYSTEM):STATUS:_SET_UNKNOWN") {
     field(CALC, "(A == 1 || A == 2 || A == 4 || A == 8) ? A : 0")
 }
 
-record(bi, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM") {
+record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM") {
+    field(DTYP, "Raw Soft Channel")
     field(DESC, "At Vacuum or not")
     field(VAL, 0)
-    field(ZNAM, "NOT AT VACUUM")
-    field(ONAM, "AT VACUUM")
+    field(ZRST, "NOT AT VACUUM")
+    field(ONST, "AT VACUUM")
+    field(ZRVL, "0")
+    field(ONVL, "1")
     info(archive, "VAL")
 }
  
 record(calcout,"$(FULL_PREFIX)$(SYSTEM):STATUS:VAC_STATUS_CALC" ) {
     field(DESC, "Check if vessel is under vacuum")
-    field(INPA, "$(FULL_PREFIX)$(SYSTEM):STATUS CP MS")
+    field(INPA, "$(FULL_PREFIX)$(SYSTEM):STATUS.RVAL CP MS")
     field(CALC, "A==4")
-    field(OOPT, "On Change")
-    field(OUT, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM PP")
+    field(OUT, "$(FULL_PREFIX)$(SYSTEM):STATUS:AT_VACUUM.RVAL PP")
 }
 
 ### Simulation Records ###
