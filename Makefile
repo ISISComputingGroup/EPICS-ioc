@@ -50,6 +50,7 @@ IOCDIRS += KHLY6517
 IOCDIRS += WEEDER
 IOCDIRS += DG645
 IOCDIRS += PEARLPC
+IOCDIRS += ROTSTIRR
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
