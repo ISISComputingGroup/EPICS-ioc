@@ -52,6 +52,7 @@ IOCDIRS += DG645
 IOCDIRS += PEARLPC
 IOCDIRS += ROTSTIRR
 IOCDIRS += WEBCAM
+IOCDIRS += HUBER
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
