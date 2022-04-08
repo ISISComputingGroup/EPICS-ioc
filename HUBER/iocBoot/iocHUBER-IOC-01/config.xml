@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+ <config_part>
+  <ioc_desc>ITC503/Huber Controller</ioc_desc>
+  <ioc_details></ioc_details>
+  <macros>
+  </macros>
+ </config_part>
+</ioc_config>
