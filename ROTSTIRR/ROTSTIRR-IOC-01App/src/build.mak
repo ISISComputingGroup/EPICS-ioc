@@ -47,6 +47,7 @@ $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
 ## other standard libraries here ##
+$(APPNAME)_LIBS += cvtRecord csmbase std FileList
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -56,7 +57,6 @@ $(APPNAME)_LIBS += utilities pugixml libjson zlib efsw
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
-$(APPNAME)_LIBS += cvtRecord csmbase std FileList
 
 # ROTSTIRR-IOC-01_registerRecordDeviceDriver.cpp derives from ROTSTIRR-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
