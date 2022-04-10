@@ -42,3 +42,4 @@ NULL
 */**/TEST-TestPVUnits-*.xml
 .vs/
 .idea
+*.suo
