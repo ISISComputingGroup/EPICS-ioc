@@ -1,41 +1,75 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(AMINT2L)/data"
 
-##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-## For recsim:
-$(IFRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NUL)", 0, 1, 0, 0)
-
-# For dev sim devices
-$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=57677)")
-
-## For real device use:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=7)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=even)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=1)")
-## Hardware flow control off
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "clocal", "Y")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
-## Software flow control off
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
-
-##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-## Load our record instances
-dbLoadRecords("[support_module_path]/db/devAMINT2L.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
+# specify additional directories in which to to search for included request files
+set_requestfile_path("${MOTOR}/motorApp/Db", "")
+## as we are common, we need to explicity define the 01 area for when we are ran by 02, 03 etc 
+set_requestfile_path("${TOP}/iocBoot/iocHUBER-IOC-01", "")
+
+epicsEnvSet(PN,1)
+< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
+
+epicsEnvSet(PN,2)
+< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
+
+epicsEnvSet(PN,3)
+< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
+
+epicsEnvSet(PN,4)
+< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
+
+epicsEnvSet(PN,5)
+< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
+
+epicsEnvSet(PN,6)
+< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
+
+epicsEnvSet(PN,7)
+< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
+
+epicsEnvSet(PN,8)
+< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
+
+## motor util package
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
+
+## per controller PVs
+dbLoadRecords("$(MOTOR)/db/motorController.db","P=$(MYPVPREFIX),Q=MOT:MTR$(MTRCTRL):")
+
+epicsEnvSet("HUBERCONFIG","$(ICPCONFIGROOT)/$(IOCNAME)")
+
+# axes (if configured otherwise this will error)
+< $(HUBERCONFIG)/axes.cmd
+
+# motion set points (if configured otherwise this will error)
+< $(HUBERCONFIG)/motionsetpoints.cmd
+
+# sample changer (if configured otherwise this will error)
+< $(HUBERCONFIG)/sampleChanger.cmd
+
+# sample changer (if configured otherwise this will error)
+< $(HUBERCONFIG)/motorextensions.cmd
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
-cd "${TOP}/iocBoot/${IOC}"
-iocInit
+iocInit()
 
-## Start any sequence programs
-#seq sncxxx,"user=hgv27692Host"
+## motor util package
+#var motorUtil_debug 1
+motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
+
+
+
+## make sure motor MRES and HUBERCreateController agree
+#dbpf "M1.MRES", "$(MRES)"
+
+
+#create_monitor_set("$(IOCNAME)_settings.req", 5, "P=$(MYPVPREFIX)MOT:")
+
+

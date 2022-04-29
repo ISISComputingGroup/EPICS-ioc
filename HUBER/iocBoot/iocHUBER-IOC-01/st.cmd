@@ -15,4 +15,4 @@ dbLoadDatabase "dbd/HUBER-IOC-01.dbd"
 HUBER_IOC_01_registerRecordDeviceDriver pdbbase
 
 ## calling common command file in ioc 01 boot dir
-< ${TOP}/iocBoot/iocHUBER-IOC-01/st-common.cmd
+< iocBoot/iocHUBER-IOC-01/st-common.cmd
