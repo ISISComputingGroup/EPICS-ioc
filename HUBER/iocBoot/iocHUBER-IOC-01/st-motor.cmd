@@ -9,9 +9,10 @@ epicsEnvSet("AMOTOR", "motor$(PN)")
 # PN is 1->8 so we can safely add a 0
 epicsEnvSet("AMOTORPV", "MOT:MTR$(MTRCTRL)0$(PN)")
 
-$(IFSIM) motorSimCreateController("$(AMOTOR)", 1) 
-$(IFSIM) motorSimConfigAxis("$(AMOTOR)", 0, 32000, -32000,  0, 0) 
-$(IFSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
+#$(IFSIM) motorSimCreateController("$(AMOTOR)", 1) 
+#$(IFSIM) motorSimConfigAxis("$(AMOTOR)", 0, 32000, -32000,  0, 0) 
+#$(IFSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
+$(IFDEVSIM) drvAsynIPPortConfigure("$(ASERIAL)", "localhost:$(EMULATOR_PORT=57677)")
 
 $(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(PORT$(PN)=NUL)", 0, 0, 0)
 $(IFNOTSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\r\n") 
@@ -24,13 +25,11 @@ $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"clocal","Y")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","Y") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","Y") 
-$(IFNOTSIM) asynSetTraceIOMask("$(ASERIAL)", 0, 2)
-
-# M-ILS250PP on LARMOR, 
+$(IFNOTSIM) asynSetTraceIOMask("$(ASERIAL)", 0, 2) 
 
 # (driver port, serial port, axis num, ms mov poll, ms idle poll, egu per step)
 epicsEnvSet("MRES","0.0005")
-$(IFNOTSIM) HUBERCreateController("$(AMOTOR)","$(ASERIAL)",1, 100, 0, "$(MRES)")
+$(IFNOTRECSIM) HUBERCreateController("$(AMOTOR)","$(ASERIAL)",1, 100, 0, "$(MRES)")
 
 asynSetTraceIOMask("$(AMOTOR)", 0, 2)
 
