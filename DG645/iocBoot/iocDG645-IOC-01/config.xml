@@ -4,7 +4,7 @@
 <ioc_desc>Stanford DG645 IOC</ioc_desc>
 <ioc_details></ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
 <macro name="BAUD" pattern="^[0-9]+$" description="Port BAUD rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
 </macros>
 <pvsets>
