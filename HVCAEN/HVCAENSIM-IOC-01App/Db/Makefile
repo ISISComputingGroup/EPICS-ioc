@@ -10,10 +10,6 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-DB += $(HVCAEN)/db/HVCAENx527.db
-DB += $(HVCAEN)/db/HVCAENx527ch.db
-DB += $(HVCAEN)/db/HVCAENx527chItLk.db
-DB += $(HVCAEN)/db/HVCAENx527gbl.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

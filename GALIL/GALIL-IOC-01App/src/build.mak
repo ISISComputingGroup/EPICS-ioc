@@ -11,9 +11,7 @@ include $(TOP)/configure/CONFIG
 # Build the IOC application GALIL-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
-ifeq ($(STATIC_BUILD),NO)
-PROD_IOC_WIN32 = $(APPNAME)
-endif
+PROD_IOC = $(APPNAME)
 # GALIL-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
@@ -21,7 +19,6 @@ DBD += $(APPNAME).dbd
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += icpconfig.dbd
-$(APPNAME)_DBD += pvcomplete.dbd 
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
@@ -49,27 +46,27 @@ $(APPNAME)_DBD += cvtRecord.dbd
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
 $(APPNAME)_LIBS += asubFunctions
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
-$(APPNAME)_LIBS += pvcomplete
-$(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
+$(APPNAME)_LIBS += pvdump $(MYSQLLIB) 
+#$(APPNAME)_LIBS += easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
-$(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcrecpp pcre
 ## Add other libraries here ##
-$(APPNAME)_LIBS += GalilSupport calc sscan
+$(APPNAME)_LIBS += GalilSupport
 $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += motionSetPoints
 $(APPNAME)_LIBS += sampleChanger
 $(APPNAME)_LIBS += busy asyn
+$(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += std
-$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += TinyXML
 #libs for barndoors
 $(APPNAME)_LIBS += cvtRecord csmbase
+$(APPNAME)_LIBS += autosave
+$(APPNAME)_LIBS += utilities pcrecpp pcre
+$(APPNAME)_LIBS += seq pv
 
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
@@ -85,14 +82,6 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
-
-ifeq ($(STATIC_BUILD),YES)
-$(APPNAME)_LIBS_WIN32 += Galil1 # galil2
-$(APPNAME)_SYS_LIBS_WIN32 += delayimp
-$(APPNAME)_LDFLAGS_WIN32 += /DELAYLOAD:Galil1.dll
-endif
-
-$(APPNAME)_SYS_LIBS_Linux += Galil
 
 #===========================
 

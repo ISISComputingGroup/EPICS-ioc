@@ -25,9 +25,9 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## Stream device support ##
+$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
-$(APPNAME)_DBD += calcSupport.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += daedataSupport.dbd
 $(APPNAME)_DBD += luaSupport.dbd
@@ -39,12 +39,12 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
+$(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += lua
-$(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
 $(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += pcrecpp pcre libjson zlib
 $(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += daedataSupport
 $(APPNAME)_LIBS_WIN32 += oncrpc

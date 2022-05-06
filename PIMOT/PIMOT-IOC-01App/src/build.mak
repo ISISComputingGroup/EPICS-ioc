@@ -43,14 +43,14 @@ $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += busy asyn
-$(APPNAME)_LIBS += std sscan
-$(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += std
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += calc sscan autosave
 $(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
+$(APPNAME)_LIBS += seq pv
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 

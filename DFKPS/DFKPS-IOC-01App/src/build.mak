@@ -26,18 +26,17 @@ $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
-$(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += cvtRecord.dbd
-$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -47,8 +46,9 @@ $(APPNAME)_LIBS += autosave
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 $(APPNAME)_LIBS += FileList ReadASCII
-$(APPNAME)_LIBS += stream cvtRecord csmbase std calc sscan asyn 
+$(APPNAME)_LIBS += stream cvtRecord csmbase asyn std calc sscan 
 $(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib efsw
+$(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += $(MYSQLLIB) easySQLite sqlite
 
 # DFKPS-IOC-01_registerRecordDeviceDriver.cpp derives from DFKPS-IOC-01.dbd

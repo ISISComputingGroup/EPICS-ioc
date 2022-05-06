@@ -1,21 +1,41 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 	<config_part>
-		<ioc_desc>New CAEN high voltage power supply driver</ioc_desc>
+		<ioc_desc>CAEN high voltage power supply driver New</ioc_desc>
 		<macros>
-			<macro name ="READ_ONLY" pattern="^1|0$" description="Whether device is readonly. 1 for readonly, 0 for read and write." defaultValue="0" hasDefault="YES" />
-			
+			<macro name ="READ_ONLY" pattern="^1|0$" description="Global default as to whether device is readonly. 1 for readonly, 0 for read and write." defaultValue="0" hasDefault="YES" />
+
+			<macro name ="READ_ONLY_0" pattern="^1|0$" description="Whether device is readonly. 1 for readonly, 0 for read and write." defaultValue="0" hasDefault="YES" />
 			<macro name ="IP_ADDRESS_0" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the first device." hasDefault="NO" />
 			<macro name ="SYS_TYPE_0" pattern="^[0-3]$" description="The type of CAEN. 0, 1, 2, 3 for SYS1527, SYS2527, SYS4527 and SYS5527 respectively." hasDefault="NO" />
 
+			<macro name ="READ_ONLY_1" pattern="^1|0$" description="Whether device is readonly. 1 for readonly, 0 for read and write." defaultValue="0" hasDefault="YES" />
 			<macro name ="IP_ADDRESS_1" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the second device." hasDefault="NO" />
 			<macro name ="SYS_TYPE_1" pattern="^[0-3]$" description="The type of CAEN. 0, 1, 2, 3 for SYS1527, SYS2527, SYS4527 and SYS5527 respectively." hasDefault="NO" />
 			
+			<macro name ="READ_ONLY_2" pattern="^1|0$" description="Whether device is readonly. 1 for readonly, 0 for read and write." defaultValue="0" hasDefault="YES" />
 			<macro name ="IP_ADDRESS_2" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the third device." hasDefault="NO" />
 			<macro name ="SYS_TYPE_2" pattern="^[0-3]$" description="The type of CAEN. 0, 1, 2, 3 for SYS1527, SYS2527, SYS4527 and SYS5527 respectively." hasDefault="NO" />
 
+			<macro name ="READ_ONLY_3" pattern="^1|0$" description="Whether device is readonly. 1 for readonly, 0 for read and write." defaultValue="0" hasDefault="YES" />
 			<macro name ="IP_ADDRESS_3" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the fourth device." hasDefault="NO" />
 			<macro name ="SYS_TYPE_3" pattern="^[0-3]$" description="The type of CAEN. 0, 1, 2, 3 for SYS1527, SYS2527, SYS4527 and SYS5527 respectively." hasDefault="NO" />
+
+			<macro name ="READ_ONLY_4" pattern="^1|0$" description="Whether device is readonly. 1 for readonly, 0 for read and write." defaultValue="0" hasDefault="YES" />
+			<macro name ="IP_ADDRESS_4" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the fourth device." hasDefault="NO" />
+			<macro name ="SYS_TYPE_4" pattern="^[0-3]$" description="The type of CAEN. 0, 1, 2, 3 for SYS1527, SYS2527, SYS4527 and SYS5527 respectively." hasDefault="NO" />
+
+			<macro name ="READ_ONLY_5" pattern="^1|0$" description="Whether device is readonly. 1 for readonly, 0 for read and write." defaultValue="0" hasDefault="YES" />
+			<macro name ="IP_ADDRESS_5" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the fourth device." hasDefault="NO" />
+			<macro name ="SYS_TYPE_5" pattern="^[0-3]$" description="The type of CAEN. 0, 1, 2, 3 for SYS1527, SYS2527, SYS4527 and SYS5527 respectively." hasDefault="NO" />
+
+			<macro name ="READ_ONLY_6" pattern="^1|0$" description="Whether device is readonly. 1 for readonly, 0 for read and write." defaultValue="0" hasDefault="YES" />
+			<macro name ="IP_ADDRESS_6" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the fourth device." hasDefault="NO" />
+			<macro name ="SYS_TYPE_6" pattern="^[0-3]$" description="The type of CAEN. 0, 1, 2, 3 for SYS1527, SYS2527, SYS4527 and SYS5527 respectively." hasDefault="NO" />
+
+			<macro name ="READ_ONLY_7" pattern="^1|0$" description="Whether device is readonly. 1 for readonly, 0 for read and write." defaultValue="0" hasDefault="YES" />
+			<macro name ="IP_ADDRESS_7" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the fourth device." hasDefault="NO" />
+			<macro name ="SYS_TYPE_7" pattern="^[0-3]$" description="The type of CAEN. 0, 1, 2, 3 for SYS1527, SYS2527, SYS4527 and SYS5527 respectively." hasDefault="NO" />
 		</macros>
 	</config_part>
 </ioc_config>

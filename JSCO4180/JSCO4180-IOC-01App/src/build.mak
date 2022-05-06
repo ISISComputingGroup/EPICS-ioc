@@ -25,11 +25,11 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## Stream device support ##
-$(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
-$(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += detect_jasco_error_state.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
@@ -45,7 +45,6 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 $(APPNAME)_LIBS += asyn
-
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += xxx

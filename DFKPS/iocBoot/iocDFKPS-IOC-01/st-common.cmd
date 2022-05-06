@@ -13,14 +13,19 @@ $(IFNOTLOCALCALIB) epicsEnvSet "CALIB_DIR" "magnets"
 $(IFLOCALCALIB) epicsEnvSet "CALIB_BASE_DIR" "C:/Instrument/Settings/config/$(INSTRUMENT)"
 $(IFLOCALCALIB) epicsEnvSet "CALIB_DIR" "calib/magnets"
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DANFYSIK8000)/master/danfysikMps8000App/protocol/:$(DANFYSIK8000)/master/danfysikMps8000App/protocol/DFK$(DEV_TYPE=8000)/"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DANFYSIK8000)/master/danfysikMps8000App/protocol/;$(DANFYSIK8000)/master/danfysikMps8000App/protocol/DFK$(DEV_TYPE=8000)/"
 
 ## use with emulator
 $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT)")
 
 ## use with real device
+
+stringiftest  "DEV_TYPE_9X00"  "$(DEV_TYPE="8000")"  5  "9X00"
+$(IFDEV_TYPE_9X00) epicsEnvSet "DEFAULT_BAUD" "115200"
+$(IFNOTDEV_TYPE_9X00) epicsEnvSet "DEFAULT_BAUD" "9600"
+
 $(IFNOTRECSIM) $(IFNOTDEVSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
-$(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
+$(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "baud", "$(BAUD=$(DEFAULT_BAUD))")
 $(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
 $(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "parity", "$(PARITY="none")")
 $(IFNOTRECSIM) $(IFNOTDEVSIM) asynSetOption("L0", -1, "stop", "$(STOP=2)")

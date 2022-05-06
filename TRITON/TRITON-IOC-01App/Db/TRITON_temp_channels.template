@@ -14,18 +14,12 @@ record(stringin, "$(P)$(CHAN):UID:RAW")
 	field(FLNK, "$(P)$(CHAN):UID:CORRECT")
 }
 
+# this record exists dueo to a previous workaroud
 record(scalcout, "$(P)$(CHAN):UID:CORRECT") 
 {
-    # Newer triton systems report a control channel of 'T0'.
-	# This is not right. It potentially relates to a newer Lakeshore unit internally
-	# but needs to be corrected to T1.
-	#
-	# Only do this correction if this is the SAMPLE channel.
-	#
     field(INAA, "$(P)$(CHAN):UID:RAW MS")
-	field(CALC, "(AA=\"T0\" && \"$(IFSAMPLE)\"=\"#\")?\"T1\":AA")
-	
-	field(FLNK, "$(P)$(CHAN):UID")
+    field(CALC, "AA")	
+    field(FLNK, "$(P)$(CHAN):UID")
 }
 
 record(stringin, "$(P)$(CHAN):UID") 

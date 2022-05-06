@@ -37,6 +37,7 @@
 # DRVCMD = VAR (GalilStr is a galil variable)
 # DRVCMD = CMD (GalilStr is a galil command)
 
+
 file "$(GALIL)/db/galil_userdef_records8.template"
 {
 pattern

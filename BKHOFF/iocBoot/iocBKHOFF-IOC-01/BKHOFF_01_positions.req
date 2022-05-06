@@ -1,2 +1,0 @@
-file "motor_positions.req" P=$(P),M=MTR$(CCP)01
-file "motor_positions.req" P=$(P),M=MTR$(CCP)02

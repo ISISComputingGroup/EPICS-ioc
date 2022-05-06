@@ -24,12 +24,13 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
-$(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += modbusSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += cvtRecord.dbd
-$(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
 ## add other dbd here ##
@@ -37,16 +38,16 @@ $(APPNAME)_DBD += FileList.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += FileList ReadASCII
-$(APPNAME)_LIBS += stream cvtRecord csmbase std calc sscan asyn 
+$(APPNAME)_LIBS += stream modbus asyn cvtRecord csmbase std calc sscan 
 $(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib efsw
 $(APPNAME)_LIBS += $(MYSQLLIB) easySQLite sqlite
+$(APPNAME)_LIBS += seq pv
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 

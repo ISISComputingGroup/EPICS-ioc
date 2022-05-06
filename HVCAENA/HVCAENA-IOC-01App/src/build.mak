@@ -45,7 +45,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS_WIN32 += caenhvwrapper # hscaenetlib
-$(APPNAME)_SYS_LIBS_Linux += caenhvwrapper hscaenetlib
+$(APPNAME)_SYS_LIBS_Linux += caenhvwrapper # hscaenetlib
 
 # HVCAEN-IOC-01_registerRecordDeviceDriver.cpp derives from HVCAEN-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
@@ -59,6 +59,9 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
+
+# copy in the caenhvwrapper we used - this is so we do not pick up a system installed one
+BIN_INSTALLS_WIN32 += $(HVCAEN)/bin/$(EPICS_HOST_ARCH)/CAENHVWrapper.dll
 
 #===========================
 

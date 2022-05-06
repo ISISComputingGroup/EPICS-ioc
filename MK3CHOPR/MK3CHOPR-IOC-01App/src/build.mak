@@ -17,20 +17,19 @@ DBD += $(APPNAME).dbd
 
 # MK3CHOPR-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += mk3Include.dbd
-$(APPNAME)_DBD += calcSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
-$(APPNAME)_LIBS += calc sscan
 ## Add other libraries here ##
 $(APPNAME)_LIBS += asyn Mk3BridgeLib
+$(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += seq pv
 
 # MK3CHOPR-IOC-01_registerRecordDeviceDriver.cpp derives from MK3CHOPR-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

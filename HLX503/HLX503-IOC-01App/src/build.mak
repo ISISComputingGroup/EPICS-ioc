@@ -44,6 +44,7 @@ $(APPNAME)_LIBS += hlx503
 #$(APPNAME)_LIBS += xxx
 
 ## ISIS standard libraries ##
+$(APPNAME)_LIBS += FileList ReadASCII
 ## Stream device libraries ##
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
@@ -58,7 +59,6 @@ $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv efsw
-$(APPNAME)_LIBS += FileList ReadASCII
 
 
 # HLX503-IOC-01_registerRecordDeviceDriver.cpp derives from HLX503-IOC-01.dbd

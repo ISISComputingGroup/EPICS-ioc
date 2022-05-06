@@ -9,6 +9,7 @@ record(ai, "$(P)SLEW1")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SLEW1")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "mA/s")
 }
 
 record(ao, "$(P)SLEW1:SP")
@@ -20,6 +21,7 @@ record(ao, "$(P)SLEW1:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SLEW1:SP")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "mA/s")
 }
 
 record(ai, "$(P)SLEW2")
@@ -32,6 +34,7 @@ record(ai, "$(P)SLEW2")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SLEW2")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "mA/s")
 }
 
 record(ao, "$(P)SLEW2:SP")
@@ -43,6 +46,7 @@ record(ao, "$(P)SLEW2:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SLEW2:SP")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "mA/s")
 }
 
 record(ai, "$(P)SLEWABS")
@@ -55,6 +59,7 @@ record(ai, "$(P)SLEWABS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SLEWABS")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "mA/s")
 }
 
 record(ao, "$(P)SLEWABS:SP")
@@ -66,6 +71,7 @@ record(ao, "$(P)SLEWABS:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SLEWABS:SP")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "mA/s")
 }
 
 record(ao, "$(P)SIM:SLEW1"){
