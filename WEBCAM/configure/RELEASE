@@ -34,8 +34,10 @@ WEBGET=$(SUPPORT)/webget/master
 ZLIB=$(SUPPORT)/zlib/master
 
 AREA_DETECTOR=$(SUPPORT)/areaDetector/master
-FFMPEGSERVER=$(AREA_DETECTOR)/ffmpegServer
 ADURL=$(AREA_DETECTOR)/ADURL
+
+#need to handle on linux before uncommenting
+#FFMPEGSERVER=$(AREA_DETECTOR)/ffmpegServer
 
 OPENSSL=$(SUPPORT)/OpenSSL/master
 
