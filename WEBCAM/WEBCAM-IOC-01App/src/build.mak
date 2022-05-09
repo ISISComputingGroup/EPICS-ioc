@@ -35,7 +35,8 @@ $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += webget.dbd
-$(APPNAME)_DBD += ffmpegServer.dbd
+#not on linux
+#$(APPNAME)_DBD += ffmpegServer.dbd
 $(APPNAME)_DBD += URLDriverSupport.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
@@ -51,12 +52,17 @@ $(APPNAME)_LIBS += webget htmltidy
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn oncrpc
 ## other standard libraries here ##
-$(APPNAME)_LIBS += ffmpegServer URLDriver
-$(APPNAME)_LIBS += avdevice
-$(APPNAME)_LIBS += avformat
-$(APPNAME)_LIBS += avcodec
-$(APPNAME)_LIBS += avutil
-$(APPNAME)_LIBS += swscale
+
+$(APPNAME)_LIBS += URLDriver
+
+#not on linux
+#$(APPNAME)_LIBS += ffmpegServer
+#$(APPNAME)_LIBS += avdevice
+#$(APPNAME)_LIBS += avformat
+#$(APPNAME)_LIBS += avcodec
+#$(APPNAME)_LIBS += avutil
+#$(APPNAME)_LIBS += swscale
+
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
