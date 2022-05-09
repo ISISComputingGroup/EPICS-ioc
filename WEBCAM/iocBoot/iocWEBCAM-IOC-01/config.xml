@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+    <config_part>
+        <ioc_desc>WEBCAM</ioc_desc>
+        <macros>
+            <macro name="URL1" pattern="^.+$" description="URL1 of camera" hasDefault="NO" />
+            <macro name="URL2" pattern="^.+$" description="URL2 of camera" hasDefault="NO" />
+        </macros>
+</config_part>
+</ioc_config>
