@@ -50,7 +50,8 @@ $(APPNAME)_DBD += URLDriverSupport.dbd
 ## Stream device libraries ##
 $(APPNAME)_LIBS += webget htmltidy
 $(APPNAME)_LIBS += lua
-$(APPNAME)_LIBS += asyn oncrpc
+$(APPNAME)_LIBS += asyn
+
 ## other standard libraries here ##
 
 $(APPNAME)_LIBS += URLDriver
@@ -74,7 +75,7 @@ $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
 
-$(APPNAME)_LIBS_WIN32 += libcurl
+$(APPNAME)_LIBS_WIN32 += libcurl oncrpc
 $(APPNAME)_SYS_LIBS_Linux += curl
 
 $(APPNAME)_LIBS += ssleay32 libeay32
