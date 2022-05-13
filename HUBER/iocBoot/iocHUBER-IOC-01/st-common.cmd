@@ -8,8 +8,7 @@ set_requestfile_path("${MOTOR}/motorApp/Db", "")
 ## as we are common, we need to explicity define the 01 area for when we are ran by 02, 03 etc 
 set_requestfile_path("${TOP}/iocBoot/iocHUBER-IOC-01", "")
 
-epicsEnvSet(PN,1)
-< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
+< ${TOP}/iocBoot/iocHUBER-IOC-01/st-motor.cmd
 
 
 ## motor util package
@@ -19,18 +18,6 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,
 dbLoadRecords("$(MOTOR)/db/motorController.db","P=$(MYPVPREFIX),Q=MOT:MTR$(MTRCTRL):")
 
 epicsEnvSet("HUBERCONFIG","$(ICPCONFIGROOT)/$(IOCNAME)")
-
-# axes (if configured otherwise this will error)
-< $(HUBERCONFIG)/axes.cmd
-
-# motion set points (if configured otherwise this will error)
-< $(HUBERCONFIG)/motionsetpoints.cmd
-
-# sample changer (if configured otherwise this will error)
-< $(HUBERCONFIG)/sampleChanger.cmd
-
-# sample changer (if configured otherwise this will error)
-< $(HUBERCONFIG)/motorextensions.cmd
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
