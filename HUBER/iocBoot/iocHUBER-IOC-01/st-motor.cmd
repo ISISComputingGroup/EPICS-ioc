@@ -3,25 +3,21 @@
 ## if PN=1 the defines asyn port SD1 and uses macros such as PORT1, PORT1_PARITY to configure 
 
 
-## asyn serial port internal device name and motor name 
 
-# PN is 1->8 so we can safely add a 0
-epicsEnvSet("AMOTORPV", "MOT:MTR$(MTRCTRL)0$(PN)")
+epicsEnvSet("AMOTORPV", "MOT:MTR$(MTRCTRL)0")
 
-$(IFDEVSIM) drvAsynIPPortConfigure("Huber$(PN)", "localhost:$(EMULATOR_PORT=57677)")
-asynOctetSetOutputEos("Huber$(PN)",0, "\r")
-asynOctetSetInputEos("Huber$(PN)",0, "\r")
-# (driver port, serial port, axis num, ms mov poll, ms idle poll, egu per step)
-SMC9300CreateController("SMC$(PN)","Huber$(PN)",5, 100, 1000)
+$(IFDEVSIM) drvAsynIPPortConfigure("Huber1", "localhost:$(EMULATOR_PORT=57677)")
+asynOctetSetOutputEos("Huber1",0, "\r")
+asynOctetSetInputEos("Huber1",0, "\r\n")
+# (driver port, IP port, axis num, ms mov poll, ms idle poll)
+SMC9300CreateController("SMC1","Huber1",2, 1000, 10000)
 
-asynSetTraceMask("Huber$(PN)",-1,0x9) 
-asynSetTraceIOMask("Huber$(PN)",-1,0x2)
+asynSetTraceMask("Huber1",-1,0x9) 
+asynSetTraceIOMask("Huber1",-1,0x2)
 
 ## Load record instances
 
 # Load asyn record 
-dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(AMOTORPV):ASYN,PORT=57677,ADDR=0,OMAX=256,IMAX=256") 
-dbLoadRecords("$(TOP)/db/asyn_motor.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),PORT=57677,ADDR=0") 
-dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=$(AMOTORPV)") 
-dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(PN),mAXIS=$(AMOTORPV)") 
-
+dbLoadRecordsLoop("$(TOP)/db/asyn_motor.db", "P=$(MYPVPREFIX),M=$(AMOTORPV)\$(I),PORT=SMC1,ADDR=\$(I)", "I", 1, 1)
+dbLoadRecordsLoop("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=$(AMOTORPV)\$(I)", "I", 1, 1)
+dbLoadRecordsLoop("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS\$(I),mAXIS=$(AMOTORPV)\$(I)", "I", 1, 1) 

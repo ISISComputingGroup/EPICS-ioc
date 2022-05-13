@@ -11,26 +11,6 @@ set_requestfile_path("${TOP}/iocBoot/iocHUBER-IOC-01", "")
 epicsEnvSet(PN,1)
 < ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
 
-epicsEnvSet(PN,2)
-< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
-
-epicsEnvSet(PN,3)
-< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
-
-epicsEnvSet(PN,4)
-< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
-
-epicsEnvSet(PN,5)
-< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
-
-epicsEnvSet(PN,6)
-< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
-
-epicsEnvSet(PN,7)
-< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
-
-epicsEnvSet(PN,8)
-< ${TOP}/iocBoot/iocHUBER-IOC-01/st-port.cmd
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
