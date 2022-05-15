@@ -4,7 +4,6 @@
         <ioc_desc>WEBCAM</ioc_desc>
 		<!-- for an axis webcam URL is like http://ipaddr/axis-cgi/jpg/image.cgi -->
         <macros>
-            <macro name="WEBCAM" pattern="^.+$" description="WEBCAM IOC e.g. WEBCAM_01" hasDefault="NO" />
             <macro name="URL1" pattern="^.+$" description="URL for camera1 to fetch a single image" hasDefault="NO" />
             <macro name="URL2" pattern="^.+$" description="URL for camera2 to fetch a single image" hasDefault="NO" />
             <macro name="URL3" pattern="^.+$" description="URL for camera3 to fetch a single image" hasDefault="NO" />
