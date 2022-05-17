@@ -54,10 +54,16 @@ iocInit
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
 
+create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(PREFIX)")
+
 ## The IOC requires the url for single image access as it will poll 
 ## e.g. for axis camera http://ipaddr/axis-cgi/jpg/image.cgi
 
 dbpf "$(PREFIX)CAM1:URL1", "$(URL1=)"
+dbpf "$(PREFIX)CAM1:URLSelect.ZRST", "$(NAME1=URL1)"
 dbpf "$(PREFIX)CAM1:URL2", "$(URL2=)"
+dbpf "$(PREFIX)CAM1:URLSelect.ONST", "$(NAME2=URL2)"
 dbpf "$(PREFIX)CAM1:URL3", "$(URL3=)"
+dbpf "$(PREFIX)CAM1:URLSelect.TWST", "$(NAME3=URL3)"
 dbpf "$(PREFIX)CAM1:URL4", "$(URL4=)"
+dbpf "$(PREFIX)CAM1:URLSelect.THST", "$(NAME4=URL4)"
