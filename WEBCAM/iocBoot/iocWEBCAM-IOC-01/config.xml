@@ -2,9 +2,16 @@
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
     <config_part>
         <ioc_desc>WEBCAM</ioc_desc>
+		<!-- for an axis webcam URL is like http://ipaddr/axis-cgi/jpg/image.cgi -->
         <macros>
-            <macro name="URL1" pattern="^.+$" description="URL1 of camera" hasDefault="NO" />
-            <macro name="URL2" pattern="^.+$" description="URL2 of camera" hasDefault="NO" />
+            <macro name="NAME1" pattern="^.+$" description="Short name for Camera1" hasDefault="YES" />
+            <macro name="NAME2" pattern="^.+$" description="Short name for Camera2" hasDefault="YES" />
+            <macro name="NAME3" pattern="^.+$" description="Short name for Camera3" hasDefault="YES" />
+            <macro name="NAME4" pattern="^.+$" description="Short name for Camera4" hasDefault="YES" />
+            <macro name="URL1" pattern="^.+$" description="URL for camera1 to fetch a single image" hasDefault="NO" />
+            <macro name="URL2" pattern="^.+$" description="URL for camera2 to fetch a single image" hasDefault="NO" />
+            <macro name="URL3" pattern="^.+$" description="URL for camera3 to fetch a single image" hasDefault="NO" />
+            <macro name="URL4" pattern="^.+$" description="URL for camera4 to fetch a single image" hasDefault="NO" />
         </macros>
 </config_part>
 </ioc_config>
