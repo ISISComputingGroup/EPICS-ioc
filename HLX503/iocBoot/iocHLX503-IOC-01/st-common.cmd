@@ -16,7 +16,7 @@ $(IFRECSIM) epicsEnvSet "CALIB_BASE_DIR" "$(HLX503)"
 epicsEnvSet "TPAR_DIR" "configurations/hlx503"
 epicsEnvSet "TPAR_PAT" ".*"
 FileListConfigure("$(FILELIST_NAME)", "$(CALIB_BASE_DIR)/$(TPAR_DIR)", "$(TPAR_PAT)", 0) 
-ReadASCIIConfigure("$(READASCII_NAME)", "$(CALIB_BASE_DIR)/$(TPAR_DIR)", 20)
+ReadASCIIConfigure("$(READASCII_NAME)", "$(CALIB_BASE_DIR)/$(TPAR_DIR)", 20, 1)
 
 
 epicsEnvSet "DEVICE" "L0"
@@ -39,7 +39,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
 ## Software flow control off
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
-
+$(IFNOTDEVSIM) $(IFNOTRECSIM) #asynInterposeThrottleConfig("L0", -1, 0.1)
 epicsEnvSet "CTRLCHANNEL$(SORB_CHANNEL)_NAME" "SORB"
 epicsEnvSet "CTRLCHANNEL$(HE3POTHI_CHANNEL)_NAME" "HE3POTHI"
 epicsEnvSet "CTRLCHANNEL$(1KPOTHE3POTLO_CHANNEL)_NAME" "1KPOTHE3POTLO"
