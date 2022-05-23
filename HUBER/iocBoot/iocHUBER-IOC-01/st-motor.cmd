@@ -4,7 +4,8 @@ autosaveBuild("$(IOCNAME)_built_settings.req", "_settings.req", 1)
 set_pass0_restoreFile("$(IOCNAME)_built_settings.sav")
 set_pass1_restoreFile("$(IOCNAME)_built_settings.sav")
 
-$(IFDEVSIM) drvAsynIPPortConfigure("Huber$(MTRCTRL)", "localhost:$(EMULATOR_PORT=57677)")
+$(IFDEVSIM) drvAsynIPPortConfigure("Huber$(MTRCTRL)", "localhost:$(EMULATOR_PORT)")
+$(IFNOTSIM) drvAsynIPPortConfigure("Huber$(MTRCTRL)", "$(HUBERADDR01)")
 asynOctetSetOutputEos("Huber$(MTRCTRL)",0, "\r")
 asynOctetSetInputEos("Huber$(MTRCTRL)",0, "\r\n")
 
