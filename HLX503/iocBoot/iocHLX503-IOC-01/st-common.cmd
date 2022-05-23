@@ -39,7 +39,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
 ## Software flow control off
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) #asynInterposeThrottleConfig("L0", -1, 0.1)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynInterposeThrottleConfig("L0", -1, 0.1)
 epicsEnvSet "CTRLCHANNEL$(SORB_CHANNEL)_NAME" "SORB"
 epicsEnvSet "CTRLCHANNEL$(HE3POTHI_CHANNEL)_NAME" "HE3POTHI"
 epicsEnvSet "CTRLCHANNEL$(1KPOTHE3POTLO_CHANNEL)_NAME" "1KPOTHE3POTLO"
@@ -68,9 +68,6 @@ dbLoadRecords("$(HLX503)/db/hlx503_recondense.db", "P=$(P),MAX_TEMP_FOR_HE3_COOL
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
-
-## Start any sequence programs
-#seq sncxxx,"user=ltu34219"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
