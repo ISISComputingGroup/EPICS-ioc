@@ -30,6 +30,7 @@
     <macro name="RECONDENSE_PART_TIMEOUT"  pattern="^.*$" description="The time to wait before timing out a part in a recondense." hasDefault="YES" defaultValue="3600"/> 
     <macro name="RECONDENSE_PART_TIMEOUT_ON"  pattern="^.*$" description="Whether to timeout parts of the recondense." hasDefault="YES" defaultValue="YES"/> 
     <macro name="MAX_TEMP_FOR_HE3_COOLING" pattern="^.*$" description="The temperature below which He3 cooling is to be used." hasDefault="YES" defaultValue="1.7"/>
+    <macro name="SENSOR_SWITCHING_THRESHOLD" pattern="^.*$" description="The temperature threshold to switch between hi and lo sensors." hasDefault="YES" defaultValue="1.9"/>
     <macro name="MAX_OPERATING_TEMP_FOR_HELIOX" pattern="^.*$" description="The maximum temperature at which the heliox can be operated at." hasDefault="YES" defaultValue="270"/>
   </macros>
  </config_part>
