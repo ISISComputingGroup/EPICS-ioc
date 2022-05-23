@@ -7,7 +7,7 @@
 set_requestfile_path("${MOTOR}/motorApp/Db", "")
 ## as we are common, we need to explicity define the 01 area for when we are ran by 02, 03 etc 
 set_requestfile_path("${TOP}/iocBoot/iocHUBER-IOC-01", "")
-
+cd "${TOP}/iocBoot/iocHUBER-IOC-01"
 < ${TOP}/iocBoot/iocHUBER-IOC-01/st-motor.cmd
 
 
@@ -37,6 +37,6 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 #dbpf "M1.MRES", "$(MRES)"
 
 
-#create_monitor_set("$(IOCNAME)_settings.req", 5, "P=$(MYPVPREFIX)MOT:")
+create_monitor_set("$(IOCNAME)_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
 
 

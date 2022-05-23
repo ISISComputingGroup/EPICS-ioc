@@ -5,7 +5,6 @@
   <ioc_details></ioc_details>
   <macros>
    <macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="NO" />
-   <macro name="PORT1" pattern="^COM[0-9]+$" description="Serial COM Port" defaultValue="5" hasDefault="YES" />
    <macro name="NUMBERAXES" pattern="^([1-9]|(1[1-6]))$" description="Number of Axes on the Controller" defaultValue="5" hasDefault="YES" />
   </macros>
  </config_part>
