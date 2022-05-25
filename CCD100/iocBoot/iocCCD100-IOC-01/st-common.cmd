@@ -17,7 +17,7 @@ $(IFMK3) epicsEnvSet("CCD100PROTOCOL", "devCCD100_mk3")
 $(IFNOTMK3) epicsEnvSet("CCD100PROTOCOL", "devCCD100")
 
 ## for mk3 use IP
-$(IFMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure("L0", "$(IPADDR=)")
+$(IFMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure("L0", "$(IPADDR=127.0.0.1):101")
 ## strip NULL bytes in returned string, CCD100 mk3 over ethernet seems to send these occasionally
 $(IFMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynInterposeStripConfig("L0", 0, "\0")
 ## can't rememeber if asynOctetSetInputEos below is needed for ethernet or not
