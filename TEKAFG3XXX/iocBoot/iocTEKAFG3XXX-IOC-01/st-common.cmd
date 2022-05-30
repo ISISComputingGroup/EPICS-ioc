@@ -12,7 +12,7 @@ $(IFDEVSIM) drvAsynIPPortConfigure("GPIB0", "localhost:$(EMULATOR_PORT=)")
 $(IFDEVSIM) asynOctetSetOutputEos("GPIB0", -1, "$(IEOS=\\n)")  # For testing set the output eos
 
 ## For real device use:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) vxi11Configure("GPIB0", "130.246.50.169", 0, 0.0,"inst0", 0, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) vxi11Configure("GPIB0", $(ADDR), 0, 0.0,"inst0", 0, 0)
 
 #asynSetTraceIOMask("GPIB0",0,2)
 #asynSetTraceMask("GPIB0",0,255)

@@ -127,3 +127,10 @@ $(IFHASMTRCTRL) $(IFMOTORCONFIG) create_manual_set("$(MOTORCONFIG=)Menu.req","P=
 
 ## Start any sequence programs
 #seq sncxxx,"user=icsHost"
+
+#asynSetTraceIOMask("GALILSYNC0", -1, 0x2)
+#asynSetTraceMask("GALILSYNC0", -1, 0x9)
+
+## if using hardware flow control on GALIL will need this
+## do not enable software flow control - see comments in GalilController.cpp
+#asynSetOption("GALILSYNC0", 0, "crtscts", "Y");
