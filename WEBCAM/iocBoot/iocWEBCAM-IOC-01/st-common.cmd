@@ -22,6 +22,8 @@ NDPvaConfigure("PVA1", 3, 0, "ROI1", 0, "$(PREFIX)PVA1:IMAGE", 0)
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+dbLoadRecords("$(TOP)/db/webcam.db","P=$(PREFIX),R=CAM1:")
+
 ## This waveform 
 ##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
 ##  TYPE=Int32,FTVL=LONG for 32 bit integer
