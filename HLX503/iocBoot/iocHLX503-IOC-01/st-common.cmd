@@ -39,7 +39,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
 ## Software flow control off
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynInterposeThrottleConfig("L0", -1, 0.1)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynInterposeThrottleConfig("L0", -1, 0.04)
 epicsEnvSet "CTRLCHANNEL$(SORB_CHANNEL)_NAME" "SORB"
 epicsEnvSet "CTRLCHANNEL$(HE3POTHI_CHANNEL)_NAME" "HE3POTHI"
 epicsEnvSet "CTRLCHANNEL$(1KPOTHE3POTLO_CHANNEL)_NAME" "1KPOTHE3POTLO"
