@@ -32,11 +32,6 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 < $(IOCSTARTUP)/postiocinit.cmd
 
 
-
-## make sure motor MRES and HUBERCreateController agree
-#dbpf "M1.MRES", "$(MRES)"
-
-
 create_monitor_set("$(IOCNAME)_built_settings.req", 30, "P=$(MYPVPREFIX)MOT:")
 
 
