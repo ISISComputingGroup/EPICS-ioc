@@ -53,6 +53,7 @@ IOCDIRS += PEARLPC
 IOCDIRS += TECHNIX
 IOCDIRS += ROTSTIRR
 IOCDIRS += WEBCAM
+IOCDIRS += HUBER
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
