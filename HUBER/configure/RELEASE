@@ -44,7 +44,7 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 ## needed for huber
 ASYN=$(SUPPORT)/asyn/master
 MOTOR=$(SUPPORT)/motor/master
-AXIS=$(SUPPORT)axis/master"
+AXIS=$(SUPPORT)/axis/master
 HUBER=$(SUPPORT)/motorHuber/master
 
 # Macros required for basic ioc/stream device
