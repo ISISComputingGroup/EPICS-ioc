@@ -47,12 +47,12 @@ $(APPNAME)_DBD += devHuberMotor.dbd
 ## Stream device libraries ##
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
-$(APPNAME)_LIBS += asyn
 ## other standard libraries here ##
 $(APPNAME)_LIBS += Huber
 $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motor
+$(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
