@@ -49,7 +49,7 @@ $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
 ## other standard libraries here ##
-$(APPNAME)_LIBS += huber
+$(APPNAME)_LIBS += Huber
 $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += softMotor
 $(APPNAME)_LIBS += motor
