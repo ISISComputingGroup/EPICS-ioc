@@ -30,7 +30,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(PEARLPC)/db/devPearl.db","P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(PEARLPC)/db/devPearl.db","P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),USER_LIMIT=$(USER_LIMIT=1000),LIMITS_NEG_OFFSET=$(LIMITS_NEG_OFFSET=0),LIMITS_POS_OFFSET=$(LIMITS_POS_OFFSET=0),LIMITS_POS_CHANGE=$(LIMITS_POS_CHANGE=20),LIMITS_NEG_CHANGE=$(LIMITS_NEG_CHANGE=20)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
