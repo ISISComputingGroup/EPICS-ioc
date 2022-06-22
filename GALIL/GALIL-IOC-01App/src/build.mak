@@ -92,7 +92,7 @@ ifeq ($(STATIC_BUILD),YES)
 ifneq ($(findstring 10.0,$(VCVERSION)),)
 $(APPNAME)_LIBS_WIN32 += Galil1
 $(APPNAME)_SYS_LIBS_WIN32 += delayimp
-$(APPNAME)_LDFLAGS_WIN32 += /DELAYLOAD:Galil1.dll
+$(APPNAME)_LDFLAGS_WIN32 += /DELAYLOAD:Galil1.dll /PROFILE
 else
 $(APPNAME)_LIBS_WIN32 += Galil2
 endif
