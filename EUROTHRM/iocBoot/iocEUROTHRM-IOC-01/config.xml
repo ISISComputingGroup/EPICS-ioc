@@ -17,8 +17,8 @@
 <macro name="ADDR_6" pattern="^[0-9]{1,2}$" description="Address for the 6th Eurotherm on this port e.g. 06. Blank for do not use." hasDefault="NO" />
 <macro name="ADDR_7" pattern="^[0-9]{1,2}$" description="Address for the 7th Eurotherm on this port e.g. 07. Blank for do not use." hasDefault="NO" />
 <macro name="ADDR_8" pattern="^[0-9]{1,2}$" description="Address for the 8th Eurotherm on this port e.g. 08. Blank for do not use." hasDefault="NO" />
-<macro name="ADDR_9" pattern="^[0-9]{1,2}$" description="Address for the 8th Eurotherm on this port e.g. 09. Blank for do not use." hasDefault="NO" />
-<macro name="ADDR_10" pattern="^[0-9]{1,2}$" description="Address for the 8th Eurotherm on this port e.g. 10. Blank for do not use." hasDefault="NO" />
+<macro name="ADDR_9" pattern="^[0-9]{1,2}$" description="Address for the 9th Eurotherm on this port e.g. 09. Blank for do not use." hasDefault="NO" />
+<macro name="ADDR_10" pattern="^[0-9]{1,2}$" description="Address for the 10th Eurotherm on this port e.g. 10. Blank for do not use." hasDefault="NO" />
 
 <macro name="LOCAL_CALIB" pattern="^(yes)|(no)$" description="Use local instrument calibration directory instead of common one? Default is no." defaultValue="no" hasDefault="YES" />
 </macros>
