@@ -5,7 +5,7 @@
 <ioc_details>PEARLPC Pressure Control</ioc_details>
 <macros>
     <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
-    <macro name="USER_LIMIT" pattern="^[0-9]+$" description="User pressure limit" hasDefault="YES" defaultValue="1000" />
+    <macro name="USER_LIMIT" pattern="^[0-9]+$" description="User pressure limit" hasDefault="YES" defaultValue="1020" />
     <macro name="LIMITS_NEG_OFFSET" pattern="^[0-9]$" description="Negative history offset" hasDefault="YES" defaultValue="0" />
     <macro name="LIMITS_NEG_CHANGE" pattern="^[0-9]+$" description="Negative direction error" hasDefault="YES" defaultValue="20" />
     <macro name="LIMITS_POS_OFFSET" pattern="^[0-9]$" description="Positive history offset" hasDefault="YES" defaultValue="0" />
