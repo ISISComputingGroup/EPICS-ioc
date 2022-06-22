@@ -47,10 +47,10 @@ record(seq,"$(P)$(Q)$(NAME):CALC") {
     field(SELL, "$(P)$(Q)$(NAME):SP.RVAL NPP NMS")
     field(DLY1, "0")
     field(DOL1, "0")
-    field(LNK1, "$(P)$(Q):$(NAME):$(ZPV).VAL PP NMS")
+    field(LNK1, "$(P)$(Q)$(NAME):$(ZPV).VAL PP NMS")
     field(DLY2, "0")
     field(DOL2, "1")
-    field(LNK2, "$(P)$(Q):$(NAME):$(OPV).VAL PP NMS")
+    field(LNK2, "$(P)$(Q)$(NAME):$(OPV).VAL PP NMS")
 }
 
 record(bo, "$(P)$(Q)$(NAME):$(ZPV)")
