@@ -40,8 +40,11 @@ stringiftest("PRESSURB2", $(PRESB2ON="Y"), 5, "Y")
 dbLoadRecords("$(TPG)/db/devTPG300.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
 dbLoadRecords("$(TPG)/db/TPG300_channels.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0), IFPRESSURA1=$(IFPRESSURA1),IFPRESSURA2=$(IFPRESSURA2),IFPRESSURB1=$(IFPRESSURB1),IFPRESSURB2=$(IFPRESSURB2)")
 dbLoadRecords("$(TPG)/db/unit_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
-dbLoadRecordsList("$(TPG)/db/TPG300_switching_functions_rb.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)", "Q", "1;2;3;4;A;B", ";")
-dbLoadRecordsList("$(TPG)/db/TPG300_switching_functions.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)", "Q", "SEL;1;2;3;4;A;B", ";")
+dbLoadRecords("$(TPG)/db/TPG300_switching_functions_rb.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+dbLoadRecords("$(TPG)/db/TPG300_switching_functions.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+dbLoadRecords("$(TPG)/db/TPG300_function_statuses.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+dbLoadRecords("$(TPG)/db/TPG300_switching_functions_rb_error_setter.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+dbLoadRecords("$(TPG)/db/TPG300_function_statuses_error_setter.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
 
 ## Finished loading record instances
 #########################
