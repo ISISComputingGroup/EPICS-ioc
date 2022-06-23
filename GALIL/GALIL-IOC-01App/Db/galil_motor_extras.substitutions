@@ -40,6 +40,8 @@
 #		5 - Reverse low active stepper
 # MTRON - motor off 0, motor on 1
 
+global{ENCAVNSAMP=\$(ENCAVNSAMP=10),ENCAVSCAN=\$(ENCAVSCAN=Passive)}
+
 file "$(GALIL)/GalilSup/Db/galil_motor_extras.template"
 {
 pattern

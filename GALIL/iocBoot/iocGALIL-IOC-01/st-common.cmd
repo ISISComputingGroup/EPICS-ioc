@@ -54,6 +54,9 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet("GALIL_MTR_PORT", "Galil")
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
+## per controller PVs
+dbLoadRecords("$(MOTOR)/db/motorController.db","P=$(MYPVPREFIX),Q=MOT:MTR$(MTRCTRL):")
+
 stringiftest("MOTORCONFIG", "$(MOTORCONFIG=)", 0, 0)
 $(IFMOTORCONFIG) dbLoadRecords("$(AUTOSAVE)/asApp/Db/configMenu.db","P=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=)")
 
@@ -124,3 +127,10 @@ $(IFHASMTRCTRL) $(IFMOTORCONFIG) create_manual_set("$(MOTORCONFIG=)Menu.req","P=
 
 ## Start any sequence programs
 #seq sncxxx,"user=icsHost"
+
+#asynSetTraceIOMask("GALILSYNC0", -1, 0x2)
+#asynSetTraceMask("GALILSYNC0", -1, 0x9)
+
+## if using hardware flow control on GALIL will need this
+## do not enable software flow control - see comments in GalilController.cpp
+#asynSetOption("GALILSYNC0", 0, "crtscts", "Y");

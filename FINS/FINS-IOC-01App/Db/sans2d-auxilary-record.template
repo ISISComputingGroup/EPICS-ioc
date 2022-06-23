@@ -1,0 +1,6 @@
+record(fanout, "$(PREFIX)$(NAME)")
+{
+    field(SCAN, "Passive")
+    field(SELM, "All")
+	field(LNK1, "$(FULL_PREFIX)SHUTTER:CLOSE:SP_SEQ")
+}

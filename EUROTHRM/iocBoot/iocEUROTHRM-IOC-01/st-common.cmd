@@ -69,6 +69,14 @@ epicsEnvSet(EURO_NUM,6)
 epicsEnvSet(EURO_NUM,7)
 < ${TOP}/iocBoot/iocEUROTHRM-IOC-01/st-euro.cmd
 
+epicsEnvSet(EURO_NUM,8)
+< ${TOP}/iocBoot/iocEUROTHRM-IOC-01/st-euro.cmd
+
+epicsEnvSet(EURO_NUM,9)
+< ${TOP}/iocBoot/iocEUROTHRM-IOC-01/st-euro.cmd
+
+epicsEnvSet(EURO_NUM,10)
+< ${TOP}/iocBoot/iocEUROTHRM-IOC-01/st-euro.cmd
 
 < $(IOCSTARTUP)/preiocinit.cmd
 

@@ -1,6 +1,4 @@
 <?xml version="1.0" ?>
-<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
-<config_part>
-<ioc_desc>QEPRO 2 - EPICS Support for Ocean Optics QEPro spectrometer using SeaBreeze driver, modified for ISIS build system and use on Windows.</ioc_desc>
-</config_part>
+<ioc_config xmlns="http://epics.isis.rl.ac.uk/schema/ioc_config/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <xi:include href="../iocQEPRO-IOC-01/config.xml"  />
 </ioc_config>
