@@ -4,7 +4,7 @@
 <ioc_desc>The IOC for a Mezei spin flipper</ioc_desc>
 <ioc_details>The IOC for a Mezei spin flipper</ioc_details>
 <macros>
-<macro name="HOST" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+$" description="IP Address or computer name and port to connect to" hasDefault="NO" />
+<macro name="HOST" pattern="^([a-zA-Z0-9_-]+|[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+):[0-9]+$" description="IP Address or computer name and port to connect to" hasDefault="NO" />
 </macros>
 <pvsets>
 </pvsets>
