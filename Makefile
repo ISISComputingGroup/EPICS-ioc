@@ -54,6 +54,7 @@ IOCDIRS += TECHNIX
 IOCDIRS += ROTSTIRR
 IOCDIRS += WEBCAM
 IOCDIRS += HUBER
+IOCDIRS += B17TMAG
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
