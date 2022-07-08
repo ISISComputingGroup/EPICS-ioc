@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Eurotherm temperature controller</ioc_desc>
+<macros>
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
+<macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 9600." defaultValue="9600" hasDefault="YES" />
+<macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 7." defaultValue="7" hasDefault="YES" />
+<macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to even." defaultValue="even" hasDefault="YES" />
+<macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
+
+<macro name="ADDR_1" pattern="^[0-9]{1,2}$" description="Address for the 1st Eurotherm on this port e.g. 01. Blank for do not use." hasDefault="NO" />
+<macro name="ADDR_2" pattern="^[0-9]{1,2}$" description="Address for the 2nd Eurotherm on this port e.g. 02. Blank for do not use." hasDefault="NO" />
+<macro name="ADDR_3" pattern="^[0-9]{1,2}$" description="Address for the 3rd Eurotherm on this port e.g. 03. Blank for do not use." hasDefault="NO" />
+<macro name="ADDR_4" pattern="^[0-9]{1,2}$" description="Address for the 4th Eurotherm on this port e.g. 04. Blank for do not use." hasDefault="NO" />
+<macro name="ADDR_5" pattern="^[0-9]{1,2}$" description="Address for the 5th Eurotherm on this port e.g. 05. Blank for do not use." hasDefault="NO" />
+<macro name="ADDR_6" pattern="^[0-9]{1,2}$" description="Address for the 6th Eurotherm on this port e.g. 06. Blank for do not use." hasDefault="NO" />
+<macro name="ADDR_7" pattern="^[0-9]{1,2}$" description="Address for the 7th Eurotherm on this port e.g. 07. Blank for do not use." hasDefault="NO" />
+
+<macro name="LOCAL_CALIB" pattern="^(yes)|(no)$" description="Use local instrument calibration directory instead of common one? Default is no." defaultValue="no" hasDefault="YES" />
+</macros>
+</config_part>
+</ioc_config>
