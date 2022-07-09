@@ -48,11 +48,11 @@ $(APPNAME)_LIBS += rdkafka
 $(APPNAME)_LIBS += zmq
 $(APPNAME)_LIBS += seq pv
 
-$(APPNAME)_LIBS_WIN32 += ssleay32 libeay32
+$(APPNAME)_LIBS_WIN32 += oncrpc ssleay32 libeay32
 $(APPNAME)_SYS_LIBS_Linux += ssl crypto
 $(APPNAME)_SYS_LIBS_Linux += sasl2
 
-$(APPNAME)_SYS_LIBS_WIN32 += psapi wldap32 ws2_32 crypt32 Normaliz oncrpc # advapi32 user32 msxml2
+$(APPNAME)_SYS_LIBS_WIN32 += psapi wldap32 ws2_32 crypt32 Normaliz # advapi32 user32 msxml2
 
 # ISISDAE-IOC-01_registerRecordDeviceDriver.cpp derives from ISISDAE-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
