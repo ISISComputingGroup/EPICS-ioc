@@ -41,16 +41,16 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asubFunctions
 ## Add other libraries here ##
-$(APPNAME)_LIBS += NucInstDig FileList asyn oncrpc zlib efsw libjson pcrecpp pcre
+$(APPNAME)_LIBS += NucInstDig FileList asyn zlib efsw libjson pcrecpp pcre
 $(APPNAME)_LIBS += ADPluginKafka
 $(APPNAME)_LIBS += rdkafka++
 $(APPNAME)_LIBS += rdkafka
 $(APPNAME)_LIBS += zmq
 $(APPNAME)_LIBS += seq pv
 
-$(APPNAME)_LIBS += ssleay32 libeay32
+$(APPNAME)_LIBS_WIN32 += ssleay32 libeay32
 
-$(APPNAME)_SYS_LIBS_WIN32 += psapi wldap32 ws2_32 crypt32 Normaliz # advapi32 user32 msxml2
+$(APPNAME)_SYS_LIBS_WIN32 += psapi wldap32 ws2_32 crypt32 Normaliz oncrpc # advapi32 user32 msxml2
 
 # ISISDAE-IOC-01_registerRecordDeviceDriver.cpp derives from ISISDAE-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
