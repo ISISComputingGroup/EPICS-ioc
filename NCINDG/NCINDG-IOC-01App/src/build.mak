@@ -38,14 +38,14 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asubFunctions
 ## Add other libraries here ##
-$(APPNAME)_LIBS += NucInstDig FileList asyn zlib efsw libjson pcrecpp pcre
+$(APPNAME)_LIBS += NucInstDig FileList
+$(APPNAME)_LIBS += asyn utilities pcrecpp pcre libjson
 $(APPNAME)_LIBS += ADPluginKafka
 $(APPNAME)_LIBS += rdkafka++
 $(APPNAME)_LIBS += rdkafka
-$(APPNAME)_LIBS += zmq
+$(APPNAME)_LIBS += zmq zlib efsw
 $(APPNAME)_LIBS += seq pv
 
 $(APPNAME)_LIBS_WIN32 += oncrpc ssleay32 libeay32
