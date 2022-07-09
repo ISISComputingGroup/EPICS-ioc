@@ -49,6 +49,8 @@ $(APPNAME)_LIBS += zmq
 $(APPNAME)_LIBS += seq pv
 
 $(APPNAME)_LIBS_WIN32 += ssleay32 libeay32
+$(APPNAME)_SYS_LIBS_Linux += ssl crypto
+$(APPNAME)_SYS_LIBS_Linux += sasl2
 
 $(APPNAME)_SYS_LIBS_WIN32 += psapi wldap32 ws2_32 crypt32 Normaliz oncrpc # advapi32 user32 msxml2
 
