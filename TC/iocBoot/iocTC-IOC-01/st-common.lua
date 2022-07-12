@@ -34,7 +34,7 @@ function twincat_stcommon_main()
 
 	iocsh.devMotorCreateController(motor_port, "Controller", num_axes, ioc_prefix)
 	
-	autosave_file = io.open (ioc_name .. "_settings.req", "w")
+	-- autosave_file = io.open (ioc_name .. "_settings.req", "w")
 	
 	db_args = string.format("P=%s,Q=MOT:MTR%02i:,AXES_NUM=%s", pv_prefix, mtrctrl, num_axes)
 	iocsh.dbLoadRecords("$(MOTOR)/db/motorController.db", db_args)
@@ -50,7 +50,7 @@ function twincat_stcommon_main()
 		enabled_monitor_db = "db/enabled_monitor.db"
 		enabled_monitor_db_args = string.format("P=%s,I=%s,AXIS_NUM=%s,MOTOR_PV=%s", pv_prefix, ioc_name, axis_num, motor_pv)
 		iocsh.dbLoadRecords(enabled_monitor_db, enabled_monitor_db_args)
-		autosave_file:write(string.format("file \"motor_settings.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
+		-- autosave_file:write(string.format("file \"motor_settings.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
 		-- wrap around to next MTRCTRL - this is so we can show >8 axes in the IBEX table of motors. 
 		if axis_num > 8 then
 			alias_args_orig = string.format("$(MYPVPREFIX)MOT:%s(.*)", motor_pv)
@@ -58,7 +58,7 @@ function twincat_stcommon_main()
 			iocsh.dbAliasRecordsRE(alias_args_orig, alias_args_aliased)
 		end
 	end
-	autosave_file:close()
+	-- autosave_file:close()
 
 end
 
