@@ -17,19 +17,19 @@ FMR_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-stringiftest("VNASTANDALONE", "$(VNASTAND=)", 3)
+stringiftest("VNAST", "$(VNASTANDALONE=)", 3)
 
 # Configure lvDCOM interface
-$(IFNOTVNASTANDALONE)lvDCOMConfigure("lvfp", "frontpanel", "${FMR}/data/lv_FMR.xml", "$(LVDCOM_HOST=)", $(LVDCOM_OPTIONS=2))
-$(IFVNASTANDALONE)lvDCOMConfigure("lvfp", "frontpanel", "${FMR}/data/lv_RSVNA.xml", "$(LVDCOM_HOST=)", $(LVDCOM_OPTIONS=2))
+$(IFNOTVNAST)lvDCOMConfigure("lvfp", "frontpanel", "${FMR}/data/lv_FMR.xml", "$(LVDCOM_HOST=)", $(LVDCOM_OPTIONS=2))
+$(IFVNAST)lvDCOMConfigure("lvfp", "frontpanel", "${FMR}/data/lv_RSVNA.xml", "$(LVDCOM_HOST=)", $(LVDCOM_OPTIONS=2))
 
 ## Load record instances
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-$(IFNOTVNASTANDALONE)dbLoadRecords("$(FMR)/db/FMR.db", "P=$(MYPVPREFIX)$(IOCNAME):")
-$(IFVNASTANDALONE)dbLoadRecords("$(FMR)/db/RSVNA.db", "P=$(MYPVPREFIX)$(IOCNAME):")
+$(IFNOTVNAST)dbLoadRecords("$(FMR)/db/FMR.db", "P=$(MYPVPREFIX)$(IOCNAME):")
+$(IFVNAST)dbLoadRecords("$(FMR)/db/RSVNA.db", "P=$(MYPVPREFIX)$(IOCNAME):")
 
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
