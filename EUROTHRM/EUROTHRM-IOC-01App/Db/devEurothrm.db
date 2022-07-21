@@ -759,7 +759,6 @@ record(longout, "$(P)SP:RETRYCNT") {
     field(HIGH, "5")
     field(HSV, "MINOR")
     info(archive, "VAL")
-    info(alarm, "Euro")
 }
 
 ## difference between sent SP and readback SP to trigger a resend of SP
