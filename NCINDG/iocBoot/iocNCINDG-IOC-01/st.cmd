@@ -15,4 +15,4 @@ dbLoadDatabase "dbd/NCINDG-IOC-01.dbd"
 NCINDG_IOC_01_registerRecordDeviceDriver pdbbase
 
 ## calling common command file in ioc 01 boot dir
-< ${TOP}/iocBoot/ioc_01_APP_NAME_/st-common.cmd
+< ${TOP}/iocBoot/iocNCINDG-IOC-01/st-common.cmd
