@@ -5,11 +5,12 @@
 <ioc_details></ioc_details>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
-<macro name="EMULATOR_PORT" pattern="^[0-9]+$" description="IP address of Huber controller" defaultValue="57677" hasDefault="YES" />
 <macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="NO" />
 <macro name="NUMBERAXES" pattern="^([1-9]|(1[1-6]))$" description="Number of Axes on the Controller" defaultValue="5" hasDefault="YES" />
 <macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 19200)" defaultValue="9600" hasDefault="YES" />
 <macro name="PARITY" pattern="^(even|odd|none)$" description="Parity (default: none)" defaultValue="none" hasDefault="YES" />
+<macro name="STOP" pattern="^([1-2])$" description="STOP bits" defaultValue="1" hasDefault="YES" />
+<macro name="BITS" pattern="^([5-8])$" description="Data bits" defaultValue="8" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>

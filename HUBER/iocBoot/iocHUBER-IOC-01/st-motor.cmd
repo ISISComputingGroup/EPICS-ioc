@@ -8,9 +8,9 @@ $(IFDEVSIM) drvAsynIPPortConfigure("Huber$(MTRCTRL)", "localhost:$(EMULATOR_PORT
 $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("Huber$(MTRCTRL)", "$(PORT)", 0, 0, 0)
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("Huber$(MTRCTRL)", -1, "parity", "$(PARITY=None)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("Huber$(MTRCTRL)", -1, "baud", "$(BAUD=19200)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("Huber$(MTRCTRL)", -1, "bits", "$(BITS=8)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("Huber$(MTRCTRL)", -1, "bits", "$(BITS)")
 
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("Huber$(MTRCTRL)", -1, "stop", "$(STOP=1)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("Huber$(MTRCTRL)", -1, "stop", "$(STOP)")
 ## Hardware flow control off
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("Huber$(MTRCTRL)", 0, "clocal", "Y")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("Huber$(MTRCTRL)",0,"crtscts","N")
