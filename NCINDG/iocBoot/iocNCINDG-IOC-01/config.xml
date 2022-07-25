@@ -3,6 +3,8 @@
 <config_part>
 <ioc_desc>Nuclear Instruments Digitiser</ioc_desc>
 <macros>
+<macro name ="IP_ADDR_0" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of digitiser." hasDefault="NO" />
+
 </macros>
 <pvsets />
 </config_part>

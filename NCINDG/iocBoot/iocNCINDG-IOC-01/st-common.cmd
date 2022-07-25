@@ -1,10 +1,7 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(_SUPPORT_MACRO_)/data"
-epicsEnvSet "DEVICE" "L0"
-
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-nucInstDigConfigure("DIG0", "172.16.105.186")
+nucInstDigConfigure("DIG0", "$(IP_ADDR_0)")
 
 ## Load record instances
 
