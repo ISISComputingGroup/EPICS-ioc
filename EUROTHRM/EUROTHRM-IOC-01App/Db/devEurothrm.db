@@ -80,6 +80,13 @@ record(stringin, "$(P)RAMP_FILE")
     field(SCAN, "I/O Intr")
 }
 
+record(longin, "$(P)RAMP_FILE_CHANGED")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(READ),0,1)LUTCG")
+    field(SCAN, "I/O Intr")
+}
+
 record(stringout, "$(P)RAMP_FILE:SP")
 {
     field(DTYP, "asynOctetWrite")
