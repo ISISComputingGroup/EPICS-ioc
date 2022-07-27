@@ -80,10 +80,10 @@ record(stringin, "$(P)RAMP_FILE")
     field(SCAN, "I/O Intr")
 }
 
-record(longin, "$(P)RAMP_FILE_CHANGED")
+record(longin, "$(P)RAMP_FILE_NOT_DEFAULT")
 {
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(READ),0,1)LUTCG")
+    field(INP,  "@asyn($(READ),0,1)LUTNDF")
     field(SCAN, "I/O Intr")
 }
 
