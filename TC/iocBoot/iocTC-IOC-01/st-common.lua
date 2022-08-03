@@ -47,6 +47,9 @@ function twincat_stcommon_main()
 		iocsh.devMotorCreateAxis(motor_port, axis_num-1, plc_version)
 		iocsh.dbLoadRecords(single_axis_db, db_args)
 
+		auto_power_db_args = string.format("P=%s,M=MOT:%s,PORT=%s,ADDR=%s", pv_prefix, motor_pv, motor_port, axis_num-1)
+		iocsh.dbLoadRecords("$(MOTOR)/db/asyn_auto_power.db", auto_power_db_args)
+
 		enabled_monitor_db = "db/enabled_monitor.db"
 		enabled_monitor_db_args = string.format("P=%s,I=%s,AXIS_NUM=%s,MOTOR_PV=%s", pv_prefix, ioc_name, axis_num, motor_pv)
 		iocsh.dbLoadRecords(enabled_monitor_db, enabled_monitor_db_args)
