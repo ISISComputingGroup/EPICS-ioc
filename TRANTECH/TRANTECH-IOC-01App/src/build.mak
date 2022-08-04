@@ -38,7 +38,7 @@ $(APPNAME)_DBD += transtechnik.dbd
 # Add all the support libraries needed by this IOC
 
 ## Add additional libraries here ##
-#$(APPNAME)_LIBS += xxx
+$(APPNAME)_LIBS += transtechnik
 
 ## ISIS standard libraries ##
 ## Stream device libraries ##
@@ -54,7 +54,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
-$(APPNAME)_LIBS += seq pv transtechnik
+$(APPNAME)_LIBS += seq pv
 
 # TRANTECH-IOC-01_registerRecordDeviceDriver.cpp derives from TRANTECH-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
