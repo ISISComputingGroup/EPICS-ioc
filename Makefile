@@ -57,6 +57,7 @@ IOCDIRS += HUBER
 IOCDIRS += TRANTECH
 IOCDIRS += B17TMAG
 IOCDIRS += NCINDG
+IOCDIRS += TJMPER
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
