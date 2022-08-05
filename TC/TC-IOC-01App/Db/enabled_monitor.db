@@ -14,3 +14,20 @@ record(calcout, $(P)MOT:$(MOTOR_PV):VELO_SEND)
     field(CALC, "A")
     field(OUT, "$(P)MOT:$(MOTOR_PV).VELO")
 }
+
+record(calcout, $(P)MOT:$(MOTOR_PV):DESC_SEND)
+{
+    field(DESC, "Forward device DESC to mtr rec")
+    field(INPA, "$(P)$(I):ASTAXES_$(AXIS_NUM):STDESC CP")
+    field(CALC, "A")
+    field(OUT, "$(P)MOT:$(MOTOR_PV).DESC")
+}
+
+record(calcout, $(P)MOT:$(MOTOR_PV):EGU_SEND)
+{
+    field(DESC, "Forward device EGU to mtr rec")
+    field(INPA, "$(P)$(I):ASTAXES_$(AXIS_NUM):STEGU CP")
+    field(CALC, "A")
+    field(OUT, "$(P)MOT:$(MOTOR_PV).EGU")
+}
+
