@@ -11,7 +11,7 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 DB += single_axis.db
-DB += enabled_monitor.db
+DB += axis_monitors.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

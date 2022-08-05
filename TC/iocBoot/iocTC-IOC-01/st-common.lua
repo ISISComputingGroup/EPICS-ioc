@@ -47,9 +47,9 @@ function twincat_stcommon_main()
 		iocsh.devMotorCreateAxis(motor_port, axis_num-1, plc_version)
 		iocsh.dbLoadRecords(single_axis_db, db_args)
 
-		enabled_monitor_db = "db/enabled_monitor.db"
-		enabled_monitor_db_args = string.format("P=%s,I=%s,AXIS_NUM=%s,MOTOR_PV=%s", pv_prefix, ioc_name, axis_num, motor_pv)
-		iocsh.dbLoadRecords(enabled_monitor_db, enabled_monitor_db_args)
+		axis_monitors = "db/axis_monitors.db"
+		axis_monitors_args = string.format("P=%s,I=%s,AXIS_NUM=%s,MOTOR_PV=%s", pv_prefix, ioc_name, axis_num, motor_pv)
+		iocsh.dbLoadRecords(axis_monitors, axis_monitors_args)
 		autosave_file:write(string.format("file \"motor_settings.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
 		-- wrap around to next MTRCTRL - this is so we can show >8 axes in the IBEX table of motors. 
 		if axis_num > 8 then
