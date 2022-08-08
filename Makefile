@@ -58,6 +58,7 @@ IOCDIRS += TRANTECH
 IOCDIRS += B17TMAG
 IOCDIRS += NCINDG
 IOCDIRS += TJMPER
+IOCDIRS += RVWTEST
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
