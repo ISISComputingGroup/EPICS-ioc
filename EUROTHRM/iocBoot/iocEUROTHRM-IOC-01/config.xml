@@ -8,6 +8,7 @@
 <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 7." defaultValue="7" hasDefault="YES" />
 <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to even." defaultValue="even" hasDefault="YES" />
 <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
+<macro name="COMMS_MODE" pattern="^(eibisynch)|(modbus)$" description="Comms mode, eibisynch or modbus. Defaults to eibisynch." defaultValue="eibisynch" hasDefault="YES" />
 
 <macro name="ADDR_1" pattern="^[0-9]{1,2}$" description="Address for the 1st Eurotherm on this port e.g. 01. Blank for do not use." hasDefault="NO" />
 <macro name="ADDR_2" pattern="^[0-9]{1,2}$" description="Address for the 2nd Eurotherm on this port e.g. 02. Blank for do not use." hasDefault="NO" />
