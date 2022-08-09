@@ -4,6 +4,7 @@
   <ioc_desc>Background Script</ioc_desc>
   <ioc_details>IOC runs a background script from configurations area</ioc_details>
   <macros>
+    <macro name="SCRIPT_PATH" pattern="^.*$" description="Path to the Python background script." hasDefault="NO"/>
   </macros>
  </config_part>
 </ioc_config>
