@@ -1,7 +1,7 @@
 @echo off
 setlocal
 set MYDIRBLOCK=%~dp0
-call C:\Instrument\Apps\EPICS\config_env_base.bat
+call %~dp0..\..\..\..\..\config_env_base.bat
 call dllPath.bat
 %HIDEWINDOW% h
 
@@ -10,20 +10,14 @@ set EPICS_CAS_BEACON_ADDR_LIST=127.255.255.255
 
 set PYTHONUNBUFFERED=TRUE
 
-set "GETMACRO=C:\Instrument\Apps\EPICS\support\icpconfig\master\bin\%EPICS_HOST_ARCH%\icpconfigGetMacro.exe"
+set "GETMACRO=%EPICS_KIT_ROOT%\support\icpconfig\master\bin\%EPICS_HOST_ARCH%\icpconfigGetMacro.exe"
 set "MYIOCNAME=BGRSCRPT_01"
 
-echo PRE %MACRO%
+REM for loop is used to capture the output
+for /f %%a in ( '%GETMACRO% "SCRIPT_PATH" %MYIOCNAME%'  ) do ( set "SCRIPT_PATH_MACRO=%%a" )
 
-echo Defining macro
-REM need this funny syntax to be able to set eol correctly - see google
-for /f usebackq^ tokens^=*^ delims^=^ eol^= %%a in ( `%GETMACRO% "SCRIPT_PATH" %MYIOCNAME%`  ) do ( set "MACRO=%%a" )
-
-if "%MACRO%"=="" (
-    echo Setting default path
-    set "MACRO=%ICPINSTSCRIPTROOT%/background_script.py"
+if "%SCRIPT_PATH_MACRO%"=="" (
+    set "SCRIPT_PATH_MACRO=%ICPINSTSCRIPTROOT%/background_script.py"
 )
 
-echo Macro is %MACRO%
-
-%PYTHON3W% %MACRO%
+%PYTHON3W% %SCRIPT_PATH_MACRO%
