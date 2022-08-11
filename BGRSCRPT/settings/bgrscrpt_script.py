@@ -9,4 +9,4 @@ register_ioc_start("BGRSCRPT_01")
 print("IOC started")
 
 # This script creates a temporary directory so we can test if execution from path macro was successful in bgrscrpt.py 
-os.mkdir("C:\\Instrument\\Var\\tmp\\BGRSCRPT_01_test_dir")
+os.mkdir(os.path.join("C:\\", "Instrument", "Var", "tmp", "BGRSCRPT_01_test_dir"))
