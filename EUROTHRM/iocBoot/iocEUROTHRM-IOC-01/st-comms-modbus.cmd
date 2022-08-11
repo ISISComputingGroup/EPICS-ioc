@@ -30,8 +30,8 @@ modbusInterposeConfig("L0", 1, 2000, 0)
 #                        plcType);
 #
 
-drvModbusAsynConfigure("MODBUS_RX","L0",2, 3, -1, 1, 0, 1000, "")
-drvModbusAsynConfigure("MODBUS_TX","L0",2, 6, -1, 1, 0, 0, "")
+drvModbusAsynConfigure("MODBUS_RX","L0",2, 3, -1, 1, 4, 1000, "")
+drvModbusAsynConfigure("MODBUS_TX","L0",2, 6, -1, 1, 4, 0, "")
 
 asynSetTraceMask("L0", -1, 0x9)
 asynSetTraceIOMask("L0", -1, 0x2)

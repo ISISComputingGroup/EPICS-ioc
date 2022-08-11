@@ -14,6 +14,3 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
 # Software flow control off
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
-
-$(IFNOTRECSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\r\n") 
-$(IFNOTRECSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r")
