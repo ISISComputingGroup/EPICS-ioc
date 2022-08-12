@@ -2,8 +2,6 @@
 ########## Eurothrm 
 
 stringiftest("ACTIVE", "$(ADDR_$(EURO_NUM)=)")
-calc("LAD", "$(ADDR_$(EURO_NUM)=0)%10",1,1)
-calc("GAD", "$(ADDR_$(EURO_NUM)=0)/10%10",1,1)
 
 ## Load FileList
 ## A seperate instance must be created for each Eurothrm
@@ -18,7 +16,7 @@ epicsEnvSet("P","$(MYPVPREFIX)$(IOCNAME):A0$(EURO_NUM):")
 
 ## Load record instances
 ## The timing for record reads is controlled in st-timing.cmd
-$(IFACTIVE) dbLoadRecords("$(TOP)/db/devEurothrm.db","P=$(P),Q=$(MYPVPREFIX)$(IOCNAME):, ADDR=$(ADDR_$(EURO_NUM)=0), GAD=$(GAD), LAD=$(LAD), PORT=L0, CALIB_BASE_DIR= $(CALIB_BASE_DIR), READ=READASCII$(EURO_NUM), RAMPLIST=RAMPFILELIST$(EURO_NUM), TREAD=$(TREAD=1.4), TDLY=$(TDLY=0.5), IFUSES_BISYNCH=$(IFUSES_BISYNCH),IFNOTUSES_BISYNCH=$(IFNOTUSES_BISYNCH)")
+$(IFACTIVE) dbLoadRecords("$(TOP)/db/devEurothrmA$(ADDR_$(EURO_NUM)=01).db","P=$(P),Q=$(MYPVPREFIX)$(IOCNAME):, ADDR=$(ADDR_$(EURO_NUM)=0), PORT=L0, CALIB_BASE_DIR= $(CALIB_BASE_DIR), READ=READASCII$(EURO_NUM), RAMPLIST=RAMPFILELIST$(EURO_NUM), TREAD=$(TREAD=1.4), TDLY=$(TDLY=0.5), IFUSES_BISYNCH=$(IFUSES_BISYNCH),IFNOTUSES_BISYNCH=$(IFNOTUSES_BISYNCH)")
 
 $(IFACTIVE) dbLoadRecords($(FILELIST)/db/calibration.db, "P=$(P), CALIB_BASE_DIR=$(CALIB_BASE_DIR), SDIR=$(SENS_DIR), CALIBLIST=SENSORFILELIST$(EURO_NUM), CONV_TO_PV=TEMP, CONV_FROM_PV=, CONV_TO_DESC=Temperature, CONV_TO_EGU=K, SP_PV=RAMP_SP")
 
