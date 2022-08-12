@@ -1,6 +1,6 @@
 program hifimagsys("P")
 
-#include "seqPVmacros.h"
+#include "ibexSeqPVmacros.h"
 %% #include "errlog.h"
 
 /* Turn on run-time debug messages */
