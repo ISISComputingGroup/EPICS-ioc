@@ -11,8 +11,6 @@ cd "${TOP}"
 dbLoadDatabase "dbd/SCHNDR-IOC-02.dbd"
 SCHNDR_IOC_02_registerRecordDeviceDriver pdbbase
 
-epicsEnvSet("DEVICE", "L0")
-
 cd iocBoot/iocSCHNDR-IOC-01
 
 < st-common.cmd
