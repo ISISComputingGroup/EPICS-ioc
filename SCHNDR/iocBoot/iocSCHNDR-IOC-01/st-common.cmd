@@ -10,8 +10,8 @@ epicsEnvSet("PLC", "PLC0")
 < $(IOCSTARTUP)/dbload.cmd
 
 ##ISIS## load device specific init and DB from devices directory
-< devices/$(DEVCMD0=nodevice).cmd
-< devices/$(DEVCMD1=nodevice).cmd
+< devices/$(DEVCMD1=missing).cmd
+## if useful later add reading  devices/$(DEVCMD2=nodevice).cmd  etc
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
