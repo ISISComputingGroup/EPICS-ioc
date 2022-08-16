@@ -10,16 +10,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-DB += devEurothrmA01.db
-DB += devEurothrmA02.db
-DB += devEurothrmA03.db
-DB += devEurothrmA04.db
-DB += devEurothrmA05.db
-DB += devEurothrmA06.db
-DB += devEurothrmA07.db
-DB += devEurothrmA08.db
-DB += devEurothrmA09.db
-DB += devEurothrmA010.db
+DB += devEurothrm.db
 DB += devSimDis.db
 DB += isActiveEurothrm.db
 
