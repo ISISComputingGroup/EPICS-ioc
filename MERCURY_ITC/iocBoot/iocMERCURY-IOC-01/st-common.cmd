@@ -65,7 +65,7 @@ cd ${TOP}/iocBoot/${IOC}
 iocInit
 
 ## Start any sequence programs
-seq auto_pressure_ctrl, "P=$(MYPVPREFIX)$(IOCNAME):"
+seq auto_pressure_ctrl, "P=$(MYPVPREFIX)$(IOCNAME):, TEMP_CARD_NUM=1, PRESSURE_CARD_NUM=$(VTI_SPC_PRESSURE_1)"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
