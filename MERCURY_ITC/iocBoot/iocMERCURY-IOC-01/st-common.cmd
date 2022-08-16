@@ -65,7 +65,7 @@ cd ${TOP}/iocBoot/${IOC}
 iocInit
 
 ## Start any sequence programs
-#seq sncxxx,"user=hgv27692Host"
+seq auto_pressure_ctrl, "P=$(MYPVPREFIX)$(IOCNAME):"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
