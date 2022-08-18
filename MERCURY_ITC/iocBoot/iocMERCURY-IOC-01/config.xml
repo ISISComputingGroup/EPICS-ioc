@@ -30,6 +30,7 @@
 <macro name="VTI_SPC_MIN_PRESSURE" pattern="^[0-9]+\.?[0-9]*$" description="VTI software pressure control: minimum pressure allowed." hasDefault="YES" defaultValue="0.0" />
 <macro name="VTI_SPC_MAX_PRESSURE" pattern="^[0-9]+\.?[0-9]*$" description="VTI software pressure control: maximum pressure allowed." hasDefault="YES" defaultValue="0.0" />
 <macro name="VTI_SPC_PRESSURE_CONSTANT" pattern="^[0-9]+\.?[0-9]*$" description="VTI software pressure control: constant pressure to use when below cutoff point." hasDefault="YES" defaultValue="0.0" />
+<macro name="VTI_SPC_PRESSURE_MAX_LKUP" pattern="^[0-9]+\.?[0-9]*$" description="VTI software pressure control: Filename for temp-based lookup table for max pressure." hasDefault="YES" defaultValue="0.0" />
 <macro name="VTI_SPC_TEMP_CUTOFF_POINT" pattern="^[0-9]+\.?[0-9]*$" description="VTI software pressure control: temperature to switch between using a user-set constant and a linear interpolation function." hasDefault="YES" defaultValue="0.0" />
 <macro name="VTI_SPC_TEMP_SCALE" pattern="^[0-9]+\.?[0-9]*$" description="VTI software pressure control: amount to scale temp by to further control P vs T dependence." hasDefault="YES" defaultValue="0.0" />
 
