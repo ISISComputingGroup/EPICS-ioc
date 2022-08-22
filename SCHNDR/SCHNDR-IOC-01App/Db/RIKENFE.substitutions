@@ -1,0 +1,10 @@
+file pump_status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC}
+    
+    {"BP1:STAT", "vac_pump_stat", "0", "BP1 Vacuum Pump Status"}
+    {"BP2:STAT", "vac_pump_stat", "1", "BP2 Vacuum Pump Status"}
+    {"BP3:STAT", "vac_pump_stat", "2", "BP3 Vacuum Pump Status"}
+    {"BP4:STAT", "vac_pump_stat", "3", "BP4 Vacuum Pump Status"}
+    {"BP5:STAT", "vac_pump_stat", "4", "BP5 Vacuum Pump Status"}
+
+}
