@@ -1,7 +1,8 @@
+
 record (mbbi, "$(P)$(PV)") {
 
     field(DESC, "$(DESC)")
-    field(DTYP,"asynInt32")
+    field(DTYP, "asynInt32")
     field(ZRVL, 0)
     field(ONVL, 1)
     field(TWVL, 2)
@@ -12,6 +13,7 @@ record (mbbi, "$(P)$(PV)") {
     field(TWST, "Running")
     field(THST, "Warning")
     field(FRST, "Fault")
-    field(INP,"@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
-    field(SCAN,"I/O Intr")
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
+    # TODO Archive, Interest level fields
 }
