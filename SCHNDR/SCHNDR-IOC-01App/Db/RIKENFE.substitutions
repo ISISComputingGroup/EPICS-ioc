@@ -70,6 +70,47 @@ file RIKENFE_pump_status.template {
 
 # TODO 3.1      PSU Klixon Interlocks
 
+file RIKENFE_Interlock_or_MOL_status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC}
+
+       { "RQ1:KLIXON:STAT", "klixon_interlock_stat", " 0",        "RQ1 Klixon Status" }
+       { "RQ2:KLIXON:STAT", "klixon_interlock_stat", " 1",        "RQ2 Klixon Status" }
+       { "RB1:KLIXON:STAT", "klixon_interlock_stat", " 2",        "RB1 Klixon Status" }
+       { "RQ3:KLIXON:STAT", "klixon_interlock_stat", " 3",        "RQ3 Klixon Status" }
+       { "RQ4:KLIXON:STAT", "klixon_interlock_stat", " 4",        "RQ4 Klixon Status" }
+       { "RQ5:KLIXON:STAT", "klixon_interlock_stat", " 5",        "RQ5 Klixon Status" }
+       { "SY1:KLIXON:STAT", "klixon_interlock_stat", " 6",        "SY1 Klixon Status" }
+       { "SY2:KLIXON:STAT", "klixon_interlock_stat", " 7",        "SY2 Klixon Status" }
+       { "RQ6:KLIXON:STAT", "klixon_interlock_stat", " 8",        "RQ6 Klixon Status" }
+       { "RQ7:KLIXON:STAT", "klixon_interlock_stat", " 9",        "RQ7 Klixon Status" }
+       { "RQ8:KLIXON:STAT", "klixon_interlock_stat", "10",        "RQ8 Klixon Status" }
+       { "RB3:KLIXON:STAT", "klixon_interlock_stat", "11",        "RB3 Klixon Status" }
+       { "RQ9:KLIXON:STAT", "klixon_interlock_stat", "12",        "RQ9 Klixon Status" }
+      { "RQ10:KLIXON:STAT", "klixon_interlock_stat", "13",       "RQ10 Klixon Status" }
+      { "RQ11:KLIXON:STAT", "klixon_interlock_stat", "14",       "RQ11 Klixon Status" }
+      { "RQ12:KLIXON:STAT", "klixon_interlock_stat", "15",       "RQ12 Klixon Status" }
+      { "RQ13:KLIXON:STAT", "klixon_interlock_stat", "16",       "RQ13 Klixon Status" }
+      { "RQ14:KLIXON:STAT", "klixon_interlock_stat", "17",       "RQ14 Klixon Status" }
+      { "RQ15:KLIXON:STAT", "klixon_interlock_stat", "18",       "RQ15 Klixon Status" }
+      { "RQ16:KLIXON:STAT", "klixon_interlock_stat", "19",       "RQ16 Klixon Status" }
+      { "RQ17:KLIXON:STAT", "klixon_interlock_stat", "20",       "RQ17 Klixon Status" }
+       { "RB4:KLIXON:STAT", "klixon_interlock_stat", "21",        "RB4 Klixon Status" }
+      { "RQ18:KLIXON:STAT", "klixon_interlock_stat", "22",       "RQ18 Klixon Status" }
+      { "RQ19:KLIXON:STAT", "klixon_interlock_stat", "23",       "RQ19 Klixon Status" }
+      { "RQ20:KLIXON:STAT", "klixon_interlock_stat", "24",       "RQ20 Klixon Status" }
+      { "RQ21:KLIXON:STAT", "klixon_interlock_stat", "25",       "RQ21 Klixon Status" }
+      { "RQ22:KLIXON:STAT", "klixon_interlock_stat", "26",       "RQ22 Klixon Status" }
+      { "RQ23:KLIXON:STAT", "klixon_interlock_stat", "27",       "RQ23 Klixon Status" }
+  { "ARGUS:LG:KLIXON:STAT", "klixon_interlock_stat", "28",   "Argus LG Klixon Status" }
+  { "ARGUS:TR:KLIXON:STAT", "klixon_interlock_stat", "29",   "Argus TR Klixon Status" }
+      { "XFD1:KLIXON:STAT", "klixon_interlock_stat", "30",       "XFD1 Klixon Status" }
+      { "XFD2:KLIXON:STAT", "klixon_interlock_stat", "31",       "XFD2 Klixon Status" }
+       { "RB2:KLIXON:STAT", "klixon_interlock_stat", "32",        "RB2 Klixon Status" }
+{ "CHRONUS:LG:KLIXON:STAT", "klixon_interlock_stat", "33", "Chronus LG Klixon Status" }
+{ "CHRONUS:TR:KLIXON:STAT", "klixon_interlock_stat", "34", "Chronus TR Klixon Status" }
+      { "XFD3:KLIXON:STAT", "klixon_interlock_stat", "35",       "XFD3 Klixon Status" }
+
+}
 
 # 3.2 PSU Water Interlock Status
 
@@ -116,7 +157,7 @@ file RIKENFE_Interlock_or_MOL_status.template {
     { "CHR:PSU:WATER:FLOW:STAT", "water_interlock_stat", "37",      "Chronus PSU Flow Status" }
     {    "XFD3:WATER:FLOW:STAT", "water_interlock_stat", "38",             "XFD3 Flow Status" }
 }
-
+	
 
 # 3.3       Water Flow
 file RIKENFE_float.template {
