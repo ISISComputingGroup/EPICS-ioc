@@ -15,7 +15,6 @@ record (mbbi, "$(P)$(PV)") {
     field(NIVL, 9)
     field(TEVL, 10)
     field(ELVL, 11)
-
     field(ZRST, "Comms OK")
     field(ONST, "$(LOCN) Locked")
     field(TWST, "NO_A Closed")
@@ -28,7 +27,6 @@ record (mbbi, "$(P)$(PV)") {
     field(NIST, "NC_A Opened")
     field(TEST, "NC_B Opened")
     field(ELST, "NC uswitch Opened")
-
     field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
     field(SCAN, "I/O Intr")
     # TODO Archive, Interest level fields

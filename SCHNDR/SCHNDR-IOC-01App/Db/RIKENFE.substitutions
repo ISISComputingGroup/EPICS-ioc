@@ -14,7 +14,7 @@
 file RIKENFE_Other_Valve_Interlock_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, 0TEXT, 1TEXT, 2TEXT, 3TEXT, 4TEXT, 5TEXT, 6TEXT, 7TEXT, 8TEXT}
 
-    { "SOLENOID:STAT", "solenoid_status", " 0", "Solenoid Interlock Status", "Comms Error", "GH7 OK", "GH8 OK", "Cryo System OK", "Cooldown Complete", "Magnet Excitation", "Compressor On", "", "" }
+    { "SOLENOID:STAT", "solenoid_status", " 0", "Solenoid Status", "Comms Error", "GH7 OK", "GH8 OK", "Cryo System OK", "Cooldown Complete", "Magnet Excitation", "Compressor On", "", "" }
 }
 
 
