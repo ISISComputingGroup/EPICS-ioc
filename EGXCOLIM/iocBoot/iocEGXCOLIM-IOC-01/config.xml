@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>		
  <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">		
  <config_part>		
- <ioc_desc>Engin-X Collimators</ioc_desc>		
+ <ioc_desc>ISIS Engin-X Collimators</ioc_desc>		
  <macros>		
  <!-- check st-port.cmd for defaults -->		
  <macro name="LVDCOM_HOST" pattern="^[A-Z0-9]+$" description="lvDCOM host" hasDefault="NO" />		
