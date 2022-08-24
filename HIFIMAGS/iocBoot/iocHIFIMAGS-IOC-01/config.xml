@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>System Manager for the HIFI Cryomag</ioc_desc>
+<ioc_desc>ISIS HIFI Cryomagnet System Manager</ioc_desc>
 <macros>
 <macro name="X_IOC" pattern="[a-zA-Z0-9]*_\d\d" description="The IOC name for the X PSU" defaultValue="CRYOSMS_01" hasDefault="YES" />
 <macro name="Y_IOC" pattern="[a-zA-Z0-9]*_\d\d" description="The IOC name for the Y PSU" defaultValue="CRYOSMS_01" hasDefault="YES" />
