@@ -4,7 +4,7 @@
 
 # TODO 1.4.2 Vacuum Interlock Status
 
-# TODO 1.5   Solenoid - PSU will not be installed until current one fails
+# TODO 1.5   Solenoid - *NB* PSU will not be installed until current one fails
 
 # TODO 1.6.1 Kickers General Status
 
@@ -31,28 +31,28 @@
 file RIKENFE_pump_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
     
-    {  "BP1:STAT", "vac_pump_stat",  "0",  "BP1 Vacuum Pump Status" }
-    {  "BP2:STAT", "vac_pump_stat",  "1",  "BP2 Vacuum Pump Status" }
-    {  "BP3:STAT", "vac_pump_stat",  "2",  "BP3 Vacuum Pump Status" }
-    {  "BP4:STAT", "vac_pump_stat",  "3",  "BP4 Vacuum Pump Status" }
-    {  "BP5:STAT", "vac_pump_stat",  "4",  "BP5 Vacuum Pump Status" }
-    {  "BP6:STAT", "vac_pump_stat",  "5",  "BP5 Vacuum Pump Status" }
-    {  "BP7:STAT", "vac_pump_stat",  "6",  "BP5 Vacuum Pump Status" }
-    {  "BP8:STAT", "vac_pump_stat",  "7",  "BP5 Vacuum Pump Status" }
-    {  "BP9:STAT", "vac_pump_stat",  "8",  "BP5 Vacuum Pump Status" }
-    { "BP10:STAT", "vac_pump_stat",  "9",  "BP5 Vacuum Pump Status" }
-    { "BP11:STAT", "vac_pump_stat", "10",  "BP5 Vacuum Pump Status" }
-    {  "TP1:STAT", "vac_pump_stat", "11",  "TP1 Vacuum Pump Status" }
-    {  "TP2:STAT", "vac_pump_stat", "12",  "TP2 Vacuum Pump Status" }
-    {  "TP3:STAT", "vac_pump_stat", "13",  "TP3 Vacuum Pump Status" }
-    {  "TP4:STAT", "vac_pump_stat", "14",  "TP4 Vacuum Pump Status" }
-    {  "TP5:STAT", "vac_pump_stat", "15",  "TP5 Vacuum Pump Status" }
-    {  "TP6:STAT", "vac_pump_stat", "16",  "TP6 Vacuum Pump Status" }
-    {  "TP7:STAT", "vac_pump_stat", "17",  "TP7 Vacuum Pump Status" }
-    {  "TP8:STAT", "vac_pump_stat", "18",  "TP8 Vacuum Pump Status" }
-    {  "TP9:STAT", "vac_pump_stat", "19",  "TP9 Vacuum Pump Status" }
-    { "TP10:STAT", "vac_pump_stat", "20", "TP10 Vacuum Pump Status" }
-    { "TP11:STAT", "vac_pump_stat", "21", "TP11 Vacuum Pump Status" }
+    {  "BP1:STAT", "vacuum_pump_status",  "0",  "BP1 Vacuum Pump Status" }
+    {  "BP2:STAT", "vacuum_pump_status",  "1",  "BP2 Vacuum Pump Status" }
+    {  "BP3:STAT", "vacuum_pump_status",  "2",  "BP3 Vacuum Pump Status" }
+    {  "BP4:STAT", "vacuum_pump_status",  "3",  "BP4 Vacuum Pump Status" }
+    {  "BP5:STAT", "vacuum_pump_status",  "4",  "BP5 Vacuum Pump Status" }
+    {  "BP6:STAT", "vacuum_pump_status",  "5",  "BP5 Vacuum Pump Status" }
+    {  "BP7:STAT", "vacuum_pump_status",  "6",  "BP5 Vacuum Pump Status" }
+    {  "BP8:STAT", "vacuum_pump_status",  "7",  "BP5 Vacuum Pump Status" }
+    {  "BP9:STAT", "vacuum_pump_status",  "8",  "BP5 Vacuum Pump Status" }
+    { "BP10:STAT", "vacuum_pump_status",  "9",  "BP5 Vacuum Pump Status" }
+    { "BP11:STAT", "vacuum_pump_status", "10",  "BP5 Vacuum Pump Status" }
+    {  "TP1:STAT", "vacuum_pump_status", "11",  "TP1 Vacuum Pump Status" }
+    {  "TP2:STAT", "vacuum_pump_status", "12",  "TP2 Vacuum Pump Status" }
+    {  "TP3:STAT", "vacuum_pump_status", "13",  "TP3 Vacuum Pump Status" }
+    {  "TP4:STAT", "vacuum_pump_status", "14",  "TP4 Vacuum Pump Status" }
+    {  "TP5:STAT", "vacuum_pump_status", "15",  "TP5 Vacuum Pump Status" }
+    {  "TP6:STAT", "vacuum_pump_status", "16",  "TP6 Vacuum Pump Status" }
+    {  "TP7:STAT", "vacuum_pump_status", "17",  "TP7 Vacuum Pump Status" }
+    {  "TP8:STAT", "vacuum_pump_status", "18",  "TP8 Vacuum Pump Status" }
+    {  "TP9:STAT", "vacuum_pump_status", "19",  "TP9 Vacuum Pump Status" }
+    { "TP10:STAT", "vacuum_pump_status", "20", "TP10 Vacuum Pump Status" }
+    { "TP11:STAT", "vacuum_pump_status", "21", "TP11 Vacuum Pump Status" }
 }
 
 # TODO 2.4.1    Vaccuum Valve Interlocks
@@ -73,42 +73,42 @@ file RIKENFE_pump_status.template {
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {        "RQ1:KLIXON:STAT", "klixon_interlock_stat", " 0",        "RQ1 Klixon Status" }
-    {        "RQ2:KLIXON:STAT", "klixon_interlock_stat", " 1",        "RQ2 Klixon Status" }
-    {        "RB1:KLIXON:STAT", "klixon_interlock_stat", " 2",        "RB1 Klixon Status" }
-    {        "RQ3:KLIXON:STAT", "klixon_interlock_stat", " 3",        "RQ3 Klixon Status" }
-    {        "RQ4:KLIXON:STAT", "klixon_interlock_stat", " 4",        "RQ4 Klixon Status" }
-    {        "RQ5:KLIXON:STAT", "klixon_interlock_stat", " 5",        "RQ5 Klixon Status" }
-    {        "SY1:KLIXON:STAT", "klixon_interlock_stat", " 6",        "SY1 Klixon Status" }
-    {        "SY2:KLIXON:STAT", "klixon_interlock_stat", " 7",        "SY2 Klixon Status" }
-    {        "RQ6:KLIXON:STAT", "klixon_interlock_stat", " 8",        "RQ6 Klixon Status" }
-    {        "RQ7:KLIXON:STAT", "klixon_interlock_stat", " 9",        "RQ7 Klixon Status" }
-    {        "RQ8:KLIXON:STAT", "klixon_interlock_stat", "10",        "RQ8 Klixon Status" }
-    {        "RB3:KLIXON:STAT", "klixon_interlock_stat", "11",        "RB3 Klixon Status" }
-    {        "RQ9:KLIXON:STAT", "klixon_interlock_stat", "12",        "RQ9 Klixon Status" }
-    {       "RQ10:KLIXON:STAT", "klixon_interlock_stat", "13",       "RQ10 Klixon Status" }
-    {       "RQ11:KLIXON:STAT", "klixon_interlock_stat", "14",       "RQ11 Klixon Status" }
-    {       "RQ12:KLIXON:STAT", "klixon_interlock_stat", "15",       "RQ12 Klixon Status" }
-    {       "RQ13:KLIXON:STAT", "klixon_interlock_stat", "16",       "RQ13 Klixon Status" }
-    {       "RQ14:KLIXON:STAT", "klixon_interlock_stat", "17",       "RQ14 Klixon Status" }
-    {       "RQ15:KLIXON:STAT", "klixon_interlock_stat", "18",       "RQ15 Klixon Status" }
-    {       "RQ16:KLIXON:STAT", "klixon_interlock_stat", "19",       "RQ16 Klixon Status" }
-    {       "RQ17:KLIXON:STAT", "klixon_interlock_stat", "20",       "RQ17 Klixon Status" }
-    {        "RB4:KLIXON:STAT", "klixon_interlock_stat", "21",        "RB4 Klixon Status" }
-    {       "RQ18:KLIXON:STAT", "klixon_interlock_stat", "22",       "RQ18 Klixon Status" }
-    {       "RQ19:KLIXON:STAT", "klixon_interlock_stat", "23",       "RQ19 Klixon Status" }
-    {       "RQ20:KLIXON:STAT", "klixon_interlock_stat", "24",       "RQ20 Klixon Status" }
-    {       "RQ21:KLIXON:STAT", "klixon_interlock_stat", "25",       "RQ21 Klixon Status" }
-    {       "RQ22:KLIXON:STAT", "klixon_interlock_stat", "26",       "RQ22 Klixon Status" }
-    {       "RQ23:KLIXON:STAT", "klixon_interlock_stat", "27",       "RQ23 Klixon Status" }
-    {   "ARGUS:LG:KLIXON:STAT", "klixon_interlock_stat", "28",   "Argus LG Klixon Status" }
-    {   "ARGUS:TR:KLIXON:STAT", "klixon_interlock_stat", "29",   "Argus TR Klixon Status" }
-    {       "XFD1:KLIXON:STAT", "klixon_interlock_stat", "30",       "XFD1 Klixon Status" }
-    {       "XFD2:KLIXON:STAT", "klixon_interlock_stat", "31",       "XFD2 Klixon Status" }
-    {        "RB2:KLIXON:STAT", "klixon_interlock_stat", "32",        "RB2 Klixon Status" }
-    { "CHRONUS:LG:KLIXON:STAT", "klixon_interlock_stat", "33", "Chronus LG Klixon Status" }
-    { "CHRONUS:TR:KLIXON:STAT", "klixon_interlock_stat", "34", "Chronus TR Klixon Status" }
-    {       "XFD3:KLIXON:STAT", "klixon_interlock_stat", "35",       "XFD3 Klixon Status" }
+    {        "RQ1:KLIXON:STAT", "klixon_interlock_status", " 0",        "RQ1 Klixon Status" }
+    {        "RQ2:KLIXON:STAT", "klixon_interlock_status", " 1",        "RQ2 Klixon Status" }
+    {        "RB1:KLIXON:STAT", "klixon_interlock_status", " 2",        "RB1 Klixon Status" }
+    {        "RQ3:KLIXON:STAT", "klixon_interlock_status", " 3",        "RQ3 Klixon Status" }
+    {        "RQ4:KLIXON:STAT", "klixon_interlock_status", " 4",        "RQ4 Klixon Status" }
+    {        "RQ5:KLIXON:STAT", "klixon_interlock_status", " 5",        "RQ5 Klixon Status" }
+    {        "SY1:KLIXON:STAT", "klixon_interlock_status", " 6",        "SY1 Klixon Status" }
+    {        "SY2:KLIXON:STAT", "klixon_interlock_status", " 7",        "SY2 Klixon Status" }
+    {        "RQ6:KLIXON:STAT", "klixon_interlock_status", " 8",        "RQ6 Klixon Status" }
+    {        "RQ7:KLIXON:STAT", "klixon_interlock_status", " 9",        "RQ7 Klixon Status" }
+    {        "RQ8:KLIXON:STAT", "klixon_interlock_status", "10",        "RQ8 Klixon Status" }
+    {        "RB3:KLIXON:STAT", "klixon_interlock_status", "11",        "RB3 Klixon Status" }
+    {        "RQ9:KLIXON:STAT", "klixon_interlock_status", "12",        "RQ9 Klixon Status" }
+    {       "RQ10:KLIXON:STAT", "klixon_interlock_status", "13",       "RQ10 Klixon Status" }
+    {       "RQ11:KLIXON:STAT", "klixon_interlock_status", "14",       "RQ11 Klixon Status" }
+    {       "RQ12:KLIXON:STAT", "klixon_interlock_status", "15",       "RQ12 Klixon Status" }
+    {       "RQ13:KLIXON:STAT", "klixon_interlock_status", "16",       "RQ13 Klixon Status" }
+    {       "RQ14:KLIXON:STAT", "klixon_interlock_status", "17",       "RQ14 Klixon Status" }
+    {       "RQ15:KLIXON:STAT", "klixon_interlock_status", "18",       "RQ15 Klixon Status" }
+    {       "RQ16:KLIXON:STAT", "klixon_interlock_status", "19",       "RQ16 Klixon Status" }
+    {       "RQ17:KLIXON:STAT", "klixon_interlock_status", "20",       "RQ17 Klixon Status" }
+    {        "RB4:KLIXON:STAT", "klixon_interlock_status", "21",        "RB4 Klixon Status" }
+    {       "RQ18:KLIXON:STAT", "klixon_interlock_status", "22",       "RQ18 Klixon Status" }
+    {       "RQ19:KLIXON:STAT", "klixon_interlock_status", "23",       "RQ19 Klixon Status" }
+    {       "RQ20:KLIXON:STAT", "klixon_interlock_status", "24",       "RQ20 Klixon Status" }
+    {       "RQ21:KLIXON:STAT", "klixon_interlock_status", "25",       "RQ21 Klixon Status" }
+    {       "RQ22:KLIXON:STAT", "klixon_interlock_status", "26",       "RQ22 Klixon Status" }
+    {       "RQ23:KLIXON:STAT", "klixon_interlock_status", "27",       "RQ23 Klixon Status" }
+    {   "ARGUS:LG:KLIXON:STAT", "klixon_interlock_status", "28",   "Argus LG Klixon Status" }
+    {   "ARGUS:TR:KLIXON:STAT", "klixon_interlock_status", "29",   "Argus TR Klixon Status" }
+    {       "XFD1:KLIXON:STAT", "klixon_interlock_status", "30",       "XFD1 Klixon Status" }
+    {       "XFD2:KLIXON:STAT", "klixon_interlock_status", "31",       "XFD2 Klixon Status" }
+    {        "RB2:KLIXON:STAT", "klixon_interlock_status", "32",        "RB2 Klixon Status" }
+    { "CHRONUS:LG:KLIXON:STAT", "klixon_interlock_status", "33", "Chronus LG Klixon Status" }
+    { "CHRONUS:TR:KLIXON:STAT", "klixon_interlock_status", "34", "Chronus TR Klixon Status" }
+    {       "XFD3:KLIXON:STAT", "klixon_interlock_status", "35",       "XFD3 Klixon Status" }
 
 }
 
@@ -118,94 +118,157 @@ file RIKENFE_Interlock_or_MOL_status.template {
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {     "RQ1:WATER:FLOW:STAT", "water_interlock_stat", " 0",              "RQ1 Flow Status" }
-    {     "RQ2:WATER:FLOW:STAT", "water_interlock_stat", " 1",              "RQ2 Flow Status" }
-    {     "RB1:WATER:FLOW:STAT", "water_interlock_stat", " 2",              "RB1 Flow Status" }
-    {     "RQ3:WATER:FLOW:STAT", "water_interlock_stat", " 3",              "RQ3 Flow Status" }
-    {     "RQ4:WATER:FLOW:STAT", "water_interlock_stat", " 4",              "RQ4 Flow Status" }
-    {     "RQ5:WATER:FLOW:STAT", "water_interlock_stat", " 5",              "RQ5 Flow Status" }
-    {     "SY1:WATER:FLOW:STAT", "water_interlock_stat", " 6",              "SY1 Flow Status" }
-    {     "SY2:WATER:FLOW:STAT", "water_interlock_stat", " 7",              "SY2 Flow Status" }
-    {     "RQ6:WATER:FLOW:STAT", "water_interlock_stat", " 8",              "RQ6 Flow Status" }
-    {     "RQ7:WATER:FLOW:STAT", "water_interlock_stat", " 9",              "RQ7 Flow Status" }
-    {     "RQ8:WATER:FLOW:STAT", "water_interlock_stat", "10",              "RQ8 Flow Status" }
-    {     "RB3:WATER:FLOW:STAT", "water_interlock_stat", "11",              "RB3 Flow Status" }
-    {     "RQ9:WATER:FLOW:STAT", "water_interlock_stat", "12",              "RQ9 Flow Status" }
-    {    "RQ10:WATER:FLOW:STAT", "water_interlock_stat", "13",             "RQ10 Flow Status" }
-    {    "RQ11:WATER:FLOW:STAT", "water_interlock_stat", "14",             "RQ11 Flow Status" }
-    {    "RQ12:WATER:FLOW:STAT", "water_interlock_stat", "15",             "RQ12 Flow Status" }
-    {    "RQ13:WATER:FLOW:STAT", "water_interlock_stat", "16",             "RQ13 Flow Status" }
-    {    "RQ14:WATER:FLOW:STAT", "water_interlock_stat", "17",             "RQ14 Flow Status" }
-    {    "RQ15:WATER:FLOW:STAT", "water_interlock_stat", "18",             "RQ15 Flow Status" }
-    {    "RQ16:WATER:FLOW:STAT", "water_interlock_stat", "19",             "RQ16 Flow Status" }
-    {    "RQ17:WATER:FLOW:STAT", "water_interlock_stat", "20",             "RQ17 Flow Status" }
-    {     "RB4:WATER:FLOW:STAT", "water_interlock_stat", "21",              "RB4 Flow Status" }
-    {    "RQ18:WATER:FLOW:STAT", "water_interlock_stat", "22",             "RQ18 Flow Status" }
-    {    "RQ19:WATER:FLOW:STAT", "water_interlock_stat", "23",             "RQ19 Flow Status" }
-    {    "RQ20:WATER:FLOW:STAT", "water_interlock_stat", "24",             "RQ20 Flow Status" }
-    {    "RQ21:WATER:FLOW:STAT", "water_interlock_stat", "25",             "RQ21 Flow Status" }
-    {    "RQ22:WATER:FLOW:STAT", "water_interlock_stat", "26",             "RQ22 Flow Status" }
-    {    "RQ23:WATER:FLOW:STAT", "water_interlock_stat", "27",             "RQ23 Flow Status" }
-    {  "ARG:LG:WATER:FLOW:STAT", "water_interlock_stat", "28",         "Argus LG Flow Status" }
-    {  "ARG:TR:WATER:FLOW:STAT", "water_interlock_stat", "29",         "Argus TR Flow Status" }
-    { "ARG:PSU:WATER:FLOW:STAT", "water_interlock_stat", "30",        "Argus PSU Flow Status" }
-    {    "XFD1:WATER:FLOW:STAT", "water_interlock_stat", "31",             "XFD1 Flow Status" }
-    {    "XFD2:WATER:FLOW:STAT", "water_interlock_stat", "32",             "XFD2 Flow Status" }
-    { "RB2:PSU:WATER:FLOW:STAT", "water_interlock_stat", "33", "RB2 Power Supply Flow Status" }
-    { "RB2:MAG:WATER:FLOW:STAT", "water_interlock_stat", "34",       "RB2 Magnet Flow Status" }
-    {  "CHR:LG:WATER:FLOW:STAT", "water_interlock_stat", "35",       "Chronus LG Flow Status" }
-    {  "CHR:TR:WATER:FLOW:STAT", "water_interlock_stat", "36",       "Chronus TR Flow Status" }
-    { "CHR:PSU:WATER:FLOW:STAT", "water_interlock_stat", "37",      "Chronus PSU Flow Status" }
-    {    "XFD3:WATER:FLOW:STAT", "water_interlock_stat", "38",             "XFD3 Flow Status" }
+    {     "RQ1:WATER:FLOW:STAT", "water_interlock_status", " 0",              "RQ1 Flow Status" }
+    {     "RQ2:WATER:FLOW:STAT", "water_interlock_status", " 1",              "RQ2 Flow Status" }
+    {     "RB1:WATER:FLOW:STAT", "water_interlock_status", " 2",              "RB1 Flow Status" }
+    {     "RQ3:WATER:FLOW:STAT", "water_interlock_status", " 3",              "RQ3 Flow Status" }
+    {     "RQ4:WATER:FLOW:STAT", "water_interlock_status", " 4",              "RQ4 Flow Status" }
+    {     "RQ5:WATER:FLOW:STAT", "water_interlock_status", " 5",              "RQ5 Flow Status" }
+    {     "SY1:WATER:FLOW:STAT", "water_interlock_status", " 6",              "SY1 Flow Status" }
+    {     "SY2:WATER:FLOW:STAT", "water_interlock_status", " 7",              "SY2 Flow Status" }
+    {     "RQ6:WATER:FLOW:STAT", "water_interlock_status", " 8",              "RQ6 Flow Status" }
+    {     "RQ7:WATER:FLOW:STAT", "water_interlock_status", " 9",              "RQ7 Flow Status" }
+    {     "RQ8:WATER:FLOW:STAT", "water_interlock_status", "10",              "RQ8 Flow Status" }
+    {     "RB3:WATER:FLOW:STAT", "water_interlock_status", "11",              "RB3 Flow Status" }
+    {     "RQ9:WATER:FLOW:STAT", "water_interlock_status", "12",              "RQ9 Flow Status" }
+    {    "RQ10:WATER:FLOW:STAT", "water_interlock_status", "13",             "RQ10 Flow Status" }
+    {    "RQ11:WATER:FLOW:STAT", "water_interlock_status", "14",             "RQ11 Flow Status" }
+    {    "RQ12:WATER:FLOW:STAT", "water_interlock_status", "15",             "RQ12 Flow Status" }
+    {    "RQ13:WATER:FLOW:STAT", "water_interlock_status", "16",             "RQ13 Flow Status" }
+    {    "RQ14:WATER:FLOW:STAT", "water_interlock_status", "17",             "RQ14 Flow Status" }
+    {    "RQ15:WATER:FLOW:STAT", "water_interlock_status", "18",             "RQ15 Flow Status" }
+    {    "RQ16:WATER:FLOW:STAT", "water_interlock_status", "19",             "RQ16 Flow Status" }
+    {    "RQ17:WATER:FLOW:STAT", "water_interlock_status", "20",             "RQ17 Flow Status" }
+    {     "RB4:WATER:FLOW:STAT", "water_interlock_status", "21",              "RB4 Flow Status" }
+    {    "RQ18:WATER:FLOW:STAT", "water_interlock_status", "22",             "RQ18 Flow Status" }
+    {    "RQ19:WATER:FLOW:STAT", "water_interlock_status", "23",             "RQ19 Flow Status" }
+    {    "RQ20:WATER:FLOW:STAT", "water_interlock_status", "24",             "RQ20 Flow Status" }
+    {    "RQ21:WATER:FLOW:STAT", "water_interlock_status", "25",             "RQ21 Flow Status" }
+    {    "RQ22:WATER:FLOW:STAT", "water_interlock_status", "26",             "RQ22 Flow Status" }
+    {    "RQ23:WATER:FLOW:STAT", "water_interlock_status", "27",             "RQ23 Flow Status" }
+    {  "ARG:LG:WATER:FLOW:STAT", "water_interlock_status", "28",         "Argus LG Flow Status" }
+    {  "ARG:TR:WATER:FLOW:STAT", "water_interlock_status", "29",         "Argus TR Flow Status" }
+    { "ARG:PSU:WATER:FLOW:STAT", "water_interlock_status", "30",        "Argus PSU Flow Status" }
+    {    "XFD1:WATER:FLOW:STAT", "water_interlock_status", "31",             "XFD1 Flow Status" }
+    {    "XFD2:WATER:FLOW:STAT", "water_interlock_status", "32",             "XFD2 Flow Status" }
+    { "RB2:PSU:WATER:FLOW:STAT", "water_interlock_status", "33", "RB2 Power Supply Flow Status" }
+    { "RB2:MAG:WATER:FLOW:STAT", "water_interlock_status", "34",       "RB2 Magnet Flow Status" }
+    {  "CHR:LG:WATER:FLOW:STAT", "water_interlock_status", "35",       "Chronus LG Flow Status" }
+    {  "CHR:TR:WATER:FLOW:STAT", "water_interlock_status", "36",       "Chronus TR Flow Status" }
+    { "CHR:PSU:WATER:FLOW:STAT", "water_interlock_status", "37",      "Chronus PSU Flow Status" }
+    {    "XFD3:WATER:FLOW:STAT", "water_interlock_status", "38",             "XFD3 Flow Status" }
 }
 
 
-# 3.3       Water Flow
+# 3.3   Water Flow
 
 file RIKENFE_float.template {
     pattern {PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION}
  
-    {           "RQ1:WATER:FLOW", "water_flow",  "0",           "RQ1 Water Flow Rate", "L/min", "3" }
-    {           "RQ2:WATER:FLOW", "water_flow",  "2",           "RQ2 Water Flow Rate", "L/min", "3" }
-    {           "RB1:WATER:FLOW", "water_flow",  "4",           "RB1 Water Flow Rate", "L/min", "3" }
-    {           "RQ3:WATER:FLOW", "water_flow",  "6",           "RQ3 Water Flow Rate", "L/min", "3" }
-    {           "RQ4:WATER:FLOW", "water_flow",  "8",           "RQ4 Water Flow Rate", "L/min", "3" }
-    {           "RQ5:WATER:FLOW", "water_flow", "10",           "RQ5 Water Flow Rate", "L/min", "3" }
-    {           "SY1:WATER:FLOW", "water_flow", "12",           "SY1 Water Flow Rate", "L/min", "3" }
-    {           "SY2:WATER:FLOW", "water_flow", "14",           "SY2 Water Flow Rate", "L/min", "3" }
-    {           "RQ6:WATER:FLOW", "water_flow", "16",           "RQ6 Water Flow Rate", "L/min", "3" }
-    {           "RQ7:WATER:FLOW", "water_flow", "18",           "RQ7 Water Flow Rate", "L/min", "3" }
-    {           "RQ8:WATER:FLOW", "water_flow", "20",           "RQ8 Water Flow Rate", "L/min", "3" }
-    {           "RB3:WATER:FLOW", "water_flow", "22",           "RB3 Water Flow Rate", "L/min", "3" }
-    {           "RQ9:WATER:FLOW", "water_flow", "24",           "RQ9 Water Flow Rate", "L/min", "3" }
-    {          "RQ10:WATER:FLOW", "water_flow", "26",          "RQ10 Water Flow Rate", "L/min", "3" }
-    {          "RQ11:WATER:FLOW", "water_flow", "28",          "RQ11 Water Flow Rate", "L/min", "3" }
-    {          "RQ12:WATER:FLOW", "water_flow", "30",          "RQ12 Water Flow Rate", "L/min", "3" }
-    {          "RQ13:WATER:FLOW", "water_flow", "32",          "RQ13 Water Flow Rate", "L/min", "3" }
-    {          "RQ14:WATER:FLOW", "water_flow", "34",          "RQ14 Water Flow Rate", "L/min", "3" }
-    {          "RQ15:WATER:FLOW", "water_flow", "36",          "RQ15 Water Flow Rate", "L/min", "3" }
-    {          "RQ16:WATER:FLOW", "water_flow", "38",          "RQ16 Water Flow Rate", "L/min", "3" }
-    {          "RQ17:WATER:FLOW", "water_flow", "40",          "RQ17 Water Flow Rate", "L/min", "3" }
-    {           "RB4:WATER:FLOW", "water_flow", "42",           "RB4 Water Flow Rate", "L/min", "3" }
-    {          "RQ18:WATER:FLOW", "water_flow", "44",          "RQ18 Water Flow Rate", "L/min", "3" }
-    {          "RQ19:WATER:FLOW", "water_flow", "46",          "RQ19 Water Flow Rate", "L/min", "3" }
-    {          "RQ20:WATER:FLOW", "water_flow", "48",          "RQ20 Water Flow Rate", "L/min", "3" }
-    {          "RQ21:WATER:FLOW", "water_flow", "50",          "RQ21 Water Flow Rate", "L/min", "3" }
-    {          "RQ22:WATER:FLOW", "water_flow", "52",          "RQ22 Water Flow Rate", "L/min", "3" }
-    {          "RQ23:WATER:FLOW", "water_flow", "54",          "RQ23 Water Flow Rate", "L/min", "3" }
-    {    "ARGUS:LONG:WATER:FLOW", "water_flow", "56",    "Argus Long Water Flow Rate", "L/min", "3" }
-    {   "ARGUS:TRANS:WATER:FLOW", "water_flow", "58",   "Argus Trans Water Flow Rate", "L/min", "3" }
-    {     "ARGUS:PSU:WATER:FLOW", "water_flow", "60",     "Argus PSU Water Flow Rate", "L/min", "3" }
-    {          "XFD1:WATER:FLOW", "water_flow", "62",          "XFD1 Water Flow Rate", "L/min", "3" }
-    {          "XFD2:WATER:FLOW", "water_flow", "64",          "XFD2 Water Flow Rate", "L/min", "3" }
-    {       "RB2:PSU:WATER:FLOW", "water_flow", "66",       "RB2 PSU Water Flow Rate", "L/min", "3" }
-    {    "RB2:MAGNET:WATER:FLOW", "water_flow", "68",    "RB2 Magnet Water Flow Rate", "L/min", "3" }
-    {  "CHRONUS:LONG:WATER:FLOW", "water_flow", "70",  "Chronus Long Water Flow Rate", "L/min", "3" }
-    { "CHRONUS:TRANS:WATER:FLOW", "water_flow", "72", "Chronus Trans Water Flow Rate", "L/min", "3" }
-    {   "CHRONUS:PSU:WATER:FLOW", "water_flow", "74",   "Chronus PSU Water Flow Rate", "L/min", "3" }
-    {          "XFD3:WATER:FLOW", "water_flow", "76",          "XFD3 Water Flow Rate", "L/min", "3" }
+    {           "RQ1:WATER:FLOW", "water_flow_rate",  "0",           "RQ1 Water Flow Rate", "L/min", "3" }
+    {           "RQ2:WATER:FLOW", "water_flow_rate",  "2",           "RQ2 Water Flow Rate", "L/min", "3" }
+    {           "RB1:WATER:FLOW", "water_flow_rate",  "4",           "RB1 Water Flow Rate", "L/min", "3" }
+    {           "RQ3:WATER:FLOW", "water_flow_rate",  "6",           "RQ3 Water Flow Rate", "L/min", "3" }
+    {           "RQ4:WATER:FLOW", "water_flow_rate",  "8",           "RQ4 Water Flow Rate", "L/min", "3" }
+    {           "RQ5:WATER:FLOW", "water_flow_rate", "10",           "RQ5 Water Flow Rate", "L/min", "3" }
+    {           "SY1:WATER:FLOW", "water_flow_rate", "12",           "SY1 Water Flow Rate", "L/min", "3" }
+    {           "SY2:WATER:FLOW", "water_flow_rate", "14",           "SY2 Water Flow Rate", "L/min", "3" }
+    {           "RQ6:WATER:FLOW", "water_flow_rate", "16",           "RQ6 Water Flow Rate", "L/min", "3" }
+    {           "RQ7:WATER:FLOW", "water_flow_rate", "18",           "RQ7 Water Flow Rate", "L/min", "3" }
+    {           "RQ8:WATER:FLOW", "water_flow_rate", "20",           "RQ8 Water Flow Rate", "L/min", "3" }
+    {           "RB3:WATER:FLOW", "water_flow_rate", "22",           "RB3 Water Flow Rate", "L/min", "3" }
+    {           "RQ9:WATER:FLOW", "water_flow_rate", "24",           "RQ9 Water Flow Rate", "L/min", "3" }
+    {          "RQ10:WATER:FLOW", "water_flow_rate", "26",          "RQ10 Water Flow Rate", "L/min", "3" }
+    {          "RQ11:WATER:FLOW", "water_flow_rate", "28",          "RQ11 Water Flow Rate", "L/min", "3" }
+    {          "RQ12:WATER:FLOW", "water_flow_rate", "30",          "RQ12 Water Flow Rate", "L/min", "3" }
+    {          "RQ13:WATER:FLOW", "water_flow_rate", "32",          "RQ13 Water Flow Rate", "L/min", "3" }
+    {          "RQ14:WATER:FLOW", "water_flow_rate", "34",          "RQ14 Water Flow Rate", "L/min", "3" }
+    {          "RQ15:WATER:FLOW", "water_flow_rate", "36",          "RQ15 Water Flow Rate", "L/min", "3" }
+    {          "RQ16:WATER:FLOW", "water_flow_rate", "38",          "RQ16 Water Flow Rate", "L/min", "3" }
+    {          "RQ17:WATER:FLOW", "water_flow_rate", "40",          "RQ17 Water Flow Rate", "L/min", "3" }
+    {           "RB4:WATER:FLOW", "water_flow_rate", "42",           "RB4 Water Flow Rate", "L/min", "3" }
+    {          "RQ18:WATER:FLOW", "water_flow_rate", "44",          "RQ18 Water Flow Rate", "L/min", "3" }
+    {          "RQ19:WATER:FLOW", "water_flow_rate", "46",          "RQ19 Water Flow Rate", "L/min", "3" }
+    {          "RQ20:WATER:FLOW", "water_flow_rate", "48",          "RQ20 Water Flow Rate", "L/min", "3" }
+    {          "RQ21:WATER:FLOW", "water_flow_rate", "50",          "RQ21 Water Flow Rate", "L/min", "3" }
+    {          "RQ22:WATER:FLOW", "water_flow_rate", "52",          "RQ22 Water Flow Rate", "L/min", "3" }
+    {          "RQ23:WATER:FLOW", "water_flow_rate", "54",          "RQ23 Water Flow Rate", "L/min", "3" }
+    {    "ARGUS:LONG:WATER:FLOW", "water_flow_rate", "56",    "Argus Long Water Flow Rate", "L/min", "3" }
+    {   "ARGUS:TRANS:WATER:FLOW", "water_flow_rate", "58",   "Argus Trans Water Flow Rate", "L/min", "3" }
+    {     "ARGUS:PSU:WATER:FLOW", "water_flow_rate", "60",     "Argus PSU Water Flow Rate", "L/min", "3" }
+    {          "XFD1:WATER:FLOW", "water_flow_rate", "62",          "XFD1 Water Flow Rate", "L/min", "3" }
+    {          "XFD2:WATER:FLOW", "water_flow_rate", "64",          "XFD2 Water Flow Rate", "L/min", "3" }
+    {       "RB2:PSU:WATER:FLOW", "water_flow_rate", "66",       "RB2 PSU Water Flow Rate", "L/min", "3" }
+    {    "RB2:MAGNET:WATER:FLOW", "water_flow_rate", "68",    "RB2 Magnet Water Flow Rate", "L/min", "3" }
+    {  "CHRONUS:LONG:WATER:FLOW", "water_flow_rate", "70",  "Chronus Long Water Flow Rate", "L/min", "3" }
+    { "CHRONUS:TRANS:WATER:FLOW", "water_flow_rate", "72", "Chronus Trans Water Flow Rate", "L/min", "3" }
+    {   "CHRONUS:PSU:WATER:FLOW", "water_flow_rate", "74",   "Chronus PSU Water Flow Rate", "L/min", "3" }
+    {          "XFD3:WATER:FLOW", "water_flow_rate", "76",          "XFD3 Water Flow Rate", "L/min", "3" }
 } 
 
-# TODO 3.4      PSU R-Box Interlock Status  (Rectifier Box)
+#   3.4      PSU R-Box Interlock Status  (Rectifier Box)
+
+file RIKENFE_Interlock_or_MOL_status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC}
+
+    {         "RQ1:RBOX:STAT", "rbox_interlock_status", " 0",           "RQ1 RBox Status" }
+    {  "RQ1:RBOX:BYPASS:STAT", "rbox_interlock_status", " 1",  "RQ1 Bypass Switch Status" }
+    {         "RQ2:RBOX:STAT", "rbox_interlock_status", " 2",           "RQ2 RBox Status" }
+    {  "RQ2:RBOX:BYPASS:STAT", "rbox_interlock_status", " 3",  "RQ2 Bypass Switch Status" }
+    {         "RB1:RBOX:STAT", "rbox_interlock_status", " 4",           "RB1 RBox Status" }
+    {  "RB1:RBOX:BYPASS:STAT", "rbox_interlock_status", " 5",  "RB1 Bypass Switch Status" }
+    {         "RQ3:RBOX:STAT", "rbox_interlock_status", " 6",           "RQ3 RBox Status" }
+    {  "RQ3:RBOX:BYPASS:STAT", "rbox_interlock_status", " 7",  "RQ3 Bypass Switch Status" }
+    {         "RQ4:RBOX:STAT", "rbox_interlock_status", " 8",           "RQ4 RBox Status" }
+    {  "RQ4:RBOX:BYPASS:STAT", "rbox_interlock_status", " 9",  "RQ4 Bypass Switch Status" }
+    {         "RQ5:RBOX:STAT", "rbox_interlock_status", "10",           "RQ5 RBox Status" }
+    {  "RQ5:RBOX:BYPASS:STAT", "rbox_interlock_status", "11",  "RQ5 Bypass Switch Status" }
+    {         "SY1:RBOX:STAT", "rbox_interlock_status", "12",           "SY1 RBox Status" }
+    {  "SY1:RBOX:BYPASS:STAT", "rbox_interlock_status", "13",  "SY1 Bypass Switch Status" }
+    {         "SY2:RBOX:STAT", "rbox_interlock_status", "14",           "SY2 RBox Status" }
+    {  "SY2:RBOX:BYPASS:STAT", "rbox_interlock_status", "15",  "SY2 Bypass Switch Status" }
+    {         "RQ6:RBOX:STAT", "rbox_interlock_status", "16",           "RQ6 RBox Status" }
+    {  "RQ6:RBOX:BYPASS:STAT", "rbox_interlock_status", "17",  "RQ6 Bypass Switch Status" }
+    {         "RQ7:RBOX:STAT", "rbox_interlock_status", "18",           "RQ7 RBox Status" }
+    {  "RQ7:RBOX:BYPASS:STAT", "rbox_interlock_status", "19",  "RQ7 Bypass Switch Status" }
+    {         "RQ8:RBOX:STAT", "rbox_interlock_status", "20",           "RQ8 RBox Status" }
+    {  "RQ8:RBOX:BYPASS:STAT", "rbox_interlock_status", "21",  "RQ8 Bypass Switch Status" }
+    {         "RB3:RBOX:STAT", "rbox_interlock_status", "22",           "RB3 RBox Status" }
+    {  "RB3:RBOX:BYPASS:STAT", "rbox_interlock_status", "23",  "RB3 Bypass Switch Status" }
+    {         "RQ9:RBOX:STAT", "rbox_interlock_status", "24",           "RQ9 RBox Status" }
+    {  "RQ9:RBOX:BYPASS:STAT", "rbox_interlock_status", "25",  "RQ9 Bypass Switch Status" }
+    {        "RQ10:RBOX:STAT", "rbox_interlock_status", "26",          "RQ10 RBox Status" }
+    { "RQ10:RBOX:BYPASS:STAT", "rbox_interlock_status", "27", "RQ10 Bypass Switch Status" }
+    {        "RQ11:RBOX:STAT", "rbox_interlock_status", "28",          "RQ11 RBox Status" }
+    { "RQ11:RBOX:BYPASS:STAT", "rbox_interlock_status", "29", "RQ11 Bypass Switch Status" }
+    {        "RQ12:RBOX:STAT", "rbox_interlock_status", "30",          "RQ12 RBox Status" }
+    { "RQ12:RBOX:BYPASS:STAT", "rbox_interlock_status", "31", "RQ12 Bypass Switch Status" }
+    {        "RQ13:RBOX:STAT", "rbox_interlock_status", "32",          "RQ13 RBox Status" }
+    { "RQ13:RBOX:BYPASS:STAT", "rbox_interlock_status", "33", "RQ13 Bypass Switch Status" }
+    {        "RQ14:RBOX:STAT", "rbox_interlock_status", "34",          "RQ14 RBox Status" }
+    { "RQ14:RBOX:BYPASS:STAT", "rbox_interlock_status", "35", "RQ14 Bypass Switch Status" }
+    {        "RQ15:RBOX:STAT", "rbox_interlock_status", "36",          "RQ15 RBox Status" }
+    { "RQ15:RBOX:BYPASS:STAT", "rbox_interlock_status", "37", "RQ15 Bypass Switch Status" }
+    {        "RQ16:RBOX:STAT", "rbox_interlock_status", "38",          "RQ16 RBox Status" }
+    { "RQ16:RBOX:BYPASS:STAT", "rbox_interlock_status", "39", "RQ16 Bypass Switch Status" }
+    {        "RQ17:RBOX:STAT", "rbox_interlock_status", "40",          "RQ17 RBox Status" }
+    { "RQ17:RBOX:BYPASS:STAT", "rbox_interlock_status", "41", "RQ17 Bypass Switch Status" }
+    {         "RB4:RBOX:STAT", "rbox_interlock_status", "42",           "RB4 RBox Status" }
+    {  "RB4:RBOX:BYPASS:STAT", "rbox_interlock_status", "43",  "RB4 Bypass Switch Status" }
+    {        "RQ18:RBOX:STAT", "rbox_interlock_status", "44",          "RQ18 RBox Status" }
+    { "RQ18:RBOX:BYPASS:STAT", "rbox_interlock_status", "45", "RQ18 Bypass Switch Status" }
+    {        "RQ19:RBOX:STAT", "rbox_interlock_status", "46",          "RQ19 RBox Status" }
+    { "RQ19:RBOX:BYPASS:STAT", "rbox_interlock_status", "47", "RQ19 Bypass Switch Status" }
+    {        "RQ20:RBOX:STAT", "rbox_interlock_status", "48",          "RQ20 RBox Status" }
+    { "RQ20:RBOX:BYPASS:STAT", "rbox_interlock_status", "49", "RQ20 Bypass Switch Status" }
+    {        "RQ21:RBOX:STAT", "rbox_interlock_status", "50",          "RQ21 RBox Status" }
+    { "RQ21:RBOX:BYPASS:STAT", "rbox_interlock_status", "51", "RQ21 Bypass Switch Status" }
+    {        "RQ22:RBOX:STAT", "rbox_interlock_status", "52",          "RQ22 RBox Status" }
+    { "RQ22:RBOX:BYPASS:STAT", "rbox_interlock_status", "53", "RQ22 Bypass Switch Status" }
+    {        "RQ23:RBOX:STAT", "rbox_interlock_status", "54",          "RQ23 RBox Status" }
+    { "RQ23:RBOX:BYPASS:STAT", "rbox_interlock_status", "55", "RQ23 Bypass Switch Status" }
+
+}
+
 
 # TODO 3.5      PSU MOL Status  (Magnet Off Light - only light, not magnet)
