@@ -5,17 +5,24 @@
 # 1.4   Separators
 # ----------------
 
-# TODO 1.4.2 Vacuum Interlock Status
+# 1.4.1 _NOT_ TODO PSU Control (PSUs controlled via separate IOCs)
 
+# TODO 1.4.2 Vacuum Interlock Status
 # duplicate addresses?
 
 
-# TODO 1.5   Solenoid - *NB* PSU will not be installed until current one fails
+# 1.5   Solenoid - *NB* PSU will not be installed until current one fails
+#---------------
+
 file RIKENFE_Other_Valve_Interlock_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, 0TEXT, 1TEXT, 2TEXT, 3TEXT, 4TEXT, 5TEXT, 6TEXT, 7TEXT, 8TEXT}
 
     { "SOLENOID:STAT", "solenoid_status", " 0", "Solenoid Status", "Comms Error", "GH7 OK", "GH8 OK", "Cryo System OK", "Cooldown Complete", "Magnet Excitation", "Compressor On", "", "" }
 }
+
+
+# 1.6   Kickers - *NB* Delays will be controlled via separate IOCs
+# -------------
 
 
 # 1.6.1 Kickers General Status
@@ -69,10 +76,11 @@ file RIKENFE_float.template {
 }
 
 # Combined into sections 1.6.a, 1.6.b above:
-# TODO 1.6.2 Kicker 1 Readback Status
-# TODO 1.6.3 Kicker 2 Readback Status
-# TODO 1.6.4 Kicker 3 Readback Status
-# TODO 1.6.5 Kicker 4 Readback Status
+# 1.6.2 Kicker 1 Readback Status
+# 1.6.3 Kicker 2 Readback Status
+# 1.6.4 Kicker 3 Readback Status
+# 1.6.5 Kicker 4 Readback Status
+
 
 # 2     Vacuum
 # ------------
@@ -205,6 +213,8 @@ file RIKENFE_PIV_Interlock_Status.template {
     { "PIV11:ILK:STAT", "piv_interlock_status", "10", "PIV11 Interlock Status" }
 }
 
+# ************************************************** Needs Further Work **************************************************
+
 # TODO 2.4.2    Vacuum Pump LV Interlocks (LV - Line Valve)
 # Note: Bits 2 & 3 and 4 & 5 are ORed together and then ANDed with bits 1,6,7 and 8 to obtain the valve interlock.
 file RIKENFE_Other_Valve_Interlock_Status.template {
@@ -227,6 +237,8 @@ file RIKENFE_Other_Valve_Interlock_Status.template {
     { "FSOV:ILK:STAT", "other_valve_interlock_status", " 1", "FSOV Interlock Status", "Comms Error", "1", "0 OR GH8", "0 OR GH8", "0 OR GH12", "0 OR GH12", "!CryoFault", "1", "!EPB_FSOV" }
     { "BPV1:ILK:STAT", "other_valve_interlock_status", " 2", "BPV1 Interlock Status", "Comms Error", "1", "1 OR 1", "1 OR 1", "1 OR 1", "1 OR 1", "1", "1", "!Close BPV1" }
 }
+
+# ************************************************** Needs Further Work **************************************************
 
 
 # 2.5   Beam Blocker Status
