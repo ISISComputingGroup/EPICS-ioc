@@ -19,7 +19,6 @@ file RIKENFE_Interlock_or_MOL_status.template {
     {  "KICKER:WATER:ILK:STAT", "kicker_status", " 0", "Kicker Water Interlock" }
     { "KICKER:VACUUM:ILK:STAT", "kicker_status", " 1",          "Kicker Vacuum" }
     {        "KICKER:MOL:STAT", "kicker_status", " 2",             "Kicker MOL" }
-
 }
 
 #       (a,b additional sub-sections for ease of programming and efficiency of reading PLC memory)
@@ -47,7 +46,6 @@ file RIKENFE_other_objects_status.template {
     {        "K4:READY:STAT", "kickers_1-4_status", "17",         "K4 Ready", "Not Ready",  "Ready" }
     {       "K4:PSU_ON:STAT", "kickers_1-4_status", "18",    "K4 PSU Status",       "Off",     "On" }
     {    "K4:PSU_HV_ON:STAT", "kickers_1-4_status", "19", "K4 PSU HV Status",       "Off",     "On" }
-
 }
 
 # 1.6.b Kickers 1-4 Output
@@ -62,7 +60,6 @@ file RIKENFE_float.template {
     { "K3:CURRENT", "kickers_1-4_output", "10", "K3 Output Current", "kA", "3" }
     { "K4:VOLTAGE", "kickers_1-4_output", "12", "K4 Output Voltage", "kV", "3" }
     { "K4:CURRENT", "kickers_1-4_output", "14", "K4 Output Current", "kA", "3" }
-
 }
 
 # TODO 1.6.2 Kicker 1 Readback Status
@@ -125,7 +122,6 @@ file RIKENFE_Interlock_or_MOL_status.template {
     { "GH42:STAT", "vacuum_status", "41", "GH42 Status" }
     { "GH43:STAT", "vacuum_status", "42", "GH43 Status" }
     { "GH44:STAT", "vacuum_status", "43", "GH44 Status" }
-
 }
 
 
@@ -154,7 +150,6 @@ file RIKENFE_vacuum_valve_status.template {
     {  "AMGV:STAT", "vacuum_valve_status", "18",  "AMGV Status" }
     {  "FSOV:STAT", "vacuum_valve_status", "19",  "FSOV Status" }
     {  "BPV1:STAT", "vacuum_valve_status", "20",  "BPV1 Status" }
-
 }
 
 
@@ -190,11 +185,26 @@ file RIKENFE_pump_status.template {
     { "TP11:STAT", "vacuum_pump_status", "21", "TP11 Vacuum Pump Status" }
 }
 
-# TODO 2.4.1    Vaccuum Valve Interlocks
+# 2.4.1    Vacuum Pump Valve Interlocks  (PIV - Pump Isolation Valve)
+file RIKENFE_PIV_Interlock_Status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC}
 
-# TODO 2.4.2    Line Valve Interlocks
+    {  "PIV1:ILK:STAT", "piv_interlock_status", " 0",  "PIV1 Interlock Status" }
+    {  "PIV2:ILK:STAT", "piv_interlock_status", " 1",  "PIV2 Interlock Status" }
+    {  "PIV3:ILK:STAT", "piv_interlock_status", " 2",  "PIV3 Interlock Status" }
+    {  "PIV4:ILK:STAT", "piv_interlock_status", " 3",  "PIV4 Interlock Status" }
+    {  "PIV5:ILK:STAT", "piv_interlock_status", " 4",  "PIV5 Interlock Status" }
+    {  "PIV6:ILK:STAT", "piv_interlock_status", " 5",  "PIV6 Interlock Status" }
+    {  "PIV7:ILK:STAT", "piv_interlock_status", " 6",  "PIV7 Interlock Status" }
+    {  "PIV8:ILK:STAT", "piv_interlock_status", " 7",  "PIV8 Interlock Status" }
+    {  "PIV9:ILK:STAT", "piv_interlock_status", " 8",  "PIV9 Interlock Status" }
+    { "PIV10:ILK:STAT", "piv_interlock_status", " 9", "PIV10 Interlock Status" }
+    { "PIV11:ILK:STAT", "piv_interlock_status", "10", "PIV11 Interlock Status" }
+}
 
-# TODO 2.4.3    Other Valve Interlocks
+# TODO 2.4.2    Vacuum Pump Line Valve Interlocks
+
+# TODO 2.4.3    Vacuum Pump Other Valve Interlocks
 
 # TODO 2.5      Beam Blocker Status
 
@@ -204,7 +214,7 @@ file RIKENFE_pump_status.template {
 # 3         PSU
 # -------------
 
-# TODO 3.1      PSU Klixon Interlocks
+# 3.1      PSU Klixon Interlocks
 
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
@@ -245,7 +255,6 @@ file RIKENFE_Interlock_or_MOL_status.template {
     { "CHRONUS:LG:KLIXON:STAT", "klixon_interlock_status", "33", "Chronus LG Klixon Status" }
     { "CHRONUS:TR:KLIXON:STAT", "klixon_interlock_status", "34", "Chronus TR Klixon Status" }
     {       "XFD3:KLIXON:STAT", "klixon_interlock_status", "35",       "XFD3 Klixon Status" }
-
 }
 
 
@@ -403,7 +412,6 @@ file RIKENFE_Interlock_or_MOL_status.template {
     { "RQ22:RBOX:BYPASS:STAT", "rbox_interlock_status", "53", "RQ22 Bypass Switch Status" }
     {        "RQ23:RBOX:STAT", "rbox_interlock_status", "54",          "RQ23 RBox Status" }
     { "RQ23:RBOX:BYPASS:STAT", "rbox_interlock_status", "55", "RQ23 Bypass Switch Status" }
-
 }
 
 

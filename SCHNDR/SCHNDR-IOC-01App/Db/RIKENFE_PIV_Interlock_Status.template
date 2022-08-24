@@ -1,0 +1,25 @@
+
+record (mbbi, "$(P)$(PV)") {
+
+    field(DESC, "$(DESC)")
+    field(DTYP, "asynInt32")
+    field(ZRVL, 0)
+    field(ONVL, 1)
+    field(TWVL, 2)
+    field(THVL, 3)
+    field(FRVL, 4)
+    field(FVVL, 5)
+    field(SXVL, 6)
+    field(FFVL, 15)
+    field(ZRST, "Comms OK")
+    field(ONST, "BP Running")
+    field(TWST, "TP Panel Inst OK")
+    field(THST, "TP No Error")
+    field(FRST, "TP Up to Speed")
+    field(FVST, "GH_A OK")
+    field(SXST, "GH_B OK")
+    field(FFST, "Interlocks Bypassed")
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
+    # TODO Archive, Interest level fields
+}
