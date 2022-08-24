@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
  <config_part>
-  <ioc_desc>TiZr Cell Monitoring.</ioc_desc>
+  <ioc_desc>ISIS IBEX TiZr Cell Monitoring.</ioc_desc>
   <macros>
     <macro name="PVONE" pattern="^[0-9a-zA-Z:\._]+$" description="A setpoint PV to monitor, e.g. IN:INSTNAME:EUROTHRM_01:A01:TEMP:SP" hasDefault="NO" />
     <macro name="PVTWO" pattern="^[0-9a-zA-Z:\._]+$" description="A readback PV to monitor, e.g. IN:INSTNAME:TPG361_01:2:PRESSURE" hasDefault="NO" />
