@@ -6,7 +6,16 @@
 
 # TODO 1.5   Solenoid - *NB* PSU will not be installed until current one fails
 
-# TODO 1.6.1 Kickers General Status
+# 1.6.1 Kickers General Status
+file RIKENFE_Interlock_or_MOL_status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC}
+
+    {  "KICKER:WATER:ILK:STAT", "kicker_status", " 0", "Kicker Water Interlock" }
+    { "KICKER:VACUUM:ILK:STAT", "kicker_status", " 1",          "Kicker Vacuum" }
+    {        "KICKER:MOL:STAT", "kicker_status", " 2",             "Kicker MOL" }
+
+}
+
 
 # TODO 1.6.2 Kicker 1 Readback Status
 
@@ -20,6 +29,56 @@
 # --------
 
 # TODO 2.1   Vacuum Status
+file RIKENFE_Interlock_or_MOL_status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC}
+
+    {  "GH1:STAT", "vacuum_status", " 0",  "GH1 Status" }
+    {  "GH2:STAT", "vacuum_status", " 1",  "GH2 Status" }
+    {  "GH3:STAT", "vacuum_status", " 2",  "GH3 Status" }
+    {  "GH4:STAT", "vacuum_status", " 3",  "GH4 Status" }
+    {  "GH5:STAT", "vacuum_status", " 4",  "GH5 Status" }
+    {  "GH6:STAT", "vacuum_status", " 5",  "GH6 Status" }
+    {  "GH7:STAT", "vacuum_status", " 6",  "GH7 Status" }
+    {  "GH8:STAT", "vacuum_status", " 7",  "GH8 Status" }
+    {  "GH9:STAT", "vacuum_status", " 8",  "GH9 Status" }
+    { "GH10:STAT", "vacuum_status", " 9", "GH10 Status" }
+    { "GH11:STAT", "vacuum_status", "10", "GH11 Status" }
+    { "GH12:STAT", "vacuum_status", "11", "GH12 Status" }
+    { "GH13:STAT", "vacuum_status", "12", "GH13 Status" }
+    { "GH14:STAT", "vacuum_status", "13", "GH14 Status" }
+    { "GH15:STAT", "vacuum_status", "14", "GH15 Status" }
+    { "GH16:STAT", "vacuum_status", "15", "GH16 Status" }
+    { "GH17:STAT", "vacuum_status", "16", "GH17 Status" }
+    { "GH18:STAT", "vacuum_status", "17", "GH18 Status" }
+    { "GH19:STAT", "vacuum_status", "18", "GH19 Status" }
+    { "GH20:STAT", "vacuum_status", "19", "GH20 Status" }
+    { "GH21:STAT", "vacuum_status", "20", "GH21 Status" }
+    { "GH22:STAT", "vacuum_status", "21", "GH22 Status" }
+    { "GH23:STAT", "vacuum_status", "22", "GH23 Status" }
+    { "GH24:STAT", "vacuum_status", "23", "GH24 Status" }
+    { "GH25:STAT", "vacuum_status", "24", "GH25 Status" }
+    { "GH26:STAT", "vacuum_status", "25", "GH26 Status" }
+    { "GH27:STAT", "vacuum_status", "26", "GH27 Status" }
+    { "GH28:STAT", "vacuum_status", "27", "GH28 Status" }
+    { "GH29:STAT", "vacuum_status", "28", "GH29 Status" }
+    { "GH30:STAT", "vacuum_status", "29", "GH30 Status" }
+    { "GH31:STAT", "vacuum_status", "30", "GH31 Status" }
+    { "GH32:STAT", "vacuum_status", "31", "GH32 Status" }
+    { "GH33:STAT", "vacuum_status", "32", "GH33 Status" }
+    { "GH34:STAT", "vacuum_status", "33", "GH34 Status" }
+    { "GH35:STAT", "vacuum_status", "34", "GH35 Status" }
+    { "GH36:STAT", "vacuum_status", "35", "GH36 Status" }
+    { "GH37:STAT", "vacuum_status", "36", "GH37 Status" }
+    { "GH38:STAT", "vacuum_status", "37", "GH38 Status" }
+    { "GH39:STAT", "vacuum_status", "38", "GH39 Status" }
+    { "GH40:STAT", "vacuum_status", "39", "GH40 Status" }
+    { "GH41:STAT", "vacuum_status", "40", "GH41 Status" }
+    { "GH42:STAT", "vacuum_status", "41", "GH42 Status" }
+    { "GH43:STAT", "vacuum_status", "42", "GH43 Status" }
+    { "GH44:STAT", "vacuum_status", "43", "GH44 Status" }
+
+}
+
 
 # TODO 2.2   Vacuum Valve Status
 

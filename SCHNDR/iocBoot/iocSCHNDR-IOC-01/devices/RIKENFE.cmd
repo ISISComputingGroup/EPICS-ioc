@@ -2,23 +2,71 @@
 
 # Sections refer to document "RIKEN PLC/IBEX Specification – Issue C"
 
-# 2.4 Vacuum Pump Status
+
+# 1.4   Separators
+
+# 1.4.1 _NOT_ TODO PSU Control (PSUs controlled via separate IOCs)
+
+# 1.4.2 TODO Vacuum Interlock Status
+
+
+# 1.5   Solenoid
+
+
+# 1.6   Kickers
+
+# 1.6.1 General Status
+drvModbusAsynConfigure("$(PLC)kicker_status",           "$(PLC)", 255, 3, 4004005,  4, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4004
+
+#       (a,b additional sections for ease of programming)
+# 1.6.a TODO Kickers 1-4 Readback Status
+
+# 1.6.b TODO Kickers 1-4 Output
+
+
+# 2     Vacuum
+
+# 2.1   Vacuum Status
+drvModbusAsynConfigure("$(PLC)vacuum_status",           "$(PLC)", 255, 3, 4004028, 44, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4027
+
+# 2.2   TODO Vacuum Valve Status
+
+# 2.3   TODO Vacuum Valve Controls
+
+# 2.4   Vacuum Pump Status
 drvModbusAsynConfigure("$(PLC)vacuum_pump_status",      "$(PLC)", 255, 3, 4004093, 22, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4092
 
-# 3.1 Klixon Interlock Status
+# 2.4.1 TODO Vacuum Valve Interlocks
+
+# 2.4.2 TODO LV Interlocks (Line Valve)
+
+# 2.4.3 TODO Other Valve Interlocks
+
+# 2.5   TODO Beam Blocker Status
+
+# 2.6   TODO Beam Blocker Information
+
+
+# 3     PSU Interlocks
+
+# 3.1   Klixon Interlock Status
 drvModbusAsynConfigure("$(PLC)klixon_interlock_status", "$(PLC)", 255, 3, 4004146, 36, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4145
 
-# 3.2 Water Interlock Status
+# 3.2   Water Interlock Status
 drvModbusAsynConfigure("$(PLC)water_interlock_status",  "$(PLC)", 255, 3, 4004182, 38, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4181
 
-# 3.3 Water Flow
+# 3.3   Water Flow
 drvModbusAsynConfigure("$(PLC)water_flow_rate",         "$(PLC)", 255, 3, 4004517, 78, 7, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4516
 
-# 3.4 R-Box Interlock Status
+# 3.4   R-Box Interlock Status
 drvModbusAsynConfigure("$(PLC)rbox_interlock_status",   "$(PLC)", 255, 3, 4004221, 56, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4220
 
-# 3.5 MOL Status
+# 3.5   MOL Status
 drvModbusAsynConfigure("$(PLC)MOL_status",              "$(PLC)", 255, 3, 4004277,  9, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4276
+
+# 3.6   _NOT_ TODO PSU Control / On  (PSUs controlled via separate IOCs)
+
+
 
 ## Load our record instances
 dbLoadRecords("$(TOP)/db/RIKENFE.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PLC)")
