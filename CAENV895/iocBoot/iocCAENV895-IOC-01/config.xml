@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>Support module for the CAEN V895 Discriminator card</ioc_desc>
+<ioc_desc>CAEN V895 Discriminator</ioc_desc>
 </config_part>
 </ioc_config>

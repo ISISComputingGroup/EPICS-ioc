@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>HM8123 Universal Counter</ioc_desc>
+<ioc_desc>Hameg HM8123 Universal Counter</ioc_desc>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
 </macros>
