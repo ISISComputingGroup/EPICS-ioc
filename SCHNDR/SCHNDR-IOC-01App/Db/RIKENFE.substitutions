@@ -22,9 +22,9 @@ file RIKENFE_Interlock_or_MOL_status.template {
 
 }
 
-#       (a,b additional sections for ease of programming)
+#       (a,b additional sub-sections for ease of programming and efficiency of reading PLC memory)
 # 1.6.a Kickers 1-4 Readback Status
-file RIKENFE_other_objects.template {
+file RIKENFE_other_objects_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, 1TEXT, 2TEXT}
 
     { "K1:CONTROL_MODE:STAT", "kickers_1-4_status", " 0",  "K1 Control Mode",     "Local", "Remote" }
@@ -50,7 +50,7 @@ file RIKENFE_other_objects.template {
 
 }
 
-# 1.6.b TODO Kickers 1-4 Output
+# 1.6.b Kickers 1-4 Output
 file RIKENFE_float.template {
     pattern {PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION}
 
@@ -129,7 +129,34 @@ file RIKENFE_Interlock_or_MOL_status.template {
 }
 
 
-# TODO 2.2   Vacuum Valve Status
+# 2.2   Vacuum Valve Status
+file RIKENFE_vacuum_valve_status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC}
+
+    {  "PIV1:STAT", "vacuum_valve_status", " 0",  "PIV1 Status" }
+    {  "PIV2:STAT", "vacuum_valve_status", " 1",  "PIV2 Status" }
+    {  "PIV3:STAT", "vacuum_valve_status", " 2",  "PIV3 Status" }
+    {  "PIV4:STAT", "vacuum_valve_status", " 3",  "PIV4 Status" }
+    {  "PIV5:STAT", "vacuum_valve_status", " 4",  "PIV5 Status" }
+    {  "PIV6:STAT", "vacuum_valve_status", " 5",  "PIV6 Status" }
+    {  "PIV7:STAT", "vacuum_valve_status", " 6",  "PIV7 Status" }
+    {  "PIV8:STAT", "vacuum_valve_status", " 7",  "PIV8 Status" }
+    {  "PIV9:STAT", "vacuum_valve_status", " 8",  "PIV9 Status" }
+    { "PIV10:STAT", "vacuum_valve_status", " 9", "PIV10 Status" }
+    { "PIV11:STAT", "vacuum_valve_status", "10", "PIV11 Status" }
+    {   "LV1:STAT", "vacuum_valve_status", "11",   "LV1 Status" }
+    {   "LV2:STAT", "vacuum_valve_status", "12",   "LV2 Status" }
+    {   "LV3:STAT", "vacuum_valve_status", "13",   "LV3 Status" }
+    {   "LV4:STAT", "vacuum_valve_status", "14",   "LV4 Status" }
+    {   "LV5:STAT", "vacuum_valve_status", "15",   "LV5 Status" }
+    {   "LV6:STAT", "vacuum_valve_status", "16",   "LV6 Status" }
+    {   "LV7:STAT", "vacuum_valve_status", "17",   "LV7 Status" }
+    {  "AMGV:STAT", "vacuum_valve_status", "18",  "AMGV Status" }
+    {  "FSOV:STAT", "vacuum_valve_status", "19",  "FSOV Status" }
+    {  "BPV1:STAT", "vacuum_valve_status", "20",  "BPV1 Status" }
+
+}
+
 
 # TODO 2.3   Vacuum Valve Controls
 

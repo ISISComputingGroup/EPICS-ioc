@@ -18,7 +18,7 @@
 # 1.6.1 General Status
 drvModbusAsynConfigure("$(PLC)kicker_status",           "$(PLC)", 255, 3, 4004005,  4, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4004
 
-#       (a,b additional sections for ease of programming)
+#       (a,b additional sub-sections for ease of programming and efficiency of reading PLC memory)
 # 1.6.a TODO Kickers 1-4 Readback Status
 drvModbusAsynConfigure("$(PLC)kickers_1-4_status"       "$(PLC)", 255, 3, 4004008, 20, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4007
 
@@ -31,7 +31,8 @@ drvModbusAsynConfigure("$(PLC)kickers_1-4_output"       "$(PLC)", 255, 3, 400450
 # 2.1   Vacuum Status
 drvModbusAsynConfigure("$(PLC)vacuum_status",           "$(PLC)", 255, 3, 4004028, 44, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4027
 
-# 2.2   TODO Vacuum Valve Status
+# 2.2   Vacuum Valve Status
+drvModbusAsynConfigure("$(PLC)vacuum_valve_status",     "$(PLC)", 255, 3, 4004072, 21, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4071
 
 # 2.3   TODO Vacuum Valve Controls
 
