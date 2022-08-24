@@ -271,4 +271,26 @@ file RIKENFE_Interlock_or_MOL_status.template {
 }
 
 
-# TODO 3.5      PSU MOL Status  (Magnet Off Light - only light, not magnet)
+# 3.5      PSU MOL Status  (Magnet Off Light - _only_ light, _not_ magnet itself)
+#    *NB*  Kicker MOL - See Kicker Section 1.6.1
+
+file RIKENFE_Interlock_or_MOL_status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC}
+
+    { "SOLENOID:MOL:STAT", "MOL_status", " 0", "Solenoid MOL" }
+    {      "RQ3:MOL:STAT", "MOL_status", " 1",      "RQ3 MOL" }
+    {      "RQ4:MOL:STAT", "MOL_status", " 2",      "RQ4 MOL" }
+    {      "RQ5:MOL:STAT", "MOL_status", " 3",      "RQ5 MOL" }
+    {      "SY1:MOL:STAT", "MOL_status", " 4",      "SY1 MOL" }
+    {      "SY2:MOL:STAT", "MOL_status", " 5",      "SY2 MOL" }
+    {    "RB2_1:MOL:STAT", "MOL_status", " 6",      "RB2 MOL" }
+    {    "ARGUS:MOL:STAT", "MOL_status", " 7",    "ARGUS MOL" }
+    {  "CHRONUS:MOL:STAT", "MOL_status", " 8",  "CHRONUS MOL" }
+}
+
+
+# _NOT_ TODO 3.6	PSU Control / On
+
+# Note from specification document:
+# "IBEX will communicate directly with each PSU; Although "PSU On" status can be obtained from the PLC, 
+# it is assumed that IBEX will obtain this information directly from the respective PSU"
