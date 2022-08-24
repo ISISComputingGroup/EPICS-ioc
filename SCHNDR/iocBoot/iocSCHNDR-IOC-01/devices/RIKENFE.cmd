@@ -20,8 +20,10 @@ drvModbusAsynConfigure("$(PLC)kicker_status",           "$(PLC)", 255, 3, 400400
 
 #       (a,b additional sections for ease of programming)
 # 1.6.a TODO Kickers 1-4 Readback Status
+drvModbusAsynConfigure("$(PLC)kickers_1-4_status"       "$(PLC)", 255, 3, 4004008, 20, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4007
 
 # 1.6.b TODO Kickers 1-4 Output
+drvModbusAsynConfigure("$(PLC)kickers_1-4_output"       "$(PLC)", 255, 3, 4004501, 16, 7, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4500
 
 
 # 2     Vacuum

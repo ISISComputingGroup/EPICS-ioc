@@ -2,7 +2,13 @@
 # From document "RIKEN PLC/IBEX Specification – Issue C"
 # ------------------------------------------------------
 
+# 1.4   Separators
+# ----------------
+
 # TODO 1.4.2 Vacuum Interlock Status
+
+# duplicate addresses?
+
 
 # TODO 1.5   Solenoid - *NB* PSU will not be installed until current one fails
 
@@ -16,6 +22,48 @@ file RIKENFE_Interlock_or_MOL_status.template {
 
 }
 
+#       (a,b additional sections for ease of programming)
+# 1.6.a Kickers 1-4 Readback Status
+file RIKENFE_other_objects.template {
+    pattern {PV, PORTNAME, OFFSET, DESC, 1TEXT, 2TEXT}
+
+    { "K1:CONTROL_MODE:STAT", "kickers_1-4_status", " 0",  "K1 Control Mode",     "Local", "Remote" }
+    {        "K1:STATE:STAT", "kickers_1-4_status", " 1",         "K1 State",  "Abnormal", "Normal" }
+    {        "K1:READY:STAT", "kickers_1-4_status", " 2",         "K1 Ready", "Not Ready",  "Ready" }
+    {       "K1:PSU_ON:STAT", "kickers_1-4_status", " 3",    "K1 PSU Status",       "Off",     "On" }
+    {    "K1:PSU_HV_ON:STAT", "kickers_1-4_status", " 4", "K1 PSU HV Status",       "Off",     "On" }
+    { "K2:CONTROL_MODE:STAT", "kickers_1-4_status", " 5",  "K2 Control Mode",     "Local", "Remote" }
+    {        "K2:STATE:STAT", "kickers_1-4_status", " 6",         "K2 State",  "Abnormal", "Normal" }
+    {        "K2:READY:STAT", "kickers_1-4_status", " 7",         "K2 Ready", "Not Ready",  "Ready" }
+    {       "K2:PSU_ON:STAT", "kickers_1-4_status", " 8",    "K2 PSU Status",       "Off",     "On" }
+    {    "K2:PSU_HV_ON:STAT", "kickers_1-4_status", " 9", "K2 PSU HV Status",       "Off",     "On" }
+    { "K3:CONTROL_MODE:STAT", "kickers_1-4_status", "10",  "K3 Control Mode",     "Local", "Remote" }
+    {        "K3:STATE:STAT", "kickers_1-4_status", "11",         "K3 State",  "Abnormal", "Normal" }
+    {        "K3:READY:STAT", "kickers_1-4_status", "12",         "K3 Ready", "Not Ready",  "Ready" }
+    {       "K3:PSU_ON:STAT", "kickers_1-4_status", "13",    "K3 PSU Status",       "Off",     "On" }
+    {    "K3:PSU_HV_ON:STAT", "kickers_1-4_status", "14", "K3 PSU HV Status",       "Off",     "On" }
+    { "K4:CONTROL_MODE:STAT", "kickers_1-4_status", "15",  "K4 Control Mode",     "Local", "Remote" }
+    {        "K4:STATE:STAT", "kickers_1-4_status", "16",         "K4 State",  "Abnormal", "Normal" }
+    {        "K4:READY:STAT", "kickers_1-4_status", "17",         "K4 Ready", "Not Ready",  "Ready" }
+    {       "K4:PSU_ON:STAT", "kickers_1-4_status", "18",    "K4 PSU Status",       "Off",     "On" }
+    {    "K4:PSU_HV_ON:STAT", "kickers_1-4_status", "19", "K4 PSU HV Status",       "Off",     "On" }
+
+}
+
+# 1.6.b TODO Kickers 1-4 Output
+file RIKENFE_float.template {
+    pattern {PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION}
+
+    { "K1:VOLTAGE", "kickers_1-4_output", " 0", "K1 Output Voltage", "kV", "3" }
+    { "K1:CURRENT", "kickers_1-4_output", " 2", "K1 Output Current", "kA", "3" }
+    { "K2:VOLTAGE", "kickers_1-4_output", " 4", "K2 Output Voltage", "kV", "3" }
+    { "K2:CURRENT", "kickers_1-4_output", " 6", "K2 Output Current", "kA", "3" }
+    { "K3:VOLTAGE", "kickers_1-4_output", " 8", "K3 Output Voltage", "kV", "3" }
+    { "K3:CURRENT", "kickers_1-4_output", "10", "K3 Output Current", "kA", "3" }
+    { "K4:VOLTAGE", "kickers_1-4_output", "12", "K4 Output Voltage", "kV", "3" }
+    { "K4:CURRENT", "kickers_1-4_output", "14", "K4 Output Current", "kA", "3" }
+
+}
 
 # TODO 1.6.2 Kicker 1 Readback Status
 
@@ -25,10 +73,11 @@ file RIKENFE_Interlock_or_MOL_status.template {
 
 # TODO 1.6.5 Kicker 4 Readback Status
 
-# 2 Vacuum
-# --------
 
-# TODO 2.1   Vacuum Status
+# 2     Vacuum
+# ------------
+
+# 2.1   Vacuum Status
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
@@ -124,8 +173,9 @@ file RIKENFE_pump_status.template {
 
 # TODO 2.6      Beam Blocker Information
 
-# 3 PSU
-# -----
+
+# 3         PSU
+# -------------
 
 # TODO 3.1      PSU Klixon Interlocks
 
