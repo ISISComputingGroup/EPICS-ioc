@@ -185,7 +185,7 @@ file RIKENFE_pump_status.template {
     { "TP11:STAT", "vacuum_pump_status", "21", "TP11 Vacuum Pump Status" }
 }
 
-# 2.4.1    Vacuum Pump Valve Interlocks  (PIV - Pump Isolation Valve)
+# 2.4.1    Vacuum Pump PIV Interlocks  (PIV - Pump Isolation Valve)
 file RIKENFE_PIV_Interlock_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
@@ -202,9 +202,29 @@ file RIKENFE_PIV_Interlock_Status.template {
     { "PIV11:ILK:STAT", "piv_interlock_status", "10", "PIV11 Interlock Status" }
 }
 
-# TODO 2.4.2    Vacuum Pump Line Valve Interlocks
+# TODO 2.4.2    Vacuum Pump LV Interlocks (LV - Line Valve)
+# Note: Bits 2 & 3 and 4 & 5 are ORed together and then ANDed with bits 1,6,7 and 8 to obtain the valve interlock.
+file RIKENFE_Other_Valve_Interlock_Status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC, 0TEXT, 1TEXT, 2TEXT, 3TEXT, 4TEXT, 5TEXT, 6TEXT, 7TEXT, 8TEXT}
+
+    { "LV1:ILK:STAT", "lv_interlock_status", " 0", "LV1 Interlock Status", "Comms Error", "FSOV Opened", "GH12 OR GH16", "GH12 OR GH16", "0 OR GH8", "0 OR GH8", "!BB0 Close Command", "1", "!Close LV1" }
+    { "LV2:ILK:STAT", "lv_interlock_status", " 1", "LV2 Interlock Status", "Comms Error", "FSOV Opened", "GH20 OR GH24", "GH20 OR GH24", "GH12 OR GH16", "GH12 OR GH16", "1", "1", "!Close LV2" }
+    { "LV3:ILK:STAT", "lv_interlock_status", " 2", "LV3 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH28", "0 OR GH28", "GH20 OR GH24", "GH20 OR GH24", "!BB1 Close Command", "Port1 Locked", "!Close LV3" }
+    { "LV4:ILK:STAT", "lv_interlock_status", " 3", "LV4 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH30", "0 OR GH30", "GH20 OR GH24", "GH20 OR GH24", "!BB2 Close Command", "Port2 Locked", "!Close LV4" }
+    { "LV5:ILK:STAT", "lv_interlock_status", " 4", "LV5 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH40", "0 OR GH40", "0 OR GH36", "0 OR GH36", "!BB3 Close Command", "Port3 Locked", "!Close LV5" }
+    { "LV6:ILK:STAT", "lv_interlock_status", " 5", "LV6 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH40", "0 OR GH40", "0 OR GH12", "0 OR GH12", "1", "1", "!Close LV6" }
+    { "LV7:ILK:STAT", "lv_interlock_status", " 6", "LV7 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH44", "0 OR GH44", "0 OR GH40", "0 OR GH40", "!BB4 Close Command", "Port4 Locked", "!Close LV7" }
+}
 
 # TODO 2.4.3    Vacuum Pump Other Valve Interlocks
+file RIKENFE_Other_Valve_Interlock_Status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC, 0TEXT, 1TEXT, 2TEXT, 3TEXT, 4TEXT, 5TEXT, 6TEXT, 7TEXT, 8TEXT}
+
+    { "AMGV:ILK:STAT", "other_valve_interlock_status", " 0", "AMGV Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH8", "0 OR GH8", "0 OR GH4", "0 OR GH4", "1", "1", "1" }
+    { "FSOV:ILK:STAT", "other_valve_interlock_status", " 1", "FSOV Interlock Status", "Comms Error", "1", "0 OR GH8", "0 OR GH8", "0 OR GH12", "0 OR GH12", "!CryoFault", "1", "!EPB_FSOV" }
+    { "BPV1:ILK:STAT", "other_valve_interlock_status", " 2", "BPV1 Interlock Status", "Comms Error", "1", "1 OR 1", "1 OR 1", "1 OR 1", "1 OR 1", "1", "1", "!Close BPV1" }
+}
+
 
 # TODO 2.5      Beam Blocker Status
 

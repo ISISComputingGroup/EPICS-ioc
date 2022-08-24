@@ -43,8 +43,10 @@ drvModbusAsynConfigure("$(PLC)vacuum_pump_status",      "$(PLC)", 255, 3, 400409
 drvModbusAsynConfigure("$(PLC)piv_interlock_status",    "$(PLC)", 255, 3, 4004115, 12, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4114
 
 # 2.4.2 TODO LV Interlocks (Line Valve)
+drvModbusAsynConfigure("$(PLC)lv_interlock_status",     "$(PLC)", 255, 3, 4004126,  7, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4125
 
 # 2.4.3 TODO Other Valve Interlocks
+drvModbusAsynConfigure("$(PLC)other_valve_interlock_status", "$(PLC)", 255, 3, 4004133,  3, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4132
 
 # 2.5   TODO Beam Blocker Status
 

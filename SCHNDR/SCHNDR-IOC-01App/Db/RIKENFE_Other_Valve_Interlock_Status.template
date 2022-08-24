@@ -1,0 +1,27 @@
+
+record (mbbi, "$(P)$(PV)") {
+
+    field(DESC, "$(DESC)")
+    field(DTYP, "asynInt32")
+    field(ZRVL, 0)
+    field(ONVL, 1)
+    field(TWVL, 2)
+    field(THVL, 3)
+    field(FRVL, 4)
+    field(FVVL, 5)
+    field(SXVL, 6)
+    field(SVVL, 7)
+    field(EIVL, 8)
+    field(ZRST, "$(0TEXT)")
+    field(ONST, "$(1TEXT)")
+    field(TWST, "$(2TEXT)")
+    field(THST, "$(3TEXT)")
+    field(FRST, "$(4TEXT)")
+    field(FVST, "$(5TEXT)")
+    field(SXST, "$(6TEXT)")
+    field(SVST, "$(7TEXT)")
+    field(EIST, "$(8TEXT)")
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
+    # TODO Archive, Interest level fields
+}
