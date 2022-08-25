@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
   <config_part>
-    <ioc_desc>Provides the muon TPAR files</ioc_desc>
+    <ioc_desc>ISIS Muon TPAR File provider</ioc_desc>
     <macros>
       <macro name="TPAR_FILE" pattern="^.{0,40}$" description="TPAR file name in directory C:\\Instrument\\Settings. 40 Character maximum." hasDefault="NO" />
       <macro name="BOOSTER_TPAR_FILE" pattern="^.{0,40}$" description="Booster heater TPAR file name in directory C:\\Instrument\\Settings. 40 Character maximum." hasDefault="YES" defaultValue="" />

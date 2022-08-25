@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>Triton Dilution Fridge</ioc_desc>
+<ioc_desc>Oxford Instruments Triton Dilution Fridge</ioc_desc>
 <macros>
 <macro name="IPADDR" pattern="^.*$" description="IP address to connect to." defaultValue="localhost" hasDefault="YES" />
 <macro name="IPPORT" pattern="^[0-9]+$" description="Port to connect to (defaults to 33576)." defaultValue="33576" hasDefault="YES" />

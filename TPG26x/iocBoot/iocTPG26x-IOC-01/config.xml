@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
     <config_part>
-        <ioc_desc>TPG 26X pressure sensor</ioc_desc>
+        <ioc_desc>Pfeiffer TPG 26X pressure sensor</ioc_desc>
         <macros>
             <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
             <macro name="BAUD" pattern="^9600|19200|38400$" description="Baud rate, must be either 9600, 19200 or 38400 (default: 9600)" defaultValue="9600" hasDefault="YES" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
  <config_part>
-  <ioc_desc>Cryogenic Ltd 200 Helium Level Meter</ioc_desc>
+  <ioc_desc>Cryogenic Ltd 200 Series Helium Level Meter</ioc_desc>
   <ioc_details>Helium Level Meter V1 from Cryogenic Ltd</ioc_details>
   <macros>
     <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
