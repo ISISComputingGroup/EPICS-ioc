@@ -7,7 +7,7 @@
 # 1.4   Separators
 # =================
 
-# 1.4.1 *_NOT_* TODO: PSU Control (PSUs controlled via separate IOCs)
+# 1.4.1 *_NOT_* TODO PSU Control (PSUs controlled via separate IOCs)
 
 # 1.4.2 Separator Vacuum Interlock Status
 drvModbusAsynConfigure("$(PLC)separator_status",             "$(PLC)", 255, 3, 4004001,  3, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4000
@@ -92,7 +92,7 @@ drvModbusAsynConfigure("$(PLC)rbox_interlock_status",        "$(PLC)", 255, 3, 4
 # 3.5   MOL Status
 drvModbusAsynConfigure("$(PLC)MOL_status",                   "$(PLC)", 255, 3, 4004277,  9, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4276
 
-# 3.6   *_NOT_* TODO: PSU Control / On  (PSUs controlled via separate IOCs)
+# 3.6   *_NOT_* TODO PSU Control / On  (PSUs controlled via separate IOCs)
 
 
 
