@@ -9,8 +9,8 @@
 
 # 1.4.1 *_NOT_* TODO: PSU Control (PSUs controlled via separate IOCs)
 
-# 1.4.2 TODO: Vacuum Interlock Status
-#                                       * Duplicate addresses?
+# 1.4.2 Separator Vacuum Interlock Status
+drvModbusAsynConfigure("$(PLC)separator_status",             "$(PLC)", 255, 3, 4004001,  3, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4000
 
 
 # 1.5   Solenoid

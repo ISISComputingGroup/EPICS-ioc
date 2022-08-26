@@ -8,9 +8,15 @@
 
 # 1.4.1 *_NOT_* TODO:: PSU Control (PSUs controlled via separate IOCs)
 
-# TODO: 1.4.2 Vacuum Interlock Status
-# duplicate addresses?
+# 1.4.2 Vacuum Interlock Status
 
+file RIKENFE_Interlock_or_MOL_status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC}
+
+    { "SEP1:VACUUM:STAT", "separator_status", "01", "Separator 1 (N and P) Vacuum Interlock Status" }
+    { "SEP2:VACUUM:STAT", "separator_status", "02", "Separator 2 (N and P) Vacuum Interlock Status" }
+    { "SEP3:VACUUM:STAT", "separator_status", "03", "Separator 3 (N and P) Vacuum Interlock Status" }
+}
 
 
 # 1.5   Solenoid - *NB* PSU will not be installed until current one fails
