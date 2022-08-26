@@ -13,9 +13,9 @@
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    { "SEP1:VACUUM:STAT", "separator_status", "00", "Separator 1 (N & P) Vac Interlock Status" }
-    { "SEP2:VACUUM:STAT", "separator_status", "01", "Separator 2 (N & P) Vac Interlock Status" }
-    { "SEP3:VACUUM:STAT", "separator_status", "02", "Separator 3 (N & P) Vac Interlock Status" }
+    { "SEP1:VACUUM:STAT", "separator_status", "00", "Separator 1 N&P Vacuum Interlock Status" }
+    { "SEP2:VACUUM:STAT", "separator_status", "01", "Separator 2 N&P Vacuum Interlock Status" }
+    { "SEP3:VACUUM:STAT", "separator_status", "02", "Separator 3 N&P Vacuum Interlock Status" }
 }
 
 
