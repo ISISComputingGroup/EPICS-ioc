@@ -1,10 +1,9 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
  <config_part>
- <ioc_desc>Instron 8800 Stress Rig</ioc_desc>
- <ioc_details>Instron 8800 Stress Rig</ioc_details>
-  <macros>  
-   <macro name="GPIBSTR" pattern="^.*$" description="GPIB connection string, defaults to GPIB0::3::INSTR" defaultValue="GPIB0::3::INSTR" hasDefault="YES" />
+ <ioc_desc>Instron MiniTower Stress Rig</ioc_desc>
+ <ioc_details>Instron MiniTower Stress Rig</ioc_details>
+  <macros>
   </macros>
  </config_part>
 </ioc_config>

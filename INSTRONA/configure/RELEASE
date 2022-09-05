@@ -54,6 +54,7 @@ UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 GSL=$(SUPPORT)/gsl/master
 
+INSTRON=$(SUPPORT)/instron/master
 INSTRONARBY=$(SUPPORT)/instronArby/master
 
 # Set RULES here if you want to take build rules from somewhere
