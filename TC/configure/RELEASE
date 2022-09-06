@@ -54,6 +54,7 @@ ICPCONFIG=$(SUPPORT)/icpconfig/master
 JAWS=$(SUPPORT)/jaws/master
 LIBJSON=$(SUPPORT)/libjson/master
 LUA=$(SUPPORT)/lua/master
+MOTIONSETPOINTS=$(SUPPORT)/motionSetPoints/master
 MOTOR=$(SUPPORT)/motor/master
 MOTOREXT=$(SUPPORT)/motorExtensions/master
 MYSQL=$(SUPPORT)/MySQL/master
