@@ -40,9 +40,9 @@ file RIKENFE_Other_Valve_Interlock_Status.template {
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {  "KICKER:WATER:ILK:STAT", "kicker_status", "00", "Kicker Water Interlock" }
-    { "KICKER:VACUUM:ILK:STAT", "kicker_status", "01",          "Kicker Vacuum" }
-    {        "KICKER:MOL:STAT", "kicker_status", "02",             "Kicker MOL" }
+    {  "KICKER:WATER:ILK:STAT", "kicker_status", "00", "Kicker Water Interlock Status" }
+    { "KICKER:VACUUM:ILK:STAT", "kicker_status", "01",          "Kicker Vacuum Status" }
+    {        "KICKER:MOL:STAT", "kicker_status", "02",             "Kicker MOL Status" }
 }
 
 
@@ -506,15 +506,15 @@ file RIKENFE_Interlock_or_MOL_status.template {
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    { "SOLENOID:MOL:STAT", "MOL_status", "00", "Solenoid MOL" }
-    {      "RQ3:MOL:STAT", "MOL_status", "01",      "RQ3 MOL" }
-    {      "RQ4:MOL:STAT", "MOL_status", "02",      "RQ4 MOL" }
-    {      "RQ5:MOL:STAT", "MOL_status", "03",      "RQ5 MOL" }
-    {      "SY1:MOL:STAT", "MOL_status", "04",      "SY1 MOL" }
-    {      "SY2:MOL:STAT", "MOL_status", "05",      "SY2 MOL" }
-    {    "RB2_1:MOL:STAT", "MOL_status", "06",      "RB2 MOL" }
-    {    "ARGUS:MOL:STAT", "MOL_status", "07",    "ARGUS MOL" }
-    {  "CHRONUS:MOL:STAT", "MOL_status", "08",  "CHRONUS MOL" }
+    { "SOLENOID:MOL:STAT", "MOL_status", "00", "Solenoid MOL Status" }
+    {      "RQ3:MOL:STAT", "MOL_status", "01",      "RQ3 MOL Status" }
+    {      "RQ4:MOL:STAT", "MOL_status", "02",      "RQ4 MOL Status" }
+    {      "RQ5:MOL:STAT", "MOL_status", "03",      "RQ5 MOL Status" }
+    {      "SY1:MOL:STAT", "MOL_status", "04",      "SY1 MOL Status" }
+    {      "SY2:MOL:STAT", "MOL_status", "05",      "SY2 MOL Status" }
+    {    "RB2_1:MOL:STAT", "MOL_status", "06",      "RB2 MOL Status" }
+    {    "ARGUS:MOL:STAT", "MOL_status", "07",    "ARGUS MOL Status" }
+    {  "CHRONUS:MOL:STAT", "MOL_status", "08",  "CHRONUS MOL Status" }
 }
 
 
