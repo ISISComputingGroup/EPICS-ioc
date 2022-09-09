@@ -21,28 +21,6 @@
 <macro name="ADDR_9" pattern="^[0-9]{1,2}$" description="Address for the 9th Eurotherm on this port e.g. 09. Blank for do not use." hasDefault="NO" />
 <macro name="ADDR_10" pattern="^[0-9]{1,2}$" description="Address for the 10th Eurotherm on this port e.g. 10. Blank for do not use." hasDefault="NO" />
 
-<macro name="TEMP_SCALING_1" pattern="^[0-9]*\.?[0-9]*$" description="Temperature Scaling factor for 1st Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="TEMP_SCALING_2" pattern="^[0-9]*\.?[0-9]*$" description="Temperature Scaling factor for 2nd Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="TEMP_SCALING_3" pattern="^[0-9]*\.?[0-9]*$" description="Temperature Scaling factor for 3rd Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="TEMP_SCALING_4" pattern="^[0-9]*\.?[0-9]*$" description="Temperature Scaling factor for 4th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="TEMP_SCALING_5" pattern="^[0-9]*\.?[0-9]*$" description="Temperature Scaling factor for 5th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="TEMP_SCALING_6" pattern="^[0-9]*\.?[0-9]*$" description="Temperature Scaling factor for 6th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="TEMP_SCALING_7" pattern="^[0-9]*\.?[0-9]*$" description="Temperature Scaling factor for 7th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="TEMP_SCALING_8" pattern="^[0-9]*\.?[0-9]*$" description="Temperature Scaling factor for 8th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="TEMP_SCALING_9" pattern="^[0-9]*\.?[0-9]*$" description="Temperature Scaling factor for 9th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="TEMP_SCALING_10" pattern="^[0-9]*\.?[0-9]*$" description="Temperature Scaling factor for 10th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-
-<macro name="P_SCALING_1" pattern="^[0-9]*\.?[0-9]*$" description="Proportional (P) Scaling factor for 1st Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="P_SCALING_2" pattern="^[0-9]*\.?[0-9]*$" description="Proportional (P) Scaling factor for 2nd Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="P_SCALING_3" pattern="^[0-9]*\.?[0-9]*$" description="Proportional (P) Scaling factor for 3rd Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="P_SCALING_4" pattern="^[0-9]*\.?[0-9]*$" description="Proportional (P) Scaling factor for 4th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="P_SCALING_5" pattern="^[0-9]*\.?[0-9]*$" description="Proportional (P) Scaling factor for 5th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="P_SCALING_6" pattern="^[0-9]*\.?[0-9]*$" description="Proportional (P) Scaling factor for 6th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="P_SCALING_7" pattern="^[0-9]*\.?[0-9]*$" description="Proportional (P) Scaling factor for 7th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="P_SCALING_8" pattern="^[0-9]*\.?[0-9]*$" description="Proportional (P) Scaling factor for 8th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="P_SCALING_9" pattern="^[0-9]*\.?[0-9]*$" description="Proportional (P) Scaling factor for 9th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-<macro name="P_SCALING_10" pattern="^[0-9]*\.?[0-9]*$" description="Proportional (P) Scaling factor for 10th Eurotherm, only used in modbus mode. Defaults to 1 (no scaling)." defaultValue="1" hasDefault="YES" />
-
 <macro name="LOCAL_CALIB" pattern="^(yes)|(no)$" description="Use local instrument calibration directory instead of common one? Default is no." defaultValue="no" hasDefault="YES" />
 </macros>
 </config_part>

@@ -498,7 +498,7 @@ record(ai, "$(P)OUTPUT") {
 	
 	$(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
 	$(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),3,1000)MODBUS_DATA")
-	$(IFNOTUSES_BISYNCH) field(ASLO, "0.1")
+	$(IFNOTUSES_BISYNCH) field(ASLO, "$(OUTPUT_SCALING)")
 	
     field(EGU, "%")
     field(SIML, "$(Q)SIM")
@@ -516,7 +516,7 @@ record(ai, "$(P)MAX_OUTPUT") {
 	
 	$(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
 	$(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),30,1000)MODBUS_DATA")
-	$(IFNOTUSES_BISYNCH) field(ASLO, "0.1")
+	$(IFNOTUSES_BISYNCH) field(ASLO, "$(OUTPUT_SCALING)")
 	
     field(EGU, "%")
     field(SIML, "$(Q)SIM")
@@ -622,6 +622,7 @@ record(ao, "$(P)P:SP") {
 	
     $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
 	$(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),6,1000)MODBUS_DATA")
+	$(IFNOTUSES_BISYNCH) field(ASLO, "$(P_SCALING)")
 	
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:P:SP")
@@ -641,6 +642,7 @@ record(ai, "$(P)I") {
 	
 	$(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
 	$(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),8,1000)MODBUS_DATA")
+	$(IFNOTUSES_BISYNCH) field(ASLO, "$(I_SCALING)")
 	
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:I")
@@ -658,6 +660,7 @@ record(ao, "$(P)I:SP") {
 	
     $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
 	$(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),8,1000)MODBUS_DATA")
+	$(IFNOTUSES_BISYNCH) field(ASLO, "$(I_SCALING)")
 	
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:I:SP")
@@ -677,6 +680,7 @@ record(ai, "$(P)D") {
 	
 	$(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
 	$(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),9,1000)MODBUS_DATA")
+	$(IFNOTUSES_BISYNCH) field(ASLO, "$(D_SCALING)")
 	
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:D")
@@ -694,6 +698,7 @@ record(ao, "$(P)D:SP") {
 	
     $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
 	$(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),9,1000)MODBUS_DATA")
+	$(IFNOTUSES_BISYNCH) field(ASLO, "$(D_SCALING)")
 	
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:D:SP")
