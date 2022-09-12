@@ -22,10 +22,10 @@ file RIKENFE_Interlock_or_MOL_status.template {
 # 1.5   Solenoid - *NB* PSU will not be installed until current one fails
 # ===============
 
-file RIKENFE_Other_Valve_Interlock_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC, 0TEXT, 1TEXT, 2TEXT, 3TEXT, 4TEXT, 5TEXT, 6TEXT, 7TEXT, 8TEXT}
+file RIKENFE_Solenoid_Status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC}
 
-    { "SOLENOID:STAT", "solenoid_status", "00", "Solenoid Status", "Comms Error", "GH7 OK", "GH8 OK", "Cryo System OK", "Cooldown Complete", "Magnet Excitation", "Compressor On", "", "" }
+    { "SOLENOID", "solenoid_status", "00", "Solenoid Status" }
 }
 
 
@@ -387,6 +387,7 @@ file RIKENFE_Interlock_or_MOL_status.template {
 
     { "CHRONUS:TRANS:PSU:WATER:FLOW:STAT", "water_interlock_status_extra", "00", "Chronus Trans PSU Flow Status" }
 }
+
 
 # 3.3   Water Flow
 

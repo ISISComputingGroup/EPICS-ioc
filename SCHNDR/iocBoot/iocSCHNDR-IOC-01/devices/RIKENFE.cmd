@@ -80,7 +80,7 @@ drvModbusAsynConfigure("$(PLC)beamblocker_information",      "$(PLC)", 255, 3, 4
 drvModbusAsynConfigure("$(PLC)klixon_interlock_status",      "$(PLC)", 255, 3, 4145, 36, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4145
 
 # 3.2   Water Interlock Status
-drvModbusAsynConfigure("$(PLC)water_interlock_status",       "$(PLC)", 255, 3, 4181, 38, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4181
+drvModbusAsynConfigure("$(PLC)water_interlock_status",       "$(PLC)", 255, 3, 4181, 40, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4181
 drvModbusAsynConfigure("$(PLC)water_interlock_status_extra", "$(PLC)", 255, 3, 4285, 01, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4285
 
 # 3.3   Water Flow
