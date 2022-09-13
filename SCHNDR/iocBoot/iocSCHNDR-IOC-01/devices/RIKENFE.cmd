@@ -86,14 +86,13 @@ drvModbusAsynConfigure("$(PLC)water_interlock_status_extra", "$(PLC)", 255, 3, 4
 # 3.3   Water Flow
 drvModbusAsynConfigure("$(PLC)water_flow_rate",              "$(PLC)", 255, 3, 4516, 80, 7, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4516
 
-# 3.4   R-Box Interlock Status
+# 3.4   R-Box Interlock Status (R-Box - Rectifier Box)
 drvModbusAsynConfigure("$(PLC)rbox_interlock_status",        "$(PLC)", 255, 3, 4220, 56, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4220
 
-# 3.5   MOL Status
-drvModbusAsynConfigure("$(PLC)MOL_status",                   "$(PLC)", 255, 3, 4276, 09, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4276
+# 3.5   MOL Status (MOL - Magnet Off Light)
+drvModbusAsynConfigure("$(PLC)mol_status",                   "$(PLC)", 255, 3, 4276, 09, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4276
 
 # 3.6   *_NOT_* TODO PSU Control / On  (PSUs controlled via separate IOCs)
-
 
 
 ## Load our record instances

@@ -507,15 +507,15 @@ file RIKENFE_Interlock_or_MOL_status.template {
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    { "SOLENOID:MOL:STAT", "MOL_status", "00", "Solenoid MOL Status" }
-    {      "RQ3:MOL:STAT", "MOL_status", "01",      "RQ3 MOL Status" }
-    {      "RQ4:MOL:STAT", "MOL_status", "02",      "RQ4 MOL Status" }
-    {      "RQ5:MOL:STAT", "MOL_status", "03",      "RQ5 MOL Status" }
-    {      "SY1:MOL:STAT", "MOL_status", "04",      "SY1 MOL Status" }
-    {      "SY2:MOL:STAT", "MOL_status", "05",      "SY2 MOL Status" }
-    {    "RB2_1:MOL:STAT", "MOL_status", "06",      "RB2 MOL Status" }
-    {    "ARGUS:MOL:STAT", "MOL_status", "07",    "ARGUS MOL Status" }
-    {  "CHRONUS:MOL:STAT", "MOL_status", "08",  "CHRONUS MOL Status" }
+    { "SOLENOID:MOL:STAT", "mol_status", "00", "Solenoid MOL Status" }
+    {      "RQ3:MOL:STAT", "mol_status", "01",      "RQ3 MOL Status" }
+    {      "RQ4:MOL:STAT", "mol_status", "02",      "RQ4 MOL Status" }
+    {      "RQ5:MOL:STAT", "mol_status", "03",      "RQ5 MOL Status" }
+    {      "SY1:MOL:STAT", "mol_status", "04",      "SY1 MOL Status" }
+    {      "SY2:MOL:STAT", "mol_status", "05",      "SY2 MOL Status" }
+    {    "RB2_1:MOL:STAT", "mol_status", "06",      "RB2 MOL Status" }
+    {    "ARGUS:MOL:STAT", "mol_status", "07",    "ARGUS MOL Status" }
+    {  "CHRONUS:MOL:STAT", "mol_status", "08",  "CHRONUS MOL Status" }
 }
 
 
