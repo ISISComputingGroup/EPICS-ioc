@@ -21,20 +21,13 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) vxi11Configure("GPIB0", $(ADDR), 0, 0.0,"inst0", 0
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-
-
-
-
-## Load record instances
-
-##ISIS## Load common DB records 
-< $(IOCSTARTUP)/dbload.cmd
-
 ############################
 ## Load our record instances
 ############################
 
-dbLoadRecords("$(TEKAFG3XXX)/db/devAFG3XXX.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=GPIB0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
+## for the moment fix SCAN at 5 second - it has not been made into a configuration macro
+## as we may want to split into different scans for different functions 
+dbLoadRecords("$(TEKAFG3XXX)/db/devAFG3XXX.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=GPIB0,SCAN=5 second,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
