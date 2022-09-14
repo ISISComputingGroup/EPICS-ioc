@@ -1,10 +1,15 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>This is a template description</ioc_desc>
-<ioc_details>These are template details</ioc_details>
+<ioc_desc>Temperatur Jump System</ioc_desc>
+<ioc_details>Co-ordinates and combines the various devices that are used in running a t-jump experiment</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<macro name="P" pattern="^.*$" description="The PV prefix used on the IBEX server launching the IOC." defaultValue="$PVPREFIX" hasDefault="YES" />
+<macro name="TJMPER_IOC_ID" pattern="^[0-9]{2,}$" description="The ID number of the T-Jumper to use." defaultValue="01" hasDefault="YES" />
+<macro name="BLOCK_1_TEMP_CONTROLLER" pattern="^.*$" description="The Block 1 temperature controller." defaultValue="EURO_01:1" hasDefault="YES" />
+<macro name="BLOCK_2_TEMP_CONTROLLER" pattern="^.*$" description="The Block 2 temperature controller." defaultValue="JULABO_01" hasDefault="YES" />
+<macro name="SAMPLE_TEMP_READBACK" pattern="^.*$" description="The controller for temperature readback from the sample." defaultValue="EURO_01:1" hasDefault="YES" />
+<macro name="CALIBRATION_FOLDER" pattern="^.*$" description="The location of the T-Jump calibrations." hasDefault="NO" />
 </macros>
 <pvsets>
 </pvsets>
