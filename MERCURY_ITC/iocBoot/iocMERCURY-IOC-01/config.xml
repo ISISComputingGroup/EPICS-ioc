@@ -5,14 +5,14 @@
 <macros>
 <!-- check st-port.cmd for defaults -->
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
-<macro name="TEMP_1" pattern="^.*$" description="Card identifier for Temperature 1 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue=""/>
-<macro name="TEMP_2" pattern="^.*$" description="Card identifier for Temperature 2 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue="" />
-<macro name="TEMP_3" pattern="^.*$" description="Card identifier for Temperature 3 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue="" />
-<macro name="TEMP_4" pattern="^.*$" description="Card identifier for Temperature 4 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue="" />
-<macro name="LEVEL_1" pattern="^.*$" description="Card identifier for Level 1 (e.g. DB1.L1). Blank for no controller." hasDefault="YES" defaultValue="" />
-<macro name="LEVEL_2" pattern="^.*$" description="Card identifier for Level 2 (e.g. DB1.L1). Blank for no controller." hasDefault="YES" defaultValue="" />
-<macro name="PRESSURE_1" pattern="^.*$" description="Card identifier for Pressure 1 (e.g. DB1.P1). Blank for no controller." hasDefault="YES" defaultValue="" />
-<macro name="PRESSURE_2" pattern="^.*$" description="Card identifier for Pressure 2 (e.g. DB1.P1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="TEMP_1" pattern="^.*[.].*$" description="Card identifier for Temperature 1 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue=""/>
+<macro name="TEMP_2" pattern="^.*[.].*$" description="Card identifier for Temperature 2 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="TEMP_3" pattern="^.*[.].*$" description="Card identifier for Temperature 3 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="TEMP_4" pattern="^.*[.].*$" description="Card identifier for Temperature 4 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="LEVEL_1" pattern="^.*[.].*$" description="Card identifier for Level 1 (e.g. DB1.L1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="LEVEL_2" pattern="^.*[.].*$" description="Card identifier for Level 2 (e.g. DB1.L1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="PRESSURE_1" pattern="^.*[.].*$" description="Card identifier for Pressure 1 (e.g. DB1.P1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="PRESSURE_2" pattern="^.*[.].*$" description="Card identifier for Pressure 2 (e.g. DB1.P1). Blank for no controller." hasDefault="YES" defaultValue="" />
 
 <macro name="SPC_PRESSURE_1" pattern="^[1,2]$" description="The index of the pressure card to control with software pressure control for temp1. Blank for no control." hasDefault="YES" defaultValue="" />
 <macro name="SPC_PRESSURE_2" pattern="^[1,2]$" description="The index of the pressure card to control with software pressure control for temp2. Blank for no control." hasDefault="YES" defaultValue="" />
