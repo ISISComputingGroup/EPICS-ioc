@@ -34,11 +34,11 @@ file $(LKSH336)/db/lakeshore336output.template
 
 file $(LKSH336)/db/lakeshore336loop.template
 {
-	pattern {P, PORT, ADDR, SCAN, OUT}
-	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 1}
-	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 2}
-	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 3}
-	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 4}
+	pattern {P, PORT, ADDR, SCAN, OUT, CMD}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 1, "getHTR"}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 2, "getHTR"}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 3, "getAOUT"}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 4, "getAOUT"}
 }
 
 
