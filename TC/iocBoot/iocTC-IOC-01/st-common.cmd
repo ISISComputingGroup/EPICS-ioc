@@ -6,6 +6,9 @@ epicsEnvSet("LUA_SCRIPT_PATH","${TOP}/iocBoot/${IOC}")
 
 epicsEnvSet("TWINCATCONFIG","$(TWINCATCONFIG=$(ICPCONFIGROOT)/twincat)")
 
+## to stop lots of logs of writes to ASTAXES_*:STCONTROL-BENABLE
+epicsEnvSet("CAPUTLOGCONFIG", "0")
+
 luash("st-common.lua")
 
 ## configure jaws
