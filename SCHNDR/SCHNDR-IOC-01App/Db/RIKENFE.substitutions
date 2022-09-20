@@ -13,9 +13,9 @@
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    { "SEP1:VACUUM:STAT", "separator_status", "00", "Separator 1 N&P Vacuum Interlock Status" }
-    { "SEP2:VACUUM:STAT", "separator_status", "01", "Separator 2 N&P Vacuum Interlock Status" }
-    { "SEP3:VACUUM:STAT", "separator_status", "02", "Separator 3 N&P Vacuum Interlock Status" }
+    { "SEP1:VACUUM:STAT", "separator_status",  "0", "Separator 1 N&P Vacuum Interlock Status" }
+    { "SEP2:VACUUM:STAT", "separator_status",  "1", "Separator 2 N&P Vacuum Interlock Status" }
+    { "SEP3:VACUUM:STAT", "separator_status",  "2", "Separator 3 N&P Vacuum Interlock Status" }
 }
 
 
@@ -25,7 +25,7 @@ file RIKENFE_Interlock_or_MOL_status.template {
 file RIKENFE_Solenoid_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    { "SOLENOID", "solenoid_status", "00", "Solenoid Status" }
+    { "SOLENOID", "solenoid_status",  "0", "Solenoid S ttus" }
 }
 
 
@@ -40,9 +40,9 @@ file RIKENFE_Solenoid_Status.template {
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {  "KICKER:WATER:ILK:STAT", "kicker_status", "00", "Kicker Water Interlock Status" }
-    { "KICKER:VACUUM:ILK:STAT", "kicker_status", "01",          "Kicker Vacuum Status" }
-    {        "KICKER:MOL:STAT", "kicker_status", "02",             "Kicker MOL Status" }
+    {  "KICKER:WATER:ILK:STAT", "kicker_status",  "0", "Kicker Water Interlock Status" }
+    { "KICKER:VACUUM:ILK:STAT", "kicker_status",  "1",          "Kicker Vacuum Status" }
+    {        "KICKER:MOL:STAT", "kicker_status",  "2",             "Kicker MOL Status" }
 }
 
 
@@ -51,16 +51,16 @@ file RIKENFE_Interlock_or_MOL_status.template {
 file RIKENFE_other_objects_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, 1TEXT, 2TEXT}
 
-    { "K1:CONTROL_MODE:STAT", "kickers_1-4_status", "00",  "K1 Control Mode",     "Local", "Remote" }
-    {        "K1:STATE:STAT", "kickers_1-4_status", "01",         "K1 State",  "Abnormal", "Normal" }
-    {        "K1:READY:STAT", "kickers_1-4_status", "02",         "K1 Ready", "Not Ready",  "Ready" }
-    {       "K1:PSU_ON:STAT", "kickers_1-4_status", "03",    "K1 PSU Status",       "Off",     "On" }
-    {    "K1:PSU_HV_ON:STAT", "kickers_1-4_status", "04", "K1 PSU HV Status",       "Off",     "On" }
-    { "K2:CONTROL_MODE:STAT", "kickers_1-4_status", "05",  "K2 Control Mode",     "Local", "Remote" }
-    {        "K2:STATE:STAT", "kickers_1-4_status", "06",         "K2 State",  "Abnormal", "Normal" }
-    {        "K2:READY:STAT", "kickers_1-4_status", "07",         "K2 Ready", "Not Ready",  "Ready" }
-    {       "K2:PSU_ON:STAT", "kickers_1-4_status", "08",    "K2 PSU Status",       "Off",     "On" }
-    {    "K2:PSU_HV_ON:STAT", "kickers_1-4_status", "09", "K2 PSU HV Status",       "Off",     "On" }
+    { "K1:CONTROL_MODE:STAT", "kickers_1-4_status",  "0",  "K1 Control Mode",     "Local", "Remote" }
+    {        "K1:STATE:STAT", "kickers_1-4_status",  "1",         "K1 State",  "Abnormal", "Normal" }
+    {        "K1:READY:STAT", "kickers_1-4_status",  "2",         "K1 Ready", "Not Ready",  "Ready" }
+    {       "K1:PSU_ON:STAT", "kickers_1-4_status",  "3",    "K1 PSU Status",       "Off",     "On" }
+    {    "K1:PSU_HV_ON:STAT", "kickers_1-4_status",  "4", "K1 PSU HV Status",       "Off",     "On" }
+    { "K2:CONTROL_MODE:STAT", "kickers_1-4_status",  "5",  "K2 Control Mode",     "Local", "Remote" }
+    {        "K2:STATE:STAT", "kickers_1-4_status",  "6",         "K2 State",  "Abnormal", "Normal" }
+    {        "K2:READY:STAT", "kickers_1-4_status",  "7",         "K2 Ready", "Not Ready",  "Ready" }
+    {       "K2:PSU_ON:STAT", "kickers_1-4_status",  "8",    "K2 PSU Status",       "Off",     "On" }
+    {    "K2:PSU_HV_ON:STAT", "kickers_1-4_status",  "9", "K2 PSU HV Status",       "Off",     "On" }
     { "K3:CONTROL_MODE:STAT", "kickers_1-4_status", "10",  "K3 Control Mode",     "Local", "Remote" }
     {        "K3:STATE:STAT", "kickers_1-4_status", "11",         "K3 State",  "Abnormal", "Normal" }
     {        "K3:READY:STAT", "kickers_1-4_status", "12",         "K3 Ready", "Not Ready",  "Ready" }
@@ -79,11 +79,11 @@ file RIKENFE_other_objects_status.template {
 file RIKENFE_float.template {
     pattern {PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION}
 
-    { "K1:VOLTAGE", "kickers_1-4_output", "00", "K1 Output Voltage", "kV", "3" }
-    { "K1:CURRENT", "kickers_1-4_output", "02", "K1 Output Current", "kA", "3" }
-    { "K2:VOLTAGE", "kickers_1-4_output", "04", "K2 Output Voltage", "kV", "3" }
-    { "K2:CURRENT", "kickers_1-4_output", "06", "K2 Output Current", "kA", "3" }
-    { "K3:VOLTAGE", "kickers_1-4_output", "08", "K3 Output Voltage", "kV", "3" }
+    { "K1:VOLTAGE", "kickers_1-4_output",  "0", "K1 Output Voltage", "kV", "3" }
+    { "K1:CURRENT", "kickers_1-4_output",  "2", "K1 Output Current", "kA", "3" }
+    { "K2:VOLTAGE", "kickers_1-4_output",  "4", "K2 Output Voltage", "kV", "3" }
+    { "K2:CURRENT", "kickers_1-4_output",  "6", "K2 Output Current", "kA", "3" }
+    { "K3:VOLTAGE", "kickers_1-4_output",  "8", "K3 Output Voltage", "kV", "3" }
     { "K3:CURRENT", "kickers_1-4_output", "10", "K3 Output Current", "kA", "3" }
     { "K4:VOLTAGE", "kickers_1-4_output", "12", "K4 Output Voltage", "kV", "3" }
     { "K4:CURRENT", "kickers_1-4_output", "14", "K4 Output Current", "kA", "3" }
@@ -104,16 +104,16 @@ file RIKENFE_float.template {
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {  "GH1:STAT", "vacuum_status", "00",  "GH1 Status" }
-    {  "GH2:STAT", "vacuum_status", "01",  "GH2 Status" }
-    {  "GH3:STAT", "vacuum_status", "02",  "GH3 Status" }
-    {  "GH4:STAT", "vacuum_status", "03",  "GH4 Status" }
-    {  "GH5:STAT", "vacuum_status", "04",  "GH5 Status" }
-    {  "GH6:STAT", "vacuum_status", "05",  "GH6 Status" }
-    {  "GH7:STAT", "vacuum_status", "06",  "GH7 Status" }
-    {  "GH8:STAT", "vacuum_status", "07",  "GH8 Status" }
-    {  "GH9:STAT", "vacuum_status", "08",  "GH9 Status" }
-    { "GH10:STAT", "vacuum_status", "09", "GH10 Status" }
+    {  "GH1:STAT", "vacuum_status",  "0",  "GH1 Status" }
+    {  "GH2:STAT", "vacuum_status",  "1",  "GH2 Status" }
+    {  "GH3:STAT", "vacuum_status",  "2",  "GH3 Status" }
+    {  "GH4:STAT", "vacuum_status",  "3",  "GH4 Status" }
+    {  "GH5:STAT", "vacuum_status",  "4",  "GH5 Status" }
+    {  "GH6:STAT", "vacuum_status",  "5",  "GH6 Status" }
+    {  "GH7:STAT", "vacuum_status",  "6",  "GH7 Status" }
+    {  "GH8:STAT", "vacuum_status",  "7",  "GH8 Status" }
+    {  "GH9:STAT", "vacuum_status",  "8",  "GH9 Status" }
+    { "GH10:STAT", "vacuum_status",  "9", "GH10 Status" }
     { "GH11:STAT", "vacuum_status", "10", "GH11 Status" }
     { "GH12:STAT", "vacuum_status", "11", "GH12 Status" }
     { "GH13:STAT", "vacuum_status", "12", "GH13 Status" }
@@ -156,16 +156,16 @@ file RIKENFE_Interlock_or_MOL_status.template {
 file RIKENFE_vacuum_valve_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {  "PIV1:STAT", "vacuum_valve_status", "00",  "PIV1 Status" }
-    {  "PIV2:STAT", "vacuum_valve_status", "01",  "PIV2 Status" }
-    {  "PIV3:STAT", "vacuum_valve_status", "02",  "PIV3 Status" }
-    {  "PIV4:STAT", "vacuum_valve_status", "03",  "PIV4 Status" }
-    {  "PIV5:STAT", "vacuum_valve_status", "04",  "PIV5 Status" }
-    {  "PIV6:STAT", "vacuum_valve_status", "05",  "PIV6 Status" }
-    {  "PIV7:STAT", "vacuum_valve_status", "06",  "PIV7 Status" }
-    {  "PIV8:STAT", "vacuum_valve_status", "07",  "PIV8 Status" }
-    {  "PIV9:STAT", "vacuum_valve_status", "08",  "PIV9 Status" }
-    { "PIV10:STAT", "vacuum_valve_status", "09", "PIV10 Status" }
+    {  "PIV1:STAT", "vacuum_valve_status",  "0",  "PIV1 Status" }
+    {  "PIV2:STAT", "vacuum_valve_status",  "1",  "PIV2 Status" }
+    {  "PIV3:STAT", "vacuum_valve_status",  "2",  "PIV3 Status" }
+    {  "PIV4:STAT", "vacuum_valve_status",  "3",  "PIV4 Status" }
+    {  "PIV5:STAT", "vacuum_valve_status",  "4",  "PIV5 Status" }
+    {  "PIV6:STAT", "vacuum_valve_status",  "5",  "PIV6 Status" }
+    {  "PIV7:STAT", "vacuum_valve_status",  "6",  "PIV7 Status" }
+    {  "PIV8:STAT", "vacuum_valve_status",  "7",  "PIV8 Status" }
+    {  "PIV9:STAT", "vacuum_valve_status",  "8",  "PIV9 Status" }
+    { "PIV10:STAT", "vacuum_valve_status",  "9", "PIV10 Status" }
     { "PIV11:STAT", "vacuum_valve_status", "10", "PIV11 Status" }
     {   "LV1:STAT", "vacuum_valve_status", "11",   "LV1 Status" }
     {   "LV2:STAT", "vacuum_valve_status", "12",   "LV2 Status" }
@@ -180,7 +180,20 @@ file RIKENFE_vacuum_valve_status.template {
 }
 
 
-# TODO: 2.3   Vacuum Valve Controls
+# 2.3   Vacuum Valve Controls
+
+file RIKENFE_vacuum_valve_open.template {
+    pattern {PV, PORTNAME, OFFSET, DESC}
+
+    {  "LV1:OPEN",  "lv1_vacuum_valve_open",  "0",  "Initiate LV1 Opening" } 
+    {  "LV2:OPEN",  "lv2_vacuum_valve_open",  "0",  "Initiate LV2 Opening" } 
+    {  "LV3:OPEN",  "lv3_vacuum_valve_open",  "0",  "Initiate LV3 Opening" } 
+    {  "LV4:OPEN",  "lv4_vacuum_valve_open",  "0",  "Initiate LV4 Opening" } 
+    {  "LV5:OPEN",  "lv5_vacuum_valve_open",  "0",  "Initiate LV5 Opening" } 
+    {  "LV6:OPEN",  "lv6_vacuum_valve_open",  "0",  "Initiate LV6 Opening" } 
+    { "AMGV:OPEN", "amgv_vacuum_valve_open",  "0", "Initiate AMGV Opening" } 
+    { "FSOV:OPEN", "fsov_vacuum_valve_open",  "0", "Initiate FSOV Opening" } 
+}
 
 
 # 2.4   Vacuum Pump Status
@@ -188,16 +201,16 @@ file RIKENFE_vacuum_valve_status.template {
 file RIKENFE_pump_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
     
-    {  "BP1:STAT", "vacuum_pump_status", "00",  "BP1 Vacuum Pump Status" }
-    {  "BP2:STAT", "vacuum_pump_status", "01",  "BP2 Vacuum Pump Status" }
-    {  "BP3:STAT", "vacuum_pump_status", "02",  "BP3 Vacuum Pump Status" }
-    {  "BP4:STAT", "vacuum_pump_status", "03",  "BP4 Vacuum Pump Status" }
-    {  "BP5:STAT", "vacuum_pump_status", "04",  "BP5 Vacuum Pump Status" }
-    {  "BP6:STAT", "vacuum_pump_status", "05",  "BP5 Vacuum Pump Status" }
-    {  "BP7:STAT", "vacuum_pump_status", "06",  "BP5 Vacuum Pump Status" }
-    {  "BP8:STAT", "vacuum_pump_status", "07",  "BP5 Vacuum Pump Status" }
-    {  "BP9:STAT", "vacuum_pump_status", "08",  "BP5 Vacuum Pump Status" }
-    { "BP10:STAT", "vacuum_pump_status", "09",  "BP5 Vacuum Pump Status" }
+    {  "BP1:STAT", "vacuum_pump_status",  "0",  "BP1 Vacuum Pump Status" }
+    {  "BP2:STAT", "vacuum_pump_status",  "1",  "BP2 Vacuum Pump Status" }
+    {  "BP3:STAT", "vacuum_pump_status",  "2",  "BP3 Vacuum Pump Status" }
+    {  "BP4:STAT", "vacuum_pump_status",  "3",  "BP4 Vacuum Pump Status" }
+    {  "BP5:STAT", "vacuum_pump_status",  "4",  "BP5 Vacuum Pump Status" }
+    {  "BP6:STAT", "vacuum_pump_status",  "5",  "BP5 Vacuum Pump Status" }
+    {  "BP7:STAT", "vacuum_pump_status",  "6",  "BP5 Vacuum Pump Status" }
+    {  "BP8:STAT", "vacuum_pump_status",  "7",  "BP5 Vacuum Pump Status" }
+    {  "BP9:STAT", "vacuum_pump_status",  "8",  "BP5 Vacuum Pump Status" }
+    { "BP10:STAT", "vacuum_pump_status",  "9",  "BP5 Vacuum Pump Status" }
     { "BP11:STAT", "vacuum_pump_status", "10",  "BP5 Vacuum Pump Status" }
     {  "TP1:STAT", "vacuum_pump_status", "11",  "TP1 Vacuum Pump Status" }
     {  "TP2:STAT", "vacuum_pump_status", "12",  "TP2 Vacuum Pump Status" }
@@ -218,16 +231,16 @@ file RIKENFE_pump_status.template {
 file RIKENFE_PIV_Interlock_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {  "PIV1:ILK:STAT", "piv_interlock_status", "00",  "PIV1 Interlock Status" }
-    {  "PIV2:ILK:STAT", "piv_interlock_status", "01",  "PIV2 Interlock Status" }
-    {  "PIV3:ILK:STAT", "piv_interlock_status", "02",  "PIV3 Interlock Status" }
-    {  "PIV4:ILK:STAT", "piv_interlock_status", "03",  "PIV4 Interlock Status" }
-    {  "PIV5:ILK:STAT", "piv_interlock_status", "04",  "PIV5 Interlock Status" }
-    {  "PIV6:ILK:STAT", "piv_interlock_status", "05",  "PIV6 Interlock Status" }
-    {  "PIV7:ILK:STAT", "piv_interlock_status", "06",  "PIV7 Interlock Status" }
-    {  "PIV8:ILK:STAT", "piv_interlock_status", "07",  "PIV8 Interlock Status" }
-    {  "PIV9:ILK:STAT", "piv_interlock_status", "08",  "PIV9 Interlock Status" }
-    { "PIV10:ILK:STAT", "piv_interlock_status", "09", "PIV10 Interlock Status" }
+    {  "PIV1:ILK:STAT", "piv_interlock_status",  "0",  "PIV1 Interlock Status" }
+    {  "PIV2:ILK:STAT", "piv_interlock_status",  "1",  "PIV2 Interlock Status" }
+    {  "PIV3:ILK:STAT", "piv_interlock_status",  "2",  "PIV3 Interlock Status" }
+    {  "PIV4:ILK:STAT", "piv_interlock_status",  "3",  "PIV4 Interlock Status" }
+    {  "PIV5:ILK:STAT", "piv_interlock_status",  "4",  "PIV5 Interlock Status" }
+    {  "PIV6:ILK:STAT", "piv_interlock_status",  "5",  "PIV6 Interlock Status" }
+    {  "PIV7:ILK:STAT", "piv_interlock_status",  "6",  "PIV7 Interlock Status" }
+    {  "PIV8:ILK:STAT", "piv_interlock_status",  "7",  "PIV8 Interlock Status" }
+    {  "PIV9:ILK:STAT", "piv_interlock_status",  "8",  "PIV9 Interlock Status" }
+    { "PIV10:ILK:STAT", "piv_interlock_status",  "9", "PIV10 Interlock Status" }
     { "PIV11:ILK:STAT", "piv_interlock_status", "10", "PIV11 Interlock Status" }
 }
 
@@ -240,13 +253,13 @@ file RIKENFE_PIV_Interlock_Status.template {
 file RIKENFE_Other_Valve_Interlock_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, 0TEXT, 1TEXT, 2TEXT, 3TEXT, 4TEXT, 5TEXT, 6TEXT, 7TEXT, 8TEXT}
 
-    { "LV1:ILK:STAT", "lv_interlock_status", "00", "LV1 Interlock Status", "Comms Error", "FSOV Opened", "GH12 OR GH16", "GH12 OR GH16", "0 OR GH8", "0 OR GH8", "!BB0 Close Command", "1", "!Close LV1" }
-    { "LV2:ILK:STAT", "lv_interlock_status", "01", "LV2 Interlock Status", "Comms Error", "FSOV Opened", "GH20 OR GH24", "GH20 OR GH24", "GH12 OR GH16", "GH12 OR GH16", "1", "1", "!Close LV2" }
-    { "LV3:ILK:STAT", "lv_interlock_status", "02", "LV3 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH28", "0 OR GH28", "GH20 OR GH24", "GH20 OR GH24", "!BB1 Close Command", "Port1 Locked", "!Close LV3" }
-    { "LV4:ILK:STAT", "lv_interlock_status", "03", "LV4 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH30", "0 OR GH30", "GH20 OR GH24", "GH20 OR GH24", "!BB2 Close Command", "Port2 Locked", "!Close LV4" }
-    { "LV5:ILK:STAT", "lv_interlock_status", "04", "LV5 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH40", "0 OR GH40", "0 OR GH36", "0 OR GH36", "!BB3 Close Command", "Port3 Locked", "!Close LV5" }
-    { "LV6:ILK:STAT", "lv_interlock_status", "05", "LV6 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH40", "0 OR GH40", "0 OR GH12", "0 OR GH12", "1", "1", "!Close LV6" }
-    { "LV7:ILK:STAT", "lv_interlock_status", "06", "LV7 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH44", "0 OR GH44", "0 OR GH40", "0 OR GH40", "!BB4 Close Command", "Port4 Locked", "!Close LV7" }
+    { "LV1:ILK:STAT", "lv_interlock_status",  "0", "LV1 Interlock Status", "Comms Error", "FSOV Opened", "GH12 OR GH16", "GH12 OR GH16",  " OR GH8", "0 OR GH8", "!BB0 Close Command", "1", "!Close LV1" }
+    { "LV2:ILK:STAT", "lv_interlock_status",  "1", "LV2 Interlock Status", "Comms Error", "FSOV Opened", "GH20 OR GH24", "GH20 OR GH24", "GH12 OR GH16", "GH12 OR GH16", "1", "1", "!Close LV2" }
+    { "LV3:ILK:STAT", "lv_interlock_status",  "2", "LV3 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH28", "0 OR GH28", "GH20 OR GH24", "GH20 OR GH24", "!BB1 Close Command", "Port1 Locked", "!Close LV3" }
+    { "LV4:ILK:STAT", "lv_interlock_status",  "3", "LV4 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH30", "0 OR GH30", "GH20 OR GH24", "GH20 OR GH24", "!BB2 Close Command", "Port2 Locked", "!Close LV4" }
+    { "LV5:ILK:STAT", "lv_interlock_status",  "4", "LV5 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH40", "0 OR GH40", "0 OR GH36", "0 OR GH36", "!BB3 Close Command", "Port3 Locked", "!Close LV5" }
+    { "LV6:ILK:STAT", "lv_interlock_status",  "5", "LV6 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH40", "0 OR GH40", "0 OR GH12", "0 OR GH12", "1", "1", "!Close LV6" }
+    { "LV7:ILK:STAT", "lv_interlock_status",  "6", "LV7 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH44", "0 OR GH44", "0 OR GH40", "0 OR GH40", "!BB4 Close Command", "Port4 Locked", "!Close LV7" }
 }
 
 # TODO: 2.4.3    Vacuum Pump Other Valve Interlocks
@@ -254,9 +267,9 @@ file RIKENFE_Other_Valve_Interlock_Status.template {
 file RIKENFE_Other_Valve_Interlock_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, 0TEXT, 1TEXT, 2TEXT, 3TEXT, 4TEXT, 5TEXT, 6TEXT, 7TEXT, 8TEXT}
 
-    { "AMGV:ILK:STAT", "other_valve_interlock_status", "00", "AMGV Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH8", "0 OR GH8", "0 OR GH4", "0 OR GH4", "1", "1", "1" }
-    { "FSOV:ILK:STAT", "other_valve_interlock_status", "01", "FSOV Interlock Status", "Comms Error", "1", "0 OR GH8", "0 OR GH8", "0 OR GH12", "0 OR GH12", "!CryoFault", "1", "!EPB_FSOV" }
-    { "BPV1:ILK:STAT", "other_valve_interlock_status", "02", "BPV1 Interlock Status", "Comms Error", "1", "1 OR 1", "1 OR 1", "1 OR 1", "1 OR 1", "1", "1", "!Close BPV1" }
+    { "AMGV:ILK:STAT", "other_valve_interlock_status",  "0", "AMGV Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH8", "0 OR GH8", "0 OR GH4", "0 OR GH4", "1", "1", "1" }
+    { "FSOV:ILK:STAT", "other_valve_interlock_status",  "1", "FSOV Interlock Status", "Comms Error", "1", "0 OR GH8", "0 OR GH8", "0 OR GH12", "0 OR GH12", "!CryoFault", "1", "!EPB_FSOV" }
+    { "BPV1:ILK:STAT", "other_valve_interlock_status",  "2", "BPV1 Interlock Status", "Comms Error", "1", "1 OR 1", "1 OR 1", "1 OR 1", "1 OR 1", "1", "1", "!Close BPV1" }
 }
 
 # ************************************************** FIXME: Needs Further Work **************************************************
@@ -267,11 +280,11 @@ file RIKENFE_Other_Valve_Interlock_Status.template {
 file RIKENFE_vacuum_valve_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    { "BB0:STAT", "beamblocker_status", "00", "BB0 Status" }
-    { "BB1:STAT", "beamblocker_status", "01", "BB1 Status" }
-    { "BB2:STAT", "beamblocker_status", "02", "BB2 Status" }
-    { "BB3:STAT", "beamblocker_status", "03", "BB3 Status" }
-    { "BB4:STAT", "beamblocker_status", "04", "BB4 Status" }
+    { "BB0:STAT", "beamblocker_status",  "0", "BB0 Status" }
+    { "BB1:STAT", "beamblocker_status",  "1", "BB1 Status" }
+    { "BB2:STAT", "beamblocker_status",  "2", "BB2 Status" }
+    { "BB3:STAT", "beamblocker_status",  "3", "BB3 Status" }
+    { "BB4:STAT", "beamblocker_status",  "4", "BB4 Status" }
 }
 
 
@@ -280,11 +293,11 @@ file RIKENFE_vacuum_valve_status.template {
 file RIKENFE_beamblocker_information.template {
     pattern {PV, PORTNAME, OFFSET, DESC, LOCN}
 
-    { "BB0:INFO", "beamblocker_information", "00", "BB0 Information", "Kicker Area" }
-    { "BB1:INFO", "beamblocker_information", "01", "BB1 Information",      "Port 1" }
-    { "BB2:INFO", "beamblocker_information", "02", "BB2 Information",      "Port 2" }
-    { "BB3:INFO", "beamblocker_information", "03", "BB3 Information",      "Port 3" }
-    { "BB4:INFO", "beamblocker_information", "04", "BB4 Information",      "Port 4" }
+    { "BB0:INFO", "beamblocker_information",  "0", "BB0 Information", "Kicker Area" }
+    { "BB1:INFO", "beamblocker_information",  "1", "BB1 Information",      "Port 1" }
+    { "BB2:INFO", "beamblocker_information",  "2", "BB2 Information",      "Port 2" }
+    { "BB3:INFO", "beamblocker_information",  "3", "BB3 Information",      "Port 3" }
+    { "BB4:INFO", "beamblocker_information",  "4", "BB4 Information",      "Port 4" }
 }
 
 
@@ -296,16 +309,16 @@ file RIKENFE_beamblocker_information.template {
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {           "RQ1:KLIXON:STAT", "klixon_interlock_status", "00",           "RQ1 Klixon Status" }
-    {           "RQ2:KLIXON:STAT", "klixon_interlock_status", "01",           "RQ2 Klixon Status" }
-    {           "RB1:KLIXON:STAT", "klixon_interlock_status", "02",           "RB1 Klixon Status" }
-    {           "RQ3:KLIXON:STAT", "klixon_interlock_status", "03",           "RQ3 Klixon Status" }
-    {           "RQ4:KLIXON:STAT", "klixon_interlock_status", "04",           "RQ4 Klixon Status" }
-    {           "RQ5:KLIXON:STAT", "klixon_interlock_status", "05",           "RQ5 Klixon Status" }
-    {           "SY1:KLIXON:STAT", "klixon_interlock_status", "06",           "SY1 Klixon Status" }
-    {           "SY2:KLIXON:STAT", "klixon_interlock_status", "07",           "SY2 Klixon Status" }
-    {           "RQ6:KLIXON:STAT", "klixon_interlock_status", "08",           "RQ6 Klixon Status" }
-    {           "RQ7:KLIXON:STAT", "klixon_interlock_status", "09",           "RQ7 Klixon Status" }
+    {           "RQ1:KLIXON:STAT", "klixon_interlock_status",  "0",           "RQ1 Klixon Status" }
+    {           "RQ2:KLIXON:STAT", "klixon_interlock_status",  "1",           "RQ2 Klixon Status" }
+    {           "RB1:KLIXON:STAT", "klixon_interlock_status",  "2",           "RB1 Klixon Status" }
+    {           "RQ3:KLIXON:STAT", "klixon_interlock_status",  "3",           "RQ3 Klixon Status" }
+    {           "RQ4:KLIXON:STAT", "klixon_interlock_status",  "4",           "RQ4 Klixon Status" }
+    {           "RQ5:KLIXON:STAT", "klixon_interlock_status",  "5",           "RQ5 Klixon Status" }
+    {           "SY1:KLIXON:STAT", "klixon_interlock_status",  "6",           "SY1 Klixon Status" }
+    {           "SY2:KLIXON:STAT", "klixon_interlock_status",  "7",           "SY2 Klixon Status" }
+    {           "RQ6:KLIXON:STAT", "klixon_interlock_status",  "8",           "RQ6 Klixon Status" }
+    {           "RQ7:KLIXON:STAT", "klixon_interlock_status",  "9",           "RQ7 Klixon Status" }
     {           "RQ8:KLIXON:STAT", "klixon_interlock_status", "10",           "RQ8 Klixon Status" }
     {           "RB3:KLIXON:STAT", "klixon_interlock_status", "11",           "RB3 Klixon Status" }
     {           "RQ9:KLIXON:STAT", "klixon_interlock_status", "12",           "RQ9 Klixon Status" }
@@ -340,16 +353,16 @@ file RIKENFE_Interlock_or_MOL_status.template {
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {               "RQ1:WATER:FLOW:STAT", "water_interlock_status",       "00",               "RQ1 Flow Status" }
-    {               "RQ2:WATER:FLOW:STAT", "water_interlock_status",       "01",               "RQ2 Flow Status" }
-    {               "RB1:WATER:FLOW:STAT", "water_interlock_status",       "02",               "RB1 Flow Status" }
-    {               "RQ3:WATER:FLOW:STAT", "water_interlock_status",       "03",               "RQ3 Flow Status" }
-    {               "RQ4:WATER:FLOW:STAT", "water_interlock_status",       "04",               "RQ4 Flow Status" }
-    {               "RQ5:WATER:FLOW:STAT", "water_interlock_status",       "05",               "RQ5 Flow Status" }
-    {               "SY1:WATER:FLOW:STAT", "water_interlock_status",       "06",               "SY1 Flow Status" }
-    {               "SY2:WATER:FLOW:STAT", "water_interlock_status",       "07",               "SY2 Flow Status" }
-    {               "RQ6:WATER:FLOW:STAT", "water_interlock_status",       "08",               "RQ6 Flow Status" }
-    {               "RQ7:WATER:FLOW:STAT", "water_interlock_status",       "09",               "RQ7 Flow Status" }
+    {               "RQ1:WATER:FLOW:STAT", "water_interlock_status",        "0",               "RQ1 Flow Status" }
+    {               "RQ2:WATER:FLOW:STAT", "water_interlock_status",        "1",               "RQ2 Flow Status" }
+    {               "RB1:WATER:FLOW:STAT", "water_interlock_status",        "2",               "RB1 Flow Status" }
+    {               "RQ3:WATER:FLOW:STAT", "water_interlock_status",        "3",               "RQ3 Flow Status" }
+    {               "RQ4:WATER:FLOW:STAT", "water_interlock_status",        "4",               "RQ4 Flow Status" }
+    {               "RQ5:WATER:FLOW:STAT", "water_interlock_status",        "5",               "RQ5 Flow Status" }
+    {               "SY1:WATER:FLOW:STAT", "water_interlock_status",        "6",               "SY1 Flow Status" }
+    {               "SY2:WATER:FLOW:STAT", "water_interlock_status",        "7",               "SY2 Flow Status" }
+    {               "RQ6:WATER:FLOW:STAT", "water_interlock_status",        "8",               "RQ6 Flow Status" }
+    {               "RQ7:WATER:FLOW:STAT", "water_interlock_status",        "9",               "RQ7 Flow Status" }
     {               "RQ8:WATER:FLOW:STAT", "water_interlock_status",       "10",               "RQ8 Flow Status" }
     {               "RB3:WATER:FLOW:STAT", "water_interlock_status",       "11",               "RB3 Flow Status" }
     {               "RQ9:WATER:FLOW:STAT", "water_interlock_status",       "12",               "RQ9 Flow Status" }
@@ -385,7 +398,7 @@ file RIKENFE_Interlock_or_MOL_status.template {
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    { "CHRONUS:TRANS:PSU:WATER:FLOW:STAT", "water_interlock_status_extra", "00", "Chronus Trans PSU Flow Status" }
+    { "CHRONUS:TRANS:PSU:WATER:FLOW:STAT", "water_interlock_status_extra",  "0", "Chronus Trans PSU Flow Status" }
 }
 
 
@@ -394,11 +407,11 @@ file RIKENFE_Interlock_or_MOL_status.template {
 file RIKENFE_float.template {
     pattern {PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION}
  
-    {               "RQ1:WATER:FLOW", "water_flow_rate", "00",               "RQ1 Water Flow Rate", "L/min", "3" }
-    {               "RQ2:WATER:FLOW", "water_flow_rate", "02",               "RQ2 Water Flow Rate", "L/min", "3" }
-    {               "RB1:WATER:FLOW", "water_flow_rate", "04",               "RB1 Water Flow Rate", "L/min", "3" }
-    {               "RQ3:WATER:FLOW", "water_flow_rate", "06",               "RQ3 Water Flow Rate", "L/min", "3" }
-    {               "RQ4:WATER:FLOW", "water_flow_rate", "08",               "RQ4 Water Flow Rate", "L/min", "3" }
+    {               "RQ1:WATER:FLOW", "water_flow_rate",  "0",               "RQ1 Water Flow Rate", "L/min", "3" }
+    {               "RQ2:WATER:FLOW", "water_flow_rate",  "2",               "RQ2 Water Flow Rate", "L/min", "3" }
+    {               "RB1:WATER:FLOW", "water_flow_rate",  "4",               "RB1 Water Flow Rate", "L/min", "3" }
+    {               "RQ3:WATER:FLOW", "water_flow_rate",  "6",               "RQ3 Water Flow Rate", "L/min", "3" }
+    {               "RQ4:WATER:FLOW", "water_flow_rate",  "8",               "RQ4 Water Flow Rate", "L/min", "3" }
     {               "RQ5:WATER:FLOW", "water_flow_rate", "10",               "RQ5 Water Flow Rate", "L/min", "3" }
     {               "SY1:WATER:FLOW", "water_flow_rate", "12",               "SY1 Water Flow Rate", "L/min", "3" }
     {               "SY2:WATER:FLOW", "water_flow_rate", "14",               "SY2 Water Flow Rate", "L/min", "3" }
@@ -442,16 +455,16 @@ file RIKENFE_float.template {
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {         "RQ1:RBOX:STAT", "rbox_interlock_status", "00",           "RQ1 RBox Status" }
-    {  "RQ1:RBOX:BYPASS:STAT", "rbox_interlock_status", "01",  "RQ1 Bypass Switch Status" }
-    {         "RQ2:RBOX:STAT", "rbox_interlock_status", "02",           "RQ2 RBox Status" }
-    {  "RQ2:RBOX:BYPASS:STAT", "rbox_interlock_status", "03",  "RQ2 Bypass Switch Status" }
-    {         "RB1:RBOX:STAT", "rbox_interlock_status", "04",           "RB1 RBox Status" }
-    {  "RB1:RBOX:BYPASS:STAT", "rbox_interlock_status", "05",  "RB1 Bypass Switch Status" }
-    {         "RQ3:RBOX:STAT", "rbox_interlock_status", "06",           "RQ3 RBox Status" }
-    {  "RQ3:RBOX:BYPASS:STAT", "rbox_interlock_status", "07",  "RQ3 Bypass Switch Status" }
-    {         "RQ4:RBOX:STAT", "rbox_interlock_status", "08",           "RQ4 RBox Status" }
-    {  "RQ4:RBOX:BYPASS:STAT", "rbox_interlock_status", "09",  "RQ4 Bypass Switch Status" }
+    {         "RQ1:RBOX:STAT", "rbox_interlock_status",  "0",           "RQ1 RBox Status" }
+    {  "RQ1:RBOX:BYPASS:STAT", "rbox_interlock_status",  "1",  "RQ1 Bypass Switch Status" }
+    {         "RQ2:RBOX:STAT", "rbox_interlock_status",  "2",           "RQ2 RBox Status" }
+    {  "RQ2:RBOX:BYPASS:STAT", "rbox_interlock_status",  "3",  "RQ2 Bypass Switch Status" }
+    {         "RB1:RBOX:STAT", "rbox_interlock_status",  "4",           "RB1 RBox Status" }
+    {  "RB1:RBOX:BYPASS:STAT", "rbox_interlock_status",  "5",  "RB1 Bypass Switch Status" }
+    {         "RQ3:RBOX:STAT", "rbox_interlock_status",  "6",           "RQ3 RBox Status" }
+    {  "RQ3:RBOX:BYPASS:STAT", "rbox_interlock_status",  "7",  "RQ3 Bypass Switch Status" }
+    {         "RQ4:RBOX:STAT", "rbox_interlock_status",  "8",           "RQ4 RBox Status" }
+    {  "RQ4:RBOX:BYPASS:STAT", "rbox_interlock_status",  "9",  "RQ4 Bypass Switch Status" }
     {         "RQ5:RBOX:STAT", "rbox_interlock_status", "10",           "RQ5 RBox Status" }
     {  "RQ5:RBOX:BYPASS:STAT", "rbox_interlock_status", "11",  "RQ5 Bypass Switch Status" }
     {         "SY1:RBOX:STAT", "rbox_interlock_status", "12",           "SY1 RBox Status" }
@@ -507,15 +520,15 @@ file RIKENFE_Interlock_or_MOL_status.template {
 file RIKENFE_Interlock_or_MOL_status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    { "SOLENOID:MOL:STAT", "mol_status", "00", "Solenoid MOL Status" }
-    {      "RQ3:MOL:STAT", "mol_status", "01",      "RQ3 MOL Status" }
-    {      "RQ4:MOL:STAT", "mol_status", "02",      "RQ4 MOL Status" }
-    {      "RQ5:MOL:STAT", "mol_status", "03",      "RQ5 MOL Status" }
-    {      "SY1:MOL:STAT", "mol_status", "04",      "SY1 MOL Status" }
-    {      "SY2:MOL:STAT", "mol_status", "05",      "SY2 MOL Status" }
-    {    "RB2_1:MOL:STAT", "mol_status", "06",      "RB2 MOL Status" }
-    {    "ARGUS:MOL:STAT", "mol_status", "07",    "ARGUS MOL Status" }
-    {  "CHRONUS:MOL:STAT", "mol_status", "08",  "CHRONUS MOL Status" }
+    { "SOLENOID:MOL:STAT", "mol_status",  "0", "Solenoid MOL Status" }
+    {      "RQ3:MOL:STAT", "mol_status",  "1",      "RQ3 MOL Status" }
+    {      "RQ4:MOL:STAT", "mol_status",  "2",      "RQ4 MOL Status" }
+    {      "RQ5:MOL:STAT", "mol_status",  "3",      "RQ5 MOL Status" }
+    {      "SY1:MOL:STAT", "mol_status",  "4",      "SY1 MOL Status" }
+    {      "SY2:MOL:STAT", "mol_status",  "5",      "SY2 MOL Status" }
+    {    "RB2_1:MOL:STAT", "mol_status",  "6",      "RB2 MOL Status" }
+    {    "ARGUS:MOL:STAT", "mol_status",  "7",    "ARGUS MOL Status" }
+    {  "CHRONUS:MOL:STAT", "mol_status",  "8",  "CHRONUS MOL Status" }
 }
 
 
