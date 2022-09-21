@@ -24,6 +24,7 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += cvtRecord.dbd
 ## Stream device support ##
 $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
@@ -54,6 +55,7 @@ $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += cvtRecord
 
 # TJMPAP-IOC-01_registerRecordDeviceDriver.cpp derives from TJMPAP-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

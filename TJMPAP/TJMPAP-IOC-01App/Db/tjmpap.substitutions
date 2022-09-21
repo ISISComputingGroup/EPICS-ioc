@@ -1,31 +1,5 @@
 file $(TJMPAP)/tjmpapSup/tjmpap.template
 {
-	pattern {P, TJUMPER_IOC_ID, RECSIM, DISABLE}
-	{"\$(P)", "\$(TJUMPER_IOC_ID)", "\$(RECSIM)", "\$(DISABLE)"}
-}
-
-file $(TJMPAP)/tjmpapSup/tjmpap_limits.template
-{
-	pattern {P, TJUMPER_IOC_ID, PART, MODE}
-	{"\$(P)", "\$(TJUMPER_IOC_ID)", "PLATE1", "HOME" }
-    {"\$(P)", "\$(TJUMPER_IOC_ID)", "PLATE1", "ENGAGED" }
-    {"\$(P)", "\$(TJUMPER_IOC_ID)", "PLATE2", "HOME" }
-    {"\$(P)", "\$(TJUMPER_IOC_ID)", "PLATE2", "ENGAGED" }
-    {"\$(P)", "\$(TJUMPER_IOC_ID)", "SAMPLE", "HOME" }
-    {"\$(P)", "\$(TJUMPER_IOC_ID)", "SAMPLE", "ENGAGED" }
-}
-
-file $(TJMPAP)/tjmpapSup/tjmpap_moving.template
-{
-	pattern {P, TJUMPER_IOC_ID, PART}
-	{"\$(P)", "\$(TJUMPER_IOC_ID)", "PLATE1"}
-    {"\$(P)", "\$(TJUMPER_IOC_ID)", "PLATE2"}
-    {"\$(P)", "\$(TJUMPER_IOC_ID)", "SAMPLE"}
-}
-
-file $(TJMPAP)/tjmpapSup/tjmpap_temp.template
-{
-	pattern {P, PLATE}
-	{"\$(P)", "PLATE1"}
-    {"\$(P)", "PLATE2"}
+	pattern {P, RECSIM, DISABLE, TJMPER_IOC_ID}
+	{"\$(P)", "\$(RECSIM)", "\$(DISABLE)", "\$(TJMPER_IOC_ID)"}
 }
