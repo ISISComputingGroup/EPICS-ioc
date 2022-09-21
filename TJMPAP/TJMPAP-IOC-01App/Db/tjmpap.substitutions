@@ -1,5 +1,35 @@
 file $(TJMPAP)/tjmpapSup/tjmpap.template
 {
-	pattern {P, RECSIM, DISABLE, TJMPER_IOC_ID}
-	{"\$(P)", "\$(RECSIM)", "\$(DISABLE)", "\$(TJMPER_IOC_ID)"}
+	pattern {P, RECSIM, DISABLE}
+	{"\$(P)", "\$(RECSIM)", "\$(DISABLE)"}
+}
+
+file $(TJMPAP)/tjmpapSup/tjmpap_macros.template
+{
+	pattern {P, CONTROLLER, MACRO}
+	{"\$(P)", "TJMPER", "TJMPER_\$(TJMPER_IOC_ID)"}
+	{"\$(P)", "PLATE1:CONTROLLER", "\$(BLOCK_1_TEMP_CONTROLLER)"}
+	{"\$(P)", "PLATE2:CONTROLLER", "\$(BLOCK_2_TEMP_CONTROLLER)"}
+	{"\$(P)", "SAMPLE:READBACK", "\$(SAMPLE_TEMP_READBACK)"}
+}
+
+file $(TJMPAP)/tjmpapSup/tjmpap_positions.template
+{
+	pattern {P, POSITION, TJMPER_POSITION, TJMPER_IOC_ID}
+	{"\$(P)", "PLATE1:HOME", "LMT:PLATE1:HOME" "\$(TJMPER_IOC_ID)"}
+	{"\$(P)", "PLATE1:MOVING", "PLATE1:MOVING" "\$(TJMPER_IOC_ID)"}
+	{"\$(P)", "PLATE1:ENGAGED", "LMT:PLATE1:ENGAGED" "\$(TJMPER_IOC_ID)"}
+	{"\$(P)", "PLATE2:HOME", "LMT:PLATE2:HOME" "\$(TJMPER_IOC_ID)"}
+	{"\$(P)", "PLATE2:MOVING", "PLATE2:MOVING" "\$(TJMPER_IOC_ID)"}
+	{"\$(P)", "PLATE2:ENGAGED", "LMT:PLATE2:ENGAGED" "\$(TJMPER_IOC_ID)"}
+	{"\$(P)", "SAMPLE:HOME", "LMT:SAMPLE:HOME" "\$(TJMPER_IOC_ID)"}
+	{"\$(P)", "SAMPLE:MOVING", "SAMPLE:MOVING" "\$(TJMPER_IOC_ID)"}
+	{"\$(P)", "SAMPLE:ENGAGED", "LMT:SAMPLE:ENGAGED" "\$(TJMPER_IOC_ID)"}
+}
+
+file $(TJMPAP)/tjmpapSup/tjmpap_temps.template
+{
+	pattern {P, PLATE, CONTROLLER}
+	{"\$(P)", "PLATE1", "\$(BLOCK_1_TEMP_CONTROLLER)"}
+	{"\$(P)", "PLATE2", "\$(BLOCK_2_TEMP_CONTROLLER)"}
 }
