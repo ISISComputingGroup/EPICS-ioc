@@ -25,7 +25,7 @@ file RIKENFE_Interlock_or_MOL_status.template {
 file RIKENFE_Solenoid_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    { "SOLENOID", "solenoid_status",  "0", "Solenoid S ttus" }
+    { "SOLENOID", "solenoid_status",  "0", "Solenoid Status" }
 }
 
 
@@ -250,26 +250,143 @@ file RIKENFE_PIV_Interlock_Status.template {
 # TODO: 2.4.2    Vacuum Pump LV Interlocks (LV - Line Valve)
 # Note: Bits 2 & 3 and 4 & 5 are ORed together and then ANDed with bits 1,6,7 and 8 to obtain the valve interlock.
 
-file RIKENFE_Other_Valve_Interlock_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC, 0TEXT, 1TEXT, 2TEXT, 3TEXT, 4TEXT, 5TEXT, 6TEXT, 7TEXT, 8TEXT}
+file RIKENFE_LV_Interlock_Status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC, BIT0PV, BIT0DESC, BIT0ZNAM, BIT0ONAM,
+                                         BIT1PV, BIT1DESC, BIT1ZNAM, BIT1ONAM,
+                                         BIT2PV, BIT2DESC, BIT2ZNAM, BIT2ONAM,
+                                         BIT3PV, BIT3DESC, BIT3ZNAM, BIT3ONAM,
+                                         BIT4PV, BIT4DESC, BIT4ZNAM, BIT4ONAM,
+                                         BIT5PV, BIT5DESC, BIT5ZNAM, BIT5ONAM,
+                                         BIT6PV, BIT6DESC, BIT6ZNAM, BIT6ONAM,
+                                         BIT7PV, BIT7DESC, BIT7ZNAM, BIT7ONAM,
+                                         BIT8PV, BIT8DESC, BIT8ZNAM, BIT8ONAM,
+    }
 
-    { "LV1:ILK:STAT", "lv_interlock_status",  "0", "LV1 Interlock Status", "Comms Error", "FSOV Opened", "GH12 OR GH16", "GH12 OR GH16",  " OR GH8", "0 OR GH8", "!BB0 Close Command", "1", "!Close LV1" }
-    { "LV2:ILK:STAT", "lv_interlock_status",  "1", "LV2 Interlock Status", "Comms Error", "FSOV Opened", "GH20 OR GH24", "GH20 OR GH24", "GH12 OR GH16", "GH12 OR GH16", "1", "1", "!Close LV2" }
-    { "LV3:ILK:STAT", "lv_interlock_status",  "2", "LV3 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH28", "0 OR GH28", "GH20 OR GH24", "GH20 OR GH24", "!BB1 Close Command", "Port1 Locked", "!Close LV3" }
-    { "LV4:ILK:STAT", "lv_interlock_status",  "3", "LV4 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH30", "0 OR GH30", "GH20 OR GH24", "GH20 OR GH24", "!BB2 Close Command", "Port2 Locked", "!Close LV4" }
-    { "LV5:ILK:STAT", "lv_interlock_status",  "4", "LV5 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH40", "0 OR GH40", "0 OR GH36", "0 OR GH36", "!BB3 Close Command", "Port3 Locked", "!Close LV5" }
-    { "LV6:ILK:STAT", "lv_interlock_status",  "5", "LV6 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH40", "0 OR GH40", "0 OR GH12", "0 OR GH12", "1", "1", "!Close LV6" }
-    { "LV7:ILK:STAT", "lv_interlock_status",  "6", "LV7 Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH44", "0 OR GH44", "0 OR GH40", "0 OR GH40", "!BB4 Close Command", "Port4 Locked", "!Close LV7" }
+    { "LV1:ILK:STAT", "lv_interlock_status",  "0", "LV1 Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error", 
+                                                                                   "FSOV",           "FSOV Opened", "-",        "FSOV Opened", 
+                                                                                   "GH16",                  "GH16", "-",            "GH16 OK",
+                                                                                   "GH12",                  "GH12", "-",            "GH12 OK",
+                                                                                    "GH8",                   "GH8", "-",             "GH8 OK",
+                                                                           "BIT5CONSTANT",            "Constant 0", "-",                  "0",
+                                                                               "BB0CLOSE", "NOT BB0 Close Command", "-", "!BB0 Close Command", 
+                                                                           "BIT7CONSTANT",            "Constant 1", "-",                  "1",
+                                                                               "LV1CLOSE",         "NOT Close LV1", "-",         "!Close LV1",
+    }
+
+    { "LV2:ILK:STAT", "lv_interlock_status",  "1", "LV2 Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error",
+                                                                                   "FSOV",           "FSOV Opened", "-",        "FSOV Opened",
+                                                                                   "GH20",                  "GH20", "-",            "GH20 OK",
+                                                                                   "GH24",                  "GH24", "-",            "GH24 OK",
+                                                                                   "GH12",                  "GH12", "-",            "GH12 OK",
+                                                                                   "GH16",                  "GH16", "-",            "GH16 OK",
+                                                                           "BIT6CONSTANT",            "Constant 1", "-",                  "1",
+                                                                           "BIT7CONSTANT",            "Constant 1", "-",                  "1",
+                                                                               "LV2CLOSE",         "NOT Close LV2", "-",         "!Close LV2",
+    }
+
+    { "LV3:ILK:STAT", "lv_interlock_status",  "2", "LV3 Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error",
+                                                                                   "FSOV",           "FSOV Opened", "-",        "FSOV Opened",
+                                                                                   "GH28",                  "GH28", "-",            "GH28 OK",
+                                                                           "BIT2CONSTANT",            "Constant 0", "-",                  "0",
+                                                                                   "GH24",                  "GH24", "-",            "GH24 OK",
+                                                                                   "GH20",                  "GH20", "-",            "GH20 OK",
+                                                                               "BB1CLOSE", "NOT BB1 Close Command", "-", "!BB1 Close Command", 
+                                                                               "P1LOCKED",         "Port 1 Locked", "-",      "Port 1 Locked",
+                                                                               "LV3CLOSE",         "NOT Close LV3", "-",         "!Close LV3",
+    }
+
+    { "LV4:ILK:STAT", "lv_interlock_status",  "3", "LV4 Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error",
+                                                                                   "FSOV",           "FSOV Opened", "-",        "FSOV Opened",
+                                                                                   "GH30",                  "GH30", "-",            "GH30 OK",
+                                                                           "BIT3CONSTANT",            "Constant 0", "-",                  "0",
+                                                                                   "GH24",                  "GH24", "-",            "GH24 OK",
+                                                                                   "GH20",                  "GH20", "-",            "GH20 OK",
+                                                                               "BB2CLOSE", "NOT BB2 Close Command", "-", "!BB2 Close Command", 
+                                                                               "P2LOCKED",         "Port 2 Locked", "-",      "Port 2 Locked",
+                                                                               "LV4CLOSE",         "NOT Close LV4", "-",         "!Close LV4",
+    }
+
+    { "LV5:ILK:STAT", "lv_interlock_status",  "4", "LV5 Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error",
+                                                                                   "FSOV",           "FSOV Opened", "-",        "FSOV Opened",
+                                                                                   "GH40",                  "GH40", "-",            "GH40 OK",
+                                                                           "BIT3CONSTANT",            "Constant 0", "-",                  "0",
+                                                                                   "GH36",                  "GH36", "-",            "GH36 OK",
+                                                                           "BIT5CONSTANT",            "Constant 0", "-",                  "0",
+                                                                               "BB3CLOSE", "NOT BB3 Close Command", "-", "!BB3 Close Command", 
+                                                                               "P3LOCKED",         "Port 3 Locked", "-",      "Port 3 Locked",
+                                                                               "LV5CLOSE",         "NOT Close LV5", "-",         "!Close LV5",
+    }    
+
+    { "LV6:ILK:STAT", "lv_interlock_status",  "5", "LV6 Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error",
+                                                                                   "FSOV",           "FSOV Opened", "-",        "FSOV Opened",
+                                                                                   "GH40",                  "GH40", "-",            "GH40 OK",
+                                                                           "BIT3CONSTANT",            "Constant 0", "-",                  "0",    
+                                                                                   "GH12",                  "GH12", "-",            "GH12 OK",
+                                                                           "BIT5CONSTANT",            "Constant 0", "-",                  "0",
+                                                                           "BIT6CONSTANT",            "Constant 1", "-",                  "1",
+                                                                           "BIT7CONSTANT",            "Constant 1", "-",                  "1",
+                                                                               "LV6CLOSE",         "NOT Close LV6", "-",         "!Close LV6",
+    }
+
+    { "LV7:ILK:STAT", "lv_interlock_status",  "6", "LV7 Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error",
+                                                                                   "FSOV",           "FSOV Opened", "-",        "FSOV Opened",
+                                                                                   "GH44",                  "GH44", "-",            "GH44 OK",
+                                                                           "BIT3CONSTANT",            "Constant 0", "-",                  "0",
+                                                                                   "GH40",                  "GH40", "-",            "GH40 OK",
+                                                                           "BIT5CONSTANT",            "Constant 0", "-",                  "0",
+                                                                               "BB4CLOSE", "NOT BB4 Close Command", "-", "!BB4 Close Command", 
+                                                                               "P4LOCKED",         "Port 4 Locked", "-",      "Port 4 Locked",
+                                                                               "LV7CLOSE",         "NOT Close LV7", "-",         "!Close LV7",
+    }
 }
+
 
 # TODO: 2.4.3    Vacuum Pump Other Valve Interlocks
 
 file RIKENFE_Other_Valve_Interlock_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC, 0TEXT, 1TEXT, 2TEXT, 3TEXT, 4TEXT, 5TEXT, 6TEXT, 7TEXT, 8TEXT}
+    pattern {PV, PORTNAME, OFFSET, DESC, BIT0PV, BIT0DESC, BIT0ZNAM, BIT0ONAM,
+                                         BIT1PV, BIT1DESC, BIT1ZNAM, BIT1ONAM,
+                                         BIT2PV, BIT2DESC, BIT2ZNAM, BIT2ONAM,
+                                         BIT3PV, BIT3DESC, BIT3ZNAM, BIT3ONAM,
+                                         BIT4PV, BIT4DESC, BIT4ZNAM, BIT4ONAM,
+                                         BIT5PV, BIT5DESC, BIT5ZNAM, BIT5ONAM,
+                                         BIT6PV, BIT6DESC, BIT6ZNAM, BIT6ONAM,
+                                         BIT7PV, BIT7DESC, BIT7ZNAM, BIT7ONAM,
+                                         BIT8PV, BIT8DESC, BIT8ZNAM, BIT8ONAM,
+    }
 
-    { "AMGV:ILK:STAT", "other_valve_interlock_status",  "0", "AMGV Interlock Status", "Comms Error", "FSOV Opened", "0 OR GH8", "0 OR GH8", "0 OR GH4", "0 OR GH4", "1", "1", "1" }
-    { "FSOV:ILK:STAT", "other_valve_interlock_status",  "1", "FSOV Interlock Status", "Comms Error", "1", "0 OR GH8", "0 OR GH8", "0 OR GH12", "0 OR GH12", "!CryoFault", "1", "!EPB_FSOV" }
-    { "BPV1:ILK:STAT", "other_valve_interlock_status",  "2", "BPV1 Interlock Status", "Comms Error", "1", "1 OR 1", "1 OR 1", "1 OR 1", "1 OR 1", "1", "1", "!Close BPV1" }
+    { "AMGV:ILK:STAT", "other_valve_interlock_status",  "0", "AMGV Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error", 
+                                                                                              "FSOV",           "FSOV Opened", "-",        "FSOV Opened", 
+                                                                                               "GH8",                   "GH8", "-",             "GH8 OK",
+                                                                                      "BIT3CONSTANT",            "Constant 0", "-",                  "0",
+                                                                                               "GH4",                   "GH4", "-",             "GH4 OK",
+                                                                                      "BIT5CONSTANT",            "Constant 0", "-",                  "0",
+                                                                                      "BIT6CONSTANT",            "Constant 1", "-",                  "1",
+                                                                                      "BIT7CONSTANT",            "Constant 1", "-",                  "1",
+                                                                                      "BIT8CONSTANT",            "Constant 1", "-",                  "1",
+    }
+
+    { "FSOV:ILK:STAT", "other_valve_interlock_status",  "1", "FSOV Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error", 
+                                                                                      "BIT1CONSTANT",            "Constant 1", "-",                  "1",    
+                                                                                               "GH8",                   "GH8", "-",             "GH8 OK",
+                                                                                      "BIT3CONSTANT",            "Constant 0", "-",                  "0",
+                                                                                              "GH12",                  "GH12", "-",            "GH12 OK",
+                                                                                      "BIT5CONSTANT",            "Constant 0", "-",                  "0",
+                                                                                         "CRYOFAULT",        "NOT Cryo Fault", "-",         "!CryoFault",
+                                                                                      "BIT7CONSTANT",            "Constant 1", "-",                  "1",    
+                                                                                          "EPB_FSOV",          "NOT EPB FSOV", "-",          "!EPB_FSOV",
+    }
+    
+    { "BPV1:ILK:STAT", "other_valve_interlock_status",  "2", "BPV1 Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error",
+                                                                                      "BIT1CONSTANT",            "Constant 1", "-",                  "1",
+                                                                                      "BIT2CONSTANT",            "Constant 1", "-",                  "1",
+                                                                                      "BIT3CONSTANT",            "Constant 1", "-",                  "1",
+                                                                                      "BIT4CONSTANT",            "Constant 1", "-",                  "1",
+                                                                                      "BIT5CONSTANT",            "Constant 1", "-",                  "1",
+                                                                                      "BIT6CONSTANT",            "Constant 1", "-",                  "1",
+                                                                                      "BIT7CONSTANT",            "Constant 1", "-",                  "1",
+                                                                                         "BPV1CLOSE",        "NOT Close BPV1", "-",        "!Close BPV1",
+    }
 }
 
 # ************************************************** FIXME: Needs Further Work **************************************************
