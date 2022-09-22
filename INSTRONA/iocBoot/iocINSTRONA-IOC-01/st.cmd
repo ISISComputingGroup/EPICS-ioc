@@ -1,11 +1,11 @@
-#!../../bin/windows-x64/INSTRON-IOC-01
+#!../../bin/windows-x64/INSTRONA-IOC-01
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(INSTRON)/data"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(INSTRONARBY)/data"
 epicsEnvSet "DEVICE" "L0"
 
-## You may have to change INSTRON-IOC-01 to something else
+## You may have to change INSTRONA-IOC-01 to something else
 ## everywhere it appears in this file
 
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
@@ -14,8 +14,8 @@ errlogInit2(65536, 256)
 cd ${TOP}
 
 ## Register all support components
-dbLoadDatabase "dbd/INSTRON-IOC-01.dbd"
-INSTRON_IOC_01_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/INSTRONA-IOC-01.dbd"
+INSTRONA_IOC_01_registerRecordDeviceDriver pdbbase
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
@@ -30,21 +30,11 @@ $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=)")
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 
 ## For real device:
-## we need to set a 10ms internal read timeout as calls with 0 timeout (such as clearing input buffer)
-## can cause the GPIB to error  
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynVISAPortConfigure("$(DEVICE)","$(GPIBSTR=GPIB0::3::INSTR)", 0, 0, 1, -1, "", 1)
+drvAsynInstronArbyConfigure("$(DEVICE)", 0, "\r\n")
 
 # Uncomment the following lines to get some debug output
 #asynSetTraceMask("L0",-1,0x9) 
 #asynSetTraceIOMask("L0",-1,0x2)
-
-# Need to set these for DEVSIM mode as lewis can't handle not having termination characters.
-$(IFDEVSIM) asynOctetSetOutputEos("$(DEVICE)",0,"\r\n")
-$(IFDEVSIM) asynOctetSetInputEos("$(DEVICE)",0,"\r\n")
-
-## there is no input EOS, on output multiple command sequences can be separated by \n but we don't 
-## need that on GPIB-ENET as each network packet gets an EOM to terminate it.  
-#asynOctetSetOutputEos("$(DEVICE)",0,"\n")
 
 # Need to set these for DEVSIM mode as lewis can't handle not having termination characters.
 $(IFDEVSIM) asynOctetSetOutputEos("$(DEVICE)",0,"\r\n")
