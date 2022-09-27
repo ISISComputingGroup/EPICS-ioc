@@ -246,10 +246,8 @@ file RIKENFE_PIV_Interlock_Status.template {
 }
 
 
-# ************************************************** FIXME: Needs Further Work **************************************************
-
 # 2.4.2    Vacuum Pump LV Interlocks (LV - Line Valve)
-# Note: Bits 2 & 3 and 4 & 5 are ORed together and then ANDed with bits 1,6,7 and 8 to obtain the valve interlock.
+# Note: In the PLC, bits 2 & 3 and 4 & 5 are ORed together and then ANDed with bits 1,6,7 and 8 to obtain the valve interlock.
 
 file RIKENFE_LV_Interlock_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, BIT0PV, BIT0DESC, BIT0ZNAM, BIT0ONAM,
@@ -263,13 +261,13 @@ file RIKENFE_LV_Interlock_Status.template {
                                          BIT8PV, BIT8DESC, BIT8ZNAM, BIT8ONAM,
     }
 
-    { "LV1:ILK:STAT", "lv_interlock_status",  "0", "LV1 Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error", 
-                                                                                   "FSOV",           "FSOV Opened", "-",        "FSOV Opened", 
+    { "LV1:ILK:STAT", "lv_interlock_status",  "0", "LV1 Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error",
+                                                                                   "FSOV",           "FSOV Opened", "-",        "FSOV Opened",
                                                                                    "GH16",                  "GH16", "-",            "GH16 OK",
                                                                                    "GH12",                  "GH12", "-",            "GH12 OK",
                                                                                     "GH8",                   "GH8", "-",             "GH8 OK",
                                                                            "BIT5CONSTANT",            "Constant 0", "-",                  "0",
-                                                                               "BB0CLOSE", "NOT BB0 Close Command", "-", "!BB0 Close Command", 
+                                                                               "BB0CLOSE", "NOT BB0 Close Command", "-", "!BB0 Close Command",
                                                                            "BIT7CONSTANT",            "Constant 1", "-",                  "1",
                                                                                "LV1CLOSE",         "NOT Close LV1", "-",         "!Close LV1",
     }
@@ -291,7 +289,7 @@ file RIKENFE_LV_Interlock_Status.template {
                                                                            "BIT2CONSTANT",            "Constant 0", "-",                  "0",
                                                                                    "GH24",                  "GH24", "-",            "GH24 OK",
                                                                                    "GH20",                  "GH20", "-",            "GH20 OK",
-                                                                               "BB1CLOSE", "NOT BB1 Close Command", "-", "!BB1 Close Command", 
+                                                                               "BB1CLOSE", "NOT BB1 Close Command", "-", "!BB1 Close Command",
                                                                                "P1LOCKED",         "Port 1 Locked", "-",      "Port 1 Locked",
                                                                                "LV3CLOSE",         "NOT Close LV3", "-",         "!Close LV3",
     }
@@ -302,7 +300,7 @@ file RIKENFE_LV_Interlock_Status.template {
                                                                            "BIT3CONSTANT",            "Constant 0", "-",                  "0",
                                                                                    "GH24",                  "GH24", "-",            "GH24 OK",
                                                                                    "GH20",                  "GH20", "-",            "GH20 OK",
-                                                                               "BB2CLOSE", "NOT BB2 Close Command", "-", "!BB2 Close Command", 
+                                                                               "BB2CLOSE", "NOT BB2 Close Command", "-", "!BB2 Close Command",
                                                                                "P2LOCKED",         "Port 2 Locked", "-",      "Port 2 Locked",
                                                                                "LV4CLOSE",         "NOT Close LV4", "-",         "!Close LV4",
     }
@@ -313,15 +311,15 @@ file RIKENFE_LV_Interlock_Status.template {
                                                                            "BIT3CONSTANT",            "Constant 0", "-",                  "0",
                                                                                    "GH36",                  "GH36", "-",            "GH36 OK",
                                                                            "BIT5CONSTANT",            "Constant 0", "-",                  "0",
-                                                                               "BB3CLOSE", "NOT BB3 Close Command", "-", "!BB3 Close Command", 
+                                                                               "BB3CLOSE", "NOT BB3 Close Command", "-", "!BB3 Close Command",
                                                                                "P3LOCKED",         "Port 3 Locked", "-",      "Port 3 Locked",
                                                                                "LV5CLOSE",         "NOT Close LV5", "-",         "!Close LV5",
-    }    
+    }
 
     { "LV6:ILK:STAT", "lv_interlock_status",  "5", "LV6 Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error",
                                                                                    "FSOV",           "FSOV Opened", "-",        "FSOV Opened",
                                                                                    "GH40",                  "GH40", "-",            "GH40 OK",
-                                                                           "BIT3CONSTANT",            "Constant 0", "-",                  "0",    
+                                                                           "BIT3CONSTANT",            "Constant 0", "-",                  "0",
                                                                                    "GH12",                  "GH12", "-",            "GH12 OK",
                                                                            "BIT5CONSTANT",            "Constant 0", "-",                  "0",
                                                                            "BIT6CONSTANT",            "Constant 1", "-",                  "1",
@@ -335,7 +333,7 @@ file RIKENFE_LV_Interlock_Status.template {
                                                                            "BIT3CONSTANT",            "Constant 0", "-",                  "0",
                                                                                    "GH40",                  "GH40", "-",            "GH40 OK",
                                                                            "BIT5CONSTANT",            "Constant 0", "-",                  "0",
-                                                                               "BB4CLOSE", "NOT BB4 Close Command", "-", "!BB4 Close Command", 
+                                                                               "BB4CLOSE", "NOT BB4 Close Command", "-", "!BB4 Close Command",
                                                                                "P4LOCKED",         "Port 4 Locked", "-",      "Port 4 Locked",
                                                                                "LV7CLOSE",         "NOT Close LV7", "-",         "!Close LV7",
     }
@@ -343,6 +341,7 @@ file RIKENFE_LV_Interlock_Status.template {
 
 
 # 2.4.3    Vacuum Pump Other Valve Interlocks
+# Note: In the PLC, bits 2 & 3 and 4 & 5 are ORed together and then ANDed with bits 1,6,7 and 8 to obtain the valve interlock.
 
 file RIKENFE_Other_Valve_Interlock_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, BIT0PV, BIT0DESC, BIT0ZNAM, BIT0ONAM,
@@ -356,8 +355,8 @@ file RIKENFE_Other_Valve_Interlock_Status.template {
                                          BIT8PV, BIT8DESC, BIT8ZNAM, BIT8ONAM,
     }
 
-    { "AMGV:ILK:STAT", "other_valve_interlock_status",  "0", "AMGV Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error", 
-                                                                                              "FSOV",           "FSOV Opened", "-",        "FSOV Opened", 
+    { "AMGV:ILK:STAT", "other_valve_interlock_status",  "0", "AMGV Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error",
+                                                                                              "FSOV",           "FSOV Opened", "-",        "FSOV Opened",
                                                                                                "GH8",                   "GH8", "-",             "GH8 OK",
                                                                                       "BIT3CONSTANT",            "Constant 0", "-",                  "0",
                                                                                                "GH4",                   "GH4", "-",             "GH4 OK",
@@ -367,14 +366,14 @@ file RIKENFE_Other_Valve_Interlock_Status.template {
                                                                                       "BIT8CONSTANT",            "Constant 1", "-",                  "1",
     }
 
-    { "FSOV:ILK:STAT", "other_valve_interlock_status",  "1", "FSOV Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error", 
-                                                                                      "BIT1CONSTANT",            "Constant 1", "-",                  "1",    
+    { "FSOV:ILK:STAT", "other_valve_interlock_status",  "1", "FSOV Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error",
+                                                                                      "BIT1CONSTANT",            "Constant 1", "-",                  "1",
                                                                                                "GH8",                   "GH8", "-",             "GH8 OK",
                                                                                       "BIT3CONSTANT",            "Constant 0", "-",                  "0",
                                                                                               "GH12",                  "GH12", "-",            "GH12 OK",
                                                                                       "BIT5CONSTANT",            "Constant 0", "-",                  "0",
                                                                                          "CRYOFAULT",        "NOT Cryo Fault", "-",         "!CryoFault",
-                                                                                      "BIT7CONSTANT",            "Constant 1", "-",                  "1",    
+                                                                                      "BIT7CONSTANT",            "Constant 1", "-",                  "1",
                                                                                           "EPB_FSOV",          "NOT EPB FSOV", "-",          "!EPB_FSOV",
     }
     
@@ -389,8 +388,6 @@ file RIKENFE_Other_Valve_Interlock_Status.template {
                                                                                          "BPV1CLOSE",        "NOT Close BPV1", "-",        "!Close BPV1",
     }
 }
-
-# ************************************************** FIXME: Needs Further Work **************************************************
 
 
 # 2.5   Beam Blocker Status

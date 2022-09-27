@@ -22,7 +22,7 @@ drvModbusAsynConfigure("$(PLC)solenoid_status",              "$(PLC)", 255, 3, 4
 # 1.6   Kickers
 # ==============
 
-#       (1.6.a & 1.6.b additional sub-sections created for ease of programming and efficiency of reading PLC memory)
+#       (1.6.a & 1.6.b additional sub-sections created for ease of programming and efficiency of reading PLC memory in blocks)
 
 # 1.6.1 Kickers General Status
 drvModbusAsynConfigure("$(PLC)kicker_status",                "$(PLC)", 255, 3, 4004,  4, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4004
@@ -60,19 +60,11 @@ drvModbusAsynConfigure("$(PLC)vacuum_pump_status",           "$(PLC)", 255, 3, 4
 # 2.4.1 Vacuum Pump Valve Interlocks (PIV - Pump Isolation Valve)
 drvModbusAsynConfigure("$(PLC)piv_interlock_status",         "$(PLC)", 255, 3, 4114, 12, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4114
 
-
-
-# ************************************************** FIXME: Needs Further Work **************************************************
-
-# 2.4.2 TODO: LV Interlocks (LV - Line Valve)
+# 2.4.2 LV Interlocks (LV - Line Valve)
 drvModbusAsynConfigure("$(PLC)lv_interlock_status",          "$(PLC)", 255, 3, 4125,  7, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4125
 
-# 2.4.3 TODO: Other Valve Interlocks
+# 2.4.3 Other Valve Interlocks
 drvModbusAsynConfigure("$(PLC)other_valve_interlock_status", "$(PLC)", 255, 3, 4132,  3, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4132
-
-# ************************************************** FIXME: Needs Further Work **************************************************
-
-
 
 # 2.5   Beam Blocker Status
 drvModbusAsynConfigure("$(PLC)beamblocker_status",           "$(PLC)", 255, 3, 4135,  5, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4135
