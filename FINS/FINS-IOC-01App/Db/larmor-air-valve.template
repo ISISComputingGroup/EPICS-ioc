@@ -2,7 +2,7 @@
 record(ai, "$(P)$(Q)$(NAME):RAW")
 {
 	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ")
+	field(INP,  "@asyn(PLC, $(ADDR), $(TIMEOUT=5.0)) FINS_DM_READ")
 	field(SCAN, "1 second")
     field(HOPR, "6000")
     field(LOPR, "0")
