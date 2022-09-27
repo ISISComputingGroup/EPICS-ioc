@@ -15,19 +15,17 @@ record (seq, "$(P)$(PV)") {
     field(DLY3, "1.0")
     field(DOL3, "0")
     field(LNK3, "$(P)$(PV):OUT PP")
-    
-    # TODO Archive, Interest level fields
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
 
 record (bo, "$(P)$(PV):OUT") {
 
     field(DESC, "Output to PLC")
     field(DTYP, "asynInt32")
-
     field(OUT,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
-
     field(ZNAM, "ZERO")
     field(ONAM, "ONE")
-
-    # TODO Archive, Interest level fields
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
 }

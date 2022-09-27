@@ -29,5 +29,6 @@ record (mbbi, "$(P)$(PV)") {
     field(ELST, "NC uswitch Opened")
     field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
     field(SCAN, "I/O Intr")
-    # TODO Archive, Interest level fields
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }

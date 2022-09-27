@@ -7,5 +7,6 @@ record (ai, "$(P)$(PV)") {
     field(DTYP, "asynFloat64")
     field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))FLOAT32_LE")
     field(SCAN, "I/O Intr")
-    # TODO Archive, Interest level fields
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }

@@ -5,7 +5,9 @@ record (longin, "$(P)$(PV):STAT:RAW") {
     field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
     field(SCAN, "I/O Intr")
-    # TODO Archive, Interest level fields
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
+    info(alarm, "SCHNDR")
 }
 
 record (mbbiDirect, "$(P)$(PV):STAT") {
@@ -13,7 +15,8 @@ record (mbbiDirect, "$(P)$(PV):STAT") {
     field(DESC, "$(DESC)")
     field(DTYP, "Raw Soft Channel")
     field(INP,  "$(P)$(PV):STAT:RAW CP MS")
-    # TODO Archive, Interest level fields
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
 }
 
 record (bi, "$(P)$(PV):COMMS:STAT") {
@@ -22,7 +25,8 @@ record (bi, "$(P)$(PV):COMMS:STAT") {
     field(INP,  "$(P)$(PV):STAT.B0 CP MS")
     field(ZNAM, "Comms OK")
     field(ONAM, "Comms Error")
-    # TODO Archive, Interest level fields
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }
 
 record (bi, "$(P)$(PV):GH7:STAT") {
@@ -31,7 +35,8 @@ record (bi, "$(P)$(PV):GH7:STAT") {
     field(INP,  "$(P)$(PV):STAT.B1 CP MS")
     field(ZNAM, "GH7 Error")
     field(ONAM, "GH7 OK")
-    # TODO Archive, Interest level fields
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }
 
 record (bi, "$(P)$(PV):GH8:STAT") {
@@ -40,7 +45,8 @@ record (bi, "$(P)$(PV):GH8:STAT") {
     field(INP,  "$(P)$(PV):STAT.B2 CP MS")
     field(ZNAM, "GH8 Error")
     field(ONAM, "GH8 OK")
-    # TODO Archive, Interest level fields
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }
 
 record (bi, "$(P)$(PV):CRYO_SYS:STAT") {
@@ -49,7 +55,8 @@ record (bi, "$(P)$(PV):CRYO_SYS:STAT") {
     field(INP,  "$(P)$(PV):STAT.B3 CP MS")
     field(ZNAM, "Cryo System Error")
     field(ONAM, "Cryo System OK")
-    # TODO Archive, Interest level fields
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }
 
 record (bi, "$(P)$(PV):COOLDOWN:STAT") {
@@ -58,7 +65,8 @@ record (bi, "$(P)$(PV):COOLDOWN:STAT") {
     field(INP,  "$(P)$(PV):STAT.B4 CP MS")
     field(ZNAM, "Cooldown In Progress")
     field(ONAM, "Cooldown Complete")
-    # TODO Archive, Interest level fields
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }
 
 record (bi, "$(P)$(PV):MAG_EXCIT:STAT") {
@@ -67,7 +75,8 @@ record (bi, "$(P)$(PV):MAG_EXCIT:STAT") {
     field(INP,  "$(P)$(PV):STAT.B5 CP MS")
     field(ZNAM, "Magnet Excitation OFF")
     field(ONAM, "Magnet Excitation ON")
-    # TODO Archive, Interest level fields
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }
 
 record (bi, "$(P)$(PV):COMPRESSOR:STAT") {
@@ -76,5 +85,6 @@ record (bi, "$(P)$(PV):COMPRESSOR:STAT") {
     field(INP,  "$(P)$(PV):STAT.B6 CP MS")
     field(ZNAM, "Compressor OFF")
     field(ONAM, "Compressor ON")
-    # TODO Archive, Interest level fields
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
 }
