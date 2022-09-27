@@ -249,7 +249,7 @@ file RIKENFE_PIV_Interlock_Status.template {
 # 2.4.2    Vacuum Pump LV Interlocks (LV - Line Valve)
 # Note: In the PLC, bits 2 & 3 and 4 & 5 are ORed together and then ANDed with bits 1,6,7 and 8 to obtain the valve interlock.
 
-file RIKENFE_LV_Interlock_Status.template {
+file RIKENFE_Valve_Interlock_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, BIT0PV, BIT0DESC, BIT0ZNAM, BIT0ONAM,
                                          BIT1PV, BIT1DESC, BIT1ZNAM, BIT1ONAM,
                                          BIT2PV, BIT2DESC, BIT2ZNAM, BIT2ONAM,
@@ -343,7 +343,7 @@ file RIKENFE_LV_Interlock_Status.template {
 # 2.4.3    Vacuum Pump Other Valve Interlocks
 # Note: In the PLC, bits 2 & 3 and 4 & 5 are ORed together and then ANDed with bits 1,6,7 and 8 to obtain the valve interlock.
 
-file RIKENFE_Other_Valve_Interlock_Status.template {
+file RIKENFE_Valve_Interlock_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, BIT0PV, BIT0DESC, BIT0ZNAM, BIT0ONAM,
                                          BIT1PV, BIT1DESC, BIT1ZNAM, BIT1ONAM,
                                          BIT2PV, BIT2DESC, BIT2ZNAM, BIT2ONAM,
