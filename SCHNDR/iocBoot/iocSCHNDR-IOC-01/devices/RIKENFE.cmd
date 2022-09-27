@@ -50,6 +50,7 @@ drvModbusAsynConfigure("$(PLC)lv3_vacuum_valve_open",        "$(PLC)", 255, 5,  
 drvModbusAsynConfigure("$(PLC)lv4_vacuum_valve_open",        "$(PLC)", 255, 5,  643,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0643
 drvModbusAsynConfigure("$(PLC)lv5_vacuum_valve_open",        "$(PLC)", 255, 5,  644,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0644
 drvModbusAsynConfigure("$(PLC)lv6_vacuum_valve_open",        "$(PLC)", 255, 5,  645,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0645
+drvModbusAsynConfigure("$(PLC)lv7_vacuum_valve_open",        "$(PLC)", 255, 5,  702,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0702
 drvModbusAsynConfigure("$(PLC)amgv_vacuum_valve_open",       "$(PLC)", 255, 5,  651,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0651
 drvModbusAsynConfigure("$(PLC)fsov_vacuum_valve_open",       "$(PLC)", 255, 5,  652,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0652
 

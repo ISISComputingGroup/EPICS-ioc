@@ -185,14 +185,15 @@ file RIKENFE_vacuum_valve_status.template {
 file RIKENFE_vacuum_valve_open.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {  "LV1:OPEN",  "lv1_vacuum_valve_open",  "0",  "Initiate LV1 Opening" } 
-    {  "LV2:OPEN",  "lv2_vacuum_valve_open",  "0",  "Initiate LV2 Opening" } 
-    {  "LV3:OPEN",  "lv3_vacuum_valve_open",  "0",  "Initiate LV3 Opening" } 
-    {  "LV4:OPEN",  "lv4_vacuum_valve_open",  "0",  "Initiate LV4 Opening" } 
-    {  "LV5:OPEN",  "lv5_vacuum_valve_open",  "0",  "Initiate LV5 Opening" } 
-    {  "LV6:OPEN",  "lv6_vacuum_valve_open",  "0",  "Initiate LV6 Opening" } 
-    { "AMGV:OPEN", "amgv_vacuum_valve_open",  "0", "Initiate AMGV Opening" } 
-    { "FSOV:OPEN", "fsov_vacuum_valve_open",  "0", "Initiate FSOV Opening" } 
+    {  "LV1:OPEN",  "lv1_vacuum_valve_open",  "0",  "Initiate LV1 Opening" }
+    {  "LV2:OPEN",  "lv2_vacuum_valve_open",  "0",  "Initiate LV2 Opening" }
+    {  "LV3:OPEN",  "lv3_vacuum_valve_open",  "0",  "Initiate LV3 Opening" }
+    {  "LV4:OPEN",  "lv4_vacuum_valve_open",  "0",  "Initiate LV4 Opening" }
+    {  "LV5:OPEN",  "lv5_vacuum_valve_open",  "0",  "Initiate LV5 Opening" }
+    {  "LV6:OPEN",  "lv6_vacuum_valve_open",  "0",  "Initiate LV6 Opening" }
+    {  "LV7:OPEN",  "lv7_vacuum_valve_open",  "0",  "Initiate LV7 Opening" }
+    { "AMGV:OPEN", "amgv_vacuum_valve_open",  "0", "Initiate AMGV Opening" }
+    { "FSOV:OPEN", "fsov_vacuum_valve_open",  "0", "Initiate FSOV Opening" }
 }
 
 
@@ -247,7 +248,7 @@ file RIKENFE_PIV_Interlock_Status.template {
 
 # ************************************************** FIXME: Needs Further Work **************************************************
 
-# TODO: 2.4.2    Vacuum Pump LV Interlocks (LV - Line Valve)
+# 2.4.2    Vacuum Pump LV Interlocks (LV - Line Valve)
 # Note: Bits 2 & 3 and 4 & 5 are ORed together and then ANDed with bits 1,6,7 and 8 to obtain the valve interlock.
 
 file RIKENFE_LV_Interlock_Status.template {
@@ -341,7 +342,7 @@ file RIKENFE_LV_Interlock_Status.template {
 }
 
 
-# TODO: 2.4.3    Vacuum Pump Other Valve Interlocks
+# 2.4.3    Vacuum Pump Other Valve Interlocks
 
 file RIKENFE_Other_Valve_Interlock_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, BIT0PV, BIT0DESC, BIT0ZNAM, BIT0ONAM,
