@@ -14,6 +14,8 @@
 # W103.01		Stop Main Vacuum (self re-setting bit)
 # 
 
+global{TIMEOUT="\$(TIMEOUT=5.0)"}
+
 file "$(TOP)/FINS-IOC-01App/Db/wish-vacuum.template" {
 	{ P=\$(P), Q=\$(Q) }
 }

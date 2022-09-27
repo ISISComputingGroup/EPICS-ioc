@@ -32,7 +32,7 @@ record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS") {
 record(mbbi, "$(FULL_PREFIX)$(SYSTEM):STATUS:_RAW") {
     field(DESC, "Raw $(SYSTEM) Status from device")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ")
+    field(INP,  "@asyn(PLC, $(ADDR), $(TIMEOUT=5.0)) FINS_DM_READ")
     field(NOBT, 4)
     field(SCAN, "1 second")
     

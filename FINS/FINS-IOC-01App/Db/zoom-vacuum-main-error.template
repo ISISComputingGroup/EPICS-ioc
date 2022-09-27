@@ -3,7 +3,7 @@
 record(bi, "$(P)$(Q)$(PV):ERROR") {
 	field(DESC, "$(DESC)")
 	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, $(ADDRP), 5.0) $(BIT_ERROR)")
+	field(INP,  "@asyn(PLC, $(ADDRP), $(TIMEOUT=5.0)) $(BIT_ERROR)")
 	field(SCAN, "2 second")
 	field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(PV):ERROR")
@@ -14,7 +14,7 @@ record(bi, "$(P)$(Q)$(PV):ERROR") {
 record(bi, "$(P)$(Q)$(PV)") {
 	field(DESC, "$(DESC)")
 	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, $(ADDRP), 5.0) $(BIT)")
+	field(INP,  "@asyn(PLC, $(ADDRP), $(TIMEOUT=5.0)) $(BIT)")
 	field(SCAN, "2 second")
 	field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(PV)")
