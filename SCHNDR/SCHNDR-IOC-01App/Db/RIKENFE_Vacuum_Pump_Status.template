@@ -3,16 +3,27 @@ record (mbbi, "$(P)$(PV)") {
 
     field(DESC, "$(DESC)")
     field(DTYP, "asynInt32")
+
     field(ZRVL, 0)
-    field(ONVL, 1)
-    field(TWVL, 2)
-    field(THVL, 3)
-    field(FRVL, 4)
     field(ZRST, "Comms Loss")
+    field(ZRSV, "INVALID")
+
+    field(ONVL, 1)
     field(ONST, "Off")
+    field(ONSV, "MINOR")
+
+    field(TWVL, 2)
     field(TWST, "Running")
+    field(TWSV, "NO_ALARM")
+
+    field(THVL, 3)
     field(THST, "Warning")
+    field(THSV, "MINOR")
+
+    field(FRVL, 4)
     field(FRST, "Fault")
+    field(FRSV, "MAJOR")
+
     field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
     field(SCAN, "I/O Intr")
     info(INTEREST, "MEDIUM")

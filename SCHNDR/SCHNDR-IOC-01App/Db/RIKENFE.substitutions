@@ -10,13 +10,15 @@
 
 # 1.4.2 Vacuum Interlock Status
 
-file RIKENFE_Interlock_or_MOL_status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+file RIKENFE_Common_Objects_Status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC }
 
     { "SEP1:VACUUM:STAT", "separator_status",  "0", "Separator 1 N&P Vacuum Interlock Status" }
     { "SEP2:VACUUM:STAT", "separator_status",  "1", "Separator 2 N&P Vacuum Interlock Status" }
     { "SEP3:VACUUM:STAT", "separator_status",  "2", "Separator 3 N&P Vacuum Interlock Status" }
 }
+
+
 
 
 # 1.5   Solenoid - *NB* PSU will not be installed until current one fails
@@ -37,8 +39,8 @@ file RIKENFE_Solenoid_Status.template {
 
 # 1.6.1 Kickers General Status
 
-file RIKENFE_Interlock_or_MOL_status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+file RIKENFE_Common_Objects_Status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC }
 
     {  "KICKER:WATER:ILK:STAT", "kicker_status",  "0", "Kicker Water Interlock Status" }
     { "KICKER:VACUUM:ILK:STAT", "kicker_status",  "1",          "Kicker Vacuum Status" }
@@ -48,29 +50,129 @@ file RIKENFE_Interlock_or_MOL_status.template {
 
 # 1.6.a Kickers 1-4 Readback Status
 
-file RIKENFE_other_objects_status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC, 1TEXT, 2TEXT}
+file RIKENFE_Other_Objects_Status.template {
+    pattern {PV, PORTNAME, OFFSET, DESC, 0TEXT, 0SEVR, 1TEXT, 1SEVR, 2TEXT, 2SEVR, 3TEXT, 3SEVR, 4TEXT, 4SEVR }
 
-    { "K1:CONTROL_MODE:STAT", "kickers_1-4_status",  "0",  "K1 Control Mode",     "Local", "Remote" }
-    {        "K1:STATE:STAT", "kickers_1-4_status",  "1",         "K1 State",  "Abnormal", "Normal" }
-    {        "K1:READY:STAT", "kickers_1-4_status",  "2",         "K1 Ready", "Not Ready",  "Ready" }
-    {       "K1:PSU_ON:STAT", "kickers_1-4_status",  "3",    "K1 PSU Status",       "Off",     "On" }
-    {    "K1:PSU_HV_ON:STAT", "kickers_1-4_status",  "4", "K1 PSU HV Status",       "Off",     "On" }
-    { "K2:CONTROL_MODE:STAT", "kickers_1-4_status",  "5",  "K2 Control Mode",     "Local", "Remote" }
-    {        "K2:STATE:STAT", "kickers_1-4_status",  "6",         "K2 State",  "Abnormal", "Normal" }
-    {        "K2:READY:STAT", "kickers_1-4_status",  "7",         "K2 Ready", "Not Ready",  "Ready" }
-    {       "K2:PSU_ON:STAT", "kickers_1-4_status",  "8",    "K2 PSU Status",       "Off",     "On" }
-    {    "K2:PSU_HV_ON:STAT", "kickers_1-4_status",  "9", "K2 PSU HV Status",       "Off",     "On" }
-    { "K3:CONTROL_MODE:STAT", "kickers_1-4_status", "10",  "K3 Control Mode",     "Local", "Remote" }
-    {        "K3:STATE:STAT", "kickers_1-4_status", "11",         "K3 State",  "Abnormal", "Normal" }
-    {        "K3:READY:STAT", "kickers_1-4_status", "12",         "K3 Ready", "Not Ready",  "Ready" }
-    {       "K3:PSU_ON:STAT", "kickers_1-4_status", "13",    "K3 PSU Status",       "Off",     "On" }
-    {    "K3:PSU_HV_ON:STAT", "kickers_1-4_status", "14", "K3 PSU HV Status",       "Off",     "On" }
-    { "K4:CONTROL_MODE:STAT", "kickers_1-4_status", "15",  "K4 Control Mode",     "Local", "Remote" }
-    {        "K4:STATE:STAT", "kickers_1-4_status", "16",         "K4 State",  "Abnormal", "Normal" }
-    {        "K4:READY:STAT", "kickers_1-4_status", "17",         "K4 Ready", "Not Ready",  "Ready" }
-    {       "K4:PSU_ON:STAT", "kickers_1-4_status", "18",    "K4 PSU Status",       "Off",     "On" }
-    {    "K4:PSU_HV_ON:STAT", "kickers_1-4_status", "19", "K4 PSU HV Status",       "Off",     "On" }
+    { "K1:CONTROL_MODE:STAT", "kickers_1-4_status",  "0",  "K1 Control Mode", "Comms Loss",  "INVALID",
+                                                                                   "Local",    "MINOR",
+                                                                                  "Remote", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {        "K1:STATE:STAT", "kickers_1-4_status",  "1",         "K1 State", "Comms Loss",  "INVALID",
+                                                                                "Abnormal",    "MINOR",
+                                                                                  "Normal", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {        "K1:READY:STAT", "kickers_1-4_status",  "2",         "K1 Ready", "Comms Loss",  "INVALID",
+                                                                               "Not Ready",    "MINOR",
+                                                                                   "Ready", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {       "K1:PSU_ON:STAT", "kickers_1-4_status",  "3",    "K1 PSU Status", "Comms Loss",  "INVALID",
+                                                                                     "Off",    "MINOR",
+                                                                                      "On", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {    "K1:PSU_HV_ON:STAT", "kickers_1-4_status",  "4", "K1 PSU HV Status", "Comms Loss",  "INVALID",
+                                                                                     "Off",    "MINOR",
+                                                                                      "On", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    { "K2:CONTROL_MODE:STAT", "kickers_1-4_status",  "5",  "K2 Control Mode", "Comms Loss",  "INVALID",
+                                                                                   "Local",    "MINOR",
+                                                                                  "Remote", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {        "K2:STATE:STAT", "kickers_1-4_status",  "6",         "K2 State", "Comms Loss",  "INVALID",
+                                                                                "Abnormal",    "MINOR",
+                                                                                  "Normal", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {        "K2:READY:STAT", "kickers_1-4_status",  "7",         "K2 Ready", "Comms Loss",  "INVALID",
+                                                                               "Not Ready",    "MINOR",
+                                                                                   "Ready", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {       "K2:PSU_ON:STAT", "kickers_1-4_status",  "8",    "K2 PSU Status", "Comms Loss",  "INVALID",
+                                                                                     "Off",    "MINOR",
+                                                                                      "On", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {    "K2:PSU_HV_ON:STAT", "kickers_1-4_status",  "9", "K2 PSU HV Status", "Comms Loss",  "INVALID",
+                                                                                     "Off",    "MINOR",
+                                                                                      "On", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    { "K3:CONTROL_MODE:STAT", "kickers_1-4_status", "10",  "K3 Control Mode", "Comms Loss",  "INVALID",
+                                                                                   "Local",    "MINOR",
+                                                                                  "Remote", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {        "K3:STATE:STAT", "kickers_1-4_status", "11",         "K3 State", "Comms Loss",  "INVALID",
+                                                                                "Abnormal",    "MINOR",
+                                                                                  "Normal", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {        "K3:READY:STAT", "kickers_1-4_status", "12",         "K3 Ready", "Comms Loss",  "INVALID",
+                                                                               "Not Ready",    "MINOR",
+                                                                                   "Ready", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {       "K3:PSU_ON:STAT", "kickers_1-4_status", "13",    "K3 PSU Status", "Comms Loss",  "INVALID",
+                                                                                     "Off",    "MINOR",
+                                                                                      "On", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {    "K3:PSU_HV_ON:STAT", "kickers_1-4_status", "14", "K3 PSU HV Status", "Comms Loss",  "INVALID",
+                                                                                     "Off",    "MINOR",
+                                                                                      "On", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    { "K4:CONTROL_MODE:STAT", "kickers_1-4_status", "15",  "K4 Control Mode", "Comms Loss",  "INVALID",
+                                                                                   "Local",    "MINOR",
+                                                                                  "Remote", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {        "K4:STATE:STAT", "kickers_1-4_status", "16",         "K4 State", "Comms Loss",  "INVALID",
+                                                                                "Abnormal",    "MINOR",
+                                                                                  "Normal", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {        "K4:READY:STAT", "kickers_1-4_status", "17",         "K4 Ready", "Comms Loss",  "INVALID",
+                                                                               "Not Ready",    "MINOR",
+                                                                                   "Ready", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {       "K4:PSU_ON:STAT", "kickers_1-4_status", "18",    "K4 PSU Status", "Comms Loss",  "INVALID",
+                                                                                     "Off",    "MINOR",
+                                                                                      "On", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
+    {    "K4:PSU_HV_ON:STAT", "kickers_1-4_status", "19", "K4 PSU HV Status", "Comms Loss",  "INVALID",
+                                                                                     "Off",    "MINOR",
+                                                                                      "On", "NO_ALARM",
+                                                                                 "Warning",    "MINOR",
+                                                                                   "Fault",    "MAJOR",
+    }
 }
 
 
@@ -101,7 +203,7 @@ file RIKENFE_float.template {
 
 # 2.1   Vacuum Status
 
-file RIKENFE_Interlock_or_MOL_status.template {
+file RIKENFE_Common_Objects_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
     {  "GH1:STAT", "vacuum_status",  "0",  "GH1 Status" }
@@ -153,7 +255,7 @@ file RIKENFE_Interlock_or_MOL_status.template {
 
 # 2.2   Vacuum Valve Status
 
-file RIKENFE_vacuum_valve_status.template {
+file RIKENFE_Vacuum_Valve_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
     {  "PIV1:STAT", "vacuum_valve_status",  "0",  "PIV1 Status" }
@@ -182,7 +284,7 @@ file RIKENFE_vacuum_valve_status.template {
 
 # 2.3   Vacuum Valve Controls
 
-file RIKENFE_vacuum_valve_open.template {
+file RIKENFE_Vacuum_Valve_Open.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
     {  "LV1:OPEN",  "lv1_vacuum_valve_open",  "0",  "Initiate LV1 Opening" }
@@ -199,9 +301,9 @@ file RIKENFE_vacuum_valve_open.template {
 
 # 2.4   Vacuum Pump Status
 
-file RIKENFE_pump_status.template {
+file RIKENFE_Vacuum_Pump_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
-    
+
     {  "BP1:STAT", "vacuum_pump_status",  "0",  "BP1 Vacuum Pump Status" }
     {  "BP2:STAT", "vacuum_pump_status",  "1",  "BP2 Vacuum Pump Status" }
     {  "BP3:STAT", "vacuum_pump_status",  "2",  "BP3 Vacuum Pump Status" }
@@ -249,7 +351,7 @@ file RIKENFE_PIV_Interlock_Status.template {
 # 2.4.2    Vacuum Pump LV Interlocks (LV - Line Valve)
 # Note: In the PLC, bits 2 & 3 and 4 & 5 are ORed together and then ANDed with bits 1,6,7 and 8 to obtain the valve interlock.
 
-file RIKENFE_Valve_Interlock_Status.template {
+file RIKENFE_Vacuum_Valve_Interlock_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, BIT0PV, BIT0DESC, BIT0ZNAM, BIT0ONAM,
                                          BIT1PV, BIT1DESC, BIT1ZNAM, BIT1ONAM,
                                          BIT2PV, BIT2DESC, BIT2ZNAM, BIT2ONAM,
@@ -343,7 +445,7 @@ file RIKENFE_Valve_Interlock_Status.template {
 # 2.4.3    Vacuum Pump Other Valve Interlocks
 # Note: In the PLC, bits 2 & 3 and 4 & 5 are ORed together and then ANDed with bits 1,6,7 and 8 to obtain the valve interlock.
 
-file RIKENFE_Valve_Interlock_Status.template {
+file RIKENFE_Vacuum_Valve_Interlock_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, BIT0PV, BIT0DESC, BIT0ZNAM, BIT0ONAM,
                                          BIT1PV, BIT1DESC, BIT1ZNAM, BIT1ONAM,
                                          BIT2PV, BIT2DESC, BIT2ZNAM, BIT2ONAM,
@@ -392,7 +494,7 @@ file RIKENFE_Valve_Interlock_Status.template {
 
 # 2.5   Beam Blocker Status
 
-file RIKENFE_vacuum_valve_status.template {
+file RIKENFE_Vacuum_Valve_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
     { "BB0:STAT", "beamblocker_status",  "0", "BB0 Status" }
@@ -405,7 +507,7 @@ file RIKENFE_vacuum_valve_status.template {
 
 # 2.6   Beam Blocker Information
 
-file RIKENFE_beamblocker_information.template {
+file RIKENFE_Beamblocker_Information.template {
     pattern {PV, PORTNAME, OFFSET, DESC, LOCN}
 
     { "BB0:INFO", "beamblocker_information",  "0", "BB0 Information", "Kicker Area" }
@@ -421,7 +523,7 @@ file RIKENFE_beamblocker_information.template {
 
 # 3.1   PSU Klixon Interlocks
 
-file RIKENFE_Interlock_or_MOL_status.template {
+file RIKENFE_Common_Objects_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
     {           "RQ1:KLIXON:STAT", "klixon_interlock_status",  "0",           "RQ1 Klixon Status" }
@@ -465,7 +567,7 @@ file RIKENFE_Interlock_or_MOL_status.template {
 
 # 3.2   PSU Water Interlock Status
 
-file RIKENFE_Interlock_or_MOL_status.template {
+file RIKENFE_Common_Objects_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
     {               "RQ1:WATER:FLOW:STAT", "water_interlock_status",        "0",               "RQ1 Flow Status" }
@@ -510,7 +612,7 @@ file RIKENFE_Interlock_or_MOL_status.template {
 }
 
 #   From "Issue D" spec document. address %MW4285
-file RIKENFE_Interlock_or_MOL_status.template {
+file RIKENFE_Common_Objects_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
     { "CHRONUS:TRANS:PSU:WATER:FLOW:STAT", "water_interlock_status_extra",  "0", "Chronus Trans PSU Flow Status" }
@@ -567,7 +669,7 @@ file RIKENFE_float.template {
 
 # 3.4   PSU R-Box Interlock Status  (Rectifier Box)
 
-file RIKENFE_Interlock_or_MOL_status.template {
+file RIKENFE_Common_Objects_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
     {         "RQ1:RBOX:STAT", "rbox_interlock_status",  "0",           "RQ1 RBox Status" }
@@ -632,7 +734,7 @@ file RIKENFE_Interlock_or_MOL_status.template {
 # 3.5   PSU MOL Status  (Magnet Off Light - _only_ light, _not_ magnet itself)
 #       *NB*  Kicker MOL - See Kicker Section 1.6.1
 
-file RIKENFE_Interlock_or_MOL_status.template {
+file RIKENFE_Common_Objects_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
     { "SOLENOID:MOL:STAT", "mol_status",  "0", "Solenoid MOL Status" }
