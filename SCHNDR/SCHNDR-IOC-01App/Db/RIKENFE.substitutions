@@ -410,6 +410,23 @@ file RIKENFE_Beamblocker_Information.template {
     { "BB4:INFO", "beamblocker_information",  "4", "BB4 Information",      "Port 4" }
 }
 
+# 2.6  Vacuum Pumpset Status Summary
+
+file RIKENFE_Pumpset_Summary.template {
+    pattern {PV, DESC, GH1, GH2, GH3, GH4, NUM}
+    {"PUMPSET:1:STAT", "Injector", "GH1", "GH2", "GH3", "GH4", "1"}
+    {"PUMPSET:2:STAT", "Solenoid", "GH5", "GH6", "GH7", "GH8", "2"}
+    {"PUMPSET:3:STAT", "Kicker", "GH9", "GH10", "GH11", "GH12", "3"}
+    {"PUMPSET:4:STAT", "RB 2", "GH13", "GH14", "GH15", "GH16", "4"}
+    {"PUMPSET:5:STAT", "Seperator 1", "GH17", "GH18", "GH19", "GH20", "5"}
+    {"PUMPSET:6:STAT", "Seperator 2", "GH21", "GH22", "GH23", "GH24", "6"}
+    {"PUMPSET:7:STAT", "Port 1", "GH25", "GH26", "GH27", "GH28", "7"}
+    {"PUMPSET:8:STAT", "Port 2", "GH29", "G30", "GH31", "GH32", "8"}
+    {"PUMPSET:9:STAT", "Port 3", "GH33", "GH34", "GH35", "GH36", "9"}
+    {"PUMPSET:10:STAT", "RB 4", "GH37", "GH38", "GH39", "GH40", "10"}
+    {"PUMPSET:11:STAT", "Seperator 3 and Port 4", "GH41", "GH42", "GH43", "GH44", "11"}
+}
+
 
 # 3         PSU
 # ==============
@@ -612,7 +629,6 @@ file RIKENFE_Common_Objects_Status.template {
     {    "ARGUS:MOL:STAT", "mol_status",  "7",    "ARGUS MOL Status" }
     {  "CHRONUS:MOL:STAT", "mol_status",  "8",  "CHRONUS MOL Status" }
 }
-
 
 # *_NOT_* TODO 3.6	PSU Control / On
 
