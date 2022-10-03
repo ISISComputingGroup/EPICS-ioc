@@ -19,8 +19,6 @@ file RIKENFE_Common_Objects_Status.template {
 }
 
 
-
-
 # 1.5   Solenoid - *NB* PSU will not be installed until current one fails
 # ===============
 
