@@ -32,7 +32,8 @@ $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += stream.dbd
 ## add other dbd here ##
-#$(APPNAME)_DBD += xxx.dbd
+$(APPNAME)_DBD += drvVxi11.dbd
+$(APPNAME)_DBD += asubFunctions.dbd
 
 # Add all the support libraries needed by this IOC
 
@@ -54,6 +55,9 @@ $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += asubFunctions
+$(APPNAME)_LIBS_WIN32 += oncrpc
+
 
 # TEKOSC-IOC-01_registerRecordDeviceDriver.cpp derives from TEKOSC-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
