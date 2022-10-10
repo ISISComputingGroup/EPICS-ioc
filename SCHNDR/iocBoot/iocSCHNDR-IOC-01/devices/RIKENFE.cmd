@@ -97,3 +97,8 @@ drvModbusAsynConfigure("$(PLC)mol_status",                   "$(PLC)", 255, 3, 4
 
 ## Load our record instances
 dbLoadRecords("$(TOP)/db/RIKENFE.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PLC)")
+
+## For temperature monitoring:
+drvModbusAsynConfigure("$(PLC)temperature_monitoring",       "$(PLC)", 255, 3, 4595, 75, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4595
+
+dbLoadRecords("$(TOP)/db/RIKENFE_TEMPMON.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PLC)")

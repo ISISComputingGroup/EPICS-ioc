@@ -1,0 +1,10 @@
+
+record (ai, "$(P)$(PV)") {
+
+    field(DESC, "$(DESC)")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))INT32_LE")
+    field(SCAN, "I/O Intr")
+    info(INTEREST, "LOW")
+    info(archive, "VAL")
+}
