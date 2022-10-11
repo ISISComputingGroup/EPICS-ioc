@@ -37,6 +37,8 @@ $(APPNAME)_DBD += devSoftMotor.dbd
 $(APPNAME)_DBD += tcIocSupport.dbd
 $(APPNAME)_DBD += tcIocMotorSupport.dbd
 $(APPNAME)_DBD += luaSupport.dbd
+$(APPNAME)_DBD += asubFunctions.dbd 
+
 
 # Add all the support libraries needed by this IOC
 
@@ -44,6 +46,7 @@ USR_DBDFLAGS += -I$(TCIOC)/InfoDeviceSupport -I$(TCIOC)/TCatDeviceSupport
 
 ## ISIS standard libraries ##
 ## Stream device libraries ##
+$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += tcIocSupport
 $(APPNAME)_LIBS += tcIocMotorSupport
 $(APPNAME)_LIBS += softMotor 
