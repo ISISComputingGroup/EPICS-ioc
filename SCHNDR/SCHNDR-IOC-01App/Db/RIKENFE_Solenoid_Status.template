@@ -24,7 +24,9 @@ record (bi, "$(P)$(PV):COMMS:STAT") {
     field(DESC, "Communications Status")
     field(INP,  "$(P)$(PV):STAT.B0 CP MS")
     field(ZNAM, "Comms OK")
+    field(ZRSV, "NO_ALARM")
     field(ONAM, "Comms Error")
+    field(ONSV, "INVALID")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -34,7 +36,9 @@ record (bi, "$(P)$(PV):GH7:STAT") {
     field(DESC, "GH7 Status")
     field(INP,  "$(P)$(PV):STAT.B1 CP MS")
     field(ZNAM, "GH7 Error")
+    field(ZRSV, "HIGH")
     field(ONAM, "GH7 OK")
+    field(ONSV, "NO_ALARM")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -44,7 +48,9 @@ record (bi, "$(P)$(PV):GH8:STAT") {
     field(DESC, "GH8 Status")
     field(INP,  "$(P)$(PV):STAT.B2 CP MS")
     field(ZNAM, "GH8 Error")
+    field(ZRSV, "HIGH")
     field(ONAM, "GH8 OK")
+    field(ONSV, "NO_ALARM")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -54,7 +60,9 @@ record (bi, "$(P)$(PV):CRYO_SYS:STAT") {
     field(DESC, "Cryo System Status")
     field(INP,  "$(P)$(PV):STAT.B3 CP MS")
     field(ZNAM, "Cryo System Error")
+    field(ZRSV, "HIGH")
     field(ONAM, "Cryo System OK")
+    field(ONSV, "NO_ALARM")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -64,7 +72,9 @@ record (bi, "$(P)$(PV):COOLDOWN:STAT") {
     field(DESC, "Cooldown Status")
     field(INP,  "$(P)$(PV):STAT.B4 CP MS")
     field(ZNAM, "Cooldown In Progress")
+    field(ZRSV, "MINOR")
     field(ONAM, "Cooldown Complete")
+    field(ONSV, "NO_ALARM")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -74,7 +84,9 @@ record (bi, "$(P)$(PV):MAG_EXCIT:STAT") {
     field(DESC, "Magnet Excitation Status")
     field(INP,  "$(P)$(PV):STAT.B5 CP MS")
     field(ZNAM, "Magnet Excitation OFF")
+    field(ZRSV, "MINOR")
     field(ONAM, "Magnet Excitation ON")
+    field(ONSV, "NO_ALARM")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -84,7 +96,9 @@ record (bi, "$(P)$(PV):COMPRESSOR:STAT") {
     field(DESC, "Compressor Status")
     field(INP,  "$(P)$(PV):STAT.B6 CP MS")
     field(ZNAM, "Compressor OFF")
+    field(ZRSV, "MINOR")
     field(ONAM, "Compressor ON")
+    field(ONSV, "NO_ALARM")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
