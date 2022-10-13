@@ -41,10 +41,10 @@ drvAsynDG645("$(ASYNPORT)","$(DEVICE)",-1);
 ## Load our record instances
 dbLoadRecords("$(DELAYGEN)/db/drvDG645.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)")
 dbLoadRecords("$(DG645)/db/dg645.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)")
-dbLoadRecordsList("$(DG645)/db/dg645_logic.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;AB;CD;EF", ";")
+dbLoadRecordsList("$(DG645)/db/dg645_logic.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;AB;CD;EF;GH", ";")
 dbLoadRecordsList("$(DG645)/db/dg645_delay.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;T1;A;B;C;D;E;F;G;H", ";")
-dbLoadRecordsList("$(DG645)/db/dg645_width.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "TRG;AB;CD;EF", ";")
-dbLoadRecordsList("$(DG645)/db/dg645_delay_width_shared.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;T1;A;B;C;D;E;F;G;H;TRG;AB;CD;EF", ";")
+dbLoadRecordsList("$(DG645)/db/dg645_width.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "TRG;AB;CD;EF;GH", ";")
+dbLoadRecordsList("$(DG645)/db/dg645_delay_width_shared.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;T1;A;B;C;D;E;F;G;H;TRG;AB;CD;EF;GH", ";")
 
 ## load autosave configMenu for managing sets of PVs
 dbLoadRecords("$(AUTOSAVE)/db/configMenu.db","P=$(MYPVPREFIX)AS:$(IOCNAME):,CONFIG=dgconfig")
