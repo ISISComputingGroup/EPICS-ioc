@@ -552,13 +552,13 @@ file RIKENFE_Common_Objects_Status.template {
     {          "RQ21:KLIXON:STAT", "klixon_interlock_status", "25",          "RQ21 Klixon Status" }
     {          "RQ22:KLIXON:STAT", "klixon_interlock_status", "26",          "RQ22 Klixon Status" }
     {          "RQ23:KLIXON:STAT", "klixon_interlock_status", "27",          "RQ23 Klixon Status" }
-    {    "ARGUS:LONG:KLIXON:STAT", "klixon_interlock_status", "28",    "Argus Long Klixon Status" }
-    {   "ARGUS:TRANS:KLIXON:STAT", "klixon_interlock_status", "29",   "Argus Trans Klixon Status" }
+    {    "ARGUS:LONG:KLIXON:STAT", "klixon_interlock_status", "28",    "ARGUS Long Klixon Status" }
+    {   "ARGUS:TRANS:KLIXON:STAT", "klixon_interlock_status", "29",   "ARGUS Trans Klixon Status" }
     {          "XFD1:KLIXON:STAT", "klixon_interlock_status", "30",          "XFD1 Klixon Status" }
     {          "XFD2:KLIXON:STAT", "klixon_interlock_status", "31",          "XFD2 Klixon Status" }
     {           "RB2:KLIXON:STAT", "klixon_interlock_status", "32",           "RB2 Klixon Status" }
-    {  "CHRONUS:LONG:KLIXON:STAT", "klixon_interlock_status", "33",  "Chronus Long Klixon Status" }
-    { "CHRONUS:TRANS:KLIXON:STAT", "klixon_interlock_status", "34", "Chronus Trans Klixon Status" }
+    {  "CHRONUS:LONG:KLIXON:STAT", "klixon_interlock_status", "33",  "CHRONUS Long Klixon Status" }
+    { "CHRONUS:TRANS:KLIXON:STAT", "klixon_interlock_status", "34", "CHRONUS Trans Klixon Status" }
     {          "XFD3:KLIXON:STAT", "klixon_interlock_status", "35",          "XFD3 Klixon Status" }
 }
 
@@ -568,52 +568,52 @@ file RIKENFE_Common_Objects_Status.template {
 file RIKENFE_Common_Objects_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {               "RQ1:WATER:FLOW:STAT", "water_interlock_status",        "0",                  "RQ1 Flow Status" }
-    {               "RQ2:WATER:FLOW:STAT", "water_interlock_status",        "1",                  "RQ2 Flow Status" }
-    {               "RB1:WATER:FLOW:STAT", "water_interlock_status",        "2",                  "RB1 Flow Status" }
-    {               "RQ3:WATER:FLOW:STAT", "water_interlock_status",        "3",                  "RQ3 Flow Status" }
-    {               "RQ4:WATER:FLOW:STAT", "water_interlock_status",        "4",                  "RQ4 Flow Status" }
-    {               "RQ5:WATER:FLOW:STAT", "water_interlock_status",        "5",                  "RQ5 Flow Status" }
-    {               "SY1:WATER:FLOW:STAT", "water_interlock_status",        "6",                  "SY1 Flow Status" }
-    {               "SY2:WATER:FLOW:STAT", "water_interlock_status",        "7",                  "SY2 Flow Status" }
-    {               "RQ6:WATER:FLOW:STAT", "water_interlock_status",        "8",                  "RQ6 Flow Status" }
-    {               "RQ7:WATER:FLOW:STAT", "water_interlock_status",        "9",                  "RQ7 Flow Status" }
-    {               "RQ8:WATER:FLOW:STAT", "water_interlock_status",       "10",                  "RQ8 Flow Status" }
-    {               "RB3:WATER:FLOW:STAT", "water_interlock_status",       "11",                  "RB3 Flow Status" }
-    {               "RQ9:WATER:FLOW:STAT", "water_interlock_status",       "12",                  "RQ9 Flow Status" }
-    {              "RQ10:WATER:FLOW:STAT", "water_interlock_status",       "13",                 "RQ10 Flow Status" }
-    {              "RQ11:WATER:FLOW:STAT", "water_interlock_status",       "14",                 "RQ11 Flow Status" }
-    {              "RQ12:WATER:FLOW:STAT", "water_interlock_status",       "15",                 "RQ12 Flow Status" }
-    {              "RQ13:WATER:FLOW:STAT", "water_interlock_status",       "16",                 "RQ13 Flow Status" }
-    {              "RQ14:WATER:FLOW:STAT", "water_interlock_status",       "17",                 "RQ14 Flow Status" }
-    {              "RQ15:WATER:FLOW:STAT", "water_interlock_status",       "18",                 "RQ15 Flow Status" }
-    {              "RQ16:WATER:FLOW:STAT", "water_interlock_status",       "19",                 "RQ16 Flow Status" }
-    {              "RQ17:WATER:FLOW:STAT", "water_interlock_status",       "20",                 "RQ17 Flow Status" }
-    {               "RB4:WATER:FLOW:STAT", "water_interlock_status",       "21",                  "RB4 Flow Status" }
-    {              "RQ18:WATER:FLOW:STAT", "water_interlock_status",       "22",                 "RQ18 Flow Status" }
-    {              "RQ19:WATER:FLOW:STAT", "water_interlock_status",       "23",                 "RQ19 Flow Status" }
-    {              "RQ20:WATER:FLOW:STAT", "water_interlock_status",       "24",                 "RQ20 Flow Status" }
-    {              "RQ21:WATER:FLOW:STAT", "water_interlock_status",       "25",                 "RQ21 Flow Status" }
-    {              "RQ22:WATER:FLOW:STAT", "water_interlock_status",       "26",                 "RQ22 Flow Status" }
-    {              "RQ23:WATER:FLOW:STAT", "water_interlock_status",       "27",                 "RQ23 Flow Status" }
-    {    "ARGUS:LONG:MAG:WATER:FLOW:STAT", "water_interlock_status",       "28",    "Argus Long Magnet Flow Status" }
-    {   "ARGUS:TRANS:MAG:WATER:FLOW:STAT", "water_interlock_status",       "29",   "Argus Trans Magnet Flow Status" }
-    {    "ARGUS:LONG:PSU:WATER:FLOW:STAT", "water_interlock_status",       "30",       "Argus Long PSU Flow Status" }
-    {              "XFD1:WATER:FLOW:STAT", "water_interlock_status",       "31",                 "XFD1 Flow Status" }
-    {              "XFD2:WATER:FLOW:STAT", "water_interlock_status",       "32",                 "XFD2 Flow Status" }
-    {           "RB2:PSU:WATER:FLOW:STAT", "water_interlock_status",       "33",              "RB2 PSU Flow Status" }
-    {           "RB2:MAG:WATER:FLOW:STAT", "water_interlock_status",       "34",           "RB2 Magnet Flow Status" }
-    {  "CHRONUS:LONG:MAG:WATER:FLOW:STAT", "water_interlock_status",       "35",  "Chronus Long Magnet Flow Status" }
-    { "CHRONUS:TRANS:MAG:WATER:FLOW:STAT", "water_interlock_status",       "36", "Chronus Trans Magnet Flow Status" }
-    {  "CHRONUS:LONG:PSU:WATER:FLOW:STAT", "water_interlock_status",       "37",     "Chronus Long PSU Flow Status" }
-    {              "XFD3:WATER:FLOW:STAT", "water_interlock_status",       "38",                 "XFD3 Flow Status" }
+    {               "RQ1:WATER:FLOW:STAT", "water_interlock_status",        "0",                  "RQ1 Water Flow Status" }
+    {               "RQ2:WATER:FLOW:STAT", "water_interlock_status",        "1",                  "RQ2 Water Flow Status" }
+    {               "RB1:WATER:FLOW:STAT", "water_interlock_status",        "2",                  "RB1 Water Flow Status" }
+    {               "RQ3:WATER:FLOW:STAT", "water_interlock_status",        "3",                  "RQ3 Water Flow Status" }
+    {               "RQ4:WATER:FLOW:STAT", "water_interlock_status",        "4",                  "RQ4 Water Flow Status" }
+    {               "RQ5:WATER:FLOW:STAT", "water_interlock_status",        "5",                  "RQ5 Water Flow Status" }
+    {               "SY1:WATER:FLOW:STAT", "water_interlock_status",        "6",                  "SY1 Water Flow Status" }
+    {               "SY2:WATER:FLOW:STAT", "water_interlock_status",        "7",                  "SY2 Water Flow Status" }
+    {               "RQ6:WATER:FLOW:STAT", "water_interlock_status",        "8",                  "RQ6 Water Flow Status" }
+    {               "RQ7:WATER:FLOW:STAT", "water_interlock_status",        "9",                  "RQ7 Water Flow Status" }
+    {               "RQ8:WATER:FLOW:STAT", "water_interlock_status",       "10",                  "RQ8 Water Flow Status" }
+    {               "RB3:WATER:FLOW:STAT", "water_interlock_status",       "11",                  "RB3 Water Flow Status" }
+    {               "RQ9:WATER:FLOW:STAT", "water_interlock_status",       "12",                  "RQ9 Water Flow Status" }
+    {              "RQ10:WATER:FLOW:STAT", "water_interlock_status",       "13",                 "RQ10 Water Flow Status" }
+    {              "RQ11:WATER:FLOW:STAT", "water_interlock_status",       "14",                 "RQ11 Water Flow Status" }
+    {              "RQ12:WATER:FLOW:STAT", "water_interlock_status",       "15",                 "RQ12 Water Flow Status" }
+    {              "RQ13:WATER:FLOW:STAT", "water_interlock_status",       "16",                 "RQ13 Water Flow Status" }
+    {              "RQ14:WATER:FLOW:STAT", "water_interlock_status",       "17",                 "RQ14 Water Flow Status" }
+    {              "RQ15:WATER:FLOW:STAT", "water_interlock_status",       "18",                 "RQ15 Water Flow Status" }
+    {              "RQ16:WATER:FLOW:STAT", "water_interlock_status",       "19",                 "RQ16 Water Flow Status" }
+    {              "RQ17:WATER:FLOW:STAT", "water_interlock_status",       "20",                 "RQ17 Water Flow Status" }
+    {               "RB4:WATER:FLOW:STAT", "water_interlock_status",       "21",                  "RB4 Water Flow Status" }
+    {              "RQ18:WATER:FLOW:STAT", "water_interlock_status",       "22",                 "RQ18 Water Flow Status" }
+    {              "RQ19:WATER:FLOW:STAT", "water_interlock_status",       "23",                 "RQ19 Water Flow Status" }
+    {              "RQ20:WATER:FLOW:STAT", "water_interlock_status",       "24",                 "RQ20 Water Flow Status" }
+    {              "RQ21:WATER:FLOW:STAT", "water_interlock_status",       "25",                 "RQ21 Water Flow Status" }
+    {              "RQ22:WATER:FLOW:STAT", "water_interlock_status",       "26",                 "RQ22 Water Flow Status" }
+    {              "RQ23:WATER:FLOW:STAT", "water_interlock_status",       "27",                 "RQ23 Water Flow Status" }
+    {    "ARGUS:LONG:MAG:WATER:FLOW:STAT", "water_interlock_status",       "28",    "ARGUS Long Magnet Water Flow Status" }
+    {   "ARGUS:TRANS:MAG:WATER:FLOW:STAT", "water_interlock_status",       "29",   "ARGUS Trans Magnet Water Flow Status" }
+    {    "ARGUS:LONG:PSU:WATER:FLOW:STAT", "water_interlock_status",       "30",       "ARGUS Long PSU Water Flow Status" }
+    {              "XFD1:WATER:FLOW:STAT", "water_interlock_status",       "31",                 "XFD1 Water Flow Status" }
+    {              "XFD2:WATER:FLOW:STAT", "water_interlock_status",       "32",                 "XFD2 Water Flow Status" }
+    {           "RB2:PSU:WATER:FLOW:STAT", "water_interlock_status",       "33",              "RB2 PSU Water Flow Status" }
+    {           "RB2:MAG:WATER:FLOW:STAT", "water_interlock_status",       "34",           "RB2 Magnet Water Flow Status" }
+    {  "CHRONUS:LONG:MAG:WATER:FLOW:STAT", "water_interlock_status",       "35",  "CHRONUS Long Magnet Water Flow Status" }
+    { "CHRONUS:TRANS:MAG:WATER:FLOW:STAT", "water_interlock_status",       "36", "CHRONUS Trans Magnet Water Flow Status" }
+    {  "CHRONUS:LONG:PSU:WATER:FLOW:STAT", "water_interlock_status",       "37",     "CHRONUS Long PSU Water Flow Status" }
+    {              "XFD3:WATER:FLOW:STAT", "water_interlock_status",       "38",                 "XFD3 Water Flow Status" }
 }
 
 #   From "Issue D" spec document. address %MW4285
 file RIKENFE_Common_Objects_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    { "CHRONUS:TRANS:PSU:WATER:FLOW:STAT", "water_interlock_status_extra",  "0",    "Chronus Trans PSU Flow Status" }
+    { "CHRONUS:TRANS:PSU:WATER:FLOW:STAT", "water_interlock_status_extra",  "0",    "CHRONUS Trans PSU Flow Status" }
 }
 
 
@@ -650,18 +650,18 @@ file RIKENFE_float.template {
     {              "RQ21:WATER:FLOW:RATE", "water_flow_rate", "50",                 "RQ21 Water Flow Rate", "L/min", "3" }
     {              "RQ22:WATER:FLOW:RATE", "water_flow_rate", "52",                 "RQ22 Water Flow Rate", "L/min", "3" }
     {              "RQ23:WATER:FLOW:RATE", "water_flow_rate", "54",                 "RQ23 Water Flow Rate", "L/min", "3" }
-    {    "ARGUS:LONG:MAG:WATER:FLOW:RATE", "water_flow_rate", "56",    "Argus Long Magnet Water Flow Rate", "L/min", "3" }
-    {   "ARGUS:TRANS:MAG:WATER:FLOW:RATE", "water_flow_rate", "58",   "Argus Trans Magnet Water Flow Rate", "L/min", "3" }
-    {    "ARGUS:LONG:PSU:WATER:FLOW:RATE", "water_flow_rate", "60",       "Argus Long PSU Water Flow Rate", "L/min", "3" }
+    {    "ARGUS:LONG:MAG:WATER:FLOW:RATE", "water_flow_rate", "56",    "ARGUS Long Magnet Water Flow Rate", "L/min", "3" }
+    {   "ARGUS:TRANS:MAG:WATER:FLOW:RATE", "water_flow_rate", "58",   "ARGUS Trans Magnet Water Flow Rate", "L/min", "3" }
+    {    "ARGUS:LONG:PSU:WATER:FLOW:RATE", "water_flow_rate", "60",       "ARGUS Long PSU Water Flow Rate", "L/min", "3" }
     {              "XFD1:WATER:FLOW:RATE", "water_flow_rate", "62",                 "XFD1 Water Flow Rate", "L/min", "3" }
     {              "XFD2:WATER:FLOW:RATE", "water_flow_rate", "64",                 "XFD2 Water Flow Rate", "L/min", "3" }
     {           "RB2:PSU:WATER:FLOW:RATE", "water_flow_rate", "66",              "RB2 PSU Water Flow Rate", "L/min", "3" }
     {           "RB2:MAG:WATER:FLOW:RATE", "water_flow_rate", "68",           "RB2 Magnet Water Flow Rate", "L/min", "3" }
-    {  "CHRONUS:LONG:MAG:WATER:FLOW:RATE", "water_flow_rate", "70",  "Chronus Long Magnet Water Flow Rate", "L/min", "3" }
-    { "CHRONUS:TRANS:MAG:WATER:FLOW:RATE", "water_flow_rate", "72", "Chronus Trans Magnet Water Flow Rate", "L/min", "3" }
-    {  "CHRONUS:LONG:PSU:WATER:FLOW:RATE", "water_flow_rate", "74",     "Chronus Long PSU Water Flow Rate", "L/min", "3" }
+    {  "CHRONUS:LONG:MAG:WATER:FLOW:RATE", "water_flow_rate", "70",  "CHRONUS Long Magnet Water Flow Rate", "L/min", "3" }
+    { "CHRONUS:TRANS:MAG:WATER:FLOW:RATE", "water_flow_rate", "72", "CHRONUS Trans Magnet Water Flow Rate", "L/min", "3" }
+    {  "CHRONUS:LONG:PSU:WATER:FLOW:RATE", "water_flow_rate", "74",     "CHRONUS Long PSU Water Flow Rate", "L/min", "3" }
     {              "XFD3:WATER:FLOW:RATE", "water_flow_rate", "76",                 "XFD3 Water Flow Rate", "L/min", "3" }
-    { "CHRONUS:TRANS:PSU:WATER:FLOW:RATE", "water_flow_rate", "78",    "Chronus Trans PSU Water Flow Rate", "L/min", "3" }
+    { "CHRONUS:TRANS:PSU:WATER:FLOW:RATE", "water_flow_rate", "78",    "CHRONUS Trans PSU Water Flow Rate", "L/min", "3" }
 } 
 
 
