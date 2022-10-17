@@ -40,9 +40,9 @@ file RIKENFE_Solenoid_Status.template {
 file RIKENFE_Common_Objects_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC }
 
-    {  "KICKER:WATER:ILK:STAT", "kicker_status",  "0", "Kicker Water Interlock Status" }
-    { "KICKER:VACUUM:ILK:STAT", "kicker_status",  "1",          "Kicker Vacuum Status" }
-    {        "KICKER:MOL:STAT", "kicker_status",  "2",             "Kicker MOL Status" }
+    {  "KICKERS:WATER:ILK:STAT", "kicker_status",  "0", "Kickers Water Interlock Status" }
+    { "KICKERS:VACUUM:ILK:STAT", "kicker_status",  "1",          "Kickers Vacuum Status" }
+    {        "KICKERS:MOL:STAT", "kicker_status",  "2",             "Kickers MOL Status" }
 }
 
 
@@ -51,125 +51,125 @@ file RIKENFE_Common_Objects_Status.template {
 file RIKENFE_Other_Objects_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC, 0TEXT, 0SEVR, 1TEXT, 1SEVR, 2TEXT, 2SEVR, 3TEXT, 3SEVR, 4TEXT, 4SEVR }
 
-    { "K1:CONTROL_MODE:STAT", "kickers_1-4_status",  "0",  "K1 Control Mode", "Comms Loss",  "INVALID",
-                                                                                   "Local",    "MINOR",
-                                                                                  "Remote", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    { "KICKER1:CONTROL_MODE:STAT", "kickers_1-4_status",  "0",  "Kicker 1 Control Mode", "Comms Loss",  "INVALID",
+                                                                                              "Local",    "MINOR",
+                                                                                             "Remote", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {        "K1:STATE:STAT", "kickers_1-4_status",  "1",         "K1 State", "Comms Loss",  "INVALID",
-                                                                                "Abnormal",    "MINOR",
-                                                                                  "Normal", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {        "KICKER1:STATE:STAT", "kickers_1-4_status",  "1",         "Kicker 1 State", "Comms Loss",  "INVALID",
+                                                                                           "Abnormal",    "MINOR",
+                                                                                             "Normal", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {        "K1:READY:STAT", "kickers_1-4_status",  "2",         "K1 Ready", "Comms Loss",  "INVALID",
-                                                                               "Not Ready",    "MINOR",
-                                                                                   "Ready", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {        "KICKER1:READY:STAT", "kickers_1-4_status",  "2",         "Kicker 1 Ready", "Comms Loss",  "INVALID",
+                                                                                          "Not Ready",    "MINOR",
+                                                                                              "Ready", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {       "K1:PSU_ON:STAT", "kickers_1-4_status",  "3",    "K1 PSU Status", "Comms Loss",  "INVALID",
-                                                                                     "Off",    "MINOR",
-                                                                                      "On", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {       "KICKER1:PSU_ON:STAT", "kickers_1-4_status",  "3",    "Kicker 1 PSU Status", "Comms Loss",  "INVALID",
+                                                                                                "Off",    "MINOR",
+                                                                                                 "On", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {    "K1:PSU_HV_ON:STAT", "kickers_1-4_status",  "4", "K1 PSU HV Status", "Comms Loss",  "INVALID",
-                                                                                     "Off",    "MINOR",
-                                                                                      "On", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {    "KICKER1:PSU_HV_ON:STAT", "kickers_1-4_status",  "4", "Kicker 1 PSU HV Status", "Comms Loss",  "INVALID",
+                                                                                                "Off",    "MINOR",
+                                                                                                 "On", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    { "K2:CONTROL_MODE:STAT", "kickers_1-4_status",  "5",  "K2 Control Mode", "Comms Loss",  "INVALID",
-                                                                                   "Local",    "MINOR",
-                                                                                  "Remote", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    { "KICKER2:CONTROL_MODE:STAT", "kickers_1-4_status",  "5",  "Kicker 2 Control Mode", "Comms Loss",  "INVALID",
+                                                                                              "Local",    "MINOR",
+                                                                                             "Remote", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {        "K2:STATE:STAT", "kickers_1-4_status",  "6",         "K2 State", "Comms Loss",  "INVALID",
-                                                                                "Abnormal",    "MINOR",
-                                                                                  "Normal", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {        "KICKER2:STATE:STAT", "kickers_1-4_status",  "6",         "Kicker 2 State", "Comms Loss",  "INVALID",
+                                                                                           "Abnormal",    "MINOR",
+                                                                                             "Normal", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {        "K2:READY:STAT", "kickers_1-4_status",  "7",         "K2 Ready", "Comms Loss",  "INVALID",
-                                                                               "Not Ready",    "MINOR",
-                                                                                   "Ready", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {        "KICKER2:READY:STAT", "kickers_1-4_status",  "7",         "Kicker 2 Ready", "Comms Loss",  "INVALID",
+                                                                                          "Not Ready",    "MINOR",
+                                                                                              "Ready", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {       "K2:PSU_ON:STAT", "kickers_1-4_status",  "8",    "K2 PSU Status", "Comms Loss",  "INVALID",
-                                                                                     "Off",    "MINOR",
-                                                                                      "On", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {       "KICKER2:PSU_ON:STAT", "kickers_1-4_status",  "8",    "Kicker 2 PSU Status", "Comms Loss",  "INVALID",
+                                                                                                "Off",    "MINOR",
+                                                                                                 "On", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {    "K2:PSU_HV_ON:STAT", "kickers_1-4_status",  "9", "K2 PSU HV Status", "Comms Loss",  "INVALID",
-                                                                                     "Off",    "MINOR",
-                                                                                      "On", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {    "KICKER2:PSU_HV_ON:STAT", "kickers_1-4_status",  "9", "Kicker 2 PSU HV Status", "Comms Loss",  "INVALID",
+                                                                                                "Off",    "MINOR",
+                                                                                                 "On", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    { "K3:CONTROL_MODE:STAT", "kickers_1-4_status", "10",  "K3 Control Mode", "Comms Loss",  "INVALID",
-                                                                                   "Local",    "MINOR",
-                                                                                  "Remote", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    { "KICKER3:CONTROL_MODE:STAT", "kickers_1-4_status", "10",  "Kicker 3 Control Mode", "Comms Loss",  "INVALID",
+                                                                                              "Local",    "MINOR",
+                                                                                             "Remote", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {        "K3:STATE:STAT", "kickers_1-4_status", "11",         "K3 State", "Comms Loss",  "INVALID",
-                                                                                "Abnormal",    "MINOR",
-                                                                                  "Normal", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {        "KICKER3:STATE:STAT", "kickers_1-4_status", "11",         "Kicker 3 State", "Comms Loss",  "INVALID",
+                                                                                           "Abnormal",    "MINOR",
+                                                                                             "Normal", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {        "K3:READY:STAT", "kickers_1-4_status", "12",         "K3 Ready", "Comms Loss",  "INVALID",
-                                                                               "Not Ready",    "MINOR",
-                                                                                   "Ready", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {        "KICKER3:READY:STAT", "kickers_1-4_status", "12",         "Kicker 3 Ready", "Comms Loss",  "INVALID",
+                                                                                          "Not Ready",    "MINOR",
+                                                                                              "Ready", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {       "K3:PSU_ON:STAT", "kickers_1-4_status", "13",    "K3 PSU Status", "Comms Loss",  "INVALID",
-                                                                                     "Off",    "MINOR",
-                                                                                      "On", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {       "KICKER3:PSU_ON:STAT", "kickers_1-4_status", "13",    "Kicker 3 PSU Status", "Comms Loss",  "INVALID",
+                                                                                                "Off",    "MINOR",
+                                                                                                 "On", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {    "K3:PSU_HV_ON:STAT", "kickers_1-4_status", "14", "K3 PSU HV Status", "Comms Loss",  "INVALID",
-                                                                                     "Off",    "MINOR",
-                                                                                      "On", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {    "KICKER3:PSU_HV_ON:STAT", "kickers_1-4_status", "14", "Kicker 3 PSU HV Status", "Comms Loss",  "INVALID",
+                                                                                                "Off",    "MINOR",
+                                                                                                 "On", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    { "K4:CONTROL_MODE:STAT", "kickers_1-4_status", "15",  "K4 Control Mode", "Comms Loss",  "INVALID",
-                                                                                   "Local",    "MINOR",
-                                                                                  "Remote", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    { "KICKER4:CONTROL_MODE:STAT", "kickers_1-4_status", "15",  "Kicker 4 Control Mode", "Comms Loss",  "INVALID",
+                                                                                              "Local",    "MINOR",
+                                                                                             "Remote", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {        "K4:STATE:STAT", "kickers_1-4_status", "16",         "K4 State", "Comms Loss",  "INVALID",
-                                                                                "Abnormal",    "MINOR",
-                                                                                  "Normal", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {        "KICKER4:STATE:STAT", "kickers_1-4_status", "16",         "Kicker 4 State", "Comms Loss",  "INVALID",
+                                                                                           "Abnormal",    "MINOR",
+                                                                                             "Normal", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {        "K4:READY:STAT", "kickers_1-4_status", "17",         "K4 Ready", "Comms Loss",  "INVALID",
-                                                                               "Not Ready",    "MINOR",
-                                                                                   "Ready", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {        "KICKER4:READY:STAT", "kickers_1-4_status", "17",         "Kicker 4 Ready", "Comms Loss",  "INVALID",
+                                                                                          "Not Ready",    "MINOR",
+                                                                                              "Ready", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {       "K4:PSU_ON:STAT", "kickers_1-4_status", "18",    "K4 PSU Status", "Comms Loss",  "INVALID",
-                                                                                     "Off",    "MINOR",
-                                                                                      "On", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {       "KICKER4:PSU_ON:STAT", "kickers_1-4_status", "18",    "Kicker 4 PSU Status", "Comms Loss",  "INVALID",
+                                                                                                "Off",    "MINOR",
+                                                                                                 "On", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
-    {    "K4:PSU_HV_ON:STAT", "kickers_1-4_status", "19", "K4 PSU HV Status", "Comms Loss",  "INVALID",
-                                                                                     "Off",    "MINOR",
-                                                                                      "On", "NO_ALARM",
-                                                                                 "Warning",    "MINOR",
-                                                                                   "Fault",    "MAJOR",
+    {    "KICKER4:PSU_HV_ON:STAT", "kickers_1-4_status", "19", "Kicker 4 PSU HV Status", "Comms Loss",  "INVALID",
+                                                                                                "Off",    "MINOR",
+                                                                                                 "On", "NO_ALARM",
+                                                                                            "Warning",    "MINOR",
+                                                                                              "Fault",    "MAJOR",
     }
 }
 
@@ -179,14 +179,14 @@ file RIKENFE_Other_Objects_Status.template {
 file RIKENFE_float.template {
     pattern {PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION}
 
-    { "K1:VOLTAGE", "kickers_1-4_output",  "0", "K1 Output Voltage", "kV", "3" }
-    { "K1:CURRENT", "kickers_1-4_output",  "2", "K1 Output Current", "kA", "3" }
-    { "K2:VOLTAGE", "kickers_1-4_output",  "4", "K2 Output Voltage", "kV", "3" }
-    { "K2:CURRENT", "kickers_1-4_output",  "6", "K2 Output Current", "kA", "3" }
-    { "K3:VOLTAGE", "kickers_1-4_output",  "8", "K3 Output Voltage", "kV", "3" }
-    { "K3:CURRENT", "kickers_1-4_output", "10", "K3 Output Current", "kA", "3" }
-    { "K4:VOLTAGE", "kickers_1-4_output", "12", "K4 Output Voltage", "kV", "3" }
-    { "K4:CURRENT", "kickers_1-4_output", "14", "K4 Output Current", "kA", "3" }
+    { "KICKER1:VOLT", "kickers_1-4_output",  "0", "Kicker 1 Output Voltage", "kV", "3" }
+    { "KICKER1:CURR", "kickers_1-4_output",  "2", "Kicker 1 Output Current", "kA", "3" }
+    { "KICKER2:VOLT", "kickers_1-4_output",  "4", "Kicker 2 Output Voltage", "kV", "3" }
+    { "KICKER2:CURR", "kickers_1-4_output",  "6", "Kicker 2 Output Current", "kA", "3" }
+    { "KICKER3:VOLT", "kickers_1-4_output",  "8", "Kicker 3 Output Voltage", "kV", "3" }
+    { "KICKER3:CURR", "kickers_1-4_output", "10", "Kicker 3 Output Current", "kA", "3" }
+    { "KICKER4:VOLT", "kickers_1-4_output", "12", "Kicker 4 Output Voltage", "kV", "3" }
+    { "KICKER4:CURR", "kickers_1-4_output", "14", "Kicker 4 Output Current", "kA", "3" }
 }
 
 # Combined into sections 1.6.a, 1.6.b above:
@@ -568,52 +568,52 @@ file RIKENFE_Common_Objects_Status.template {
 file RIKENFE_Common_Objects_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {               "RQ1:WATER:FLOW:STAT", "water_interlock_status",        "0",               "RQ1 Flow Status" }
-    {               "RQ2:WATER:FLOW:STAT", "water_interlock_status",        "1",               "RQ2 Flow Status" }
-    {               "RB1:WATER:FLOW:STAT", "water_interlock_status",        "2",               "RB1 Flow Status" }
-    {               "RQ3:WATER:FLOW:STAT", "water_interlock_status",        "3",               "RQ3 Flow Status" }
-    {               "RQ4:WATER:FLOW:STAT", "water_interlock_status",        "4",               "RQ4 Flow Status" }
-    {               "RQ5:WATER:FLOW:STAT", "water_interlock_status",        "5",               "RQ5 Flow Status" }
-    {               "SY1:WATER:FLOW:STAT", "water_interlock_status",        "6",               "SY1 Flow Status" }
-    {               "SY2:WATER:FLOW:STAT", "water_interlock_status",        "7",               "SY2 Flow Status" }
-    {               "RQ6:WATER:FLOW:STAT", "water_interlock_status",        "8",               "RQ6 Flow Status" }
-    {               "RQ7:WATER:FLOW:STAT", "water_interlock_status",        "9",               "RQ7 Flow Status" }
-    {               "RQ8:WATER:FLOW:STAT", "water_interlock_status",       "10",               "RQ8 Flow Status" }
-    {               "RB3:WATER:FLOW:STAT", "water_interlock_status",       "11",               "RB3 Flow Status" }
-    {               "RQ9:WATER:FLOW:STAT", "water_interlock_status",       "12",               "RQ9 Flow Status" }
-    {              "RQ10:WATER:FLOW:STAT", "water_interlock_status",       "13",              "RQ10 Flow Status" }
-    {              "RQ11:WATER:FLOW:STAT", "water_interlock_status",       "14",              "RQ11 Flow Status" }
-    {              "RQ12:WATER:FLOW:STAT", "water_interlock_status",       "15",              "RQ12 Flow Status" }
-    {              "RQ13:WATER:FLOW:STAT", "water_interlock_status",       "16",              "RQ13 Flow Status" }
-    {              "RQ14:WATER:FLOW:STAT", "water_interlock_status",       "17",              "RQ14 Flow Status" }
-    {              "RQ15:WATER:FLOW:STAT", "water_interlock_status",       "18",              "RQ15 Flow Status" }
-    {              "RQ16:WATER:FLOW:STAT", "water_interlock_status",       "19",              "RQ16 Flow Status" }
-    {              "RQ17:WATER:FLOW:STAT", "water_interlock_status",       "20",              "RQ17 Flow Status" }
-    {               "RB4:WATER:FLOW:STAT", "water_interlock_status",       "21",               "RB4 Flow Status" }
-    {              "RQ18:WATER:FLOW:STAT", "water_interlock_status",       "22",              "RQ18 Flow Status" }
-    {              "RQ19:WATER:FLOW:STAT", "water_interlock_status",       "23",              "RQ19 Flow Status" }
-    {              "RQ20:WATER:FLOW:STAT", "water_interlock_status",       "24",              "RQ20 Flow Status" }
-    {              "RQ21:WATER:FLOW:STAT", "water_interlock_status",       "25",              "RQ21 Flow Status" }
-    {              "RQ22:WATER:FLOW:STAT", "water_interlock_status",       "26",              "RQ22 Flow Status" }
-    {              "RQ23:WATER:FLOW:STAT", "water_interlock_status",       "27",              "RQ23 Flow Status" }
-    {        "ARGUS:LONG:WATER:FLOW:STAT", "water_interlock_status",       "28",        "Argus Long Flow Status" }
-    {       "ARGUS:TRANS:WATER:FLOW:STAT", "water_interlock_status",       "29",       "Argus Trans Flow Status" }
-    {    "ARGUS:LONG:PSU:WATER:FLOW:STAT", "water_interlock_status",       "30",    "Argus Long PSU Flow Status" }
-    {              "XFD1:WATER:FLOW:STAT", "water_interlock_status",       "31",              "XFD1 Flow Status" }
-    {              "XFD2:WATER:FLOW:STAT", "water_interlock_status",       "32",              "XFD2 Flow Status" }
-    {           "RB2:PSU:WATER:FLOW:STAT", "water_interlock_status",       "33",           "RB2 PSU Flow Status" }
-    {           "RB2:MAG:WATER:FLOW:STAT", "water_interlock_status",       "34",        "RB2 Magnet Flow Status" }
-    {      "CHRONUS:LONG:WATER:FLOW:STAT", "water_interlock_status",       "35",      "Chronus Long Flow Status" }
-    {     "CHRONUS:TRANS:WATER:FLOW:STAT", "water_interlock_status",       "36",     "Chronus Trans Flow Status" }
-    {  "CHRONUS:LONG:PSU:WATER:FLOW:STAT", "water_interlock_status",       "37",  "Chronus Long PSU Flow Status" }
-    {              "XFD3:WATER:FLOW:STAT", "water_interlock_status",       "38",              "XFD3 Flow Status" }
+    {               "RQ1:WATER:FLOW:STAT", "water_interlock_status",        "0",                  "RQ1 Flow Status" }
+    {               "RQ2:WATER:FLOW:STAT", "water_interlock_status",        "1",                  "RQ2 Flow Status" }
+    {               "RB1:WATER:FLOW:STAT", "water_interlock_status",        "2",                  "RB1 Flow Status" }
+    {               "RQ3:WATER:FLOW:STAT", "water_interlock_status",        "3",                  "RQ3 Flow Status" }
+    {               "RQ4:WATER:FLOW:STAT", "water_interlock_status",        "4",                  "RQ4 Flow Status" }
+    {               "RQ5:WATER:FLOW:STAT", "water_interlock_status",        "5",                  "RQ5 Flow Status" }
+    {               "SY1:WATER:FLOW:STAT", "water_interlock_status",        "6",                  "SY1 Flow Status" }
+    {               "SY2:WATER:FLOW:STAT", "water_interlock_status",        "7",                  "SY2 Flow Status" }
+    {               "RQ6:WATER:FLOW:STAT", "water_interlock_status",        "8",                  "RQ6 Flow Status" }
+    {               "RQ7:WATER:FLOW:STAT", "water_interlock_status",        "9",                  "RQ7 Flow Status" }
+    {               "RQ8:WATER:FLOW:STAT", "water_interlock_status",       "10",                  "RQ8 Flow Status" }
+    {               "RB3:WATER:FLOW:STAT", "water_interlock_status",       "11",                  "RB3 Flow Status" }
+    {               "RQ9:WATER:FLOW:STAT", "water_interlock_status",       "12",                  "RQ9 Flow Status" }
+    {              "RQ10:WATER:FLOW:STAT", "water_interlock_status",       "13",                 "RQ10 Flow Status" }
+    {              "RQ11:WATER:FLOW:STAT", "water_interlock_status",       "14",                 "RQ11 Flow Status" }
+    {              "RQ12:WATER:FLOW:STAT", "water_interlock_status",       "15",                 "RQ12 Flow Status" }
+    {              "RQ13:WATER:FLOW:STAT", "water_interlock_status",       "16",                 "RQ13 Flow Status" }
+    {              "RQ14:WATER:FLOW:STAT", "water_interlock_status",       "17",                 "RQ14 Flow Status" }
+    {              "RQ15:WATER:FLOW:STAT", "water_interlock_status",       "18",                 "RQ15 Flow Status" }
+    {              "RQ16:WATER:FLOW:STAT", "water_interlock_status",       "19",                 "RQ16 Flow Status" }
+    {              "RQ17:WATER:FLOW:STAT", "water_interlock_status",       "20",                 "RQ17 Flow Status" }
+    {               "RB4:WATER:FLOW:STAT", "water_interlock_status",       "21",                  "RB4 Flow Status" }
+    {              "RQ18:WATER:FLOW:STAT", "water_interlock_status",       "22",                 "RQ18 Flow Status" }
+    {              "RQ19:WATER:FLOW:STAT", "water_interlock_status",       "23",                 "RQ19 Flow Status" }
+    {              "RQ20:WATER:FLOW:STAT", "water_interlock_status",       "24",                 "RQ20 Flow Status" }
+    {              "RQ21:WATER:FLOW:STAT", "water_interlock_status",       "25",                 "RQ21 Flow Status" }
+    {              "RQ22:WATER:FLOW:STAT", "water_interlock_status",       "26",                 "RQ22 Flow Status" }
+    {              "RQ23:WATER:FLOW:STAT", "water_interlock_status",       "27",                 "RQ23 Flow Status" }
+    {    "ARGUS:LONG:MAG:WATER:FLOW:STAT", "water_interlock_status",       "28",    "Argus Long Magnet Flow Status" }
+    {   "ARGUS:TRANS:MAG:WATER:FLOW:STAT", "water_interlock_status",       "29",   "Argus Trans Magnet Flow Status" }
+    {    "ARGUS:LONG:PSU:WATER:FLOW:STAT", "water_interlock_status",       "30",       "Argus Long PSU Flow Status" }
+    {              "XFD1:WATER:FLOW:STAT", "water_interlock_status",       "31",                 "XFD1 Flow Status" }
+    {              "XFD2:WATER:FLOW:STAT", "water_interlock_status",       "32",                 "XFD2 Flow Status" }
+    {           "RB2:PSU:WATER:FLOW:STAT", "water_interlock_status",       "33",              "RB2 PSU Flow Status" }
+    {           "RB2:MAG:WATER:FLOW:STAT", "water_interlock_status",       "34",           "RB2 Magnet Flow Status" }
+    {  "CHRONUS:LONG:MAG:WATER:FLOW:STAT", "water_interlock_status",       "35",  "Chronus Long Magnet Flow Status" }
+    { "CHRONUS:TRANS:MAG:WATER:FLOW:STAT", "water_interlock_status",       "36", "Chronus Trans Magnet Flow Status" }
+    {  "CHRONUS:LONG:PSU:WATER:FLOW:STAT", "water_interlock_status",       "37",     "Chronus Long PSU Flow Status" }
+    {              "XFD3:WATER:FLOW:STAT", "water_interlock_status",       "38",                 "XFD3 Flow Status" }
 }
 
 #   From "Issue D" spec document. address %MW4285
 file RIKENFE_Common_Objects_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    { "CHRONUS:TRANS:PSU:WATER:FLOW:STAT", "water_interlock_status_extra",  "0", "Chronus Trans PSU Flow Status" }
+    { "CHRONUS:TRANS:PSU:WATER:FLOW:STAT", "water_interlock_status_extra",  "0",    "Chronus Trans PSU Flow Status" }
 }
 
 
@@ -622,46 +622,46 @@ file RIKENFE_Common_Objects_Status.template {
 file RIKENFE_float.template {
     pattern {PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION}
  
-    {               "RQ1:WATER:FLOW", "water_flow_rate",  "0",               "RQ1 Water Flow Rate", "L/min", "3" }
-    {               "RQ2:WATER:FLOW", "water_flow_rate",  "2",               "RQ2 Water Flow Rate", "L/min", "3" }
-    {               "RB1:WATER:FLOW", "water_flow_rate",  "4",               "RB1 Water Flow Rate", "L/min", "3" }
-    {               "RQ3:WATER:FLOW", "water_flow_rate",  "6",               "RQ3 Water Flow Rate", "L/min", "3" }
-    {               "RQ4:WATER:FLOW", "water_flow_rate",  "8",               "RQ4 Water Flow Rate", "L/min", "3" }
-    {               "RQ5:WATER:FLOW", "water_flow_rate", "10",               "RQ5 Water Flow Rate", "L/min", "3" }
-    {               "SY1:WATER:FLOW", "water_flow_rate", "12",               "SY1 Water Flow Rate", "L/min", "3" }
-    {               "SY2:WATER:FLOW", "water_flow_rate", "14",               "SY2 Water Flow Rate", "L/min", "3" }
-    {               "RQ6:WATER:FLOW", "water_flow_rate", "16",               "RQ6 Water Flow Rate", "L/min", "3" }
-    {               "RQ7:WATER:FLOW", "water_flow_rate", "18",               "RQ7 Water Flow Rate", "L/min", "3" }
-    {               "RQ8:WATER:FLOW", "water_flow_rate", "20",               "RQ8 Water Flow Rate", "L/min", "3" }
-    {               "RB3:WATER:FLOW", "water_flow_rate", "22",               "RB3 Water Flow Rate", "L/min", "3" }
-    {               "RQ9:WATER:FLOW", "water_flow_rate", "24",               "RQ9 Water Flow Rate", "L/min", "3" }
-    {              "RQ10:WATER:FLOW", "water_flow_rate", "26",              "RQ10 Water Flow Rate", "L/min", "3" }
-    {              "RQ11:WATER:FLOW", "water_flow_rate", "28",              "RQ11 Water Flow Rate", "L/min", "3" }
-    {              "RQ12:WATER:FLOW", "water_flow_rate", "30",              "RQ12 Water Flow Rate", "L/min", "3" }
-    {              "RQ13:WATER:FLOW", "water_flow_rate", "32",              "RQ13 Water Flow Rate", "L/min", "3" }
-    {              "RQ14:WATER:FLOW", "water_flow_rate", "34",              "RQ14 Water Flow Rate", "L/min", "3" }
-    {              "RQ15:WATER:FLOW", "water_flow_rate", "36",              "RQ15 Water Flow Rate", "L/min", "3" }
-    {              "RQ16:WATER:FLOW", "water_flow_rate", "38",              "RQ16 Water Flow Rate", "L/min", "3" }
-    {              "RQ17:WATER:FLOW", "water_flow_rate", "40",              "RQ17 Water Flow Rate", "L/min", "3" }
-    {               "RB4:WATER:FLOW", "water_flow_rate", "42",               "RB4 Water Flow Rate", "L/min", "3" }
-    {              "RQ18:WATER:FLOW", "water_flow_rate", "44",              "RQ18 Water Flow Rate", "L/min", "3" }
-    {              "RQ19:WATER:FLOW", "water_flow_rate", "46",              "RQ19 Water Flow Rate", "L/min", "3" }
-    {              "RQ20:WATER:FLOW", "water_flow_rate", "48",              "RQ20 Water Flow Rate", "L/min", "3" }
-    {              "RQ21:WATER:FLOW", "water_flow_rate", "50",              "RQ21 Water Flow Rate", "L/min", "3" }
-    {              "RQ22:WATER:FLOW", "water_flow_rate", "52",              "RQ22 Water Flow Rate", "L/min", "3" }
-    {              "RQ23:WATER:FLOW", "water_flow_rate", "54",              "RQ23 Water Flow Rate", "L/min", "3" }
-    {        "ARGUS:LONG:WATER:FLOW", "water_flow_rate", "56",        "Argus Long Water Flow Rate", "L/min", "3" }
-    {       "ARGUS:TRANS:WATER:FLOW", "water_flow_rate", "58",       "Argus Trans Water Flow Rate", "L/min", "3" }
-    {    "ARGUS:LONG:PSU:WATER:FLOW", "water_flow_rate", "60",    "Argus Long PSU Water Flow Rate", "L/min", "3" }
-    {              "XFD1:WATER:FLOW", "water_flow_rate", "62",              "XFD1 Water Flow Rate", "L/min", "3" }
-    {              "XFD2:WATER:FLOW", "water_flow_rate", "64",              "XFD2 Water Flow Rate", "L/min", "3" }
-    {           "RB2:PSU:WATER:FLOW", "water_flow_rate", "66",           "RB2 PSU Water Flow Rate", "L/min", "3" }
-    {        "RB2:MAGNET:WATER:FLOW", "water_flow_rate", "68",        "RB2 Magnet Water Flow Rate", "L/min", "3" }
-    {      "CHRONUS:LONG:WATER:FLOW", "water_flow_rate", "70",      "Chronus Long Water Flow Rate", "L/min", "3" }
-    {     "CHRONUS:TRANS:WATER:FLOW", "water_flow_rate", "72",     "Chronus Trans Water Flow Rate", "L/min", "3" }
-    {  "CHRONUS:LONG:PSU:WATER:FLOW", "water_flow_rate", "74",  "Chronus Long PSU Water Flow Rate", "L/min", "3" }
-    {              "XFD3:WATER:FLOW", "water_flow_rate", "76",              "XFD3 Water Flow Rate", "L/min", "3" }
-    { "CHRONUS:TRANS:PSU:WATER:FLOW", "water_flow_rate", "78", "Chronus Trans PSU Water Flow Rate", "L/min", "3" }
+    {               "RQ1:WATER:FLOW:RATE", "water_flow_rate",  "0",                  "RQ1 Water Flow Rate", "L/min", "3" }
+    {               "RQ2:WATER:FLOW:RATE", "water_flow_rate",  "2",                  "RQ2 Water Flow Rate", "L/min", "3" }
+    {               "RB1:WATER:FLOW:RATE", "water_flow_rate",  "4",                  "RB1 Water Flow Rate", "L/min", "3" }
+    {               "RQ3:WATER:FLOW:RATE", "water_flow_rate",  "6",                  "RQ3 Water Flow Rate", "L/min", "3" }
+    {               "RQ4:WATER:FLOW:RATE", "water_flow_rate",  "8",                  "RQ4 Water Flow Rate", "L/min", "3" }
+    {               "RQ5:WATER:FLOW:RATE", "water_flow_rate", "10",                  "RQ5 Water Flow Rate", "L/min", "3" }
+    {               "SY1:WATER:FLOW:RATE", "water_flow_rate", "12",                  "SY1 Water Flow Rate", "L/min", "3" }
+    {               "SY2:WATER:FLOW:RATE", "water_flow_rate", "14",                  "SY2 Water Flow Rate", "L/min", "3" }
+    {               "RQ6:WATER:FLOW:RATE", "water_flow_rate", "16",                  "RQ6 Water Flow Rate", "L/min", "3" }
+    {               "RQ7:WATER:FLOW:RATE", "water_flow_rate", "18",                  "RQ7 Water Flow Rate", "L/min", "3" }
+    {               "RQ8:WATER:FLOW:RATE", "water_flow_rate", "20",                  "RQ8 Water Flow Rate", "L/min", "3" }
+    {               "RB3:WATER:FLOW:RATE", "water_flow_rate", "22",                  "RB3 Water Flow Rate", "L/min", "3" }
+    {               "RQ9:WATER:FLOW:RATE", "water_flow_rate", "24",                  "RQ9 Water Flow Rate", "L/min", "3" }
+    {              "RQ10:WATER:FLOW:RATE", "water_flow_rate", "26",                 "RQ10 Water Flow Rate", "L/min", "3" }
+    {              "RQ11:WATER:FLOW:RATE", "water_flow_rate", "28",                 "RQ11 Water Flow Rate", "L/min", "3" }
+    {              "RQ12:WATER:FLOW:RATE", "water_flow_rate", "30",                 "RQ12 Water Flow Rate", "L/min", "3" }
+    {              "RQ13:WATER:FLOW:RATE", "water_flow_rate", "32",                 "RQ13 Water Flow Rate", "L/min", "3" }
+    {              "RQ14:WATER:FLOW:RATE", "water_flow_rate", "34",                 "RQ14 Water Flow Rate", "L/min", "3" }
+    {              "RQ15:WATER:FLOW:RATE", "water_flow_rate", "36",                 "RQ15 Water Flow Rate", "L/min", "3" }
+    {              "RQ16:WATER:FLOW:RATE", "water_flow_rate", "38",                 "RQ16 Water Flow Rate", "L/min", "3" }
+    {              "RQ17:WATER:FLOW:RATE", "water_flow_rate", "40",                 "RQ17 Water Flow Rate", "L/min", "3" }
+    {               "RB4:WATER:FLOW:RATE", "water_flow_rate", "42",                  "RB4 Water Flow Rate", "L/min", "3" }
+    {              "RQ18:WATER:FLOW:RATE", "water_flow_rate", "44",                 "RQ18 Water Flow Rate", "L/min", "3" }
+    {              "RQ19:WATER:FLOW:RATE", "water_flow_rate", "46",                 "RQ19 Water Flow Rate", "L/min", "3" }
+    {              "RQ20:WATER:FLOW:RATE", "water_flow_rate", "48",                 "RQ20 Water Flow Rate", "L/min", "3" }
+    {              "RQ21:WATER:FLOW:RATE", "water_flow_rate", "50",                 "RQ21 Water Flow Rate", "L/min", "3" }
+    {              "RQ22:WATER:FLOW:RATE", "water_flow_rate", "52",                 "RQ22 Water Flow Rate", "L/min", "3" }
+    {              "RQ23:WATER:FLOW:RATE", "water_flow_rate", "54",                 "RQ23 Water Flow Rate", "L/min", "3" }
+    {    "ARGUS:LONG:MAG:WATER:FLOW:RATE", "water_flow_rate", "56",    "Argus Long Magnet Water Flow Rate", "L/min", "3" }
+    {   "ARGUS:TRANS:MAG:WATER:FLOW:RATE", "water_flow_rate", "58",   "Argus Trans Magnet Water Flow Rate", "L/min", "3" }
+    {    "ARGUS:LONG:PSU:WATER:FLOW:RATE", "water_flow_rate", "60",       "Argus Long PSU Water Flow Rate", "L/min", "3" }
+    {              "XFD1:WATER:FLOW:RATE", "water_flow_rate", "62",                 "XFD1 Water Flow Rate", "L/min", "3" }
+    {              "XFD2:WATER:FLOW:RATE", "water_flow_rate", "64",                 "XFD2 Water Flow Rate", "L/min", "3" }
+    {           "RB2:PSU:WATER:FLOW:RATE", "water_flow_rate", "66",              "RB2 PSU Water Flow Rate", "L/min", "3" }
+    {           "RB2:MAG:WATER:FLOW:RATE", "water_flow_rate", "68",           "RB2 Magnet Water Flow Rate", "L/min", "3" }
+    {  "CHRONUS:LONG:MAG:WATER:FLOW:RATE", "water_flow_rate", "70",  "Chronus Long Magnet Water Flow Rate", "L/min", "3" }
+    { "CHRONUS:TRANS:MAG:WATER:FLOW:RATE", "water_flow_rate", "72", "Chronus Trans Magnet Water Flow Rate", "L/min", "3" }
+    {  "CHRONUS:LONG:PSU:WATER:FLOW:RATE", "water_flow_rate", "74",     "Chronus Long PSU Water Flow Rate", "L/min", "3" }
+    {              "XFD3:WATER:FLOW:RATE", "water_flow_rate", "76",                 "XFD3 Water Flow Rate", "L/min", "3" }
+    { "CHRONUS:TRANS:PSU:WATER:FLOW:RATE", "water_flow_rate", "78",    "Chronus Trans PSU Water Flow Rate", "L/min", "3" }
 } 
 
 
