@@ -1,5 +1,5 @@
 #
-# From document "RIKEN PLC - IBEX Specification – Issue C"
+# From document "RIKEN PLC - IBEX Specification – Issue F"
 # --------------------------------------------------------
 
 
@@ -752,3 +752,50 @@ file RIKENFE_Common_Objects_Status.template {
 # Note from specification document:
 # "IBEX will communicate directly with each PSU; Although "PSU On" status can be obtained from the PLC, 
 # it is assumed that IBEX will obtain this information directly from the respective PSU"
+
+
+# 3.7   Water Temperature
+
+file RIKENFE_float.template {
+    pattern {PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION}
+ 
+    {     "RQ1:WATER:TEMP", "water_temperature",  "0",  "RQ1 Magnet Water Temperature", "degreeC", "3" }
+    {     "RQ2:WATER:TEMP", "water_temperature",  "2",  "RQ2 Magnet Water Temperature", "degreeC", "3" }
+    {     "RB1:WATER:TEMP", "water_temperature",  "4",  "RB1 Magnet Water Temperature", "degreeC", "3" }
+    {     "RQ3:WATER:TEMP", "water_temperature",  "6",  "RQ3 Magnet Water Temperature", "degreeC", "3" }
+    {     "RQ4:WATER:TEMP", "water_temperature",  "8",  "RQ4 Magnet Water Temperature", "degreeC", "3" }
+    {     "RQ5:WATER:TEMP", "water_temperature", "10",  "RQ5 Magnet Water Temperature", "degreeC", "3" }
+    {     "SY1:WATER:TEMP", "water_temperature", "12",  "SY1 Magnet Water Temperature", "degreeC", "3" }
+    {     "SY2:WATER:TEMP", "water_temperature", "14",  "SY2 Magnet Water Temperature", "degreeC", "3" }
+    { "RB2:MAG:WATER:TEMP", "water_temperature", "16",  "RB2 Magnet Water Temperature", "degreeC", "3" }
+    { "RB2:PSU:WATER:TEMP", "water_temperature", "18",     "RB2 PSU Water Temperature", "degreeC", "3" }
+    {    "XFD1:WATER:TEMP", "water_temperature", "20", "XFD1 Magnet Water Temperature", "degreeC", "3" }
+    {     "RQ6:WATER:TEMP", "water_temperature", "22",  "RQ6 Magnet Water Temperature", "degreeC", "3" }
+    {     "RQ7:WATER:TEMP", "water_temperature", "24",  "RQ7 Magnet Water Temperature", "degreeC", "3" }
+    {     "RQ8:WATER:TEMP", "water_temperature", "26",  "RQ8 Magnet Water Temperature", "degreeC", "3" }
+    {    "XFD2:WATER:TEMP", "water_temperature", "28", "XFD2 Magnet Water Temperature", "degreeC", "3" }
+    {     "RB3:WATER:TEMP", "water_temperature", "30",  "RB3 Magnet Water Temperature", "degreeC", "3" }
+    {     "RQ9:WATER:TEMP", "water_temperature", "32",  "RQ9 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ10:WATER:TEMP", "water_temperature", "34", "RQ10 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ11:WATER:TEMP", "water_temperature", "36", "RQ11 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ12:WATER:TEMP", "water_temperature", "38", "RQ12 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ13:WATER:TEMP", "water_temperature", "40", "RQ13 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ14:WATER:TEMP", "water_temperature", "42", "RQ14 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ15:WATER:TEMP", "water_temperature", "44", "RQ15 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ16:WATER:TEMP", "water_temperature", "46", "RQ16 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ17:WATER:TEMP", "water_temperature", "48", "RQ17 Magnet Water Temperature", "degreeC", "3" }
+    {     "RB4:WATER:TEMP", "water_temperature", "50",  "RB4 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ18:WATER:TEMP", "water_temperature", "52", "RQ18 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ19:WATER:TEMP", "water_temperature", "54", "RQ19 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ20:WATER:TEMP", "water_temperature", "56", "RQ20 Magnet Water Temperature", "degreeC", "3" }
+    {    "XFD3:WATER:TEMP", "water_temperature", "58", "XFD3 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ21:WATER:TEMP", "water_temperature", "60", "RQ21 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ22:WATER:TEMP", "water_temperature", "62", "RQ22 Magnet Water Temperature", "degreeC", "3" }
+    {    "RQ23:WATER:TEMP", "water_temperature", "64", "RQ23 Magnet Water Temperature", "degreeC", "3" }
+} 
+
+
+# 4    Temperature Monitoring
+# ===========================
+
+# See separate file `RIKENFE_TEMPMON.substitutions` for definitions

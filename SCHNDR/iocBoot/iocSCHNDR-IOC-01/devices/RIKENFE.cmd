@@ -94,10 +94,16 @@ drvModbusAsynConfigure("$(PLC)mol_status",                   "$(PLC)", 255, 3, 4
 
 # 3.6   *_NOT_* TODO PSU Control / On  (PSUs controlled via separate IOCs)
 
+# 3.7   Water Temperature
+drvModbusAsynConfigure("$(PLC)water_temperature",            "$(PLC)", 255, 3, 4672, 66, 7, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4672
 
 ## Load our record instances
 dbLoadRecords("$(TOP)/db/RIKENFE.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PLC)")
 
-## For temperature monitoring:
+
+# 4     Temperature monitoring
+# ============================
+
 drvModbusAsynConfigure("$(PLC)temperature_monitoring",       "$(PLC)", 255, 3, 4596, 75, 4, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4596
+## Load our record instances
 dbLoadRecords("$(TOP)/db/RIKENFE_TEMPMON.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PLC)")
