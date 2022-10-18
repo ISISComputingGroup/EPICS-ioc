@@ -86,8 +86,6 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
-$(APPNAME)_LDFLAGS_WIN32 += /PROFILE
-
 ifeq ($(STATIC_BUILD),YES)
 # For VS2010 use Standard Galil COmmunication Library Galil1.dll
 # for Other VC version, build Galil2.dll from galil c library wrappers
