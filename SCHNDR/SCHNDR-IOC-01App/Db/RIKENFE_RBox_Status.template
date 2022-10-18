@@ -1,0 +1,62 @@
+
+record (mbbi, "$(P)$(RBOX_PV)") {
+
+    field(DESC, "$(RBOX_DESC)")
+    field(DTYP, "asynInt32")
+
+    field(ZRVL, 0)
+    field(ZRST, "Comms Loss")
+    field(ZRSV, "INVALID")
+
+    field(ONVL, 1)
+    field(ONST, "Not Used")
+    field(ONSV, "NO_ALARM")
+
+    field(TWVL, 2)
+    field(TWST, "Door Closed")
+    field(TWSV, "NO_ALARM")
+
+    field(THVL, 3)
+    field(THST, "Warning")
+    field(THSV, "MINOR")
+
+    field(FRVL, 4)
+    field(FRST, "Door Open")
+    field(FRSV, "MAJOR")
+
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(RBOX_OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record (mbbi, "$(P)$(BYPASS_PV)") {
+
+    field(DESC, "$(BYPASS_DESC)")
+    field(DTYP, "asynInt32")
+
+    field(ZRVL, 0)
+    field(ZRST, "Comms Loss")
+    field(ZRSV, "INVALID")
+
+    field(ONVL, 1)
+    field(ONST, "Not Used")
+    field(ONSV, "NO_ALARM")
+
+    field(TWVL, 2)
+    field(TWST, "Bypass Off")
+    field(TWSV, "NO_ALARM")
+
+    field(THVL, 3)
+    field(THST, "Bypass On")
+    field(THSV, "MINOR")
+
+    field(FRVL, 4)
+    field(FRST, "Fault")
+    field(FRSV, "MAJOR")
+
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(BYPASS_OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
