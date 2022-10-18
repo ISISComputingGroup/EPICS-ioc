@@ -48,133 +48,13 @@ file RIKENFE_Common_Objects_Status.template {
 
 # 1.6.a Kickers 1-4 Readback Status
 
-file RIKENFE_Other_Objects_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC, 0TEXT, 0SEVR,
-                                         1TEXT, 1SEVR,
-                                         2TEXT, 2SEVR,
-                                         3TEXT, 3SEVR,
-                                         4TEXT, 4SEVR }
+file RIKENFE_Kicker_Status.template {
+    pattern { MODE_PV, STATE_PV, READY_PV, PSU_PV, HV_PV, PORTNAME, MODE_OFFSET, STATE_OFFSET, READY_OFFSET, PSU_OFFSET, HV_OFFSET, NAME_DESC }
 
-    { "KICKER1:CONTROL_MODE:STAT", "kickers_1-4_status",  "0",  "Kicker 1 Control Mode", "Comms Loss",  "INVALID",
-                                                                                              "Local",    "MINOR",
-                                                                                             "Remote", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {        "KICKER1:STATE:STAT", "kickers_1-4_status",  "1",         "Kicker 1 State", "Comms Loss",  "INVALID",
-                                                                                           "Abnormal",    "MINOR",
-                                                                                             "Normal", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {        "KICKER1:READY:STAT", "kickers_1-4_status",  "2",         "Kicker 1 Ready", "Comms Loss",  "INVALID",
-                                                                                          "Not Ready",    "MINOR",
-                                                                                              "Ready", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {       "KICKER1:PSU_ON:STAT", "kickers_1-4_status",  "3",    "Kicker 1 PSU Status", "Comms Loss",  "INVALID",
-                                                                                                "Off",    "MINOR",
-                                                                                                 "On", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {    "KICKER1:PSU_HV_ON:STAT", "kickers_1-4_status",  "4", "Kicker 1 PSU HV Status", "Comms Loss",  "INVALID",
-                                                                                                "Off",    "MINOR",
-                                                                                                 "On", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    { "KICKER2:CONTROL_MODE:STAT", "kickers_1-4_status",  "5",  "Kicker 2 Control Mode", "Comms Loss",  "INVALID",
-                                                                                              "Local",    "MINOR",
-                                                                                             "Remote", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {        "KICKER2:STATE:STAT", "kickers_1-4_status",  "6",         "Kicker 2 State", "Comms Loss",  "INVALID",
-                                                                                           "Abnormal",    "MINOR",
-                                                                                             "Normal", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {        "KICKER2:READY:STAT", "kickers_1-4_status",  "7",         "Kicker 2 Ready", "Comms Loss",  "INVALID",
-                                                                                          "Not Ready",    "MINOR",
-                                                                                              "Ready", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {       "KICKER2:PSU_ON:STAT", "kickers_1-4_status",  "8",    "Kicker 2 PSU Status", "Comms Loss",  "INVALID",
-                                                                                                "Off",    "MINOR",
-                                                                                                 "On", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {    "KICKER2:PSU_HV_ON:STAT", "kickers_1-4_status",  "9", "Kicker 2 PSU HV Status", "Comms Loss",  "INVALID",
-                                                                                                "Off",    "MINOR",
-                                                                                                 "On", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    { "KICKER3:CONTROL_MODE:STAT", "kickers_1-4_status", "10",  "Kicker 3 Control Mode", "Comms Loss",  "INVALID",
-                                                                                              "Local",    "MINOR",
-                                                                                             "Remote", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {        "KICKER3:STATE:STAT", "kickers_1-4_status", "11",         "Kicker 3 State", "Comms Loss",  "INVALID",
-                                                                                           "Abnormal",    "MINOR",
-                                                                                             "Normal", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {        "KICKER3:READY:STAT", "kickers_1-4_status", "12",         "Kicker 3 Ready", "Comms Loss",  "INVALID",
-                                                                                          "Not Ready",    "MINOR",
-                                                                                              "Ready", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {       "KICKER3:PSU_ON:STAT", "kickers_1-4_status", "13",    "Kicker 3 PSU Status", "Comms Loss",  "INVALID",
-                                                                                                "Off",    "MINOR",
-                                                                                                 "On", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {    "KICKER3:PSU_HV_ON:STAT", "kickers_1-4_status", "14", "Kicker 3 PSU HV Status", "Comms Loss",  "INVALID",
-                                                                                                "Off",    "MINOR",
-                                                                                                 "On", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    { "KICKER4:CONTROL_MODE:STAT", "kickers_1-4_status", "15",  "Kicker 4 Control Mode", "Comms Loss",  "INVALID",
-                                                                                              "Local",    "MINOR",
-                                                                                             "Remote", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {        "KICKER4:STATE:STAT", "kickers_1-4_status", "16",         "Kicker 4 State", "Comms Loss",  "INVALID",
-                                                                                           "Abnormal",    "MINOR",
-                                                                                             "Normal", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {        "KICKER4:READY:STAT", "kickers_1-4_status", "17",         "Kicker 4 Ready", "Comms Loss",  "INVALID",
-                                                                                          "Not Ready",    "MINOR",
-                                                                                              "Ready", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {       "KICKER4:PSU_ON:STAT", "kickers_1-4_status", "18",    "Kicker 4 PSU Status", "Comms Loss",  "INVALID",
-                                                                                                "Off",    "MINOR",
-                                                                                                 "On", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
-    {    "KICKER4:PSU_HV_ON:STAT", "kickers_1-4_status", "19", "Kicker 4 PSU HV Status", "Comms Loss",  "INVALID",
-                                                                                                "Off",    "MINOR",
-                                                                                                 "On", "NO_ALARM",
-                                                                                            "Warning",    "MINOR",
-                                                                                              "Fault",    "MAJOR",
-    }
+    { "KICKER1:CONTROL_MODE:STAT", "KICKER1:STATE:STAT", "KICKER1:READY:STAT", "KICKER1:PSU_ON:STAT", "KICKER1:PSU_HV_ON:STAT", "kickers_1-4_status",  "0",  "1",  "2",  "3",  "4", "Kicker 1", }
+    { "KICKER2:CONTROL_MODE:STAT", "KICKER2:STATE:STAT", "KICKER2:READY:STAT", "KICKER2:PSU_ON:STAT", "KICKER2:PSU_HV_ON:STAT", "kickers_1-4_status",  "5",  "6",  "7",  "8",  "9", "Kicker 2", }
+    { "KICKER3:CONTROL_MODE:STAT", "KICKER3:STATE:STAT", "KICKER3:READY:STAT", "KICKER3:PSU_ON:STAT", "KICKER3:PSU_HV_ON:STAT", "kickers_1-4_status", "10", "11", "12", "13", "14", "Kicker 3", }
+    { "KICKER4:CONTROL_MODE:STAT", "KICKER4:STATE:STAT", "KICKER4:READY:STAT", "KICKER4:PSU_ON:STAT", "KICKER4:PSU_HV_ON:STAT", "kickers_1-4_status", "15", "16", "17", "18", "19", "Kicker 4", }
 }
 
 
