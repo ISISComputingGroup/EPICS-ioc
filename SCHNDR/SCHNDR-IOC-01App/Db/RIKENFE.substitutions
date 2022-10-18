@@ -253,6 +253,8 @@ file RIKENFE_Common_Objects_Status.template {
 
 # 2.2   Vacuum Valve Status
 
+# TODO: update GH_A / GH_B definitions
+
 file RIKENFE_Vacuum_Valve_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
@@ -330,19 +332,19 @@ file RIKENFE_Vacuum_Pump_Status.template {
 # 2.4.1    Vacuum Pump PIV Interlocks  (PIV - Pump Isolation Valve)
 
 file RIKENFE_PIV_Interlock_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+    pattern {PV, PORTNAME, OFFSET, DESC, GH_A, GH_B}
 
-    {  "PIV1:ILK:STAT", "piv_interlock_status",  "0",  "PIV1 Interlock Status" }
-    {  "PIV2:ILK:STAT", "piv_interlock_status",  "1",  "PIV2 Interlock Status" }
-    {  "PIV3:ILK:STAT", "piv_interlock_status",  "2",  "PIV3 Interlock Status" }
-    {  "PIV4:ILK:STAT", "piv_interlock_status",  "3",  "PIV4 Interlock Status" }
-    {  "PIV5:ILK:STAT", "piv_interlock_status",  "4",  "PIV5 Interlock Status" }
-    {  "PIV6:ILK:STAT", "piv_interlock_status",  "5",  "PIV6 Interlock Status" }
-    {  "PIV7:ILK:STAT", "piv_interlock_status",  "6",  "PIV7 Interlock Status" }
-    {  "PIV8:ILK:STAT", "piv_interlock_status",  "7",  "PIV8 Interlock Status" }
-    {  "PIV9:ILK:STAT", "piv_interlock_status",  "8",  "PIV9 Interlock Status" }
-    { "PIV10:ILK:STAT", "piv_interlock_status",  "9", "PIV10 Interlock Status" }
-    { "PIV11:ILK:STAT", "piv_interlock_status", "10", "PIV11 Interlock Status" }
+    {  "PIV1:ILK:STAT", "piv_interlock_status",  "0",  "PIV1 Interlock Status",  "GH1",  "GH3" }
+    {  "PIV2:ILK:STAT", "piv_interlock_status",  "1",  "PIV2 Interlock Status",  "GH5",  "GH7" }
+    {  "PIV3:ILK:STAT", "piv_interlock_status",  "2",  "PIV3 Interlock Status",  "GH9", "GH11" }
+    {  "PIV4:ILK:STAT", "piv_interlock_status",  "3",  "PIV4 Interlock Status", "GH13", "GH15" }
+    {  "PIV5:ILK:STAT", "piv_interlock_status",  "4",  "PIV5 Interlock Status", "GH17", "GH19" }
+    {  "PIV6:ILK:STAT", "piv_interlock_status",  "5",  "PIV6 Interlock Status", "GH21", "GH23" }
+    {  "PIV7:ILK:STAT", "piv_interlock_status",  "6",  "PIV7 Interlock Status", "GH25", "GH27" }
+    {  "PIV8:ILK:STAT", "piv_interlock_status",  "7",  "PIV8 Interlock Status", "GH29", "GH31" }
+    {  "PIV9:ILK:STAT", "piv_interlock_status",  "8",  "PIV9 Interlock Status", "GH33", "GH35" }
+    { "PIV10:ILK:STAT", "piv_interlock_status",  "9", "PIV10 Interlock Status", "GH37", "GH39" }
+    { "PIV11:ILK:STAT", "piv_interlock_status", "10", "PIV11 Interlock Status", "GH41", "GH43" }
 }
 
 
@@ -667,65 +669,67 @@ file RIKENFE_float.template {
 
 # 3.4   PSU R-Box Interlock Status  (Rectifier Box)
 
+# TODO: change status text
+
 file RIKENFE_Common_Objects_Status.template {
     pattern {PV, PORTNAME, OFFSET, DESC}
 
-    {         "RQ1:RBOX:STAT", "rbox_interlock_status",  "0",           "RQ1 RBox Status" }
-    {  "RQ1:RBOX:BYPASS:STAT", "rbox_interlock_status",  "1",  "RQ1 Bypass Switch Status" }
-    {         "RQ2:RBOX:STAT", "rbox_interlock_status",  "2",           "RQ2 RBox Status" }
-    {  "RQ2:RBOX:BYPASS:STAT", "rbox_interlock_status",  "3",  "RQ2 Bypass Switch Status" }
-    {         "RB1:RBOX:STAT", "rbox_interlock_status",  "4",           "RB1 RBox Status" }
-    {  "RB1:RBOX:BYPASS:STAT", "rbox_interlock_status",  "5",  "RB1 Bypass Switch Status" }
-    {         "RQ3:RBOX:STAT", "rbox_interlock_status",  "6",           "RQ3 RBox Status" }
-    {  "RQ3:RBOX:BYPASS:STAT", "rbox_interlock_status",  "7",  "RQ3 Bypass Switch Status" }
-    {         "RQ4:RBOX:STAT", "rbox_interlock_status",  "8",           "RQ4 RBox Status" }
-    {  "RQ4:RBOX:BYPASS:STAT", "rbox_interlock_status",  "9",  "RQ4 Bypass Switch Status" }
-    {         "RQ5:RBOX:STAT", "rbox_interlock_status", "10",           "RQ5 RBox Status" }
-    {  "RQ5:RBOX:BYPASS:STAT", "rbox_interlock_status", "11",  "RQ5 Bypass Switch Status" }
-    {         "SY1:RBOX:STAT", "rbox_interlock_status", "12",           "SY1 RBox Status" }
-    {  "SY1:RBOX:BYPASS:STAT", "rbox_interlock_status", "13",  "SY1 Bypass Switch Status" }
-    {         "SY2:RBOX:STAT", "rbox_interlock_status", "14",           "SY2 RBox Status" }
-    {  "SY2:RBOX:BYPASS:STAT", "rbox_interlock_status", "15",  "SY2 Bypass Switch Status" }
-    {         "RQ6:RBOX:STAT", "rbox_interlock_status", "16",           "RQ6 RBox Status" }
-    {  "RQ6:RBOX:BYPASS:STAT", "rbox_interlock_status", "17",  "RQ6 Bypass Switch Status" }
-    {         "RQ7:RBOX:STAT", "rbox_interlock_status", "18",           "RQ7 RBox Status" }
-    {  "RQ7:RBOX:BYPASS:STAT", "rbox_interlock_status", "19",  "RQ7 Bypass Switch Status" }
-    {         "RQ8:RBOX:STAT", "rbox_interlock_status", "20",           "RQ8 RBox Status" }
-    {  "RQ8:RBOX:BYPASS:STAT", "rbox_interlock_status", "21",  "RQ8 Bypass Switch Status" }
-    {         "RB3:RBOX:STAT", "rbox_interlock_status", "22",           "RB3 RBox Status" }
-    {  "RB3:RBOX:BYPASS:STAT", "rbox_interlock_status", "23",  "RB3 Bypass Switch Status" }
-    {         "RQ9:RBOX:STAT", "rbox_interlock_status", "24",           "RQ9 RBox Status" }
-    {  "RQ9:RBOX:BYPASS:STAT", "rbox_interlock_status", "25",  "RQ9 Bypass Switch Status" }
-    {        "RQ10:RBOX:STAT", "rbox_interlock_status", "26",          "RQ10 RBox Status" }
-    { "RQ10:RBOX:BYPASS:STAT", "rbox_interlock_status", "27", "RQ10 Bypass Switch Status" }
-    {        "RQ11:RBOX:STAT", "rbox_interlock_status", "28",          "RQ11 RBox Status" }
-    { "RQ11:RBOX:BYPASS:STAT", "rbox_interlock_status", "29", "RQ11 Bypass Switch Status" }
-    {        "RQ12:RBOX:STAT", "rbox_interlock_status", "30",          "RQ12 RBox Status" }
-    { "RQ12:RBOX:BYPASS:STAT", "rbox_interlock_status", "31", "RQ12 Bypass Switch Status" }
-    {        "RQ13:RBOX:STAT", "rbox_interlock_status", "32",          "RQ13 RBox Status" }
-    { "RQ13:RBOX:BYPASS:STAT", "rbox_interlock_status", "33", "RQ13 Bypass Switch Status" }
-    {        "RQ14:RBOX:STAT", "rbox_interlock_status", "34",          "RQ14 RBox Status" }
-    { "RQ14:RBOX:BYPASS:STAT", "rbox_interlock_status", "35", "RQ14 Bypass Switch Status" }
-    {        "RQ15:RBOX:STAT", "rbox_interlock_status", "36",          "RQ15 RBox Status" }
-    { "RQ15:RBOX:BYPASS:STAT", "rbox_interlock_status", "37", "RQ15 Bypass Switch Status" }
-    {        "RQ16:RBOX:STAT", "rbox_interlock_status", "38",          "RQ16 RBox Status" }
-    { "RQ16:RBOX:BYPASS:STAT", "rbox_interlock_status", "39", "RQ16 Bypass Switch Status" }
-    {        "RQ17:RBOX:STAT", "rbox_interlock_status", "40",          "RQ17 RBox Status" }
-    { "RQ17:RBOX:BYPASS:STAT", "rbox_interlock_status", "41", "RQ17 Bypass Switch Status" }
-    {         "RB4:RBOX:STAT", "rbox_interlock_status", "42",           "RB4 RBox Status" }
-    {  "RB4:RBOX:BYPASS:STAT", "rbox_interlock_status", "43",  "RB4 Bypass Switch Status" }
-    {        "RQ18:RBOX:STAT", "rbox_interlock_status", "44",          "RQ18 RBox Status" }
-    { "RQ18:RBOX:BYPASS:STAT", "rbox_interlock_status", "45", "RQ18 Bypass Switch Status" }
-    {        "RQ19:RBOX:STAT", "rbox_interlock_status", "46",          "RQ19 RBox Status" }
-    { "RQ19:RBOX:BYPASS:STAT", "rbox_interlock_status", "47", "RQ19 Bypass Switch Status" }
-    {        "RQ20:RBOX:STAT", "rbox_interlock_status", "48",          "RQ20 RBox Status" }
-    { "RQ20:RBOX:BYPASS:STAT", "rbox_interlock_status", "49", "RQ20 Bypass Switch Status" }
-    {        "RQ21:RBOX:STAT", "rbox_interlock_status", "50",          "RQ21 RBox Status" }
-    { "RQ21:RBOX:BYPASS:STAT", "rbox_interlock_status", "51", "RQ21 Bypass Switch Status" }
-    {        "RQ22:RBOX:STAT", "rbox_interlock_status", "52",          "RQ22 RBox Status" }
-    { "RQ22:RBOX:BYPASS:STAT", "rbox_interlock_status", "53", "RQ22 Bypass Switch Status" }
-    {        "RQ23:RBOX:STAT", "rbox_interlock_status", "54",          "RQ23 RBox Status" }
-    { "RQ23:RBOX:BYPASS:STAT", "rbox_interlock_status", "55", "RQ23 Bypass Switch Status" }
+    {         "RQ1:RBOX:STAT", "rbox_interlock_status",  "0",         "RQ1 RBox Status" }
+    {  "RQ1:RBOX:BYPASS:STAT", "rbox_interlock_status",  "1",  "RQ1 RBox Bypass Status" }
+    {         "RQ2:RBOX:STAT", "rbox_interlock_status",  "2",         "RQ2 RBox Status" }
+    {  "RQ2:RBOX:BYPASS:STAT", "rbox_interlock_status",  "3",  "RQ2 RBox Bypass Status" }
+    {         "RB1:RBOX:STAT", "rbox_interlock_status",  "4",         "RB1 RBox Status" }
+    {  "RB1:RBOX:BYPASS:STAT", "rbox_interlock_status",  "5",  "RB1 RBox Bypass Status" }
+    {         "RQ3:RBOX:STAT", "rbox_interlock_status",  "6",         "RQ3 RBox Status" }
+    {  "RQ3:RBOX:BYPASS:STAT", "rbox_interlock_status",  "7",  "RQ3 RBox Bypass Status" }
+    {         "RQ4:RBOX:STAT", "rbox_interlock_status",  "8",         "RQ4 RBox Status" }
+    {  "RQ4:RBOX:BYPASS:STAT", "rbox_interlock_status",  "9",  "RQ4 RBox Bypass Status" }
+    {         "RQ5:RBOX:STAT", "rbox_interlock_status", "10",         "RQ5 RBox Status" }
+    {  "RQ5:RBOX:BYPASS:STAT", "rbox_interlock_status", "11",  "RQ5 RBox Bypass Status" }
+    {         "SY1:RBOX:STAT", "rbox_interlock_status", "12",         "SY1 RBox Status" }
+    {  "SY1:RBOX:BYPASS:STAT", "rbox_interlock_status", "13",  "SY1 RBox Bypass Status" }
+    {         "SY2:RBOX:STAT", "rbox_interlock_status", "14",         "SY2 RBox Status" }
+    {  "SY2:RBOX:BYPASS:STAT", "rbox_interlock_status", "15",  "SY2 RBox Bypass Status" }
+    {         "RQ6:RBOX:STAT", "rbox_interlock_status", "16",         "RQ6 RBox Status" }
+    {  "RQ6:RBOX:BYPASS:STAT", "rbox_interlock_status", "17",  "RQ6 RBox Bypass Status" }
+    {         "RQ7:RBOX:STAT", "rbox_interlock_status", "18",         "RQ7 RBox Status" }
+    {  "RQ7:RBOX:BYPASS:STAT", "rbox_interlock_status", "19",  "RQ7 RBox Bypass Status" }
+    {         "RQ8:RBOX:STAT", "rbox_interlock_status", "20",         "RQ8 RBox Status" }
+    {  "RQ8:RBOX:BYPASS:STAT", "rbox_interlock_status", "21",  "RQ8 RBox Bypass Status" }
+    {         "RB3:RBOX:STAT", "rbox_interlock_status", "22",         "RB3 RBox Status" }
+    {  "RB3:RBOX:BYPASS:STAT", "rbox_interlock_status", "23",  "RB3 RBox Bypass Status" }
+    {         "RQ9:RBOX:STAT", "rbox_interlock_status", "24",         "RQ9 RBox Status" }
+    {  "RQ9:RBOX:BYPASS:STAT", "rbox_interlock_status", "25",  "RQ9 RBox Bypass Status" }
+    {        "RQ10:RBOX:STAT", "rbox_interlock_status", "26",        "RQ10 RBox Status" }
+    { "RQ10:RBOX:BYPASS:STAT", "rbox_interlock_status", "27", "RQ10 RBox Bypass Status" }
+    {        "RQ11:RBOX:STAT", "rbox_interlock_status", "28",        "RQ11 RBox Status" }
+    { "RQ11:RBOX:BYPASS:STAT", "rbox_interlock_status", "29", "RQ11 RBox Bypass Status" }
+    {        "RQ12:RBOX:STAT", "rbox_interlock_status", "30",        "RQ12 RBox Status" }
+    { "RQ12:RBOX:BYPASS:STAT", "rbox_interlock_status", "31", "RQ12 RBox Bypass Status" }
+    {        "RQ13:RBOX:STAT", "rbox_interlock_status", "32",        "RQ13 RBox Status" }
+    { "RQ13:RBOX:BYPASS:STAT", "rbox_interlock_status", "33", "RQ13 RBox Bypass Status" }
+    {        "RQ14:RBOX:STAT", "rbox_interlock_status", "34",        "RQ14 RBox Status" }
+    { "RQ14:RBOX:BYPASS:STAT", "rbox_interlock_status", "35", "RQ14 RBox Bypass Status" }
+    {        "RQ15:RBOX:STAT", "rbox_interlock_status", "36",        "RQ15 RBox Status" }
+    { "RQ15:RBOX:BYPASS:STAT", "rbox_interlock_status", "37", "RQ15 RBox Bypass Status" }
+    {        "RQ16:RBOX:STAT", "rbox_interlock_status", "38",        "RQ16 RBox Status" }
+    { "RQ16:RBOX:BYPASS:STAT", "rbox_interlock_status", "39", "RQ16 RBox Bypass Status" }
+    {        "RQ17:RBOX:STAT", "rbox_interlock_status", "40",        "RQ17 RBox Status" }
+    { "RQ17:RBOX:BYPASS:STAT", "rbox_interlock_status", "41", "RQ17 RBox Bypass Status" }
+    {         "RB4:RBOX:STAT", "rbox_interlock_status", "42",         "RB4 RBox Status" }
+    {  "RB4:RBOX:BYPASS:STAT", "rbox_interlock_status", "43",  "RB4 RBox Bypass Status" }
+    {        "RQ18:RBOX:STAT", "rbox_interlock_status", "44",        "RQ18 RBox Status" }
+    { "RQ18:RBOX:BYPASS:STAT", "rbox_interlock_status", "45", "RQ18 RBox Bypass Status" }
+    {        "RQ19:RBOX:STAT", "rbox_interlock_status", "46",        "RQ19 RBox Status" }
+    { "RQ19:RBOX:BYPASS:STAT", "rbox_interlock_status", "47", "RQ19 RBox Bypass Status" }
+    {        "RQ20:RBOX:STAT", "rbox_interlock_status", "48",        "RQ20 RBox Status" }
+    { "RQ20:RBOX:BYPASS:STAT", "rbox_interlock_status", "49", "RQ20 RBox Bypass Status" }
+    {        "RQ21:RBOX:STAT", "rbox_interlock_status", "50",        "RQ21 RBox Status" }
+    { "RQ21:RBOX:BYPASS:STAT", "rbox_interlock_status", "51", "RQ21 RBox Bypass Status" }
+    {        "RQ22:RBOX:STAT", "rbox_interlock_status", "52",        "RQ22 RBox Status" }
+    { "RQ22:RBOX:BYPASS:STAT", "rbox_interlock_status", "53", "RQ22 RBox Bypass Status" }
+    {        "RQ23:RBOX:STAT", "rbox_interlock_status", "54",        "RQ23 RBox Status" }
+    { "RQ23:RBOX:BYPASS:STAT", "rbox_interlock_status", "55", "RQ23 RBox Bypass Status" }
 }
 
 

@@ -20,10 +20,10 @@ record (mbbi, "$(P)$(PV)") {
     field(FRST, "TP Up to Speed")
 
     field(FVVL, 5)
-    field(FVST, "GH_A OK")
+    field(FVST, "$(GH_A) OK")
 
     field(SXVL, 6)
-    field(SXST, "GH_B OK")
+    field(SXST, "$(GH_B) OK")
 
     field(FFVL, 15)
     field(FFST, "Interlocks Bypassed")
