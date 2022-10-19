@@ -3,7 +3,9 @@ record (mbbi, "$(P)$(PV)") {
 
     field(DESC, "$(DESC)")
     field(DTYP, "asynInt32")
-    
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
+
     field(ZRVL, 0)
     field(ZRST, "$(0TEXT)")
     field(ZRSV, "$(0SEVR)")
@@ -11,21 +13,19 @@ record (mbbi, "$(P)$(PV)") {
     field(ONVL, 1)
     field(ONST, "$(1TEXT)")
     field(ONSV, "$(1SEVR)")
-    
+
     field(TWVL, 2)
     field(TWST, "$(2TEXT)")
     field(TWSV, "$(2SEVR)")
-    
+
     field(THVL, 3)
     field(THST, "$(3TEXT)")
     field(THSV, "$(3SEVR)")
-    
+
     field(FRVL, 4)
     field(FRST, "$(4TEXT)")
     field(FRSV, "$(4SEVR)")
     
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }

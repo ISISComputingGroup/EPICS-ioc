@@ -3,6 +3,8 @@ record (mbbi, "$(P)$(RBOX_PV)") {
 
     field(DESC, "$(RBOX_DESC)")
     field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(RBOX_OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
 
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
@@ -24,8 +26,6 @@ record (mbbi, "$(P)$(RBOX_PV)") {
     field(FRST, "Door Open")
     field(FRSV, "MAJOR")
 
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(RBOX_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -34,6 +34,8 @@ record (mbbi, "$(P)$(BYPASS_PV)") {
 
     field(DESC, "$(BYPASS_DESC)")
     field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(BYPASS_OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
 
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
@@ -55,8 +57,6 @@ record (mbbi, "$(P)$(BYPASS_PV)") {
     field(FRST, "Fault")
     field(FRSV, "MAJOR")
 
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(BYPASS_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }

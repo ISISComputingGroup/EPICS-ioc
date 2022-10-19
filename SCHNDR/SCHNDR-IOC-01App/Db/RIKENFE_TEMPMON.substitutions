@@ -1,9 +1,13 @@
 #
-# From document "Temperature Monitoring Variables"
-# ------------------------------------------------
+# From document "RIKEN PLC IBEX Specification - Draft F_TC.docx"
+# --------------------------------------------------------------
+
+# 4     Temperature Monitoring Variables
+# ======================================
+
 
 file RIKENFE_Integer.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+    pattern { PV, PORTNAME, OFFSET, DESC }
 
     { "RQ1:TEMPMON:TAP01", "temperature_monitoring",  "0",  "RQ1 Voltage Tap 1" }
     { "RQ1:TEMPMON:TAP02", "temperature_monitoring",  "1",  "RQ1 Voltage Tap 2" }
@@ -80,5 +84,4 @@ file RIKENFE_Integer.template {
     { "RB1:TEMPMON:TAP11", "temperature_monitoring", "72", "RB1 Voltage Tap 11" }
     { "RB1:TEMPMON:TAP12", "temperature_monitoring", "73", "RB1 Voltage Tap 12" }
     {  "RB1:TEMPMON:DCCT", "temperature_monitoring", "74",           "RB1 DCCT" }
-
 }

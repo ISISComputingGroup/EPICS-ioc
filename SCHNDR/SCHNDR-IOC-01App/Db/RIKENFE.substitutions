@@ -1,6 +1,6 @@
 #
-# From document "RIKEN PLC - IBEX Specification – Issue F"
-# --------------------------------------------------------
+# From document "RIKEN PLC IBEX Specification - Draft F_TC.docx"
+# --------------------------------------------------------------
 
 
 # 1.4   Separators
@@ -11,7 +11,7 @@
 # 1.4.2 Vacuum Interlock Status
 
 file RIKENFE_Common_Objects_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC }
+    pattern { PV, PORTNAME, OFFSET, DESC }
 
     { "SEP1:VACUUM:STAT", "separator_status",  "0", "Separator 1 N&P Vacuum Interlock Status" }
     { "SEP2:VACUUM:STAT", "separator_status",  "1", "Separator 2 N&P Vacuum Interlock Status" }
@@ -23,7 +23,7 @@ file RIKENFE_Common_Objects_Status.template {
 # ===============
 
 file RIKENFE_Solenoid_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+    pattern { PV, PORTNAME, OFFSET, DESC }
 
     { "SOLENOID", "solenoid_status",  "0", "Solenoid Status" }
 }
@@ -38,7 +38,7 @@ file RIKENFE_Solenoid_Status.template {
 # 1.6.1 Kickers General Status
 
 file RIKENFE_Common_Objects_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC }
+    pattern { PV, PORTNAME, OFFSET, DESC }
 
     {  "KICKERS:WATER:ILK:STAT", "kickers_status",  "0", "Kickers Water Interlock Status" }
     { "KICKERS:VACUUM:ILK:STAT", "kickers_status",  "1",          "Kickers Vacuum Status" }
@@ -61,7 +61,7 @@ file RIKENFE_Kicker_Status.template {
 # 1.6.b Kickers 1-4 Output
 
 file RIKENFE_float.template {
-    pattern {PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION}
+    pattern { PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION }
 
     { "KICKER1:VOLT", "kickers_1-4_output",  "0", "Kicker 1 Output Voltage", "kV", "3" }
     { "KICKER1:CURR", "kickers_1-4_output",  "2", "Kicker 1 Output Current", "kA", "3" }
@@ -86,7 +86,7 @@ file RIKENFE_float.template {
 # 2.1   Vacuum Status
 
 file RIKENFE_Common_Objects_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+    pattern { PV, PORTNAME, OFFSET, DESC }
 
     {  "GH1:STAT", "vacuum_status",  "0",  "GH1 Status" }
     {  "GH2:STAT", "vacuum_status",  "1",  "GH2 Status" }
@@ -138,7 +138,7 @@ file RIKENFE_Common_Objects_Status.template {
 # 2.2   Vacuum Valve Status
 
 file RIKENFE_Vacuum_Valve_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+    pattern { PV, PORTNAME, OFFSET, DESC }
 
     {  "PIV1:STAT", "vacuum_valve_status",  "0",  "PIV1 Status" }
     {  "PIV2:STAT", "vacuum_valve_status",  "1",  "PIV2 Status" }
@@ -167,7 +167,7 @@ file RIKENFE_Vacuum_Valve_Status.template {
 # 2.3   Vacuum Valve Controls
 
 file RIKENFE_Vacuum_Valve_Open.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+    pattern {PV , PORTNAME, OFFSET, DESC }
 
     {  "LV1:OPEN",  "lv1_vacuum_valve_open",  "0",  "Initiate LV1 Opening" }
     {  "LV2:OPEN",  "lv2_vacuum_valve_open",  "0",  "Initiate LV2 Opening" }
@@ -184,7 +184,7 @@ file RIKENFE_Vacuum_Valve_Open.template {
 # 2.4   Vacuum Pump Status
 
 file RIKENFE_Vacuum_Pump_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+    pattern { PV, PORTNAME, OFFSET, DESC }
 
     {  "BP1:STAT", "vacuum_pump_status",  "0",  "BP1 Vacuum Pump Status" }
     {  "BP2:STAT", "vacuum_pump_status",  "1",  "BP2 Vacuum Pump Status" }
@@ -214,7 +214,7 @@ file RIKENFE_Vacuum_Pump_Status.template {
 # 2.4.1    Vacuum Pump PIV Interlocks  (PIV - Pump Isolation Valve)
 
 file RIKENFE_PIV_Interlock_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC, GH_A, GH_B}
+    pattern { PV, PORTNAME, OFFSET, DESC, GH_A, GH_B }
 
     {  "PIV1:ILK:STAT", "piv_interlock_status",  "0",  "PIV1 Interlock Status",  "GH1",  "GH3" }
     {  "PIV2:ILK:STAT", "piv_interlock_status",  "1",  "PIV2 Interlock Status",  "GH5",  "GH7" }
@@ -234,15 +234,15 @@ file RIKENFE_PIV_Interlock_Status.template {
 # Note: In the PLC, bits 2 & 3 and 4 & 5 are ORed together and then ANDed with bits 1,6,7 and 8 to obtain the valve interlock.
 
 file RIKENFE_Vacuum_Valve_Interlock_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC, BIT0PV, BIT0DESC, BIT0ZNAM, BIT0ONAM,
-                                         BIT1PV, BIT1DESC, BIT1ZNAM, BIT1ONAM,
-                                         BIT2PV, BIT2DESC, BIT2ZNAM, BIT2ONAM,
-                                         BIT3PV, BIT3DESC, BIT3ZNAM, BIT3ONAM,
-                                         BIT4PV, BIT4DESC, BIT4ZNAM, BIT4ONAM,
-                                         BIT5PV, BIT5DESC, BIT5ZNAM, BIT5ONAM,
-                                         BIT6PV, BIT6DESC, BIT6ZNAM, BIT6ONAM,
-                                         BIT7PV, BIT7DESC, BIT7ZNAM, BIT7ONAM,
-                                         BIT8PV, BIT8DESC, BIT8ZNAM, BIT8ONAM,
+    pattern { PV, PORTNAME, OFFSET, DESC, BIT0PV, BIT0DESC, BIT0ZNAM, BIT0ONAM,
+                                          BIT1PV, BIT1DESC, BIT1ZNAM, BIT1ONAM,
+                                          BIT2PV, BIT2DESC, BIT2ZNAM, BIT2ONAM,
+                                          BIT3PV, BIT3DESC, BIT3ZNAM, BIT3ONAM,
+                                          BIT4PV, BIT4DESC, BIT4ZNAM, BIT4ONAM,
+                                          BIT5PV, BIT5DESC, BIT5ZNAM, BIT5ONAM,
+                                          BIT6PV, BIT6DESC, BIT6ZNAM, BIT6ONAM,
+                                          BIT7PV, BIT7DESC, BIT7ZNAM, BIT7ONAM,
+                                          BIT8PV, BIT8DESC, BIT8ZNAM, BIT8ONAM,
     }
 
     { "LV1:ILK:STAT", "lv_interlock_status",  "0", "LV1 Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error",
@@ -328,15 +328,15 @@ file RIKENFE_Vacuum_Valve_Interlock_Status.template {
 # Note: In the PLC, bits 2 & 3 and 4 & 5 are ORed together and then ANDed with bits 1,6,7 and 8 to obtain the valve interlock.
 
 file RIKENFE_Vacuum_Valve_Interlock_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC, BIT0PV, BIT0DESC, BIT0ZNAM, BIT0ONAM,
-                                         BIT1PV, BIT1DESC, BIT1ZNAM, BIT1ONAM,
-                                         BIT2PV, BIT2DESC, BIT2ZNAM, BIT2ONAM,
-                                         BIT3PV, BIT3DESC, BIT3ZNAM, BIT3ONAM,
-                                         BIT4PV, BIT4DESC, BIT4ZNAM, BIT4ONAM,
-                                         BIT5PV, BIT5DESC, BIT5ZNAM, BIT5ONAM,
-                                         BIT6PV, BIT6DESC, BIT6ZNAM, BIT6ONAM,
-                                         BIT7PV, BIT7DESC, BIT7ZNAM, BIT7ONAM,
-                                         BIT8PV, BIT8DESC, BIT8ZNAM, BIT8ONAM,
+    pattern { PV, PORTNAME, OFFSET, DESC, BIT0PV, BIT0DESC, BIT0ZNAM, BIT0ONAM,
+                                          BIT1PV, BIT1DESC, BIT1ZNAM, BIT1ONAM,
+                                          BIT2PV, BIT2DESC, BIT2ZNAM, BIT2ONAM,
+                                          BIT3PV, BIT3DESC, BIT3ZNAM, BIT3ONAM,
+                                          BIT4PV, BIT4DESC, BIT4ZNAM, BIT4ONAM,
+                                          BIT5PV, BIT5DESC, BIT5ZNAM, BIT5ONAM,
+                                          BIT6PV, BIT6DESC, BIT6ZNAM, BIT6ONAM,
+                                          BIT7PV, BIT7DESC, BIT7ZNAM, BIT7ONAM,
+                                          BIT8PV, BIT8DESC, BIT8ZNAM, BIT8ONAM,
     }
 
     { "AMGV:ILK:STAT", "other_valve_interlock_status",  "0", "AMGV Interlock Status",        "COMMS",        "Communications", "-",        "Comms Error",
@@ -377,7 +377,7 @@ file RIKENFE_Vacuum_Valve_Interlock_Status.template {
 # 2.5   Beam Blocker Status
 
 file RIKENFE_Vacuum_Valve_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+    pattern { PV, PORTNAME, OFFSET, DESC }
 
     { "BB0:STAT", "beamblocker_status",  "0", "BB0 Status" }
     { "BB1:STAT", "beamblocker_status",  "1", "BB1 Status" }
@@ -390,7 +390,7 @@ file RIKENFE_Vacuum_Valve_Status.template {
 # 2.6   Beam Blocker Information
 
 file RIKENFE_Beamblocker_Information.template {
-    pattern {PV, PORTNAME, OFFSET, DESC, LOCN}
+    pattern { PV, PORTNAME, OFFSET, DESC, LOCN }
 
     { "BB0:INFO", "beamblocker_information",  "0", "BB0 Information", "Kicker Area" }
     { "BB1:INFO", "beamblocker_information",  "1", "BB1 Information",      "Port 1" }
@@ -406,7 +406,7 @@ file RIKENFE_Beamblocker_Information.template {
 # 3.1   PSU Klixon Interlocks
 
 file RIKENFE_Common_Objects_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+    pattern { PV, PORTNAME, OFFSET, DESC }
 
     {           "RQ1:KLIXON:STAT", "klixon_interlock_status",  "0",           "RQ1 Klixon Status" }
     {           "RQ2:KLIXON:STAT", "klixon_interlock_status",  "1",           "RQ2 Klixon Status" }
@@ -450,7 +450,7 @@ file RIKENFE_Common_Objects_Status.template {
 # 3.2   PSU Water Interlock Status
 
 file RIKENFE_Common_Objects_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+    pattern { PV, PORTNAME, OFFSET, DESC }
 
     {               "RQ1:WATER:FLOW:STAT", "water_interlock_status",        "0",                  "RQ1 Water Flow Status" }
     {               "RQ2:WATER:FLOW:STAT", "water_interlock_status",        "1",                  "RQ2 Water Flow Status" }
@@ -495,7 +495,7 @@ file RIKENFE_Common_Objects_Status.template {
 
 #   From "Issue D" spec document. address %MW4285
 file RIKENFE_Common_Objects_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+    pattern { PV, PORTNAME, OFFSET, DESC }
 
     { "CHRONUS:TRANS:PSU:WATER:FLOW:STAT", "water_interlock_status_extra",  "0",    "CHRONUS Trans PSU Flow Status" }
 }
@@ -504,7 +504,7 @@ file RIKENFE_Common_Objects_Status.template {
 # 3.3   Water Flow
 
 file RIKENFE_float.template {
-    pattern {PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION}
+    pattern { PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION }
  
     {               "RQ1:WATER:FLOW:RATE", "water_flow_rate",  "0",                  "RQ1 Water Flow Rate", "L/min", "3" }
     {               "RQ2:WATER:FLOW:RATE", "water_flow_rate",  "2",                  "RQ2 Water Flow Rate", "L/min", "3" }
@@ -552,7 +552,7 @@ file RIKENFE_float.template {
 # 3.4   PSU R-Box Interlock Status  (Rectifier Box)
 
 file RIKENFE_RBox_Status.template {
-    pattern {RBOX_PV, BYPASS_PV, PORTNAME, RBOX_OFFSET, BYPASS_OFFSET, RBOX_DESC, BYPASS_DESC}
+    pattern { RBOX_PV, BYPASS_PV, PORTNAME, RBOX_OFFSET, BYPASS_OFFSET, RBOX_DESC, BYPASS_DESC }
 
     {  "RQ1:RBOX:STAT",  "RQ1:RBOX:BYPASS:STAT", "rbox_interlock_status",  "0",  "1",  "RQ1 RBox Status",  "RQ1 RBox Bypass Switch Status" }
     {  "RQ2:RBOX:STAT",  "RQ2:RBOX:BYPASS:STAT", "rbox_interlock_status",  "2",  "3",  "RQ2 RBox Status",  "RQ2 RBox Bypass Switch Status" }
@@ -589,7 +589,7 @@ file RIKENFE_RBox_Status.template {
 #       *NB*  Kicker MOL - See Kicker Section 1.6.1
 
 file RIKENFE_Common_Objects_Status.template {
-    pattern {PV, PORTNAME, OFFSET, DESC}
+    pattern { PV, PORTNAME, OFFSET, DESC }
 
     { "SOLENOID:MOL:STAT", "mol_status",  "0", "Solenoid MOL Status" }
     {      "RQ3:MOL:STAT", "mol_status",  "1",      "RQ3 MOL Status" }
@@ -613,41 +613,41 @@ file RIKENFE_Common_Objects_Status.template {
 # 3.7   Water Temperature
 
 file RIKENFE_float.template {
-    pattern {PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION}
+    pattern { PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION }
  
-    {     "RQ1:WATER:TEMP", "water_temperature",  "0",  "RQ1 Magnet Water Temperature", "degreeC", "3" }
-    {     "RQ2:WATER:TEMP", "water_temperature",  "2",  "RQ2 Magnet Water Temperature", "degreeC", "3" }
-    {     "RB1:WATER:TEMP", "water_temperature",  "4",  "RB1 Magnet Water Temperature", "degreeC", "3" }
-    {     "RQ3:WATER:TEMP", "water_temperature",  "6",  "RQ3 Magnet Water Temperature", "degreeC", "3" }
-    {     "RQ4:WATER:TEMP", "water_temperature",  "8",  "RQ4 Magnet Water Temperature", "degreeC", "3" }
-    {     "RQ5:WATER:TEMP", "water_temperature", "10",  "RQ5 Magnet Water Temperature", "degreeC", "3" }
-    {     "SY1:WATER:TEMP", "water_temperature", "12",  "SY1 Magnet Water Temperature", "degreeC", "3" }
-    {     "SY2:WATER:TEMP", "water_temperature", "14",  "SY2 Magnet Water Temperature", "degreeC", "3" }
-    { "RB2:MAG:WATER:TEMP", "water_temperature", "16",  "RB2 Magnet Water Temperature", "degreeC", "3" }
-    { "RB2:PSU:WATER:TEMP", "water_temperature", "18",     "RB2 PSU Water Temperature", "degreeC", "3" }
-    {    "XFD1:WATER:TEMP", "water_temperature", "20", "XFD1 Magnet Water Temperature", "degreeC", "3" }
-    {     "RQ6:WATER:TEMP", "water_temperature", "22",  "RQ6 Magnet Water Temperature", "degreeC", "3" }
-    {     "RQ7:WATER:TEMP", "water_temperature", "24",  "RQ7 Magnet Water Temperature", "degreeC", "3" }
-    {     "RQ8:WATER:TEMP", "water_temperature", "26",  "RQ8 Magnet Water Temperature", "degreeC", "3" }
-    {    "XFD2:WATER:TEMP", "water_temperature", "28", "XFD2 Magnet Water Temperature", "degreeC", "3" }
-    {     "RB3:WATER:TEMP", "water_temperature", "30",  "RB3 Magnet Water Temperature", "degreeC", "3" }
-    {     "RQ9:WATER:TEMP", "water_temperature", "32",  "RQ9 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ10:WATER:TEMP", "water_temperature", "34", "RQ10 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ11:WATER:TEMP", "water_temperature", "36", "RQ11 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ12:WATER:TEMP", "water_temperature", "38", "RQ12 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ13:WATER:TEMP", "water_temperature", "40", "RQ13 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ14:WATER:TEMP", "water_temperature", "42", "RQ14 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ15:WATER:TEMP", "water_temperature", "44", "RQ15 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ16:WATER:TEMP", "water_temperature", "46", "RQ16 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ17:WATER:TEMP", "water_temperature", "48", "RQ17 Magnet Water Temperature", "degreeC", "3" }
-    {     "RB4:WATER:TEMP", "water_temperature", "50",  "RB4 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ18:WATER:TEMP", "water_temperature", "52", "RQ18 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ19:WATER:TEMP", "water_temperature", "54", "RQ19 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ20:WATER:TEMP", "water_temperature", "56", "RQ20 Magnet Water Temperature", "degreeC", "3" }
-    {    "XFD3:WATER:TEMP", "water_temperature", "58", "XFD3 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ21:WATER:TEMP", "water_temperature", "60", "RQ21 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ22:WATER:TEMP", "water_temperature", "62", "RQ22 Magnet Water Temperature", "degreeC", "3" }
-    {    "RQ23:WATER:TEMP", "water_temperature", "64", "RQ23 Magnet Water Temperature", "degreeC", "3" }
+    {     "RQ1:WATER:TEMP", "water_temperature",  "0",  "RQ1 Magnet Water Temperature", "degC", "3" }
+    {     "RQ2:WATER:TEMP", "water_temperature",  "2",  "RQ2 Magnet Water Temperature", "degC", "3" }
+    {     "RB1:WATER:TEMP", "water_temperature",  "4",  "RB1 Magnet Water Temperature", "degC", "3" }
+    {     "RQ3:WATER:TEMP", "water_temperature",  "6",  "RQ3 Magnet Water Temperature", "degC", "3" }
+    {     "RQ4:WATER:TEMP", "water_temperature",  "8",  "RQ4 Magnet Water Temperature", "degC", "3" }
+    {     "RQ5:WATER:TEMP", "water_temperature", "10",  "RQ5 Magnet Water Temperature", "degC", "3" }
+    {     "SY1:WATER:TEMP", "water_temperature", "12",  "SY1 Magnet Water Temperature", "degC", "3" }
+    {     "SY2:WATER:TEMP", "water_temperature", "14",  "SY2 Magnet Water Temperature", "degC", "3" }
+    { "RB2:MAG:WATER:TEMP", "water_temperature", "16",  "RB2 Magnet Water Temperature", "degC", "3" }
+    { "RB2:PSU:WATER:TEMP", "water_temperature", "18",     "RB2 PSU Water Temperature", "degC", "3" }
+    {    "XFD1:WATER:TEMP", "water_temperature", "20", "XFD1 Magnet Water Temperature", "degC", "3" }
+    {     "RQ6:WATER:TEMP", "water_temperature", "22",  "RQ6 Magnet Water Temperature", "degC", "3" }
+    {     "RQ7:WATER:TEMP", "water_temperature", "24",  "RQ7 Magnet Water Temperature", "degC", "3" }
+    {     "RQ8:WATER:TEMP", "water_temperature", "26",  "RQ8 Magnet Water Temperature", "degC", "3" }
+    {    "XFD2:WATER:TEMP", "water_temperature", "28", "XFD2 Magnet Water Temperature", "degC", "3" }
+    {     "RB3:WATER:TEMP", "water_temperature", "30",  "RB3 Magnet Water Temperature", "degC", "3" }
+    {     "RQ9:WATER:TEMP", "water_temperature", "32",  "RQ9 Magnet Water Temperature", "degC", "3" }
+    {    "RQ10:WATER:TEMP", "water_temperature", "34", "RQ10 Magnet Water Temperature", "degC", "3" }
+    {    "RQ11:WATER:TEMP", "water_temperature", "36", "RQ11 Magnet Water Temperature", "degC", "3" }
+    {    "RQ12:WATER:TEMP", "water_temperature", "38", "RQ12 Magnet Water Temperature", "degC", "3" }
+    {    "RQ13:WATER:TEMP", "water_temperature", "40", "RQ13 Magnet Water Temperature", "degC", "3" }
+    {    "RQ14:WATER:TEMP", "water_temperature", "42", "RQ14 Magnet Water Temperature", "degC", "3" }
+    {    "RQ15:WATER:TEMP", "water_temperature", "44", "RQ15 Magnet Water Temperature", "degC", "3" }
+    {    "RQ16:WATER:TEMP", "water_temperature", "46", "RQ16 Magnet Water Temperature", "degC", "3" }
+    {    "RQ17:WATER:TEMP", "water_temperature", "48", "RQ17 Magnet Water Temperature", "degC", "3" }
+    {     "RB4:WATER:TEMP", "water_temperature", "50",  "RB4 Magnet Water Temperature", "degC", "3" }
+    {    "RQ18:WATER:TEMP", "water_temperature", "52", "RQ18 Magnet Water Temperature", "degC", "3" }
+    {    "RQ19:WATER:TEMP", "water_temperature", "54", "RQ19 Magnet Water Temperature", "degC", "3" }
+    {    "RQ20:WATER:TEMP", "water_temperature", "56", "RQ20 Magnet Water Temperature", "degC", "3" }
+    {    "XFD3:WATER:TEMP", "water_temperature", "58", "XFD3 Magnet Water Temperature", "degC", "3" }
+    {    "RQ21:WATER:TEMP", "water_temperature", "60", "RQ21 Magnet Water Temperature", "degC", "3" }
+    {    "RQ22:WATER:TEMP", "water_temperature", "62", "RQ22 Magnet Water Temperature", "degC", "3" }
+    {    "RQ23:WATER:TEMP", "water_temperature", "64", "RQ23 Magnet Water Temperature", "degC", "3" }
 } 
 
 

@@ -3,6 +3,8 @@ record (mbbi, "$(P)$(PV)") {
 
     field(DESC, "$(DESC)")
     field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
 
     field(ZRVL, 0)
     field(ZRST, "Comms OK")
@@ -12,7 +14,7 @@ record (mbbi, "$(P)$(PV)") {
 
     field(TWVL, 2)
     field(TWST, "TP Panel Inst OK")
-    
+
     field(THVL, 3)
     field(THST, "TP No Error")
 
@@ -28,8 +30,6 @@ record (mbbi, "$(P)$(PV)") {
     field(FFVL, 15)
     field(FFST, "Interlocks Bypassed")
 
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }

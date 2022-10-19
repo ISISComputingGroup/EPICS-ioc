@@ -5,6 +5,7 @@ record (longin, "$(P)$(PV):RAW") {
     field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
     field(SCAN, "I/O Intr")
+
     info(INTEREST, "LOW")
     info(archive, "VAL")
 }
@@ -14,6 +15,7 @@ record (mbbiDirect, "$(P)$(PV)") {
     field(DESC, "$(DESC)")
     field(DTYP, "Raw Soft Channel")
     field(INP,  "$(P)$(PV):RAW CP MS")
+
     info(INTEREST, "LOW")
     info(archive, "VAL")
 }
@@ -24,6 +26,7 @@ record (bi, "$(P)$(PV):$(BIT0PV):STAT") {
     field(INP,  "$(P)$(PV).B0 CP MS")
     field(ZNAM, "$(BIT0ZNAM)")
     field(ONAM, "$(BIT0ONAM)")
+
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -34,6 +37,7 @@ record (bi, "$(P)$(PV):$(BIT1PV):STAT") {
     field(INP,  "$(P)$(PV).B1 CP MS")
     field(ZNAM, "$(BIT1ZNAM)")
     field(ONAM, "$(BIT1ONAM)")
+
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -44,6 +48,7 @@ record (bi, "$(P)$(PV):$(BIT2PV):STAT") {
     field(INP,  "$(P)$(PV).B2 CP MS")
     field(ZNAM, "$(BIT2ZNAM)")
     field(ONAM, "$(BIT2ONAM)")
+
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -54,6 +59,7 @@ record (bi, "$(P)$(PV):$(BIT3PV):STAT") {
     field(INP,  "$(P)$(PV).B3 CP MS")
     field(ZNAM, "$(BIT3ZNAM)")
     field(ONAM, "$(BIT3ONAM)")
+
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -64,6 +70,7 @@ record (bi, "$(P)$(PV):$(BIT4PV):STAT") {
     field(INP,  "$(P)$(PV).B4 CP MS")
     field(ZNAM, "$(BIT4ZNAM)")
     field(ONAM, "$(BIT4ONAM)")
+
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -74,6 +81,7 @@ record (bi, "$(P)$(PV):$(BIT5PV):STAT") {
     field(INP,  "$(P)$(PV).B5 CP MS")
     field(ZNAM, "$(BIT5ZNAM)")
     field(ONAM, "$(BIT5ONAM)")
+
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -84,6 +92,7 @@ record (bi, "$(P)$(PV):$(BIT6PV):STAT") {
     field(INP,  "$(P)$(PV).B6 CP MS")
     field(ZNAM, "$(BIT6ZNAM)")
     field(ONAM, "$(BIT6ONAM)")
+
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -94,6 +103,7 @@ record (bi, "$(P)$(PV):$(BIT7PV):STAT") {
     field(INP,  "$(P)$(PV).B7 CP MS")
     field(ZNAM, "$(BIT7ZNAM)")
     field(ONAM, "$(BIT7ONAM)")
+
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -104,6 +114,7 @@ record (bi, "$(P)$(PV):$(BIT8PV):STAT") {
     field(INP,  "$(P)$(PV).B8 CP MS")
     field(ZNAM, "$(BIT8ZNAM)")
     field(ONAM, "$(BIT8ONAM)")
+
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }

@@ -3,6 +3,8 @@ record (mbbi, "$(P)$(MODE_PV)") {
 
     field(DESC, "$(NAME_DESC) Control Mode")
     field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(MODE_OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
 
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
@@ -24,8 +26,6 @@ record (mbbi, "$(P)$(MODE_PV)") {
     field(FRST, "Fault")
     field(FRSV, "MAJOR")
 
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(MODE_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -34,6 +34,8 @@ record (mbbi, "$(P)$(STATE_PV)") {
 
     field(DESC, "$(NAME_DESC) State")
     field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(STATE_OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
 
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
@@ -55,8 +57,6 @@ record (mbbi, "$(P)$(STATE_PV)") {
     field(FRST, "Fault")
     field(FRSV, "MAJOR")
 
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(STATE_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -65,6 +65,8 @@ record (mbbi, "$(P)$(READY_PV) Ready") {
 
     field(DESC, "$(NAME_DESC)")
     field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(READY_OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
 
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
@@ -86,8 +88,6 @@ record (mbbi, "$(P)$(READY_PV) Ready") {
     field(FRST, "Fault")
     field(FRSV, "MAJOR")
 
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(READY_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -96,6 +96,8 @@ record (mbbi, "$(P)$(PSU_PV)") {
 
     field(DESC, "$(NAME_DESC) PSU Status")
     field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(PSU_OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
 
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
@@ -117,8 +119,6 @@ record (mbbi, "$(P)$(PSU_PV)") {
     field(FRST, "Fault")
     field(FRSV, "MAJOR")
 
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(PSU_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
@@ -127,7 +127,9 @@ record (mbbi, "$(P)$(HV_PV)") {
 
     field(DESC, "$(NAME_DESC) HV Status")
     field(DTYP, "asynInt32")
-
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(HV_OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
+    
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
     field(ZRSV, "INVALID")
@@ -148,8 +150,6 @@ record (mbbi, "$(P)$(HV_PV)") {
     field(FRST, "Fault")
     field(FRSV, "MAJOR")
 
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(HV_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }

@@ -3,7 +3,9 @@ record (mbbi, "$(P)$(PV)") {
 
     field(DESC, "$(DESC)")
     field(DTYP, "asynInt32")
-
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
+    
     field(ZRVL, 0)
     field(ZRST, "Comms OK")
 
@@ -40,8 +42,6 @@ record (mbbi, "$(P)$(PV)") {
     field(ELVL, 11)
     field(ELST, "NC uswitch Opened")
 
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }

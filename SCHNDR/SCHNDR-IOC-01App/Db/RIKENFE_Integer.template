@@ -5,6 +5,7 @@ record (ai, "$(P)$(PV)") {
     field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))INT16")
     field(SCAN, "I/O Intr")
+
     info(INTEREST, "LOW")
     info(archive, "VAL")
 }

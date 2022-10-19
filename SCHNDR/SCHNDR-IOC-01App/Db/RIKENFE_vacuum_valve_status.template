@@ -3,7 +3,9 @@ record (mbbi, "$(P)$(PV)") {
 
     field(DESC, "$(DESC)")
     field(DTYP, "asynInt32")
-    
+    field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
+    field(SCAN, "I/O Intr")
+
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
     field(ZRSV, "INVALID")
@@ -24,8 +26,6 @@ record (mbbi, "$(P)$(PV)") {
     field(FRST, "Fault")
     field(FRSV, "MAJOR")
 
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
