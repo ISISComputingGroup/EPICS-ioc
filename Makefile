@@ -59,6 +59,7 @@ IOCDIRS += B17TMAG
 IOCDIRS += NCINDG
 IOCDIRS += TJMPER
 IOCDIRS += INSTRONA
+IOCDIRS += TEKOSC
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
