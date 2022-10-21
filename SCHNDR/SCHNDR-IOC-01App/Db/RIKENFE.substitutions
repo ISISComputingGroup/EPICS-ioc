@@ -169,15 +169,15 @@ file RIKENFE_Vacuum_Valve_Status.template {
 file RIKENFE_Vacuum_Valve_Open.template {
     pattern {PV , PORTNAME, OFFSET, DESC }
 
-    {  "LV1:OPEN",  "lv1_vacuum_valve_open",  "0",  "Initiate LV1 Opening" }
-    {  "LV2:OPEN",  "lv2_vacuum_valve_open",  "0",  "Initiate LV2 Opening" }
-    {  "LV3:OPEN",  "lv3_vacuum_valve_open",  "0",  "Initiate LV3 Opening" }
-    {  "LV4:OPEN",  "lv4_vacuum_valve_open",  "0",  "Initiate LV4 Opening" }
-    {  "LV5:OPEN",  "lv5_vacuum_valve_open",  "0",  "Initiate LV5 Opening" }
-    {  "LV6:OPEN",  "lv6_vacuum_valve_open",  "0",  "Initiate LV6 Opening" }
-    {  "LV7:OPEN",  "lv7_vacuum_valve_open",  "0",  "Initiate LV7 Opening" }
-    { "AMGV:OPEN", "amgv_vacuum_valve_open",  "0", "Initiate AMGV Opening" }
-    { "FSOV:OPEN", "fsov_vacuum_valve_open",  "0", "Initiate FSOV Opening" }
+    {  "LV1:OPEN:SP",  "lv1_vacuum_valve_open",  "0",  "Initiate LV1 Opening" }
+    {  "LV2:OPEN:SP",  "lv2_vacuum_valve_open",  "0",  "Initiate LV2 Opening" }
+    {  "LV3:OPEN:SP",  "lv3_vacuum_valve_open",  "0",  "Initiate LV3 Opening" }
+    {  "LV4:OPEN:SP",  "lv4_vacuum_valve_open",  "0",  "Initiate LV4 Opening" }
+    {  "LV5:OPEN:SP",  "lv5_vacuum_valve_open",  "0",  "Initiate LV5 Opening" }
+    {  "LV6:OPEN:SP",  "lv6_vacuum_valve_open",  "0",  "Initiate LV6 Opening" }
+    {  "LV7:OPEN:SP",  "lv7_vacuum_valve_open",  "0",  "Initiate LV7 Opening" }
+    { "AMGV:OPEN:SP", "amgv_vacuum_valve_open",  "0", "Initiate AMGV Opening" }
+    { "FSOV:OPEN:SP", "fsov_vacuum_valve_open",  "0", "Initiate FSOV Opening" }
 }
 
 

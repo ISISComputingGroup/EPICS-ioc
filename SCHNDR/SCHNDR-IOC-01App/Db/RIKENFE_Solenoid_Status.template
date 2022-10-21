@@ -16,6 +16,7 @@ record (mbbiDirect, "$(P)$(PV):STAT") {
     field(DESC, "$(DESC)")
     field(DTYP, "Raw Soft Channel")
     field(INP,  "$(P)$(PV):STAT:RAW CP MS")
+
     info(INTEREST, "LOW")
     info(archive, "VAL")
 }
