@@ -4,7 +4,7 @@
 stringiftest("FLOW_SPC_PRESSURE_$(TEMP_NUM)", "$(SPC_TYPE_$(TEMP_NUM)=NONE)", 5, "FLOW")
 stringiftest("VTI_SPC_PRESSURE_$(TEMP_NUM)", "$(SPC_TYPE_$(TEMP_NUM)=NONE)", 5, "VTI")
 
-epicsEnvSet "VTI_CALIB_BASE_DIR" "$(VTI_CALIB_BASE_DIR=$(ICPCONFIGBASE)/$(INSTRUMENT))"
+epicsEnvSet "VTI_CALIB_BASE_DIR" "$(VTI_CALIB_BASE_DIR=$(ICPCONFIGBASE)/$(ICPCONFIGHOST))"
 epicsEnvSet "VTI_SENS_DIR" "$(VTI_SENS_DIR=calib/mercury_vti_spc)"
 
 ## Load our record instances
