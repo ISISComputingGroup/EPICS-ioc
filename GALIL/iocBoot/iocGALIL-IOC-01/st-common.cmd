@@ -12,6 +12,9 @@ epicsEnvSet("IFIOC_GALIL_09", "#")
 epicsEnvSet("IFIOC_GALIL_10", "#")
 < $(IOCSTARTUP)/init.cmd
 
+## whether to use autosaved SP for jaws on IOC restart
+stringiftest("INIT_JAWS_FROM_AS", "$(JAWS_POS_FROM_AS=N)", 5, "Y")
+
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
