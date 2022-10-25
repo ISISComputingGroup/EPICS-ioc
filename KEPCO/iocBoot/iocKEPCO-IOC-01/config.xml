@@ -8,6 +8,7 @@
 <macro name="STEP_NUMBER" pattern="^[0-9]+$" description="Number of steps the ramp does per minute" hasDefault="YES" defaultValue="20" />
 <macro name="RESET_ON_START" pattern="^0|1|2$" description="Whether to reset and resend setpoints at ioc start. 0 to not. 1 to do so if firmware is less than version 2.0. 2 to do so and disregard firmware version" hasDefault="YES" defaultValue="0" />
 <macro name="AUTOSAVE_CURRENT" pattern="^(YES|NO)$" description="Whether to autosave the current setpoint." hasDefault="YES" defaultValue="NO" />
+<macro name="AUTO_RAMP" pattern="^(ON|OFF)$" description="Whether to turn ramping on automatically when field/curr is set." hasDefault="YES" defaultValue="OFF" />
 </macros>
 </config_part>
 </ioc_config>
