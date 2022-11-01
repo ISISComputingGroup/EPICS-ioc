@@ -7,7 +7,9 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
-
+DB += AEROFLEX_2023A.db
+DB += AEROFLEX_2030.db
+DB += AEROFLEX_common.db
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_template = <templatename>

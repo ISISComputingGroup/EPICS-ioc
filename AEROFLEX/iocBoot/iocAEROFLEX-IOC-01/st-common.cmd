@@ -1,5 +1,6 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(AEROFLEX)/data"
 epicsEnvSet "DEVICE" "L0"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(AEROFLEX)/aeroflexSup/protocol/AEROFLEX$(DEV_TYPE=2023A)/"
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
@@ -29,7 +30,10 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(AEROFLEX)/db/aeroflex.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(AEROFLEX)/db/AEROFLEX_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+
+## Load device type specific st.cmd
+< iocBoot/iocAEROFLEX-IOC-01/st-$(DEV_TYPE=2030).cmd
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

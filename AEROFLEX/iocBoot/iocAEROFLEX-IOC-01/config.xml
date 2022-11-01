@@ -5,6 +5,7 @@
 <ioc_details>Aeroflex</ioc_details>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<macro name="DEV_TYPE" pattern="^(2023A|2030)$" description="Type of aeroflex; default 2023A" defaultValue="2030" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>
