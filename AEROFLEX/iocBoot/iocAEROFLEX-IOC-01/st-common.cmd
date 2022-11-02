@@ -1,6 +1,5 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(AEROFLEX)/data"
 epicsEnvSet "DEVICE" "L0"
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(AEROFLEX)/aeroflexSup/protocol/AEROFLEX$(DEV_TYPE=2023A)/"
 epicsEnvSet "PORT" "COM20"
 
 ##ISIS## Run IOC initialisation 
@@ -34,7 +33,7 @@ asynSetTraceMask("L0", -1, 0x9)
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(AEROFLEX)/db/AEROFLEX_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(AEROFLEX)/db/aeroflex_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),DEV_TYPE=$(DEV_TYPE=2023A)")
 
 ## Load device type specific st.cmd
 < iocBoot/iocAEROFLEX-IOC-01/st-$(DEV_TYPE=2023A).cmd
