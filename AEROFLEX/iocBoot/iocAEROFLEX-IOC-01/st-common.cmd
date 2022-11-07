@@ -1,6 +1,5 @@
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(AEROFLEX)/data"
 epicsEnvSet "DEVICE" "L0"
-epicsEnvSet "PORT" "COM20"
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
