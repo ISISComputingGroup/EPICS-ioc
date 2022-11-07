@@ -48,7 +48,7 @@ $(APPNAME)_LIBS += rdkafka
 $(APPNAME)_LIBS += zmq zlib efsw
 $(APPNAME)_LIBS += seq pv
 
-$(APPNAME)_LIBS_WIN32 += oncrpc ssleay32 libeay32
+$(APPNAME)_LIBS_WIN32 += oncrpc libssl libcrypto
 $(APPNAME)_SYS_LIBS_Linux += ssl crypto
 $(APPNAME)_SYS_LIBS_Linux += sasl2
 
