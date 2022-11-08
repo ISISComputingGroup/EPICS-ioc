@@ -44,8 +44,8 @@ $(APPNAME)_DBD += stream.dbd
 ## Stream device libraries ##
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
+$(APPNAME)_LIBS += cvtRecord csmbase
 $(APPNAME)_LIBS += asyn
-## other standard libraries here ##
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -55,7 +55,6 @@ $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
-$(APPNAME)_LIBS += cvtRecord
 
 # TJMPAP-IOC-01_registerRecordDeviceDriver.cpp derives from TJMPAP-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
