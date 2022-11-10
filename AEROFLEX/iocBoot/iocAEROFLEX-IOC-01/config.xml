@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>Aeroflex</ioc_desc>
-<ioc_details>Aeroflex</ioc_details>
+<ioc_desc>Aeroflex Signal Generator</ioc_desc>
+<ioc_details>Aeroflex 2023A/2030 IOC</ioc_details>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
-<macro name="DEV_TYPE" pattern="^(2023A|2030)$" description="Type of aeroflex; default 2023A" defaultValue="2023A" hasDefault="YES" />
+<macro name="DEV_TYPE" pattern="^(2023A|2030)$" description="Type of Aeroflex" defaultValue="2023A" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>
