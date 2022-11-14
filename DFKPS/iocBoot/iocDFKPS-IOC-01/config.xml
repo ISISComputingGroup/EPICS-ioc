@@ -9,7 +9,7 @@
 	<macro name="USE_SLEW" pattern="^(0|1)$" description="1 to user slew, 0 otherwise; defaults to 0" defaultValue="0" hasDefault="YES" />
 
     <macro name="CALIBRATED" pattern="^(0|1)$" description="1 to use calibration file, 0 otherwise; defaults to 1" defaultValue="1" hasDefault="YES" />
-    <macro name="CALIB_FILE" pattern="^\w{0,40}$" description="Name of calibration File; defaults to default_calib.dat" defaultValue="default_calib.dat" hasDefault="YES" />
+    <macro name="CALIB_FILE" pattern="^\w{0,40}\.?\w{0,10}$" description="Name of calibration File; defaults to default_calib.dat" defaultValue="default_calib.dat" hasDefault="YES" />
 	<macro name="DEV_TYPE" pattern="^(9X00|8800|8500|8000)$" description="Type of danfysik; default 8000" defaultValue="8000" hasDefault="YES" />
     <macro name="SP_AT_STARTUP" pattern="^(YES|NO)$" description="Apply last setpoints at startup; defaults to NO" defaultValue="NO" hasDefault="YES" />
 	
