@@ -83,9 +83,9 @@ file "$(TOP)/FINS-IOC-01App/Db/read-bits.template" {
 }
 
 file "$(TOP)/FINS-IOC-01App/Db/zoom-vacuum-commands.template" {
-	pattern{ P, Q, NAME, ZPV, OPV, ZSP, OSP, ZADDR, OADDR, ZDESC, ODESC }
-	{ "\$(P)", "\$(Q)", "DOS", "CLOSE", "OPEN", "CLOSED", "OPEN", "552", "551", "Close the detector overcount shutter", "Open the detector overcount shutter"}
-	{ "\$(P)", "\$(Q)", "MONITOR:2", "EXTRACT", "INSERT", "EXTRACTED", "INSERTED", "554", "553", "Extract monitor 2", "Insert monitor 2"}
-	{ "\$(P)", "\$(Q)", "MONITOR:4", "EXTRACT", "INSERT", "EXTRACTED", "INSERTED", "556", "555", "Extract monitor 4", "Insert monitor 4"}
+	pattern{ P, Q, NAME, ZPV, OPV, ZSP, OSP, ZADDR, OADDR, ZDESC, ODESC, SIMZVAL, SIMOVAL }
+	{ "\$(P)", "\$(Q)", "DOS", "CLOSE", "OPEN", "CLOSED", "OPEN", "552", "551", "Close the detector overcount shutter", "Open the detector overcount shutter", "0", "2"}
+	{ "\$(P)", "\$(Q)", "MONITOR:2", "EXTRACT", "INSERT", "EXTRACTED", "INSERTED", "554", "553", "Extract monitor 2", "Insert monitor 2", "0", "16"}
+	{ "\$(P)", "\$(Q)", "MONITOR:4", "EXTRACT", "INSERT", "EXTRACTED", "INSERTED", "556", "555", "Extract monitor 4", "Insert monitor 4", "0", "64"}
 }
 
