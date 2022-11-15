@@ -32,3 +32,9 @@ record (bo, "$(P)$(PV):OUT") {
     info(INTEREST, "LOW")
     info(archive, "VAL")
 }
+
+record(bo,"$(P)SIM:$(PV):OUT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}

@@ -29,3 +29,9 @@ record (mbbi, "$(P)$(PV)") {
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+
+record(longout,"$(P)SIM:$(PV)")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}

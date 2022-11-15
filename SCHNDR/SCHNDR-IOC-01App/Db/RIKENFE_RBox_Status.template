@@ -30,6 +30,12 @@ record (mbbi, "$(P)$(RBOX_PV)") {
     info(archive, "VAL")
 }
 
+record(longout,"$(P)SIM:$(RBOX_PV)")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
 record (mbbi, "$(P)$(BYPASS_PV)") {
 
     field(DESC, "$(BYPASS_DESC)")
@@ -59,4 +65,10 @@ record (mbbi, "$(P)$(BYPASS_PV)") {
 
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+}
+
+record(longout,"$(P)SIM:$(BYPASS_PV)")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
 }

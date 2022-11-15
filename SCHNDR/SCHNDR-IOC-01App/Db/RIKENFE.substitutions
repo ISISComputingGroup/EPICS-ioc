@@ -1,3 +1,16 @@
+# ===============================
+# Simulation and Disable records
+# ===============================
+
+file RIKENFE_Header.template {
+    pattern { RECSIM DISABLE }
+    { "\$(RECSIM)", "\$(DISABLE)", }
+}
+
+# ===============================
+
+# TODO: add SIML, SIOL and SDIS to all template files
+
 #
 # From document "RIKEN PLC IBEX Specification - Draft G_TC.docx"
 # --------------------------------------------------------------

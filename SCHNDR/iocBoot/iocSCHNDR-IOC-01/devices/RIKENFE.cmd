@@ -108,7 +108,7 @@ drvModbusAsynConfigure("$(PLC)temperature_monitoring",       "$(PLC)", 255, 3, 4
 
 
 ## Load record instances for general PLC interaction
-dbLoadRecords("$(TOP)/db/RIKENFE.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PLC)")
+dbLoadRecords("$(TOP)/db/RIKENFE.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PLC),RECSIM=$(RECSIM)")
 
 ## Load record instances for Temperature Monitoring
 dbLoadRecords("$(TOP)/db/RIKENFE_TEMPMON.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PLC)")

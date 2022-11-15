@@ -12,3 +12,9 @@ record (ai, "$(P)$(PV)") {
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
+
+record(ao,"$(P)SIM:$(PV)")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}

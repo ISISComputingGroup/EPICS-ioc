@@ -30,6 +30,12 @@ record (mbbi, "$(P)$(MODE_PV)") {
     info(archive, "VAL")
 }
 
+record(longout,"$(P)SIM:$(MODE_PV)")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
 record (mbbi, "$(P)$(STATE_PV)") {
 
     field(DESC, "$(NAME_DESC) State")
@@ -61,9 +67,15 @@ record (mbbi, "$(P)$(STATE_PV)") {
     info(archive, "VAL")
 }
 
-record (mbbi, "$(P)$(READY_PV) Ready") {
+record(longout,"$(P)SIM:$(STATE_PV)")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
 
-    field(DESC, "$(NAME_DESC)")
+record (mbbi, "$(P)$(READY_PV)") {
+
+    field(DESC, "$(NAME_DESC) Ready")
     field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT)$(PORTNAME),$(READY_OFFSET))UINT16")
     field(SCAN, "I/O Intr")
@@ -90,6 +102,12 @@ record (mbbi, "$(P)$(READY_PV) Ready") {
 
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+}
+
+record(longout,"$(P)SIM:$(READY_PV)")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
 }
 
 record (mbbi, "$(P)$(PSU_PV)") {
@@ -123,6 +141,12 @@ record (mbbi, "$(P)$(PSU_PV)") {
     info(archive, "VAL")
 }
 
+record(longout,"$(P)SIM:$(PSU_PV)")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
 record (mbbi, "$(P)$(HV_PV)") {
 
     field(DESC, "$(NAME_DESC) HV Status")
@@ -152,4 +176,10 @@ record (mbbi, "$(P)$(HV_PV)") {
 
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+}
+
+record(longout,"$(P)SIM:$(HV_PV)")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
 }

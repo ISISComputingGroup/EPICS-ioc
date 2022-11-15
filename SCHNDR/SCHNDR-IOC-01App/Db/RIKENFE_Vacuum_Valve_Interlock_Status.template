@@ -10,6 +10,12 @@ record (longin, "$(P)$(PV):RAW") {
     info(archive, "VAL")
 }
 
+record(longout,"$(P)SIM:$(PV):RAW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
 record (mbbiDirect, "$(P)$(PV)") {
 
     field(DESC, "$(DESC)")
