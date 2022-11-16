@@ -84,6 +84,14 @@ file RIKENFE_float.template {
     { "KICKER4:CURR", "kickers_1-4_output", "14", "Kicker 4 Output Current", "kA", "3" }
 }
 
+# 1.6.c Kickers summary
+
+file RIKENFE_Kicker_Summary.template {
+    pattern { PV1, PV2, PV3, PV4, TARGET }
+
+    { "KICKER1", "KICKER2",  "KICKER3", "KICKER4", "KICKERS"}
+}
+
 # Combined into sections 1.6.a, 1.6.b above:
 # 1.6.2 Kicker 1 Readback Status
 # 1.6.3 Kicker 2 Readback Status
