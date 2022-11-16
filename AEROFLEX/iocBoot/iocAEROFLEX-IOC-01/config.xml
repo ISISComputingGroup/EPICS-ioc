@@ -6,7 +6,6 @@
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
 <macro name="DEV_TYPE" pattern="^(2023A|2030)$" description="Type of Aeroflex" defaultValue="2023A" hasDefault="YES" />
-<macro name="RF_PREC" pattern="^(6|2)$" description="RF level decimal precision" defaultValue="6" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>
