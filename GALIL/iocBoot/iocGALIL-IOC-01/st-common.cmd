@@ -10,6 +10,12 @@ epicsEnvSet("IFIOC_GALIL_07", "#")
 epicsEnvSet("IFIOC_GALIL_08", "#")
 epicsEnvSet("IFIOC_GALIL_09", "#")
 epicsEnvSet("IFIOC_GALIL_10", "#")
+
+## these are used in local instrument galil.cmd during transition to new driver
+## additions can use    $(IFNEWGALIL=#)
+epicsEnvSet("IFNEWGALIL", " ")
+epicsEnvSet("IFNOTNEWGALIL", "#")
+
 < $(IOCSTARTUP)/init.cmd
 
 ##ISIS## Load common DB records 

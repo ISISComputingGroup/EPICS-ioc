@@ -1,0 +1,3 @@
+# we keep a copy of current positions, but this file is not specified 
+# as part of an autosave load at boot time
+file "GALIL_controller_positions.req" "P=$(P),CCP=$(CCP)"
