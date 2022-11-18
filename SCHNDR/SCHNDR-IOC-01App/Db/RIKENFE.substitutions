@@ -9,8 +9,6 @@ file RIKENFE_Header.template {
 
 # ===============================
 
-# TODO: add SIML, SIOL and SDIS to all template files
-
 #
 # From document "RIKEN PLC IBEX Specification - Draft G_TC.docx"
 # --------------------------------------------------------------

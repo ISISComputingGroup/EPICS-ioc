@@ -11,7 +11,7 @@ record(bo, "$(P)SIM")
 
 record(bo, "$(P)DISABLE") 
 {
-    field(DESC, "Disable comms")
+    field(DESC, "Disable Comms")
     field(PINI, "YES")
     field(OMSL, "supervisory")
     field(ZNAM, "COMMS ENABLED")

@@ -1,3 +1,12 @@
+# ===============================
+# Simulation and Disable records
+# ===============================
+
+file RIKENFE_Header.template {
+    pattern { RECSIM DISABLE }
+    { "\$(RECSIM)", "\$(DISABLE)", }
+}
+
 #
 # From document "RIKEN PLC IBEX Specification - Draft F_TC.docx"
 # --------------------------------------------------------------

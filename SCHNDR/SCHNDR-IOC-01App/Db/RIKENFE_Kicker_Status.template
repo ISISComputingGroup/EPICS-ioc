@@ -27,7 +27,11 @@ record (mbbi, "$(P)$(MODE_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(MODE_PV)")
 }
 
 record(longout,"$(P)SIM:$(MODE_PV)")
@@ -64,7 +68,11 @@ record (mbbi, "$(P)$(STATE_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
+    
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(STATE_PV)")
 }
 
 record(longout,"$(P)SIM:$(STATE_PV)")
@@ -101,7 +109,11 @@ record (mbbi, "$(P)$(READY_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
+    
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(READY_PV)")
 }
 
 record(longout,"$(P)SIM:$(READY_PV)")
@@ -138,7 +150,11 @@ record (mbbi, "$(P)$(PSU_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(PSU_PV)")
 }
 
 record(longout,"$(P)SIM:$(PSU_PV)")
@@ -175,7 +191,11 @@ record (mbbi, "$(P)$(HV_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(HV_PV)")
 }
 
 record(longout,"$(P)SIM:$(HV_PV)")

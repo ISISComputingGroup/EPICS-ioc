@@ -27,7 +27,11 @@ record (mbbi, "$(P)$(RBOX_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(RBOX_PV)")
 }
 
 record(longout,"$(P)SIM:$(RBOX_PV)")
@@ -64,7 +68,11 @@ record (mbbi, "$(P)$(BYPASS_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(BYPASS_PV)")
 }
 
 record(longout,"$(P)SIM:$(BYPASS_PV)")

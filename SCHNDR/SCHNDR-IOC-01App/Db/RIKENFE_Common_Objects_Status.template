@@ -27,7 +27,11 @@ record (mbbi, "$(P)$(PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
+    
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(PV)")
 }
 
 record(longout,"$(P)SIM:$(PV)")

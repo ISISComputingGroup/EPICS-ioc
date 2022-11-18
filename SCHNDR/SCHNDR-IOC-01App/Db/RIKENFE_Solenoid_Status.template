@@ -7,8 +7,12 @@ record (longin, "$(P)$(PV):STAT:RAW") {
     field(SCAN, "I/O Intr")
 
     info(INTEREST, "LOW")
-    info(archive, "VAL")
-    info(alarm, "SCHNDR")
+    info(ARCHIVE,  "VAL")
+    info(ALARM,    "SCHNDR")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(PV):STAT:RAW")
 }
 
 record(longout,"$(P)SIM:$(PV):STAT:RAW")
@@ -24,7 +28,7 @@ record (mbbiDirect, "$(P)$(PV):STAT") {
     field(INP,  "$(P)$(PV):STAT:RAW CP MS")
 
     info(INTEREST, "LOW")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
 }
 
 record (bi, "$(P)$(PV):COMMS:STAT") {
@@ -33,13 +37,13 @@ record (bi, "$(P)$(PV):COMMS:STAT") {
     field(INP,  "$(P)$(PV):STAT.B0 CP MS")
 
     field(ZNAM, "Comms OK")
-    field(ZRSV, "NO_ALARM")
+    field(ZSV,  "NO_ALARM")
 
     field(ONAM, "Comms Error")
-    field(ONSV, "INVALID")
+    field(OSV,  "INVALID")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
 }
 
 record (bi, "$(P)$(PV):GH7:STAT") {
@@ -48,13 +52,13 @@ record (bi, "$(P)$(PV):GH7:STAT") {
     field(INP,  "$(P)$(PV):STAT.B1 CP MS")
     
     field(ZNAM, "GH7 Error")
-    field(ZRSV, "HIGH")
+    field(ZSV,  "MAJOR")
     
     field(ONAM, "GH7 OK")
-    field(ONSV, "NO_ALARM")
+    field(OSV,  "NO_ALARM")
     
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
 }
 
 record (bi, "$(P)$(PV):GH8:STAT") {
@@ -63,13 +67,13 @@ record (bi, "$(P)$(PV):GH8:STAT") {
     field(INP,  "$(P)$(PV):STAT.B2 CP MS")
 
     field(ZNAM, "GH8 Error")
-    field(ZRSV, "HIGH")
+    field(ZSV,  "MAJOR")
 
     field(ONAM, "GH8 OK")
-    field(ONSV, "NO_ALARM")
+    field(OSV,  "NO_ALARM")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
 }
 
 record (bi, "$(P)$(PV):CRYO_SYS:STAT") {
@@ -78,13 +82,13 @@ record (bi, "$(P)$(PV):CRYO_SYS:STAT") {
     field(INP,  "$(P)$(PV):STAT.B3 CP MS")
 
     field(ZNAM, "Cryo System Error")
-    field(ZRSV, "HIGH")
+    field(ZSV,  "MAJOR")
 
     field(ONAM, "Cryo System OK")
-    field(ONSV, "NO_ALARM")
+    field(OSV,  "NO_ALARM")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
 }
 
 record (bi, "$(P)$(PV):COOLDOWN:STAT") {
@@ -93,13 +97,13 @@ record (bi, "$(P)$(PV):COOLDOWN:STAT") {
     field(INP,  "$(P)$(PV):STAT.B4 CP MS")
 
     field(ZNAM, "Cooldown In Progress")
-    field(ZRSV, "MINOR")
+    field(ZSV,  "MINOR")
 
     field(ONAM, "Cooldown Complete")
-    field(ONSV, "NO_ALARM")
+    field(OSV,  "NO_ALARM")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
 }
 
 record (bi, "$(P)$(PV):MAG_EXCIT:STAT") {
@@ -108,13 +112,13 @@ record (bi, "$(P)$(PV):MAG_EXCIT:STAT") {
     field(INP,  "$(P)$(PV):STAT.B5 CP MS")
 
     field(ZNAM, "Magnet Excitation OFF")
-    field(ZRSV, "MINOR")
+    field(ZSV,  "MINOR")
 
     field(ONAM, "Magnet Excitation ON")
-    field(ONSV, "NO_ALARM")
+    field(OSV,  "NO_ALARM")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
 }
 
 record (bi, "$(P)$(PV):COMPRESSOR:STAT") {
@@ -123,11 +127,11 @@ record (bi, "$(P)$(PV):COMPRESSOR:STAT") {
     field(INP,  "$(P)$(PV):STAT.B6 CP MS")
 
     field(ZNAM, "Compressor OFF")
-    field(ZRSV, "MINOR")
+    field(ZSV,  "MINOR")
 
     field(ONAM, "Compressor ON")
-    field(ONSV, "NO_ALARM")
+    field(OSV,  "NO_ALARM")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
 }

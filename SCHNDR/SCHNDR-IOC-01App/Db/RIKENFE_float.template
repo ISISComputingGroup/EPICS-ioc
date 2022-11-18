@@ -10,7 +10,11 @@ record (ai, "$(P)$(PV)") {
     field(DTYP, "asynFloat64")
 
     info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(PV)")
 }
 
 record(ao,"$(P)SIM:$(PV)")

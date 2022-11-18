@@ -17,7 +17,7 @@ record (seq, "$(P)$(PV)") {
     field(LNK3, "$(P)$(PV):OUT PP")
 
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
 }
 
 record (bo, "$(P)$(PV):OUT") {
@@ -30,7 +30,11 @@ record (bo, "$(P)$(PV):OUT") {
     field(ONAM, "ONE")
 
     info(INTEREST, "LOW")
-    info(archive, "VAL")
+    info(ARCHIVE,  "VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(PV):OUT")
 }
 
 record(bo,"$(P)SIM:$(PV):OUT")
