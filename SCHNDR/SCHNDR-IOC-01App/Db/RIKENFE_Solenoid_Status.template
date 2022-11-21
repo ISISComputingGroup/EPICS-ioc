@@ -5,7 +5,8 @@ record (longin, "$(P)$(PV):STAT:RAW") {
     field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
     field(SCAN, "I/O Intr")
-
+    
+    field(EGU,  "")
     info(INTEREST, "LOW")
     info(ARCHIVE,  "VAL")
     info(ALARM,    "SCHNDR")

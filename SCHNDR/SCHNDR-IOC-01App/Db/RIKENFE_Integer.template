@@ -2,9 +2,12 @@
 record (ai, "$(P)$(PV)") {
 
     field(DESC, "$(DESC)")
-    field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))INT16")
     field(SCAN, "I/O Intr")
+    
+    field(DTYP, "asynInt32")
+    field(EGU,  "$(UNITS)")
+    field(PREC, "$(PRECISION)")
 
     info(INTEREST, "LOW")
     info(ARCHIVE,  "VAL")

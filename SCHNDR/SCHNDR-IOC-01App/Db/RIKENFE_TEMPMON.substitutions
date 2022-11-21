@@ -3,7 +3,7 @@
 # ===============================
 
 file RIKENFE_Header.template {
-    pattern { RECSIM DISABLE }
+    pattern { RECSIM, DISABLE }
     { "\$(RECSIM)", "\$(DISABLE)", }
 }
 
@@ -16,81 +16,81 @@ file RIKENFE_Header.template {
 
 
 file RIKENFE_Integer.template {
-    pattern { PV, PORTNAME, OFFSET, DESC }
+    pattern { PV, PORTNAME, OFFSET, DESC, UNITS, PRECISION }
 
-    { "RQ1:TEMPMON:TAP01", "temperature_monitoring",  "0",  "RQ1 Voltage Tap 1" }
-    { "RQ1:TEMPMON:TAP02", "temperature_monitoring",  "1",  "RQ1 Voltage Tap 2" }
-    { "RQ1:TEMPMON:TAP03", "temperature_monitoring",  "2",  "RQ1 Voltage Tap 3" }
-    { "RQ1:TEMPMON:TAP04", "temperature_monitoring",  "3",  "RQ1 Voltage Tap 4" }
-    { "RQ1:TEMPMON:TAP05", "temperature_monitoring",  "4",  "RQ1 Voltage Tap 5" }
-    { "RQ1:TEMPMON:TAP06", "temperature_monitoring",  "5",  "RQ1 Voltage Tap 6" }
-    { "RQ1:TEMPMON:TAP07", "temperature_monitoring",  "6",  "RQ1 Voltage Tap 7" }
-    { "RQ1:TEMPMON:TAP08", "temperature_monitoring",  "7",  "RQ1 Voltage Tap 8" }
-    { "RQ1:TEMPMON:TAP09", "temperature_monitoring",  "8",  "RQ1 Voltage Tap 9" }
-    { "RQ1:TEMPMON:TAP10", "temperature_monitoring",  "9", "RQ1 Voltage Tap 10" }
-    { "RQ1:TEMPMON:TAP11", "temperature_monitoring", "10", "RQ1 Voltage Tap 11" }
-    { "RQ1:TEMPMON:TAP12", "temperature_monitoring", "11", "RQ1 Voltage Tap 12" }
-    { "RQ1:TEMPMON:TAP13", "temperature_monitoring", "12", "RQ1 Voltage Tap 13" }
-    { "RQ1:TEMPMON:TAP14", "temperature_monitoring", "13", "RQ1 Voltage Tap 14" }
-    { "RQ1:TEMPMON:TAP15", "temperature_monitoring", "14", "RQ1 Voltage Tap 15" }
-    { "RQ1:TEMPMON:TAP16", "temperature_monitoring", "15", "RQ1 Voltage Tap 16" }
-    { "RQ1:TEMPMON:TAP17", "temperature_monitoring", "16", "RQ1 Voltage Tap 17" }
-    { "RQ1:TEMPMON:TAP18", "temperature_monitoring", "17", "RQ1 Voltage Tap 18" }
-    { "RQ1:TEMPMON:TAP19", "temperature_monitoring", "18", "RQ1 Voltage Tap 19" }
-    { "RQ1:TEMPMON:TAP20", "temperature_monitoring", "19", "RQ1 Voltage Tap 20" }
-    { "RQ1:TEMPMON:TAP21", "temperature_monitoring", "20", "RQ1 Voltage Tap 21" }
-    { "RQ1:TEMPMON:TAP22", "temperature_monitoring", "21", "RQ1 Voltage Tap 22" }
-    { "RQ1:TEMPMON:TAP23", "temperature_monitoring", "22", "RQ1 Voltage Tap 23" }
-    { "RQ1:TEMPMON:TAP24", "temperature_monitoring", "23", "RQ1 Voltage Tap 24" }
-    {  "RQ1:TEMPMON:DCCT", "temperature_monitoring", "24",           "RQ1 DCCT" }
-    { "RQ2:TEMPMON:TAP01", "temperature_monitoring", "25",  "RQ2 Voltage Tap 1" }
-    { "RQ2:TEMPMON:TAP02", "temperature_monitoring", "26",  "RQ2 Voltage Tap 2" }
-    { "RQ2:TEMPMON:TAP03", "temperature_monitoring", "27",  "RQ2 Voltage Tap 3" }
-    { "RQ2:TEMPMON:TAP04", "temperature_monitoring", "28",  "RQ2 Voltage Tap 4" }
-    { "RQ2:TEMPMON:TAP05", "temperature_monitoring", "29",  "RQ2 Voltage Tap 5" }
-    { "RQ2:TEMPMON:TAP06", "temperature_monitoring", "30",  "RQ2 Voltage Tap 6" }
-    { "RQ2:TEMPMON:TAP07", "temperature_monitoring", "31",  "RQ2 Voltage Tap 7" }
-    { "RQ2:TEMPMON:TAP08", "temperature_monitoring", "32",  "RQ2 Voltage Tap 8" }
-    { "RQ2:TEMPMON:TAP09", "temperature_monitoring", "33",  "RQ2 Voltage Tap 9" }
-    { "RQ2:TEMPMON:TAP10", "temperature_monitoring", "34", "RQ2 Voltage Tap 10" }
-    { "RQ2:TEMPMON:TAP11", "temperature_monitoring", "35", "RQ2 Voltage Tap 11" }
-    { "RQ2:TEMPMON:TAP12", "temperature_monitoring", "36", "RQ2 Voltage Tap 12" }
-    { "RQ2:TEMPMON:TAP13", "temperature_monitoring", "37", "RQ2 Voltage Tap 13" }
-    { "RQ2:TEMPMON:TAP14", "temperature_monitoring", "38", "RQ2 Voltage Tap 14" }
-    { "RQ2:TEMPMON:TAP15", "temperature_monitoring", "39", "RQ2 Voltage Tap 15" }
-    { "RQ2:TEMPMON:TAP16", "temperature_monitoring", "40", "RQ2 Voltage Tap 16" }
-    { "RQ2:TEMPMON:TAP17", "temperature_monitoring", "41", "RQ2 Voltage Tap 17" }
-    { "RQ2:TEMPMON:TAP18", "temperature_monitoring", "42", "RQ2 Voltage Tap 18" }
-    { "RQ2:TEMPMON:TAP19", "temperature_monitoring", "43", "RQ2 Voltage Tap 19" }
-    { "RQ2:TEMPMON:TAP20", "temperature_monitoring", "44", "RQ2 Voltage Tap 20" }
-    { "RQ2:TEMPMON:TAP21", "temperature_monitoring", "45", "RQ2 Voltage Tap 21" }
-    { "RQ2:TEMPMON:TAP22", "temperature_monitoring", "46", "RQ2 Voltage Tap 22" }
-    { "RQ2:TEMPMON:TAP23", "temperature_monitoring", "47", "RQ2 Voltage Tap 23" }
-    { "RQ2:TEMPMON:TAP24", "temperature_monitoring", "48", "RQ2 Voltage Tap 24" }
-    { "RQ2:TEMPMON:TAP25", "temperature_monitoring", "49", "RQ2 Voltage Tap 25" }
-    { "RQ2:TEMPMON:TAP26", "temperature_monitoring", "50", "RQ2 Voltage Tap 26" }
-    { "RQ2:TEMPMON:TAP27", "temperature_monitoring", "51", "RQ2 Voltage Tap 27" }
-    { "RQ2:TEMPMON:TAP28", "temperature_monitoring", "52", "RQ2 Voltage Tap 28" }
-    { "RQ2:TEMPMON:TAP29", "temperature_monitoring", "53", "RQ2 Voltage Tap 29" }
-    { "RQ2:TEMPMON:TAP30", "temperature_monitoring", "54", "RQ2 Voltage Tap 30" }
-    { "RQ2:TEMPMON:TAP31", "temperature_monitoring", "55", "RQ2 Voltage Tap 31" }
-    { "RQ2:TEMPMON:TAP32", "temperature_monitoring", "56", "RQ2 Voltage Tap 32" }
-    { "RQ2:TEMPMON:TAP33", "temperature_monitoring", "57", "RQ2 Voltage Tap 33" }
-    { "RQ2:TEMPMON:TAP34", "temperature_monitoring", "58", "RQ2 Voltage Tap 34" }
-    { "RQ2:TEMPMON:TAP35", "temperature_monitoring", "59", "RQ2 Voltage Tap 35" }
-    { "RQ2:TEMPMON:TAP36", "temperature_monitoring", "60", "RQ2 Voltage Tap 36" }
-    {  "RQ2:TEMPMON:DCCT", "temperature_monitoring", "61",           "RQ2 DCCT" }
-    { "RB1:TEMPMON:TAP01", "temperature_monitoring", "62",  "RB1 Voltage Tap 1" }
-    { "RB1:TEMPMON:TAP02", "temperature_monitoring", "63",  "RB1 Voltage Tap 2" }
-    { "RB1:TEMPMON:TAP03", "temperature_monitoring", "64",  "RB1 Voltage Tap 3" }
-    { "RB1:TEMPMON:TAP04", "temperature_monitoring", "65",  "RB1 Voltage Tap 4" }
-    { "RB1:TEMPMON:TAP05", "temperature_monitoring", "66",  "RB1 Voltage Tap 5" }
-    { "RB1:TEMPMON:TAP06", "temperature_monitoring", "67",  "RB1 Voltage Tap 6" }
-    { "RB1:TEMPMON:TAP07", "temperature_monitoring", "68",  "RB1 Voltage Tap 7" }
-    { "RB1:TEMPMON:TAP08", "temperature_monitoring", "69",  "RB1 Voltage Tap 8" }
-    { "RB1:TEMPMON:TAP09", "temperature_monitoring", "70",  "RB1 Voltage Tap 9" }
-    { "RB1:TEMPMON:TAP10", "temperature_monitoring", "71", "RB1 Voltage Tap 10" }
-    { "RB1:TEMPMON:TAP11", "temperature_monitoring", "72", "RB1 Voltage Tap 11" }
-    { "RB1:TEMPMON:TAP12", "temperature_monitoring", "73", "RB1 Voltage Tap 12" }
-    {  "RB1:TEMPMON:DCCT", "temperature_monitoring", "74",           "RB1 DCCT" }
+    { "RQ1:TEMPMON:TAP01", "temperature_monitoring",  "0",  "RQ1 Voltage Tap 1", "V", "3" }
+    { "RQ1:TEMPMON:TAP02", "temperature_monitoring",  "1",  "RQ1 Voltage Tap 2", "V", "3" }
+    { "RQ1:TEMPMON:TAP03", "temperature_monitoring",  "2",  "RQ1 Voltage Tap 3", "V", "3" }
+    { "RQ1:TEMPMON:TAP04", "temperature_monitoring",  "3",  "RQ1 Voltage Tap 4", "V", "3" }
+    { "RQ1:TEMPMON:TAP05", "temperature_monitoring",  "4",  "RQ1 Voltage Tap 5", "V", "3" }
+    { "RQ1:TEMPMON:TAP06", "temperature_monitoring",  "5",  "RQ1 Voltage Tap 6", "V", "3" }
+    { "RQ1:TEMPMON:TAP07", "temperature_monitoring",  "6",  "RQ1 Voltage Tap 7", "V", "3" }
+    { "RQ1:TEMPMON:TAP08", "temperature_monitoring",  "7",  "RQ1 Voltage Tap 8", "V", "3" }
+    { "RQ1:TEMPMON:TAP09", "temperature_monitoring",  "8",  "RQ1 Voltage Tap 9", "V", "3" }
+    { "RQ1:TEMPMON:TAP10", "temperature_monitoring",  "9", "RQ1 Voltage Tap 10", "V", "3" }
+    { "RQ1:TEMPMON:TAP11", "temperature_monitoring", "10", "RQ1 Voltage Tap 11", "V", "3" }
+    { "RQ1:TEMPMON:TAP12", "temperature_monitoring", "11", "RQ1 Voltage Tap 12", "V", "3" }
+    { "RQ1:TEMPMON:TAP13", "temperature_monitoring", "12", "RQ1 Voltage Tap 13", "V", "3" }
+    { "RQ1:TEMPMON:TAP14", "temperature_monitoring", "13", "RQ1 Voltage Tap 14", "V", "3" }
+    { "RQ1:TEMPMON:TAP15", "temperature_monitoring", "14", "RQ1 Voltage Tap 15", "V", "3" }
+    { "RQ1:TEMPMON:TAP16", "temperature_monitoring", "15", "RQ1 Voltage Tap 16", "V", "3" }
+    { "RQ1:TEMPMON:TAP17", "temperature_monitoring", "16", "RQ1 Voltage Tap 17", "V", "3" }
+    { "RQ1:TEMPMON:TAP18", "temperature_monitoring", "17", "RQ1 Voltage Tap 18", "V", "3" }
+    { "RQ1:TEMPMON:TAP19", "temperature_monitoring", "18", "RQ1 Voltage Tap 19", "V", "3" }
+    { "RQ1:TEMPMON:TAP20", "temperature_monitoring", "19", "RQ1 Voltage Tap 20", "V", "3" }
+    { "RQ1:TEMPMON:TAP21", "temperature_monitoring", "20", "RQ1 Voltage Tap 21", "V", "3" }
+    { "RQ1:TEMPMON:TAP22", "temperature_monitoring", "21", "RQ1 Voltage Tap 22", "V", "3" }
+    { "RQ1:TEMPMON:TAP23", "temperature_monitoring", "22", "RQ1 Voltage Tap 23", "V", "3" }
+    { "RQ1:TEMPMON:TAP24", "temperature_monitoring", "23", "RQ1 Voltage Tap 24", "V", "3" }
+    {  "RQ1:TEMPMON:DCCT", "temperature_monitoring", "24",           "RQ1 DCCT", "V", "3" }
+    { "RQ2:TEMPMON:TAP01", "temperature_monitoring", "25",  "RQ2 Voltage Tap 1", "V", "3" }
+    { "RQ2:TEMPMON:TAP02", "temperature_monitoring", "26",  "RQ2 Voltage Tap 2", "V", "3" }
+    { "RQ2:TEMPMON:TAP03", "temperature_monitoring", "27",  "RQ2 Voltage Tap 3", "V", "3" }
+    { "RQ2:TEMPMON:TAP04", "temperature_monitoring", "28",  "RQ2 Voltage Tap 4", "V", "3" }
+    { "RQ2:TEMPMON:TAP05", "temperature_monitoring", "29",  "RQ2 Voltage Tap 5", "V", "3" }
+    { "RQ2:TEMPMON:TAP06", "temperature_monitoring", "30",  "RQ2 Voltage Tap 6", "V", "3" }
+    { "RQ2:TEMPMON:TAP07", "temperature_monitoring", "31",  "RQ2 Voltage Tap 7", "V", "3" }
+    { "RQ2:TEMPMON:TAP08", "temperature_monitoring", "32",  "RQ2 Voltage Tap 8", "V", "3" }
+    { "RQ2:TEMPMON:TAP09", "temperature_monitoring", "33",  "RQ2 Voltage Tap 9", "V", "3" }
+    { "RQ2:TEMPMON:TAP10", "temperature_monitoring", "34", "RQ2 Voltage Tap 10", "V", "3" }
+    { "RQ2:TEMPMON:TAP11", "temperature_monitoring", "35", "RQ2 Voltage Tap 11", "V", "3" }
+    { "RQ2:TEMPMON:TAP12", "temperature_monitoring", "36", "RQ2 Voltage Tap 12", "V", "3" }
+    { "RQ2:TEMPMON:TAP13", "temperature_monitoring", "37", "RQ2 Voltage Tap 13", "V", "3" }
+    { "RQ2:TEMPMON:TAP14", "temperature_monitoring", "38", "RQ2 Voltage Tap 14", "V", "3" }
+    { "RQ2:TEMPMON:TAP15", "temperature_monitoring", "39", "RQ2 Voltage Tap 15", "V", "3" }
+    { "RQ2:TEMPMON:TAP16", "temperature_monitoring", "40", "RQ2 Voltage Tap 16", "V", "3" }
+    { "RQ2:TEMPMON:TAP17", "temperature_monitoring", "41", "RQ2 Voltage Tap 17", "V", "3" }
+    { "RQ2:TEMPMON:TAP18", "temperature_monitoring", "42", "RQ2 Voltage Tap 18", "V", "3" }
+    { "RQ2:TEMPMON:TAP19", "temperature_monitoring", "43", "RQ2 Voltage Tap 19", "V", "3" }
+    { "RQ2:TEMPMON:TAP20", "temperature_monitoring", "44", "RQ2 Voltage Tap 20", "V", "3" }
+    { "RQ2:TEMPMON:TAP21", "temperature_monitoring", "45", "RQ2 Voltage Tap 21", "V", "3" }
+    { "RQ2:TEMPMON:TAP22", "temperature_monitoring", "46", "RQ2 Voltage Tap 22", "V", "3" }
+    { "RQ2:TEMPMON:TAP23", "temperature_monitoring", "47", "RQ2 Voltage Tap 23", "V", "3" }
+    { "RQ2:TEMPMON:TAP24", "temperature_monitoring", "48", "RQ2 Voltage Tap 24", "V", "3" }
+    { "RQ2:TEMPMON:TAP25", "temperature_monitoring", "49", "RQ2 Voltage Tap 25", "V", "3" }
+    { "RQ2:TEMPMON:TAP26", "temperature_monitoring", "50", "RQ2 Voltage Tap 26", "V", "3" }
+    { "RQ2:TEMPMON:TAP27", "temperature_monitoring", "51", "RQ2 Voltage Tap 27", "V", "3" }
+    { "RQ2:TEMPMON:TAP28", "temperature_monitoring", "52", "RQ2 Voltage Tap 28", "V", "3" }
+    { "RQ2:TEMPMON:TAP29", "temperature_monitoring", "53", "RQ2 Voltage Tap 29", "V", "3" }
+    { "RQ2:TEMPMON:TAP30", "temperature_monitoring", "54", "RQ2 Voltage Tap 30", "V", "3" }
+    { "RQ2:TEMPMON:TAP31", "temperature_monitoring", "55", "RQ2 Voltage Tap 31", "V", "3" }
+    { "RQ2:TEMPMON:TAP32", "temperature_monitoring", "56", "RQ2 Voltage Tap 32", "V", "3" }
+    { "RQ2:TEMPMON:TAP33", "temperature_monitoring", "57", "RQ2 Voltage Tap 33", "V", "3" }
+    { "RQ2:TEMPMON:TAP34", "temperature_monitoring", "58", "RQ2 Voltage Tap 34", "V", "3" }
+    { "RQ2:TEMPMON:TAP35", "temperature_monitoring", "59", "RQ2 Voltage Tap 35", "V", "3" }
+    { "RQ2:TEMPMON:TAP36", "temperature_monitoring", "60", "RQ2 Voltage Tap 36", "V", "3" }
+    {  "RQ2:TEMPMON:DCCT", "temperature_monitoring", "61",           "RQ2 DCCT", "V", "3" }
+    { "RB1:TEMPMON:TAP01", "temperature_monitoring", "62",  "RB1 Voltage Tap 1", "V", "3" }
+    { "RB1:TEMPMON:TAP02", "temperature_monitoring", "63",  "RB1 Voltage Tap 2", "V", "3" }
+    { "RB1:TEMPMON:TAP03", "temperature_monitoring", "64",  "RB1 Voltage Tap 3", "V", "3" }
+    { "RB1:TEMPMON:TAP04", "temperature_monitoring", "65",  "RB1 Voltage Tap 4", "V", "3" }
+    { "RB1:TEMPMON:TAP05", "temperature_monitoring", "66",  "RB1 Voltage Tap 5", "V", "3" }
+    { "RB1:TEMPMON:TAP06", "temperature_monitoring", "67",  "RB1 Voltage Tap 6", "V", "3" }
+    { "RB1:TEMPMON:TAP07", "temperature_monitoring", "68",  "RB1 Voltage Tap 7", "V", "3" }
+    { "RB1:TEMPMON:TAP08", "temperature_monitoring", "69",  "RB1 Voltage Tap 8", "V", "3" }
+    { "RB1:TEMPMON:TAP09", "temperature_monitoring", "70",  "RB1 Voltage Tap 9", "V", "3" }
+    { "RB1:TEMPMON:TAP10", "temperature_monitoring", "71", "RB1 Voltage Tap 10", "V", "3" }
+    { "RB1:TEMPMON:TAP11", "temperature_monitoring", "72", "RB1 Voltage Tap 11", "V", "3" }
+    { "RB1:TEMPMON:TAP12", "temperature_monitoring", "73", "RB1 Voltage Tap 12", "V", "3" }
+    {  "RB1:TEMPMON:DCCT", "temperature_monitoring", "74",           "RB1 DCCT", "V", "3" }
 }
