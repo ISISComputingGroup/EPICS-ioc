@@ -97,7 +97,7 @@ endif
 
 ## modules not to build on windows 32bit
 ifneq ($(findstring win32,$(EPICS_HOST_ARCH)),)
-DIRS_NOTBUILD += ISISDAE MK3CHOPR ASTRIUM
+DIRS_NOTBUILD += MK3CHOPR ASTRIUM
 endif
 
 ## modules not to build if static
