@@ -2,13 +2,12 @@
 record (calc, "$(P)$(PV)") {
 
     field(DESC, "$(DESC) summary.")
-    field(INPA, "$(P)$(GH1):STAT")
-    field(INPB, "$(P)$(GH2):STAT")
-    field(INPC, "$(P)$(GH3):STAT")
-    field(INPD, "$(P)$(GH4):STAT")
-    field(INPE, "$(P)TP$(NUM):STAT")
-    field(INPF, "$(P)BP$(NUM):STAT")
-    field(INPG, "$(P)PIV$(NUM):STAT")
+    field(INPA, "$(P)$(GH1):STAT CP MSS")
+    field(INPB, "$(P)$(GH2):STAT CP MSS")
+    field(INPC, "$(P)$(GH3):STAT CP MSS")
+    field(INPD, "$(P)$(GH4):STAT CP MSS")
+    field(INPE, "$(P)TP$(NUM):STAT CP MSS")
+    field(INPF, "$(P)BP$(NUM):STAT CP MSS")
+    field(INPG, "$(P)PIV$(NUM):STAT CP MSS")
     field(CALC, "(A==1||A==2)&&(B==1||B==2)&&(C==1||C==2)&&(D==1||D==2)&&(E==1||E==2||E==3)&&(F==1||F==2||F==3)&&(G==1||G==2||G==3)")
-    field(SCAN, "I/O Intr")
 }
