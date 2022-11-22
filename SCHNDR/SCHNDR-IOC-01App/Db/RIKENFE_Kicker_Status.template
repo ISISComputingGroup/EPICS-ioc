@@ -30,12 +30,13 @@ record (mbbi, "$(P)$(MODE_PV)") {
     info(ARCHIVE,  "VAL")
 
     field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(MODE_PV)")
+    field(SIOL, "$(P)SIM:$(MODE_PV) CP")
 }
 
-record(longout,"$(P)SIM:$(MODE_PV)")
-{
+record(longout,"$(P)SIM:$(MODE_PV)") {
+
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
@@ -71,12 +72,13 @@ record (mbbi, "$(P)$(STATE_PV)") {
     info(ARCHIVE,  "VAL")
     
     field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(STATE_PV)")
+    field(SIOL, "$(P)SIM:$(STATE_PV) CP")
 }
 
-record(longout,"$(P)SIM:$(STATE_PV)")
-{
+record(longout,"$(P)SIM:$(STATE_PV)") {
+
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
@@ -112,12 +114,13 @@ record (mbbi, "$(P)$(READY_PV)") {
     info(ARCHIVE,  "VAL")
     
     field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(READY_PV)")
+    field(SIOL, "$(P)SIM:$(READY_PV) CP")
 }
 
-record(longout,"$(P)SIM:$(READY_PV)")
-{
+record(longout,"$(P)SIM:$(READY_PV)") {
+
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
@@ -153,12 +156,13 @@ record (mbbi, "$(P)$(PSU_PV)") {
     info(ARCHIVE,  "VAL")
 
     field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(PSU_PV)")
+    field(SIOL, "$(P)SIM:$(PSU_PV) CP")
 }
 
-record(longout,"$(P)SIM:$(PSU_PV)")
-{
+record(longout,"$(P)SIM:$(PSU_PV)") {
+
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
@@ -194,12 +198,13 @@ record (mbbi, "$(P)$(HV_PV)") {
     info(ARCHIVE,  "VAL")
 
     field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(HV_PV)")
+    field(SIOL, "$(P)SIM:$(HV_PV) CP")
 }
 
-record(longout,"$(P)SIM:$(HV_PV)")
-{
+record(longout,"$(P)SIM:$(HV_PV)") {
+
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }

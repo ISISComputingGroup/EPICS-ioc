@@ -37,8 +37,8 @@ record (bo, "$(P)$(PV):OUT") {
     field(SIOL, "$(P)SIM:$(PV):OUT")
 }
 
-record(bo,"$(P)SIM:$(PV):OUT")
-{
+record(bo,"$(P)SIM:$(PV):OUT") {
+
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }

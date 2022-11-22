@@ -12,12 +12,14 @@ record (longin, "$(P)$(PV):STAT:RAW") {
     info(ALARM,    "SCHNDR")
 
     field(SDIS, "$(P)DISABLE")
+
+    field(SSCN, "Passive")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(PV):STAT:RAW")
+    field(SIOL, "$(P)SIM:$(PV):STAT:RAW CP")
 }
 
-record(longout,"$(P)SIM:$(PV):STAT:RAW")
-{
+record(longout,"$(P)SIM:$(PV):STAT:RAW") {
+
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }

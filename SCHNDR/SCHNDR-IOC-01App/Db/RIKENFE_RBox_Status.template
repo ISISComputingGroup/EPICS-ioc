@@ -30,12 +30,13 @@ record (mbbi, "$(P)$(RBOX_PV)") {
     info(ARCHIVE,  "VAL")
 
     field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(RBOX_PV)")
+    field(SIOL, "$(P)SIM:$(RBOX_PV) CP")
 }
 
-record(longout,"$(P)SIM:$(RBOX_PV)")
-{
+record(longout,"$(P)SIM:$(RBOX_PV)") {
+
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
@@ -71,12 +72,13 @@ record (mbbi, "$(P)$(BYPASS_PV)") {
     info(ARCHIVE,  "VAL")
 
     field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(BYPASS_PV)")
+    field(SIOL, "$(P)SIM:$(BYPASS_PV) CP")
 }
 
-record(longout,"$(P)SIM:$(BYPASS_PV)")
-{
+record(longout,"$(P)SIM:$(BYPASS_PV)") {
+
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }

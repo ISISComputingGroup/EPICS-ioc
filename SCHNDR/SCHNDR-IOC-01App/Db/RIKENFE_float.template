@@ -13,12 +13,13 @@ record (ai, "$(P)$(PV)") {
     info(ARCHIVE,  "VAL")
 
     field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(PV)")
+    field(SIOL, "$(P)SIM:$(PV) CP")
 }
 
-record(ao,"$(P)SIM:$(PV)")
-{
+record(ao,"$(P)SIM:$(PV)") {
+
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
