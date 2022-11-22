@@ -29,7 +29,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-stringiftest("2023A" "$(DEV_TYPE="2023A")" 5 "2023A")
+stringiftest("2023A", "$(DEV_TYPE=2023A)", 5, "2023A")
 $(IF2023A) dbLoadRecords("$(AEROFLEX)/db/aeroflex_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),DEV_TYPE=$(DEV_TYPE=2023A),RF_PREC=6")
 $(IFNOT2023A) dbLoadRecords("$(AEROFLEX)/db/aeroflex_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),DEV_TYPE=$(DEV_TYPE=2030),RF_PREC=2")
 
