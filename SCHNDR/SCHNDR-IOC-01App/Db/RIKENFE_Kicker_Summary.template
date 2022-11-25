@@ -15,7 +15,7 @@ record(calc, "$(P)$(TARGET):SUMMARY:POWER"){
     field(INPE,  "$(P)$(PV2):PSU_ON:STAT CP MSS")
     field(INPF,  "$(P)$(PV3):PSU_ON:STAT CP MSS")
     field(INPG,  "$(P)$(PV4):PSU_ON:STAT CP MSS")
-    field(CALC,   "((D==1)&&(E==1)&&(F==1)&&(G==1))?1:(((D==2)&&(E==2)&&(F==2)&&(G==2))?2:3))")
+    field(CALC,   "((D==1)&&(E==1)&&(F==1)&&(G==1))?1:(((D==2)&&(E==2)&&(F==2)&&(G==2))?2:3)")
 }
 
 record(calc, "$(TARGET):CONNECTION:STAT") {
@@ -51,9 +51,7 @@ record(calc, "$(P)$(TARGET):CURRENT:TOTAL") {
 record (mbbi, "$(P)$(TARGET):SUMMARY:ENUM") {
 
     field(DESC, "$(TARGET) Summary Enum")
-    field(DTYP, "asynInt32")
     field(INP,  "$(P)$(TARGET):SUMMARY:STAT CP MSS")
-    field(SCAN, "Passive")
 
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
