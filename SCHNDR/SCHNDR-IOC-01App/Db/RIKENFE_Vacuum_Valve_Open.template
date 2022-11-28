@@ -34,10 +34,10 @@ record (bo, "$(P)$(PV):OUT") {
 
     field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(PV):OUT")
+    field(SIOL, "$(P)SIM:$(PV):OUT PP")
 }
 
-record(bo,"$(P)SIM:$(PV):OUT") {
+record(longout,"$(P)SIM:$(PV):OUT") {
 
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
