@@ -4,7 +4,7 @@ record (calc, "$(P)$(TARGET):SUMMARY:ILK") {
     field(DESC, "$(TARGET) Interlock State Summary")
     field(INPA,  "$(P)$(TARGET):WATER:ILK:STAT CP MSS")
     field(INPB,  "$(P)$(TARGET):VACUUM:ILK:STAT CP MSS")
-    field(INPC,  "$(P)$(TARGET):MOL:ILK:STAT CP MSS")
+    field(INPC,  "$(P)$(TARGET):MOL:STAT CP MSS")
 
     field(CALC , "((A==4)||(B==4)||(C==4))")
 }
@@ -18,11 +18,11 @@ record(calc, "$(P)$(TARGET):SUMMARY:POWER"){
     field(CALC,   "((D==1)&&(E==1)&&(F==1)&&(G==1))?1:(((D==2)&&(E==2)&&(F==2)&&(G==2))?2:3)")
 }
 
-record(calc, "$(TARGET):CONNECTION:STAT") {
+record(calc, "$(P)$(TARGET):CONNECTION:STAT") {
     field(DESC, "$(TARGET) Connection Summary")
     field(INPA,  "$(P)$(TARGET):WATER:ILK:STAT CP MSS")
     field(INPB,  "$(P)$(TARGET):VACUUM:ILK:STAT CP MSS")
-    field(INPC,  "$(P)$(TARGET):MOL:ILK:STAT CP MSS")
+    field(INPC,  "$(P)$(TARGET):MOL:STAT CP MSS")
     field(INPD,  "$(P)$(PV1):PSU_ON:STAT CP MSS")
     field(INPE,  "$(P)$(PV2):PSU_ON:STAT CP MSS")
     field(INPF,  "$(P)$(PV3):PSU_ON:STAT CP MSS")
@@ -35,14 +35,14 @@ record(calc, "$(P)$(TARGET):SUMMARY:STAT") {
     field(INPB, "$(P)$(TARGET):SUMMARY:POWER CP MSS")
     field(INPC, "$(P)$(TARGET):SUMMARY:ILK CP MSS")
     field(DESC, "$(TARGET) Status Summary CP MSS")
-    field(CALC, "A?A:(C==4?C:B)")
+    field(CALC, "A?0:(C==1?4:B)")
 }
 
 record(calc, "$(P)$(TARGET):CURRENT:TOTAL") {
     field(INPA, "$(P)$(PV1):CURR CP MSS")
-    field(INPA, "$(P)$(PV2):CURR CP MSS")
-    field(INPA, "$(P)$(PV3):CURR CP MSS")
-    field(INPA, "$(P)$(PV4):CURR CP MSS")
+    field(INPB, "$(P)$(PV2):CURR CP MSS")
+    field(INPC, "$(P)$(PV3):CURR CP MSS")
+    field(INPD, "$(P)$(PV4):CURR CP MSS")
     field(CALC, "A+B+C+D")
     field(EGU, "kA")
     field(PREC, "3")
