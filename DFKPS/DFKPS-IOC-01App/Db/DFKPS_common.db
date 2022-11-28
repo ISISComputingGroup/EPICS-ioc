@@ -305,3 +305,59 @@ record(bo, "$(P)SIM:POL"){
     field(DTYP, "Soft Channel")
 }
 alias("$(P)SIM:POL", "$(P)SIM:POL:SP")
+
+record(ao, "$(P)CURR:HLM"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "A")
+}
+
+record(ao, "$(P)CURR:LLM"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "A")
+}
+
+record(calc, "$(P)CURR:LIMIT") {
+    field(DESC, "Current Within Limit")
+    field(CALC, "(C<A)||(B<C)")
+    field(INPA, "$(P)CURR:LLM CP")
+    field(INPB, "$(P)CURR:HLM CP")
+    field(INPC, "$(P)CURR CP")
+}
+
+record(ao, "$(P)VOLT:HLM"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "V")
+}
+
+record(ao, "$(P)VOLT:LLM"){
+    field(DTYP, "Soft Channel")
+    field(EGU, "V")
+}
+
+record(calc, "$(P)VOLT:LIMIT") {
+    field(DESC, "Voltage Within Limit")
+    field(CALC, "(C<A)||(B<C)")
+    field(INPA, "$(P)VOLT:LLM CP")
+    field(INPB, "$(P)VOLT:HLM CP")
+    field(INPC, "$(P)VOLT CP")
+}
+
+record(calc, "$(P)LIMIT") {
+    field(DESC, "LIMIT HIT")
+    field(CALC, "A?(B?3:1):(B?2:0)")
+    field(INPA, "$(P)VOLT:LIMIT CP")
+    field(INPB, "$(P)CURR:LIMIT CP")
+}
+
+record(mbbi, "$(P)LIMIT:ENUM") {
+    field(INP, "$(P)LIMIT CP")
+    field(DESC, "Display Limit")
+    field(ZRST, "No")        
+    field(ZRVL, "0")
+    field(ONST, "VOLT LIMIT")         
+    field(ONVL, "1")
+    field(TWST, "CURR LIMIT")         
+    field(TWVL, "2")
+    field(THST, "BOTH LIMITS")       
+    field(THVL, "3")
+}
