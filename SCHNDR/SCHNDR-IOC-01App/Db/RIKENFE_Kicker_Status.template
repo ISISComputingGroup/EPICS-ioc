@@ -2,9 +2,9 @@
 record (mbbi, "$(P)$(MODE_PV)") {
 
     field(DESC, "$(NAME_DESC) Control Mode")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(MODE_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(MODE_OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
 
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
@@ -44,9 +44,9 @@ record(longout,"$(P)SIM:$(MODE_PV)") {
 record (mbbi, "$(P)$(STATE_PV)") {
 
     field(DESC, "$(NAME_DESC) State")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(STATE_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(STATE_OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
 
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
@@ -86,9 +86,9 @@ record(longout,"$(P)SIM:$(STATE_PV)") {
 record (mbbi, "$(P)$(READY_PV)") {
 
     field(DESC, "$(NAME_DESC) Ready")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(READY_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(READY_OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
 
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
@@ -128,9 +128,9 @@ record(longout,"$(P)SIM:$(READY_PV)") {
 record (mbbi, "$(P)$(PSU_PV)") {
 
     field(DESC, "$(NAME_DESC) PSU Status")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(PSU_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(PSU_OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
 
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
@@ -170,9 +170,9 @@ record(longout,"$(P)SIM:$(PSU_PV)") {
 record (mbbi, "$(P)$(HV_PV)") {
 
     field(DESC, "$(NAME_DESC) HV Status")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(HV_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(HV_OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
     
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")

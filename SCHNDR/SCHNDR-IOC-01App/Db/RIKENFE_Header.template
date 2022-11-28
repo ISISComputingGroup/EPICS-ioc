@@ -2,6 +2,7 @@
 record(bo, "$(P)SIM") 
 {
     field(DESC, "Simulation Mode")
+    field(PINI, "YES")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
     field(ZNAM, "NO")
