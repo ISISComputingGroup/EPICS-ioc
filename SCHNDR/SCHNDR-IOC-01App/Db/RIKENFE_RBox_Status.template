@@ -2,9 +2,9 @@
 record (mbbi, "$(P)$(RBOX_PV)") {
 
     field(DESC, "$(RBOX_DESC)")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(RBOX_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(RBOX_OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
 
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")
@@ -44,9 +44,9 @@ record(longout,"$(P)SIM:$(RBOX_PV)") {
 record (mbbi, "$(P)$(BYPASS_PV)") {
 
     field(DESC, "$(BYPASS_DESC)")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(BYPASS_OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(BYPASS_OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
 
     field(ZRVL, 0)
     field(ZRST, "Comms Loss")

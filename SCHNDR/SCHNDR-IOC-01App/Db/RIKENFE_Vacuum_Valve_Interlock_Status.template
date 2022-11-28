@@ -2,9 +2,9 @@
 record (longin, "$(P)$(PV):RAW") {
 
     field(DESC, "$(DESC) raw value")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
-    field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
 
     field(EGU,  "")
     info(INTEREST, "LOW")
