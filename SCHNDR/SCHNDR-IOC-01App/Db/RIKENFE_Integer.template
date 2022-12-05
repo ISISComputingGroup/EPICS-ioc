@@ -1,11 +1,11 @@
 
 record (ai, "$(P)$(PV)") {
 
-    $(IFNOTRECSIM) field(DESC, "$(DESC)")
+    field(DESC, "$(DESC)")
     $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))INT16")
     $(IFNOTRECSIM) field(SCAN, "I/O Intr")
     
-    field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
     field(EGU,  "$(UNITS)")
     field(PREC, "$(PRECISION)")
 
