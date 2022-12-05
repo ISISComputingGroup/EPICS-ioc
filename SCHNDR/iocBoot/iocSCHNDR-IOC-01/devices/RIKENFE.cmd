@@ -111,4 +111,4 @@ $(IFNOTRECSIM) # ----------------------===========================--------------
 dbLoadRecords("$(TOP)/db/RIKENFE.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PLC),RECSIM=$(RECSIM),DISABLE=$(DISABLE),IFNOTRECSIM=$(IFNOTRECSIM)")
 
 ## Load record instances for Temperature Monitoring
-dbLoadRecords("$(TOP)/db/RIKENFE_TEMPMON.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PLC),RECSIM=$(RECSIM),DISABLE=$(DISABLE)")
+dbLoadRecords("$(TOP)/db/RIKENFE_TEMPMON.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PLC),RECSIM=$(RECSIM),DISABLE=$(DISABLE), IFNOTRECSIM=$(IFNOTRECSIM)")

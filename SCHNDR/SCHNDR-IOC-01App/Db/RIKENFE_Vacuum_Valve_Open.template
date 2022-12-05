@@ -23,8 +23,8 @@ record (seq, "$(P)$(PV)") {
 record (bo, "$(P)$(PV):OUT") {
 
     field(DESC, "Output to PLC")
-    field(DTYP, "asynInt32")
-    field(OUT,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(OUT,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
 
     field(ZNAM, "ZERO")
     field(ONAM, "ONE")
