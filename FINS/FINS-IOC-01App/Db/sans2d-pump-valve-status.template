@@ -6,7 +6,7 @@
 record(bi, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:V$(VALVE_NUM)_OPEN") {
     field(DESC, "Pump $(PUMP_NUM) V$(VALVE_NUM) open")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(PLC, $(ADDR), 5.0) $(BIT0)")
+    field(INP,  "@asyn(PLC, $(ADDR), $(TIMEOUT=5.0)) $(BIT0)")
     field(SCAN, "1 second")
     field(ONAM, "OPEN")
     field(ZNAM, "CLOSED")
@@ -19,7 +19,7 @@ record(bi, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:V$(VALVE_NUM)_OPEN") {
 record(bi, "$(FULL_PREFIX)PUMP$(PUMP_NUM)_STAT:V$(VALVE_NUM)_ERROR") {
     field(DESC, "Pump $(PUMP_NUM) V$(VALVE_NUM) error")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(PLC, $(ADDR), 5.0) $(BIT1)")
+    field(INP,  "@asyn(PLC, $(ADDR), $(TIMEOUT=5.0)) $(BIT1)")
     field(SCAN, "1 second")
     field(ZNAM, "OK")
     field(ONAM, "ERROR")

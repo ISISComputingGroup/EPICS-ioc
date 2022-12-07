@@ -3,7 +3,7 @@ record(waveform, "$(P)$(Q)$(PV_NAME):_RAW")
 {
 	field(DESC, "Record to read array of 1 16 bit int")
 	field(DTYP, "asynInt16ArrayIn")
-	field(INP,  "@asyn(PLC, $(MEMORY_ADDRESS), 5.0) FINS_DM_READ")
+	field(INP,  "@asyn(PLC, $(MEMORY_ADDRESS), $(TIMEOUT=5.0)) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
 	field(NELM, "1")

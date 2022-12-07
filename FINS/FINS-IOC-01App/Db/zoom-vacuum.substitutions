@@ -1,4 +1,4 @@
-
+global{TIMEOUT="\$(TIMEOUT=5.0)"}
 
 file "$(TOP)/FINS-IOC-01App/Db/zoom-vacuum-base.template" {
 	pattern{ P, Q, RECSIM, DISABLE }
