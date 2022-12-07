@@ -9,8 +9,16 @@
     <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." defaultValue="8" hasDefault="YES" />
     <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." defaultValue="none" hasDefault="YES" />
     <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
-    <macro name="HAS_CHAN1" pattern="^Y|N$" description="Is channel 1 present on this device" hasDefault="YES" defaultValue="Y" />
-    <macro name="HAS_CHAN2" pattern="^Y|N$" description="Is channel 2 present on this device" hasDefault="YES" defaultValue="Y" />
+    <macro name="ADDR" pattern="^[0-9A-F]{2}$" description="The address of the module." defaultValue="01" hasDefault="YES" />
+    <macro name="INP_0_CONNECTED" pattern="^(YES)|(NO)$" description="Is input channel 0 connected." defaultValue="YES" hasDefault="YES" />
+    <macro name="INP_1_CONNECTED" pattern="^(YES)|(NO)$" description="Is input channel 1 connected." defaultValue="YES" hasDefault="YES" />
+    <macro name="INP_2_CONNECTED" pattern="^(YES)|(NO)$" description="Is input channel 2 connected." defaultValue="YES" hasDefault="YES" />
+    <macro name="INP_3_CONNECTED" pattern="^(YES)|(NO)$" description="Is input channel 3 connected." defaultValue="YES" hasDefault="YES" />
+    <macro name="INP_4_CONNECTED" pattern="^(YES)|(NO)$" description="Is input channel 4 connected." defaultValue="YES" hasDefault="YES" />
+    <macro name="INP_5_CONNECTED" pattern="^(YES)|(NO)$" description="Is input channel 5 connected." defaultValue="YES" hasDefault="YES" />
+    <macro name="INP_6_CONNECTED" pattern="^(YES)|(NO)$" description="Is input channel 6 connected." defaultValue="YES" hasDefault="YES" />
+    <macro name="INP_7_CONNECTED" pattern="^(YES)|(NO)$" description="Is input channel 7 connected." defaultValue="YES" hasDefault="YES" />
+    <macro name="UNITS" pattern="^.+$" description="Units for the input values." defaultValue="C" hasDefault="YES" />
   </macros>
  </config_part>
 </ioc_config>
