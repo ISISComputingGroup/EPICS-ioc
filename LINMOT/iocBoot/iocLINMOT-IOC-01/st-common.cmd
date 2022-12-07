@@ -1,6 +1,9 @@
 
 < $(IOCSTARTUP)/init.cmd
 
+## whether to use autosaved SP for jaws on IOC restart
+stringiftest("INIT_JAWS_FROM_AS", "$(JAWS_POS_FROM_AS=N)", 5, "Y")
+
 < $(IOCSTARTUP)/dbload.cmd
 
 # specify additional directories in which to to search for included request files

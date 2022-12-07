@@ -4,6 +4,8 @@
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+epicsEnvSet("FINS_IGNORE_NONFATAL_CPU", "$(IGNORE_NONFATAL_CPU_ERROR=0)")
+
 epicsEnvSet("FINSCONFIG","$(FINSCONFIGDIR=$(ICPCONFIGROOT)/fins)")
 
 ## configure PLCs - will look for FINS_01.cmd etc based on IOC name
