@@ -118,7 +118,6 @@ ss cryomagnet
     when(
       within_tolerance(field_setpoint_readback, magnet_field, field_tolerance) 
       && within_tolerance(psu_field, magnet_field, field_tolerance) 
-      && (activity == ACTIVITY_TO_SP)
       && ((sweepmode == SWEEP_MODE) || (sweepmode == SWEEP_MODE_ALT))
       && (sweep_active == 0)
       )
@@ -209,7 +208,6 @@ ss cryomagnet
       within_tolerance(field_setpoint_readback, field_setpoint, field_tolerance) 
       && within_tolerance(field_setpoint, psu_field, field_tolerance) 
       && persistent == 1 
-      && activity == ACTIVITY_TO_SP
       && (sweep_active == 0)
       )
     {
@@ -221,7 +219,6 @@ ss cryomagnet
       within_tolerance(field_setpoint_readback, field_setpoint, field_tolerance) 
       && within_tolerance(field_setpoint, psu_field, field_tolerance) 
       && persistent == 0 
-      && activity == ACTIVITY_TO_SP
       && (sweep_active == 0)
       )
     {
@@ -276,8 +273,7 @@ ss cryomagnet
     }
 
     when(
-      within_tolerance(psu_field, 0, field_tolerance) 
-      && activity == ACTIVITY_TO_ZERO
+      within_tolerance(psu_field, 0, field_tolerance)
       && (sweep_active == 0)
       )
     {
