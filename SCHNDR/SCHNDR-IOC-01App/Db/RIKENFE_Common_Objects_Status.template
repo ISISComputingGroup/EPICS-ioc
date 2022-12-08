@@ -1,0 +1,42 @@
+
+record (mbbi, "$(P)$(PV)") {
+
+    field(DESC, "$(DESC)")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+
+    field(ZRVL, 0)
+    field(ZRST, "Comms Loss")
+    field(ZRSV, "INVALID")
+
+    field(ONVL, 1)
+    field(ONST, "Not Used")
+    field(ONSV, "NO_ALARM")
+
+    field(TWVL, 2)
+    field(TWST, "Healthy")
+    field(TWSV, "NO_ALARM")
+
+    field(THVL, 3)
+    field(THST, "Warning")
+    field(THSV, "MINOR")
+
+    field(FRVL, 4)
+    field(FRST, "Fault")
+    field(FRSV, "MAJOR")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+    
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(PV) CP")
+}
+
+record(longout,"$(P)SIM:$(PV)") {
+
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}

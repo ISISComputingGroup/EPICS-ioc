@@ -10,7 +10,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-DB += GEMGateValve.db
+DB += GEMGateValve.db RIKENFE.db RIKENFE_TEMPMON.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
@@ -19,4 +19,3 @@ DB += GEMGateValve.db
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
-

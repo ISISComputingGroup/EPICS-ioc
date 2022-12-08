@@ -1,0 +1,210 @@
+
+record (mbbi, "$(P)$(MODE_PV)") {
+
+    field(DESC, "$(NAME_DESC) Control Mode")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(MODE_OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+
+    field(ZRVL, 0)
+    field(ZRST, "Comms Loss")
+    field(ZRSV, "INVALID")
+
+    field(ONVL, 1)
+    field(ONST, "Local")
+    field(ONSV, "MINOR")
+
+    field(TWVL, 2)
+    field(TWST, "Remote")
+    field(TWSV, "NO_ALARM")
+
+    field(THVL, 3)
+    field(THST, "Warning")
+    field(THSV, "MINOR")
+
+    field(FRVL, 4)
+    field(FRST, "Fault")
+    field(FRSV, "MAJOR")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(MODE_PV) CP")
+}
+
+record(longout,"$(P)SIM:$(MODE_PV)") {
+
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record (mbbi, "$(P)$(STATE_PV)") {
+
+    field(DESC, "$(NAME_DESC) State")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(STATE_OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+
+    field(ZRVL, 0)
+    field(ZRST, "Comms Loss")
+    field(ZRSV, "INVALID")
+
+    field(ONVL, 1)
+    field(ONST, "Abnormal")
+    field(ONSV, "MINOR")
+
+    field(TWVL, 2)
+    field(TWST, "Normal")
+    field(TWSV, "NO_ALARM")
+
+    field(THVL, 3)
+    field(THST, "Warning")
+    field(THSV, "MINOR")
+
+    field(FRVL, 4)
+    field(FRST, "Fault")
+    field(FRSV, "MAJOR")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+    
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(STATE_PV) CP")
+}
+
+record(longout,"$(P)SIM:$(STATE_PV)") {
+
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record (mbbi, "$(P)$(READY_PV)") {
+
+    field(DESC, "$(NAME_DESC) Ready")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(READY_OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+
+    field(ZRVL, 0)
+    field(ZRST, "Comms Loss")
+    field(ZRSV, "INVALID")
+
+    field(ONVL, 1)
+    field(ONST, "Not Ready")
+    field(ONSV, "MINOR")
+
+    field(TWVL, 2)
+    field(TWST, "Ready")
+    field(TWSV, "NO_ALARM")
+
+    field(THVL, 3)
+    field(THST, "Warning")
+    field(THSV, "MINOR")
+
+    field(FRVL, 4)
+    field(FRST, "Fault")
+    field(FRSV, "MAJOR")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+    
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(READY_PV) CP")
+}
+
+record(longout,"$(P)SIM:$(READY_PV)") {
+
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record (mbbi, "$(P)$(PSU_PV)") {
+
+    field(DESC, "$(NAME_DESC) PSU Status")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(PSU_OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+
+    field(ZRVL, 0)
+    field(ZRST, "Comms Loss")
+    field(ZRSV, "INVALID")
+
+    field(ONVL, 1)
+    field(ONST, "Off")
+    field(ONSV, "MINOR")
+
+    field(TWVL, 2)
+    field(TWST, "On")
+    field(TWSV, "NO_ALARM")
+
+    field(THVL, 3)
+    field(THST, "Warning")
+    field(THSV, "MINOR")
+
+    field(FRVL, 4)
+    field(FRST, "Fault")
+    field(FRSV, "MAJOR")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(PSU_PV) CP")
+}
+
+record(longout,"$(P)SIM:$(PSU_PV)") {
+
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record (mbbi, "$(P)$(HV_PV)") {
+
+    field(DESC, "$(NAME_DESC) HV Status")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(HV_OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+    
+    field(ZRVL, 0)
+    field(ZRST, "Comms Loss")
+    field(ZRSV, "INVALID")
+
+    field(ONVL, 1)
+    field(ONST, "Off")
+    field(ONSV, "MINOR")
+
+    field(TWVL, 2)
+    field(TWST, "On")
+    field(TWSV, "NO_ALARM")
+
+    field(THVL, 3)
+    field(THST, "Warning")
+    field(THSV, "MINOR")
+
+    field(FRVL, 4)
+    field(FRST, "Fault")
+    field(FRSV, "MAJOR")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(HV_PV) CP")
+}
+
+record(longout,"$(P)SIM:$(HV_PV)") {
+
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}

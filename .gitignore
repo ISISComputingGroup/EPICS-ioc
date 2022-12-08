@@ -43,3 +43,4 @@ NULL
 .vs/
 .idea
 *.suo
+.vscode/
