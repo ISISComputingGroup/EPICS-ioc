@@ -693,6 +693,9 @@ record(mbbi, "$(P)SWEEPMODE:PARAMS") {
   field(NIST, "Tesla Unaffected")
   field(NIVL, "9")
   
+  field(VAL, "3")
+  field(PINI, "YES")
+  
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:SWEEPMODE:PARAMS")
   field(SDIS, "$(P)DISABLE")
