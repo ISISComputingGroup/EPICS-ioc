@@ -32,7 +32,7 @@ SMC9300CreateController("SMC$(MTRCTRL)","Huber$(MTRCTRL)", $(AXISPLUS1), 100, 10
 
 # Load asyn record 
 dbLoadRecordsLoop("$(TOP)/db/asyn_motor.db", "P=$(MYPVPREFIX),M=$(AMOTORPV)\$(I),PORT=SMC$(MTRCTRL),ADDR=\$(I)", "I", 1, $(NUMBERAXES)
-dbLoadRecordsLoop("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=$(AMOTORPV)\$(I)", "I", 1, $(NUMBERAXES))
+dbLoadRecordsLoop("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=$(AMOTORPV)\$(I),IOCNAME=$(IOCNAME)", "I", 1, $(NUMBERAXES))
 dbLoadRecordsLoop("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS\$(I),mAXIS=$(AMOTORPV)\$(I)", "I", 1, $(NUMBERAXES)) 
 
 autosaveBuild("$(IOCNAME)_built_settings.req", "_settings.req", 0)

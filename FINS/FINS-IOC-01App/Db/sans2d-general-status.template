@@ -41,7 +41,7 @@ record(longin, "$(FULL_PREFIX)HEARTBEAT")
 {
     field(DESC, "Heartbeat of the FINS PLC")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(PLC, 1000, 5.0) FINS_DM_READ")
+    field(INP,  "@asyn(PLC, 1000, $(TIMEOUT=5.0)) FINS_DM_READ")
     field(SCAN, "1 second")
     field(EGU, "")
     field(SIML, "$(FULL_PREFIX)SIM")

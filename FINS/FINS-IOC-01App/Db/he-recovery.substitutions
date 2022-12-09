@@ -1,5 +1,6 @@
 
-global{SCAN="\$(SCAN)"}
+global{SCAN="\$(SCAN)",TIMEOUT="\$(TIMEOUT=5.0)"}
+
 file "$(TOP)/FINS-IOC-01App/Db/he-recovery-header.template" {
     { P=\$(P), Q=\$(Q), RECSIM=\$(RECSIM), DEVSIM=\$(DEVSIM), DISABLE=\$(DISABLE) }
 }

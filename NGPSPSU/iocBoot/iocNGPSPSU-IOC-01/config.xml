@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>NGPS power supply unit</ioc_desc>
+<ioc_desc>OCEM NGPS power supply</ioc_desc>
 <macros>
 <macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address to connect to" hasDefault="NO" />
 <macro name="IPPORT" pattern="^[0-9]+$" description="IP Port to connect to" hasDefault="NO" />

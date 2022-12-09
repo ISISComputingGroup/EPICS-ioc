@@ -1,10 +1,12 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>Stanford DG645 IOC</ioc_desc>
+<ioc_desc>Stanford Research Systems DG645 Digital Delay Generator</ioc_desc>
 <ioc_details></ioc_details>
 <macros>
+<macro name="INTERFACE" pattern="^(SERIAL|ETHERNET)$" description="Whether to use an ethernet or serial connection" defaultValue="SERIAL" hasDefault="YES" />
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<macro name="ADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the device" hasDefault="NO" />
 <macro name="BAUD" pattern="^[0-9]+$" description="Port BAUD rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
 </macros>
 <pvsets>

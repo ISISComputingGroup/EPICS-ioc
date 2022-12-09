@@ -30,12 +30,15 @@ $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += calcSupport.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += motionSetPoints.dbd
 $(APPNAME)_DBD += motorSupport.dbd
 $(APPNAME)_DBD += motorSimSupport.dbd
 $(APPNAME)_DBD += devSoftMotor.dbd
 $(APPNAME)_DBD += tcIocSupport.dbd
 $(APPNAME)_DBD += tcIocMotorSupport.dbd
 $(APPNAME)_DBD += luaSupport.dbd
+$(APPNAME)_DBD += asubFunctions.dbd 
+
 
 # Add all the support libraries needed by this IOC
 
@@ -43,6 +46,7 @@ USR_DBDFLAGS += -I$(TCIOC)/InfoDeviceSupport -I$(TCIOC)/TCatDeviceSupport
 
 ## ISIS standard libraries ##
 ## Stream device libraries ##
+$(APPNAME)_LIBS += asubFunctions
 $(APPNAME)_LIBS += tcIocSupport
 $(APPNAME)_LIBS += tcIocMotorSupport
 $(APPNAME)_LIBS += softMotor 
@@ -51,6 +55,7 @@ $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += motionSetPoints
 ## other standard libraries here ##
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 

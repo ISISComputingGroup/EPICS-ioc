@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>Oxford Instruments IPS</ioc_desc>
+<ioc_desc>Oxford Instruments IPS Power Supply</ioc_desc>
 <ioc_details>For info and setting see https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/OxfordInstrumentsIPS</ioc_details>
 <macros>
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />

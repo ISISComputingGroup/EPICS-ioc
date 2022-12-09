@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>The IOC for a Mezei spin flipper</ioc_desc>
+<ioc_desc>Mezei Spin Flipper</ioc_desc>
 <ioc_details>The IOC for a Mezei spin flipper</ioc_details>
 <macros>
 <macro name="HOST" pattern="^([a-zA-Z0-9_-]+|[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+):[0-9]+$" description="IP Address or computer name and port to connect to" hasDefault="NO" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 	<config_part>
-		<ioc_desc>CAEN high voltage power supply driver New</ioc_desc>
+		<ioc_desc>CAEN high voltage power supply driver</ioc_desc>
 		<macros>
 			<macro name ="READ_ONLY" pattern="^1|0$" description="Global default as to whether device is readonly. 1 for readonly, 0 for read and write." defaultValue="0" hasDefault="YES" />
 

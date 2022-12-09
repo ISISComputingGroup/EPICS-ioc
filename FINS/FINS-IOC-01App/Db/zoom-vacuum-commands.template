@@ -60,6 +60,8 @@ record(bo, "$(P)$(Q)$(NAME):$(ZPV)")
     field(DTYP, "Soft Channel")
     field(DESC, "$(ZDESC)")
     field(FLNK, "$(P)$(Q)$(NAME):$(ZPV):RAW:VAL")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(NAME):$(ZPV).PROC")
 }
 
 record(bo, "$(P)$(Q)$(NAME):$(OPV)")
@@ -69,6 +71,8 @@ record(bo, "$(P)$(Q)$(NAME):$(OPV)")
     field(DTYP, "Soft Channel")
     field(DESC, "$(ODESC)")
     field(FLNK, "$(P)$(Q)$(NAME):$(OPV):RAW:VAL")
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(NAME):$(OPV).PROC")
 }
 
 record(longout, "$(P)$(Q)$(NAME):$(ZPV):RAW:VAL")
@@ -88,7 +92,7 @@ record(longout, "$(P)$(Q)$(NAME):$(ZPV):RAW:SP")
     field(VAL, "1")
     field(DTYP, "asynInt32")
     field(DESC, "$(ZDESC)")
-    field(OUT,  "@asyn(PLC, $(ZADDR), 5.0) FINS_DM_WRITE")
+    field(OUT,  "@asyn(PLC, $(ZADDR), $(TIMEOUT=5.0)) FINS_DM_WRITE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(NAME):$(ZPV):RAW:SP")
 }
@@ -98,7 +102,7 @@ record(longout, "$(P)$(Q)$(NAME):$(OPV):RAW:SP")
     field(VAL, "1")
     field(DTYP, "asynInt32")
     field(DESC, "$(ODESC)")
-    field(OUT,  "@asyn(PLC, $(OADDR), 5.0) FINS_DM_WRITE")
+    field(OUT,  "@asyn(PLC, $(OADDR), $(TIMEOUT=5.0)) FINS_DM_WRITE")
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(NAME):$(OPV):RAW:SP")
 }
@@ -117,4 +121,19 @@ record(longout, "$(P)$(Q)SIM:$(NAME):$(OPV):RAW:SP")
     field(DTYP, "Soft Channel")
 }
 
+record(dfanout, "$(P)$(Q)SIM:$(NAME):$(ZPV)") {
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(DOL, "$(SIMZVAL)")
+    field(OUTA, "$(P)$(Q)SIM:ADDR:517 PP")
+    field(SELM, "All")
+}
+
+record(dfanout, "$(P)$(Q)SIM:$(NAME):$(OPV)") {
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(DOL, "$(SIMOVAL)")
+    field(OUTA, "$(P)$(Q)SIM:ADDR:517 PP")
+    field(SELM, "All")
+}
 

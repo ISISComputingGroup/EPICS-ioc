@@ -58,6 +58,10 @@ IOCDIRS += TRANTECH
 IOCDIRS += B17TMAG
 IOCDIRS += NCINDG
 IOCDIRS += TJMPER
+IOCDIRS += AEROFLEX
+IOCDIRS += TJMPAP
+IOCDIRS += INSTRONA
+IOCDIRS += TEKOSC
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
@@ -70,6 +74,7 @@ DIRS_NOTBUILD += GALIL-OLD GALILMUL-OLD GALIL-NEW GALILMUL-NEW
 ifneq ($(findstring linux,$(EPICS_HOST_ARCH)),)
 DIRS_NOTBUILD += MK3CHOPR ECLAB HIFIMAG SECI2IBEX
 DIRS_NOTBUILD += SEPRTR ASTRIUM ZFMAGFLD CAENV895 FMR
+DIRS_NOTBUILD += INSTRONA
 endif
 
 ## twincat sets TWINCAT3DIR and TWINCATSDK environment variables on windows
@@ -93,7 +98,7 @@ endif
 
 ## modules not to build on windows 32bit
 ifneq ($(findstring win32,$(EPICS_HOST_ARCH)),)
-DIRS_NOTBUILD += ISISDAE MK3CHOPR ASTRIUM
+DIRS_NOTBUILD += MK3CHOPR ASTRIUM
 endif
 
 ## modules not to build if static

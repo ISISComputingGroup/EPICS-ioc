@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
  <config_part>
-  <ioc_desc>Background Script</ioc_desc>
+  <ioc_desc>ISIS IBEX Background Script</ioc_desc>
   <ioc_details>IOC runs a background script from configurations area</ioc_details>
   <macros>
     <macro name="SCRIPT_PATH" pattern="^.*$" description="Full path to the Python background script." defaultValue="C:\Instrument\Settings\config\{MACHINE_NAME}\Python\background_script.py" hasDefault="YES" />
