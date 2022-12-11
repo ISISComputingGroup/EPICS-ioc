@@ -96,7 +96,7 @@ file RIKENFE_float.template {
 
 # 2.1   Vacuum Status
 
-file RIKENFE_Other_Objects_Status.template {
+file RIKENFE_other_objects_status.template {
     pattern { PV, PORTNAME, OFFSET, DESC, 0TEXT, 0SEVR, 1TEXT, 1SEVR, 2TEXT, 2SEVR, 3TEXT, 3SEVR, 4TEXT, 4SEVR }
 
     {  "GH1:STAT", "vacuum_status",  "0",  "GH1 Status", "Comms Loss", "INVALID", "Vac Bad", "MAJOR", "Vac Good", "NO_ALARM", "Warning", "MINOR", "Fault", "MAJOR" }
@@ -148,7 +148,7 @@ file RIKENFE_Other_Objects_Status.template {
 
 # 2.2   Vacuum Valve Status
 
-file RIKENFE_Vacuum_Valve_Status.template {
+file RIKENFE_vacuum_valve_status.template {
     pattern { PV, PORTNAME, OFFSET, DESC }
 
     {  "PIV1:STAT", "vacuum_valve_status",  "0",  "PIV1 Status" }
@@ -387,7 +387,7 @@ file RIKENFE_Vacuum_Valve_Interlock_Status.template {
 
 # 2.5   Beam Blocker Status
 
-file RIKENFE_Vacuum_Valve_Status.template {
+file RIKENFE_vacuum_valve_status.template {
     pattern { PV, PORTNAME, OFFSET, DESC }
 
     { "BB0:STAT", "beamblocker_status",  "0", "BB0 Status" }
@@ -400,7 +400,7 @@ file RIKENFE_Vacuum_Valve_Status.template {
 
 # 2.6   Beam Blocker Information
 
-file RIKENFE_Beamblocker_Information.template {
+file RIKENFE_BeamBlocker_Information.template {
     pattern { PV, PORTNAME, OFFSET, DESC, LOCN }
 
     { "BB0:INFO", "beamblocker_information",  "0", "BB0 Information", "Kicker Area" }
