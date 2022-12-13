@@ -25,11 +25,14 @@ function twincat_stcommon_main()
 
 	local ioc_prefix = pv_prefix .. ioc_name .. ":"
 	
-	iocsh.tcLoadRecords(full_tpy_path, string.format("-eo -devtc -p %s", ioc_prefix))
+	-- iocsh.tcLoadRecords(full_tpy_path, string.format("-eo -devtc -p %s", ioc_prefix))
+	local handle = io.popen('\\instrument\\dev\\pytcioc\\venv\\scripts\\activate && python \\instrument\\dev\\pytcioc\\main.py')
+	local result = handle:read("*a")
+
 
 	-- count BENABLEs to determine how many Axes a Beckhoff is using
-	iocsh.countdbgrep("AXES_NUM", "*ASTAXES_*:STCONTROL-BENABLE*")
-	local num_axes = ibex_utils.getMacroValue{macro="AXES_NUM", default="8"}
+	-- iocsh.countdbgrep("AXES_NUM", "*ASTAXES_*:STCONTROL-BENABLE*")
+	local num_axes = 9
 	local mtrctrl = os.getenv("MTRCTRL")
 
 	iocsh.devMotorCreateController(motor_port, "Controller", num_axes, ioc_prefix)
