@@ -9,31 +9,17 @@ function twincat_stcommon_main()
 	-- local tpy_file = ibex_utils.getMacroValue{macro="TPY_FILE"}
 	local ioc_name = ibex_utils.getMacroValue{macro="IOCNAME"}
 	local plc_version = ibex_utils.getMacroValue{macro="PLC_VERSION", default="1"}
-	local ads_port = ibex_utils.getMacroValue(macro="ADS_PORT", default="852")
-	local num_axes = 9 -- todo: actually poll the device to get this
+	local ads_port = ibex_utils.getMacroValue{macro="ADS_PORT", default="852"}
+	asyn_port = ibex_utils.getMacroValue{macro="PORT"}
+	num_axes = 1 -- todo: actually poll the device to get this
 	local mtrctrl = os.getenv("MTRCTRL")
 	local ioc_prefix = pv_prefix .. ioc_name .. ":"
 
-
-	-- Set TcIoc's scan rate to 150ms for ADS and 300ms for EPICS - this is to avoid ADS fields not updating in channel access quickly enough. 
-	--iocsh.tcSetScanRate(150, 2)
-
-	-- local full_tpy_path = ibex_utils.getMacroValue{macro="TWINCATCONFIG"} .. "/" .. tpy_file
-	-- if not exists(full_tpy_path) then
-	-- 	print("invalid TPY file given: " .. full_tpy_path)
-	-- 	iocsh.exit()
-	-- end
-
-
 	for axis_num=1,num_axes,1
-	do 
-		local single_axis_tc_args = string.format("P=%s,A=%s,ADSPORT=%s", ioc_prefix, axis_num, ads_port)
+	do
+		local single_axis_tc_args = string.format("P=%s,A=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
 		iocsh.dbLoadRecords("db/single_axis_tc.db", single_axis_tc_args)
 	end
-	
-
-	-- count BENABLEs to determine how many Axes a Beckhoff is using
-	-- iocsh.countdbgrep("AXES_NUM", "*ASTAXES_*:STCONTROL-BENABLE*")
 
 
 	iocsh.devMotorCreateController(motor_port, "Controller", num_axes, ioc_prefix)
