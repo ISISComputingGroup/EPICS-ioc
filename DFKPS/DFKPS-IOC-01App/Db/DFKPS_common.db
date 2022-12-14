@@ -325,3 +325,4 @@ record(mbbi, "$(P)LIMIT:ENUM") {
     field(THST, "BOTH LIMITS")       
     field(THVL, "3")
 }
+
