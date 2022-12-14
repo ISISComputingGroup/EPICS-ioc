@@ -11,6 +11,7 @@
 <macro name="PS_ADDR" pattern="^[0-9]{3}$" description="3-digit address of power supply (e.g. 001)" defaultValue="001" hasDefault="YES" />
 <macro name="VOLT_FULLSCALE" pattern="^[0-9]+$" description="Full-scale voltage of this power supply" defaultValue="125" hasDefault="YES" />
 <macro name="CURR_FULLSCALE" pattern="^[0-9]+$" description="Full-scale current of this power supply" defaultValue="500" hasDefault="YES" />
+<macro name="LIMIT_ALARM" pattern="^(MAJOR|MINOR|NO_ALARM)$" description="Alarm to use for outside softlimit" defaultValue="NO_ALARM" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>
