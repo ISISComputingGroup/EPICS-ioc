@@ -38,6 +38,7 @@ $(APPNAME)_DBD += tcIocSupport.dbd
 $(APPNAME)_DBD += tcIocMotorSupport.dbd
 $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += asubFunctions.dbd 
+$(APPNAME)_DBD += ads.dbd 
 
 
 # Add all the support libraries needed by this IOC
@@ -55,6 +56,7 @@ $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += ads
 $(APPNAME)_LIBS += motionSetPoints
 ## other standard libraries here ##
 $(APPNAME)_LIBS += devIocStats 
