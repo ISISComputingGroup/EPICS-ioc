@@ -11,6 +11,7 @@
 
 <macro name="MAX_VOLT" pattern="^[0-9]*\.?[0-9]*$" description="Maximum voltage in kV" hasDefault="NO" />
 <macro name="MAX_CURR" pattern="^[0-9]*\.?[0-9]*$" description="Maximum current in mA" hasDefault="NO" />
+<macro name="LIMIT_ALARM" pattern="^(MAJOR|MINOR|NO_ALARM)$" description="Alarm to use for outside softlimit" defaultValue="NO_ALARM" hasDefault="YES" />
 
 </macros>
 <pvsets>
