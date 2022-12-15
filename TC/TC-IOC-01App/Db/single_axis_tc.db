@@ -1,3 +1,9 @@
+record(longin,"$(P)AXIS_NUM") {
+	field(SCAN,"I/O Intr")
+	field(DTYP,"asynInt32")
+	field(INP,"@asyn($(PORT) 0 0) UINT R P=851 V=GVL_APP.nAXIS_NUM")
+}
+
 ### TODO description here with macros etc. 
 ### Writable fields
 #bools 
@@ -58,11 +64,11 @@
 # }
 # ### read-only fields
 # #bools
-record(bi,"$(P)ASTAXES_$(A):STSTATUS-BENABLED") {
-	field(SCAN,"I/O Intr")
-	field(DTYP,"asynInt32")
-	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.bEnabled")
-}
+# record(bi,"$(P)ASTAXES_$(A):STSTATUS-BENABLED") {
+# 	field(SCAN,"I/O Intr")
+# 	field(DTYP,"asynInt32")
+# 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.bEnabled")
+# }
 # record(bi,"$(P)ASTAXES_$(A):STSTATUS-BCOMMANDABORTED") {
 # 	field(SCAN,"I/O Intr")
 # 	field(DTYP,"asynInt32")
