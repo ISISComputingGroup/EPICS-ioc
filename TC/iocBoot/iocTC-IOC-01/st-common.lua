@@ -26,8 +26,8 @@ function twincat_stcommon_main()
 	local ioc_prefix = pv_prefix .. ioc_name .. ":"
 	
 	-- iocsh.tcLoadRecords(full_tpy_path, string.format("-eo -devtc -p %s", ioc_prefix))
-	local handle = io.popen('\\instrument\\dev\\pytcioc\\venv\\scripts\\activate && python \\instrument\\dev\\pytcioc\\main.py')
-	local result = handle:read("*a")
+	io.popen('\\instrument\\dev\\pytcioc\\venv\\scripts\\activate && start python \\instrument\\dev\\pytcioc\\main.py')
+	-- local result = handle:read("*a")
 
 
 	-- count BENABLEs to determine how many Axes a Beckhoff is using
