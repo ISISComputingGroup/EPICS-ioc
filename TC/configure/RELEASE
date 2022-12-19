@@ -69,7 +69,6 @@ SNCSEQ=$(SUPPORT)/seq/master
 SQLITE=$(SUPPORT)/sqlite/master
 SSCAN=$(SUPPORT)/sscan/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
-TCIOC=$(SUPPORT)/tcIoc/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 

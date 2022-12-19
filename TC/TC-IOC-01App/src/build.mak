@@ -34,8 +34,7 @@ $(APPNAME)_DBD += motionSetPoints.dbd
 $(APPNAME)_DBD += motorSupport.dbd
 $(APPNAME)_DBD += motorSimSupport.dbd
 $(APPNAME)_DBD += devSoftMotor.dbd
-$(APPNAME)_DBD += tcIocSupport.dbd
-$(APPNAME)_DBD += tcIocMotorSupport.dbd
+$(APPNAME)_DBD += adsMotorSupport.dbd
 $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += asubFunctions.dbd 
 $(APPNAME)_DBD += ads.dbd 
@@ -48,8 +47,7 @@ USR_DBDFLAGS += -I$(TCIOC)/InfoDeviceSupport -I$(TCIOC)/TCatDeviceSupport
 ## ISIS standard libraries ##
 ## Stream device libraries ##
 $(APPNAME)_LIBS += asubFunctions
-$(APPNAME)_LIBS += tcIocSupport
-$(APPNAME)_LIBS += tcIocMotorSupport
+$(APPNAME)_LIBS += adsMotorSupport
 $(APPNAME)_LIBS += softMotor 
 $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += motor
