@@ -145,3 +145,7 @@ record(longin,"$(P)AXIS_NUM") {
  	field(DTYP,"asynInt64")
  	field(INP,"@asyn($(PORT) 0 0) UDINT R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.fActVelocity")
  }
+ record(ai,"$(P)ASTAXES_$(A):STCONTROL-FVELOCITY:RBV") {
+ 	field(DTYP,"asynFloat64")
+ 	field(OUT,"@asyn($(PORT) 0 0) LREAL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.fVelocity")
+ }
