@@ -145,7 +145,9 @@ record(longin,"$(P)AXIS_NUM") {
  	field(DTYP,"asynInt64")
  	field(INP,"@asyn($(PORT) 0 0) UDINT R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.fActVelocity")
  }
+ ### We need to read the control velo to set mtr record velo (in axis_monitors.db)
  record(ai,"$(P)ASTAXES_$(A):STCONTROL-FVELOCITY:RBV") {
+	field(SCAN,"I/O Intr")
  	field(DTYP,"asynFloat64")
- 	field(OUT,"@asyn($(PORT) 0 0) LREAL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.fVelocity")
+ 	field(INP,"@asyn($(PORT) 0 0) LREAL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.fVelocity")
  }
