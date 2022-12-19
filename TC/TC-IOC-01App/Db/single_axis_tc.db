@@ -7,147 +7,147 @@ record(longin,"$(P)AXIS_NUM") {
 ## TODO description here with macros etc. 
 ## Writable fields
 #bools 
- record(longout,"$(P)ASTAXES_$(A):STCONTROL-BEXECUTE") {
+ record(longout,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-BEXECUTE") {
  	field(DTYP,"asynInt32")
- 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.bExecute")
+ 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.bExecute")
  }
- record(longout,"$(P)ASTAXES_$(A):STCONTROL-BRESET") {
+ record(longout,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-BRESET") {
  	field(DTYP,"asynInt32")
- 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.bReset")
+ 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.bReset")
  }
- record(longout,"$(P)ASTAXES_$(A):STCONTROL-BSTOP") {
+ record(longout,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-BSTOP") {
  	field(DTYP,"asynInt32")
- 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.bStop")
+ 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.bStop")
  }
- record(longout,"$(P)ASTAXES_$(A):STCONTROL-BHALT") {
+ record(longout,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-BHALT") {
  	field(DTYP,"asynInt32")
- 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.bHalt")
+ 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.bHalt")
  }
- record(longout,"$(P)ASTAXES_$(A):STCONTROL-BENABLE") {
+ record(longout,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-BENABLE") {
  	field(DTYP,"asynInt32")
- 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.bEnable")
+ 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.bEnable")
  }
- record(longout,"$(P)ASTAXES_$(A):STCONTROL-BJOGFWD") {
+ record(longout,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-BJOGFWD") {
  	field(DTYP,"asynInt32")
- 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.bJogFwd")
+ 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.bJogFwd")
  }
- record(longout,"$(P)ASTAXES_$(A):STCONTROL-BJOGBWD") {
+ record(longout,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-BJOGBWD") {
  	field(DTYP,"asynInt32")
- 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.bJogBwd")
+ 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.bJogBwd")
  }
  #enums - TODO not sure if this will work 
- record(longout,"$(P)ASTAXES_$(A):STCONTROL-ECOMMAND") {
+ record(longout,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-ECOMMAND") {
  	field(DTYP,"asynInt32")
- 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.eCommand")
+ 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.eCommand")
  }
  #floats
- record(ao,"$(P)ASTAXES_$(A):STCONTROL-FVELOCITY") {
+ record(ao,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-FVELOCITY") {
  	field(DTYP,"asynFloat64")
- 	field(OUT,"@asyn($(PORT) 0 0) LREAL W P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.fVelocity")
+ 	field(OUT,"@asyn($(PORT) 0 0) LREAL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.fVelocity")
  }
- record(ao,"$(P)ASTAXES_$(A):STCONTROL-FJOGVELOCITY") {
+ record(ao,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-FJOGVELOCITY") {
  	field(DTYP,"asynFloat64")
- 	field(OUT,"@asyn($(PORT) 0 0) LREAL W P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.fJogVelocity")
+ 	field(OUT,"@asyn($(PORT) 0 0) LREAL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.fJogVelocity")
  }
- record(ao,"$(P)ASTAXES_$(A):STCONTROL-FACCELERATION") {
+ record(ao,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-FACCELERATION") {
  	field(DTYP,"asynFloat64")
- 	field(OUT,"@asyn($(PORT) 0 0) LREAL W P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.fAcceleration")
+ 	field(OUT,"@asyn($(PORT) 0 0) LREAL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.fAcceleration")
  }
- record(ao,"$(P)ASTAXES_$(A):STCONTROL-FDECELERATION") {
+ record(ao,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-FDECELERATION") {
  	field(DTYP,"asynFloat64")
- 	field(OUT,"@asyn($(PORT) 0 0) LREAL W P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.fDeceleration")
+ 	field(OUT,"@asyn($(PORT) 0 0) LREAL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.fDeceleration")
  }
- record(ao,"$(P)ASTAXES_$(A):STCONTROL-FPOSITION") {
+ record(ao,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-FPOSITION") {
  	field(DTYP,"asynFloat64")
- 	field(OUT,"@asyn($(PORT) 0 0) LREAL W P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.fPosition")
+ 	field(OUT,"@asyn($(PORT) 0 0) LREAL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.fPosition")
  }
  ### read-only fields
  #bools
- record(longin,"$(P)ASTAXES_$(A):STSTATUS-BENABLED") {
+ record(longin,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-BENABLED") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.bEnabled")
+ 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.bEnabled")
  }
- record(longin,"$(P)ASTAXES_$(A):STSTATUS-BCOMMANDABORTED") {
+ record(longin,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-BCOMMANDABORTED") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.bCommandAborted")
+ 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.bCommandAborted")
  }
- record(longin,"$(P)ASTAXES_$(A):STSTATUS-BBUSY") {
+ record(longin,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-BBUSY") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.bBusy")
+ 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.bBusy")
  }
- record(longin,"$(P)ASTAXES_$(A):STSTATUS-BDONE") {
+ record(longin,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-BDONE") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.bDone")
+ 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.bDone")
  }
- record(longin,"$(P)ASTAXES_$(A):STSTATUS-BHOMED") {
+ record(longin,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-BHOMED") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.bHomed")
+ 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.bHomed")
  }
- record(longin,"$(P)ASTAXES_$(A):STSTATUS-BMOVING") {
+ record(longin,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-BMOVING") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.bMoving")
+ 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.bMoving")
  }
- record(longin,"$(P)ASTAXES_$(A):STSTATUS-BMOVINGFORWARD") {
+ record(longin,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-BMOVINGFORWARD") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.bMovingForward")
+ 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.bMovingForward")
  }
- record(longin,"$(P)ASTAXES_$(A):STSTATUS-BMOVINGBACKWARD") {
+ record(longin,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-BMOVINGBACKWARD") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.bMovingBackward")
+ 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.bMovingBackward")
  }
- record(longin,"$(P)ASTAXES_$(A):STSTATUS-BFWENABLED") {
+ record(longin,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-BFWENABLED") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.bFwEnabled")
+ 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.bFwEnabled")
  }
- record(longin,"$(P)ASTAXES_$(A):STSTATUS-BBWENABLED") {
+ record(longin,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-BBWENABLED") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.bBwEnabled")
+ 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.bBwEnabled")
  }
- record(longin,"$(P)ASTAXES_$(A):STSTATUS-BERROR") {
+ record(longin,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-BERROR") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.bError")
+ 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.bError")
  }
-  record(longin,"$(P)ASTAXES_$(A):STINPUTS-BLIMITFWD") {
+  record(longin,"$(P)ASTAXES_$(AXIS_NUM):STINPUTS-BLIMITFWD") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stInputs.bLimitFwd")
+ 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stInputs.bLimitFwd")
  }
- record(longin,"$(P)ASTAXES_$(A):STINPUTS-BLIMITBWD") {
+ record(longin,"$(P)ASTAXES_$(AXIS_NUM):STINPUTS-BLIMITBWD") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stInputs.bLimitBwd")
+ 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stInputs.bLimitBwd")
  }
  #floats
- record(ai,"$(P)ASTAXES_$(A):STSTATUS-FACTPOSITION") {
+ record(ai,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-FACTPOSITION") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynFloat64")
- 	field(INP,"@asyn($(PORT) 0 0) LREAL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.fActPosition")
+ 	field(INP,"@asyn($(PORT) 0 0) LREAL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.fActPosition")
  }
- record(ai,"$(P)ASTAXES_$(A):STSTATUS-FACTVELOCITY") {
+ record(ai,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-FACTVELOCITY") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynFloat64")
- 	field(INP,"@asyn($(PORT) 0 0) LREAL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.fActVelocity")
+ 	field(INP,"@asyn($(PORT) 0 0) LREAL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.fActVelocity")
  }
  #longs
- record(longin,"$(P)ASTAXES_$(A):STSTATUS-NERRORID") {
+ record(longin,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-NERRORID") {
  	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt64")
- 	field(INP,"@asyn($(PORT) 0 0) UDINT R P=$(ADSPORT) V=GVL.astAxes[$(A)].stStatus.fActVelocity")
+ 	field(INP,"@asyn($(PORT) 0 0) UDINT R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.fActVelocity")
  }
  ### We need to read the control velo to set mtr record velo (in axis_monitors.db)
- record(ai,"$(P)ASTAXES_$(A):STCONTROL-FVELOCITY:RBV") {
+ record(ai,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-FVELOCITY:RBV") {
 	field(SCAN,"I/O Intr")
  	field(DTYP,"asynFloat64")
- 	field(INP,"@asyn($(PORT) 0 0) LREAL R P=$(ADSPORT) V=GVL.astAxes[$(A)].stControl.fVelocity")
+ 	field(INP,"@asyn($(PORT) 0 0) LREAL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.fVelocity")
  }

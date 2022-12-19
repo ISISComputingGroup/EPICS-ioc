@@ -3,7 +3,10 @@
 <config_part>
 <ioc_desc>Twincat PV Provider</ioc_desc>
 <macros>
-<macro name="TPY_FILE" pattern="^.+$" description="Name of the .tpy file describing the PLC" hasDefault="NO"/>
+<macro name="IP_AD" pattern="^.+$" description="IP address of controller" hasDefault="YES" defaultValue="192.168.1.221"/>
+<macro name="AMS_ID" pattern="^.+$" description="ADS Amsnet address of controller" hasDefault="NO"/>
+<macro name="ADS_PORT" pattern="^[0-9]{1,5}$" description="ADS port to use for communication" hasDefault="YES" defaultValue="852"/>
+<macro name="NUM_AXES" pattern="^[0-9]{1,2}$" description="Number of motor axes (including virtual)" hasDefault="NO"/>
 <macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="NO"/>
 <macro name="PLC_VERSION" pattern="^[0|1]$" description="The PLC version to communicate with: 0 for the old ISIS code and 1 new collaboration code" defaultValue="1" hasDefault="YES" />
 </macros>

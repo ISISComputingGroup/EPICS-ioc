@@ -6,18 +6,17 @@ ibex_utils = require "luaUtils"
 function twincat_stcommon_main()
 	local motor_port = "L0"
 	local pv_prefix = ibex_utils.getMacroValue{macro="MYPVPREFIX"}
-	-- local tpy_file = ibex_utils.getMacroValue{macro="TPY_FILE"}
 	local ioc_name = ibex_utils.getMacroValue{macro="IOCNAME"}
 	local plc_version = ibex_utils.getMacroValue{macro="PLC_VERSION", default="1"}
-	local ads_port = ibex_utils.getMacroValue{macro="ADS_PORT", default="851"}
+	local ads_port = ibex_utils.getMacroValue{macro="ADS_PORT", default="852"}
 	asyn_port = ibex_utils.getMacroValue{macro="PORT"}
-	num_axes = 11 -- todo: actually poll the device to get this
+	num_axes = ibex_utils.getMacroValue{macro="NUM_AXES", default="11"} -- todo: actually poll the device to get this
 	local mtrctrl = os.getenv("MTRCTRL")
 	local ioc_prefix = pv_prefix .. ioc_name .. ":"
 
 	for axis_num=1,num_axes,1
 	do
-		local single_axis_tc_args = string.format("P=%s,A=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
+		local single_axis_tc_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
 		iocsh.dbLoadRecords("db/single_axis_tc.db", single_axis_tc_args)
 	end
 
