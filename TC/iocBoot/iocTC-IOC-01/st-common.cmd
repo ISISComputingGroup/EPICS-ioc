@@ -9,11 +9,6 @@ epicsEnvSet("TWINCATCONFIG","$(TWINCATCONFIG=$(ICPCONFIGROOT)/twincat)")
 ## to stop lots of logs of writes to ASTAXES_*:STCONTROL-BENABLE
 epicsEnvSet("CAPUTLOGCONFIG", "0")
 
-#TODO: REMOVE ME! 
-epicsEnvSet("ADS_PORT", "851")
-epicsEnvSet("IP_AD", "169.20.200.3")
-epicsEnvSet("AMS_ID", "5.73.93.67.1.1")
-
 
 epicsEnvSet("LOCAL_AMSNET", "127.0.0.1.1.1")
 AdsSetLocalAMSNetID($(LOCAL_AMSNET))
