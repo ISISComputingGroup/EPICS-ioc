@@ -1,10 +1,16 @@
+## Default template for a single axis.
+# Macros:
+# $(P) - the full IOC prefix ie IN:INSTNAME:TC_01
+# $(AXIS_NUM) - the axis number
+# $(PORT) - the asyn port opened for ads comms
+# $(ADSPORT) - the ads port number to communicate via
+
 record(longin,"$(P)AXIS_NUM") {
 	field(SCAN,"I/O Intr")
 	field(DTYP,"asynInt32")
 	field(INP,"@asyn($(PORT) 0 0) UINT R P=$(ADSPORT) V=GVL_APP.nAXIS_NUM")
 }
 
-## TODO description here with macros etc. 
 ## Writable fields
 #bools 
  record(longout,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-BEXECUTE") {
