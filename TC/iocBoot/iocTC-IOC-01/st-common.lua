@@ -14,12 +14,6 @@ function twincat_stcommon_main()
 	local mtrctrl = os.getenv("MTRCTRL")
 	local ioc_prefix = pv_prefix .. ioc_name .. ":"
 
-	for axis_num=1,num_axes,1
-	do
-		local single_axis_tc_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
-		iocsh.dbLoadRecords("db/single_axis_tc.db", single_axis_tc_args)
-	end
-
 
 	iocsh.devMotorCreateController(motor_port, "Controller", num_axes, ioc_prefix)
 	
@@ -30,6 +24,9 @@ function twincat_stcommon_main()
 	
 	for axis_num=1,num_axes,1
 	do
+		local single_axis_tc_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
+		iocsh.dbLoadRecords("db/single_axis_tc.db", single_axis_tc_args)
+
 		motor_pv = string.format("MTR%02i%02i", mtrctrl, axis_num)
 		single_axis_db = "db/single_axis.db"
 		db_args = string.format("MYPVPREFIX=%s,MOTOR_PV=%s,MOTOR_PORT=%s,ADDR=%s", pv_prefix, motor_pv, motor_port, axis_num-1)
