@@ -41,7 +41,17 @@ record(longin,"$(P)AXIS_NUM") {
  	field(DTYP,"asynInt32")
  	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.bJogBwd")
  }
- #enums - TODO not sure if this will work 
+ record(longout,"$(P)ASTAXES_$(AXIS_NUM):STINPUTS-BLIMITFWD") {
+ 	field(SCAN,"I/O Intr")
+ 	field(DTYP,"asynInt32")
+ 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stInputs.bLimitFwd")
+ }
+ record(longout,"$(P)ASTAXES_$(AXIS_NUM):STINPUTS-BLIMITBWD") {
+ 	field(SCAN,"I/O Intr")
+ 	field(DTYP,"asynInt32")
+ 	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stInputs.bLimitBwd")
+ }
+ #enums
  record(longout,"$(P)ASTAXES_$(AXIS_NUM):STCONTROL-ECOMMAND") {
  	field(DTYP,"asynInt32")
  	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.eCommand")
@@ -124,16 +134,7 @@ record(longin,"$(P)AXIS_NUM") {
  	field(DTYP,"asynInt32")
  	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stStatus.bError")
  }
-  record(longin,"$(P)ASTAXES_$(AXIS_NUM):STINPUTS-BLIMITFWD") {
- 	field(SCAN,"I/O Intr")
- 	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stInputs.bLimitFwd")
- }
- record(longin,"$(P)ASTAXES_$(AXIS_NUM):STINPUTS-BLIMITBWD") {
- 	field(SCAN,"I/O Intr")
- 	field(DTYP,"asynInt32")
- 	field(INP,"@asyn($(PORT) 0 0) BOOL R P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stInputs.bLimitBwd")
- }
+
  #floats
  record(ai,"$(P)ASTAXES_$(AXIS_NUM):STSTATUS-FACTPOSITION") {
  	field(SCAN,"I/O Intr")
