@@ -13,7 +13,7 @@ epicsEnvSet("CAPUTLOGCONFIG", "0")
 epicsEnvSet("LOCAL_AMSNET", "127.0.0.1.1.1")
 AdsSetLocalAMSNetID($(LOCAL_AMSNET))
 epicsEnvSet("PORT", "ads-port")
-
+epicsEnvSet("ADS_PORT", $(ADS_PORT=852))
 
 luash("st-common.lua")
 
@@ -42,7 +42,7 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
-AdsOpen("$(PORT)", "$(IP_AD)", "$(AMS_ID)")
+AdsOpen("$(PORT)", "127.0.0.1", "127.0.0.1.1.1", 500, 500, $(ADS_PORT))
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 asynSetTraceMask("$(PORT)", 0, 0x21)
