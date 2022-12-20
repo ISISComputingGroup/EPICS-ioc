@@ -1,4 +1,4 @@
-## Default template for a single axis.
+## Default template for the PLC records to be served over ADS for a single axis.
 # Macros:
 # $(P) - the full IOC prefix ie IN:INSTNAME:TC_01
 # $(AXIS_NUM) - the axis number
@@ -42,12 +42,10 @@ record(longin,"$(P)AXIS_NUM") {
  	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stControl.bJogBwd")
  }
  record(longout,"$(P)ASTAXES_$(AXIS_NUM):STINPUTS-BLIMITFWD") {
- 	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
  	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stInputs.bLimitFwd")
  }
  record(longout,"$(P)ASTAXES_$(AXIS_NUM):STINPUTS-BLIMITBWD") {
- 	field(SCAN,"I/O Intr")
  	field(DTYP,"asynInt32")
  	field(OUT,"@asyn($(PORT) 0 0) BOOL W P=$(ADSPORT) V=GVL.astAxes[$(AXIS_NUM)].stInputs.bLimitBwd")
  }
