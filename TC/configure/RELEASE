@@ -58,6 +58,7 @@ LIBJSON=$(SUPPORT)/libjson/master
 LUA=$(SUPPORT)/lua/master
 MOTIONSETPOINTS=$(SUPPORT)/motionSetPoints/master
 MOTOR=$(SUPPORT)/motor/master
+TCMOTOR=$(SUPPORT)/TwincatMotor/master
 MOTOREXT=$(SUPPORT)/motorExtensions/master
 MYSQL=$(SUPPORT)/MySQL/master
 ONCRPC=$(SUPPORT)/oncrpc/master
