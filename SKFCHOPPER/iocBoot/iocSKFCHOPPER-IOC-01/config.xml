@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-    <ioc_desc>SKF G5 disc chopper controller</ioc_desc>
+    <ioc_desc>SKF G5 chopper controller</ioc_desc>
 	<ioc_details>SKF Choppers</ioc_details>
     <macros>
 
