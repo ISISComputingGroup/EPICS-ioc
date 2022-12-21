@@ -8,10 +8,10 @@ function twincat_stcommon_main()
 	local pv_prefix = ibex_utils.getMacroValue{macro="MYPVPREFIX"}
 	local ioc_name = ibex_utils.getMacroValue{macro="IOCNAME"}
 	local plc_version = ibex_utils.getMacroValue{macro="PLC_VERSION", default="1"}
-	local ads_port = ibex_utils.getMacroValue{macro="ADS_PORT", default="852"}
+	local ads_port = ibex_utils.getMacroValue{macro="ADS_PORT"}
 	asyn_port = ibex_utils.getMacroValue{macro="PORT"}
 
-	num_axes = ibex_utils.getMacroValue{macro="NUM_AXES", default="9"} -- todo: actually poll the device to get this
+	num_axes = ibex_utils.getMacroValue{macro="NUM_AXES"} -- todo: actually poll the device to get this
 	local mtrctrl = os.getenv("MTRCTRL")
 	local ioc_prefix = pv_prefix .. ioc_name .. ":"
 

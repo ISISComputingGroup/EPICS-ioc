@@ -12,6 +12,7 @@ epicsEnvSet("CAPUTLOGCONFIG", "0")
 
 epicsEnvSet("LOCAL_AMSNET", "127.0.0.1.1.1")
 AdsSetLocalAMSNetID($(LOCAL_AMSNET))
+epicsEnvSet("IP_AD", $(IP_AD="192.168.1.221"))
 epicsEnvSet("PORT", "ads-port")
 epicsEnvSet("ADS_PORT", $(ADS_PORT=852))
 
