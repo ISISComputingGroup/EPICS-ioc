@@ -44,3 +44,4 @@ NULL
 .idea
 *.suo
 .vscode/
+/TC/*.req
