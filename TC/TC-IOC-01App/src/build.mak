@@ -54,6 +54,7 @@ $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += ads
+$(APPNAME)_LIBS += autoparamDriver
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += motionSetPoints
 ## other standard libraries here ##
@@ -79,6 +80,16 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
+
+## add twincat library
+ifeq ($(findstring linux,$(EPICS_HOST_ARCH)),)
+TCDIR=C:/TwinCAT
+ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
+$(APPNAME)_SYS_LIBS_WIN32 += $(TCDIR)/AdsApi/TcAdsDll/x64/lib/TcAdsDll
+else
+$(APPNAME)_SYS_LIBS_WIN32 += $(TCDIR)/AdsApi/TcAdsDll/Lib/TcAdsDll
+endif
+endif
 
 #===========================
 
