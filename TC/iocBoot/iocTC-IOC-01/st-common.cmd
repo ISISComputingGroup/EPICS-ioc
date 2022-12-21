@@ -41,6 +41,9 @@ luash("st-common.lua")
 
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
+set_requestfile_path("${MOTOR}/motorApp/Db", "")
+set_requestfile_path("$(TOP)")
+
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 AdsOpen("$(PORT)", $(IP_AD), $(AMS_ID), 500, 500, $(ADS_PORT))
@@ -56,6 +59,4 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 < $(IOCSTARTUP)/postiocinit.cmd
 
 # Save motor settings every 30 seconds, this requests file is written dynamically by LUA
-set_requestfile_path("${MOTOR}/motorApp/Db", "")
-set_requestfile_path("$(TOP)")
 $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30)
