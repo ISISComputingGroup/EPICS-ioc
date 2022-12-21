@@ -46,6 +46,8 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,
 AdsOpen("$(PORT)", $(IP_AD), $(AMS_ID), 500, 500, $(ADS_PORT))
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
+
+## set trace mask to warnings and errors
 asynSetTraceMask("$(PORT)", 0, 0x21)
 
 motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
