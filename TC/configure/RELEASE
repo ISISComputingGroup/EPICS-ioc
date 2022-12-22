@@ -43,8 +43,8 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 
 # Macros required for basic ioc/stream device
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
-ADS=$(SUPPORT)/AdsDriver/master
-AUTOP=$(SUPPORT)/AutoParamDriver/master
+ADS=$(SUPPORT)/adsDriver/master
+AUTOP=$(SUPPORT)/autoparamDriver/master
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
 ASYN=$(SUPPORT)/asyn/master
 AUTOSAVE=$(SUPPORT)/autosave/master
