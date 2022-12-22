@@ -77,11 +77,6 @@ DIRS_NOTBUILD += SEPRTR ASTRIUM ZFMAGFLD CAENV895 FMR
 DIRS_NOTBUILD += INSTRONA
 endif
 
-## twincat sets TWINCAT3DIR and TWINCATSDK environment variables on windows
-ifeq ($(TWINCAT3DIR),)
-DIRS_NOTBUILD += TC
-endif
-
 ## module decisions based on Visual Studio version
 ifneq ($(findstring 10.0,$(VCVERSION)),)
 # What not to build with VS2010
