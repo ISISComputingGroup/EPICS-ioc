@@ -104,7 +104,7 @@ endif
 ## modules not to build if debug static
 ifeq ($(BUILDING_SHARED),NO)
 ifneq ($(findstring debug,$(EPICS_HOST_ARCH)),)
-DIRS_NOTBUILD += TC
+#DIRS_NOTBUILD += TC # leftover from old tcIoc
 endif
 endif
 
