@@ -551,14 +551,15 @@ record(ai, "$(P)OUTPUT_RATE") {
     field(DESC, "Output Rate Setpoint")
     field(EGU,  "Percent/min")
     field(SCAN, "Passive")
+    field(PINI, "YES")
     
     $(IFUSES_BISYNCH) field(DTYP, "stream")
     $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),OR,$(GAD),$(LAD)) $(PORT)")
     
     $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
     $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),37,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(OUTPUT_RATE_SCALING)")
     
-    field(EGU, "%")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:OUTPUT_RATE")
     field(SDIS, "$(Q)DISABLE")
@@ -575,6 +576,7 @@ record(ao, "$(P)OUTPUT_RATE:SP") {
     
     $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
     $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),37,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(OUTPUT_RATE_SCALING)")
     
     field(DRVH, "9999")
     field(DRVL, "0")
