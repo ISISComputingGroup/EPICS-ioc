@@ -534,7 +534,7 @@ record(ao, "$(P)MAX_OUTPUT:SP") {
     
     $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
     $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),30,1000)MODBUS_DATA")
-    $(IFNOTUSES_BISYNCH) field(ASLO, "0.1")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(OUTPUT_SCALING)")
     
     field(DRVH, "100")
     field(DRVL, "0")
