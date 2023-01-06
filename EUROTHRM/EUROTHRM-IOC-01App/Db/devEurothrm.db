@@ -578,7 +578,7 @@ record(ao, "$(P)OUTPUT_RATE:SP") {
     $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),37,1000)MODBUS_DATA")
     $(IFNOTUSES_BISYNCH) field(ASLO, "$(OUTPUT_RATE_SCALING)")
     
-    field(DRVH, "3276")
+    field(DRVH, "32767")
     field(DRVL, "0")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:OUTPUT_RATE:SP")
