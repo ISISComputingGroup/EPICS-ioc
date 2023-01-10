@@ -88,12 +88,17 @@ endif
 
 ## modules not to build on windows 64bit
 ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
-DIRS_NOTBUILD += 
+ifeq ($(TWINCAT3DIR),)
+DIRS_NOTBUILD += TC
+endif
 endif
 
 ## modules not to build on windows 32bit
 ifneq ($(findstring win32,$(EPICS_HOST_ARCH)),)
 DIRS_NOTBUILD += MK3CHOPR ASTRIUM
+ifeq ($(TWINCAT3DIR),)
+DIRS_NOTBUILD += TC
+endif
 endif
 
 ## modules not to build if static
