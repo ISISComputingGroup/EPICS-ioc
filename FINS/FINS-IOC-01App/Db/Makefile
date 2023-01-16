@@ -17,6 +17,7 @@ DB += imat-plc-attn.db
 DB += imat-plc-press.db
 DB += sans2d-vacuum.db
 DB += he-recovery.db
+DB += sandals-gate-valve.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
