@@ -1,0 +1,28 @@
+record(mbbi, "$(P)$(Q)$(NAME):STATUS") {
+    field(DESC, "$(NAME) Status from device")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(PLC, $(ADDR), $(TIMEOUT=5.0)) FINS_DM_READ")
+    field(NOBT, 4)
+    field(SCAN, "1 second")
+    
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
+    field(THVL, "3")
+    field(ZRST, "No response/Comms failure")
+    field(ONST, "Open")
+    field(TWST, "Closed")
+    field(THST, "Opening/closing")
+
+    field(SIML, "$(P)$(Q)SIM")
+    field(SIOL, "$(P)$(Q)SIM:$(NAME):STATUS CP MS")
+}
+
+### Simulation Records ###
+
+record(mbbi, "$(P)$(Q)SIM:$(NAME):STATUS")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+

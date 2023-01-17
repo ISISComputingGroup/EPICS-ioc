@@ -7,6 +7,11 @@
 
 global{TIMEOUT="\$(TIMEOUT=5.0)"}
 
-file "$(TOP)/FINS-IOC-01App/Db/sandals-gate-valve.template" {
+file "$(TOP)/FINS-IOC-01App/Db/sandals-base.template" {
 	{ P=\$(P), Q=\$(Q) }
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/sandals-gate-valve-single.template" {
+	{ P=\$(P), Q=\$(Q), NAME="V1VALVE", ADDR="00001" }
+	{ P=\$(P), Q=\$(Q), NAME="V2VALVE", ADDR="00002" }
 }
