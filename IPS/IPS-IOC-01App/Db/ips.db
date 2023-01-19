@@ -666,6 +666,28 @@ record(ao, "$(P)HEATER:WAITTIME") {
   info(archive, "VAL")
 }
 
+# COMPRESS Record with circular buffer to store $(P)HEATER:WAITTIME.VAL (60s) worth of HEATER:STATUS values
+# Used
+
+record(compress, "$(P)HEATER:_STATUS_BUFFER") {
+  field(INP, "$(P)HEATER:STATUS")
+  field(ALG, "Circular Buffer")
+  field(NSAM, "60")
+  field(SCAN, "1 second")
+}
+
+# COMPRESS record to monitor above and output lowest value in buffer.
+# If '1' then whole buffer contains '1' and therefore heater has been ON for at least $(P)HEATER:WAITTIME.VAL (60s)
+# If '0' then heater has been OFF at some point in $(P)HEATER:WAITTIME.VAL (60s)
+
+record(compress, "$(P)HEATER:_STATUS_BUFFER_LOWEST") {
+  field(INP, "$(P)HEATER:_STATUS_BUFFER")
+  field(ALG, "N to 1 Low Value")
+  field(NSAM, "1")
+  field(N, "60")
+  info(archive, "VAL")
+}
+
 # # Readback from m of Mmn part of Examine command return.
 # The Display is in Amps or Tesla.  The Magnet Sweep is fast or slow.
 record(mbbi, "$(P)SWEEPMODE:PARAMS") {
