@@ -667,7 +667,7 @@ record(ao, "$(P)HEATER:WAITTIME") {
 }
 
 # COMPRESS Record with circular buffer to store $(P)HEATER:WAITTIME.VAL (60s) worth of HEATER:STATUS values
-# Used
+# Used with second COMPRESS record below to check heater has been on for at least 60s after starting IOC
 
 record(compress, "$(P)HEATER:_STATUS_BUFFER") {
   field(INP, "$(P)HEATER:STATUS")
