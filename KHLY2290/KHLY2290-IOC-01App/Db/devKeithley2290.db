@@ -176,8 +176,7 @@ record(mbbiDirect, "$(P)STATUS")
     field(NOBT, "8")
     field(INP,  "@devKeithley2290.proto get_status_byte $(PORT)")
     field(PINI, "YES")
-    field(SCAN, "Event")
-    field(EVNT, "14") # same number as the enabled status byte register value
+    field(SCAN, "1 second")
     field(SDIS, "$(P)DISABLE")
 }
 
@@ -185,35 +184,82 @@ record(mbbiDirect, "$(P)STATUS")
 record(bi, "$(P)VOLT_STABLE")
 {
     field(DESC, "Voltage Stable")
-    field(DTYP, "stream")
     field(ZNAM, "NO")
+    info(archive, "VAL")
+    info(INTEREST, "MEDIUM")
     field(ONAM, "STABLE")
     field(ZSV,  "MINOR")
-    field(INP,  "@devKeithley2290.proto get_stable_bit $(PORT)")
-    field(SCAN, "1 second")
-    field(SDIS, "$(P)DISABLE")
+    field(INP,  "$(P)STATUS.B0 CP MS")
 }
 
 # Get the voltage trip state
-record(bi, "$(P)VOLT_TRIPPED")
+record(bi, "$(P)VOLT_TRIPPED_RAW")
 {
     field(DESC, "Voltage tripped")
     field(ZNAM, "OK")
     field(ONAM, "TRIPPED")
     info(alarm, "KHLY2290")
+    field(FLNK, "$(P)VOLT_TRIPPED_LATCHED.PROC")
     field(OSV,  "MAJOR")
     field(INP,  "$(P)STATUS.B1 CP MS")
 }
 
+# Get the voltage trip state
+record(calcout, "$(P)VOLT_TRIPPED_LATCHED")
+{
+    field(DESC, "Voltage tripped latched")
+    field(INPA, "$(P)VOLT_TRIPPED_RAW")
+    field(CALC, "A")
+    field(DOPT, "Use CALC")
+    field(OOPT, "When Non-zero")
+    field(OUT, "$(P)VOLT_TRIPPED.VAL PP")
+}
+
+record(bi, "$(P)VOLT_TRIPPED")
+{
+    field(SCAN, "Passive")
+    field(PINI, "YES")
+    info(autosaveFields, "VAL")
+    field(DESC, "Voltage tripped")
+    field(ZNAM, "OK")
+    field(ONAM, "TRIPPED")
+    info(alarm, "KHLY2290")
+    field(OSV,  "MAJOR")
+}
+
 # Get the current trip state
-record(bi, "$(P)CURR_TRIPPED")
+record(bi, "$(P)CURR_TRIPPED_RAW")
 {
     field(DESC, "Current tripped")
     field(ZNAM, "OK")
     field(ONAM, "TRIPPED")
     info(alarm, "KHLY2290")
+    field(FLNK, "$(P)CURR_TRIPPED_LATCHED.PROC")
     field(OSV,  "MAJOR")
     field(INP,  "$(P)STATUS.B2 CP MS")
+}
+
+# Get the voltage trip state
+record(calcout, "$(P)CURR_TRIPPED_LATCHED")
+{
+    field(DESC, "Current tripped latched")
+    field(INPA, "$(P)CURR_TRIPPED_RAW")
+    field(CALC, "A")
+    field(DOPT, "Use CALC")
+    field(OOPT, "When Non-zero")
+    field(OUT, "$(P)CURR_TRIPPED.VAL PP")
+}
+
+record(bi, "$(P)CURR_TRIPPED")
+{
+    field(SCAN, "Passive")
+    field(PINI, "YES")
+    info(autosaveFields, "VAL")
+    field(DESC, "Current tripped")
+    field(ZNAM, "OK")
+    field(ONAM, "TRIPPED")
+    info(alarm, "KHLY2290")
+    field(OSV,  "MAJOR")
 }
 
 # Get the current limited state
@@ -231,41 +277,18 @@ record(bi, "$(P)CURR_LIMITED")
 record(bi, "$(P)VOLT_ON")
 {
     field(DESC, "HV ON or OFF")
-    field(DTYP, "stream")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-    field(INP,  "@devKeithley2290.proto get_volt_on_bit $(PORT)")
-    field(SCAN, "1 second")
+    field(INP,  "$(P)STATUS.B7 CP MS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLT_ON")
     field(SDIS, "$(P)DISABLE")
 }
 
-# Get the value of the Standard Event Status Register alert
-record(bi, "$(P)ESB")
-{
-    field(DESC, "Event Status Register alert")
-    field(DTYP, "stream")
-    field(ZNAM, "OK")
-    field(ONAM, "ALERT")
-    field(OSV,  "MINOR")
-    field(INP,  "@devKeithley2290.proto get_esb_alert_bit $(PORT)")
-    field(SCAN, "1 second")
-}
-
-record(calcout, "$(P)ESB_EVENT")
-{
-    field(INPA, "$(P)ESB CP MS")
-    field(CALC, "A!=0")
-    field(OEVT, "14") # same number as the enabled status byte register value
-    field(OOPT, "Transition To Non-zero")
-    field(ODLY, "0")
-    field(DOPT, "Use CALC")
-}
-
 record(bi, "$(P)EXECUTION_ERROR")
 {
     field(DESC, "Execution error")
+    field(PINI, "YES")
     field(DTYP, "stream")
     field(INP,  "@devKeithley2290.proto get_execution_error $(PORT)")
     field(ZNAM, "OK")
@@ -286,7 +309,7 @@ record(bo, "$(P)RST")
     field(DESC, "SCPI reset")
     field(DTYP, "stream")
     field(OUT,  "@devKeithley2290.proto reset $(PORT)")
-    field(HIGH, "0")
+    field(HIGH, "0.1")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RST")
     field(SDIS, "$(P)DISABLE")
@@ -298,7 +321,7 @@ record(bo, "$(P)CLS")
     field(DESC, "SCPI Clear status")
     field(DTYP, "stream")
     field(OUT,  "@devKeithley2290.proto clear_status $(PORT)")
-    field(HIGH, "0")
+    field(HIGH, "0.1")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CLS")
     field(SDIS, "$(P)DISABLE")
@@ -310,7 +333,7 @@ record(bo, "$(P)CLT")
     field(DESC, "SCPI Clear trip")
     field(DTYP, "stream")
     field(OUT,  "@devKeithley2290.proto clear_trip $(PORT)")
-    field(HIGH, "0")
+    field(HIGH, "0.1")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CLT")
     field(SDIS, "$(P)DISABLE")
@@ -425,7 +448,7 @@ record(longout, "$(P)SERVICE_REQUEST_ENABLE")
 {
     field(DESC, "Event status register enable")
     field(DTYP, "stream")
-    field(VAL,  "14") # Enabled for I lim, I trip and V trip
+    field(VAL,  "0") # Not enabled for any
     field(PINI, "YES")
     field(OUT,  "@devKeithley2290.proto set_service_request_enable $(PORT)")
 }
