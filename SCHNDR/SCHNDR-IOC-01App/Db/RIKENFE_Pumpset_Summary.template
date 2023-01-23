@@ -1,0 +1,28 @@
+record (calc, "$(P)$(PV):GH") {
+
+    field(DESC, "$(DESC) GH summary.")
+    field(INPA, "$(P)$(GH1):STAT CP MSS")
+    field(INPB, "$(P)$(GH2):STAT CP MSS")
+    field(INPC, "$(P)$(GH3):STAT CP MSS")
+    field(INPD, "$(P)$(GH4):STAT CP MSS")
+    # Summary of GH Status bits associated with this pumpset.
+    field(CALC, "(A==2)&&(B==2)&&(C==2)&&(D==2)") # Check that status bits are in vac good state.
+}
+
+record (calc, "$(P)$(PV):OTHER"){
+    field(DESC, "$(DESC) Other summary.")
+    field(INPA, "$(P)TP$(NUM):STAT CP MSS")
+    field(INPB, "$(P)BP$(NUM):STAT CP MSS")
+    field(INPC, "$(P)PIV$(NUM):STAT CP MSS")
+    # Summary of other status bits associated with the pumpset.
+    field(CALC, "(A==1||A==2||A==3)&&(B==1||B==2||B==3)&&(C==1||C==2||C==3)") # Check that the bits are not fault or comms loss.
+}
+
+record (calc, "$(P)$(PV):STAT") {
+
+    field(DESC, "$(DESC) summary.")
+    field(INPA, "$(P)$(PV):GH CP MSS")
+    field(INPB, "$(P)$(PV):OTHER CP MSS")
+    # Check total state of pumpset.
+    field(CALC, "A&&B")
+}
