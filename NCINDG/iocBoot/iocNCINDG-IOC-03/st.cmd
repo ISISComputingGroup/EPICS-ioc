@@ -11,8 +11,8 @@ errlogInit2(65536, 256)
 cd "${TOP}"
 
 ## Register all support components
-dbLoadDatabase "dbd/NCINDG-IOC-02.dbd"
-NCINDG_IOC_02_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/NCINDG-IOC-03.dbd"
+NCINDG_IOC_03_registerRecordDeviceDriver pdbbase
 
 ## calling common command file in ioc 01 boot dir
 < ${TOP}/iocBoot/iocNCINDG-IOC-01/st-common.cmd

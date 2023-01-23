@@ -305,3 +305,24 @@ record(bo, "$(P)SIM:POL"){
     field(DTYP, "Soft Channel")
 }
 alias("$(P)SIM:POL", "$(P)SIM:POL:SP")
+
+record(calc, "$(P)LIMIT") {
+    field(DESC, "LIMIT HIT")
+    field(CALC, "A?(B?3:1):(B?2:0)")
+    field(INPA, "$(P)VOLT.SEVR CP")
+    field(INPB, "$(P)CURR.SEVR CP")
+}
+
+record(mbbi, "$(P)LIMIT:ENUM") {
+    field(INP, "$(P)LIMIT CP")
+    field(DESC, "Display Limit")
+    field(ZRST, "No")        
+    field(ZRVL, "0")
+    field(ONST, "VOLT LIMIT")         
+    field(ONVL, "1")
+    field(TWST, "CURR LIMIT")         
+    field(TWVL, "2")
+    field(THST, "BOTH LIMITS")       
+    field(THVL, "3")
+}
+

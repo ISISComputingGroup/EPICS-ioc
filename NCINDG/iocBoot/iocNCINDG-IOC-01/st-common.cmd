@@ -1,7 +1,7 @@
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-nucInstDigConfigure("DIG0", "$(IP_ADDR_0)")
+nucInstDigConfigure("DIG0", "$(IP_ADDR_0)", $(INDEX_0))
 
 ## Load record instances
 

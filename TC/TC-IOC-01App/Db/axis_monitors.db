@@ -15,7 +15,7 @@ record(bo, "$(P)MOT:$(MOTOR_PV)_ON_CMD")
 record(calcout, $(P)MOT:$(MOTOR_PV):VELO_SEND)
 {
     field(DESC, "Forward device velo SP to mtr rec")
-    field(INPA, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FVELOCITY CP")
+    field(INPA, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FVELOCITY:RBV CP")
     field(CALC, "A")
     field(OUT, "$(P)MOT:$(MOTOR_PV).VELO")
 }

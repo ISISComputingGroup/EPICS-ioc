@@ -11,6 +11,7 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 DB += single_axis.db
+DB += single_axis_tc.db
 DB += axis_monitors.db
 
 #----------------------------------------------------

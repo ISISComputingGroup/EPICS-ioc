@@ -77,11 +77,6 @@ DIRS_NOTBUILD += SEPRTR ASTRIUM ZFMAGFLD CAENV895 FMR
 DIRS_NOTBUILD += INSTRONA
 endif
 
-## twincat sets TWINCAT3DIR and TWINCATSDK environment variables on windows
-ifeq ($(TWINCAT3DIR),)
-DIRS_NOTBUILD += TC
-endif
-
 ## module decisions based on Visual Studio version
 ifneq ($(findstring 10.0,$(VCVERSION)),)
 # What not to build with VS2010
@@ -93,12 +88,17 @@ endif
 
 ## modules not to build on windows 64bit
 ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
-DIRS_NOTBUILD += 
+ifeq ($(TWINCAT3DIR),)
+DIRS_NOTBUILD += TC
+endif
 endif
 
 ## modules not to build on windows 32bit
 ifneq ($(findstring win32,$(EPICS_HOST_ARCH)),)
 DIRS_NOTBUILD += MK3CHOPR ASTRIUM
+ifeq ($(TWINCAT3DIR),)
+DIRS_NOTBUILD += TC
+endif
 endif
 
 ## modules not to build if static
@@ -109,7 +109,7 @@ endif
 ## modules not to build if debug static
 ifeq ($(BUILDING_SHARED),NO)
 ifneq ($(findstring debug,$(EPICS_HOST_ARCH)),)
-DIRS_NOTBUILD += TC
+#DIRS_NOTBUILD += TC # leftover from old tcIoc
 endif
 endif
 

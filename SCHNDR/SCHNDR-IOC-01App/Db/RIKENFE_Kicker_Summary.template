@@ -1,0 +1,76 @@
+
+record (calc, "$(P)$(TARGET):SUMMARY:ILK") {
+
+    field(DESC, "$(TARGET) Interlock State Summary")
+    field(INPA,  "$(P)$(TARGET):WATER:ILK:STAT CP MSS")
+    field(INPB,  "$(P)$(TARGET):VACUUM:ILK:STAT CP MSS")
+    field(INPC,  "$(P)$(TARGET):MOL:STAT CP MSS")
+
+    field(CALC , "((A==4)||(B==4)||(C==4))") # 4 indicates a fault/interlock being tripped.
+}
+
+record(calc, "$(P)$(TARGET):SUMMARY:POWER"){
+    field(DESC, "$(TARGET) Power Summary")
+    field(INPD,  "$(P)$(PV1):PSU_ON:STAT CP MSS")
+    field(INPE,  "$(P)$(PV2):PSU_ON:STAT CP MSS")
+    field(INPF,  "$(P)$(PV3):PSU_ON:STAT CP MSS")
+    field(INPG,  "$(P)$(PV4):PSU_ON:STAT CP MSS")
+    field(CALC,   "((D==1)&&(E==1)&&(F==1)&&(G==1))?1:(((D==2)&&(E==2)&&(F==2)&&(G==2))?2:3)") # 1 if all kickers are off, 2 if all are on, otherwise 3.
+}
+
+record(calc, "$(P)$(TARGET):CONNECTION:STAT") {
+    field(DESC, "$(TARGET) Connection Summary")
+    field(INPA,  "$(P)$(TARGET):WATER:ILK:STAT CP MSS")
+    field(INPB,  "$(P)$(TARGET):VACUUM:ILK:STAT CP MSS")
+    field(INPC,  "$(P)$(TARGET):MOL:STAT CP MSS")
+    field(INPD,  "$(P)$(PV1):PSU_ON:STAT CP MSS")
+    field(INPE,  "$(P)$(PV2):PSU_ON:STAT CP MSS")
+    field(INPF,  "$(P)$(PV3):PSU_ON:STAT CP MSS")
+    field(INPG,  "$(P)$(PV4):PSU_ON:STAT CP MSS")
+    field(CALC , "((A==0)||(B==0)||(C==0)||(D==0)||(E==0)||(F==0)||(G==0))") # check that no values are in comms loss state
+}
+
+record(calc, "$(P)$(TARGET):SUMMARY:STAT") {
+    field(INPA, "$(P)$(TARGET):CONNECTION:STAT CP MSS")
+    field(INPB, "$(P)$(TARGET):SUMMARY:POWER CP MSS")
+    field(INPC, "$(P)$(TARGET):SUMMARY:ILK CP MSS")
+    field(DESC, "$(TARGET) Status Summary CP MSS")
+    field(CALC, "A?0:(C==1?4:B)") # 0 if any kicker or interlock in comms loss, 4 if any interlock is tripped, otherwise report the powerstate of the kickers
+}
+
+record(calc, "$(P)$(TARGET):CURRENT:TOTAL") {
+    field(INPA, "$(P)$(PV1):CURR CP MSS")
+    field(INPB, "$(P)$(PV2):CURR CP MSS")
+    field(INPC, "$(P)$(PV3):CURR CP MSS")
+    field(INPD, "$(P)$(PV4):CURR CP MSS")
+    field(CALC, "A+B+C+D")
+    field(EGU, "kA")
+    field(PREC, "3")
+}
+
+record (mbbi, "$(P)$(TARGET):SUMMARY:ENUM") {
+
+    field(DESC, "$(TARGET) Summary Enum")
+    field(INP,  "$(P)$(TARGET):SUMMARY:STAT CP MSS")
+
+    field(ZRVL, 0)
+    field(ZRST, "Comms Loss")
+    field(ZRSV, "INVALID")
+
+    field(ONVL, 1)
+    field(ONST, "All Off")
+    field(ONSV, "NO_ALARM")
+
+    field(TWVL, 2)
+    field(TWST, "All On")
+    field(TWSV, "NO_ALARM")
+
+    field(THVL, 3)
+    field(THST, "Mixed State")
+    field(THSV, "NO_ALARM")
+
+    field(FRVL, 4)
+    field(FRST, "Fault")
+    field(FRSV, "MAJOR")
+}
+
