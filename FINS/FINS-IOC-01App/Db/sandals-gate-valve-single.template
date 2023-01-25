@@ -16,6 +16,9 @@ record(mbbi, "$(P)$(Q)$(NAME):STATUS") {
 
     field(SIML, "$(P)$(Q)SIM")
     field(SIOL, "$(P)$(Q)SIM:$(NAME):STATUS CP MS")
+
+    info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
 
 ### Simulation Records ###

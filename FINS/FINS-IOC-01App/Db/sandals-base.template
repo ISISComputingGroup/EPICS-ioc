@@ -17,6 +17,9 @@ record(bo, "$(P)$(Q)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
+# Watchdog - the SANDALS PLC has a watchdog field which increments from 0-255 every second, and loops back to 0 after it hits 255.
+# We can scan it every 2 seconds (nyquist frequency) to check it has changed. If not, put the status field in alarm as the PLC has
+# either stopped communicating or has fallen out of run mode. 
 record(ai, "$(P)$(Q)WATCHDOG:RAW")
 {
     field(DESC, "Watchdog counter from device")
@@ -36,7 +39,8 @@ record(calc, "$(P)$(Q)WATCHDOG:STATUS")
     field(CALC, "(B=A)?1:0")
     field(HIHI, "1")
     field(HHSV, "MAJOR")
-
+    info(INTEREST, "MEDIUM")
+	info(archive, "VAL")
 }
 
 ### Simulation Records ###
