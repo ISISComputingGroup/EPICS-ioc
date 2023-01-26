@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Keithley 2000 Digital Multimeter</ioc_desc>
+<ioc_details>Keithley 2000 Digital Multimeter</ioc_details>
+<macros>
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<macro name="BAUD" pattern="^(19200|9600|4800|2400|1200|600|300)$" description="Serial Baud rate" hasDefault="YES" defaultValue="9600" />
+<macro name="OEOS" pattern="^.*$" description="Serial communication output terminator, defaults to \\r\\n." defaultValue="\\r\\n" hasDefault="YES" />
+<macro name="IEOS" pattern="^.*$" description="Serial communication input terminator, defaults to \\r\\n." defaultValue="\\r\\n" hasDefault="YES" />
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>

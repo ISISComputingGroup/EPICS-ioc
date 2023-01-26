@@ -62,6 +62,7 @@ IOCDIRS += AEROFLEX
 IOCDIRS += TJMPAP
 IOCDIRS += INSTRONA
 IOCDIRS += TEKOSC
+IOCDIRS += KHLY2000
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
