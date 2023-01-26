@@ -670,10 +670,11 @@ record(ao, "$(P)HEATER:WAITTIME") {
 # Used with second COMPRESS record below to check heater has been on for at least 60s after starting IOC
 
 record(compress, "$(P)HEATER:_STATUS_BUFFER") {
-  field(INP, "$(P)HEATER:STATUS")
+  field(INP, "$(P)HEATER:STATUS.VAL")
   field(ALG, "Circular Buffer")
   field(NSAM, "60")
   field(SCAN, "1 second")
+  field(FLNK, "$(P)HEATER:_STATUS_BUFFER_LOWEST")
 }
 
 # COMPRESS record to monitor above and output lowest value in buffer.
@@ -685,8 +686,23 @@ record(compress, "$(P)HEATER:_STATUS_BUFFER_LOWEST") {
   field(ALG, "N to 1 Low Value")
   field(NSAM, "1")
   field(N, "60")
+  field(FLNK, "$(P)HEATER:ONTIME_OK")
   info(archive, "VAL")
 }
+
+# BO record to indicate whether or not heater been on for at least 60s. Monitored by statemachine to determine whether or not OK to set field.
+
+record(bo, "$(P)HEATER:ONTIME_OK") {
+  field(DESC, "Heater on for at least WAITTIME (60s)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P)HEATER:_STATUS_BUFFER_LOWEST.VAL")
+  field(ZNAM, "Heater OFF in last 60s")
+  field(ONAM, "Heater ON for > 60s")
+  info(archive, "VAL")
+}
+
 
 # # Readback from m of Mmn part of Examine command return.
 # The Display is in Amps or Tesla.  The Magnet Sweep is fast or slow.

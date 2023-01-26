@@ -1,4 +1,4 @@
-program cryomagnet("FIELD,FIELD_SETPOINT,FIELD_SETPOINT_ALARM,FIELD_SETPOINT_RAW,FIELD_SETPOINT_READBACK,PERSISTENT,MAGNET_FIELD,HEATER_STATUS,HEATER_STATUS_SP,HEATER_WAIT_TIME,ACTIVITY,ACTIVITY_SP,SWEEPMODE,SWEEPMODE_SP,SUPPLYVOLTAGE_STABLE,SWEEP_ACTIVE,STATEMACHINE")
+program cryomagnet("FIELD,FIELD_SETPOINT,FIELD_SETPOINT_ALARM,FIELD_SETPOINT_RAW,FIELD_SETPOINT_READBACK,PERSISTENT,MAGNET_FIELD,HEATER_STATUS,HEATER_STATUS_SP,HEATER_WAIT_TIME,ACTIVITY,ACTIVITY_SP,SWEEPMODE,SWEEPMODE_SP,SUPPLYVOLTAGE_STABLE,SWEEP_ACTIVE,STATEMACHINE,HEATER_ONTIME_OK")
 
 #include "seqPVmacros.h"
 %% #include <math.h>
@@ -36,6 +36,9 @@ PV(int, supplyvoltage_stable, "{SUPPLYVOLTAGE_STABLE}", Monitor);
 PV(int, sweep_active, "{SWEEP_ACTIVE}", Monitor);
 
 PV(int, statemachine_pv, "{STATEMACHINE}", NoMon);
+
+PV(int, heater_ontime_ok, "{HEATER_ONTIME_OK}", Monitor);
+
 
 /* If fields are the same within this tolerance, treat as the same */
 double field_tolerance = 0.0001;
@@ -234,6 +237,7 @@ ss cryomagnet
       && persistent == 0 
       && activity == ACTIVITY_TO_SP
       && (sweep_active == 0)
+      && (heater_ontime_ok == 1)
       )
     {
       print_transition("set_psu_output", "at_field");
