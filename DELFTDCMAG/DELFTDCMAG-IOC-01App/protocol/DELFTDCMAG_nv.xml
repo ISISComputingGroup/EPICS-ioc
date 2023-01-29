@@ -31,31 +31,100 @@
 		  "fval" and "tval" are only used for boolean type, they are the strings to be displayed for false and true values
 		  "field" is only used for a structure type network shared variable, it indicates the structure element to access. Structures are read-only.
 	  -->
-	  <param name="APOSSET" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/Aposset" /> 
+	  <!-- The following 4 lines were used to allow motors to be positioned at the lower level for the TOFLAR expt. -->
+	  <!-- <param name="APOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Aposset" /> -->
+	  <!-- <param name="AACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/APaction" /> -->
+	  <!-- <param name="GPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Gposset" /> -->
+	  <!-- <param name="GACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/GPaction" /> -->
 	  <param name="APOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Apos" /> 
-	  <param name="AACT" type="int32" access="R,W" netvar="//192.168.1.3/SVlib/APaction" /> 
-	  <param name="GPOSSET" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/Gposset" /> 
+	  <param name="APOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Aposset" />
+	  <param name="AACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/APaction" />	  
+	  <param name="BPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Bpos" />
+	  <param name="BPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Bposset" />
+	  <param name="BACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/BPaction" />	  
+	  <param name="CPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Cpos" /> 
+	  <param name="CPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Cposset" />
+	  <param name="CACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/CPaction" />	  
+	  <param name="DPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Dpos" /> 
+	  <param name="EPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Epos" /> 
+	  <param name="EPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Eposset" />
+	  <param name="EACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/EPaction" />	  
+	  <param name="FPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Fpos" /> 
+	  
 	  <param name="GPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Gpos" /> 
-	  <param name="GACT" type="int32" access="R,W" netvar="//192.168.1.3/SVlib/GPaction" /> 
-	  <param name="SIMARM12" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/SimArm1-2" /> 
-	  <param name="SIMGO" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/SimGo" /> 
-	  <param name="SIMSIM" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/SimSim" /> 
-	  <param name="SIMPSO" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/SimPSO" /> 
-	  <param name="SIMTHETA" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/SimTheta" /> 
-	  <param name="SIML1" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/SimL1" /> 
-	  <param name="SIML2" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/SimL2" /> 
-	  <param name="FIELDMAG1SP" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldSP1" /> 
-	  <param name="FIELDMAG1" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldM1" /> 
-	  <param name="FIELDMAG2SP" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldSP2" /> 
-	  <param name="FIELDMAG2" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldM2" /> 
-	  <param name="FIELDMAG3SP" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldSP4" /> 
-	  <param name="FIELDMAG3" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldM3" /> 
-	  <param name="FIELDMAG4SP" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldSP4" /> 
-	  <param name="FIELDMAG4" type="float64" access="R,W" netvar="//192.168.1.3/SVlib/FieldM4" /> 
-	  <param name="RFON" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/RFOn" /> 
-	  <param name="AWGOUTPUT" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/AWGOutput" /> 
-	  <param name="AWGCONF" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/AWGConf" /> 
-	  <param name="AWGGAINCSET" type="boolean" access="R,W" netvar="//192.168.1.3/SVlib/AWGGainCSet" /> 
+	  <param name="GPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Gposset" />
+	  <param name="GACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/GPaction" />	  
+	  <param name="HPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Hpos" /> 
+	  <param name="HPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Hposset" />
+	  <param name="HACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/HPaction" />	  
+	  <param name="IPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Ipos" /> 
+  	  <param name="IPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Iposset" />
+	  <param name="IACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/IPaction" />	  
+	  <param name="JPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Jpos" /> 
+	  <param name="KPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Kpos" />
+  	  <param name="KPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Kposset" />
+	  <param name="KACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/KPaction" />	  
+	  <param name="LPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Lpos" /> 
+	  
+	  <param name="MPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Mpos" /> 
+	  <param name="MPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Mposset" />
+	  <param name="MACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/MPaction" />	  
+	  <param name="NPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Npos" /> 
+	  <param name="NPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Nposset" />
+	  <param name="NACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/NPaction" />	  
+	  <param name="OPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Opos" /> 
+	  <param name="OPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Oposset" />
+	  <param name="OACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/OPaction" />	  
+	  <param name="PPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Ppos" /> 
+	  <param name="QPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Qpos" /> 
+	  <param name="QPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Qposset" />
+	  <param name="QACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/QPaction" />	  
+	  <param name="RPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Rpos" /> 
+	  
+	  <param name="SPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Spos" /> 
+	  <param name="SPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Sposset" />
+	  <param name="SACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/SPaction" />	  
+	  <param name="TPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Tpos" /> 
+	  <param name="TPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Tposset" />
+	  <param name="TACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/TPaction" />	  
+	  <param name="UPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Upos" /> 
+	  <param name="UPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Uposset" />
+	  <param name="UACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/UPaction" />	  
+	  <param name="VPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Vpos" /> 
+	  <param name="WPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Wpos" /> 
+	  <param name="WPOSSET" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/Wposset" />
+	  <param name="WACT" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/WPaction" />	  
+	  <param name="XPOS" type="float64" access="BR" netvar="//192.168.1.3/SVlib/Xpos" /> 
+	  
+	  <param name="SIMARM12" type="boolean" access="BR,BW" netvar="//192.168.1.3/SVlib/SimArm1-2" /> -->
+	  <param name="SIMGO" type="boolean" access="BR,BW" netvar="//192.168.1.3/SVlib/SimGo" /> 
+	  <param name="SIMMOVE" type="boolean" access="BR,BW" netvar="//192.168.1.3/SVlib/SimMove" /> 
+	  <param name="SIMSIM" type="boolean" access="BR,BW" netvar="//192.168.1.3/SVlib/SimSim" /> 
+	  <param name="SIMPSO" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/SimPSO" /> 
+	  <param name="SIMTHETA" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/SimTheta" /> 
+	  <param name="SIML1" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/SimL1" /> 
+	  <param name="SIML2" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/SimL2" /> 
+	  <param name="FIELDMAG1SP" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/FieldSP1" /> 
+	  <param name="FIELDMAG1" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/FieldM1" /> 
+	  <param name="FIELDMAG2SP" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/FieldSP2" /> 
+	  <param name="FIELDMAG2" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/FieldM2" /> 
+	  <param name="FIELDMAG3SP" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/FieldSP3" /> 
+	  <param name="FIELDMAG3" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/FieldM3" /> 
+	  <param name="FIELDMAG4SP" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/FieldSP4" /> 
+	  <param name="FIELDMAG4" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/FieldM4" /> 
+	  <param name="RFON" type="boolean" access="BR,BW" netvar="//192.168.1.3/SVlib/RFOn" /> 
+	  <param name="AWGOUTPUT" type="boolean" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGOutput" /> 
+	  <param name="AWGCONF" type="boolean" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGConf" /> 
+	  <param name="AWGGAINCSET" type="boolean" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGGainCSet" /> 
+	  <param name="POLREVI2SP" type="int32" access="BR,BW" netvar="//192.168.1.3/SVlib/PolRevSPI2" /> 
+	  <param name="POLREVI2" type="float64" access="BR,BW" netvar="//192.168.1.3/SVlib/PolRevI2" /> 	  
+	  <param name="SIMGOSESANS" type="boolean" access="BR,BW" netvar="//192.168.1.3/SVlib/SimGoPos1" /> 
+	  <param name="SIMERRORCLEAR" type="boolean" access="BR,BW" netvar="//192.168.1.3/SVlib/SimErrorClr" /> 
+	  <param name="RFCOILTEMP" type="float64array" access="BR" netvar="//192.168.1.3/SVlib/RFCoilTemp" /> 
+	  <param name="SIMARRIVED" type="boolean" access="BR" netvar="//192.168.1.3/SVlib/SimArrived" /> 
+	  <param name="AWGCARRIERFREQ" type="float64array" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGCarrierFreq" /> 
+	  <!--<param name="AWGTIREAL" type="float64array" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGTIreal" /> -->
+	  
 	</section>
   
 </netvar>
