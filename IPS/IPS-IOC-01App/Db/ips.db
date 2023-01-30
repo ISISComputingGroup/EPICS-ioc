@@ -872,7 +872,7 @@ record(mbbo, "$(P)STATEMACHINE") {
   field(THST, "Wait for volts stable")
 
   field(FRVL, "4")
-  field(FRST, "Turn heater on & wait")
+  field(FRST, "Ensure heater on & warm")
 
   field(FVVL, "5")
   field(FVST, "Set PSU to setpoint")
