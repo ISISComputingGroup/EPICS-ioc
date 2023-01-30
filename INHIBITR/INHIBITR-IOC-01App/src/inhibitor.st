@@ -1,6 +1,6 @@
 program inhibitor("PVONE,PVTWO,PVONE_DISP,PVTWO_DISP")
 
-#include "seqPVmacros.h"
+#include "ibexSeqPVmacros.h"
 %% #include "errlog.h"
 
 /* Turn on run-time debug messages */

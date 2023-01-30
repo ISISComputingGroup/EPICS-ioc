@@ -88,6 +88,8 @@
 
 # WR500.06          Overcount reset (momentary)
 
+global{TIMEOUT="\$(TIMEOUT=5.0)"}
+
 file "$(TOP)/FINS-IOC-01App/Db/address-read.template" {
     { P="\$(P)", Q="\$(Q)", PORT="PLC", NAME="ADDR:1001", DESC="Read PLC address 1001", ADDR="1001" }
     { P="\$(P)", Q="\$(Q)", PORT="PLC", NAME="ADDR:1004", DESC="Read PLC address 1004", ADDR="1004" }

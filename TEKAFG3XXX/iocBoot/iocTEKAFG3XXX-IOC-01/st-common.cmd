@@ -12,7 +12,7 @@ $(IFDEVSIM) drvAsynIPPortConfigure("GPIB0", "localhost:$(EMULATOR_PORT=)")
 $(IFDEVSIM) asynOctetSetOutputEos("GPIB0", -1, "$(IEOS=\\n)")  # For testing set the output eos
 
 ## For real device use:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) vxi11Configure("GPIB0", "130.246.50.169", 0, 0.0,"inst0", 0, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) vxi11Configure("GPIB0", $(ADDR), 0, 0.0,"inst0", 0, 0)
 
 #asynSetTraceIOMask("GPIB0",0,2)
 #asynSetTraceMask("GPIB0",0,255)
@@ -21,20 +21,11 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) vxi11Configure("GPIB0", "130.246.50.169", 0, 0.0,"
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-
-
-
-
-## Load record instances
-
-##ISIS## Load common DB records 
-< $(IOCSTARTUP)/dbload.cmd
-
 ############################
 ## Load our record instances
 ############################
 
-dbLoadRecords("$(TEKAFG3XXX)/db/devAFG3XXX.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=GPIB0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
+dbLoadRecords("$(TEKAFG3XXX)/db/devAFG3XXX.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=GPIB0,SCAN=$(SCAN=5 second),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

@@ -1,0 +1,24 @@
+file $(TJMPER)/tjmperSup/tjmper.template
+{
+	pattern {P, PORT, RECSIM, DISABLE}
+	{"\$(P)", "\$(PORT)", "\$(RECSIM)", "\$(DISABLE)"}
+}
+
+file $(TJMPER)/tjmperSup/tjmper_limits.template
+{
+	pattern {P, PART, MODE, REF}
+	{"\$(P)", "PLATE1", "HOME", "B5"}
+    {"\$(P)", "PLATE1", "ENGAGED", "B4"}
+    {"\$(P)", "PLATE2", "HOME", "B3"}
+    {"\$(P)", "PLATE2", "ENGAGED", "B2"}
+    {"\$(P)", "SAMPLE", "HOME", "B1"}
+    {"\$(P)", "SAMPLE", "ENGAGED", "B0"}
+}
+
+file $(TJMPER)/tjmperSup/tjmper_moving.template
+{
+	pattern {P, PART}
+	{"\$(P)", "PLATE1"}
+    {"\$(P)", "PLATE2"}
+    {"\$(P)", "SAMPLE"}
+}

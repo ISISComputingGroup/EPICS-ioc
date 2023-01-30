@@ -3,7 +3,8 @@
 <config_part>
 <ioc_desc>Chell CCD 100 pressure transducer</ioc_desc>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
+<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port (for mk2)" hasDefault="NO" />
+<macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address (for mk3)" hasDefault="NO" />
 <macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 57600." defaultValue="57600" hasDefault="YES" />
 <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." defaultValue="8" hasDefault="YES" />
 <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." defaultValue="none" hasDefault="YES" />

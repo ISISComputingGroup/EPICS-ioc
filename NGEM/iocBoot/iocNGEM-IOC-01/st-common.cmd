@@ -38,12 +38,19 @@ NDStdArraysConfigure("Image1", 3, 0, "ROI1", 0, 0)
 NDPvaConfigure("PVA1", 3, 0, "ROI1", 0, "$(MYPVPREFIX)$(IOCNAME):AD:pva1:pvaData", 0)
 KafkaPluginConfigure("KFK", 3, 1, "RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "$(INSTRUMENT=TEST)_areaDetector")
 
+NDProcessConfigure("PROC1", 3, 0, "ROI1", 0)
+NDFileTIFFConfigure("TIFF1", 3, 0, "PROC1", 0)
+
 dbLoadRecords("$(NGEM)/db/nGEMAD.template","P=$(MYPVPREFIX),R=$(IOCNAME):AD:,PORT=NGEM,ADDR=0,TIMEOUT=1,DATATYPE=9")
 dbLoadRecords("NDTransform.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:rawimage1:,PORT=RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=NGEM,NDARRAY_ADDR=0,DATATYPE=9,ENABLED=1")
 dbLoadRecords("NDROI.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:roi1:,PORT=ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=RawImage1,NDARRAY_ADDR=0,DATATYPE=9,ENABLED=1")
 dbLoadRecords("NDStats.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:stats1:,PORT=Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROI1,NDARRAY_ADDR=0,DATATYPE=9,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
 dbLoadRecords("NDStdArrays.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:image1:,PORT=Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROI1,NDARRAY_ADDR=0,DATATYPE=9,ENABLED=1,TYPE=Float64,FTVL=DOUBLE,NELEMENTS=50000")
 dbLoadRecords("NDPva.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:pva1:,PORT=PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROI1,NDARRAY_ADDR=0,DATATYPE=9,ENABLED=1")
+dbLoadRecords("NDProcess.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:PROC1:,PORT=PROC1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROI1,ENABLED=1,DATATYPE=9")
+
+dbLoadRecords("NDFileTIFF.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:TIFF1:,PORT=TIFF1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=PROC1,ENABLED=1,DATATYPE=4")
+
 dbLoadRecords("$(ADPLUGINKAFKA)/db/ADPluginKafka.template", "P=$(MYPVPREFIX),R=$(IOCNAME):AD:KFK:,PORT=KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=RawImage1,ENABLED=1")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
@@ -57,3 +64,8 @@ iocInit
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
+
+dbpf "$(MYPVPREFIX)$(IOCNAME):AD:PROC1:DataTypeOut", "4"
+dbpf "$(MYPVPREFIX)$(IOCNAME):AD:TIFF1:FileTemplate", "%s%s%d.tiff"
+dbpf "$(MYPVPREFIX)$(IOCNAME):AD:TIFF1:AutoIncrement", "1"
+dbpf "$(MYPVPREFIX)$(IOCNAME):FILEPREFIX:SP", "snap"

@@ -223,6 +223,18 @@ record (mbbi, "$(P)CS:SHUTTER")
 	info(archive, "VAL")
 }
 
+record (waveform, "$(P)CS:PERSP:SETTINGS") 
+{
+	field(DESC, "Which perspectives are visible")
+	field(SCAN, "Passive")
+	field(FTVL, "CHAR")
+	field(DTYP, "Soft Channel")
+	field(SDIS, "$(P)CS:MANAGER")
+	field(DISV, "0")
+	field(NELM, "1024")
+	info(autosaveFields, "VAL")
+}
+
 ### SIMULATION RECORDS ###
 
 record(mbbi, "$(P)SIM:BUMP_STOP")

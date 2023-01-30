@@ -66,7 +66,7 @@ $(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS_WIN32 += libcurl
 $(APPNAME)_SYS_LIBS_Linux += curl
 
-$(APPNAME)_LIBS += ssleay32 libeay32
+$(APPNAME)_LIBS += libssl libcrypto
 
 $(APPNAME)_SYS_LIBS_WIN32 += psapi wldap32 ws2_32 crypt32 Normaliz # advapi32 user32 msxml2
 

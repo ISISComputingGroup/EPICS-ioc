@@ -30,12 +30,15 @@ $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += calcSupport.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += motionSetPoints.dbd
 $(APPNAME)_DBD += motorSupport.dbd
 $(APPNAME)_DBD += motorSimSupport.dbd
 $(APPNAME)_DBD += devSoftMotor.dbd
-$(APPNAME)_DBD += tcIocSupport.dbd
-$(APPNAME)_DBD += tcIocMotorSupport.dbd
+$(APPNAME)_DBD += adsMotorSupport.dbd
 $(APPNAME)_DBD += luaSupport.dbd
+$(APPNAME)_DBD += asubFunctions.dbd 
+$(APPNAME)_DBD += ads.dbd 
+
 
 # Add all the support libraries needed by this IOC
 
@@ -43,14 +46,17 @@ USR_DBDFLAGS += -I$(TCIOC)/InfoDeviceSupport -I$(TCIOC)/TCatDeviceSupport
 
 ## ISIS standard libraries ##
 ## Stream device libraries ##
-$(APPNAME)_LIBS += tcIocSupport
-$(APPNAME)_LIBS += tcIocMotorSupport
+$(APPNAME)_LIBS += asubFunctions
+$(APPNAME)_LIBS += adsMotorSupport
 $(APPNAME)_LIBS += softMotor 
 $(APPNAME)_LIBS += motorSimSupport
 $(APPNAME)_LIBS += motor
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
+$(APPNAME)_LIBS += ads
+$(APPNAME)_LIBS += autoparamDriver
 $(APPNAME)_LIBS += asyn
+$(APPNAME)_LIBS += motionSetPoints
 ## other standard libraries here ##
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
@@ -74,6 +80,16 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
+
+## add twincat library
+ifeq ($(findstring linux,$(EPICS_HOST_ARCH)),)
+TCDIR=C:/TwinCAT
+ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
+$(APPNAME)_SYS_LIBS_WIN32 += $(TCDIR)/AdsApi/TcAdsDll/x64/lib/TcAdsDll
+else
+$(APPNAME)_SYS_LIBS_WIN32 += $(TCDIR)/AdsApi/TcAdsDll/Lib/TcAdsDll
+endif
+endif
 
 #===========================
 
