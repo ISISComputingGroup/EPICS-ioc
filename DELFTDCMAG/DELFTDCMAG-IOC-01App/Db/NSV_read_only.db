@@ -1,0 +1,9 @@
+
+record(ai, "$(P)POS")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)$(Q)POS")
+    field(PREC, "3")
+    field(SCAN, "I/O Intr")
+	field(EGU, "mm")
+}

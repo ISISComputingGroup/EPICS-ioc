@@ -1,0 +1,665 @@
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+record(bi, "$(P)SIMARM12")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(nsv,0,0)SIMARM12")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "Arm2")
+    field(ONAM, "Arm1")
+}
+
+record(bo, "$(P)SIMARM12:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(nsv,0,0)SIMARM12")
+    field(SCAN, "Passive")
+    field(ZNAM, "Arm2")
+    field(ONAM, "Arm1")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+record(bi, "$(P)SIMGO")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(nsv,0,0)SIMGO")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+record(bo, "$(P)SIMGO:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(nsv,0,0)SIMGO")
+    field(SCAN, "Passive")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+record(bi, "$(P)SIMMOVE")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(nsv,0,0)SIMMOVE")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+record(bo, "$(P)SIMMOVE:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(nsv,0,0)SIMMOVE")
+    field(SCAN, "Passive")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+record(bi, "$(P)SIMMOVING")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(nsv,0,0)SIMMOVING")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+record(bi, "$(P)SIMSIM")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(nsv,0,0)SIMSIM")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+record(bo, "$(P)SIMSIM:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(nsv,0,0)SIMSIM")
+    field(SCAN, "Passive")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+record(bi, "$(P)SIMGOSESANS")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(nsv,0,0)SIMGOSESANS")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+record(bo, "$(P)SIMGOSESANS:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(nsv,0,0)SIMGOSESANS")
+    field(SCAN, "Passive")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+record(bi, "$(P)RFON")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(nsv,0,0)RFON")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+record(bo, "$(P)RFON:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(nsv,0,0)RFON")
+    field(SCAN, "Passive")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+record(bi, "$(P)SIMERRORCLEAR")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(nsv,0,0)SIMERRORCLEAR")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+record(bo, "$(P)SIMERRORCLEAR:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(nsv,0,0)SIMERRORCLEAR")
+    field(SCAN, "Passive")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+record(bi, "$(P)SIMARRIVED")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(nsv,0,0)SIMARRIVED")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+record(bi, "$(P)AWGOUTPUT")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(nsv,0,0)AWGOUTPUT")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+record(bo, "$(P)AWGOUTPUT:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(nsv,0,0)AWGOUTPUT")
+    field(SCAN, "Passive")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+record(bi, "$(P)AWGCONF")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(nsv,0,0)AWGCONF")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+record(bo, "$(P)AWGCONF:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(nsv,0,0)AWGCONF")
+    field(SCAN, "Passive")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+record(bi, "$(P)AWGGAINCSET")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn(nsv,0,0)AWGGAINCSET")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+record(bo, "$(P)AWGGAINCSET:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(nsv,0,0)AWGGAINCSET")
+    field(SCAN, "Passive")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+
+record(ai, "$(P)SIMPSO")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)SIMPSO")
+    field(SCAN, "I/O Intr")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+record(ao, "$(P)SIMPSO:SP")
+{
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(nsv,0,0)SIMPSO")
+    field(SCAN, "Passive")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+
+record(ai, "$(P)SIMTHETA")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)SIMTHETA")
+    field(SCAN, "I/O Intr")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+record(ao, "$(P)SIMTHETA:SP")
+{
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(nsv,0,0)SIMTHETA")
+    field(SCAN, "Passive")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+
+record(ai, "$(P)SIML1")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)SIML1")
+    field(SCAN, "I/O Intr")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+record(ao, "$(P)SIML1:SP")
+{
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(nsv,0,0)SIML1")
+    field(SCAN, "Passive")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+
+record(ai, "$(P)SIML2")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)SIML2")
+    field(SCAN, "I/O Intr")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+record(ao, "$(P)SIML2:SP")
+{
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(nsv,0,0)SIML2")
+    field(SCAN, "Passive")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+
+record(ai, "$(P)FIELDMAG1")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)FIELDMAG1")
+    field(SCAN, "I/O Intr")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+record(ao, "$(P)FIELDMAG1:SP")
+{
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(nsv,0,0)FIELDMAG1SP")
+    field(SCAN, "Passive")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+
+record(ai, "$(P)FIELDMAG2")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)FIELDMAG2")
+    field(SCAN, "I/O Intr")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+record(ao, "$(P)FIELDMAG2:SP")
+{
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(nsv,0,0)FIELDMAG2SP")
+    field(SCAN, "Passive")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+
+record(ai, "$(P)FIELDMAG3")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)FIELDMAG3")
+    field(SCAN, "I/O Intr")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+record(ao, "$(P)FIELDMAG3:SP")
+{
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(nsv,0,0)FIELDMAG3SP")
+    field(SCAN, "Passive")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+
+record(ai, "$(P)FIELDMAG4")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)FIELDMAG4")
+    field(SCAN, "I/O Intr")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+record(ao, "$(P)FIELDMAG4:SP")
+{
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(nsv,0,0)FIELDMAG4SP")
+    field(SCAN, "Passive")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+#
+# % macro, P, device prefix
+# % macro, PORT, asyn port
+# % macro, RPARAM, asyn read param
+# % macro, SPARAM, asyn set param
+
+record(ai, "$(P)POLREVI2")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)POLREVI2")
+    field(SCAN, "I/O Intr")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+record(ao, "$(P)POLREVI2:SP")
+{
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(nsv,0,0)POLREVI2SP")
+    field(SCAN, "Passive")
+    field(PREC, "3")
+    field(EGU, "")
+}
+
+record(waveform, "$(P)RFCOILTEMP")
+{
+	field(EGU, "")
+    field(NELM, "4")
+    field(FTVL, "DOUBLE")
+    field(DTYP, "asynFloat64ArrayIn")
+    field(INP,  "@asyn(nsv,0,0)RFCOILTEMP")
+    field(SCAN, "I/O Intr")
+    field(PREC, "3")
+}
+
+record(subArray, "$(P)_RFCOILTEMP1")
+{
+	field(EGU, "")
+    field(NELM, "1")
+    field(MALM, "4")
+    field(INDX, "0")
+    field(FTVL, "DOUBLE")
+    field(INP,  "$(P)RFCOILTEMP CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(subArray, "$(P)_RFCOILTEMP2")
+{
+	field(EGU, "")
+    field(NELM, "1")
+    field(MALM, "4")
+    field(INDX, "1")
+    field(FTVL, "DOUBLE")
+    field(INP,  "$(P)RFCOILTEMP CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(subArray, "$(P)_RFCOILTEMP3")
+{
+	field(EGU, "")
+    field(NELM, "1")
+    field(MALM, "4")
+    field(INDX, "2")
+    field(FTVL, "DOUBLE")
+    field(INP,  "$(P)RFCOILTEMP CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(subArray, "$(P)_RFCOILTEMP4")
+{
+	field(EGU, "")
+    field(NELM, "1")
+    field(MALM, "4")
+    field(INDX, "3")
+    field(FTVL, "DOUBLE")
+    field(INP,  "$(P)RFCOILTEMP CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(ai, "$(P)RFCOILTEMP1")
+{
+	field(EGU, "")
+    field(INP,  "$(P)_RFCOILTEMP1 CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(ai, "$(P)RFCOILTEMP2")
+{
+	field(EGU, "")
+    field(INP,  "$(P)_RFCOILTEMP2 CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(ai, "$(P)RFCOILTEMP3")
+{
+	field(EGU, "")
+    field(INP,  "$(P)_RFCOILTEMP3 CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(ai, "$(P)RFCOILTEMP4")
+{
+	field(EGU, "")
+    field(INP,  "$(P)_RFCOILTEMP4 CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+#%==================================================
+#% Carrier frequency array
+#%==================================================
+record(waveform, "$(P)AWGCARRIERFREQ")
+{
+	field(EGU, "")
+    field(NELM, "4")
+    field(FTVL, "DOUBLE")
+    field(DTYP, "asynFloat64ArrayIn")
+    field(INP,  "@asyn(nsv,0,0)AWGCARRIERFREQ")
+    field(SCAN, "I/O Intr")
+    field(PREC, "3")
+}
+
+record(waveform, "$(P)AWGCARRIERFREQ:SP")
+{
+	field(EGU, "")
+    field(NELM, "4")
+    field(FTVL, "DOUBLE")
+    field(DTYP, "asynFloat64ArrayOut")
+    field(INP,  "@asyn(nsv,0,0)AWGCARRIERFREQ")
+    field(PREC, "3")
+}
+
+record(subArray, "$(P)_AWGCARRIERFREQ1")
+{
+	field(EGU, "")
+    field(NELM, "1")
+    field(MALM, "4")
+    field(INDX, "0")
+    field(FTVL, "DOUBLE")
+    field(INP,  "$(P)AWGCARRIERFREQ CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(subArray, "$(P)_AWGCARRIERFREQ2")
+{
+	field(EGU, "")
+    field(NELM, "1")
+    field(MALM, "4")
+    field(INDX, "1")
+    field(FTVL, "DOUBLE")
+    field(INP,  "$(P)AWGCARRIERFREQ CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(subArray, "$(P)_AWGCARRIERFREQ3")
+{
+	field(EGU, "")
+    field(NELM, "1")
+    field(MALM, "4")
+    field(INDX, "2")
+    field(FTVL, "DOUBLE")
+    field(INP,  "$(P)AWGCARRIERFREQ CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(subArray, "$(P)_AWGCARRIERFREQ4")
+{
+	field(EGU, "")
+    field(NELM, "1")
+    field(MALM, "4")
+    field(INDX, "3")
+    field(FTVL, "DOUBLE")
+    field(INP,  "$(P)AWGCARRIERFREQ CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(ai, "$(P)AWGCARRIERFREQ1")
+{
+	field(EGU, "")
+    field(INP,  "$(P)_AWGCARRIERFREQ1 CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(ai, "$(P)AWGCARRIERFREQ2")
+{
+	field(EGU, "")
+    field(INP,  "$(P)_AWGCARRIERFREQ2 CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(ai, "$(P)AWGCARRIERFREQ3")
+{
+	field(EGU, "")
+    field(INP,  "$(P)_AWGCARRIERFREQ3 CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(ai, "$(P)AWGCARRIERFREQ4")
+{
+	field(EGU, "")
+    field(INP,  "$(P)_AWGCARRIERFREQ4 CP")
+    field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+
+#

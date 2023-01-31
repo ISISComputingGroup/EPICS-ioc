@@ -1,4 +1,4 @@
-file "$(NETSHRVAR)/db/NetSHrVar_boolean.template"
+file "$(NETSHRVAR)/db/NetShrVar_boolean.template"
 {
 pattern { P, PARAM, PORT, RPARAM, SPARAM, SCAN, ZNAME, ONAME }
 { "\$(P)", "SIMARM12", "nsv", "SIMARM12", "SIMARM12", "I/O Intr", "Arm2", "Arm1" }
@@ -10,7 +10,7 @@ pattern { P, PARAM, PORT, RPARAM, SPARAM, SCAN, ZNAME, ONAME }
 { "\$(P)", "AWGGAINCSET", "nsv", "AWGGAINCSET", "AWGGAINCSET", "I/O Intr", "No", "Yes" }
 }
 
-file "$(NETSHRVAR)/db/NetSHrVar_float64.template"
+file "$(NETSHRVAR)/db/NetShrVar_float64.template"
 {
 pattern { P, PARAM, PORT, RPARAM, SPARAM, SCAN, EGU, PREC }
 { "\$(P)", "SIMPSO", "nsv", "SIMPSO", "SIMPSO", "I/O Intr", "", 3 }
@@ -22,3 +22,20 @@ pattern { P, PARAM, PORT, RPARAM, SPARAM, SCAN, EGU, PREC }
 { "\$(P)", "FIELDMAG3", "nsv", "FIELDMAG3", "FIELDMAG3SP", "I/O Intr", "", 3 }
 { "\$(P)", "FIELDMAG4", "nsv", "FIELDMAG4", "FIELDMAG4SP", "I/O Intr", "", 3 }
 }
+
+file "$(NETSHRVAR)/db/NetShrVar_float64array.template"
+{
+pattern { P, PARAM, PORT, RPARAM, SPARAM, SCAN, EGU, PREC, NELM }
+{ "\$(P)", "AWGTRISEEPICS", "nsv", "AWGTRiseEPICS", "AWGTRiseEPICS", "I/O Intr", "", 3, 4 }
+}
+
+file "$(NETSHRVAR)/db/NetShrVar_float64subarray.template"
+{
+pattern { P, PARAM, EGU, PREC, NELM, INDX }
+{ "\$(P)", "AWGTRISEEPICS", "", 3, 4, 0 }
+{ "\$(P)", "AWGTRISEEPICS", "", 3, 4, 1 }
+{ "\$(P)", "AWGTRISEEPICS", "", 3, 4, 2 }
+{ "\$(P)", "AWGTRISEEPICS", "", 3, 4, 3 }
+}
+
+#
