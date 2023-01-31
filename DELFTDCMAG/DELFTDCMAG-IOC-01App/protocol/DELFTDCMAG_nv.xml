@@ -124,6 +124,13 @@
 	  <param name="SIMARRIVED" type="boolean" access="BR" netvar="//192.168.1.3/SVlib/SimArrived" /> 
 	  <param name="AWGCARRIERFREQ" type="float64array" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGCarrierFreq" /> 
 	  <!--<param name="AWGTIREAL" type="float64array" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGTIreal" /> -->
+	  <param name="AWGTRiseEPICS" type="float64array" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGTRiseEPICS" /> 
+	  <param name="AWGTFlatEPICS" type="float64array" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGTFlatEPICS" /> 
+	  <param name="AWGTStopEPICS" type="float64array" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGTStopEPICS" /> 
+	  <param name="AWGTStartEPICS" type="float64array" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGTStartEPICS" /> 
+	  <param name="AWGIRealPICS" type="float64array" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGIRealPICS" /> 
+	  <param name="AWGCarrierFreqEPICS" type="float64array" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGCarrierFreqEPICS" /> 
+	  <param name="AWGConfigEPICS" type="boolean" access="BR,BW" netvar="//192.168.1.3/SVlib/AWGConfigEPICS" /> 
 	  
 	</section>
   
