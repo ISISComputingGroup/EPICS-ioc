@@ -29,13 +29,13 @@ pattern { P, PARAM, PORT, RPARAM, SPARAM, SCAN, EGU, PREC, NELM }
 { "\$(P)", "AWGTRISEEPICS", "nsv", "AWGTRiseEPICS", "AWGTRiseEPICS", "I/O Intr", "", 3, 4 }
 }
 
-file "$(NETSHRVAR)/db/NetShrVar_float64subarray.template"
-{
-pattern { P, PARAM, EGU, PREC, NELM, INDX }
-{ "\$(P)", "AWGTRISEEPICS", "", 3, 4, 0 }
-{ "\$(P)", "AWGTRISEEPICS", "", 3, 4, 1 }
-{ "\$(P)", "AWGTRISEEPICS", "", 3, 4, 2 }
-{ "\$(P)", "AWGTRISEEPICS", "", 3, 4, 3 }
-}
+#file "$(NETSHRVAR)/db/NetShrVar_float64subarray.template"
+#{
+#pattern { P, PARAM, EGU, PREC, NELM, INDX }
+#{ "\$(P)", "AWGTRISEEPICS", "", 3, 4, 0 }
+#{ "\$(P)", "AWGTRISEEPICS", "", 3, 4, 1 }
+#{ "\$(P)", "AWGTRISEEPICS", "", 3, 4, 2 }
+#{ "\$(P)", "AWGTRISEEPICS", "", 3, 4, 3 }
+#}
 
 #
