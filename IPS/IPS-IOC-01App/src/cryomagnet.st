@@ -29,7 +29,7 @@ PV(int, activity_sp, "{ACTIVITY_SP}", Monitor);
 PV(int, sweepmode, "{SWEEPMODE}", Monitor);
 PV(int, sweepmode_sp, "{SWEEPMODE_SP}", Monitor);
 
-PV(double, heater_delay_time, "{HEATER_WAIT_TIME}", Monitor);
+PV(double, heater_wait_time, "{HEATER_WAIT_TIME}", Monitor);
 
 PV(int, supplyvoltage_stable, "{SUPPLYVOLTAGE_STABLE}", Monitor);
 
@@ -194,7 +194,7 @@ ss cryomagnet
     } state set_psu_output
     
     /* If heater is not switched on within timeout, retry sending commands */
-    when(delay(heater_delay_time + 30.0)){
+    when(delay(heater_wait_time + 30.0)){
       print_transition("ensure_switch_heater_warm", "ensure_switch_heater_warm");
     } state ensure_switch_heater_warm
   }
@@ -263,7 +263,7 @@ ss cryomagnet
 
     when(heater == 0 || heater == 2)
     {
-      epicsThreadSleep(heater_delay_time);
+      epicsThreadSleep(heater_wait_time);
       print_transition("switch_off_heater", "ramp_down_psu");
     } state ramp_down_psu
     
