@@ -457,12 +457,11 @@ record(ai, "$(P)POLREVI2")
     field(EGU, "")
 }
 
-record(ao, "$(P)POLREVI2:SP")
+record(longout, "$(P)POLREVI2:SP")
 {
-    field(DTYP, "asynFloat64")
+    field(DTYP, "asynInt32")
     field(OUT,  "@asyn(nsv,0,0)POLREVI2SP")
     field(SCAN, "Passive")
-    field(PREC, "3")
     field(EGU, "")
 }
 
