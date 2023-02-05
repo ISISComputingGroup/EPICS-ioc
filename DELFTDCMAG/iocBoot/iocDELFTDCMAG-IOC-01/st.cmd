@@ -17,8 +17,8 @@ DELFTDCMAG_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-$(IFDEVSIM) epicsEnvSet("NETSHRVAR_SIMULATE", 1)
-$(IFRECSIM) epicsEnvSet("NETSHRVAR_SIMULATE", 1)
+$(IFDEVSIM=#) epicsEnvSet("NETSHRVAR_SIMULATE", 1)
+$(IFRECSIM=#) epicsEnvSet("NETSHRVAR_SIMULATE", 1)
 
 ## main args are:  portName, configSection, configFile, pollPeriod, options (see NetShrVarConfigure() documentation in NetShrVarDriver.cpp)
 ##
@@ -30,9 +30,6 @@ $(IFRECSIM) epicsEnvSet("NETSHRVAR_SIMULATE", 1)
 ## NetShrVarConfigure("nsv", "sec1", "$(TOP)/data/DELFTDCMAG_nv.xml", 100, 0)
 ## Modify polling rate of the shared variable list from 100ms to 2.5s. This means... Poll every variable in the list every 2.5s.
 NetShrVarConfigure("nsv", "sec1", "$(TOP)/data/DELFTDCMAG_nv.xml", 10, 0)
-
-#lvDCOMConfigure("lvfp", "frontpanel", "$(TOP)/data/mag1.xml", "", 1, "")
-#lvDCOMConfigure("lvfp", "frontpanel", "$(TOP)/data/mag2.xml", "", 1, "")
 
 ## Load record instances
 
@@ -80,10 +77,8 @@ dbLoadRecords("db/NSV_read_only.db","P=$(PVROOT)MOTOR4F:,Q=X")
 dbLoadRecords("db/NSV1.db","P=$(PVROOT)")
 
 dbLoadRecords("db/NSV1T.db","P=$(PVROOT)")
+## list any 4 element arrays from above that we want to break out into individual PVs for logging 
 dbLoadRecords("db/NSVTSubarray4.db","P=$(PVROOT),PARAM=AWGCARRIERFREQEPICS")
-
-#dbLoadRecords("db/mag1.db","P=$(PVROOT)MOTOR1:")
-#dbLoadRecords("db/mag2.db","P=$(PVROOT)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

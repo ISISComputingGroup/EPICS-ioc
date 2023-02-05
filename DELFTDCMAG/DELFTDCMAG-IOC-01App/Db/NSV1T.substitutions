@@ -36,7 +36,7 @@ pattern { P, PARAM, PORT, RPARAM, SPARAM, SCAN, EGU, PREC, NELM }
 { "\$(P)", "AWGTFLATEPICS", "nsv", "AWGTFlatEPICS", "AWGTFlatEPICS", "I/O Intr", "", 3, 4 }
 { "\$(P)", "AWGTSTOPEPICS", "nsv", "AWGTStopEPICS", "AWGTStopEPICS", "I/O Intr", "", 3, 4 }
 { "\$(P)", "AWGTSTARTEPICS", "nsv", "AWGTStartEPICS", "AWGTStartEPICS", "I/O Intr", "", 3, 4 }
-{ "\$(P)", "AWGIREALPICS", "nsv", "AWGIRealPICS", "AWGIRealPICS", "I/O Intr", "", 3, 4 }
+{ "\$(P)", "AWGIREALEPICS", "nsv", "AWGIRealEPICS", "AWGIRealEPICS", "I/O Intr", "", 3, 4 }
 { "\$(P)", "AWGCARRIERFREQEPICS", "nsv", "AWGCarrierFreqEPICS", "AWGCarrierFreqEPICS", "I/O Intr", "", 3, 4 }
 }
 
