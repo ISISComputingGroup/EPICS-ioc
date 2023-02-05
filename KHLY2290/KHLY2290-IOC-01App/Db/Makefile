@@ -11,7 +11,6 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_template = <templatename>
-DB += devKeithley2290.db
 
 include $(TOP)/configure/RULES
 #----------------------------------------
