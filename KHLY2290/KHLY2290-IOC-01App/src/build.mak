@@ -54,6 +54,7 @@ $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS_WIN32 += oncrpc
 
 # KHLY2290-IOC-01_registerRecordDeviceDriver.cpp derives from KHLY2290-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
