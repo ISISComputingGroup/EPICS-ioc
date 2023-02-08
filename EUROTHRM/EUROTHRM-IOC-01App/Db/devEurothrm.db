@@ -549,7 +549,7 @@ alias("$(P)MAX_OUTPUT", "$(P)MAX_OUTPUT:SP:RBV")
 
 record(ai, "$(P)OUTPUT_RATE") {
     field(DESC, "Output Rate Setpoint")
-    field(EGU,  "Percent/min")
+    field(EGU,  "%/min")
     field(SCAN, "Passive")
     field(PINI, "YES")
     
@@ -569,7 +569,7 @@ record(ai, "$(P)OUTPUT_RATE") {
 
 record(ao, "$(P)OUTPUT_RATE:SP") {
     field(DESC, "Output Rate Setpoint")
-    field(EGU,  "Percent/min")
+    field(EGU,  "%/min")
     
     $(IFUSES_BISYNCH) field(DTYP, "stream")
     $(IFUSES_BISYNCH) field(OUT, "@eurotherm2k.proto write($(P),OR,$(GAD),$(LAD)) $(PORT)")
