@@ -1,0 +1,5 @@
+dbLoadRecords("$(NUCINSTDIG)/db/NucInstDigStringParam.db","EPARAM=SYS:SN,DPARAM=system.serialnumber,P=$(MYPVPREFIX),Q=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=DIG0")
+
+dbLoadRecords("$(NUCINSTDIG)/db/NucInstDigIntegerParam.db","EPARAM=TRIG:RATE,DPARAM=trg.self_rate,P=$(MYPVPREFIX),Q=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=DIG0")
+
+dbLoadRecordsLoop("$(NUCINSTDIG)/db/NucInstDigRealParamChan.db","EPARAM=STAVE:T:PROBES:TSIPM,DPARAM=stave.T.probes.Tsipm,CHAN=\$(I),EGU=C,P=$(MYPVPREFIX),Q=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=DIG0", "I", 0, 23)
