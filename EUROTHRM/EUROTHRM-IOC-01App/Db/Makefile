@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 DB += devEurothrm.db
 DB += devSimDis.db
 DB += isActiveEurothrm.db
+DB += automaticNeedleValve.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

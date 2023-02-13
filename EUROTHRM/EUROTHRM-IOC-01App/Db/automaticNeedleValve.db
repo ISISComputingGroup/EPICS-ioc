@@ -1,0 +1,87 @@
+record(ai, "$(P)FLOW")
+{
+    field(DESC, "'Flow' flow readback from transducer")
+    field(DTYP, "asynFloat64")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1025,1000)MODBUS_DATA")
+	field(EGU,  "L/min")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(ao, "$(P)MANUAL_FLOW:SP")
+{
+    field(DESC, "Manual flow setpoint")
+    field(DTYP, "asynFloat64")
+	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),1509,1000)MODBUS_DATA")
+	field(EGU,  "L/min")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)MANUAL_FLOW")
+{
+    field(DESC, "Manual flow")
+    field(DTYP, "asynFloat64")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1509,1000)MODBUS_DATA")
+	field(EGU,  "L/min")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias("$(P)MANUAL_FLOW", "$(P)MANUAL_FLOW:SP:RBV")
+
+record(ao, "$(P)FLOW_LOW_LIM:SP")
+{
+    field(DESC, "Low SP limit for flow control")
+    field(DTYP, "asynFloat64")
+	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),1136,1000)MODBUS_DATA")
+	field(EGU,  "L/min")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(ai, "$(P)FLOW_LOW_LIM")
+{
+    field(DESC, "Low SP limit for flow control")
+    field(DTYP, "asynFloat64")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1136,1000)MODBUS_DATA")
+	field(EGU,  "L/min")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias("$(P)FLOW_LOW_LIM", "$(P)FLOW_LOW_LIM:SP:RBV")
+
+record(bo, "$(P)FLOW_SP_MODE_SELECT:SP")
+{
+	field(DESC, "Flow setpoint mode")
+    field(DTYP, "asynInt32")
+	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),1300,1000)MODBUS_DATA")
+    field(ZNAM, "AUTO")
+    field(ONAM, "MANUAL")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)FLOW_SP_MODE_SELECT")
+{
+	field(DESC, "Flow setpoint mode")
+    field(DTYP, "asynInt32")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1300,1000)MODBUS_DATA")
+    field(ZNAM, "AUTO")
+    field(ONAM, "MANUAL")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+alias("$(P)FLOW_SP_MODE_SELECT", "$(P)FLOW_SP_MODE_SELECT:SP:RBV")
+
+record(bi, "$(P)VALVE_DIR")
+{
+	field(DESC, "Valve direction")
+    field(DTYP, "asynInt32")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),4827,1000)MODBUS_DATA")
+    field(ZNAM, "CLOSING")
+    field(ONAM, "OPENING")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+

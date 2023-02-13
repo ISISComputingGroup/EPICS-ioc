@@ -22,6 +22,7 @@
 <macro name="ADDR_10" pattern="^[0-9]{1,2}$" description="Address for the 10th Eurotherm on this port e.g. 10. Blank for do not use." hasDefault="NO" />
 
 <macro name="LOCAL_CALIB" pattern="^(yes)|(no)$" description="Use local instrument calibration directory instead of common one? Default is no." defaultValue="no" hasDefault="YES" />
+<macro name="NEEDLE_VALVE" pattern="^(yes)|(no)$" description="Use extra functionality for the WISH Automatic needle valve?" defaultValue="no" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>
