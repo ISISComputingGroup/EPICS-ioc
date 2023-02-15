@@ -20,7 +20,7 @@ record(calcout, "$(P)MOT:$(MOTOR_PV):VELO_SEND")
     field(OUT, "$(P)MOT:$(MOTOR_PV).VELO")
 }
 
-record(ai, "$(P)MOT:$(MOTOR_PV)_AXIS_NUM")
+record(longin, "$(P)MOT:$(MOTOR_PV)_AXIS_NUM")
 {
     field(DESC, "Beckhoff axis number")
     field(VAL, "$(AXIS_NUM)")
