@@ -29,7 +29,7 @@ record(ai, "$(P)MANUAL_FLOW")
 }
 alias("$(P)MANUAL_FLOW", "$(P)MANUAL_FLOW:SP:RBV")
 
-record(ao, "$(P)FLOW_LOW_LIM:SP")
+record(ao, "$(P)FLOW_SP_LOWLIM:SP")
 {
     field(DESC, "Low SP limit for flow control")
     field(DTYP, "asynFloat64")
@@ -39,7 +39,7 @@ record(ao, "$(P)FLOW_LOW_LIM:SP")
     info(archive, "VAL")
 }
 
-record(ai, "$(P)FLOW_LOW_LIM")
+record(ai, "$(P)FLOW_SP_LOWLIM")
 {
     field(DESC, "Low SP limit for flow control")
     field(DTYP, "asynFloat64")
@@ -48,7 +48,17 @@ record(ai, "$(P)FLOW_LOW_LIM")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-alias("$(P)FLOW_LOW_LIM", "$(P)FLOW_LOW_LIM:SP:RBV")
+alias("$(P)FLOW_SP_LOWLIM", "$(P)FLOW_SP_LOWLIM:SP:RBV")
+
+record(ai, "$(P)FLOW_SP_HILIM")
+{
+    field(DESC, "High SP limit for flow control")
+    field(DTYP, "asynFloat64")
+	field(OUT, "@asyn(MODBUS_RX_$(GAD)$(LAD), ??")
+	field(EGU,  "L/min")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
 
 record(bo, "$(P)FLOW_SP_MODE_SELECT:SP")
 {
@@ -84,4 +94,3 @@ record(bi, "$(P)VALVE_DIR")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-
