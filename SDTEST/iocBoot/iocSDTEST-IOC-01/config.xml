@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>Simple IOC for talking to any serial device</ioc_desc>
+<ioc_desc>ISIS IBEX Simple IOC for talking to any serial device</ioc_desc>
 <macros>
 <!-- check st-port.cmd for defaults -->
 <macro name="PORT1" pattern="^(COM[0-9]+|.*:[0-9]+)$" description="Port e.g. COM24 or localhost:8000" hasDefault="NO" />

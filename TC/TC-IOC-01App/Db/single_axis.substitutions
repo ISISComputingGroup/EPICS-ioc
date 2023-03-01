@@ -1,0 +1,5 @@
+file $(MOTOR)/db/basic_asyn_motor.db {
+pattern
+{P,                 M,                 DESC,                       DTYP,      DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, PORT,           ADDR,       MRES,  PREC, EGU, DHLM,  DLLM,   INIT, RTRY}
+{\$(MYPVPREFIX),    MOT:\$(MOTOR_PV),  "\$(MOTOR_PV) Beckhoff",    asynMotor, 0,   1,  0,   1,    0,    0,    0,    \$(MOTOR_PORT), \$(ADDR),   0.001, 3,    um,  10000, -10000, 0, 0}
+}

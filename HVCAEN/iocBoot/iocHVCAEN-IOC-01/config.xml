@@ -12,6 +12,14 @@
 			<macro name ="HVCAENIP5" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the sixth device." hasDefault="NO" />
 			<macro name ="HVCAENIP6" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the seventh device." hasDefault="NO" />
 			<macro name ="HVCAENIP7" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of the eighth device." hasDefault="NO" />
+			<macro name ="HVCAENSYSTYPE0" pattern="^[A-Z0-9]+$" description="System type of the first device." defaultValue="SY1527" hasDefault="YES" />
+			<macro name ="HVCAENSYSTYPE1" pattern="^[A-Z0-9]+$" description="System type of the second device." defaultValue="SY1527" hasDefault="YES" />
+			<macro name ="HVCAENSYSTYPE2" pattern="^[A-Z0-9]+$" description="System type of the third device." defaultValue="SY1527" hasDefault="YES" />
+			<macro name ="HVCAENSYSTYPE3" pattern="^[A-Z0-9]+$" description="System type of the fourth device." defaultValue="SY1527" hasDefault="YES" />
+			<macro name ="HVCAENSYSTYPE4" pattern="^[A-Z0-9]+$" description="System type of the fifth device." defaultValue="SY1527" hasDefault="YES" />
+			<macro name ="HVCAENSYSTYPE5" pattern="^[A-Z0-9]+$" description="System type of the sixth device." defaultValue="SY1527" hasDefault="YES" />
+			<macro name ="HVCAENSYSTYPE6" pattern="^[A-Z0-9]+$" description="System type of the seventh device." defaultValue="SY1527" hasDefault="YES" />
+			<macro name ="HVCAENSYSTYPE7" pattern="^[A-Z0-9]+$" description="System type of the eighth device." defaultValue="SY1527" hasDefault="YES" />
 		</macros>
 	</config_part>
 </ioc_config>

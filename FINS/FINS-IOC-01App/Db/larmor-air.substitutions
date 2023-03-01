@@ -20,6 +20,8 @@
 # WR0000.01          ON = Request table to lift (reset to 0 to lower table)
 # 
 
+global{TIMEOUT="\$(TIMEOUT=5.0)"}
+
 file "$(TOP)/FINS-IOC-01App/Db/larmor-air-header.template" {
     { P=\$(P), Q=\$(Q) }
 }

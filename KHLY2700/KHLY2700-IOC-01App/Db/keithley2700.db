@@ -349,7 +349,7 @@ record(calcout, "$(P)BUFF:READ:TRIG") {
   field(CALC,  "A>0?1:0")
   # forward link predicated on COUNT>0 ?
   field(OOPT,  "When Non-zero")
-  field(OUT,  "$(P)BUFF:READ PP") # this will send 1 to BUFF:READ
+  field(OUT,  "$(P)BUFF:READ.PROC PP")
 }
 
 # Data in array that looks like READ,TST,CHNL
@@ -384,7 +384,9 @@ record(aSub,"$(P)BUFF:READ:PARSE:READINGS")
   field(SNAM, "parse_channel_readings")
   field(FTA, "DOUBLE")
   field(INPA, "$(P)BUFF:READ")
-  field(NOA, "100")
+  field(NOA, "$(BUFFER_SIZE)")
+  field(FTB, "LONG")
+  field(INPB, "$(P)BUFF:READ.NORD")
   field(OUTA, "$(P)CHNL:101:READ PP")
   field(OUTB, "$(P)CHNL:102:READ PP")
   field(OUTC, "$(P)CHNL:103:READ PP")
@@ -405,7 +407,7 @@ record(aSub,"$(P)BUFF:READ:PARSE:READINGS")
   field(OUTR, "$(P)CHNL:208:READ PP")
   field(OUTS, "$(P)CHNL:209:READ PP")
   field(OUTT, "$(P)CHNL:210:READ PP")
-	field(FLNK, "$(P)BUFF:READ:PARSE:TIME")
+  field(FLNK, "$(P)BUFF:READ:PARSE:TIME")
 }
 
 record(aSub,"$(P)BUFF:READ:PARSE:TIME")
@@ -413,7 +415,9 @@ record(aSub,"$(P)BUFF:READ:PARSE:TIME")
   field(SNAM, "parse_channel_timestamps")
   field(FTA, "DOUBLE")
   field(INPA, "$(P)BUFF:READ")
-	field(NOA, "100")
+  field(NOA, "$(BUFFER_SIZE)")
+  field(FTB, "LONG")
+  field(INPB, "$(P)BUFF:READ.NORD")
   field(OUTA, "$(P)CHNL:101:TIME PP")
   field(OUTB, "$(P)CHNL:102:TIME PP")
   field(OUTC, "$(P)CHNL:103:TIME PP")

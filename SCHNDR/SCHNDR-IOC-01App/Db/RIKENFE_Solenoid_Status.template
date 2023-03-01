@@ -1,0 +1,140 @@
+
+record (longin, "$(P)$(PV):STAT:RAW") {
+
+    field(DESC, "$(DESC) raw value")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+    
+    field(EGU,  "")
+    info(INTEREST, "LOW")
+    info(ARCHIVE,  "VAL")
+    info(ALARM,    "SCHNDR")
+
+    field(SDIS, "$(P)DISABLE")
+
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(PV):STAT:RAW CP")
+}
+
+record(longout,"$(P)SIM:$(PV):STAT:RAW") {
+
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record (mbbiDirect, "$(P)$(PV):STAT") {
+
+    field(DESC, "$(DESC)")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(P)$(PV):STAT:RAW CP MS")
+
+    info(INTEREST, "LOW")
+    info(ARCHIVE,  "VAL")
+}
+
+record (bi, "$(P)$(PV):COMMS:STAT") {
+
+    field(DESC, "Communications Status")
+    field(INP,  "$(P)$(PV):STAT.B0 CP MS")
+
+    field(ZNAM, "Comms OK")
+    field(ZSV,  "NO_ALARM")
+
+    field(ONAM, "Comms Error")
+    field(OSV,  "INVALID")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+}
+
+record (bi, "$(P)$(PV):GH7:STAT") {
+
+    field(DESC, "GH7 Status")
+    field(INP,  "$(P)$(PV):STAT.B1 CP MS")
+    
+    field(ZNAM, "GH7 Error")
+    field(ZSV,  "MAJOR")
+    
+    field(ONAM, "GH7 OK")
+    field(OSV,  "NO_ALARM")
+    
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+}
+
+record (bi, "$(P)$(PV):GH8:STAT") {
+
+    field(DESC, "GH8 Status")
+    field(INP,  "$(P)$(PV):STAT.B2 CP MS")
+
+    field(ZNAM, "GH8 Error")
+    field(ZSV,  "MAJOR")
+
+    field(ONAM, "GH8 OK")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+}
+
+record (bi, "$(P)$(PV):CRYO_SYS:STAT") {
+
+    field(DESC, "Cryo System Status")
+    field(INP,  "$(P)$(PV):STAT.B3 CP MS")
+
+    field(ZNAM, "Cryo System Error")
+    field(ZSV,  "MAJOR")
+
+    field(ONAM, "Cryo System OK")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+}
+
+record (bi, "$(P)$(PV):COOLDOWN:STAT") {
+
+    field(DESC, "Cooldown Status")
+    field(INP,  "$(P)$(PV):STAT.B4 CP MS")
+
+    field(ZNAM, "Cooldown In Progress")
+    field(ZSV,  "MINOR")
+
+    field(ONAM, "Cooldown Complete")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+}
+
+record (bi, "$(P)$(PV):MAG_EXCIT:STAT") {
+
+    field(DESC, "Magnet Excitation Status")
+    field(INP,  "$(P)$(PV):STAT.B5 CP MS")
+
+    field(ZNAM, "Magnet Excitation OFF")
+    field(ZSV,  "MINOR")
+
+    field(ONAM, "Magnet Excitation ON")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+}
+
+record (bi, "$(P)$(PV):COMPRESSOR:STAT") {
+
+    field(DESC, "Compressor Status")
+    field(INP,  "$(P)$(PV):STAT.B6 CP MS")
+
+    field(ZNAM, "Compressor OFF")
+    field(ZSV,  "MINOR")
+
+    field(ONAM, "Compressor ON")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+}

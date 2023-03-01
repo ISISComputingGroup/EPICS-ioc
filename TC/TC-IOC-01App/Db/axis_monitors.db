@@ -1,0 +1,27 @@
+
+record(calc, "$(P)MOT:$(MOTOR_PV)_ON_STATUS")
+{
+    field(DESC, "Fwd PLC BENABLED to _ON_STATUS")
+    field(INPA, "$(P)$(I):ASTAXES_$(AXIS_NUM):STSTATUS-BENABLED CP MS")
+    field(CALC, "A")
+}
+
+record(bo, "$(P)MOT:$(MOTOR_PV)_ON_CMD")
+{
+    field(DESC, "Fwd to PLC BENABLE")
+    field(OUT, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-BENABLE PP")
+}
+
+record(calcout, "$(P)MOT:$(MOTOR_PV):VELO_SEND")
+{
+    field(DESC, "Forward device velo SP to mtr rec")
+    field(INPA, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FVELOCITY:RBV CP")
+    field(CALC, "A")
+    field(OUT, "$(P)MOT:$(MOTOR_PV).VELO")
+}
+
+record(longin, "$(P)MOT:$(MOTOR_PV)_AXIS_NUM")
+{
+    field(DESC, "Beckhoff axis number")
+    field(VAL, "$(AXIS_NUM)")
+}

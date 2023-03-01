@@ -1,0 +1,58 @@
+
+record (mbbi, "$(P)$(PV)") {
+
+    field(DESC, "$(DESC)")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)$(PORTNAME),$(OFFSET))UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+    
+    field(ZRVL, 0)
+    field(ZRST, "Comms OK")
+
+    field(ONVL, 1)
+    field(ONST, "$(LOCN) Locked")
+
+    field(TWVL, 2)
+    field(TWST, "NO_A Closed")
+
+    field(THVL, 3)
+    field(THST, "NO_B Closed")
+
+    field(FRVL, 4)
+    field(FRST, "NC_A Closed")
+
+    field(FVVL, 5)
+    field(FVST, "NC_B Closed")
+
+    field(SXVL, 6)
+    field(SXST, "NC uswitch Closed")
+
+    field(SVVL, 7)
+    field(SVST, "NO_A Opened")
+
+    field(EIVL, 8)
+    field(EIST, "NO_B Opened")
+
+    field(NIVL, 9)
+    field(NIST, "NC_A Opened")
+
+    field(TEVL, 10)
+    field(TEST, "NC_B Opened")
+
+    field(ELVL, 11)
+    field(ELST, "NC uswitch Opened")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(PV) CP")
+}
+
+record(longout,"$(P)SIM:$(PV)") {
+
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}

@@ -1,6 +1,6 @@
 program keep_sp_and_rbv_in_sync("SETPOINT,READBACK,TOLERANCE,DELAY")
 
-#include "seqPVmacros.h"
+#include "ibexSeqPVmacros.h"
 %% #include "errlog.h"
 %% #include <math.h>
 

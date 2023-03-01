@@ -1,0 +1,11 @@
+
+file "$(NETSHRVAR)/db/NetShrVar_float64subarray.template"
+{
+pattern { P, PARAM, EGU, PREC, NELM, INDX }
+{ "\$(P)", "\$(PARAM)", "", 3, 4, 0 }
+{ "\$(P)", "\$(PARAM)", "", 3, 4, 1 }
+{ "\$(P)", "\$(PARAM)", "", 3, 4, 2 }
+{ "\$(P)", "\$(PARAM)", "", 3, 4, 3 }
+}
+
+#

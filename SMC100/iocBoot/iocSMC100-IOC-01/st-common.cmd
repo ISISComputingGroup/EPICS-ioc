@@ -35,6 +35,8 @@ epicsEnvSet(PN,8)
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
+## per controller PVs
+dbLoadRecords("$(MOTOR)/db/motorController.db","P=$(MYPVPREFIX),Q=MOT:MTR$(MTRCTRL):")
 
 epicsEnvSet("SMC100CONFIG","$(ICPCONFIGROOT)/$(IOCNAME)")
 

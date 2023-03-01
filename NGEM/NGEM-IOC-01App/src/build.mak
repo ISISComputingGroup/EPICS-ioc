@@ -56,7 +56,7 @@ $(APPNAME)_LIBS += rdkafka++
 $(APPNAME)_LIBS += rdkafka
 endif
 
-$(APPNAME)_LIBS_WIN32 += ssleay32 libeay32
+$(APPNAME)_LIBS_WIN32 += libssl libcrypto
 $(APPNAME)_SYS_LIBS_Linux += ssl crypto
 $(APPNAME)_SYS_LIBS_Linux += sasl2
 
