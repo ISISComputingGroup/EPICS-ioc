@@ -32,9 +32,3 @@ iocInit
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
-
-# Save motor positions every 5 seconds
-create_monitor_set("$(IOCNAME)_positions.req", 5, "P=$(MYPVPREFIX)$(Q)")
-
-# Save motor settings every 30 seconds
-create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)$(Q)")
