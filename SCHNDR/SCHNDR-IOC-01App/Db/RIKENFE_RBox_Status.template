@@ -27,7 +27,7 @@ record (mbbi, "$(P)$(RBOX_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 
     field(SDIS, "$(P)DISABLE")
     field(SSCN, "Passive")
@@ -69,7 +69,7 @@ record (mbbi, "$(P)$(BYPASS_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 
     field(SDIS, "$(P)DISABLE")
     field(SSCN, "Passive")
