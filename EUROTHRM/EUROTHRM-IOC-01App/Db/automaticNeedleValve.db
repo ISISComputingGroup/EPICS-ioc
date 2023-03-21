@@ -50,16 +50,6 @@ record(ai, "$(P)FLOW_SP_LOWLIM")
 }
 alias("$(P)FLOW_SP_LOWLIM", "$(P)FLOW_SP_LOWLIM:SP:RBV")
 
-record(ai, "$(P)FLOW_SP_HILIM")
-{
-    field(DESC, "High SP limit for flow control")
-    field(DTYP, "asynFloat64")
-	field(OUT, "@asyn(MODBUS_RX_$(GAD)$(LAD), ??")
-	field(EGU,  "L/min")
-    info(INTEREST, "MEDIUM")
-    info(archive, "VAL")
-}
-
 record(bo, "$(P)FLOW_SP_MODE_SELECT:SP")
 {
 	field(DESC, "Flow setpoint mode")
@@ -67,8 +57,16 @@ record(bo, "$(P)FLOW_SP_MODE_SELECT:SP")
 	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),1300,1000)MODBUS_DATA")
     field(ZNAM, "AUTO")
     field(ONAM, "MANUAL")
+	field(FLNK, "$(P)FLOW_SP_MODE_SELECT:SP:_CALC")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+}
+
+record(calc, "$(P)FLOW_SP_MODE_SELECT:SP:_CALC")
+{
+	field(INPA, "$(P)FLOW_SP_MODE_SELECT:SP")
+	field(CALC, "A+1")
+	field(FLNK, "$(P)TOGGLE_WRITE.PROC")
 }
 
 record(bi, "$(P)FLOW_SP_MODE_SELECT")
@@ -81,7 +79,6 @@ record(bi, "$(P)FLOW_SP_MODE_SELECT")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
 }
-
 alias("$(P)FLOW_SP_MODE_SELECT", "$(P)FLOW_SP_MODE_SELECT:SP:RBV")
 
 record(bi, "$(P)VALVE_DIR")
@@ -93,4 +90,53 @@ record(bi, "$(P)VALVE_DIR")
     field(ONAM, "OPENING")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
+}
+
+record(bo, "$(P)NEEDLE_VALVE_STOP:SP")
+{
+	field(DESC, "Inhibit Loop 2")
+    field(DTYP, "asynInt32")
+	field(INP, "@asyn(MODBUS_TX_$(GAD)$(LAD),1292,1000)MODBUS_DATA")
+    field(ZNAM, "NOT STOPPED")
+    field(ONAM, "STOPPED")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)NEEDLE_VALVE_STOP")
+{
+	field(DESC, "Inhibit Loop 2")
+    field(DTYP, "asynInt32")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1292,1000)MODBUS_DATA")
+    field(ZNAM, "NOT STOPPED")
+    field(ONAM, "STOPPED")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+alias("$(P)NEEDLE_VALVE_STOP", "$(P)NEEDLE_VALVE_STOP:SP:RBV")
+
+record(fanout, "$(P)TOGGLE_WRITE")
+{
+	field(SELL, "$(P)FLOW_SP_MODE_SELECT:SP:_CALC")
+	field(SELM, "Specified")
+	field(LNK1, "$(P)TOGGLE_WRITE_AUTO.PROC")
+	field(LNK2, "$(P)TOGGLE_WRITE_MANUAL.PROC")
+}
+
+record(seq, "$(P)TOGGLE_WRITE_AUTO")
+{
+	field(SELM, "All")
+	field(DO1, "1")
+	field(LNK1, "$(P)MANUAL_FLOW:SP.DISP")
+	field(DO2, "0")
+	field(LNK2, "$(P)TEMP:SP.DISP")
+}
+
+record(seq, "$(P)TOGGLE_WRITE_MANUAL")
+{
+	field(SELM, "All")
+	field(DO1, "0")
+	field(LNK1, "$(P)MANUAL_FLOW:SP.DISP")
+	field(DO2, "1")
+	field(LNK2, "$(P)TEMP:SP.DISP")
 }

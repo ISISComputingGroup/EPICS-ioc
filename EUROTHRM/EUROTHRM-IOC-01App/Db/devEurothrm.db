@@ -469,6 +469,7 @@ record(seq, "$(P)READ_SLOW4") {
 	field(LNK6, "$(P)FLOW_SP_LOWLIM.PROC")
 	field(LNK7, "$(P)FLOW_SP_MODE_SELECT.PROC")
 	field(LNK8, "$(P)VALVE_DIR.PROC")
+	field(LNK9, "$(P)NEEDLE_VALVE_STOP.PROC")
 }
 
 ####
