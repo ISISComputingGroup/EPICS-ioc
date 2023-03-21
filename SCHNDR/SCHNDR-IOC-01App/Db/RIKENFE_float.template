@@ -10,7 +10,7 @@ record (ai, "$(P)$(PV)") {
     field(PREC, "$(PRECISION)")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 
     field(SDIS, "$(P)DISABLE")
     field(SSCN, "Passive")

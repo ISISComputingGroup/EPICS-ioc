@@ -27,7 +27,7 @@ record (mbbi, "$(P)$(MODE_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 
     field(SDIS, "$(P)DISABLE")
     field(SSCN, "Passive")
@@ -69,7 +69,7 @@ record (mbbi, "$(P)$(STATE_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
     
     field(SDIS, "$(P)DISABLE")
     field(SSCN, "Passive")
@@ -111,7 +111,7 @@ record (mbbi, "$(P)$(READY_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
     
     field(SDIS, "$(P)DISABLE")
     field(SSCN, "Passive")
@@ -153,7 +153,7 @@ record (mbbi, "$(P)$(PSU_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 
     field(SDIS, "$(P)DISABLE")
     field(SSCN, "Passive")
@@ -195,7 +195,7 @@ record (mbbi, "$(P)$(HV_PV)") {
     field(FRSV, "MAJOR")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 
     field(SDIS, "$(P)DISABLE")
     field(SSCN, "Passive")
