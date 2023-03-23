@@ -1,12 +1,3 @@
-record(bo, "$(P)SIM")
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-    field(ZNAM, "NO")
-    field(ONAM, "YES")
-    field(VAL, "$(RECSIM=0)")
-}
-
 record(ai, "$(P)FLOW")
 {
     field(DESC, "'Flow' flow readback from transducer")
@@ -15,8 +6,9 @@ record(ai, "$(P)FLOW")
 	field(EGU,  "L/min")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
+    field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:FLOW")
+    field(SDIS, "$(Q)DISABLE")
 }
 
 record(ao, "$(P)MANUAL_FLOW:SP")
@@ -27,8 +19,9 @@ record(ao, "$(P)MANUAL_FLOW:SP")
 	field(EGU,  "L/min")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
+    field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:MANUAL_FLOW:SP")
+    field(SDIS, "$(Q)DISABLE")
 }
 
 record(ai, "$(P)MANUAL_FLOW")
@@ -39,8 +32,9 @@ record(ai, "$(P)MANUAL_FLOW")
 	field(EGU,  "L/min")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
+    field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:MANUAL_FLOW")
+    field(SDIS, "$(Q)DISABLE")
 }
 alias("$(P)MANUAL_FLOW", "$(P)MANUAL_FLOW:SP:RBV")
 
@@ -52,8 +46,9 @@ record(ao, "$(P)FLOW_SP_LOWLIM:SP")
 	field(EGU,  "L/min")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
+    field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:FLOW_SP_LOWLIM:SP")
+    field(SDIS, "$(Q)DISABLE")
 }
 
 record(ai, "$(P)FLOW_SP_LOWLIM")
@@ -64,8 +59,9 @@ record(ai, "$(P)FLOW_SP_LOWLIM")
 	field(EGU,  "L/min")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
+    field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:FLOW_SP_LOWLIM")
+    field(SDIS, "$(Q)DISABLE")
 }
 alias("$(P)FLOW_SP_LOWLIM", "$(P)FLOW_SP_LOWLIM:SP:RBV")
 
@@ -79,8 +75,9 @@ record(bo, "$(P)FLOW_SP_MODE_SELECT:SP")
 	field(FLNK, "$(P)FLOW_SP_MODE_SELECT:SP:_CALC")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
+    field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:FLOW_SP_MODE_SELECT:SP")
+    field(SDIS, "$(Q)DISABLE")
 }
 
 record(calc, "$(P)FLOW_SP_MODE_SELECT:SP:_CALC")
@@ -99,8 +96,9 @@ record(bi, "$(P)FLOW_SP_MODE_SELECT")
     field(ONAM, "MANUAL")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
+    field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:FLOW_SP_MODE_SELECT")
+    field(SDIS, "$(Q)DISABLE")
 }
 alias("$(P)FLOW_SP_MODE_SELECT", "$(P)FLOW_SP_MODE_SELECT:SP:RBV")
 
@@ -113,21 +111,23 @@ record(bi, "$(P)VALVE_DIR")
     field(ONAM, "OPENING")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
+    field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:VALVE_DIR")
+    field(SDIS, "$(Q)DISABLE")
 }
 
 record(bo, "$(P)NEEDLE_VALVE_STOP:SP")
 {
 	field(DESC, "Inhibit Loop 2")
     field(DTYP, "asynInt32")
-	field(INP, "@asyn(MODBUS_TX_$(GAD)$(LAD),1292,1000)MODBUS_DATA")
+	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),1292,1000)MODBUS_DATA")
     field(ZNAM, "NOT STOPPED")
     field(ONAM, "STOPPED")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
+    field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:NEEDLE_VALVE_STOP:SP")
+    field(SDIS, "$(Q)DISABLE")
 }
 
 record(bi, "$(P)NEEDLE_VALVE_STOP")
@@ -139,8 +139,9 @@ record(bi, "$(P)NEEDLE_VALVE_STOP")
     field(ONAM, "STOPPED")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
-    field(SIML, "$(P)SIM")
+    field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:NEEDLE_VALVE_STOP")
+    field(SDIS, "$(Q)DISABLE")
 }
 alias("$(P)NEEDLE_VALVE_STOP", "$(P)NEEDLE_VALVE_STOP:SP:RBV")
 

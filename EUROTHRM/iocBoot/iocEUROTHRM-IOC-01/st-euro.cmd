@@ -23,7 +23,7 @@ $(IFACTIVE) dbLoadRecords("$(TOP)/db/devEurothrm.db","P=$(P),Q=$(MYPVPREFIX)$(IO
 $(IFACTIVE) dbLoadRecords($(FILELIST)/db/calibration.db, "P=$(P), CALIB_BASE_DIR=$(CALIB_BASE_DIR), SDIR=$(SENS_DIR), CALIBLIST=SENSORFILELIST$(EURO_NUM), CONV_TO_PV=TEMP, CONV_FROM_PV=, CONV_TO_DESC=Temperature, CONV_TO_EGU=K, SP_PV=RAMP_SP")
 
 stringiftest("NEEDLE_VALVE", "$(NEEDLE_VALVE=yes)", 5, "yes")
-$(IFNEEDLE_VALVE) dbLoadRecords("$(TOP)/db/automaticNeedleValve.db", "P=$(P),GAD=$(GAD), LAD=$(LAD), RECSIM=$(RECSIM=0)")
+$(IFNEEDLE_VALVE) dbLoadRecords("$(TOP)/db/automaticNeedleValve.db", "P=$(P),Q=$(MYPVPREFIX)$(IOCNAME):,GAD=$(GAD), LAD=$(LAD)")
 
 # Readascii units
 $(IFACTIVE) dbLoadRecords("$(ReadASCII)/db/get_metadata.db","DIR=$(P)TEMP,CAL=$(P)CAL:RBV,OUT=$(P)TEMP,OUTF=EGU,NAME=column1_units,DEFAULT=K,OUTPP=PP")
