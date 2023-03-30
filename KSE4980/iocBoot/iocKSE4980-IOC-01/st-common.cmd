@@ -27,9 +27,6 @@ dbLoadRecords("$(KSE4980)/db/kse4980.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
-# volt/curr does not respond if not in the correct mode, so use this to avoid flooding the logs
-var streamErrorDeadTime 600
-
 
 ## Start any sequence programs
 #seq sncxxx,"user=luj96656"
