@@ -2,8 +2,8 @@
 < $(IOCSTARTUP)/init.cmd
 
 ## For real device use:
-$(IFNOTRECSIM) drvAsynIPPortConfigure("$(CHOP)","$(IPADDR):$(IPPORT=502)",0,0,1)
-
+$(IFNOTRECSIM) $(IFNOTDEVSIM) drvAsynIPPortConfigure("$(CHOP)","$(IPADDR):$(IPPORT=502)",0,0,1)
+$(IFDEVSIM) drvAsynIPPortConfigure("$(CHOP)", "localhost:$(EMULATOR_PORT=57677)")
 #drvAsynIPPortConfigure(const char *portName,
 #                       const char *hostInfo,
 #                       unsigned int priority,
