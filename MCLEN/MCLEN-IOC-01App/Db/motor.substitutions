@@ -10,7 +10,13 @@ pattern {P, M, OFF, JVEL}
 {"\$(P)", "\$(M)", "\$(OFF)", "\$(JVEL)"}
 }
 
+file "$(TOP)/MCLEN-IOC-01App/Db/mclen_motor_extra.db" {
+pattern {P, M, PCOFF}
+{"\$(P)", "\$(M)", "\$(PCOFF)"}
+}
+
 file $(MOTOR)/db/periodic_polling.db {
 pattern {P, M, POLL_RATE}
 {"\$(P)", "\$(M)", "\$(POLL_RATE=10)"}
 }
+

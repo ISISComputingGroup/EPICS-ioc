@@ -15,3 +15,38 @@ $(IFNOTCMOPEN) asynOctetWrite("MKINIT","$(MN)CM14")
 
 ## Initialise the encoder ratio using the exact string of ERES$
 asynOctetWrite("MKINIT","$(MN)ER$(ERES$(MN)=400/4096)")
+
+## end of move check window
+asynOctetWrite("MKINIT","$(MN)WI5")
+
+## Not Complete/Time-Out time
+asynOctetWrite("MKINIT","$(MN)TO8000")
+
+## tracking window
+asynOctetWrite("MKINIT","$(MN)TR4000")
+
+## SL1 enables soft limits in controller, SL0 disables
+## we disable for now until we are sure they work
+## see comment in driver
+asynOctetWrite("MKINIT","$(MN)SL0")
+
+## backoff steps as 0
+asynOctetWrite("MKINIT","$(MN)BO0")
+
+## creep distance at end of move
+asynOctetWrite("MKINIT","$(MN)CR10")
+
+## settle time
+asynOctetWrite("MKINIT","$(MN)SE1000")
+
+## set abort mode, controller default is 00000000
+## however passing 00111000 for example would make stall error, tracking error and timeout error not abort motion 
+asynOctetWrite("MKINIT","$(MN)AM00000000")
+
+## set datum mode, controller default is 00000000
+## this also controls expected encoder index polarity, automatic direction search etc. on datum
+## not set at moment
+#asynOctetWrite("MKINIT","$(MN)DM00000000")
+
+## define home position as 0, this will be applied if DM set accordingly
+#asynOctetWrite("MKINIT","$(MN)SH0")
