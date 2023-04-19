@@ -22,7 +22,7 @@ dbLoadRecords("$(TOP)/db/galil_csmotor_kinematics.db", "P=$(MYPVPREFIX)MOT:,CCP=
 dbLoadRecords("$(TOP)/db/galil_coordinate_systems.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
 #Load digital IO databases
-dbLoadRecords("$(TOP)/db/galil_digital_ports.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+dbLoadRecords("$(TOP)/db/galil_digital_ports.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL),RECSIM=$(RECSIM), IFNOTSIM=$(IFNOTSIM)")
 
 #Load analog IO databases
 dbLoadRecords("$(TOP)/db/galil_analog_ports.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
