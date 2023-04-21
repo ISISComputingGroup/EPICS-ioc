@@ -33,8 +33,12 @@ asynOctetWrite("MKINIT","$(MN)SL0")
 ## backoff steps as 0
 asynOctetWrite("MKINIT","$(MN)BO0")
 
-## creep distance at end of move
-asynOctetWrite("MKINIT","$(MN)CR10")
+## creep steps at end of move
+#asynOctetWrite("MKINIT","$(MN)CR10")
+asynOctetWrite("MKINIT","$(MN)CR5")
+
+## creep speed
+#asynOctetWrite("MKINIT","$(MN)CS250")
 
 ## settle time
 asynOctetWrite("MKINIT","$(MN)SE1000")
