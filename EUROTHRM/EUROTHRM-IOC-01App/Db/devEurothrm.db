@@ -91,7 +91,6 @@ record(stringout, "$(P)RAMP_FILE:SP")
 {
     field(DTYP, "asynOctetWrite")
     field(OUT,  "@asyn($(READ),0,1)DIR")
-    field(SCAN, "I/O Intr")
 }
 
 # This set point is passed to the ReadASCII ramp, which decides what value to pass on to the device.
