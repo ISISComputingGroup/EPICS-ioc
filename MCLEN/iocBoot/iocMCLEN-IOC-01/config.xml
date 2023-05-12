@@ -48,6 +48,15 @@
 <macro name="JVEL7" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO7/10)" defaultValue="VELO7/10" hasDefault="YES" />
 <macro name="JVEL8" pattern="^[0-9]*\.?[0-9]*$" description="Jog velocity, units/s (default: VELO8/10)" defaultValue="VELO8/10" hasDefault="YES" />
 
+<macro name="HVEL1" pattern="^[0-9]*\.?[0-9]*$" description="Home velocity, units/s (default: VELO1/10)" defaultValue="VELO1/10" hasDefault="YES" />
+<macro name="HVEL2" pattern="^[0-9]*\.?[0-9]*$" description="Home velocity, units/s (default: VELO2/10)" defaultValue="VELO2/10" hasDefault="YES" />
+<macro name="HVEL3" pattern="^[0-9]*\.?[0-9]*$" description="Home velocity, units/s (default: VELO3/10)" defaultValue="VELO3/10" hasDefault="YES" />
+<macro name="HVEL4" pattern="^[0-9]*\.?[0-9]*$" description="Home velocity, units/s (default: VELO4/10)" defaultValue="VELO4/10" hasDefault="YES" />
+<macro name="HVEL5" pattern="^[0-9]*\.?[0-9]*$" description="Home velocity, units/s (default: VELO5/10)" defaultValue="VELO5/10" hasDefault="YES" />
+<macro name="HVEL6" pattern="^[0-9]*\.?[0-9]*$" description="Home velocity, units/s (default: VELO6/10)" defaultValue="VELO6/10" hasDefault="YES" />
+<macro name="HVEL7" pattern="^[0-9]*\.?[0-9]*$" description="Home velocity, units/s (default: VELO7/10)" defaultValue="VELO7/10" hasDefault="YES" />
+<macro name="HVEL8" pattern="^[0-9]*\.?[0-9]*$" description="Home velocity, units/s (default: VELO8/10)" defaultValue="VELO8/10" hasDefault="YES" />
+
 <macro name="ACCL1" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="ACCL2" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="ACCL3" pattern="^[0-9]*\.?[0-9]*$" description="Seconds to max speed (default: 1)" defaultValue="1" hasDefault="YES" />

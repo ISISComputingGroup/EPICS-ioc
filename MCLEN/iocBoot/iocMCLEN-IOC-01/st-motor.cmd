@@ -11,8 +11,10 @@ epicsEnvSet("ACCLI",$(ACCL$(MN)=1))
 epicsEnvSet("MSTPI",$(MSTP$(MN)=4000))
 dcalc("MRESI", "1.0/$(MSTPI)", 1, 12)
 dcalc("JVELCALC", "0.1*$(VELOI)",1,3)
+dcalc("HVELCALC", "0.1*$(VELOI)",1,3)
 
 epicsEnvSet("JVELI", "$(JVEL$(MN)=$(JVELCALC))")
+epicsEnvSet("HVELI", "$(HVEL$(MN)=$(HVELCALC))")
 
 # Need a non-zero encoder resolution for sim mode
 $(IFRECSIM) epicsEnvSet("ERESI",1)
@@ -37,7 +39,7 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(AMOTORPV):ASYN,PO
 # on an absolute move unless the speed and base speed are different
 #
 $(IFRECSIM) dbLoadRecords("$(TOP)/db/motorSim.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),VELO=$(VELOI),JVEL=$(JVELI),VBAS=0.0,ACCL=$(ACCLI),MRES=$(MRESI),ERES=$(ERESI),DHLM=$(DHLMI),DLLM=$(DLLMI),NAME=$(NAMEI),S=$(SN),C=0,UEIP=1,EGU=$(EGUI),OFF=$(OFSTI)")
-$(IFNOTRECSIM) dbLoadRecords("$(TOP)/db/motor.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),VELO=$(VELOI),JVEL=$(JVELI),HVEL=$(VELOI),VBAS=0.0,ACCL=$(ACCLI),MRES=$(MRESI),ERES=$(ERESI),DHLM=$(DHLMI),DLLM=$(DLLMI),NAME=$(NAMEI),S=$(SN),C=0,UEIP=1,EGU=$(EGUI),OFF=$(OFSTI), POLL_RATE=$(POLL_RATE=10),PCOF=$(PCOF)")
+$(IFNOTRECSIM) dbLoadRecords("$(TOP)/db/motor.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),VELO=$(VELOI),JVEL=$(JVELI),HVEL=$(HVELI),VBAS=0.0,ACCL=$(ACCLI),MRES=$(MRESI),ERES=$(ERESI),DHLM=$(DHLMI),DLLM=$(DLLMI),NAME=$(NAMEI),S=$(SN),C=0,UEIP=1,EGU=$(EGUI),OFF=$(OFSTI),POLL_RATE=$(POLL_RATE=10),PCOF=$(PCOF)")
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),IOCNAME=$(IOCNAME)") 
 dbLoadRecords("$(AXIS)/db/axis.db", "P=$(MYPVPREFIX),AXIS=$(IOCNAME):AXIS$(MN),mAXIS=$(AMOTORPV)") 
 
