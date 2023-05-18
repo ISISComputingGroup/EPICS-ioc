@@ -20,6 +20,9 @@ dcalc("HVELCALC", "0.1*$(VELOI)",1,3)
 dcalc("ERESCALC", "$(MRESI) * $(ERES$(MN)=400/4096)", 1, 12)
 dcalc("RDBDI", "MAX($(MRESI), $(ERESCALC))", 1, 12)
 
+## mclennan Window, max allowed error steps at end of move
+calc("WINI", "MAX($(RDBDI) * $(MSTPI), 4)", 1)
+
 epicsEnvSet("JVELI", "$(JVEL$(MN)=$(JVELCALC))")
 epicsEnvSet("HVELI", "$(HVEL$(MN)=$(HVELCALC))")
 
