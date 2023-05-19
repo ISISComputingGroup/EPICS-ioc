@@ -52,8 +52,8 @@ record(ao, "$(P)SPEED:SP")
     field(OUT,  "@asyn(lvfp,0,0)Speed")
     field(PREC, "3")
     field(EGU, "cm^2/min")
-	field(DRVH, "174.2")  # Device high limit
-	field(DRVL, "-174.2") # Device low limit
+	field(DRVH, $(SPEED_HIGH_LIMIT))  # Device high limit
+	field(DRVL, $(SPEED_LOW_LIMIT)) # Device low limit
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPEED:SP")
     field(SDIS, "$(P)DISABLE")
@@ -99,8 +99,8 @@ record(ao, "$(P)PRESSURE:SP")
     field(OUT,  "@asyn(lvfp,0,0)Target_Pressure")
     field(PREC, "3")
     field(EGU, "mN/m")
-	field(DRVH, "75.0")  # Device high limit
-	field(DRVL, "-75.0") # Device low limit
+	field(DRVH, $(PRESSURE_HIGH_LIMIT))  # Device high limit
+	field(DRVL, $(PRESSURE_LOW_LIMIT)) # Device low limit
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PRESSURE:SP")
     field(SDIS, "$(P)DISABLE")
@@ -147,8 +147,8 @@ record(ao, "$(P)AREA:SP")
     field(OUT,  "@asyn(lvfp,0,0)Target__Area")
     field(PREC, "3")
     field(EGU, "cm^2")
-	field(DRVH, "247.0") # Device high limit
-    field(DRVL, "36.0")	 # Device low limit
+	field(DRVH, $(AREA_HIGH_LIMIT)) # Device high limit
+    field(DRVL, $(AREA_LOW_LIMIT))	 # Device low limit
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:AREA:SP")
     field(SDIS, "$(P)DISABLE")
