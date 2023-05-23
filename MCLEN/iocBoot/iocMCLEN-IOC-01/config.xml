@@ -138,6 +138,24 @@
 <macro name="OFST7" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
 <macro name="OFST8" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
 
+<macro name="BOST1" pattern="-?[0-9]*$" description="Backoff steps (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="BOST2" pattern="-?[0-9]*$" description="Backoff steps (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="BOST3" pattern="-?[0-9]*$" description="Backoff steps (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="BOST4" pattern="-?[0-9]*$" description="Backoff steps (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="BOST5" pattern="-?[0-9]*$" description="Backoff steps (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="BOST6" pattern="-?[0-9]*$" description="Backoff steps (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="BOST7" pattern="-?[0-9]*$" description="Backoff steps (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="BOST8" pattern="-?[0-9]*$" description="Backoff steps (default: 0)" defaultValue="0" hasDefault="YES" />
+
+<macro name="CRST1" pattern="[0-9]*$" description="Creep steps (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="CRST2" pattern="[0-9]*$" description="Creep steps (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="CRST3" pattern="[0-9]*$" description="Creep steps (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="CRST4" pattern="[0-9]*$" description="Creep steps (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="CRST5" pattern="[0-9]*$" description="Creep steps (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="CRST6" pattern="[0-9]*$" description="Creep steps (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="CRST7" pattern="[0-9]*$" description="Creep steps (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="CRST8" pattern="[0-9]*$" description="Creep steps (default: 10)" defaultValue="10" hasDefault="YES" />
+
 </macros>
 <pvsets>
 </pvsets>

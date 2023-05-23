@@ -32,17 +32,16 @@ asynOctetWrite("MKINIT","$(MN)TR4000")
 asynOctetWrite("MKINIT","$(MN)SL0")
 
 ## backoff steps as 0
-#asynOctetWrite("MKINIT","$(MN)BO0")
+asynOctetWrite("MKINIT","$(MN)BO$(BOSTI)")
 
-## creep steps at end of move
-#asynOctetWrite("MKINIT","$(MN)CR10")
-#asynOctetWrite("MKINIT","$(MN)CR5")
+## creep steps at end of move, 10 is default for stepper
+asynOctetWrite("MKINIT","$(MN)CR$(CRSTI)")
 
 ## creep speed, 800 is default
-#asynOctetWrite("MKINIT","$(MN)CS250")
+asynOctetWrite("MKINIT","$(MN)CS800")
 
-## settle time, how long must remain in Window at end of move
-#asynOctetWrite("MKINIT","$(MN)SE1000")
+## settle time, how long must remain in Window at end of move, 100 is default
+asynOctetWrite("MKINIT","$(MN)SE100")
 
 ## set abort mode, controller default is 00000000
 ## however passing 00111000 for example would make stall error, tracking error and timeout error not abort motion 
