@@ -84,23 +84,23 @@
 <macro name="ERES7" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" defaultValue="400/4096" hasDefault="YES" />
 <macro name="ERES8" pattern="^-?[0-9]+/[0-9]+$" description="Encoder ratio (default: 400/4096)" defaultValue="400/4096" hasDefault="YES" />
 
-<macro name="DHLM1" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
-<macro name="DHLM2" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
-<macro name="DHLM3" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
-<macro name="DHLM4" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
-<macro name="DHLM5" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
-<macro name="DHLM6" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
-<macro name="DHLM7" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
-<macro name="DHLM8" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (default: 200)" defaultValue="200" hasDefault="YES" />
+<macro name="DHLM1" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (units) (default: 200)" defaultValue="200" hasDefault="YES" />
+<macro name="DHLM2" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (units) (default: 200)" defaultValue="200" hasDefault="YES" />
+<macro name="DHLM3" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (units) (default: 200)" defaultValue="200" hasDefault="YES" />
+<macro name="DHLM4" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (units) (default: 200)" defaultValue="200" hasDefault="YES" />
+<macro name="DHLM5" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (units) (default: 200)" defaultValue="200" hasDefault="YES" />
+<macro name="DHLM6" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (units) (default: 200)" defaultValue="200" hasDefault="YES" />
+<macro name="DHLM7" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (units) (default: 200)" defaultValue="200" hasDefault="YES" />
+<macro name="DHLM8" pattern="^-?[0-9]*\.?[0-9]*$" description="Position upper limit (units) (default: 200)" defaultValue="200" hasDefault="YES" />
 
-<macro name="DLLM1" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" defaultValue="-200" hasDefault="YES" />
-<macro name="DLLM2" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" defaultValue="-200" hasDefault="YES" />
-<macro name="DLLM3" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" defaultValue="-200" hasDefault="YES" />
-<macro name="DLLM4" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" defaultValue="-200" hasDefault="YES" />
-<macro name="DLLM5" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" defaultValue="-200" hasDefault="YES" />
-<macro name="DLLM6" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" defaultValue="-200" hasDefault="YES" />
-<macro name="DLLM7" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" defaultValue="-200" hasDefault="YES" />
-<macro name="DLLM8" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (default: -200)" defaultValue="-200" hasDefault="YES" />
+<macro name="DLLM1" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (units) (default: -200)" defaultValue="-200" hasDefault="YES" />
+<macro name="DLLM2" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (units) (default: -200)" defaultValue="-200" hasDefault="YES" />
+<macro name="DLLM3" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (units) (default: -200)" defaultValue="-200" hasDefault="YES" />
+<macro name="DLLM4" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (units) (default: -200)" defaultValue="-200" hasDefault="YES" />
+<macro name="DLLM5" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (units) (default: -200)" defaultValue="-200" hasDefault="YES" />
+<macro name="DLLM6" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (units) (default: -200)" defaultValue="-200" hasDefault="YES" />
+<macro name="DLLM7" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (units) (default: -200)" defaultValue="-200" hasDefault="YES" />
+<macro name="DLLM8" pattern="^-?[0-9]*\.?[0-9]*$" description="Position lower limit (units) (default: -200)" defaultValue="-200" hasDefault="YES" />
 
 <macro name="CMOD1" pattern="^(OPEN|CLOSED)$" description="Loop control mode (default: CLOSED)" defaultValue="CLOSED" hasDefault="YES" />
 <macro name="CMOD2" pattern="^(OPEN|CLOSED)$" description="Loop control mode (default: CLOSED)" defaultValue="CLOSED" hasDefault="YES" />
@@ -129,14 +129,14 @@
 <macro name="NAME7" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO"/>
 <macro name="NAME8" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO"/>
 
-<macro name="OFST1" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
-<macro name="OFST2" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
-<macro name="OFST3" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
-<macro name="OFST4" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
-<macro name="OFST5" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
-<macro name="OFST6" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
-<macro name="OFST7" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
-<macro name="OFST8" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST1" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (units) (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST2" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (units) (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST3" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (units) (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST4" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (units) (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST5" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (units) (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST6" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (units) (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST7" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (units) (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST8" pattern="-?[0-9]*\.?[0-9]*$" description="Motor offset (units) (default: 0)" defaultValue="0" hasDefault="YES" />
 
 <macro name="BOST1" pattern="-?[0-9]*$" description="Backoff steps (default: 0)" defaultValue="0" hasDefault="YES" />
 <macro name="BOST2" pattern="-?[0-9]*$" description="Backoff steps (default: 0)" defaultValue="0" hasDefault="YES" />
@@ -155,6 +155,15 @@
 <macro name="CRST6" pattern="[0-9]*$" description="Creep steps (default: 10)" defaultValue="10" hasDefault="YES" />
 <macro name="CRST7" pattern="[0-9]*$" description="Creep steps (default: 10)" defaultValue="10" hasDefault="YES" />
 <macro name="CRST8" pattern="[0-9]*$" description="Creep steps (default: 10)" defaultValue="10" hasDefault="YES" />
+
+<macro name="SETL1" pattern="[0-9]*$" description="Settle time (ms) (default: 100)" defaultValue="100" hasDefault="YES" />
+<macro name="SETL2" pattern="[0-9]*$" description="Settle time (ms) (default: 100)" defaultValue="100" hasDefault="YES" />
+<macro name="SETL3" pattern="[0-9]*$" description="Settle time (ms) (default: 100)" defaultValue="100" hasDefault="YES" />
+<macro name="SETL4" pattern="[0-9]*$" description="Settle time (ms) (default: 100)" defaultValue="100" hasDefault="YES" />
+<macro name="SETL5" pattern="[0-9]*$" description="Settle time (ms) (default: 100)" defaultValue="100" hasDefault="YES" />
+<macro name="SETL6" pattern="[0-9]*$" description="Settle time (ms) (default: 100)" defaultValue="100" hasDefault="YES" />
+<macro name="SETL7" pattern="[0-9]*$" description="Settle time (ms) (default: 100)" defaultValue="100" hasDefault="YES" />
+<macro name="SETL8" pattern="[0-9]*$" description="Settle time (ms) (default: 100)" defaultValue="100" hasDefault="YES" />
 
 </macros>
 <pvsets>

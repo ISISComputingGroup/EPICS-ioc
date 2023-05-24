@@ -15,7 +15,9 @@ dcalc("HVELCALC", "0.1*$(VELOI)",1,3)
 
 # 10 creep steps is hardware default for a stepper 
 epicsEnvSet("CRSTI",$(CRST$(MN)=10))
+
 epicsEnvSet("BOSTI",$(BOST$(MN)=0))
+epicsEnvSet("SETLI",$(SETL$(MN)=100))
 
 ## calculate what the encoder resolution (in motor record terms) is just to get
 ## a correct retry deadband. We leave motor record ERES as 0 as not used by

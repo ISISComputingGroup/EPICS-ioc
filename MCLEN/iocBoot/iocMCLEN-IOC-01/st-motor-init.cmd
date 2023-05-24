@@ -41,7 +41,7 @@ asynOctetWrite("MKINIT","$(MN)CR$(CRSTI)")
 asynOctetWrite("MKINIT","$(MN)CS800")
 
 ## settle time, how long must remain in Window at end of move, 100 is default
-asynOctetWrite("MKINIT","$(MN)SE100")
+asynOctetWrite("MKINIT","$(MN)SE$(SETLI)")
 
 ## set abort mode, controller default is 00000000
 ## however passing 00111000 for example would make stall error, tracking error and timeout error not abort motion 
