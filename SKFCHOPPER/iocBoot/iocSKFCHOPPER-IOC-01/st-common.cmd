@@ -28,6 +28,7 @@ $(IFNOTRECSIM) modbusInterposeConfig("$(CHOP)",0,5000,0,$(SKIP_TRANSACTION_ID=0)
 
 ## Load our record instances
 dbLoadRecords("$(SKFCHOPPER)/db/SKFChopper.db","P=$(MYPVPREFIX)$(IOCNAME):,CHOP=$(CHOP),NAME=$(NAME),OPEN=$(OPEN),CLOSED=$(CLOSED),RECSIM=$(RECSIM)")
+dbLoadRecords("$(SKFCHOPPER)/db/peak_positions.db","P=$(MYPVPREFIX)$(IOCNAME):,CHOP=$(CHOP)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
