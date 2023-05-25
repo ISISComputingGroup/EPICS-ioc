@@ -49,9 +49,10 @@ asynOctetWrite("MKINIT","$(MN)AM00000000")
 
 ## set datum mode, controller default is 00000000
 ## this also controls expected encoder index polarity, automatic direction search etc. on datum
-## not set at moment
+## so not set at moment in case mess up encoder? It is partly adjusted in the main
+## driver depending on homing mode
 #asynOctetWrite("MKINIT","$(MN)DM00000000")
 
 ## note: SH command generally not set here, if we chose appropriate hardware home
-## it will do a SH0 before himing to datum and applying it
+## main driver will do a SH0 before homing to datum if in appropriate mode
 #asynOctetWrite("MKINIT","$(MN)SH0")
