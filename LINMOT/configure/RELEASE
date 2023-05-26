@@ -9,3 +9,6 @@ include $(TOP)/../../../configure/MASTER_RELEASE
 
 include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
+
+MOTORLINMOT=$(MOTOR)modules/motorLinMot
+MOTORSIM=$(MOTOR)/modules/motorMotorSim
