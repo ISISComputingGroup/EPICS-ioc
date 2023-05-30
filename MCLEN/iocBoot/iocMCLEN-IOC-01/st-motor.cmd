@@ -18,6 +18,7 @@ epicsEnvSet("CRSTI",$(CRST$(MN)=10))
 
 epicsEnvSet("BOSTI",$(BOST$(MN)=0))
 epicsEnvSet("SETLI",$(SETL$(MN)=100))
+epicsEnvSet("CRSPI",$(CRSP$(MN)=800))
 
 ## calculate what the encoder resolution (in motor record terms) is just to get
 ## a correct retry deadband. We leave motor record ERES as 0 as not used by

@@ -38,7 +38,7 @@ asynOctetWrite("MKINIT","$(MN)BO$(BOSTI)")
 asynOctetWrite("MKINIT","$(MN)CR$(CRSTI)")
 
 ## creep speed, 800 is default
-asynOctetWrite("MKINIT","$(MN)CS800")
+asynOctetWrite("MKINIT","$(MN)SC$(CRSPI)")
 
 ## settle time, how long must remain in Window at end of move, 100 is default
 asynOctetWrite("MKINIT","$(MN)SE$(SETLI)")
