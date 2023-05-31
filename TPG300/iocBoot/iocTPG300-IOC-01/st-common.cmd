@@ -31,17 +31,18 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
 #####################
 ## Load record instances
+stringiftest("300", $(MODEL="300"), 5, "300")
 
 stringiftest("PRESSURA1", $(PRESA1ON="Y"), 5, "Y")
 stringiftest("PRESSURA2", $(PRESA2ON="Y"), 5, "Y")
 stringiftest("PRESSURB1", $(PRESB1ON="Y"), 5, "Y")
 stringiftest("PRESSURB2", $(PRESB2ON="Y"), 5, "Y")
 
-dbLoadRecords("$(TPG)/db/devTPG300.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
-dbLoadRecords("$(TPG)/db/TPG300_channels.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0), IFPRESSURA1=$(IFPRESSURA1),IFPRESSURA2=$(IFPRESSURA2),IFPRESSURB1=$(IFPRESSURB1),IFPRESSURB2=$(IFPRESSURB2)")
+dbLoadRecords("$(TPG)/db/devTPG300.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),IF300=$(IF300),IFNOT300=$(IFNOT300)")
+dbLoadRecords("$(TPG)/db/TPG300_channels.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0), IFPRESSURA1=$(IFPRESSURA1),IFPRESSURA2=$(IFPRESSURA2),IFPRESSURB1=$(IFPRESSURB1),IFPRESSURB2=$(IFPRESSURB2),IF300=$(IF300),IFNOT300=$(IFNOT300)")
 dbLoadRecords("$(TPG)/db/unit_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
-dbLoadRecords("$(TPG)/db/TPG300_switching_functions_rb.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
-dbLoadRecords("$(TPG)/db/TPG300_switching_functions.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+dbLoadRecords("$(TPG)/db/TPG300_switching_functions_rb.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),IF300=$(IF300),IFNOT300=$(IFNOT300)")
+dbLoadRecords("$(TPG)/db/TPG300_switching_functions.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),IF300=$(IF300),IFNOT300=$(IFNOT300)")
 dbLoadRecords("$(TPG)/db/TPG300_function_statuses.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
 dbLoadRecords("$(TPG)/db/TPG300_switching_functions_rb_error_setter.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
 dbLoadRecords("$(TPG)/db/TPG300_function_statuses_error_setter.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
