@@ -6,6 +6,7 @@ AUTOSAVE=$(SUPPORT)/autosave/master
 BUSY=$(SUPPORT)/busy/master
 CALC=$(SUPPORT)/calc/master
 MOTOR=$(SUPPORT)/motor/master
+MOTORSIM=$(MOTOR)/modules/motorMotorSim
 SSCAN=$(SUPPORT)/sscan/master
 GALIL=$(SUPPORT)/galil/master
 AXIS=$(SUPPORT)/axis/master
