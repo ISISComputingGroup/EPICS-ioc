@@ -43,11 +43,11 @@ $(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
 ## EOL for asyn
 $(IFMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "\r\n")
-$(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "\r\r")
+$(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "\n")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "\r\n")
 
 $(IFMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynInterposeStripConfig("L0", 0, "\0")
-$(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynInterposeStripConfig("L0", 0, "\n")
+$(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynInterposeStripConfig("L0", 0, "\r")
 
 
 
