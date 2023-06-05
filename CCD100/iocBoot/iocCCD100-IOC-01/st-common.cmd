@@ -19,7 +19,7 @@ $(IFNOTMK3) epicsEnvSet("CURRFUNC", "getCurrRead")
 ## for mk3 use IP
 $(IFMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure("L0", "$(IPADDR=127.0.0.1):101")
 ## strip NULL bytes in returned string, CCD100 mk3 over ethernet seems to send these occasionally
-$(IFMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynInterposeStripConfig("L0", 0, "\0")
+
 
 ## can't rememeber if asynOctetSetInputEos below is needed for ethernet or not
 ## it gets set in protocol file anyway, but should check if asynOctetSetInputEos would infere
@@ -42,10 +42,13 @@ $(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N")
 $(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
 ## EOL for asyn
-$(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "\r\r\n")
-$(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "\r\n")
 $(IFMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "\r\n")
-$(IFMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "\r\n") 
+$(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "\r\r")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "\r\n")
+
+$(IFMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynInterposeStripConfig("L0", 0, "\0")
+$(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynInterposeStripConfig("L0", 0, "\n")
+
 
 
 ## Load record instances
