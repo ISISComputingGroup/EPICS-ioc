@@ -16,13 +16,14 @@ $(IFNOTCMOPEN) asynOctetWrite("MKINIT","$(MN)CM14")
 ## Initialise the encoder ratio using the exact string of ERES$
 asynOctetWrite("MKINIT","$(MN)ER$(ERES$(MN)=400/4096)")
 
-## end of move check window
-asynOctetWrite("MKINIT","$(MN)WI5")
+## end of move check window, allowed difference at end of move
+asynOctetWrite("MKINIT","$(MN)WI$(WINI)")
 
 ## Not Complete/Time-Out time
 asynOctetWrite("MKINIT","$(MN)TO8000")
 
-## tracking window
+## tracking window, allowed difference between motor and encoder when moving
+## get tracking abort if exceeded
 asynOctetWrite("MKINIT","$(MN)TR4000")
 
 ## SL1 enables soft limits in controller, SL0 disables
@@ -31,17 +32,16 @@ asynOctetWrite("MKINIT","$(MN)TR4000")
 asynOctetWrite("MKINIT","$(MN)SL0")
 
 ## backoff steps as 0
-asynOctetWrite("MKINIT","$(MN)BO0")
+asynOctetWrite("MKINIT","$(MN)BO$(BOSTI)")
 
-## creep steps at end of move
-#asynOctetWrite("MKINIT","$(MN)CR10")
-asynOctetWrite("MKINIT","$(MN)CR5")
+## creep steps at end of move, 10 is default for stepper
+asynOctetWrite("MKINIT","$(MN)CR$(CRSTI)")
 
-## creep speed
-#asynOctetWrite("MKINIT","$(MN)CS250")
+## creep speed, 800 is default
+asynOctetWrite("MKINIT","$(MN)SC$(CRSPI)")
 
-## settle time
-asynOctetWrite("MKINIT","$(MN)SE1000")
+## settle time, how long must remain in Window at end of move, 100 is default
+asynOctetWrite("MKINIT","$(MN)SE$(SETLI)")
 
 ## set abort mode, controller default is 00000000
 ## however passing 00111000 for example would make stall error, tracking error and timeout error not abort motion 
@@ -49,8 +49,10 @@ asynOctetWrite("MKINIT","$(MN)AM00000000")
 
 ## set datum mode, controller default is 00000000
 ## this also controls expected encoder index polarity, automatic direction search etc. on datum
-## not set at moment
+## so not set at moment in case mess up encoder? It is partly adjusted in the main
+## driver depending on homing mode
 #asynOctetWrite("MKINIT","$(MN)DM00000000")
 
-## define home position as 0, this will be applied if DM set accordingly
+## note: SH command generally not set here, if we chose appropriate hardware home
+## main driver will do a SH0 before homing to datum if in appropriate mode
 #asynOctetWrite("MKINIT","$(MN)SH0")

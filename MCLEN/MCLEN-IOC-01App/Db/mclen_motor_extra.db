@@ -1,4 +1,6 @@
 record(motor, "$(P)$(M)") {
   field(PCOF, "$(PCOF)")
   field(HVEL, "$(HVEL)")
+  field(RDBD, "$(RDBD)")
+  field(ASG,  "WASL0")
 }
