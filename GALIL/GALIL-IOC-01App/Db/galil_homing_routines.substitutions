@@ -2,6 +2,6 @@ file "$(GALIL)/GalilSup/Db/galil_homing_routines.template"
 {
 pattern
 {   PVPREFIX, P, ASG,      M,    PORT,    ADDR, PREC, SCAN,        MTRTYPE, MTRON, EGU, IOCNAME  }
- {  "\$(PVPREFIX)", "\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)01",  "\$(PORT=Galil)", 0,    3,    "Passive",  "3",     "0",   "mm", "\$(IOCNAME=UNKNOWN)" }
+ {  "\$(PVPREFIX)", "\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)",  "\$(PORT=Galil)", 0,    3,    "Passive",  "3",     "0",   "mm", "\$(IOCNAME=UNKNOWN)" }
 
 }
