@@ -25,10 +25,11 @@ epicsEnvSet("CRSPI",$(CRSP$(MN)=800))
 ## driver. we need an appropriate retry deadband in case retries are enabled
 ## though they do not usually need to be as hardware will retry itself
 dcalc("ERESCALC", "$(MRESI) * $(ERES$(MN)=400/4096)", 1, 12)
-dcalc("RDBDI", "MAX($(MRESI), $(ERESCALC))", 1, 12)
 
-## mclennan Window, max allowed error steps at end of move
-calc("WINI", "MAX($(RDBDI) * $(MSTPI), 4)", 1)
+## we want the mclennan Window, max allowed error steps at end of move
+## and retry deadband to agree
+calc("WINI", "MAX($(WIN$(MN)=4),($(ERES$(MN)=400/4096)))", 1)
+dcalc("RDBDI", "$(WINI)/$(MSTPI)", 1, 12)
 
 epicsEnvSet("JVELI", "$(JVEL$(MN)=$(JVELCALC))")
 epicsEnvSet("HVELI", "$(HVEL$(MN)=$(HVELCALC))")
