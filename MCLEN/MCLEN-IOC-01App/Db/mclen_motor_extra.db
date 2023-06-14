@@ -2,5 +2,10 @@ record(motor, "$(P)$(M)") {
   field(PCOF, "$(PCOF)")
   field(HVEL, "$(HVEL)")
   field(RDBD, "$(RDBD)")
+# We set NTM to NO as otherwise we get issues with closed loop control when
+# the mclennan correcting can be seen as a move in the wrong direction and stopped
+# with a "tdir" message printed
+  field(NTM,  "NO")
+  field(FOFF, "Frozen")
   field(ASG,  "WASL0")
 }
