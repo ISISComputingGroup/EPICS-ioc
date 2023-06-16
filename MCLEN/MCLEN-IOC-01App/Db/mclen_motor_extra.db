@@ -6,6 +6,7 @@ record(motor, "$(P)$(M)") {
 # the mclennan correcting can be seen as a move in the wrong direction and stopped
 # with a "tdir" message printed
   field(NTM,  "NO")
+  field(RTRY, "0")
   field(FOFF, "Frozen")
   field(ASG,  "WASL0")
 }
