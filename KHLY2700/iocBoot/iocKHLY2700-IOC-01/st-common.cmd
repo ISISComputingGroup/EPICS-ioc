@@ -40,7 +40,9 @@ asynOctetSetOutputEos("$(DEVICE)", -1, "$(OEOS=\\r)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("${TOP}/db/keithley2700.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0),BUFFER_SIZE=$(BUFFER_SIZE=1000)")
+## note: buffer size should be a multiple of the number of items per point
+## we need. So as we have 3 items per point, a multiple of 3
+dbLoadRecords("${TOP}/db/keithley2700.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0),BUFFER_SIZE=$(BUFFER_SIZE=999)")
 dbLoadRecords("${TOP}/db/keithley2700_channels.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0), CALIB_BASE_DIR=$(CALIB_BASE_DIR),CALIB_DIR=$(CALIB_DIR), DRVHI=$(DRIVE_HIGH=10000),DRVLO=$(DRIVE_LOW=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
