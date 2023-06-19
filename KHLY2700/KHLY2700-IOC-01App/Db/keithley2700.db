@@ -80,7 +80,10 @@ record(sseq, "$(P)INIT:SEQ:TWO") {
 	field(STR1, "ON")
 	field(WAIT1, "Wait")
 
-	# Set trace buffer points to 1000
+	# Set trace buffer points to 999
+	# this value should be a multiple of expected number of data elements
+	# i.e. if returning 3 items READ,CHAN,TST as per DATAELEMENTS:SP
+	# then this number should be a multiple of 3
 	field(LNK2, "$(P)BUFF:SIZE:SP PP")
 	field(DO2, "$(BUFFER_SIZE)")
 	field(WAIT2, "Wait")
