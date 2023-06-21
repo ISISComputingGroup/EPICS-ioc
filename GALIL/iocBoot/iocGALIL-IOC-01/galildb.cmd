@@ -39,5 +39,3 @@ dbLoadRecords("$(TOP)/db/galil_profileMoveAxis.db", "P=$(MYPVPREFIX)MOT:,CCP=$(M
 
 #Load homing routine records 
 dbLoadRecords("$(TOP)/db/galil_homing_routines.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
-epicsThreadSleep(10)
-
