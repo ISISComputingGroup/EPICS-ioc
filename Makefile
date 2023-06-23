@@ -67,6 +67,7 @@ IOCDIRS += TEKOSC
 IOCDIRS += KHLY2000
 IOCDIRS += CATFLWR
 IOCDIRS += KSE4980
+IOCDIRS += PACE5000
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
