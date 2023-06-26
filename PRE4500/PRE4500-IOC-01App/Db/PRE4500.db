@@ -1,0 +1,75 @@
+record (ai, "$(P)CHOPPER:PIT:TEMP") {
+
+    field(DESC, "Chopper Pit Temperature")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)pit_temperature,0)FLOAT32_LE")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynFloat64")
+
+    field(EGU,  "C")
+    field(PREC, "3")
+
+    info(INTEREST, "HIGH")
+    # info(ARCHIVE,  "10 VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CHOPPER:PIT:TEMP CP")
+}
+
+record (ai, "$(P)COOLING:WATER:TEMP") {
+
+    field(DESC, "Colling Water Temperature")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)water_temperature,0)FLOAT32_LE")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynFloat64")
+
+    field(EGU,  "C")
+    field(PREC, "3")
+
+    info(INTEREST, "HIGH")
+    # info(ARCHIVE,  "10 VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:COOLING:WATER:TEMP CP")
+}
+
+record (ai, "$(P)CHOPPER:BODY:TEMP") {
+
+    field(DESC, "Chopper Body Temperature")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)body_temperature,0)FLOAT32_LE")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynFloat64")
+
+    field(EGU,  "C")
+    field(PREC, "3")
+
+    info(INTEREST, "HIGH")
+    # info(ARCHIVE,  "10 VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CHOPPER:BODY:TEMP")
+}
+
+record (ai, "$(P)SPARE:TEMP") {
+
+    field(DESC, "Spare Temperature")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)spare_temperature,0)FLOAT32_LE")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynFloat64")
+
+    field(EGU,  "C")
+    field(PREC, "3")
+
+    info(INTEREST, "HIGH")
+    # info(ARCHIVE,  "10 VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPARE:TEMP CP")
+}
