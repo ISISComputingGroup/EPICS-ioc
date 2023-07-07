@@ -465,12 +465,12 @@ record(seq, "$(P)READ_SLOW4") {
     field(LNK1, "$(P)P.PROC")
     field(LNK2, "$(P)I.PROC")
     field(LNK3, "$(P)D.PROC")
-	field(LNK4, "$(P)FLOW.PROC")
-	field(LNK5, "$(P)MANUAL_FLOW.PROC")
-	field(LNK6, "$(P)FLOW_SP_LOWLIM.PROC")
-	field(LNK7, "$(P)FLOW_SP_MODE_SELECT.PROC")
-	field(LNK8, "$(P)VALVE_DIR.PROC")
-	field(LNK9, "$(P)NEEDLE_VALVE_STOP.PROC")
+	$(IFNEEDLE_VALVE) field(LNK4, "$(P)FLOW.PROC")
+	$(IFNEEDLE_VALVE) field(LNK5, "$(P)MANUAL_FLOW.PROC")
+	$(IFNEEDLE_VALVE) field(LNK6, "$(P)FLOW_SP_LOWLIM.PROC")
+	$(IFNEEDLE_VALVE) field(LNK7, "$(P)FLOW_SP_MODE_SELECT.PROC")
+	$(IFNEEDLE_VALVE) field(LNK8, "$(P)VALVE_DIR.PROC")
+	$(IFNEEDLE_VALVE) field(LNK9, "$(P)NEEDLE_VALVE_STOP.PROC")
 }
 
 ####
