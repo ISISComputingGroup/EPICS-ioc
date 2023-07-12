@@ -59,7 +59,7 @@ record(calc, "$(P)TS:OVERFLOW:TIME") {
     field(SCAN, "10 second")
     field(PREC, "1")
     field(ASG, "READONLY")
-    field(EGU, "days")
+    field(EGU, "day")
 }
 
 #
