@@ -16,6 +16,52 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
+## due to a firmware bug if the keithley timestamp overflows
+## it doesn't reset and returns corrupt data
+## we need to reset before it get to 2^31 milliseconds
+## which is 2147483 seconds in TIME PV (24.8 days)
+record(calcout, "$(P)RESET_TS:CALC") {
+    field(DESC, "Reset timestamp if too big")
+    field(INPA, "$(P)CHNL:101:TIME")
+    field(CALC, "A>2000000?1:0")
+    field(OOPT, "When Non-zero")
+    field(OUT, "$(P)RESET_TS:SP.PROC PP")
+    field(SCAN, "10 second")
+}
+
+## currently we PINI so timestamp reset to 0 on IOC startup
+## but we could remove PINI and just reply on above calc reset
+record(bo, "$(P)RESET_TS:SP") {
+    field(DESC, "Reset relative timestamp")
+    field(DTYP, "stream")
+    field(PINI, "YES")
+    field(OUT, "@devKeithley_2700.proto resetTime $(PORT)")
+}
+
+## is greater than 2^31 / 1000 = 2147483 then overflowed
+## usually shows as 9.9E+37
+record(calcout, "$(P)TS:OVERFLOW") {
+    field(INPA, "$(P)CHNL:101:TIME")
+    field(CALC, "A>2147483?1:0")
+    field(OOPT, "When Non-zero")
+    field(SCAN, "10 second")
+    field(HIGH, "0.5")
+    field(HSV, "MINOR")
+    field(ASG, "READONLY")
+    info(alarm, "Keithley2700")
+    info(archive, "VAL")
+}
+
+## how many days to timstamp overflow
+record(calc, "$(P)TS:OVERFLOW:TIME") {
+    field(INPA, "$(P)CHNL:101:TIME")
+    field(CALC, "(2147483 - A) / 86400")
+    field(SCAN, "10 second")
+    field(PREC, "1")
+    field(ASG, "READONLY")
+    field(EGU, "days")
+}
+
 #
 # INIT:SEQ and INIT:SEQ:TWO set up the initial state of the Keithley 2700
 # to read FResistance values across channels 101:210.
@@ -297,8 +343,6 @@ record(ai, "$(P)BUFF:NEXT") {
   field(SCAN, ".2 second")
   field(DTYP, "stream")
   field(INP,  "@devKeithley_2700.proto getNextBufferReadingLoc $(PORT)")
-  info(ARCHIVE, "VAL")
-  info(INTEREST, "HIGH")
   field(EGU, "")
 
   field(SIML, "$(P)SIM")
@@ -363,8 +407,6 @@ record(waveform, "$(P)BUFF:READ")
   field(FTVL, "DOUBLE")
   field(DTYP, "stream")
   field(INP,  "@devKeithley_2700.proto getBufferReadings($(P)) $(PORT)")
-  info(ARCHIVE, "VAL")
-  info(INTEREST, "HIGH")
   field(PREC, "5")
   field(FLNK, "$(P)BUFF:READ:PARSE:READINGS")
   field(SIML, "$(P)SIM")
