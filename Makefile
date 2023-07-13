@@ -66,6 +66,7 @@ IOCDIRS += INSTRONA
 IOCDIRS += TEKOSC
 IOCDIRS += KHLY2000
 IOCDIRS += CATFLWR
+IOCDIRS += PRLTHERM
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
