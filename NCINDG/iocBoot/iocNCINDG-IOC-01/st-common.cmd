@@ -15,9 +15,11 @@ nucInstDigConfigure("DIG0", "$(IP_ADDR_0)", $(INDEX_0))
 dbLoadRecords("$(NUCINSTDIG)/db/NucInstDig.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=DIG0")
 dbLoadRecords("$(NUCINSTDIG)/db/NucInstDigTrace.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=DIG0")
 dbLoadRecords("$(NUCINSTDIG)/db/NucInstDigDCSpec.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=DIG0")
+dbLoadRecords("$(NUCINSTDIG)/db/NucInstDigTOFSpec.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=DIG0")
 
 iocshLoad "${TOP}/iocBoot/iocNCINDG-IOC-01/liveview.cmd", "LVDET=1,LVADDR=0"
 iocshLoad "${TOP}/iocBoot/iocNCINDG-IOC-01/liveview.cmd", "LVDET=2,LVADDR=1"
+iocshLoad "${TOP}/iocBoot/iocNCINDG-IOC-01/liveview.cmd", "LVDET=3,LVADDR=2"
 
 < ${TOP}/iocBoot/iocNCINDG-IOC-01/digitiser-params.cmd
 
