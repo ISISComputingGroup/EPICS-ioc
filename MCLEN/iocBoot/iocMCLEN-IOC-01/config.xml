@@ -165,6 +165,15 @@
 <macro name="SETL7" pattern="[0-9]*$" description="Settle time (ms) (default: 100)" defaultValue="100" hasDefault="YES" />
 <macro name="SETL8" pattern="[0-9]*$" description="Settle time (ms) (default: 100)" defaultValue="100" hasDefault="YES" />
 
+<macro name="WIN1" pattern="[0-9]*$" description="Window (max error at move end, steps) (default: 4)" defaultValue="4" hasDefault="YES" />
+<macro name="WIN2" pattern="[0-9]*$" description="Window (max error at move end, steps) (default: 4)" defaultValue="4" hasDefault="YES" />
+<macro name="WIN3" pattern="[0-9]*$" description="Window (max error at move end, steps) (default: 4)" defaultValue="4" hasDefault="YES" />
+<macro name="WIN4" pattern="[0-9]*$" description="Window (max error at move end, steps) (default: 4)" defaultValue="4" hasDefault="YES" />
+<macro name="WIN5" pattern="[0-9]*$" description="Window (max error at move end, steps) (default: 4)" defaultValue="4" hasDefault="YES" />
+<macro name="WIN6" pattern="[0-9]*$" description="Window (max error at move end, steps) (default: 4)" defaultValue="4" hasDefault="YES" />
+<macro name="WIN7" pattern="[0-9]*$" description="Window (max error at move end, steps) (default: 4)" defaultValue="4" hasDefault="YES" />
+<macro name="WIN8" pattern="[0-9]*$" description="Window (max error at move end, steps) (default: 4)" defaultValue="4" hasDefault="YES" />
+
 </macros>
 <pvsets>
 </pvsets>
