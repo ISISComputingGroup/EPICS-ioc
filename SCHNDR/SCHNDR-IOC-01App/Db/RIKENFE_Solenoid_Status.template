@@ -8,7 +8,7 @@ record (longin, "$(P)$(PV):STAT:RAW") {
     
     field(EGU,  "")
     info(INTEREST, "LOW")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
     info(ALARM,    "SCHNDR")
 
     field(SDIS, "$(P)DISABLE")
@@ -31,7 +31,7 @@ record (mbbiDirect, "$(P)$(PV):STAT") {
     field(INP,  "$(P)$(PV):STAT:RAW CP MS")
 
     info(INTEREST, "LOW")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 }
 
 record (bi, "$(P)$(PV):COMMS:STAT") {
@@ -46,7 +46,7 @@ record (bi, "$(P)$(PV):COMMS:STAT") {
     field(OSV,  "INVALID")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 }
 
 record (bi, "$(P)$(PV):GH7:STAT") {
@@ -61,7 +61,7 @@ record (bi, "$(P)$(PV):GH7:STAT") {
     field(OSV,  "NO_ALARM")
     
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 }
 
 record (bi, "$(P)$(PV):GH8:STAT") {
@@ -76,7 +76,7 @@ record (bi, "$(P)$(PV):GH8:STAT") {
     field(OSV,  "NO_ALARM")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 }
 
 record (bi, "$(P)$(PV):CRYO_SYS:STAT") {
@@ -91,7 +91,7 @@ record (bi, "$(P)$(PV):CRYO_SYS:STAT") {
     field(OSV,  "NO_ALARM")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 }
 
 record (bi, "$(P)$(PV):COOLDOWN:STAT") {
@@ -106,7 +106,7 @@ record (bi, "$(P)$(PV):COOLDOWN:STAT") {
     field(OSV,  "NO_ALARM")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 }
 
 record (bi, "$(P)$(PV):MAG_EXCIT:STAT") {
@@ -121,7 +121,7 @@ record (bi, "$(P)$(PV):MAG_EXCIT:STAT") {
     field(OSV,  "NO_ALARM")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 }
 
 record (bi, "$(P)$(PV):COMPRESSOR:STAT") {
@@ -136,5 +136,5 @@ record (bi, "$(P)$(PV):COMPRESSOR:STAT") {
     field(OSV,  "NO_ALARM")
 
     info(INTEREST, "MEDIUM")
-    info(ARCHIVE,  "VAL")
+    info(ARCHIVE,  "10 VAL")
 }

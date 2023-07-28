@@ -34,6 +34,8 @@ record(ai, "$(P)$(Q)WATCHDOG:RAW")
 
 record(calc, "$(P)$(Q)WATCHDOG:STATUS")
 {
+    field(DESC, "Watchdog status")
+    field(ASG, "READONLY")
     field(INPA, "$(P)$(Q)WATCHDOG:RAW")
     field(INPB, "$(P)$(Q)WATCHDOG:STATUS.LA")
     field(CALC, "(B=A)?1:0")

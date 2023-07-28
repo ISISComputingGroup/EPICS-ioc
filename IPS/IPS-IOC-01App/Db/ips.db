@@ -654,19 +654,71 @@ record(bo, "$(P)HEATER:STATUS:SP") {
   field(SDIS, "$(P)DISABLE")
 }
 
-# Amount of time to wait for heater to warm up/cool down.
-# CAN CAUSE MAGNET TO QUENCH IF SET TOO LOW
-# Oxford Instruments labview driver uses 30s
-# ISIS cryogenics have asked us to increase this to 60s,
+# Amount of time to wait for heater to warm up/cool down.  **CAN CAUSE MAGNET TO QUENCH IF SET TOO LOW**
+# Oxford Instruments labview driver uses 30s.  ISIS cryogenics have asked us to increase this to 60s,
 # which is more conservative.
+# The HEATER_WAITTIME IOC macro, which is _not_ user-facing, has a default of 60s.
+# Configurable to lower values to shorten time for IOC tests.
+
 record(ao, "$(P)HEATER:WAITTIME") {
   field(DESC, "Time to wait for heater")
-  field(VAL, "60")
+  field(VAL, "$(HEATER_WAITTIME)")
   field(PINI, "YES")
   info(archive, "VAL")
 }
 
-# # Readback from m of Mmn part of Examine command return.
+# CALC record to coerce heater status values.  Heater can be off in states 0 or 2, and in error in states 5 or 8, 
+# and circular buffer (N to 1 Low Value) only looks for lowest (0).
+# Output 1 only if heater is on, 0 if off and all other states, including errors.
+
+record(calc, "$(P)HEATER:_STATUS_CALC") {
+    field(DESC, "Binary Heater Status")
+    field(INPA, "$(P)HEATER:STATUS CP MS")
+    field(CALC, "(A=1)?1:0")                # If heater is on, output 1, otherwise 0
+    info(archive, "VAL")
+}
+
+# COMPRESS Record with circular buffer to store $(HEATER_WAITTIME) worth of HEATER:STATUS values
+# Used with second COMPRESS record below to check heater has been on for at least $(HEATER_WAITTIME) after starting IOC
+
+record(compress, "$(P)HEATER:_STATUS_BUFFER") {
+  field(DESC, "Buffer of heater status values")
+  field(INP, "$(P)HEATER:_STATUS_CALC.VAL")
+  field(ALG, "Circular Buffer")
+  field(NSAM, "$(HEATER_WAITTIME)")
+  field(SCAN, "1 second")
+  field(FLNK, "$(P)HEATER:_STATUS_BUFFER_LOWEST")
+}
+
+# COMPRESS record to monitor above and output lowest value in buffer.
+# If '1' then whole buffer contains '1' and therefore heater has been ON for at least $(HEATER_WAITTIME)
+# If '0' then heater has been OFF at some point in $(HEATER_WAITTIME)
+
+record(compress, "$(P)HEATER:_STATUS_BUFFER_LOWEST") {
+  field(DESC, "Lowest value of heater status buffer")
+  field(INP, "$(P)HEATER:_STATUS_BUFFER")
+  field(ALG, "N to 1 Low Value")
+  field(NSAM, "1")
+  field(N, "$(HEATER_WAITTIME)")
+  field(FLNK, "$(P)HEATER:ONTIME_OK")
+  info(archive, "VAL")
+}
+
+# BO record to indicate whether or not heater been on for at least $(HEATER_WAITTIME). Monitored by statemachine to determine whether or not OK to set field.
+
+record(bo, "$(P)HEATER:ONTIME_OK") {
+  field(DESC, "Heater on for at least $(HEATER_WAITTIME)s")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P)HEATER:_STATUS_BUFFER_LOWEST.VAL")
+  field(ZNAM, "Heater OFF in last $(HEATER_WAITTIME)s")
+  field(ONAM, "Heater ON for > $(HEATER_WAITTIME)s")
+  info(archive, "VAL")
+}
+
+
+# Readback from m of Mmn part of Examine command return.
 # The Display is in Amps or Tesla.  The Magnet Sweep is fast or slow.
 record(mbbi, "$(P)SWEEPMODE:PARAMS") {
   field(DESC, "Mode status")
@@ -837,7 +889,7 @@ record(mbbo, "$(P)STATEMACHINE") {
   field(THST, "Wait for volts stable")
 
   field(FRVL, "4")
-  field(FRST, "Turn heater on & wait")
+  field(FRST, "Ensure heater on & warm")
 
   field(FVVL, "5")
   field(FVST, "Set PSU to setpoint")

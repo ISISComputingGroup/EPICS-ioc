@@ -1,0 +1,55 @@
+# digitizer configuration
+# the delay minimum between trigger and status packet redout
+dgtz.send_delay 0
+# set signal polarity to negative "pos" / "neg"
+in.polarity neg
+# pre-trigger buffer len (us)
+dgtz.pre 0.5
+# post-trigger acquisition buffer (us)
+dgtz.post 20
+# delay on external trigger (us)
+dgtz.trg_delay 0
+# trigger source: "ext_trigger", "self_le", "self_de", "periodic", "manual", "lemo_0"
+trg.mode periodic
+# internal trigger mode: "or", "and2", "and"
+trg.self_coinc or
+# periodic trigger rate (Hz)
+trg.self_rate 50
+# trigger inibition (ns)
+trg.trigger_inib 10
+# parameter those are different for each channel of the digitizer
+# trigger threshold (LSB)
+trg.threshold 2000 0 8
+# trigger mask (LSB)
+trg.mask 0 8
+# digital input offset
+in.offset 0 8
+
+# channel map a bit complex
+# in.chmap", 8 * m_dig_idx + i, i);        
+
+# configure BIAS
+stave.BIAS.enable false 0
+stave.BIAS.V 59 0
+stave.BIAS.max_v 62 0
+stave.BIAS.max_i 3 0
+stave.BIAS.enable false 1
+stave.BIAS.V 52 1
+stave.BIAS.max_v 58 1
+stave.BIAS.max_i 3 1
+
+# configure BIAS compensation
+# correction_mode "off", "auto", "manual"
+stave.BIAS.correction_mode manual 0 24
+stave.BIAS.correction_manual  0.2 0 24
+# SiPM correction coefficient in V/°C
+stave.BIAS.correction_coeff  0.035 0 24
+# offset in V
+stave.offset 0 0 24
+
+configure_dgtz
+configure_base
+configure_hv
+configure_staves
+
+reset_darkcount_spectra

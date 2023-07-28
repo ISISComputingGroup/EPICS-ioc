@@ -3,7 +3,7 @@ file $(MOTOR)/motorApp/Db/basic_asyn_motor.db {
          {"\$(P)", "\$(M)", 0, "asynMotor", "\$(XPS_PORT)", "DESC",    "mm",   "100",   "0",  "1",    0,    1,   0,   "\$(MRES)",   "\$(ERES)",    3,   "360",   "0",  "", "Pos"}
 }
 
-file "$(MOTOR)/motorApp/Db/XPS_extra.db"{
+file "$(MOTOR)/db/XPS_extra.db"{
     pattern {P,     R,  PORT,  ADDR}
         {"\$(P)",  m1, "\$(XPS_PORT)",  0}
 }

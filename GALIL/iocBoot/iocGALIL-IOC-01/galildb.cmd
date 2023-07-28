@@ -22,7 +22,7 @@ dbLoadRecords("$(TOP)/db/galil_csmotor_kinematics.db", "P=$(MYPVPREFIX)MOT:,CCP=
 dbLoadRecords("$(TOP)/db/galil_coordinate_systems.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
 #Load digital IO databases
-dbLoadRecords("$(TOP)/db/galil_digital_ports.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+dbLoadRecords("$(TOP)/db/galil_digital_ports.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL),RECSIM=$(RECSIM), IFNOTSIM=$(IFNOTSIM)")
 
 #Load analog IO databases
 dbLoadRecords("$(TOP)/db/galil_analog_ports.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
@@ -36,3 +36,6 @@ dbLoadRecords("$(TOP)/db/galil_user_array.db","P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL
 #Load profiles
 dbLoadRecords("$(TOP)/db/galil_profileMoveController.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 dbLoadRecords("$(TOP)/db/galil_profileMoveAxis.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+
+#Load homing routine records 
+dbLoadRecords("$(TOP)/db/galil_homing_routines.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
