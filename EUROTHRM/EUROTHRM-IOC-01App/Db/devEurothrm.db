@@ -102,7 +102,8 @@ record(ao, "$(P)TEMP:SP")
 # I/O intr FLNK won't process until we trigger PROC via CA
     field(FLNK, "$(P)OUT_SP.PROC CA")
     field(EGU, "K")
-    $(IFNEEDLE_VALVE) field(ASG, "MANAGER") 
+    $(IFNEEDLE_VALVE) field(ASG, "MANAGER")
+    field(UDFS, "NO_ALARM") 
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -867,6 +868,7 @@ record(ao, "$(P)_SP") {
     $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),2,1000)MODBUS_DATA")
     $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
     
+    field(UDFS, "NO_ALARM")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:SP")
     field(SDIS, "$(Q)DISABLE")
