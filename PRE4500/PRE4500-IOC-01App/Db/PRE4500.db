@@ -19,7 +19,11 @@ record (ai, "$(P)CHOPPER:PIT:TEMP") {
 
 record (ai, "$(P)COOLING:WATER:TEMP") {
 
+<<<<<<< Updated upstream
     field(DESC, "Colling Water Temperature")
+=======
+    field(DESC, "Cooling Water Temperature")
+>>>>>>> Stashed changes
     $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)water_temperature,0)FLOAT32_LE")
     $(IFNOTRECSIM) field(SCAN, "I/O Intr")
     $(IFNOTRECSIM) field(DTYP, "asynFloat64")

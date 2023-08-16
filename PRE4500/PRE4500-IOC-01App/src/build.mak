@@ -25,11 +25,18 @@ $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## Stream device support ##
+<<<<<<< Updated upstream
+=======
+$(APPNAME)_DBD += modbusSupport.dbd
+>>>>>>> Stashed changes
 $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
+<<<<<<< Updated upstream
 $(APPNAME)_DBD += luaSupport.dbd
+=======
+>>>>>>> Stashed changes
 $(APPNAME)_DBD += stream.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
@@ -53,7 +60,11 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
+<<<<<<< Updated upstream
 $(APPNAME)_LIBS += seq pv
+=======
+$(APPNAME)_LIBS += seq pv modbus
+>>>>>>> Stashed changes
 
 # PRE4500-IOC-01_registerRecordDeviceDriver.cpp derives from PRE4500-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
