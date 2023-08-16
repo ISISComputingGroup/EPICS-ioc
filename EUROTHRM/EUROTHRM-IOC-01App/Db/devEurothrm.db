@@ -98,6 +98,7 @@ record(ao, "$(P)TEMP:SP")
 {
     field(DESC, "Temperature setpoint")
     field(DTYP, "asynFloat64")
+    $(IFNEEDLE_VALVE) field(DRVH, "320") #The maximum temperature for Eurotherms, also close to 16bit signed max that can be sent via modbus
     field(OUT, "@asyn($(READ),0,1)TGT")
 # I/O intr FLNK won't process until we trigger PROC via CA
     field(FLNK, "$(P)OUT_SP.PROC CA")
@@ -585,7 +586,7 @@ record(ao, "$(P)OUTPUT_RATE:SP") {
     $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),37,1000)MODBUS_DATA")
     $(IFNOTUSES_BISYNCH) field(ASLO, "$(OUTPUT_RATE_SCALING)")
     
-    field(DRVH, "32767")
+    field(DRVH, "32767") #16bit signed max, without this drvh, the setpoint will overflow back into negative numbers due to modbus communication protocol use of 16 bit.
     field(DRVL, "0")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:OUTPUT_RATE:SP")
