@@ -38,18 +38,11 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 # These lines allow developers to override these RELEASE settings
 # without having to modify this file directly.
 -include $(TOP)/../RELEASE.local
-<<<<<<< Updated upstream
--include $(TOP)/../RELEASE.$(EPICS_HOST_ARCH).local
--include $(TOP)/configure/RELEASE.local
-
-# Macros required for basic ioc/stream device
-=======
 #-include $(TOP)/../RELEASE.$(EPICS_HOST_ARCH).local
 -include $(TOP)/configure/RELEASE.local
 
 # Macros required for basic ioc/stream device
 MODBUS=$(SUPPORT)/modbus/master
->>>>>>> Stashed changes
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
 ASYN=$(SUPPORT)/asyn/master
@@ -72,10 +65,6 @@ STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
 
