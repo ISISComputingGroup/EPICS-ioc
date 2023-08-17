@@ -19,6 +19,7 @@ DB += moxa_e1262_PVs.db
 DB += moxa12XX_aliases.db
 
 DB += moxa_e1240_misc.db
+DB += moxa_e1242_misc.db
 DB += moxa_e1262_misc.db
 
 #----------------------------------------------------
