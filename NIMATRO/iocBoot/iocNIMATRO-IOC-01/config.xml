@@ -6,6 +6,13 @@
     <macro name="LVDCOM_OPTIONS" pattern="^\d?\d?$" description="Options that define how the VI is started. Add selected options together to make the final value. 1 - warn if idle, 2 - start if idle, 4 - stop VIs if started on exit, 8 - stop VI on exit. (Default 2)" defaultValue="2" hasDefault="YES" />
     <macro name="LVDCOM_HOST" pattern="^.*$" description="Host on which the vi is running, blank for localhost (Default '')" defaultValue="" hasDefault="YES" />
     <macro name="LVDCOM_PROGID" pattern="^.*$" description="DCOM ProgID, required if connecting to a compiled LabVIEW application (Default '')" defaultValue="" hasDefault="YES" />
+	<macro name="AREA_HIGH_LIMIT" pattern="^-?[0-9]+\.?[0-9]*$" description="The high area limit of the Nima trough" defaultValue="247.0" hasDefault="YES" />
+	<macro name="AREA_LOW_LIMIT" pattern="^-?[0-9]+\.?[0-9]*$" description="The low area limit of the Nima trough" defaultValue="36.0" hasDefault="YES" />
+	<macro name="PRESSURE_HIGH_LIMIT" pattern="^-?[0-9]+\.?[0-9]*$" description="The pressure high limit of the Nima trough" defaultValue="75.0" hasDefault="YES" />
+	<macro name="PRESSURE_LOW_LIMIT" pattern="^-?[0-9]+\.?[0-9]*$" description="The pressure low limit of the Nima trough" defaultValue="-75.0" hasDefault="YES" />
+	<macro name="SPEED_HIGH_LIMIT" pattern="^-?[0-9]+\.?[0-9]*$" description="The speed high limit of the Nima trough" defaultValue="174.2" hasDefault="YES" />
+	<macro name="SPEED_LOW_LIMIT" pattern="^-?[0-9]+\.?[0-9]*$" description="The speed low limit of the Nima trough" defaultValue="-174.2" hasDefault="YES" />
+	
 </macros>
 </config_part>
 </ioc_config>

@@ -16,7 +16,7 @@ $(IFRECSIM) epicsEnvSet "CALIB_BASE_DIR" "$(HLX503)"
 epicsEnvSet "TPAR_DIR" "configurations/hlx503"
 epicsEnvSet "TPAR_PAT" ".*"
 FileListConfigure("$(FILELIST_NAME)", "$(CALIB_BASE_DIR)/$(TPAR_DIR)", "$(TPAR_PAT)", 0) 
-ReadASCIIConfigure("$(READASCII_NAME)", "$(CALIB_BASE_DIR)/$(TPAR_DIR)", 20, 1)
+ReadASCIIConfigure("$(READASCII_NAME)", "$(CALIB_BASE_DIR)/$(TPAR_DIR)", 1, 20, 1)
 
 
 epicsEnvSet "DEVICE" "L0"
