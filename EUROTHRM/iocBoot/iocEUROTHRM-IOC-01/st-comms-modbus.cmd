@@ -1,7 +1,8 @@
 # For dev sim devices
 $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
+$(IFRECSIM) drvAsynIPPortConfigure("L0", "localhost:12345)")
 
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NUL)", 0, 0, 0, 0)
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=9600)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "8")  # Must be 8 bits for modbus mode, so ignore comms macro set in config
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=even)")
@@ -59,5 +60,5 @@ drvModbusAsynConfigure("MODBUS_TX_09","L0", 9, 6, -1, 1, 4, 0, "")
 drvModbusAsynConfigure("MODBUS_RX_10","L0", 10, 3, -1, 1, 4, 1000, "")
 drvModbusAsynConfigure("MODBUS_TX_10","L0", 10, 6, -1, 1, 4, 0, "")
 
-asynSetTraceMask("L0", -1, 0x9)
-asynSetTraceIOMask("L0", -1, 0x2)
+#asynSetTraceMask("L0", -1, 0x9)
+#asynSetTraceIOMask("L0", -1, 0x2)

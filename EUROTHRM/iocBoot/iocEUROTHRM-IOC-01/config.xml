@@ -22,6 +22,8 @@
 <macro name="ADDR_10" pattern="^[0-9]{1,2}$" description="Address for the 10th Eurotherm on this port e.g. 10. Blank for do not use." hasDefault="NO" />
 
 <macro name="LOCAL_CALIB" pattern="^(yes)|(no)$" description="Use local instrument calibration directory instead of common one? Default is no." defaultValue="no" hasDefault="YES" />
+<macro name="NEEDLE_VALVE" pattern="^(yes)|(no)$" description="Use extra functionality for the Automatic needle valve controller?" defaultValue="no" hasDefault="YES" />
+<macro name="TEMPERATURE_HIGH_LIMIT" pattern=" ^([0-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[0-1][0-9]|320)$" description="Set high limit for temperature setpoint. NOTE: 320 is Eurotherm limit, you cannot set above this." defaultValue="320" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>
