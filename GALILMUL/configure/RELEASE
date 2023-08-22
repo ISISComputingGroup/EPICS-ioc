@@ -17,6 +17,7 @@ JAWS=$(SUPPORT)/jaws/master
 LIBJSON=$(SUPPORT)/libjson/master
 MOTIONSETPOINTS=$(SUPPORT)/motionSetPoints/master
 MOTOR=$(SUPPORT)/motor/master
+MOTORSIM=$(MOTOR)/modules/motorMotorSim
 MOTOREXT=$(SUPPORT)/motorExtensions/master
 MYSQL=$(SUPPORT)/MySQL/master
 ONCRPC=$(SUPPORT)/oncrpc/master
