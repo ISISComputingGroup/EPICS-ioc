@@ -1,4 +1,3 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DG645)/data"
 epicsEnvSet "DEVICE" "L0"
 epicsEnvSet "ASYNPORT" "DG1"
 
@@ -27,6 +26,7 @@ $(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop",
 
 ## Hardware flow control off
 $(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", 0, "clocal", "Y")
+## note: above comment says hardware control is off, but it is actually turned on?
 $(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","Y")
 ## Software flow control off
 $(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
@@ -47,12 +47,12 @@ drvAsynDG645("$(ASYNPORT)","$(DEVICE)",-1);
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(DELAYGEN)/db/drvDG645.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)")
-dbLoadRecords("$(DG645)/db/dg645.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)")
-dbLoadRecordsList("$(DG645)/db/dg645_logic.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;AB;CD;EF;GH", ";")
-dbLoadRecordsList("$(DG645)/db/dg645_delay.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;T1;A;B;C;D;E;F;G;H", ";")
-dbLoadRecordsList("$(DG645)/db/dg645_width.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "TRG;AB;CD;EF;GH", ";")
-dbLoadRecordsList("$(DG645)/db/dg645_delay_width_shared.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME): ,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;T1;A;B;C;D;E;F;G;H;TRG;AB;CD;EF;GH", ";")
+dbLoadRecords("$(DELAYGEN)/db/drvDG645.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)")
+dbLoadRecords("$(DG645)/db/dg645.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)")
+dbLoadRecordsList("$(DG645)/db/dg645_logic.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;AB;CD;EF;GH", ";")
+dbLoadRecordsList("$(DG645)/db/dg645_delay.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;T1;A;B;C;D;E;F;G;H", ";")
+dbLoadRecordsList("$(DG645)/db/dg645_width.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "TRG;AB;CD;EF;GH", ";")
+dbLoadRecordsList("$(DG645)/db/dg645_delay_width_shared.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;T1;A;B;C;D;E;F;G;H;TRG;AB;CD;EF;GH", ";")
 
 ## load autosave configMenu for managing sets of PVs
 dbLoadRecords("$(AUTOSAVE)/db/configMenu.db","P=$(MYPVPREFIX)AS:$(IOCNAME):,CONFIG=dgconfig")
@@ -69,7 +69,10 @@ iocInit
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
 
+set_requestfile_path("$(DELAYGEN)/delaygenApp/Db", "")
 makeAutosaveFileFromDbInfo("dgconfig_settings.req", "dgconfig")
 create_manual_set("dgconfigMenu.req","P=$(MYPVPREFIX)AS:$(IOCNAME):,CONFIG=dgconfig,CONFIGMENU=1")
-create_monitor_set("auto_settings.req", 30, "P=$(MYPVPREFIX)AS:$(IOCNAME):")
-dbpf("$(MYPVPREFIX)AS:$(IOCNAME):dgconfigMenu:name", "$(DEFAULTCFG=defaults)")
+create_monitor_set("auto_settings.req", 30, "P=$(MYPVPREFIX),R=$(IOCNAME):")
+
+# if we want to apply defaults use this
+#dbpf("$(MYPVPREFIX)AS:$(IOCNAME):dgconfigMenu:name", "$(DEFAULTCFG=defaults)")
