@@ -31,7 +31,10 @@ $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += DAQmxSupport.dbd
+
 ## add other dbd here ##
+# $(APPNAME)_DBD += prltherm.dbd
 #$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
@@ -54,7 +57,7 @@ $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
-
+$(APPNAME)_LIBS += DAQmxSupport
 # PRLTHERM-IOC-01_registerRecordDeviceDriver.cpp derives from PRLTHERM-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
@@ -67,6 +70,14 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
+
+# daqmx external library (need to specify explicitly for static builds)
+ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
+DAQMXLIB = $(ICPBINARYDIR)/NIDAQmx/lib/msvc64
+else
+DAQMXLIB = $(ICPBINARYDIR)/NIDAQmx/lib/msvc
+endif
+$(APPNAME)_SYS_LIBS_WIN32 += $(DAQMXLIB)/NIDAQmx
 
 #===========================
 
