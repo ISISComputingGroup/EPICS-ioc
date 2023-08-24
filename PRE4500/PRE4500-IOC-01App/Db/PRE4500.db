@@ -1,9 +1,28 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+    field(PINI, "YES")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
 record (ai, "$(P)CHOPPER:PIT:TEMP") {
 
     field(DESC, "Chopper Pit Temperature")
-    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)pit_temperature,0)FLOAT32_LE")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)MODBUS_RX_04,0)UINT16")
     $(IFNOTRECSIM) field(SCAN, "I/O Intr")
-    $(IFNOTRECSIM) field(DTYP, "asynFloat64")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
 
     field(EGU,  "C")
     field(PREC, "3")
@@ -15,18 +34,15 @@ record (ai, "$(P)CHOPPER:PIT:TEMP") {
     field(SSCN, "Passive")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CHOPPER:PIT:TEMP CP")
+    field(ASLO, "0.1") 
 }
 
 record (ai, "$(P)COOLING:WATER:TEMP") {
 
-<<<<<<< Updated upstream
-    field(DESC, "Colling Water Temperature")
-=======
     field(DESC, "Cooling Water Temperature")
->>>>>>> Stashed changes
-    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)water_temperature,0)FLOAT32_LE")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)MODBUS_RX_03,0)UINT16")
     $(IFNOTRECSIM) field(SCAN, "I/O Intr")
-    $(IFNOTRECSIM) field(DTYP, "asynFloat64")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
 
     field(EGU,  "C")
     field(PREC, "3")
@@ -38,14 +54,15 @@ record (ai, "$(P)COOLING:WATER:TEMP") {
     field(SSCN, "Passive")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:COOLING:WATER:TEMP CP")
+    field(ASLO, "0.1") 
 }
 
 record (ai, "$(P)CHOPPER:BODY:TEMP") {
 
     field(DESC, "Chopper Body Temperature")
-    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)body_temperature,0)FLOAT32_LE")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)MODBUS_RX_02,0)UINT16")
     $(IFNOTRECSIM) field(SCAN, "I/O Intr")
-    $(IFNOTRECSIM) field(DTYP, "asynFloat64")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
 
     field(EGU,  "C")
     field(PREC, "3")
@@ -57,14 +74,15 @@ record (ai, "$(P)CHOPPER:BODY:TEMP") {
     field(SSCN, "Passive")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CHOPPER:BODY:TEMP")
+    field(ASLO, "0.1") 
 }
 
 record (ai, "$(P)SPARE:TEMP") {
 
     field(DESC, "Spare Temperature")
-    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)spare_temperature,0)FLOAT32_LE")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)MODBUS_RX_01,0)UINT16")
     $(IFNOTRECSIM) field(SCAN, "I/O Intr")
-    $(IFNOTRECSIM) field(DTYP, "asynFloat64")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
 
     field(EGU,  "C")
     field(PREC, "3")
@@ -76,4 +94,5 @@ record (ai, "$(P)SPARE:TEMP") {
     field(SSCN, "Passive")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:SPARE:TEMP CP")
+    field(ASLO, "0.1") 
 }
