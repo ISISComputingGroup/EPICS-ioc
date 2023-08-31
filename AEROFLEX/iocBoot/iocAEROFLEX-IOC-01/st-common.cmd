@@ -14,7 +14,7 @@ stringiftest("SERIAL", "$(PORT=)")
 stringiftest("PROLOGIX", "$(PL_IPADDR=)")
 
 ## for real device using prologix gpib 
-$(IFPROLOGIX) $(IFNOTDEVSIM) $(IFNOTRECSIM) prologixGPIBConfigure("$(DEVICE)", "$(PL_IPADDR)")
+$(IFPROLOGIX) $(IFNOTDEVSIM) $(IFNOTRECSIM) prologixGPIBConfigure("$(DEVICE)", "$(PL_IPADDR=)")
 
 ## For real device on serial
 $(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
@@ -36,8 +36,8 @@ $(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N
 
 ## Load our record instances
 stringiftest("2023A", "$(DEV_TYPE=2023A)", 5, "2023A")
-$(IF2023A) dbLoadRecords("$(AEROFLEX)/db/aeroflex_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),DEV_TYPE=$(DEV_TYPE=2023A),RF_PREC=6")
-$(IFNOT2023A) dbLoadRecords("$(AEROFLEX)/db/aeroflex_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),DEV_TYPE=$(DEV_TYPE=2030),RF_PREC=2")
+$(IF2023A) dbLoadRecords("$(AEROFLEX)/db/aeroflex_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),DEV_TYPE=$(DEV_TYPE=2023A),RF_PREC=6,ADDR=$(BUS_ADDR=0)")
+$(IFNOT2023A) dbLoadRecords("$(AEROFLEX)/db/aeroflex_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),DEV_TYPE=$(DEV_TYPE=2030),RF_PREC=2,ADDR=$(BUS_ADDR=0)")
 
 ## Load device type specific st.cmd
 < iocBoot/iocAEROFLEX-IOC-01/st-$(DEV_TYPE=2023A).cmd
