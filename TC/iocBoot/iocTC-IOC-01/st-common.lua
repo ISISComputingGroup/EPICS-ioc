@@ -26,7 +26,7 @@ function twincat_stcommon_main()
 	for axis_num=1,num_axes,1
 	do
 		local single_axis_tc_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
-		iocsh.dbLoadRecords("$(TOP)/db/single_axis_tc.db", single_axis_tc_args)
+		iocsh.dbLoadRecords("$(MOTOREXT)/db/single_axis_tc.db", single_axis_tc_args)
 
 		motor_pv = string.format("MTR%02i%02i", mtrctrl, axis_num)
 		single_axis_db = "$(TOP)/db/single_axis.db"

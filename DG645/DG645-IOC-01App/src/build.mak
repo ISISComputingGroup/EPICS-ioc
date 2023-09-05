@@ -31,12 +31,10 @@ $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += busySupport.dbd
-$(APPNAME)_DBD += stream.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 $(APPNAME)_DBD += drvAsynDG645.dbd
 $(APPNAME)_DBD += delaygenSupport.dbd
-
 
 # Add all the support libraries needed by this IOC
 
