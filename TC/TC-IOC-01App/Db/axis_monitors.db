@@ -28,6 +28,14 @@ record(calcout, "$(P)MOT:$(MOTOR_PV):JVEL_SEND")
     field(OUT, "$(P)MOT:$(MOTOR_PV).JVEL")
 }
 
+record(stringout, "$(P)MOT:$(MOTOR_PV):DESC_SEND")
+{
+    field(DESC, "Forward axis description to mtr rec")
+    field(DOL, "$(P)$(I):ASTAXES_$(AXIS_NUM):STDESC-SAXISNAME CP")
+    field(OUT, "$(P)MOT:$(MOTOR_PV).DESC")
+    field(OMSL, "closed_loop")
+}
+
 record(longin, "$(P)MOT:$(MOTOR_PV)_AXIS_NUM")
 {
     field(DESC, "Beckhoff axis number")
