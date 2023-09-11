@@ -53,3 +53,11 @@ record(ai, "$(P)$(Q)SIM:WATCHDOG:STATUS")
     field(DTYP, "Soft Channel")
 }
 
+record(bo, "$(P)$(Q)V2VALVE:SP")
+{
+    field(DESC, "Remote control of V2 Valve")
+    field(DTYP, "asynInt32")
+    field(ZNAM, "CLOSED")
+    field(ONAM, "OPEN")
+    field(OUT,  "@asyn(PLC, "00.00", $(TIMEOUT=5.0)) FINS_HR_WRITE_NOREAD")
+} 
