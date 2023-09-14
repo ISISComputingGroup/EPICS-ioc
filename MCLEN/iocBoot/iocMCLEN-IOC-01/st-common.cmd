@@ -3,6 +3,9 @@
 
 < $(IOCSTARTUP)/dbload.cmd
 
+## set to 1 or higher to enable motor debugging
+var drvPM304Debug 1
+
 # specify additional directories in which to to search for included request files
 set_requestfile_path("${MOTOR}/motorApp/Db", "")
 ## as we are common, we need to explicity define the 01 area for when we are run by 02, 03 etc 
@@ -40,6 +43,10 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"ixoff","N")
 $(IFNOTRECSIM) asynOctetSetInputEos("$(ASERIAL)",0,"\r\n") 
 $(IFNOTRECSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r")
 
+## enable asyn trace debugging
+#asynSetTraceMask("$(ASERIAL)", -1, 0x9)
+#asynSetTraceIOMask("$(ASERIAL)", -1, 0x2)
+
 # Test for Mclennan PM600 stepper motor controller
 # Note that setup must be done in sim mode too or unconfigured card will crash at first caput
 # PM304Setup(controller count, poll rate (1 to 60Hz))
@@ -63,7 +70,10 @@ epicsEnvSet("MCLENCONFIG","$(ICPCONFIGROOT)/mclennan")
 < motorExtensions.cmd
 
 ## motor util package
-dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX),MTRCTRL=$(MTRCTRL)")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
+
+## per controller PVs
+dbLoadRecords("$(MOTOR)/db/motorController.db","P=$(MYPVPREFIX),Q=MOT:MTR$(MTRCTRL):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

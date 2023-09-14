@@ -16,6 +16,7 @@ dbLoadRecords("$(TOP)/db/switching.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(
 dbLoadRecords("$(TOP)/db/mainpsu.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),MAG=$(MAG=M),PSU_IOC=$(SMS_IOC=)")
 dbLoadRecords("$(TOP)/db/hifimags_temp.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),STAGE1=$(TEMP_STAGE1=), SHIELD=$(TEMP_SHIELD=), SWITCH=$(TEMP_SWITCH=), STAGE2A=$(TEMP_STAGE2A=), STAGE2B=$(TEMP_STAGE2B=), INRABAS=$(TEMP_INRABAS=))")
 
+
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 

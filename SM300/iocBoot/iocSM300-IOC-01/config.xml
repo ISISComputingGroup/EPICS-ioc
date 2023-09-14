@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>SM300 motor controller</ioc_desc>
+<ioc_desc>SM 300 series motor controller</ioc_desc>
 <ioc_details>SM300 motor controller used for sample changer</ioc_details>
 <macros>
 

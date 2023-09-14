@@ -88,6 +88,8 @@
 
 # WR500.06          Overcount reset (momentary)
 
+global{TIMEOUT="\$(TIMEOUT=5.0)"}
+
 file "$(TOP)/FINS-IOC-01App/Db/address-read.template" {
     { P="\$(P)", Q="\$(Q)", PORT="PLC", NAME="ADDR:1001", DESC="Read PLC address 1001", ADDR="1001" }
     { P="\$(P)", Q="\$(Q)", PORT="PLC", NAME="ADDR:1004", DESC="Read PLC address 1004", ADDR="1004" }
@@ -162,4 +164,8 @@ file "$(TOP)/FINS-IOC-01App/Db/write-bit.template" {
     { "$(P)$(Q)", "500", "4", "GUIDE:START", "Starts the guide", "START"}
     { "$(P)$(Q)", "500", "5", "GUIDE:STOP", "Stops the guide", "STOP"}
     { "$(P)$(Q)", "500", "6", "OVERCOUNT:RESET", "Resets the overcount", "RESET"}
+}
+
+file "$(TOP)/FINS-IOC-01App/Db/sans2d-auxilary-record.template" {
+    { PREFIX=$(P), NAME="APERTURE:CLOSEAPERTURE", FULL_PREFIX=$(P)$(Q) }
 }

@@ -5,7 +5,7 @@
 record(ai, "$(FULL_PREFIX)SEAL:$(NAME):PRESS:RAW")
 {
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn(PLC, $(ADDR), 5.0) FINS_DM_READ")
+    field(INP,  "@asyn(PLC, $(ADDR), $(TIMEOUT=5.0)) FINS_DM_READ")
     field(SCAN, ".5 second")
     field(HOPR, "4000")
     field(LOPR, "0")

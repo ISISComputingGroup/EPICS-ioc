@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-    <ioc_desc>Muon Separator PSU</ioc_desc>
+    <ioc_desc>ISIS Muon Separator PSU</ioc_desc>
     <ioc_details>Detailed status of PSU</ioc_details>
     <macros>
         <macro name="DAQ_AI_PORT_NAME" pattern="^[a-zA-Z0-9_-]+$" description="Port name for AI DAQ Port. Defaults to cDAQ9185-MUONFEMod3" defaultValue="cDAQ9185-MUONFEMod3" hasDefault="YES" />

@@ -1,0 +1,235 @@
+record(ai, "$(P)FLOW")
+{
+    field(DESC, "'Flow' flow readback from transducer")
+    field(DTYP, "asynFloat64")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1025,1000)MODBUS_DATA")
+	field(EGU,  "mbar")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:FLOW")
+    field(SDIS, "$(Q)DISABLE")
+}
+
+record(ao, "$(P)MANUAL_FLOW:SP")
+{
+    field(DESC, "Manual flow setpoint")
+    field(DTYP, "asynFloat64")
+	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),1509,1000)MODBUS_DATA")
+	field(EGU,  "mbar")
+    field(ASG, "MANAGER")  # Restrict to manager-mode access only.
+    field(UDFS, "NO_ALARM")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:MANUAL_FLOW:SP")
+    field(SDIS, "$(Q)DISABLE")
+}
+
+record(ai, "$(P)MANUAL_FLOW")
+{
+    field(DESC, "Manual flow")
+    field(DTYP, "asynFloat64")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1509,1000)MODBUS_DATA")
+	field(EGU,  "mbar")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:MANUAL_FLOW")
+    field(SDIS, "$(Q)DISABLE")
+}
+alias("$(P)MANUAL_FLOW", "$(P)MANUAL_FLOW:SP:RBV")
+
+record(ao, "$(P)FLOW_SP_LOWLIM:SP")
+{
+    field(DESC, "Low SP limit for flow control")
+    field(DTYP, "asynFloat64")
+	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),1136,1000)MODBUS_DATA")
+	field(EGU,  "mbar")
+    field(ASG, "MANAGER")  # Restrict to manager-mode access only.
+    field(UDFS, "NO_ALARM")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:FLOW_SP_LOWLIM:SP")
+    field(SDIS, "$(Q)DISABLE")
+}
+
+record(ai, "$(P)FLOW_SP_LOWLIM")
+{
+    field(DESC, "Low SP limit for flow control")
+    field(DTYP, "asynFloat64")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1136,1000)MODBUS_DATA")
+	field(EGU,  "mbar")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:FLOW_SP_LOWLIM")
+    field(SDIS, "$(Q)DISABLE")
+}
+alias("$(P)FLOW_SP_LOWLIM", "$(P)FLOW_SP_LOWLIM:SP:RBV")
+
+record(bo, "$(P)FLOW_SP_MODE_SELECT:SP")
+{
+	field(DESC, "Flow setpoint mode")
+    field(DTYP, "asynInt32")
+	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),1300,1000)MODBUS_DATA")
+    field(ZNAM, "AUTO")
+    field(ONAM, "MANUAL")
+	field(FLNK, "$(P)FLOW_SP_MODE_SELECT:SP:_CALC.PROC")
+    field(ASG, "MANAGER")  # Restrict to manager-mode access only.
+    field(UDFS, "NO_ALARM")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:FLOW_SP_MODE_SELECT:SP")
+    field(SDIS, "$(Q)DISABLE")
+}
+
+record(calc, "$(P)FLOW_SP_MODE_SELECT:SP:_CALC")
+{
+	field(INPA, "$(P)FLOW_SP_MODE_SELECT:SP")
+	field(CALC, "A+1")
+	field(FLNK, "$(P)TOGGLE_WRITE.PROC")
+}
+
+record(bi, "$(P)FLOW_SP_MODE_SELECT")
+{
+	field(DESC, "Flow setpoint mode")
+    field(DTYP, "asynInt32")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1300,1000)MODBUS_DATA")
+    field(ZNAM, "AUTO")
+    field(ONAM, "MANUAL")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:FLOW_SP_MODE_SELECT")
+    field(SDIS, "$(Q)DISABLE")
+}
+alias("$(P)FLOW_SP_MODE_SELECT", "$(P)FLOW_SP_MODE_SELECT:SP:RBV")
+
+record(bi, "$(P)VALVE_DIR")
+{
+	field(DESC, "Valve direction")
+    field(DTYP, "asynInt32")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),4827,1000)MODBUS_DATA")
+    field(ZNAM, "CLOSING")
+    field(ONAM, "OPENING")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:VALVE_DIR")
+    field(SDIS, "$(Q)DISABLE")
+}
+
+record(bo, "$(P)NEEDLE_VALVE_STOP:SP")
+{
+	field(DESC, "Inhibit Loop 2")
+    field(DTYP, "asynInt32")
+	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),1292,1000)MODBUS_DATA")
+    field(ZNAM, "NOT STOPPED")
+    field(ONAM, "STOPPED")
+    field(ASG, "MANAGER")  # Restrict to manager-mode access only.
+    field(UDFS, "NO_ALARM")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:NEEDLE_VALVE_STOP:SP")
+    field(SDIS, "$(Q)DISABLE")
+}
+
+record(bi, "$(P)NEEDLE_VALVE_STOP")
+{
+	field(DESC, "Inhibit Loop 2")
+    field(DTYP, "asynInt32")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1292,1000)MODBUS_DATA")
+    field(ZNAM, "NOT STOPPED")
+    field(ONAM, "STOPPED")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:NEEDLE_VALVE_STOP")
+    field(SDIS, "$(Q)DISABLE")
+}
+alias("$(P)NEEDLE_VALVE_STOP", "$(P)NEEDLE_VALVE_STOP:SP:RBV")
+
+record(fanout, "$(P)TOGGLE_WRITE")
+{
+	field(SELL, "$(P)FLOW_SP_MODE_SELECT:SP:_CALC")
+	field(SELM, "Specified")
+	field(LNK1, "$(P)TOGGLE_WRITE_AUTO.PROC")
+	field(LNK2, "$(P)TOGGLE_WRITE_MANUAL.PROC")
+}
+
+record(seq, "$(P)TOGGLE_WRITE_AUTO")
+{
+	field(SELM, "All")
+	field(DO1, "1")
+	field(LNK1, "$(P)MANUAL_FLOW:SP.DISP")
+	field(DO2, "0")
+	field(LNK2, "$(P)TEMP:SP.DISP")
+}
+
+record(seq, "$(P)TOGGLE_WRITE_MANUAL")
+{
+	field(SELM, "All")
+	field(DO1, "0")
+	field(LNK1, "$(P)MANUAL_FLOW:SP.DISP")
+	field(DO2, "1")
+	field(LNK2, "$(P)TEMP:SP.DISP")
+}
+
+
+
+### SIMULATION RECORDS ###
+
+record(ai,"$(P)SIM:FLOW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai,"$(P)SIM:FLOW_SP_HILIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai,"$(P)SIM:FLOW_SP_LOWLIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:FLOW_SP_LOWLIM","$(P)SIM:FLOW_SP_LOWLIM:SP")
+alias("$(P)SIM:FLOW_SP_LOWLIM","$(P)SIM:FLOW_SP_LOWLIM:SP:RBV")
+
+record(bi,"$(P)SIM:FLOW_SP_MODE_SELECT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:FLOW_SP_MODE_SELECT","$(P)SIM:FLOW_SP_MODE_SELECT:SP")
+alias("$(P)SIM:FLOW_SP_MODE_SELECT","$(P)SIM:FLOW_SP_MODE_SELECT:SP:RBV")
+
+record(ai,"$(P)SIM:MANUAL_FLOW")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:MANUAL_FLOW","$(P)SIM:MANUAL_FLOW:SP")
+alias("$(P)SIM:MANUAL_FLOW","$(P)SIM:MANUAL_FLOW:SP:RBV")
+
+record(bi,"$(P)SIM:NEEDLE_VALVE_STOP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:NEEDLE_VALVE_STOP","$(P)SIM:NEEDLE_VALVE_STOP:SP")
+alias("$(P)SIM:NEEDLE_VALVE_STOP","$(P)SIM:NEEDLE_VALVE_STOP:SP:RBV")
+
+record(bi,"$(P)SIM:VALVE_DIR")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+

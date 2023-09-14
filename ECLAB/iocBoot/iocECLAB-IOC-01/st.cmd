@@ -17,9 +17,12 @@ ECLAB_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-# pass "SIM" as ip address for simulation mode
-$(IFSIM)    ECLabConfigure("port1", "SIM")
-$(IFNOTSIM) ECLabConfigure("port1", "$(IPADDR=127.0.0.1)")
+## ECLabConfigure(port_name, ip_address, force_firmware_reload)
+##     port_name: (string) name of asyn port to create 
+##     ip_address: (string) pass "SIM" as ip address for simulation mode, else something in form "1.2.3.4"
+##     force_firmware_reload: (integer) try 1 here if it doesn't seem to reload automatically when it is 0
+$(IFSIM)    ECLabConfigure("port1", "SIM", 0)
+$(IFNOTSIM) ECLabConfigure("port1", "$(IPADDR)", $(FORCE_FW_RELOAD=0))
 
 ## Load record instances
 

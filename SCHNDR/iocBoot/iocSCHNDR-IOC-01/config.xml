@@ -7,6 +7,8 @@
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port (for RTU or ASCII)" hasDefault="NO" />
 <macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address (for TCP)" hasDefault="NO" />
 <macro name="IPPORT" pattern="^[0-9]+$" description="Modbus TCP Port (default: 502)" defaultValue="502" hasDefault="YES" />
+<macro name="DEVCMD1" pattern="^[A-Za-z0-9]+$" description="CMD file base name in devices subdirectory to load" defaultValue="missing" hasDefault="YES" />
+<!-- add DEVCMD2 etc if need more in future, but use defaultValue="nodevice" for all these -->
 </macros>
 </config_part>
 </ioc_config>

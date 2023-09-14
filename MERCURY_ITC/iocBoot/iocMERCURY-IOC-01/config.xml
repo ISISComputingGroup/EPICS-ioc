@@ -1,30 +1,47 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>Mercury cryostat</ioc_desc>
+<ioc_desc>Oxford Instruments Mercury cryostat</ioc_desc>
 <macros>
 <!-- check st-port.cmd for defaults -->
 <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
-<macro name="TEMP_1" pattern="^.*$" description="Card identifier for Temperature 1 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue=""/>
-<macro name="TEMP_2" pattern="^.*$" description="Card identifier for Temperature 2 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue="" />
-<macro name="TEMP_3" pattern="^.*$" description="Card identifier for Temperature 3 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue="" />
-<macro name="TEMP_4" pattern="^.*$" description="Card identifier for Temperature 4 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue="" />
-<macro name="LEVEL_1" pattern="^.*$" description="Card identifier for Level 1 (e.g. DB1.L1). Blank for no controller." hasDefault="YES" defaultValue="" />
-<macro name="LEVEL_2" pattern="^.*$" description="Card identifier for Level 2 (e.g. DB1.L1). Blank for no controller." hasDefault="YES" defaultValue="" />
-<macro name="PRESSURE_1" pattern="^.*$" description="Card identifier for Pressure 1 (e.g. DB1.P1). Blank for no controller." hasDefault="YES" defaultValue="" />
-<macro name="PRESSURE_2" pattern="^.*$" description="Card identifier for Pressure 2 (e.g. DB1.P1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="TEMP_1" pattern="^.*[.].*$" description="Card identifier for Temperature 1 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue=""/>
+<macro name="TEMP_2" pattern="^.*[.].*$" description="Card identifier for Temperature 2 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="TEMP_3" pattern="^.*[.].*$" description="Card identifier for Temperature 3 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="TEMP_4" pattern="^.*[.].*$" description="Card identifier for Temperature 4 (e.g. MB1.T1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="LEVEL_1" pattern="^.*[.].*$" description="Card identifier for Level 1 (e.g. DB1.L1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="LEVEL_2" pattern="^.*[.].*$" description="Card identifier for Level 2 (e.g. DB1.L1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="PRESSURE_1" pattern="^.*[.].*$" description="Card identifier for Pressure 1 (e.g. DB1.P1). Blank for no controller." hasDefault="YES" defaultValue="" />
+<macro name="PRESSURE_2" pattern="^.*[.].*$" description="Card identifier for Pressure 2 (e.g. DB1.P1). Blank for no controller." hasDefault="YES" defaultValue="" />
 
-<macro name="SPC_PRESSURE_1" pattern="^[1,2]$" description="The index of the pressure card to control with software pressure control for temp1. Blank for no control." hasDefault="YES" defaultValue="" />
-<macro name="SPC_PRESSURE_2" pattern="^[1,2]$" description="The index of the pressure card to control with software pressure control for temp2. Blank for no control." hasDefault="YES" defaultValue="" />
-<macro name="SPC_PRESSURE_3" pattern="^[1,2]$" description="The index of the pressure card to control with software pressure control for temp3. Blank for no control." hasDefault="YES" defaultValue="" />
-<macro name="SPC_PRESSURE_4" pattern="^[1,2]$" description="The index of the pressure card to control with software pressure control for temp4. Blank for no control." hasDefault="YES" defaultValue="" />
-<macro name="SPC_MIN_PRESSURE" pattern="^[0-9]+\.?[0-9]*$" description="Software pressure control minimum pressure allowed." hasDefault="YES" defaultValue="0.0" />
-<macro name="SPC_MAX_PRESSURE" pattern="^[0-9]+\.?[0-9]*$" description="Software pressure control maximum pressure allowed." hasDefault="NO" />
-<macro name="SPC_TEMP_DEADBAND" pattern="^[0-9]+\.?[0-9]*$" description="Software pressure control deadband for the temperature and setpoint." hasDefault="NO" />
-<macro name="SPC_OFFSET" pattern="^[0-9]+\.?[0-9]*$" description="Software pressure control offset (extra pressuer to add before ramp down)." hasDefault="NO" />
-<macro name="SPC_OFFSET_DURATION" pattern="^[0-9]+\.?[0-9]*$" description="Software pressure control offset duration in minutes (time over which to ramp down)." hasDefault="NO" />
-<macro name="SPC_GAIN" pattern="^[0-9]+\.?[0-9]*$" description="Software pressure control offset gain for extra pressure based on how far away from set point the temperature is." hasDefault="NO" />
-<macro name="SPC_TABLE_FILE" pattern="^\.*$" description="File to load to related temperature to pressure from calibration directory other_devices." hasDefault="YES" defaultValue="little_blue_cryostat.txt" />
+<macro name="SPC_TYPE_1" pattern="^(FLOW|VTI|NONE)$" description="Software pressure control method to use on Temperature 1" hasDefault="YES" defaultValue="NONE" />
+<macro name="SPC_TYPE_2" pattern="^(FLOW|VTI|NONE)$" description="Software pressure control method to use on Temperature 2" hasDefault="YES" defaultValue="NONE" />
+<macro name="SPC_TYPE_3" pattern="^(FLOW|VTI|NONE)$" description="Software pressure control method to use on Temperature 3" hasDefault="YES" defaultValue="NONE" />
+<macro name="SPC_TYPE_4" pattern="^(FLOW|VTI|NONE)$" description="Software pressure control method to use on Temperature 4" hasDefault="YES" defaultValue="NONE" />
+
+<macro name="FLOW_SPC_PRESSURE_1" pattern="^[1,2]$" description="The index of the pressure card to control with flow software pressure control for temp1." hasDefault="YES" defaultValue="" />
+<macro name="FLOW_SPC_PRESSURE_2" pattern="^[1,2]$" description="The index of the pressure card to control with flow software pressure control for temp2." hasDefault="YES" defaultValue="" />
+<macro name="FLOW_SPC_PRESSURE_3" pattern="^[1,2]$" description="The index of the pressure card to control with flow software pressure control for temp3." hasDefault="YES" defaultValue="" />
+<macro name="FLOW_SPC_PRESSURE_4" pattern="^[1,2]$" description="The index of the pressure card to control with flow software pressure control for temp4." hasDefault="YES" defaultValue="" />
+<macro name="FLOW_SPC_MIN_PRESSURE" pattern="^[0-9]+\.?[0-9]*$" description="Flow software pressure control minimum pressure allowed." hasDefault="YES" defaultValue="0.0" />
+<macro name="FLOW_SPC_MAX_PRESSURE" pattern="^[0-9]+\.?[0-9]*$" description="Flow software pressure control maximum pressure allowed." hasDefault="NO" />
+<macro name="FLOW_SPC_TEMP_DEADBAND" pattern="^[0-9]+\.?[0-9]*$" description="Flow software pressure control deadband for the temperature and setpoint." hasDefault="NO" />
+<macro name="FLOW_SPC_OFFSET" pattern="^[0-9]+\.?[0-9]*$" description="Flow software pressure control offset (extra pressuer to add before ramp down)." hasDefault="NO" />
+<macro name="FLOW_SPC_OFFSET_DURATION" pattern="^[0-9]+\.?[0-9]*$" description="Flow software pressure control offset duration in minutes (time over which to ramp down)." hasDefault="NO" />
+<macro name="FLOW_SPC_GAIN" pattern="^[0-9]+\.?[0-9]*$" description="Flow software pressure control offset gain for extra pressure based on how far away from set point the temperature is." hasDefault="NO" />
+<macro name="FLOW_SPC_TABLE_FILE" pattern="^\.*$" description="File to load to related temperature to pressure from calibration directory other_devices." hasDefault="YES" defaultValue="little_blue_cryostat.txt" />
+
+<macro name="VTI_SPC_PRESSURE_1" pattern="^[1,2]$" description="VTI software pressure control: The index of the pressure card to control with temp1." hasDefault="YES" defaultValue="" />
+<macro name="VTI_SPC_PRESSURE_2" pattern="^[1,2]$" description="VTI software pressure control: The index of the pressure card to control with temp2." hasDefault="YES" defaultValue="" />
+<macro name="VTI_SPC_PRESSURE_3" pattern="^[1,2]$" description="VTI software pressure control: The index of the pressure card to control with temp3." hasDefault="YES" defaultValue="" />
+<macro name="VTI_SPC_PRESSURE_4" pattern="^[1,2]$" description="VTI software pressure control: The index of the pressure card to control with temp4." hasDefault="YES" defaultValue="" />
+<macro name="VTI_SPC_MIN_PRESSURE" pattern="^[0-9]+\.?[0-9]*$" description="VTI software pressure control: minimum pressure allowed." hasDefault="YES" defaultValue="0.0" />
+<macro name="VTI_SPC_MAX_PRESSURE" pattern="^[0-9]+\.?[0-9]*$" description="VTI software pressure control: maximum pressure allowed." hasDefault="YES" defaultValue="0.0" />
+<macro name="VTI_SPC_PRESSURE_CONSTANT" pattern="^[0-9]+\.?[0-9]*$" description="VTI software pressure control: constant pressure to use when below cutoff point." hasDefault="YES" defaultValue="5.0" />
+<macro name="VTI_SPC_PRESSURE_MAX_LKUP" pattern="^\.*$" description="VTI software pressure control: Filename for temp-based lookup table when above cutoff point." hasDefault="YES" defaultValue="None.txt" />
+<macro name="VTI_SPC_TEMP_CUTOFF_POINT" pattern="^[0-9]+\.?[0-9]*$" description="VTI software pressure control: temperature to switch between using a user-set constant and a linear interpolation function." hasDefault="YES" defaultValue="5.0" />
+<macro name="VTI_SPC_TEMP_SCALE" pattern="^[0-9]+\.?[0-9]*$" description="VTI software pressure control: amount to scale temp by to further control P vs T dependence." hasDefault="YES" defaultValue="2.0" />
+<macro name="VTI_SPC_SET_DELAY" pattern="^[0-9]+\.?[0-9]*$" description="VTI software pressure control: delay between making adjustments to the pressure setpoint in seconds." hasDefault="YES" defaultValue="10.0" />
 
 </macros>
 </config_part>

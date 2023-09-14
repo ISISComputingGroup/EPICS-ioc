@@ -1,6 +1,6 @@
 program error_logger("INPUT_PV,OFF_STR,ON_STR")
 
-#include "seqPVmacros.h"
+#include "ibexSeqPVmacros.h"
 %% #include "time.h"
 %% #include "string.h"
 %% #include "errlog.h"

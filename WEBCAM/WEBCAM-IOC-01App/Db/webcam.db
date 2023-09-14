@@ -1,0 +1,27 @@
+## start image acquiring on ioc boot if it was running before
+record(bi,"$(P)_IS_ACQUIRING")
+{
+    field(INP, "$(P)$(R)Acquire CP")
+    field(ZNAM, "Done")
+    field(ONAM, "Acquire")
+    info(autosaveFields, "VAL")
+}
+
+## this picks up the old (autosaved) value of IS_ACQUIRING
+## before its CP monitor kicks in post restart
+record(bi,"$(P)_RESTART_ACQUIRING1")
+{
+    field(INP, "$(P)_IS_ACQUIRING")
+    field(ZNAM, "Done")
+    field(ONAM, "Acquire")
+    field(PINI, "YES")
+	field(FLNK, "$(P)_RESTART_ACQUIRING2")
+}
+
+## need delay and CA for this to work
+record(sseq, "$(P)_RESTART_ACQUIRING2")
+{
+    field(DOL1, "$(P)_RESTART_ACQUIRING1")
+	field(LNK1, "$(P)$(R)Acquire CA")
+	field(DLY1, "10")
+}

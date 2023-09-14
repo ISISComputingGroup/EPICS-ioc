@@ -3,6 +3,7 @@
 < $(IOCSTARTUP)/init.cmd
 
 CAENMCAConfigure("L1", "eth://130.246.55.0")
+CAENMCAConfigure("L2", "eth://130.246.52.130")
 
 ## Load record instances
 
@@ -10,7 +11,17 @@ CAENMCAConfigure("L1", "eth://130.246.55.0")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-#dbLoadRecords
+dbLoadRecords("$(CAENMCA)/db/CAENMCA.db","P=$(MYPVPREFIX),Q=HEX0:,PORT=L1")
+dbLoadRecords("$(CAENMCA)/db/CAENMCAChan.db","P=$(MYPVPREFIX),Q=HEX0:,PORT=L1,CHAN=0")
+dbLoadRecords("$(CAENMCA)/db/CAENMCAChan.db","P=$(MYPVPREFIX),Q=HEX0:,PORT=L1,CHAN=1")
+dbLoadRecords("$(CAENMCA)/db/CAENMCAHVChan.db","P=$(MYPVPREFIX),Q=HEX0:,PORT=L1,CHAN=0")
+dbLoadRecords("$(CAENMCA)/db/CAENMCAHVChan.db","P=$(MYPVPREFIX),Q=HEX0:,PORT=L1,CHAN=1")
+
+dbLoadRecords("$(CAENMCA)/db/CAENMCA.db","P=$(MYPVPREFIX),Q=HEX1:,PORT=L2")
+dbLoadRecords("$(CAENMCA)/db/CAENMCAChan.db","P=$(MYPVPREFIX),Q=HEX1:,PORT=L2,CHAN=0")
+dbLoadRecords("$(CAENMCA)/db/CAENMCAChan.db","P=$(MYPVPREFIX),Q=HEX1:,PORT=L2,CHAN=1")
+dbLoadRecords("$(CAENMCA)/db/CAENMCAHVChan.db","P=$(MYPVPREFIX),Q=HEX1:,PORT=L2,CHAN=0")
+dbLoadRecords("$(CAENMCA)/db/CAENMCAHVChan.db","P=$(MYPVPREFIX),Q=HEX1:,PORT=L2,CHAN=1")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

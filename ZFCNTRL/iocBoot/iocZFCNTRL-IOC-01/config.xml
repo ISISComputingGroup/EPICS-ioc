@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
  <config_part>
-  <ioc_desc>Muon zero field controller</ioc_desc>
+  <ioc_desc>ISIS Muon Zero Field Controller</ioc_desc>
     <macros>
     <macro name="MAGNETOMETER" pattern="^[0-9a-zA-Z:\._]+$" description="Magnetometer PV prefix, e.g. IN:INSTNAME:ZFMAGFLD_01" hasDefault="NO" />
 

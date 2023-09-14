@@ -44,6 +44,9 @@ epicsEnvSet("NEWPORTCONFIG","$(ICPCONFIGROOT)/newport")
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
+## per controller PVs
+dbLoadRecords("$(MOTOR)/db/motorController.db","P=$(MYPVPREFIX),Q=MOT:MTR$(MTRCTRL):")
+
 iocInit()
 
 motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")

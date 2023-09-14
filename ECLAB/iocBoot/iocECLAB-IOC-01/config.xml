@@ -1,6 +1,11 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>Biologic SP300 Potentiostat</ioc_desc>
+    <ioc_desc>Biologic SP300 Potentiostat</ioc_desc>
+    <ioc_details>Driver for biologic potentiostats.</ioc_details>
+    <macros>
+      <macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address" hasDefault="NO" />
+      <macro name="FORCE_FW_RELOAD" pattern="^[01]$" description="Force a firmware reload if == 1" defaultValue="0" hasDefault="YES" />
+    </macros>
 </config_part>
 </ioc_config>

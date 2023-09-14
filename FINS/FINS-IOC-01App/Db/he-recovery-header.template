@@ -25,7 +25,7 @@ record(longin, "$(P)$(Q)HEARTBEAT")
 {
 	field(DESC, "Hearbeat to show PLC is online")
 	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 19500, 5.0) FINS_DM_READ")
+	field(INP,  "@asyn(PLC, 19500, $(TIMEOUT=5.0)) FINS_DM_READ")
 	field(SCAN, ".5 second")
 
 	field(EGU, "")
@@ -47,7 +47,7 @@ record(waveform, "$(P)$(Q)COLDBOX:TURBINE_100:SPEED:_RAW")
 {
 	field(DESC, "Coldbox Turbine 100 Speed 16 bit array")
 	field(DTYP, "asynInt16ArrayIn")
-	field(INP,  "@asyn(PLC, 19945, 5.0) FINS_DM_READ")
+	field(INP,  "@asyn(PLC, 19945, $(TIMEOUT=5.0)) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
 	field(NELM, "1")
@@ -75,7 +75,7 @@ record(waveform, "$(P)$(Q)COLDBOX:TURBINE_101:SPEED:_RAW")
 {
 	field(DESC, "Coldbox Turbine 101 Speed 16 bit array")
 	field(DTYP, "asynInt16ArrayIn")
-	field(INP,  "@asyn(PLC, 19946, 5.0) FINS_DM_READ")
+	field(INP,  "@asyn(PLC, 19946, $(TIMEOUT=5.0)) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
 	field(NELM, "1")
@@ -107,7 +107,7 @@ record(mbbi, "$(P)$(Q)LIQUID_NITROGEN:STATUS")
 {
 	field(DESC, "Liquid nitrogen status")
 	field(DTYP, "asynInt32")
-	field(INP, "@asyn(PLC, 19979, 5.0) FINS_DM_READ")
+	field(INP, "@asyn(PLC, 19979, $(TIMEOUT=5.0)) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
 	field(ZRVL, "1")
@@ -128,7 +128,7 @@ record(mbbi, "$(P)$(Q)CNTRL_VALVE_120:POSITION")
 {
 	field(DESC, "Control valve 120 position")
 	field(DTYP, "asynInt32")
-	field(INP, "@asyn(PLC, 19968, 5.0) FINS_DM_READ")
+	field(INP, "@asyn(PLC, 19968, $(TIMEOUT=5.0)) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
 	field(ZRVL, "1")
@@ -151,7 +151,7 @@ record(mbbi, "$(P)$(Q)CNTRL_VALVE_121:POSITION")
 {
 	field(DESC, "Control valve 121 position")
 	field(DTYP, "asynInt32")
-	field(INP, "@asyn(PLC, 19970, 5.0) FINS_DM_READ")
+	field(INP, "@asyn(PLC, 19970, $(TIMEOUT=5.0)) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
 	field(ZRVL, "1")
@@ -174,7 +174,7 @@ record(mbbi, "$(P)$(Q)PURIFIER:STATUS")
 {
 	field(DESC, "Purifier status")
 	field(DTYP, "asynInt32")
-	field(INP, "@asyn(PLC, 19978, 5.0) FINS_DM_READ")
+	field(INP, "@asyn(PLC, 19978, $(TIMEOUT=5.0)) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
 	field(ZRVL, "1")
@@ -205,7 +205,7 @@ record(mbbi, "$(P)$(Q)CMPRSSR:STATUS")
 {
 	field(DESC, "Compressor status")
 	field(DTYP, "asynInt32")
-	field(INP, "@asyn(PLC, 19980, 5.0) FINS_DM_READ")
+	field(INP, "@asyn(PLC, 19980, $(TIMEOUT=5.0)) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
 	field(ZRVL, "1")
@@ -233,7 +233,7 @@ record(mbbi, "$(P)$(Q)COLDBOX:STATUS")
 {
 	field(DESC, "Coldbox status")
 	field(DTYP, "asynInt32")
-	field(INP, "@asyn(PLC, 19981, 5.0) FINS_DM_READ")
+	field(INP, "@asyn(PLC, 19981, $(TIMEOUT=5.0)) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
 	field(ZRVL, "1")
@@ -256,7 +256,7 @@ record(longin, "$(P)$(Q)LIQUEFIER:_ALARM1:_RAW")
 {
 	field(DESC, "Liquefier alarms 1 raw input")
 	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 19982, 5.0) FINS_DM_READ")
+	field(INP,  "@asyn(PLC, 19982, $(TIMEOUT=5.0)) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
 	field(SDIS, "$(P)DISABLE")
@@ -292,7 +292,7 @@ record(longin, "$(P)$(Q)LIQUEFIER:_ALARM2:_RAW")
 {
 	field(DESC, "Liquefier alarms 2 raw input")
 	field(DTYP, "asynInt32")
-	field(INP,  "@asyn(PLC, 19983, 5.0) FINS_DM_READ")
+	field(INP,  "@asyn(PLC, 19983, $(TIMEOUT=5.0)) FINS_DM_READ")
 	field(SCAN, "$(SCAN)")
 
 	field(SDIS, "$(P)DISABLE")

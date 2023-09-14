@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Tektronix Oscilloscopes, 3000 series+</ioc_desc>
+<macros>
+<macro name="ADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="Device IP Address" defaultValue="" hasDefault="NO" />
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>

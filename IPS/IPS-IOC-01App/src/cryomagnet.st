@@ -1,6 +1,6 @@
-program cryomagnet("FIELD,FIELD_SETPOINT,FIELD_SETPOINT_ALARM,FIELD_SETPOINT_RAW,FIELD_SETPOINT_READBACK,PERSISTENT,MAGNET_FIELD,HEATER_STATUS,HEATER_STATUS_SP,HEATER_WAIT_TIME,ACTIVITY,ACTIVITY_SP,SWEEPMODE,SWEEPMODE_SP,SUPPLYVOLTAGE_STABLE,SWEEP_ACTIVE,STATEMACHINE")
+program cryomagnet("FIELD,FIELD_SETPOINT,FIELD_SETPOINT_ALARM,FIELD_SETPOINT_RAW,FIELD_SETPOINT_READBACK,PERSISTENT,MAGNET_FIELD,HEATER_STATUS,HEATER_STATUS_SP,HEATER_WAIT_TIME,ACTIVITY,ACTIVITY_SP,SWEEPMODE,SWEEPMODE_SP,SUPPLYVOLTAGE_STABLE,SWEEP_ACTIVE,STATEMACHINE,HEATER_ONTIME_OK")
 
-#include "seqPVmacros.h"
+#include "ibexSeqPVmacros.h"
 %% #include <math.h>
 
 /* Turn on run-time debug messages */
@@ -29,13 +29,16 @@ PV(int, activity_sp, "{ACTIVITY_SP}", Monitor);
 PV(int, sweepmode, "{SWEEPMODE}", Monitor);
 PV(int, sweepmode_sp, "{SWEEPMODE_SP}", Monitor);
 
-PV(double, heater_delay_time, "{HEATER_WAIT_TIME}", Monitor);
+PV(double, heater_wait_time, "{HEATER_WAIT_TIME}", Monitor);
 
 PV(int, supplyvoltage_stable, "{SUPPLYVOLTAGE_STABLE}", Monitor);
 
 PV(int, sweep_active, "{SWEEP_ACTIVE}", Monitor);
 
 PV(int, statemachine_pv, "{STATEMACHINE}", NoMon);
+
+PV(int, heater_ontime_ok, "{HEATER_ONTIME_OK}", Monitor);
+
 
 /* If fields are the same within this tolerance, treat as the same */
 double field_tolerance = 0.0001;
@@ -81,19 +84,30 @@ ss cryomagnet
 
   state at_field
   {
-  
     entry {
       PVPUT(statemachine_pv, 1);
       epicsThreadSleep(1.0);
     }
     
+    /* Heater is OFF, so in superconducting/persistent mode. */
     when(
       !within_tolerance(field_setpoint, field_setpoint_readback, field_tolerance)
       && field_setpoint_alarm == 0
-      )
+      && (heater == 0 || heater == 2)
+    )
     {
-      print_transition("at_field", "set_psu_to_match_magnet");
+    print_transition("at_field", "set_psu_to_match_magnet");
     } state set_psu_to_match_magnet
+  
+    /* Heater is ON, so in conventional/non-persistent mode. */
+    when(
+      !within_tolerance(field_setpoint, field_setpoint_readback, field_tolerance)
+      && field_setpoint_alarm == 0
+      && heater == 1
+    )
+    {
+     print_transition("at_field", "set_psu_output");
+    } state set_psu_output
   }
   
   state set_psu_to_match_magnet
@@ -118,7 +132,6 @@ ss cryomagnet
     when(
       within_tolerance(field_setpoint_readback, magnet_field, field_tolerance) 
       && within_tolerance(psu_field, magnet_field, field_tolerance) 
-      && (activity == ACTIVITY_TO_SP)
       && ((sweepmode == SWEEP_MODE) || (sweepmode == SWEEP_MODE_ALT))
       && (sweep_active == 0)
       )
@@ -145,8 +158,8 @@ ss cryomagnet
     }
   
     when(supplyvoltage_stable == 1) {
-      print_transition("wait_for_voltage_to_stabilise", "turn_switch_heater_on_and_wait");
-    } state turn_switch_heater_on_and_wait
+      print_transition("wait_for_voltage_to_stabilise", "ensure_switch_heater_warm");
+    } state ensure_switch_heater_warm
     
     /* If the PSU current drifts outside of tolerance for some reason, go back to previous step */
     when(!within_tolerance(field_setpoint_readback, field_setpoint_raw, field_tolerance)) {
@@ -159,7 +172,7 @@ ss cryomagnet
     } state set_psu_to_match_magnet
   }
   
-  state turn_switch_heater_on_and_wait
+  state ensure_switch_heater_warm
   {
   
     /* Execute entry and exit blocks even if the next state is the same as the current state */
@@ -175,16 +188,15 @@ ss cryomagnet
       PVPUT(heater_sp, 1);
     }
 
-    when(activity == ACTIVITY_HOLD && heater == 1)
+    when(activity == ACTIVITY_HOLD && heater == 1 && heater_ontime_ok == 1)
     {
-      epicsThreadSleep(heater_delay_time);
-      print_transition("turn_switch_heater_on_and_wait", "set_psu_output");
+      print_transition("ensure_switch_heater_warm", "set_psu_output");
     } state set_psu_output
     
     /* If heater is not switched on within timeout, retry sending commands */
-    when(delay(30)){
-      print_transition("turn_switch_heater_on_and_wait", "turn_switch_heater_on_and_wait");
-    } state turn_switch_heater_on_and_wait
+    when(delay(heater_wait_time + 30.0)){
+      print_transition("ensure_switch_heater_warm", "ensure_switch_heater_warm");
+    } state ensure_switch_heater_warm
   }
   
   state set_psu_output
@@ -209,19 +221,19 @@ ss cryomagnet
       within_tolerance(field_setpoint_readback, field_setpoint, field_tolerance) 
       && within_tolerance(field_setpoint, psu_field, field_tolerance) 
       && persistent == 1 
-      && activity == ACTIVITY_TO_SP
       && (sweep_active == 0)
       )
     {
       print_transition("set_psu_output", "switch_off_heater");
     } state switch_off_heater
     
-    /* If not setting to persistent mode, skip ramping down the PSU and setting switch heater to OFF */
+
+    /* If NOT setting to persistent mode, skip ramping down the PSU and setting switch heater to OFF */
+    
     when(
       within_tolerance(field_setpoint_readback, field_setpoint, field_tolerance) 
       && within_tolerance(field_setpoint, psu_field, field_tolerance) 
       && persistent == 0 
-      && activity == ACTIVITY_TO_SP
       && (sweep_active == 0)
       )
     {
@@ -234,7 +246,7 @@ ss cryomagnet
     } state set_psu_output
     
   }
-  
+
   state switch_off_heater
   {
   
@@ -251,7 +263,7 @@ ss cryomagnet
 
     when(heater == 0 || heater == 2)
     {
-      epicsThreadSleep(heater_delay_time);
+      epicsThreadSleep(heater_wait_time);
       print_transition("switch_off_heater", "ramp_down_psu");
     } state ramp_down_psu
     
@@ -276,8 +288,7 @@ ss cryomagnet
     }
 
     when(
-      within_tolerance(psu_field, 0, field_tolerance) 
-      && activity == ACTIVITY_TO_ZERO
+      within_tolerance(psu_field, 0, field_tolerance)
       && (sweep_active == 0)
       )
     {

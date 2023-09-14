@@ -10,7 +10,16 @@ epicsEnvSet("IFIOC_GALIL_07", "#")
 epicsEnvSet("IFIOC_GALIL_08", "#")
 epicsEnvSet("IFIOC_GALIL_09", "#")
 epicsEnvSet("IFIOC_GALIL_10", "#")
+
+## these are used in local instrument galil.cmd during transition to new driver
+## additions can use    $(IFNEWGALIL=#)
+epicsEnvSet("IFNEWGALIL", " ")
+epicsEnvSet("IFNOTNEWGALIL", "#")
+
 < $(IOCSTARTUP)/init.cmd
+
+## whether to use autosaved SP for jaws on IOC restart
+stringiftest("INIT_JAWS_FROM_AS", "$(JAWS_POS_FROM_AS=N)", 5, "Y")
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
@@ -52,7 +61,10 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) epicsEnvSet("GALIL_MTR_PORT", "Galil")
 < galildb.cmd
 
 ## motor util package
-dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX),MTRCTRL=$(MTRCTRL)")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
+
+## per controller PVs
+dbLoadRecords("$(MOTOR)/db/motorController.db","P=$(MYPVPREFIX),Q=MOT:MTR$(MTRCTRL):")
 
 stringiftest("MOTORCONFIG", "$(MOTORCONFIG=)", 0, 0)
 $(IFMOTORCONFIG) dbLoadRecords("$(AUTOSAVE)/asApp/Db/configMenu.db","P=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=)")
@@ -124,3 +136,10 @@ $(IFHASMTRCTRL) $(IFMOTORCONFIG) create_manual_set("$(MOTORCONFIG=)Menu.req","P=
 
 ## Start any sequence programs
 #seq sncxxx,"user=icsHost"
+
+#asynSetTraceIOMask("GALILSYNC0", -1, 0x2)
+#asynSetTraceMask("GALILSYNC0", -1, 0x9)
+
+## if using hardware flow control on GALIL will need this
+## do not enable software flow control - see comments in GalilController.cpp
+#asynSetOption("GALILSYNC0", 0, "crtscts", "Y");

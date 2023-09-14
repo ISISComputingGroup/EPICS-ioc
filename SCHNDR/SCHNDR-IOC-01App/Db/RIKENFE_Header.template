@@ -1,0 +1,21 @@
+
+record(bo, "$(P)SIM") 
+{
+    field(DESC, "Simulation Mode")
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL,  "$(RECSIM=0)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable Comms")
+    field(PINI, "YES")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+    field(VAL,  "$(DISABLE=0)")
+}

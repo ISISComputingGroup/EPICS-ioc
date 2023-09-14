@@ -28,6 +28,7 @@ relPaths.sh
 *_info_settings.req
 *_built_positions.req
 *_built_settings.req
+dgconfig_settings.req
 NULL
 /GALIL/iocBoot/**/*.[dg]mc
 /GALILMUL/iocBoot/**/*.[dg]mc
@@ -37,6 +38,9 @@ NULL
 /GALILMUL-OLD/
 /GALIL-NEW/
 /GALILMUL-NEW/
+/DG645/vmeconfig_settings.req
 */**/TEST-TestPVUnits-*.xml
-.vs/*
+.vs/
 .idea
+*.suo
+.vscode/

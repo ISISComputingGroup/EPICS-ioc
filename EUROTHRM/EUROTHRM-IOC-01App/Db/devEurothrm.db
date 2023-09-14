@@ -80,11 +80,17 @@ record(stringin, "$(P)RAMP_FILE")
     field(SCAN, "I/O Intr")
 }
 
+record(longin, "$(P)RAMP_FILE_NOT_DEFAULT")
+{
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(READ),0,1)LUTNDF")
+    field(SCAN, "I/O Intr")
+}
+
 record(stringout, "$(P)RAMP_FILE:SP")
 {
     field(DTYP, "asynOctetWrite")
     field(OUT,  "@asyn($(READ),0,1)DIR")
-    field(SCAN, "I/O Intr")
 }
 
 # This set point is passed to the ReadASCII ramp, which decides what value to pass on to the device.
@@ -92,10 +98,13 @@ record(ao, "$(P)TEMP:SP")
 {
     field(DESC, "Temperature setpoint")
     field(DTYP, "asynFloat64")
+    $(IFNEEDLE_VALVE) field(DRVH, "320") #The maximum temperature for Eurotherms, also close to 16bit signed max that can be sent via modbus
     field(OUT, "@asyn($(READ),0,1)TGT")
 # I/O intr FLNK won't process until we trigger PROC via CA
     field(FLNK, "$(P)OUT_SP.PROC CA")
     field(EGU, "K")
+    $(IFNEEDLE_VALVE) field(ASG, "MANAGER")
+    field(UDFS, "NO_ALARM") 
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -127,7 +136,7 @@ record(ai, "$(P)RATE")
     field(INP, "@asyn($(READ),0,1)RATE")
     field(EGU, "K/min")
     field(SCAN, "I/O Intr")
-	field(PREC, "2")
+    field(PREC, "2")
     info(INTEREST, "HIGH")
 }
 
@@ -457,6 +466,12 @@ record(seq, "$(P)READ_SLOW4") {
     field(LNK1, "$(P)P.PROC")
     field(LNK2, "$(P)I.PROC")
     field(LNK3, "$(P)D.PROC")
+	$(IFNEEDLE_VALVE) field(LNK4, "$(P)FLOW.PROC")
+	$(IFNEEDLE_VALVE) field(LNK5, "$(P)MANUAL_FLOW.PROC")
+	$(IFNEEDLE_VALVE) field(LNK6, "$(P)FLOW_SP_LOWLIM.PROC")
+	$(IFNEEDLE_VALVE) field(LNK7, "$(P)FLOW_SP_MODE_SELECT.PROC")
+	$(IFNEEDLE_VALVE) field(LNK8, "$(P)VALVE_DIR.PROC")
+	$(IFNEEDLE_VALVE) field(LNK9, "$(P)NEEDLE_VALVE_STOP.PROC")
 }
 
 ####
@@ -486,8 +501,13 @@ record(ai, "$(P)OUTPUT") {
     info(INTEREST, "MEDIUM")
     field(DESC, "Heater output Readback")
     field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(INP, "@eurotherm2k.proto read($(P),OP,$(GAD),$(LAD)) $(PORT)")
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),OP,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),3,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(OUTPUT_SCALING)")
+    
     field(EGU, "%")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:OUTPUT")
@@ -498,8 +518,14 @@ record(ai, "$(P)OUTPUT") {
 record(ai, "$(P)MAX_OUTPUT") {
     field(DESC, "Max Output Readback")
     field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(INP, "@eurotherm2k.proto read($(P),HO,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),HO,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),30,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(OUTPUT_SCALING)")
+    
     field(EGU, "%")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:MAX_OUTPUT")
@@ -509,9 +535,15 @@ record(ai, "$(P)MAX_OUTPUT") {
 }
 
 record(ao, "$(P)MAX_OUTPUT:SP") {
-    field(DESC, "D Setpoint")
-    field(DTYP, "stream")
-    field(OUT, "@eurotherm2k.proto write($(P),HO,$(GAD),$(LAD)) $(PORT)")
+    field(DESC, "Max Output Setpoint")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(OUT, "@eurotherm2k.proto write($(P),HO,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),30,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(OUTPUT_SCALING)")
+    
     field(DRVH, "100")
     field(DRVL, "0")
     field(SIML, "$(Q)SIM")
@@ -523,10 +555,52 @@ record(ao, "$(P)MAX_OUTPUT:SP") {
 
 alias("$(P)MAX_OUTPUT", "$(P)MAX_OUTPUT:SP:RBV")
 
+record(ai, "$(P)OUTPUT_RATE") {
+    field(DESC, "Output Rate Setpoint")
+    field(EGU,  "%/min")
+    field(SCAN, "Passive")
+    field(PINI, "YES")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),OR,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),37,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(OUTPUT_RATE_SCALING)")
+    
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:OUTPUT_RATE")
+    field(SDIS, "$(Q)DISABLE")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+}
+
+record(ao, "$(P)OUTPUT_RATE:SP") {
+    field(DESC, "Output Rate Setpoint")
+    field(EGU,  "%/min")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(OUT, "@eurotherm2k.proto write($(P),OR,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),37,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(OUTPUT_RATE_SCALING)")
+    
+    field(DRVH, "32767") #16bit signed max, without this drvh, the setpoint will overflow back into negative numbers due to modbus communication protocol use of 16 bit.
+    field(DRVL, "0")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:OUTPUT_RATE:SP")
+    field(SDIS, "$(Q)DISABLE")
+    field(FLNK, "$(P)OUTPUT_RATE.PROC PP")
+    info(archive, "VAL")
+}
+
+alias("$(P)OUTPUT_RATE", "$(P)OUTPUT_RATE:SP:RBV")
+
 record(mbbi, "$(P)ERR_READ") {
     field(DESC, "Current error message")
-    field(DTYP, "stream")
-    field(INP, "@eurotherm2k.proto readhex($(P),EE,$(GAD),$(LAD)) $(PORT)")
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto readhex($(P),EE,$(GAD),$(LAD)) $(PORT)")
     field(ZRVL, "0")
     field(ZRST, "No Error")
     field(ONVL, "1")
@@ -575,8 +649,13 @@ record(ai, "$(P)P") {
     info(INTEREST, "HIGH")
     field(DESC, "P Param Readback")
     field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(INP, "@eurotherm2k.proto read($(P),XP,$(GAD),$(LAD)) $(PORT)")
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),XP,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),6,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(P_SCALING)")
+    
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:P")
     field(SDIS, "$(Q)DISABLE")
@@ -587,8 +666,14 @@ record(ai, "$(P)P") {
 
 record(ao, "$(P)P:SP") {
     field(DESC, "P Setpoint")
-    field(DTYP, "stream")
-    field(OUT, "@eurotherm2k.proto write($(P),XP,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(OUT, "@eurotherm2k.proto write($(P),XP,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),6,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(P_SCALING)")
+    
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:P:SP")
     field(SDIS, "$(Q)DISABLE")
@@ -601,8 +686,14 @@ record(ai, "$(P)I") {
     info(INTEREST, "HIGH")
     field(DESC, "I Param Readback")
     field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(INP, "@eurotherm2k.proto read($(P),TI,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),TI,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),8,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(I_SCALING)")
+    
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:I")
     field(SDIS, "$(Q)DISABLE")
@@ -613,8 +704,14 @@ record(ai, "$(P)I") {
 
 record(ao, "$(P)I:SP") {
     field(DESC, "I Setpoint")
-    field(DTYP, "stream")
-    field(OUT, "@eurotherm2k.proto write($(P),TI,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(OUT, "@eurotherm2k.proto write($(P),TI,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),8,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(I_SCALING)")
+    
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:I:SP")
     field(SDIS, "$(Q)DISABLE")
@@ -627,8 +724,14 @@ record(ai, "$(P)D") {
     info(INTEREST, "HIGH")
     field(DESC, "D Param Readback")
     field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(INP, "@eurotherm2k.proto read($(P),TD,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),TD,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),9,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(D_SCALING)")
+    
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:D")
     field(SDIS, "$(Q)DISABLE")
@@ -639,8 +742,14 @@ record(ai, "$(P)D") {
 
 record(ao, "$(P)D:SP") {
     field(DESC, "D Setpoint")
-    field(DTYP, "stream")
-    field(OUT, "@eurotherm2k.proto write($(P),TD,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(OUT, "@eurotherm2k.proto write($(P),TD,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),9,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(D_SCALING)")
+    
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:D:SP")
     field(SDIS, "$(Q)DISABLE")
@@ -652,9 +761,14 @@ alias("$(P)D", "$(P)D:SP:RBV")
 record(ai, "$(P)AUTOTUNE") {
     info(INTEREST, "MEDIUM")
     field(DESC, "Autotune Readback")
-    field(DTYP, "stream")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),AT,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),270,1000)MODBUS_DATA")
+    
     field(SCAN, "Passive")
-    field(INP, "@eurotherm2k.proto read($(P),AT,$(GAD),$(LAD)) $(PORT)")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:AUTOTUNE")
     field(SDIS, "$(Q)DISABLE")
@@ -663,8 +777,13 @@ record(ai, "$(P)AUTOTUNE") {
 
 record(ao, "$(P)AUTOTUNE:SP") {
     field(DESC, "Autotune Setpoint")
-    field(DTYP, "stream")
-    field(OUT, "@eurotherm2k.proto write($(P),AT,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(OUT, "@eurotherm2k.proto write($(P),AT,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),270,1000)MODBUS_DATA")
+    
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:AUTOTUNE:SP")
     field(SDIS, "$(Q)DISABLE")
@@ -684,9 +803,15 @@ record(scalcout, "$(P)RATE:UPDATE_EGU")
 record(ai, "$(P)RBV") {
     info(INTEREST, "HIGH")
     field(DESC, "Temperature Readback")
-    field(DTYP, "stream")
     field(SCAN, "Passive")
-    field(INP, "@eurotherm2k.proto read($(P),PV,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),PV,$(GAD),$(LAD)) $(PORT)")
+
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynFloat64")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP")
     field(SDIS, "$(Q)DISABLE")
@@ -702,8 +827,14 @@ record(ai, "$(P)SP:RBV") {
     info(INTEREST, "MEDIUM")
     field(DESC, "Temperature Setpoint Readback")
     field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(INP, "@eurotherm2k.proto read($(P),SP,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),SP,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynFloat64")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),2,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:SP:RBV")
     field(SDIS, "$(Q)DISABLE")
@@ -731,8 +862,14 @@ record(longout, "$(P)_DOSP") {
 }
 
 record(ao, "$(P)_SP") {
-    field(DTYP, "stream")
-    field(OUT, "@eurotherm2k.proto write($(P),SL,$(GAD),$(LAD)) $(PORT)")
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(OUT, "@eurotherm2k.proto write($(P),SL,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),2,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
+    field(UDFS, "NO_ALARM")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:SP")
     field(SDIS, "$(Q)DISABLE")
@@ -759,7 +896,6 @@ record(longout, "$(P)SP:RETRYCNT") {
     field(HIGH, "5")
     field(HSV, "MINOR")
     info(archive, "VAL")
-    info(alarm, "Euro")
 }
 
 ## difference between sent SP and readback SP to trigger a resend of SP
@@ -801,8 +937,14 @@ record(calcout, "$(P)_DORETRY") {
 record(ai, "$(P)HILIM") {
     field(DESC, "Setpoint Highlimit Readback")
     field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(INP, "@eurotherm2k.proto read($(P),HS,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),HS,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),111,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:HIGHLIMIT")
     field(SDIS, "$(Q)DISABLE")
@@ -812,8 +954,14 @@ record(ai, "$(P)HILIM") {
 record(ai, "$(P)LOWLIM") {
     field(DESC, "Setpoint Lowlimit Readback")
     field(SCAN, "Passive")
-    field(DTYP, "stream")
-    field(INP, "@eurotherm2k.proto read($(P),LS,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),LS,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),112,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:LOWLIMIT")
     field(SDIS, "$(Q)DISABLE")
@@ -845,6 +993,16 @@ record(ai, "$(P)SIM:MAX_OUTPUT")
 alias("$(P)SIM:MAX_OUTPUT","$(P)SIM:MAX_OUTPUT:SP")
 
 alias("$(P)SIM:MAX_OUTPUT","$(P)SIM:MAX_OUTPUT:SP:RBV")
+
+record(ai, "$(P)SIM:OUTPUT_RATE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:OUTPUT_RATE","$(P)SIM:OUTPUT_RATE:SP")
+
+alias("$(P)SIM:OUTPUT_RATE","$(P)SIM:OUTPUT_RATE:SP:RBV")
 
 record(ai, "$(P)SIM:TEMP:LOWLIMIT")
 {

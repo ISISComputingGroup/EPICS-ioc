@@ -1,0 +1,14 @@
+record(motor, "$(P)$(M)") {
+  field(PCOF, "$(PCOF)")
+  field(HVEL, "$(HVEL)")
+  field(RDBD, "$(RDBD)")
+# We set NTM to NO as otherwise we get issues with closed loop control when
+# the mclennan correcting can be seen as a move in the wrong direction and stopped
+# with a "tdir" message printed
+  field(NTM,  "NO")
+  # set retry to 0 as mclennan in closed loop automatuically retries itself and it we
+  # get tracking aborts from encoder failure we do not want to retry
+  field(RTRY, "0")
+  field(FOFF, "Frozen")
+  field(ASG,  "WASL0")
+}

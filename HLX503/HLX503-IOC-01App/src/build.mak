@@ -35,8 +35,10 @@ $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
+$(APPNAME)_DBD += hlx503.dbd
 
 # Add all the support libraries needed by this IOC
+$(APPNAME)_LIBS += hlx503
 
 ## Add additional libraries here ##
 #$(APPNAME)_LIBS += xxx
@@ -57,6 +59,7 @@ $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv efsw
+
 
 # HLX503-IOC-01_registerRecordDeviceDriver.cpp derives from HLX503-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
