@@ -57,7 +57,18 @@ record(bo, "$(P)$(Q)V2VALVE:SP")
 {
     field(DESC, "Remote control of V2 Valve")
     field(DTYP, "asynInt32")
-    field(ZNAM, "CLOSED")
+    field(ZNAM, "CLOSE")
     field(ONAM, "OPEN")
-    field(OUT,  "@asyn(PLC, "00.00", $(TIMEOUT=5.0)) FINS_HR_WRITE_NOREAD")
+    field(OUT,  "@asyn(PLC, 00, $(TIMEOUT=5.0)) FINS_HR_WRITE_NOREAD")
 } 
+
+
+record(bi, "$(P)$(Q)V2VALVE:INTERLOCK")
+{
+    field(SCAN, "1 second")
+    field(DESC, "Remote control of V2 Valve")
+    field(DTYP, "asynInt32")
+    field(ZNAM, "DISABLED")
+    field(ONAM, "ENABLED")
+    field(INP,  "@asyn(PLC, 00003, $(TIMEOUT=5.0)) FINS_DM_READ")
+}
