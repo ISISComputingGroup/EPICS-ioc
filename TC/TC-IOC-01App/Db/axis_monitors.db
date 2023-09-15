@@ -18,6 +18,15 @@ record(calcout, "$(P)MOT:$(MOTOR_PV):VELO_SEND")
     field(INPA, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FVELOCITY:RBV CP")
     field(CALC, "A")
     field(OUT, "$(P)MOT:$(MOTOR_PV).VELO")
+    field(FLNK, "$(P)MOT:$(MOTOR_PV):MAXVELO_SEND")
+}
+
+record(calcout, "$(P)MOT:$(MOTOR_PV):MAXVELO_SEND")
+{
+    field(DESC, "Forward device velo SP to mtr rec")
+    field(INPA, "$(P)MOT:$(MOTOR_PV).VELO CP")
+    field(CALC, "A")
+    field(OUT, "$(P)MOT:$(MOTOR_PV).VMAX")
 }
 
 record(calcout, "$(P)MOT:$(MOTOR_PV):JVEL_SEND")
