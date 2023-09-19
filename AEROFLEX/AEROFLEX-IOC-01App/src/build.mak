@@ -27,6 +27,7 @@ $(APPNAME)_DBD += utilities.dbd
 ## Stream device support ##
 $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += asynRecord.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += luaSupport.dbd
