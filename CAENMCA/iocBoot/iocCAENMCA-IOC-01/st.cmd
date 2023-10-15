@@ -4,10 +4,12 @@
 ## everywhere it appears in this file
 
 errlogInit2(65536, 256)
+
 < envPaths
 
 ## Register all support components
-dbLoadDatabase("../../dbd/CAENMCA-IOC-01.dbd",0,0)
+cd "${TOP}"
+dbLoadDatabase("dbd/CAENMCA-IOC-01.dbd",0,0)
 CAENMCA_IOC_01_registerRecordDeviceDriver(pdbbase) 
 
-< st-common.cmd
+< iocBoot/iocCAENMCA-IOC-01/st-common.cmd

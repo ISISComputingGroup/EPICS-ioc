@@ -12,20 +12,21 @@ record(bo, "$(P)MOT:$(MOTOR_PV)_ON_CMD")
     field(OUT, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-BENABLE PP")
 }
 
-record(calcout, "$(P)MOT:$(MOTOR_PV):VELO_SEND")
+record(dfanout, "$(P)MOT:$(MOTOR_PV):VELO_SEND")
 {
     field(DESC, "Forward device velo SP to mtr rec")
-    field(INPA, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FVELOCITY:RBV CP")
-    field(CALC, "A")
-    field(OUT, "$(P)MOT:$(MOTOR_PV).VELO")
+    field(DOL, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FVELOCITY:RBV CP")
+    field(OUTA, "$(P)MOT:$(MOTOR_PV).VMAX")
+    field(OUTB, "$(P)MOT:$(MOTOR_PV).VELO")
+    field(OMSL, "closed_loop")
 }
 
-record(calcout, "$(P)MOT:$(MOTOR_PV):JVEL_SEND")
+record(dfanout, "$(P)MOT:$(MOTOR_PV):JVEL_SEND")
 {
     field(DESC, "Forward device jog velo SP to mtr rec")
-    field(INPA, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FJOGVELOCITY:RBV CP")
-    field(CALC, "A")
-    field(OUT, "$(P)MOT:$(MOTOR_PV).JVEL")
+    field(DOL, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FJOGVELOCITY:RBV CP")
+    field(OMSL, "closed_loop")
+    field(OUTA, "$(P)MOT:$(MOTOR_PV).JVEL")
 }
 
 record(stringout, "$(P)MOT:$(MOTOR_PV):DESC_SEND")

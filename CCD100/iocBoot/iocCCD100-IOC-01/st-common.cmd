@@ -13,13 +13,14 @@ $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=)")
 stringiftest("MK3", "$(IPADDR=)", 3)
 
 ## set correct protocol file
-$(IFMK3) epicsEnvSet("CCD100PROTOCOL", "devCCD100_mk3")
-$(IFNOTMK3) epicsEnvSet("CCD100PROTOCOL", "devCCD100")
+$(IFMK3) epicsEnvSet("CURRFUNC", "getCurrRead_mk3")
+$(IFNOTMK3) epicsEnvSet("CURRFUNC", "getCurrRead")
 
 ## for mk3 use IP
 $(IFMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure("L0", "$(IPADDR=127.0.0.1):101")
 ## strip NULL bytes in returned string, CCD100 mk3 over ethernet seems to send these occasionally
-$(IFMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynInterposeStripConfig("L0", 0, "\0")
+
+
 ## can't rememeber if asynOctetSetInputEos below is needed for ethernet or not
 ## it gets set in protocol file anyway, but should check if asynOctetSetInputEos would infere
 ## with asynInterposeStripConfig, i suspect not 
@@ -41,8 +42,14 @@ $(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N")
 $(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
 ## EOL for asyn
-$(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetInputEos("L0", -1, "\r\n")
-$(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "\r\n") 
+$(IFMK3) asynOctetSetInputEos("L0", -1, "\r\n")
+$(IFNOTMK3) asynOctetSetInputEos("L0", -1, "\n")
+asynOctetSetOutputEos("L0", -1, "\r\n")
+
+$(IFMK3) asynInterposeStripConfig("L0", 0, "\0")
+$(IFNOTMK3) asynInterposeStripConfig("L0", 0, "\r")
+
+
 
 ## Load record instances
 
@@ -50,7 +57,7 @@ $(IFNOTMK3) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynOctetSetOutputEos("L0", -1, "\r\n"
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("${TOP}/db/CCD100.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, ADDR=$(ADDRESS=a), DEV_NAME=$(DEV_NAME=), RECSIM=$(RECSIM), DEVSIM=$(DEVSIM), PROTOCOL=$(CCD100PROTOCOL)")
+dbLoadRecords("${TOP}/db/CCD100.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, ADDR=$(ADDRESS=a), DEV_NAME=$(DEV_NAME=), RECSIM=$(RECSIM), DEVSIM=$(DEVSIM), CURRFUNC=$(CURRFUNC)")
 dbLoadRecords("${TOP}/db/unit_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 

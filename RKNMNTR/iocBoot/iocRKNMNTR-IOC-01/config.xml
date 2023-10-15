@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>This provides calibrated PVs to monitor magnet temperatures</ioc_desc>
+<ioc_details>This provides calibrated PVs to monitor magnet temperatures</ioc_details>
+<macros>
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>

@@ -25,6 +25,7 @@
   <macro name="SWITCH_HIGH" pattern="^[0-9]+.?[0-9]*$" description="The value at which to consider the switch as being warm" defaultValue="3.7" hasDefault="YES" />
   <macro name="SWITCH_LOW" pattern="^[0-9]+.?[0-9]*$" description="The value at which to consider the switch as being cold" defaultValue="3.65" hasDefault="YES" />
   <macro name="SWITCH_STABLE_NUMBER" pattern="^[0-9]+$" description="The number of readings to consider whether or not the switch is stable as warm or cold" defaultValue="10" hasDefault="YES" />
+  <macro name="SWITCH_STABLE_NUMBER_WARM" pattern="^[0-9]*$" description="The number of readings to consider whether or not the switch is stable as warm" defaultValue="10" hasDefault="YES" />
   <macro name="SWITCH_TIMEOUT" pattern="^[0-9]+.?[0-9]*$" description="The time to allow for the switch to warm or cold after turning the heater on/off before considering there to be an error situation" defaultValue="300" hasDefault="YES" />
   <macro name="HEATER_TOLERANCE" pattern="^[0-9]+.?[0-9]*$" description="The tolerance between the magnet and lead currents before considering them as close enough to allow the leads to warm" defaultValue="0.2" hasDefault="YES" />
   <macro name="HEATER_OFF_TEMP" pattern="^[0-9]+.?[0-9]*$" description="The value to turn the heater off at" defaultValue="3.65" hasDefault="YES" />
