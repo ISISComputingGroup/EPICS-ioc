@@ -20,7 +20,7 @@ epicsEnvSet "TCB_PATTERN" ".*tcb.*"
 
 ## this needs to be large enouth for DAE spectra and
 ## also for areaDetector (see liveview.cmd) 
-epicsEnvSet "EPICS_CA_MAX_ARRAY_BYTES" 20000000
+epicsEnvSet "EPICS_CA_MAX_ARRAY_BYTES" 100000000
 
 cd ${TOP}
 
@@ -50,7 +50,7 @@ webgetConfigure("arch2")
 ## pass 2 as second arg to signify SECI mode
 ## args: port,options,host,user,password,num_liveview
 ##   num_liveview should match number of  liveview.cmd loaded later
-isisdaeConfigure("icp", 1, "$(DAEHOST=)", "$(DAEUSER=)", "$(DAEPW=)", 10)
+isisdaeConfigure("icp", 1, "$(DAEHOST=)", "$(DAEUSER=)", "$(DAEPW=)", 12)
 
 ## Load the FileLists
 FileListConfigure("WLIST", "$(WIRING_DIR)", "$(WIRING_PATTERN)", 1)
@@ -101,6 +101,8 @@ iocshLoad "liveview.cmd", "LVDET=7,LVADDR=6"
 iocshLoad "liveview.cmd", "LVDET=8,LVADDR=7"
 iocshLoad "liveview.cmd", "LVDET=9,LVADDR=8"
 iocshLoad "liveview.cmd", "LVDET=10,LVADDR=9"
+iocshLoad "liveview.cmd", "LVDET=11,LVADDR=10"
+iocshLoad "liveview.cmd", "LVDET=12,LVADDR=11"
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
