@@ -2,6 +2,9 @@
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
+epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
+asynSetMinTimerPeriod(0.001)
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
