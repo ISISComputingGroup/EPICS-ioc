@@ -54,6 +54,5 @@ iocInit
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
 
-# DAQmxStart("R0")
+# DAQmxStart("L0")
 DAQmxStart("$(DEVICE)")  # try to use pre-defined env variable
-
