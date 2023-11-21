@@ -2,6 +2,116 @@ record(waveform, "$(P)CS:INSTLIST")
 {
    field(DTYP, "Soft Channel")
    field(FTVL, "CHAR")
-   field(NELM, "8092")
+   field(NELM, "8192")
    info(autosaveFields, "VAL")
 }
+
+record(waveform, "$(P)CS:INSTLIST:EXCITATIONS")
+{
+   field(DTYP, "Soft Channel")
+   field(FTVL, "CHAR")
+   field(NELM, "8192")
+   info(autosaveFields, "VAL")
+}
+
+record(waveform, "$(P)CS:INSTLIST:MOLSPEC")
+{
+   field(DTYP, "Soft Channel")
+   field(FTVL, "CHAR")
+   field(NELM, "8192")
+   info(autosaveFields, "VAL")
+}
+
+record(waveform, "$(P)CS:INSTLIST:ENGINEERING")
+{
+   field(DTYP, "Soft Channel")
+   field(FTVL, "CHAR")
+   field(NELM, "8192")
+   info(autosaveFields, "VAL")
+}
+
+record(waveform, "$(P)CS:INSTLIST:REFLECTOMETRY")
+{
+   field(DTYP, "Soft Channel")
+   field(FTVL, "CHAR")
+   field(NELM, "8192")
+   info(autosaveFields, "VAL")
+}
+
+record(waveform, "$(P)CS:INSTLIST:DISORDERED")
+{
+   field(DTYP, "Soft Channel")
+   field(FTVL, "CHAR")
+   field(NELM, "8192")
+   info(autosaveFields, "VAL")
+}
+
+record(waveform, "$(P)CS:INSTLIST:SANS")
+{
+   field(DTYP, "Soft Channel")
+   field(FTVL, "CHAR")
+   field(NELM, "8192")
+   info(autosaveFields, "VAL")
+}
+
+record(waveform, "$(P)CS:INSTLIST:MUONS")
+{
+   field(DTYP, "Soft Channel")
+   field(FTVL, "CHAR")
+   field(NELM, "8192")
+   info(autosaveFields, "VAL")
+}
+
+record(waveform, "$(P)CS:INSTLIST:CRYSTALLOGRAPHY")
+{
+   field(DTYP, "Soft Channel")
+   field(FTVL, "CHAR")
+   field(NELM, "8192")
+   info(autosaveFields, "VAL")
+}
+
+record(waveform, "$(P)CS:INSTLIST:SUPPORT")
+{
+   field(DTYP, "Soft Channel")
+   field(FTVL, "CHAR")
+   field(NELM, "8192")
+   info(autosaveFields, "VAL")
+}
+
+#record(bi, "IN:OSIRIS:CRYOMAG")
+#{
+#    field(ZNAM, "Idle State")
+#    field(ONAM, "Rising")
+#    field(DESC, "Cryomagnet status")
+#   field(SDIS, "$(P)ISISBEAM:DISABLE")
+#}
+
+#record(bo, "IN:OSIRIS:CRYOMAG:SP")
+#{
+#    field(DESC, "Cryomagnet status sp")
+#    field(OUT, "IN:OSIRIS:CRYOMAG PP")
+#    field(OMSL, "supervisory")
+#    field(ZNAM, "Idle state")
+#    field(ONAM, "Rising")
+#    field(
+#}
+
+#record(bo, "$(P)")
+#{
+#    field(DTYP, "Soft Channel")
+#    field(ZNAM, "NO")
+#    field(ONAM, "YES")
+#    field(VAL, "0")
+#    field(DESC, "Simulation Mode")
+#    field(PINI, "YES")
+#}
+
+#record(bo, "$(P)ISISBEAM:DISABLE")
+#{
+#    field(DESC, "Disable comms")
+#    field(PINI, "YES")
+#    field(VAL, "0")
+#    field(OMSL, "supervisory")
+#    field(ZNAM, "COMMS ENABLED")
+#    field(ONAM, "COMMS DISABLED")
+#}
