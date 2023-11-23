@@ -1,0 +1,14 @@
+file "$(GALIL)/GalilSup/Db/galil_homing_routines.template"
+{
+pattern
+{   PVPREFIX, P, ASG,      M,    PORT,    ADDR, C  }
+ {  "\$(PVPREFIX)", "\$(P)", "\$(ASG01=DEFAULT)", "MTR\$(CCP)01",  "\$(PORT=Galil)",0, A }
+ {  "\$(PVPREFIX)", "\$(P)", "\$(ASG02=DEFAULT)", "MTR\$(CCP)02",  "\$(PORT=Galil)",1, B }
+ {  "\$(PVPREFIX)", "\$(P)", "\$(ASG03=DEFAULT)", "MTR\$(CCP)03",  "\$(PORT=Galil)",2, C }
+ {  "\$(PVPREFIX)", "\$(P)", "\$(ASG04=DEFAULT)", "MTR\$(CCP)04",  "\$(PORT=Galil)",3, D }
+ {  "\$(PVPREFIX)", "\$(P)", "\$(ASG05=DEFAULT)", "MTR\$(CCP)05",  "\$(PORT=Galil)",4, E }
+ {  "\$(PVPREFIX)", "\$(P)", "\$(ASG06=DEFAULT)", "MTR\$(CCP)06",  "\$(PORT=Galil)",5, F }
+ {  "\$(PVPREFIX)", "\$(P)", "\$(ASG07=DEFAULT)", "MTR\$(CCP)07",  "\$(PORT=Galil)",6, G }
+ {  "\$(PVPREFIX)", "\$(P)", "\$(ASG08=DEFAULT)", "MTR\$(CCP)08",  "\$(PORT=Galil)",7, H }
+}
+
