@@ -26,6 +26,10 @@
 # BYTE - Hardware byte to read
 # MASK - Mask for this bit
 
+global {
+    RECSIM="\$(RECSIM=0)",IFNOTSIM="\$(IFNOTSIM=)"
+}
+
 file "$(GALIL)/GalilSup/Db/galil_digital_in_bit.template"
 {
 pattern {P,      R,          PORT,  BYTE,  MASK      }
