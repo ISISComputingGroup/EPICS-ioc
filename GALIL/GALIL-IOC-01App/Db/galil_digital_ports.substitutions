@@ -30,7 +30,7 @@
 # $(P)$(R)<Byte or word num><Type Bo or Bi><Bit>
 
 global {
-    RECSIM="\$(RECSIM=0)", IFNOTSIM="\$(IFNOTSIM=)"
+    RECSIM="\$(RECSIM=0)",IFNOTSIM="\$(IFNOTSIM=)"
 }
 
 file "$(GALIL)/GalilSup/Db/galil_digital_in_bit.template"
