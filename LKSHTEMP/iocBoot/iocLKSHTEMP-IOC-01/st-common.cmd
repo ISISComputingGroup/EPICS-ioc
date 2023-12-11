@@ -29,7 +29,15 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(LKSHTEMP)/db/lkshtemp.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+stringiftest("332", "$(DEV_TYPE=332)", 5, "332")
+stringiftest("336", "$(DEV_TYPE=336)", 5, "336")
+stringiftest("340", "$(DEV_TYPE=340)", 5, "340")
+stringiftest("372", "$(DEV_TYPE=372)", 5, "372")
+
+$(IF332) dbLoadRecords("db/332/lakeshore332.db", "P=$(MYPVPREFIX)$(IOCNAME), PORT=$(DEVICE), DEV_TYPE=$(DEV_TYPE=332) ADDR=0, TEMPSCAN=1, SCAN=2, TOLERANCE=1, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
+$(IF336) dbLoadRecords("db/336/lakeshore336.db", "P=$(MYPVPREFIX)$(IOCNAME), PORT=$(DEVICE), DEV_TYPE=$(DEV_TYPE=336) ADDR=0, TEMPSCAN=1, SCAN=2, TOLERANCE=1, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
+$(IF340) dbLoadRecords("db/340/lakeshore340.db", "P=$(MYPVPREFIX)$(IOCNAME), PORT=$(DEVICE), DEV_TYPE=$(DEV_TYPE=340) ADDR=0, TEMPSCAN=1, SCAN=2, TOLERANCE=1, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
+$(IF372) dbLoadRecords("db/372/lakeshore372.db", "P=$(MYPVPREFIX)$(IOCNAME), PORT=$(DEVICE), DEV_TYPE=$(DEV_TYPE=372) ADDR=0, TEMPSCAN=1, SCAN=2, TOLERANCE=1, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
