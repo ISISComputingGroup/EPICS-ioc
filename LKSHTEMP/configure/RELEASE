@@ -63,6 +63,12 @@ SSCAN=$(SUPPORT)/sscan/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
+LKSH332=$(SUPPORT)/lkshtemp/master/lkshtempSup/332
+LKSH336=$(SUPPORT)/lkshtemp/master/lkshtempSup/336
+LKSH350=$(SUPPORT)/lkshtemp/master/lkshtempSup/336
+LKSH340=$(SUPPORT)/lkshtemp/master/lkshtempSup/340
+LKSH372=$(SUPPORT)/lkshtemp/master/lkshtempSup/372
+IOC_DIR=C:/Instrument/Apps/EPICS/ioc/master
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
