@@ -46,6 +46,7 @@ ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
 ASYN=$(SUPPORT)/asyn/master
 AUTOSAVE=$(SUPPORT)/autosave/master
+BUSY=$(SUPPORT)/busy/master
 CALC=$(SUPPORT)/calc/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
@@ -59,15 +60,23 @@ PVDUMP=$(SUPPORT)/pvdump/master
 SNCSEQ=$(SUPPORT)/seq/master
 SQLITE=$(SUPPORT)/sqlite/master
 SSCAN=$(SUPPORT)/sscan/master
+STD=$(SUPPORT)/std/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 
 CAENMCA=$(SUPPORT)/CAENMCA/master
+AREA_DETECTOR=$(SUPPORT)/areaDetector/master
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
 
 include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
+
+include $(AREA_DETECTOR)/configure/RELEASE_SUPPORT.local
+-include $(AREA_DETECTOR)/configure/RELEASE_SUPPORT.local.$(EPICS_HOST_ARCH)
+include $(AREA_DETECTOR)/configure/RELEASE_LIBS.local
+
+
 
 # IOC-specific support module

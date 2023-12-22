@@ -15,6 +15,9 @@ PROD_IOC = $(APPNAME)
 # CAENMCA-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
+PROD_NAME = $(APPNAME)
+include $(ADCORE)/ADApp/commonDriverMakefile
+
 # CAENMCA-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##

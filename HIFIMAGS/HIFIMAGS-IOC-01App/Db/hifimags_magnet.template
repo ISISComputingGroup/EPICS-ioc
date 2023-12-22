@@ -60,7 +60,7 @@ record(bi, "$(P)$(MAG):ERROR") {
   field(ZNAM, "No Error")
   field(ONAM, "Error")
   
-  field(INP,"$(PVPREFIX))$(PSU_IOC):ERROR MS")
+  field(INP,"$(PVPREFIX)$(PSU_IOC):ERROR MS")
   
   field(FLNK, "$(P)$(MAG):ERRORS:_CALC MS")
   
@@ -200,7 +200,7 @@ record(ao, "$(P)$(MAG):TARGET:SP") {
   field(EGU, "G")
   field(PREC, "3")
   
-  field(OUT,"$(PVPREFIX)$(PSU_IOC):TARGET:SP")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):TARGET:SP PP")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):TARGET")
@@ -236,12 +236,12 @@ record(ao, "$(P)SIM:$(MAG):TARGET") {
 record(bo, "$(P)$(MAG):ABORT:SP") {
   field(DESC, "Abort $(MAG) ramp")
   field(DTYP, "Soft Channel")
-  field(SCAN, "1 second")
+  field(SCAN, "Passive")
   
   field(ZNAM, "Idle")
   field(ONAM, "Abort")
   
-  field(OUT,"$(PVPREFIX)$(PSU_IOC):ABORT")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):ABORT PP")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):ABORT")
@@ -293,7 +293,7 @@ record(bo, "$(P)$(MAG):SET:SP") {
   field(ZNAM, "Idle")
   field(ONAM, "Ramp")
   
-  field(OUT,"$(PVPREFIX)$(PSU_IOC):START:SP")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):START:SP PP")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):SET:SP PP")

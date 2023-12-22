@@ -9,6 +9,7 @@ function twincat_stcommon_main()
 	local ioc_name = ibex_utils.getMacroValue{macro="IOCNAME"}
 	local plc_version = ibex_utils.getMacroValue{macro="PLC_VERSION", default="1"}
 	local ads_port = ibex_utils.getMacroValue{macro="ADS_PORT"}
+	local forward_desc = ibex_utils.getMacroValue{macro="FORWARD_DESC", default="0"}
 	asyn_port = ibex_utils.getMacroValue{macro="PORT"}
 
 	num_axes = ibex_utils.getMacroValue{macro="NUM_AXES"} -- todo: actually poll the device to get this
@@ -27,6 +28,11 @@ function twincat_stcommon_main()
 	do
 		local single_axis_tc_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
 		iocsh.dbLoadRecords("$(MOTOREXT)/db/single_axis_tc.db", single_axis_tc_args)
+
+		if forward_desc == "1" then 
+			local desc_tc_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
+			iocsh.dbLoadRecords("$(MOTOREXT)/db/desc_tc.db", desc_tc_args)
+		end
 
 		motor_pv = string.format("MTR%02i%02i", mtrctrl, axis_num)
 		single_axis_db = "$(TOP)/db/single_axis.db"

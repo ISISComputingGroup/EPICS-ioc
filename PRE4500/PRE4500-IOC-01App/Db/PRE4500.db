@@ -1,0 +1,98 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+    field(PINI, "YES")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+record (ai, "$(P)CHOPPER:PIT:TEMP") {
+
+    field(DESC, "Chopper Pit Temperature")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)MODBUS_RX_04,0)UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+
+    field(EGU,  "C")
+    field(PREC, "3")
+
+    info(INTEREST, "HIGH")
+    # info(ARCHIVE,  "10 VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CHOPPER:PIT:TEMP CP")
+    field(ASLO, "0.1") 
+}
+
+record (ai, "$(P)COOLING:WATER:TEMP") {
+
+    field(DESC, "Cooling Water Temperature")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)MODBUS_RX_03,0)UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+
+    field(EGU,  "C")
+    field(PREC, "3")
+
+    info(INTEREST, "HIGH")
+    # info(ARCHIVE,  "10 VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:COOLING:WATER:TEMP CP")
+    field(ASLO, "0.1") 
+}
+
+record (ai, "$(P)CHOPPER:BODY:TEMP") {
+
+    field(DESC, "Chopper Body Temperature")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)MODBUS_RX_02,0)UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+
+    field(EGU,  "C")
+    field(PREC, "3")
+
+    info(INTEREST, "HIGH")
+    # info(ARCHIVE,  "10 VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:CHOPPER:BODY:TEMP")
+    field(ASLO, "0.1") 
+}
+
+record (ai, "$(P)SPARE:TEMP") {
+
+    field(DESC, "Spare Temperature")
+    $(IFNOTRECSIM) field(INP,  "@asyn($(PORT)MODBUS_RX_01,0)UINT16")
+    $(IFNOTRECSIM) field(SCAN, "I/O Intr")
+    $(IFNOTRECSIM) field(DTYP, "asynInt32")
+
+    field(EGU,  "C")
+    field(PREC, "3")
+
+    info(INTEREST, "HIGH")
+    # info(ARCHIVE,  "10 VAL")
+
+    field(SDIS, "$(P)DISABLE")
+    field(SSCN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:SPARE:TEMP CP")
+    field(ASLO, "0.1") 
+}
