@@ -16,6 +16,9 @@ epicsEnvSet("IP_AD", $(IP_AD="192.168.1.221"))
 epicsEnvSet("PORT", "ads-port")
 epicsEnvSet("ADS_PORT", $(ADS_PORT=852))
 
+# Get the number of axes from the controller before we starting spinning up dbs for each axis. 
+getAdsVar("NUM_AXES", "GVL_APP.nAXIS_NUM", "$(IP_AD)", "$(AMS_ID)", $(ADS_PORT))
+
 luash("st-common.lua")
 
 ## configure jaws
