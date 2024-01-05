@@ -17,10 +17,8 @@ epicsEnvSet("CAMERA_ID", "23160024")
 # if we don't need controls we might not need to use this. if you try to, you get a load of null pointer exceptions
 epicsEnvSet("GENICAM_DB_FILE", "$(ADGENICAM)/db/FLIR_BFS_PGE_244S8C.template")
 
-# The port name for the detector
-#epicsEnvSet("PORT",   "SP1")
 # Really large queue so we can stream to disk at full camera speed
-epicsEnvSet("QSIZE",  "2000")   
+epicsEnvSet("QSIZE",  "20000")   
 # The maximim image width; used for row profiles in the NDPluginStats plugin
 epicsEnvSet("XSIZE",  "5320")
 # The maximim image height; used for column profiles in the NDPluginStats plugin
@@ -32,9 +30,7 @@ epicsEnvSet("CBUFFS", "500")
 # The search path for database files
 # This is for Windows
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db;$(ADGENICAM)/db;$(ADSPINNAKER)/db")
-# This is for Linux
-#epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db:$(ADGENICAM)/db:$(ADSPINNAKER)/db")
-# Define NELEMENTS to be enough for a 2048x2048x3 (color) image
+# Define NELEMENTS to be enough for a 5320x4600x3 (color) image
 epicsEnvSet("NELEMENTS", "73416000")
 
 # ADSpinnakerConfig(const char *portName, const char *cameraId, int traceMask, int memoryChannel,
@@ -45,11 +41,8 @@ asynSetTraceIOMask($(PORT), 0, 2)
 NDROIConfigure("ROI1", 3, 0, "$(PORT)", 0, 0)
 NDStatsConfigure("Stats1", 3, 0, "ROI1", 0, 0)
 NDTimeSeriesConfigure("Stats1_TS", 100, 0, "ROI1", 0, 22, 0, 0, 0, 0)
-#NDStdArraysConfigure("Image1", 3, 0, "ROI1", 0, 0)
+NDStdArraysConfigure("Image1", 3, 0, "ROI1", 0, 0)
 NDPvaConfigure("PVA1", 3, 0, "ROI1", 0, "$(PREFIX)PVA1:IMAGE", 0)
-
-NDStdArraysConfigure("Image1", 5, 0, "$(PORT)", 0, 0)
-dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=IMAGE1:,PORT=Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int16,FTVL=SHORT,NELEMENTS=$(NELEMENTS)")
 
 # Main database.  This just loads and modifies ADBase.template
 dbLoadRecords("$(ADSPINNAKER)/db/spinnaker.template", "P=$(PREFIX),R=CAM1:,PORT=$(PORT)")
@@ -63,7 +56,7 @@ dbLoadRecords("$(ADSPINNAKER)/db/spinnakerIntReadback.template", "P=$(PREFIX),R=
 dbLoadRecords("$(GENICAM_DB_FILE)", "P=$(PREFIX),R=CAM1:,PORT=$(PORT)")
 
 # Use this line for 8-bit or 16-bit data
-#dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=IMAGE1:,PORT=Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROI1,TYPE=Int16,FTVL=SHORT,NELEMENTS=$(NELEMENTS),ENABLED=1")
+dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=IMAGE1:,PORT=Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROI1,TYPE=Int16,FTVL=SHORT,NELEMENTS=$(NELEMENTS),ENABLED=1")
 
 dbLoadRecords("NDROI.template", "P=$(PREFIX),R=ROI1:,  PORT=ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),ENABLED=1")
 
