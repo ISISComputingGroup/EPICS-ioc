@@ -1,0 +1,85 @@
+global {P = "\$(P)", PORT = "\$(PORT)", ADDR = "\$(ADDR)", TEMPSCAN = "\$(TEMPSCAN)", SCAN = "\$(SCAN)", RECSIM = "\$(RECSIM)", DISABLE = "\$(DISABLE)" }
+
+file $(LKSH336)/db/lakeshore336.template
+{
+	pattern {UNUSED}
+	{"UNUSED"}
+}
+
+file $(LKSH336)/db/lakeshore_input.template
+{
+	pattern {INPUT}
+	{"A"}
+	{"B"}
+}
+
+file $(LKSH336)/db/lakeshore336analog.template
+{
+	pattern {P, PORT, ADDR, SCAN, OUT}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 1}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 2}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 3}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 4}
+}
+
+file $(LKSH336)/db/lakeshore336output.template
+{
+	pattern {P, PORT, ADDR, TEMPSCAN, SCAN, TOLERANCE, OUT}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "\$(TOLERANCE)", 1}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "\$(TOLERANCE)", 2}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "\$(TOLERANCE)", 3}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(TEMPSCAN)", "\$(SCAN)", "\$(TOLERANCE)", 4}
+}
+
+file $(LKSH336)/db/lakeshore336loop.template
+{
+	pattern {P, PORT, ADDR, SCAN, OUT, CMD}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 1, "getHTR"}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 2, "getHTR"}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 3, "getAOUT"}
+	{"\$(P)", "\$(PORT)", "\$(ADDR)", "\$(SCAN)", 4, "getAOUT"}
+}
+
+
+
+file $(LKSH336)/db/lakeshore336_SIM.template
+{
+	pattern {P}
+	{"\$(P)"}
+}
+
+file $(LKSH336)/db/lakeshore_input_SIM.template
+{
+	pattern {P, INPUT}
+	{"\$(P)", "A"}
+	{"\$(P)", "B"}
+	{"\$(P)", "C"}
+	{"\$(P)", "D"}
+}
+
+file $(LKSH336)/db/lakeshore336analog_SIM.template
+{
+	pattern {P, OUT}
+	{"\$(P)", 1}
+	{"\$(P)", 2}
+	{"\$(P)", 3}
+	{"\$(P)", 4}
+}
+
+file $(LKSH336)/db/lakeshore336output_SIM.template
+{
+	pattern {P, OUT}
+	{"\$(P)", 1}
+	{"\$(P)", 2}
+	{"\$(P)", 3}
+	{"\$(P)", 4}
+}
+
+file $(LKSH336)/db/lakeshore336loop_SIM.template
+{
+	pattern {P, OUT}
+	{"\$(P)", 1}
+	{"\$(P)", 2}
+	{"\$(P)", 3}
+	{"\$(P)", 4}
+}
