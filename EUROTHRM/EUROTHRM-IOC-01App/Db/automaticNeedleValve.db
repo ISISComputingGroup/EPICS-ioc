@@ -90,7 +90,7 @@ record(calc, "$(P)FLOW_SP_MODE_SELECT:SP:_CALC")
 {
 	field(INPA, "$(P)FLOW_SP_MODE_SELECT:SP")
 	field(CALC, "A+1")
-	field(FLNK, "$(P)TOGGLE_WRITE.PROC")
+$(IFTOGGLE_WRITE=)	field(FLNK, "$(P)TOGGLE_WRITE.PROC")
 }
 
 record(bi, "$(P)FLOW_SP_MODE_SELECT")
