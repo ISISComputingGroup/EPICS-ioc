@@ -1,2 +1,0 @@
-file "URLDriver_settings.req",      P=$(P),  R=CAM1:
-#file "NDStdArrays_settings.req",    P=$(P),  R=ROI1:

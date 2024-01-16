@@ -8,17 +8,17 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application PEARLCAM-IOC-01
+# Build the IOC application GENICAM-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# PEARLCAM-IOC-01.dbd will be created and installed
+# GENICAM-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
 PROD_NAME = $(APPNAME)
 include $(ADCORE)/ADApp/commonDriverMakefile
 
-# PEARLCAM-IOC-01.dbd will be made up from these files:
+# GENICAM-IOC-01.dbd will be made up from these files:
 # we get base, asyn + areadetetor standard plugins as part of commonDriverMakefile include
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += icpconfig.dbd
@@ -84,7 +84,7 @@ $(APPNAME)_LIBS_WIN32 += libssl libcrypto
 
 $(APPNAME)_SYS_LIBS_WIN32 += psapi wldap32 ws2_32 crypt32 Normaliz # advapi32 user32 msxml2
 
-# PEARLCAM-IOC-01_registerRecordDeviceDriver.cpp derives from PEARLCAM-IOC-01.dbd
+# GENICAM-IOC-01_registerRecordDeviceDriver.cpp derives from GENICAM-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
