@@ -57,7 +57,12 @@ $(APPNAME)_LIBS += asyn
 
 $(APPNAME)_LIBS += URLDriver
 $(APPNAME)_LIBS += ADSpinnaker
-
+ifeq (debug, $(findstring debug, $(T_A)))
+  $(APPNAME)_LIBS_WIN32 += Spinnakerd_v140
+else
+  $(APPNAME)_LIBS_WIN32 += Spinnaker_v140
+endif
+$(APPNAME)_LIBS += ADGenICam
 #not on linux
 #$(APPNAME)_LIBS += ffmpegServer
 #$(APPNAME)_LIBS += avdevice
