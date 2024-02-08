@@ -4,6 +4,7 @@ record(ai, "$(P)FLOW")
     field(DTYP, "asynFloat64")
 	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1025,1000)MODBUS_DATA")
 	field(EGU,  "mbar")
+	field(ASLO, "$(FLOW_SCALING)")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
     field(SIML, "$(Q)SIM")
@@ -19,6 +20,7 @@ record(ao, "$(P)MANUAL_FLOW:SP")
 	field(EGU,  "mbar")
     field(ASG, "MANAGER")  # Restrict to manager-mode access only.
     field(UDFS, "NO_ALARM")
+	field(ASLO, "$(FLOW_SCALING)")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
     field(SIML, "$(Q)SIM")
@@ -32,6 +34,7 @@ record(ai, "$(P)MANUAL_FLOW")
     field(DTYP, "asynFloat64")
 	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1509,1000)MODBUS_DATA")
 	field(EGU,  "mbar")
+	field(ASLO, "$(FLOW_SCALING)")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
     field(SIML, "$(Q)SIM")
@@ -44,10 +47,11 @@ record(ao, "$(P)FLOW_SP_LOWLIM:SP")
 {
     field(DESC, "Low SP limit for flow control")
     field(DTYP, "asynFloat64")
-	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),1136,1000)MODBUS_DATA")
+	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),1180,1000)MODBUS_DATA")
 	field(EGU,  "mbar")
     field(ASG, "MANAGER")  # Restrict to manager-mode access only.
     field(UDFS, "NO_ALARM")
+	field(ASLO, "$(FLOW_SCALING)")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
     field(SIML, "$(Q)SIM")
@@ -59,8 +63,9 @@ record(ai, "$(P)FLOW_SP_LOWLIM")
 {
     field(DESC, "Low SP limit for flow control")
     field(DTYP, "asynFloat64")
-	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1136,1000)MODBUS_DATA")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1180,1000)MODBUS_DATA")
 	field(EGU,  "mbar")
+	field(ASLO, "$(FLOW_SCALING)")
     info(INTEREST, "MEDIUM")
     info(archive, "VAL")
     field(SIML, "$(Q)SIM")
@@ -68,6 +73,99 @@ record(ai, "$(P)FLOW_SP_LOWLIM")
     field(SDIS, "$(Q)DISABLE")
 }
 alias("$(P)FLOW_SP_LOWLIM", "$(P)FLOW_SP_LOWLIM:SP:RBV")
+
+record(ao, "$(P)FLOW_SP_HILIM:SP")
+{
+    field(DESC, "High SP limit for flow control")
+    field(DTYP, "asynFloat64")
+	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),1179,1000)MODBUS_DATA")
+	field(EGU,  "mbar")
+    field(ASG, "MANAGER")  # Restrict to manager-mode access only.
+    field(UDFS, "NO_ALARM")
+	field(ASLO, "$(FLOW_SCALING)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:FLOW_SP_HILIM:SP")
+    field(SDIS, "$(Q)DISABLE")
+}
+
+record(ai, "$(P)FLOW_SP_HILIM")
+{
+    field(DESC, "High SP limit for flow control")
+    field(DTYP, "asynFloat64")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),1179,1000)MODBUS_DATA")
+	field(EGU,  "mbar")
+	field(ASLO, "$(FLOW_SCALING)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:FLOW_SP_HILIM")
+    field(SDIS, "$(Q)DISABLE")
+}
+alias("$(P)FLOW_SP_HILIM", "$(P)FLOW_SP_HILIM:SP:RBV")
+
+record(ao, "$(P)MIN_AUTO_FLOW_BL_TEMP:SP")
+{
+    field(DESC, "Min auto fl below T")
+    field(DTYP, "asynFloat64")
+	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),4963,1000)MODBUS_DATA")
+	field(EGU,  "K")
+    field(ASG, "MANAGER")  # Restrict to manager-mode access only.
+    field(UDFS, "NO_ALARM")
+	field(ASLO, "$(FLOW_SCALING)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:MIN_AUTO_FLOW_BL_TEMP:SP")
+    field(SDIS, "$(Q)DISABLE")
+}
+
+record(ai, "$(P)MIN_AUTO_FLOW_BL_TEMP")
+{
+    field(DESC, "Min auto fl below T")
+    field(DTYP, "asynFloat64")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),4963,1000)MODBUS_DATA")
+	field(EGU,  "K")
+	field(ASLO, "$(TEMP_SCALING)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:MIN_AUTO_FLOW_BL_TEMP")
+    field(SDIS, "$(Q)DISABLE")
+}
+alias("$(P)MIN_AUTO_FLOW_BL_TEMP", "$(P)MIN_AUTO_FLOW_BL_TEMP:SP:RBV")
+
+record(ao, "$(P)AUTO_FLOW_SCALE:SP")
+{
+    field(DESC, "Auto flow scale SP")
+    field(DTYP, "asynFloat64")
+	field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),4965,1000)MODBUS_DATA")
+	field(EGU,  "K")
+    field(ASG, "MANAGER")  # Restrict to manager-mode access only.
+    field(UDFS, "NO_ALARM")
+	field(ASLO, "$(FLOW_SCALING)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:AUTO_FLOW_SCALE:SP")
+    field(SDIS, "$(Q)DISABLE")
+}
+
+record(ai, "$(P)AUTO_FLOW_SCALE")
+{
+    field(DESC, "Auto flow scale")
+    field(DTYP, "asynFloat64")
+	field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),4965,1000)MODBUS_DATA")
+	field(EGU,  "K")
+	field(ASLO, "$(TEMP_SCALING)")
+    info(INTEREST, "MEDIUM")
+    info(archive, "VAL")
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:AUTO_FLOW_SCALE")
+    field(SDIS, "$(Q)DISABLE")
+}
+alias("$(P)AUTO_FLOW_SCALE", "$(P)AUTO_FLOW_SCALE:SP:RBV")
 
 record(bo, "$(P)FLOW_SP_MODE_SELECT:SP")
 {
@@ -202,6 +300,25 @@ record(ai,"$(P)SIM:FLOW_SP_LOWLIM")
 }
 alias("$(P)SIM:FLOW_SP_LOWLIM","$(P)SIM:FLOW_SP_LOWLIM:SP")
 alias("$(P)SIM:FLOW_SP_LOWLIM","$(P)SIM:FLOW_SP_LOWLIM:SP:RBV")
+alias("$(P)SIM:FLOW_SP_HILIM","$(P)SIM:FLOW_SP_LOWHI:SP")
+alias("$(P)SIM:FLOW_SP_HILIM","$(P)SIM:FLOW_SP_LOWHI:SP:RBV")
+
+record(ai,"$(P)SIM:MIN_AUTO_FLOW_BL_TEMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:MIN_AUTO_FLOW_BL_TEMP","$(P)SIM:MIN_AUTO_FLOW_BL_TEMP:SP")
+alias("$(P)SIM:MIN_AUTO_FLOW_BL_TEMP","$(P)SIM:MIN_AUTO_FLOW_BL_TEMP:SP:RBV")
+
+record(ai,"$(P)SIM:AUTO_FLOW_SCALE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+alias("$(P)SIM:AUTO_FLOW_SCALE","$(P)SIM:AUTO_FLOW_SCALE:SP")
+alias("$(P)SIM:AUTO_FLOW_SCALE","$(P)SIM:AUTO_FLOW_SCALE:SP:RBV")
+
 
 record(bi,"$(P)SIM:FLOW_SP_MODE_SELECT")
 {
