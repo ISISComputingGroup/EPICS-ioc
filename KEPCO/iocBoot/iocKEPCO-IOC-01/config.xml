@@ -12,6 +12,7 @@
 <macro name="AUTO_RAMP" pattern="^(ON|OFF)$" description="Whether to turn ramping on automatically when field/curr is set." hasDefault="YES" defaultValue="OFF" />
 <macro name="CURRENT_RANGE" pattern="^(Auto|Full|Quarter)$" description="Operating range for control of output current" hasDefault="YES" defaultValue="Auto" />
 <macro name="VOLTAGE_RANGE" pattern="^(Auto|Full|Quarter)$" description="Operating range for control of output voltage" hasDefault="YES" defaultValue="Auto" />
+<macro name="REMOTE_ON_SET" pattern="^(YES|NO)$" description="Send go REMOTE command on every current/voltage set" hasDefault="YES" defaultValue="YES" />
 </macros>
 </config_part>
 </ioc_config>
