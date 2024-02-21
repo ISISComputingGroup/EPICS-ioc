@@ -75,6 +75,7 @@ IOCDIRS += LM500
 IOCDIRS += RKNMNTR
 IOCDIRS += ANDOR ANDOR3
 IOCDIRS += GENICAM
+IOCDIRS += PS300
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
