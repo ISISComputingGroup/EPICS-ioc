@@ -38,7 +38,7 @@ $(IFNOTCHANGE_WHEN_RUNNING) dbLoadRecords("$(UTILITIES)/db/disable_pv_puts.db", 
 $(IFNOTCHANGE_WHEN_RUNNING) dbLoadRecords("$(UTILITIES)/db/disable_pv_puts.db", "INST=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):2:,PV1=$(MYPVPREFIX)$(IOCNAME):USER_LIMIT:SP,PV2=$(MYPVPREFIX)$(IOCNAME):LIMITS:POS_CHANGE:SP,PV3=$(MYPVPREFIX)$(IOCNAME):LIMITS:POS_OFFSET:SP,PV4=$(MYPVPREFIX)$(IOCNAME):LIMITS:NEG_CHANGE:SP,PV5=$(MYPVPREFIX)$(IOCNAME):LIMITS:NEG_OFFSET:SP,PV6=$(MYPVPREFIX)$(IOCNAME):PRESSURE_DIFF_THOLD:SP")
 
 # For testing, load additional substitute PVs that would come from other IOCs
-$(IFDEVSIM) dbLoadRecords("$(PEARLPC)/db/test_pvs.db", "INST=$(MYPVPREFIX)")
+$(IFTESTDEVSIM) dbLoadRecords("$(PEARLPC)/db/test_pvs.db", "INST=$(MYPVPREFIX)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
