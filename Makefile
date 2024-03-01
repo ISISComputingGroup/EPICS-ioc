@@ -73,6 +73,7 @@ IOCDIRS += PACE5000
 IOCDIRS += MEASM905
 IOCDIRS += RKNMNTR
 IOCDIRS += LNDYISW
+IOCDIRS += LNDYISW
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
