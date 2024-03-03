@@ -64,6 +64,11 @@ STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 
+# support for EPICS SNMP
+OPENSSL=$(SUPPORT)/OpenSSL/master
+NETSNMP=$(SUPPORT)/NET-SNMP/master
+DEVSNMP=$(SUPPORT)/devSnmp-nscl/master
+
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
 

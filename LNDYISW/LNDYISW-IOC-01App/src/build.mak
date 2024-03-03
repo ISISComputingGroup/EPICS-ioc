@@ -32,13 +32,14 @@ $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += stream.dbd
 ## add other dbd here ##
-#$(APPNAME)_DBD += xxx.dbd
+$(APPNAME)_DBD += devSnmp.dbd
 
 # Add all the support libraries needed by this IOC
 
 ## Add additional libraries here ##
 #$(APPNAME)_LIBS += xxx
 
+$(APPNAME)_LIBS += devSnmp netsnmp
 ## ISIS standard libraries ##
 ## Stream device libraries ##
 $(APPNAME)_LIBS += stream
