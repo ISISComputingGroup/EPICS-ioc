@@ -17,6 +17,9 @@ epicsEnvSet("HOST", "130.246.49.89")
 ## need to set snmp version before we load records
 devSnmpSetSnmpVersion("$(HOST)", "SNMP_VERSION_1")
 
+## add an extra directory to load MIB files from
+epicsEnvSet("MIBDIRS", "+$(LNDYISW)/mibs")
+
 ## Load our record instances
 dbLoadRecords("$(LNDYISW)/db/lndyisw.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),HOST=$(HOST)")
 
