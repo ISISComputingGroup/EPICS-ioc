@@ -6,7 +6,6 @@
         <macros>
             <macro name="HOST" pattern="^[a-zA-Z0-9_-]+$" description="cDAQ chassis hostname" defaultValue="cDAQ9181-189F9A3" hasDefault="YES" />
 
-            <!-- TODO: update REGEX for channel macros -->
             <macro name="UNITS"         pattern="^[a-zA-Z0-9_-]+$" description="Units for all channels" defaultValue="K"    hasDefault="YES" />
             <macro name="TC_TYPE"       pattern="^[a-zA-Z0-9_-]+$" description="Thermocouple type for all channels"  defaultValue="K_Type_TC"       hasDefault="YES" />
             <macro name="MIN_TEMP"      pattern="^[a-zA-Z0-9_-]+$" description="Minimum TC temperature for all channels" defaultValue="73.15"       hasDefault="YES" />
