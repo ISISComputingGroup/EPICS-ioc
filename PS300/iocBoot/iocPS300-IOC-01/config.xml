@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+	<config_part>
+		<ioc_desc>Stanford Powersupply 300 series.</ioc_desc>
+		<ioc_details>IOC to control the Stanford powersupply 300 series IOCs</ioc_details>
+		<macros>
+			<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+			<macro name="MODEL" pattern="^[0-9]{3}((_neg)|(_pos))*$" description="Serial COM port" hasDefault="YES" defaultValue="350_pos"/>
+		</macros>
+		<pvsets>
+		</pvsets>
+	</config_part>
+</ioc_config>
