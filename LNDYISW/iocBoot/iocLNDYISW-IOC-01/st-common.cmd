@@ -8,6 +8,10 @@
 
 epicsEnvSet("HOST", "130.246.49.89")
 
+## add an extra directory to load MIB files from
+## set before any snmp config command
+epicsEnvSet("MIBDIRS", "+$(LNDYISW)/mibs")
+
 ## uncomment for debug messages
 #devSnmpSetParam("DebugLevel", 10)
 
@@ -16,9 +20,6 @@ devSnmpSetSnmpVersion("$(HOST)", "SNMP_VERSION_1")
 
 ## this device doesn't like beign asked for multiple OIDs at a time
 devSnmpSetMaxOidsPerReq("$(HOST)", 1)
-
-## add an extra directory to load MIB files from
-epicsEnvSet("MIBDIRS", "+$(LNDYISW)/mibs")
 
 ## Load our record instances
 dbLoadRecords("$(LNDYISW)/db/lndyisw.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),HOST=$(HOST)")
