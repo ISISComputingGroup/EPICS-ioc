@@ -6,7 +6,7 @@
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-epicsEnvSet("HOST", "130.246.49.89")
+epicsEnvSet("HOST", "$(IPADDR=130.246.49.89)")
 
 ## add an extra directory to load MIB files from
 ## set before any snmp config command
