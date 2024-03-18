@@ -1,0 +1,28 @@
+<?xml version="1.0" standalone="no" ?>
+<!-- Attributes -->
+<Attributes
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation=
+    "https://github.com/areaDetector/ADCore/blob/master/iocBoot/NDAttributes.xsd"
+    >
+    <Attribute name="raw_frames"
+               type="PARAM"
+               source="PARAM_dgtz.probes.t0_counter_0"
+               datatype="INT"
+               description="dgtz.probes.t0_counter"/>
+    <Attribute name="good_frames"
+               type="PARAM"
+               source="PARAM_dgtz.probes.t0_counter_0"
+               datatype="INT"
+               description="dgtz.probes.t0_counter"/>
+    <Attribute name="duration"
+               type="PARAM"
+               source="PARAM_dgtz.probes.runtime_0"
+               datatype="DOUBLE"
+               description="dgtz.probes.runtime"/>
+    <Attribute name="collection_time"
+               type="PARAM"
+               source="PARAM_dgtz.probes.runtime_0"
+               datatype="DOUBLE"
+               description="dgtz.probes.runtime"/>
+</Attributes>
