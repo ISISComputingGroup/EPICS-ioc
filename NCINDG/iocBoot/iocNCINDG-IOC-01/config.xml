@@ -3,8 +3,22 @@
 <config_part>
 <ioc_desc>Nuclear Instruments Digitiser</ioc_desc>
 <macros>
-<macro name ="IP_ADDR_0" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of digitiser." hasDefault="NO" />
-<macro name ="INDEX_0" pattern="^[0-9]$" description="Index of digitiser." hasDefault="NO" />
+<macro name ="IP_ADDR_0" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of digitiser 0." hasDefault="NO" />
+<macro name ="IP_ADDR_1" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of digitiser 1." hasDefault="NO" />
+<macro name ="IP_ADDR_2" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of digitiser 2." hasDefault="NO" />
+<macro name ="IP_ADDR_3" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of digitiser 3." hasDefault="NO" />
+<macro name ="IP_ADDR_4" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of digitiser 4." hasDefault="NO" />
+<macro name ="IP_ADDR_5" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of digitiser 5." hasDefault="NO" />
+<macro name ="IP_ADDR_6" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of digitiser 6." hasDefault="NO" />
+<macro name ="IP_ADDR_7" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP address of digitiser 7." hasDefault="NO" />
+<macro name ="INDEX_0" pattern="^[0-9]$" description="Index of digitiser 0." hasDefault="NO" />
+<macro name ="INDEX_1" pattern="^[0-9]$" description="Index of digitiser 1." hasDefault="NO" />
+<macro name ="INDEX_2" pattern="^[0-9]$" description="Index of digitiser 2." hasDefault="NO" />
+<macro name ="INDEX_3" pattern="^[0-9]$" description="Index of digitiser 3." hasDefault="NO" />
+<macro name ="INDEX_4" pattern="^[0-9]$" description="Index of digitiser 4." hasDefault="NO" />
+<macro name ="INDEX_5" pattern="^[0-9]$" description="Index of digitiser 5." hasDefault="NO" />
+<macro name ="INDEX_6" pattern="^[0-9]$" description="Index of digitiser 6." hasDefault="NO" />
+<macro name ="INDEX_7" pattern="^[0-9]$" description="Index of digitiser 7." hasDefault="NO" />
 </macros>
 <pvsets />
 </config_part>
