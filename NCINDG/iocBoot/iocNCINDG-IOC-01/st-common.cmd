@@ -3,6 +3,7 @@
 
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 asynSetMinTimerPeriod(0.001)
+callbackSetQueueSize(20000)
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
