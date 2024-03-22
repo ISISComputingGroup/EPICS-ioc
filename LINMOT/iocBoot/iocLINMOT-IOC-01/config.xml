@@ -8,7 +8,7 @@
 <macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="NO" />
 <xi:include href="../../../COMMON/PORT.xml" />
 <xi:include href="../../../COMMON/BAUD9600.xml" />
-<macro name="BITS" pattern="^[7-8]$" description="Data bits (default: 8)" defaultValue="8" hasDefault="YES" />
+<xi:include href="../../../COMMON/BITS8.xml" />
 <xi:include href="../../../COMMON/PARITYNONE.xml" />
 <xi:include href="../../../COMMON/STOP1.xml" />
 

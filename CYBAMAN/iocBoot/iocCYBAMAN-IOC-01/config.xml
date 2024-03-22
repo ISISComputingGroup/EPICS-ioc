@@ -5,7 +5,7 @@
 <macros>
 <xi:include href="../../../COMMON/PORT.xml" />
 <macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 38400." defaultValue="38400" hasDefault="YES" />
-<macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." defaultValue="8" hasDefault="YES" />
+<xi:include href="../../../COMMON/BITS8.xml" />
 <xi:include href="../../../COMMON/PARITYNONE.xml" />
 <xi:include href="../../../COMMON/STOP1.xml" />
 </macros>

@@ -5,7 +5,7 @@
 <macros>
 <xi:include href="../../../COMMON/PORT.xml" />
 <xi:include href="../../../COMMON/BAUD9600.xml" />
-<macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." defaultValue="8" hasDefault="YES" />
+<xi:include href="../../../COMMON/BITS8.xml" />
 <xi:include href="../../../COMMON/PARITYNONE.xml" />
 <xi:include href="../../../COMMON/STOP1.xml" />
 <macro name="INST" pattern="^(merlin)|(maps)$" description="Instrument (affects communication protocol). Defaults to merlin." defaultValue="merlin" hasDefault="YES" />
