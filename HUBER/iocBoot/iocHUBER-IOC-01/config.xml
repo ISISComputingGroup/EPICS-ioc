@@ -9,7 +9,7 @@
 <macro name="NUMBERAXES" pattern="^([1-9]|(1[1-6]))$" description="Number of Axes on the Controller" defaultValue="5" hasDefault="YES" />
 <macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 19200)" defaultValue="19200" hasDefault="YES" />
 <xi:include href="../../../COMMON/PARITYNONE.xml" />
-<macro name="STOP" pattern="^([1-2])$" description="STOP bits" defaultValue="1" hasDefault="YES" />
+<xi:include href="../../../COMMON/STOP1.xml" />
 <macro name="BITS" pattern="^([5-8])$" description="Data bits" defaultValue="8" hasDefault="YES" />
 </macros>
 <pvsets>

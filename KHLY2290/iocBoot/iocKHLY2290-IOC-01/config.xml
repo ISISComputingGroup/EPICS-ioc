@@ -7,7 +7,7 @@
 <xi:include href="../../../COMMON/BAUD9600.xml" />
 <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." defaultValue="8" hasDefault="YES" />
 <xi:include href="../../../COMMON/PARITYNONE.xml" />
-<macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
+<xi:include href="../../../COMMON/STOP1.xml" />
 <macro name="HARDFLOWCNTL" pattern="^Y|N$" description="Hardware serial communication flow control (RTS/CTS), defaults to N." defaultValue="N" hasDefault="YES" />
 <macro name="SOFTFLOWCNTL" pattern="^Y|N$" description="Sotfware serial communication flow control (XON/XOFF) defaults to Y." defaultValue="Y" hasDefault="YES" />
 </macros>

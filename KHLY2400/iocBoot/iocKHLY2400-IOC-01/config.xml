@@ -7,7 +7,7 @@
 <macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 19200." defaultValue="19200" hasDefault="YES" />
 <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." defaultValue="8" hasDefault="YES" />
 <xi:include href="../../../COMMON/PARITYNONE.xml" />
-<macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
+<xi:include href="../../../COMMON/STOP1.xml" />
 <macro name="OEOS" pattern="^.*$" description="Serial communication output terminator, defaults to \\r\\n." defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="IEOS" pattern="^.*$" description="Serial communication input terminator, defaults to \\r\\n." defaultValue="\\r\\n" hasDefault="YES" />
 <macro name="HARDFLOWCNTL" pattern="^Y|N$" description="Hardware serial communication flow control (RTS/CTS), defaults to N." defaultValue="N" hasDefault="YES" />

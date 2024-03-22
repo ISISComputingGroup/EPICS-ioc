@@ -8,7 +8,7 @@
 <macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate (Default: 38400)." defaultValue="38400" hasDefault="YES" />
 <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits (Default: 8)." defaultValue="8" hasDefault="YES" />
 <xi:include href="../../../COMMON/PARITYNONE.xml" />
-<macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit (Default: 1)." defaultValue="1" hasDefault="YES" />
+<xi:include href="../../../COMMON/STOP1.xml" />
 <macro name="VERSION" pattern="^[01]$" description="The version of sample changer. HRPD: 1; others: 0 (Default:0)" defaultValue="0" hasDefault="YES" />
 </macros>
 </config_part>

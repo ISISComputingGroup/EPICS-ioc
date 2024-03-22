@@ -10,7 +10,7 @@
 <xi:include href="../../../COMMON/BAUD9600.xml" />
 <macro name="BITS" pattern="^[7-8]$" description="Data bits (default: 7)" defaultValue="7" hasDefault="YES" />
 <macro name="PARITY" pattern="^(even|odd|none)$" description="Parity (default: even)" defaultValue="even" hasDefault="YES" />
-<macro name="STOP" pattern="^[0-2]$" description="Stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
+<xi:include href="../../../COMMON/STOP1.xml" />
 
 <macro name="AXIS1" pattern="^(yes|no)$" description="Motor is attached to axis 1 (default: no)" defaultValue="no" hasDefault="YES" />
 <macro name="AXIS2" pattern="^(yes|no)$" description="Motor is attached to axis 2 (default: no)" defaultValue="no" hasDefault="YES" />
