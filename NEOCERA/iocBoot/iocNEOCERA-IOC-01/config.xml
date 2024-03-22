@@ -5,7 +5,7 @@
   <ioc_details>https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Neocera-LTC-21</ioc_details>
   <macros>
     <xi:include href="../../../COMMON/PORT.xml" />
-    <macro name="BAUD" pattern="^[A-Z0-9]+$" description="Baud rate for device (default: 9600)" defaultValue="9600" hasDefault="YES" />
+    <xi:include href="../../../COMMON/BAUD9600.xml" />
   </macros>
  </config_part>
 </ioc_config>
