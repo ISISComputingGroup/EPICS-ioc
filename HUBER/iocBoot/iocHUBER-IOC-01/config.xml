@@ -4,7 +4,7 @@
 <ioc_desc>Huber Motor Controller</ioc_desc>
 <ioc_details></ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<xi:include href="../../../COMMON/PORT.xml" />
 <macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="NO" />
 <macro name="NUMBERAXES" pattern="^([1-9]|(1[1-6]))$" description="Number of Axes on the Controller" defaultValue="5" hasDefault="YES" />
 <macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 19200)" defaultValue="9600" hasDefault="YES" />
