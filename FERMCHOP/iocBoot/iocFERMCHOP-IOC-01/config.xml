@@ -6,7 +6,7 @@
 <xi:include href="../../../COMMON/PORT.xml" />
 <xi:include href="../../../COMMON/BAUD9600.xml" />
 <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." defaultValue="8" hasDefault="YES" />
-<macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." defaultValue="none" hasDefault="YES" />
+<xi:include href="../../../COMMON/PARITYNONE.xml" />
 <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
 <macro name="INST" pattern="^(merlin)|(maps)$" description="Instrument (affects communication protocol). Defaults to merlin." defaultValue="merlin" hasDefault="YES" />
 <macro name="MHZ" pattern="^[0-9]*\.?[0-9]*$" description="Chopper crystal frequency in MHz. Should be 50.4 on merlin and 18.0 on maps. Defaults to 50.4." defaultValue="50.4" hasDefault="YES" />

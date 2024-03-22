@@ -9,7 +9,7 @@
 <xi:include href="../../../COMMON/PORT.xml" />
 <xi:include href="../../../COMMON/BAUD9600.xml" />
 <macro name="BITS" pattern="^[7-8]$" description="Data bits (default: 8)" defaultValue="8" hasDefault="YES" />
-<macro name="PARITY" pattern="^(even|odd|none)$" description="Parity (default: none)" defaultValue="none" hasDefault="YES" />
+<xi:include href="../../../COMMON/PARITYNONE.xml" />
 <macro name="STOP" pattern="^[0-2]$" description="Stop bits (default: 2)" defaultValue="2" hasDefault="YES" />
 
 <macro name="MSTP1" pattern="^[0-9]*\.?[0-9]*$" description="Motor resolution in steps/unit (default: 200)" defaultValue="200" hasDefault="YES" />

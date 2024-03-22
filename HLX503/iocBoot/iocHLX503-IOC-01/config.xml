@@ -7,7 +7,7 @@
     <xi:include href="../../../COMMON/PORT.xml" />
     <xi:include href="../../../COMMON/BAUD9600.xml" />
     <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 8." defaultValue="8" hasDefault="YES" />
-    <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to none." defaultValue="none" hasDefault="YES" />
+    <xi:include href="../../../COMMON/PARITYNONE.xml" />
     <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 2." defaultValue="2" hasDefault="YES" />
 
     <macro name="SORB_SENSOR" pattern="^[1-3]$" description="The sensor corresponding to the sorb." hasDefault="YES" defaultValue="1" />
