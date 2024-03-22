@@ -7,7 +7,7 @@
 
 <macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="NO" />
 <xi:include href="../../../COMMON/PORT.xml" />
-<macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
+<xi:include href="../../../COMMON/BAUD9600.xml" />
 <macro name="BITS" pattern="^[7-8]$" description="Data bits (default: 8)" defaultValue="8" hasDefault="YES" />
 <macro name="PARITY" pattern="^(even|odd|none)$" description="Parity (default: none)" defaultValue="none" hasDefault="YES" />
 <macro name="STOP" pattern="^[0-2]$" description="Stop bits (default: 2)" defaultValue="2" hasDefault="YES" />

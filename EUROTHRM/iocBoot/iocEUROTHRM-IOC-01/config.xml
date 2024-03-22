@@ -4,7 +4,7 @@
 <ioc_desc>Eurotherm PID controller</ioc_desc>
 <macros>
 <xi:include href="../../../COMMON/PORT.xml" />
-<macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 9600." defaultValue="9600" hasDefault="YES" />
+<xi:include href="../../../COMMON/BAUD9600.xml" />
 <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 7." defaultValue="7" hasDefault="YES" />
 <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to even." defaultValue="even" hasDefault="YES" />
 <macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
