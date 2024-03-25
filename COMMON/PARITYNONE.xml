@@ -1,1 +1,1 @@
-<macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity (Default: None)." defaultValue="None" hasDefault="YES" />
+<macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity (Default: none)." defaultValue="none" hasDefault="YES" />
