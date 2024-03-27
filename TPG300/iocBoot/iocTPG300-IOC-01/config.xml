@@ -3,7 +3,7 @@
     <config_part>
         <ioc_desc>Pfeiffer TPG x00 pressure sensor (300/500)</ioc_desc>
         <macros>
-            <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
+            <xi:include href="../../../COMMON/PORT.xml" />
             <macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address - for use ONLY on 500 models" hasDefault="NO" />
             <macro name="PRESA1ON" pattern="^Y|N$" description="Set to Y if measurement circuit A1 is connected (default:Y)" defaultValue="Y" hasDefault="YES" />
             <macro name="PRESA2ON" pattern="^Y|N$" description="Set to Y if measurement circuit A2 is connected (default:Y)" defaultValue="Y" hasDefault="YES" />
