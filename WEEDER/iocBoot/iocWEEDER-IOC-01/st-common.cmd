@@ -28,7 +28,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-ReadASCIIConfigure("READASCII", "", $(STEP_NUMBER=20), 1)
+ReadASCIIConfigure("READASCII", "", 1, $(STEP_NUMBER=20), 1)
 
 ## Load our record instances
 dbLoadRecords("$(WEEDER)/db/devWeeder.db","P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ADDRESS=$(ADDRESS=A)")

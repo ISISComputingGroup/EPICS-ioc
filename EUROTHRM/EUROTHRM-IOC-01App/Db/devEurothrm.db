@@ -91,7 +91,6 @@ record(stringout, "$(P)RAMP_FILE:SP")
 {
     field(DTYP, "asynOctetWrite")
     field(OUT,  "@asyn($(READ),0,1)DIR")
-    field(SCAN, "I/O Intr")
 }
 
 # This set point is passed to the ReadASCII ramp, which decides what value to pass on to the device.
@@ -99,10 +98,13 @@ record(ao, "$(P)TEMP:SP")
 {
     field(DESC, "Temperature setpoint")
     field(DTYP, "asynFloat64")
+    $(IFNEEDLE_VALVE) field(DRVH, "320") #The maximum temperature for Eurotherms, also close to 16bit signed max that can be sent via modbus
     field(OUT, "@asyn($(READ),0,1)TGT")
 # I/O intr FLNK won't process until we trigger PROC via CA
     field(FLNK, "$(P)OUT_SP.PROC CA")
     field(EGU, "K")
+    $(IFNEEDLE_VALVE) field(ASG, "MANAGER")
+    field(UDFS, "NO_ALARM") 
     info(INTEREST, "HIGH")
     info(archive, "VAL")
 }
@@ -464,6 +466,12 @@ record(seq, "$(P)READ_SLOW4") {
     field(LNK1, "$(P)P.PROC")
     field(LNK2, "$(P)I.PROC")
     field(LNK3, "$(P)D.PROC")
+	$(IFNEEDLE_VALVE) field(LNK4, "$(P)FLOW.PROC")
+	$(IFNEEDLE_VALVE) field(LNK5, "$(P)MANUAL_FLOW.PROC")
+	$(IFNEEDLE_VALVE) field(LNK6, "$(P)FLOW_SP_LOWLIM.PROC")
+	$(IFNEEDLE_VALVE) field(LNK7, "$(P)FLOW_SP_MODE_SELECT.PROC")
+	$(IFNEEDLE_VALVE) field(LNK8, "$(P)VALVE_DIR.PROC")
+	$(IFNEEDLE_VALVE) field(LNK9, "$(P)NEEDLE_VALVE_STOP.PROC")
 }
 
 ####
@@ -578,7 +586,7 @@ record(ao, "$(P)OUTPUT_RATE:SP") {
     $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),37,1000)MODBUS_DATA")
     $(IFNOTUSES_BISYNCH) field(ASLO, "$(OUTPUT_RATE_SCALING)")
     
-    field(DRVH, "32767")
+    field(DRVH, "32767") #16bit signed max, without this drvh, the setpoint will overflow back into negative numbers due to modbus communication protocol use of 16 bit.
     field(DRVL, "0")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:OUTPUT_RATE:SP")
@@ -861,6 +869,7 @@ record(ao, "$(P)_SP") {
     $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),2,1000)MODBUS_DATA")
     $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
     
+    field(UDFS, "NO_ALARM")
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:TEMP:SP")
     field(SDIS, "$(Q)DISABLE")

@@ -25,7 +25,7 @@ epicsEnvSet "READASCII_NAME" "READASCII"
 epicsEnvSet "FILELIST_NAME" "RAMPFILELIST"
 
 FileListConfigure("$(FILELIST_NAME)", "$(RAMP_DIR)", "$(RAMP_PAT)") 
-ReadASCIIConfigure("$(READASCII_NAME)", "$(RAMP_DIR)", 20)
+ReadASCIIConfigure("$(READASCII_NAME)", "$(RAMP_DIR)", 1, 20)
 
 ## Load record instances
 

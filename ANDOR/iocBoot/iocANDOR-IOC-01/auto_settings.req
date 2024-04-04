@@ -1,0 +1,5 @@
+file "andorCCD_settings.req",     P=$(P),  R=cam1:
+# Comment out the following line if there is no Shamrock spectrograph
+file "shamrock_settings.req",     P=$(P),  R=sham1:
+file "NDStdArrays_settings.req",  P=$(P),  R=image1:
+file "commonPlugin_settings.req", P=$(P)

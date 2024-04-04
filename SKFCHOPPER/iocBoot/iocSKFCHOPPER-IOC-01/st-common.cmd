@@ -1,9 +1,10 @@
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-## For real device use:
-$(IFNOTRECSIM) drvAsynIPPortConfigure("$(CHOP)","$(IPADDR):$(IPPORT=502)",0,0,1)
+$(IFDEVSIM) drvAsynIPPortConfigure("$(CHOP)", "localhost:$(EMULATOR_PORT=57677)")
 
+## For real device use:
+$(IFNOTRECSIM) $(IFNOTDEVSIM) drvAsynIPPortConfigure("$(CHOP)","$(IPADDR):$(IPPORT=502)",0,0,1)
 #drvAsynIPPortConfigure(const char *portName,
 #                       const char *hostInfo,
 #                       unsigned int priority,
@@ -15,7 +16,7 @@ $(IFNOTRECSIM) drvAsynIPPortConfigure("$(CHOP)","$(IPADDR):$(IPPORT=502)",0,0,1)
 #                      modbusLinkType linkType,
 #                      int timeoutMsec, 
 #                      int writeDelayMsec)
-$(IFNOTRECSIM) modbusInterposeConfig("$(CHOP)",0,5000,0)
+$(IFNOTRECSIM) modbusInterposeConfig("$(CHOP)",0,5000,0,$(SKIP_TRANSACTION_ID=0))
 
 # load modbus definitions for use by SKFChopper.db, this used $(CHOP)
 < $(SKFCHOPPER)/data/SKFChopper.cmd
@@ -27,6 +28,7 @@ $(IFNOTRECSIM) modbusInterposeConfig("$(CHOP)",0,5000,0)
 
 ## Load our record instances
 dbLoadRecords("$(SKFCHOPPER)/db/SKFChopper.db","P=$(MYPVPREFIX)$(IOCNAME):,CHOP=$(CHOP),NAME=$(NAME),OPEN=$(OPEN),CLOSED=$(CLOSED),RECSIM=$(RECSIM)")
+dbLoadRecords("$(SKFCHOPPER)/db/peak_positions.db","P=$(MYPVPREFIX)$(IOCNAME):,CHOP=$(CHOP)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

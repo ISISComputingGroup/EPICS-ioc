@@ -3,11 +3,11 @@
 <config_part>
 <ioc_desc>Eurotherm PID controller</ioc_desc>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
-<macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 9600." defaultValue="9600" hasDefault="YES" />
+<xi:include href="../../../COMMON/PORT.xml" />
+<xi:include href="../../../COMMON/BAUD9600.xml" />
 <macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits, defaults to 7." defaultValue="7" hasDefault="YES" />
 <macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity, defaults to even." defaultValue="even" hasDefault="YES" />
-<macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
+<xi:include href="../../../COMMON/STOP1.xml" />
 <macro name="COMMS_MODE" pattern="^(eibisynch)|(modbus)$" description="Comms mode, eibisynch or modbus. Defaults to eibisynch." defaultValue="eibisynch" hasDefault="YES" />
 
 <macro name="ADDR_1" pattern="^[0-9]{1,2}$" description="Address for the 1st Eurotherm on this port e.g. 01. Blank for do not use." hasDefault="NO" />
@@ -22,6 +22,10 @@
 <macro name="ADDR_10" pattern="^[0-9]{1,2}$" description="Address for the 10th Eurotherm on this port e.g. 10. Blank for do not use." hasDefault="NO" />
 
 <macro name="LOCAL_CALIB" pattern="^(yes)|(no)$" description="Use local instrument calibration directory instead of common one? Default is no." defaultValue="no" hasDefault="YES" />
+<macro name="NEEDLE_VALVE" pattern="^(yes)|(no)$" description="Use extra functionality for the Automatic needle valve controller?" defaultValue="no" hasDefault="YES" />
+<!--hidden for now, enable in globals.txt -->
+<!--macro name="NEEDLE_VALVE_TOGGLE_WRITE" pattern="^(yes)|(no)$" description="Whether to toggle write access to temp/flow based on mode of needle valve controller?" defaultValue="yes" hasDefault="YES" /-->
+<macro name="TEMPERATURE_HIGH_LIMIT" pattern=" ^([0-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[0-1][0-9]|320)$" description="Set high limit for temperature setpoint. NOTE: 320 is Eurotherm limit, you cannot set above this." defaultValue="320" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>

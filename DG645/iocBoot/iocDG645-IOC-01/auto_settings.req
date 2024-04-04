@@ -1,1 +1,2 @@
-file configMenu_settings.req P=$(P),CONFIG=dgconfig
+file "configMenu_settings.req" "P=$(P)AS:$(R),CONFIG=dgconfig"
+file "drvDG645_settings.req" "P=$(P),R=$(R)"
