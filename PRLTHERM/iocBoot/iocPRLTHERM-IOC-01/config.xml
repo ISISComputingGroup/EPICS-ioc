@@ -4,7 +4,7 @@
         <ioc_desc>PEARL Thermometry</ioc_desc>
         <ioc_details>Reads 16 individual temperature channels from a NI cDAQ device</ioc_details>
         <macros>
-            <macro name="HOST" pattern="^[a-zA-Z0-9_-]+$" description="cDAQ chassis hostname" defaultValue="cDAQ9181-189F9A3" hasDefault="YES" />
+            <macro name="HOST" pattern="^[a-zA-Z0-9_-]+$" description="cDAQ chassis hostname" hasDefault="NO" />
 
             <macro name="UNITS"         pattern="^[a-zA-Z0-9_-]+$" description="Units for all channels" defaultValue="K"    hasDefault="YES" />
             <macro name="TC_TYPE"       pattern="^[a-zA-Z0-9_-]+$" description="Thermocouple type for all channels"  defaultValue="K_Type_TC"       hasDefault="YES" />
