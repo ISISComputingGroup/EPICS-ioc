@@ -70,6 +70,9 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
+# Add OPENSSL FOR STATIC
+USR_LDFLAGS += -L$(OPENSSL)/lib/$(EPICS_HOST_ARCH)
+
 #===========================
 
 include $(TOP)/configure/RULES
