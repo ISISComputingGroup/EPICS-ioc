@@ -70,8 +70,9 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
-# Add OpenSSL for static linking
-USR_LDFLAGS_WIN32 += -libpath:$(OPENSSL)/lib/$(EPICS_HOST_ARCH)
+# Add OpenSSL for static linking that is auto-linked via #pragma in net-snmp headers
+$(APPNAME)_LDFLAGS_WIN32 += -libpath:$(OPENSSL)/lib/$(EPICS_HOST_ARCH)
+$(APPNAME)_SYS_LIBS_WIN32 += crypt32
 
 #===========================
 
