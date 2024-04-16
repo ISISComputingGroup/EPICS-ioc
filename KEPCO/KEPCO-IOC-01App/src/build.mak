@@ -17,6 +17,7 @@ DBD += $(APPNAME).dbd
 
 # KEPCO-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
+$(APPNAME)_DBD += qsrv.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
@@ -32,6 +33,7 @@ $(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
 $(APPNAME)_DBD += cvtRecord.dbd
+$(APPNAME)_DBD += PVAServerRegister.dbd
 
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
@@ -46,7 +48,7 @@ $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave std calc sscan
 $(APPNAME)_LIBS += utilities  libjson zlib efsw pcrecpp pcre
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
-$(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += seq pv qsrv
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 
@@ -61,6 +63,7 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 #$(APPNAME)_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
+$(APPNAME)_LIBS += $(EPICS_BASE_PVA_CORE_LIBS)
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
