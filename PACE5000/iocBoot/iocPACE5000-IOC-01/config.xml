@@ -3,7 +3,7 @@
 <config_part>
 <ioc_desc>PACE 5000 Modular Pressure Controller</ioc_desc>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<xi:include href="../../../COMMON/PORT.xml" />
 <macro name="VENT_THRESHOLD" pattern="" description="Lower threshold to enable venting (bar)" hasDefault="YES" defaultValue="2" />
 </macros>
 <pvsets>
