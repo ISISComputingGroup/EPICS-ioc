@@ -1,0 +1,13 @@
+file  lvremote_binary.template { 
+  pattern 
+    {DEVICE, P, NAME, IND, CONTROL, ZERO, ONE, VI, PORT, READONLY, DESCRIPTION, SCAN}
+    
+    {"TEST_VI", "\$(P)", "BUTTON", "Boolean Ind", "Button", "Off", "On", "C:/Instrument/Dev/ibex_vis/VIsForTesting/Labview Remote Service Test VI.vi", "\$(NUM_PORT)", "", "Test Boolean", "1 second"}
+}
+
+file  lvremote_double.template { 
+  pattern 
+    {DEVICE, P, NAME, IND, CONTROL, VI, PORT, READONLY, DESCRIPTION, SCAN}
+    
+    {"TEST_VI", "\$(P)", "BUTTON", "Double Ind", "Double Control", "C:/Instrument/Dev/ibex_vis/VIsForTesting/Labview Remote Service Test VI.vi", "\$(NUM_PORT)", "", "Test Double", "1 second"}
+}

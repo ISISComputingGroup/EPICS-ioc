@@ -1,0 +1,51 @@
+# Template file for remote labview services binary values (e.g. buttons or LEDs)
+# Substitutions
+# DEVICE - The Device name
+# P - The PV prefix (This should usually be substituted for $(P))
+# NAME - The name of the pv
+# IND - The indicator of the value to read from labview
+# CONTROL - The control to write to, can be left out of substitution if readonly
+# VI - The path to the VI on the host computer as a string.
+# PORT - The Port to read (by default, L0 for Strings and L1 for Binary)
+# READONLY - Whether or not a value is readonly, should be "#" when true and "" when false.
+# DESCRIPTION - The description of the PV, will be appended to "Readback for " and "Setpoint for " 
+# SCAN - Scan rate for the readback
+
+
+record(ai, "$(P)$(DEVICE):$(NAME)") {
+    field(DESC, "Readback for $(DESCRIPTION)")
+    field(DTYP, "stream")
+    field(INP,  "@lvremote_num.proto getBoolVal($(VI),$(IND)) $(PORT)")
+    field(SCAN, "$(SCAN)")
+
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME) PP")
+}
+
+$(READONLY)record(ao, "$(P)$(DEVICE):$(NAME):SP") {
+$(READONLY)    field(DESC, "Setpoint for $(DESCRIPTION)")
+$(READONLY)    field(DTYP, "stream")
+$(READONLY)    field(OUT,  "@lvremote_num.proto setBoolVal($(VI),$(CONTROL="")) $(PORT)")
+$(READONLY)    field(SCAN, "Passive")
+
+$(READONLY)    field(SIML, "$(P)SIM")
+$(READONLY)    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME):SP PP")
+$(READONLY)}
+
+$(READONLY)record(ai, "$(P)$(DEVICE):$(NAME):SP:RBV") {
+$(READONLY)    field(DESC, "Setpoint Readback for $(DESCRIPTION)")
+$(READONLY)    field(DTYP, "stream")
+$(READONLY)    field(INP,  "@lvremote_num.proto getBoolVal($(VI),$(CONTROL="")) $(PORT)")
+$(READONLY)    field(SCAN, "$(SCAN)")
+
+$(READONLY)    field(SIML, "$(P)SIM")
+$(READONLY)    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME) PP")
+$(READONLY)}
+
+record(bo, "$(P)SIM:$(DEVICE):$(NAME)") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+$(READONLY)alias("$(P)SIM:$(DEVICE):$(NAME)","$(P)SIM:$(DEVICE):$(NAME):SP")
