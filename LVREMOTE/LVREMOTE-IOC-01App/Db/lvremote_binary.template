@@ -57,3 +57,5 @@ record(bo, "$(P)SIM:$(DEVICE):$(NAME)")
 }
 
 $(READONLY)alias("$(P)SIM:$(DEVICE):$(NAME)","$(P)SIM:$(DEVICE):$(NAME):SP")
+
+

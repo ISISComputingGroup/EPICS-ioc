@@ -9,5 +9,5 @@ file  lvremote_double.template {
   pattern 
     {DEVICE, P, NAME, IND, CONTROL, VI, PORT, READONLY, DESCRIPTION, SCAN}
     
-    {"TEST_VI", "\$(P)", "BUTTON", "Double Ind", "Double Control", "C:/Instrument/Dev/ibex_vis/VIsForTesting/Labview Remote Service Test VI.vi", "\$(NUM_PORT)", "", "Test Double", "1 second"}
+    {"TEST_VI", "\$(P)", "DOUBLE", "Double Ind", "Double Control", "C:/Instrument/Dev/ibex_vis/VIsForTesting/Labview Remote Service Test VI.vi", "\$(NUM_PORT)", "", "Test Double", "1 second"}
 }

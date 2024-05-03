@@ -1,4 +1,4 @@
-# Template file for remote labview services binary values (e.g. buttons or LEDs)
+# Template file for remote labview services Double values (e.g. buttons or LEDs)
 # Substitutions
 # DEVICE - The Device name
 # P - The PV prefix (This should usually be substituted for $(P))
@@ -15,7 +15,7 @@
 record(ai, "$(P)$(DEVICE):$(NAME)") {
     field(DESC, "Readback for $(DESCRIPTION)")
     field(DTYP, "stream")
-    field(INP,  "@lvremote_num.proto getBoolVal($(VI),$(IND)) $(PORT)")
+    field(INP,  "@lvremote_num.proto getDoubleVal($(VI),$(IND)) $(PORT)")
     field(SCAN, "$(SCAN)")
 
     field(SIML, "$(P)SIM")
@@ -25,7 +25,7 @@ record(ai, "$(P)$(DEVICE):$(NAME)") {
 $(READONLY)record(ao, "$(P)$(DEVICE):$(NAME):SP") {
 $(READONLY)    field(DESC, "Setpoint for $(DESCRIPTION)")
 $(READONLY)    field(DTYP, "stream")
-$(READONLY)    field(OUT,  "@lvremote_num.proto setBoolVal($(VI),$(CONTROL="")) $(PORT)")
+$(READONLY)    field(OUT,  "@lvremote_num.proto setDoubleVal($(VI),$(CONTROL="")) $(PORT)")
 $(READONLY)    field(SCAN, "Passive")
 
 $(READONLY)    field(SIML, "$(P)SIM")
@@ -35,7 +35,7 @@ $(READONLY)}
 $(READONLY)record(ai, "$(P)$(DEVICE):$(NAME):SP:RBV") {
 $(READONLY)    field(DESC, "Setpoint Readback for $(DESCRIPTION)")
 $(READONLY)    field(DTYP, "stream")
-$(READONLY)    field(INP,  "@lvremote_num.proto getBoolVal($(VI),$(CONTROL="")) $(PORT)")
+$(READONLY)    field(INP,  "@lvremote_num.proto getDoubleVal($(VI),$(CONTROL="")) $(PORT)")
 $(READONLY)    field(SCAN, "$(SCAN)")
 
 $(READONLY)    field(SIML, "$(P)SIM")
@@ -49,3 +49,5 @@ record(bo, "$(P)SIM:$(DEVICE):$(NAME)")
 }
 
 $(READONLY)alias("$(P)SIM:$(DEVICE):$(NAME)","$(P)SIM:$(DEVICE):$(NAME):SP")
+
+
