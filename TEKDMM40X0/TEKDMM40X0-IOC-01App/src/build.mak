@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application TEKDMM4040-IOC-01
+# Build the IOC application TEKDMM40X0-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# TEKDMM4040-IOC-01.dbd will be created and installed
+# TEKDMM40X0-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# TEKDMM4040-IOC-01.dbd will be made up from these files:
+# TEKDMM40X0-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += icpconfig.dbd
@@ -45,7 +45,7 @@ $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += asyn calc sscan
 $(APPNAME)_LIBS += seq pv
 
-# TEKDMM4040-IOC-01_registerRecordDeviceDriver.cpp derives from TEKDMM4040-IOC-01.dbd
+# TEKDMM40X0-IOC-01_registerRecordDeviceDriver.cpp derives from TEKDMM40X0-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
