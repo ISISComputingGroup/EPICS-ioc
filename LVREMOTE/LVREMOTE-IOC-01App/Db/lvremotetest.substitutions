@@ -11,3 +11,17 @@ file  lvremote_double.template {
     
     {"TEST_VI", "\$(P)", "DOUBLE", "Double Ind", "Double Control", "C:/Instrument/Dev/ibex_vis/VIsForTesting/Labview Remote Service Test VI.vi", "\$(NUM_PORT)", "", "Test Double", "1 second"}
 }
+
+file  lvremote_enum.template { 
+  pattern 
+    {DEVICE, P, NAME, IND, CONTROL, VI, PORT, PORT2, READONLY, DESCRIPTION, SCAN, ZRST, ONST, TWST, THST, ZRVL, ONVL, TWVL, THVL}
+    
+    {"TEST_VI", "\$(P)", "ENUM", "Enum String", "Enum", "C:/Instrument/Dev/ibex_vis/VIsForTesting/Labview Remote Service Test VI.vi", "\$(NUM_PORT)", "\$(STRING_PORT)", "", "Test Enum", "1 second", "EnumVal1", "EnumVal2", "EnumVal3", "EnumVal4", "0", "1", "2", "3"}
+}
+
+file lvremote_string.template {
+  pattern
+  {DEVICE, P, NAME, IND, CONTROL, VI, PORT, READONLY, DESCRIPTION, SCAN}
+
+  {"TEST_VI", "\$(P)", "STRING", "String Ind","String Control", "C:/Instrument/Dev/ibex_vis/VIsForTesting/Labview Remote Service Test VI.vi", "\$(STRING_PORT)", "", "Test String", "1 second"}
+}
