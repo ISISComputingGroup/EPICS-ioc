@@ -1,4 +1,4 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(LVREMOTE)/data"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/data"
 epicsEnvSet "STRING_PORT" "L0"
 epicsEnvSet "NUM_PORT" "L1"
 
