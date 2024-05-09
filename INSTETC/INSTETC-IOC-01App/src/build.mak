@@ -18,8 +18,20 @@ instetcSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# INSTETC-IOC-01.dbd will be created and installed from INSTETC-IOC-01Include.dbd 
+# INSTETC-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
+$(APPNAME)_DBD += base.dbd
+$(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += devIocStats.dbd
+$(APPNAME)_DBD += icpconfig.dbd
+$(APPNAME)_DBD += pvdump.dbd
+$(APPNAME)_DBD += asSupport.dbd
+$(APPNAME)_DBD += caPutLog.dbd
+$(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += asubFunctions.dbd
+$(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += busySupport.dbd
+$(APPNAME)_DBD += INSTETCSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##

@@ -16,7 +16,18 @@ PROD_IOC = $(APPNAME)
 DBD += $(APPNAME).dbd
 
 # ASTRIUM-IOC-01.dbd will be made up from these files:
-$(APPNAME)_DBD += $(TOP)/ASTRIUM-IOC-01App/src/astriumInclude.dbd
+$(APPNAME)_DBD += base.dbd
+$(APPNAME)_DBD += calcSupport.dbd
+$(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += drvAsynSerialPort.dbd
+$(APPNAME)_DBD += icpconfig.dbd
+$(APPNAME)_DBD += pvdump.dbd
+$(APPNAME)_DBD += asSupport.dbd
+$(APPNAME)_DBD += devIocStats.dbd
+$(APPNAME)_DBD += caPutLog.dbd
+$(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += astriumSupport.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
