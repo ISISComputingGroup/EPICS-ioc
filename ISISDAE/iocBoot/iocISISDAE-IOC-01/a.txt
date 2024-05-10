@@ -1,0 +1,717 @@
+#!../../bin/windows-x64-debug/ISISDAE-IOC-01
+## You may have to change ISISDAE-IOC-01 to something else
+## everywhere it appears in this file
+# Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
+errlogInit2(65536, 4096)
+< envPaths
+epicsEnvSet("IOC","iocISISDAE-IOC-01")
+epicsEnvSet("TOP","C:/Instrument/Apps/EPICS-DEBUG3/ioc/master/ISISDAE")
+epicsEnvSet("ONCRPC","C:/Instrument/Apps/EPICS-DEBUG3/support/oncrpc/master")
+epicsEnvSet("ACCESSSECURITY","C:/Instrument/Apps/EPICS-DEBUG3/support/AccessSecurity/master")
+epicsEnvSet("ASUBFUNCTIONS","C:/Instrument/Apps/EPICS-DEBUG3/support/asubFunctions/master")
+epicsEnvSet("ASYN","C:/Instrument/Apps/EPICS-DEBUG3/support/asyn/master")
+epicsEnvSet("AUTOSAVE","C:/Instrument/Apps/EPICS-DEBUG3/support/autosave/master")
+epicsEnvSet("BOOST","C:/Instrument/Apps/EPICS-DEBUG3/libraries/master/boost")
+epicsEnvSet("BUSY","C:/Instrument/Apps/EPICS-DEBUG3/support/busy/master")
+epicsEnvSet("CALC","C:/Instrument/Apps/EPICS-DEBUG3/support/calc/master")
+epicsEnvSet("CAPUTLOG","C:/Instrument/Apps/EPICS-DEBUG3/support/caPutLog/master")
+epicsEnvSet("CURL","C:/Instrument/Apps/EPICS-DEBUG3/support/curl/master")
+epicsEnvSet("DEVIOCSTATS","C:/Instrument/Apps/EPICS-DEBUG3/support/devIocStats/master")
+epicsEnvSet("EFSW","C:/Instrument/Apps/EPICS-DEBUG3/support/efsw/master")
+epicsEnvSet("FILELIST","C:/Instrument/Apps/EPICS-DEBUG3/support/FileList/master")
+epicsEnvSet("FILESERVER","C:/Instrument/Apps/EPICS-DEBUG3/support/FileServer/master")
+epicsEnvSet("HTMLTIDY","C:/Instrument/Apps/EPICS-DEBUG3/support/htmltidy/master")
+epicsEnvSet("ICPCONFIG","C:/Instrument/Apps/EPICS-DEBUG3/support/icpconfig/master")
+epicsEnvSet("ISISDAE","C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master")
+epicsEnvSet("LIBJSON","C:/Instrument/Apps/EPICS-DEBUG3/support/libjson/master")
+epicsEnvSet("MYSQL","C:/Instrument/Apps/EPICS-DEBUG3/support/MySQL/master")
+epicsEnvSet("PCAS","C:/Instrument/Apps/EPICS-DEBUG3/support/pcas/master")
+epicsEnvSet("PCRE","C:/Instrument/Apps/EPICS-DEBUG3/support/pcre/master")
+epicsEnvSet("PUGIXML","C:/Instrument/Apps/EPICS-DEBUG3/support/pugixml/master")
+epicsEnvSet("PVCOMPLETE","C:/Instrument/Apps/EPICS-DEBUG3/support/pvcomplete/master")
+epicsEnvSet("PVDUMP","C:/Instrument/Apps/EPICS-DEBUG3/support/pvdump/master")
+epicsEnvSet("READASCII","C:/Instrument/Apps/EPICS-DEBUG3/support/ReadASCII/master")
+epicsEnvSet("SNCSEQ","C:/Instrument/Apps/EPICS-DEBUG3/support/seq/master")
+epicsEnvSet("SQLITE","C:/Instrument/Apps/EPICS-DEBUG3/support/sqlite/master")
+epicsEnvSet("SSCAN","C:/Instrument/Apps/EPICS-DEBUG3/support/sscan/master")
+epicsEnvSet("STD","C:/Instrument/Apps/EPICS-DEBUG3/support/std/master")
+epicsEnvSet("UTILITIES","C:/Instrument/Apps/EPICS-DEBUG3/support/utilities/master")
+epicsEnvSet("WEBGET","C:/Instrument/Apps/EPICS-DEBUG3/support/webget/master")
+epicsEnvSet("ZLIB","C:/Instrument/Apps/EPICS-DEBUG3/support/zlib/master")
+epicsEnvSet("AREA_DETECTOR","C:/Instrument/Apps/EPICS-DEBUG3/support/areaDetector/master")
+epicsEnvSet("ADNED","C:/Instrument/Apps/EPICS-DEBUG3/support/areaDetector/master/ADnED")
+epicsEnvSet("FFMPEGSERVER","C:/Instrument/Apps/EPICS-DEBUG3/support/areaDetector/master/ffmpegServer")
+epicsEnvSet("ADKAFKAINTERFACE","C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master")
+epicsEnvSet("ADPLUGINKAFKA","C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master/ADPluginKafka")
+epicsEnvSet("LIBRDKAFKA","C:/Instrument/Apps/EPICS-DEBUG3/support/librdkafka/master")
+epicsEnvSet("OPENSSL","C:/Instrument/Apps/EPICS-DEBUG3/support/OpenSSL/master")
+epicsEnvSet("RECSYNC","C:/Instrument/Apps/EPICS-DEBUG3/support/recsync/master/client")
+epicsEnvSet("EPICS_ROOT","C:/Instrument/Apps/EPICS-DEBUG3")
+epicsEnvSet("EPICS_BASE","C:/Instrument/Apps/EPICS-DEBUG3/base/master")
+epicsEnvSet("SUPPORT","C:/Instrument/Apps/EPICS-DEBUG3/support")
+epicsEnvSet("ISISSUPPORT","C:/Instrument/Apps/EPICS-DEBUG3/ISIS")
+epicsEnvSet("IOCSTARTUP","C:/Instrument/Apps/EPICS-DEBUG3/iocstartup")
+epicsEnvSet("ICPBINARYDIR","C:/Instrument/Apps/EPICS-DEBUG3/ICP_Binaries")
+epicsEnvSet("ADSUPPORT","C:/Instrument/Apps/EPICS-DEBUG3/support/areaDetector/master/ADSupport")
+epicsEnvSet("ADCORE","C:/Instrument/Apps/EPICS-DEBUG3/support/areaDetector/master/ADCore")
+epicsEnvSet("OPENCV","C:/Instrument/Apps/EPICS-DEBUG3/support/OpenCV/master")
+epicsEnvSet "WIRING_DIR" "C:/Instrument/Settings/config/NDW2127/configurations/tables"
+epicsEnvSet "WIRING_PATTERN" ".*wiring.*"
+epicsEnvSet "DETECTOR_DIR" "C:/Instrument/Settings/config/NDW2127/configurations/tables"
+epicsEnvSet "DETECTOR_PATTERN" ".*det.*"
+epicsEnvSet "SPECTRA_DIR" "C:/Instrument/Settings/config/NDW2127/configurations/tables"
+epicsEnvSet "SPECTRA_PATTERN" ".*spec.*"
+epicsEnvSet "PERIOD_DIR" "C:/Instrument/Settings/config/NDW2127/configurations/tables"
+epicsEnvSet "PERIOD_PATTERN" ".*period.*"
+epicsEnvSet "TCB_DIR" "C:/Instrument/Settings/config/NDW2127/configurations/tcb"
+epicsEnvSet "TCB_PATTERN" ".*tcb.*"
+## this needs to be large enouth for DAE spectra and
+## also for areaDetector (see liveview.cmd) 
+epicsEnvSet "EPICS_CA_MAX_ARRAY_BYTES" 100000000
+cd C:/Instrument/Apps/EPICS-DEBUG3/ioc/master/ISISDAE
+## Register all support components
+dbLoadDatabase "dbd/ISISDAE-IOC-01.dbd"
+ISISDAE_IOC_01_registerRecordDeviceDriver pdbbase
+##ISIS## Run IOC initialisation 
+< C:/Instrument/Apps/EPICS-DEBUG3/iocstartup/init.cmd
+icpconfigLoad
+icpconfigLoad: ioc "ISISDAE_01" group "ISISDAE" options 0x0 host "NDW2127"
+icpconfigLoad: config base (ICPCONFIGBASE) is "C:/Instrument/Settings/config"
+icpconfigLoad: config root (ICPCONFIGROOT) is "C:/Instrument/Settings/config/NDW2127/configurations"
+icpconfigLoad: * $(SIMULATE)="0" ({initial default})
+icpconfigLoad: * $(IFSIM)="#" ({initial default})
+icpconfigLoad: * $(IFNOTSIM)=" " ({initial default})
+icpconfigLoad: * $(SIMSFX)="" ({initial default})
+icpconfigLoad: * $(DISABLE)="0" ({initial default})
+icpconfigLoad: * $(IFDISABLE)="#" ({initial default})
+icpconfigLoad: * $(IFNOTDISABLE)=" " ({initial default})
+icpconfigLoad: * $(DEVSIM)="0" ({initial default})
+icpconfigLoad: * $(IFDEVSIM)="#" ({initial default})
+icpconfigLoad: * $(IFNOTDEVSIM)=" " ({initial default})
+icpconfigLoad: * $(RECSIM)="0" ({initial default})
+icpconfigLoad: * $(IFRECSIM)="#" ({initial default})
+icpconfigLoad: * $(IFNOTRECSIM)=" " ({initial default})
+icpconfigLoad: * $(ICPCONFIGDIR)="C:/Instrument/Settings/config/NDW2127/configurations/configurations/empty_for_system_tests" ({initial default})
+icpconfigLoad: last configuration was "empty_for_system_tests" (C:/Instrument/Settings/config/NDW2127/configurations/configurations/empty_for_system_tests)
+icpconfigLoad: configuration "empty_for_system_tests"
+icpconfigLoad: loading 0 component(s) for "/configurations/empty_for_system_tests"
+icpconfigLoad: Loading default macros for "/configurations/empty_for_system_tests"
+icpconfigLoad: Loading IOC sim level "/configurations/empty_for_system_tests"
+icpconfigLoad: Loading IOC macros for "/configurations/empty_for_system_tests"
+icpconfigLoad: Loading IOC PVs for "/configurations/empty_for_system_tests"
+icpconfigLoad: Loading IOC PV sets for "/configurations/empty_for_system_tests"
+icpconfigLoad: Found 0 files for "/configurations/empty_for_system_tests"
+icpconfigLoad: loading old macro file "C:/Instrument/Settings/config/NDW2127/configurations/globals.txt"
+icpconfigLoad: * $(EUROTHRM_01__PORT)="COM5" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(EUROTHRM_01__ADDR_1)="1" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(GALIL_01__GALILADDR)="127.0.0.1" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(GALIL_01__SIMULATE)="1" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(GALIL_01__MTRCTRL)="01" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(FINS_01__PLCIP)="130.246.36.139" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(HVCAENIP0)="130.246.52.120" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(HVCAENA_01__READ_ONLY)="1" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(HVCAENA_01__IP_ADDRESS_0)="130.246.36.90" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(HVCAENA_01__SYS_TYPE_0)="0" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(HVCAENA_02__READ_ONLY_0)="1" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(HVCAENA_02__IP_ADDRESS_0)="130.246.39.45" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(HVCAENA_02__SYS_TYPE_0)="3" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(MCLEN_01__MTRCTRL)="01" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(MCLEN_01__PORT)="COM72" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(MCLEN_01__BITS)="8" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(MCLEN_01__PARITY)="none" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(MCLEN_01__AXIS1)="yes" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(MCLEN_01__CMOD1)="CLOSED" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(MCLEN_01__ACCL1)="1" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(MCLEN_01__HOME1)="6" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(MCLEN_01__VELO1)="0.5" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(MCLEN_01__ERES1)="400/4096" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(MCLEN_01__MTP1)="4000" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(ISISDAE_01__PRE_BEGIN_1)="TE:NDW2127:DAE:DUMMYPRE PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(PRE_BEGIN_1)="TE:NDW2127:DAE:DUMMYPRE PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(ISISDAE_01__POST_BEGIN_1)="TE:NDW2127:DAE:DUMMYPOST PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(POST_BEGIN_1)="TE:NDW2127:DAE:DUMMYPOST PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(ISISDAE_01__PRE_END_1)="TE:NDW2127:DAE:DUMMYPRE PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(PRE_END_1)="TE:NDW2127:DAE:DUMMYPRE PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(ISISDAE_01__POST_END_1)="TE:NDW2127:DAE:DUMMYPOST PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(POST_END_1)="TE:NDW2127:DAE:DUMMYPOST PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(ISISDAE_01__PRE_PAUSE_1)="TE:NDW2127:DAE:DUMMYPRE PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(PRE_PAUSE_1)="TE:NDW2127:DAE:DUMMYPRE PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(ISISDAE_01__POST_PAUSE_1)="TE:NDW2127:DAE:DUMMYPOST PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(POST_PAUSE_1)="TE:NDW2127:DAE:DUMMYPOST PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(ISISDAE_01__PRE_RESUME_1)="TE:NDW2127:DAE:DUMMYPRE PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(PRE_RESUME_1)="TE:NDW2127:DAE:DUMMYPRE PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(ISISDAE_01__POST_RESUME_1)="TE:NDW2127:DAE:DUMMYPOST PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(POST_RESUME_1)="TE:NDW2127:DAE:DUMMYPOST PP" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(WEBCAM_01__URL1)="http://130.246.36.116/axis-cgi/jpg/image.cgi" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(WEBCAM_01__NAME1)="IMAT" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(WEBCAM_01__URL2)="http://130.246.53.237/jpg/image.jpg" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(WEBCAM_01__NAME2)="TOSCA" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(NCINDG_01__IP_ADDR_0)="130.246.54.157" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(NCINDG_01__INDEX_0)="0" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(DELFTDCMAG_01__SIMULATE)="1" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(DG645_01__PORT)="COM77" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(AEROFLEX_01__PL_IPADDR)="130.246.49.59" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(AEROFLEX_01__DEV_TYPE)="2023A" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(AEROFLEX_01__BUS_ADDR)="1" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(CAENMCA_01__IPADDR0)="130.246.55.0" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: * $(CAENMCA_01__IPADDR1)="130.246.52.130" (C:/Instrument/Settings/config/NDW2127/configurations/globals.txt)
+icpconfigLoad: loaded 53 macros from old macro file "C:/Instrument/Settings/config/NDW2127/configurations/globals.txt" (8 ioc, 0 group)
+# define a macro with the same name as the IOC name and a blank value. This means we can use a line like
+#  $(IFIOC_GALIL_01=#) to have something that is only executed in GALIL_01 IOC
+# and you can pass to db file via A=1,$(IFIOC)= ,A=2
+# used when loading motorUtils and motors moving
+epicsEnvSet("IFIOC", "IFIOC_ISISDAE_01")
+epicsEnvSet("IFIOC_ISISDAE_01", " ")
+< C:/Instrument/Apps/EPICS-DEBUG3/iocstartup/asyn.cmd
+## defaults for asyn drivers
+## Global default is to trace only errors
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+asynSetTraceMask("", -1, 0x1)
+## Global default to send trace output to errlog (missing 3rd arg passes NULL as that parameter)
+asynSetTraceFile("", -1)
+## Global default is to print escaped ascii for any IO_* trace specified above
+## 0=none,1=ascii,2=esc,4=hex
+asynSetTraceIOMask("", -1, 0x2)
+< C:/Instrument/Apps/EPICS-DEBUG3/iocstartup/ioctesting.cmd
+# If in test dev sim mode set up values
+stringiftest("TESTDEVSIM", "", 2)
+# epicsEnvSet "DEVSIM" "1"
+# epicsEnvSet "RECSIM" "0"
+# epicsEnvSet "NOSIM" "0"
+# stringiftest("DEVSIM", "yes", 2)
+# stringiftest("RECSIM", "", 2)
+# stringiftest("NOSIM", "", 2)
+# If in test rec sim mode
+stringiftest("TESTRECSIM", "", 2)
+# epicsEnvSet "DEVSIM" "0"
+# epicsEnvSet "RECSIM" "1"
+# epicsEnvSet "NOSIM" "0"
+# stringiftest("DEVSIM", "", 2)
+# stringiftest("RECSIM", "yes", 2)
+# stringiftest("NOSIM", "", 2)
+# If in test no sim mode
+stringiftest("TESTNOSIM", "", 2)
+# epicsEnvSet "DEVSIM" "0"
+# epicsEnvSet "RECSIM" "0"
+# epicsEnvSet "NOSIM" "1"
+# stringiftest("DEVSIM", "", 2)
+# stringiftest("RECSIM", "", 2)
+# stringiftest("NOSIM", "yes", 2)
+## Create the emulator port macro and set it to either the one given or a spare port:
+# freeIPPort(SPARE_PORT)
+# epicsEnvSet "EMULATOR_PORT" 
+# epicsEnvShow("EMULATOR_PORT") 
+## For tests for older devices (e.g. galils) that were not built with devsim in mind 
+## we need to enable the following macros.
+# epicsEnvSet SIMULATE "1"
+# epicsEnvSet IFSIM " "
+# epicsEnvSet IFNOTSIM "#"
+# epicsEnvSet SIMSFX "_DEVSIM"
+# epicsEnvSet SIMULATE "1"
+# epicsEnvSet IFSIM " "
+# epicsEnvSet IFNOTSIM "#"
+# epicsEnvSet SIMSFX "_RECSIM"
+# epicsEnvSet SIMULATE "0"
+# epicsEnvSet IFSIM "#"
+# epicsEnvSet IFNOTSIM " "
+# epicsEnvSet SIMSFX "_NOSIM"
+# The search path for database files
+epicsEnvSet("EPICS_DB_INCLUDE_PATH", "C:/Instrument/Apps/EPICS-DEBUG3/support/areaDetector/master/ADCore/db")
+asynSetMinTimerPeriod(0.001)
+## used for restarting and checking EPICS block archiver via web URL
+webgetConfigure("arch1")
+webgetConfigure("arch2")
+## uncomment to disable uamps too large check
+#epicsEnvSet("NOCHECKFUAMP","1")
+## local dae, no dcom/labview
+## define max number of live detectos and max (x,y) size of each
+## we no longer support DAEDCOM macro, all access is via DCOM
+## pass 1 as second arg to signify DCOM to either local or remote dae
+## pass 2 as second arg to signify SECI mode
+## args: port,options,host,user,password,num_liveview
+##   num_liveview should match number of  liveview.cmd loaded later
+isisdaeConfigure("icp", 1, "", "", "", 12)
+## Load the FileLists
+FileListConfigure("WLIST", "C:/Instrument/Settings/config/NDW2127/configurations/tables", ".*wiring.*", 1)
+FileListConfigure("DLIST", "C:/Instrument/Settings/config/NDW2127/configurations/tables", ".*det.*", 1)
+FileListConfigure("SLIST", "C:/Instrument/Settings/config/NDW2127/configurations/tables", ".*spec.*", 1)
+FileListConfigure("PLIST", "C:/Instrument/Settings/config/NDW2127/configurations/tables", ".*period.*", 1)
+FileListConfigure("TLIST", "C:/Instrument/Settings/config/NDW2127/configurations/tcb", ".*tcb.*", 1)
+## Load record instances
+##ISIS## Load common DB records 
+< C:/Instrument/Apps/EPICS-DEBUG3/iocstartup/dbload.cmd
+#dbLoadRecords("$(TIMESTAMPRECORD)/db/timestamp.db","P=$(MYPVPREFIX)$(IOCNAME):")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/devIocStats/master/db/iocAdminSoft.db","IOC=TE:NDW2127:CS:IOC:ISISDAE_01:DEVIOS")
+#dbLoadRecords("$(ASUBFUNCTIONS)/db/iocExit.db","P=$(MYPVPREFIX),Q=CS:IOC:$(IOCNAME):,IOCNAME=$(IOCNAME)")
+< C:/Instrument/Apps/EPICS-DEBUG3/iocstartup/autosave.cmd
+## start autosave.cmd
+save_restoreSet_Debug(0)
+# status-PV prefix, so save_restore can find its status PV's.
+#epicsEnvSet("ASPREFIX","$(MYPVPREFIX)CS:IOC:$(IOCNAME):AS:")
+epicsEnvSet("ASPREFIX","TE:NDW2127:AS:ISISDAE_01:")
+save_restoreSet_status_prefix("TE:NDW2127:AS:ISISDAE_01:")
+# Ok to save/restore save sets with missing values (no CA connection to PV)?  
+save_restoreSet_IncompleteSetsOk(1)
+# Save dated backup files?
+save_restoreSet_DatedBackupFiles(1)
+# Number of sequenced backup files to write
+save_restoreSet_NumSeqFiles(1)
+# Time interval between sequenced backups
+save_restoreSet_SeqPeriodInSeconds(300)
+# specify where save files should be - use a different directory if in simulation mode
+mkdir("C:/Instrument/Var/autosave/ISISDAE_01") 
+set_savefile_path("C:/Instrument/Var/autosave", "ISISDAE_01")
+## specify what save files should be restored.  Note these files must be
+## in the directory specified in set_savefile_path(), or, if that function
+## has not been called, from the directory current when iocInit is invoked
+## example: set_pass0_restoreFile("autosave_geiger.sav")
+## restore positions at pass 0 so not passed to hardware
+##
+## Use     epicsEnvSet("AUTOSAVEREQ","#")   if you do not have any req files to load
+ set_pass0_restoreFile("ISISDAE_01_positions.sav")
+ set_pass0_restoreFile("ISISDAE_01_settings.sav")
+# restore settings at pass 1 so passed to hardware
+ set_pass1_restoreFile("ISISDAE_01_settings.sav")
+# these values are obtained from info fields in DB files via makeAutosaveFiles() / makeAutosaveFileFromDbInfo()
+set_pass0_restoreFile("ISISDAE_01_info_positions.sav")
+set_pass0_restoreFile("ISISDAE_01_info_settings.sav")
+set_pass1_restoreFile("ISISDAE_01_info_settings.sav")
+#save_restoreSet_CAReconnect(1)
+# specify directories in which to to search for included request files
+set_requestfile_path("C:/Instrument/Apps/EPICS-DEBUG3/ioc/master/ISISDAE/iocBoot/iocISISDAE-IOC-01", "")
+set_requestfile_path("C:/Instrument/Apps/EPICS-DEBUG3/support/autosave/master/asApp/Db", "")
+# Autosave status PVs - P must be same as used in save_restoreSet_status_prefix() above
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/autosave/master/asApp/Db/save_restoreStatus.db", "P=TE:NDW2127:AS:ISISDAE_01:")
+## end autosave.cmd
+epicsEnvSet("Q","DAE:")
+## Set PARALLEL=# to enable parallel DAE3
+ epicsEnvSet("IFPARALLEL","#")
+# epicsEnvSet("VETO_DELAY","1")
+# epicsEnvSet("OTHER_DAE","TE:NDW847:DAE:")
+# epicsEnvSet("VETO_1","TE:NDW2127:TEKAFG3XXX_01:OUTPUT1:STATUS:SP")
+# epicsEnvSet("VETO_2","TE:NDW2127:TEKAFG3XXX_01:OUTPUT2:STATUS:SP")
+# epicsEnvSet("ENDRUN_DAE3","TE:NDW2127:DAE:ENDRUN_DAE3")
+# epicsEnvSet("BEGINRUN_DAE3","TE:NDW2127:DAE:BEGINRUN_DAE3")
+## Load our record instances
+# dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/dae3_parallel.db","P=TE:NDW2127:, Q=DAE:, OTHER_DAE=, VETO_1=, VETO_2=, VETO_DELAY=")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/isisdae.db","S=TE:NDW2127:, P=TE:NDW2127:, Q=DAE:, WIRINGLIST=WLIST, DETECTORLIST=DLIST, SPECTRALIST=SLIST, PERIODLIST=PLIST, TCBLIST=TLIST, BEGINRUNA=TE:NDW2127:DAE:_BEGINRUN:FAN, ENDRUNA=TE:NDW2127:DAE:_ENDRUN:FAN,POST_BEGIN_1=TE:NDW2127:DAE:DUMMYPOST PP,POST_BEGIN_2=,POST_BEGIN_3=,POST_BEGIN_4=,POST_END_1=TE:NDW2127:DAE:DUMMYPOST PP,POST_END_2=,POST_END_3=,POST_END_4=,PRE_BEGIN_1=TE:NDW2127:DAE:DUMMYPRE PP,PRE_END_1=TE:NDW2127:DAE:DUMMYPRE PP")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/daecmds.db","S=TE:NDW2127:, P=TE:NDW2127:, Q=DAE:, POST_ABORT_1=,POST_ABORT_2=,POST_ABORT_3=,POST_ABORT_4=,POST_PAUSE_1=TE:NDW2127:DAE:DUMMYPOST PP,POST_PAUSE_2=,POST_PAUSE_3=,POST_PAUSE_4=,POST_RESUME_1=TE:NDW2127:DAE:DUMMYPOST PP,POST_RESUME_2=,POST_RESUME_3=,POST_RESUME_4=,PRE_PAUSE_1=TE:NDW2127:DAE:DUMMYPRE PP,PRE_PAUSE2=,PRE_PAUSE_3=,PRE_PAUSE_4=,PRE_RESUME_1=TE:NDW2127:DAE:DUMMYPRE PP,PRE_RESUME_2=,PRE_RESUME_3=,PRE_RESUME_4=,PRE_ABORT_1=,PRE_ABORT_2=,PRE_ABORT_3=,PRE_ABORT_4=")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/dae_diag.db","P=TE:NDW2127:,Q=DAE:")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/veto.db","P=TE:NDW2127:,Q=DAE:")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/settings_xml.db","P=TE:NDW2127:,Q=DAE:")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/inst_string_parameters.db","P=TE:NDW2127:")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/inst_alias_string_parameters.db","P=TE:NDW2127:")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/inst_real_parameters.db","P=TE:NDW2127:")
+cd C:/Instrument/Apps/EPICS-DEBUG3/ioc/master/ISISDAE/iocBoot/iocISISDAE-IOC-01
+#ffmpegServerConfigure(8081)
+## load same number of instances as specified to isisdaeConfigure() above
+iocshLoad "liveview.cmd", "LVDET=1,LVADDR=0"
+NDTransformConfigure("AD1RawImage1", 3, 0, "icp", 0, 0)
+NDROIConfigure("AD1ROI1", 3, 0, "AD1RawImage1", 0, 0)
+NDStdArraysConfigure("AD1Image1", 3, 0, "AD1ROI1", 0, 0)
+NDStatsConfigure("AD1Stats1", 3, 0, "AD1ROI1", 0, 0)
+NDTimeSeriesConfigure("AD1Stats1_TS", 100, 0, "AD1ROI1", 0, 22, 0, 0, 0, 0)
+## There is a TEST_areaDetector Kafka topic that can be used for testing
+KafkaPluginConfigure("AD1KFK", 3, 1, "AD1RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "NDW2127_areaDetector")
+NDPvaConfigure("AD1PVA1", 3, 0, "AD1ROI1", 0, "TE:NDW2127:DAE:AD1:pva1:pvadata", 0)
+## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
+## also NELEMENTS needs to at least nx * ny
+## This waveform 
+##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
+##  TYPE=Int32,FTVL=LONG for 32 bit integer
+##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/ADisisdae.template","P=TE:NDW2127:,R=DAE:AD1:,PORT=icp,ADDR=0,TIMEOUT=1,DATATYPE=8")
+dbLoadRecords("NDTransform.template", "P=TE:NDW2127:,R=DAE:AD1:rawimage1:,PORT=AD1RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDROI.template", "P=TE:NDW2127:,R=DAE:AD1:roi1:,PORT=AD1ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD1RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=TE:NDW2127:,R=DAE:AD1:image1:,PORT=AD1Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD1ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,TYPE=Float32,FTVL=FLOAT,NELEMENTS=100000,")
+dbLoadRecords("NDStats.template", "P=TE:NDW2127:,R=DAE:AD1:stats1:,PORT=AD1Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD1ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master/ADPluginKafka/db/ADPluginKafka.template", "P=TE:NDW2127:,R=DAE:AD1:KFK:,PORT=AD1KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD1RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDPva.template", "P=TE:NDW2127:,R=DAE:AD1:pva1:,PORT=AD1PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD1ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+## ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+#ffmpegStreamConfigure("C$(LVDET).MJPG", 2, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):stream1:,PORT=C$(LVDET).MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+#ffmpegFileConfigure("C$(LVDET).FILE", 16, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):file1:,PORT=C$(LVDET).FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("AD$(LVDET)Image1", -1, 0x11)
+iocshLoad "liveview.cmd", "LVDET=2,LVADDR=1"
+NDTransformConfigure("AD2RawImage1", 3, 0, "icp", 1, 0)
+NDROIConfigure("AD2ROI1", 3, 0, "AD2RawImage1", 0, 0)
+NDStdArraysConfigure("AD2Image1", 3, 0, "AD2ROI1", 0, 0)
+NDStatsConfigure("AD2Stats1", 3, 0, "AD2ROI1", 0, 0)
+NDTimeSeriesConfigure("AD2Stats1_TS", 100, 0, "AD2ROI1", 0, 22, 0, 0, 0, 0)
+## There is a TEST_areaDetector Kafka topic that can be used for testing
+KafkaPluginConfigure("AD2KFK", 3, 1, "AD2RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "NDW2127_areaDetector")
+NDPvaConfigure("AD2PVA1", 3, 0, "AD2ROI1", 0, "TE:NDW2127:DAE:AD2:pva1:pvadata", 0)
+## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
+## also NELEMENTS needs to at least nx * ny
+## This waveform 
+##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
+##  TYPE=Int32,FTVL=LONG for 32 bit integer
+##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/ADisisdae.template","P=TE:NDW2127:,R=DAE:AD2:,PORT=icp,ADDR=1,TIMEOUT=1,DATATYPE=8")
+dbLoadRecords("NDTransform.template", "P=TE:NDW2127:,R=DAE:AD2:rawimage1:,PORT=AD2RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=1,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDROI.template", "P=TE:NDW2127:,R=DAE:AD2:roi1:,PORT=AD2ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD2RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=TE:NDW2127:,R=DAE:AD2:image1:,PORT=AD2Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD2ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,TYPE=Float32,FTVL=FLOAT,NELEMENTS=100000,")
+dbLoadRecords("NDStats.template", "P=TE:NDW2127:,R=DAE:AD2:stats1:,PORT=AD2Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD2ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master/ADPluginKafka/db/ADPluginKafka.template", "P=TE:NDW2127:,R=DAE:AD2:KFK:,PORT=AD2KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD2RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDPva.template", "P=TE:NDW2127:,R=DAE:AD2:pva1:,PORT=AD2PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD2ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+## ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+#ffmpegStreamConfigure("C$(LVDET).MJPG", 2, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):stream1:,PORT=C$(LVDET).MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+#ffmpegFileConfigure("C$(LVDET).FILE", 16, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):file1:,PORT=C$(LVDET).FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("AD$(LVDET)Image1", -1, 0x11)
+iocshLoad "liveview.cmd", "LVDET=3,LVADDR=2"
+NDTransformConfigure("AD3RawImage1", 3, 0, "icp", 2, 0)
+NDROIConfigure("AD3ROI1", 3, 0, "AD3RawImage1", 0, 0)
+NDStdArraysConfigure("AD3Image1", 3, 0, "AD3ROI1", 0, 0)
+NDStatsConfigure("AD3Stats1", 3, 0, "AD3ROI1", 0, 0)
+NDTimeSeriesConfigure("AD3Stats1_TS", 100, 0, "AD3ROI1", 0, 22, 0, 0, 0, 0)
+## There is a TEST_areaDetector Kafka topic that can be used for testing
+KafkaPluginConfigure("AD3KFK", 3, 1, "AD3RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "NDW2127_areaDetector")
+NDPvaConfigure("AD3PVA1", 3, 0, "AD3ROI1", 0, "TE:NDW2127:DAE:AD3:pva1:pvadata", 0)
+## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
+## also NELEMENTS needs to at least nx * ny
+## This waveform 
+##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
+##  TYPE=Int32,FTVL=LONG for 32 bit integer
+##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/ADisisdae.template","P=TE:NDW2127:,R=DAE:AD3:,PORT=icp,ADDR=2,TIMEOUT=1,DATATYPE=8")
+dbLoadRecords("NDTransform.template", "P=TE:NDW2127:,R=DAE:AD3:rawimage1:,PORT=AD3RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=2,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDROI.template", "P=TE:NDW2127:,R=DAE:AD3:roi1:,PORT=AD3ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD3RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=TE:NDW2127:,R=DAE:AD3:image1:,PORT=AD3Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD3ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,TYPE=Float32,FTVL=FLOAT,NELEMENTS=100000,")
+dbLoadRecords("NDStats.template", "P=TE:NDW2127:,R=DAE:AD3:stats1:,PORT=AD3Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD3ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master/ADPluginKafka/db/ADPluginKafka.template", "P=TE:NDW2127:,R=DAE:AD3:KFK:,PORT=AD3KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD3RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDPva.template", "P=TE:NDW2127:,R=DAE:AD3:pva1:,PORT=AD3PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD3ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+## ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+#ffmpegStreamConfigure("C$(LVDET).MJPG", 2, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):stream1:,PORT=C$(LVDET).MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+#ffmpegFileConfigure("C$(LVDET).FILE", 16, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):file1:,PORT=C$(LVDET).FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("AD$(LVDET)Image1", -1, 0x11)
+iocshLoad "liveview.cmd", "LVDET=4,LVADDR=3"
+NDTransformConfigure("AD4RawImage1", 3, 0, "icp", 3, 0)
+NDROIConfigure("AD4ROI1", 3, 0, "AD4RawImage1", 0, 0)
+NDStdArraysConfigure("AD4Image1", 3, 0, "AD4ROI1", 0, 0)
+NDStatsConfigure("AD4Stats1", 3, 0, "AD4ROI1", 0, 0)
+NDTimeSeriesConfigure("AD4Stats1_TS", 100, 0, "AD4ROI1", 0, 22, 0, 0, 0, 0)
+## There is a TEST_areaDetector Kafka topic that can be used for testing
+KafkaPluginConfigure("AD4KFK", 3, 1, "AD4RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "NDW2127_areaDetector")
+NDPvaConfigure("AD4PVA1", 3, 0, "AD4ROI1", 0, "TE:NDW2127:DAE:AD4:pva1:pvadata", 0)
+## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
+## also NELEMENTS needs to at least nx * ny
+## This waveform 
+##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
+##  TYPE=Int32,FTVL=LONG for 32 bit integer
+##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/ADisisdae.template","P=TE:NDW2127:,R=DAE:AD4:,PORT=icp,ADDR=3,TIMEOUT=1,DATATYPE=8")
+dbLoadRecords("NDTransform.template", "P=TE:NDW2127:,R=DAE:AD4:rawimage1:,PORT=AD4RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=3,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDROI.template", "P=TE:NDW2127:,R=DAE:AD4:roi1:,PORT=AD4ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD4RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=TE:NDW2127:,R=DAE:AD4:image1:,PORT=AD4Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD4ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,TYPE=Float32,FTVL=FLOAT,NELEMENTS=100000,")
+dbLoadRecords("NDStats.template", "P=TE:NDW2127:,R=DAE:AD4:stats1:,PORT=AD4Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD4ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master/ADPluginKafka/db/ADPluginKafka.template", "P=TE:NDW2127:,R=DAE:AD4:KFK:,PORT=AD4KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD4RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDPva.template", "P=TE:NDW2127:,R=DAE:AD4:pva1:,PORT=AD4PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD4ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+## ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+#ffmpegStreamConfigure("C$(LVDET).MJPG", 2, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):stream1:,PORT=C$(LVDET).MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+#ffmpegFileConfigure("C$(LVDET).FILE", 16, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):file1:,PORT=C$(LVDET).FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("AD$(LVDET)Image1", -1, 0x11)
+iocshLoad "liveview.cmd", "LVDET=5,LVADDR=4"
+NDTransformConfigure("AD5RawImage1", 3, 0, "icp", 4, 0)
+NDROIConfigure("AD5ROI1", 3, 0, "AD5RawImage1", 0, 0)
+NDStdArraysConfigure("AD5Image1", 3, 0, "AD5ROI1", 0, 0)
+NDStatsConfigure("AD5Stats1", 3, 0, "AD5ROI1", 0, 0)
+NDTimeSeriesConfigure("AD5Stats1_TS", 100, 0, "AD5ROI1", 0, 22, 0, 0, 0, 0)
+## There is a TEST_areaDetector Kafka topic that can be used for testing
+KafkaPluginConfigure("AD5KFK", 3, 1, "AD5RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "NDW2127_areaDetector")
+NDPvaConfigure("AD5PVA1", 3, 0, "AD5ROI1", 0, "TE:NDW2127:DAE:AD5:pva1:pvadata", 0)
+## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
+## also NELEMENTS needs to at least nx * ny
+## This waveform 
+##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
+##  TYPE=Int32,FTVL=LONG for 32 bit integer
+##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/ADisisdae.template","P=TE:NDW2127:,R=DAE:AD5:,PORT=icp,ADDR=4,TIMEOUT=1,DATATYPE=8")
+dbLoadRecords("NDTransform.template", "P=TE:NDW2127:,R=DAE:AD5:rawimage1:,PORT=AD5RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=4,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDROI.template", "P=TE:NDW2127:,R=DAE:AD5:roi1:,PORT=AD5ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD5RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=TE:NDW2127:,R=DAE:AD5:image1:,PORT=AD5Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD5ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,TYPE=Float32,FTVL=FLOAT,NELEMENTS=100000,")
+dbLoadRecords("NDStats.template", "P=TE:NDW2127:,R=DAE:AD5:stats1:,PORT=AD5Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD5ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master/ADPluginKafka/db/ADPluginKafka.template", "P=TE:NDW2127:,R=DAE:AD5:KFK:,PORT=AD5KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD5RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDPva.template", "P=TE:NDW2127:,R=DAE:AD5:pva1:,PORT=AD5PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD5ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+## ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+#ffmpegStreamConfigure("C$(LVDET).MJPG", 2, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):stream1:,PORT=C$(LVDET).MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+#ffmpegFileConfigure("C$(LVDET).FILE", 16, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):file1:,PORT=C$(LVDET).FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("AD$(LVDET)Image1", -1, 0x11)
+iocshLoad "liveview.cmd", "LVDET=6,LVADDR=5"
+NDTransformConfigure("AD6RawImage1", 3, 0, "icp", 5, 0)
+NDROIConfigure("AD6ROI1", 3, 0, "AD6RawImage1", 0, 0)
+NDStdArraysConfigure("AD6Image1", 3, 0, "AD6ROI1", 0, 0)
+NDStatsConfigure("AD6Stats1", 3, 0, "AD6ROI1", 0, 0)
+NDTimeSeriesConfigure("AD6Stats1_TS", 100, 0, "AD6ROI1", 0, 22, 0, 0, 0, 0)
+## There is a TEST_areaDetector Kafka topic that can be used for testing
+KafkaPluginConfigure("AD6KFK", 3, 1, "AD6RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "NDW2127_areaDetector")
+NDPvaConfigure("AD6PVA1", 3, 0, "AD6ROI1", 0, "TE:NDW2127:DAE:AD6:pva1:pvadata", 0)
+## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
+## also NELEMENTS needs to at least nx * ny
+## This waveform 
+##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
+##  TYPE=Int32,FTVL=LONG for 32 bit integer
+##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/ADisisdae.template","P=TE:NDW2127:,R=DAE:AD6:,PORT=icp,ADDR=5,TIMEOUT=1,DATATYPE=8")
+dbLoadRecords("NDTransform.template", "P=TE:NDW2127:,R=DAE:AD6:rawimage1:,PORT=AD6RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=5,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDROI.template", "P=TE:NDW2127:,R=DAE:AD6:roi1:,PORT=AD6ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD6RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=TE:NDW2127:,R=DAE:AD6:image1:,PORT=AD6Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD6ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,TYPE=Float32,FTVL=FLOAT,NELEMENTS=100000,")
+dbLoadRecords("NDStats.template", "P=TE:NDW2127:,R=DAE:AD6:stats1:,PORT=AD6Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD6ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master/ADPluginKafka/db/ADPluginKafka.template", "P=TE:NDW2127:,R=DAE:AD6:KFK:,PORT=AD6KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD6RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDPva.template", "P=TE:NDW2127:,R=DAE:AD6:pva1:,PORT=AD6PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD6ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+## ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+#ffmpegStreamConfigure("C$(LVDET).MJPG", 2, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):stream1:,PORT=C$(LVDET).MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+#ffmpegFileConfigure("C$(LVDET).FILE", 16, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):file1:,PORT=C$(LVDET).FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("AD$(LVDET)Image1", -1, 0x11)
+iocshLoad "liveview.cmd", "LVDET=7,LVADDR=6"
+NDTransformConfigure("AD7RawImage1", 3, 0, "icp", 6, 0)
+NDROIConfigure("AD7ROI1", 3, 0, "AD7RawImage1", 0, 0)
+NDStdArraysConfigure("AD7Image1", 3, 0, "AD7ROI1", 0, 0)
+NDStatsConfigure("AD7Stats1", 3, 0, "AD7ROI1", 0, 0)
+NDTimeSeriesConfigure("AD7Stats1_TS", 100, 0, "AD7ROI1", 0, 22, 0, 0, 0, 0)
+## There is a TEST_areaDetector Kafka topic that can be used for testing
+KafkaPluginConfigure("AD7KFK", 3, 1, "AD7RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "NDW2127_areaDetector")
+NDPvaConfigure("AD7PVA1", 3, 0, "AD7ROI1", 0, "TE:NDW2127:DAE:AD7:pva1:pvadata", 0)
+## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
+## also NELEMENTS needs to at least nx * ny
+## This waveform 
+##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
+##  TYPE=Int32,FTVL=LONG for 32 bit integer
+##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/ADisisdae.template","P=TE:NDW2127:,R=DAE:AD7:,PORT=icp,ADDR=6,TIMEOUT=1,DATATYPE=8")
+dbLoadRecords("NDTransform.template", "P=TE:NDW2127:,R=DAE:AD7:rawimage1:,PORT=AD7RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=6,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDROI.template", "P=TE:NDW2127:,R=DAE:AD7:roi1:,PORT=AD7ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD7RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=TE:NDW2127:,R=DAE:AD7:image1:,PORT=AD7Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD7ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,TYPE=Float32,FTVL=FLOAT,NELEMENTS=100000,")
+dbLoadRecords("NDStats.template", "P=TE:NDW2127:,R=DAE:AD7:stats1:,PORT=AD7Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD7ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master/ADPluginKafka/db/ADPluginKafka.template", "P=TE:NDW2127:,R=DAE:AD7:KFK:,PORT=AD7KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD7RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDPva.template", "P=TE:NDW2127:,R=DAE:AD7:pva1:,PORT=AD7PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD7ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+## ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+#ffmpegStreamConfigure("C$(LVDET).MJPG", 2, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):stream1:,PORT=C$(LVDET).MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+#ffmpegFileConfigure("C$(LVDET).FILE", 16, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):file1:,PORT=C$(LVDET).FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("AD$(LVDET)Image1", -1, 0x11)
+iocshLoad "liveview.cmd", "LVDET=8,LVADDR=7"
+NDTransformConfigure("AD8RawImage1", 3, 0, "icp", 7, 0)
+NDROIConfigure("AD8ROI1", 3, 0, "AD8RawImage1", 0, 0)
+NDStdArraysConfigure("AD8Image1", 3, 0, "AD8ROI1", 0, 0)
+NDStatsConfigure("AD8Stats1", 3, 0, "AD8ROI1", 0, 0)
+NDTimeSeriesConfigure("AD8Stats1_TS", 100, 0, "AD8ROI1", 0, 22, 0, 0, 0, 0)
+## There is a TEST_areaDetector Kafka topic that can be used for testing
+KafkaPluginConfigure("AD8KFK", 3, 1, "AD8RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "NDW2127_areaDetector")
+NDPvaConfigure("AD8PVA1", 3, 0, "AD8ROI1", 0, "TE:NDW2127:DAE:AD8:pva1:pvadata", 0)
+## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
+## also NELEMENTS needs to at least nx * ny
+## This waveform 
+##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
+##  TYPE=Int32,FTVL=LONG for 32 bit integer
+##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/ADisisdae.template","P=TE:NDW2127:,R=DAE:AD8:,PORT=icp,ADDR=7,TIMEOUT=1,DATATYPE=8")
+dbLoadRecords("NDTransform.template", "P=TE:NDW2127:,R=DAE:AD8:rawimage1:,PORT=AD8RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=7,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDROI.template", "P=TE:NDW2127:,R=DAE:AD8:roi1:,PORT=AD8ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD8RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=TE:NDW2127:,R=DAE:AD8:image1:,PORT=AD8Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD8ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,TYPE=Float32,FTVL=FLOAT,NELEMENTS=100000,")
+dbLoadRecords("NDStats.template", "P=TE:NDW2127:,R=DAE:AD8:stats1:,PORT=AD8Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD8ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master/ADPluginKafka/db/ADPluginKafka.template", "P=TE:NDW2127:,R=DAE:AD8:KFK:,PORT=AD8KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD8RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDPva.template", "P=TE:NDW2127:,R=DAE:AD8:pva1:,PORT=AD8PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD8ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+## ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+#ffmpegStreamConfigure("C$(LVDET).MJPG", 2, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):stream1:,PORT=C$(LVDET).MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+#ffmpegFileConfigure("C$(LVDET).FILE", 16, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):file1:,PORT=C$(LVDET).FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("AD$(LVDET)Image1", -1, 0x11)
+iocshLoad "liveview.cmd", "LVDET=9,LVADDR=8"
+NDTransformConfigure("AD9RawImage1", 3, 0, "icp", 8, 0)
+NDROIConfigure("AD9ROI1", 3, 0, "AD9RawImage1", 0, 0)
+NDStdArraysConfigure("AD9Image1", 3, 0, "AD9ROI1", 0, 0)
+NDStatsConfigure("AD9Stats1", 3, 0, "AD9ROI1", 0, 0)
+NDTimeSeriesConfigure("AD9Stats1_TS", 100, 0, "AD9ROI1", 0, 22, 0, 0, 0, 0)
+## There is a TEST_areaDetector Kafka topic that can be used for testing
+KafkaPluginConfigure("AD9KFK", 3, 1, "AD9RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "NDW2127_areaDetector")
+NDPvaConfigure("AD9PVA1", 3, 0, "AD9ROI1", 0, "TE:NDW2127:DAE:AD9:pva1:pvadata", 0)
+## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
+## also NELEMENTS needs to at least nx * ny
+## This waveform 
+##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
+##  TYPE=Int32,FTVL=LONG for 32 bit integer
+##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/ADisisdae.template","P=TE:NDW2127:,R=DAE:AD9:,PORT=icp,ADDR=8,TIMEOUT=1,DATATYPE=8")
+dbLoadRecords("NDTransform.template", "P=TE:NDW2127:,R=DAE:AD9:rawimage1:,PORT=AD9RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=8,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDROI.template", "P=TE:NDW2127:,R=DAE:AD9:roi1:,PORT=AD9ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD9RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=TE:NDW2127:,R=DAE:AD9:image1:,PORT=AD9Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD9ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,TYPE=Float32,FTVL=FLOAT,NELEMENTS=100000,")
+dbLoadRecords("NDStats.template", "P=TE:NDW2127:,R=DAE:AD9:stats1:,PORT=AD9Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD9ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master/ADPluginKafka/db/ADPluginKafka.template", "P=TE:NDW2127:,R=DAE:AD9:KFK:,PORT=AD9KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD9RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDPva.template", "P=TE:NDW2127:,R=DAE:AD9:pva1:,PORT=AD9PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD9ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+## ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+#ffmpegStreamConfigure("C$(LVDET).MJPG", 2, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):stream1:,PORT=C$(LVDET).MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+#ffmpegFileConfigure("C$(LVDET).FILE", 16, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):file1:,PORT=C$(LVDET).FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("AD$(LVDET)Image1", -1, 0x11)
+iocshLoad "liveview.cmd", "LVDET=10,LVADDR=9"
+NDTransformConfigure("AD10RawImage1", 3, 0, "icp", 9, 0)
+NDROIConfigure("AD10ROI1", 3, 0, "AD10RawImage1", 0, 0)
+NDStdArraysConfigure("AD10Image1", 3, 0, "AD10ROI1", 0, 0)
+NDStatsConfigure("AD10Stats1", 3, 0, "AD10ROI1", 0, 0)
+NDTimeSeriesConfigure("AD10Stats1_TS", 100, 0, "AD10ROI1", 0, 22, 0, 0, 0, 0)
+## There is a TEST_areaDetector Kafka topic that can be used for testing
+KafkaPluginConfigure("AD10KFK", 3, 1, "AD10RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "NDW2127_areaDetector")
+NDPvaConfigure("AD10PVA1", 3, 0, "AD10ROI1", 0, "TE:NDW2127:DAE:AD10:pva1:pvadata", 0)
+## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
+## also NELEMENTS needs to at least nx * ny
+## This waveform 
+##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
+##  TYPE=Int32,FTVL=LONG for 32 bit integer
+##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/ADisisdae.template","P=TE:NDW2127:,R=DAE:AD10:,PORT=icp,ADDR=9,TIMEOUT=1,DATATYPE=8")
+dbLoadRecords("NDTransform.template", "P=TE:NDW2127:,R=DAE:AD10:rawimage1:,PORT=AD10RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=9,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDROI.template", "P=TE:NDW2127:,R=DAE:AD10:roi1:,PORT=AD10ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD10RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=TE:NDW2127:,R=DAE:AD10:image1:,PORT=AD10Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD10ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,TYPE=Float32,FTVL=FLOAT,NELEMENTS=100000,")
+dbLoadRecords("NDStats.template", "P=TE:NDW2127:,R=DAE:AD10:stats1:,PORT=AD10Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD10ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master/ADPluginKafka/db/ADPluginKafka.template", "P=TE:NDW2127:,R=DAE:AD10:KFK:,PORT=AD10KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD10RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDPva.template", "P=TE:NDW2127:,R=DAE:AD10:pva1:,PORT=AD10PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD10ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+## ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+#ffmpegStreamConfigure("C$(LVDET).MJPG", 2, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):stream1:,PORT=C$(LVDET).MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+#ffmpegFileConfigure("C$(LVDET).FILE", 16, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):file1:,PORT=C$(LVDET).FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("AD$(LVDET)Image1", -1, 0x11)
+iocshLoad "liveview.cmd", "LVDET=11,LVADDR=10"
+NDTransformConfigure("AD11RawImage1", 3, 0, "icp", 10, 0)
+NDROIConfigure("AD11ROI1", 3, 0, "AD11RawImage1", 0, 0)
+NDStdArraysConfigure("AD11Image1", 3, 0, "AD11ROI1", 0, 0)
+NDStatsConfigure("AD11Stats1", 3, 0, "AD11ROI1", 0, 0)
+NDTimeSeriesConfigure("AD11Stats1_TS", 100, 0, "AD11ROI1", 0, 22, 0, 0, 0, 0)
+## There is a TEST_areaDetector Kafka topic that can be used for testing
+KafkaPluginConfigure("AD11KFK", 3, 1, "AD11RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "NDW2127_areaDetector")
+NDPvaConfigure("AD11PVA1", 3, 0, "AD11ROI1", 0, "TE:NDW2127:DAE:AD11:pva1:pvadata", 0)
+## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
+## also NELEMENTS needs to at least nx * ny
+## This waveform 
+##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
+##  TYPE=Int32,FTVL=LONG for 32 bit integer
+##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/ADisisdae.template","P=TE:NDW2127:,R=DAE:AD11:,PORT=icp,ADDR=10,TIMEOUT=1,DATATYPE=8")
+dbLoadRecords("NDTransform.template", "P=TE:NDW2127:,R=DAE:AD11:rawimage1:,PORT=AD11RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=10,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDROI.template", "P=TE:NDW2127:,R=DAE:AD11:roi1:,PORT=AD11ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD11RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=TE:NDW2127:,R=DAE:AD11:image1:,PORT=AD11Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD11ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,TYPE=Float32,FTVL=FLOAT,NELEMENTS=100000,")
+dbLoadRecords("NDStats.template", "P=TE:NDW2127:,R=DAE:AD11:stats1:,PORT=AD11Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD11ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master/ADPluginKafka/db/ADPluginKafka.template", "P=TE:NDW2127:,R=DAE:AD11:KFK:,PORT=AD11KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD11RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDPva.template", "P=TE:NDW2127:,R=DAE:AD11:pva1:,PORT=AD11PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD11ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+## ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+#ffmpegStreamConfigure("C$(LVDET).MJPG", 2, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):stream1:,PORT=C$(LVDET).MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+#ffmpegFileConfigure("C$(LVDET).FILE", 16, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):file1:,PORT=C$(LVDET).FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("AD$(LVDET)Image1", -1, 0x11)
+iocshLoad "liveview.cmd", "LVDET=12,LVADDR=11"
+NDTransformConfigure("AD12RawImage1", 3, 0, "icp", 11, 0)
+NDROIConfigure("AD12ROI1", 3, 0, "AD12RawImage1", 0, 0)
+NDStdArraysConfigure("AD12Image1", 3, 0, "AD12ROI1", 0, 0)
+NDStatsConfigure("AD12Stats1", 3, 0, "AD12ROI1", 0, 0)
+NDTimeSeriesConfigure("AD12Stats1_TS", 100, 0, "AD12ROI1", 0, 22, 0, 0, 0, 0)
+## There is a TEST_areaDetector Kafka topic that can be used for testing
+KafkaPluginConfigure("AD12KFK", 3, 1, "AD12RawImage1", 0, -1, "livedata.isis.cclrc.ac.uk:9092", "NDW2127_areaDetector")
+NDPvaConfigure("AD12PVA1", 3, 0, "AD12ROI1", 0, "TE:NDW2127:DAE:AD12:pva1:pvadata", 0)
+## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
+## also NELEMENTS needs to at least nx * ny
+## This waveform 
+##  TYPE=Int8,FTVL=UCHAR for 8 bit integer
+##  TYPE=Int32,FTVL=LONG for 32 bit integer
+##  TYPE=Float32,FTVL=FLOAT,DATATYPE=8 for 32 bit float
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/isisdae/master/db/ADisisdae.template","P=TE:NDW2127:,R=DAE:AD12:,PORT=icp,ADDR=11,TIMEOUT=1,DATATYPE=8")
+dbLoadRecords("NDTransform.template", "P=TE:NDW2127:,R=DAE:AD12:rawimage1:,PORT=AD12RawImage1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=icp,NDARRAY_ADDR=11,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDROI.template", "P=TE:NDW2127:,R=DAE:AD12:roi1:,PORT=AD12ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD12RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDStdArrays.template", "P=TE:NDW2127:,R=DAE:AD12:image1:,PORT=AD12Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD12ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,TYPE=Float32,FTVL=FLOAT,NELEMENTS=100000,")
+dbLoadRecords("NDStats.template", "P=TE:NDW2127:,R=DAE:AD12:stats1:,PORT=AD12Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD12ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1,NCHANS=1,XSIZE=1,YSIZE=1,HIST_SIZE=1")
+dbLoadRecords("C:/Instrument/Apps/EPICS-DEBUG3/support/ad_kafka_interface/master/ADPluginKafka/db/ADPluginKafka.template", "P=TE:NDW2127:,R=DAE:AD12:KFK:,PORT=AD12KFK,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD12RawImage1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDPva.template", "P=TE:NDW2127:,R=DAE:AD12:pva1:,PORT=AD12PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD12ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+## ffmpegStreamConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr, maxMemory)
+#ffmpegStreamConfigure("C$(LVDET).MJPG", 2, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegStream.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):stream1:,PORT=C$(LVDET).MJPG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## ffmpegFileConfigure(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr)
+#ffmpegFileConfigure("C$(LVDET).FILE", 16, 0, "AD$(LVDET)ROI1", 0)
+#dbLoadRecords("$(FFMPEGSERVER)/db/ffmpegFile.template", "P=$(MYPVPREFIX),R=DAE:AD$(LVDET):file1:,PORT=C$(LVDET).FILE,ADDR=0,TIMEOUT=1,NDARRAY_PORT=AD$(LVDET)ROI1,NDARRAY_ADDR=0,ENABLED=1")
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("AD$(LVDET)Image1", -1, 0x11)
+##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
+< C:/Instrument/Apps/EPICS-DEBUG3/iocstartup/preiocinit.cmd
+#
+# write process variable and IOC startup information to database 
+#
+pvdump
+pvdump: ioc name is "ISISDAE_01" pid 34520
+pvdump: MySQL setup took 0.585 seconds
+#
+# set up IOC access security
+#
+asSetFilename("C:/Instrument/Apps/EPICS-DEBUG3/support/AccessSecurity/master/default.acf")
+asSetSubstitutions("P=TE:NDW2127:,ACF_IH1=localhost,ACF_IH2=localhost,ACF_IH3=localhost,ACF_IH4=localhost,")
+#
+# log to server address EPICS_IOC_LOG_INET listening on port EPICS_IOC_LOG_PORT
+#
+    epicsEnvSet("EPICS_IOC_LOG_INET", "localhost")
+    iocLogInit()
+## 0=none,0x1=err,0x2=IO_device,0x4=IO_filter,0x8=IO_driver,0x10=flow,0x20=warning
+#asynSetTraceMask("icp", -1, 0x11)
+iocInit
+############################################################################
+## EPICS R7.0.3.1
+## EPICS Base built Dec 20 2023
+############################################################################
+icpconfigLoad: setPVValuesStatic setting 0 pvs (pre iocInit)
+icpconfigLoad: setPVValues setting 0 pvs (post iocInit)
+## Start any sequence programs
+#seq sncxxx,"user=faa59Host"
+##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
+< C:/Instrument/Apps/EPICS-DEBUG3/iocstartup/postiocinit.cmd
+# enable caPutLog to logger on localhost
+# pass 0 to log value changes, pass 1 to log all puts, 2 logs all puts with no filtering on same PV
+caPutLogInit "localhost" "1"
+# var caPutLogToConsole 1
+# var caPutLogToConsole 1
+# var caPutLogToConsole 1
+# Handle autosave 'commands' contained in loaded databases.
+# file naming needs to agree with autosave.cmd
+makeAutosaveFileFromDbInfo("ISISDAE_01_info_settings","autosaveFields")
+makeAutosaveFileFromDbInfo("ISISDAE_01_info_positions","autosaveFields_pass0")
+create_monitor_set("ISISDAE_01_info_positions.req", 5, "")
+create_monitor_set("ISISDAE_01_info_settings.req", 30, "")
+# Save motor positions every 5 seconds
+create_monitor_set("ISISDAE_01_positions.req", 5, "P=TE:NDW2127:DAE:")
+# Save motor settings every 30 seconds
+create_monitor_set("ISISDAE_01_settings.req", 30, "P=TE:NDW2127:DAE:")
+epics> CAS: starting cas server
+pvdump: MySQL write of 14388 PVs with 2422 info entries, plus 302 macros took 7.354 seconds
+pvdump: calling exit handler for ioc "ISISDAE_01"

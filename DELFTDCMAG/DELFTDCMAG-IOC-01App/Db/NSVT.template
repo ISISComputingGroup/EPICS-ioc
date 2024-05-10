@@ -1,0 +1,22 @@
+
+# Read Network shared variable "//localhost/Magnets/$(NSV)" 
+record(ai, "$(P)$(NSV)")
+{
+    field(DESC, "NSV '//localhost/Magnets/$(NSV)'")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)$(NSV)")
+    field(PREC, "3")
+    field(SCAN, "I/O Intr")
+	field(EGU, "mT")
+}
+
+# Write Network shared variable "//localhost/Magnets/$(NSV)" 
+record(ao, "$(P)$(NSV):SP")
+{
+    field(DESC, "NSV '//localhost/Magnets/$(NSV)'")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn(nsv,0,0)$(NSV)")
+    field(PREC, "3")
+	field(EGU, "mT")
+}
+

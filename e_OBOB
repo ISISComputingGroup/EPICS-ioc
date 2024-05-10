@@ -1,0 +1,36 @@
+[1mdiff --git a/GAMRY/GAMRY-IOC-01App/Db/GAMRY.db b/GAMRY/GAMRY-IOC-01App/Db/GAMRY.db[m
+[1mindex 3d98eb33..91cdb1db 100644[m
+[1m--- a/GAMRY/GAMRY-IOC-01App/Db/GAMRY.db[m
+[1m+++ b/GAMRY/GAMRY-IOC-01App/Db/GAMRY.db[m
+[36m@@ -4,6 +4,7 @@[m [mrecord(longout, "$(P)CHARGE:SP")[m
+     field(DESC, "Start charging")[m
+ 	field(OUT, "@GAMRY.protocol startCharging $(PORT)")[m
+     field(EGU, "")[m
+[32m+[m	[32mfield(UDFS, "NO_ALARM")[m
+     info(INTEREST, "HIGH")[m
+     info(archive, "VAL")[m
+ }[m
+[36m@@ -17,6 +18,7 @@[m [mrecord(bi, "$(P)CHARGE:STAT")[m
+ 	field(INP, "@GAMRY.protocol chargingStatus $(PORT)")[m
+ 	field(ZNAM, "Idle")[m
+ 	field(ONAM, "Charging")[m
+[32m+[m	[32mfield(UDFS, "NO_ALARM")[m
+     info(INTEREST, "HIGH")[m
+     info(archive, "VAL")[m
+ }[m
+[36m@@ -38,6 +40,7 @@[m [mrecord(longout, "$(P)BEAM:ON:SP")[m
+     field(DESC, "Set beam on")[m
+ 	field(OUT, "@GAMRY.protocol beamOn $(PORT)")[m
+     field(EGU, "")[m
+[32m+[m	[32mfield(UDFS, "NO_ALARM")[m
+     info(INTEREST, "HIGH")[m
+     info(archive, "VAL")[m
+ }[m
+[36m@@ -48,6 +51,7 @@[m [mrecord(longout, "$(P)BEAM:OFF:SP")[m
+     field(DESC, "Set beam off")[m
+ 	field(OUT, "@GAMRY.protocol beamOff $(PORT)")[m
+     field(EGU, "")[m
+[32m+[m	[32mfield(UDFS, "NO_ALARM")[m
+     info(INTEREST, "HIGH")[m
+     info(archive, "VAL")[m
+ }[m
