@@ -5,27 +5,10 @@
         <ioc_details>Reads 16 individual temperature channels from a NI cDAQ device</ioc_details>
         <macros>
             <macro name="HOST" pattern="^[a-zA-Z0-9_-]+$" description="cDAQ chassis hostname" hasDefault="NO" />
-
             <macro name="UNITS"         pattern="^[a-zA-Z0-9_-]+$" description="Units for all channels" defaultValue="K"    hasDefault="YES" />
             <macro name="TC_TYPE"       pattern="^[a-zA-Z0-9_-]+$" description="Thermocouple type for all channels"  defaultValue="K_Type_TC"       hasDefault="YES" />
             <macro name="MIN_TEMP"      pattern="^[a-zA-Z0-9_-]+$" description="Minimum TC temperature for all channels" defaultValue="73.15"       hasDefault="YES" />
             <macro name="MAX_TEMP"      pattern="^[a-zA-Z0-9_-]+$" description="Maximum TC temperature for all channels" defaultValue="1645.15"     hasDefault="YES" />
-            <macro name="TEMP_01_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature  1 name"  defaultValue="TEMP_01" hasDefault="YES" />
-            <macro name="TEMP_02_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature  2 name"  defaultValue="TEMP_02" hasDefault="YES" />
-            <macro name="TEMP_03_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature  3 name"  defaultValue="TEMP_03" hasDefault="YES" />
-            <macro name="TEMP_04_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature  4 name"  defaultValue="TEMP_04" hasDefault="YES" />
-            <macro name="TEMP_05_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature  5 name"  defaultValue="TEMP_05" hasDefault="YES" />
-            <macro name="TEMP_06_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature  6 name"  defaultValue="TEMP_06" hasDefault="YES" />
-            <macro name="TEMP_07_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature  7 name"  defaultValue="TEMP_07" hasDefault="YES" />
-            <macro name="TEMP_08_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature  8 name"  defaultValue="TEMP_08" hasDefault="YES" />
-            <macro name="TEMP_09_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature  9 name"  defaultValue="TEMP_09" hasDefault="YES" />
-            <macro name="TEMP_10_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature 10 name"  defaultValue="TEMP_10" hasDefault="YES" />
-            <macro name="TEMP_11_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature 11 name"  defaultValue="TEMP_11" hasDefault="YES" />
-            <macro name="TEMP_12_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature 12 name"  defaultValue="TEMP_12" hasDefault="YES" />
-            <macro name="TEMP_13_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature 13 name"  defaultValue="TEMP_13" hasDefault="YES" />
-            <macro name="TEMP_14_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature 14 name"  defaultValue="TEMP_14" hasDefault="YES" />
-            <macro name="TEMP_15_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature 15 name"  defaultValue="TEMP_15" hasDefault="YES" />
-            <macro name="TEMP_16_NAME"  pattern="^[a-zA-Z0-9_-]+$" description="Temperature 16 name"  defaultValue="TEMP_16" hasDefault="YES" />
         </macros>
         <pvsets></pvsets>
     </config_part>

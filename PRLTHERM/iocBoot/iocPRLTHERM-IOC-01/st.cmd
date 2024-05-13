@@ -8,7 +8,7 @@ errlogInit2(65536, 256)
 
 < envPaths
 
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(PRLTHERM)/data"
+# epicsEnvSet "STREAM_PROTOCOL_PATH" "$(PRLTHERM)/data"
 epicsEnvSet "DEVICE" "L0"
 
 cd "${TOP}"

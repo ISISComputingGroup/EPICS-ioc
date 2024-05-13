@@ -1,4 +1,4 @@
-epicsEnvSet("CDAQ","$(HOST=localhost)") # PEARL cDAQ chassis and module address (appended 'Mod1')
+epicsEnvSet("CDAQ","$(HOST=localhost)Mod1") # PEARL cDAQ chassis and module address (appended 'Mod1')
 
 ## 16 x temperature inputs from a cDAQ 9181 chassis with a 9213 thermocouple module
 
