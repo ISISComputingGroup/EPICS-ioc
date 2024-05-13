@@ -1,10 +1,21 @@
 
-record(calc, "$(P)MOT:$(MOTOR_PV)_ON_STATUS")
+record(calcout, "$(P)MOT:$(MOTOR_PV)_ON_STATUS_CALC")
 {
     field(DESC, "Fwd PLC BENABLED to _ON_STATUS")
     field(INPA, "$(P)$(I):ASTAXES_$(AXIS_NUM):STSTATUS-BENABLED CP MS")
     field(CALC, "A")
+    field(OUT, "$(P)MOT:$(MOTOR_PV)_ON_STATUS PP")
 }
+
+record(bi,"$(P)MOT:$(MOTOR_PV)_ON_STATUS")
+{
+	field(DESC, "Mtr on status")
+	field(ZNAM, "Off")
+   	field(ZSV,  "MINOR")
+  	field(ONAM, "On")
+  	field(OSV,  "NO_ALARM")
+}
+
 
 record(bo, "$(P)MOT:$(MOTOR_PV)_ON_CMD")
 {
