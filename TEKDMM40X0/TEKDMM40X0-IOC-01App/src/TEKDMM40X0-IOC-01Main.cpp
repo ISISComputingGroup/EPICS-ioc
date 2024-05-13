@@ -1,4 +1,4 @@
-/* TEKDMM4040-IOC-01Main.cpp */
+/* TEKDMM40X0-IOC-01Main.cpp */
 /* Author:  Marty Kraimer Date:    17MAR2000 */
 
 #include <stddef.h>
