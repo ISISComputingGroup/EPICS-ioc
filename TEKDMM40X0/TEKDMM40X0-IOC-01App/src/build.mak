@@ -60,6 +60,7 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 ifeq ($(AREA_DETECTOR),)
 include $(CONFIG)/CONFIG_PVA_ISIS
 endif
+
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
