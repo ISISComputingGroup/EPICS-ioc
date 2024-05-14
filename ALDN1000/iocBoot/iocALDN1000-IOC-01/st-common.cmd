@@ -28,9 +28,36 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-## Load our record instances
-dbLoadRecords("$(ALDN1000)/db/aldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+## Load our record instances (default with ID switching)
+# Load with default ID of 0
+dbLoadRecords("$(ALDN1000)/db/aldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ID=0")
 dbLoadRecords("$(ALDN1000)/db/unit_setter.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+
+# Check if macros' length > 0 (default operation)
+stringiftest("ACTIVE1", "$(ID1=)")
+stringiftest("ACTIVE2", "$(ID2=)")
+stringiftest("ACTIVE3", "$(ID3=)")
+stringiftest("ACTIVE4", "$(ID4=)")
+
+# Load pv's that indicate whether sensor at index is active (i.e. ID set)
+dbLoadRecords("$(ALDN1000)/db/isActiveAldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):1:,IFACTIVE=$(IFACTIVE1),IFNOTACTIVE=$(IFNOTACTIVE1)")
+dbLoadRecords("$(ALDN1000)/db/isActiveAldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):2:,IFACTIVE=$(IFACTIVE2),IFNOTACTIVE=$(IFNOTACTIVE2)")
+dbLoadRecords("$(ALDN1000)/db/isActiveAldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):3:,IFACTIVE=$(IFACTIVE3),IFNOTACTIVE=$(IFNOTACTIVE3)")
+dbLoadRecords("$(ALDN1000)/db/isActiveAldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):4:,IFACTIVE=$(IFACTIVE4),IFNOTACTIVE=$(IFNOTACTIVE4)")
+
+# Load the four sensor's records if needed
+$(IFACTIVE1) dbLoadRecords("$(ALDN1000)/db/aldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):1:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ID=$(ID1)")
+$(IFACTIVE1) dbLoadRecords("$(ALDN1000)/db/unit_setter.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):1:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+
+$(IFACTIVE2) dbLoadRecords("$(ALDN1000)/db/aldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):2:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ID=$(ID2)")
+$(IFACTIVE2) dbLoadRecords("$(ALDN1000)/db/unit_setter.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):2:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+
+$(IFACTIVE3) dbLoadRecords("$(ALDN1000)/db/aldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):3:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ID=$(ID3)")
+$(IFACTIVE3) dbLoadRecords("$(ALDN1000)/db/unit_setter.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):3:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+
+$(IFACTIVE4) dbLoadRecords("$(ALDN1000)/db/aldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):4:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ID=$(ID4)")
+$(IFACTIVE4) dbLoadRecords("$(ALDN1000)/db/unit_setter.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):4:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
