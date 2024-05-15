@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
+PROD_NAME = $(APPNAME)
 # ANDOR3-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 

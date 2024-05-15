@@ -17,6 +17,7 @@ include $(TOP)/configure/CONFIG
 WITH_GRAPHICSMAGICK=NO
 
 PROD_IOC = $(APPNAME)
+PROD_NAME = $(APPNAME)
 # ANDOR-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
