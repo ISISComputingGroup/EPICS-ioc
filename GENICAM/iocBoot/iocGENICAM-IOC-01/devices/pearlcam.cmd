@@ -1,8 +1,8 @@
 # Use this line for a specific camera by serial number, in this case a BlackFlyS GigE
-epicsEnvSet("CAMERA_ID", "23160024")
+epicsEnvSet("CAMERA_ID", "24135412")
 
 # if we don't need controls we might not need to use this. if you try to, you get a load of null pointer exceptions
-epicsEnvSet("GENICAM_DB_FILE", "$(ADGENICAM)/db/FLIR_BFS_PGE_244S8C.template")
+epicsEnvSet("GENICAM_DB_FILE", "$(ADGENICAM)/db/PGR_BlackflyS_16S2C.template")
 
 # Really large queue so we can stream to disk at full camera speed
 epicsEnvSet("QSIZE",  "20000")   
