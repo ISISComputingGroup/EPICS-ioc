@@ -29,56 +29,60 @@
 # Digital IO naming
 # $(P)$(R)<Byte or word num><Type Bo or Bi><Bit>
 
+global {
+    RECSIM="\$(RECSIM=0)",IFNOTSIM="\$(IFNOTSIM=)"
+}
+
 file "$(GALIL)/GalilSup/Db/galil_digital_in_bit.template"
 {
-pattern {P,       R,          PORT,  BYTE,  MASK,     ZNAM,  ONAM,  ZSV,        OSV         , RECSIM , IFNOTSIM}
+pattern {P,       R,          PORT,  BYTE,  MASK,     ZNAM,  ONAM,  ZSV,        OSV         }
 
 # DMC = Digital motor controller
 # DMC binary inputs are organized in bytes
-	{\$(P)DMC\$(CCP):,  Galil0Bi0,  "\$(PORT=Galil)", 0,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi1,  "\$(PORT=Galil)", 0,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi2,  "\$(PORT=Galil)", 0,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi3,  "\$(PORT=Galil)", 0,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi4,  "\$(PORT=Galil)", 0,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi5,  "\$(PORT=Galil)", 0,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi6,  "\$(PORT=Galil)", 0,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil0Bi7,  "\$(PORT=Galil)", 0,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi0,  "\$(PORT=Galil)", 0,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi1,  "\$(PORT=Galil)", 0,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi2,  "\$(PORT=Galil)", 0,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi3,  "\$(PORT=Galil)", 0,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi4,  "\$(PORT=Galil)", 0,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi5,  "\$(PORT=Galil)", 0,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi6,  "\$(PORT=Galil)", 0,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil0Bi7,  "\$(PORT=Galil)", 0,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
 
-	{\$(P)DMC\$(CCP):,  Galil1Bi0,  "\$(PORT=Galil)", 1,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi1,  "\$(PORT=Galil)", 1,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi2,  "\$(PORT=Galil)", 1,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi3,  "\$(PORT=Galil)", 1,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi4,  "\$(PORT=Galil)", 1,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi5,  "\$(PORT=Galil)", 1,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi6,  "\$(PORT=Galil)", 1,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil1Bi7,  "\$(PORT=Galil)", 1,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi0,  "\$(PORT=Galil)", 1,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi1,  "\$(PORT=Galil)", 1,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi2,  "\$(PORT=Galil)", 1,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi3,  "\$(PORT=Galil)", 1,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi4,  "\$(PORT=Galil)", 1,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi5,  "\$(PORT=Galil)", 1,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi6,  "\$(PORT=Galil)", 1,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil1Bi7,  "\$(PORT=Galil)", 1,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
 
-	{\$(P)DMC\$(CCP):,  Galil2Bi0,  "\$(PORT=Galil)", 2,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi1,  "\$(PORT=Galil)", 2,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi2,  "\$(PORT=Galil)", 2,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi3,  "\$(PORT=Galil)", 2,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi4,  "\$(PORT=Galil)", 2,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi5,  "\$(PORT=Galil)", 2,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi6,  "\$(PORT=Galil)", 2,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil2Bi7,  "\$(PORT=Galil)", 2,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi0,  "\$(PORT=Galil)", 2,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi1,  "\$(PORT=Galil)", 2,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi2,  "\$(PORT=Galil)", 2,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi3,  "\$(PORT=Galil)", 2,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi4,  "\$(PORT=Galil)", 2,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi5,  "\$(PORT=Galil)", 2,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi6,  "\$(PORT=Galil)", 2,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil2Bi7,  "\$(PORT=Galil)", 2,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
 
-	{\$(P)DMC\$(CCP):,  Galil3Bi0,  "\$(PORT=Galil)", 3,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil3Bi1,  "\$(PORT=Galil)", 3,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil3Bi2,  "\$(PORT=Galil)", 3,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil3Bi3,  "\$(PORT=Galil)", 3,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil3Bi4,  "\$(PORT=Galil)", 3,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil3Bi5,  "\$(PORT=Galil)", 3,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil3Bi6,  "\$(PORT=Galil)", 3,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil3Bi7,  "\$(PORT=Galil)", 3,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi0,  "\$(PORT=Galil)", 3,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi1,  "\$(PORT=Galil)", 3,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi2,  "\$(PORT=Galil)", 3,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi3,  "\$(PORT=Galil)", 3,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi4,  "\$(PORT=Galil)", 3,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi5,  "\$(PORT=Galil)", 3,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi6,  "\$(PORT=Galil)", 3,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil3Bi7,  "\$(PORT=Galil)", 3,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
 
-	{\$(P)DMC\$(CCP):,  Galil4Bi0,  "\$(PORT=Galil)", 4,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil4Bi1,  "\$(PORT=Galil)", 4,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil4Bi2,  "\$(PORT=Galil)", 4,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil4Bi3,  "\$(PORT=Galil)", 4,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil4Bi4,  "\$(PORT=Galil)", 4,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil4Bi5,  "\$(PORT=Galil)", 4,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil4Bi6,  "\$(PORT=Galil)", 4,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
-	{\$(P)DMC\$(CCP):,  Galil4Bi7,  "\$(PORT=Galil)", 4,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM",  \$(RECSIM), \$(IFNOTSIM)  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi0,  "\$(PORT=Galil)", 4,     0x000001, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi1,  "\$(PORT=Galil)", 4,     0x000002, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi2,  "\$(PORT=Galil)", 4,     0x000004, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi3,  "\$(PORT=Galil)", 4,     0x000008, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi4,  "\$(PORT=Galil)", 4,     0x000010, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi5,  "\$(PORT=Galil)", 4,     0x000020, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi6,  "\$(PORT=Galil)", 4,     0x000040, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
+	{\$(P)DMC\$(CCP):,  Galil4Bi7,  "\$(PORT=Galil)", 4,     0x000080, "Off", "On",  "NO_ALARM", "NO_ALARM"  }
 
 }
 
