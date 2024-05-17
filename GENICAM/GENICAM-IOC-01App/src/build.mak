@@ -35,10 +35,12 @@ $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += webget.dbd
-#not on linux
+## ffmpeg not at moment 
 #$(APPNAME)_DBD += ffmpegServer.dbd
 $(APPNAME)_DBD += URLDriverSupport.dbd
+ifdef ADSPINNAKER
 $(APPNAME)_DBD += ADSpinnakerSupport.dbd
+endif
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -55,15 +57,19 @@ $(APPNAME)_LIBS += asyn
 
 ## other standard libraries here ##
 
-$(APPNAME)_LIBS += URLDriver
+ifdef ADSPINNAKER
 $(APPNAME)_LIBS += ADSpinnaker
 ifeq (debug, $(findstring debug, $(T_A)))
   $(APPNAME)_LIBS_WIN32 += Spinnakerd_v140
 else
   $(APPNAME)_LIBS_WIN32 += Spinnaker_v140
 endif
+endif
+
+$(APPNAME)_LIBS += URLDriver
 $(APPNAME)_LIBS += ADGenICam
-#not on linux
+
+## not at moment
 #$(APPNAME)_LIBS += ffmpegServer
 #$(APPNAME)_LIBS += avdevice
 #$(APPNAME)_LIBS += avformat
