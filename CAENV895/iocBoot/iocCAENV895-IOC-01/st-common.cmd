@@ -11,6 +11,8 @@
 $(IFDEVSIM) CAENVMEConfigure("CRATE0", 0, 0, 0, 0x10000, 1)
 $(IFRECSIM) CAENVMEConfigure("CRATE0", 0, 0, 0, 0x10000, 1)
 $(IFNOTDEVSIM) $(IFNOTRECSIM) CAENVMEConfigure("CRATE0", 0, 0, 0, 0x10000, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) CAENVMEConfigure("CRATE1", 1, 0, 0, 0x10000, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) CAENVMEConfigure("CRATE2", 2, 0, 0, 0x10000, 0)
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
@@ -19,14 +21,19 @@ set_pass0_restoreFile("auto_settings.sav")
 set_pass1_restoreFile("auto_settings.sav")
 
 ## Load our record instances
-dbLoadRecords("$(CAENVME)/db/v895Crate.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0")
-dbLoadRecords("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=0")
-dbLoadRecords("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=1")
-dbLoadRecords("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=2")
-dbLoadRecords("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=3")
-dbLoadRecords("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=4")
-dbLoadRecords("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=5")
-dbLoadRecords("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=6")
+
+stringiftest("CRATE0", "$(CARDS0)")
+stringiftest("CRATE1", "$(CARDS1)")
+stringiftest("CRATE2", "$(CARDS2)")
+
+$(IFCRATE0) dbLoadRecords("$(CAENVME)/db/v895Crate.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,CARDS=$(CARDS0)")
+$(IFCRATE0) dbLoadRecordsLoop("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=\$(CARD)", "CARD", 0, $(CARDS0))
+
+$(IFCRATE1) dbLoadRecords("$(CAENVME)/db/v895Crate.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=1,PORT=CRATE1,CARDS=$(CARDS1)")
+$(IFCRATE1) dbLoadRecordsLoop("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=1,PORT=CRATE1,C=\$(CARD)", "CARD", 0, $(CARDS1))
+
+$(IFCRATE2) dbLoadRecords("$(CAENVME)/db/v895Crate.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=2,PORT=CRATE2,CARDS=$(CARDS2)")
+$(IFCRATE2) dbLoadRecordsLoop("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=2,PORT=CRATE2,C=\$(CARD)", "CARD", 0, $(CARDS2))
 
 $(IFDEVSIM) dbLoadRecords("$(CAENVME)/db/v895SimTest.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=0")
 
