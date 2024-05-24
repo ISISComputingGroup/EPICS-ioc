@@ -79,6 +79,7 @@ IOCDIRS += GENICAM
 IOCDIRS += PS300
 IOCDIRS += HE3NMR
 IOCDIRS += LVREMOTE
+IOCDIRS += SR850
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
