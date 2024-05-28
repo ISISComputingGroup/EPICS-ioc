@@ -40,7 +40,7 @@ $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 # ----------------------------------
 
 ## Load our record instances
-dbLoadRecords("$(PRLTHERM)/db/prltherm.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),IFNOTRECSIM=$(IFNOTRECSIM),IFRECSIM=$(IFRECSIM)")
+dbLoadRecords("$(PRLTHERM)/db/prltherm.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),IFNOTRECSIM=$(IFNOTRECSIM),IFRECSIM=$(IFRECSIM),UNITS_IOC=$(UNITS_IOC=K)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -56,7 +56,3 @@ iocInit
 
 # DAQmxStart("L0")
 DAQmxStart("$(DEVICE)")  # try to use pre-defined env variable
-
-#TODO: set units on PV (.EGU field) based on specified macro value, but map to allowed EPICS units.  Use loop for 16 PVs if possible:
-
-# dbpf("$(MYPVPREFIX):$(IOCNAME):TEMP$(CHANNEL).EGU", "$(UNITS)")
