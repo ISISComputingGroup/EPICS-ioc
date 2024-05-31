@@ -1,0 +1,190 @@
+# Template file for remote labview services binary values (e.g. buttons or LEDs)
+# Substitutions
+# DEVICE - The Device name
+# P - The PV prefix (This should usually be substituted for $(P))
+# NAME - The name of the pv
+# IND - The indicator of the value to read from labview
+# CONTROL - The control to write to, can be left out of substitution if readonly
+# VI - The path to the VI on the host computer as a string.
+# PORT - The Port to read (by default, L0 for Strings and L1 for Binary)
+# PORT2 - An additional port macro used when both are needed.
+# READONLY - Whether or not a value is readonly, should be "#" when true and "" when false.
+# DESCRIPTION - The description of the PV, will be appended to "Readback for " and "Setpoint for " 
+# SCAN - Scan rate for the readback
+####################################
+# ZRVL - The 0 value
+# ONVL - The 1 value
+# TWVL - The 2 value
+# THVL - The 3 value
+# FRVL - The 4 value
+# FVVL - The 5 value
+# SXVL - The 6 value
+# SVVL - The 7 value
+# EIVL - The 8 value
+# NIVL - The 9 value
+# TEVL - The 10 value
+# ELVL - The 11 value
+# TVVL - The 12 value
+# TTVL - The 13 value
+# FTVL - The 14 value
+# FFVL - The 15 value
+####################################
+# ZRST - The 0 string
+# ONST - The 1 string
+# TWST - The 2 string
+# THST - The 3 string
+# FRST - The 4 string
+# FVST - The 5 string
+# SXST - The 6 string
+# SVST - The 7 string
+# EIST - The 8 string
+# NIST - The 9 string
+# TEST - The 10 string
+# ELST - The 11 string
+# TVST - The 12 string
+# TTST - The 13 string
+# FTST - The 14 string
+# FFST - The 15 string
+####################################
+
+record(mbbi, "$(P)$(DEVICE):$(NAME)") {
+    field(DESC, "Readback for $(DESCRIPTION)")
+    field(DTYP, "stream")
+    field(INP,  "@lvremote_string.proto getString($(VI),$(IND)) $(PORT2)")
+    field(SCAN, "$(SCAN)")
+
+    field(ZRVL, "$(ZRVL=0)")
+    field(ONVL, "$(ONVL=0)")
+    field(TWVL, "$(TWVL=0)")
+    field(THVL, "$(THVL=0)")
+    field(FRVL, "$(FRVL=0)")
+    field(FVVL, "$(FVVL=0)")
+    field(SXVL, "$(SXVL=0)")
+    field(SVVL, "$(SVVL=0)")
+    field(EIVL, "$(EIVL=0)")
+    field(NIVL, "$(NIVL=0)")
+    field(TEVL, "$(TEVL=0)")
+    field(ELVL, "$(ELVL=0)")
+    field(TVVL, "$(TVVL=0)")
+    field(TTVL, "$(TTVL=0)")
+    field(FTVL, "$(FTVL=0)")
+    field(FFVL, "$(FFVL=0)")
+
+    field(ZRST, "$(ZRST='')")
+    field(ONST, "$(ONST='')")
+    field(TWST, "$(TWST='')")
+    field(THST, "$(THST='')")
+    field(FRST, "$(FRST='')")
+    field(FVST, "$(FVST='')")
+    field(SXST, "$(SXST='')")
+    field(SVST, "$(SVST='')")
+    field(EIST, "$(EIST='')")
+    field(NIST, "$(NIST='')")
+    field(TEST, "$(TEST='')")
+    field(ELST, "$(ELST='')")
+    field(TVST, "$(TVST='')")
+    field(TTST, "$(TTST='')")
+    field(FTST, "$(FTST='')")
+    field(FFST, "$(FFST='')")
+
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME) PP")
+}
+
+$(READONLY)record(mbbo, "$(P)$(DEVICE):$(NAME):SP") {
+$(READONLY)    field(DESC, "Setpoint for $(DESCRIPTION)")
+$(READONLY)    field(DTYP, "stream")
+$(READONLY)    field(OUT,  "@lvremote_num.proto setEnumVal($(VI),$(CONTROL="")) $(PORT)")
+$(READONLY)    field(SCAN, "Passive")
+
+$(READONLY)    field(ZRVL, "$(ZRVL=0)")
+$(READONLY)    field(ONVL, "$(ONVL=0)")
+$(READONLY)    field(TWVL, "$(TWVL=0)")
+$(READONLY)    field(THVL, "$(THVL=0)")
+$(READONLY)    field(FRVL, "$(FRVL=0)")
+$(READONLY)    field(FVVL, "$(FVVL=0)")
+$(READONLY)    field(SXVL, "$(SXVL=0)")
+$(READONLY)    field(SVVL, "$(SVVL=0)")
+$(READONLY)    field(EIVL, "$(EIVL=0)")
+$(READONLY)    field(NIVL, "$(NIVL=0)")
+$(READONLY)    field(TEVL, "$(TEVL=0)")
+$(READONLY)    field(ELVL, "$(ELVL=0)")
+$(READONLY)    field(TVVL, "$(TVVL=0)")
+$(READONLY)    field(TTVL, "$(TTVL=0)")
+$(READONLY)    field(FTVL, "$(FTVL=0)")
+$(READONLY)    field(FFVL, "$(FFVL=0)")
+
+$(READONLY)    field(ZRST, "$(ZRST='')")
+$(READONLY)    field(ONST, "$(ONST='')")
+$(READONLY)    field(TWST, "$(TWST='')")
+$(READONLY)    field(THST, "$(THST='')")
+$(READONLY)    field(FRST, "$(FRST='')")
+$(READONLY)    field(FVST, "$(FVST='')")
+$(READONLY)    field(SXST, "$(SXST='')")
+$(READONLY)    field(SVST, "$(SVST='')")
+$(READONLY)    field(EIST, "$(EIST='')")
+$(READONLY)    field(NIST, "$(NIST='')")
+$(READONLY)    field(TEST, "$(TEST='')")
+$(READONLY)    field(ELST, "$(ELST='')")
+$(READONLY)    field(TVST, "$(TVST='')")
+$(READONLY)    field(TTST, "$(TTST='')")
+$(READONLY)    field(FTST, "$(FTST='')")
+$(READONLY)    field(FFST, "$(FFST='')")
+
+$(READONLY)    field(SIML, "$(P)SIM")
+$(READONLY)    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME):SP PP")
+$(READONLY)}
+
+$(READONLY)record(mbbi, "$(P)$(DEVICE):$(NAME):SP:RBV") {
+$(READONLY)    field(DESC, "Setpoint Readback for $(DESCRIPTION)")
+$(READONLY)    field(DTYP, "stream")
+$(READONLY)    field(INP,  "@lvremote_num.proto getEnumVal($(VI),$(CONTROL="")) $(PORT)")
+$(READONLY)    field(SCAN, "$(SCAN)")
+
+$(READONLY)    field(ZRVL, "$(ZRVL=0)")
+$(READONLY)    field(ONVL, "$(ONVL=0)")
+$(READONLY)    field(TWVL, "$(TWVL=0)")
+$(READONLY)    field(THVL, "$(THVL=0)")
+$(READONLY)    field(FRVL, "$(FRVL=0)")
+$(READONLY)    field(FVVL, "$(FVVL=0)")
+$(READONLY)    field(SXVL, "$(SXVL=0)")
+$(READONLY)    field(SVVL, "$(SVVL=0)")
+$(READONLY)    field(EIVL, "$(EIVL=0)")
+$(READONLY)    field(NIVL, "$(NIVL=0)")
+$(READONLY)    field(TEVL, "$(TEVL=0)")
+$(READONLY)    field(ELVL, "$(ELVL=0)")
+$(READONLY)    field(TVVL, "$(TVVL=0)")
+$(READONLY)    field(TTVL, "$(TTVL=0)")
+$(READONLY)    field(FTVL, "$(FTVL=0)")
+$(READONLY)    field(FFVL, "$(FFVL=0)")
+
+$(READONLY)    field(ZRST, "$(ZRST='')")
+$(READONLY)    field(ONST, "$(ONST='')")
+$(READONLY)    field(TWST, "$(TWST='')")
+$(READONLY)    field(THST, "$(THST='')")
+$(READONLY)    field(FRST, "$(FRST='')")
+$(READONLY)    field(FVST, "$(FVST='')")
+$(READONLY)    field(SXST, "$(SXST='')")
+$(READONLY)    field(SVST, "$(SVST='')")
+$(READONLY)    field(EIST, "$(EIST='')")
+$(READONLY)    field(NIST, "$(NIST='')")
+$(READONLY)    field(TEST, "$(TEST='')")
+$(READONLY)    field(ELST, "$(ELST='')")
+$(READONLY)    field(TVST, "$(TVST='')")
+$(READONLY)    field(TTST, "$(TTST='')")
+$(READONLY)    field(FTST, "$(FTST='')")
+$(READONLY)    field(FFST, "$(FFST='')")
+
+$(READONLY)    field(SIML, "$(P)SIM")
+$(READONLY)    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME) PP")
+$(READONLY)}
+
+record(bo, "$(P)SIM:$(DEVICE):$(NAME)") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+$(READONLY)alias("$(P)SIM:$(DEVICE):$(NAME)","$(P)SIM:$(DEVICE):$(NAME):SP")
+
+

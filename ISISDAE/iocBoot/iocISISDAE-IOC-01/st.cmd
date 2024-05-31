@@ -6,6 +6,8 @@
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
 errlogInit2(65536, 4096)
 
+callbackSetQueueSize(20000)
+
 < envPaths
 epicsEnvSet "WIRING_DIR" "$(ICPCONFIGROOT)/tables"
 epicsEnvSet "WIRING_PATTERN" ".*wiring.*"

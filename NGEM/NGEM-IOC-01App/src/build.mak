@@ -76,6 +76,11 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 $(APPNAME)_SYS_LIBS_WIN32 += wldap32 ws2_32 crypt32 Normaliz # advapi32 user32 msxml2
 
 # Finally link to the EPICS Base libraries
+## area detector already includes PVA, so avoid including it twice
+ifeq ($(AREA_DETECTOR),)
+include $(CONFIG)/CONFIG_PVA_ISIS
+endif
+
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 

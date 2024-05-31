@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
+PROD_NAME = $(APPNAME)
 # ANDOR3-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
@@ -66,6 +67,11 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 #$(APPNAME)_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
+## area detector already includes PVA, so avoid including it twice
+ifeq ($(AREA_DETECTOR),)
+include $(CONFIG)/CONFIG_PVA_ISIS
+endif
+
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 ifeq (windows-x64-debug, $(findstring windows-x64-debug, $(T_A)))
