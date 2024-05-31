@@ -30,6 +30,8 @@
         <macro name="EXTRA_DAQ_CHANNEL" pattern="^.*$" description="DAQ channel for the optional extra channel. Leave empty to disable. (e.g. ai3)" defaultValue="" hasDefault="YES" />
 		
 		<macro name="NUM_SAMPLES" pattern="" description="The number of samples to compress into 1 record for smoothing" defaultValue="1" hasDefault="YES" />
+		
+		<macro name="FORCE_SCAN" pattern="^YES|NO$" description="Whether to force scanning of the magnetometer. Defaults to NO, as scans are requested by the controller" defaultValue="NO" hasDefault="YES" />
 
     </macros>
     <pvsets>
