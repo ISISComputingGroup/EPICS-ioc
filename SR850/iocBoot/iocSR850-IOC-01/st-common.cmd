@@ -23,10 +23,15 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 
+##asynSetTraceIOMask("L0", -1, 0x2)
+##asynSetTraceMask("L0", -1, 0x9)
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
+
+#epicsEnvSet("DEVICE", "$(PORT=COM7)")
 
 ## Load our record instances
 dbLoadRecords("$(SR850)/db/sr850.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
