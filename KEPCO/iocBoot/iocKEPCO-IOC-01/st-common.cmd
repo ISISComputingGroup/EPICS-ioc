@@ -7,6 +7,10 @@ cd ${TOP}
 
 stringiftest  "LOCALCALIB"  "$(LOCAL_CALIB="no")"  5  "yes"
 
+## do we send a "go remote" commmand on every set? Usually we do
+## but for muon zero field we do not as we send a lot rapidly
+stringiftest  "REMOTE_ON_SET"  "$(REMOTE_ON_SET=YES)"  5  "YES"
+
 $(IFNOTLOCALCALIB) epicsEnvSet "CALIB_BASE_DIR" "$(ICPSETTINGSDIR)/config/common"
 $(IFNOTLOCALCALIB) epicsEnvSet "SENS_DIR" "magnets"
 
@@ -38,6 +42,9 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "crtscts", "N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "ixon", "Y")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "ixoff", "Y")
 
+# put a limit on minimum time between writes to device
+asynInterposeThrottleConfig("L0", 0, 0.01)
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
@@ -48,8 +55,8 @@ ReadASCIIConfigure("READASCII", "", $(RAMP_RATE=1.0), $(STEP_NUMBER=20), 1)
 ## Load record instances
 dbLoadRecords($(FILELIST)/db/calibration.db, "P=$(MYPVPREFIX)$(IOCNAME):, DEFAULT_FILE=default_calib.dat, CALIB_BASE_DIR=$(CALIB_BASE_DIR), SDIR=$(SENS_DIR), CALIBLIST=SENSORFILELIST, CONV_TO_PV=FIELD, CONV_FROM_PV=CURRENT:, CONV_TO_DESC=Field, CONV_TO_EGU=G")
 
-dbLoadRecords("$(KEPCO)/db/kepco.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RESET=NO,DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0),RESET_ON_START=$(RESET_ON_START=0),CURRENT_RANGE=$(CURRENT_RANGE=Auto),VOLTAGE_RANGE=$(VOLTAGE_RANGE=Auto)")
-dbLoadRecords("$(KEPCO)/db/kepco_ramping.db","P=$(MYPVPREFIX)$(IOCNAME):, READ=READASCII, CURRENT_MAX=$(CURRENT_MAX=0),AUTOSAVE_CURRENT=$(AUTOSAVE_CURRENT=NO),AUTO_RAMP=$(AUTO_RAMP=OFF)")
+dbLoadRecords("$(KEPCO)/db/kepco.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=L0,RESET=NO,DISABLE=$(DISABLE=0),RECSIM=$(RECSIM=0),RESET_ON_START=$(RESET_ON_START=0),CURRENT_RANGE=$(CURRENT_RANGE=Auto),VOLTAGE_RANGE=$(VOLTAGE_RANGE=Auto),CURRENT_MAX=$(CURRENT_MAX=0),IFREMOTE_ON_SET=$(IFREMOTE_ON_SET),IFNOTREMOTE_ON_SET=$(IFNOTREMOTE_ON_SET)")
+dbLoadRecords("$(KEPCO)/db/kepco_ramping.db","P=$(MYPVPREFIX)$(IOCNAME):, READ=READASCII, CURRENT_MAX=$(CURRENT_MAX=0),AUTOSAVE_CURRENT=$(AUTOSAVE_CURRENT=NO),AUTO_RAMP=$(AUTO_RAMP=OFF),IFREMOTE_ON_SET=$(IFREMOTE_ON_SET),IFNOTREMOTE_ON_SET=$(IFNOTREMOTE_ON_SET)")
 
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
