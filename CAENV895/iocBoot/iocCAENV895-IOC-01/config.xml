@@ -2,17 +2,20 @@
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
 <ioc_desc>CAEN V895 Discriminator</ioc_desc>
-<macro name="CARDS0" pattern="^[0-9]+$" description="Number of cards in crate 0, leave blank if this crate does not exist" hasDefault="YES", default="" />
-<macro name="CARDS1" pattern="^[0-9]+$" description="Number of cards in crate 1, leave blank if this crate does not exist" hasDefault="YES", default="" />
-<macro name="CARDS2" pattern="^[0-9]+$" description="Number of cards in crate 2, leave blank if this crate does not exist" hasDefault="YES", default="" />
-<macro name="MY_BOARD_NUMBER_0" pattern="^0x[0-9]+$" description="Local crate index, crate 0" hasDefault="YES", default="0x1" />
-<macro name="MY_BOARD_NUMBER_0" pattern="^0x[0-9]+$" description="Local crate index, crate 1" hasDefault="YES", default="0x2" />
-<macro name="MY_BOARD_NUMBER_0" pattern="^0x[0-9]+$" description="Local crate index, crate 2" hasDefault="YES", default="0x3" />
-<macro name="CAEN_BOARD_NUMBER_0" pattern="^0x[0-9]+$" description="Local crate index, crate 0" hasDefault="YES", default="0x0" />
-<macro name="CAEN_BOARD_NUMBER_0" pattern="^0x[0-9]+$" description="Local crate index, crate 1" hasDefault="YES", default="0x1" />
-<macro name="CAEN_BOARD_NUMBER_0" pattern="^0x[0-9]+$" description="Local crate index, crate 2" hasDefault="YES", default="0x2" />
-<macro name="BASE_ADDRESS_0" pattern="^0x[0-9]+$" description="Base address, crate 0" hasDefault="YES", default="0x0" />
-<macro name="BASE_ADDRESS_1" pattern="^0x[0-9]+$" description="Base address, crate 1" hasDefault="YES", default="0x0" />
-<macro name="BASE_ADDRESS_2" pattern="^0x[0-9]+$" description="Base address, crate 2" hasDefault="YES", default="0x0" />
+<ioc_details>CAEN V895 Discriminator IOC</ioc_details>
+<macros>
+<macro name="CARDS0" pattern="^[0-9]+$" description="Number of cards in crate 0, leave blank if this crate does not exist" hasDefault="YES" defaultValue="" />
+<macro name="CARDS1" pattern="^[0-9]+$" description="Number of cards in crate 1, leave blank if this crate does not exist" hasDefault="YES" defaultValue="" />
+<macro name="CARDS2" pattern="^[0-9]+$" description="Number of cards in crate 2, leave blank if this crate does not exist" hasDefault="YES" defaultValue="" />
+<macro name="MY_BOARD_NUMBER_0" pattern="^0x[0-9]+$" description="Local crate index, crate 0" hasDefault="YES" defaultValue="0x1" />
+<macro name="MY_BOARD_NUMBER_1" pattern="^0x[0-9]+$" description="Local crate index, crate 1" hasDefault="YES" defaultValue="0x2" />
+<macro name="MY_BOARD_NUMBER_2" pattern="^0x[0-9]+$" description="Local crate index, crate 2" hasDefault="YES" defaultValue="0x3" />
+<macro name="CAEN_BOARD_NUMBER_0" pattern="^0x[0-9]+$" description="Local crate index, crate 0" hasDefault="YES" defaultValue="0x0" />
+<macro name="CAEN_BOARD_NUMBER_1" pattern="^0x[0-9]+$" description="Local crate index, crate 1" hasDefault="YES" defaultValue="0x1" />
+<macro name="CAEN_BOARD_NUMBER_2" pattern="^0x[0-9]+$" description="Local crate index, crate 2" hasDefault="YES" defaultValue="0x2" />
+<macro name="BASE_ADDRESS_0" pattern="^0x[0-9]+$" description="Base address, crate 0" hasDefault="YES" defaultValue="0x0" />
+<macro name="BASE_ADDRESS_1" pattern="^0x[0-9]+$" description="Base address, crate 1" hasDefault="YES" defaultValue="0x0" />
+<macro name="BASE_ADDRESS_2" pattern="^0x[0-9]+$" description="Base address, crate 2" hasDefault="YES" defaultValue="0x0" />
+</macros>
 </config_part>
 </ioc_config>
