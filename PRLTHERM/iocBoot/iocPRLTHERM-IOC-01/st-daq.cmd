@@ -12,7 +12,7 @@ epicsEnvSet("CDAQ","$(HOST=localhost)Mod1") # cDAQ chassis address (appended 'Mo
 # By default, all channels configured for units of Kelvin and K-Type thermocouples (values from VI: m=73.15 M=1645.15)
 # Number of samples (N)=2; Sampling Frequency (F)=1; Minumum Value (m)=73.15; Maximum Value (M)=1645.15
 
-epicsEnvSet("DAQMX_OPTIONS", "N=2 F=1 m=$(MIN_TEMP=73.15) M=$(MAX_TEMP=1645.15) U=$(UNITS=Kelvins) thermocoupleType=$(TC_TYPE=K_Type_TC) cjcSource=$(CJC_SOURCE=ConstVal) cjcVal=$(CJC_VAL=25.0) cjcChannel=$(CJC_CHANNEL=0) AIADCTimingMode=HighResolution AIAutoZeroMode=Once")
+epicsEnvSet("DAQMX_OPTIONS", "N=2 F=1 m=$(MIN_TEMP=73.15) M=$(MAX_TEMP=1645.15) U=$(UNITS_DAQMX=Kelvins) thermocoupleType=$(TC_TYPE=K_Type_TC) cjcSource=$(CJC_SOURCE=ConstVal) cjcVal=$(CJC_VAL=25.0) cjcChannel=$(CJC_CHANNEL=0) AIADCTimingMode=HighResolution AIAutoZeroMode=Once")
 
 $(IFNOTRECSIM) DAQmxConfig("$(DEVICE)", "$(CDAQ)/ai0",   0, "AITC", "$(DAQMX_OPTIONS)")      # Channel  0
 $(IFNOTRECSIM) DAQmxConfig("$(DEVICE)", "$(CDAQ)/ai1",   1, "AITC", "$(DAQMX_OPTIONS)")      # Channel  1
