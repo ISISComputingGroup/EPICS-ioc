@@ -1,0 +1,24 @@
+record(ai, "$(P)DDS_STRESS_RIG:ELONG") {
+    field(DESC, "Elongation read from array")
+    field(INP, "$(P)DDS_STRESS_RIG:ARRAY.[0] CP MS")
+}
+
+record(ai, "$(P)DDS_STRESS_RIG:LOAD") {
+    field(DESC, "Load read from array")
+    field(INP, "$(P)DDS_STRESS_RIG:ARRAY.[1] CP MS")
+}
+
+record(ao, "$(P)DDS_STRESS_RIG:LOAD:SP") {
+    field(DESC, "Set-point for load")
+}
+
+record(ai, "$(P)DDS_STRESS_RIG:TIME") {
+    field(DESC, "Time read from Array")
+    field(INP, "$(P)DDS_STRESS_RIG:ARRAY.[2] CP MS")
+}
+
+record(calc, "$(P)DDS_STRESS_RIG:MOT:ACTIV") {
+    field(DESC, "description")
+    field(CALC, "a!=0")
+    field(INPA, "$(P)DDS_STRESS_RIG:MOT:STAT CP MS")
+}

@@ -16,4 +16,5 @@ $(IFNOTRECSIM) epicsThreadSleep(5)
 #$(IFNOTRECSIM) asynSetTraceMask("$(NUM_PORT)", -1, 0x9)
 ## Load our record instances
 dbLoadRecords("$(TOP)/db/lvremote_dds_tensile_stress_rig.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),IFNOTRECSIM=$(IFNOTRECSIM),DISABLE=$(DISABLE=0),STRING_PORT=$(STRING_PORT), NUM_PORT=$(NUM_PORT)")
+dbLoadRecords("$(TOP)/db/tensile_stress_rig_internal.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
 

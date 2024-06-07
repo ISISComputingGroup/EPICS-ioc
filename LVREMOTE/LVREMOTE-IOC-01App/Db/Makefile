@@ -8,6 +8,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 DB += lvremotetest.db
 DB += lvremote_dds_tensile_stress_rig.db
+DB += tensile_stress_rig_internal.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
