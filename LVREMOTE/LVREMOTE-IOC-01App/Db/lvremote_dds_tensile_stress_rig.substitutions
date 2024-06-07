@@ -1,0 +1,39 @@
+#file  lvremote_binary.template { 
+#  pattern 
+#    {DEVICE, P, NAME, IND, CONTROL, ZERO, ONE, VI, PORT, READONLY, DESCRIPTION, SCAN}
+#    
+#    {"DDS_STRESS_RIG", "\$(P)", "BUTTON", "Boolean Ind", "Button", "Off", "On", "C:/Instrument/Dev/ibex_vis/VIsForTesting/Labview Remote Service Test VI.vi", "\$(NUM_PORT)", "", "Test Boolean", "1 second"}
+#}
+
+#file  lvremote_double.template { 
+#  pattern 
+#    {DEVICE, P, NAME, IND, CONTROL, VI, PORT, READONLY, DESCRIPTION, SCAN}
+#    
+#    {"DDS_STRESS_RIG", "\$(P)", "SPEED", "Speed", "Speed", "C:/Instrument/Dev/ibex_vis/Drivers/DDS/dds.vi", "\$(NUM_PORT)", "", "Speed", "1 second"}
+#}
+
+#file  lvremote_enum.template { 
+#  pattern 
+#    {DEVICE, P, NAME, IND, CONTROL, VI, PORT, PORT2, READONLY, DESCRIPTION, SCAN, ZRST, ONST, TWST, THST, ZRVL, ONVL, TWVL, THVL}
+#    
+#    {"DDS_STRESS_RIG", "\$(P)", "ENUM", "Enum String", "Enum", "C:/Instrument/Dev/ibex_vis/VIsForTesting/Labview Remote Service Test VI.vi", "\$(NUM_PORT)", "\$(STRING_PORT)", "", "Test Enum", "1 second", "EnumVal1", "EnumVal2", "EnumVal3", "EnumVal4", "0", "1", "2", "3"}
+#}
+
+#file lvremote_string.template {
+#  pattern
+#  {DEVICE, P, NAME, IND, CONTROL, VI, PORT, READONLY, DESCRIPTION, SCAN}
+
+#  {"DDS_STRESS_RIG", "\$(P)", "MODE", "Mode String","Mode String", "C:/Instrument/Dev/ibex_vis/Drivers/DDS/dds.vi", "\$(STRING_PORT)", "#", "Mode", "1 second"},
+#  {"DDS_STRESS_RIG", "\$(P)", "DIR", "Direction String","Direction String", "C:/Instrument/Dev/ibex_vis/Drivers/DDS/dds.vi", "\$(STRING_PORT)", "#", "Direction", "1 second"},
+#  {"DDS_STRESS_RIG", "\$(P)", "MOT:STAT", "Motor Status String", "Motor Status String", "C:/Instrument/Dev/ibex_vis/Drivers/DDS/dds.vi", "\$(STRING_PORT)", "#", "Motor Status", "1 second"},
+#  {"DDS_STRESS_RIG", "\$(P)", "CON:STAT", "Control Status String", "Control Status String", "C:/Instrument/Dev/ibex_vis/Drivers/DDS/dds.vi", "\$(STRING_PORT)", "#", "Control Status", "1 second"},
+#  {"DDS_STRESS_RIG", "\$(P)", "MOT:STAT", "Motor Control Mode String", "Motor Control Mode String", "C:/Instrument/Dev/ibex_vis/Drivers/DDS/dds.vi", "\$(STRING_PORT)", "#", "Motor Control Mode", "1 second"},
+#  {"DDS_STRESS_RIG", "\$(P)", "TEMP:STAT", "Temp Status String", "Temp Status String", "C:/Instrument/Dev/ibex_vis/Drivers/DDS/dds.vi", "\$(STRING_PORT)", "#", "Temp Status String", "1 second"},  
+#}
+
+file lvremote_array.template {
+  pattern
+  {DEVICE, P, NAME, IND, CONTROL, VI, PORT, DESCRIPTION, SCAN, TYPE, INDEX}
+
+  {"DDS_STRESS_RIG", "\$(P)", "ARRAY", "Display", "Display", "C:/Instrument/Dev/ibex_vis/Drivers/DDS/dds.vi", "\$(NUM_PORT)", "Display", "1 second", "DOUBLE", "7"}
+}

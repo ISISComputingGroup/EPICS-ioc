@@ -7,6 +7,7 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 DB += lvremotetest.db
+DB += lvremote_dds_tensile_stress_rig.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
