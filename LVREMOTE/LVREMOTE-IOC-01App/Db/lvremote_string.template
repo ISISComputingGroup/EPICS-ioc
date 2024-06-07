@@ -14,30 +14,33 @@
 
 record(stringin, "$(P)$(DEVICE):$(NAME)") {
     field(DESC, "Readback for $(DESCRIPTION)")
-    field(DTYP, "stream")
-    field(INP,  "@lvremote_string.proto getString($(VI),$(IND)) $(PORT)")
+$(IFNOTRECSIM)    field(DTYP, "stream")
+$(IFNOTRECSIM)    field(INP,  "@lvremote_string.proto getString($(VI),$(IND)) $(PORT)")
     field(SCAN, "$(SCAN)")
 
+    field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(DEVICE):$(NAME) PP")
 }
 
 $(READONLY)record(stringout, "$(P)$(DEVICE):$(NAME):SP") {
 $(READONLY)    field(DESC, "Setpoint for $(DESCRIPTION)")
-$(READONLY)    field(DTYP, "stream")
-$(READONLY)    field(OUT,  "@lvremote_string.proto sendString($(VI),$(CONTROL="")) $(PORT)")
+$(READONLY)$(IFNOTRECSIM)    field(DTYP, "stream")
+$(READONLY)$(IFNOTRECSIM)    field(OUT,  "@lvremote_string.proto sendString($(VI),$(CONTROL="")) $(PORT)")
 $(READONLY)    field(SCAN, "Passive")
 
+$(READONLY)    field(SDIS, "$(P)DISABLE")
 $(READONLY)    field(SIML, "$(P)SIM")
 $(READONLY)    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME):SP PP")
 $(READONLY)}
 
 $(READONLY)record(stringin, "$(P)$(DEVICE):$(NAME):SP:RBV") {
 $(READONLY)    field(DESC, "Setpoint Readback for $(DESCRIPTION)")
-$(READONLY)    field(DTYP, "stream")
-$(READONLY)    field(INP,  "@lvremote_string.proto getString($(VI),$(CONTROL="")) $(PORT)")
+$(READONLY)$(IFNOTRECSIM)    field(DTYP, "stream")
+$(READONLY)$(IFNOTRECSIM)    field(INP,  "@lvremote_string.proto getString($(VI),$(CONTROL="")) $(PORT)")
 $(READONLY)    field(SCAN, "$(SCAN)")
 
+$(READONLY)    field(SDIS, "$(P)DISABLE")
 $(READONLY)    field(SIML, "$(P)SIM")
 $(READONLY)    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME) PP")
 $(READONLY)}

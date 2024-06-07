@@ -15,19 +15,22 @@
 
 record(waveform, "$(P)$(DEVICE):$(NAME)") {
     field(DESC, "Readback for $(DESCRIPTION) array")
-    field(DTYP, "stream")
-    field(INP,  "@lvremote_num.proto getArrayVal($(VI),$(IND)) $(PORT)")
+$(IFNOTRECSIM)    field(DTYP, "stream")
+$(IFNOTRECSIM)    field(INP,  "@lvremote_num.proto getArrayVal($(VI),$(IND)) $(PORT)")
     field(SCAN, "$(SCAN)")
     field(FTVL, "$(TYPE)")
     field(NELM, "$(INDEX)")
 
+    field(SDIS, "$(P)DISABLE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:$(DEVICE):$(NAME) PP")
 }
 
 
-record(bo, "$(P)SIM:$(DEVICE):$(NAME)") 
+record(waveform, "$(P)SIM:$(DEVICE):$(NAME)") 
 {
+    field(FTVL, "$(TYPE)")
+    field(NELM, "$(INDEX)")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }

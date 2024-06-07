@@ -10,44 +10,50 @@
 # READONLY - Whether or not a value is readonly, should be "#" when true and "" when false.
 # DESCRIPTION - The description of the PV, will be appended to "Readback for " and "Setpoint for " 
 # SCAN - Scan rate for the readback
+# WRITEONLY - Whether or not a value should only be written to and have a setpoint readback, used by values that require some calculation for 
+# their input i.e. items split out of arrays, should be "#" when true and "" when false."
+# SIMRECORD - Normally "", set to ":SP" if WRITEONLY = #.
 
 
-record(ai, "$(P)$(DEVICE):$(NAME)") {
-    field(DESC, "Readback for $(DESCRIPTION)")
-    field(DTYP, "stream")
-    field(INP,  "@lvremote_num.proto getDoubleVal($(VI),$(IND)) $(PORT)")
-    field(SCAN, "$(SCAN)")
+$(WRITEONLY)record(ai, "$(P)$(DEVICE):$(NAME)") {
+$(WRITEONLY)    field(DESC, "Readback for $(DESCRIPTION)")
+$(WRITEONLY)$(IFNOTRECSIM)    field(DTYP, "stream")
+$(WRITEONLY)$(IFNOTRECSIM)    field(INP,  "@lvremote_num.proto getDoubleVal($(VI),$(IND)) $(PORT)")
+$(WRITEONLY)    field(SCAN, "$(SCAN)")
 
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME) PP")
-}
+$(WRITEONLY)    field(SDIS, "$(P)DISABLE")
+$(WRITEONLY)    field(SIML, "$(P)SIM")
+$(WRITEONLY)    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME)$(SIMRECORD="") PP")
+$(WRITEONLY)}
 
 $(READONLY)record(ao, "$(P)$(DEVICE):$(NAME):SP") {
 $(READONLY)    field(DESC, "Setpoint for $(DESCRIPTION)")
-$(READONLY)    field(DTYP, "stream")
-$(READONLY)    field(OUT,  "@lvremote_num.proto setDoubleVal($(VI),$(CONTROL="")) $(PORT)")
+$(READONLY)$(IFNOTRECSIM)    field(DTYP, "stream")
+$(READONLY)$(IFNOTRECSIM)    field(OUT,  "@lvremote_num.proto setDoubleVal($(VI),$(CONTROL="")) $(PORT)")
 $(READONLY)    field(SCAN, "Passive")
 
+$(READONLY)    field(SDIS, "$(P)DISABLE")
 $(READONLY)    field(SIML, "$(P)SIM")
 $(READONLY)    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME):SP PP")
 $(READONLY)}
 
 $(READONLY)record(ai, "$(P)$(DEVICE):$(NAME):SP:RBV") {
 $(READONLY)    field(DESC, "Setpoint Readback for $(DESCRIPTION)")
-$(READONLY)    field(DTYP, "stream")
-$(READONLY)    field(INP,  "@lvremote_num.proto getDoubleVal($(VI),$(CONTROL="")) $(PORT)")
+$(READONLY)$(IFNOTRECSIM)    field(DTYP, "stream")
+$(READONLY)$(IFNOTRECSIM)    field(INP,  "@lvremote_num.proto getDoubleVal($(VI),$(CONTROL="")) $(PORT)")
 $(READONLY)    field(SCAN, "$(SCAN)")
 
+$(READONLY)    field(SDIS, "$(P)DISABLE")
 $(READONLY)    field(SIML, "$(P)SIM")
-$(READONLY)    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME) PP")
+$(READONLY)    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME)$(SIMRECORD="") PP")
 $(READONLY)}
 
-record(bo, "$(P)SIM:$(DEVICE):$(NAME)") 
+record(bo, "$(P)SIM:$(DEVICE):$(NAME)$(SIMRECORD="")") 
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
 
-$(READONLY)alias("$(P)SIM:$(DEVICE):$(NAME)","$(P)SIM:$(DEVICE):$(NAME):SP")
+$(READONLY)alias("$(P)SIM:$(DEVICE):$(NAME)$(SIMRECORD="")","$(P)SIM:$(DEVICE):$(NAME):SP")
 
 
