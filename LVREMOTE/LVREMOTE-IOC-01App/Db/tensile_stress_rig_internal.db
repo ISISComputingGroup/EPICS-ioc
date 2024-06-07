@@ -22,3 +22,29 @@ record(calc, "$(P)DDS_STRESS_RIG:MOT:ACTIV") {
     field(CALC, "a!=0")
     field(INPA, "$(P)DDS_STRESS_RIG:MOT:STAT CP MS")
 }
+
+record(seq, "$(P)DDS_STRESS_RIG:CHANGE_SPEED"){
+    field(DESC, "Comnand Sequence to set Speed.")
+    field(DO0, "1")
+    field(LNK0, "$(P)DDS_STRESS_RIG:MODE:SPEED:SP PP")
+    field(DO1, "0")
+    field(LNK1, "$(P)DDS_STRESS_RIG:CONTROL:SPEED:SP PP")
+    field(DO2, "0")
+    field(LNK2, "$(P)DDS_STRESS_RIG:DIRECTION:SPEED:SP PP")
+    field(DOL3, "$(P)DDS_STRESS_RIG:SPEED:SP")
+    field(LNK3, "$(P)DDS_STRESS_RIG:_SPEED:SP PP")
+    field(DO4, "1")
+    field(LNK4, "$(P)DDS_STRESS_RIG:SPEED:SET:SP PP")
+    field(DO5, "2")
+    field(LNK5, "$(P)DDS_STRESS_RIG:DIRECTION:SPEED:SP PP")
+    field(DLY5, "0.2")
+    field(DO6, "1")
+    field(LNK6, "$(P)DDS_STRESS_RIG:SPEED:SET:SP PP")
+    field(DLY6, "0.2")
+    field(SCAN, "Passive")
+    field(SELM, "All")
+}
+
+record(ao, "$(P)DDS_STRESS_RIG:SPEED:SP") {
+    field(DESC, "Target Value")
+}
