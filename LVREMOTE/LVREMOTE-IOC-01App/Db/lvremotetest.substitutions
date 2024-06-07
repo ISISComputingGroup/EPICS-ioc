@@ -7,9 +7,9 @@ file  lvremote_binary.template {
 
 file  lvremote_double.template { 
   pattern 
-    {DEVICE, P, NAME, IND, CONTROL, VI, PORT, READONLY, DESCRIPTION, SCAN}
+    {DEVICE, P, NAME, IND, CONTROL, VI, PORT, READONLY, WRITEONLY, SIMRECORD, DESCRIPTION, SCAN}
     
-    {"TEST_VI", "\$(P)", "DOUBLE", "Double Ind", "Double Control", "C:/Instrument/Dev/ibex_vis/VIsForTesting/Labview Remote Service Test VI.vi", "\$(NUM_PORT)", "", "Test Double", "1 second"}
+    {"TEST_VI", "\$(P)", "DOUBLE", "Double Ind", "Double Control", "C:/Instrument/Dev/ibex_vis/VIsForTesting/Labview Remote Service Test VI.vi", "\$(NUM_PORT)", "", "", "",  "Test Double", "1 second"}
 }
 
 file  lvremote_enum.template { 
