@@ -1,0 +1,34 @@
+# Template file for remote labview services array values
+# Substitutions
+# DEVICE - The Device name
+# P - The PV prefix (This should usually be substituted for $(P))
+# NAME - The name of the pv
+# IND - The indicator of the value to read from labview
+# CONTROL - The control to write to, can be left out of substitution if readonly
+# VI - The path to the VI on the host computer as a string.
+# PORT - The Port to read (by default, L0 for Strings and L1 for Binary)
+# DESCRIPTION - The description of the PV, will be appended to "Readback for " and "Setpoint for " 
+# SCAN - Scan rate for the readback
+# TYPE - the type for FTVL to be set to (currently only supports FTVL)
+# INDEX - The size of the array.
+
+
+record(waveform, "$(P)$(DEVICE):$(NAME)") {
+    field(DESC, "Readback for $(DESCRIPTION) array")
+    field(DTYP, "stream")
+    field(INP,  "@lvremote_num.proto getArrayVal($(VI),$(IND)) $(PORT)")
+    field(SCAN, "$(SCAN)")
+    field(FTVL, "$(TYPE)")
+    field(NELM, "$(INDEX)")
+
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:$(DEVICE):$(NAME) PP")
+}
+
+
+record(bo, "$(P)SIM:$(DEVICE):$(NAME)") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
