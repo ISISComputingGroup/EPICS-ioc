@@ -10,7 +10,7 @@
             <macro name="TC_TYPE"       pattern="^(J_Type_TC|K_Type_TC|N_Type_TC|R_Type_TC|S_Type_TC|T_Type_TC|B_Type_TC|E_Type_TC)?$" description="Thermocouple type (Default: K Type)"         defaultValue="K_Type_TC"   hasDefault="YES" />
             <macro name="MIN_TEMP"      pattern="^-?[0-9]+\.?[0-9]*$"                                                                  description="Minimum TC temperature (Default for K Type)" defaultValue="73.15"       hasDefault="YES" />
             <macro name="MAX_TEMP"      pattern="^-?[0-9]+\.?[0-9]*$"                                                                  description="Maximum TC temperature (Default for K Type)" defaultValue="1645.15"     hasDefault="YES" />
-            <macro name="CJC_SOURCE"    pattern="^(BuiltIn|ConstVal|Chan)?$"                                                           description="CJC Source"                                  defaultValue="ConstVal"    hasDefault="YES" />
+            <macro name="CJC_SOURCE"    pattern="^(BuiltIn|ConstVal|Chan)?$"                                                           description="CJC Source"                                  defaultValue="BuiltIn"     hasDefault="YES" />
             <macro name="CJC_VAL"       pattern="^-?[0-9]+\.?[0-9]*$"                                                                  description="CJC Constant Value"                          defaultValue="25.0"        hasDefault="YES" />
             <macro name="CJC_CHANNEL"   pattern="^[0-9]+$"                                                                             description="CJC Channel (if CJC Source is 'Chan')"                                  hasDefault="NO" />
         </macros>
