@@ -72,3 +72,4 @@ include $(TOP)/../../../ISIS_CONFIG
 
 # IOC-specific support module
 DDSSTRES=$(SUPPORT)/dds_stress_rig/master
+LVREMOTE=$(SUPPORT)/lvremote/master

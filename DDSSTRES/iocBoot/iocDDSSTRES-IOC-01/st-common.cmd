@@ -1,27 +1,24 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DDSSTRES)/data"
-epicsEnvSet "DEVICE" "L0"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(LVREMOTE)/data"
+epicsEnvSet "STRING_PORT" "L0"
+epicsEnvSet "NUM_PORT" "L1"
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-## Device simulation mode IP configuration
-$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=57677)")
-
-## For recsim:
-$(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
-
-## For real device:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
-## Hardware flow control off
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", 0, "clocal", "Y")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
-## Software flow control off
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
+## create STRING_PORT (Required for String and Enum template)
+$(IFNOTRECSIM) drvAsynIPPortConfigure("$(STRING_PORT)", "$(IPADDR):64008 TCP")
+$(IFNOTRECSIM) asynOctetConnect("STRINGINIT","$(STRING_PORT)")
+$(IFNOTRECSIM) asynOctetWrite("STRINGINIT" "*IDN? ")
+$(IFRECSIM) drvAsynSerialPortConfigure("$(STRING_PORT)", "$(PORT=NUL)", 0, 1, 0, 0)
+## create NUM_PORT (Requred for binary, enum and double template)
+$(IFNOTRECSIM) drvAsynIPPortConfigure("$(NUM_PORT)", "$(IPADDR):64009 TCP")
+$(IFNOTRECSIM) asynOctetConnect("NUMINIT","$(NUM_PORT)")
+$(IFNOTRECSIM) asynOctetWrite("NUMINIT" "*IDN? ")
+$(IFRECSIM) drvAsynSerialPortConfigure("$(NUM_PORT)", "$(PORT=NUL)", 0, 1, 0, 0)
+# Wait for labview to initalise
+$(IFNOTRECSIM) epicsThreadSleep(5)
+#$(IFNOTRECSIM) asynSetTraceIOMask("$(NUM_PORT)", -1, 0x4)
+#$(IFNOTRECSIM) asynSetTraceMask("$(NUM_PORT)", -1, 0x9)
 
 ## Load record instances
 
@@ -29,7 +26,10 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(DDSSTRES)/db/dds_stress_rig.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(DDSSTRES)/db/lvremote_dds_tensile_stress_rig.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),IFNOTRECSIM=$(IFNOTRECSIM),DISABLE=$(DISABLE=0),STRING_PORT=$(STRING_PORT), NUM_PORT=$(NUM_PORT), VI_PATH=$(VI_PATH)")
+dbLoadRecords("$(DDSSTRES)/db/tensile_stress_rig_internal.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+
+
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
