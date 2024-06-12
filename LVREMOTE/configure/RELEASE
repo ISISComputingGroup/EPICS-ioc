@@ -69,3 +69,6 @@ ZLIB=$(SUPPORT)/zlib/master
 
 include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
+
+# IOC-specific support module
+LVREMOTE=$(SUPPORT)/lvremote/master
