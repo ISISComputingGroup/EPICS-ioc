@@ -28,16 +28,23 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
-## Load our record instances (default with ID switching)
-# Load with default ID of 0
-dbLoadRecords("$(ALDN1000)/db/aldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ID=0")
-dbLoadRecords("$(ALDN1000)/db/unit_setter.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
-
 # Check if macros' length > 0 (default operation)
 stringiftest("ACTIVE1", "$(ID1=)")
 stringiftest("ACTIVE2", "$(ID2=)")
 stringiftest("ACTIVE3", "$(ID3=)")
 stringiftest("ACTIVE4", "$(ID4=)")
+
+# This is to default the 
+epicsEnvSet("DEFAULT_ID", "0")
+$(IFACTIVE4) epicsEnvSet("DEFAULT_ID", "$(ID4)")
+$(IFACTIVE3) epicsEnvSet("DEFAULT_ID", "$(ID3)")
+$(IFACTIVE2) epicsEnvSet("DEFAULT_ID", "$(ID2)")
+$(IFACTIVE1) epicsEnvSet("DEFAULT_ID", "$(ID1)")
+
+## Load our record instances (default with ID switching)
+# Load with default ID of 0
+dbLoadRecords("$(ALDN1000)/db/aldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ID=$(DEFAULT_ID)")
+dbLoadRecords("$(ALDN1000)/db/unit_setter.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 
 # Load pv's that indicate whether sensor at index is active (i.e. ID set)
 dbLoadRecords("$(ALDN1000)/db/isActiveAldn1000.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):1:,IFACTIVE=$(IFACTIVE1),IFNOTACTIVE=$(IFNOTACTIVE1)")
