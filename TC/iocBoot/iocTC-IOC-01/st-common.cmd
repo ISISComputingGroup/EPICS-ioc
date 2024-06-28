@@ -49,7 +49,7 @@ set_requestfile_path("$(TOP)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
-AdsOpen("$(PORT)", $(IP_AD), $(AMS_ID), 500, 500, $(ADS_PORT))
+AdsOpen("$(PORT)", $(IP_AD), $(AMS_ID), 500, 500, $(ADS_PORT), 200)
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
