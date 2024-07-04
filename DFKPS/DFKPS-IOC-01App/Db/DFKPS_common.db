@@ -191,6 +191,7 @@ record(calcout, "$(P)CURR")
     info(INTEREST, "HIGH")
     info(archive, "VAL")
     info(autosaveFields, "HIGH LOW")
+    info(alarm, "DFKPS")
 }
 alias("$(P)CURR", "$(P)CURR:RBV")
 
