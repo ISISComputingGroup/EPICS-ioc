@@ -19,6 +19,10 @@ epicsEnvSet("ADS_PORT", $(ADS_PORT=852))
 # Get the number of axes from the controller before we starting spinning up dbs for each axis. the NUM_AXES macro is set to this number by getAdsVar() 
 getAdsVar("NUM_AXES", "GVL_APP.nAXIS_NUM", "$(IP_AD)", "$(AMS_ID)", $(ADS_PORT))
 
+# If the above didn't work, exit now to avoid trying to autosave incorrect values
+stringiftest(“CONNECTED”, “$(NUM_AXES=)”)
+$(IFNOTCONNECTED=#) exit
+
 luash("st-common.lua")
 
 ## configure jaws
