@@ -16,7 +16,7 @@ $(IFLOCALCALIB) epicsEnvSet "CALIB_DIR" "calib/magnets"
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(DANFYSIK8000)/master/danfysikMps8000App/protocol/;$(DANFYSIK8000)/master/danfysikMps8000App/protocol/DFK$(PROTO_OVERRIDE=$(DEV_TYPE=8000))/"
 
 ## use with emulator
-$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT)")
+$(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=57677)")
 
 ## use with real device
 
