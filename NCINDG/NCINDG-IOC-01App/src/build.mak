@@ -50,7 +50,7 @@ $(APPNAME)_LIBS += seq pv
 
 $(APPNAME)_LIBS_WIN32 += oncrpc libssl libcrypto
 $(APPNAME)_SYS_LIBS_Linux += ssl crypto
-$(APPNAME)_SYS_LIBS_Linux += sasl2
+$(APPNAME)_SYS_LIBS_Linux += sasl2 zstd
 
 $(APPNAME)_SYS_LIBS_WIN32 += psapi wldap32 ws2_32 crypt32 Normaliz Iphlpapi
 
