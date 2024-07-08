@@ -16,6 +16,7 @@ epicsEnvSet("IP_AD", $(IP_AD="192.168.1.221"))
 epicsEnvSet("PORT", "ads-port")
 epicsEnvSet("ADS_PORT", $(ADS_PORT=852))
 
+##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
 # Get the number of axes from the controller before we starting spinning up dbs for each axis. the NUM_AXES macro is set to this number by getAdsVar() 
