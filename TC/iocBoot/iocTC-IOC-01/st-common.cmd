@@ -20,7 +20,7 @@ epicsEnvSet("ADS_PORT", $(ADS_PORT=852))
 getAdsVar("NUM_AXES", "GVL_APP.nAXIS_NUM", "$(IP_AD)", "$(AMS_ID)", $(ADS_PORT))
 
 # If the above didn't work, exit now to avoid trying to autosave incorrect values
-stringiftest(“CONNECTED”, “$(NUM_AXES=)”)
+stringiftest("CONNECTED", "$(NUM_AXES=)")
 $(IFNOTCONNECTED=#) exit
 
 luash("st-common.lua")
