@@ -24,13 +24,10 @@ getAdsVar("NUM_AXES", "GVL_APP.nAXIS_NUM", "$(IP_AD)", "$(AMS_ID)", $(ADS_PORT))
 
 # If the above didn't work, exit now to avoid trying to autosave incorrect values
 stringiftest("CONNECTED", "$(NUM_AXES=)")
-$(IFNOTCONNECTED=#)epicsThreadSleep(5)
+$(IFNOTCONNECTED=#) epicsThreadSleep(5)
 $(IFNOTCONNECTED=#) iocInit
 $(IFNOTCONNECTED=#) dbpf $(MYPVPREFIX)CS:IOC:$(IOCNAME):DEVIOS:SYSRESET 1
 $(IFNOTCONNECTED=#) exit
-
-
-
 
 luash("st-common.lua")
 
