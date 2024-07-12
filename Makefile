@@ -82,6 +82,7 @@ IOCDIRS += HE3NMR
 IOCDIRS += LVREMOTE
 IOCDIRS += SR400
 IOCDIRS += SR850
+IOCDIRS += ENVMON
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
