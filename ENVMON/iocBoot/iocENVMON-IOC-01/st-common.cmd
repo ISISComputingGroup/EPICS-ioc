@@ -28,8 +28,14 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+stringiftest("SENSORA" "$(SENSOR_A=no)" 4 "yes")
+stringiftest("SENSORB" "$(SENSOR_B=no)" 4 "yes")
+
 ## Load our record instances
-dbLoadRecords("$(ENVMON)/db/environmentmonitor.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(ENVMON)/db/envmon_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(ENVMON)/db/envmon_sensor.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,SENSOR=A,IFPRESENT=$(IFSENSORA),IFNOTPRESENT=$(IFNOTSENSORA)")
+dbLoadRecords("$(ENVMON)/db/envmon_sensor.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,SENSOR=B,IFPRESENT=$(IFSENSORB),IFNOTPRESENT=$(IFNOTSENSORB)")
+dbLoadRecords("$(ENVMON)/db/error_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
