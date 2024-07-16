@@ -103,7 +103,6 @@ record(ao, "$(P)TEMP:SP")
 # I/O intr FLNK won't process until we trigger PROC via CA
     field(FLNK, "$(P)OUT_SP.PROC CA")
     field(EGU, "K")
-    $(IFNEEDLE_VALVE) field(ASG, "MANAGER")
     field(UDFS, "NO_ALARM") 
     info(INTEREST, "HIGH")
     info(archive, "VAL")

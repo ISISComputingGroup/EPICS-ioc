@@ -67,6 +67,7 @@ include $(CONFIG)/CONFIG_PVA_ISIS
 endif
 
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
+$(APPNAME)_SYS_LIBS_Linux += tirpc
 
 #===========================
 

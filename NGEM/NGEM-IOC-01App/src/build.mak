@@ -58,7 +58,7 @@ endif
 
 $(APPNAME)_LIBS_WIN32 += libssl libcrypto
 $(APPNAME)_SYS_LIBS_Linux += ssl crypto
-$(APPNAME)_SYS_LIBS_Linux += sasl2
+$(APPNAME)_SYS_LIBS_Linux += sasl2 zstd
 
 $(APPNAME)_LIBS_WIN32 += libcurl oncrpc
 $(APPNAME)_SYS_LIBS_Linux += curl
