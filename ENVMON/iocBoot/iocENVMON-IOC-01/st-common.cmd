@@ -28,6 +28,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+## Check if sensor A and/or sensor B is present
 stringiftest("SENSORA" "$(SENSOR_A=no)" 4 "yes")
 stringiftest("SENSORB" "$(SENSOR_B=no)" 4 "yes")
 
