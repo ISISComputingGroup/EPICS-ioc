@@ -1,4 +1,4 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(HAMEG8123)/Hameg_8123Sup"    
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(HAMEG8123)/data"    
 
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
@@ -32,7 +32,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("db/devHameg_8123.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
+dbLoadRecords("$(HAMEG8123)/db/devHameg_8123.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0, RECSIM=$(RECSIM=0), DISABLE=$(DISABLE=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

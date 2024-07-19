@@ -3,7 +3,7 @@
 <config_part>
 <ioc_desc>Cryogenic Ltd. SMS series PSU</ioc_desc>
 <macros>
-  <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
+  <xi:include href="../../../COMMON/PORT.xml" />
   <macro name="T_TO_A" pattern="^[0-9]+.?[0-9]*$" description="Tesla - Amp conversion rate" defaultValue="0.037" hasDefault="YES" />
   <macro name="DISPLAY_UNIT" pattern="^GAUSS|TESLA|AMPS$" description="Unit in which to display values" defaultValue="GAUSS" hasDefault="YES" />
   <macro name="WRITE_UNIT" pattern="^TESLA|AMPS$" description="Unit in which to write to the device" defaultValue="AMPS" hasDefault="YES" />

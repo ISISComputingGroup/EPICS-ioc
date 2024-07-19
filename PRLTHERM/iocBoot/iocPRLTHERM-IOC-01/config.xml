@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+    <config_part>
+        <ioc_desc>PEARL Thermometry</ioc_desc>
+        <ioc_details>Reads 16 temperature channels from a NI cDAQ 9181 device with a 9213 thermocouple module</ioc_details>
+        <macros>
+            <macro name="HOST"          pattern="^[a-zA-Z0-9\-_.]+$"                                                                   description="cDAQ chassis hostname"                                                  hasDefault="NO" />
+            <macro name="UNITS_IOC"     pattern="^(C|K)?$"                                                                             description="Units for IOC and PVs"                       defaultValue="K"           hasDefault="YES" />
+            <macro name="UNITS_DAQMX"   pattern="^(DegC|DegF|Kelvins|DegR)?$"                                                          description="Units for DAQMX configuration"               defaultValue="Kelvins"     hasDefault="YES" />
+            <macro name="TC_TYPE"       pattern="^(J_Type_TC|K_Type_TC|N_Type_TC|R_Type_TC|S_Type_TC|T_Type_TC|B_Type_TC|E_Type_TC)?$" description="Thermocouple type (Default: K Type)"         defaultValue="K_Type_TC"   hasDefault="YES" />
+            <macro name="MIN_TEMP"      pattern="^-?[0-9]+\.?[0-9]*$"                                                                  description="Minimum TC temperature (Default for K Type)" defaultValue="73.15"       hasDefault="YES" />
+            <macro name="MAX_TEMP"      pattern="^-?[0-9]+\.?[0-9]*$"                                                                  description="Maximum TC temperature (Default for K Type)" defaultValue="1645.15"     hasDefault="YES" />
+            <macro name="CJC_SOURCE"    pattern="^(BuiltIn|ConstVal|Chan)?$"                                                           description="CJC Source"                                  defaultValue="BuiltIn"     hasDefault="YES" />
+            <macro name="CJC_VAL"       pattern="^-?[0-9]+\.?[0-9]*$"                                                                  description="CJC Constant Value"                          defaultValue="25.0"        hasDefault="YES" />
+            <macro name="CJC_CHANNEL"   pattern="^[0-9]+$"                                                                             description="CJC Channel (if CJC Source is 'Chan')"                                  hasDefault="NO" />
+        </macros>
+        <pvsets></pvsets>
+    </config_part>
+</ioc_config>
