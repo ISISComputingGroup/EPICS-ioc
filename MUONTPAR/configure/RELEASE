@@ -1,3 +1,6 @@
+
+FILESERVER=$(SUPPORT)/FileServer/master
+
 # top level master release and local private options 
 include $(TOP)/../../../configure/MASTER_RELEASE
 -include $(TOP)/../../../configure/MASTER_RELEASE.$(EPICS_HOST_ARCH)

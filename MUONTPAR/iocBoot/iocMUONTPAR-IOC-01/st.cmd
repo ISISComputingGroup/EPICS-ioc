@@ -8,6 +8,8 @@ cd ${TOP}
 dbLoadDatabase "dbd/MUONTPAR-IOC-01.dbd"
 MUONTPAR_IOC_01_registerRecordDeviceDriver pdbbase
 
+FileServerConfigure("fits", "C:\Instrument\Dev\file.tpar")
+
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
