@@ -22,6 +22,7 @@ FileServerConfigure("fits", "C:\Instrument\Dev\file.tpar")
 dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=$(TPAR_FILE=),TPAR_FILE_PV_NAME=TPAR_FILE")
 dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=$(BOOSTER_TPAR_FILE=),TPAR_FILE_PV_NAME=BOOSTER_TPAR_FILE")
 dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=$(BOOSTER_TYPE=OXF13),TPAR_FILE_PV_NAME=BOOSTER_TYPE")
+dbLoadRecords("$(FILESERVER)/db/FileServerTest.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
