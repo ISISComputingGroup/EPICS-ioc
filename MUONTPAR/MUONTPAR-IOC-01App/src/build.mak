@@ -23,6 +23,7 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += FileServer.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
