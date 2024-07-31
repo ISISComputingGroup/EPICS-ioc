@@ -83,6 +83,7 @@ IOCDIRS += LVREMOTE
 IOCDIRS += SR400
 IOCDIRS += SR850
 IOCDIRS += ENVMON
+IOCDIRS += DDSSTRES
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)

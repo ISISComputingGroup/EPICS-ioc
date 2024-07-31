@@ -1,10 +1,11 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
-<ioc_desc>IOC to interact with labview remotely</ioc_desc>
-<ioc_details>Ioc to interact with remote labview using ISIS remote labview systems</ioc_details>
+<ioc_desc>DDS Stress Rig IOC</ioc_desc>
+<ioc_details>IOC for the DDS Stress rig using LVREMOTE</ioc_details>
 <macros>
 <macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address of machine running VI" hasDefault="NO" />
+<macro name="VI_PATH" pattern="^([A-Z]:|~)*(\/[\w \.]+)+\/$" description="File path of the VI using / separation (e.g. 'C:/path/to/Vi/' )." hasDefault="NO"/>
 </macros>
 <pvsets>
 </pvsets>
