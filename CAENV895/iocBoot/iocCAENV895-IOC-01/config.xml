@@ -4,7 +4,7 @@
 <ioc_desc>CAEN V895 Discriminator</ioc_desc>
 <ioc_details>CAEN V895 Discriminator IOC</ioc_details>
 <macros>
-<macro name="CARDS0" pattern="^[0-9]+$" description="Number of cards in crate 0, leave blank if this crate does not exist" hasDefault="YES" defaultValue="" />
+<macro name="CARDS0" pattern="^[0-9]+$" description="Number of cards in crate 0, leave blank if this crate does not exist" hasDefault="YES" defaultValue="6" />
 <macro name="CARDS1" pattern="^[0-9]+$" description="Number of cards in crate 1, leave blank if this crate does not exist" hasDefault="YES" defaultValue="" />
 <macro name="CARDS2" pattern="^[0-9]+$" description="Number of cards in crate 2, leave blank if this crate does not exist" hasDefault="YES" defaultValue="" />
 <macro name="MY_BOARD_NUMBER_0" pattern="^0x[0-9]+$" description="Local crate index, crate 0" hasDefault="YES" defaultValue="0x1" />
