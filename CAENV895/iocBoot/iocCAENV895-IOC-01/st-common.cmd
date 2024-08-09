@@ -11,7 +11,7 @@
 $(IFDEVSIM) CAENVMEConfigure("CRATE0", 0, 0, 0, 0x10000, 1)
 $(IFRECSIM) CAENVMEConfigure("CRATE0", 0, 0, 0, 0x10000, 1)
 
-stringiftest("CRATE0", "$(CARDS0=)")
+stringiftest("CRATE0", "$(CARDS0=6)")
 stringiftest("CRATE1", "$(CARDS1=)")
 stringiftest("CRATE2", "$(CARDS2=)")
 
@@ -29,7 +29,7 @@ set_pass1_restoreFile("auto_settings.sav")
 
 
 $(IFCRATE0) dbLoadRecords("$(CAENVME)/db/v895Crate.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,CARDS=$(CARDS0)")
-$(IFCRATE0) dbLoadRecordsLoop("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=\$(CARD)", "CARD", 0, $(CARDS0))
+$(IFCRATE0) dbLoadRecordsLoop("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=0,PORT=CRATE0,C=\$(CARD)", "CARD", 0, $(CARDS0=6))
 
 $(IFCRATE1) dbLoadRecords("$(CAENVME)/db/v895Crate.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=1,PORT=CRATE1,CARDS=$(CARDS1)")
 $(IFCRATE1) dbLoadRecordsLoop("$(CAENVME)/db/v895Card.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,CRATE=1,PORT=CRATE1,C=\$(CARD)", "CARD", 0, $(CARDS1))
