@@ -12,7 +12,7 @@ MUONTPAR_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-FileServerConfigure("fserv", "$(TPAR_FILE_DIR)")
+FileServerConfigure("fserv", "$(EDITOR_TPAR_FILE_DIR)")
 
 ## Load record instances
 
