@@ -1,5 +1,7 @@
-
+ASYN=$(SUPPORT)/asyn/master
 FILESERVER=$(SUPPORT)/FileServer/master
+STD=$(SUPPORT)/std/master
+COMMON=$(ISISSUPPORT)/Common/master
 
 # top level master release and local private options 
 include $(TOP)/../../../configure/MASTER_RELEASE

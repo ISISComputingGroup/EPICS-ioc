@@ -17,6 +17,8 @@ DBD += $(APPNAME).dbd
 
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
+$(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += stdSupport.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
@@ -37,6 +39,7 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += FileServer
 $(APPNAME)_LIBS += utilities pcrecpp pcre
 ## Add other libraries here ##
+$(APPNAME)_LIBS += std
 $(APPNAME)_LIBS += asyn calc busy sscan
 
 # INSTETC-IOC-01_registerRecordDeviceDriver.cpp derives from INSTETC-IOC-01.dbd
