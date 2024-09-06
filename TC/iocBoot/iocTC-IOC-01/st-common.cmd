@@ -4,7 +4,7 @@
 ## Load record instances
 epicsEnvSet("LUA_SCRIPT_PATH","${TOP}/iocBoot/${IOC}")
 
-epicsEnvSet("TWINCATCONFIG","$(TWINCATCONFIG=$(ICPCONFIGROOT)/twincat)")
+epicsEnvSet("TWINCATCONFIG","$(TWINCATCONFIG=$(MOTOREXT)/settings/$(INSTRUMENT)/twincat)")
 
 ## to stop lots of logs of writes to ASTAXES_*:STCONTROL-BENABLE
 epicsEnvSet("CAPUTLOGCONFIG", "0")
