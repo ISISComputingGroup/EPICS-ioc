@@ -39,14 +39,15 @@
 <macro name="MRES7" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
 <macro name="MRES8" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
 
-<macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<!-- speed is in internal controller units, just take the labview value, find its !SV command -->
+<macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
 
 <macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
 <macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
