@@ -12,7 +12,9 @@ MUONTPAR_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-FileContentsServerConfigure("fserv", "$(EDITOR_TPAR_FILE_DIR)")
+epicsEnvSet("PORT", "fserv")
+
+FileContentsServerConfigure($(PORT), "$(EDITOR_TPAR_FILE_DIR)")
 
 ## Load record instances
 
@@ -23,7 +25,7 @@ FileContentsServerConfigure("fserv", "$(EDITOR_TPAR_FILE_DIR)")
 dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=$(TPAR_FILE=),TPAR_FILE_PV_NAME=TPAR_FILE")
 dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=$(BOOSTER_TPAR_FILE=),TPAR_FILE_PV_NAME=BOOSTER_TPAR_FILE")
 dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=$(BOOSTER_TYPE=OXF13),TPAR_FILE_PV_NAME=BOOSTER_TYPE")
-dbLoadRecords("$(FILESERVER)/db/FileContentsServer.db","P=$(MYPVPREFIX)$(IOCNAME):")
+dbLoadRecords("$(FILESERVER)/db/FileContentsServer.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PORT)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
