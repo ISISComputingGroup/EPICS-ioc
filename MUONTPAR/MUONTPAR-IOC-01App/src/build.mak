@@ -25,7 +25,7 @@ $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
-$(APPNAME)_DBD += FileServer.dbd
+$(APPNAME)_DBD += FileContentsServer.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -36,7 +36,7 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += FileServer
+$(APPNAME)_LIBS += FileContentsServer
 $(APPNAME)_LIBS += utilities pcrecpp pcre
 ## Add other libraries here ##
 $(APPNAME)_LIBS += std
