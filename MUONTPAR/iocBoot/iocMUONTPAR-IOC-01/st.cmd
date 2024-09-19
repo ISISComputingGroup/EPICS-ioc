@@ -13,6 +13,7 @@ MUONTPAR_IOC_01_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 epicsEnvSet("PORT", "fserv")
+epicsEnvSet("EDITOR_TPAR_FILE_DIR", $(EDITOR_TPAR_FILE_DIR="C:\\Instrument\\Settings\\")
 
 FileContentsServerConfigure($(PORT), "$(EDITOR_TPAR_FILE_DIR)")
 
