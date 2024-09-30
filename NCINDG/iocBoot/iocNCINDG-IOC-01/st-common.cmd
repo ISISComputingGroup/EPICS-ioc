@@ -3,6 +3,7 @@
 
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 asynSetMinTimerPeriod(0.001)
+callbackSetQueueSize(20000)
 
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
@@ -26,6 +27,9 @@ $(IFDIGIP6) iocshLoad "${TOP}/iocBoot/iocNCINDG-IOC-01/st-dig.cmd", "DIG=6,IP_AD
 $(IFDIGIP7) iocshLoad "${TOP}/iocBoot/iocNCINDG-IOC-01/st-dig.cmd", "DIG=7,IP_ADDR=$(IP_ADDR_7=),INDEX=$(INDEX_7=)"
 
 dbLoadRecords("$(NUCINSTDIG)/db/NucInstDigGlobal.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),IFDIG0=$(IFDIGIP0),IFDIG1=$(IFDIGIP1),IFDIG2=$(IFDIGIP2),IFDIG3=$(IFDIGIP3),IFDIG4=$(IFDIGIP4),IFDIG5=$(IFDIGIP5),IFDIG6=$(IFDIGIP6),IFDIG7=$(IFDIGIP7)")
+
+stringiftest("SYNCPREFIX", "$(SYNCPREFIX=)", 3)
+$(IFDIGIP0=#) $(IFSYNCPREFIX=#)  dbLoadRecords("$(NUCINSTDIG)/db/sync_inst.db","P=$(MYPVPREFIX),Q=$(IOCNAME):,SYNCPREFIX=$(SYNCPREFIX=),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
