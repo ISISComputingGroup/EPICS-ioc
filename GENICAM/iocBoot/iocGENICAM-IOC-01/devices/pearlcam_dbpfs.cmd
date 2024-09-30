@@ -34,3 +34,10 @@ dbpf "$(PREFIX)CAM1:GC_BalRatioSelector", "0"
 
 dbpf "$(PREFIX)CAM1:GC_ExposureMode", "0"
 dbpf "$(PREFIX)CAM1:GC_ExposureAuto", "2"
+
+dbpf "$(PREFIX)CAM1:over1:1:Use", "Yes"
+dbpf "$(PREFIX)CAM1:over1:1:SizeX", "2"
+dbpf "$(PREFIX)CAM1:over1:1:SizeY", "2"
+dbpf "$(PREFIX)CAM1:over1:1:WidthX", "2"
+dbpf "$(PREFIX)CAM1:over1:1:WidthY", "2"
+
