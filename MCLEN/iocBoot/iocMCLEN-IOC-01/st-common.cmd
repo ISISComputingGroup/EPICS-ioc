@@ -59,7 +59,7 @@ $(IFNOTRECSIM) PM304Config(0, "$(ASERIAL)", "$(NAXES=1)", "$(COMBINED_HOMING_MOD
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 
-epicsEnvSet("MCLENCONFIG","$(ICPCONFIGROOT)/mclennan")
+epicsEnvSet("MCLENCONFIG","$(MCLENCONFIGDIR=$(MOTOREXT)/settings/$(INSTRUMENT)/mclennan)")
 
 # configure axes
 < axes.cmd
