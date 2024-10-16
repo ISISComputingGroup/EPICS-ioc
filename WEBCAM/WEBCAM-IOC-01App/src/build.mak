@@ -48,7 +48,7 @@ $(APPNAME)_DBD += URLDriverSupport.dbd
 
 ## ISIS standard libraries ##
 ## Stream device libraries ##
-$(APPNAME)_LIBS += webget htmltidy
+$(APPNAME)_LIBS += webget tidy
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
 
