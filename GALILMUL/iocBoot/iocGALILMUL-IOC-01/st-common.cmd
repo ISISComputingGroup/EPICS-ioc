@@ -22,7 +22,7 @@ set_requestfile_path("${TOP}/iocBoot/iocGALILMUL-IOC-01", "")
 calc("MTRCTRL1", "$(MTRCTRL1)", 2, 2)
 calc("MTRCTRL2", "$(MTRCTRL2)", 2, 2)
 
-epicsEnvSet("GALILCONFIG","$(GALILCONFIGDIR=$(ICPCONFIGROOT)/galilmul)")
+epicsEnvSet("GALILCONFIG","$(GALILCONFIGDIR=$(MOTOREXT)/settings/$(INSTRUMENT)/galilmul)")
 
 iocshCmdLoop("< st-motor-controller.cmd", "CN=\$(I)", "I", 1, 2)
 

@@ -19,6 +19,7 @@
 <macro name ="INDEX_5" pattern="^[0-9]$" description="Index of digitiser 5." hasDefault="NO" />
 <macro name ="INDEX_6" pattern="^[0-9]$" description="Index of digitiser 6." hasDefault="NO" />
 <macro name ="INDEX_7" pattern="^[0-9]$" description="Index of digitiser 7." hasDefault="NO" />
+<macro name ="SYNCPREFIX" pattern="^.*:$" description="Prefix of instrument to sync start/stop from e.g. IN:HIFI:" hasDefault="NO" />
 </macros>
 <pvsets />
 </config_part>

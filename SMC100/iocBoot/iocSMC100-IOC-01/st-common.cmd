@@ -38,7 +38,7 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,
 ## per controller PVs
 dbLoadRecords("$(MOTOR)/db/motorController.db","P=$(MYPVPREFIX),Q=MOT:MTR$(MTRCTRL):")
 
-epicsEnvSet("SMC100CONFIG","$(ICPCONFIGROOT)/$(IOCNAME)")
+epicsEnvSet("SMC100CONFIG","$(MOTOREXT)/settings/$(INSTRUMENT)/$(IOCNAME)")
 
 # axes (if configured otherwise this will error)
 < $(SMC100CONFIG)/axes.cmd

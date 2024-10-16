@@ -17,25 +17,31 @@ DBD += $(APPNAME).dbd
 
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
+$(APPNAME)_DBD += asyn.dbd
+$(APPNAME)_DBD += stdSupport.dbd
 $(APPNAME)_DBD += icpconfig.dbd
 $(APPNAME)_DBD += pvdump.dbd
 $(APPNAME)_DBD += asSupport.dbd
 $(APPNAME)_DBD += devIocStats.dbd
 $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
+$(APPNAME)_DBD += FileContentsServer.dbd
+
+## Add other libraries here ##
+$(APPNAME)_LIBS += FileContentsServer
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
+$(APPNAME)_LIBS += busy std asyn
 $(APPNAME)_LIBS += asubFunctions
-$(APPNAME)_LIBS += seq pv
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcrecpp pcre
-## Add other libraries here ##
-$(APPNAME)_LIBS += asyn calc busy sscan
+$(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += utilities libjson zlib pcrecpp pcre
+$(APPNAME)_LIBS += seq pv
 
 # INSTETC-IOC-01_registerRecordDeviceDriver.cpp derives from INSTETC-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
