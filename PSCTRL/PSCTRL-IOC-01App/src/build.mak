@@ -27,8 +27,8 @@ $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += busySupport.dbd
-$(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += procServControl.dbd
+$(APPNAME)_DBD += utilities.dbd
 $(APPNAME)_DBD += asubFunctions.dbd 
 
 # Add all the support libraries needed by this IOC
@@ -41,7 +41,8 @@ $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcrecpp pcre
+$(APPNAME)_LIBS += utilities
+$(APPNAME)_LIBS += pcrecpp pcre
 
 # PSCTRL-IOC-01_registerRecordDeviceDriver.cpp derives from PSCTRL-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
@@ -60,6 +61,8 @@ include $(CONFIG)/CONFIG_PVA_ISIS
 endif
 
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
+
+$(APPNAME)_SYS_LIBS_WIN32 += Userenv
 
 #===========================
 
