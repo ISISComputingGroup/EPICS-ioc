@@ -84,6 +84,7 @@ IOCDIRS += SR400
 IOCDIRS += SR850
 IOCDIRS += ENVMON
 IOCDIRS += DDSSTRES
+IOCDIRS += G3HALLPR
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)
