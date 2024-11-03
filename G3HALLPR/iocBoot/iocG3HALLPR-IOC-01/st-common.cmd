@@ -28,8 +28,14 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+epicsEnvSet("P", "$(MYPVPREFIX)$(IOCNAME):")
+
 ## Load our record instances
-dbLoadRecords("$(G3HALLPR)/db/group3hallprobe.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(G3HALLPR)/db/group3hallprobe.db","PVPREFIX=$(MYPVPREFIX),P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+
+dbLoadRecords("$(G3HALLPR)/db/group3hallprobe_probe.db","P=$(P),SENSORID=0,PORT=$(DEVICE),NAME=$(NAME0=probe0),SCALE=$(SCALE0=1),FIELD_SCAN_RATE=$(FIELD_SCAN_RATE=1 second),TEMP_SCAN_RATE=$(TEMP_SCAN_RATE=5 second)")
+dbLoadRecords("$(G3HALLPR)/db/group3hallprobe_probe.db","P=$(P),SENSORID=1,PORT=$(DEVICE),NAME=$(NAME1=probe1),SCALE=$(SCALE1=1),FIELD_SCAN_RATE=$(FIELD_SCAN_RATE=1 second),TEMP_SCAN_RATE=$(TEMP_SCAN_RATE=5 second)")
+dbLoadRecords("$(G3HALLPR)/db/group3hallprobe_probe.db","P=$(P),SENSORID=2,PORT=$(DEVICE),NAME=$(NAME2=probe2),SCALE=$(SCALE2=1),FIELD_SCAN_RATE=$(FIELD_SCAN_RATE=1 second),TEMP_SCAN_RATE=$(TEMP_SCAN_RATE=5 second)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
@@ -37,8 +43,9 @@ dbLoadRecords("$(G3HALLPR)/db/group3hallprobe.db","PVPREFIX=$(MYPVPREFIX),P=$(MY
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
-## Start any sequence programs
-#seq sncxxx,"user=wtn43451"
+seq change_range, "P=$(P),SENSOR_ID=0"
+seq change_range, "P=$(P),SENSOR_ID=1"
+seq change_range, "P=$(P),SENSOR_ID=2"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd

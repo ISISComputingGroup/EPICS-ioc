@@ -31,6 +31,7 @@ $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += group3hallprobe.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -41,6 +42,7 @@ $(APPNAME)_DBD += stream.dbd
 
 ## ISIS standard libraries ##
 ## Stream device libraries ##
+$(APPNAME)_LIBS += group3hallprobe
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
