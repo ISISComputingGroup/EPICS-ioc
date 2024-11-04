@@ -34,3 +34,8 @@ dbpf "$(PREFIX)CAM1:GC_BalRatioSelector", "0"
 
 dbpf "$(PREFIX)CAM1:GC_ExposureMode", "0"
 dbpf "$(PREFIX)CAM1:GC_ExposureAuto", "2"
+
+dbpf "$(PREFIX)CAM1:GC_DevLinThrLimit", "2.63726e+06"
+
+dbpf "$(PREFIX)CAM1:Acquire", "1"
+
