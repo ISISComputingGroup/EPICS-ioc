@@ -24,13 +24,13 @@ epicsEnvSet("NELEMENTS", "4665600")
 #                   size_t maxMemory, int priority, int stackSize)
 ADSpinnakerConfig("$(PORT)", $(CAMERA_ID), 0x1, 0)
 ## Overlay Changes
-NDOverlayConfigure("OVER1", 3, 0, "$(PORT)", 0, 1)
+#NDOverlayConfigure("OVER1", 3, 0, "$(PORT)", 0, 1)
 asynSetTraceIOMask($(PORT), 0, 2)
 
 
 # Main database.  This just loads and modifies ADBase.template
 dbLoadRecords("$(ADSPINNAKER)/db/spinnaker.template", "P=$(PREFIX),R=CAM1:,PORT=$(PORT)")
 ## Overlay Changes
-dbLoadRecords("NDOverlay.template", "P=$(PREFIX),R=CAM1:over1:,PORT=OVER1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
-dbLoadRecords("NDOverlayN.template","P=$(PREFIX),R=CAM1:over1:1:,PORT=OVER1, NAME=OVRL1,SHAPE=1,O=CAM1:over1:,XPOS=1,YPOS=1,XSIZE=1,YSIZE=1,ADDR=0,TIMEOUT=1")
+#dbLoadRecords("NDOverlay.template", "P=$(PREFIX),R=CAM1:over1:,PORT=OVER1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+#dbLoadRecords("NDOverlayN.template","P=$(PREFIX),R=CAM1:over1:1:,PORT=OVER1, NAME=OVRL1,SHAPE=1,O=CAM1:over1:,XPOS=1,YPOS=1,XSIZE=1,YSIZE=1,ADDR=0,TIMEOUT=1")
 
