@@ -18,7 +18,7 @@ epicsEnvSet("CAMFILE", "$(TOP)/iocBoot/$(IOC)/devices/pearlcam")
 
 NDROIConfigure("ROI1", 3, 0, "$(PORT)", 0, 0)
 ## Overlay Changes
-NDOverlayConfigure("OVER1", 3, 0, "$(ROI1)", 0, 1)
+NDOverlayConfigure("OVER1", 3, 0, "ROI1", 0, 1)
 NDStatsConfigure("Stats1", 3, 0, "ROI1", 0, 0)
 NDTimeSeriesConfigure("Stats1_TS", 100, 0, "ROI1", 0, 22, 0, 0, 0, 0)
 NDStdArraysConfigure("Image1", 3, 0, "OVER1", 0, 0)
@@ -33,7 +33,7 @@ dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=IMAGE1:,PORT=I
 
 dbLoadRecords("NDROI.template", "P=$(PREFIX),R=ROI1:,  PORT=ROI1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),ENABLED=1")
 ## Overlay Changes
-dbLoadRecords("NDOverlay.template", "P=$(PREFIX),R=CAM1:over1:,PORT=OVER1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(ROI1),NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
+dbLoadRecords("NDOverlay.template", "P=$(PREFIX),R=CAM1:over1:,PORT=OVER1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROI1,NDARRAY_ADDR=0,DATATYPE=8,ENABLED=1")
 dbLoadRecords("NDOverlayN.template","P=$(PREFIX),R=CAM1:over1:1:,PORT=OVER1, NAME=OVRL1,SHAPE=1,O=CAM1:over1:,XPOS=1,YPOS=1,XSIZE=1,YSIZE=1,ADDR=0,TIMEOUT=1")
 
 dbLoadRecords("NDStats.template", "P=$(PREFIX),R=STATS1:,PORT=Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROI1,TYPE=Int16,FTVL=SHORT,ENABLED=1,NCHANS=1,XSIZE=$(XSIZE),YSIZE=$(YSIZE),HIST_SIZE=1")
