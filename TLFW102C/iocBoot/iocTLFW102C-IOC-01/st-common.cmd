@@ -6,6 +6,9 @@ epicsEnvSet "DEVICE" "L0"
 
 ## Device simulation mode IP configuration
 $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=57677)")
+# Uncomment the following two lines to generate verbose StreamDevice tracing
+# $(IFDEVSIM) asynSetTraceIOMask("L0",0,0x2)
+# $(IFDEVSIM) asynSetTraceMask("L0",0,0xff)
 
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
