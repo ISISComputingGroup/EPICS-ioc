@@ -20,6 +20,8 @@ record(calcout, "$(P)MOT:$(MOTOR_PV)_READY_CALC")
 {
     field(DESC, "determine if motor is ready to move")
     field(INPA, "")
+    field(INPB,  "")
+    field(INPC, "")
     field(OUT, "$(P)MOT:$(MOTOR_PV)_READY PP")
 }
 
