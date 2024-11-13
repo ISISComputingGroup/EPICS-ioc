@@ -16,6 +16,21 @@ record(bi,"$(P)MOT:$(MOTOR_PV)_ON_STATUS")
   	field(OSV,  "NO_ALARM")
 }
 
+record(calcout, "$(P)MOT:$(MOTOR_PV)_READY_CALC")
+{
+    field(DESC, "determine if motor is ready to move")
+    field(INPA, "")
+    field(OUT, "$(P)MOT:$(MOTOR_PV)_READY PP")
+}
+
+record(bi,"$(P)MOT:$(MOTOR_PV)_READY")
+{
+	field(DESC, "Mtr ready status")
+	field(ZNAM, "Off")
+   	field(ZSV,  "MINOR")
+  	field(ONAM, "On")
+  	field(OSV,  "NO_ALARM")
+}
 
 record(bo, "$(P)MOT:$(MOTOR_PV)_ON_CMD")
 {
