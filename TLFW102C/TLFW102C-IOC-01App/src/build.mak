@@ -46,8 +46,7 @@ $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
 ## other standard libraries here ##
 $(APPNAME)_LIBS += devIocStats 
-$(APPNAME)_LIBS += pvdump easySQLite sqlite 
-#$(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
+$(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig
 $(APPNAME)_LIBS += autosave
