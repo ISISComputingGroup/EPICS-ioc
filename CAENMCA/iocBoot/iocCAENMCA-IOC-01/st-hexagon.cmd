@@ -1,6 +1,6 @@
 ## $(ID) is 0 or 1 
 
-CAENMCAConfigure("L$(ID)", "eth://$(IPADDR$(ID))", $(DEVSIM=0))
+CAENMCAConfigure("L$(ID)", "eth://$(IPADDR$(ID))", "HEX$(ID)", $(DEVSIM=0))
 
 ## Load our record instances
 dbLoadRecords("$(CAENMCA)/db/CAENMCA.db","P=$(MYPVPREFIX),Q=HEX$(ID):,PORT=L$(ID)")
