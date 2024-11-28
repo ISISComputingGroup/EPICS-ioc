@@ -401,9 +401,12 @@ record(seq, "$(P)READ") {
     field(SELM, "All")
 }
 
-record(seq, "$(P)READ_RESTART"){
+record(calcout, "$(P)READ_RESTART"){
+    field(INPA, $(P)RBV MS)
     field(SCAN, "1 second")
-    field(LNK1, "$(P)READ.PROC")
+    field(CALC "A")
+    field(IVOA, "Don't drive outputs")
+    field(OUT, "$(P)READ.PROC")
 }
 
 record(seq, "$(P)READ_FAST") {
@@ -471,6 +474,11 @@ record(seq, "$(P)READ_SLOW4") {
 	$(IFNEEDLE_VALVE) field(LNK7, "$(P)FLOW_SP_MODE_SELECT.PROC")
 	$(IFNEEDLE_VALVE) field(LNK8, "$(P)VALVE_DIR.PROC")
 	$(IFNEEDLE_VALVE) field(LNK9, "$(P)NEEDLE_VALVE_STOP.PROC")
+}
+
+record(ai, "$(P)CHECK_READ") {
+    field(FLNK, "$(P)RBV")
+    field(SCAN, "10 second")
 }
 
 ####
