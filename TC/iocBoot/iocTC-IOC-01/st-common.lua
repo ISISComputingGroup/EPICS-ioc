@@ -23,6 +23,9 @@ function twincat_stcommon_main()
 	
 	db_args = string.format("P=%s,Q=MOT:MTR%02i:,AXES_NUM=%s", pv_prefix, mtrctrl, num_axes)
 	iocsh.dbLoadRecords("$(MOTOR)/db/motorController.db", db_args)
+
+	per_controller_args = string.format("P=%s,MTRCTRL=%02i,ADSPORT=%s,PORT=%s", ioc_prefix, mtrctrl, ads_port, asyn_port)
+	iocsh.dbLoadRecords("$(MOTOREXT)/db/per_controller.db", per_controller_args)
 	
 	for axis_num=1,num_axes,1
 	do
