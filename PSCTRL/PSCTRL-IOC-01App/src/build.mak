@@ -44,6 +44,8 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += pcrecpp pcre
 
+$(APPNAME)_SYS_LIBS_WIN32 += Userenv
+
 # PSCTRL-IOC-01_registerRecordDeviceDriver.cpp derives from PSCTRL-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
