@@ -402,7 +402,7 @@ record(seq, "$(P)READ") {
 }
 
 record(calcout, "$(P)READ_RESTART"){
-    field(INPA, $(P)RBV MS)
+    field(INPA, "$(P)RBV MS")
     field(SCAN, "1 second")
     field(CALC "A")
     field(IVOA, "Don't drive outputs")
