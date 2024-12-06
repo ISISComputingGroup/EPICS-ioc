@@ -86,6 +86,7 @@ IOCDIRS += ENVMON
 IOCDIRS += DDSSTRES
 IOCDIRS += TLFW102C
 IOCDIRS += G3HALLPR
+IOCDIRS += NFIPM
 
 ## check on missing directories
 IOCMAKES = $(wildcard */Makefile)

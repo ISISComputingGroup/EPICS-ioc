@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>NewFocus Intelligent Picometer</ioc_desc>
+<ioc_details>New Focus Intelligent Picometer for Litron laser power control</ioc_details>
+<macros>
+
+<macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="NO" />
+<xi:include href="../../../COMMON/PORT.xml" />
+<xi:include href="../../../COMMON/BAUD9600.xml" />
+<xi:include href="../../../COMMON/BITS8.xml" />
+<xi:include href="../../../COMMON/PARITYNONE.xml" />
+<xi:include href="../../../COMMON/STOP1.xml" />
+
+<macro name="AXIS1" pattern="^(yes|no)$" description="Motor is attached to axis 1 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS2" pattern="^(yes|no)$" description="Motor is attached to axis 2 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS3" pattern="^(yes|no)$" description="Motor is attached to axis 3 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS4" pattern="^(yes|no)$" description="Motor is attached to axis 4 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS5" pattern="^(yes|no)$" description="Motor is attached to axis 5 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS6" pattern="^(yes|no)$" description="Motor is attached to axis 6 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS7" pattern="^(yes|no)$" description="Motor is attached to axis 7 (default: no)" defaultValue="no" hasDefault="YES" />
+<macro name="AXIS8" pattern="^(yes|no)$" description="Motor is attached to axis 8 (default: no)" defaultValue="no" hasDefault="YES" />
+
+<macro name="OFST1" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST2" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST3" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST4" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST5" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST6" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST7" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+<macro name="OFST8" pattern="-?[0-9]*\.?[0-9]*$" description="Offset in mm (default: 0)" defaultValue="0" hasDefault="YES" />
+
+<macro name="MRES1" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES2" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES3" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES4" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES5" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES6" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES7" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+<macro name="MRES8" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
+
+<!-- speed is in internal controller units, just take the labview value, find its !SV command -->
+<macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+
+<macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME3" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME4" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME5" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME6" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME7" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+<macro name="NAME8" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
+
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>
