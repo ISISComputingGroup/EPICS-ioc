@@ -14,6 +14,7 @@ $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 
 stringiftest("SERIAL", "$(INTERFACE=SERIAL)", 5, "SERIAL")
 stringiftest("ETHERNET", "$(INTERFACE=SERIAL)", 5, "ETHERNET")
+stringiftest("LITRON", "$(APPLICATION=)", 5, "LITRON")
 
 $(IFETHERNET) $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure("$(DEVICE)", "$(ADDR=):5024 COM")
 $(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
@@ -53,6 +54,8 @@ dbLoadRecordsList("$(DG645)/db/dg645_logic.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVP
 dbLoadRecordsList("$(DG645)/db/dg645_delay.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;T1;A;B;C;D;E;F;G;H", ";")
 dbLoadRecordsList("$(DG645)/db/dg645_width.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "TRG;AB;CD;EF;GH", ";")
 dbLoadRecordsList("$(DG645)/db/dg645_delay_width_shared.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)", "Q", "T0;T1;A;B;C;D;E;F;G;H;TRG;AB;CD;EF;GH", ";")
+
+$(IFLITRON) dbLoadRecords("$(DG645)/db/litron.db", "PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(ASYNPORT)")
 
 ## load autosave configMenu for managing sets of PVs
 dbLoadRecords("$(AUTOSAVE)/db/configMenu.db","P=$(MYPVPREFIX)AS:$(IOCNAME):,CONFIG=dgconfig")
