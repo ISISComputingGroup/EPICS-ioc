@@ -50,7 +50,7 @@ $(APPNAME)_LIBS += seq pv
 
 $(APPNAME)_LIBS_WIN32 += oncrpc libssl libcrypto
 $(APPNAME)_SYS_LIBS_Linux += ssl crypto
-$(APPNAME)_SYS_LIBS_Linux += sasl2
+$(APPNAME)_SYS_LIBS_Linux += sasl2 zstd
 
 $(APPNAME)_SYS_LIBS_WIN32 += psapi wldap32 ws2_32 crypt32 Normaliz Iphlpapi
 
@@ -65,6 +65,11 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 #$(APPNAME)_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
+## area detector already includes PVA, so avoid including it twice
+ifeq ($(AREA_DETECTOR),)
+include $(CONFIG)/CONFIG_PVA_ISIS
+endif
+
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 

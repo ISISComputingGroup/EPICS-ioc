@@ -103,7 +103,6 @@ record(ao, "$(P)TEMP:SP")
 # I/O intr FLNK won't process until we trigger PROC via CA
     field(FLNK, "$(P)OUT_SP.PROC CA")
     field(EGU, "K")
-    $(IFNEEDLE_VALVE) field(ASG, "MANAGER")
     field(UDFS, "NO_ALARM") 
     info(INTEREST, "HIGH")
     info(archive, "VAL")
@@ -402,9 +401,12 @@ record(seq, "$(P)READ") {
     field(SELM, "All")
 }
 
-record(seq, "$(P)READ_RESTART"){
+record(calcout, "$(P)READ_RESTART"){
+    field(INPA, "$(P)RBV MS")
     field(SCAN, "1 second")
-    field(LNK1, "$(P)READ.PROC")
+    field(CALC, "A")
+    field(IVOA, "Don't drive outputs")
+    field(OUT, "$(P)READ.PROC")
 }
 
 record(seq, "$(P)READ_FAST") {
@@ -472,6 +474,11 @@ record(seq, "$(P)READ_SLOW4") {
 	$(IFNEEDLE_VALVE) field(LNK7, "$(P)FLOW_SP_MODE_SELECT.PROC")
 	$(IFNEEDLE_VALVE) field(LNK8, "$(P)VALVE_DIR.PROC")
 	$(IFNEEDLE_VALVE) field(LNK9, "$(P)NEEDLE_VALVE_STOP.PROC")
+}
+
+record(ai, "$(P)CHECK_READ") {
+    field(FLNK, "$(P)RBV")
+    field(SCAN, "10 second")
 }
 
 ####

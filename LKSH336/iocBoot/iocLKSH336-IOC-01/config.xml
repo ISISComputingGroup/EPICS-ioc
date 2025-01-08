@@ -3,7 +3,7 @@
 <config_part>
 <ioc_desc>Lakeshore 336/350 temperature monitor</ioc_desc>
 <macros>
-<macro name="HOST" description="Host name of Lakeshore 336/350 controller" hasDefault="NO" />
+<xi:include href="../../../COMMON/HOST.xml" />
 </macros>
 </config_part>
 </ioc_config>

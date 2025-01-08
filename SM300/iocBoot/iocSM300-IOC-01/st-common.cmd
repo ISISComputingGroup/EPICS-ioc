@@ -58,7 +58,7 @@ $(IFNOTRECSIM) SM300CreateController("$(AMOTOR)", "$(DEVICE)", "$(NAXES=1)", 100
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 
-epicsEnvSet("SM300CONFIG","$(ICPCONFIGROOT)/$(IOCNAME)")
+epicsEnvSet("SM300CONFIG","$(MOTOREXT)/settings/$(INSTRUMENT)/$(IOCNAME)")
 
 # axes (if configured otherwise this will error)
 < $(SM300CONFIG)/axes.cmd

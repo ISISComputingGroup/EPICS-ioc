@@ -6,6 +6,7 @@
       <macro name="TPAR_FILE" pattern="^.{0,40}$" description="TPAR file name in directory C:\\Instrument\\Settings. 40 Character maximum." hasDefault="NO" />
       <macro name="BOOSTER_TPAR_FILE" pattern="^.{0,40}$" description="Booster heater TPAR file name in directory C:\\Instrument\\Settings. 40 Character maximum." hasDefault="YES" defaultValue="" />
       <macro name="BOOSTER_TYPE" pattern="^.{0,40}$" description="Booster heater type (ex. CCR, OXF13)" hasDefault="YES" defaultValue="OXF13" />
+      <macro name="EDITOR_TPAR_FILE_DIR" pattern="^.{0,512}$" description="Directory where TPAR editor files are stored. 512 chars max" hasDefault="YES" defaultValue="C:\\Instrument\\Settings\\" />
     </macros>
   </config_part>
 </ioc_config>

@@ -4,7 +4,7 @@
 <ioc_desc>Oxford Instruments ILM 200 series Level Meter</ioc_desc>
 <ioc_details>Oxford instruments Intelligent Level Meter 200 series</ioc_details>
 <macros>
-    <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+    <xi:include href="../../../COMMON/PORT.xml" />
     <macro name="ISOBUS" pattern="^[0-9]+$" description="ISOBUS address (default: 1)" defaultValue="1" hasDefault="YES" />
     <macro name="USE_ISOBUS" pattern="^(Yes|No)$" description="Whether to use ISOBUS for communications (default: Yes)" defaultValue="Yes" hasDefault="YES" />
     <macro name="CH1_ALARM_THRESHOLD" pattern="-?[0-9]+\.?[0-9]*$" description="Alarm threshold for level on channel 1 (default: 0%)" defaultValue="0" hasDefault="YES" />

@@ -24,6 +24,8 @@ record(bo, "$(P)DISABLE")
 record(mbbo, "$(P)OPMODE:SP") {
   field(DESC, "Operation Mode")
   field(DTYP, "Soft Channel")
+  field(PINI, "YES")
+  field(VAL, "0")
   
   field(ZRST, "Idle")
   field(ONST, "High Field")

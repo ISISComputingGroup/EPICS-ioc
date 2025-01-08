@@ -1,0 +1,1 @@
+<macro name="STOP" pattern="^[0-2]$" description="Serial communication stop bit, defaults to 1." defaultValue="1" hasDefault="YES" />
