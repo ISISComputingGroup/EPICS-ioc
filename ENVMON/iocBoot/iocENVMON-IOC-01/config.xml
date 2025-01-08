@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>ISIS Environment Monitor</ioc_desc>
+<macros>
+<xi:include href="../../../COMMON/PORT.xml" />
+<macro name="SENSOR_A" pattern="^(yes)|(no)$" description="Is sensor A present?" defaultValue="no" hasDefault="YES" />
+<macro name="SENSOR_B" pattern="^(yes)|(no)$" description="Is sensor B present?" defaultValue="no" hasDefault="YES" />
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>

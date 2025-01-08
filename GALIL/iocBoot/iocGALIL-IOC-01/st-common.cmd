@@ -46,7 +46,7 @@ set_requestfile_path("${TOP}/iocBoot/iocGALIL-IOC-01", "")
 ## Make sure controller number is 2 digits long
 calc("MTRCTRL", "$(MTRCTRL)", 2, 2)
 
-epicsEnvSet("GALILCONFIG","$(GALILCONFIGDIR=$(ICPCONFIGROOT)/galil)")
+epicsEnvSet("GALILCONFIG","$(GALILCONFIGDIR=$(MOTOREXT)/settings/$(INSTRUMENT)/galil)")
 
 ## uncomment to see every command sent to every galil, of define in st.cmd for just one galil
 #epicsEnvSet("GALIL_DEBUG_FILE", "galil_debug.txt")

@@ -221,8 +221,6 @@ ss systemManager {
       disable = 1;
       pvPut (disable);
       
-      PVPUT(mramp, 1);
-      PVPUT(mpersist, 0);
       PVPUT(mextradis, 0);
       PVPUT(zswitchdis, 1);
     } state monitoring

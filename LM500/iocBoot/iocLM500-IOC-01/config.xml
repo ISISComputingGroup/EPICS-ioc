@@ -4,7 +4,7 @@
 <ioc_desc>Cryomagnetics LM500 Level Monitor</ioc_desc>
 <ioc_details>Model LM-500 Cryogenic Liquid Level Monitor</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<xi:include href="../../../COMMON/PORT.xml" />
 </macros>
 <pvsets>
 </pvsets>

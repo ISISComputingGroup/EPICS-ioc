@@ -32,7 +32,7 @@ $(IFNOTRECSIM) asynOctetSetOutputEos("$(ASERIAL)",0,"\r\n")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"baud","$(BAUD=9600)") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"bits","$(BITS=8)") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"stop","$(STOP=1)") 
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"parity","(PARITY=none")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"parity","$(PARITY=none)")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"clocal","Y") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"crtscts","N") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(ASERIAL)",0,"ixon","N") 
@@ -46,7 +46,7 @@ $(IFNOTRECSIM) LinMotConfig(0, "$(ASERIAL)", "$(NAXES=1)")
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 8)
 
-epicsEnvSet("LINMOTCONFIG","$(LINMOTCONFIGDIR=$(ICPCONFIGROOT)/linmot)")
+epicsEnvSet("LINMOTCONFIG","$(LINMOTCONFIGDIR=$(MOTOREXT)/settings/$(INSTRUMENT)/linmot)")
 
 # Special configurations
 < axes.cmd

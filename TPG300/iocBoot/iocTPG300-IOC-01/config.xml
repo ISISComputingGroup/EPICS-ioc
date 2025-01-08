@@ -3,13 +3,15 @@
     <config_part>
         <ioc_desc>Pfeiffer TPG x00 pressure sensor (300/500)</ioc_desc>
         <macros>
-            <macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
+            <xi:include href="../../../COMMON/PORT.xml" />
             <macro name="IPADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="IP Address - for use ONLY on 500 models" hasDefault="NO" />
             <macro name="PRESA1ON" pattern="^Y|N$" description="Set to Y if measurement circuit A1 is connected (default:Y)" defaultValue="Y" hasDefault="YES" />
             <macro name="PRESA2ON" pattern="^Y|N$" description="Set to Y if measurement circuit A2 is connected (default:Y)" defaultValue="Y" hasDefault="YES" />
             <macro name="PRESB1ON" pattern="^Y|N$" description="Set to Y if measurement circuit B1 is connected (default:Y)" defaultValue="Y" hasDefault="YES" />
             <macro name="PRESB2ON" pattern="^Y|N$" description="Set to Y if measurement circuit B2 is connected (default:Y)" defaultValue="Y" hasDefault="YES" />
             <macro name="MODEL" pattern="^(300|500)$" description="Pfeiffer TPGx00 model number (default:300)" defaultValue="300" hasDefault="YES" />
+            <macro name="TPG_UNDERRANGE_ALARM_SEVERITY_CHAN1" pattern="^(NO_ALARM|MINOR)$" description="Set to NO_ALARM if not wanting underrange pressure alarms on CHANNEL 1" defaultValue="MINOR" hasDefault="YES" />
+            <macro name="TPG_UNDERRANGE_ALARM_SEVERITY_CHAN2" pattern="^(NO_ALARM|MINOR)$" description="Set to NO_ALARM if not wanting underrange pressure alarms on CHANNEL 2" defaultValue="MINOR" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>
