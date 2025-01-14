@@ -72,3 +72,4 @@ include $(TOP)/../../../ISIS_CONFIG
 
 # IOC-specific support module
 LITRON=$(SUPPORT)/litron/master
+LVREMOTE=$(SUPPORT)/lvremote/master

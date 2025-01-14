@@ -1,4 +1,4 @@
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(LITRON)/data"
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(LVREMOTE)/data"
 epicsEnvSet "DEVICE" "L0"
 epicsEnvSet "NUM_PORT" "L1"
 
@@ -6,7 +6,7 @@ epicsEnvSet "NUM_PORT" "L1"
 < $(IOCSTARTUP)/init.cmd
 
 ## Device simulation mode IP configuration
-$(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=57677)")
+$(IFDEVSIM) drvAsynIPPortConfigure("$(NUM_PORT)", "localhost:$(EMULATOR_PORT=57677)")
 
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
@@ -14,9 +14,9 @@ $(IFRECSIM) drvAsynSerialPortConfigure("$(NUM_PORT)", "$(PORT=NUL)", 0, 1, 0, 0)
 
 ## create NUM_PORT (Requred for binary, enum and double template)
 $(IFNOTRECSIM) $(IFNOTDEVSIM) drvAsynIPPortConfigure("$(NUM_PORT)", "$(IPADDR):64009 TCP")
-$(IFNOTRECSIM) $(IFNOTDEVSIM) asynOctetConnect("NUMINIT","$(NUM_PORT)")
-$(IFNOTRECSIM) $(IFNOTDEVSIM) asynOctetWrite("NUMINIT" "*IDN? ")
-$(IFRECSIM) drvAsynSerialPortConfigure("$(NUM_PORT)", "$(PORT=NUL)", 0, 1, 0, 0)
+
+$(IFNOTRECSIM) asynOctetConnect("NUMINIT","$(NUM_PORT)")
+$(IFNOTRECSIM) asynOctetWrite("NUMINIT" "*IDN? ")
 
 # Wait for labview to initalise
 $(IFNOTRECSIM) epicsThreadSleep(5)
