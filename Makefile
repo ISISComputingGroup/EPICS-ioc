@@ -89,6 +89,7 @@ IOCDIRS += LDEN3300
 IOCDIRS += TLFW102C
 IOCDIRS += G3HALLPR
 IOCDIRS += NFIPM
+IOCDIRS += ZFHIFI
 
 
 ## check on missing directories
