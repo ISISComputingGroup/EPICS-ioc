@@ -33,3 +33,7 @@ GALIL/iocBoot/**/*.gmc
 */**/TEST-TestPVUnits-*.xml
 .vs/*
 .idea
+/GALIL-OLD/
+/GALILMUL-OLD/
+/GALIL-NEW/
+/GALILMUL-NEW/
