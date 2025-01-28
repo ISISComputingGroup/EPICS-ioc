@@ -52,7 +52,7 @@ webgetConfigure("arch2")
 ## pass 2 as second arg to signify SECI mode
 ## args: port,options,host,user,password,num_liveview
 ##   num_liveview should match number of  liveview.cmd loaded later
-isisdaeConfigure("icp", 1, "$(DAEHOST=)", "$(DAEUSER=)", "$(DAEPW=)", 12)
+isisdaeConfigure("icp", 1, "$(DAEHOST=)", "$(DAEUSER=)", "$(DAEPW=)", 12, "$(MYPVPREFIX)DAE:")
 
 ## Load the FileLists
 FileListConfigure("WLIST", "$(WIRING_DIR)", "$(WIRING_PATTERN)", 1)
