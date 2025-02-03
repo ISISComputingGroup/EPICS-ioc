@@ -2,7 +2,7 @@
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
 <config_part>
 <ioc_desc>Cryomech CP2800 Helium Compressor</ioc_desc>
-<ioc_details>These are template details</ioc_details>
+<ioc_details>Cryomech CP2800 Helium Compressor</ioc_details>
 <macros>
 <xi:include href="../../../COMMON/PORT.xml" />
 </macros>
