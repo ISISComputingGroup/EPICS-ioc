@@ -11,7 +11,7 @@ record(ai, "$(P)TEMP$(SN)")
     field(SIOL, "$(P)SIM:TEMP$(SN)")
     field(EGU, "K")
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    info(archive, "5.0 VAL")
 	info(alarm, "LKSH218")
 }
 
@@ -33,7 +33,7 @@ record(ai, "$(P)SENSOR$(SN)")
     field(SIOL, "$(P)SIM:SENSOR$(SN)")
     field(EGU, "")
     info(INTEREST, "HIGH")
-    info(archive, "VAL")
+    info(archive, "5.0 VAL")
 	info(alarm, "LKSH218")
 }
 
