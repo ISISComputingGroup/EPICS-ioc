@@ -35,6 +35,7 @@ $(APPNAME)_DBD += ADnEDSupport.dbd
 ifeq ($(findstring 10.0,$(VCVERSION)),)
 $(APPNAME)_DBD += ADPluginKafka.dbd
 endif
+$(APPNAME)_DBD += pvxsIoc.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -48,6 +49,7 @@ $(APPNAME)_LIBS += utilities
 $(APPNAME)_LIBS += asubFunctions
 ## Add other libraries here ##
 $(APPNAME)_LIBS +=  isisdae FileList asyn oncrpc zlib efsw libjson pcrecpp pcre cas gdd
+$(APPNAME)_LIBS += pvxsIoc pvxs
 
 ## ffmpegserver
 #$(APPNAME)_LIBS += ffmpegServer
