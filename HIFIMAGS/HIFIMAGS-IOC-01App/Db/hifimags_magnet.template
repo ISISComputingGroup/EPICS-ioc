@@ -196,11 +196,10 @@ record(stringin, "$(P)SIM:$(MAG):TARGET:TIME") {
 record(ao, "$(P)$(MAG):TARGET:SP") {
   field(DESC, "Target of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
-  field(SCAN, "1 second")
   field(EGU, "G")
   field(PREC, "3")
   
-  field(OUT,"$(PVPREFIX)$(PSU_IOC):TARGET:SP")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):TARGET:SP PP")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):TARGET")
