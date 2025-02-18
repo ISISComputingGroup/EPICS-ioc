@@ -61,7 +61,7 @@ set_requestfile_path("$(TOP)")
 
 # AdsOpen(port_name, ip_addr, ams_net_id, sum_buffer_nelem, ads_timeout, device_read_ads_port, sum_read_period)
 # sum_read_period is 200ms, matching the motor record update frequency for idle and moving
-AdsOpen("$(PORT)", $(IP_AD), $(AMS_ID), 500, 500, $(ADS_PORT), 200)
+AdsOpen("$(PORT)", $(IP_AD), $(AMS_ID), 500, 500, $(ADS_PORT), $(POLL_RATE=200))
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
