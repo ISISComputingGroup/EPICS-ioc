@@ -41,6 +41,7 @@ $(APPNAME)_DBD += stream.dbd
 
 ## ISIS standard libraries ##
 ## Stream device libraries ##
+$(APPNAME)_LIBS += dds_stress_rig
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
