@@ -31,6 +31,7 @@ $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += start_or_load.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
