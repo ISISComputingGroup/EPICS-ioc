@@ -39,7 +39,7 @@ iocInit
 
 
 ## Start any sequence programs
-seq start_or_load, "P=$(MYPVPREFIX)$(IOCNAME)"
+seq start_or_load, "P=$(MYPVPREFIX)$(IOCNAME):"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
