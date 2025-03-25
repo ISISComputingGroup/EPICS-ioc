@@ -1,0 +1,318 @@
+## IOC for the 2nd TPG300 on MAPS, which makes use of an OPC UA server to serve values to the network
+
+## PLC records: ##
+
+record(mbbo, "$(P)$(R):UNIT:SP") {
+	field(DTYP, "OPCUA")
+	field(OUT, "@$(SUBS) ns=4;s=Opc_TPG2_Unit_Request")
+	field(ZRVL, "0")
+	field(ZRST, "mbar")
+	field(ONVL, "1")
+	field(ONST, "Torr")
+	field(TWVL, "2")
+	field(TWST, "Pa")
+	field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+## TPG2 Status records: ##
+
+record(stringin, "$(P)$(R):PE_UNDERRANGE") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Statuses.PE_Underrange_Control")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):UNIT") { #units read from TPG
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Statuses.Pressure_Unit")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):ERROR") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Statuses.TPG_Error")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(bi, "$(P)$(R):HEALTHY") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Statuses.TPG_Healthy")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+#############
+
+## TPG2 Sensor A1 records: ##
+
+record(ai, "$(P)$(R):PRESSURE_A1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A1.Pressure")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(ai, "$(P)$(R):THRESHOLD_LOW_A1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A1.Lower_Threshold")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(ai, "$(P)$(R):THRESHOLD_HI_A1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A1.Upper_Threshold")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):MEASURED_VALUE_A1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A1.Measured_Value_Status")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):MEASURING_CIRCUIT_A1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A1.Measuring_Circuit_Status")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):SWITCH_FUNC_ASSIGN_A1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A1.Switching_Function_Assignment")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):SWITCH_FUNC_STATUS_A1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A1.Switching_Function_Status")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):FILTER_TIME_CONST_A1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A1.Filter_Time_Constant")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+## TPG2 Sensor A2 records: ##
+
+record(ai, "$(P)$(R):PRESSURE_A2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A2.Pressure")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(ai, "$(P)$(R):THRESHOLD_LOW_A2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A2.Lower_Threshold")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(ai, "$(P)$(R):THRESHOLD_HI_A2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A2.Upper_Threshold")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):MEASURED_VALUE_A2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A2.Measured_Value_Status")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):MEASURING_CIRCUIT_A2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A2.Measuring_Circuit_Status")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):SWITCH_FUNC_ASSIGN_A2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A2.Switching_Function_Assignment")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):SWITCH_FUNC_STATUS_A2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A2.Switching_Function_Status")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):FILTER_TIME_CONST_A2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_A2.Filter_Time_Constant")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+## TPG2 Sensor B1 records: ##
+
+record(ai, "$(P)$(R):PRESSURE_B1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B1.Pressure")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(ai, "$(P)$(R):THRESHOLD_LOW_B1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B1.Lower_Threshold")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(ai, "$(P)$(R):THRESHOLD_HI_B1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B1.Upper_Threshold")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):MEASURED_VALUE_B1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B1.Measured_Value_Status")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):MEASURING_CIRCUIT_B1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B1.Measuring_Circuit_Status")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):SWITCH_FUNC_ASSIGN_B1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B1.Switching_Function_Assignment")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):SWITCH_FUNC_STATUS_B1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B1.Switching_Function_Status")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):FILTER_TIME_CONST_B1") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B1.Filter_Time_Constant")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+## TPG2 Sensor B2 records: ##
+
+record(ai, "$(P)$(R):PRESSURE_B2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B2.Pressure")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(ai, "$(P)$(R):THRESHOLD_LOW_B2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B2.Lower_Threshold")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(ai, "$(P)$(R):THRESHOLD_HI_B2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B2.Upper_Threshold")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):MEASURED_VALUE_B2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B2.Measured_Value_Status")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):MEASURING_CIRCUIT_B2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B2.Measuring_Circuit_Status")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):SWITCH_FUNC_ASSIGN_B2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B2.Switching_Function_Assignment")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):SWITCH_FUNC_STATUS_B2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B2.Switching_Function_Status")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)$(R):FILTER_TIME_CONST_B2") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_TPG2_Sensor_B2.Filter_Time_Constant")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+#############
