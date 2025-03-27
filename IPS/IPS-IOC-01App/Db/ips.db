@@ -24,7 +24,7 @@ record(bo, "$(P)DISABLE")
 # # Run the Version command, V.
 # # The string was too long to put model and version into same record.
 # # Scan this once, probably not needed again.
-# The reply comes back and is split amongst other records.
+# The reply comes back and is split amongst other records in the StreamDevice protocol file.
 record(stringin, "$(P)GET:VERSION") {
   field(DESC, "Examine status")
   field(DTYP, "stream")
@@ -37,6 +37,7 @@ record(stringin, "$(P)GET:VERSION") {
   field(SDIS, "$(P)DISABLE")
 }
 
+# Updated in GET:VERSION call to getVersion()
 record(stringin, "$(P)MODEL") {
   field(DESC, "Model")
   field(DTYP, "Soft Channel")
@@ -44,12 +45,14 @@ record(stringin, "$(P)MODEL") {
   field(FLNK, "$(P)VERSION")
 }
 
+# Updated in GET:VERSION call to getVersion()
 record(stringin, "$(P)VERSION") {
   field(DESC, "Firmware version.")
   field(DTYP, "Soft Channel")
   field(SCAN, "Passive")
 }
 
+## !! Check this for SCPI - IJG 27/3/25
 # # Readback from Cn part of Examine command return.
 record(mbbi, "$(P)CONTROL") {
   field(DESC, "Control status")
@@ -92,6 +95,7 @@ record(mbbi, "$(P)CONTROL") {
   info(alarm, "IPS")
 }
 
+## !! Modify for SCPI - IJG 27/3/25
 # Grab remote vs local control
 record(mbbo, "$(P)CONTROL:SP") {
   field(DESC, "Set remote/local control")
@@ -141,6 +145,7 @@ record(mbbi, "$(P)ACTIVITY") {
   info(archive, "VAL")
 }
 
+## !! Modify for SCPI - IJG 27/3/25
 # Hold means maintaining present current.
 # Clamped means you cannot adjust it - powers up in this 
 # state.  Only the set activity hold command can get out
@@ -415,6 +420,7 @@ record(ai, "$(P)MAGNET:CURR:PERSISTENT") {
   info(archive, "VAL")
 }
 
+## ==== CURR:TRIP needs to be derived somehow.  It is not in the SCPI protocol. ====
 # The current at which a trip last occurred.  Am not sure if by trip, they mean
 # a quench or a problem with the level meter.  Believe the unit will take the current
 # and field to zero if there is a trip, so this parameter preserves what was happening
@@ -452,6 +458,7 @@ record(ai, "$(P)MAGNET:FIELD:PERSISTENT") {
   info(archive, "VAL")
 }
 
+## ==== FIELD:TRIP needs to be derived somehow.  It is not in the SCPI protocol. ====
 # The field at which a trip last occurred.  See current for explanation.
 record(ai, "$(P)FIELD:TRIP") {
   field(DESC, "Trip field readback")
@@ -569,6 +576,102 @@ record(mbbiDirect, "$(P)GET:MAGNET:SUPPLY:STATUS") {
   field(SDIS, "$(P)DISABLE")
 }
 
+# Determine the switch heater mismatch status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:SWHTRMISMATCH") {
+  field(DESC, "Switch heater mismatch status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B0 CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine the Over Temperature (rundown resistors) status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:OTRUNDOWNRES") {
+  field(DESC, "Over temp rundown resistors status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B1 CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine the Over Temperature (sense resistor) status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:OTSENSERES") {
+  field(DESC, "Over temp sense resistor status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B2 CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine the Over Temperature (PCB) status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:OTPCB") {
+  field(DESC, "Over temp PCB status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B3 CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine the calibration failure status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:CALIBFAIL") {
+  field(DESC, "Calibration failure status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B4 CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine the MSP430 firmware error failure status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:FWFAIL") {
+  field(DESC, "Firmware failure status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B5 CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine the rundown resistors failure status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:RRFAIL") {
+  field(DESC, "Rundown resistors failure status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B6 CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine the MSP430 RS-485 failure status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:RS485FAIL") {
+  field(DESC, "MSP430 RS485 failure status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B7 CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
 # Determine the quench status from the supply status bit
 record(bi, "$(P)MAGNET:SUPPLY:STATUS:QUENCHED") {
   field(DESC, "Quench status")
@@ -581,12 +684,112 @@ record(bi, "$(P)MAGNET:SUPPLY:STATUS:QUENCHED") {
   field(OSV,  "MAJOR")
 }
 
-# The over temperature status should be an or'd output from the numerous temperature alarms
-record(bi, "$(P)MAGNET:SUPPLY:STATUS:OVERTEMP") {
-  field(DESC, "Temperature status")
+# Determine the catch detection status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:CATCH") {
+  field(DESC, "PSU Catch status")
   field(DTYP, "Soft Channel")
   field(SCAN, "Passive")
-  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B4 CP MS")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B9 CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine the Sense amplifier over temperature status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:OTSENSEAMP") {
+  field(DESC, "Over temp sense amp")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.BC CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine amplifier 1 over temperature status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:OTAMP1") {
+  field(DESC, "Over temp amp 1")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.BD CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine amplifier 2 over temperature status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:OTAMP2") {
+  field(DESC, "Over temp amp 2")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.BE CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine PWM Cutoff status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:PWMCUTOFF") {
+  field(DESC, "PWM Cutoff status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.BF CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine Voltage ADC error status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:VADCERROR") {
+  field(DESC, "Voltage ADC error status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B10 CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine Current ADC error status from the supply status bit
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:IADCERROR") {
+  field(DESC, "Current ADC error status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B11 CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# The over temperature status should be an or'd output from the numerous temperature alarms
+record(calc, "$(P)MAGNET:SUPPLY:STATUS:OVERTEMP:CALC") {
+  field(DESC, "Temperature status calc (combined)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INPA, "$(P)GET:MAGNET:SUPPLY:OTRUNDOWNRES CP MS")
+  field(INPB, "$(P)GET:MAGNET:SUPPLY:OTSENSERES CP MS")
+  field(INPC, "$(P)GET:MAGNET:SUPPLY:OTPCB CP MS")
+  field(INPD, "$(P)GET:MAGNET:SUPPLY:OTSENSEAMP CP MS")
+  field(INPE, "$(P)GET:MAGNET:SUPPLY:OTAMP1 CP MS")
+  field(INPF, "$(P)GET:MAGNET:SUPPLY:OTAMP2 CP MS")
+  field(CALC, "A|B|C|D|E|F")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+# Determine the Over Temperature status from the or'd calc record (OVERTEMP:CALC)
+record(bi, "$(P)MAGNET:SUPPLY:STATUS:OVERTEMP") {
+  field(DESC, "Temperature status (combined)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS:OVERTEMP:CALC CP MS")
   field(ZNAM, "No")
   field(ONAM, "Yes")
   field(ZSV,  "NO_ALARM")
@@ -608,11 +811,47 @@ record(stringin, "$(P)GET:STATUS") {
   field(SDIS, "$(P)DISABLE")
 }
 
+## Derive the SYSTEM:HWFAULT status from the status bits
+## This collates the various possible hardware faults into a single record,
+## which in the legacy protocol is a single value (Xm bit 4).
+record(calc, "$(P)STS:SYSTEM:HWFAULT:CALC") {
+  field(DESC, "System hardware fault status calc")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INPA, "$(P)MAGNET:SUPPLY:STATUS:SWHTRMISMATCH CP MS")
+  field(INPB, "$(P)MAGNET:SUPPLY:STATUS:CALIBFAIL CP MS")
+  field(INPC, "$(P)MAGNET:SUPPLY:STATUS:FWFAIL CP MS")
+  field(INPD, "$(P)MAGNET:SUPPLY:STATUS:RRFAIL CP MS")
+  field(INPE, "$(P)MAGNET:SUPPLY:STATUS:RS485FAIL CP MS")
+  field(INPF, "$(P)MAGNET:SUPPLY:STATUS:CATCH CP MS")
+  field(INPG, "$(P)MAGNET:SUPPLY:STATUS:PWMCUTOFF CP MS")
+  field(INPH, "$(P)MAGNET:SUPPLY:STATUS:VADCERROR CP MS")
+  field(INPI, "$(P)MAGNET:SUPPLY:STATUS:IADCERROR CP MS")
+  field(CALC, "(A>0||B>0||C>0||D>0||E>0||F>0||G>0||H>0||I>0) ? 1 : 0")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
+## Derive the SYSTEM:FAULT status from the status bits
+## This collates the various possible faults into a single record, in alignment with the legacy protocol.
+record(calc, "$(P)STS:SYSTEM:FAULT:CALC") {
+  field(DESC, "System fault status calc")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INPA, "$(P)MAGNET:SUPPLY:STATUS:QUENCHED CP MS")
+  field(INPB, "$(P)MAGNET:SUPPLY:STATUS:OVERTEMP CP MS")
+  field(INPC, "$(P)MAGNET:SUPPLY:STATUS:HWFAULT:CALC CP MS")
+  field(CALC, "(A>0) ? 1 : (B>0) ? 2 : (C>0) ? 8 : 0")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+}
+
 # # Readback from m of Xmn part of Examine command return.
 record(mbbi, "$(P)STS:SYSTEM:FAULT") {
   field(DESC, "System fault status")
   field(DTYP, "Soft Channel")
   field(SCAN, "Passive")
+  field(INP,  "$(P)STS:SYSTEM:FAULT:CALC CP MS")
   field(ZRST, "Normal")
   field(ZRVL, "0")
   field(ZRSV, "NO_ALARM")
