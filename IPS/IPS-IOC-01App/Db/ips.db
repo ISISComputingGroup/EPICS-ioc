@@ -554,47 +554,6 @@ record(ai, "$(P)MAGNET:INDUCTANCE") {
   info(archive, "VAL")
 }
 
-# --------------- The following work around limitation of getting legacy status from SCPI protocol -------------
-
-# Get the status DWORD from each group UID
-record(mbbiDirect, "$(P)GET:MAGNET:SUPPLY:STATUS") {
-  field(DESC, "Examine status")
-  field(DTYP, "stream")
-  field(INP, "@OxInstIPS.protocol getMagnetSupplyStatus($(P)) $(PORT)")
-  field(NOBT, "32")
-  field(SCAN, "1 second")
-
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:DONOTHING")
-  field(SDIS, "$(P)DISABLE")
-}
-
-# Determine the quench status from the supply status bit
-record(bi, "$(P)MAGNET:SUPPLY:STATUS:QUENCHED") {
-  field(DESC, "Quench status")
-  field(DTYP, "Soft Channel")
-  field(SCAN, "Passive")
-  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B8 CP MS")
-  field(ZNAM, "No")
-  field(ONAM, "Yes")
-  field(ZSV,  "NO_ALARM")
-  field(OSV,  "MAJOR")
-}
-
-# The over temperature status should be an or'd output from the numerous temperature alarms
-record(bi, "$(P)MAGNET:SUPPLY:STATUS:OVERTEMP") {
-  field(DESC, "Temperature status")
-  field(DTYP, "Soft Channel")
-  field(SCAN, "Passive")
-  field(INP, "$(P)GET:MAGNET:SUPPLY:STATUS.B4 CP MS")
-  field(ZNAM, "No")
-  field(ONAM, "Yes")
-  field(ZSV,  "NO_ALARM")
-  field(OSV,  "MAJOR")
-}
-
-# --------------------------------------------------------------------------------------------------------------
-
 # # Run the Examine Status command, X.
 # The reply comes back and is split amongst other records.
 record(stringin, "$(P)GET:STATUS") {
