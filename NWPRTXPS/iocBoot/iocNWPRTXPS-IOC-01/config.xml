@@ -10,8 +10,10 @@
 
 <macro name="AXIS1_ID" pattern="^.*[.].*$" description="The ID of the axis as set in the controller, looks like Group1.Axis1. Leave blank for no axis (default: )" defaultValue="" hasDefault="YES" />
 <macro name="AXIS2_ID" pattern="^.*[.].*$" description="The ID of the axis as set in the controller, looks like Group1.Axis1. Leave blank for no axis (default: )" defaultValue="" hasDefault="YES" />
+<!--
 <macro name="AXIS3_ID" pattern="^.*[.].*$" description="The ID of the axis as set in the controller, looks like Group1.Axis1. Leave blank for no axis (default: )" defaultValue="" hasDefault="YES" />
 <macro name="AXIS4_ID" pattern="^.*[.].*$" description="The ID of the axis as set in the controller, looks like Group1.Axis1. Leave blank for no axis (default: )" defaultValue="" hasDefault="YES" />
+-->
 
 </macros>
 <pvsets>
