@@ -10,6 +10,11 @@ record(bi, "$(P)PLC:HEARTBEAT") {
     field(TPRO, "$(DEBUG=0)")
 }
 
+record(bo, "$(P)IS300") {
+	field(VAL, "1")
+	field(PINI, "YES")
+}
+
 record(mbbi, "$(P)PLC:HIGH_VACUUM_VALVE") {
     field(DTYP, "OPCUA")
     field(INP,  "@$(SUBS) ns=4;s=Opc_High_Vac_Valve_Status")
