@@ -17,14 +17,14 @@
 - [ ] A copy of the manual has been placed on the shared drive
 - [ ] Pertitent information has been stored in the [wiki](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Specific-Device-IOC)
 - [ ] Does the IOC conform to IBEX standards?
-    - [PV naming](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/PV-Naming).
-    - [Disable records](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Disable-records)
-    - [Record simulation](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Record-Simulation)
-    - [Finishing touches](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/IOC-Finishing-Touches)
-- [ ] If an OPI has been modified, does it conform to the [style guidelines](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/OPI-Creation)?
-- [ ] Do the IOC and support module conform to the new [build guidelines](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Reducing-Build-Dependencies)
+    - [PV naming](https://isiscomputinggroup.github.io/ibex_developers_manual/iocs/conventions/PV-Naming.html).
+    - [Disable records](https://isiscomputinggroup.github.io/ibex_developers_manual/iocs/testing/Disable-records.html)
+    - [Record simulation](https://isiscomputinggroup.github.io/ibex_developers_manual/iocs/testing/Record-Simulation.html)
+    - [Finishing touches](https://isiscomputinggroup.github.io/ibex_developers_manual/iocs/creation/IOC-Finishing-Touches.html)
+- [ ] If an OPI has been modified, does it conform to the [style guidelines](https://isiscomputinggroup.github.io/ibex_developers_manual/client/opis/OPI-Creation.html)?
+- [ ] Do the IOC and support module conform to the new [build guidelines](https://isiscomputinggroup.github.io/ibex_developers_manual/iocs/compiling/Reducing-Build-Dependencies.html)
 - [ ] Have the changes been recorded appropriately in a PR for [release notes](https://github.com/ISISComputingGroup/IBEX/blob/master/release_notes/ReleaseNotes_Upcoming.md)?
-- [ ] Is the device's flow control setting correct? [For most devices flow control should be OFF](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Flow-control).
+- [ ] Is the device's flow control setting correct? [For most devices flow control should be OFF](https://isiscomputinggroup.github.io/ibex_developers_manual/iocs/tips_tricks/Flow-control.html).
 
 ### Functional Tests
 
@@ -37,5 +37,5 @@
 
 ### Final steps
 
-- [ ] Update the IOC submodule in the main EPICS repo. See [Git workflow](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Git-workflow) page for details.
+- [ ] Update the IOC submodule in the main EPICS repo. See [Git workflow](https://isiscomputinggroup.github.io/ibex_developers_manual/processes/git_and_github/Git-workflow.html) page for details.
 - [ ] Reviewer has merged the associated PR for the [release notes](https://github.com/ISISComputingGroup/IBEX/blob/master/release_notes/ReleaseNotes_Upcoming.md)
