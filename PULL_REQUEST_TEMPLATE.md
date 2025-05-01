@@ -15,7 +15,7 @@
 #### Code Review
 
 - [ ] A copy of the manual has been placed on the shared drive
-- [ ] Pertitent information has been stored in the [wiki](https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/Specific-Device-IOC)
+- [ ] Pertitent information has been stored in the [wiki](https://isiscomputinggroup.github.io/ibex_developers_manual/Specific-IOCs.html)
 - [ ] Does the IOC conform to IBEX standards?
     - [PV naming](https://isiscomputinggroup.github.io/ibex_developers_manual/iocs/conventions/PV-Naming.html).
     - [Disable records](https://isiscomputinggroup.github.io/ibex_developers_manual/iocs/testing/Disable-records.html)
