@@ -1,0 +1,10 @@
+global {P = "\$(P)", PORT = "\$(PORT)", NELM = "\$(NELM)"}
+
+file "devTektronix_MSO_4104B.template"
+{
+    pattern { C }
+     { 1 }
+     { 2 }
+     { 3 }
+     { 4 }
+}
