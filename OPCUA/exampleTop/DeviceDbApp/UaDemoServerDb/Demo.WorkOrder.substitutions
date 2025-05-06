@@ -1,4 +1,0 @@
-file Demo.WorkOrderVariable.template {
-{ P="$(P=)", R=WOVAR:, SESS=$(SESS), SUBS=$(SUBS), WO_NODEID=Demo.WorkOrder.WorkOrderVariable }
-{ P="$(P=)", R=WOVAR2:, SESS=$(SESS), SUBS=$(SUBS), WO_NODEID=Demo.WorkOrder.WorkOrderVariable2 }
-}
