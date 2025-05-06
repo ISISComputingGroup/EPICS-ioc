@@ -10,8 +10,8 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-DB += OMRON-Sysmac-server-1.db
-DB += OMRON-Sysmac-server-2.db
+DB += MAPS_vacuum_tpg1.db
+DB += MAPS_vacuum_tpg2.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
