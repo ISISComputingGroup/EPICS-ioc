@@ -30,6 +30,7 @@ $(IFNOTRECSIM) epicsThreadSleep(5)
 
 ## Load our record instances
 dbLoadRecords("$(LITRON)/db/litron.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),IFNOTRECSIM=$(IFNOTRECSIM),VI_PATH=$(VI_PATH=C:/labview modules/Instruments/HIFI/HIFI Laser/HIFI Laser - FrontPanel.vi),NUM_PORT=$(NUM_PORT),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
+dbLoadRecords("$(LITRON)/db/litron_logic.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),IFNOTRECSIM=$(IFNOTRECSIM),BUFFER_SIZE=$(STALE_TIME=10)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
