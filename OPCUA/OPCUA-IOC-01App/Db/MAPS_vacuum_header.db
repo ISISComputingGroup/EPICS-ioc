@@ -1,0 +1,56 @@
+# PLC records:
+
+record(bi, "$(P)PLC:HEARTBEAT") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_Plc_Heartbeat")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(bo, "$(P)IS300") {
+	field(VAL, "1")
+	field(PINI, "YES")
+}
+
+record(mbbi, "$(P)PLC:HIGH_VACUUM_VALVE") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=Opc_High_Vac_Valve_Status")
+    field(SCAN, "I/O Intr")
+	field(ONVL, "1")
+	field(ONST, "closed")
+	field(TWVL, "2")
+	field(TWST, "opened")
+	field(THVL, "3")
+	field(THST, "sweeping")
+	field(FRVL, "4")
+	field(FRST, "fault")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(mbbo, "$(P)$(R1):UNIT:SP") {
+	field(DTYP, "OPCUA")
+	field(OUT, "@$(SUBS) ns=4;s=Opc_TPG1_Unit_Request")
+	field(ZRVL, "0")
+	field(ZRST, "mbar")
+	field(ONVL, "1")
+	field(ONST, "Torr")
+	field(TWVL, "2")
+	field(TWST, "Pa")
+	field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(mbbo, "$(P)$(R2):UNIT:SP") {
+	field(DTYP, "OPCUA")
+	field(OUT, "@$(SUBS) ns=4;s=Opc_TPG2_Unit_Request")
+	field(ZRVL, "0")
+	field(ZRST, "mbar")
+	field(ONVL, "1")
+	field(ONST, "Torr")
+	field(TWVL, "2")
+	field(TWST, "Pa")
+	field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
