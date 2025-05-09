@@ -41,5 +41,3 @@ file "$(TOP)/OPCUA-IOC-01App/Db/MAPS_vacuum.template" {
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "SWITCH_FUNC_STATUS_B2", "\$(NAME_PREFIX)", "Sensor_B1.Switching_Function_Status" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "FILTER_TIME_CONST_B2", "\$(NAME_PREFIX)", "Sensor_B2.Filter_Time_Constant" }
 }
-
-
