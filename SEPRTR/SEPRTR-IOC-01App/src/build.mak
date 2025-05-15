@@ -78,6 +78,9 @@ DAQMXLIB = $(ICPBINARYDIR)/NIDAQmx/lib/msvc
 endif
 $(APPNAME)_SYS_LIBS_WIN32 += $(DAQMXLIB)/NIDAQmx
 
+
+$(APPNAME)_SYS_LIBS_Linux += nidaqmx
+$(APPNAME)_LDFLAGS_Linux += -L/usr/lib/x86_64-linux-gnu
 #===========================
 
 include $(TOP)/configure/RULES
