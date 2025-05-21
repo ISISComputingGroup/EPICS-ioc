@@ -90,6 +90,7 @@ IOCDIRS += TLFW102C
 IOCDIRS += G3HALLPR
 IOCDIRS += NFIPM
 IOCDIRS += ZFHIFI
+IOCDIRS += AMBRHEAT
 
 
 ## check on missing directories
