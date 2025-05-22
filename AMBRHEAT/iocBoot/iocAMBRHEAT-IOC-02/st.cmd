@@ -16,4 +16,3 @@ AMBRHEAT_IOC_02_registerRecordDeviceDriver pdbbase
 
 ## calling common command file in ioc 01 boot dir
 < ${TOP}/iocBoot/iocAMBRHEAT-IOC-01/st-common.cmd
-
