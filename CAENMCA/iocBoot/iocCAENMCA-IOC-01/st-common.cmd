@@ -10,6 +10,8 @@ asynSetMinTimerPeriod(0.001)
 ##ISIS## Load common DB records 
 < $(IOCSTARTUP)/dbload.cmd
 
+epicsEnvSet("HEXAGON_COPYCMD", "$(CAENMCA)/copydata.bat")
+
 stringiftest("HEX0", "$(IPADDR0=)", 3)
 stringiftest("HEX1", "$(IPADDR1=)", 3)
 

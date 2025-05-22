@@ -38,7 +38,7 @@ endif
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
-$(APPNAME)_LIBS += webget htmltidy
+$(APPNAME)_LIBS += webget tidy
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
@@ -84,10 +84,7 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 #$(APPNAME)_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
-## area detector already includes PVA, so avoid including it twice
-ifeq ($(AREA_DETECTOR),)
 include $(CONFIG)/CONFIG_PVA_ISIS
-endif
 
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
