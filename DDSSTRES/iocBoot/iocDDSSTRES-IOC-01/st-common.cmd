@@ -37,8 +37,11 @@ dbLoadRecords("$(DDSSTRES)/db/tensile_stress_rig_internal.db","PVPREFIX=$(MYPVPR
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
+
 ## Start any sequence programs
-#seq sncxxx,"user=wtn43451"
+seq start_or_load, "P=$(MYPVPREFIX)$(IOCNAME):"
 
 ##ISIS## Stuff that needs to be done after iocInit is called e.g. sequence programs 
 < $(IOCSTARTUP)/postiocinit.cmd
+
+
