@@ -15,8 +15,6 @@ epicsEnvSet("OPCUACONFIG","$(OPCUACONFIGDIR=$(ICPCONFIGROOT)/opcua)")
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
 
-#! $(SUPPORT)/OPCUA/bin/windows-x64/opcua
-
 cd ${TOP}/iocBoot/${IOC}
 iocInit
 
