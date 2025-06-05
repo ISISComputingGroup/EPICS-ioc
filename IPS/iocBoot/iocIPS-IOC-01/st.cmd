@@ -4,7 +4,8 @@
 ## everywhere it appears in this file
 
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
-errlogInit2(65536, 256)
+#errlogInit2(65536, 256)
+errlogInit2(65536, 1024)
 
 < envPaths
 
@@ -48,8 +49,25 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
 epicsEnvSet("P", "$(MYPVPREFIX)$(IOCNAME):")
 
+# The STREAMPROTOCOL env var should be set to either "LEGACY" (default) or "SCPI"
+# Set the database and protocol file names accordingly
+stringiftest("STREAMPROTOCOL_SCPI", "$(STREAMPROTOCOL=)", 4, "SCPI")
+$(IFNOTSTREAMPROTOCOL_SCPI) epicsEnvSet "DBFILE" "ips.db"
+$(IFSTREAMPROTOCOL_SCPI) epicsEnvSet "DBFILE" "ips_scpi.db"
+$(IFNOTSTREAMPROTOCOL_SCPI) epicsEnvSet "PROTOCOLFILE" "OxInstIPS.protocol"
+$(IFSTREAMPROTOCOL_SCPI) epicsEnvSet "PROTOCOLFILE" "OxInstIPS_SCPI.protocol"
+
+### IJG Diagnostics during development
+#var streamError 1
+#var streamDebug 1
+#var streamDebugColored 1
+#var streamErrorDeadTime 30
+#var streamMsgTimeStamped 1
+#streamSetLogfile("streamdevice_logfile.txt")
+##################
+
 ## Load our record instances
-dbLoadRecords("db/ips.db","PVPREFIX=$(MYPVPREFIX),P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),MAX_FIELD=$(MAX_FIELD=7.0),MAX_SWEEP_RATE=$(MAX_SWEEP_RATE=1.0),STABILITY_VOLTAGE=$(STABILITY_VOLTAGE=0.1),HEATER_WAITTIME=$(HEATER_WAITTIME=60),MANAGER_ASG=$(MANAGER_ASG=MANAGER)")
+dbLoadRecords("db/$(DBFILE)","PVPREFIX=$(MYPVPREFIX),P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),MAX_FIELD=$(MAX_FIELD=7.0),MAX_SWEEP_RATE=$(MAX_SWEEP_RATE=1.0),STABILITY_VOLTAGE=$(STABILITY_VOLTAGE=0.1),HEATER_WAITTIME=$(HEATER_WAITTIME=60),MANAGER_ASG=$(MANAGER_ASG=MANAGER)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

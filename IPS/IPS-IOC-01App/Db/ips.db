@@ -1,3 +1,14 @@
+# Set the PROTOCOL PV to LEGACY
+# This facilitates the UI to show/hide protocol specific settings
+record (stringin, "$(P)PROTOCOL")
+{
+    field(DESC, "Inform the UI which protocol to use")
+    field(DTYP, "Soft Channel")
+    field(SCAN, "Passive")
+    field(VAL, "LEGACY")
+    field(PINI, "YES")
+}
+
 record(bo, "$(P)SIM")
 {
     field(SCAN, "Passive")
