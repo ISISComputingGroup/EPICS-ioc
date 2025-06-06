@@ -16,7 +16,7 @@ stringiftest("SERIAL", "$(INTERFACE=SERIAL)", 5, "SERIAL")
 stringiftest("ETHERNET", "$(INTERFACE=SERIAL)", 5, "ETHERNET")
 stringiftest("LITRON", "$(APPLICATION=)", 5, "LITRON")
 
-$(IFETHERNET) $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure("$(DEVICE)", "$(ADDR=):5024 COM")
+$(IFETHERNET) $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure("$(DEVICE)", "$(ADDR=):5024")
 $(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
 
 ## Settings for Serial connections
