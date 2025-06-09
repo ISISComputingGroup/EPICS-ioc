@@ -91,6 +91,7 @@ IOCDIRS += TLFW102C
 IOCDIRS += G3HALLPR
 IOCDIRS += NFIPM
 IOCDIRS += ZFHIFI
+IOCDIRS += OPCUA
 
 
 ## check on missing directories
