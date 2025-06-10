@@ -63,12 +63,18 @@ STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 
+OPENSSL = $(SUPPORT)/OpenSSL/master
+LIBXML2 = $(SUPPORT)/libxml2/master
+LIBXML2_DIR = $(SUPPORT)/libxml2/master/lib/$(EPICS_HOST_ARCH)
+ICONV = $(SUPPORT)/libiconv/master
+ICONV_DIR = $(SUPPORT)/libiconv/master/lib/$(EPICS_HOST_ARCH)
+
+# IOC-specific support module
+OPCUA=$(SUPPORT)/OPCUA/master
+TPG=$(SUPPORT)/TPG/master
+
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
 
 include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
-
-# IOC-specific support module
-OPCUA=$(SUPPORT)/OPCUA/master
-TPG=$(SUPPORT)/TPG/master

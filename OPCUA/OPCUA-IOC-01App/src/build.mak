@@ -42,6 +42,8 @@ $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
 #$(APPNAME)_LIBS += xxx
 
+$(APPNAME)_LIBS_WIN32 += xml2 iconv libcrypto zlib
+
 # OPCUA-IOC-01_registerRecordDeviceDriver.cpp derives from OPCUA-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
@@ -60,7 +62,7 @@ endif
 
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
-$(APPNAME)_SYS_LIBS_WIN32 += ws2_32
+$(APPNAME)_SYS_LIBS_WIN32 += ws2_32 crypt32
 
 #===========================
 
