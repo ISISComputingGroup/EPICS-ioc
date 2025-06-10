@@ -42,6 +42,10 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
+# Uncomment these for StreamDevice debugging
+# asynSetTraceMask("L0", -1, 0x9)
+# asynSetTraceIOMask("L0", -1, 0x2)
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
