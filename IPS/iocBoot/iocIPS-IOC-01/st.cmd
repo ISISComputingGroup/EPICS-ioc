@@ -43,8 +43,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
 # Uncomment these for StreamDevice debugging
-# asynSetTraceMask("L0", -1, 0x9)
-# asynSetTraceIOMask("L0", -1, 0x2)
+asynSetTraceMask("L0", -1, 0x9)
+asynSetTraceIOMask("L0", -1, 0x2)
 
 ## Load record instances
 
@@ -72,8 +72,9 @@ $(IFSTREAMPROTOCOL_SCPI) epicsEnvSet "PROTOCOLFILE" "OxInstIPS_SCPI.protocol"
 
 ## Load our record instances
 dbLoadRecords("db/$(DBFILE)","PVPREFIX=$(MYPVPREFIX),P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),MAX_FIELD=$(MAX_FIELD=7.0),MAX_SWEEP_RATE=$(MAX_SWEEP_RATE=1.0),STABILITY_VOLTAGE=$(STABILITY_VOLTAGE=0.1),HEATER_WAITTIME=$(HEATER_WAITTIME=60),MANAGER_ASG=$(MANAGER_ASG=MANAGER)")
+$(IFSTREAMPROTOCOL_SCPI) dbLoadRecords("db/ips_scpi_levels.db","PVPREFIX=$(MYPVPREFIX),P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),MANAGER_ASG=$(MANAGER_ASG=MANAGER)")
 
-##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
+##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
 < $(IOCSTARTUP)/preiocinit.cmd
 
 cd "${TOP}/iocBoot/${IOC}"

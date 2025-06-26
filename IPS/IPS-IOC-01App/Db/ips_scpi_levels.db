@@ -1,0 +1,99 @@
+####################################################################
+# This provide the records for the Mercury IPS Level Sensor board
+####################################################################
+
+record(ai, "$(P)LVL:NIT:FREQ:ZERO") {
+  field(DESC, "Get the N2 zero freq value")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelNitFreqZero $(PORT)")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:NIT:FREQ:ZERO")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)LVL:NIT:FREQ:ZERO:SP") {
+  field(DESC, "Set zero freq value for nitrogen level")
+  field(DTYP, "stream")
+  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelNitFreqZero $(PORT)")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:NIT:FREQ:FULL:SP")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)LVL:NIT:FREQ:FULL") {
+  field(DESC, "Get the N2 full freq value")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelNitFreqFull $(PORT)")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:NIT:FREQ:FULL")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)LVL:NIT:FREQ:FULL:SP") {
+  field(DESC, "Set full freq value for nitrogen level")
+  field(DTYP, "stream")
+  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelNitFreqFull $(PORT)")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:NIT:FREQ:FULL:SP")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)LVL:HE:EMPTY:RES") {
+  field(DESC, "Get empty helium resistance value")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeEmptyRes $(PORT)")
+  field(EGU,  "Ohm")
+  field(PREC, "2")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:HE:EMPTY:RES")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
+record(ao, "$(P)LVL:HE:EMPTY:RES:SP") {
+  field(DESC, "Set empty helium resistance value")
+  field(DTYP, "stream")
+  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelHeEmptyRes $(PORT)")
+  field(EGU,  "Ohm")
+  field(PREC, "2")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:HE:EMPTY:RES:SP")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
+record(ai, "$(P)LVL:HE:FULL:RES") {
+  field(DESC, "Get full helium resistance value")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeFullRes $(PORT)")
+  field(EGU,  "Ohm")
+  field(PREC, "2")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:HE:FULL:RES")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
+record(ao, "$(P)LVL:HE:FULL:RES:SP") {
+  field(DESC, "Set full helium resistance value")
+  field(DTYP, "stream")
+  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelHeFullRes $(PORT)")
+  field(EGU,  "Ohm")
+  field(PREC, "2")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:HE:FULL:RES:SP")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
