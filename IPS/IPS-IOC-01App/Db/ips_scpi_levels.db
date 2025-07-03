@@ -2,47 +2,7 @@
 # This provide the records for the Mercury IPS Level Sensor board
 ####################################################################
 
-record(ai, "$(P)LVL:NIT:FREQ:ZERO") {
-  field(DESC, "Get the N2 zero freq value")
-  field(DTYP, "stream")
-  field(SCAN, "5 second")
-  field(INP,  "@OxInstIPS_SCPI.protocol getLevelNitFreqZero $(PORT)")
-
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:LVL:NIT:FREQ:ZERO")
-  field(SDIS, "$(P)DISABLE")
-}
-
-record(ao, "$(P)LVL:NIT:FREQ:ZERO:SP") {
-  field(DESC, "Set zero freq value for nitrogen level")
-  field(DTYP, "stream")
-  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelNitFreqZero $(PORT)")
-
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:LVL:NIT:FREQ:FULL:SP")
-  field(SDIS, "$(P)DISABLE")
-}
-
-record(ai, "$(P)LVL:NIT:FREQ:FULL") {
-  field(DESC, "Get the N2 full freq value")
-  field(DTYP, "stream")
-  field(SCAN, "5 second")
-  field(INP,  "@OxInstIPS_SCPI.protocol getLevelNitFreqFull $(PORT)")
-
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:LVL:NIT:FREQ:FULL")
-  field(SDIS, "$(P)DISABLE")
-}
-
-record(ao, "$(P)LVL:NIT:FREQ:FULL:SP") {
-  field(DESC, "Set full freq value for nitrogen level")
-  field(DTYP, "stream")
-  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelNitFreqFull $(PORT)")
-
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:LVL:NIT:FREQ:FULL:SP")
-  field(SDIS, "$(P)DISABLE")
-}
+# ========= HELIUM ========= #
 
 record(ai, "$(P)LVL:HE:EMPTY:RES") {
   field(DESC, "Get empty helium resistance value")
@@ -59,6 +19,7 @@ record(ai, "$(P)LVL:HE:EMPTY:RES") {
 }
 
 record(ao, "$(P)LVL:HE:EMPTY:RES:SP") {
+  field(ASG, "$(MANAGER_ASG)")
   field(DESC, "Set empty helium resistance value")
   field(DTYP, "stream")
   field(OUT,  "@OxInstIPS_SCPI.protocol setLevelHeEmptyRes $(PORT)")
@@ -86,6 +47,7 @@ record(ai, "$(P)LVL:HE:FULL:RES") {
 }
 
 record(ao, "$(P)LVL:HE:FULL:RES:SP") {
+  field(ASG, "$(MANAGER_ASG)")
   field(DESC, "Set full helium resistance value")
   field(DTYP, "stream")
   field(OUT,  "@OxInstIPS_SCPI.protocol setLevelHeFullRes $(PORT)")
@@ -97,3 +59,287 @@ record(ao, "$(P)LVL:HE:FULL:RES:SP") {
   field(SDIS, "$(P)DISABLE")
   info(archive, "VAL")
 }
+
+record(ai, "$(P)LVL:HE:REFILL:START") {
+  field(DESC, "Get high helium level that starts the refill")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeFillStartThreshold $(PORT)")
+  field(EGU,  "%")
+  field(PREC, "0")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:HE:REFILL:START")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
+record(ao, "$(P)LVL:HE:REFILL:START:SP") {
+  field(ASG, "$(MANAGER_ASG)")
+  field(DESC, "Set high helium level that starts the refill")
+  field(DTYP, "stream")
+  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelHeFillStartThreshold $(PORT)")
+  field(EGU,  "%")
+  field(PREC, "0")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)LVL:HE:REFILL:START:SP")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
+record(ai, "$(P)LVL:HE:REFILL:STOP") {
+  field(DESC, "Get high helium level that stops the refill")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeFillStopThreshold $(PORT)")
+  field(EGU,  "%")
+  field(PREC, "0")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:HE:REFILL:STOP")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
+record(ao, "$(P)LVL:HE:REFILL:STOP:SP") {
+  field(ASG, "$(MANAGER_ASG)")
+  field(DESC, "Set high helium level that stops the refill")
+  field(DTYP, "stream")
+  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelHeFillStopThreshold $(PORT)")
+  field(EGU,  "%")
+  field(PREC, "0")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)LVL:HE:REFILL:STOP:SP")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
+record(mbbi, "$(P)LVL:HE:REFILLING") {
+  field(DESC, "Is helium refill in progress?")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeRefilling $(PORT)")
+  field(ZRST, "No")
+  field(ZRVL, "0")
+  field(ZRSV, "NO_ALARM")
+  field(ONST, "Yes")
+  field(ONVL, "1")
+  field(ONSV, "NO_ALARM")
+  info(archive, "VAL")
+}
+
+record(ai, "$(P)LVL:HE:LEVEL") {
+  field(DESC, "Get helium level")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeliumLevel $(PORT)")
+  field(EGU,  "%")
+  field(PREC, "0")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:HE:LEVEL")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
+record(mbbi, "$(P)LVL:HE:PULSE:READ:RATE") {
+  field(DESC, "Get high helium reading pulse rate")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeReadingRate $(PORT)")
+  field(ZRST, "Fast")
+  field(ZRVL, "0")
+  field(ZRSV, "NO_ALARM")
+  field(ONST, "Slow")
+  field(ONVL, "1")
+  field(ONSV, "NO_ALARM")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:HE:REFILL:STOP")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
+record(bo, "$(P)LVL:HE:PULSE:READ:RATE:SP") {
+  field(ASG, "$(MANAGER_ASG)")
+  field(DESC, "Set high helium reading pulse rate")
+  field(DTYP, "stream")
+  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelHeReadingRate $(PORT)")
+  field(ZNAM, "Fast")
+  field(ONAM, "Slow")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:HE:PULSE:READ:RATE:SP")
+  field(SDIS, "$(P)DISABLE")
+}
+
+
+
+# ========= NITROGEN ========= ##
+
+record(ai, "$(P)LVL:NIT:READ:INTERVAL") {
+  field(DESC, "Get the N2 sensor read interval (ms)")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(EGU,  "ms")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelNitReadInterval $(PORT)")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:NIT:READ:INTERVAL")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)LVL:NIT:READ:INTERVAL:SP") {
+  field(ASG, "$(MANAGER_ASG)")
+  field(DESC, "Set the N2 sensor read interval (ms)")
+  field(DTYP, "stream")
+  field(EGU,  "ms")
+  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelNitReadInterval $(PORT)")
+  field(DRVH, "$(MAX_N2_READ_INTERVAL==5000)")
+  field(DRVL, "$(MIN_N2_READ_INTERVAL=0)")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:NIT:FREQ:FULL:SP")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)LVL:NIT:FREQ:ZERO") {
+  field(DESC, "Get the N2 zero freq value")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(EGU,  "Hz")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelNitFreqZero $(PORT)")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:NIT:FREQ:ZERO")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)LVL:NIT:FREQ:ZERO:SP") {
+  field(ASG, "$(MANAGER_ASG)")
+  field(DESC, "Set zero freq value for nitrogen level")
+  field(DTYP, "stream")
+  field(EGU,  "Hz")
+  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelNitFreqZero $(PORT)")
+  field(FLNK,  "$(P)LVL:NIT:FREQ:ZERO")
+  field(DRVH, "$(MAX_N2_FREQ=65000)")
+  field(DRVL, "$(MIN_N2_FREQ=5000)")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:NIT:FREQ:ZERO:SP")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)LVL:NIT:FREQ:FULL") {
+  field(DESC, "Get the N2 full freq value")
+  field(DTYP, "stream")
+  field(EGU,  "Hz")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelNitFreqFull $(PORT)")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:NIT:FREQ:FULL")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ao, "$(P)LVL:NIT:FREQ:FULL:SP") {
+  field(ASG, "$(MANAGER_ASG)")
+  field(DESC, "Set full freq value for nitrogen level")
+  field(DTYP, "stream")
+  field(EGU,  "Hz")
+  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelNitFreqFull $(PORT)")
+  field(FLNK,  "$(P)LVL:NIT:FREQ:FULL")
+  field(DRVH, "$(MAX_N2_FREQ=65000)")
+  field(DRVL, "$(MIN_N2_FREQ=5000)")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:NIT:FREQ:FULL:SP")
+  field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)LVL:NIT:REFILL:START") {
+  field(DESC, "Get high N2 level that starts the refill")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelNitFillStartThreshold $(PORT)")
+  field(EGU,  "%")
+  field(PREC, "0")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:NIT:REFILL:START")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
+record(ao, "$(P)LVL:NIT:REFILL:START:SP") {
+  field(ASG, "$(MANAGER_ASG)")
+  field(DESC, "Set high N2 level that starts the refill")
+  field(DTYP, "stream")
+  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelNitFillStartThreshold $(PORT)")
+  field(EGU,  "%")
+  field(PREC, "0")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)LVL:NIT:REFILL:START:SP")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
+record(ai, "$(P)LVL:NIT:REFILL:STOP") {
+  field(DESC, "Get high N2 level that stops the refill")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelNitFillStopThreshold $(PORT)")
+  field(EGU,  "%")
+  field(PREC, "0")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:NIT:REFILL:STOP")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
+record(ao, "$(P)LVL:NIT:REFILL:STOP:SP") {
+  field(ASG, "$(MANAGER_ASG)")
+  field(DESC, "Set high N2 level that stops the refill")
+  field(DTYP, "stream")
+  field(OUT,  "@OxInstIPS_SCPI.protocol setLevelNitFillStopThreshold $(PORT)")
+  field(EGU,  "%")
+  field(PREC, "0")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)LVL:NIT:REFILL:STOP:SP")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
+record(mbbi, "$(P)LVL:NIT:REFILLING") {
+  field(DESC, "Is N2 refill in progress?")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelNitRefilling $(PORT)")
+  field(ZRST, "No")
+  field(ZRVL, "0")
+  field(ZRSV, "NO_ALARM")
+  field(ONST, "Yes")
+  field(ONVL, "1")
+  field(ONSV, "NO_ALARM")
+  info(archive, "VAL")
+}
+
+record(ai, "$(P)LVL:NIT:LEVEL") {
+  field(DESC, "Get nitrogen level")
+  field(DTYP, "stream")
+  field(SCAN, "5 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLevelNitrogenLevel $(PORT)")
+  field(EGU,  "%")
+  field(PREC, "0")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:LVL:NIT:LEVEL")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}
+
