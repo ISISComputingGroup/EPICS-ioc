@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application ZFMAGFLD-IOC-01
+# Build the IOC application ATTOCUBE-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# ZFMAGFLD-IOC-01.dbd will be created and installed
+# ATTOCUBE-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# ZFMAGFLD-IOC-01.dbd will be made up from these files:
+# ATTOCUBE-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += icpconfig.dbd
@@ -29,30 +29,33 @@ $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += asyn.dbd
 $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
+$(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += stream.dbd
-$(APPNAME)_DBD += DAQmxSupport.dbd
 ## add other dbd here ##
-$(APPNAME)_DBD += zfmagfld.dbd
+#$(APPNAME)_DBD += xxx.dbd
 
-#$(APPNAME)_LIBS += xxx
-$(APPNAME)_LIBS += ZFMAGFLD
-$(APPNAME)_LIBS += DAQmxSupport
 # Add all the support libraries needed by this IOC
+
+## Add additional libraries here ##
+#$(APPNAME)_LIBS += xxx
+
 ## ISIS standard libraries ##
+## Stream device libraries ##
+$(APPNAME)_LIBS += stream
+$(APPNAME)_LIBS += lua
+$(APPNAME)_LIBS += asyn
+## other standard libraries here ##
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
-$(APPNAME)_LIBS += icpconfig pugixml
+$(APPNAME)_LIBS += icpconfig
 $(APPNAME)_LIBS += autosave
-## Stream device libraries ##
-$(APPNAME)_LIBS += stream
-$(APPNAME)_LIBS += asyn
-$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
-## Add other libraries here ##
-$(APPNAME)_LIBS += gsl gslcblas
+$(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
+$(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
-# ZFMAGFLD-IOC-01_registerRecordDeviceDriver.cpp derives from ZFMAGFLD-IOC-01.dbd
+
+# ATTOCUBE-IOC-01_registerRecordDeviceDriver.cpp derives from ATTOCUBE-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
@@ -62,24 +65,13 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 # Add support from base/src/vxWorks if needed
 #$(APPNAME)_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
-# Finally link to the EPICS Base libraries
 ## area detector already includes PVA, so avoid including it twice
 ifeq ($(AREA_DETECTOR),)
 include $(CONFIG)/CONFIG_PVA_ISIS
 endif
 
+# Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
-
-# daqmx external library (need to specify explicitly for static buulds)
-ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
-DAQMXLIB = $(ICPBINARYDIR)/NIDAQmx/lib/msvc64
-else
-DAQMXLIB = $(ICPBINARYDIR)/NIDAQmx/lib/msvc
-endif
-$(APPNAME)_SYS_LIBS_WIN32 += $(DAQMXLIB)/NIDAQmx
-
-$(APPNAME)_SYS_LIBS_Linux += nidaqmx
-$(APPNAME)_LDFLAGS_Linux += -L/usr/lib/x86_64-linux-gnu
 
 #===========================
 
