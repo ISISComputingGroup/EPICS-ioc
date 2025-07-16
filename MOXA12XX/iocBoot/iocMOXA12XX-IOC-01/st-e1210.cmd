@@ -1,7 +1,7 @@
 ### E1210 (16 DI) ###
 
 # MOXA E1210 DIs (if NOT counter mode) : function 2 (Read Discrete Inputs), address 0x0, length 16, data_type = UINT16 = 0, # pollMsec = for read func, waits XXX msecs
-drvModbusAsynConfigure("$(E12XX_ASYNPORT)_DI",             "$(E12XX_ASYNPORT)", 0, 2, 0x0,   0x10, 0, 100, "ioLogik")
+drvModbusAsynConfigure("$(E12XX_ASYNPORT)_DI",             "$(E12XX_ASYNPORT)", 0, 2, 0x0,   0x10, "UINT16", 100, "ioLogik")
 
 ##ISIS## Load common DB records
 < $(IOCSTARTUP)/dbload.cmd
