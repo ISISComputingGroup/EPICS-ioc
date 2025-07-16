@@ -25,7 +25,7 @@ $(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)solenoid_status",              "$(P
 #       (1.6.a & 1.6.b additional sub-sections created for ease of programming and efficiency of reading PLC memory in blocks)
 
 # 1.6.1 Kickers General Status
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)kickers_status",                "$(PLC)", 255, 3, 4004,  "INT16", "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4004
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)kickers_status",                "$(PLC)", 255, 3, 4004,  4, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4004
 
 # 1.6.a Kickers 1-4 Readback Status
 $(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)kickers_1-4_status"            "$(PLC)", 255, 3, 4007, 20, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4007
