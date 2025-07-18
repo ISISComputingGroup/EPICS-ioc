@@ -30,7 +30,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 
 ## Load our record instances
 dbLoadRecords("$(AMBRHEAT)/db/ambrell_easy_heat.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),ADDRESS=$(ADDRESS=0),PORT=$(DEVICE)")
-dbLoadRecords("${TOP}/db/error_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
+dbLoadRecords("$(AMBRHEAT)/db/error_setter.db","P=$(MYPVPREFIX)$(IOCNAME):")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
