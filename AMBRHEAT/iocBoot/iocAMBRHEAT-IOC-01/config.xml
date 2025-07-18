@@ -5,7 +5,7 @@
 <ioc_details></ioc_details>
 <macros>
     <xi:include href="../../../COMMON/PORT.xml" />
-    <macro name="ADDRESS" pattern="^[0-9]+$" description="Address for the PSU on this port e.g. 3." hasDefault="0" />
+    <macro name="ADDRESS" pattern="^[0-9]+$" description="Address for PSU on this port e.g. 3. (0 will communicate with all PSUs on bus)" defaultValue="0" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>
