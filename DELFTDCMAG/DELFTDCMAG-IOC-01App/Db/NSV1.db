@@ -450,19 +450,36 @@ record(ao, "$(P)FIELDMAG4:SP")
 
 record(ai, "$(P)POLREVI2")
 {
+    field(DESC, "Polarisation Reversal Current")
     field(DTYP, "asynFloat64")
     field(INP,  "@asyn(nsv,0,0)POLREVI2")
     field(SCAN, "I/O Intr")
     field(PREC, "3")
-    field(EGU, "")
+    field(EGU, "A")
 }
 
-record(longout, "$(P)POLREVI2:SP")
+record(longin, "$(P)POLREVI2:SP")
 {
+    field(SCAN, "Passive")
+    field(EGU, "mA")
+    field(PREC, "3")
+}
+
+record(calcout, "$(P)POLREVI2:SP:CALC")
+{
+    field(DESC, "Convert A to mA")
+    field(INPA, "$(P)POLREVI2:SP")
+    field(calc, "A/1000")
+    field(OUT,  "$(P)POLREVI2:SP:RAW PP")
+}
+
+record(longout, "$(P)POLREVI2:SP:RAW")
+{
+    field(DESC, "Send Current setpoint")
     field(DTYP, "asynInt32")
     field(OUT,  "@asyn(nsv,0,0)POLREVI2SP")
     field(SCAN, "Passive")
-    field(EGU, "")
+    field(EGU, "mA")
 }
 
 record(waveform, "$(P)RFCOILTEMP")
