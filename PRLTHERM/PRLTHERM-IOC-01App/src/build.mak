@@ -41,6 +41,7 @@ $(APPNAME)_DBD += DAQmxSupport.dbd
 
 ## Add additional libraries here ##
 #$(APPNAME)_LIBS += xxx
+$(APPNAME)_LIBS += DAQmxSupport
 
 ## ISIS standard libraries ##
 ## Stream device libraries ##
@@ -57,7 +58,6 @@ $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
-$(APPNAME)_LIBS += DAQmxSupport
 # PRLTHERM-IOC-01_registerRecordDeviceDriver.cpp derives from PRLTHERM-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
@@ -78,6 +78,9 @@ else
 DAQMXLIB = $(ICPBINARYDIR)/NIDAQmx/lib/msvc
 endif
 $(APPNAME)_SYS_LIBS_WIN32 += $(DAQMXLIB)/NIDAQmx
+
+$(APPNAME)_SYS_LIBS_Linux += nidaqmx
+$(APPNAME)_LDFLAGS_Linux += -L/usr/lib/x86_64-linux-gnu
 
 #===========================
 

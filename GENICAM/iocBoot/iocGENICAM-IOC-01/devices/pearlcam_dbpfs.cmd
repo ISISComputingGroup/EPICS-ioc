@@ -5,11 +5,12 @@ dbpf "$(PREFIX)CAM1:GC_SaturationEnable", "1"
 dbpf "$(PREFIX)CAM1:GC_BlaLevelSelector", "0"
 
 # Set to 8 bit colour mode. Can we convert to 16? 
-dbpf "$(PREFIX)CAM1:ColorMode", "2"
+#dbpf "$(PREFIX)CAM1:ColorMode", "2"
 # uint16
 dbpf "$(PREFIX)CAM1:DataType", "3"
 dbpf "$(PREFIX)CAM1:PixelFormat", "4"
 dbpf "$(PREFIX)CAM1:ConvertPixelFormat", "4"
+
 dbpf "$(PREFIX)CAM1:GC_Height", "1080"
 dbpf "$(PREFIX)CAM1:GC_Width", "1440"
 
@@ -22,7 +23,7 @@ dbpf "$(PREFIX)CAM1:GC_Width", "1440"
 #dbpf "$(PREFIX)CAM1:GC_BinVerticalMode", "0"
 #dbpf "$(PREFIX)CAM1:GC_BinHorizontalMode", "0"
 
-# Enable constant frame rate mode, then acquire 2hz 
+# Enable constant frame rate mode, then acquire 10hz 
 dbpf "$(PREFIX)CAM1:GC_AcqFrameRate", "10"
 dbpf "$(PREFIX)CAM1:GC_BalanceWhiteAuto", "2"
 
@@ -34,6 +35,7 @@ dbpf "$(PREFIX)CAM1:GC_BalRatioSelector", "0"
 
 dbpf "$(PREFIX)CAM1:GC_ExposureMode", "0"
 dbpf "$(PREFIX)CAM1:GC_ExposureAuto", "2"
+dbpf "$(PREFIX)CAM1:GC_DevLinThrLimit", "2.63726e+06" 
 
 dbpf "$(PREFIX)over1:1:Use", "Yes"
 dbpf "$(PREFIX)over1:1:SizeX", "2"
@@ -41,3 +43,4 @@ dbpf "$(PREFIX)over1:1:SizeY", "2"
 dbpf "$(PREFIX)over1:1:WidthX", "2"
 dbpf "$(PREFIX)over1:1:WidthY", "2"
 
+dbpf "$(PREFIX)CAM1:Acquire", "1"
