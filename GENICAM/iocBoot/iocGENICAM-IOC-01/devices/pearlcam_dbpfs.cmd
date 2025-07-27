@@ -37,10 +37,25 @@ dbpf "$(PREFIX)CAM1:GC_ExposureMode", "0"
 dbpf "$(PREFIX)CAM1:GC_ExposureAuto", "2"
 dbpf "$(PREFIX)CAM1:GC_DevLinThrLimit", "2.63726e+06" 
 
-dbpf "$(PREFIX)over1:1:Use", "Yes"
-dbpf "$(PREFIX)over1:1:SizeX", "2"
-dbpf "$(PREFIX)over1:1:SizeY", "2"
-dbpf "$(PREFIX)over1:1:WidthX", "2"
-dbpf "$(PREFIX)over1:1:WidthY", "2"
+## overlay crosshair parameters
+dbpf "$(PREFIX)OVER1:1:CenterX", 400
+dbpf "$(PREFIX)OVER1:1:CenterY", 400
+dbpf "$(PREFIX)OVER1:1:SizeX", 5000
+dbpf "$(PREFIX)OVER1:1:SizeY", 5000
+dbpf "$(PREFIX)OVER1:1:WidthX", 2
+dbpf "$(PREFIX)OVER1:1:WidthY", 2
+dbpf "$(PREFIX)OVER1:1:Red", 0
+dbpf "$(PREFIX)OVER1:1:Green", 255
+dbpf "$(PREFIX)OVER1:1:Blue", 0
+dbpf "$(PREFIX)OVER1:1:Use", 1
 
-dbpf "$(PREFIX)CAM1:Acquire", "1"
+$(IFDEVSIM) dbpf "$(PREFIX)CAM1:ColorMode", "RGB1"
+$(IFDEVSIM) dbpf "$(PREFIX)CAM1:DataType", "Int16"
+dbpf "$(PREFIX)OVER1:ColorMode", "RGB1"
+dbpf "$(PREFIX)OVER1:DataType", "Int16"
+dbpf "$(PREFIX)ROI1:ColorMode", "RGB1"
+dbpf "$(PREFIX)ROI1:DataType", "Int16"
+dbpf "$(PREFIX)IMAGE1:ColorMode", "RGB1"
+dbpf "$(PREFIX)IMAGE1:DataType", "Int16"
+
+#dbpf "$(PREFIX)CAM1:Acquire", "1"
