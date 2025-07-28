@@ -15,15 +15,6 @@ dbpf "$(PREFIX)CAM1:ConvertPixelFormat", "4"
 dbpf "$(PREFIX)CAM1:GC_Width", "$(XSIZE)"
 dbpf "$(PREFIX)CAM1:GC_Height", "$(YSIZE)"
 
-# Bin so we don't accidentally saturate the network with 24mp of raw mosaiced pixel data...
-#epicsEnvSet("BINNINGFACTOR", "1")
-#dbpf "$(PREFIX)CAM1:GC_BinningVertical", $(BINNINGFACTOR)
-#dbpf "$(PREFIX)CAM1:GC_BinningHorizontal", $(BINNINGFACTOR)
-
-# Bin with Sum - we may need to tweak this. It seems to up exposure, presumably because it's just adding the binned pixels together
-#dbpf "$(PREFIX)CAM1:GC_BinVerticalMode", "0"
-#dbpf "$(PREFIX)CAM1:GC_BinHorizontalMode", "0"
-
 # Enable constant frame rate mode, then acquire 10hz 
 dbpf "$(PREFIX)CAM1:GC_AcqFrameRate", "10"
 dbpf "$(PREFIX)CAM1:GC_BalanceWhiteAuto", "2"
