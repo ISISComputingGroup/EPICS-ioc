@@ -41,6 +41,7 @@ $(APPNAME)_DBD += URLDriverSupport.dbd
 ifdef ADSPINNAKER
 $(APPNAME)_DBD += ADSpinnakerSupport.dbd
 endif
+$(APPNAME)_DBD += simDetectorSupport.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -48,14 +49,6 @@ endif
 
 ## Add additional libraries here ##
 #$(APPNAME)_LIBS += xxx
-
-## ISIS standard libraries ##
-## Stream device libraries ##
-$(APPNAME)_LIBS += webget tidy
-$(APPNAME)_LIBS += lua
-$(APPNAME)_LIBS += asyn
-
-## other standard libraries here ##
 
 ifdef ADSPINNAKER
 $(APPNAME)_LIBS += ADSpinnaker
@@ -68,6 +61,7 @@ endif
 
 $(APPNAME)_LIBS += URLDriver
 $(APPNAME)_LIBS += ADGenICam
+$(APPNAME)_LIBS += simDetector
 
 ## not at moment
 #$(APPNAME)_LIBS += ffmpegServer
@@ -77,6 +71,9 @@ $(APPNAME)_LIBS += ADGenICam
 #$(APPNAME)_LIBS += avutil
 #$(APPNAME)_LIBS += swscale
 
+$(APPNAME)_LIBS += webget tidy
+$(APPNAME)_LIBS += lua
+$(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
