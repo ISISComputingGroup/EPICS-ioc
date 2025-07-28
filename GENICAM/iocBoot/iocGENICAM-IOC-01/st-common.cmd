@@ -60,3 +60,11 @@ create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(PREFIX)")
 # Set any dbpfs ie. exposure mode, this defaults to CAMFILE_dbpfs. 
 < $(DBPFS_FILE=$(CAMFILE)_dbpfs).cmd
 
+$(IFDEVSIM) dbpf "$(PREFIX)CAM1:AcquirePeriod", "0.5"
+$(IFDEVSIM) dbpf "$(PREFIX)CAM1:Offset", 50
+$(IFDEVSIM) dbpf "$(PREFIX)CAM1:Noise", 40
+# bug in simulator in that you need to swap out and back to make it pick up
+# offset+noise correctly
+$(IFDEVSIM) dbpf "$(PREFIX)CAM1:SimMode", "LinearRamp"
+epicsThreadSleep(1.0)
+$(IFDEVSIM) dbpf "$(PREFIX)CAM1:SimMode", "Offset&Noise"
