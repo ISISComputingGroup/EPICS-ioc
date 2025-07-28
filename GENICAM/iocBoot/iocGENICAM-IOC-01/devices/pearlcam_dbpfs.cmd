@@ -4,15 +4,16 @@ dbpf "$(PREFIX)CAM1:GC_GammaEnable", "1"
 dbpf "$(PREFIX)CAM1:GC_SaturationEnable", "1"
 dbpf "$(PREFIX)CAM1:GC_BlaLevelSelector", "0"
 
-# Set to 8 bit colour mode. Can we convert to 16? 
-#dbpf "$(PREFIX)CAM1:ColorMode", "2"
-# uint16
-dbpf "$(PREFIX)CAM1:DataType", "3"
+# set uint16 data type and RGB1 color mode
+dbpf "$(PREFIX)CAM1:ColorMode", "RGB1"
+dbpf "$(PREFIX)CAM1:DataType", "UInt16"
+
+# Set to 8 bit colour depth - camera can do 16 bit
 dbpf "$(PREFIX)CAM1:PixelFormat", "4"
 dbpf "$(PREFIX)CAM1:ConvertPixelFormat", "4"
 
-dbpf "$(PREFIX)CAM1:GC_Height", "1080"
-dbpf "$(PREFIX)CAM1:GC_Width", "1440"
+dbpf "$(PREFIX)CAM1:GC_Width", "$(XSIZE)"
+dbpf "$(PREFIX)CAM1:GC_Height", "$(YSIZE)"
 
 # Bin so we don't accidentally saturate the network with 24mp of raw mosaiced pixel data...
 #epicsEnvSet("BINNINGFACTOR", "1")
@@ -38,24 +39,24 @@ dbpf "$(PREFIX)CAM1:GC_ExposureAuto", "2"
 dbpf "$(PREFIX)CAM1:GC_DevLinThrLimit", "2.63726e+06" 
 
 ## overlay crosshair parameters
-dbpf "$(PREFIX)OVER1:1:CenterX", 400
-dbpf "$(PREFIX)OVER1:1:CenterY", 400
+dbpf "$(PREFIX)OVER1:1:CenterX", $(CROSSHAIR_X=0)
+dbpf "$(PREFIX)OVER1:1:CenterY", $(CROSSHAIR_Y=0)
 dbpf "$(PREFIX)OVER1:1:SizeX", 5000
 dbpf "$(PREFIX)OVER1:1:SizeY", 5000
-dbpf "$(PREFIX)OVER1:1:WidthX", 2
-dbpf "$(PREFIX)OVER1:1:WidthY", 2
+dbpf "$(PREFIX)OVER1:1:WidthX", 1
+dbpf "$(PREFIX)OVER1:1:WidthY", 1
 dbpf "$(PREFIX)OVER1:1:Red", 0
 dbpf "$(PREFIX)OVER1:1:Green", 255
 dbpf "$(PREFIX)OVER1:1:Blue", 0
-dbpf "$(PREFIX)OVER1:1:Use", 1
+$(IFCROSSHAIR) dbpf "$(PREFIX)OVER1:1:Use", 1
+$(IFNOTCROSSHAIR) dbpf "$(PREFIX)OVER1:1:Use", 0
 
-$(IFDEVSIM) dbpf "$(PREFIX)CAM1:ColorMode", "RGB1"
-$(IFDEVSIM) dbpf "$(PREFIX)CAM1:DataType", "Int16"
+## set properties on intermediate plugins
 dbpf "$(PREFIX)OVER1:ColorMode", "RGB1"
-dbpf "$(PREFIX)OVER1:DataType", "Int16"
+dbpf "$(PREFIX)OVER1:DataType", "UInt16"
 dbpf "$(PREFIX)ROI1:ColorMode", "RGB1"
-dbpf "$(PREFIX)ROI1:DataType", "Int16"
+dbpf "$(PREFIX)ROI1:DataType", "UInt16"
 dbpf "$(PREFIX)IMAGE1:ColorMode", "RGB1"
-dbpf "$(PREFIX)IMAGE1:DataType", "Int16"
+dbpf "$(PREFIX)IMAGE1:DataType", "UInt16"
 
-#dbpf "$(PREFIX)CAM1:Acquire", "1"
+dbpf "$(PREFIX)CAM1:Acquire", "1"

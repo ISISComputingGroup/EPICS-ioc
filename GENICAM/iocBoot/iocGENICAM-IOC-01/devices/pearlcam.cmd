@@ -26,11 +26,11 @@ $(IFNOTDEVSIM) ADSpinnakerConfig("$(PORT)", $(CAMERA_ID), 0x1, 0)
 
 # simDetectorConfig(const char *portName, int maxSizeX, int maxSizeY, int dataType,
 #                   int maxBuffers, int maxMemory, int priority, int stackSize)
-# datatype 2 is int16 (short)
-$(IFDEVSIM) simDetectorConfig("$(PORT)", $(XSIZE), $(YSIZE), 2, 0, 0)
+# datatype 3 is uint16 (short)
+$(IFDEVSIM) simDetectorConfig("$(PORT)", $(XSIZE), $(YSIZE), 3, 0, 0)
 
 asynSetTraceIOMask($(PORT), 0, 2)
 
 # Main database.  This just loads and modifies ADBase.template
 $(IFNOTDEVSIM) dbLoadRecords("$(ADSPINNAKER)/db/spinnaker.template", "P=$(PREFIX),R=CAM1:,PORT=$(PORT)")
-$(IFDEVSIM) dbLoadRecords("$(ADSIMDETECTOR)/db/simDetector.template","P=$(PREFIX),R=CAM1:,PORT=$(PORT),ADDR=0,DATATYPE=2,TIMEOUT=1")
+$(IFDEVSIM) dbLoadRecords("$(ADSIMDETECTOR)/db/simDetector.template","P=$(PREFIX),R=CAM1:,PORT=$(PORT),ADDR=0,DATATYPE=3,TIMEOUT=1")

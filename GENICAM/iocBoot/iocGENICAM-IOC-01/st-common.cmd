@@ -17,6 +17,8 @@ asynSetMinTimerPeriod(0.001)
 epicsEnvSet("CAMFILE", "$(TOP)/iocBoot/$(IOC)/devices/pearlcam")
 < $(CAMFILE).cmd
 
+stringiftest("CROSSHAIR", "$(CROSSHAIR_X=)")
+
 NDROIConfigure("ROI1", 3, 0, "$(PORT)", 0, 0)
 NDStatsConfigure("Stats1", 3, 0, "ROI1", 0, 0)
 NDTimeSeriesConfigure("Stats1_TS", 100, 0, "Stats1", 0, 22, 0, 0, 0, 0)
@@ -29,14 +31,15 @@ NDPvaConfigure("PVA1", 3, 0, "OVER1", 0, "$(PREFIX)PVA1:IMAGE", 0)
 $(IFNOTDEVSIM) dbLoadRecords("$(GENICAM_DB_FILE)", "P=$(PREFIX),R=CAM1:,PORT=$(PORT)")
 
 # Use this line for 8-bit or 16-bit data
-dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=IMAGE1:,PORT=Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=OVER1,TYPE=Int16,DATATYPE=2,FTVL=SHORT,NELEMENTS=$(NELEMENTS),ENABLED=1")
-dbLoadRecords("NDROI.template", "P=$(PREFIX),R=ROI1:,PORT=ROI1,ADDR=0,TIMEOUT=1,DATATYPE=2,NDARRAY_PORT=$(PORT),ENABLED=1")
-dbLoadRecords("NDStats.template", "P=$(PREFIX),R=STATS1:,PORT=Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROI1,DATATYPE=2,FTVL=SHORT,ENABLED=1,NCHANS=1,XSIZE=$(XSIZE),YSIZE=$(YSIZE),HIST_SIZE=1")
-#dbLoadRecords("NDTimeSeries.template", "P=$(PREFIX),R=STATS1:TS:, PORT=Stats1_TS,ADDR=0,TIMEOUT=1,NDARRAY_PORT=Stats1,NDARRAY_ADDR=1,NCHANS=$(NCHANS),ENABLED=1")
-dbLoadRecords("NDPva.template", "P=$(PREFIX),R=PVA1:,DATATYPE=2,PORT=PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=OVER1,ENABLED=1")
+dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=IMAGE1:,PORT=Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=OVER1,TYPE=Int16,DATATYPE=3,FTVL=USHORT,NELEMENTS=$(NELEMENTS),ENABLED=1")
+dbLoadRecords("NDROI.template", "P=$(PREFIX),R=ROI1:,PORT=ROI1,ADDR=0,TIMEOUT=1,DATATYPE=3,NDARRAY_PORT=$(PORT),ENABLED=1")
+dbLoadRecords("NDStats.template", "P=$(PREFIX),R=STATS1:,PORT=Stats1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROI1,DATATYPE=3,FTVL=SHORT,ENABLED=1,NCHANS=1,XSIZE=$(XSIZE),YSIZE=$(YSIZE),HIST_SIZE=1")
+# loading this gives callback errors, need to investigate more
+#dbLoadRecords("NDTimeSeries.template", "P=$(PREFIX),R=STATS1:TS:, PORT=Stats1_TS,ADDR=0,TIMEOUT=1,NDARRAY_PORT=Stats1,NDARRAY_ADDR=0,NCHANS=$(NCHANS),ENABLED=1")
+dbLoadRecords("NDPva.template", "P=$(PREFIX),R=PVA1:,DATATYPE=3,PORT=PVA1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=OVER1,ENABLED=1")
 
 ## add overlay
-dbLoadRecords("NDOverlay.template", "P=$(PREFIX),R=OVER1:,PORT=OVER1,ADDR=0,DATATYPE=2,TIMEOUT=1,NDARRAY_PORT=ROI1,ENABLED=1")
+dbLoadRecords("NDOverlay.template", "P=$(PREFIX),R=OVER1:,PORT=OVER1,ADDR=0,DATATYPE=3,TIMEOUT=1,NDARRAY_PORT=ROI1,ENABLED=1")
 # overlay crosshair - we set size via dbpf later
 dbLoadRecords("NDOverlayN.template", "P=$(PREFIX),R=OVER1:1:,NAME=OVRL1,SHAPE=0,O=OVER1:,PORT=OVER1,ADDR=0,TIMEOUT=1")
 
