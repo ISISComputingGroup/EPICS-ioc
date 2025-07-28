@@ -43,8 +43,9 @@ dbpf "$(PREFIX)OVER1:1:CenterX", $(CROSSHAIR_X=0)
 dbpf "$(PREFIX)OVER1:1:CenterY", $(CROSSHAIR_Y=0)
 dbpf "$(PREFIX)OVER1:1:SizeX", 5000
 dbpf "$(PREFIX)OVER1:1:SizeY", 5000
-dbpf "$(PREFIX)OVER1:1:WidthX", 1
-dbpf "$(PREFIX)OVER1:1:WidthY", 1
+# seem to need a width of at least 2 to see line in all cases
+dbpf "$(PREFIX)OVER1:1:WidthX", 2
+dbpf "$(PREFIX)OVER1:1:WidthY", 2
 dbpf "$(PREFIX)OVER1:1:Red", 0
 dbpf "$(PREFIX)OVER1:1:Green", 255
 dbpf "$(PREFIX)OVER1:1:Blue", 0
@@ -59,4 +60,5 @@ dbpf "$(PREFIX)ROI1:DataType", "UInt16"
 dbpf "$(PREFIX)IMAGE1:ColorMode", "RGB1"
 dbpf "$(PREFIX)IMAGE1:DataType", "UInt16"
 
+epicsThreadSleep(2.0)
 dbpf "$(PREFIX)CAM1:Acquire", "1"
