@@ -61,7 +61,7 @@ record(ao, "$(P)LVL:HE:FULL:RES:SP") {
 }
 
 record(ai, "$(P)LVL:HE:REFILL:START") {
-  field(DESC, "Get high helium level that starts the refill")
+  field(DESC, "Get high He level that starts the refill")
   field(DTYP, "stream")
   field(SCAN, "5 second")
   field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeFillStartThreshold $(PORT)")
@@ -76,7 +76,7 @@ record(ai, "$(P)LVL:HE:REFILL:START") {
 
 record(ao, "$(P)LVL:HE:REFILL:START:SP") {
   field(ASG, "$(MANAGER_ASG)")
-  field(DESC, "Set high helium level that starts the refill")
+  field(DESC, "Set high He level that starts the refill")
   field(DTYP, "stream")
   field(OUT,  "@OxInstIPS_SCPI.protocol setLevelHeFillStartThreshold $(PORT)")
   field(EGU,  "%")
@@ -89,7 +89,7 @@ record(ao, "$(P)LVL:HE:REFILL:START:SP") {
 }
 
 record(ai, "$(P)LVL:HE:REFILL:STOP") {
-  field(DESC, "Get high helium level that stops the refill")
+  field(DESC, "Get high He level that stops the refill")
   field(DTYP, "stream")
   field(SCAN, "5 second")
   field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeFillStopThreshold $(PORT)")
@@ -104,7 +104,7 @@ record(ai, "$(P)LVL:HE:REFILL:STOP") {
 
 record(ao, "$(P)LVL:HE:REFILL:STOP:SP") {
   field(ASG, "$(MANAGER_ASG)")
-  field(DESC, "Set high helium level that stops the refill")
+  field(DESC, "Set high He level that stops the refill")
   field(DTYP, "stream")
   field(OUT,  "@OxInstIPS_SCPI.protocol setLevelHeFillStopThreshold $(PORT)")
   field(EGU,  "%")
@@ -113,20 +113,6 @@ record(ao, "$(P)LVL:HE:REFILL:STOP:SP") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)LVL:HE:REFILL:STOP:SP")
   field(SDIS, "$(P)DISABLE")
-  info(archive, "VAL")
-}
-
-record(mbbi, "$(P)LVL:HE:REFILLING") {
-  field(DESC, "Is helium refill in progress?")
-  field(DTYP, "stream")
-  field(SCAN, "5 second")
-  field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeRefilling $(PORT)")
-  field(ZRST, "No")
-  field(ZRVL, "0")
-  field(ZRSV, "NO_ALARM")
-  field(ONST, "Yes")
-  field(ONVL, "1")
-  field(ONSV, "NO_ALARM")
   info(archive, "VAL")
 }
 
@@ -144,26 +130,21 @@ record(ai, "$(P)LVL:HE:LEVEL") {
   info(archive, "VAL")
 }
 
-record(mbbi, "$(P)LVL:HE:PULSE:READ:RATE") {
+record(bi, "$(P)LVL:HE:PULSE:READ:RATE") {
   field(DESC, "Get high helium reading pulse rate")
   field(DTYP, "stream")
   field(SCAN, "5 second")
   field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeReadingRate $(PORT)")
-  field(ZRST, "Fast")
-  field(ZRVL, "0")
-  field(ZRSV, "NO_ALARM")
-  field(ONST, "Slow")
-  field(ONVL, "1")
-  field(ONSV, "NO_ALARM")
+  field(ZNAM, "Fast")
+  field(ONAM, "Slow")
 
   field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:LVL:HE:REFILL:STOP")
+  field(SIOL, "$(P)SIM:LVL:HE:PULSE:READ:RATE")
   field(SDIS, "$(P)DISABLE")
   info(archive, "VAL")
 }
 
 record(bo, "$(P)LVL:HE:PULSE:READ:RATE:SP") {
-  field(ASG, "$(MANAGER_ASG)")
   field(DESC, "Set high helium reading pulse rate")
   field(DTYP, "stream")
   field(OUT,  "@OxInstIPS_SCPI.protocol setLevelHeReadingRate $(PORT)")
@@ -197,7 +178,7 @@ record(ao, "$(P)LVL:NIT:READ:INTERVAL:SP") {
   field(DTYP, "stream")
   field(EGU,  "ms")
   field(OUT,  "@OxInstIPS_SCPI.protocol setLevelNitReadInterval $(PORT)")
-  field(DRVH, "$(MAX_N2_READ_INTERVAL==5000)")
+  field(DRVH, "$(MAX_N2_READ_INTERVAL=5000)")
   field(DRVL, "$(MIN_N2_READ_INTERVAL=0)")
 
   field(SIML, "$(P)SIM")
@@ -312,20 +293,6 @@ record(ao, "$(P)LVL:NIT:REFILL:STOP:SP") {
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)LVL:NIT:REFILL:STOP:SP")
   field(SDIS, "$(P)DISABLE")
-  info(archive, "VAL")
-}
-
-record(mbbi, "$(P)LVL:NIT:REFILLING") {
-  field(DESC, "Is N2 refill in progress?")
-  field(DTYP, "stream")
-  field(SCAN, "5 second")
-  field(INP,  "@OxInstIPS_SCPI.protocol getLevelNitRefilling $(PORT)")
-  field(ZRST, "No")
-  field(ZRVL, "0")
-  field(ZRSV, "NO_ALARM")
-  field(ONST, "Yes")
-  field(ONVL, "1")
-  field(ONSV, "NO_ALARM")
   info(archive, "VAL")
 }
 

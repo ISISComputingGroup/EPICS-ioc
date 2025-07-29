@@ -373,25 +373,25 @@ record(ai, "$(P)MAGNET:CURR:PERSISTENT") {
   info(archive, "VAL")
 }
 
-## ==== CURR:TRIP needs to be derived somehow.  It is not in the SCPI protocol. ====
+## ==== CURR:TRIP needs to be derived somehow, some time.  It is not in the SCPI protocol. ====
 # The current at which a trip last occurred.  Am not sure if by trip, they mean
 # a quench or a problem with the level meter.  Believe the unit will take the current
 # and field to zero if there is a trip, so this parameter preserves what was happening
 # at the time of the trip.
-record(ai, "$(P)CURR:TRIP") {
-  field(DESC, "Trip current readback")
-  field(DTYP, "stream")
-  field(SCAN, "1 second")
-  # field(INP,  "@OxInstIPS_SCPI.protocol getTripCurrent $(PORT)")
-  field(EGU,  "A")
-  field(PREC, "4")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:TRIPCURRENT")
-  field(SDIS, "$(P)DISABLE")
-  
-  info(archive, "VAL")
-}
+#record(ai, "$(P)CURR:TRIP") {
+#  field(DESC, "Trip current readback")
+#  field(DTYP, "stream")
+#  field(SCAN, "1 second")
+#  # field(INP,  "@OxInstIPS_SCPI.protocol getTripCurrent $(PORT)")
+#  field(EGU,  "A")
+#  field(PREC, "4")
+#
+#  field(SIML, "$(P)SIM")
+#  field(SIOL, "$(P)SIM:TRIPCURRENT")
+#  field(SDIS, "$(P)DISABLE")
+#
+#  info(archive, "VAL")
+#}
 
 # The field in the magnet due to the persistent current. See current for explanation.
 record(ai, "$(P)MAGNET:FIELD:PERSISTENT") {
@@ -411,22 +411,22 @@ record(ai, "$(P)MAGNET:FIELD:PERSISTENT") {
   info(archive, "VAL")
 }
 
-## ==== FIELD:TRIP needs to be derived somehow.  It is not in the SCPI protocol. ====
+## ==== FIELD:TRIP needs to be derived somehow, some time.  It is not in the SCPI protocol. ====
 # The field at which a trip last occurred.  See current for explanation.
-record(ai, "$(P)FIELD:TRIP") {
-  field(DESC, "Trip field readback")
-  field(DTYP, "stream")
-  field(SCAN, "1 second")
-  # field(INP,  "@OxInstIPS_SCPI.protocol getTripField $(PORT)")
-  field(EGU,  "T")
-  field(PREC, "5")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:TRIPFIELD")
-  field(SDIS, "$(P)DISABLE")
-  
-  info(archive, "VAL")
-}
+#record(ai, "$(P)FIELD:TRIP") {
+#  field(DESC, "Trip field readback")
+#  field(DTYP, "stream")
+#  field(SCAN, "1 second")
+#  # field(INP,  "@OxInstIPS_SCPI.protocol getTripField $(PORT)")
+#  field(EGU,  "T")
+#  field(PREC, "5")
+#
+#  field(SIML, "$(P)SIM")
+#  field(SIOL, "$(P)SIM:TRIPFIELD")
+#  field(SDIS, "$(P)DISABLE")
+#
+#  info(archive, "VAL")
+#}
 
 # The current being provided to the heater.
 # Our magnets do not have heaters, so this is not relevant.
@@ -802,30 +802,6 @@ record(mbbi, "$(P)STS:SYSTEM:FAULT") {
   info(archive, "VAL")
 }
 
-# # Readback from n of Xmn part of Examine command return.
-record(mbbi, "$(P)STS:SYSTEM:LIMIT") {
-  field(DESC, "System limit status")
-  field(DTYP, "Soft Channel")
-  field(SCAN, "Passive")
-  field(ZRST, "Normal")
-  field(ZRVL, "0")
-  field(ZRSV, "NO_ALARM")
-  field(ONST, "On +ve V Limit")
-  field(ONVL, "1")
-  field(ONSV, "MINOR")
-  field(TWST, "On -ve V Limit")
-  field(TWVL, "2")
-  field(TWSV, "MINOR")
-  field(FRST, "Current too -ve")
-  field(FRVL, "4")
-  field(FRSV, "MINOR")
-  field(EIST, "Current too +ve")
-  field(EIVL, "8")
-  field(EISV, "MINOR")
-  
-  info(archive, "VAL")
-}
-
 # Readback from SWHT command.
 # OFF -> switch closed, ON -> switch open.
 record(mbbi, "$(P)HEATER:STATUS") {
@@ -1177,24 +1153,38 @@ record(mbbi, "$(P)STS:SWEEPMODE:SWEEP") {
 
 # Poll system alarms: This record repeatedly sends the READ:SYS:ALRM command
 # and the response is parsed by records dedicated to each board type with SCAN of "I/O Intr"
-record(ao, "$(P)STS:_POLLSYSTEM:ALARMS") {
+record(stringin, "$(P)STS:_POLLSYSTEM:ALARMS") {
   field(DESC, "Poll system alarms")
   field(DTYP, "stream")
   field(SCAN, "5 second")
-  field(OUT, "@OxInstIPS_SCPI.protocol getSysAlarms $(PORT)")
+  field(INP, "@OxInstIPS_SCPI.protocol getSysAlarms $(PORT)")
+  field(FLNK, "$(P)STS:_POLLSYSTEM:ALARMS_SUB")
 
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:STS:_POLLSYSTEM:ALARMS")
   field(SDIS, "$(P)DISABLE")
 }
 
+record(aSub, "$(P)STS:_POLLSYSTEM:ALARMS_SUB") {
+  field(SNAM, "handle_system_alarm_status")
+  field(INPA, "$(P)STS:_POLLSYSTEM:ALARMS")
+  field(FTA, "STRING")
+  field(NOA, "1")
+
+  field(OUTA, "$(P)STS:SYSTEM:ALARM:TBOARD PP")
+  field(OUTB, "$(P)STS:SYSTEM:ALARM:10TBOARD PP")
+  field(OUTC, "$(P)STS:SYSTEM:ALARM:LBOARD PP")
+  field(FTVA, "LONG")
+  field(NOVA, "1")
+
+  info(archive, "A VALA")
+}
+
 record(mbbi, "$(P)STS:SYSTEM:ALARM:TBOARD") {
   field(DESC, "Temperature board alarm status")
-  field(DTYP, "stream")
-  field(SCAN, "I/O Intr")
-  field(VAL, "0")
-  #field(PINI, "YES")
-  field(INP, "@OxInstIPS_SCPI.protocol readSysAlarmsTemperatureBoard $(PORT)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "")
   field(ZRST, "OK")
   field(ZRVL, "0")
   field(ZRSV, "NO_ALARM")
@@ -1221,13 +1211,44 @@ record(mbbi, "$(P)STS:SYSTEM:ALARM:TBOARD") {
   info(archive, "VAL")
 }
 
+record(mbbi, "$(P)STS:SYSTEM:ALARM:10TBOARD") {
+  field(DESC, "Temperature board alarm status")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(VAL, "0")
+  field(INP, "")
+  field(ZRST, "OK")
+  field(ZRVL, "0")
+  field(ZRSV, "NO_ALARM")
+  field(ONST, "Open Circuit")
+  field(ONVL, "1")
+  field(ONSV, "MAJOR")
+  field(TWST, "Short Circuit")
+  field(TWSV, "2")
+  field(TWSV, "MAJOR")
+  field(THST, "Calibration Error")
+  field(THVL, "3")
+  field(THSV, "MAJOR")
+  field(FRST, "Firmware Error")
+  field(FRVL, "4")
+  field(FRSV, "MAJOR")
+  field(FVST, "Board Not Configured")
+  field(FVVL, "5")
+  field(FVSV, "MAJOR")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:SYSTEM:ALARM:10TBOARD")
+  field(SDIS, "$(P)DISABLE")
+
+  info(archive, "VAL")
+}
+
 record(mbbi, "$(P)STS:SYSTEM:ALARM:LBOARD") {
   field(DESC, "Level board alarm status")
-  field(DTYP, "stream")
-  field(SCAN, "I/O Intr")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
   field(VAL, "0")
-  # field(PINI, "YES")
-  field(INP, "@OxInstIPS_SCPI.protocol readSysAlarmsLevelMeterBoard $(PORT)")
+  field(INP, "")
   field(ZRST, "OK")
   field(ZRVL, "0")
   field(ZRSV, "NO_ALARM")
@@ -1263,3 +1284,51 @@ record(mbbi, "$(P)STS:SYSTEM:ALARM:LBOARD") {
   info(archive, "VAL")
 }
 
+
+# The temperature of the magnet MB1.T1
+record(ai, "$(P)TEMP:MAGNET") {
+  field(DESC, "Magnet temperature")
+  field(DTYP, "stream")
+  field(SCAN, "1 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getMagnetTemperature $(PORT)")
+  field(EGU,  "K")
+  field(PREC, "4")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:TEMP:MAGNET")
+  field(SDIS, "$(P)DISABLE")
+
+  info(archive, "VAL")
+}
+
+# The temperature of the lambda plate DB8.T1
+record(ai, "$(P)TEMP:LAMBDAPLATE") {
+  field(DESC, "DB8.T1 temperature")
+  field(DTYP, "stream")
+  field(SCAN, "1 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getLambdaPlateTemperature $(PORT)")
+  field(EGU,  "K")
+  field(PREC, "4")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:TEMP:LAMBDAPLATE")
+  field(SDIS, "$(P)DISABLE")
+
+  info(archive, "VAL")
+}
+
+# The temperature of the lambda plate DB8.T1
+record(ai, "$(P)PRESSURE") {
+  field(DESC, "DB5.P1 pressure")
+  field(DTYP, "stream")
+  field(SCAN, "1 second")
+  field(INP,  "@OxInstIPS_SCPI.protocol getPressure $(PORT)")
+  field(EGU,  "mBar")
+  field(PREC, "4")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:PRESSURE")
+  field(SDIS, "$(P)DISABLE")
+
+  info(archive, "VAL")
+}
