@@ -1,0 +1,51 @@
+file scpi_system_alarms_discrete.template {
+
+pattern {P, ALARM_NAME, ALARM_DESC, ALARM_INP}
+{"\$(P)", "TBOARD:OPENCIRCUIT", "Temperature board Open Circuit", "TBOARD.B0"}
+{"\$(P)", "TBOARD:SHORTCIRCUIT", "Temperature board Short Circuit", "TBOARD.B1"}
+{"\$(P)", "TBOARD:CALIBERR", "Temperature board Calibn error", "TBOARD.B2"}
+{"\$(P)", "TBOARD:FWERR", "Temperature board fw error", "TBOARD.B3"}
+{"\$(P)", "TBOARD:NOTCONFIGD", "Temperature board not configd", "TBOARD.B4"}
+
+{"\$(P)", "10TBOARD:OPENCIRCUIT", "Temperature board Open Circuit", "10TBOARD.B0"}
+{"\$(P)", "10TBOARD:SHORTCIRCUIT", "Temperature board Short Circuit", "10TBOARD.B1"}
+{"\$(P)", "10TBOARD:CALIBERR", "Temperature board Calibn error", "10TBOARD.B2"}
+{"\$(P)", "10TBOARD:FWERR", "Temperature board fw error", "10TBOARD.B3"}
+{"\$(P)", "10TBOARD:NOTCONFIGD", "Temperature board not configd", "10TBOARD.B4"}
+
+{"\$(P)", "LBOARD:OPENCIRCUIT", "Levels board Open Circuit", "LBOARD.B0"}
+{"\$(P)", "LBOARD:SHORTCIRCUIT", "Levels board Short Circuit", "LBOARD.B1"}
+{"\$(P)", "LBOARD:ADCERR", "Levels board ADC error", "LBOARD.B2"}
+{"\$(P)", "LBOARD:OVERDEMAND", "Levels board over demand", "LBOARD.B3"}
+{"\$(P)", "LBOARD:OVERTEMP", "Levels board over temp", "LBOARD.B4"}
+{"\$(P)", "LBOARD:FWERROR", "Levels board fw error", "LBOARD.B5"}
+{"\$(P)", "LBOARD:NOTCONFIGD", "Levels board not confgd", "LBOARD.B6"}
+{"\$(P)", "LBOARD:NORESERVE", "Levels board no reserve", "LBOARD.B7"}
+{"\$(P)", "LBOARD:NORESERVE", "Levels board no reserve", "LBOARD.B7"}
+
+{"\$(P)", "PBOARD:OPENCIRCUIT", "Pressure board Open Circuit", "PBOARD.B0"}
+{"\$(P)", "PBOARD:SHORTCIRCUIT", "Pressure board Short Circuit", "PBOARD.B1"}
+{"\$(P)", "PBOARD:CALIBERR", "Pressure board calib error", "PBOARD.B2"}
+{"\$(P)", "PBOARD:FWERR", "Pressure board fw error", "PBOARD.B3"}
+{"\$(P)", "PBOARD:NOTCONFIGD", "Pressure board not confgd", "PBOARD.B4"}
+{"\$(P)", "PBOARD:OVERCURRENT", "Pressure board over current", "PBOARD.B5"}
+{"\$(P)", "PBOARD:CURRENTLEAK", "Pressure board current leak", "PBOARD.B6"}
+{"\$(P)", "PBOARD:PWONFAIL", "Pressure board power on fail", "PBOARD.B7"}
+{"\$(P)", "PBOARD:CHKSUMERR", "Pressure board chksum error", "PBOARD.B8"}
+{"\$(P)", "PBOARD:CLKFAIL", "Pressure board clk fail", "PBOARD.B9"}
+{"\$(P)", "PBOARD:ADCFAIL", "Pressure board ADC fail", "PBOARD.BA"}
+{"\$(P)", "PBOARD:MAINSFAIL", "Pressure board mains fail", "PBOARD.BB"}
+{"\$(P)", "PBOARD:REFSFAIL", "Pressure board ref fail", "PBOARD.BC"}
+{"\$(P)", "PBOARD:PLUS12VFAIL", "Pressure board +12V fail", "PBOARD.BD"}
+{"\$(P)", "PBOARD:MINUS12VFAIL", "Pressure board -12V fail", "PBOARD.BE"}
+{"\$(P)", "PBOARD:PLUS8VFAIL", "Pressure board +8V fail", "PBOARD.BF"}
+{"\$(P)", "PBOARD:MINUS8VFAIL", "Pressure board -9V fail", "PBOARD.B10"}
+{"\$(P)", "PBOARD:AMPGAINERR", "Pressure board amp gain err", "PBOARD.B11"}
+{"\$(P)", "PBOARD:AMPOFFSETERR", "Pressure board amp offset err", "PBOARD.B12"}
+{"\$(P)", "PBOARD:ADCPGAERR", "Pressure board ADC PGA offset err", "PBOARD.B14"}
+{"\$(P)", "PBOARD:ADCXTALERR", "Pressure board ADC XTAL offset err", "PBOARD.B15"}
+{"\$(P)", "PBOARD:PLUSEXCITEERR", "Pressure board excitation + error", "PBOARD.B16"}
+{"\$(P)", "PBOARD:MINUSEXCITEERR", "Pressure board excitation - error", "PBOARD.B17"}
+{"\$(P)", "PBOARD:MINUSEXCITEERR", "Pressure board excitation - error", "PBOARD.B17"}
+
+}

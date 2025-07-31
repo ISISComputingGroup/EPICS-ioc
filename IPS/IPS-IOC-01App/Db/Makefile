@@ -13,6 +13,8 @@ include $(TOP)/configure/CONFIG
 DB += ips.db
 DB += ips_scpi.db
 DB += ips_scpi_levels.db
+DB += scpi_system_alarms.db
+DB += scpi_system_alarms_discrete.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
