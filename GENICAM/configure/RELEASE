@@ -36,6 +36,7 @@ ZLIB=$(SUPPORT)/zlib/master
 AREA_DETECTOR=$(SUPPORT)/areaDetector/master
 ADURL=$(AREA_DETECTOR)/ADURL
 ADGENICAM = $(AREA_DETECTOR)/ADGenICam
+ADSIMDETECTOR = $(AREA_DETECTOR)/ADSimDetector
 
 ## don't build spinnaker on 32bit windows
 ifeq ($(findstring win32,$(EPICS_HOST_ARCH)),)

@@ -22,9 +22,15 @@ epicsEnvSet("NELEMENTS", "4665600")
 
 # ADSpinnakerConfig(const char *portName, const char *cameraId, int traceMask, int memoryChannel,
 #                   size_t maxMemory, int priority, int stackSize)
-ADSpinnakerConfig("$(PORT)", $(CAMERA_ID), 0x1, 0)
+$(IFNOTDEVSIM) ADSpinnakerConfig("$(PORT)", $(CAMERA_ID), 0x1, 0)
+
+# simDetectorConfig(const char *portName, int maxSizeX, int maxSizeY, int dataType,
+#                   int maxBuffers, int maxMemory, int priority, int stackSize)
+# datatype 3 is uint16 (short)
+$(IFDEVSIM) simDetectorConfig("$(PORT)", $(XSIZE), $(YSIZE), 3, 0, 0)
+
 asynSetTraceIOMask($(PORT), 0, 2)
 
-
 # Main database.  This just loads and modifies ADBase.template
-dbLoadRecords("$(ADSPINNAKER)/db/spinnaker.template", "P=$(PREFIX),R=CAM1:,PORT=$(PORT)")
+$(IFNOTDEVSIM) dbLoadRecords("$(ADSPINNAKER)/db/spinnaker.template", "P=$(PREFIX),R=CAM1:,PORT=$(PORT)")
+$(IFDEVSIM) dbLoadRecords("$(ADSIMDETECTOR)/db/simDetector.template","P=$(PREFIX),R=CAM1:,PORT=$(PORT),ADDR=0,DATATYPE=3,TIMEOUT=1")
