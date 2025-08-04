@@ -64,6 +64,9 @@ STD=$(SUPPORT)/std/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 
+# this is needed for CheckFileAccess.exe
+HIDEWINDOW=$(SUPPORT)/HideWindow/master
+
 CAENMCA=$(SUPPORT)/CAENMCA/master
 AREA_DETECTOR=$(SUPPORT)/areaDetector/master
 
