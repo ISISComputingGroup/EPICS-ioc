@@ -20,6 +20,7 @@ $(IFHEX1) iocshLoad "$(TOP)/iocBoot/iocCAENMCA-IOC-01/st-hexagon.cmd", "ID=1"
 
 ## shared parameters just defined on HEX0 and aliased if necessary
 $(IFHEX0) dbLoadRecords("$(CAENMCA)/db/CAENMCA.db","P=$(MYPVPREFIX),Q=HEX0:,PORT=L0")
+$(IFHEX0) dbLoadRecords("$(CAENMCA)/db/CAENdae_sync.db","P=$(MYPVPREFIX),Q=HEX0:,PORT=L0")
 $(IFHEX1) dbLoadRecords("$(CAENMCA)/db/CAENMCAAlias.db","P=$(MYPVPREFIX),Q=HEX0:,QALIAS=HEX1:")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
