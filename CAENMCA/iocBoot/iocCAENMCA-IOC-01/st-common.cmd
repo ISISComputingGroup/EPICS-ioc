@@ -11,7 +11,8 @@ asynSetMinTimerPeriod(0.001)
 < $(IOCSTARTUP)/dbload.cmd
 
 epicsEnvSet("HEXAGON_COPYCMD", "$(CAENMCA)/copydata.bat")
-epicsEnvSet("DATAFILE_SUFFIX", "nxs2")
+epicsEnvSet("DATAFILE_SUFFIX", "_hex.nxs")
+epicsEnvSet("SEFILE_SUFFIX", ".nxs")
 
 stringiftest("HEX0", "$(IPADDR0=)", 3)
 stringiftest("HEX1", "$(IPADDR1=)", 3)
