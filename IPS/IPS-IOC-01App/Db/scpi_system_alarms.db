@@ -37,16 +37,75 @@ record(stringin, "$(P)STS:_POLLSYSTEM:ALARMS") {
   field(SDIS, "$(P)DISABLE")
 }
 
+# The following stringout records are used to provide the board identifiers
+record(stringout, "$(P)STS:SYSTEM:ALARMS:_NAME:TBOARD") {
+  field(DESC, "Temperature board UID name")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(VAL, "$(BOARDID_MAG)")
+  field(OUT, "")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:SYSTEM:ALARMS:_NAME:TBOARD")
+  field(SDIS, "$(P)DISABLE")
+}
+record(stringout, "$(P)STS:SYSTEM:ALARMS:_NAME:10TBOARD") {
+  field(DESC, "Temperature 10T board UID name")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(VAL, "$(BOARDID_10TMAG)")
+  field(OUT, "")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:SYSTEM:ALARMS:_NAME:10TBOARD")
+  field(SDIS, "$(P)DISABLE")
+}
+record(stringout, "$(P)STS:SYSTEM:ALARMS:_NAME:LBOARD") {
+  field(DESC, "Level board UID name")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(VAL, "$(BOARDID_LEVEL)")
+  field(OUT, "")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:SYSTEM:ALARMS:_NAME:LTBOARD")
+  field(SDIS, "$(P)DISABLE")
+}
+record(stringout, "$(P)STS:SYSTEM:ALARMS:_NAME:PBOARD") {
+  field(DESC, "Pressure board UID name")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(VAL, "$(BOARDID_PRESS)")
+  field(OUT, "")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:SYSTEM:ALARMS:_NAME:PBOARD")
+  field(SDIS, "$(P)DISABLE")
+}
+
 # This record is triggered by the stringin record above and parses the response.
 # It extracts the board identifier and the alarm message, and writes them to the appropriate
 # output fields. The output fields are then used by the mbbi and bi records below to set the
 # alarm status for each board.
+# Board identifiers are provided as macros and passed to the aSub as input fields B-E.
 #
 record(aSub, "$(P)STS:_POLLSYSTEM:ALARMS_SUB") {
   field(SNAM, "handle_system_alarm_status")
   field(INPA, "$(P)STS:_POLLSYSTEM:ALARMS NPP NMS")
+#  field(INPB, "$(P):STS:SYSTEM:ALARMS:_NAME:TBOARD")
+#  field(INPC, "$(P):STS:SYSTEM:ALARMS:_NAME:10TBOARD")
+#  field(INPD, "$(P):STS:SYSTEM:ALARMS:_NAME:LBOARD")
+#  field(INPE, "$(P):STS:SYSTEM:ALARMS:_NAME:PBOARD")
   field(FTA, "STRING")
+  field(FTB, "STRING")
+  field(FTC, "STRING")
+  field(FTD, "STRING")
+  field(FTE, "STRING")
   field(NOA, "1")
+  field(NOB, "1")
+  field(NOC, "1")
+  field(NOD, "1")
+  field(NOE, "1")
 
   field(OUTA, "$(P)STS:SYSTEM:ALARM:TBOARD PP")
   field(OUTB, "$(P)STS:SYSTEM:ALARM:10TBOARD PP")
@@ -60,8 +119,6 @@ record(aSub, "$(P)STS:_POLLSYSTEM:ALARMS_SUB") {
   field(NOVB, "1")
   field(NOVC, "1")
   field(NOVD, "1")
-
-  info(archive, "A VALA")
 }
 
 ### =============== Temperature board alarm status ===============  ###
@@ -74,8 +131,9 @@ record(aSub, "$(P)STS:_POLLSYSTEM:ALARMS_SUB") {
 #
 record(mbbiDirect, "$(P)STS:SYSTEM:ALARM:TBOARD") {
   field(DESC, "Temperature board alarm status")
-  field(DTYP, "stream")
-  field(INP, "")
+  field(DTYP, "Soft Channel")
+  field(INP, "0")
+  field(PINI, "YES")
   field(NOBT, "32")
   field(SCAN, "Passive")
 
@@ -95,8 +153,9 @@ record(mbbiDirect, "$(P)STS:SYSTEM:ALARM:TBOARD") {
 #
 record(mbbiDirect, "$(P)STS:SYSTEM:ALARM:10TBOARD") {
   field(DESC, "10T Temperature board alarm status")
-  field(DTYP, "stream")
-  field(INP, "")
+  field(DTYP, "Soft Channel")
+  field(INP, "0")
+  field(PINI, "YES")
   field(NOBT, "32")
   field(SCAN, "Passive")
 
@@ -119,8 +178,9 @@ record(mbbiDirect, "$(P)STS:SYSTEM:ALARM:10TBOARD") {
 #
 record(mbbiDirect, "$(P)STS:SYSTEM:ALARM:LBOARD") {
   field(DESC, "Levels board alarm status")
-  field(DTYP, "stream")
-  field(INP, "")
+  field(DTYP, "Soft Channel")
+  field(INP, "0")
+  field(PINI, "YES")
   field(NOBT, "32")
   field(SCAN, "Passive")
 
@@ -159,8 +219,9 @@ record(mbbiDirect, "$(P)STS:SYSTEM:ALARM:LBOARD") {
 #
 record(mbbiDirect, "$(P)STS:SYSTEM:ALARM:PBOARD") {
   field(DESC, "Pressure board alarm status")
-  field(DTYP, "stream")
-  field(INP, "")
+  field(DTYP, "Soft Channel")
+  field(INP, "0")
+  field(PINI, "YES")
   field(NOBT, "32")
   field(SCAN, "Passive")
 

@@ -43,8 +43,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
 # Uncomment these for StreamDevice debugging
-asynSetTraceMask("L0", -1, 0x9)
-asynSetTraceIOMask("L0", -1, 0x2)
+#asynSetTraceMask("L0", -1, 0x9)
+#asynSetTraceIOMask("L0", -1, 0x2)
 
 ## Load record instances
 
@@ -52,6 +52,8 @@ asynSetTraceIOMask("L0", -1, 0x2)
 < $(IOCSTARTUP)/dbload.cmd
 
 epicsEnvSet("P", "$(MYPVPREFIX)$(IOCNAME):")
+
+msgBox "Hello"
 
 # The STREAMPROTOCOL env var should be set to either "LEGACY" (default) or "SCPI"
 # Set the database and protocol file names accordingly

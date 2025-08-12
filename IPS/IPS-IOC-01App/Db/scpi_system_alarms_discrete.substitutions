@@ -46,6 +46,4 @@ pattern {P, ALARM_NAME, ALARM_DESC, ALARM_INP}
 {"\$(P)", "PBOARD:ADCXTALERR", "Pressure board ADC XTAL offset err", "PBOARD.B15"}
 {"\$(P)", "PBOARD:PLUSEXCITEERR", "Pressure board excitation + error", "PBOARD.B16"}
 {"\$(P)", "PBOARD:MINUSEXCITEERR", "Pressure board excitation - error", "PBOARD.B17"}
-{"\$(P)", "PBOARD:MINUSEXCITEERR", "Pressure board excitation - error", "PBOARD.B17"}
-
 }
