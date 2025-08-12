@@ -8,14 +8,14 @@ include $(TOP)/configure/CONFIG
 ### NOTE: there should only be one build.mak for a given IOC family and this should be located in the ###-IOC-01 directory
 
 #=============================
-# Build the IOC application DDSSTRES-IOC-01
+# Build the IOC application ATTOCUBE-IOC-01
 # We actually use $(APPNAME) below so this file can be included by multiple IOCs
 
 PROD_IOC = $(APPNAME)
-# DDSSTRES-IOC-01.dbd will be created and installed
+# ATTOCUBE-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
-# DDSSTRES-IOC-01.dbd will be made up from these files:
+# ATTOCUBE-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
 $(APPNAME)_DBD += icpconfig.dbd
@@ -31,7 +31,6 @@ $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += stream.dbd
-$(APPNAME)_DBD += start_or_load.dbd
 ## add other dbd here ##
 #$(APPNAME)_DBD += xxx.dbd
 
@@ -42,7 +41,6 @@ $(APPNAME)_DBD += start_or_load.dbd
 
 ## ISIS standard libraries ##
 ## Stream device libraries ##
-$(APPNAME)_LIBS += dds_stress_rig
 $(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
@@ -57,7 +55,7 @@ $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
 
-# DDSSTRES-IOC-01_registerRecordDeviceDriver.cpp derives from DDSSTRES-IOC-01.dbd
+# ATTOCUBE-IOC-01_registerRecordDeviceDriver.cpp derives from ATTOCUBE-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
@@ -66,6 +64,11 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 
 # Add support from base/src/vxWorks if needed
 #$(APPNAME)_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
+
+## area detector already includes PVA, so avoid including it twice
+ifeq ($(AREA_DETECTOR),)
+include $(CONFIG)/CONFIG_PVA_ISIS
+endif
 
 # Finally link to the EPICS Base libraries
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)

@@ -46,7 +46,6 @@ ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
 ASYN=$(SUPPORT)/asyn/master
 AUTOSAVE=$(SUPPORT)/autosave/master
-BUSY=$(SUPPORT)/busy/master
 CALC=$(SUPPORT)/calc/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
@@ -60,26 +59,22 @@ PVDUMP=$(SUPPORT)/pvdump/master
 SNCSEQ=$(SUPPORT)/seq/master
 SQLITE=$(SUPPORT)/sqlite/master
 SSCAN=$(SUPPORT)/sscan/master
-STD=$(SUPPORT)/std/master
+STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 
-# this is needed for CheckFileAccess.exe
-HIDEWINDOW=$(SUPPORT)/HideWindow/master
+OPENSSL = $(SUPPORT)/OpenSSL/master
+LIBXML2 = $(SUPPORT)/libxml2/master
+LIBXML2_DIR = $(SUPPORT)/libxml2/master/lib/$(EPICS_HOST_ARCH)
+ICONV = $(SUPPORT)/libiconv/master
+ICONV_DIR = $(SUPPORT)/libiconv/master/lib/$(EPICS_HOST_ARCH)
 
-CAENMCA=$(SUPPORT)/CAENMCA/master
-AREA_DETECTOR=$(SUPPORT)/areaDetector/master
+# IOC-specific support module
+OPCUA=$(SUPPORT)/OPCUA/master
+TPG=$(SUPPORT)/TPG/master
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
 
 include $(TOP)/../../../ISIS_CONFIG
 -include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
-
-include $(AREA_DETECTOR)/configure/RELEASE_SUPPORT.local
--include $(AREA_DETECTOR)/configure/RELEASE_SUPPORT.local.$(EPICS_HOST_ARCH)
-include $(AREA_DETECTOR)/configure/RELEASE_LIBS.local
-
-
-
-# IOC-specific support module
