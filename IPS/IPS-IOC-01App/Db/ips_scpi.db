@@ -1079,43 +1079,6 @@ record(mbbi, "$(P)SWEEPMODE:PARAMS") {
   info(archive, "VAL")
 }
 
-# To set the sweep and display mode - its a bit confusing as there
-# are duplicates, but we do not present this choice to the user.
-#
-record(mbbo, "$(P)SWEEPMODE:PARAMS:SP") {
-  field(DESC, "Set sweep and display mode.")
-  field(DTYP, "stream")
-  field(SCAN, "Passive")
-  field(ZRST, "Amps Fast")
-  field(ZRVL, "0")
-  field(ONST, "Tesla Fast")
-  field(ONVL, "1")
-  field(TWST, "Amps Fast")
-  field(TWVL, "2")
-  field(THST, "Tesla Fast")
-  field(THVL, "3")
-  field(FRST, "Amps Slow")
-  field(FRVL, "4")
-  field(FVST, "Tesla Slow")
-  field(FVVL, "5")
-  field(SXST, "Amps Slow")
-  field(SXVL, "6")
-  field(SVST, "Tesla Slow")
-  field(SVVL, "7")
-  field(EIST, "Amps Unaffected")
-  field(EIVL, "8")
-  field(NIST, "Tesla Unaffected")
-  field(NIVL, "9")
-  # field(OUT,  "@OxInstIPS.protocol setMode $(PORT)")
-
-  field(VAL, "3")
-  field(PINI, "YES")
-
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:SWEEPMODE:PARAMS:SP")
-  field(SDIS, "$(P)DISABLE")
-}
-
 # In the legacy version, this used to be the readback from n of Mmn part of Examine command return.
 # 0 output constant, 1, 2, 3 output changing
 # The SCPI protocol doesn't directly offer this, so it has to be derived via the ACTIVITY record (DEV:GRPZ:PSU:ACTN)
