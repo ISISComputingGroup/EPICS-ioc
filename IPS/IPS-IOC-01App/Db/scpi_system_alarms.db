@@ -25,9 +25,11 @@
 # Poll system alarms: This record repeatedly sends the READ:SYS:ALRM command
 # and the response is read as a string and parsed by the aSub record below.
 #
-record(stringin, "$(P)STS:_POLLSYSTEM:ALARMS") {
+record(waveform, "$(P)STS:_POLLSYSTEM:ALARMS") {
   field(DESC, "Poll system alarms")
   field(DTYP, "stream")
+  field(FTVL, "CHAR")
+  field(NELM, "1000")  # Adjust size as needed
   field(SCAN, "5 second")
   field(INP, "@OxInstIPS_SCPI.protocol getSysAlarms $(PORT)")
   field(FLNK, "$(P)STS:_POLLSYSTEM:ALARMS_SUB")
@@ -96,12 +98,12 @@ record(aSub, "$(P)STS:_POLLSYSTEM:ALARMS_SUB") {
 #  field(INPC, "$(P):STS:SYSTEM:ALARMS:_NAME:10TBOARD")
 #  field(INPD, "$(P):STS:SYSTEM:ALARMS:_NAME:LBOARD")
 #  field(INPE, "$(P):STS:SYSTEM:ALARMS:_NAME:PBOARD")
-  field(FTA, "STRING")
+  field(FTA, "CHAR")
   field(FTB, "STRING")
   field(FTC, "STRING")
   field(FTD, "STRING")
   field(FTE, "STRING")
-  field(NOA, "1")
+  field(NOA, "1000")
   field(NOB, "1")
   field(NOC, "1")
   field(NOD, "1")
