@@ -28,6 +28,8 @@ instetcConfigure("daelog", "${ICPVARDIR}/logs/ioc/ISISDAE_01-%Y%m%d.log", 100, 3
 
 ## Load macro for bump stop input source BUMPSTOP_IN (if any exists)
 < $(ICPCONFIGROOT)/galil/bumpStop.cmd
+< $(ICPCONFIGROOT)/twincat/bumpStop.cmd
+
 
 ## Check for extra exclusive records
 stringtest("IFEX1", "$(EXCLUSIVE1=)")
