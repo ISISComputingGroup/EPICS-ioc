@@ -76,3 +76,8 @@ motorUtilInit("$(MYPVPREFIX)$(IOCNAME):")
 
 # Save motor settings every 30 seconds, this requests file is written dynamically by LUA
 $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30)
+
+# Save motor positions every 5 seconds, this requests file is written dynamically by LUA
+# these positions are not used for automatic restore, they are just for information
+# They could be manually applied for a restore, or used with autosave asVerify to check current positions
+$(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_positions_norestore.req", 5)
