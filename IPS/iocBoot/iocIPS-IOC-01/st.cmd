@@ -53,7 +53,8 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
 epicsEnvSet("P", "$(MYPVPREFIX)$(IOCNAME):")
 
-msgBox "Hello"
+## Useful for debugging - giving a pause to allow the user to attach a debugger
+## msgBox "Hello"
 
 # The STREAMPROTOCOL env var should be set to either "LEGACY" (default) or "SCPI"
 # Set the database and protocol file names accordingly
