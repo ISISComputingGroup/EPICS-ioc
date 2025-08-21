@@ -1,4 +1,4 @@
-program cryomagnet("FIELD,FIELD_SETPOINT,FIELD_SETPOINT_ALARM,FIELD_SETPOINT_RAW,FIELD_SETPOINT_READBACK,PERSISTENT,MAGNET_FIELD,HEATER_STATUS,HEATER_STATUS_SP,HEATER_WAIT_TIME,ACTIVITY,ACTIVITY_SP,SWEEPMODE,SWEEPMODE_SP,SUPPLYVOLTAGE_STABLE,SWEEP_ACTIVE,STATEMACHINE,HEATER_ONTIME_OK")
+program cryomagnet_SCPI("FIELD,FIELD_SETPOINT,FIELD_SETPOINT_ALARM,FIELD_SETPOINT_RAW,FIELD_SETPOINT_READBACK,PERSISTENT,MAGNET_FIELD,HEATER_STATUS,HEATER_STATUS_SP,HEATER_WAIT_TIME,ACTIVITY,ACTIVITY_SP,SWEEPMODE,SUPPLYVOLTAGE_STABLE,SWEEP_ACTIVE,STATEMACHINE,HEATER_ONTIME_OK")
 
 #include "ibexSeqPVmacros.h"
 %% #include <math.h>
@@ -27,7 +27,6 @@ PV(int, activity, "{ACTIVITY}", Monitor);
 PV(int, activity_sp, "{ACTIVITY_SP}", Monitor);
 
 PV(int, sweepmode, "{SWEEPMODE}", Monitor);
-PV(int, sweepmode_sp, "{SWEEPMODE_SP}", Monitor);
 
 PV(double, heater_wait_time, "{HEATER_WAIT_TIME}", Monitor);
 
@@ -52,11 +51,11 @@ int SWEEP_MODE = 3;
 int SWEEP_MODE_ALT = 1;
 
 %{
-void print_transition(char* old, char* new) {
-    printf("cryomagnet.st: Moving from state %s to %s.\n", old, new);
+void print_transition_scpi(char* old, char* new) {
+    printf("cryomagnet_SCPI.st: Moving from state %s to %s.\n", old, new);
 }
 
-int within_tolerance(double a, double b, double tolerance) {
+int within_tolerance_scpi(double a, double b, double tolerance) {
     return fabs(a - b) < tolerance;
 }
 }%
@@ -66,7 +65,7 @@ int within_tolerance(double a, double b, double tolerance) {
  * Documentation and further information about this state machine is available at https://github.com/ISISComputingGroup/ibex_developers_manual/wiki/OxfordInstrumentsIPS
  *
  */
-ss cryomagnet
+ss cryomagnet_SCPI
 {
 
   state initial
@@ -78,7 +77,7 @@ ss cryomagnet
   
     /* Dont do anything at all until the field setpoint is set to something & UDF_ALARM goes away. */
     when(field_setpoint_alarm == 0) {
-      print_transition("initial", "at_field");
+      print_transition_scpi("initial", "at_field");
     } state at_field
   }
 
@@ -91,22 +90,22 @@ ss cryomagnet
     
     /* Heater is OFF, so in superconducting/persistent mode. */
     when(
-      !within_tolerance(field_setpoint, field_setpoint_readback, field_tolerance)
+      !within_tolerance_scpi(field_setpoint, field_setpoint_readback, field_tolerance)
       && field_setpoint_alarm == 0
       && (heater == 0 || heater == 2)
     )
     {
-    print_transition("at_field", "set_psu_to_match_magnet");
+    print_transition_scpi("at_field", "set_psu_to_match_magnet");
     } state set_psu_to_match_magnet
   
     /* Heater is ON, so in conventional/non-persistent mode. */
     when(
-      !within_tolerance(field_setpoint, field_setpoint_readback, field_tolerance)
+      !within_tolerance_scpi(field_setpoint, field_setpoint_readback, field_tolerance)
       && field_setpoint_alarm == 0
       && heater == 1
     )
     {
-     print_transition("at_field", "set_psu_output");
+     print_transition_scpi("at_field", "set_psu_output");
     } state set_psu_output
   }
   
@@ -126,22 +125,21 @@ ss cryomagnet
       epicsThreadSleep(1.0);
       PVPUT(activity_sp, ACTIVITY_TO_SP);
       epicsThreadSleep(1.0);
-      PVPUT(sweepmode_sp, SWEEP_MODE);
     }
 
     when(
-      within_tolerance(field_setpoint_readback, magnet_field, field_tolerance) 
-      && within_tolerance(psu_field, magnet_field, field_tolerance) 
+      within_tolerance_scpi(field_setpoint_readback, magnet_field, field_tolerance) 
+      && within_tolerance_scpi(psu_field, magnet_field, field_tolerance) 
       && ((sweepmode == SWEEP_MODE) || (sweepmode == SWEEP_MODE_ALT))
       && (sweep_active == 0)
       )
     {
-      print_transition("set_psu_to_match_magnet", "wait_for_voltage_to_stabilise");
+      print_transition_scpi("set_psu_to_match_magnet", "wait_for_voltage_to_stabilise");
     } state wait_for_voltage_to_stabilise
     
     /* If not succeeded, re-enter state which will resend all appropriate commands */
     when(delay(300)){
-      print_transition("set_psu_to_match_magnet", "set_psu_to_match_magnet");
+      print_transition_scpi("set_psu_to_match_magnet", "set_psu_to_match_magnet");
     } state set_psu_to_match_magnet
   }
   
@@ -158,17 +156,17 @@ ss cryomagnet
     }
   
     when(supplyvoltage_stable == 1) {
-      print_transition("wait_for_voltage_to_stabilise", "ensure_switch_heater_warm");
+      print_transition_scpi("wait_for_voltage_to_stabilise", "ensure_switch_heater_warm");
     } state ensure_switch_heater_warm
     
     /* If the PSU current drifts outside of tolerance for some reason, go back to previous step */
-    when(!within_tolerance(field_setpoint_readback, field_setpoint_raw, field_tolerance)) {
-      print_transition("wait_for_voltage_to_stabilise", "set_psu_to_match_magnet");
+    when(!within_tolerance_scpi(field_setpoint_readback, field_setpoint_raw, field_tolerance)) {
+      print_transition_scpi("wait_for_voltage_to_stabilise", "set_psu_to_match_magnet");
     } state set_psu_to_match_magnet
     
     /* If not stable, re-set psu to magnet current (i.e. try again from state above) */
     when (delay(300)){
-      print_transition("wait_for_voltage_to_stabilise", "set_psu_to_match_magnet");
+      print_transition_scpi("wait_for_voltage_to_stabilise", "set_psu_to_match_magnet");
     } state set_psu_to_match_magnet
   }
   
@@ -190,12 +188,12 @@ ss cryomagnet
 
     when(activity == ACTIVITY_HOLD && heater == 1 && heater_ontime_ok == 1)
     {
-      print_transition("ensure_switch_heater_warm", "set_psu_output");
+      print_transition_scpi("ensure_switch_heater_warm", "set_psu_output");
     } state set_psu_output
     
     /* If heater is not switched on within timeout, retry sending commands */
     when(delay(heater_wait_time + 30.0)){
-      print_transition("ensure_switch_heater_warm", "ensure_switch_heater_warm");
+      print_transition_scpi("ensure_switch_heater_warm", "ensure_switch_heater_warm");
     } state ensure_switch_heater_warm
   }
   
@@ -218,31 +216,31 @@ ss cryomagnet
 
     /* Set to persistent mode */
     when(
-      within_tolerance(field_setpoint_readback, field_setpoint, field_tolerance) 
-      && within_tolerance(field_setpoint, psu_field, field_tolerance) 
+      within_tolerance_scpi(field_setpoint_readback, field_setpoint, field_tolerance) 
+      && within_tolerance_scpi(field_setpoint, psu_field, field_tolerance) 
       && persistent == 1 
       && (sweep_active == 0)
       )
     {
-      print_transition("set_psu_output", "switch_off_heater");
+      print_transition_scpi("set_psu_output", "switch_off_heater");
     } state switch_off_heater
     
 
     /* If NOT setting to persistent mode, skip ramping down the PSU and setting switch heater to OFF */
     
     when(
-      within_tolerance(field_setpoint_readback, field_setpoint, field_tolerance) 
-      && within_tolerance(field_setpoint, psu_field, field_tolerance) 
+      within_tolerance_scpi(field_setpoint_readback, field_setpoint, field_tolerance) 
+      && within_tolerance_scpi(field_setpoint, psu_field, field_tolerance) 
       && persistent == 0 
       && (sweep_active == 0)
       )
     {
-      print_transition("set_psu_output", "at_field");
+      print_transition_scpi("set_psu_output", "at_field");
     } state at_field
     
     /* If not succeeded, try resending setpoint */
     when(delay(300)){
-      print_transition("set_psu_output", "set_psu_output");
+      print_transition_scpi("set_psu_output", "set_psu_output");
     } state set_psu_output
     
   }
@@ -264,12 +262,12 @@ ss cryomagnet
     when(heater == 0 || heater == 2)
     {
       epicsThreadSleep(heater_wait_time);
-      print_transition("switch_off_heater", "ramp_down_psu");
+      print_transition_scpi("switch_off_heater", "ramp_down_psu");
     } state ramp_down_psu
     
     /* If not succeeded, try resending setpoint */
     when(delay(30)){
-      print_transition("switch_off_heater", "switch_off_heater");
+      print_transition_scpi("switch_off_heater", "switch_off_heater");
     } state switch_off_heater
   }
   
@@ -288,15 +286,15 @@ ss cryomagnet
     }
 
     when(
-      within_tolerance(psu_field, 0, field_tolerance)
+      within_tolerance_scpi(psu_field, 0, field_tolerance)
       && (sweep_active == 0)
       )
     {
-      print_transition("ramp_down_psu", "at_field");
+      print_transition_scpi("ramp_down_psu", "at_field");
     } state at_field
     
     when(delay(300)){
-      print_transition("ramp_down_psu", "ramp_down_psu");
+      print_transition_scpi("ramp_down_psu", "ramp_down_psu");
     } state ramp_down_psu
   }
 }
