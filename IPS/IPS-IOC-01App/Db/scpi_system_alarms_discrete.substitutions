@@ -22,6 +22,7 @@ pattern {P, ALARM_NAME, ALARM_DESC, ALARM_INP}
 {"\$(P)", "LBOARD:NOTCONFIGD", "Levels board not confgd", "LBOARD.B6"}
 {"\$(P)", "LBOARD:NORESERVE", "Levels board no reserve", "LBOARD.B7"}
 {"\$(P)", "LBOARD:NORESERVE", "Levels board no reserve", "LBOARD.B7"}
+{"\$(P)", "LBOARD:MAGNETSAFETY", "Levels board magnet safety", "LBOARD.B8"}
 
 {"\$(P)", "PBOARD:OPENCIRCUIT", "Pressure board Open Circuit", "PBOARD.B0"}
 {"\$(P)", "PBOARD:SHORTCIRCUIT", "Pressure board Short Circuit", "PBOARD.B1"}

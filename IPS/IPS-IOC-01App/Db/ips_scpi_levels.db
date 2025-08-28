@@ -122,7 +122,7 @@ record(ai, "$(P)LVL:HE:LEVEL") {
   field(SCAN, "5 second")
   field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeliumLevel $(PORT)")
   field(EGU,  "%")
-  field(PREC, "0")
+  field(PREC, "2")
 
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:LVL:HE:LEVEL")
@@ -302,7 +302,7 @@ record(ai, "$(P)LVL:NIT:LEVEL") {
   field(SCAN, "5 second")
   field(INP,  "@OxInstIPS_SCPI.protocol getLevelNitrogenLevel $(PORT)")
   field(EGU,  "%")
-  field(PREC, "0")
+  field(PREC, "2")
 
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:LVL:NIT:LEVEL")

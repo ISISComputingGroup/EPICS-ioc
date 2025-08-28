@@ -177,6 +177,7 @@ record(mbbiDirect, "$(P)STS:SYSTEM:ALARM:10TBOARD") {
 # 5          Firmware Error
 # 6          Board Not Configured
 # 7          No Reserve
+# 8          Magnet Safety
 #
 record(mbbiDirect, "$(P)STS:SYSTEM:ALARM:LBOARD") {
   field(DESC, "Levels board alarm status")
