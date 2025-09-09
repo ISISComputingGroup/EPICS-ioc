@@ -1,23 +1,23 @@
 # MOXA E1242 DIs: function 2 (Read Discrete Inputs), address 0x0, length 0x8, data_type = UINT16 = 0, # pollMsec = for read func, waits XXX msecs
-drvModbusAsynConfigure("$(E12XX_ASYNPORT)_DI", "$(E12XX_ASYNPORT)", 0, 2, 0x0,   0x8, 0, 100, "ioLogik")
+drvModbusAsynConfigure("$(E12XX_ASYNPORT)_DI", "$(E12XX_ASYNPORT)", 0, 2, 0x0,   0x8, "UINT16", 100, "ioLogik")
 
 # MOXA E1242 AIs: function 4 (Read Input Registers), address 0x200, 0x4 words , data_type = UINT16 = 0, 
-drvModbusAsynConfigure("$(E12XX_ASYNPORT)_AI", "$(E12XX_ASYNPORT)", 0, 4, 0x200, 0x4, 0, 100, "ioLogik")
+drvModbusAsynConfigure("$(E12XX_ASYNPORT)_AI", "$(E12XX_ASYNPORT)", 0, 4, 0x200, 0x4, "UINT16", 100, "ioLogik")
 
 # MOXA E1242 Current mode status: function 4, address 0x240, 0x4 words , data_type = UINT16 = 0, 
-drvModbusAsynConfigure("$(E12XX_ASYNPORT)_AI_St", "$(E12XX_ASYNPORT)", 0, 4, 0x0240, 0x4, 0, 500, "ioLogik")
+drvModbusAsynConfigure("$(E12XX_ASYNPORT)_AI_St", "$(E12XX_ASYNPORT)", 0, 4, 0x0240, 0x4, "UINT16", 500, "ioLogik")
 
 # MOXA E1242 Current mode settings read: function 3, address 0x220, 0x4 words , data_type = UINT16 = 0, 
-drvModbusAsynConfigure("$(E12XX_ASYNPORT)_AIMR", "$(E12XX_ASYNPORT)", 0, 3, 0x0220, 0x4, 0, 500, "ioLogik")
+drvModbusAsynConfigure("$(E12XX_ASYNPORT)_AIMR", "$(E12XX_ASYNPORT)", 0, 3, 0x0220, 0x4, "UINT16", 500, "ioLogik")
 
 # MOXA E1242 Current mode settings write: function 6, address 0x220, 0x4 double words => 0x8, data_type = UINT16 = 0, 
-drvModbusAsynConfigure("$(E12XX_ASYNPORT)_AIMW", "$(E12XX_ASYNPORT)", 0, 6, 0x0220, 0x4, 0, 1, "ioLogik")
+drvModbusAsynConfigure("$(E12XX_ASYNPORT)_AIMW", "$(E12XX_ASYNPORT)", 0, 6, 0x0220, 0x4, "UINT16", 1, "ioLogik")
 
 # MOXA E1242 Burn out value read (float - two words): function 3, address 0x230, 0x4 double words => 0x8, data_type = FLOAT32_LE = 7, 
-drvModbusAsynConfigure("$(E12XX_ASYNPORT)_BOR", "$(E12XX_ASYNPORT)", 0, 3, 0x0230, 0x8, 7, 500, "ioLogik")
+drvModbusAsynConfigure("$(E12XX_ASYNPORT)_BOR", "$(E12XX_ASYNPORT)", 0, 3, 0x0230, 0x8, "FLOAT32_LE", 500, "ioLogik")
 
 # MOXA E1242 Burn out value write (float - two words): function 16 write multiple regs, address 0x230, 0x4 double words => 0x8 , data_type = FLOAT32_LE = 7, 
-drvModbusAsynConfigure("$(E12XX_ASYNPORT)_BOW", "$(E12XX_ASYNPORT)", 0, 16, 0x0230, 0x8, 7, 1, "ioLogik")
+drvModbusAsynConfigure("$(E12XX_ASYNPORT)_BOW", "$(E12XX_ASYNPORT)", 0, 16, 0x0230, 0x8, "FLOAT32_LE", 1, "ioLogik")
 
 
 ##ISIS## Load common DB records

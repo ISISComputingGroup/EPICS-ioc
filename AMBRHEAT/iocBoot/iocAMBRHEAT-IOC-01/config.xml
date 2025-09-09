@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Ambrell EASYHeat Induction Furnace PSU</ioc_desc>
+<ioc_details></ioc_details>
+<macros>
+    <xi:include href="../../../COMMON/PORT.xml" />
+    <macro name="ADDRESS" pattern="^[0-9]+$" description="Address for PSU on this port e.g. 3. (0 will communicate with all PSUs on bus)" defaultValue="0" hasDefault="YES" />
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>

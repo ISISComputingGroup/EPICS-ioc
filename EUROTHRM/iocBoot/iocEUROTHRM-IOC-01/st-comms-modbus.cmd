@@ -30,35 +30,35 @@ modbusInterposeConfig("L0", 1, 2000, 4)
 #                        pollMsec, 
 #                        plcType);
 
-drvModbusAsynConfigure("MODBUS_RX_01","L0", 1, 3, -1, 1, 4, 1000, "")
-drvModbusAsynConfigure("MODBUS_TX_01","L0", 1, 6, -1, 1, 4, 0, "")
+drvModbusAsynConfigure("MODBUS_RX_01","L0", 1, 3, -1, 1, "INT16", 1000, "")
+drvModbusAsynConfigure("MODBUS_TX_01","L0", 1, 6, -1, 1, "INT16", 0, "")
 										    
-drvModbusAsynConfigure("MODBUS_RX_02","L0", 2, 3, -1, 1, 4, 1000, "")
-drvModbusAsynConfigure("MODBUS_TX_02","L0", 2, 6, -1, 1, 4, 0, "")
+drvModbusAsynConfigure("MODBUS_RX_02","L0", 2, 3, -1, 1, "INT16", 1000, "")
+drvModbusAsynConfigure("MODBUS_TX_02","L0", 2, 6, -1, 1, "INT16", 0, "")
 										    
-drvModbusAsynConfigure("MODBUS_RX_03","L0", 3, 3, -1, 1, 4, 1000, "")
-drvModbusAsynConfigure("MODBUS_TX_03","L0", 3, 6, -1, 1, 4, 0, "")
+drvModbusAsynConfigure("MODBUS_RX_03","L0", 3, 3, -1, 1, "INT16", 1000, "")
+drvModbusAsynConfigure("MODBUS_TX_03","L0", 3, 6, -1, 1, "INT16", 0, "")
 										    
-drvModbusAsynConfigure("MODBUS_RX_04","L0", 4, 3, -1, 1, 4, 1000, "")
-drvModbusAsynConfigure("MODBUS_TX_04","L0", 4, 6, -1, 1, 4, 0, "")
+drvModbusAsynConfigure("MODBUS_RX_04","L0", 4, 3, -1, 1, "INT16", 1000, "")
+drvModbusAsynConfigure("MODBUS_TX_04","L0", 4, 6, -1, 1, "INT16", 0, "")
 										    
-drvModbusAsynConfigure("MODBUS_RX_05","L0", 5, 3, -1, 1, 4, 1000, "")
-drvModbusAsynConfigure("MODBUS_TX_05","L0", 5, 6, -1, 1, 4, 0, "")
+drvModbusAsynConfigure("MODBUS_RX_05","L0", 5, 3, -1, 1, "INT16", 1000, "")
+drvModbusAsynConfigure("MODBUS_TX_05","L0", 5, 6, -1, 1, "INT16", 0, "")
 
-drvModbusAsynConfigure("MODBUS_RX_06","L0", 6, 3, -1, 1, 4, 1000, "")
-drvModbusAsynConfigure("MODBUS_TX_06","L0", 6, 6, -1, 1, 4, 0, "")
+drvModbusAsynConfigure("MODBUS_RX_06","L0", 6, 3, -1, 1, "INT16", 1000, "")
+drvModbusAsynConfigure("MODBUS_TX_06","L0", 6, 6, -1, 1, "INT16", 0, "")
 
-drvModbusAsynConfigure("MODBUS_RX_07","L0", 7, 3, -1, 1, 4, 1000, "")
-drvModbusAsynConfigure("MODBUS_TX_07","L0", 7, 6, -1, 1, 4, 0, "")
+drvModbusAsynConfigure("MODBUS_RX_07","L0", 7, 3, -1, 1, "INT16", 1000, "")
+drvModbusAsynConfigure("MODBUS_TX_07","L0", 7, 6, -1, 1, "INT16", 0, "")
 
-drvModbusAsynConfigure("MODBUS_RX_08","L0", 8, 3, -1, 1, 4, 1000, "")
-drvModbusAsynConfigure("MODBUS_TX_08","L0", 8, 6, -1, 1, 4, 0, "")
+drvModbusAsynConfigure("MODBUS_RX_08","L0", 8, 3, -1, 1, "INT16", 1000, "")
+drvModbusAsynConfigure("MODBUS_TX_08","L0", 8, 6, -1, 1, "INT16", 0, "")
 
-drvModbusAsynConfigure("MODBUS_RX_09","L0", 9, 3, -1, 1, 4, 1000, "")
-drvModbusAsynConfigure("MODBUS_TX_09","L0", 9, 6, -1, 1, 4, 0, "")
+drvModbusAsynConfigure("MODBUS_RX_09","L0", 9, 3, -1, 1, "INT16", 1000, "")
+drvModbusAsynConfigure("MODBUS_TX_09","L0", 9, 6, -1, 1, "INT16", 0, "")
 
-drvModbusAsynConfigure("MODBUS_RX_10","L0", 10, 3, -1, 1, 4, 1000, "")
-drvModbusAsynConfigure("MODBUS_TX_10","L0", 10, 6, -1, 1, 4, 0, "")
+drvModbusAsynConfigure("MODBUS_RX_10","L0", 10, 3, -1, 1, "INT16", 1000, "")
+drvModbusAsynConfigure("MODBUS_TX_10","L0", 10, 6, -1, 1, "INT16", 0, "")
 
 #asynSetTraceMask("L0", -1, 0x9)
 #asynSetTraceIOMask("L0", -1, 0x2)

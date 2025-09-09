@@ -15,6 +15,10 @@ epicsEnvSet("MIBDIRS", "+$(LNDYISW)/mibs")
 ## uncomment for debug messages
 #devSnmpSetParam("DebugLevel", 10)
 
+## Used to handle outlet status
+devSnmpSetParam("PassivePollMSec", 2000)
+devSnmpSetParam("SetSkipReadbackMSec", 8000)
+
 ## need to set snmp version before we load records
 devSnmpSetSnmpVersion("$(HOST)", "SNMP_VERSION_1")
 
