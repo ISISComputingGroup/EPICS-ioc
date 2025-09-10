@@ -4,6 +4,7 @@
 		<ioc_desc>CAEN simulated high voltage power supply</ioc_desc>
 		<macros>
 			<macro name ="IFREADONLY" pattern="^ |#$" description="Whether device is readonly. Set to # for readonly, default is ' ' (just spacebar), for read and write" hasDefault="YES" defaultValue=" "/>
+			<macro name ="NCHANSUMM" pattern ="^[0-9]+" description ="Number of summary channels." defaultValue="200" hasDefault="YES"/>
 		</macros>
 	</config_part>
 </ioc_config>
