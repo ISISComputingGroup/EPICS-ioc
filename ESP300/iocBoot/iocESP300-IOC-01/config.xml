@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Newport ESP300 controller</ioc_desc>
+<macros>
+<macro name="COMPORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
+<macro name="BAUD" pattern="^[0-9]+$" description="Serial COM Baud rate" hasDefault="YES" defaultValue="19200"/>
+<macro name="POLL" pattern="^[0-9]+$" description="Controller polling rate (1Hz - 60Hz)" hasDefault="YES" defaultValue="10"/>
+<macro name="MTRCTRL" pattern="^[0-9]+$" description="Motor controller xx number for MOTxxyy PV e.g. 01" hasDefault="NO"/>
+</macros>
+</config_part>
+</ioc_config>
