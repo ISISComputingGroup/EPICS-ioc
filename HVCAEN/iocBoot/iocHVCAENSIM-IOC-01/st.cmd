@@ -11,6 +11,8 @@ cd ${TOP}
 dbLoadDatabase "dbd/HVCAENSIM-IOC-01.dbd"
 HVCAENSIM_IOC_01_registerRecordDeviceDriver pdbbase
 
+calc("NCHANSUMMCHAR","$(NCHANSUMM=200)*40", 1, 2)
+
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
