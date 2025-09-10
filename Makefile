@@ -93,6 +93,7 @@ IOCDIRS += NFIPM
 IOCDIRS += ZFHIFI
 IOCDIRS += AMBRHEAT
 IOCDIRS += OPCUA
+IOCDIRS += ESP300
 
 
 ## check on missing directories
