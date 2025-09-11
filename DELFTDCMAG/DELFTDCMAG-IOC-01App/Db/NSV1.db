@@ -461,7 +461,8 @@ record(ai, "$(P)POLREVI2")
 record(longin, "$(P)POLREVI2:SP")
 {
     field(SCAN, "Passive")
-    field(EGU, "mA")
+    field(FLNK, "$(P)POLREVI2:SP:CALC")
+    field(EGU, "A")
     field(PREC, "3")
 }
 
@@ -469,7 +470,7 @@ record(calcout, "$(P)POLREVI2:SP:CALC")
 {
     field(DESC, "Convert A to mA")
     field(INPA, "$(P)POLREVI2:SP")
-    field(calc, "A/1000")
+    field(calc, "A*1000")
     field(OUT,  "$(P)POLREVI2:SP:RAW PP")
 }
 
