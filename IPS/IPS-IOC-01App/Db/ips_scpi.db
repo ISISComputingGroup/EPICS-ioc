@@ -63,11 +63,6 @@ record(stringin, "$(P)VERSION") {
   field(SCAN, "Passive")
 }
 
-# CONTROL and CONTROL:SP records have been removed from the SCPI variant database
-# as the SCPI command set does not manage the panel lock in the same was as legacy and
-# Magnet Group advised to remove this feature, as they always want to be able to control
-# the IPS via the front panel. IJG 13/05/2025
-
 # Readback from STAT:DEV:GRPZ:PSU:ACTN command return (in getActivity()).
 # Hold means maintaining present current.
 # Clamped means you cannot adjust it - powers up in this 
@@ -391,7 +386,6 @@ record(ai, "$(P)MAGNET:FIELD:PERSISTENT") {
 }
 
 # The current being provided to the heater.
-# Our magnets do not have heaters, so this is not relevant.
 record(ai, "$(P)HEATER:CURR") {
   field(DESC, "Heater current readback")
   field(DTYP, "stream")

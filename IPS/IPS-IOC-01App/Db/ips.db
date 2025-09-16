@@ -480,7 +480,6 @@ record(ai, "$(P)FIELD:TRIP") {
 }
 
 # The current being provided to the heater.
-# Our magnets do not have heaters, so this is not relevant.
 record(ai, "$(P)HEATER:CURR") {
   field(DESC, "Heater current readback")
   field(DTYP, "stream")
