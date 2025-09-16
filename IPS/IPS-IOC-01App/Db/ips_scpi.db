@@ -860,20 +860,6 @@ record(bo, "$(P)HEATER:ONTIME_OK") {
   info(archive, "VAL")
 }
 
-
-# SWEEPMODE:PARAMS and SWEEPMODE:SWEEP
-# These have been removed as they are meaningless in SCPI protocol.
-# Documentation from the old legacy db.
-# Readback from n of Mmn part of Examine command return.
-# (Ignore the Pmn part of the Examine command return - no records for this.)
-# 0 output constant, 1, 2, 3 output changing
-#
-# According to the documented legacy command, the m part of the Mmn X command response
-# is either 0 or 1, so for the life of me I can't see how this mbbi could
-# assume any value above 1. This record does not appear to be referenced anywhere, including in the OPI.
-# So will keep as was but PINI to zero.
-# IJG - April 2025
-
 # To capture bits of mismatching status protocol.
 # We do not do much with it at the moment.
 record(stringin, "$(P)DBG:STS:MISMATCH") {
@@ -988,23 +974,6 @@ record(mbbo, "$(P)SIM:ACTIVITY") {
 
 alias("$(P)SIM:ACTIVITY", "$(P)SIM:ACTIVITY:SP")
 
-# SWEEPMODE:PARAMS and SWEEPMODE:SWEEP
-# These are meaningless in SCPI protocol.
-# Documentation from the old legacy db.
-# Readback from n of Mmn part of Examine command return.
-# (Ignore the Pmn part of the Examine command return - no records for this.)
-# 0 output constant, 1, 2, 3 output changing
-#
-# According to the documented legacy command, the m part of the Mmn X command response
-# is either 0 or 1, so for the life of me I can't see how this mbbi could
-# assume any value above 1. This record does not appear to be referenced anywhere, including in the OPI.
-# So will keep as was but PINI to zero.
-# IJG - April 2025
-# Update May 2025: This record is used in the SNL state machine and is presently required just to
-# make the state machine work. So these records have been re-appended to this db file, until such time that
-# a better solution is found.
-
-# Readback from m of Mmn part of Examine command return.
 # The Display is in Amps or Tesla.  The Magnet Sweep is fast or slow.
 record(mbbi, "$(P)SWEEPMODE:PARAMS") {
   field(DESC, "Mode status")
