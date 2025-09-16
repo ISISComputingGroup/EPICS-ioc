@@ -98,7 +98,6 @@ record(mbbi, "$(P)ACTIVITY") {
   info(archive, "VAL")
 }
 
-## !! Modify for SCPI - IJG 27/3/25
 # Hold means maintaining present current.
 # Clamped means you cannot adjust it - powers up in this 
 # state.  Only the set activity hold command can get out
@@ -373,26 +372,6 @@ record(ai, "$(P)MAGNET:CURR:PERSISTENT") {
   info(archive, "VAL")
 }
 
-## ==== CURR:TRIP needs to be derived somehow, some time.  It is not in the SCPI protocol. ====
-# The current at which a trip last occurred.  Am not sure if by trip, they mean
-# a quench or a problem with the level meter.  Believe the unit will take the current
-# and field to zero if there is a trip, so this parameter preserves what was happening
-# at the time of the trip.
-#record(ai, "$(P)CURR:TRIP") {
-#  field(DESC, "Trip current readback")
-#  field(DTYP, "stream")
-#  field(SCAN, "1 second")
-#  # field(INP,  "@OxInstIPS_SCPI.protocol getTripCurrent $(PORT)")
-#  field(EGU,  "A")
-#  field(PREC, "4")
-#
-#  field(SIML, "$(P)SIM")
-#  field(SIOL, "$(P)SIM:TRIPCURRENT")
-#  field(SDIS, "$(P)DISABLE")
-#
-#  info(archive, "VAL")
-#}
-
 # The field in the magnet due to the persistent current. See current for explanation.
 record(ai, "$(P)MAGNET:FIELD:PERSISTENT") {
   field(DESC, "Persistent magnet field readback")
@@ -410,23 +389,6 @@ record(ai, "$(P)MAGNET:FIELD:PERSISTENT") {
   
   info(archive, "VAL")
 }
-
-## ==== FIELD:TRIP needs to be derived somehow, some time.  It is not in the SCPI protocol. ====
-# The field at which a trip last occurred.  See current for explanation.
-#record(ai, "$(P)FIELD:TRIP") {
-#  field(DESC, "Trip field readback")
-#  field(DTYP, "stream")
-#  field(SCAN, "1 second")
-#  # field(INP,  "@OxInstIPS_SCPI.protocol getTripField $(PORT)")
-#  field(EGU,  "T")
-#  field(PREC, "5")
-#
-#  field(SIML, "$(P)SIM")
-#  field(SIOL, "$(P)SIM:TRIPFIELD")
-#  field(SDIS, "$(P)DISABLE")
-#
-#  info(archive, "VAL")
-#}
 
 # The current being provided to the heater.
 # Our magnets do not have heaters, so this is not relevant.
