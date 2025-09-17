@@ -10,6 +10,8 @@
 
 *List the acceptance criteria for the PR*
 
+- [ ] ** If this PR changes GALIL / GALILMUL ioc are these changes applicable to both the old (`galil-old` branch based) and new (`master` branch based) drivers? If so have [all appropriate PRs been created](https://isiscomputinggroup.github.io/ibex_developers_manual/specific_iocs/motors/galil/Updating-old-galil-driver.html) **
+
 ---
 
 #### Code Review
