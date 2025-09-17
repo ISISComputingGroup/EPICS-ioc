@@ -20,6 +20,7 @@
 			<macro name ="HVCAENSYSTYPE5" pattern="^[A-Z0-9]+$" description="System type of the sixth device." defaultValue="SY1527" hasDefault="YES" />
 			<macro name ="HVCAENSYSTYPE6" pattern="^[A-Z0-9]+$" description="System type of the seventh device." defaultValue="SY1527" hasDefault="YES" />
 			<macro name ="HVCAENSYSTYPE7" pattern="^[A-Z0-9]+$" description="System type of the eighth device." defaultValue="SY1527" hasDefault="YES" />
+			<macro name ="NCHANSUMM" pattern ="^[0-9]+" description ="Number of summary channels." defaultValue="200" hasDefault="YES"/>
 		</macros>
 	</config_part>
 </ioc_config>
