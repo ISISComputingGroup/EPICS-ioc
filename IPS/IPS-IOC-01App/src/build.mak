@@ -54,7 +54,6 @@ $(APPNAME)_LIBS += OxInstIPS
 # FERMCHOP-IOC-01_registerRecordDeviceDriver.cpp derives from IPS-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 $(APPNAME)_SRCS += cryomagnet.st
-$(APPNAME)_SRCS += cryomagnet_SCPI.st
 
 # Build the main IOC entry point on workstation OSs.
 $(APPNAME)_SRCS_DEFAULT += $(APPNAME)Main.cpp

@@ -1,2 +1,1 @@
 registrar(cryomagnetRegistrar)
-registrar(cryomagnet_SCPIRegistrar)
