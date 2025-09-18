@@ -1,0 +1,68 @@
+file scpi_system_alarms_discrete.template {
+
+pattern {P, ALARM_NAME, ALARM_DESC, ALARM_INP}
+{"\$(P)", "STS:SYSTEM:ALARM:TBOARD:OPENCIRCUIT", "Temperature board Open Circuit", "STS:SYSTEM:ALARM:TBOARD.B0"}
+{"\$(P)", "STS:SYSTEM:ALARM:TBOARD:SHORTCIRCUIT", "Temperature board Short Circuit", "STS:SYSTEM:ALARM:TBOARD.B1"}
+{"\$(P)", "STS:SYSTEM:ALARM:TBOARD:CALIBERR", "Temperature board Calibn error", "STS:SYSTEM:ALARM:TBOARD.B2"}
+{"\$(P)", "STS:SYSTEM:ALARM:TBOARD:FWERR", "Temperature board fw error", "STS:SYSTEM:ALARM:TBOARD.B3"}
+{"\$(P)", "STS:SYSTEM:ALARM:TBOARD:NOTCONFIGD", "Temperature board not configd", "STS:SYSTEM:ALARM:TBOARD.B4"}
+
+{"\$(P)", "STS:SYSTEM:ALARM:10TBOARD:OPENCIRCUIT", "Temperature board Open Circuit", "STS:SYSTEM:ALARM:10TBOARD.B0"}
+{"\$(P)", "STS:SYSTEM:ALARM:10TBOARD:SHORTCIRCUIT", "Temperature board Short Circuit", "STS:SYSTEM:ALARM:10TBOARD.B1"}
+{"\$(P)", "STS:SYSTEM:ALARM:10TBOARD:CALIBERR", "Temperature board Calibn error", "STS:SYSTEM:ALARM:10TBOARD.B2"}
+{"\$(P)", "STS:SYSTEM:ALARM:10TBOARD:FWERR", "Temperature board fw error", "STS:SYSTEM:ALARM:10TBOARD.B3"}
+{"\$(P)", "STS:SYSTEM:ALARM:10TBOARD:NOTCONFIGD", "Temperature board not configd", "STS:SYSTEM:ALARM:10TBOARD.B4"}
+
+{"\$(P)", "STS:SYSTEM:ALARM:LBOARD:OPENCIRCUIT", "Levels board Open Circuit", "STS:SYSTEM:ALARM:LBOARD.B0"}
+{"\$(P)", "STS:SYSTEM:ALARM:LBOARD:SHORTCIRCUIT", "Levels board Short Circuit", "STS:SYSTEM:ALARM:LBOARD.B1"}
+{"\$(P)", "STS:SYSTEM:ALARM:LBOARD:ADCERR", "Levels board ADC error", "STS:SYSTEM:ALARM:LBOARD.B2"}
+{"\$(P)", "STS:SYSTEM:ALARM:LBOARD:OVERDEMAND", "Levels board over demand", "STS:SYSTEM:ALARM:LBOARD.B3"}
+{"\$(P)", "STS:SYSTEM:ALARM:LBOARD:OVERTEMP", "Levels board over temp", "STS:SYSTEM:ALARM:LBOARD.B4"}
+{"\$(P)", "STS:SYSTEM:ALARM:LBOARD:FWERROR", "Levels board fw error", "STS:SYSTEM:ALARM:LBOARD.B5"}
+{"\$(P)", "STS:SYSTEM:ALARM:LBOARD:NOTCONFIGD", "Levels board not confgd", "STS:SYSTEM:ALARM:LBOARD.B6"}
+{"\$(P)", "STS:SYSTEM:ALARM:LBOARD:NORESERVE", "Levels board no reserve", "STS:SYSTEM:ALARM:LBOARD.B7"}
+{"\$(P)", "STS:SYSTEM:ALARM:LBOARD:NORESERVE", "Levels board no reserve", "STS:SYSTEM:ALARM:LBOARD.B7"}
+{"\$(P)", "STS:SYSTEM:ALARM:LBOARD:MAGNETSAFETY", "Levels board magnet safety", "STS:SYSTEM:ALARM:LBOARD.B8"}
+
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:OPENCIRCUIT", "Pressure board Open Circuit", "STS:SYSTEM:ALARM:PBOARD.B0"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:SHORTCIRCUIT", "Pressure board Short Circuit", "STS:SYSTEM:ALARM:PBOARD.B1"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:CALIBERR", "Pressure board calib error", "STS:SYSTEM:ALARM:PBOARD.B2"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:FWERR", "Pressure board fw error", "STS:SYSTEM:ALARM:PBOARD.B3"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:NOTCONFIGD", "Pressure board not confgd", "STS:SYSTEM:ALARM:PBOARD.B4"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:OVERCURRENT", "Pressure board over current", "STS:SYSTEM:ALARM:PBOARD.B5"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:CURRENTLEAK", "Pressure board current leak", "STS:SYSTEM:ALARM:PBOARD.B6"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:PWONFAIL", "Pressure board power on fail", "STS:SYSTEM:ALARM:PBOARD.B7"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:CHKSUMERR", "Pressure board chksum error", "STS:SYSTEM:ALARM:PBOARD.B8"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:CLKFAIL", "Pressure board clk fail", "STS:SYSTEM:ALARM:PBOARD.B9"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:ADCFAIL", "Pressure board ADC fail", "STS:SYSTEM:ALARM:PBOARD.BA"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:MAINSFAIL", "Pressure board mains fail", "STS:SYSTEM:ALARM:PBOARD.BB"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:REFSFAIL", "Pressure board ref fail", "STS:SYSTEM:ALARM:PBOARD.BC"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:PLUS12VFAIL", "Pressure board +12V fail", "STS:SYSTEM:ALARM:PBOARD.BD"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:MINUS12VFAIL", "Pressure board -12V fail", "STS:SYSTEM:ALARM:PBOARD.BE"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:PLUS8VFAIL", "Pressure board +8V fail", "STS:SYSTEM:ALARM:PBOARD.BF"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:MINUS8VFAIL", "Pressure board -9V fail", "STS:SYSTEM:ALARM:PBOARD.B10"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:AMPGAINERR", "Pressure board amp gain err", "STS:SYSTEM:ALARM:PBOARD.B11"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:AMPOFFSETERR", "Pressure board amp offset err", "STS:SYSTEM:ALARM:PBOARD.B12"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:ADCPGAERR", "Pressure board ADC PGA offset err", "STS:SYSTEM:ALARM:PBOARD.B14"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:ADCXTALERR", "Pressure board ADC XTAL offset err", "STS:SYSTEM:ALARM:PBOARD.B15"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:PLUSEXCITEERR", "Pressure board excitation + error", "STS:SYSTEM:ALARM:PBOARD.B16"}
+{"\$(P)", "STS:SYSTEM:ALARM:PBOARD:MINUSEXCITEERR", "Pressure board excitation - error", "STS:SYSTEM:ALARM:PBOARD.B17"}
+
+{"\$(P)", "MAGNET:SUPPLY:STATUS:SWHTRMISMATCH", "Switch heater mismatch status", "GET:MAGNET:SUPPLY:STATUS.B0"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:OTRUNDOWNRES", "Over temp rundown resistors status", "GET:MAGNET:SUPPLY:STATUS.B1"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:OTSENSERES", "Over temp sense resistor status", "GET:MAGNET:SUPPLY:STATUS.B2"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:OTPCB", "Over temp PCB status", "GET:MAGNET:SUPPLY:STATUS.B3"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:CALIBFAIL", "Calibration failure status", "GET:MAGNET:SUPPLY:STATUS.B4"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:FWFAIL", "Firmware failure status", "GET:MAGNET:SUPPLY:STATUS.B5"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:RRFAIL", "Rundown resistors failure status", "GET:MAGNET:SUPPLY:STATUS.B6"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:RS485FAIL", "MSP430 RS485 failure status", "GET:MAGNET:SUPPLY:STATUS.B7"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:QUENCHED", "Quench status", "GET:MAGNET:SUPPLY:STATUS.B8"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:CATCH", "PSU Catch status", "GET:MAGNET:SUPPLY:STATUS.B9"}
+# Intentional gap in bits BA and BB in accordance with OI information
+{"\$(P)", "MAGNET:SUPPLY:STATUS:OTSENSEAMP", "Over temp sense amp", "GET:MAGNET:SUPPLY:STATUS.BC"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:OTAMP1", "Over temp amp 1", "GET:MAGNET:SUPPLY:STATUS.BD"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:OTAMP2", "Over temp amp 2", "GET:MAGNET:SUPPLY:STATUS.BE"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:PWMCUTOFF", "PWM Cutoff status", "GET:MAGNET:SUPPLY:STATUS.BF"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:VADCERROR", "Voltage ADC error status", "GET:MAGNET:SUPPLY:STATUS.B10"}
+{"\$(P)", "MAGNET:SUPPLY:STATUS:IADCERROR", "Current ADC error status", "GET:MAGNET:SUPPLY:STATUS.B11"}
+}

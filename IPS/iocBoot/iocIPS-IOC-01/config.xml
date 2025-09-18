@@ -8,6 +8,7 @@
 <macro name="STABILITY_VOLTAGE" pattern="^[0-9]+\.?[0-9]*$" description="Voltage difference under which the voltage is declared stable (default: 0.1)" defaultValue="0.1" hasDefault="YES" />
 <macro name="MAX_FIELD" pattern="^[0-9]+\.?[0-9]*$" description="Largest permissible field (default: 7.0)" defaultValue="7.0" hasDefault="YES" />
 <macro name="MAX_SWEEP_RATE" pattern="^[0-9]+\.?[0-9]*$" description="Greatest  permissible field sweep rate (default: 1.0)" defaultValue="1.0" hasDefault="YES" />
+<macro name="STREAMPROTOCOL" pattern="^(SCPI|LEGACY)$" description="SCPI or LEGACY (default: LEGACY)" defaultValue="LEGACY" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>
