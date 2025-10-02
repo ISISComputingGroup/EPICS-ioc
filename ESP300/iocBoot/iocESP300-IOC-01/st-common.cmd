@@ -18,7 +18,7 @@ set_pass1_restoreFile("$(IOCNAME)_built_settings.sav")
 epicsEnvSet("ASERIAL", "serial0")
 $(IFSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "NUL", 0, 1)
 $(IFNOTSIM) drvAsynSerialPortConfigure("$(ASERIAL)", "$(COMPORT)", 0, 0, 0)
-$(IFNOTSIM) asynOctetSetInputEos("$(ASERIAL)",-1,"\r\n")
+$(IFNOTSIM) asynOctetSetInputEos("$(ASERIAL)",-1,"\n")
 $(IFNOTSIM) asynOctetSetOutputEos("$(ASERIAL)",-1,"\r")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"baud","$(BAUD=19200)") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"bits","8") 
@@ -30,15 +30,17 @@ $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"crtscts","Y")
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixon","N") 
 $(IFNOTSIM) asynSetOption("$(ASERIAL)",0,"ixoff","N") 
 
+asynInterposeThrottleConfig("$(ASERIAL)", 0, 0.01)
+
 asynSetTraceIOMask($(ASERIAL), 0, ESCAPE)
-asynSetTraceMask($(ASERIAL), 0, ERROR|DRIVER|FLOW)
+#asynSetTraceMask($(ASERIAL), 0, ERROR|DRIVER|FLOW)
 ##
 ## create controller
 ##
 # Newport ESP300 driver setup parameters: 
 #     (1) maximum number of controllers in system
 #     (2) motor task polling rate (min=1Hz,max=60Hz)
-$(IFNOTSIM) ESP300Setup(1, $(POLL=10))
+$(IFNOTSIM) ESP300Setup(1, $(POLL=5))
 
 # Newport ESP300 driver configuration parameters: 
 #     (1) controller# being configured,
@@ -51,7 +53,7 @@ $(IFNOTSIM) ESP300Setup(1, $(POLL=10))
 $(IFNOTSIM) ESP300Config(0, "$(ASERIAL)")
 $(IFNOTSIM) epicsEnvSet("MDEV","ESP300")
 
-var drvESP300debug 4
+#var drvESP300debug 4
 
 ## the controller low/high limits are in motor steps
 $(IFSIM) motorSimCreate(0, 0, -200000, 200000, 0, 1, 3)
@@ -63,14 +65,17 @@ $(IFSIM) epicsEnvSet("MSIM","motorSim")
 ## configure axes
 ##
 iocshLoad "st-axis.cmd" "SLOT=0"
-iocshLoad "st-axis.cmd" "SLOT=1"
-iocshLoad "st-axis.cmd" "SLOT=2"
+#iocshLoad "st-axis.cmd" "SLOT=1"
+#iocshLoad "st-axis.cmd" "SLOT=2"
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
 
 ## per controller PVs
 dbLoadRecords("$(MOTOR)/db/motorController.db","P=$(MYPVPREFIX),Q=MOT:MTR$(MTRCTRL):")
+
+## asyn record
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(MYPVPREFIX),R=$(IOCNAME):ASYNREC,PORT=$(ASERIAL),ADDR=0,OMAX=256,IMAX=256")
 
 autosaveBuild("$(IOCNAME)_built_settings.req", "_settings.req", 0)
 
