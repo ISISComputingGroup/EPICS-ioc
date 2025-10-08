@@ -237,11 +237,12 @@ record(waveform, "$(P)STATUS")
     field(SCAN, "$(POLL_RATE)")
 	
 	info(INTEREST, "MEDIUM")
-	info(archive, "300.0 VAL")
+	info(archive, "VAL")
 	
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STATUS")
     field(SDIS, "$(P)DISABLE")
+    field(APST, "On Change")
 }
 
 record(waveform, "$(P)AUTOMATION")
@@ -254,11 +255,12 @@ record(waveform, "$(P)AUTOMATION")
     field(SCAN, "$(POLL_RATE)")
 	
 	info(INTEREST, "MEDIUM")
-	info(archive, "300.0 VAL")
+	info(archive, "VAL")
 	
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:AUTOMATION")
     field(SDIS, "$(P)DISABLE")
+    field(APST, "On Change")
 }
 
 
