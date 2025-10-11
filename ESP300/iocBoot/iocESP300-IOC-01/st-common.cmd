@@ -65,8 +65,8 @@ $(IFSIM) epicsEnvSet("MSIM","motorSim")
 ## configure axes
 ##
 iocshLoad "st-axis.cmd" "SLOT=0"
-#iocshLoad "st-axis.cmd" "SLOT=1"
-#iocshLoad "st-axis.cmd" "SLOT=2"
+iocshLoad "st-axis.cmd" "SLOT=1"
+iocshLoad "st-axis.cmd" "SLOT=2"
 
 ## motor util package
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(MYPVPREFIX)$(IOCNAME):,$(IFIOC)= ,PVPREFIX=$(MYPVPREFIX)")
