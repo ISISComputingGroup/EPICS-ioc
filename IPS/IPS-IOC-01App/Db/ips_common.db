@@ -24,11 +24,11 @@ record(bo, "$(P)DISABLE")
 # # Run the Version command, V.
 # # The string was too long to put model and version into same record.
 # # Scan this once, probably not needed again.
-# The reply comes back and is split amongst other records.
+# The reply comes back and is split amongst other records in the StreamDevice protocol file.
 record(stringin, "$(P)GET:VERSION") {
   field(DESC, "Examine status")
   field(DTYP, "stream")
-  field(INP,  "@OxInstIPS.protocol getVersion($(P)) $(PORT)")
+  field(INP,  "@$(PROTO) getVersion($(P)) $(PORT)")
   field(PINI, "YES")
   field(FLNK, "$(P)MODEL")
   field(SCAN, "Passive")
@@ -37,6 +37,7 @@ record(stringin, "$(P)GET:VERSION") {
   field(SDIS, "$(P)DISABLE")
 }
 
+# Updated in GET:VERSION call to getVersion()
 record(stringin, "$(P)MODEL") {
   field(DESC, "Model")
   field(DTYP, "Soft Channel")
@@ -44,112 +45,22 @@ record(stringin, "$(P)MODEL") {
   field(FLNK, "$(P)VERSION")
 }
 
+# Updated in GET:VERSION call to getVersion()
 record(stringin, "$(P)VERSION") {
   field(DESC, "Firmware version.")
   field(DTYP, "Soft Channel")
   field(SCAN, "Passive")
 }
 
-# # Readback from Cn part of Examine command return.
-record(mbbi, "$(P)CONTROL") {
-  field(DESC, "Control status")
-  field(DTYP, "Soft Channel")
-  field(SCAN, "1 second")
-  field(ZRST, "Local & Locked")
-  field(ZRVL, "0")
-  field(ZRSV, "NO_ALARM")
-  field(ONST, "Remote & Locked")
-  field(ONVL, "1")
-  field(ONSV, "NO_ALARM")
-  field(TWST, "Local & Unlocked")
-  field(TWVL, "2")
-  field(TWSV, "NO_ALARM")
-  field(THST, "Remote & Unlocked")
-  field(THVL, "3")
-  field(THSV, "NO_ALARM")
-  
-  # Modes 4-7 come back from device. Manual does not make it clear what the
-  # differences are. Keeping them as separate items in case they are useful
-  # for diagnostics later on.
-  field(FRST, "Auto-Run-Down")
-  field(FRVL, "4")
-  field(FRSV, "MAJOR")
-  field(FVST, "Auto-Run-Down")
-  field(FVVL, "5")
-  field(FVSV, "MAJOR")
-  field(SXST, "Auto-Run-Down")
-  field(SXVL, "6")
-  field(SXSV, "MAJOR")
-  field(SVST, "Auto-Run-Down")
-  field(SVVL, "7")
-  field(SVSV, "MAJOR")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:CONTROL")
-  field(SDIS, "$(P)DISABLE")
-  
-  info(archive, "VAL")
-  info(alarm, "IPS")
-}
-
-# Grab remote vs local control
-record(mbbo, "$(P)CONTROL:SP") {
-  field(DESC, "Set remote/local control")
-  field(DTYP, "stream")
-  field(SCAN, "Passive")
-  field(OUT,  "@OxInstIPS.protocol setControl $(PORT)")
-  field(ZRST, "Local & Locked")
-  field(ZRVL, "0")
-  field(ONST, "Remote & Locked")
-  field(ONVL, "1")
-  field(TWST, "Local & Unlocked")
-  field(TWVL, "2")
-  field(THST, "Remote & Unlocked")
-  field(THVL, "3")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:CONTROL:SP")
-  field(SDIS, "$(P)DISABLE")
-}
-
-# Readback from An part of Examine command return.
 # Hold means maintaining present current.
-# Clamped means you cannot adjust it - powers up in this 
-# state.  Only the set activity hold command can get out
-# of the clamped state.  Hold will interrupt a sweep.
-record(mbbi, "$(P)ACTIVITY") {
-  field(DESC, "Activity status")
-  field(DTYP, "Soft Channel")
-  field(SCAN, "1 second")
-  field(ZRST, "Hold")
-  field(ZRVL, "0")
-  field(ZRSV, "NO_ALARM")
-  field(ONST, "To Setpoint")
-  field(ONVL, "1")
-  field(ONSV, "NO_ALARM")
-  field(TWST, "To Zero")
-  field(TWVL, "2")
-  field(TWSV, "NO_ALARM")
-  field(FRST, "Clamped")
-  field(FRVL, "4")
-  field(FRSV, "MAJOR")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:ACTIVITY")
-  field(SDIS, "$(P)DISABLE")
-  
-  info(archive, "VAL")
-}
-
-# Hold means maintaining present current.
-# Clamped means you cannot adjust it - powers up in this 
+# Clamped means you cannot adjust it - powers up in this
 # state.  Only the set activity hold command can get out
 # of the clamped state.  Hold will interrupt a sweep.
 record(mbbo, "$(P)ACTIVITY:SP") {
   field(DESC, "Activity control")
   field(DTYP, "stream")
   field(SCAN, "Passive")
-  field(OUT,   "@OxInstIPS.protocol setActivity $(PORT)")
+  field(OUT,   "@$(PROTO) setActivity $(PORT)")
   field(ZRST, "Hold")
   field(ZRVL, "0")
   field(ONST, "To Setpoint")
@@ -158,7 +69,7 @@ record(mbbo, "$(P)ACTIVITY:SP") {
   field(TWVL, "2")
   field(FRST, "Clamp")
   field(FRVL, "4")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:ACTIVITY:SP")
   field(SDIS, "$(P)DISABLE")
@@ -169,14 +80,14 @@ record(ai, "$(P)CURR") {
   field(DESC, "Demand current readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getDemandCurrent $(PORT)")
+  field(INP,  "@$(PROTO) getDemandCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CURRENT")
   field(SDIS, "$(P)DISABLE")
-  
+
   info(archive, "VAL")
 }
 
@@ -185,14 +96,14 @@ record(ai, "$(P)CURR:SP:RBV") {
   field(DESC, "Setpoint current readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getSetpointCurrent $(PORT)")
+  field(INP,  "@$(PROTO) getSetpointCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CURRENT")
   field(SDIS, "$(P)DISABLE")
-  
+
   info(archive, "VAL")
 }
 
@@ -201,16 +112,16 @@ record(ai, "$(P)SUPPLY:VOLT") {
   field(DESC, "Supply voltage readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getSupplyVoltage $(PORT)")
+  field(INP,  "@$(PROTO) getSupplyVoltage $(PORT)")
   field(EGU,  "V")
   field(PREC, "8")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:SUPPLY:VOLT")
   field(SDIS, "$(P)DISABLE")
-  
+
   field(FLNK, "$(P)SUPPLY:VOLT:_STABILITY:BUF")
-  
+
   info(archive, "VAL")
 }
 
@@ -256,14 +167,14 @@ record(ai, "$(P)MAGNET:CURR:MEAS") {
   field(DESC, "Measured magnet current readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getMeasuredMagnetCurrent $(PORT)")
+  field(INP,  "@$(PROTO) getMeasuredMagnetCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MAGNET:CURR:MEAS")
   field(SDIS, "$(P)DISABLE")
-  
+
   info(archive, "VAL")
 }
 
@@ -272,14 +183,14 @@ record(ai, "$(P)CURR:RATE") {
   field(DESC, "Current sweep rate readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getCurrentSweepRate $(PORT)")
+  field(INP,  "@$(PROTO) getCurrentSweepRate $(PORT)")
   field(EGU,  "A/min")
   field(PREC, "3")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:CURR:RATE")
   field(SDIS, "$(P)DISABLE")
-  
+
   info(archive, "VAL")
 }
 
@@ -288,14 +199,14 @@ record(ai, "$(P)FIELD") {
   field(DESC, "Demand field readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getDemandField $(PORT)")
+  field(INP,  "@$(PROTO) getDemandField $(PORT)")
   field(EGU,  "T")
   field(PREC, "5")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD")
   field(SDIS, "$(P)DISABLE")
-  
+
   info(INTEREST, "LOW")
   info(archive, "VAL")
 }
@@ -307,7 +218,7 @@ record(ao, "$(P)FIELD:SP") {
   field(PREC, "5")
   field(DRVH, "$(MAX_FIELD)")
   field(DRVL, "-$(MAX_FIELD)")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD")
   field(SDIS, "$(P)DISABLE")
@@ -319,12 +230,12 @@ record(ao, "$(P)FIELD:SP:_RAW") {
   field(DESC, "Send raw field to box")
   field(DTYP, "stream")
   field(SCAN, "Passive")
-  field(OUT,  "@OxInstIPS.protocol setSetpointField $(PORT)")
+  field(OUT,  "@$(PROTO) setSetpointField $(PORT)")
   field(EGU,  "T")
   field(PREC, "5")
   field(DRVH, "$(MAX_FIELD)")
   field(DRVL, "-$(MAX_FIELD)")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD")
   field(SDIS, "$(P)DISABLE")
@@ -337,10 +248,10 @@ record(ai, "$(P)FIELD:SP:RBV") {
   field(DESC, "Setpoint field readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getSetpointField $(PORT)")
+  field(INP,  "@$(PROTO) getSetpointField $(PORT)")
   field(EGU,  "T")
   field(PREC, "5")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD")
   field(SDIS, "$(P)DISABLE")
@@ -352,13 +263,13 @@ record(ai, "$(P)FIELD:RATE") {
   field(DESC, "Field sweep rate readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getFieldSweepRate $(PORT)")
+  field(INP,  "@$(PROTO) getFieldSweepRate $(PORT)")
   field(EGU,  "T/min")
   field(PREC, "4")
-  
+
   field(LOLO, "0")
   field(LLSV, "MAJOR")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD:RATE")
   field(SDIS, "$(P)DISABLE")
@@ -370,13 +281,13 @@ record(ao, "$(P)FIELD:RATE:SP") {
   field(DESC, "Set field sweep rate")
   field(DTYP, "stream")
   field(SCAN, "Passive")
-  field(OUT,   "@OxInstIPS.protocol setFieldSweepRate $(PORT)")
+  field(OUT,   "@$(PROTO) setFieldSweepRate $(PORT)")
   field(EGU,  "T/min")
   field(PREC, "4")
   field(DRVH, "$(MAX_SWEEP_RATE)")
   field(DRVL, "0")
   field(ASG, "$(MANAGER_ASG)")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:FIELD:RATE:SP")
   field(SDIS, "$(P)DISABLE")
@@ -388,10 +299,10 @@ record(ai, "$(P)VOLT:LIMIT:SOFTWARE") {
   field(DESC, "Software voltage limit readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getSoftwareVoltageLimit $(PORT)")
+  field(INP,  "@$(PROTO) getSoftwareVoltageLimit $(PORT)")
   field(EGU,  "V")
   field(PREC, "8")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:SOFTWAREVOLTAGELIMIT")
   field(SDIS, "$(P)DISABLE")
@@ -404,33 +315,14 @@ record(ai, "$(P)MAGNET:CURR:PERSISTENT") {
   field(DESC, "Persistent magnet current readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getPersistentMagnetCurrent $(PORT)")
+  field(INP,  "@$(PROTO) getPersistentMagnetCurrent $(PORT)")
   field(EGU,  "A")
   field(PREC, "4")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:PERSISTENTMAGNETCURRENT")
   field(SDIS, "$(P)DISABLE")
-  
-  info(archive, "VAL")
-}
 
-# The current at which a trip last occurred.  Am not sure if by trip, they mean
-# a quench or a problem with the level meter.  Believe the unit will take the current
-# and field to zero if there is a trip, so this parameter preserves what was happening
-# at the time of the trip.
-record(ai, "$(P)CURR:TRIP") {
-  field(DESC, "Trip current readback")
-  field(DTYP, "stream")
-  field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getTripCurrent $(PORT)")
-  field(EGU,  "A")
-  field(PREC, "4")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:TRIPCURRENT")
-  field(SDIS, "$(P)DISABLE")
-  
   info(archive, "VAL")
 }
 
@@ -439,83 +331,16 @@ record(ai, "$(P)MAGNET:FIELD:PERSISTENT") {
   field(DESC, "Persistent magnet field readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getPersistentMagnetField $(PORT)")
+  field(INP,  "@$(PROTO) getPersistentMagnetField $(PORT)")
   field(EGU,  "T")
   field(PREC, "5")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:PERSISTENTMAGNETFIELD")
   field(SDIS, "$(P)DISABLE")
-  
+
   info(INTEREST, "LOW")
-  
-  info(archive, "VAL")
-}
 
-# The field at which a trip last occurred.  See current for explanation.
-record(ai, "$(P)FIELD:TRIP") {
-  field(DESC, "Trip field readback")
-  field(DTYP, "stream")
-  field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getTripField $(PORT)")
-  field(EGU,  "T")
-  field(PREC, "5")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:TRIPFIELD")
-  field(SDIS, "$(P)DISABLE")
-  
-  info(archive, "VAL")
-}
-
-# The current being provided to the heater.
-# Our magnets do not have heaters, so this is not relevant.
-record(ai, "$(P)HEATER:CURR") {
-  field(DESC, "Heater current readback")
-  field(DTYP, "stream")
-  field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getHeaterCurrent $(PORT)")
-  field(EGU,  "mA")
-  field(PREC, "4")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:HEATERCURRENT")
-  field(SDIS, "$(P)DISABLE")
-  
-  info(archive, "VAL")
-}
-
-# The lower limit for the current.  This refers to a limit on the controller and
-# is nothing to do with EPICS record limit or alarm fields.
-record(ai, "$(P)CURR:LIMIT:NEG") {
-  field(DESC, "Neg current limit readback")
-  field(DTYP, "stream")
-  field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getNegCurrentLimit $(PORT)")
-  field(EGU,  "A")
-  field(PREC, "4")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:NEGCURRENTLIMIT")
-  field(SDIS, "$(P)DISABLE")
-  
-  info(archive, "VAL")
-}
-
-# The higher limit for the current.  This refers to a limit on the controller and
-# is nothing to do with EPICS record limit or alarm fields.
-record(ai, "$(P)CURR:LIMIT:POS") {
-  field(DESC, "Pos current limit readback")
-  field(DTYP, "stream")
-  field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getPosCurrentLimit $(PORT)")
-  field(EGU,  "A")
-  field(PREC, "4")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:POSCURRENTLIMIT")
-  field(SDIS, "$(P)DISABLE")
-  
   info(archive, "VAL")
 }
 
@@ -526,14 +351,14 @@ record(ai, "$(P)RESISTANCE:LEAD") {
   field(DESC, "Leadresistance readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getLeadResistance $(PORT)")
+  field(INP,  "@$(PROTO) getLeadResistance $(PORT)")
   field(EGU,  "mohm")
   field(PREC, "5")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:LEADRESISTANCE")
   field(SDIS, "$(P)DISABLE")
-  
+
   info(archive, "VAL")
 }
 
@@ -543,115 +368,15 @@ record(ai, "$(P)MAGNET:INDUCTANCE") {
   field(DESC, "Magnet inductance readback")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP,  "@OxInstIPS.protocol getMagnetInductance $(PORT)")
+  field(INP,  "@$(PROTO) getMagnetInductance $(PORT)")
   field(EGU,  "H")
   field(PREC, "5")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:MAGNETINDUCTANCE")
   field(SDIS, "$(P)DISABLE")
-  
+
   info(archive, "VAL")
-}
-
-# # Run the Examine Status command, X.
-# The reply comes back and is split amongst other records.
-record(stringin, "$(P)GET:STATUS") {
-  field(DESC, "Examine status")
-  field(DTYP, "stream")
-  field(INP, "@OxInstIPS.protocol getStatus($(P)) $(PORT)")
-  field(SCAN, "1 second")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:DONOTHING")
-  field(SDIS, "$(P)DISABLE")
-}
-
-# # Readback from m of Xmn part of Examine command return.
-record(mbbi, "$(P)STS:SYSTEM:FAULT") {
-  field(DESC, "System fault status")
-  field(DTYP, "Soft Channel")
-  field(SCAN, "Passive")
-  field(ZRST, "Normal")
-  field(ZRVL, "0")
-  field(ZRSV, "NO_ALARM")
-  field(ONST, "Quenched")
-  field(ONVL, "1")
-  field(ONSV, "MAJOR")
-  field(TWST, "Overheated")
-  field(TWVL, "2")
-  field(TWSV, "MAJOR")
-  field(FRST, "Warming Up")
-  field(FRVL, "4")
-  field(FRSV, "MAJOR")
-  field(EIST, "Fault")
-  field(EIVL, "8")
-  field(EISV, "MAJOR")
-  
-  info(archive, "VAL")
-}
-
-# # Readback from n of Xmn part of Examine command return.
-record(mbbi, "$(P)STS:SYSTEM:LIMIT") {
-  field(DESC, "System limit status")
-  field(DTYP, "Soft Channel")
-  field(SCAN, "Passive")
-  field(ZRST, "Normal")
-  field(ZRVL, "0")
-  field(ZRSV, "NO_ALARM")
-  field(ONST, "On +ve V Limit")
-  field(ONVL, "1")
-  field(ONSV, "MINOR")
-  field(TWST, "On -ve V Limit")
-  field(TWVL, "2")
-  field(TWSV, "MINOR")
-  field(FRST, "Current too -ve")
-  field(FRVL, "4")
-  field(FRSV, "MINOR")
-  field(EIST, "Current too +ve")
-  field(EIVL, "8")
-  field(EISV, "MINOR")
-  
-  info(archive, "VAL")
-}
-
-# Readback from Hn part of Examine command return.
-# 0 switch closed, 1 switch open, 2 switch closed, 5 heater is on but low current, 8 no switch fitted.
-record(mbbi, "$(P)HEATER:STATUS") {
-  field(DESC, "Heater status")
-  field(DTYP, "Soft Channel")
-  field(SCAN, "Passive")
-  field(ZRST, "Off Mag at 0")
-  field(ZRVL, "0")
-  field(ONST, "On")
-  field(ONVL, "1")
-  field(TWST, "Off Mag at F")
-  field(TWVL, "2")
-  field(FVST, "Heater Fault")
-  field(FVVL, "5")
-  field(FVSV, "MAJOR")
-  field(EIST, "No Switch")
-  field(EIVL, "8")
-  field(EISV, "MAJOR")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:HEATER:STATUS")
-  field(SDIS, "$(P)DISABLE")
-  
-  info(archive, "VAL")
-}
-
-record(bo, "$(P)HEATER:STATUS:SP") {
-  field(DESC, "Set Remote/Local Control")
-  field(DTYP, "stream")
-  field(SCAN, "Passive")
-  field(OUT,  "@OxInstIPS.protocol setHeaterStatus $(PORT)")
-  field(ZNAM, "Off")
-  field(ONAM, "On")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:HEATER:STATUS:SP")
-  field(SDIS, "$(P)DISABLE")
 }
 
 # Amount of time to wait for heater to warm up/cool down.  **CAN CAUSE MAGNET TO QUENCH IF SET TOO LOW**
@@ -667,7 +392,7 @@ record(ao, "$(P)HEATER:WAITTIME") {
   info(archive, "VAL")
 }
 
-# CALC record to coerce heater status values.  Heater can be off in states 0 or 2, and in error in states 5 or 8, 
+# CALC record to coerce heater status values.  Heater can be off in states 0 or 2, and in error in states 5 or 8,
 # and circular buffer (N to 1 Low Value) only looks for lowest (0).
 # Output 1 only if heater is on, 0 if off and all other states, including errors.
 
@@ -676,6 +401,19 @@ record(calc, "$(P)HEATER:_STATUS_CALC") {
     field(INPA, "$(P)HEATER:STATUS CP MS")
     field(CALC, "(A=1)?1:0")                # If heater is on, output 1, otherwise 0
     info(archive, "VAL")
+}
+
+record(bo, "$(P)HEATER:STATUS:SP") {
+  field(DESC, "Set Remote/Local Control")
+  field(DTYP, "stream")
+  field(SCAN, "Passive")
+  field(OUT,  "@$(PROTO) setHeaterStatus $(PORT)")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:HEATER:STATUS:SP")
+  field(SDIS, "$(P)DISABLE")
 }
 
 # COMPRESS Record with circular buffer to store $(HEATER_WAITTIME) worth of HEATER:STATUS values
@@ -704,7 +442,8 @@ record(compress, "$(P)HEATER:_STATUS_BUFFER_LOWEST") {
   info(archive, "VAL")
 }
 
-# BO record to indicate whether or not heater been on for at least $(HEATER_WAITTIME). Monitored by statemachine to determine whether or not OK to set field.
+# BO record to indicate whether or not heater been on for at least $(HEATER_WAITTIME).
+# Monitored by statemachine to determine whether or not OK to set field.
 
 record(bo, "$(P)HEATER:ONTIME_OK") {
   field(DESC, "Heater on for at least $(HEATER_WAITTIME)s")
@@ -716,7 +455,6 @@ record(bo, "$(P)HEATER:ONTIME_OK") {
   field(ONAM, "Heater ON for > $(HEATER_WAITTIME)s")
   info(archive, "VAL")
 }
-
 
 # Readback from m of Mmn part of Examine command return.
 # The Display is in Amps or Tesla.  The Magnet Sweep is fast or slow.
@@ -744,53 +482,17 @@ record(mbbi, "$(P)SWEEPMODE:PARAMS") {
   field(EIVL, "8")
   field(NIST, "Tesla Unaffected")
   field(NIVL, "9")
-  
+
   field(VAL, "3")
   field(PINI, "YES")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:SWEEPMODE:PARAMS")
   field(SDIS, "$(P)DISABLE")
-  
+
   info(archive, "VAL")
 }
 
-# To set the sweep and display mode - its a bit confusing as there
-# are duplicates, but we do not present this choice to the user.
-#
-record(mbbo, "$(P)SWEEPMODE:PARAMS:SP") {
-  field(DESC, "Set sweep and display mode.")
-  field(DTYP, "stream")
-  field(SCAN, "Passive")
-  field(ZRST, "Amps Fast")
-  field(ZRVL, "0")
-  field(ONST, "Tesla Fast")
-  field(ONVL, "1")
-  field(TWST, "Amps Fast")
-  field(TWVL, "2")
-  field(THST, "Tesla Fast")
-  field(THVL, "3")
-  field(FRST, "Amps Slow")
-  field(FRVL, "4")
-  field(FVST, "Tesla Slow")
-  field(FVVL, "5")
-  field(SXST, "Amps Slow")
-  field(SXVL, "6")
-  field(SVST, "Tesla Slow")
-  field(SVVL, "7")
-  field(EIST, "Amps Unaffected")
-  field(EIVL, "8")
-  field(NIST, "Tesla Unaffected")
-  field(NIVL, "9")
-  field(OUT,  "@OxInstIPS.protocol setMode $(PORT)")
-  
-  field(VAL, "3")
-  field(PINI, "YES")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:SWEEPMODE:PARAMS:SP")
-  field(SDIS, "$(P)DISABLE")
-}
 
 # Readback from n of Mmn part of Examine command return.
 # (Ignore the Pmn part of the Examine command return - no records for this.)
@@ -807,58 +509,15 @@ record(mbbi, "$(P)STS:SWEEPMODE:SWEEP") {
   field(TWVL, "2")
   field(THST, "Swping & Lmting")
   field(THVL, "3")
-  
+
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:STS:SWEEPMODE:SWEEP")
   field(SDIS, "$(P)DISABLE")
-  
+
   info(archive, "VAL")
 }
 
-# To capture bits of mismatching status protocol.
-# We do not do much with it at the moment.
-record(stringin, "$(P)DBG:STS:MISMATCH") {
-  field(DESC, "Mismatching protocol string.")
-  field(DTYP, "Soft Channel")
-  field(SCAN, "Passive")
-}
-
-# Diddle with the comms and reported resolution.
-# This is the nasty Q command which does not reply and whose
-# info does not get reported by the status command.
-# This may be needed after power cycle of IPS or if it has
-# been connected to the Oxford Instruments Windows Application
-# to allow EPICS to talk to it and to allow the resolution to be extended.
-# Are not supporting setting these things individually, just setting
-# what we want.
-record(ao, "$(P)SET:COMMSRES") {
-  field(DESC, "Set ext. resn, no LF")
-  field(DTYP, "stream")
-  field(SCAN, "Passive")
-  field(VAL, "6")
-  field(PINI, "YES")
-  field(OUT,  "@OxInstIPS.protocol setCommsResExtended $(PORT)")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:DONOTHING")
-  field(SDIS, "$(P)DISABLE")
-}
-
-# Diddle with the comms wait interval.
-# Probably will not need this, but put it here in case we do.  Will not put access to this
-# on the GUI.
-record(ao, "$(P)SET:WAITINTERVAL") {
-  field(DESC, "Set wait interval")
-  field(DTYP, "stream")
-  field(SCAN, "Passive")
-  field(EGU, "ms")
-  field(OUT,  "@OxInstIPS.protocol setWaitInterval $(PORT)")
-  
-  field(SIML, "$(P)SIM")
-  field(SIOL, "$(P)SIM:DONOTHING")
-  field(SDIS, "$(P)DISABLE")
-}
-
+# PERSISTENT pv is the magnet persistent mode in the cryomagnet statemachine.
 record(bo, "$(P)PERSISTENT") {
   field(DESC, "Set magnet to persistent")
   field(ZNAM, "NO")
@@ -870,15 +529,14 @@ record(bo, "$(P)PERSISTENT") {
 }
 
 # Play nicely with blocks/genie_python
-alias("$(P)PERSISTENT", "$(P)PERSISTENT:SP")  
-
+alias("$(P)PERSISTENT", "$(P)PERSISTENT:SP")
 
 record(mbbo, "$(P)STATEMACHINE") {
   field(DESC, "What the IOC is doing")
-  
+
   field(ZRVL, "0")
   field(ZRST, "Initial state")
-  
+
   field(ONVL, "1")
   field(ONST, "At field")
 
@@ -899,7 +557,7 @@ record(mbbo, "$(P)STATEMACHINE") {
 
   field(SVVL, "7")
   field(SVST, "Set PSU to zero")
-  
+
   info(archive, "VAL")
 }
 
@@ -927,31 +585,6 @@ alias("$(P)FIELD:SP", "$(P)FIELD:USER:SP")  # "User" setpoint is same as "normal
 ### Simulation record - Just to stop errors, doesn't do anything
 
 record(ao, "$(P)SIM:DONOTHING") {}
-
-record(mbbo, "$(P)SIM:SWEEPMODE:PARAMS") {
-  field(ZRST, "Amps Fast")
-  field(ZRVL, "0")
-  field(ONST, "Tesla Fast")
-  field(ONVL, "1")
-  field(TWST, "Amps Fast")
-  field(TWVL, "2")
-  field(THST, "Tesla Fast")
-  field(THVL, "3")
-  field(FRST, "Amps Slow")
-  field(FRVL, "4")
-  field(FVST, "Tesla Slow")
-  field(FVVL, "5")
-  field(SXST, "Amps Slow")
-  field(SXVL, "6")
-  field(SVST, "Tesla Slow")
-  field(SVVL, "7")
-  field(EIST, "Amps Unaffected")
-  field(EIVL, "8")
-  field(NIST, "Tesla Unaffected")
-  field(NIVL, "9")
-}
-
-alias("$(P)SIM:SWEEPMODE:PARAMS", "$(P)SIM:SPEEPMODE:PARAMS:SP")
 
 record(bo, "$(P)SIM:HEATER:STATUS") {
   field(ZNAM, "Off")
@@ -987,16 +620,8 @@ record(mbbo, "$(P)SIM:ACTIVITY") {
 }
 
 alias("$(P)SIM:ACTIVITY", "$(P)SIM:ACTIVITY:SP")
-
-record(mbbo, "$(P)SIM:CONTROL") {
-  field(ZRST, "Local & Locked")
-  field(ZRVL, "0")
-  field(ONST, "Remote & Locked")
-  field(ONVL, "1")
-  field(TWST, "Local & Unlocked")
-  field(TWVL, "2")
-  field(THST, "Remote & Unlocked")
-  field(THVL, "3")
+record(bo, "$(P)SIM:HEATER:STATUS") {
+  field(ZNAM, "Off")
+  field(ONAM, "On")
 }
 
-alias("$(P)SIM:CONTROL", "$(P)SIM:CONTROL:SP")

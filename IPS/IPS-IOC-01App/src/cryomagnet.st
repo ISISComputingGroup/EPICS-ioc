@@ -127,7 +127,7 @@ ss cryomagnet
       PVPUT(activity_sp, ACTIVITY_TO_SP);
       epicsThreadSleep(1.0);
       PVPUT(sweepmode_sp, SWEEP_MODE);
-    } 
+    }
 
     when(
       within_tolerance(field_setpoint_readback, magnet_field, field_tolerance) 

@@ -4,7 +4,8 @@
 ## everywhere it appears in this file
 
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
-errlogInit2(65536, 256)
+#errlogInit2(65536, 256)
+errlogInit2(65536, 1024)
 
 < envPaths
 
@@ -41,6 +42,10 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N") 
 $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
+# Uncomment these for StreamDevice debugging
+#asynSetTraceMask("L0", -1, 0x9)
+#asynSetTraceIOMask("L0", -1, 0x2)
+
 ## Load record instances
 
 ##ISIS## Load common DB records 
@@ -48,10 +53,34 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
 
 epicsEnvSet("P", "$(MYPVPREFIX)$(IOCNAME):")
 
-## Load our record instances
-dbLoadRecords("db/ips.db","PVPREFIX=$(MYPVPREFIX),P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),MAX_FIELD=$(MAX_FIELD=7.0),MAX_SWEEP_RATE=$(MAX_SWEEP_RATE=1.0),STABILITY_VOLTAGE=$(STABILITY_VOLTAGE=0.1),HEATER_WAITTIME=$(HEATER_WAITTIME=60),MANAGER_ASG=$(MANAGER_ASG=MANAGER)")
+## Useful for debugging - giving a pause to allow the user to attach a debugger
+## msgBox "Hello"
 
-##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
+# The STREAMPROTOCOL env var should be set to either "LEGACY" (default) or "SCPI"
+# Set the database and protocol file names accordingly
+stringiftest("STREAMPROTOCOL_SCPI", "$(STREAMPROTOCOL=)", 4, "SCPI")
+$(IFNOTSTREAMPROTOCOL_SCPI) epicsEnvSet "DBFILE" "ips_legacy.db"
+$(IFSTREAMPROTOCOL_SCPI) epicsEnvSet "DBFILE" "ips_scpi.db"
+$(IFNOTSTREAMPROTOCOL_SCPI) epicsEnvSet "PROTOCOLFILE" "OxInstIPS.protocol"
+$(IFSTREAMPROTOCOL_SCPI) epicsEnvSet "PROTOCOLFILE" "OxInstIPS_SCPI.protocol"
+
+### IJG Diagnostics during development
+#var streamError 1
+#var streamDebug 1
+#var streamDebugColored 1
+#var streamErrorDeadTime 30
+#var streamMsgTimeStamped 1
+#streamSetLogfile("streamdevice_logfile.txt")
+##################
+
+## Load our record instances
+dbLoadRecords("db/ips_common.db","PVPREFIX=$(MYPVPREFIX),P=$(P),PROTO=$(PROTOCOLFILE),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),MAX_FIELD=$(MAX_FIELD=7.0),MAX_SWEEP_RATE=$(MAX_SWEEP_RATE=1.0),STABILITY_VOLTAGE=$(STABILITY_VOLTAGE=0.1),HEATER_WAITTIME=$(HEATER_WAITTIME=60),MANAGER_ASG=$(MANAGER_ASG=MANAGER)")
+dbLoadRecords("db/$(DBFILE)","PVPREFIX=$(MYPVPREFIX),P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),MAX_FIELD=$(MAX_FIELD=7.0),MAX_SWEEP_RATE=$(MAX_SWEEP_RATE=1.0),STABILITY_VOLTAGE=$(STABILITY_VOLTAGE=0.1),HEATER_WAITTIME=$(HEATER_WAITTIME=60),MANAGER_ASG=$(MANAGER_ASG=MANAGER)")
+$(IFSTREAMPROTOCOL_SCPI) dbLoadRecords("db/ips_scpi_levels.db","PVPREFIX=$(MYPVPREFIX),P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),MIN_N2_FREQ=$(MIN_N2_FREQ=5000),MAX_N2_FREQ=$(MAX_N2_FREQ=65000),MANAGER_ASG=$(MANAGER_ASG=MANAGER)")
+$(IFSTREAMPROTOCOL_SCPI) dbLoadRecords("db/scpi_system_alarms.db","PVPREFIX=$(MYPVPREFIX),P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),BOARDID_MAG=$(BOARDID_MAG=MB1.T1),BOARDID_10TMAG=$(BOARDID_10TMAG=DB8.T1),BOARDID_PRESS=$(BOARDID_PRESS=DB5.P1),BOARDID_LEVEL=$(BOARDID_LEVEL=DB1.L1),MANAGER_ASG=$(MANAGER_ASG=MANAGER)")
+$(IFSTREAMPROTOCOL_SCPI) dbLoadRecords("db/scpi_system_alarms_discrete.db","PVPREFIX=$(MYPVPREFIX),P=$(P),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),MANAGER_ASG=$(MANAGER_ASG=MANAGER)")
+
+##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called
 < $(IOCSTARTUP)/preiocinit.cmd
 
 cd "${TOP}/iocBoot/${IOC}"
