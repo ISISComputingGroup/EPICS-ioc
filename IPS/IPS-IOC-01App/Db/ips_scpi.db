@@ -260,7 +260,7 @@ record(ai, "$(P)PRESSURE") {
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP,  "@OxInstIPS_SCPI.protocol getPressure $(PORT)")
-  field(EGU,  "mBar")
+  field(EGU,  "mbar")
   field(PREC, "4")
 
   field(SIML, "$(P)SIM")
