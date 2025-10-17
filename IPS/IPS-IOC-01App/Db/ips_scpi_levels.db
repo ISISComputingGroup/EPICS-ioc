@@ -9,7 +9,7 @@ record(ai, "$(P)LVL:HE:EMPTY:RES") {
   field(DTYP, "stream")
   field(SCAN, "5 second")
   field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeEmptyRes $(PORT)")
-  field(EGU,  "Ohm")
+  field(EGU,  "ohm")
   field(PREC, "2")
 
   field(SIML, "$(P)SIM")
@@ -23,7 +23,7 @@ record(ao, "$(P)LVL:HE:EMPTY:RES:SP") {
   field(DESC, "Set empty helium resistance value")
   field(DTYP, "stream")
   field(OUT,  "@OxInstIPS_SCPI.protocol setLevelHeEmptyRes $(PORT)")
-  field(EGU,  "Ohm")
+  field(EGU,  "ohm")
   field(PREC, "2")
 
   field(SIML, "$(P)SIM")
@@ -37,7 +37,7 @@ record(ai, "$(P)LVL:HE:FULL:RES") {
   field(DTYP, "stream")
   field(SCAN, "5 second")
   field(INP,  "@OxInstIPS_SCPI.protocol getLevelHeFullRes $(PORT)")
-  field(EGU,  "Ohm")
+  field(EGU,  "ohm")
   field(PREC, "2")
 
   field(SIML, "$(P)SIM")
@@ -51,7 +51,7 @@ record(ao, "$(P)LVL:HE:FULL:RES:SP") {
   field(DESC, "Set full helium resistance value")
   field(DTYP, "stream")
   field(OUT,  "@OxInstIPS_SCPI.protocol setLevelHeFullRes $(PORT)")
-  field(EGU,  "Ohm")
+  field(EGU,  "ohm")
   field(PREC, "2")
 
   field(SIML, "$(P)SIM")
