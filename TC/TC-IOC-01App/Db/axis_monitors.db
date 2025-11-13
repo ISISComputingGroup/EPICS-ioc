@@ -16,28 +16,10 @@ record(bi,"$(P)MOT:$(MOTOR_PV)_ON_STATUS")
   	field(OSV,  "NO_ALARM")
 }
 
-
 record(bo, "$(P)MOT:$(MOTOR_PV)_ON_CMD")
 {
     field(DESC, "Fwd to PLC BENABLE")
     field(OUT, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-BENABLE PP")
-}
-
-record(dfanout, "$(P)MOT:$(MOTOR_PV):VELO_SEND")
-{
-    field(DESC, "Forward device velo SP to mtr rec")
-    field(DOL, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FVELOCITY:RBV CP")
-    field(OUTA, "$(P)MOT:$(MOTOR_PV).VMAX")
-    field(OUTB, "$(P)MOT:$(MOTOR_PV).VELO")
-    field(OMSL, "closed_loop")
-}
-
-record(dfanout, "$(P)MOT:$(MOTOR_PV):JVEL_SEND")
-{
-    field(DESC, "Forward device jog velo SP to mtr rec")
-    field(DOL, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FJOGVELOCITY:RBV CP")
-    field(OMSL, "closed_loop")
-    field(OUTA, "$(P)MOT:$(MOTOR_PV).JVEL")
 }
 
 record(stringout, "$(P)MOT:$(MOTOR_PV):DESC_SEND")
