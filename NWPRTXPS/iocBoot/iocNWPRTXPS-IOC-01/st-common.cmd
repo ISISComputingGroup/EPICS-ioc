@@ -24,10 +24,13 @@ $(IFSIM) drvAsynSerialPortConfigure("$(XPS_PORT)", "NUL", 0, 1)
 $(IFSIM) motorSimCreateController("motorSim", $(NAXES))
 $(IFSIM) epicsEnvSet("SIMSFX","Sim")
 
-$(IFNOTSIM) XPSSetup(1)
+$(IFNOTSIM) XPSSetup(2)
 $(IFNOTSIM) XPSConfig(0, "$(IP_ADDRESS)", $(IP_PORT), $(NAXES), $(MOVING_POLL), $(IDLE_POLL))
-$(IFNOTSIM) drvAsynMotorConfigure("$(XPS_PORT)", "motorXPS", 0, 1)
-$(IFNOTSIM) XPSInterpose("$(XPS_PORT)")
+$(IFNOTSIM) XPSConfig(1, "$(IP_ADDRESS)", $(IP_PORT), $(NAXES), $(MOVING_POLL), $(IDLE_POLL))
+$(IFNOTSIM) drvAsynMotorConfigure("$(XPS_PORT)00", "motorXPS", 0, 1)
+$(IFNOTSIM) drvAsynMotorConfigure("$(XPS_PORT)01", "motorXPS", 1, 1)
+$(IFNOTSIM) XPSInterpose("$(XPS_PORT)00")
+$(IFNOTSIM) XPSInterpose("$(XPS_PORT)01")
 
 iocshCmdLoop("< st-axes.cmd", "MN=\$(I)", "I", 1, 4)
 
