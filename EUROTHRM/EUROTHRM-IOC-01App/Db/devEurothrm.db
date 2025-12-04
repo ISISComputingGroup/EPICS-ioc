@@ -989,6 +989,175 @@ record(calc, "$(P)TEMP:RANGE:OVER") {
     field(CALC, "B < A")
 }
 
+record(ai, "$(P)AUTOMAN") {
+    field(DESC, "Auto or Manual selected")
+    field(SCAN, "10 second")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),mA,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),273,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:AUTOMAN")
+    field(SDIS, "$(Q)DISABLE")
+    field(PREC, "3")
+}
+
+record(ao, "$(P)AUTOMAN:SP") {
+    field(DESC, "Auto or Manual Setpoint")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(OUT, "@eurotherm2k.proto write($(P),mA,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),273,1000)MODBUS_DATA")
+    
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:AUTOMAN:SP")
+    field(SDIS, "$(Q)DISABLE")
+    field(FLNK, "$(P)AUTOMAN.PROC")
+    field(EGU, "")
+}
+
+record(ai, "$(P)LOWRANGE") {
+    field(DESC, "Low range limit")
+    field(SCAN, "10 second")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),QC,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),11,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:LOWRANGE")
+    field(SDIS, "$(Q)DISABLE")
+    field(PREC, "3")
+}
+
+record(ai, "$(P)HIRANGE") {
+    field(DESC, "High range limit")
+    field(SCAN, "10 second")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),QB,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),12,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:HIRANGE")
+    field(SDIS, "$(Q)DISABLE")
+    field(PREC, "3")
+}
+
+record(ai, "$(P)WORKOUTP") {
+    field(DESC, "Working Output")
+    field(SCAN, "10 second")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),WO,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),4,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:WORKOUTP")
+    field(SDIS, "$(Q)DISABLE")
+    field(PREC, "3")
+}
+
+record(ai, "$(P)OUTLOWLM") {
+    field(DESC, "Low power limit")
+    field(SCAN, "10 second")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),LO,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),31,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:OUTLOWLM")
+    field(SDIS, "$(Q)DISABLE")
+    field(PREC, "3")
+}
+
+record(ai, "$(P)OUTPCOMP") {
+    field(DESC, "Proportional component of output")
+    field(SCAN, "10 second")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),xP,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),214,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:OUTPCOMP")
+    field(SDIS, "$(Q)DISABLE")
+    field(PREC, "3")
+}
+
+record(ai, "$(P)OUTICOMP") {
+    field(DESC, "Integral component of output")
+    field(SCAN, "10 second")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),xI,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),55,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:OUTICOMP")
+    field(SDIS, "$(Q)DISABLE")
+    field(PREC, "3")
+}
+
+record(ai, "$(P)OUTDCOMP") {
+    field(DESC, "Derivative component of output")
+    field(SCAN, "10 second")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),xD,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),55,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:OUTDCOMP")
+    field(SDIS, "$(Q)DISABLE")
+    field(PREC, "3")
+}
+
+record(ai, "$(P)SNBRKPST") {
+    field(DESC, "Sensor break status flag")
+    field(SCAN, "10 second")
+    
+    $(IFUSES_BISYNCH) field(DTYP, "stream")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),sb,$(GAD),$(LAD)) $(PORT)")
+    
+    $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
+    $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),258,1000)MODBUS_DATA")
+    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
+    
+    field(SIML, "$(Q)SIM")
+    field(SIOL, "$(P)SIM:SNBRKPST")
+    field(SDIS, "$(Q)DISABLE")
+    field(PREC, "3")
+}
+
 ### SIMULATION RECORDS ###
 
 record(ai, "$(P)SIM:MAX_OUTPUT")
