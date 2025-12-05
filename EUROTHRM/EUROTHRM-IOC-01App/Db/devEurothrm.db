@@ -1255,3 +1255,59 @@ record(ai, "$(P)SIM:TEMP:HIGHLIMIT")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
 }
+
+record(ai, "$(P)SIM:AUTOMAN")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:AUTOMAN","$(P)SIM:AUTOMAN:SP")
+
+record(ai, "$(P)SIM:LOWRANGE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:HIRANGE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:WORKOUTP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:OUTLOWLM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:OUTPCOMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:OUTICOMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:OUTDCOMP")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(ai, "$(P)SIM:SNBRKPST")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
