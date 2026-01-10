@@ -4,7 +4,9 @@
 <ioc_desc>Knauer K-6 Electric Valve Drive</ioc_desc>
 <ioc_details>Knauer Electric Valve Drive K-6</ioc_details>
 <macros>
+<macro name="COMMS_MODE" pattern="^(serial|ip)$" description="Choose serial or IP mode" defaultValue="serial" hasDefault="YES" />
 <xi:include href="../../../COMMON/PORT.xml" />
+<xi:include href="../../../COMMON/HOST.xml" />
 </macros>
 <pvsets>
 </pvsets>
