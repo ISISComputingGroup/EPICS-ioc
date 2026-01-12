@@ -1,0 +1,146 @@
+
+record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:STAT") {
+
+    field(DTYP, "OPCUA")
+    field(DESC, "$(INSTRUMENT) VAT Valve Status")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+
+    field(ZNAM, "Open")
+    field(ZSV,  "NO_ALARM")
+
+    field(ONAM, "Closed")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "10 VAL")
+}
+
+
+record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:OPEN:DEMAND") {
+
+    field(DTYP, "OPCUA")
+    field(DESC, "$(INSTRUMENT) Open VAT Valve Demand")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+
+    field(ZNAM, "NOT Open")
+    field(ZSV,  "NO_ALARM")
+
+    field(ONAM, "Open")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "10 VAL")
+}
+
+
+record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:VACUUM:STAT") {
+
+    field(DTYP, "OPCUA")
+    field(DESC, "$(INSTRUMENT) VAT Valve Vacuum Status")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+
+    field(ZNAM, "Bad")
+    field(ZSV,  "MAJOR")
+
+    field(ONAM, "Good")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "10 VAL")
+}
+
+
+record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:PSU:OVERRIDE") {
+
+    field(DTYP, "OPCUA")
+    field(DESC, "$(INSTRUMENT) VAT Valve PSU Override")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+
+    field(ZNAM, "Normal")
+    field(ZSV,  "NO_ALARM")
+
+    field(ONAM, "Overridden")
+    field(OSV,  "MAJOR")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "10 VAL")
+}
+
+
+record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:SIS_KEY:STAT") {
+
+    field(DTYP, "OPCUA")
+    field(DESC, "$(INSTRUMENT) VAT Valve SIS Key Status")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+
+    field(ZNAM, "NOT Trapped")
+    field(ZSV,  "MAJOR")
+
+    field(ONAM, "Trapped")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "10 VAL")
+}
+
+
+record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:LOWER_BLOCKER_NCPB:STAT") {
+
+    field(DTYP, "OPCUA")
+    field(DESC, "$(INSTRUMENT) VAT Valve Lower Blocker NCPB Status")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+
+    field(ZNAM, "Pressed")
+    field(ZSV,  "NO_ALARM")
+
+    field(ONAM, "NOT Pressed")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "10 VAL")
+}
+
+
+record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:CLOSE:DEMAND") {
+
+    field(DTYP, "OPCUA")
+    field(DESC, "$(INSTRUMENT) Close VAT Valve Demand")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+
+    field(ZNAM, "Open")
+    field(ZSV,  "NO_ALARM")
+
+    field(ONAM, "Close")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "10 VAL")
+}

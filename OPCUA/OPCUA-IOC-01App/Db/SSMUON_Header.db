@@ -1,0 +1,9 @@
+# PLC records:
+
+record(bi, "$(P)PLC:HEARTBEAT") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=4;s=OPC_PLC_STATUS.OPC_PLC_HEALTHY_STATUS")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}

@@ -14,6 +14,9 @@ include $(TOP)/configure/CONFIG
 DB += MAPS_vacuum.db
 DB += MAPS_vacuum_header.db
 
+DB += SSMUON_Header.db
+DB += SSMUON.db
+
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_template = <templatename>

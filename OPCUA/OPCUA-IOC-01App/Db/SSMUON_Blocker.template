@@ -1,0 +1,104 @@
+
+record (bi, "$(P):$(INSTRUMENT):BLOCKER:1:STAT") {
+
+    field(DTYP, "OPCUA")
+    field(DESC, "$(INSTRUMENT) Blocker Status (limit switch)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+
+    field(ZNAM, "NOT Lowered")
+    field(ZSV,  "NO_ALARM")
+
+    field(ONAM, "Lowered")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "10 VAL")
+}
+
+
+record (bi, "$(P):$(INSTRUMENT):BLOCKER:2:STAT") {
+
+    field(DTYP, "OPCUA")
+    field(DESC, "$(INSTRUMENT) Blocker Status (interlocks box)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+
+    field(ZNAM, "NOT Lowered")
+    field(ZSV,  "NO_ALARM")
+
+    field(ONAM, "Lowered")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "10 VAL")
+}
+
+
+record (bi, "$(P):$(INSTRUMENT):BLOCKER:RAISE:DEMAND") {
+
+    field(DTYP, "OPCUA")
+    field(DESC, "$(INSTRUMENT) Raise Blocker Demand")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+
+    field(ZNAM, "NOT Raise")
+    field(ZSV,  "NO_ALARM")
+
+    field(ONAM, "Raise")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "10 VAL")
+}
+
+
+record (bi, "$(P):$(INSTRUMENT):BLOCKER:SIS_KEY:STAT") {
+
+    field(DTYP, "OPCUA")
+    field(DESC, "$(INSTRUMENT) Blocker SIS Key Status")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+
+    field(ZNAM, "NOT Trapped")
+    field(ZSV,  "MAJOR")
+
+    field(ONAM, "Trapped")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "10 VAL")
+}
+
+
+record (bi, "$(P):$(INSTRUMENT):BLOCKER:LOWER_BLOCKER_NCPB:STAT") {
+
+    field(DTYP, "OPCUA")
+    field(DESC, "$(INSTRUMENT) Blocker Lower Blocker NCPB Status")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+
+    field(ZNAM, "Pressed")
+    field(ZSV,  "NO_ALARM")
+
+    field(ONAM, "NOT Pressed")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "MEDIUM")
+    info(ARCHIVE,  "10 VAL")
+}
