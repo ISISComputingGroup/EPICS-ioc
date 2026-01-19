@@ -1,5 +1,5 @@
 
-record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:STAT") {
+record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) VAT Valve Status")
@@ -20,7 +20,7 @@ record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:STAT") {
 }
 
 
-record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:OPEN:DEMAND") {
+record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:OPEN:DEMAND") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Open VAT Valve Demand")
@@ -41,7 +41,7 @@ record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:OPEN:DEMAND") {
 }
 
 
-record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:VACUUM:STAT") {
+record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:VACUUM:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) VAT Valve Vacuum Status")
@@ -62,7 +62,7 @@ record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:VACUUM:STAT") {
 }
 
 
-record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:PSU:OVERRIDE") {
+record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:PSU:OVERRIDE") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) VAT Valve PSU Override")
@@ -83,7 +83,7 @@ record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:PSU:OVERRIDE") {
 }
 
 
-record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:SIS_KEY:STAT") {
+record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:SIS_KEY:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) VAT Valve SIS Key Status")
@@ -104,7 +104,7 @@ record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:SIS_KEY:STAT") {
 }
 
 
-record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:LOWER_BLOCKER_NCPB:STAT") {
+record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:LOWER_BLOCKER_NCPB:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) VAT Valve Lower Blocker NCPB Status")
@@ -125,7 +125,7 @@ record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:LOWER_BLOCKER_NCPB:STAT") {
 }
 
 
-record (bi, "$(P):$(INSTRUMENT):VAT_VALVE:CLOSE:DEMAND") {
+record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:CLOSE:DEMAND") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Close VAT Valve Demand")

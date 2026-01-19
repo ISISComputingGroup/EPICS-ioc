@@ -1,5 +1,5 @@
 
-record (bi, "$(P):$(INSTRUMENT):BLOCKER:1:STAT") {
+record (bi, "$(P)$(INSTRUMENT):BLOCKER:1:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Blocker Status (limit switch)")
@@ -20,7 +20,7 @@ record (bi, "$(P):$(INSTRUMENT):BLOCKER:1:STAT") {
 }
 
 
-record (bi, "$(P):$(INSTRUMENT):BLOCKER:2:STAT") {
+record (bi, "$(P)$(INSTRUMENT):BLOCKER:2:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Blocker Status (interlocks box)")
@@ -41,7 +41,7 @@ record (bi, "$(P):$(INSTRUMENT):BLOCKER:2:STAT") {
 }
 
 
-record (bi, "$(P):$(INSTRUMENT):BLOCKER:RAISE:DEMAND") {
+record (bi, "$(P)$(INSTRUMENT):BLOCKER:RAISE:DEMAND") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Raise Blocker Demand")
@@ -62,7 +62,7 @@ record (bi, "$(P):$(INSTRUMENT):BLOCKER:RAISE:DEMAND") {
 }
 
 
-record (bi, "$(P):$(INSTRUMENT):BLOCKER:SIS_KEY:STAT") {
+record (bi, "$(P)$(INSTRUMENT):BLOCKER:SIS_KEY:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Blocker SIS Key Status")
@@ -83,7 +83,7 @@ record (bi, "$(P):$(INSTRUMENT):BLOCKER:SIS_KEY:STAT") {
 }
 
 
-record (bi, "$(P):$(INSTRUMENT):BLOCKER:LOWER_BLOCKER_NCPB:STAT") {
+record (bi, "$(P)$(INSTRUMENT):BLOCKER:LOWER_BLOCKER_NCPB:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Blocker Lower Blocker NCPB Status")

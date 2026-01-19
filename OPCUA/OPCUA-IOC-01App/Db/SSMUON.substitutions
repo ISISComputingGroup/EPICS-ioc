@@ -2,24 +2,24 @@
 
 file "$(TOP)/OPCUA-IOC-01App/Db/SSMUON_VAT_Valve.template" {
 	pattern{ P, INSTRUMENT, SUBS, DEBUG, NAME_PREFIX, NAME_SUFFIX}
-	{ "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_HIFI_VAT_VALVE.VAT_VALVE_STATUS" }
-    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_HIFI_VAT_VALVE.OPEN_VAT_VALVE_DEMAND" }
-    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_HIFI_VAT_VALVE.VAT_VACUUM_OK" }
-    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_HIFI_VAT_VALVE.PSU_OVERRIDE" }
-    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_HIFI_VAT_VALVE.SIS_KEY_TRAPPED" }
-    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_HIFI_VAT_VALVE.LOWER_BLOCKER_NCPB" }
-    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_HIFI_VAT_VALVE.CLOSE_VAT_VALVE" }
+	{ "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_VAT_VALVE.", "VAT_VALVE_STATUS" }
+    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_VAT_VALVE.", "OPEN_VAT_VALVE_DEMAND" }
+    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_VAT_VALVE.", "VAT_VACUUM_OK" }
+    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_VAT_VALVE.", "PSU_OVERRIDE" }
+    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_VAT_VALVE.", "SIS_KEY_TRAPPED" }
+    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_VAT_VALVE.", "LOWER_BLOCKER_NCPB" }
+    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_VAT_VALVE.", "CLOSE_VAT_VALVE" }
 }
 
 ## HIFI Blocker
 
 file "$(TOP)/OPCUA-IOC-01App/Db/SSMUON_Blocker.template" {
 	pattern{ P, INSTRUMENT, SUBS, DEBUG, NAME_PREFIX, NAME_SUFFIX}
-	{ "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_HIFI_BLOCKER.BLOCKER_STATUS_1" }
-    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_HIFI_BLOCKER.BLOCKER_STATUS_2" }
-    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_HIFI_BLOCKER.RAISE_BLOCKER_DEMAND" }
-    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_HIFI_BLOCKER.SIS_KEY_TRAPPED" }
-    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_HIFI_BLOCKER.LOWER_BLOCKER_NCPB" }
+	{ "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_BLOCKER.", "BLOCKER_STATUS_1" }
+    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_BLOCKER.", "BLOCKER_STATUS_2" }
+    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_BLOCKER.", "RAISE_BLOCKER_DEMAND" }
+    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_BLOCKER.", "SIS_KEY_TRAPPED" }
+    { "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_BLOCKER.", "LOWER_BLOCKER_NCPB" }
 }
 
 
@@ -27,24 +27,24 @@ file "$(TOP)/OPCUA-IOC-01App/Db/SSMUON_Blocker.template" {
 
 file "$(TOP)/OPCUA-IOC-01App/Db/SSMUON_VAT_Valve.template" {
 	pattern{ P, INSTRUMENT, SUBS, DEBUG, NAME_PREFIX, NAME_SUFFIX}
-	{ "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_MUSR_VAT_VALVE.VAT_VALVE_STATUS" }
-    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_MUSR_VAT_VALVE.OPEN_VAT_VALVE_DEMAND" }
-    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_MUSR_VAT_VALVE.VAT_VACUUM_OK" }
-    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_MUSR_VAT_VALVE.PSU_OVERRIDE" }
-    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_MUSR_VAT_VALVE.SIS_KEY_TRAPPED" }
-    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_MUSR_VAT_VALVE.LOWER_BLOCKER_NCPB" }
-    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_MUSR_VAT_VALVE.CLOSE_VAT_VALVE" }
+	{ "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_VAT_VALVE.", "VAT_VALVE_STATUS" }
+    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_VAT_VALVE.", "OPEN_VAT_VALVE_DEMAND" }
+    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_VAT_VALVE.", "VAT_VACUUM_OK" }
+    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_VAT_VALVE.", "PSU_OVERRIDE" }
+    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_VAT_VALVE.", "SIS_KEY_TRAPPED" }
+    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_VAT_VALVE.", "LOWER_BLOCKER_NCPB" }
+    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_VAT_VALVE.", "CLOSE_VAT_VALVE" }
 }
 
 ## MUSR Blocker
 
 file "$(TOP)/OPCUA-IOC-01App/Db/SSMUON_Blocker.template" {
 	pattern{ P, INSTRUMENT, SUBS, DEBUG, NAME_PREFIX, NAME_SUFFIX}
-	{ "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_MUSR_BLOCKER.BLOCKER_STATUS_1" }
-    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_MUSR_BLOCKER.BLOCKER_STATUS_2" }
-    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_MUSR_BLOCKER.RAISE_BLOCKER_DEMAND" }
-    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_MUSR_BLOCKER.SIS_KEY_TRAPPED" }
-    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_MUSR_BLOCKER.LOWER_BLOCKER_NCPB" }
+	{ "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_BLOCKER"., "BLOCKER_STATUS_1" }
+    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_BLOCKER"., "BLOCKER_STATUS_2" }
+    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_BLOCKER"., "RAISE_BLOCKER_DEMAND" }
+    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_BLOCKER"., "SIS_KEY_TRAPPED" }
+    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_BLOCKER"., "LOWER_BLOCKER_NCPB" }
 }
 
 
@@ -52,22 +52,22 @@ file "$(TOP)/OPCUA-IOC-01App/Db/SSMUON_Blocker.template" {
 
 file "$(TOP)/OPCUA-IOC-01App/Db/SSMUON_VAT_Valve.template" {
 	pattern{ P, INSTRUMENT, SUBS, DEBUG, NAME_PREFIX, NAME_SUFFIX}
-	{ "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_EMU_VAT_VALVE.VAT_VALVE_STATUS" }
-    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_EMU_VAT_VALVE.OPEN_VAT_VALVE_DEMAND" }
-    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_EMU_VAT_VALVE.VAT_VACUUM_OK" }
-    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_EMU_VAT_VALVE.PSU_OVERRIDE" }
-    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_EMU_VAT_VALVE.SIS_KEY_TRAPPED" }
-    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_EMU_VAT_VALVE.LOWER_BLOCKER_NCPB" }
-    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_EMU_VAT_VALVE.CLOSE_VAT_VALVE" }
+	{ "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_VAT_VALVE.", "VAT_VALVE_STATUS" }
+    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_VAT_VALVE.", "OPEN_VAT_VALVE_DEMAND" }
+    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_VAT_VALVE.", "VAT_VACUUM_OK" }
+    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_VAT_VALVE.", "PSU_OVERRIDE" }
+    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_VAT_VALVE.", "SIS_KEY_TRAPPED" }
+    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_VAT_VALVE.", "LOWER_BLOCKER_NCPB" }
+    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_VAT_VALVE.", "CLOSE_VAT_VALVE" }
 }
 
 ## EMU Blocker
 
 file "$(TOP)/OPCUA-IOC-01App/Db/SSMUON_Blocker.template" {
 	pattern{ P, INSTRUMENT, SUBS, DEBUG, NAME_PREFIX, NAME_SUFFIX}
-	{ "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_EMU_BLOCKER.BLOCKER_STATUS_1" }
-    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_EMU_BLOCKER.BLOCKER_STATUS_2" }
-    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_EMU_BLOCKER.RAISE_BLOCKER_DEMAND" }
-    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_EMU_BLOCKER.SIS_KEY_TRAPPED" }
-    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "\$(NAME_PREFIX)", "OPC_EMU_BLOCKER.LOWER_BLOCKER_NCPB" }
+	{ "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_BLOCKER.", "BLOCKER_STATUS_1" }
+    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_BLOCKER.", "BLOCKER_STATUS_2" }
+    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_BLOCKER.", "RAISE_BLOCKER_DEMAND" }
+    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_BLOCKER.", "SIS_KEY_TRAPPED" }
+    { "\$(P)", "EMU", "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_BLOCKER.", "LOWER_BLOCKER_NCPB" }
 }
