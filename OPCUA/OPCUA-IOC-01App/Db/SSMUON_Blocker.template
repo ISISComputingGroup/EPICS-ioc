@@ -3,7 +3,7 @@ record (bi, "$(P)$(INSTRUMENT):BLOCKER:1:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Blocker Status (limit switch)")
-    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX).BLOCKER_STATUS_1")
 
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")
@@ -24,7 +24,7 @@ record (bi, "$(P)$(INSTRUMENT):BLOCKER:2:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Blocker Status (interlocks box)")
-    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX).BLOCKER_STATUS_2")
 
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")
@@ -45,7 +45,7 @@ record (bi, "$(P)$(INSTRUMENT):BLOCKER:RAISE:DEMAND") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Raise Blocker Demand")
-    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX).RAISE_BLOCKER_DEMAND")
 
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")
@@ -66,7 +66,7 @@ record (bi, "$(P)$(INSTRUMENT):BLOCKER:SIS_KEY:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Blocker SIS Key Status")
-    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX).SIS_KEY_TRAPPED")
 
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")
@@ -87,7 +87,7 @@ record (bi, "$(P)$(INSTRUMENT):BLOCKER:LOWER_BLOCKER_NCPB:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Blocker Lower Blocker NCPB Status")
-    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX).LOWER_BLOCKER_NCPB")
 
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")

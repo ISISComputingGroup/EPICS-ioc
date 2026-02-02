@@ -3,7 +3,7 @@ record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) VAT Valve Status")
-    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX).VAT_VALVE_STATUS")
 
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")
@@ -24,7 +24,7 @@ record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:OPEN:DEMAND") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Open VAT Valve Demand")
-    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX).OPEN_VAT_VALVE_DEMAND")
 
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")
@@ -45,7 +45,7 @@ record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:VACUUM:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) VAT Valve Vacuum Status")
-    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX).VAT_VACUUM_OK")
 
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")
@@ -66,7 +66,7 @@ record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:PSU:OVERRIDE") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) VAT Valve PSU Override")
-    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX).PSU_OVERRIDE")
 
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")
@@ -87,7 +87,7 @@ record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:SIS_KEY:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) VAT Valve SIS Key Status")
-    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX).SIS_KEY_TRAPPED")
 
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")
@@ -108,7 +108,7 @@ record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:LOWER_BLOCKER_NCPB:STAT") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) VAT Valve Lower Blocker NCPB Status")
-    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX).LOWER_BLOCKER_NCPB")
 
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")
@@ -129,7 +129,7 @@ record (bi, "$(P)$(INSTRUMENT):VAT_VALVE:CLOSE:DEMAND") {
 
     field(DTYP, "OPCUA")
     field(DESC, "$(INSTRUMENT) Close VAT Valve Demand")
-    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+    field(INP,  "@$(SUBS) ns=4;s=$(NAME_PREFIX).CLOSE_VAT_VALVE")
 
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")
