@@ -5,6 +5,11 @@
 <ioc_details></ioc_details>
 <macros>
 <xi:include href="../../../COMMON/PORT.xml" />
+<macro name="ADDR1" pattern="^[0-9]*$" description="Address of laser 1"  hasDefault="YES" defaultValue="" />
+<macro name="ADDR2" pattern="^[0-9]*$" description="Address of laser 2"  hasDefault="YES" defaultValue="" />
+<macro name="ADDR3" pattern="^[0-9]*$" description="Address of laser 3"  hasDefault="YES" defaultValue="" />
+<macro name="ADDR4" pattern="^[0-9]*$" description="Address of laser 4"  hasDefault="YES" defaultValue="" />
+<macro name="ADDR5" pattern="^[0-9]*$" description="Address of laser 5"  hasDefault="YES" defaultValue="" />
 </macros>
 <pvsets>
 </pvsets>

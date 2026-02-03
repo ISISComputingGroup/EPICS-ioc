@@ -32,9 +32,31 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(CHTOBISR)/db/chtobisr.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
-dbLoadRecords("$(CHTOBISR)/db/chtobisr_status.db","P=$(MYPVPREFIX)$(IOCNAME):")
-dbLoadRecords("$(CHTOBISR)/db/chtobisr_faults.db","P=$(MYPVPREFIX)$(IOCNAME):")
+stringiftest("ADDR1", "$(ADDR1=)")
+stringiftest("ADDR2", "$(ADDR2=)")
+stringiftest("ADDR3", "$(ADDR3=)")
+stringiftest("ADDR4", "$(ADDR4=)")
+stringiftest("ADDR5", "$(ADDR5=)")
+
+$(IFADDR1) dbLoadRecords("$(CHTOBISR)/db/chtobisr.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):1:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ADDR=$(ADDR1=)")
+$(IFADDR1) dbLoadRecords("$(CHTOBISR)/db/chtobisr_status.db","P=$(MYPVPREFIX)$(IOCNAME):1:")
+$(IFADDR1) dbLoadRecords("$(CHTOBISR)/db/chtobisr_faults.db","P=$(MYPVPREFIX)$(IOCNAME):1:")
+
+$(IFADDR2) dbLoadRecords("$(CHTOBISR)/db/chtobisr.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):2:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ADDR=$(ADDR2=)")
+$(IFADDR2) dbLoadRecords("$(CHTOBISR)/db/chtobisr_status.db","P=$(MYPVPREFIX)$(IOCNAME):2:")
+$(IFADDR2) dbLoadRecords("$(CHTOBISR)/db/chtobisr_faults.db","P=$(MYPVPREFIX)$(IOCNAME):2:")
+
+$(IFADDR3) dbLoadRecords("$(CHTOBISR)/db/chtobisr.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):3:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ADDR=$(ADDR3=)")
+$(IFADDR3) dbLoadRecords("$(CHTOBISR)/db/chtobisr_status.db","P=$(MYPVPREFIX)$(IOCNAME):3:")
+$(IFADDR3) dbLoadRecords("$(CHTOBISR)/db/chtobisr_faults.db","P=$(MYPVPREFIX)$(IOCNAME):3:")
+
+$(IFADDR4) dbLoadRecords("$(CHTOBISR)/db/chtobisr.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):4:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ADDR=$(ADDR4=)")
+$(IFADDR4) dbLoadRecords("$(CHTOBISR)/db/chtobisr_status.db","P=$(MYPVPREFIX)$(IOCNAME):4:")
+$(IFADDR4) dbLoadRecords("$(CHTOBISR)/db/chtobisr_faults.db","P=$(MYPVPREFIX)$(IOCNAME):4:")
+
+$(IFADDR5) dbLoadRecords("$(CHTOBISR)/db/chtobisr.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX)$(IOCNAME):5:,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE),ADDR=$(ADDR5=)")
+$(IFADDR5) dbLoadRecords("$(CHTOBISR)/db/chtobisr_status.db","P=$(MYPVPREFIX)$(IOCNAME):5:")
+$(IFADDR5) dbLoadRecords("$(CHTOBISR)/db/chtobisr_faults.db","P=$(MYPVPREFIX)$(IOCNAME):5:")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
