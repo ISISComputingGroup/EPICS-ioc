@@ -1,4 +1,4 @@
-file "$(TOP)/OPCUA-IOC-01App/Db/MAPS_vacuum.template" {
+file "$(TOP)/OPCUA-IOC-01App/Db/MAPS_vacuum_other.template" {
 	pattern{ P, R, SUBS, DEBUG, RECORD_TYPE, PV_NAME, NAME_PREFIX, NAME_SUFFIX}
 
 #   General records:
@@ -7,8 +7,8 @@ file "$(TOP)/OPCUA-IOC-01App/Db/MAPS_vacuum.template" {
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "ERROR",         "\$(NAME_PREFIX)", "Statuses.TPG_Error" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "bi",       "HEALTHY",       "\$(NAME_PREFIX)", "Statuses.TPG_Healthy" }
 
+
 #   Channel 1 / Sensor A1:
-    { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "ai",       "PRESSURE_A1",          "\$(NAME_PREFIX)", "Sensor_A1.Pressure" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "MEASURED_VALUE_A1",    "\$(NAME_PREFIX)", "Sensor_A1.Measured_Value_Status" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "MEASURING_CIRCUIT_A1", "\$(NAME_PREFIX)", "Sensor_A1.Measuring_Circuit_Status" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "FILTER_TIME_CONST_A1", "\$(NAME_PREFIX)", "Sensor_A1.Filter_Time_Constant" }
@@ -21,7 +21,6 @@ file "$(TOP)/OPCUA-IOC-01App/Db/MAPS_vacuum.template" {
 
     
 #   Channel 2 / Sensor A2:
-    { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "ai",       "PRESSURE_A2",          "\$(NAME_PREFIX)", "Sensor_A2.Pressure" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "MEASURED_VALUE_A2",    "\$(NAME_PREFIX)", "Sensor_A2.Measured_Value_Status" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "MEASURING_CIRCUIT_A2", "\$(NAME_PREFIX)", "Sensor_A2.Measuring_Circuit_Status" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "FILTER_TIME_CONST_A2", "\$(NAME_PREFIX)", "Sensor_A2.Filter_Time_Constant" }
@@ -34,7 +33,6 @@ file "$(TOP)/OPCUA-IOC-01App/Db/MAPS_vacuum.template" {
 
 
 #   Channel 3 / Sensor B1:
-    { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "ai",       "PRESSURE_B1",          "\$(NAME_PREFIX)", "Sensor_B1.Pressure" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "MEASURED_VALUE_B1",    "\$(NAME_PREFIX)", "Sensor_B1.Measured_Value_Status" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "MEASURING_CIRCUIT_B1", "\$(NAME_PREFIX)", "Sensor_B1.Measuring_Circuit_Status" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "FILTER_TIME_CONST_B1", "\$(NAME_PREFIX)", "Sensor_B1.Filter_Time_Constant" }
@@ -47,7 +45,6 @@ file "$(TOP)/OPCUA-IOC-01App/Db/MAPS_vacuum.template" {
 
 
 #   Channel/Sensor 4:
-    { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "ai",       "PRESSURE_B2",          "\$(NAME_PREFIX)", "Sensor_B2.Pressure" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "MEASURED_VALUE_B2",    "\$(NAME_PREFIX)", "Sensor_B2.Measured_Value_Status" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "MEASURING_CIRCUIT_B2", "\$(NAME_PREFIX)", "Sensor_B2.Measuring_Circuit_Status" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "FILTER_TIME_CONST_B2", "\$(NAME_PREFIX)", "Sensor_B2.Filter_Time_Constant" }
@@ -57,4 +54,16 @@ file "$(TOP)/OPCUA-IOC-01App/Db/MAPS_vacuum.template" {
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "ai",       "THRESHOLD_HI_B2",       "\$(NAME_PREFIX)", "Relay4.Upper_Threshold" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "SWITCH_FUNC_ASSIGN_B2", "\$(NAME_PREFIX)", "Relay4.Switching_Function_Assignment" }
     { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "stringin", "SWITCH_FUNC_STATUS_B2", "\$(NAME_PREFIX)", "Relay4.Switching_Function_Status" }
+}
+
+
+# Pressure PVs additionally require 'PREC' and 'autosave' fields
+file "$(TOP)/OPCUA-IOC-01App/Db/MAPS_vacuum_pressures.template" {
+	pattern{ P, R, SUBS, DEBUG, RECORD_TYPE, PV_NAME, NAME_PREFIX, NAME_SUFFIX}
+
+#   Channel / Sensor:
+    { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "ai",       "PRESSURE_A1",           "\$(NAME_PREFIX)", "Sensor_A1.Pressure" }
+    { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "ai",       "PRESSURE_A2",           "\$(NAME_PREFIX)", "Sensor_A2.Pressure" }
+    { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "ai",       "PRESSURE_B1",           "\$(NAME_PREFIX)", "Sensor_B1.Pressure" }
+    { "\$(P)", "\$(R)", "\$(SUBS)", "\$(DEBUG=0)", "ai",       "PRESSURE_B2",           "\$(NAME_PREFIX)", "Sensor_B2.Pressure" }
 }
