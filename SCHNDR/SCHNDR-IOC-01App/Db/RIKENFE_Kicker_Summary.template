@@ -74,3 +74,38 @@ record (mbbi, "$(P)$(TARGET):SUMMARY:ENUM") {
     field(FRSV, "MAJOR")
 }
 
+record(calc, "$(P)$(TARGET):OVERALL:PULSEMD"){
+    field(DESC, "$(TARGET) Pulse Mode")
+    field(INPD,  "$(P)$(PV1):PSU_HV_ON:STAT CP MSS")
+    field(INPE,  "$(P)$(PV2):PSU_HV_ON:STAT CP MSS")
+    field(INPF,  "$(P)$(PV3):PSU_HV_ON:STAT CP MSS")
+    field(INPG,  "$(P)$(PV4):PSU_HV_ON:STAT CP MSS")
+    field(CALC,   "((D==2)||(E==2)||(F==2)||(G==2))?1:(((D==1)&&(E==1)&&(F==1)&&(G==1))?2:0)")
+	# 1 Single Pulse Mode --> At least one kicker is ON, 
+	# 2 Double Pulse Mode --> All kickers are OFF
+	# 0 otherwise 
+	field(FLNK, "$(P)$(TARGET):OVERALL:PULSEMD:STATE")
+}
+
+record(mbbi, "$(P)$(TARGET):OVERALL:PULSEMD:STATE"){
+    field(DESC, "Kickers Pulse Mode (String)")
+    field(INP, "$(P)$(TARGET):OVERALL:PULSEMD.VAL CP")
+	field(ZRVL, "0")
+    field(ZRST, "Comms Loss")
+    field(ONVL, "1")
+    field(ONST, "Single Pulse Mode")
+    field(TWVL, "2")
+    field(TWST, "Double Pulse Mode")
+}
+
+record(ao,"$(P)$(TARGET):T0:OUT") {
+    field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+	field(PREC, "3")
+}
+
+record(ao,"$(P)$(TARGET):TGOOD:OUT") {
+    field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+	field(PREC, "3")
+}
