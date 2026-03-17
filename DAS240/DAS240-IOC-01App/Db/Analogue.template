@@ -1,0 +1,6 @@
+record(ai, "$(P)C$(C):A$(N)") {
+    field(DTYP,"asynFloat64")
+    field(INP,"@asyn($(PORT) $(OFFSET))FLOAT32_BE")
+    field(PREC,"2")
+    field(SCAN,"I/O Intr")
+}

@@ -1,0 +1,5 @@
+record(bi, "$(P)DI$(N)") {
+    field(DTYP,"asynInt32")
+    field(INP,"@asyn(LOGD $(OFFSET))UINT16")
+    field(SCAN,"I/O Intr")
+}
