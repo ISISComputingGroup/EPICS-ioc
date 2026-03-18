@@ -16,15 +16,15 @@ $(IFNOTRECSIM) modbusInterposeConfig("$(DEVICE)",0,5000,0,0)
 ## Analog data: up to 200 acquisition data channels
 ## data channels are added in blocks of 20, so just do 20 channels for now (which is 40 16 bit words for 32bit float)
 ## modbus function code 4 for read input register
-drvModbusAsynConfigure("ACQ1", "$(DEVICE)", 0, 4, 8, 40, "FLOAT32_BE", 1000, "DAS240")
-$(IFACQ2=#) drvModbusAsynConfigure("ACQ2", "$(DEVICE)", 0, 4, 48, 40, "FLOAT32_BE", 1000, "DAS240")
+drvModbusAsynConfigure("ACQ1", "$(DEVICE)", 0, 4, 8, 40, 0, 1000, "DAS240")
+$(IFACQ2=#) drvModbusAsynConfigure("ACQ2", "$(DEVICE)", 0, 4, 48, 40, 0, 1000, "DAS240")
 
 ## 4 logical function channels
 ## modbus function code 4 for read input register
-drvModbusAsynConfigure("LOGF", "$(DEVICE)", 0, 4, 408, 8, "FLOAT32_BE", 1000, "DAS240")
+drvModbusAsynConfigure("LOGF", "$(DEVICE)", 0, 4, 408, 8, 0, 1000, "DAS240")
 
 # Logical data: modbus function code 2 for read discrete inputs, 12 channels
-drvModbusAsynConfigure("LOGD", "$(DEVICE)", 0, 2, 8, 12, "UINT16", 1000, "DAS240")
+drvModbusAsynConfigure("LOGD", "$(DEVICE)", 0, 2, 8, 12, 0, 1000, "DAS240")
 
 ## Load record instances
 

@@ -1,6 +1,7 @@
 record(ai, "$(P)C$(C):A$(N)") {
     field(DTYP,"asynFloat64")
+    field(DESC, "Analogue Input $(N) on card $(C)")
     field(INP,"@asyn($(PORT) $(OFFSET))FLOAT32_BE")
-    field(PREC,"2")
+    field(PREC,"3")
     field(SCAN,"I/O Intr")
 }
