@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 
 DB += MAPS_vacuum.db
 DB += MAPS_vacuum_header.db
+DB += TC.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
