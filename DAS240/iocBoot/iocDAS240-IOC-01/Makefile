@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2014 Argonne National Laboratory
+#
+# SPDX-License-Identifier: EPICS
+
+TOP = ../..
+include $(TOP)/configure/CONFIG
+#ARCH = windows-x64-debug
+ARCH = $(EPICS_HOST_ARCH)
+TARGETS = envPaths dllPath.bat relPaths.sh runIOC.bat runIOC.sh
+include $(TOP)/configure/RULES.ioc

@@ -94,6 +94,7 @@ IOCDIRS += ZFHIFI
 IOCDIRS += AMBRHEAT
 IOCDIRS += OPCUA
 IOCDIRS += ESP300
+IOCDIRS += DAS240
 
 
 ## check on missing directories
