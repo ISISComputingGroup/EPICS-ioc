@@ -4,9 +4,9 @@
 <ioc_desc>CAEN V895 Discriminator</ioc_desc>
 <ioc_details>CAEN V895 Discriminator IOC</ioc_details>
 <macros>
-<macro name="CARDS0" pattern="^[0-9]+$" description="Number of cards (-1, so 1 card is 0 here) in crate 0, leave blank if this crate does not exist" hasDefault="YES" defaultValue="6" />
-<macro name="CARDS1" pattern="^[0-9]+$" description="Number of cards (-1, so 1 card is 0 here) in crate 1, leave blank if this crate does not exist" hasDefault="YES" defaultValue="" />
-<macro name="CARDS2" pattern="^[0-9]+$" description="Number of cards (-1, so 1 card is 0 here) in crate 2, leave blank if this crate does not exist" hasDefault="YES" defaultValue="" />
+<macro name="CARDS0" pattern="^[0-9]+$" description="Highest card number used in crate 0 (number_of_cards - 1, 0 means one card), leave blank if this crate does not exist" hasDefault="YES" defaultValue="6" />
+<macro name="CARDS1" pattern="^[0-9]+$" description="Highest card number used in crate 1 (number_of_cards - 1, 0 means one card), leave blank if this crate does not exist" hasDefault="YES" defaultValue="" />
+<macro name="CARDS2" pattern="^[0-9]+$" description="Highest card number used in crate 2 (number_of_cards - 1, 0 means one card), leave blank if this crate does not exist" hasDefault="YES" defaultValue="" />
 <macro name="MY_BOARD_NUMBER_0" pattern="^0x[0-9]+$" description="Local crate index, crate 0" hasDefault="YES" defaultValue="0x1" />
 <macro name="MY_BOARD_NUMBER_1" pattern="^0x[0-9]+$" description="Local crate index, crate 1" hasDefault="YES" defaultValue="0x2" />
 <macro name="MY_BOARD_NUMBER_2" pattern="^0x[0-9]+$" description="Local crate index, crate 2" hasDefault="YES" defaultValue="0x3" />
