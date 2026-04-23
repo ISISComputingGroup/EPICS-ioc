@@ -5,7 +5,8 @@ NDStdArraysConfigure("AD$(DIG)$(LVDET)IM1", 3, 0, "AD$(DIG)$(LVDET)ROI1", 0, 0)
 NDStatsConfigure("AD$(DIG)$(LVDET)ST1", 3, 0, "AD$(DIG)$(LVDET)ROI1", 0, 0)
 NDTimeSeriesConfigure("AD$(DIG)$(LVDET)ST1_TS", 100, 0, "AD$(DIG)$(LVDET)ROI1", 0, 22, 0, 0, 0, 0)
 NDPvaConfigure("AD$(DIG)$(LVDET)PVA1", 3, 0, "AD$(DIG)$(LVDET)ROI1", 0, "$(MYPVPREFIX)$(IOCNAME):D$(DIG):AD$(LVDET):pva1:pvadata", 0)
-NDFileHDF5Configure("AD$(DIG)$(LVDET)FILE", 3, 0, "AD$(DIG)$(LVDET)ROI1", 0, 0, 0, 0)
+$(IFSAVEFILES=#) NDFileHDF5Configure("AD$(DIG)$(LVDET)FILE", 3, 0, "AD$(DIG)$(LVDET)ROI1", 0, 0, 0, 0)
+$(IFNOTSAVEFILES=) NDFileNullConfigure ("AD$(DIG)$(LVDET)FILE", 3, 0, "AD$(DIG)$(LVDET)ROI1", 0, 0, 0, 0)
 
 ## needs to fit in EPICS_CA_MAX_ARRAY_BYTES i.e. nx * ny * pixelsize
 ## also NELEMENTS needs to at least nx * ny

@@ -17,6 +17,8 @@ stringiftest("DIGIP5", "$(IP_ADDR_5=)", 3)
 stringiftest("DIGIP6", "$(IP_ADDR_6=)", 3)
 stringiftest("DIGIP7", "$(IP_ADDR_7=)", 3)
 
+stringiftest("SAVEFILES", "$(SAVEFILES=NO)", 5, "YES")
+
 $(IFDIGIP0) iocshLoad "${TOP}/iocBoot/iocNCINDG-IOC-01/st-dig.cmd", "DIG=0,IP_ADDR=$(IP_ADDR_0=),INDEX=$(INDEX_0=)"
 $(IFDIGIP1) iocshLoad "${TOP}/iocBoot/iocNCINDG-IOC-01/st-dig.cmd", "DIG=1,IP_ADDR=$(IP_ADDR_1=),INDEX=$(INDEX_1=)"
 $(IFDIGIP2) iocshLoad "${TOP}/iocBoot/iocNCINDG-IOC-01/st-dig.cmd", "DIG=2,IP_ADDR=$(IP_ADDR_2=),INDEX=$(INDEX_2=)"
