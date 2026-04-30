@@ -13,8 +13,10 @@ epicsEnvSet("HOST", "$(IPADDR=127.0.0.1)")
 epicsEnvSet("MIBDIRS", "+$(LNDYISW)/mibs")
 epicsEnvSet("MIBS", "+PDU-MIB")
 
-## uncomment for debug messages
-#devSnmpSetParam("DebugLevel", 10)
+## enable debug messages when running with emulator
+## could change to $(IFTESTDEVSIM) so only get 
+## when running as a system test but this seems fine for now
+$(IFDEVSIM=#) devSnmpSetParam("DebugLevel", 10)
 
 ## Used to handle outlet status
 devSnmpSetParam("PassivePollMSec", 2000)
