@@ -1,8 +1,8 @@
 
-file nanodac.db
+file $(NANODAC)/db/nanodac.db
 {
 pattern {S, ND, NI}
-	{$(P),  "", 1}
+	{\$(P),  "", 1}
 }
 
 
