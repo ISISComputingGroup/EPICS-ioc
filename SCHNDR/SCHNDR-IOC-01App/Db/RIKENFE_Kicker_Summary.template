@@ -98,14 +98,17 @@ record(mbbi, "$(P)$(TARGET):OVERALL:PULSEMD:STATE"){
     field(TWST, "Double Pulse Mode")
 }
 
-record(ao,"$(P)$(TARGET):T0:OUT") {
+record(ao,"$(P)$(TARGET):T0") {
     field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")
 	field(PREC, "3")
 }
 
-record(ao,"$(P)$(TARGET):TGOOD:OUT") {
+record(ao,"$(P)$(TARGET):TGOOD") {
     field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")
 	field(PREC, "3")
 }
+
+alias("$(P)$(TARGET):T0", "$(P)$(TARGET):T0:SP")
+alias("$(P)$(TARGET):TGOOD", "$(P)$(TARGET):TGOOD:SP")
