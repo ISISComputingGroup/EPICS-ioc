@@ -1,0 +1,10 @@
+global{P="\$(P)",R="\$(R)",SUBS="\$(SUBS)",DEBUG="\$(DEBUG=0)",NAME_PREFIX="\$(NAME_PREFIX)"}
+
+file "$(TOP)/OPCUA-IOC-01App/Db/TC.template" {
+	pattern{ RECORD_TYPE, PV_NAME, NAME_SUFFIX}
+    { "ai", "TEMPK", "_TempK_Out" }
+    { "ai", "CALCV", "_CalcV_Out" }
+    { "ai", "MEASV", "_MeasV_Out" }
+    { "ai", "JUNCV", "_JuncV_Out" }
+    { "ai", "CJTEMP", "_CJTemp_Out" }
+}
