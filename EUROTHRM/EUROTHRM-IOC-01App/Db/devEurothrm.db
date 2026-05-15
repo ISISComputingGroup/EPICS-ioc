@@ -989,7 +989,7 @@ record(calc, "$(P)TEMP:RANGE:OVER") {
     field(CALC, "B < A")
 }
 
-record(ai, "$(P)AUTOMAN") {
+record(bi, "$(P)AUTOMAN") {
     field(DESC, "Auto or Manual selected")
     field(SCAN, "10 second")
     
@@ -1006,7 +1006,7 @@ record(ai, "$(P)AUTOMAN") {
     field(PREC, "3")
 }
 
-record(ao, "$(P)AUTOMAN:SP") {
+record(bo, "$(P)AUTOMAN:SP") {
     field(DESC, "Auto or Manual Setpoint")
     
     $(IFUSES_BISYNCH) field(DTYP, "stream")
@@ -1141,7 +1141,7 @@ record(ai, "$(P)OUTDCOMP") {
     field(PREC, "3")
 }
 
-record(ai, "$(P)SNBRKPST") {
+record(bi, "$(P)SNBRKPST") {
     field(DESC, "Sensor break status flag")
     field(SCAN, "10 second")
     
@@ -1256,7 +1256,7 @@ record(ai, "$(P)SIM:TEMP:HIGHLIMIT")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)SIM:AUTOMAN")
+record(bi, "$(P)SIM:AUTOMAN")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
@@ -1306,7 +1306,7 @@ record(ai, "$(P)SIM:OUTDCOMP")
     field(DTYP, "Soft Channel")
 }
 
-record(ai, "$(P)SIM:SNBRKPST")
+record(bi, "$(P)SIM:SNBRKPST")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
