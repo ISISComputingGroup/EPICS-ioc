@@ -1,0 +1,27 @@
+file "IBEX_PVs_counters.template" {
+
+pattern {NAME, P, ASYNPORT, OLDFNCTN, CHAN, NEWFNCTN}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "0", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "1", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "2", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "3", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "4", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "5", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "6", "DI"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DI", "7", "DI"}
+}
+
+file "IBEX_PVs_channels.template" {
+
+pattern {NAME, P, ASYNPORT, OLDFNCTN, CHAN, NEWFNCTN}
+
+# DO Mode  WRITE
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DO", "0", "DO:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DO", "1", "DO:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DO", "2", "DO:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DO", "3", "DO:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DO", "4", "DO:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DO", "5", "DO:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DO", "6", "DO:SP"}
+{"\$(NAME)", "\$(P)", "\$(ASYNPORT)", "DO", "7", "DO:SP"}
+}

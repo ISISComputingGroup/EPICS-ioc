@@ -14,11 +14,13 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynIPPortConfigure ("$(E12XX_ASYNPORT)","$(ADD
 modbusInterposeConfig("$(E12XX_ASYNPORT)", 0, 2000, 0)
 
 stringiftest("MOXA1210", $(MODELNO), 5, "1210")
+stringiftest("MOXA1213", $(MODELNO), 5, "1213")
 stringiftest("MOXA1240", $(MODELNO), 5, "1240")
 stringiftest("MOXA1242", $(MODELNO), 5, "1242")
 stringiftest("MOXA1262", $(MODELNO), 5, "1262")
 
 $(IFMOXA1210) < ${TOP}/iocBoot/iocMOXA12XX-IOC-01/st-e1210.cmd
+$(IFMOXA1213) < ${TOP}/iocBoot/iocMOXA12XX-IOC-01/st-e1213.cmd
 $(IFMOXA1240) < ${TOP}/iocBoot/iocMOXA12XX-IOC-01/st-e1240.cmd
 $(IFMOXA1242) < ${TOP}/iocBoot/iocMOXA12XX-IOC-01/st-e1242.cmd
 $(IFMOXA1262) < ${TOP}/iocBoot/iocMOXA12XX-IOC-01/st-e1262.cmd
