@@ -38,6 +38,8 @@ epicsEnvSet("NI","1")
 
 < $(NANODAC)/st.cmd.alarm
 
+< $(NANODAC)/st.cmd.advancedloop
+
 ####################################################################
 
 ## Load record instances
