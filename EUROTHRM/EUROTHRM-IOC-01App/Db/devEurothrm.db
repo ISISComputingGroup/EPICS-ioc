@@ -1004,6 +1004,8 @@ record(bi, "$(P)AUTOMAN") {
     field(SIOL, "$(P)SIM:AUTOMAN")
     field(SDIS, "$(Q)DISABLE")
     field(PREC, "3")
+	field(ZNAM, "OFF")
+    field(ONAM, "ON")
 }
 
 record(bo, "$(P)AUTOMAN:SP") {
@@ -1020,6 +1022,8 @@ record(bo, "$(P)AUTOMAN:SP") {
     field(SDIS, "$(Q)DISABLE")
     field(FLNK, "$(P)AUTOMAN.PROC")
     field(EGU, "")
+	field(ZNAM, "OFF")
+    field(ONAM, "ON")
 }
 
 record(ai, "$(P)LOWRANGE") {
@@ -1156,6 +1160,8 @@ record(bi, "$(P)SNBRKPST") {
     field(SIOL, "$(P)SIM:SNBRKPST")
     field(SDIS, "$(Q)DISABLE")
     field(PREC, "3")
+	field(ZNAM, "OFF")
+    field(ONAM, "ON")
 }
 
 ### SIMULATION RECORDS ###
