@@ -991,19 +991,17 @@ record(calc, "$(P)TEMP:RANGE:OVER") {
 
 record(bi, "$(P)AUTOMAN") {
     field(DESC, "Auto or Manual selected")
-    field(SCAN, "10 second")
+    field(SCAN, "3 second")
     
     $(IFUSES_BISYNCH) field(DTYP, "stream")
     $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),mA,$(GAD),$(LAD)) $(PORT)")
     
     $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
     $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),273,1000)MODBUS_DATA")
-    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
     
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:AUTOMAN")
     field(SDIS, "$(Q)DISABLE")
-    field(PREC, "3")
 	field(ZNAM, "OFF")
     field(ONAM, "ON")
 }
@@ -1021,7 +1019,6 @@ record(bo, "$(P)AUTOMAN:SP") {
     field(SIOL, "$(P)SIM:AUTOMAN:SP")
     field(SDIS, "$(Q)DISABLE")
     field(FLNK, "$(P)AUTOMAN.PROC")
-    field(EGU, "")
 	field(ZNAM, "OFF")
     field(ONAM, "ON")
 }
@@ -1154,12 +1151,10 @@ record(bi, "$(P)SNBRKPST") {
     
     $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
     $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),258,1000)MODBUS_DATA")
-    $(IFNOTUSES_BISYNCH) field(ASLO, "$(TEMP_SCALING)")
     
     field(SIML, "$(Q)SIM")
     field(SIOL, "$(P)SIM:SNBRKPST")
     field(SDIS, "$(Q)DISABLE")
-    field(PREC, "3")
 	field(ZNAM, "OFF")
     field(ONAM, "ON")
 }
