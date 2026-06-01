@@ -12,7 +12,7 @@ function twincat_stcommon_main()
 	local forward_desc = ibex_utils.getMacroValue{macro="FORWARD_DESC", default="0"}
 	asyn_port = ibex_utils.getMacroValue{macro="PORT"}
 
-	num_axes = ibex_utils.getMacroValue{macro="NUM_AXES"} -- todo: actually poll the device to get this
+	num_axes = ibex_utils.getMacroValue{macro="NUM_AXES"}
 	local mtrctrl = os.getenv("MTRCTRL")
 	local ioc_prefix = pv_prefix .. ioc_name .. ":"
 
