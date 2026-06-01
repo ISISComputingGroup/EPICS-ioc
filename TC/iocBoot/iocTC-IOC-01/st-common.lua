@@ -53,6 +53,7 @@ function twincat_stcommon_main()
 		axis_monitors_args = string.format("P=%s,I=%s,AXIS_NUM=%s,MOTOR_PV=%s", pv_prefix, ioc_name, axis_num, motor_pv)
 		iocsh.dbLoadRecords(axis_monitors, axis_monitors_args)
 		autosave_file:write(string.format("file \"motor_settings.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
+		autosave_file:write(string.format("file \"tc_motor_extra.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
 		-- wrap around to next MTRCTRL - this is so we can show >8 axes in the IBEX table of motors. 
 		if axis_num > 8 then
 			alias_args_orig = string.format("$(MYPVPREFIX)MOT:%s(.*)", motor_pv)

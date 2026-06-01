@@ -1,16 +1,26 @@
 
-record(calcout, "$(P)MOT:$(MOTOR_PV)_ON_STATUS_CALC")
+record(bo, "$(P)MOT:$(MOTOR_PV)_AUTOONOFF_CMD")
 {
-    field(DESC, "Fwd PLC BENABLED to _ON_STATUS")
-    field(INPA, "$(P)$(I):ASTAXES_$(AXIS_NUM):STSTATUS-BENABLED CP MS")
-    field(CALC, "A")
-    field(OUT, "$(P)MOT:$(MOTOR_PV)_ON_STATUS PP")
-}
+	field(DESC, "mtr auto on/off")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(OUT, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-BAUTOENABLEDISABLE")
+	field(FLNK, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-BAUTOENABLEDISABLE")
+	field(PINI, "YES")
+} 
 
-alias("$(P)MOT:$(MOTOR_PV)_AUTOONOFF_CMD", "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-BAUTOENABLEDISABLE")
+record(bi, "$(P)MOT:$(MOTOR_PV)_AUTOONOFF_STATUS")
+{
+	field(DESC, "mtr auto on/off")
+	field(ZNAM, "Off")
+  	field(ONAM, "On")
+   	field(INP,  "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-BAUTOENABLEDISABLE:RBV CP")
+	field(PINI, "YES")
+}
 
 record(bi,"$(P)MOT:$(MOTOR_PV)_ON_STATUS")
 {
+    field(INP, "$(P)$(I):ASTAXES_$(AXIS_NUM):STSTATUS-BENABLED CP")
 	field(DESC, "Mtr on status")
 	field(ZNAM, "Off")
    	field(ZSV,  "MINOR")
