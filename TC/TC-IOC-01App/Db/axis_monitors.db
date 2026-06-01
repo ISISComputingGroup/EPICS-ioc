@@ -7,6 +7,8 @@ record(calcout, "$(P)MOT:$(MOTOR_PV)_ON_STATUS_CALC")
     field(OUT, "$(P)MOT:$(MOTOR_PV)_ON_STATUS PP")
 }
 
+alias("$(P)MOT:$(MOTOR_PV)_AUTOONOFF_CMD", "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-BAUTOENABLEDISABLE")
+
 record(bi,"$(P)MOT:$(MOTOR_PV)_ON_STATUS")
 {
 	field(DESC, "Mtr on status")
