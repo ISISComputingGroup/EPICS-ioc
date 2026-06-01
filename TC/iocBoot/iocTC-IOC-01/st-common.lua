@@ -38,6 +38,7 @@ function twincat_stcommon_main()
 		if enable_auto_on_off == "1" then 
 			local auto_on_off_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
 			iocsh.dbLoadRecords("$(MOTOREXT)/db/autoonoff.db", auto_on_off_args)
+			autosave_file:write(string.format("file \"tc_motor_extra.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
 		end
 
 		motor_pv = string.format("MTR%02i%02i", mtrctrl, axis_num)
@@ -53,7 +54,6 @@ function twincat_stcommon_main()
 		axis_monitors_args = string.format("P=%s,I=%s,AXIS_NUM=%s,MOTOR_PV=%s", pv_prefix, ioc_name, axis_num, motor_pv)
 		iocsh.dbLoadRecords(axis_monitors, axis_monitors_args)
 		autosave_file:write(string.format("file \"motor_settings.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
-		autosave_file:write(string.format("file \"tc_motor_extra.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
 		-- wrap around to next MTRCTRL - this is so we can show >8 axes in the IBEX table of motors. 
 		if axis_num > 8 then
 			alias_args_orig = string.format("$(MYPVPREFIX)MOT:%s(.*)", motor_pv)
