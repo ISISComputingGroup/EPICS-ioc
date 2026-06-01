@@ -38,7 +38,8 @@ function twincat_stcommon_main()
 		if enable_auto_on_off == "1" then 
 			local auto_on_off_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
 			iocsh.dbLoadRecords("$(MOTOREXT)/db/autoonoff.db", auto_on_off_args)
-			iocsh.dbLoadRecords("$(TOP)/db/autoonoff.db")
+			autoonoff_args = string.format("P=%s,I=%s,AXIS_NUM=%s,MOTOR_PV=%s", pv_prefix, ioc_name, axis_num, motor_pv)
+			iocsh.dbLoadRecords("$(TOP)/db/autoonoff.db", autoonoff_args)
 			autosave_file:write(string.format("file \"tc_motor_extra.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
 		end
 
