@@ -1,24 +1,4 @@
 
-record(bo, "$(P)MOT:$(MOTOR_PV)_AUTOONOFF_CMD")
-{
-	field(DESC, "mtr auto on/off")
-	field(ZNAM, "Off")
-	field(ONAM, "On")
-	field(OUT, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-BAUTOENABLEDISABLE")
-	field(FLNK, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-BAUTOENABLEDISABLE")
-	field(PINI, "YES")
-    field(VAL, "1")
-} 
-
-record(bi, "$(P)MOT:$(MOTOR_PV)_AUTOONOFF_STATUS")
-{
-	field(DESC, "mtr auto on/off")
-	field(ZNAM, "Off")
-  	field(ONAM, "On")
-   	field(INP,  "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-BAUTOENABLEDISABLE:RBV CP")
-	field(PINI, "YES")
-}
-
 record(bi,"$(P)MOT:$(MOTOR_PV)_ON_STATUS")
 {
     field(INP, "$(P)$(I):ASTAXES_$(AXIS_NUM):STSTATUS-BENABLED CP")
