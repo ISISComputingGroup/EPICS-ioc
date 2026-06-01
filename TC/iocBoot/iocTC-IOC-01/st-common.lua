@@ -37,7 +37,7 @@ function twincat_stcommon_main()
 
 		if enable_auto_on_off == "1" then 
 			local auto_on_off_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
-			iocsh.dbLoadRecords("$(MOTOREXT)/db/autoonoff.db", desc_tc_args)
+			iocsh.dbLoadRecords("$(MOTOREXT)/db/autoonoff.db", auto_on_off_args)
 		end
 
 		motor_pv = string.format("MTR%02i%02i", mtrctrl, axis_num)
