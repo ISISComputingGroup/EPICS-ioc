@@ -30,6 +30,8 @@ function twincat_stcommon_main()
 		local single_axis_tc_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
 		iocsh.dbLoadRecords("$(MOTOREXT)/db/single_axis_tc.db", single_axis_tc_args)
 
+		motor_pv = string.format("MTR%02i%02i", mtrctrl, axis_num)
+
 		if forward_desc == "1" then 
 			local desc_tc_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
 			iocsh.dbLoadRecords("$(MOTOREXT)/db/desc_tc.db", desc_tc_args)
@@ -43,7 +45,6 @@ function twincat_stcommon_main()
 			autosave_file:write(string.format("file \"tc_motor_extra.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
 		end
 
-		motor_pv = string.format("MTR%02i%02i", mtrctrl, axis_num)
 		single_axis_db = "$(TOP)/db/single_axis.db"
 		db_args = string.format("MYPVPREFIX=%s,MOTOR_PV=%s,MOTOR_PORT=%s,ADDR=%s", pv_prefix, motor_pv, motor_port, axis_num-1)
 		iocsh.devMotorCreateAxis(motor_port, axis_num-1, plc_version)
