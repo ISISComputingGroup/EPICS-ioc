@@ -991,7 +991,7 @@ record(calc, "$(P)TEMP:RANGE:OVER") {
 
 record(bi, "$(P)AUTOMAN") {
     field(DESC, "Auto or Manual selected")
-    field(SCAN, "3 second")
+    field(SCAN, "5 second")
     
     $(IFUSES_BISYNCH) field(DTYP, "stream")
     $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),mA,$(GAD),$(LAD)) $(PORT)")
