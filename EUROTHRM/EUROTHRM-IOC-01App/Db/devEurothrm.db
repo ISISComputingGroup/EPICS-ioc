@@ -994,7 +994,7 @@ record(bi, "$(P)AUTOMAN") {
     field(SCAN, "5 second")
     
     $(IFUSES_BISYNCH) field(DTYP, "stream")
-    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),mA,$(GAD),$(LAD)) $(PORT)")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto readint($(P),mA,$(GAD),$(LAD)) $(PORT)")
     
     $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
     $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),273,1000)MODBUS_DATA")
@@ -1010,7 +1010,7 @@ record(bo, "$(P)AUTOMAN:SP") {
     field(DESC, "Auto or Manual Setpoint")
     
     $(IFUSES_BISYNCH) field(DTYP, "stream")
-    $(IFUSES_BISYNCH) field(OUT, "@eurotherm2k.proto write($(P),mA,$(GAD),$(LAD)) $(PORT)")
+    $(IFUSES_BISYNCH) field(OUT, "@eurotherm2k.proto writeint($(P),mA,$(GAD),$(LAD)) $(PORT)")
     
     $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
     $(IFNOTUSES_BISYNCH) field(OUT, "@asyn(MODBUS_TX_$(GAD)$(LAD),273,1000)MODBUS_DATA")
@@ -1147,7 +1147,7 @@ record(bi, "$(P)SNBRKPST") {
     field(SCAN, "10 second")
     
     $(IFUSES_BISYNCH) field(DTYP, "stream")
-    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto read($(P),sb,$(GAD),$(LAD)) $(PORT)")
+    $(IFUSES_BISYNCH) field(INP, "@eurotherm2k.proto readint($(P),sb,$(GAD),$(LAD)) $(PORT)")
     
     $(IFNOTUSES_BISYNCH) field(DTYP, "asynInt32")
     $(IFNOTUSES_BISYNCH) field(INP, "@asyn(MODBUS_RX_$(GAD)$(LAD),258,1000)MODBUS_DATA")
