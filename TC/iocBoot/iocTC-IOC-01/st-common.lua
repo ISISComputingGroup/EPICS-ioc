@@ -10,7 +10,9 @@ function twincat_stcommon_main()
 	local plc_version = ibex_utils.getMacroValue{macro="PLC_VERSION", default="1"}
 	local ads_port = ibex_utils.getMacroValue{macro="ADS_PORT"}
 	local forward_desc = ibex_utils.getMacroValue{macro="FORWARD_DESC", default="0"}
+	local enable_frozen_offsets = ibex_utils.getMacroValue{macro="ALLOW_FROZEN_OFFSETS", default="0"}
 	local enable_auto_on_off = ibex_utils.getMacroValue{macro="ENABLE_AUTO_ON_OFF", default="0"}
+
 	asyn_port = ibex_utils.getMacroValue{macro="PORT"}
 
 	num_axes = ibex_utils.getMacroValue{macro="NUM_AXES"}
@@ -36,6 +38,13 @@ function twincat_stcommon_main()
 			local desc_tc_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
 			iocsh.dbLoadRecords("$(MOTOREXT)/db/desc_tc.db", desc_tc_args)
 		end
+
+		if enable_frozen_offsets == "1" then
+			local frozen_offsets_db_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
+			iocsh.dbLoadRecords("$(MOTOREXT)/db/frozen_offsets.db", frozen_offsets_db_args)
+		end
+
+		motor_pv = string.format("MTR%02i%02i", mtrctrl, axis_num)
 
 		if enable_auto_on_off == "1" then 
 			local auto_on_off_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
