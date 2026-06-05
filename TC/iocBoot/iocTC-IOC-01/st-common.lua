@@ -10,6 +10,7 @@ function twincat_stcommon_main()
 	local plc_version = ibex_utils.getMacroValue{macro="PLC_VERSION", default="1"}
 	local ads_port = ibex_utils.getMacroValue{macro="ADS_PORT"}
 	local forward_desc = ibex_utils.getMacroValue{macro="FORWARD_DESC", default="0"}
+	local enable_auto_on_off = ibex_utils.getMacroValue{macro="ENABLE_AUTO_ON_OFF", default="0"}
 	asyn_port = ibex_utils.getMacroValue{macro="PORT"}
 
 	num_axes = ibex_utils.getMacroValue{macro="NUM_AXES"}
@@ -29,12 +30,21 @@ function twincat_stcommon_main()
 		local single_axis_tc_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
 		iocsh.dbLoadRecords("$(MOTOREXT)/db/single_axis_tc.db", single_axis_tc_args)
 
+		motor_pv = string.format("MTR%02i%02i", mtrctrl, axis_num)
+
 		if forward_desc == "1" then 
 			local desc_tc_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
 			iocsh.dbLoadRecords("$(MOTOREXT)/db/desc_tc.db", desc_tc_args)
 		end
 
-		motor_pv = string.format("MTR%02i%02i", mtrctrl, axis_num)
+		if enable_auto_on_off == "1" then 
+			local auto_on_off_args = string.format("P=%s,AXIS_NUM=%s,ADSPORT=%s,PORT=%s", ioc_prefix, axis_num, ads_port, asyn_port)
+			iocsh.dbLoadRecords("$(MOTOREXT)/db/autoonoff.db", auto_on_off_args)
+			autoonoff_args = string.format("P=%s,I=%s,AXIS_NUM=%s,MOTOR_PV=%s", pv_prefix, ioc_name, axis_num, motor_pv)
+			iocsh.dbLoadRecords("$(TOP)/db/autoonoff.db", autoonoff_args)
+			autosave_file:write(string.format("file \"tc_motor_extra.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
+		end
+
 		single_axis_db = "$(TOP)/db/single_axis.db"
 		db_args = string.format("MYPVPREFIX=%s,MOTOR_PV=%s,MOTOR_PORT=%s,ADDR=%s", pv_prefix, motor_pv, motor_port, axis_num-1)
 		iocsh.devMotorCreateAxis(motor_port, axis_num-1, plc_version)
