@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 DB += moxa_e1210_PVs.db
+DB += moxa_e1213_PVs.db
 DB += moxa_e1240_PVs.db
 DB += moxa_e1242_PVs.db
 DB += moxa_e1262_PVs.db
