@@ -19,6 +19,7 @@ DB += galil_motors.db galil_motor_extras.db galil_dmc_ctrl.db galil_userdef_reco
 DB += galil_profileMoveController.db galil_profileMoveAxis.db galil_analog_ports.db 
 DB += galil_digital_ports.db galil_user_array.db galil_csmotor_kinematics.db
 DB += galil_coordinate_systems.db galil_csmotor_extras.db galil_homing_routines.db
+#DB += galil_quadAmpStatus.db
 
 include $(TOP)/configure/RULES
 #----------------------------------------
