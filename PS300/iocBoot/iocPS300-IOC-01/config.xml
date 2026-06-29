@@ -6,7 +6,8 @@
 		<macros>
 			<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
 			<macro name="IPADDR" pattern="^[0-9]+\.[0-9]\.+[0-9]\.+[0-9]+$" description="IP Address of prologix GPIB" hasDefault="NO" />
-			<macro name="MODEL" pattern="^[0-9]{3}((_neg)|(_pos))*$" description="Serial COM port" hasDefault="YES" defaultValue="350_pos"/>
+			<macro name="GPIBADDR" pattern="^[0-9]+\.[0-9]\.+[0-9]\.+[0-9]+$" description="GPIB Address for prologix GPIB, usually 14" hasDefault="YES" defaultValue="-1" />
+			<macro name="MODEL" pattern="^[0-9]{3}((_neg)|(_pos))*$" description="PS Model" hasDefault="YES" defaultValue="350_pos"/>
 		</macros>
 		<pvsets>
 		</pvsets>
