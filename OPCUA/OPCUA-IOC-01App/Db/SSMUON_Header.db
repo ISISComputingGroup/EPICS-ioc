@@ -6,4 +6,6 @@ record(bi, "$(P)PLC:HEARTBEAT") {
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")
     field(TPRO, "$(DEBUG=0)")
+
+    info(alarm, "OPCUA")
 }
