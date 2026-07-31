@@ -12,10 +12,12 @@ MUONTPAR_IOC_01_registerRecordDeviceDriver pdbbase
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
-epicsEnvSet("PORT", "fserv")
 epicsEnvSet("EDITOR_TPAR_FILE_DIR", $(EDITOR_TPAR_FILE_DIR="C:/Instrument/Settings")
 
-FileContentsServerConfigure($(PORT), "$(EDITOR_TPAR_FILE_DIR)")
+epicsEnvSet("PORT1", "fservtpar")
+epicsEnvSet("PORT2", "fservtparbooster")
+FileContentsServerConfigure($(PORT1), "$(EDITOR_TPAR_FILE_DIR)", "$(TPAR_FILE=)", "$(TPAR_CURRENT_FILE=current.tpar)")
+FileContentsServerConfigure($(PORT2), "$(EDITOR_TPAR_FILE_DIR)", "$(BOOSTER_TPAR_FILE=)", "$(BOOSTER_TPAR_CURRENT_FILE=current_booster.tpar)")
 
 ## Load record instances
 
@@ -23,10 +25,15 @@ FileContentsServerConfigure($(PORT), "$(EDITOR_TPAR_FILE_DIR)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
+## Simple string PVs
 dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=$(TPAR_FILE=),TPAR_FILE_PV_NAME=TPAR_FILE")
 dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=$(BOOSTER_TPAR_FILE=),TPAR_FILE_PV_NAME=BOOSTER_TPAR_FILE")
 dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=$(BOOSTER_TYPE=OXF13),TPAR_FILE_PV_NAME=BOOSTER_TYPE")
-dbLoadRecords("$(FILESERVER)/db/FileContentsServer.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PORT)")
+
+## FileContentsServer dbs for TPAR file editing
+dbLoadRecords("$(FILESERVER)/db/FileContentsServer.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PORT1)")
+dbLoadRecords("$(FILESERVER)/db/FileContentsServer.db","P=$(MYPVPREFIX)$(IOCNAME):BOOSTER:,PORT=$(PORT2)")
+
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
