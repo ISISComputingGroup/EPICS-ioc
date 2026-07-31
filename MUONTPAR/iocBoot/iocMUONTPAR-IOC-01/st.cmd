@@ -26,8 +26,8 @@ FileContentsServerConfigure($(PORT2), "$(EDITOR_TPAR_FILE_DIR)", "$(BOOSTER_TPAR
 
 ## Load our record instances
 ## Simple string PVs
-dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=$(TPAR_FILE=),TPAR_FILE_PV_NAME=TPAR_FILE")
-dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=$(BOOSTER_TPAR_FILE=),TPAR_FILE_PV_NAME=BOOSTER_TPAR_FILE")
+dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=current.tpar,TPAR_FILE_PV_NAME=TPAR_FILE")
+dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=current_booster.tpar,TPAR_FILE_PV_NAME=BOOSTER_TPAR_FILE")
 dbLoadRecords("$(TOP)/db/muon_tpar.db","P=$(MYPVPREFIX)$(IOCNAME):,TPAR_FILE=$(BOOSTER_TYPE=OXF13),TPAR_FILE_PV_NAME=BOOSTER_TYPE")
 
 ## FileContentsServer dbs for TPAR file editing
