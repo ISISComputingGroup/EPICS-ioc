@@ -1,17 +1,19 @@
 ## VAT Valves
 
+global{NS="\$(NS)",P="\$(P)",SUBS="\$(SUBS)",DEBUG="\$(DEBUG=0)"}
+
 file "$(TOP)/OPCUA-IOC-01App/Db/SSMUON_VAT_Valve.template" {
-	pattern{ P, INSTRUMENT, SUBS, DEBUG, NAME_PREFIX}
-	{ "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_VAT_VALVE"}
-    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_VAT_VALVE"}
-    { "\$(P)", "EMU",  "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_VAT_VALVE" }
+	pattern{ INSTRUMENT, NAME_PREFIX }
+	{ "HIFI", "0:OPC_HIFI_VAT_VALVE_INTLKS" }
+    { "MUSR", "0:OPC_MUSR_VAT_VALVE_INTLKS" }
+    { "EMU", "0:OPC_EMU_VAT_VALVE_INTLKS" }
 }
 
 ## Blockers
 
 file "$(TOP)/OPCUA-IOC-01App/Db/SSMUON_Blocker.template" {
-	pattern{ P, INSTRUMENT, SUBS, DEBUG, NAME_PREFIX}
-	{ "\$(P)", "HIFI", "\$(SUBS)", "\$(DEBUG=0)", "OPC_HIFI_BLOCKER"}
-    { "\$(P)", "MUSR", "\$(SUBS)", "\$(DEBUG=0)", "OPC_MUSR_BLOCKER"}
-    { "\$(P)", "EMU",  "\$(SUBS)", "\$(DEBUG=0)", "OPC_EMU_BLOCKER" }
+	pattern{ INSTRUMENT, NAME_PREFIX }
+	{ "HIFI", "0:OPC_HIFI_BLOCKER_INTLKS" }
+    { "MUSR", "0:OPC_MUSR_BLOCKER_INTLKS" }
+    { "EMU", "0:OPC_EMU_BLOCKER_INTLKS" }
 }
