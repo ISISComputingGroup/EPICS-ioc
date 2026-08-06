@@ -13,6 +13,9 @@ include $(TOP)/configure/CONFIG
 
 DB += MAPS_vacuum.db
 DB += MAPS_vacuum_header.db
+DB += Merlin_vacuum_header.db
+DB += Merlin_vacuum.db
+DB += Merlin_other_controllers.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
