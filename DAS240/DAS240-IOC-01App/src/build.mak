@@ -27,10 +27,8 @@ $(APPNAME)_DBD += calcSupport.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## Stream device support ##
 $(APPNAME)_DBD += asyn.dbd
-$(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd
 $(APPNAME)_DBD += luaSupport.dbd
-$(APPNAME)_DBD += stream.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += modbusSupport.dbd
 $(APPNAME)_DBD += asubFunctions.dbd
@@ -44,7 +42,6 @@ $(APPNAME)_DBD += asubFunctions.dbd
 ## ISIS standard libraries ##
 ## Stream device libraries ##
 $(APPNAME)_LIBS += modbus
-$(APPNAME)_LIBS += stream
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
 $(APPNAME)_LIBS += asubFunctions
