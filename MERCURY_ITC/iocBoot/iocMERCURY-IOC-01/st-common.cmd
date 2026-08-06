@@ -13,18 +13,21 @@ $(IFRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT=NUL)", 0, 1, 0, 0)
 # For dev sim devices
 $(IFDEVSIM) drvAsynIPPortConfigure("L0", "localhost:$(EMULATOR_PORT=57677)")
 
-## For real device use:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "baud", "$(BAUD=57600)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "bits", "$(BITS=8)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "parity", "$(PARITY=none)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", -1, "stop", "$(STOP=2)")
+stringiftest("IPADDR", "$(IPADDR=)", 0x2)
 
-## Flow control off
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0", 0, "clocal", "Y")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"crtscts","N")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixon","N")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("L0",0,"ixoff","N")
+## If serial comms mode
+$(IFNOTDEVSIM) $(IFNOTRECSIM) $(IFNOTIPADDR) drvAsynSerialPortConfigure("L0", "$(PORT)", 0, 0, 0, 0)
+$(IFNOTDEVSIM) $(IFNOTRECSIM) $(IFNOTIPADDR) asynSetOption("L0", -1, "baud", "$(BAUD=57600)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) $(IFNOTIPADDR) asynSetOption("L0", -1, "bits", "$(BITS=8)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) $(IFNOTIPADDR) asynSetOption("L0", -1, "parity", "$(PARITY=none)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) $(IFNOTIPADDR) asynSetOption("L0", -1, "stop", "$(STOP=2)")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) $(IFNOTIPADDR) asynSetOption("L0", 0, "clocal", "Y")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) $(IFNOTIPADDR) asynSetOption("L0",0,"crtscts","N")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) $(IFNOTIPADDR) asynSetOption("L0",0,"ixon","N")
+$(IFNOTDEVSIM) $(IFNOTRECSIM) $(IFNOTIPADDR) asynSetOption("L0",0,"ixoff","N")
+
+## If ethernet comms mode
+$(IFNOTDEVSIM) $(IFNOTRECSIM) $(IFIPADDR) drvAsynIPPortConfigure("L0", "$(IPADDR=):$(IPPORT=7020)")
 
 ## Load record instances
 

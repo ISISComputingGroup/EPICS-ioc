@@ -8,7 +8,8 @@ record(ai, "$(P):CH$(CHAN):TEMP"){
     field(LOW, "$(LOWLIMIT)")
     field(LSV, "MAJOR")
 
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-    info(alarm, "MOXA1262")
+$(IFALIASED)    info(INTEREST, "HIGH")
+$(IFALIASED)    info(archive, "VAL")
+# currently not archived when $(IFNOTALIASED) - could consider info(archive, "60.0 VAL")
+$(IFALIASED)    info(alarm, "MOXA1262")
 }

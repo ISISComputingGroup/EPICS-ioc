@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 DB += single_axis.db
 DB += axis_monitors.db
+DB += autoonoff.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
