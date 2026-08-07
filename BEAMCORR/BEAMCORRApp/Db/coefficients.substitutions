@@ -1,0 +1,28 @@
+file coefficients.template {
+    pattern { BEAMLINE, STEER_MAG, INT_MAG, INP1, INP2, INP3, INP4}
+    { "HIFI", "1",  "HIFI", "B", "C", "D", "E" }
+    { "HIFI", "2",  "HIFI", "B", "C", "D", "E" }
+    { "HIFI", "3",  "HIFI", "B", "C", "D", "E" }
+    { "HIFI", "4",  "HIFI", "B", "C", "D", "E" }
+    { "HIFI", "1",  "EMU", "F", "G", "H", "I" }
+    { "HIFI", "2",  "EMU", "F", "G", "H", "I" }
+    { "HIFI", "3",  "EMU", "F", "G", "H", "I" }
+    { "HIFI", "4",  "EMU", "F", "G", "H", "I" }
+    { "HIFI", "1",  "MUSR", "J", "K", "L", "M" }
+    { "HIFI", "2",  "MUSR", "J", "K", "L", "M" }
+    { "HIFI", "3",  "MUSR", "J", "K", "L", "M" }
+    { "HIFI", "4",  "MUSR", "J", "K", "L", "M" }
+    { "EMU", "1",  "HIFI", "B", "C", "D", "E" }
+    { "EMU", "2",  "HIFI", "B", "C", "D", "E" }
+    { "EMU", "1",  "EMU", "F", "G", "H", "I" }
+    { "EMU", "2",  "EMU", "F", "G", "H", "I" }
+    { "EMU", "1",  "MUSR", "J", "K", "L", "M" }
+    { "EMU", "2",  "MUSR", "J", "K", "L", "M" }
+    { "MUSR", "1",  "HIFI", "B", "C", "D", "E" }
+    { "MUSR", "2",  "HIFI", "B", "C", "D", "E" }
+    { "MUSR", "1",  "EMU", "F", "G", "H", "I" }
+    { "MUSR", "2",  "EMU", "F", "G", "H", "I" }
+    { "MUSR", "1",  "MUSR", "J", "K", "L", "M" }
+    { "MUSR", "2",  "MUSR", "J", "K", "L", "M" }
+}
+

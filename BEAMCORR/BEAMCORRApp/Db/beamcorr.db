@@ -1,0 +1,196 @@
+### Generic Records
+
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM)")
+}
+
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+### Enable Beam Corrections
+
+record(bo, "$(P)ENABLE:CORR")
+{
+  field(DESC, "Enable Beam Corrections")
+  field(ZNAM, "CORR ENABLED")
+  field(ONAM, "CORR DISABLED")
+}
+
+record(mbbo, "$(P)BEAMLINE")
+{
+  field(VAL, "$(MYPVPREFIX)")
+  field(ZNAM, "IN:NDXEMU")
+  field(ONAM, "IN:NDXMUSR")
+  field(TNAM, "IN:NDXHIFI")
+}
+
+record(CALC, "$(P)OVERRIDE:EMU){
+  field(CALC, "EQUALS(A, 0)")
+  field(INPA, "(P)BEAMLINE")
+}
+
+record(CALC, "$(P)OVERRIDE:MUSR){
+  field(CALC, "EQUALS(A, 1)")
+  field(INPA, "(P)BEAMLINE")
+}
+
+record(CALC, "$(P)OVERRIDE:HIFI){
+  field(CALC, "EQUALS(A, 2)")
+  field(INPA, "(P)BEAMLINE")
+}
+// Equation for a single steering magnet 
+// bx = ax + (cx1 * m1 + cx2 * m2 +... + cxn * mn)
+// where b = The output steering value
+// a = the initital steering value
+// x = the steering magnet
+// cx1 through cxn = the coefficients of the interfering magnets to steering magnet x (set by scientists)
+// m1 through mn = the current value of the interferring magnets
+
+
+record(CALC, "$(P)STEERING_1:EMU){
+  field(CALC, "A + B*C + D*E + F*G + H*I + J*K + L*M")
+  field(INPA, "EMU Stearing magnet 1")
+  field(INPB, "$(P)EMU:STEER_1_COEFF:HIFI_MAIN")
+  field(INPC, "Hifi Main")
+  field(INPD, "$(P)EMU:STEER_1_COEFF:MUSR_MAIN")
+  field(INPE, "Musr Main")
+  field(INPF, "$(P)EMU:STEER_1_COEFF:EMU_MAIN")
+  field(INPG, "Emu Main")
+  field(INPH, "$(P)EMU:STEER_1_COEFF:HIFI_TRANS")
+  field(INPI, "Hifi Trans")
+  field(INPJ, "$(P)EMU:STEER_1_COEFF:MUSR_TRANS")
+  field(INPK, "Musr Trans")
+  field(INPL, "$(P)EMU:STEER_1_COEFF:EMU_TRANS")
+  field(INPM, "Emu Trans")
+}
+
+record(CALC, "$(P)STEERING_2:EMU){
+  field(CALC, "A + B*C + D*E + F*G + H*I + J*K + L*M")
+  field(INPA, "EMU  Stearing magnet 2")
+  field(INPB, "$(P)EMU:STEER_2_COEFF:HIFI_MAIN")
+  field(INPC, "Hifi Main")
+  field(INPD, "$(P)EMU:STEER_2_COEFF:MUSR_MAIN")
+  field(INPE, "Musr Main")
+  field(INPF, "$(P)EMU:STEER_2_COEFF:EMU_MAIN")
+  field(INPG, "Emu Main")
+  field(INPH, "$(P)EMU:STEER_2_COEFF:HIFI_TRANS")
+  field(INPI, "Hifi Trans")
+  field(INPJ, "$(P)EMU:STEER_2_COEFF:MUSR_TRANS")
+  field(INPK, "Musr Trans")
+  field(INPL, "$(P)EMU:STEER_2_COEFF:EMU_TRANS")
+  field(INPM, "Emu Trans")
+}
+
+record(CALC, "$(P)STEERING_1:HIFI){
+  field(CALC, "A + B*C + D*E + F*G + H*I + J*K + L*M")
+  field(INPA, "HIFI Stearing magnet 1")
+  field(INPB, "$(P)HIFI:STEER_1_COEFF:HIFI_MAIN")
+  field(INPC, "Hifi Main")
+  field(INPD, "$(P)HIFI:STEER_1_COEFF:MUSR_MAIN")
+  field(INPE, "Musr Main")
+  field(INPF, "$(P)HIFI:STEER_1_COEFF:EMU_MAIN")
+  field(INPG, "Emu Main")
+  field(INPH, "$(P)HIFI:STEER_1_COEFF:HIFI_TRANS")
+  field(INPI, "Hifi Trans")
+  field(INPJ, "$(P)HIFI:STEER_1_COEFF:MUSR_TRANS")
+  field(INPK, "Musr Trans")
+  field(INPL, "$(P)HIFI:STEER_1_COEFF:EMU_TRANS")
+  field(INPM, "Emu Trans")
+}
+
+record(CALC, "$(P)STEERING_2:HIFI){
+  field(CALC, "A + B*C + D*E + F*G + H*I + J*K + L*M")
+  field(INPA, "HIFI Stearing magnet 2")
+  field(INPB, "$(P)HIFI:STEER_2_COEFF:HIFI_MAIN")
+  field(INPC, "Hifi Main")
+  field(INPD, "$(P)HIFI:STEER_2_COEFF:MUSR_MAIN")
+  field(INPE, "Musr Main")
+  field(INPF, "$(P)HIFI:STEER_2_COEFF:EMU_MAIN")
+  field(INPG, "Emu Main")
+  field(INPH, "$(P)HIFI:STEER_2_COEFF:HIFI_TRANS")
+  field(INPI, "Hifi Trans")
+  field(INPJ, "$(P)HIFI:STEER_2_COEFF:MUSR_TRANS")
+  field(INPK, "Musr Trans")
+  field(INPL, "$(P)HIFI:STEER_2_COEFF:EMU_TRANS")
+  field(INPM, "Emu Trans")
+}
+
+record(CALC, "$(P)STEERING_3:HIFI){
+  field(CALC, "A + B*C + D*E + F*G + H*I + J*K + L*M")
+  field(INPA, "HIFI Stearing magnet 3")
+  field(INPB, "$(P)HIFI:STEER_3_COEFF:HIFI_MAIN")
+  field(INPC, "Hifi Main")
+  field(INPD, "$(P)HIFI:STEER_3_COEFF:MUSR_MAIN")
+  field(INPE, "Musr Main")
+  field(INPF, "$(P)HIFI:STEER_3_COEFF:EMU_MAIN")
+  field(INPG, "Emu Main")
+  field(INPH, "$(P)HIFI:STEER_3_COEFF:HIFI_TRANS")
+  field(INPI, "Hifi Trans")
+  field(INPJ, "$(P)HIFI:STEER_3_COEFF:MUSR_TRANS")
+  field(INPK, "Musr Trans")
+  field(INPL, "$(P)HIFI:STEER_3_COEFF:EMU_TRANS")
+  field(INPM, "Emu Trans")
+}
+
+record(CALC, "$(P)STEERING_4:HIFI){
+  field(CALC, "A + B*C + D*E + F*G + H*I + J*K + L*M")
+  field(INPA, "Stearing magnet 1")
+  field(INPB, "$(P)HIFI:STEER_4_COEFF:HIFI_MAIN")
+  field(INPC, "Hifi Main")
+  field(INPD, "$(P)HIFI:STEER_4_COEFF:MUSR_MAIN")
+  field(INPE, "Musr Main")
+  field(INPF, "$(P)HIFI:STEER_4_COEFF:EMU_MAIN")
+  field(INPG, "Emu Main")
+  field(INPH, "$(P)HIFI:STEER_4_COEFF:HIFI_TRANS")
+  field(INPI, "Hifi Trans")
+  field(INPJ, "$(P)HIFI:STEER_4_COEFF:MUSR_TRANS")
+  field(INPK, "Musr Trans")
+  field(INPL, "$(P)HIFI:STEER_4_COEFF:EMU_TRANS")
+  field(INPM, "Emu Trans")
+}
+
+record(CALC, "$(P)STEERING_1:EMU){
+  field(CALC, "A + B*C + D*E + F*G + H*I + J*K + L*M")
+  field(INPA, "EMU Stearing magnet 1")
+  field(INPB, "$(P)MUSR:STEER_1_COEFF:HIFI_MAIN")
+  field(INPC, "Hifi Main")
+  field(INPD, "$(P)MUSR:STEER_1_COEFF:MUSR_MAIN")
+  field(INPE, "Musr Main")
+  field(INPF, "$(P)MUSR:STEER_1_COEFF:EMU_MAIN")
+  field(INPG, "Emu Main")
+  field(INPH, "$(P)MUSR:STEER_1_COEFF:HIFI_TRANS")
+  field(INPI, "Hifi Trans")
+  field(INPJ, "$(P)MUSR:STEER_1_COEFF:MUSR_TRANS")
+  field(INPK, "Musr Trans")
+  field(INPL, "$(P)MUSR:STEER_1_COEFF:EMU_TRANS")
+  field(INPM, "Emu Trans")
+}
+
+record(CALC, "$(P)STEERING_2:EMU){
+  field(CALC, "A + B*C + D*E + F*G + H*I + J*K + L*M")
+  field(INPA, "EMU  Stearing magnet 2")
+  field(INPB, "$(P)MUSR:STEER_2_COEFF:HIFI_MAIN")
+  field(INPC, "Hifi Main")
+  field(INPD, "$(P)MUSR:STEER_2_COEFF:MUSR_MAIN")
+  field(INPE, "Musr Main")
+  field(INPF, "$(P)MUSR:STEER_2_COEFF:EMU_MAIN")
+  field(INPG, "Emu Main")
+  field(INPH, "$(P)MUSR:STEER_2_COEFF:HIFI_TRANS")
+  field(INPI, "Hifi Trans")
+  field(INPJ, "$(P)MUSR:STEER_2_COEFF:MUSR_TRANS")
+  field(INPK, "Musr Trans")
+  field(INPL, "$(P)MUSR:STEER_2_COEFF:EMU_TRANS")
+  field(INPM, "Emu Trans")
+}

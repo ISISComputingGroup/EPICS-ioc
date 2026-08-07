@@ -1,0 +1,18 @@
+record(ao, "$(P)$(BEAMLINE):STEER_$(STEER_MAG):$(INT_MAG)_MAIN:COEFF")
+{
+  field(DESC, "Coefficient for $(BEAMLINE) $(STEER_MAG) $(INT_MAG)_MAIN")
+}
+
+record(ao, "$(P)$(BEAMLINE):STEER_$(STEER_MAG):$(INT_MAG)_TRANS:COEFF")
+{
+  field(DESC, "Coefficient for $(BEAMLINE) $(STEER_MAG) $(INT_MAG)_TRANS")
+}
+
+record(CALC, "$(P)STEERING_$(STEER_MAG):$(BEAMLINE)){
+  field(CALC, "A + B*C + D*E + F*G + H*I + J*K + L*M")
+  field(INPA, "$(STEER_$(STEER_MAG)_$(BEAMLINE)_PV)")
+  field(INP$(INP1), "$(P)$(BEAMLINE):$(STEER_MAG):$(INT_MAG)_MAIN:COEFF")
+  field(INP$(INP2), "$($(INT_MAG)_PV_MAIN)")
+  field(INP$(INP3), "$(P)$(BEAMLINE):$(STEER_MAG):$(INT_MAG)_TRANS:COEFF")
+  field(INP$(INP4), "$($(INT_MAG)_PV_TRANS)")
+}

@@ -95,6 +95,7 @@ IOCDIRS += AMBRHEAT
 IOCDIRS += OPCUA
 IOCDIRS += ESP300
 IOCDIRS += QNW
+IOCDIRS += beamcorr
 
 
 ## check on missing directories

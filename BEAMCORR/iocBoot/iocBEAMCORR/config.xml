@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+ <config_part>
+  <ioc_desc>ISIS Muon Beam Correction</ioc_desc>
+  <macros>
+    <macro name="STEER_1_HIFI_PV" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the first HIFI steering magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="STEER_2_HIFI_PV" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the second HIFI steering magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="STEER_3_HIFI_PV" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the third HIFI steering magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="STEER_4_HIFI_PV" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the fourth HIFI steering magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="HIFI_PV_MAIN" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the main HIFI magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="HIFI_PV_TRANS" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the transverse HIFI magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="STEER_1_EMU_PV" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the first EMU steering magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="STEER_2_EMU_PV" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the second EMU steering magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="EMU_PV_MAIN" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the main EMU magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="EMU_PV_TRANS" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the transverse EMU magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="STEER_1_MUSR_PV" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the first MUSR steering magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="STEER_2_MUSR_PV" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the second MUSR steering magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="MUSR_PV_MAIN" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the main EMU magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="MUSR_PV_TRANS" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the transverse EMU magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+  </macros>
+ </config_part>
+</ioc_config>
