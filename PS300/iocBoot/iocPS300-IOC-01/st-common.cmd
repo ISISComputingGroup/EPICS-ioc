@@ -4,24 +4,33 @@ epicsEnvSet "DEVICE" "L0"
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
+stringiftest("GPIB", "$(IPADDR=)", 3)
+stringiftest("SERIAL", "$(PORT=)", 3)
+
 ## Device simulation mode IP configuration
 $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=57677)")
 
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 
-## For real device:
-$(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
+## For real RS2323 serial device:
+$(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NO_PORT_MACRO)", 0, 0, 0, 0)
+$(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "baud", "$(BAUD=9600)")
+$(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "bits", "$(BITS=8)")
+$(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "parity", "$(PARITY=none)")
+$(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", -1, "stop", "$(STOP=1)")
 ## Hardware flow control off
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", 0, "clocal", "Y")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
+$(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)", 0, "clocal", "Y")
+$(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts","N")
 ## Software flow control off
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
-$(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
+$(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
+$(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
+$(IFSERIAL) epicsEnvSet("ADDR", "-1")
+
+## GPIB prologix
+$(IFGPIB) $(IFNOTDEVSIM) $(IFNOTRECSIM) prologixGPIBConfigure("$(DEVICE)", "$(IPADDR=)")
+$(IFGPIB) $(IFNOTDEVSIM) $(IFNOTRECSIM) prologixGPIBSetOption("$(DEVICE)", "timeout_ms", 2000)
+$(IFGPIB) epicsEnvSet("ADDR", "$(GPIBADDR)")
 
 ## Load record instances
 
@@ -29,7 +38,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(PS300)/db/devSRS_PS$(MODEL=350_pos).db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,A=-1, PORT=$(DEVICE)")
+dbLoadRecords("$(PS300)/db/devSRS_PS$(MODEL).db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,A=$(ADDR),PORT=$(DEVICE)")
 dbLoadRecords("$(PS300)/db/devSRS_PS300_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 

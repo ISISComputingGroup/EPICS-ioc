@@ -1,24 +1,16 @@
+# SPDX-FileCopyrightText: 1998 Argonne National Laboratory
+#
+# SPDX-License-Identifier: EPICS
+
 TOP=../..
 include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
 #----------------------------------------------------
-#  Optimization of db files using dbst (DEFAULT: NO)
-#DB_OPT = YES
-
-#----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-
-DB += MAPS_vacuum.db
-DB += MAPS_vacuum_header.db
-DB += Merlin_vacuum_header.db
-DB += Merlin_vacuum.db
-DB += Merlin_other_controllers.db
-
-DB += SSMUON_Header.db
-DB += SSMUON.db
+DB += DAS240.db DAS240A.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

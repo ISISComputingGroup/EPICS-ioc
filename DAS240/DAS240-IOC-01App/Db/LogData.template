@@ -1,0 +1,8 @@
+record(bi, "$(P)DI$(N)") {
+    field(DESC, "Logical Input $(N)")
+    field(DTYP,"asynInt32")
+    field(INP,"@asyn(LOGD $(OFFSET))UINT16")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(SCAN,"I/O Intr")
+}

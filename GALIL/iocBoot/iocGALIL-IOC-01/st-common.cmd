@@ -11,10 +11,16 @@ epicsEnvSet("IFIOC_GALIL_08", "#")
 epicsEnvSet("IFIOC_GALIL_09", "#")
 epicsEnvSet("IFIOC_GALIL_10", "#")
 
+## increase allowed timeout for command replies/data record from galil
+#epicsEnvSet("GALIL_DEFAULT_COMM_TIMEOUT", "2")
+
 ## these are used in local instrument galil.cmd during transition to new driver
 ## additions can use    $(IFNEWGALIL=#)
 epicsEnvSet("IFNEWGALIL", " ")
 epicsEnvSet("IFNOTNEWGALIL", "#")
+
+## we wish to control some of autosave defined in common autosave.cmd 
+epicsEnvSet("AUTOSAVEREQ","#")
 
 < $(IOCSTARTUP)/init.cmd
 
@@ -28,11 +34,14 @@ stringiftest("INIT_JAWS_FROM_AS", "$(JAWS_POS_FROM_AS=N)", 5, "Y")
 $(IFDEVSIM) epicsEnvSet("GALILADDR", "127.0.0.1")
 $(IFRECSIM) epicsEnvSet("GALILADDR", "127.0.0.1")
 
+## Make sure controller number is 2 digits long
+calc("MTRCTRL", "$(MTRCTRL)", 2, 2)
+
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
 # 1D data, but it doesn't store anything to disk.  (See 'saveData' below for that.)
-#dbLoadRecords("$(SSCAN)/sscanApp/Db/standardScans.db","P=$(MYPVPREFIX)$(IOCNAME):,MAXPTS1=8000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=8000")
-#dbLoadRecords("$(SSCAN)/sscanApp/Db/saveData.db","P=$(MYPVPREFIX)$(IOCNAME):")
+$(IFNEWGALIL=#) dbLoadRecords("$(SSCAN)/sscanApp/Db/standardScans.db","P=$(MYPVPREFIX)MOT:DMC$(MTRCTRL):,MAXPTS1=8000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=8000")
+$(IFNEWGALIL=#) dbLoadRecords("$(SSCAN)/sscanApp/Db/saveData.db","P=$(MYPVPREFIX)MOT:DMC$(MTRCTRL):")
 
 ### autosave
 # specify additional directories in which to to search for included request files
@@ -43,8 +52,14 @@ set_requestfile_path("${SSCAN}/sscanApp/Db", "")
 ## as all Galils cd to GALIL-IOC-01 need to add this explicitly so info generated req files are found
 set_requestfile_path("${TOP}/iocBoot/iocGALIL-IOC-01", "")
 
-## Make sure controller number is 2 digits long
-calc("MTRCTRL", "$(MTRCTRL)", 2, 2)
+# restore positions in pass 0 so motors don't move
+set_pass0_restoreFile("$(IOCNAME)_positions.sav")
+# restore settings in pass 0 so encoder ratio is set correctly for position restore in device support init
+set_pass0_restoreFile("$(IOCNAME)_settings.sav")
+$(IFOLDGALIL=#) set_pass1_restoreFile("$(IOCNAME)_settings.sav")
+# restore kinematic equation character arrays in pass 1
+$(IFNEWGALIL=#) set_pass1_restoreFile("$(IOCNAME)_kinematics.sav")
+
 
 epicsEnvSet("GALILCONFIG","$(GALILCONFIGDIR=$(MOTOREXT)/settings/$(INSTRUMENT)/galil)")
 
@@ -129,17 +144,16 @@ $(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_pos
 # Save motor settings every 30 seconds
 $(IFHASMTRCTRL) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_settings.req", 30, "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
+# Save kinematics every 30 seconds
+$(IFNEWGALIL=#) $(IFNOTDEVSIM) $(IFNOTRECSIM) create_monitor_set("$(IOCNAME)_kinematics.req", 30,"P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
+
 $(IFHASMTRCTRL) $(IFMOTORCONFIG) create_manual_set("$(MOTORCONFIG=)Menu.req","P=$(MYPVPREFIX)MOT:,CMP=$(MYPVPREFIX)$(IOCNAME):CONFIG:,CONFIG=$(MOTORCONFIG=),IOCNAME=$(IOCNAME),MTRCTRL=$(MTRCTRL),CONFIGMENU=1")
 
 # Initialize saveData for step scans
-#saveData_Init("saveData.req", "P=$(MYPVPREFIX)$(IOCNAME):")
+$(IFNEWGALIL=#) saveData_Init("saveData.req", "P=$(MYPVPREFIX)MOT:DMC$(MTRCTRL):")
 
 ## Start any sequence programs
 #seq sncxxx,"user=icsHost"
 
 #asynSetTraceIOMask("GALILSYNC0", -1, 0x2)
 #asynSetTraceMask("GALILSYNC0", -1, 0x9)
-
-## if using hardware flow control on GALIL will need this
-## do not enable software flow control - see comments in GalilController.cpp
-#asynSetOption("GALILSYNC0", 0, "crtscts", "Y");
