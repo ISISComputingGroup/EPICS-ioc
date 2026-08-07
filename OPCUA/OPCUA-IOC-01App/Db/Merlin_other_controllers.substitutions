@@ -1,16 +1,16 @@
+global{NS="\$(NS)",P="\$(P)",SUBS="\$(SUBS)",DEBUG="\$(DEBUG=0)"}
 file "$(TOP)/OPCUA-IOC-01App/Db/other_controllers.template" {
-	pattern{ P, SUBS, DEBUG, RECORD_TYPE, PV_NAME, NAME_PREFIX, NAME_SUFFIX}
-	{ "\$(P)", "\$(SUBS)", "\$(DEBUG=0)", "ai", "MCC_Second_Stage_Temperature", "Opc_MCC_Cryopump", ".SecondStage_Temperature" }
-	{ "\$(P)", "\$(SUBS)", "\$(DEBUG=0)", "ai", "MCC_Thermocouple_Pressure", "Opc_MCC_Cryopump", ".Thermocouple_Pressure" }
-	{ "\$(P)", "\$(SUBS)", "\$(DEBUG=0)", "ai", "MCC_Cryopump_Status", "Opc_MCC_Cryopump", ".Cryopump_Status" }
-	{ "\$(P)", "\$(SUBS)", "\$(DEBUG=0)", "ai", "Disc_Water_Flow", "Opc_Chopper_Water", ".Disc_WaterFlow" }
-	{ "\$(P)", "\$(SUBS)", "\$(DEBUG=0)", "ai", "Disc_Water_Temp", "Opc_Chopper_Water", ".Disc_WaterTemp" }
-	{ "\$(P)", "\$(SUBS)", "\$(DEBUG=0)", "ai", "Fermi_Water_Flow", "Opc_Chopper_Water", ".Fermi_WaterFlow" }
-	{ "\$(P)", "\$(SUBS)", "\$(DEBUG=0)", "ai", "Fermi_Water_Temp", "Opc_Chopper_Water", ".Fermi_WaterTemp" }
-	{ "\$(P)", "\$(SUBS)", "\$(DEBUG=0)", "ai", "T0_Body_Water_Flow", "Opc_Chopper_Water", ".T0_Body_WaterFlow" }
-	{ "\$(P)", "\$(SUBS)", "\$(DEBUG=0)", "ai", "T0_Body_Water_Temp", "Opc_Chopper_Water", ".T0_Body_WaterTemp" }
-	{ "\$(P)", "\$(SUBS)", "\$(DEBUG=0)", "ai", "T0_Motor_Water_Flow", "Opc_Chopper_Water", ".T0_Motor_WaterFlow" }
-	{ "\$(P)", "\$(SUBS)", "\$(DEBUG=0)", "ai", "T0_Motor_Water_Temp", "Opc_Chopper_Water", ".T0_Motor_WaterTemp" }
-	{ "\$(P)", "\$(SUBS)", "\$(DEBUG=0)", "longin", "Opc_Tank_Window_Cycles", "", "Opc_Tank_Window_Cycles" }
+	pattern{ RECORD_TYPE, PV_NAME, NAME_PREFIX, NAME_SUFFIX, EGU}
+	{ "ai", "MCC_Second_Stage_Temperature", "Opc_MCC_Cryopump", ".SecondStage_Temperature", "K" }
+	{ "ai", "MCC_Thermocouple_Pressure", "Opc_MCC_Cryopump", ".Thermocouple_Pressure", "mTorr" }
+	{ "ai", "Disc_Water_Flow", "Opc_Chopper_Water", ".Disc_WaterFlow", "l/min" }
+	{ "ai", "Disc_Water_Temp", "Opc_Chopper_Water", ".Disc_WaterTemp", "C" }
+	{ "ai", "Fermi_Water_Flow", "Opc_Chopper_Water", ".Fermi_WaterFlow", "l/min" }
+	{ "ai", "Fermi_Water_Temp", "Opc_Chopper_Water", ".Fermi_WaterTemp", "C" }
+	{ "ai", "T0_Body_Water_Flow", "Opc_Chopper_Water", ".T0_Body_WaterFlow", "l/min" }
+	{ "ai", "T0_Body_Water_Temp", "Opc_Chopper_Water", ".T0_Body_WaterTemp", "C" }
+	{ "ai", "T0_Motor_Water_Flow", "Opc_Chopper_Water", ".T0_Motor_WaterFlow", "l/min" }
+	{ "ai", "T0_Motor_Water_Temp", "Opc_Chopper_Water", ".T0_Motor_WaterTemp", "C" }
+	{ "longin", "Opc_Tank_Window_Cycles", "", "Opc_Tank_Window_Cycles", "" }
 	
 }

@@ -7,7 +7,7 @@ record(bo, "$(P)IS300") {
 
 record(mbbi, "$(P)PLC:HIGH_VACUUM_VALVE") {
     field(DTYP, "OPCUA")
-    field(INP,  "@$(SUBS) ns=4;s=Opc_High_Vac_Valve_Status")
+    field(INP,  "@$(SUBS) ns=$(NS);s=Opc_High_Vac_Valve_Status")
     field(SCAN, "I/O Intr")
 	field(ONVL, "1")
 	field(ONST, "closed")
@@ -23,7 +23,7 @@ record(mbbi, "$(P)PLC:HIGH_VACUUM_VALVE") {
 
 record(mbbo, "$(P)$(R1):UNIT:SP") {
 	field(DTYP, "OPCUA")
-	field(OUT, "@$(SUBS) ns=4;s=Opc_TPG1_Unit_Request")
+	field(OUT, "@$(SUBS) ns=$(NS);s=Opc_TPG1_Unit_Request")
 	field(ZRVL, "0")
 	field(ZRST, "mbar")
 	field(ONVL, "1")
@@ -36,7 +36,7 @@ record(mbbo, "$(P)$(R1):UNIT:SP") {
 
 record(mbbo, "$(P)$(R2):UNIT:SP") {
 	field(DTYP, "OPCUA")
-	field(OUT, "@$(SUBS) ns=4;s=Opc_TPG2_Unit_Request")
+	field(OUT, "@$(SUBS) ns=$(NS);s=Opc_TPG2_Unit_Request")
 	field(ZRVL, "0")
 	field(ZRST, "mbar")
 	field(ONVL, "1")
@@ -44,5 +44,21 @@ record(mbbo, "$(P)$(R2):UNIT:SP") {
 	field(TWVL, "2")
 	field(TWST, "Pa")
 	field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(mbbi, "$(P)MCC_Cryopump_Status") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=$(NS);s=Opc_MCC_Cryopump.Cryopump_Status")
+    field(SCAN, "I/O Intr")
+	field(ZRVL, "0")
+	field(ZRST, "unknown")
+	field(ONVL, "1")
+	field(ONST, "stopped")
+	field(TWVL, "2")
+	field(TWST, "running")
+	field(FRVL, "4")
+	field(FRST, "fault")
+    field(TSE,  "-2")
     field(TPRO, "$(DEBUG=0)")
 }
