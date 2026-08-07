@@ -9,9 +9,6 @@ dbLoadRecords("$(TOP)/db/galil_motors.db", "GPORT=$(GALIL_MTR_PORT),P=$(MYPVPREF
 #Load extra functionality, untop of motorRecord features for axis/motors (eg. runtime gear ratio changes between master & slaves)
 dbLoadRecords("$(TOP)/db/galil_dmc_ctrl.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
 
-#Load Amplifier status monitors (eg. Overtemperature, OverVoltage, ELO, etc)
-#dbLoadTemplate("$(TOP)/db/galil_quadAmpStatus.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL)")
-
 #Load extra features for real axis/motors (eg. Motor type, encoder type)
 dbLoadRecords("$(TOP)/db/galil_motor_extras.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL),PVPREFIX=$(MYPVPREFIX),ASG01=$(ASG01=DEFAULT),ASG02=$(ASG02=DEFAULT),ASG03=$(ASG03=DEFAULT),ASG04=$(ASG04=DEFAULT),ASG05=$(ASG05=DEFAULT),ASG06=$(ASG06=DEFAULT),ASG07=$(ASG07=DEFAULT),ASG08=$(ASG08=DEFAULT),ENCAVNSAMP=$(ENCAVNSAMP=10),IOCNAME=$(IOCNAME)")
 
