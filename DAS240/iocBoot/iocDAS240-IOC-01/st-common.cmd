@@ -9,7 +9,7 @@ $(IFDEVSIM) drvAsynIPPortConfigure("$(DEVICE)", "localhost:$(EMULATOR_PORT=57677
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 
-$(IFNOTRECSIM) $(IFNOTDEVSIM) drvAsynIPPortConfigure("$(DEVICE)","$(IPADDR=127.0.0.1):$(IPPORT=502)",0,0,1)
+$(IFNOTRECSIM) $(IFNOTDEVSIM) drvAsynIPPortConfigure("$(DEVICE)","$(IPADDR):$(IPPORT)",0,0,1)
 
 ## modbusInterposeConfig(portName, linkType, timeoutMsec, writeDelayMsec)
 $(IFNOTRECSIM) modbusInterposeConfig("$(DEVICE)",0,5000,0,0)
