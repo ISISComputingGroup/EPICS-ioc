@@ -5,6 +5,7 @@
 
 # Increase this if you get <<TRUNCATED>> or discarded messages warnings in your errlog output
 errlogInit2(65536, 256)
+callbackSetQueueSize(20000)
 
 < envPaths
 

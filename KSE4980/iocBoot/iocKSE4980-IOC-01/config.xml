@@ -3,7 +3,7 @@
 <config_part>
 <ioc_desc>Keysight E4890AL LCR meter</ioc_desc>
 <macros>
-<macro name="HOST" description="IP address of LCR meter" hasDefault="NO" />
+<xi:include href="../../../COMMON/HOST.xml" />
 </macros>
 <pvsets>
 </pvsets>

@@ -10,13 +10,13 @@
 # 1.4.1 *_NOT_* TODO PSU Control (PSUs controlled via separate IOCs)
 
 # 1.4.2 Separator Vacuum Interlock Status
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)separator_status",             "$(PLC)", 255, 3, 4000,  3, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4000
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)separator_status",             "$(PLC)", 255, 3, 4000,  3, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4000
 
 
 # 1.5   Solenoid
 # ===============
 
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)solenoid_status",              "$(PLC)", 255, 3, 4003,  1, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4003
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)solenoid_status",              "$(PLC)", 255, 3, 4003,  1, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4003
 
 
 # 1.6   Kickers
@@ -25,81 +25,81 @@ $(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)solenoid_status",              "$(P
 #       (1.6.a & 1.6.b additional sub-sections created for ease of programming and efficiency of reading PLC memory in blocks)
 
 # 1.6.1 Kickers General Status
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)kickers_status",                "$(PLC)", 255, 3, 4004,  4, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4004
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)kickers_status",                "$(PLC)", 255, 3, 4004,  4, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4004
 
 # 1.6.a Kickers 1-4 Readback Status
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)kickers_1-4_status"            "$(PLC)", 255, 3, 4007, 20, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4007
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)kickers_1-4_status"            "$(PLC)", 255, 3, 4007, 20, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4007
 
 # 1.6.b Kickers 1-4 Output
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)kickers_1-4_output"            "$(PLC)", 255, 3, 4500, 16, 7, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4500
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)kickers_1-4_output"            "$(PLC)", 255, 3, 4500, 16, "FLOAT32_LE", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4500
 
 # 2     Vacuum
 # =============
 
 # 2.1   Vacuum Status
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)vacuum_status",                "$(PLC)", 255, 3, 4027, 44, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4027
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)vacuum_status",                "$(PLC)", 255, 3, 4027, 44, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4027
 
 # 2.2   Vacuum Valve Status
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)vacuum_valve_status",          "$(PLC)", 255, 3, 4071, 21, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4071
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)vacuum_valve_status",          "$(PLC)", 255, 3, 4071, 21, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4071
 
 # 2.3   Vacuum Valve Controls
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv1_vacuum_valve_open",        "$(PLC)", 255, 5,  638,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0638
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv2_vacuum_valve_open",        "$(PLC)", 255, 5,  639,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0639
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv3_vacuum_valve_open",        "$(PLC)", 255, 5,  640,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0640
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv4_vacuum_valve_open",        "$(PLC)", 255, 5,  643,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0643
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv5_vacuum_valve_open",        "$(PLC)", 255, 5,  644,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0644
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv6_vacuum_valve_open",        "$(PLC)", 255, 5,  645,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0645
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv7_vacuum_valve_open",        "$(PLC)", 255, 5,  702,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0702
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)amgv_vacuum_valve_open",       "$(PLC)", 255, 5,  651,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0651
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)fsov_vacuum_valve_open",       "$(PLC)", 255, 5,  652,  1, 0,    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0652
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv1_vacuum_valve_open",        "$(PLC)", 255, 5,  638,  1, "UINT16",    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0638
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv2_vacuum_valve_open",        "$(PLC)", 255, 5,  639,  1, "UINT16",    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0639
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv3_vacuum_valve_open",        "$(PLC)", 255, 5,  640,  1, "UINT16",    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0640
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv4_vacuum_valve_open",        "$(PLC)", 255, 5,  643,  1, "UINT16",    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0643
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv5_vacuum_valve_open",        "$(PLC)", 255, 5,  644,  1, "UINT16",    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0644
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv6_vacuum_valve_open",        "$(PLC)", 255, 5,  645,  1, "UINT16",    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0645
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv7_vacuum_valve_open",        "$(PLC)", 255, 5,  702,  1, "UINT16",    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0702
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)amgv_vacuum_valve_open",       "$(PLC)", 255, 5,  651,  1, "UINT16",    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0651
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)fsov_vacuum_valve_open",       "$(PLC)", 255, 5,  652,  1, "UINT16",    0, "Schneider M580 PLC")         # IEC61131 start address: %MW0652
 
 # 2.4   Vacuum Pump Status
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)vacuum_pump_status",           "$(PLC)", 255, 3, 4092, 22, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4092
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)vacuum_pump_status",           "$(PLC)", 255, 3, 4092, 22, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4092
 
 # 2.4.1 Vacuum Pump Valve Interlocks (PIV - Pump Isolation Valve)
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)piv_interlock_status",         "$(PLC)", 255, 3, 4114, 12, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4114
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)piv_interlock_status",         "$(PLC)", 255, 3, 4114, 12, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4114
 
 # 2.4.2 LV Interlocks (LV - Line Valve)
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv_interlock_status",          "$(PLC)", 255, 3, 4125,  7, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4125
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)lv_interlock_status",          "$(PLC)", 255, 3, 4125,  7, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4125
 
 # 2.4.3 Other Valve Interlocks
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)other_valve_interlock_status", "$(PLC)", 255, 3, 4132,  3, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4132
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)other_valve_interlock_status", "$(PLC)", 255, 3, 4132,  3, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4132
 
 # 2.5   Beam Blocker Status
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)beamblocker_status",           "$(PLC)", 255, 3, 4135,  5, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4135
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)beamblocker_status",           "$(PLC)", 255, 3, 4135,  5, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4135
 
 # 2.6   Beam Blocker Information
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)beamblocker_information",      "$(PLC)", 255, 3, 4140,  5, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4140
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)beamblocker_information",      "$(PLC)", 255, 3, 4140,  5, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4140
 
 # 3     PSU Interlocks
 # =====================
 
 # 3.1   Klixon Interlock Status
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)klixon_interlock_status",      "$(PLC)", 255, 3, 4145, 36, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4145
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)klixon_interlock_status",      "$(PLC)", 255, 3, 4145, 36, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4145
 
 # 3.2   Water Interlock Status
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)water_interlock_status",       "$(PLC)", 255, 3, 4181, 40, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4181
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)water_interlock_status_extra", "$(PLC)", 255, 3, 4285,  1, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4285
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)water_interlock_status",       "$(PLC)", 255, 3, 4181, 40, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4181
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)water_interlock_status_extra", "$(PLC)", 255, 3, 4285,  1, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4285
 
 # 3.3   Water Flow Rate
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)water_flow_rate",              "$(PLC)", 255, 3, 4516, 80, 7, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4516
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)water_flow_rate",              "$(PLC)", 255, 3, 4516, 80, "FLOAT32_LE", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4516
 
 # 3.4   R-Box Interlock Status (R-Box - Rectifier Box)
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)rbox_interlock_status",        "$(PLC)", 255, 3, 4220, 56, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4220
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)rbox_interlock_status",        "$(PLC)", 255, 3, 4220, 56, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4220
 
 # 3.5   MOL Status (MOL - Magnet Off Light)
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)mol_status",                   "$(PLC)", 255, 3, 4276,  9, 0, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4276
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)mol_status",                   "$(PLC)", 255, 3, 4276,  9, "UINT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4276
 
 # 3.6   *_NOT_* TODO PSU Control / On  (PSUs controlled via separate IOCs)
 
 # 3.7   Water Temperature
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)water_temperature",            "$(PLC)", 255, 3, 4672, 66, 7, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4672
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)water_temperature",            "$(PLC)", 255, 3, 4672, 66, "FLOAT32_LE", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4672
 
 
 # 4     Temperature monitoring
 # ============================
 
-$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)temperature_monitoring",       "$(PLC)", 255, 3, 4596, 75, 4, 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4596
+$(IFNOTRECSIM) drvModbusAsynConfigure("$(PLC)temperature_monitoring",       "$(PLC)", 255, 3, 4596, 75, "INT16", 1000, "Schneider M580 PLC")         # IEC61131 start address: %MW4596
 
 
 # ----------------------===========================------------------------ #

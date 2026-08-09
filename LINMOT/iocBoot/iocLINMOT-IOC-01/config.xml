@@ -6,11 +6,11 @@
 <macros>
 
 <macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="NO" />
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
-<macro name="BAUD" pattern="^[0-9]+$" description="Baud rate (default: 9600)" defaultValue="9600" hasDefault="YES" />
-<macro name="BITS" pattern="^[7-8]$" description="Data bits (default: 8)" defaultValue="8" hasDefault="YES" />
-<macro name="PARITY" pattern="^(even|odd|none)$" description="Parity (default: none)" defaultValue="none" hasDefault="YES" />
-<macro name="STOP" pattern="^[0-2]$" description="Stop bits (default: 1)" defaultValue="1" hasDefault="YES" />
+<xi:include href="../../../COMMON/PORT.xml" />
+<xi:include href="../../../COMMON/BAUD9600.xml" />
+<xi:include href="../../../COMMON/BITS8.xml" />
+<xi:include href="../../../COMMON/PARITYNONE.xml" />
+<xi:include href="../../../COMMON/STOP1.xml" />
 
 <macro name="AXIS1" pattern="^(yes|no)$" description="Motor is attached to axis 1 (default: no)" defaultValue="no" hasDefault="YES" />
 <macro name="AXIS2" pattern="^(yes|no)$" description="Motor is attached to axis 2 (default: no)" defaultValue="no" hasDefault="YES" />
@@ -39,14 +39,15 @@
 <macro name="MRES7" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
 <macro name="MRES8" pattern="-?[0-9]*\.?[0-9]*$" description="mm/step (default: 0.01)" defaultValue="0.01" hasDefault="YES" />
 
-<macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
-<macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="Speed in mm/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<!-- speed is in internal controller units, just take the labview value, find its !SV command -->
+<macro name="VELO1" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO2" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO3" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO4" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO5" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO6" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO7" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
+<macro name="VELO8" pattern="[0-9]*\.?[0-9]*$" description="Speed in controller_units/s (default: 10)" defaultValue="10" hasDefault="YES" />
 
 <macro name="NAME1" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />
 <macro name="NAME2" pattern="^[\x20-\x7E]*$" description="Name used to identify the motor" hasDefault="NO" />

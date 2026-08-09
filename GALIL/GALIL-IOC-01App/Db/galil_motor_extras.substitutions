@@ -68,4 +68,19 @@ file "$(UTILITIES)/db/field_setter.template" {
     {"\$(P)", MTR\$(CCP)07, MTR\$(CCP)07_MTRENC_DRIFT, ADEL}
     {"\$(P)", MTR\$(CCP)08, MTR\$(CCP)08_MTRENC_DRIFT, ADEL}
 }
+
+file "$(MOTOR)/db/motorStatus.db"
+{
+pattern
+{   PVPREFIX, P, M, IOCNAME  }
+ {  "\$(PVPREFIX)", "\$(P)", "MTR\$(CCP)01", "\$(IOCNAME=UNKNOWN)" }
+ {  "\$(PVPREFIX)", "\$(P)", "MTR\$(CCP)02", "\$(IOCNAME=UNKNOWN)" }
+ {  "\$(PVPREFIX)", "\$(P)", "MTR\$(CCP)03", "\$(IOCNAME=UNKNOWN)" }
+ {  "\$(PVPREFIX)", "\$(P)", "MTR\$(CCP)04", "\$(IOCNAME=UNKNOWN)" }
+ {  "\$(PVPREFIX)", "\$(P)", "MTR\$(CCP)05", "\$(IOCNAME=UNKNOWN)" }
+ {  "\$(PVPREFIX)", "\$(P)", "MTR\$(CCP)06", "\$(IOCNAME=UNKNOWN)" }
+ {  "\$(PVPREFIX)", "\$(P)", "MTR\$(CCP)07", "\$(IOCNAME=UNKNOWN)" }
+ {  "\$(PVPREFIX)", "\$(P)", "MTR\$(CCP)08", "\$(IOCNAME=UNKNOWN)" }
+}
+
 # end

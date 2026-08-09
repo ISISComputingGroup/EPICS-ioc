@@ -1,0 +1,223 @@
+# This contains all the records which handle responses to the READ:SYS:ALRM command.
+# The precise protocol was determined empirically by sending the command and observing the response
+# directly from the instrument.
+# Discrete records are generated for each board type and each alarm by the
+# scpi_system_alarms_discrete.template and substitutions files.
+#
+# The base response is: READ:SYS:ALRM: which may (or may not) be followed by a board identifier,
+# a tab character (9) an alarm string and a semicolon.
+#
+# In ABNF:
+# response      = "READ:SYS:ALRM:" *(error)
+# error         = board_id TAB error_message SEMICOLON
+# board_id      = 1*(ALPHA / DIGIT / ".")       ; e.g. MB1.T1
+# error_message = 1*(ALPHA / DIGIT / ".")       ; e.g. "Open circuit"
+# TAB           = %x09                          ; tab character
+# SEMICOLON     = %x3B                          ; semicolon ";"
+#
+# The board identifiers are provided as macros:
+# Macro             Default
+# BOARDID_MAG       MB1.T1
+# BOARDID_10TMAG    DB8.T1
+# BOARDID_PRESS     DB5.P1
+# BOARDID_LEVEL     DB1.L1
+#
+# Poll system alarms: This record repeatedly sends the READ:SYS:ALRM command
+# and the response is read as a string and parsed by the aSub record below.
+#
+record(waveform, "$(P)STS:_POLLSYSTEM:ALARMS") {
+  field(DESC, "Poll system alarms")
+  field(DTYP, "stream")
+  field(FTVL, "CHAR")
+  field(NELM, "1000")  # Adjust size as needed
+  field(SCAN, "5 second")
+  field(INP, "@OxInstIPS_SCPI.protocol getSysAlarms $(PORT)")
+  field(FLNK, "$(P)STS:_POLLSYSTEM:ALARMS_SUB")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:_POLLSYSTEM:ALARMS")
+  field(SDIS, "$(P)DISABLE")
+}
+
+# The following stringout records are used to provide the board identifiers
+record(stringout, "$(P)STS:SYSTEM:ALARMS:_NAME:TBOARD") {
+  field(DESC, "Temperature board UID name")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(VAL, "$(BOARDID_MAG)")
+  field(OUT, "")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:SYSTEM:ALARMS:_NAME:TBOARD")
+  field(SDIS, "$(P)DISABLE")
+}
+record(stringout, "$(P)STS:SYSTEM:ALARMS:_NAME:10TBOARD") {
+  field(DESC, "Temperature 10T board UID name")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(VAL, "$(BOARDID_10TMAG)")
+  field(OUT, "")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:SYSTEM:ALARMS:_NAME:10TBOARD")
+  field(SDIS, "$(P)DISABLE")
+}
+record(stringout, "$(P)STS:SYSTEM:ALARMS:_NAME:LBOARD") {
+  field(DESC, "Level board UID name")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(VAL, "$(BOARDID_LEVEL)")
+  field(OUT, "")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:SYSTEM:ALARMS:_NAME:LTBOARD")
+  field(SDIS, "$(P)DISABLE")
+}
+record(stringout, "$(P)STS:SYSTEM:ALARMS:_NAME:PBOARD") {
+  field(DESC, "Pressure board UID name")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(VAL, "$(BOARDID_PRESS)")
+  field(OUT, "")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:SYSTEM:ALARMS:_NAME:PBOARD")
+  field(SDIS, "$(P)DISABLE")
+}
+
+# This record is triggered by the stringin record above and parses the response.
+# It extracts the board identifier and the alarm message, and writes them to the appropriate
+# output fields. The output fields are then used by the mbbi and bi records below to set the
+# alarm status for each board.
+# Board identifiers are provided as macros and passed to the aSub as input fields B-E.
+#
+record(aSub, "$(P)STS:_POLLSYSTEM:ALARMS_SUB") {
+  field(SNAM, "handle_system_alarm_status")
+  field(INPA, "$(P)STS:_POLLSYSTEM:ALARMS NPP NMS")
+  field(FTA, "CHAR")
+  field(NOA, "1000")
+
+  field(OUTA, "$(P)STS:SYSTEM:ALARM:TBOARD PP")
+  field(OUTB, "$(P)STS:SYSTEM:ALARM:10TBOARD PP")
+  field(OUTC, "$(P)STS:SYSTEM:ALARM:LBOARD PP")
+  field(OUTD, "$(P)STS:SYSTEM:ALARM:PBOARD PP")
+  field(FTVA, "LONG")
+  field(FTVB, "LONG")
+  field(FTVC, "LONG")
+  field(FTVD, "LONG")
+  field(NOVA, "1")
+  field(NOVB, "1")
+  field(NOVC, "1")
+  field(NOVD, "1")
+}
+
+### =============== Temperature board alarm status ===============  ###
+# Bit set    Definition
+# 0          Open Circuit
+# 1          Short Circuit
+# 2          Calibration Error
+# 3          Firmware Error
+# 4          Board Not Configured
+#
+record(mbbiDirect, "$(P)STS:SYSTEM:ALARM:TBOARD") {
+  field(DESC, "Temperature board alarm status")
+  field(DTYP, "Soft Channel")
+  field(INP, "0")
+  field(PINI, "YES")
+  field(NOBT, "32")
+  field(SCAN, "Passive")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:SYSTEM:ALARM:TBOARD")
+  field(SDIS, "$(P)DISABLE")
+}
+
+
+### =============== 10 Temperature board alarm status ===============  ###
+# Bit set    Definition
+# 0          Open Circuit
+# 1          Short Circuit
+# 2          Calibration Error
+# 3          Firmware Error
+# 4          Board Not Configured
+#
+record(mbbiDirect, "$(P)STS:SYSTEM:ALARM:10TBOARD") {
+  field(DESC, "10T Temperature board alarm status")
+  field(DTYP, "Soft Channel")
+  field(INP, "0")
+  field(PINI, "YES")
+  field(NOBT, "32")
+  field(SCAN, "Passive")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:SYSTEM:ALARM:10TBOARD")
+  field(SDIS, "$(P)DISABLE")
+}
+
+
+### =============== Levels board alarm status ===============  ###
+# Bit set    Definition
+# 0          Open Circuit
+# 1          Short Circuit
+# 2          ADC Error
+# 3          Over demand
+# 4          Over temperature
+# 5          Firmware Error
+# 6          Board Not Configured
+# 7          No Reserve
+# 8          Magnet Safety
+#
+record(mbbiDirect, "$(P)STS:SYSTEM:ALARM:LBOARD") {
+  field(DESC, "Levels board alarm status")
+  field(DTYP, "Soft Channel")
+  field(INP, "0")
+  field(PINI, "YES")
+  field(NOBT, "32")
+  field(SCAN, "Passive")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:SYSTEM:ALARM:LBOARD")
+  field(SDIS, "$(P)DISABLE")
+}
+
+
+### =============== Pressure board alarm status ===============  ###
+# Bit set    Definition
+# 0          Open Circuit
+# 1          Short Circuit
+# 2          Calibration Error
+# 3          Firmware Error
+# 4          Board Not Configured
+# 5          Over current
+# 6          Current leakage
+# 7          Power on fail
+# 8          Checksum fail
+# 9          Clock fail
+# 10          ADC fail
+# 11         Mains fail
+# 12         Reference fail
+# 13         +12V fail
+# 14         -12V fail
+# 15         +8V fail
+# 16         -8V fail
+# 17         Amp gain error
+# 18         Amp offset error
+# 19         ADC offset error
+# 20         ADC PGA error
+# 21         ADC XTAL error
+# 22         Excitation + error
+# 23         Excitation - error
+#
+record(mbbiDirect, "$(P)STS:SYSTEM:ALARM:PBOARD") {
+  field(DESC, "Pressure board alarm status")
+  field(DTYP, "Soft Channel")
+  field(INP, "0")
+  field(PINI, "YES")
+  field(NOBT, "32")
+  field(SCAN, "Passive")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STS:SYSTEM:ALARM:PBOARD")
+  field(SDIS, "$(P)DISABLE")
+}
+

@@ -3,7 +3,7 @@
 <config_part>
 <ioc_desc>ISIS IBEX Arduino Digital input/output IOC for RIKEN FE</ioc_desc>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<xi:include href="../../../COMMON/PORT.xml" />
 </macros>
 <pvsets>
 </pvsets>

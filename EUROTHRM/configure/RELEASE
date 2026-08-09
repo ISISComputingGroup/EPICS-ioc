@@ -43,7 +43,6 @@ EPICS_BASE = C:/Instrument/Apps/EPICS/base/master
 
 EUROTHERM2K=$(SUPPORT)/eurotherm2k/master
 MODBUS=$(SUPPORT)/modbus/master
-EUROTHERMMODBUS=$(SUPPORT)/eurothermModbus/master
 CSM=$(SUPPORT)/csm/master
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master

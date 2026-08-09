@@ -13,8 +13,8 @@
 ## but is for RTU/ASCII
 ## subtract 40001 offset from 4x register addresses that are read by code 3
 ## addresss here are 41315 and 40650
-drvModbusAsynConfigure("$(PLC)heartbeat", "$(PLC)", 1, 3, 649, 1, 0, 1000, "PLC")
-drvModbusAsynConfigure("$(PLC)gatevalve", "$(PLC)", 1, 3, 1314, 1, 0, 1000, "PLC")
+drvModbusAsynConfigure("$(PLC)heartbeat", "$(PLC)", 1, 3, 649, 1, "UINT16", 1000, "PLC")
+drvModbusAsynConfigure("$(PLC)gatevalve", "$(PLC)", 1, 3, 1314, 1, "UINT16", 1000, "PLC")
 
 ## Load our record instances
 dbLoadRecords("$(TOP)/db/GEMGateValve.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=$(PLC),R=")

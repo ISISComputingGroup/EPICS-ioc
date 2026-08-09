@@ -1,0 +1,1 @@
+< $(NFIPMCONFIG)/motionsetpoints.cmd

@@ -22,6 +22,8 @@ PSCTRL_IOC_01_registerRecordDeviceDriver pdbbase
 ## Load our record instances
 dbLoadRecords("db/PSCTRL-IOC-01.db","P=$(MYPVPREFIX)")
 
+epicsEnvSet("CONNECT_INITIAL_WAIT", 10.0)
+
 < $(IOCSTARTUP)/psc1.cmd
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 

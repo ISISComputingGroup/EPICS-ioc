@@ -3,6 +3,10 @@ epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TEKAFG3XXX)/data"
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
+# stringiftest
+# Needs defaults because if ioc config is set to default macro is not passed down and it won't be able to expand $(CHANNEL1)
+stringiftest("CHANNEL1", "$(CHANNEL1=yes)", 5, "yes")
+stringiftest("CHANNEL2", "$(CHANNEL2=yes)", 5, "yes")
 
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("GPIB0", "$(PORT=NUL)", 0, 1, 0, 0)
@@ -25,7 +29,9 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) vxi11Configure("GPIB0", $(ADDR), 0, 0.0,"inst0", 0
 ## Load our record instances
 ############################
 
-dbLoadRecords("$(TEKAFG3XXX)/db/devAFG3XXX.db","P=$(MYPVPREFIX)$(IOCNAME):,PORT=GPIB0,SCAN=$(SCAN=5 second),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+dbLoadRecords("$(TEKAFG3XXX)/db/devAFG3XXXheader.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=GPIB0,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+$(IFCHANNEL1) dbLoadRecords("$(TEKAFG3XXX)/db/devAFG3XXXchannel.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=GPIB0,SCAN=$(SCAN=5 second),C=1,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+$(IFCHANNEL2) dbLoadRecords("$(TEKAFG3XXX)/db/devAFG3XXXchannel.db", "P=$(MYPVPREFIX)$(IOCNAME):,PORT=GPIB0,SCAN=$(SCAN=5 second),C=2,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd

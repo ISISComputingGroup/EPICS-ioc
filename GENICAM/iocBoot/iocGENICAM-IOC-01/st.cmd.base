@@ -1,0 +1,16 @@
+
+
+set_requestfile_path("$(ADGENICAM)/GenICamApp/Db")
+set_requestfile_path("$(ADSPINNAKER)/spinnakerApp/Db")
+
+iocInit()
+
+# save things every thirty seconds
+create_monitor_set("auto_settings.req", 30,"P=$(PREFIX)")
+
+# Wait for enum callbacks to complete
+epicsThreadSleep(1.0)
+
+# Wait for callbacks on the property limits (DRVL, DRVH) to complete
+epicsThreadSleep(1.0)
+

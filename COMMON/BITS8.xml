@@ -1,0 +1,1 @@
+<macro name="BITS" pattern="^[5-8]$" description="Serial communication number of bits, defaults to 8." defaultValue="8" hasDefault="YES" />

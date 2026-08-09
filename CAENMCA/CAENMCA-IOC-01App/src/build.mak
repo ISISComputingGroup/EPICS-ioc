@@ -15,6 +15,9 @@ PROD_IOC = $(APPNAME)
 # CAENMCA-IOC-01.dbd will be created and installed
 DBD += $(APPNAME).dbd
 
+PROD_NAME = $(APPNAME)
+include $(ADCORE)/ADApp/commonDriverMakefile
+
 # CAENMCA-IOC-01.dbd will be made up from these files:
 $(APPNAME)_DBD += base.dbd
 ## ISIS standard dbd ##
@@ -63,6 +66,11 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 #$(APPNAME)_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
+## area detector already includes PVA, so avoid including it twice
+ifeq ($(AREA_DETECTOR),)
+include $(CONFIG)/CONFIG_PVA_ISIS
+endif
+
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 # under linux we make CAENMCA a sys lib, this is so we 

@@ -4,7 +4,7 @@
 <ioc_desc>Keithley 6517B Electrometer</ioc_desc>
 <ioc_details>IOC for Keithley6517B</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<xi:include href="../../../COMMON/PORT.xml" />
 </macros>
 <pvsets>
 </pvsets>

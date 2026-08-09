@@ -4,7 +4,11 @@
 <ioc_desc>Aladdin-1000 Syringe Pump</ioc_desc>
 <ioc_details>Aladdin-1000 Syringe Pump</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<xi:include href="../../../COMMON/PORT.xml" />
+<macro name="ID1" pattern="^[0-9]{1,2}$" description="ID of the first pump n this port." hasDefault="NO" />
+<macro name="ID2" pattern="^[0-9]{1,2}$" description="ID of the second pump n this port." hasDefault="NO" />
+<macro name="ID3" pattern="^[0-9]{1,2}$" description="ID of the third pump n this port." hasDefault="NO" />
+<macro name="ID4" pattern="^[0-9]{1,2}$" description="ID of the fourth pump n this port." hasDefault="NO" />
 </macros>
 <pvsets>
 </pvsets>

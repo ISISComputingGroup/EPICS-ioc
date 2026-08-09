@@ -1,0 +1,34 @@
+<hdf5_layout>
+  <group name="detector">
+    <dataset name="counts" source="detector" det_default="true">
+       <attribute name="signal" source="constant" value="1" type="int"/> 
+       <attribute name="target" source="constant" value="/raw_data_1/instrument/detector_1/counts" type="string"/> 
+       <attribute name="axes" source="constant" value="period_index,spectrum_index,raw_time" type="string"/> 
+       <attribute name="first_good_bin" source="constant" value="0" type="int"/> 
+       <attribute name="last_good_bin" source="constant" value="2048" type="int"/> 
+       <attribute name="long_name" source="constant" value="positron_counts" type="string"/> 
+       <attribute name="offset" source="constant" value="8000" type="int"/> 
+       <attribute name="t0_bin" source="constant" value="0" type="int"/> 
+       <attribute name="units" source="constant" value="counts" type="string"/> 
+    </dataset>
+  </group>
+  <dataset name="raw_frames" source="ndattribute" ndattribute="raw_frames">
+  </dataset>
+  <dataset name="good_frames" source="ndattribute" ndattribute="good_frames">
+  </dataset>
+  <dataset name="duration" source="ndattribute" ndattribute="duration">
+      <attribute name="units" source="constant" value="second" type="string"/>
+  </dataset>
+  <dataset name="collection_time" source="ndattribute" ndattribute="collection_time">
+      <attribute name="units" source="constant" value="second" type="string"/>
+  </dataset>
+  
+  <!--
+  <group name="test1" source="h5file" file="c:/data/MUSR00090596.nxs" path="/raw_data_1/detector_1" />
+  <group name="test2">
+    <dataset name="data1" source="h5file" file="c:/data/MUSR00090596.nxs" path="/raw_data_1/detector_1/counts" />
+  </group>
+  <group name="test3" source="h5file" file="c:/data/MUSR00090596.nxs" path="/raw_data_1" /> 
+  -->
+</hdf5_layout>
+

@@ -26,7 +26,6 @@ $(APPNAME)_DBD += caPutLog.dbd
 $(APPNAME)_DBD += utilities.dbd
 ## add other dbd here ##
 $(APPNAME)_DBD += randomSupport.dbd
-$(APPNAME)_DBD += PVAServerRegister.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -39,11 +38,6 @@ $(APPNAME)_LIBS += autosave
 $(APPNAME)_LIBS += utilities pcrecpp pcre
 ## Add other libraries here ##
 $(APPNAME)_LIBS += random
-ifdef EPICS_BASE_PVA_CORE_LIBS
-  $(APPNAME)_LIBS += $(EPICS_BASE_PVA_CORE_LIBS)
-else
-  $(APPNAME)_LIBS += pvAccess pvData
-endif
 
 # TEST-IOC-01_registerRecordDeviceDriver.cpp derives from TEST-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
@@ -56,6 +50,11 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 #$(APPNAME)_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
+## area detector already includes PVA, so avoid including it twice
+ifeq ($(AREA_DETECTOR),)
+include $(CONFIG)/CONFIG_PVA_ISIS
+endif
+
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================

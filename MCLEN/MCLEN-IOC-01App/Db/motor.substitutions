@@ -11,8 +11,8 @@ pattern {P, M, OFF, JVEL}
 }
 
 file "$(TOP)/MCLEN-IOC-01App/Db/mclen_motor_extra.db" {
-pattern {P, M, PCOFF, HVEL, RDBD}
-{"\$(P)", "\$(M)", "\$(PCOFF)", "\$(HVEL)", "\$(RDBD)"}
+pattern {P, M, PCOFF, HVEL, RDBD, MOTOR_ASG}
+{"\$(P)", "\$(M)", "\$(PCOFF)", "\$(HVEL)", "\$(RDBD)", "\$(MOTOR_ASG)"}
 }
 
 file $(MOTOR)/db/periodic_polling.db {

@@ -4,7 +4,7 @@
 <ioc_desc>ISIS Rotating Stirrer Rack</ioc_desc>
 <ioc_details>Rotating stages control</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO" />
+<xi:include href="../../../COMMON/PORT.xml" />
 <macro name="ADDRESS" pattern="^[0-9]+$" description="Device Address (same as TTIPLP) (default: 1)" defaultValue="1" hasDefault="YES" />
 <macro name="VOLTMAX" pattern="^[0-9]{1,5}+$" description="Voltage trip threshold" defaultValue="15" hasDefault="YES" />
 <macro name="RPMMAX" pattern="^[0-9]{1,5}+$" description="Maximum allowed RPM (Rotations per minute)" defaultValue="41" hasDefault="YES" />

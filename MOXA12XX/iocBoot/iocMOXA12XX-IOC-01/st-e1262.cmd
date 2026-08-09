@@ -1,5 +1,5 @@
 # MOXA E1262 AIs: function 4, address 0x810, 2 words => 0x10, data_type = FLOAT32_LE = 7,
-drvModbusAsynConfigure("$(E12XX_ASYNPORT)_AI", "$(E12XX_ASYNPORT)", 0, 4, 0x810, 0x10, 7, 500, "ioLogik")
+drvModbusAsynConfigure("$(E12XX_ASYNPORT)_AI", "$(E12XX_ASYNPORT)", 0, 4, 0x810, 0x10, "FLOAT32_LE", 500, "ioLogik")
 
 ##ISIS## Load common DB records
 < $(IOCSTARTUP)/dbload.cmd

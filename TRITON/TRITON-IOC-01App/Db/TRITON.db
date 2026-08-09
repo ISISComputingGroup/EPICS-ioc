@@ -242,6 +242,7 @@ record(waveform, "$(P)STATUS")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:STATUS")
     field(SDIS, "$(P)DISABLE")
+    field(APST, "On Change")
 }
 
 record(waveform, "$(P)AUTOMATION")
@@ -259,6 +260,7 @@ record(waveform, "$(P)AUTOMATION")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:AUTOMATION")
     field(SDIS, "$(P)DISABLE")
+    field(APST, "On Change")
 }
 
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+<config_part>
+<ioc_desc>Group3 Hall Probe</ioc_desc>
+<ioc_details>Group3 Hall Probe</ioc_details>
+<macros>
+    <xi:include href="../../../COMMON/PORT.xml" />
+    <macro name="SCALE0" pattern="^-?[0-9]+\.?[0-9]*$" description="Scale factor for probe 0 (e.g. 1 or -1)" hasDefault="YES" defaultValue="1" />
+    <macro name="SCALE1" pattern="^-?[0-9]+\.?[0-9]*$" description="Scale factor for probe 1 (e.g. 1 or -1)" hasDefault="YES" defaultValue="1" />
+    <macro name="SCALE2" pattern="^-?[0-9]+\.?[0-9]*$" description="Scale factor for probe 2 (e.g. 1 or -1)" hasDefault="YES" defaultValue="1" />
+	
+    <macro name="ADDR0" pattern="^[0-9]+$" description="Address for probe 0" hasDefault="YES" defaultValue="0" />
+    <macro name="ADDR1" pattern="^[0-9]+$" description="Address for probe 1" hasDefault="YES" defaultValue="1" />
+    <macro name="ADDR2" pattern="^[0-9]+$" description="Address for probe 2" hasDefault="YES" defaultValue="2" />
+	
+	<macro name="NAME0" pattern="^.*$" description="Name for probe 0 (e.g. X/Y/Z)" hasDefault="YES" defaultValue="probe0" />
+	<macro name="NAME1" pattern="^.*$" description="Name for probe 1 (e.g. X/Y/Z)" hasDefault="YES" defaultValue="probe1" />
+	<macro name="NAME2" pattern="^.*$" description="Name for probe 2 (e.g. X/Y/Z)" hasDefault="YES" defaultValue="probe2" />
+	
+	<macro name="FLNK0" pattern="^.*$" description="Forward-link for probe 0" hasDefault="YES" defaultValue="" />
+	<macro name="FLNK1" pattern="^.*$" description="Forward-link for probe 1" hasDefault="YES" defaultValue="" />
+	<macro name="FLNK2" pattern="^.*$" description="Forward-link for probe 2" hasDefault="YES" defaultValue="" />
+	
+	<macro name="FIELD_SCAN_RATE" pattern="^((\.1|\.2|\.5|1|2|5|10) second|Passive)$" description="Scan rate for field" hasDefault="YES" defaultValue="1 second" />
+	<macro name="TEMP_SCAN_RATE" pattern="^((\.1|\.2|\.5|1|2|5|10) second|Passive)$" description="Scan rate for temperature" hasDefault="YES" defaultValue="5 second" />
+	
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
+</ioc_config>

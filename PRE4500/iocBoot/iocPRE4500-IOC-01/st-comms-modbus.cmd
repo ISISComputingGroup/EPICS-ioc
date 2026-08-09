@@ -29,13 +29,13 @@ modbusInterposeConfig("L0", 1, 2000, 4)
 #                        pollMsec, 
 #                        plcType);
 
-drvModbusAsynConfigure("L0MODBUS_RX_01","L0", 1, 3, 1001, 1, 4, 1000, "")
+drvModbusAsynConfigure("L0MODBUS_RX_01","L0", 1, 3, 1001, 1, "INT16", 1000, "")
 										    
-drvModbusAsynConfigure("L0MODBUS_RX_02","L0", 2, 3, 1001, 1, 4, 1000, "")
+drvModbusAsynConfigure("L0MODBUS_RX_02","L0", 2, 3, 1001, 1, "INT16", 1000, "")
 										    
-drvModbusAsynConfigure("L0MODBUS_RX_03","L0", 3, 3, 1001, 1, 4, 1000, "")
+drvModbusAsynConfigure("L0MODBUS_RX_03","L0", 3, 3, 1001, 1, "INT16", 1000, "")
 										    
-drvModbusAsynConfigure("L0MODBUS_RX_04","L0", 4, 3, 1001, 1, 4, 1000, "")
+drvModbusAsynConfigure("L0MODBUS_RX_04","L0", 4, 3, 1001, 1, "INT16", 1000, "")
 
 asynSetTraceMask("L0", -1, 0x0)
 asynSetTraceIOMask("L0", -1, 0x0)

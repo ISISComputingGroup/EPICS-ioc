@@ -48,7 +48,7 @@ $(APPNAME)_DBD += URLDriverSupport.dbd
 
 ## ISIS standard libraries ##
 ## Stream device libraries ##
-$(APPNAME)_LIBS += webget htmltidy
+$(APPNAME)_LIBS += webget tidy
 $(APPNAME)_LIBS += lua
 $(APPNAME)_LIBS += asyn
 
@@ -93,6 +93,11 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 #$(APPNAME)_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
+## area detector already includes PVA, so avoid including it twice
+ifeq ($(AREA_DETECTOR),)
+include $(CONFIG)/CONFIG_PVA_ISIS
+endif
+
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================

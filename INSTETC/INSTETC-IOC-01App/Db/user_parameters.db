@@ -36,7 +36,7 @@ alias("$(P)PARS:USER:R$(INDEX)", "$(P)PARS:USER:R$(INDEX):SP")
 ## Value and description are autosaved
 record (stringin, "$(P)PARS:USER:S$(INDEX)") 
 {
-	field(DESC, "User String")
+	field(DESC, "User String (length<40)")
 	field(DTYP, "Soft Channel")
 	field(SCAN, "Passive")
     info(archive, "VAL")
@@ -45,3 +45,19 @@ record (stringin, "$(P)PARS:USER:S$(INDEX)")
     info(PVCATEGORY, "USERPAR")
 }
 alias("$(P)PARS:USER:S$(INDEX)", "$(P)PARS:USER:S$(INDEX):SP")
+
+## User settable long string
+## Value and description are autosaved
+record (waveform, "$(P)PARS:USER:LS$(INDEX)") 
+{
+	field(DESC, "User Char Array (length<65536)")
+    field(NELM, "65536")
+    field(FTVL, "CHAR")
+	field(DTYP, "Soft Channel")
+	field(SCAN, "Passive")
+    info(archive, "VAL")
+    info(autosaveFields, "VAL DESC")
+	info(INTEREST, "MEDIUM")
+    info(PVCATEGORY, "USERPAR")
+}
+alias("$(P)PARS:USER:LS$(INDEX)", "$(P)PARS:USER:LS$(INDEX):SP")

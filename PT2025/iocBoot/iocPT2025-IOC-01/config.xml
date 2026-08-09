@@ -4,11 +4,11 @@
 <ioc_desc>Metrolab PT2025 NMR Teslameter</ioc_desc>
 <ioc_details>NMR Teslameter PT2025</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM port" hasDefault="NO"/>
-<macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate, defaults to 9600." defaultValue="9600" hasDefault="YES" />
-<macro name="BITS" pattern="^[0-9]$" description="Serial communication number of data bits, defaults to 8." defaultValue="8" hasDefault="YES" />
-<macro name="PARITY" pattern="^(even|odd|none)$" description="Serial communication parity, defaults to none." defaultValue="none" hasDefault="YES" />
-<macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bits, defaults to 1." defaultValue="1" hasDefault="YES" />
+<xi:include href="../../../COMMON/PORT.xml" />
+<xi:include href="../../../COMMON/BAUD9600.xml" />
+<xi:include href="../../../COMMON/BITS8.xml" />
+<xi:include href="../../../COMMON/PARITYNONE.xml" />
+<xi:include href="../../../COMMON/STOP1.xml" />
 </macros>
 <pvsets>
 </pvsets>

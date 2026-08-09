@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
+    <config_part>
+        <ioc_desc>ISIS  Webcam images within Area Detector</ioc_desc>
+        <!-- for an axis webcam URL is like http://ipaddr/axis-cgi/jpg/image.cgi -->
+        <macros>
+            <macro name="CROSSHAIR_X" pattern="^[0-9]+$" description="X location of crosshair" hasDefault="NO" />
+            <macro name="CROSSHAIR_Y" pattern="^[0-9]+$" description="Y location of crosshair" hasDefault="NO" />
+        </macros>
+</config_part>
+</ioc_config>

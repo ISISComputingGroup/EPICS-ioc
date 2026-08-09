@@ -31,6 +31,7 @@ $(APPNAME)_DBD += drvAsynSerialPort.dbd
 $(APPNAME)_DBD += drvAsynIPPort.dbd 
 $(APPNAME)_DBD += modbusSupport.dbd
 $(APPNAME)_DBD += stream.dbd
+$(APPNAME)_DBD += busyRecord.dbd
 #$(APPNAME)_DBD += xxx.dbd
 
 # Add all the support libraries needed by this IOC
@@ -47,6 +48,7 @@ $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += modbus
 $(APPNAME)_LIBS += asyn calc sscan
 $(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += busy
 #$(APPNAME)_LIBS += xxx
 
 # NANODAC-IOC-01_registerRecordDeviceDriver.cpp derives from NANODAC-IOC-01.dbd
@@ -60,6 +62,11 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 #$(APPNAME)_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
+## area detector already includes PVA, so avoid including it twice
+ifeq ($(AREA_DETECTOR),)
+include $(CONFIG)/CONFIG_PVA_ISIS
+endif
+
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================

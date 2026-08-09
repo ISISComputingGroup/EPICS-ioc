@@ -4,11 +4,11 @@
 <ioc_desc>ISIS HRPD/GEM/POLARIS Sample Changer</ioc_desc>
 <ioc_details>The HRPD/GEM/POLARIS sample changer</ioc_details>
 <macros>
-<macro name="PORT" pattern="^COM[0-9]+$" description="Serial COM Port" hasDefault="NO" />
+<xi:include href="../../../COMMON/PORT.xml" />
 <macro name="BAUD" pattern="^[0-9]+$" description="Serial communication baud rate (Default: 38400)." defaultValue="38400" hasDefault="YES" />
-<macro name="BITS" pattern="^[0-9]$" description="Serial communication number of bits (Default: 8)." defaultValue="8" hasDefault="YES" />
-<macro name="PARITY" pattern="^(even)|(odd)|(none)$" description="Serial communication parity (Default: None)." defaultValue="None" hasDefault="YES" />
-<macro name="STOP" pattern="^[0-9]$" description="Serial communication stop bit (Default: 1)." defaultValue="1" hasDefault="YES" />
+<xi:include href="../../../COMMON/BITS8.xml" />
+<xi:include href="../../../COMMON/PARITYNONE.xml" />
+<xi:include href="../../../COMMON/STOP1.xml" />
 <macro name="VERSION" pattern="^[01]$" description="The version of sample changer. HRPD: 1; others: 0 (Default:0)" defaultValue="0" hasDefault="YES" />
 </macros>
 </config_part>

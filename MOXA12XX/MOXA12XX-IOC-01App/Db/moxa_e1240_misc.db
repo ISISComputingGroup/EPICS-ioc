@@ -23,8 +23,9 @@ record(calc, "$(P):CH$(CHAN):AI:SCALED"){
     field(LOW, "$(LOWLIMIT)")
     field(LSV, "MAJOR")
 
-	field(ASG, "READONLY")
-    info(INTEREST, "HIGH")
-    info(archive, "VAL")
-    info(alarm, "MOXA1240")
+    field(ASG, "READONLY")
+$(IFALIASED)    info(INTEREST, "HIGH")
+$(IFALIASED)    info(archive, "VAL")
+# currently not archived when $(IFNOTALIASED) - could consider info(archive, "60.0 VAL")
+$(IFALIASED)    info(alarm, "MOXA1240")
 }

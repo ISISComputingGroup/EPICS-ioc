@@ -196,7 +196,6 @@ record(stringin, "$(P)SIM:$(MAG):TARGET:TIME") {
 record(ao, "$(P)$(MAG):TARGET:SP") {
   field(DESC, "Target of $(MAG) in Gauss")
   field(DTYP, "Soft Channel")
-  field(SCAN, "1 second")
   field(EGU, "G")
   field(PREC, "3")
   
@@ -241,7 +240,7 @@ record(bo, "$(P)$(MAG):ABORT:SP") {
   field(ZNAM, "Idle")
   field(ONAM, "Abort")
   
-  field(OUT,"$(PVPREFIX)$(PSU_IOC):ABORT PP")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):ABORT")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):ABORT")
@@ -293,7 +292,7 @@ record(bo, "$(P)$(MAG):SET:SP") {
   field(ZNAM, "Idle")
   field(ONAM, "Ramp")
   
-  field(OUT,"$(PVPREFIX)$(PSU_IOC):START:SP PP")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):START:SP")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):SET:SP PP")
@@ -356,6 +355,8 @@ record(ao, "$(P)$(MAG):ZERO") {
   field(DESC, "Zero position for $(MAG)")
   field(EGU,"G")
   field(PREC, "3")
+  field(VAL, "0")
+  field(PINI, "YES")
   
   info(INTEREST, "HIGH")
 }

@@ -1,0 +1,5 @@
+dbpf "$(MYPVPREFIX)$(IOCNAME):D$(DIG):AD$(ADET):FILE:XMLFileName", "${TOP}/iocBoot/iocNCINDG-IOC-01/hdf5_layout.xml"
+dbpf "$(MYPVPREFIX)$(IOCNAME):D$(DIG):AD$(ADET):NDAttributesFile", "${TOP}/iocBoot/iocNCINDG-IOC-01/hdf5_attributes.xml"
+dbpf "$(MYPVPREFIX)$(IOCNAME):D$(DIG):AD$(ADET):FILE:FileTemplate", "$(FTEMPLATE)"
+dbpf "$(MYPVPREFIX)$(IOCNAME):D$(DIG):AD$(ADET):FILE:FilePath", "C:/Data"
+dbpf "$(MYPVPREFIX)$(IOCNAME):D$(DIG):AD$(ADET):FILE:DeleteDriverFile", "1"

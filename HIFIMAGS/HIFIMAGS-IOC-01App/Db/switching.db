@@ -22,7 +22,7 @@ record(ao, "$(P)$(MAG):RAMP:RATE:SP:RAW") {
   field(EGU, "A/s")
   field(PREC, "3")
   
-  field(OUT,"$(PVPREFIX)$(PSU_IOC):RAMP:RATE:_SP PP")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):RAMP:RATE:SP")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):RAMP:RATE")
@@ -91,7 +91,7 @@ record(ao, "$(P)$(MAG):FIELD:MAX:SP:RAW") {
   field(EGU, "G")
   field(PREC, "3")
   
-  field(OUT,"$(PVPREFIX)$(PSU_IOC):FIELD:MAX:SP PP")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):FIELD:MAX:SP")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MAX")
@@ -160,7 +160,7 @@ record(ao, "$(P)$(MAG):FIELD:MID:SP:RAW") {
   field(EGU, "G")
   field(PREC, "3")
   
-  field(OUT,"$(PVPREFIX)$(PSU_IOC):FIELD:MID:SP PP")
+  field(OUT,"$(PVPREFIX)$(PSU_IOC):FIELD:MID:SP")
   
   field(SIML, "$(P)SIM")
   field(SIOL, "$(P)SIM:$(MAG):FIELD:MID")

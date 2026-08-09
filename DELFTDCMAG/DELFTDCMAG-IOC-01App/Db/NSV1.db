@@ -448,13 +448,54 @@ record(ao, "$(P)FIELDMAG4:SP")
 # % macro, RPARAM, asyn read param
 # % macro, SPARAM, asyn set param
 
-record(ai, "$(P)POLREVI2")
+record(ai, "$(P)POLREVI1:RAW")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)POLREVI1")
+    field(SCAN, "I/O Intr")
+    field(PREC, "3")
+    field(EGU, "A")
+}
+
+record(calc, "$(P)POLREVI1:CALC")
+{
+    field(INPA,  "$(P)POLREVI1:RAW CP MS")
+    field(CALC, "A*1000")
+}
+
+record(longin, "$(P)POLREVI1")
+{
+    field(INP,  "$(P)POLREVI1:CALC CP MS")
+    field(EGU, "mA")
+}
+
+record(longout, "$(P)POLREVI1:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(nsv,0,0)POLREVI1SP")
+    field(SCAN, "Passive")
+    field(EGU, "mA")
+}
+
+record(ai, "$(P)POLREVI2:RAW")
 {
     field(DTYP, "asynFloat64")
     field(INP,  "@asyn(nsv,0,0)POLREVI2")
     field(SCAN, "I/O Intr")
     field(PREC, "3")
-    field(EGU, "")
+    field(EGU, "A")
+}
+
+record(calc, "$(P)POLREVI2:CALC")
+{
+    field(INPA,  "$(P)POLREVI2:RAW CP MS")
+    field(CALC, "A*1000")
+}
+
+record(longin, "$(P)POLREVI2")
+{
+    field(INP,  "$(P)POLREVI2:CALC CP MS")
+    field(EGU, "mA")
 }
 
 record(longout, "$(P)POLREVI2:SP")
@@ -462,7 +503,36 @@ record(longout, "$(P)POLREVI2:SP")
     field(DTYP, "asynInt32")
     field(OUT,  "@asyn(nsv,0,0)POLREVI2SP")
     field(SCAN, "Passive")
-    field(EGU, "")
+    field(EGU, "mA")
+}
+
+record(ai, "$(P)POLREVI3:RAW")
+{
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn(nsv,0,0)POLREVI3")
+    field(SCAN, "I/O Intr")
+    field(PREC, "3")
+    field(EGU, "A")
+}
+
+record(calc, "$(P)POLREVI3:CALC")
+{
+    field(INPA,  "$(P)POLREVI3:RAW CP MS")
+    field(CALC, "A*1000")
+}
+
+record(longin, "$(P)POLREVI3")
+{
+    field(INP,  "$(P)POLREVI3:CALC CP MS")
+    field(EGU, "mA")
+}
+
+record(longout, "$(P)POLREVI3:SP")
+{
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn(nsv,0,0)POLREVI3SP")
+    field(SCAN, "Passive")
+    field(EGU, "mA")
 }
 
 record(waveform, "$(P)RFCOILTEMP")

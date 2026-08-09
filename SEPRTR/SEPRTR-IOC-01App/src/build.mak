@@ -36,22 +36,21 @@ $(APPNAME)_DBD += separator.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
+$(APPNAME)_LIBS += SEPRTR
+$(APPNAME)_LIBS += DAQmxSupport
 $(APPNAME)_LIBS += devIocStats 
 $(APPNAME)_LIBS += pvdump $(MYSQLLIB) easySQLite sqlite 
 $(APPNAME)_LIBS += caPutLog
 $(APPNAME)_LIBS += icpconfig pugixml
 $(APPNAME)_LIBS += autosave
-$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 ## Stream device libraries ##
 $(APPNAME)_LIBS += stream
-$(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += asyn
 ## Add other libraries here ##
-$(APPNAME)_LIBS += SEPRTR#separator#SEPRTR
+$(APPNAME)_LIBS += utilities pcrecpp pcre libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += seq pv
 #$(APPNAME)_LIBS += xxx
-$(APPNAME)_LIBS += DAQmxSupport
 # SEPRTR-IOC-01_registerRecordDeviceDriver.cpp derives from SEPRTR-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
 
@@ -63,6 +62,11 @@ $(APPNAME)_SRCS_vxWorks += -nil-
 #$(APPNAME)_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
+## area detector already includes PVA, so avoid including it twice
+ifeq ($(AREA_DETECTOR),)
+include $(CONFIG)/CONFIG_PVA_ISIS
+endif
+
 $(APPNAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 # daqmx external library (need to specify explicitly for static buulds)
@@ -73,6 +77,9 @@ DAQMXLIB = $(ICPBINARYDIR)/NIDAQmx/lib/msvc
 endif
 $(APPNAME)_SYS_LIBS_WIN32 += $(DAQMXLIB)/NIDAQmx
 
+
+$(APPNAME)_SYS_LIBS_Linux += nidaqmx
+$(APPNAME)_LDFLAGS_Linux += -L/usr/lib/x86_64-linux-gnu
 #===========================
 
 include $(TOP)/configure/RULES
