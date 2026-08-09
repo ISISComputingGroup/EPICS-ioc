@@ -25,7 +25,6 @@ $(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"crtscts",
 ## Software flow control off
 $(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixon","N")
 $(IFSERIAL) $(IFNOTDEVSIM) $(IFNOTRECSIM) asynSetOption("$(DEVICE)",0,"ixoff","N")
-$(IFSERIAL) epicsEnvSet("ADDR", "-1")
 
 ## GPIB prologix
 $(IFGPIB) $(IFNOTDEVSIM) $(IFNOTRECSIM) prologixGPIBConfigure("$(DEVICE)", "$(IPADDR=)")
@@ -38,7 +37,7 @@ $(IFGPIB) epicsEnvSet("ADDR", "$(GPIBADDR)")
 < $(IOCSTARTUP)/dbload.cmd
 
 ## Load our record instances
-dbLoadRecords("$(PS300)/db/devSRS_PS$(MODEL).db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,A=$(ADDR),PORT=$(DEVICE)")
+dbLoadRecords("$(PS300)/db/devSRS_PS$(MODEL).db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,A=$(ADDR=-1),PORT=$(DEVICE)")
 dbLoadRecords("$(PS300)/db/devSRS_PS300_common.db","PVPREFIX=$(MYPVPREFIX),P=$(MYPVPREFIX),R=$(IOCNAME):,RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),PORT=$(DEVICE)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
