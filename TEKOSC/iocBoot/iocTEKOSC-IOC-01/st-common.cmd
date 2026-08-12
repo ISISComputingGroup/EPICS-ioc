@@ -4,6 +4,11 @@ epicsEnvSet "DEVICE" "L0"
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
+stringiftest("SCAN_CHANNELS", "$(SCAN_CHANNELS)", 5, "YES")
+stringiftest("MEASURE_CHANNELS", "$(MEASURE_CHANNELS)", 5, "YES")
+$(IFSCAN_CHANNELS) epicsEnvSet("CHANNEL_SCAN", "5 second")
+$(IFMEASURE_CHANNELS) epicsEnvSet("MEASURE_SCAN", "1 second")
+
 ## For recsim:
 $(IFRECSIM) drvAsynSerialPortConfigure("$(DEVICE)", "$(PORT=NUL)", 0, 1, 0, 0)
 
@@ -29,7 +34,7 @@ $(IFNOTDEVSIM) $(IFNOTRECSIM) vxi11Configure("$(DEVICE)", "$(ADDR=)", 0, 0.0,"in
 ## Load our record instances
 ############################
 
-dbLoadRecords("$(TEKOSC)/db/tektronixOsc.db","P=$(MYPVPREFIX)$(IOCNAME),PORT=$(DEVICE),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0)")
+dbLoadRecords("$(TEKOSC)/db/tektronixOsc.db","P=$(MYPVPREFIX)$(IOCNAME),PORT=$(DEVICE),RECSIM=$(RECSIM=0),DISABLE=$(DISABLE=0),CHANNEL_SCAN=$(CHANNEL_SCAN=Passive),MEASURE_SCAN=$(MEASURE_SCAN=Passive)")
 
 ##ISIS## Stuff that needs to be done after all records are loaded but before iocInit is called 
 < $(IOCSTARTUP)/preiocinit.cmd
