@@ -13,6 +13,9 @@ set PYTHONUNBUFFERED=TRUE
 set "GETMACROS=C:\Instrument\Apps\EPICS\support\icpconfig\master\bin\%EPICS_HOST_ARCH%\icpconfigGetMacros.exe"
 set "MYIOCNAME=REFL_01"
 
+set "IOC=iocREFL-IOC-01"
+set "TOP=../.."
+
 echo PRE %MACROS%
 
 if "%MACROS%"=="" (
