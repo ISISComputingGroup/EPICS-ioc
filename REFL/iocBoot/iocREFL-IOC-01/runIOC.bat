@@ -10,7 +10,7 @@ set EPICS_CAS_BEACON_ADDR_LIST=127.255.255.255
 
 set PYTHONUNBUFFERED=TRUE
 
-set "GETMACROS=C:\Instrument\Apps\EPICS\support\icpconfig\master\bin\%EPICS_HOST_ARCH%\icpconfigGetMacros.exe"
+set "GETMACROS=%EPICS_KIT_ROOT%\support\icpconfig\master\bin\%EPICS_HOST_ARCH%\icpconfigGetMacros.exe"
 set "MYIOCNAME=REFL_01"
 
 set "IOC=iocREFL-IOC-01"
