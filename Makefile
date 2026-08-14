@@ -96,6 +96,7 @@ IOCDIRS += OPCUA
 IOCDIRS += ESP300
 IOCDIRS += DAS240
 IOCDIRS += QNW
+IOCDIRS += ISORBHP
 
 
 ## check on missing directories
