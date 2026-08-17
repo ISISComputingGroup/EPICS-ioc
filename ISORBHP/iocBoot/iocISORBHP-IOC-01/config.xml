@@ -4,7 +4,7 @@
 <ioc_desc>Anton Paar iSorb HP</ioc_desc>
 <ioc_details></ioc_details>
 <macros>
-    <xi:include href="../../../COMMON/PORT.xml" />
+    <xi:include href="../../../COMMON/HOST.xml" />
 </macros>
 <pvsets>
 </pvsets>
