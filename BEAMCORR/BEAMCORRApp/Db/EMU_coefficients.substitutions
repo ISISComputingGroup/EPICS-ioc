@@ -1,0 +1,10 @@
+file coefficients.template {
+    pattern { BEAMLINE, STEER_MAG, INT_MAG, INP1, INP2, INP3, INP4}
+    { "EMU", "1",  "HIFI", "B", "C", "D", "E" }
+    { "EMU", "2",  "HIFI", "B", "C", "D", "E" }
+    { "EMU", "1",  "EMU", "F", "G", "H", "I" }
+    { "EMU", "2",  "EMU", "F", "G", "H", "I" }
+    { "EMU", "1",  "MUSR", "J", "K", "L", "M" }
+    { "EMU", "2",  "MUSR", "J", "K", "L", "M" }
+}
+

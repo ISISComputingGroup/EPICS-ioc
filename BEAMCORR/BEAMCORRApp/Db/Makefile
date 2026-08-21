@@ -11,7 +11,9 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 DB += beamcorr.db
-DB += coefficients.db
+DB += EMU_coefficients.db
+DB += HIFI_coefficients.db
+DB += MUSR_coefficients.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

@@ -8,11 +8,30 @@ record(ao, "$(P)$(BEAMLINE):STEER_$(STEER_MAG):$(INT_MAG)_TRANS:COEFF")
   field(DESC, "Coefficient for $(BEAMLINE) $(STEER_MAG) $(INT_MAG)_TRANS")
 }
 
-record(CALC, "$(P)STEERING_$(STEER_MAG):$(BEAMLINE)){
-  field(CALC, "A + B*C + D*E + F*G + H*I + J*K + L*M")
+
+# Equation for a single steering magnet 
+# bx = ax + (cx1 * m1 + cx2 * m2 +... + cxn * mn)
+# where b = The output steering value
+# a = the initital steering value
+# x = the steering magnet
+# cx1 through cxn = the coefficients of the interfering magnets to steering magnet x (set by scientists)
+# m1 through mn = the current value of the interferring magnets
+
+record(calc, $(P)STEERING_$(STEER_MAG):$(BEAMLINE):MAIN_$(INT_MAG)){
+  field(CALC, "A*B")
+  field(INPA, "$(P)$(BEAMLINE):$(STEER_MAG):$(INT_MAG)_MAIN:COEFF")
+  field(INPB, "$($(INT_MAG)_PV_MAIN)")
+}
+
+record(calc, $(P)STEERING_$(STEER_MAG):$(BEAMLINE):TRANS_$(INT_MAG)){
+  field(CALC, "A*B)
+  field(INPA, "$(P)$(BEAMLINE):$(STEER_MAG):$(INT_MAG)_TRANS:COEFF")
+  field(INPB, "$($(INT_MAG)_PV_TRANS)")
+}
+
+record(calc, "$(P)STEERING_$(STEER_MAG):$(BEAMLINE)"){
+  field(CALC, "A + B + C + D + E + F + G")
   field(INPA, "$(STEER_$(STEER_MAG)_$(BEAMLINE)_PV)")
-  field(INP$(INP1), "$(P)$(BEAMLINE):$(STEER_MAG):$(INT_MAG)_MAIN:COEFF")
-  field(INP$(INP2), "$($(INT_MAG)_PV_MAIN)")
-  field(INP$(INP3), "$(P)$(BEAMLINE):$(STEER_MAG):$(INT_MAG)_TRANS:COEFF")
-  field(INP$(INP4), "$($(INT_MAG)_PV_TRANS)")
+  field(INP$(INP1), "$(P)STEERING_$(STEER_MAG):$(BEAMLINE):MAIN_$(INT_MAG)")
+  field(INP$(INP2), "$(P)STEERING_$(STEER_MAG):$(BEAMLINE):TRANS_$(INT_MAG)")
 }
