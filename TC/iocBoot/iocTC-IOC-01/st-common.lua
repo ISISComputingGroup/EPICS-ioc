@@ -10,6 +10,7 @@ function twincat_stcommon_main()
 	local plc_version = ibex_utils.getMacroValue{macro="PLC_VERSION", default="1"}
 	local ads_port = ibex_utils.getMacroValue{macro="ADS_PORT"}
 	local forward_desc = ibex_utils.getMacroValue{macro="FORWARD_DESC", default="0"}
+	local forward_velo = ibex_utils.getMacroValue{macro="FORWARD_VELO", default="0"}
 	local enable_frozen_offsets = ibex_utils.getMacroValue{macro="ALLOW_FROZEN_OFFSETS", default="0"}
 	local enable_auto_on_off = ibex_utils.getMacroValue{macro="ENABLE_AUTO_ON_OFF", default="0"}
 
@@ -65,8 +66,14 @@ function twincat_stcommon_main()
 		axis_monitors = "$(TOP)/db/axis_monitors.db"
 		axis_monitors_args = string.format("P=%s,I=%s,AXIS_NUM=%s,MOTOR_PV=%s", pv_prefix, ioc_name, axis_num, motor_pv)
 		iocsh.dbLoadRecords(axis_monitors, axis_monitors_args)
+
+		if forward_velo == "1" then
+			local forward_velo_args = string.format("P=%s,I=%s,AXIS_NUM=%s,MOTOR_PV=%s", pv_prefix, ioc_name, axis_num, motor_pv)
+			iocsh.dbLoadRecords("$(TOP)/db/velo_monitor.db", forward_velo_args)		
+		end
 		autosave_file:write(string.format("file \"motor_settings.req\" P=%s, M=MOT:%s\n", pv_prefix, motor_pv))
-		-- wrap around to next MTRCTRL - this is so we can show >8 axes in the IBEX table of motors. 
+		-- wrap around to next MTRCTRL and alias - this is so we can show >8 axes in the IBEX table of motors. 
+		-- for example, MTR0109 is also aliased to MTR0201, MTR0110 is aliased to MTR0202, etc.
 		if axis_num > 8 then
 			alias_args_orig = string.format("$(MYPVPREFIX)MOT:%s(.*)", motor_pv)
 			alias_args_aliased = string.format("$(MYPVPREFIX)MOT:MTR%02i%02i\\1", ((axis_num-1)//8) + mtrctrl, (axis_num-1)%8 + 1)
