@@ -131,7 +131,7 @@ endif
 
 ## modules not to build on windows 32bit
 ifneq ($(findstring win32,$(EPICS_HOST_ARCH)),)
-DIRS_NOTBUILD += MK3CHOPR
+DIRS_NOTBUILD += MK3CHOPR ECLAB
 ifeq ($(TWINCAT3DIR),)
 DIRS_NOTBUILD += TC
 endif
