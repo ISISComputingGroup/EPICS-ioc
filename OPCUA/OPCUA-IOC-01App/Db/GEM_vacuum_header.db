@@ -1,0 +1,97 @@
+# PLC records:
+
+record(bo, "$(P)IS300") {
+	field(VAL, "1")
+	field(PINI, "YES")
+}
+
+record(mbbi, "$(P)PLC:HIGH_VACUUM_VALVE") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=$(NS);s=Opc_GV2_STATUS")
+    field(SCAN, "I/O Intr")
+	field(ZRVL, "0")
+	field(ZRST, "Comm Lost")
+	field(ONVL, "1")
+	field(ONST, "Closed")
+	field(TWVL, "2")
+	field(TWST, "Opened")
+	field(THVL, "3")
+	field(THST, "Swiping")
+	field(FRVL, "4")
+	field(FRST, "Position Error")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(mbbi, "$(P)$(R1):ERROR") {
+	field(DTYP, "OPCUA")
+	field(INP, "@$(SUBS) ns=$(NS);s=OPC_TPG1_DATA.ALARM_ACTIVE")
+	field(ZRVL, "0")
+	field(ZRST, "No Error")
+	field(ONVL, "1")
+	field(ONST, "Some Error")
+	field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(mbbi, "$(P)$(R2):ERROR") {
+	field(DTYP, "OPCUA")
+	field(INP, "@$(SUBS) ns=$(NS);s=OPC_TPG2_DATA.ALARM_ACTIVE")
+	field(ZRVL, "0")
+	field(ZRST, "No Error")
+	field(ONVL, "1")
+	field(ONST, "Some Error")
+	field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(mbbi, "$(P)$(R1):UNIT:SP") {
+	field(DTYP, "OPCUA")
+	field(INP, "@$(SUBS) ns=$(NS);s=OPC_TPG1_DATA.ENG_UNIT")
+	field(ZRVL, "0")
+	field(ZRST, "mbar")
+	field(ONVL, "1")
+	field(ONST, "Torr")
+	field(TWVL, "2")
+	field(TWST, "Pa")
+	field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(mbbi, "$(P)$(R2):UNIT:SP") {
+	field(DTYP, "OPCUA")
+	field(INP, "@$(SUBS) ns=$(NS);s=OPC_TPG2_DATA.ENG_UNIT")
+	field(ZRVL, "0")
+	field(ZRST, "mbar")
+	field(ONVL, "1")
+	field(ONST, "Torr")
+	field(TWVL, "2")
+	field(TWST, "Pa")
+	field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(mbbi, "$(P)Opc_Tank_Window_Cycles") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=$(NS);s=Opc_TANK_WINDOW_CYCLES")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)Opc_Sample_Tank_Pressure") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=$(NS);s=Opc_ST_PRESSURE_STRING")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+
+record(stringin, "$(P)Opc_Collimation_Tube_Pressure") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=$(NS);s=Opc_CT_PRESSURE_STRING")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}
+	
