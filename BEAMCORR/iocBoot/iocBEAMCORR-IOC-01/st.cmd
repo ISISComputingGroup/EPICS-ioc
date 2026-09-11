@@ -11,13 +11,14 @@
 errlogInit2(65536, 256)
 
 < envPaths
+epicsEnvSet "IOCNAME" "BEAMCORR_01"
 
 cd "${TOP}"
 
 ## Register all support components
-dbLoadDatabase "dbd/BEAMCORR.dbd"
-BEAMCORR_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/BEAMCORR-IOC-01.dbd"
+BEAMCORR-IOC-01_registerRecordDeviceDriver pdbbase
 
 ## calling common command file in ioc 01 boot dir
-< ${TOP}/iocBoot/iocBEAMCORR/st-common.cmd
+< ${TOP}/iocBoot/iocBEAMCORR-IOC-01/st-common.cmd
 

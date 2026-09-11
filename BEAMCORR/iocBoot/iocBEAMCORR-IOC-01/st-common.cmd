@@ -1,5 +1,3 @@
-epicsEnvSet "DEVICE" "L0"
-
 ##ISIS## Run IOC initialisation 
 < $(IOCSTARTUP)/init.cmd
 
