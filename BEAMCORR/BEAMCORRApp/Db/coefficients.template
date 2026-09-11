@@ -1,11 +1,13 @@
-record(ao, "$(P)$(BEAMLINE):STEER_$(STEER_MAG):$(INT_MAG)_MAIN:COEFF")
+record(ao, "$(P)STEER_$(STEER_MAG):$(INT_MAG)_MAIN:COEFF")
 {
-  field(DESC, "Coefficient for $(BEAMLINE) $(STEER_MAG) $(INT_MAG)_MAIN")
+  field(DESC, "Coefficient for steering $(STEER_MAG) $(INT_MAG)_MAIN")
+  field(PREC, "3")
 }
 
-record(ao, "$(P)$(BEAMLINE):STEER_$(STEER_MAG):$(INT_MAG)_TRANS:COEFF")
+record(ao, "$(P)STEER_$(STEER_MAG):$(INT_MAG)_TRANS:COEFF")
 {
-  field(DESC, "Coefficient for $(BEAMLINE) $(STEER_MAG) $(INT_MAG)_TRANS")
+  field(DESC, "Coefficient for steering $(STEER_MAG) $(INT_MAG)_TRANS")
+  field(PREC, "3")
 }
 
 
@@ -17,21 +19,21 @@ record(ao, "$(P)$(BEAMLINE):STEER_$(STEER_MAG):$(INT_MAG)_TRANS:COEFF")
 # cx1 through cxn = the coefficients of the interfering magnets to steering magnet x (set by scientists)
 # m1 through mn = the current value of the interferring magnets
 
-record(calc, $(P)STEERING_$(STEER_MAG):$(BEAMLINE):MAIN_$(INT_MAG)){
+record(calc, $(P)STEERING_$(STEER_MAG):MAIN_$(INT_MAG)){
   field(CALC, "A*B")
-  field(INPA, "$(P)$(BEAMLINE):$(STEER_MAG):$(INT_MAG)_MAIN:COEFF")
-  field(INPB, "$($(INT_MAG)_PV_MAIN)")
+  field(INPA, "$(P)STEER_$(STEER_MAG):$(INT_MAG)_MAIN:COEFF CP MS")
+  field(INPB, "$(P)$(INT_MAG)_PV:MAIN CP MS")
 }
 
-record(calc, $(P)STEERING_$(STEER_MAG):$(BEAMLINE):TRANS_$(INT_MAG)){
-  field(CALC, "A*B)
-  field(INPA, "$(P)$(BEAMLINE):$(STEER_MAG):$(INT_MAG)_TRANS:COEFF")
-  field(INPB, "$($(INT_MAG)_PV_TRANS)")
+record(calc, $(P)STEERING_$(STEER_MAG):TRANS_$(INT_MAG)){
+  field(CALC, "A*B")
+  field(INPA, "$(P)STEER_$(STEER_MAG):$(INT_MAG)_TRANS:COEFF CP MS")
+  field(INPB, "$(P)$(INT_MAG)_PV:TRANS CP MS")
 }
 
-record(calc, "$(P)STEERING_$(STEER_MAG):$(BEAMLINE)"){
-  field(CALC, "A + B + C + D + E + F + G")
-  field(INPA, "$(STEER_$(STEER_MAG)_$(BEAMLINE)_PV)")
-  field(INP$(INP1), "$(P)STEERING_$(STEER_MAG):$(BEAMLINE):MAIN_$(INT_MAG)")
-  field(INP$(INP2), "$(P)STEERING_$(STEER_MAG):$(BEAMLINE):TRANS_$(INT_MAG)")
+record(calc, "$(P)STEERING_$(STEER_MAG):OFFSET"){
+  field(CALC, "A + B + C + D + E + F")
+  field(PREC, "3")
+  field(INP$(INP1), "$(P)STEERING_$(STEER_MAG):MAIN_$(INT_MAG) CP MS")
+  field(INP$(INP2), "$(P)STEERING_$(STEER_MAG):TRANS_$(INT_MAG) CP MS")
 }

@@ -24,27 +24,208 @@ record(bo, "$(P)DISABLE")
 record(bo, "$(P)ENABLE:CORR")
 {
   field(DESC, "Enable Beam Corrections")
-  field(ZNAM, "CORR ENABLED")
-  field(ONAM, "CORR DISABLED")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
 }
 
-
-record(scalcout, "$(P)OVERRIDE:EMU"){
-  field(CALC, "$(P)==IN:EMU:BEAMCORR:")
+record(ao, "$(P)NUM:STEER_MAG"){
+  field(DESC, "Number of Steering Magnets")
+  field(VAL, "$(NUM_STEER)")
 }
 
-record(scalcout, "$(P)OVERRIDE:MUSR"){
-  field(CALC, "$(P)==IN:MUSR:BEAMCORR:")
-}
-
-record(scalcout, "$(P)OVERRIDE:HIFI"){
-  field(CALC, "$(P)==IN:HIFI:BEAMCORR:")
-}
-
-# Equation for a single steering magnet 
+# Equation for a single steering magnet offset
 # bx = ax + (cx1 * m1 + cx2 * m2 +... + cxn * mn)
 # where b = The output steering value
 # a = the initital steering value
 # x = the steering magnet
 # cx1 through cxn = the coefficients of the interfering magnets to steering magnet x (set by scientists)
 # m1 through mn = the current value of the interferring magnets
+
+record(ai, "$(P)HIFI_PV:MAIN"){
+  field(INP, "$(HIFI_PV_MAIN) CP MS")
+  field(SIOL, "$(P)SIM:HIFI_PV:MAIN")
+  field(SIML, "$(P)SIM")
+}
+
+record(stringout, "$(P)HIFI_PV:MAIN:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(DOL, "$(HIFI_PV_MAIN).EGU CP")
+	field(OMSL, "closed_loop")
+  field(OUT,  "$(P)HIFI_PV:MAIN.EGU NPP")
+  field(SIOL, "$(P)SIM:HIFI_PV:MAIN:UNITS_SET PP")
+  field(SIML, "$(P)SIM")
+}
+
+record(ai, "$(P)HIFI_PV:TRANS"){
+  field(INP, "$(HIFI_PV_TRANS) CP MS")
+  field(SIOL, "$(P)SIM:HIFI_PV:TRANS")
+  field(SIML, "$(P)SIM")
+}
+
+record(stringout, "$(P)HIFI_PV:TRANS:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(DOL, "$(HIFI_PV_TRANS).EGU CP")
+	field(OMSL, "closed_loop")
+  field(OUT,  "$(P)HIFI_PV:TRANS.EGU NPP")
+  field(SIOL, "$(P)SIM:HIFI_PV:TRANS:UNITS_SET PP")
+  field(SIML, "$(P)SIM")
+}
+
+record(ai, "$(P)EMU_PV:MAIN"){
+  field(INP, "$(EMU_PV_MAIN) CP MS")
+  field(SIOL, "$(P)SIM:EMU_PV:MAIN")
+  field(SIML, "$(P)SIM")
+}
+
+record(stringout, "$(P)EMU_PV:MAIN:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(DOL, "$(EMU_PV_MAIN).EGU CP")
+	field(OMSL, "closed_loop")
+  field(OUT,  "$(P)EMU_PV:MAIN.EGU NPP")
+  field(SIOL, "$(P)SIM:EMU_PV:MAIN:UNITS_SET PP")
+  field(SIML, "$(P)SIM")
+}
+
+record(ai, "$(P)EMU_PV:TRANS"){
+  field(INP, "$(EMU_PV_TRANS) CP MS")
+  field(SIOL, "$(P)SIM:EMU_PV:TRANS")
+  field(SIML, "$(P)SIM")
+}
+
+record(stringout, "$(P)EMU_PV:TRANS:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(DOL, "$(EMU_PV_TRANS).EGU CP")
+	field(OMSL, "closed_loop")
+  field(OUT,  "$(P)EMU_PV:TRANS.EGU NPP")
+  field(SIOL, "$(P)SIM:EMU_PV:TRANS:UNITS_SET PP")
+  field(SIML, "$(P)SIM")
+}
+
+### When MUSR replaces direction with second set of magnets, uncomment input field and remove MUSR
+### Rotation calcouts.
+record(ai, "$(P)MUSR_PV:MAIN"){
+#  field(INP, "$(MUSR_PV_MAIN) CP MS")
+#  field(SIOL, "$(P)SIM:MUSR_PV:MAIN")
+#  field(SIML, "$(P)SIM")
+}
+
+record(stringout, "$(P)MUSR_PV:MAIN:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(DOL, "$(MUSR_PV_MAIN).EGU CP")
+	field(OMSL, "closed_loop")
+  field(OUT,  "$(P)MUSR_PV:MAIN.EGU NPP")
+  field(SIOL, "$(P)SIM:MUSR_PV:MAIN:UNITS_SET PP")
+  field(SIML, "$(P)SIM")
+}
+
+### When MUSR replaces direction with second set of magnets, uncomment input field and remove MUSR
+### Rotation calcouts.
+record(ai, "$(P)MUSR_PV:TRANS"){
+# field(INP, "$(MUSR_PV_TRANS) CP MS")
+#  field(SIOL, "$(P)SIM:MUSR_PV:TRANS")
+#  field(SIML, "$(P)SIM")
+}
+
+record(stringout, "$(P)MUSR_PV:TRANS:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(DOL, "$(MUSR_PV_TRANS).EGU CP")
+	field(OMSL, "closed_loop")
+  field(OUT,  "$(P)MUSR_PV:TRANS.EGU NPP")
+  field(SIOL, "$(P)SIM:MUSR_PV:TRANS:UNITS_SET PP")
+  field(SIML, "$(P)SIM")
+}
+
+record(calcout, "$(P)MUSR_ROTATION:ISLONG"){
+  field(DESC, "Handle MUSR Direction")
+  field(CALC, "(A==0)?B:0")
+$(IFNOTRECSIM="")  field(INPA, "IN:MUSR:MUSR_ROTATION CP MS")
+$(IFRECSIM="")  field(INPA, "$(P)SIM:MUSR_ROTATION CP MS")
+$(IFNOTRECSIM="")  field(INPB, "$(MUSR_PV_MAIN) CP MS")
+$(IFRECSIM="")  field(INPB, "$(P)SIM:MUSR_PV:MAIN CP MS")
+  field(OUT, "$(P)MUSR_PV:MAIN PP")
+}
+
+record(calcout, "$(P)MUSR_ROTATION:ISTRANS"){
+  field(DESC, "Handle MUSR Direction")
+  field(CALC, "(A==1)?B:0")
+$(IFNOTRECSIM="")  field(INPA, "IN:MUSR:MUSR_ROTATION CP MS")
+$(IFRECSIM="")  field(INPA, "$(P)SIM:MUSR_ROTATION CP MS")
+$(IFNOTRECSIM="")field(INPB, "$(MUSR_PV_MAIN) CP MS")
+$(IFRECSIM="")  field(INPB, "$(P)SIM:MUSR_PV:MAIN CP MS")
+  field(OUT, "$(P)MUSR_PV:TRANS PP")
+}
+
+### Sim Records
+
+record(mbbo, "$(P)SIM:MUSR_ROTATION"){
+  field(DESC, "SIM MUSR Direction for testing")
+  field(ZRST, "Longitudinal")
+  field(ONST, "Transverse")
+  field(TWST, "Indeterminate")
+}
+
+record(ai, "$(P)SIM:HIFI_PV:MAIN"){
+  field(FLNK, "$(P)HIFI_PV:MAIN")
+}
+
+record(stringout, "$(P)SIM:HIFI_PV:MAIN:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(OUT,  "$(P)HIFI_PV:MAIN.EGU NPP")
+}
+
+record(ai, "$(P)SIM:HIFI_PV:TRANS"){
+  field(FLNK, "$(P)HIFI_PV:TRANS")
+}
+
+record(stringout, "$(P)SIM:HIFI_PV:TRANS:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(OUT,  "$(P)HIFI_PV:TRANS.EGU NPP")
+}
+
+record(ai, "$(P)SIM:EMU_PV:MAIN"){
+  field(FLNK, "$(P)EMU_PV:MAIN")
+}
+
+record(stringout, "$(P)SIM:EMU_PV:MAIN:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(OUT,  "$(P)EMU_PV:MAIN.EGU NPP")
+}
+
+record(ai, "$(P)SIM:EMU_PV:TRANS"){
+  field(FLNK, "$(P)EMU_PV:TRANS")
+}
+
+record(stringout, "$(P)SIM:EMU_PV:TRANS:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(OUT,  "$(P)EMU_PV:TRANS.EGU NPP")
+}
+
+record(ai, "$(P)SIM:MUSR_PV:MAIN"){
+  field(FLNK, "$(P)MUSR_PV:MAIN")
+}
+
+record(stringout, "$(P)SIM:MUSR_PV:MAIN:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(OUT,  "$(P)MUSR_PV:MAIN.EGU NPP")
+}
+
+#record(ai, "$(P)SIM:MUSR_PV:TRANS"){
+#  field(FLNK, "$(P)MUSR_PV:TRANS")
+#}
+
+record(stringout, "$(P)SIM:MUSR_PV:TRANS:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(OUT,  "$(P)MUSR_PV:TRANS.EGU NPP")
+}
