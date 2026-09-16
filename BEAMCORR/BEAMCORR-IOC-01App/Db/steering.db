@@ -1,0 +1,99 @@
+record(ai, "$(P)STEER_$(STEER_MAG)"){
+  field(INP, "$(STEER_PV) CP MS")
+  field(PREC, "3")
+  field(DESC, "Readback for steering magnet $(STEER_MAG)")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STEER_$(STEER_MAG)")
+}
+
+record(stringout, "$(P)STEER_$(STEER_MAG):UNITS_SET")
+{
+  field(DESC, "Push units to $(STEER_MAG) PV")
+  field(DOL, "$(STEER_PV).EGU CP")
+	field(OMSL, "closed_loop")
+  field(OUT,  "$(P)STEER_$(STEER_MAG).EGU NPP")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STEER_$(STEER_MAG):UNITS_SET PP")
+}
+
+record(ao, "$(P)STEER_$(STEER_MAG):SP"){
+  field(DESC, "Setpoint for steer magnet $(STEER_MAG)")
+  field(PREC, "3")
+  info(INTEREST, "HIGH")
+  field(UDFS, "NO_ALARM")
+  field(EGU, "")
+}
+
+record(ao, "$(P)STEER_$(STEER_MAG):OUT:_SP"){
+  field(DESC, "Setpoint for steer magnet $(STEER_MAG)")
+  field(PREC, "3")
+  field(OUT, "$(P)SIM:STEER_$(STEER_MAG) PP")
+  field(UDFS, "NO_ALARM")
+}
+
+record(stringout, "$(P)STEER_$(STEER_MAG):SP:UNITS_SET")
+{
+  field(DESC, "Push units to the $(STEER_MAG) Setpoint")
+  field(DOL, "$(STEER_PV).EGU CP")
+	field(OMSL, "closed_loop")
+  field(OUT,  "$(P)STEER_$(STEER_MAG):SP.EGU NPP")
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:STEER_$(STEER_MAG):SP:UNITS_SET PP")
+}
+
+record(calcout, "$(P)STEER_$(STEER_MAG):DISABLED:SP"){
+  field(DESC, "forward steer val while disabled")
+  field(OCAL, "A")
+  field(CALC, "B")
+$(IFNOTRECSIM)  field(OUT, "$(STEER_PV):SP PP")
+$(IFRECSIM)     field(OUT, "$(P)STEER_$(STEER_MAG):OUT:_SP PP")
+  field(INPA, "$(P)STEER_$(STEER_MAG):SP CP MS")
+  field(INPB, "$(P)ENABLE:CORR CP MS")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Zero")
+}
+
+record(calcout, "$(P)STEER_$(STEER_MAG):_SP"){
+  field(DESC, "determine steer val while enabled")
+  field(OCAL, "A+B")
+  field(CALC, "C")
+$(IFNOTRECSIM)  field(OUT, "$(STEER_PV):SP PP")
+$(IFRECSIM)     field(OUT, "$(P)STEER_$(STEER_MAG):OUT:_SP PP")
+  field(INPA, "$(P)STEER_$(STEER_MAG):SP CP MS")
+  field(INPB, "$(P)STEERING_$(STEER_MAG):OFFSET CP MS")
+  field(INPC, "$(P)ENABLE:CORR")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+}
+
+record(calcout, "$(P)STEER_$(STEER_MAG):_SP:RESET"){
+  field(DESC, "Reset SP on disable")
+  field(OCAL, "A")
+  field(CALC, "B")
+$(IFNOTRECSIM)  field(INPA, "$(STEER_PV):SP CP MS")
+$(IFRECSIM)     field(INPA, "$(P)SIM:STEER_$(STEER_MAG) CP MS")
+  field(OUT, "$(P)STEER_$(STEER_MAG):SP PP")
+  field(INPB, "$(P)ENABLE:CORR CP MS")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "Transition To Zero")
+}
+
+record(ao, "$(P)SIM:STEER_$(STEER_MAG)") 
+{
+    field(DESC, "SIM Steering magnet")
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(FLNK, "$(P)STEER_$(STEER_MAG)")
+}
+
+record(stringout, "$(P)SIM:STEER_$(STEER_MAG):UNITS_SET")
+{
+  field(DESC, "SIM Steering magnet Unit setter")
+  field(OUT,  "$(P)STEER_$(STEER_MAG).EGU NPP")
+}
+
+record(stringout, "$(P)SIM:STEER_$(STEER_MAG):SP:UNITS_SET")
+{
+  field(DESC, "SIM Steering magnet Setpoint unit setter")
+  field(OUT,  "$(P)STEER_$(STEER_MAG):SP.EGU NPP")
+}
