@@ -17,6 +17,7 @@ record(bo, "$(P)DISABLE")
     field(OMSL, "supervisory")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
+
 }
 
 ### Enable Beam Corrections
@@ -27,11 +28,14 @@ record(bo, "$(P)ENABLE:CORR")
   field(ZNAM, "DISABLED")
   field(ONAM, "ENABLED")
   field(VAL, "$(ENABLED_DEFAULT)")
+  info(INTEREST, "MEDIUM")
+  info(alarm, "BEAMCORR")
 }
 
 record(ao, "$(P)NUM:STEER_MAG"){
   field(DESC, "Number of Steering Magnets")
   field(VAL, "$(NUM_STEER)")
+  info(INTEREST, "MEDIUM")
 }
 
 # Equation for a single steering magnet offset
@@ -43,9 +47,11 @@ record(ao, "$(P)NUM:STEER_MAG"){
 # m1 through mn = the current value of the interferring magnets
 
 record(ai, "$(P)HIFI_PV:MAIN"){
+  field(DESC, "Readback for main HIFI magnet")
   field(INP, "$(HIFI_PV_MAIN) CP MS")
   field(SIOL, "$(P)SIM:HIFI_PV:MAIN")
   field(SIML, "$(P)SIM")
+  field(PREC, "3")
 }
 
 record(stringout, "$(P)HIFI_PV:MAIN:UNITS_SET")
@@ -59,9 +65,11 @@ record(stringout, "$(P)HIFI_PV:MAIN:UNITS_SET")
 }
 
 record(ai, "$(P)HIFI_PV:TRANS_X"){
+  field(DESC, "Readback for x transverse HIFI magnet")
   field(INP, "$(HIFI_PV_TRANS_X) CP MS")
   field(SIOL, "$(P)SIM:HIFI_PV:TRANS_X")
   field(SIML, "$(P)SIM")
+  field(PREC, "3")
 }
 
 record(stringout, "$(P)HIFI_PV:TRANS_X:UNITS_SET")
@@ -75,9 +83,11 @@ record(stringout, "$(P)HIFI_PV:TRANS_X:UNITS_SET")
 }
 
 record(ai, "$(P)HIFI_PV:TRANS_Y"){
+  field(DESC, "Readback for y transverse HIFI magnet")
   field(INP, "$(HIFI_PV_TRANS_Y) CP MS")
   field(SIOL, "$(P)SIM:HIFI_PV:TRANS_Y")
   field(SIML, "$(P)SIM")
+  field(PREC, "3")
 }
 
 record(stringout, "$(P)HIFI_PV:TRANS_Y:UNITS_SET")
@@ -91,9 +101,11 @@ record(stringout, "$(P)HIFI_PV:TRANS_Y:UNITS_SET")
 }
 
 record(ai, "$(P)EMU_PV:MAIN"){
+  field(DESC, "Readback for main EMU magnet")
   field(INP, "$(EMU_PV_MAIN) CP MS")
   field(SIOL, "$(P)SIM:EMU_PV:MAIN")
   field(SIML, "$(P)SIM")
+  field(PREC, "3")
 }
 
 record(stringout, "$(P)EMU_PV:MAIN:UNITS_SET")
@@ -107,9 +119,11 @@ record(stringout, "$(P)EMU_PV:MAIN:UNITS_SET")
 }
 
 record(ai, "$(P)EMU_PV:TRANS"){
+  field(DESC, "Readback for transverse EMU magnet")
   field(INP, "$(EMU_PV_TRANS) CP MS")
   field(SIOL, "$(P)SIM:EMU_PV:TRANS")
   field(SIML, "$(P)SIM")
+  field(PREC, "3")
 }
 
 record(stringout, "$(P)EMU_PV:TRANS:UNITS_SET")
@@ -125,9 +139,11 @@ record(stringout, "$(P)EMU_PV:TRANS:UNITS_SET")
 ### When MUSR replaces direction with second set of magnets, uncomment input field and remove MUSR
 ### Rotation calcouts.
 record(ai, "$(P)MUSR_PV:MAIN"){
+  field(DESC, "Readback for main MUSR magnet")
 #  field(INP, "$(MUSR_PV_MAIN) CP MS")
 #  field(SIOL, "$(P)SIM:MUSR_PV:MAIN")
 #  field(SIML, "$(P)SIM")
+#  field(PREC, "3")
 }
 
 record(stringout, "$(P)MUSR_PV:MAIN:UNITS_SET")
@@ -143,9 +159,11 @@ record(stringout, "$(P)MUSR_PV:MAIN:UNITS_SET")
 ### When MUSR replaces direction with second set of magnets, uncomment input field and remove MUSR
 ### Rotation calcouts.
 record(ai, "$(P)MUSR_PV:TRANS"){
-# field(INP, "$(MUSR_PV_TRANS) CP MS")
+  field(DESC, "Readback for transverse MUSR magnet")
+#  field(INP, "$(MUSR_PV_TRANS) CP MS")
 #  field(SIOL, "$(P)SIM:MUSR_PV:TRANS")
 #  field(SIML, "$(P)SIM")
+#  field(PREC, "3")
 }
 
 record(stringout, "$(P)MUSR_PV:TRANS:UNITS_SET")
@@ -188,6 +206,7 @@ record(mbbo, "$(P)SIM:MUSR_ROTATION"){
 }
 
 record(ai, "$(P)SIM:HIFI_PV:MAIN"){
+  field(DESC, "SIM Hifi main magnet")
   field(FLNK, "$(P)HIFI_PV:MAIN")
 }
 
@@ -198,6 +217,7 @@ record(stringout, "$(P)SIM:HIFI_PV:MAIN:UNITS_SET")
 }
 
 record(ai, "$(P)SIM:HIFI_PV:TRANS_X"){
+  field(DESC, "SIM Hifi trans X magnet")
   field(FLNK, "$(P)HIFI_PV:TRANS_X")
 }
 
@@ -208,6 +228,7 @@ record(stringout, "$(P)SIM:HIFI_PV:TRANS_X:UNITS_SET")
 }
 
 record(ai, "$(P)SIM:HIFI_PV:TRANS_Y"){
+  field(DESC, "SIM Hifi trans Y magnet")
   field(FLNK, "$(P)HIFI_PV:TRANS_Y")
 }
 
@@ -219,6 +240,7 @@ record(stringout, "$(P)SIM:HIFI_PV:TRANS_Y:UNITS_SET")
 
 
 record(ai, "$(P)SIM:EMU_PV:MAIN"){
+  field(DESC, "SIM Emu main magnet")
   field(FLNK, "$(P)EMU_PV:MAIN")
 }
 
@@ -229,6 +251,7 @@ record(stringout, "$(P)SIM:EMU_PV:MAIN:UNITS_SET")
 }
 
 record(ai, "$(P)SIM:EMU_PV:TRANS"){
+  field(DESC, "SIM Emu transverse magnet")
   field(FLNK, "$(P)EMU_PV:TRANS")
 }
 
@@ -239,6 +262,7 @@ record(stringout, "$(P)SIM:EMU_PV:TRANS:UNITS_SET")
 }
 
 record(ai, "$(P)SIM:MUSR_PV:MAIN"){
+  field(DESC, "SIM MUSR main magnet")
   field(FLNK, "$(P)MUSR_PV:MAIN")
 }
 
@@ -248,12 +272,14 @@ record(stringout, "$(P)SIM:MUSR_PV:MAIN:UNITS_SET")
   field(OUT,  "$(P)MUSR_PV:MAIN.EGU NPP")
 }
 
+# Uncomment for super musr
 #record(ai, "$(P)SIM:MUSR_PV:TRANS"){
+#  field(DESC, "SIM MUSR transverse magnet")
 #  field(FLNK, "$(P)MUSR_PV:TRANS")
 #}
 
-record(stringout, "$(P)SIM:MUSR_PV:TRANS:UNITS_SET")
-{
-  field(DESC, "Push units from one pv to another")
-  field(OUT,  "$(P)MUSR_PV:TRANS.EGU NPP")
-}
+#record(stringout, "$(P)SIM:MUSR_PV:TRANS:UNITS_SET")
+#{
+#  field(DESC, "Push units from one pv to another")
+#  field(OUT,  "$(P)MUSR_PV:TRANS.EGU NPP")
+#}

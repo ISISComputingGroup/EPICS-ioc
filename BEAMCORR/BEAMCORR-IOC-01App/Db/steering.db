@@ -19,12 +19,15 @@ record(stringout, "$(P)STEER_$(STEER_MAG):UNITS_SET")
 record(ao, "$(P)STEER_$(STEER_MAG):SP"){
   field(DESC, "Setpoint for steer magnet $(STEER_MAG)")
   field(PREC, "3")
+  info(INTEREST, "HIGH")
+  field(UDFS, "NO_ALARM")
 }
 
 record(ao, "$(P)STEER_$(STEER_MAG):OUT:_SP"){
   field(DESC, "Setpoint for steer magnet $(STEER_MAG)")
   field(PREC, "3")
   field(OUT, "$(P)SIM:STEER_$(STEER_MAG) PP")
+  field(UDFS, "NO_ALARM")
 }
 
 record(stringout, "$(P)STEER_$(STEER_MAG):SP:UNITS_SET")
@@ -38,6 +41,7 @@ record(stringout, "$(P)STEER_$(STEER_MAG):SP:UNITS_SET")
 }
 
 record(calcout, "$(P)STEER_$(STEER_MAG):DISABLED:SP"){
+  field(DESC, "Calc to forward Steering magnet while corrections disabled")
   field(OCAL, "A")
   field(CALC, "B")
 $(IFNOTRECSIM="")  field(OUT, "$(STEER_PV):SP PP")
@@ -49,6 +53,7 @@ $(IFRECSIM="")     field(OUT, "$(P)STEER_$(STEER_MAG):OUT:_SP PP")
 }
 
 record(calcout, "$(P)STEER_$(STEER_MAG):_SP"){
+  field(DESC, "Calc to determine Steering magnet while corrections enabled")
   field(OCAL, "A+B")
   field(CALC, "C")
 $(IFNOTRECSIM)  field(OUT, "$(STEER_PV):SP PP")
@@ -61,6 +66,7 @@ $(IFRECSIM)     field(OUT, "$(P)STEER_$(STEER_MAG):OUT:_SP PP")
 }
 
 record(calcout, "$(P)STEER_$(STEER_MAG):_SP:RESET"){
+  field(DESC, "Calc to reset setpoint to current value when disabling corrections")
   field(OCAL, "A")
   field(CALC, "B")
 $(IFNOTRECSIM="")  field(INPA, "$(STEER_PV):SP CP MS")
@@ -73,6 +79,7 @@ $(IFRECSIM="")     field(INPA, "$(P)SIM:STEER_$(STEER_MAG) CP MS")
 
 record(ao, "$(P)SIM:STEER_$(STEER_MAG)") 
 {
+    field(DESC, "SIM Steering magnet")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
     field(FLNK, "$(P)STEER_$(STEER_MAG)")
@@ -80,10 +87,12 @@ record(ao, "$(P)SIM:STEER_$(STEER_MAG)")
 
 record(stringout, "$(P)SIM:STEER_$(STEER_MAG):UNITS_SET")
 {
+  field(DESC, "SIM Steering magnet Unit setter")
   field(OUT,  "$(P)STEER_$(STEER_MAG).EGU NPP")
 }
 
 record(stringout, "$(P)SIM:STEER_$(STEER_MAG):SP:UNITS_SET")
 {
+  field(DESC, "SIM Steering magnet Setpoint unit setter")
   field(OUT,  "$(P)STEER_$(STEER_MAG):SP.EGU NPP")
 }
