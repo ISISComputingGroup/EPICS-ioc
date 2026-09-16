@@ -35,6 +35,7 @@ record(bo, "$(P)ENABLE:CORR")
 record(ao, "$(P)NUM:STEER_MAG"){
   field(DESC, "Number of Steering Magnets")
   field(VAL, "$(NUM_STEER)")
+  field(EGU, "")
   info(INTEREST, "MEDIUM")
 }
 
@@ -179,20 +180,20 @@ record(stringout, "$(P)MUSR_PV:TRANS:UNITS_SET")
 record(calcout, "$(P)MUSR_ROTATION:ISLONG"){
   field(DESC, "Handle MUSR Direction")
   field(CALC, "(A==0)?B:0")
-$(IFNOTRECSIM="")  field(INPA, "IN:MUSR:MUSR_ROTATION CP MS")
-$(IFRECSIM="")  field(INPA, "$(P)SIM:MUSR_ROTATION CP MS")
-$(IFNOTRECSIM="")  field(INPB, "$(MUSR_PV_MAIN) CP MS")
-$(IFRECSIM="")  field(INPB, "$(P)SIM:MUSR_PV:MAIN CP MS")
+$(IFNOTRECSIM)  field(INPA, "IN:MUSR:MUSR_ROTATION CP MS")
+$(IFRECSIM)  field(INPA, "$(P)SIM:MUSR_ROTATION CP MS")
+$(IFNOTRECSIM)  field(INPB, "$(MUSR_PV_MAIN) CP MS")
+$(IFRECSIM)  field(INPB, "$(P)SIM:MUSR_PV:MAIN CP MS")
   field(OUT, "$(P)MUSR_PV:MAIN PP")
 }
 
 record(calcout, "$(P)MUSR_ROTATION:ISTRANS"){
   field(DESC, "Handle MUSR Direction")
   field(CALC, "(A==1)?B:0")
-$(IFNOTRECSIM="")  field(INPA, "IN:MUSR:MUSR_ROTATION CP MS")
-$(IFRECSIM="")  field(INPA, "$(P)SIM:MUSR_ROTATION CP MS")
-$(IFNOTRECSIM="")field(INPB, "$(MUSR_PV_MAIN) CP MS")
-$(IFRECSIM="")  field(INPB, "$(P)SIM:MUSR_PV:MAIN CP MS")
+$(IFNOTRECSIM)  field(INPA, "IN:MUSR:MUSR_ROTATION CP MS")
+$(IFRECSIM)  field(INPA, "$(P)SIM:MUSR_ROTATION CP MS")
+$(IFNOTRECSIM)field(INPB, "$(MUSR_PV_MAIN) CP MS")
+$(IFRECSIM)  field(INPB, "$(P)SIM:MUSR_PV:MAIN CP MS")
   field(OUT, "$(P)MUSR_PV:TRANS PP")
 }
 
