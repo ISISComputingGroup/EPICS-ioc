@@ -4,6 +4,8 @@ record(ao, "$(P)STEER_$(STEER_MAG):$(INT_MAG)_$(DIRECTION):COEFF")
   field(PREC, "3")
   info(autosaveFields, "VAL")
   info(INTEREST, "LOW")
+  field(EGU, "")
+  field(UDFS, "NO_ALARM")
 }
 
 # Equation for a single steering magnet 
@@ -15,7 +17,7 @@ record(ao, "$(P)STEER_$(STEER_MAG):$(INT_MAG)_$(DIRECTION):COEFF")
 # m1 through mn = the current value of the interferring magnets
 
 record(calc, $(P)STEERING_$(STEER_MAG):$(DIRECTION)_$(INT_MAG)){
-  field(DESC, "$(INT_MAG) $(DIRECTION) multiplied by coefficient for Steer $(STEER_MAG)")
+  field(DESC, "$(INT_MAG) $(DIRECTION) X Coeff for STEER $(STEER_MAG)")
   field(CALC, "A*B")
   field(INPA, "$(P)STEER_$(STEER_MAG):$(INT_MAG)_$(DIRECTION):COEFF CP MS")
   field(INPB, "$(P)$(INT_MAG)_PV:$(DIRECTION) CP MS")
@@ -27,4 +29,5 @@ record(calc, "$(P)STEERING_$(STEER_MAG):OFFSET"){
   field(PREC, "3")
   field(INP$(INP), "$(P)STEERING_$(STEER_MAG):$(DIRECTION)_$(INT_MAG) CP MS")
   info(INTEREST, "LOW")
+  field(ASG, "READONLY")
 }
