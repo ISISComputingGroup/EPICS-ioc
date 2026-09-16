@@ -17,7 +17,7 @@ cd "${TOP}"
 
 ## Register all support components
 dbLoadDatabase "dbd/BEAMCORR-IOC-01.dbd"
-BEAMCORR-IOC-01_registerRecordDeviceDriver pdbbase
+BEAMCORR_IOC_01_registerRecordDeviceDriver pdbbase
 
 ## calling common command file in ioc 01 boot dir
 < ${TOP}/iocBoot/iocBEAMCORR-IOC-01/st-common.cmd

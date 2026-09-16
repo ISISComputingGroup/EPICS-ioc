@@ -1,6 +1,10 @@
 file coefficients.template {
-    pattern { INT_MAG, INP1, INP2}
-    { "HIFI", "A", "B" }
-    { "EMU", "C", "D" }
-    { "MUSR", "E", "F" }
+    pattern { INT_MAG, INP, DIRECTION}
+    { "HIFI", "A", "MAIN"}
+    { "HIFI", "B", "TRANS_X" }
+    { "HIFI", "C", "TRANS_Y"}
+    { "EMU", "D", "MAIN"}
+    { "EMU", "E", "TRANS" }
+    { "MUSR", "F", "MAIN"}
+    { "MUSR", "G" "TRANS" }
 }

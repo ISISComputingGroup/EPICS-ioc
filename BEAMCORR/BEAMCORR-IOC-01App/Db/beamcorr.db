@@ -26,6 +26,7 @@ record(bo, "$(P)ENABLE:CORR")
   field(DESC, "Enable Beam Corrections")
   field(ZNAM, "DISABLED")
   field(ONAM, "ENABLED")
+  field(VAL, "$(ENABLED_DEFAULT)")
 }
 
 record(ao, "$(P)NUM:STEER_MAG"){
@@ -57,18 +58,34 @@ record(stringout, "$(P)HIFI_PV:MAIN:UNITS_SET")
   field(SIML, "$(P)SIM")
 }
 
-record(ai, "$(P)HIFI_PV:TRANS"){
-  field(INP, "$(HIFI_PV_TRANS) CP MS")
-  field(SIOL, "$(P)SIM:HIFI_PV:TRANS")
+record(ai, "$(P)HIFI_PV:TRANS_X"){
+  field(INP, "$(HIFI_PV_TRANS_X) CP MS")
+  field(SIOL, "$(P)SIM:HIFI_PV:TRANS_X")
   field(SIML, "$(P)SIM")
 }
 
-record(stringout, "$(P)HIFI_PV:TRANS:UNITS_SET")
+record(stringout, "$(P)HIFI_PV:TRANS_X:UNITS_SET")
 {
   field(DESC, "Push units from one pv to another")
-  field(DOL, "$(HIFI_PV_TRANS).EGU CP")
+  field(DOL, "$(HIFI_PV_TRANS_X).EGU CP")
 	field(OMSL, "closed_loop")
-  field(OUT,  "$(P)HIFI_PV:TRANS.EGU NPP")
+  field(OUT,  "$(P)HIFI_PV:TRANS_X.EGU NPP")
+  field(SIOL, "$(P)SIM:HIFI_PV:TRANS_X:UNITS_SET PP")
+  field(SIML, "$(P)SIM")
+}
+
+record(ai, "$(P)HIFI_PV:TRANS_Y"){
+  field(INP, "$(HIFI_PV_TRANS_Y) CP MS")
+  field(SIOL, "$(P)SIM:HIFI_PV:TRANS_Y")
+  field(SIML, "$(P)SIM")
+}
+
+record(stringout, "$(P)HIFI_PV:TRANS_Y:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(DOL, "$(HIFI_PV_TRANS_Y).EGU CP")
+	field(OMSL, "closed_loop")
+  field(OUT,  "$(P)HIFI_PV:TRANS_Y.EGU NPP")
   field(SIOL, "$(P)SIM:HIFI_PV:TRANS:UNITS_SET PP")
   field(SIML, "$(P)SIM")
 }
@@ -180,15 +197,26 @@ record(stringout, "$(P)SIM:HIFI_PV:MAIN:UNITS_SET")
   field(OUT,  "$(P)HIFI_PV:MAIN.EGU NPP")
 }
 
-record(ai, "$(P)SIM:HIFI_PV:TRANS"){
-  field(FLNK, "$(P)HIFI_PV:TRANS")
+record(ai, "$(P)SIM:HIFI_PV:TRANS_X"){
+  field(FLNK, "$(P)HIFI_PV:TRANS_X")
 }
 
-record(stringout, "$(P)SIM:HIFI_PV:TRANS:UNITS_SET")
+record(stringout, "$(P)SIM:HIFI_PV:TRANS_X:UNITS_SET")
 {
   field(DESC, "Push units from one pv to another")
-  field(OUT,  "$(P)HIFI_PV:TRANS.EGU NPP")
+  field(OUT,  "$(P)HIFI_PV:TRANS_X.EGU NPP")
 }
+
+record(ai, "$(P)SIM:HIFI_PV:TRANS_Y"){
+  field(FLNK, "$(P)HIFI_PV:TRANS_Y")
+}
+
+record(stringout, "$(P)SIM:HIFI_PV:TRANS_Y:UNITS_SET")
+{
+  field(DESC, "Push units from one pv to another")
+  field(OUT,  "$(P)HIFI_PV:TRANS_Y.EGU NPP")
+}
+
 
 record(ai, "$(P)SIM:EMU_PV:MAIN"){
   field(FLNK, "$(P)EMU_PV:MAIN")

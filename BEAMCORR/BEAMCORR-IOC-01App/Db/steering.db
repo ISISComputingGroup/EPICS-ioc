@@ -21,6 +21,12 @@ record(ao, "$(P)STEER_$(STEER_MAG):SP"){
   field(PREC, "3")
 }
 
+record(ao, "$(P)STEER_$(STEER_MAG):OUT:_SP"){
+  field(DESC, "Setpoint for steer magnet $(STEER_MAG)")
+  field(PREC, "3")
+  field(OUT, "$(P)SIM:STEER_$(STEER_MAG) PP")
+}
+
 record(stringout, "$(P)STEER_$(STEER_MAG):SP:UNITS_SET")
 {
   field(DESC, "Push units to the $(STEER_MAG) Setpoint")
@@ -35,7 +41,7 @@ record(calcout, "$(P)STEER_$(STEER_MAG):DISABLED:SP"){
   field(OCAL, "A")
   field(CALC, "B")
 $(IFNOTRECSIM="")  field(OUT, "$(STEER_PV):SP PP")
-$(IFRECSIM="")     field(OUT, "$(P)SIM:STEER_$(STEER_MAG) PP")
+$(IFRECSIM="")     field(OUT, "$(P)STEER_$(STEER_MAG):OUT:_SP PP")
   field(INPA, "$(P)STEER_$(STEER_MAG):SP CP MS")
   field(INPB, "$(P)ENABLE:CORR CP MS")
   field(DOPT, "Use OCAL")
@@ -45,10 +51,10 @@ $(IFRECSIM="")     field(OUT, "$(P)SIM:STEER_$(STEER_MAG) PP")
 record(calcout, "$(P)STEER_$(STEER_MAG):_SP"){
   field(OCAL, "A+B")
   field(CALC, "C")
-$(IFNOTRECSIM="")  field(OUT, "$(STEER_PV):SP PP")
-$(IFRECSIM="")     field(OUT, "$(P)SIM:STEER_$(STEER_MAG) PP")
+$(IFNOTRECSIM)  field(OUT, "$(STEER_PV):SP PP")
+$(IFRECSIM)     field(OUT, "$(P)STEER_$(STEER_MAG):OUT:_SP PP")
   field(INPA, "$(P)STEER_$(STEER_MAG):SP CP MS")
-  field(INPB, "$(P)STEERING_1:OFFSET CP MS")
+  field(INPB, "$(P)STEERING_$(STEER_MAG):OFFSET CP MS")
   field(INPC, "$(P)ENABLE:CORR")
   field(DOPT, "Use OCAL")
   field(OOPT, "When Non-zero")
