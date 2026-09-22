@@ -1,0 +1,21 @@
+# DB to forward velocities from the beckhoff to the motor record.
+# This was previously removed in https://github.com/ISISComputingGroup/EPICS-ioc/commit/7b9360a00f855225a5be585981c8d36b12af6d5c due to 
+# issues where the beckhoff would sometimes set velocity to zero and then this code would forward it and prevent moves.
+# ISIS Beckhoffs before IMAT's recomission in 2026 still run the problematic code, so this is conditionally loaded by the IOC based on the FORWARD_VELO macro.
+
+record(dfanout, "$(P)MOT:$(MOTOR_PV):VELO_SEND")
+{
+    field(DESC, "Forward device velo SP to mtr rec")
+    field(DOL, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FVELOCITY:RBV CP")
+    field(OUTA, "$(P)MOT:$(MOTOR_PV).VMAX")
+    field(OUTB, "$(P)MOT:$(MOTOR_PV).VELO")
+    field(OMSL, "closed_loop")
+}
+
+record(dfanout, "$(P)MOT:$(MOTOR_PV):JVEL_SEND")
+{
+    field(DESC, "Forward device jog velo SP to mtr rec")
+    field(DOL, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FJOGVELOCITY:RBV CP")
+    field(OMSL, "closed_loop")
+    field(OUTA, "$(P)MOT:$(MOTOR_PV).JVEL")
+}
