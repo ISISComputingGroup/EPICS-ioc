@@ -14,6 +14,9 @@
 <macro name="PRESSURE_1" pattern="^.*[.].*$" description="Card identifier for Pressure 1 (e.g. DB1.P1). Blank for no controller." hasDefault="YES" defaultValue="" />
 <macro name="PRESSURE_2" pattern="^.*[.].*$" description="Card identifier for Pressure 2 (e.g. DB1.P1). Blank for no controller." hasDefault="YES" defaultValue="" />
 
+<macro name="IPADDR" pattern="^.*$" description="IP Address for Ethernet comms" hasDefault="YES" defaultValue="" />
+<macro name="IPPORT" pattern="^.*$" description="IP Port for Ethernet comms" hasDefault="YES" defaultValue="7020" />
+
 <macro name="SPC_TYPE_1" pattern="^(FLOW|VTI|NONE)$" description="Software pressure control method to use on Temperature 1" hasDefault="YES" defaultValue="NONE" />
 <macro name="SPC_TYPE_2" pattern="^(FLOW|VTI|NONE)$" description="Software pressure control method to use on Temperature 2" hasDefault="YES" defaultValue="NONE" />
 <macro name="SPC_TYPE_3" pattern="^(FLOW|VTI|NONE)$" description="Software pressure control method to use on Temperature 3" hasDefault="YES" defaultValue="NONE" />
