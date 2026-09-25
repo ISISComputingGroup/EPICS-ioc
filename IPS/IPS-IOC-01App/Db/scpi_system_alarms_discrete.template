@@ -1,0 +1,19 @@
+# SCPI System Alarms Discrete Template
+# This file defines the discrete alarms for the SCPI system, which are derived from the
+# relevant mbbidirect records
+#
+record(bi, "$(P)$(ALARM_NAME)") {
+  field(DESC, "$(ALARM_DESC)")
+  field(DTYP, "Soft Channel")
+  field(SCAN, "Passive")
+  field(INP, "$(P)$(ALARM_INP) CP MS")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(ZSV,  "NO_ALARM")
+  field(OSV,  "MAJOR")
+
+  field(SIML, "$(P)SIM")
+  field(SIOL, "$(P)SIM:$(ALARM_NAME)")
+  field(SDIS, "$(P)DISABLE")
+  info(archive, "VAL")
+}

@@ -15,6 +15,8 @@ set PYTHONUNBUFFERED=TRUE
 
 set "GETMACROS=%EPICS_KIT_ROOT%\support\icpconfig\master\bin\%EPICS_HOST_ARCH%\icpconfigGetMacros.exe"
 if "%MYIOCNAME%" == "" set "MYIOCNAME=LSICORR_01"
+if "%IOC%" == "" set "IOC=iocLSICORR-IOC-01"
+if "%TOP%" == "" set "TOP=../.."
 
 if "%MACROS%"=="" (
     REM need this funny syntax to be able to set eol correctly - see google

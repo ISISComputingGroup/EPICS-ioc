@@ -8,6 +8,9 @@
 <macro name="ADS_PORT" pattern="^[0-9]{1,5}$" description="ADS port to use for communication" hasDefault="YES" defaultValue="852"/>
 <macro name="MTRCTRL" pattern="^[0-9]{1,2}$" description="Controller number used in motor address assignment" hasDefault="NO"/>
 <macro name="PLC_VERSION" pattern="^[1]$" description="The PLC version to communicate with: 0 for the old ISIS code (now removed) and 1 for new collaboration code" defaultValue="1" hasDefault="YES" />
+<macro name="FORWARD_DESC" pattern="^1|0$" description="Whether to poll and forward axis description to .DESC" hasDefault="YES" defaultValue="0" />
+<macro name="ALLOW_FROZEN_OFFSETS" pattern="^1|0$" description="Whether to allow frozen offset behaviour" hasDefault="YES" defaultValue="0" />
+<macro name="ENABLE_AUTO_ON_OFF" pattern="^1|0$" description="Enable PVs for setting auto energising by controller" defaultValue="0" hasDefault="YES" />
 </macros>
 </config_part>
 </ioc_config>

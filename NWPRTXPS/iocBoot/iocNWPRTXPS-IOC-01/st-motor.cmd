@@ -13,5 +13,5 @@ $(IFSIM) motorSimConfigAxis("motorSim", $(CARD), 200, -200, -200, 0)
 dcalc("ERES", "1.0/$(STEP_NUM)", 1, 12)
 dcalc("MRES", "1.0/$(STEP_NUM)", 1, 12)
 
-dbLoadRecords("$(TOP)/db/motor$(SIMSFX=).db", "P=$(MYPVPREFIX),M=$(AMOTORPV),XPS_PORT=$(XPS_PORT),MRES=$(MRES),ERES=$(ERES),CARD=$(CARD)")
+dbLoadRecords("$(TOP)/db/motor$(SIMSFX=).db", "P=$(MYPVPREFIX),M=$(AMOTORPV),XPS_PORT=$(XPS_PORT)$(CARD),MRES=$(MRES),ERES=$(ERES),CARD=$(CARD)")
 dbLoadRecords("$(MOTOR)/db/motorStatus.db", "P=$(MYPVPREFIX),M=$(AMOTORPV),IOCNAME=$(IOCNAME)") 

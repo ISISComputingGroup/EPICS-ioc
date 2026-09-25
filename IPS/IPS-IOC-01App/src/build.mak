@@ -30,6 +30,7 @@ $(APPNAME)_DBD += stream.dbd
 $(APPNAME)_DBD += ReadASCII.dbd
 $(APPNAME)_DBD += FileList.dbd
 $(APPNAME)_DBD += cryomagnet.dbd
+$(APPNAME)_DBD += OxInstIPS.dbd
 
 # Add all the support libraries needed by this IOC
 ## ISIS standard libraries ##
@@ -48,6 +49,7 @@ $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre libjson zlib
 $(APPNAME)_LIBS += efsw
 $(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += OxInstIPS
 
 # FERMCHOP-IOC-01_registerRecordDeviceDriver.cpp derives from IPS-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp

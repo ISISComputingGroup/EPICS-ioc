@@ -9,7 +9,7 @@
         <macro name="OFFSETY" pattern="^-?[0-9]+\.?[0-9]*$" description="Y component of measured field offset" defaultValue="0" hasDefault="YES" />
         <macro name="OFFSETZ" pattern="^-?[0-9]+\.?[0-9]*$" description="Z component of measured field offset" defaultValue="0" hasDefault="YES" />
         <macro name="RANGE" pattern="^-?[0-9]+\.?[0-9]*$" description="Range of the magnetometer" defaultValue="1" hasDefault="YES" />
-        <macro name="SQNCR" pattern="^[:a-zA-Z0-9_-\. ]+$" description="PV in auto-feedback sequencer to process on new field values" defaultValue="$(PVPREFIX):ZFCNTRL_01:INPUTS_UPDATED.PROC" hasDefault="YES" />
+        <macro name="SQNCR" pattern="^[:a-zA-Z0-9_-\. ]+$" description="PV in auto-feedback sequencer to process on new field values" defaultValue="$(MYPVPREFIX)ZFCNTRL_01:INPUTS_UPDATED.PROC CA" hasDefault="YES" />
 
         <macro name="MATRIX_1_1" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (1,1) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
         <macro name="MATRIX_1_2" pattern="^-?[0-9]+\.?[0-9]*$" description="Element (1,2) of the fixed sensor matrix" defaultValue="0" hasDefault="YES" />
