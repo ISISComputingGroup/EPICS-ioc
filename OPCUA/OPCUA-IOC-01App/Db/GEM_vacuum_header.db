@@ -71,7 +71,7 @@ record(mbbi, "$(P)$(R2):UNIT:SP") {
     field(TPRO, "$(DEBUG=0)")
 }
 
-record(mbbi, "$(P)Opc_Tank_Window_Cycles") {
+record(mbbi, "$(P)OPC_TANK_WINDOW_CYCLES") {
     field(DTYP, "OPCUA")
     field(INP,  "@$(SUBS) ns=$(NS);s=Opc_TANK_WINDOW_CYCLES")
     field(SCAN, "I/O Intr")
@@ -79,7 +79,7 @@ record(mbbi, "$(P)Opc_Tank_Window_Cycles") {
     field(TPRO, "$(DEBUG=0)")
 }
 
-record(stringin, "$(P)Opc_Sample_Tank_Pressure") {
+record(stringin, "$(P)OPC_SAMPLE_TANK_PRESSURE") {
     field(DTYP, "OPCUA")
     field(INP,  "@$(SUBS) ns=$(NS);s=Opc_ST_PRESSURE_STRING")
     field(SCAN, "I/O Intr")
@@ -87,11 +87,10 @@ record(stringin, "$(P)Opc_Sample_Tank_Pressure") {
     field(TPRO, "$(DEBUG=0)")
 }
 
-record(stringin, "$(P)Opc_Collimation_Tube_Pressure") {
+record(stringin, "$(P)OPC_COLLIMATION_TUBE_PRESSURE") {
     field(DTYP, "OPCUA")
     field(INP,  "@$(SUBS) ns=$(NS);s=Opc_CT_PRESSURE_STRING")
     field(SCAN, "I/O Intr")
     field(TSE,  "-2")
     field(TPRO, "$(DEBUG=0)")
 }
-	
