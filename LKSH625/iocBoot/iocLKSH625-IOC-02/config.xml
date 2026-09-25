@@ -1,4 +1,12 @@
 <?xml version="1.0" ?>
 <ioc_config xmlns:xi="http://www.w3.org/2001/XInclude">
-    <xi:include href="../iocLKSH625-IOC-01/config.xml"  />
+<config_part>
+<ioc_desc>Lakeshore 625</ioc_desc>
+<ioc_details>Superconducting magnet power supply</ioc_details>
+<macros>
+<xi:include href="../../../COMMON/PORT.xml" />
+</macros>
+<pvsets>
+</pvsets>
+</config_part>
 </ioc_config>
