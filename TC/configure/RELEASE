@@ -72,6 +72,8 @@ SSCAN=$(SUPPORT)/sscan/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
+SAMPLECHANGER=$(SUPPORT)/sampleChanger/master
+TINYXML=$(SUPPORT)/TinyXML/master
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
