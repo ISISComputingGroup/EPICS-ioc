@@ -9,13 +9,6 @@ record(dfanout, "$(P)MOT:$(MOTOR_PV):VELO_SEND")
     field(DOL, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FVELOCITY:RBV CP")
     field(OUTA, "$(P)MOT:$(MOTOR_PV).VMAX")
     field(OUTB, "$(P)MOT:$(MOTOR_PV).VELO")
+    field(OUTC, "$(P)MOT:$(MOTOR_PV).JVEL")
     field(OMSL, "closed_loop")
-}
-
-record(dfanout, "$(P)MOT:$(MOTOR_PV):JVEL_SEND")
-{
-    field(DESC, "Forward device jog velo SP to mtr rec")
-    field(DOL, "$(P)$(I):ASTAXES_$(AXIS_NUM):STCONTROL-FJOGVELOCITY:RBV CP")
-    field(OMSL, "closed_loop")
-    field(OUTA, "$(P)MOT:$(MOTOR_PV).JVEL")
 }
