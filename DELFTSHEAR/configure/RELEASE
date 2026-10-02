@@ -1,8 +1,29 @@
-# top level master release and local private options 
-include $(TOP)/../../../configure/MASTER_RELEASE
--include $(TOP)/../../../configure/MASTER_RELEASE.$(EPICS_HOST_ARCH)
--include $(TOP)/../../../configure/MASTER_RELEASE.private
--include $(TOP)/../../../configure/MASTER_RELEASE.private.$(EPICS_HOST_ARCH)
+-include $(TOP)/../RELEASE.local
+-include $(TOP)/configure/RELEASE.local
+
+ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
+CALC=$(SUPPORT)/calc/master
+ASYN=$(SUPPORT)/asyn/master
+UTILITIES=$(SUPPORT)/utilities/master
+PVDUMP=$(SUPPORT)/pvdump/master
+AUTOSAVE=$(SUPPORT)/autosave/master
+DEVIOCSTATS=$(SUPPORT)/devIocStats/master
+ICPCONFIG=$(SUPPORT)/icpconfig/master
+SNCSEQ=$(SUPPORT)/seq/master
+CAPUTLOG=$(SUPPORT)/caPutLog/master
+SQLITE=$(SUPPORT)/sqlite/master
+PUGIXML=$(SUPPORT)/pugixml/master
+PCRE=$(SUPPORT)/pcre/master
+LIBJSON=$(SUPPORT)/libjson/master
+ZLIB=$(SUPPORT)/zlib/master
+STD=$(SUPPORT)/std/master
+SSCAN=$(SUPPORT)/sscan/master
+MYSQL=$(SUPPORT)/MySQL/master
+ONCRPC=$(SUPPORT)/oncrpc/master
+LVDCOM=$(ISISSUPPORT)/lvDCOM/master
+ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
+NETSHRVAR=$(SUPPORT)/NetShrVar/master
+
 
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
