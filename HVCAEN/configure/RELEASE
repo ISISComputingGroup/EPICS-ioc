@@ -1,9 +1,10 @@
+EPICS_BASE=C:/Instrument/Apps/EPICS/base/master
+
 ACCESSSECURITY=$(SUPPORT)/AccessSecurity/master
 ASYN=$(SUPPORT)/asyn/master
 AUTOSAVE=$(SUPPORT)/autosave/master
 CAPUTLOG=$(SUPPORT)/caPutLog/master
 DEVIOCSTATS=$(SUPPORT)/devIocStats/master
-HVCAEN=$(SUPPORT)/CAENHVAsyn/master
 ICPCONFIG=$(SUPPORT)/icpconfig/master
 MYSQL=$(SUPPORT)/MySQL/master
 PCRE=$(SUPPORT)/pcre/master
@@ -13,9 +14,11 @@ SNCSEQ=$(SUPPORT)/seq/master
 SQLITE=$(SUPPORT)/sqlite/master
 UTILITIES=$(SUPPORT)/utilities/master
 ASUBFUNCTIONS=$(SUPPORT)/asubFunctions/master
-SNCSEQ=$(SUPPORT)/seq/master
+LIBJSON=$(SUPPORT)/libjson/master
+ONCRPC=$(SUPPORT)/oncrpc/master
+ZLIB=$(SUPPORT)/zlib/master
 HVCAEN=$(SUPPORT)/HVCAENx527/master
-		
+
 # optional extra local definitions here
 -include $(TOP)/configure/RELEASE.private
 

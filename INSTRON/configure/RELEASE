@@ -49,7 +49,6 @@ SNCSEQ=$(SUPPORT)/seq/master
 SQLITE=$(SUPPORT)/sqlite/master
 SSCAN=$(SUPPORT)/sscan/master
 STREAMDEVICE=$(SUPPORT)/StreamDevice/master
-HELIOX=$(SUPPORT)/heliox/master
 UTILITIES=$(SUPPORT)/utilities/master
 ZLIB=$(SUPPORT)/zlib/master
 GSL=$(SUPPORT)/gsl/master
@@ -57,6 +56,9 @@ GSL=$(SUPPORT)/gsl/master
 VISADRV=$(SUPPORT)/VISAdrv/master
 INSTRON=$(SUPPORT)/instron/master
 INSTRONARBY=$(SUPPORT)/instronArby/master
+# to pick up VISA library at run time on a developer/test machine
+# on an instrument, $(ICPBINARYDIR) does not exist and so this will not form part of dllPath
+VISALIB=$(ICPBINARYDIR)/NIVISA
 
 # Set RULES here if you want to take build rules from somewhere
 # other than EPICS_BASE:

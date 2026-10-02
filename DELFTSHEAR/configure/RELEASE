@@ -1,3 +1,5 @@
+EPICS_BASE=C:/Instrument/Apps/EPICS/base/master
+
 -include $(TOP)/../RELEASE.local
 -include $(TOP)/configure/RELEASE.local
 
