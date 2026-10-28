@@ -9,7 +9,7 @@ record(ai, "$(P)STEER_$(STEER_MAG)"){
 record(stringout, "$(P)STEER_$(STEER_MAG):UNITS_SET")
 {
   field(DESC, "Push units to $(STEER_MAG) PV")
-  field(DOL, "$(STEER_PV).EGU CP")
+$(IFNOTRECSIM)  field(DOL, "$(STEER_PV).EGU CP")
 	field(OMSL, "closed_loop")
   field(OUT,  "$(P)STEER_$(STEER_MAG).EGU NPP")
   field(SIML, "$(P)SIM")
@@ -34,7 +34,7 @@ record(ao, "$(P)STEER_$(STEER_MAG):OUT:_SP"){
 record(stringout, "$(P)STEER_$(STEER_MAG):SP:UNITS_SET")
 {
   field(DESC, "Push units to the $(STEER_MAG) Setpoint")
-  field(DOL, "$(STEER_PV).EGU CP")
+$(IFNOTRECSIM)  field(DOL, "$(STEER_PV).EGU CP")
 	field(OMSL, "closed_loop")
   field(OUT,  "$(P)STEER_$(STEER_MAG):SP.EGU NPP")
   field(SIML, "$(P)SIM")
