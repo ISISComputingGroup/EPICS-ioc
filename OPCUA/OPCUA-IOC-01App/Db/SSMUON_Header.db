@@ -9,3 +9,23 @@ record(bi, "$(P)PLC:HEARTBEAT") {
 
     info(alarm, "OPCUA")
 }
+
+record (bi, "$(P)KICKER:PSU:STAT") {
+
+    field(DTYP, "OPCUA")
+    field(DESC, "Kicker PSU Status")
+    field(INP,  "@$(SUBS) ns=$(NS);s=0:OPC_KICKER_PSU_ON")
+
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+
+    field(ZNAM, "Off")
+    field(ZSV,  "MINOR")
+
+    field(ONAM, "On")
+    field(OSV,  "NO_ALARM")
+
+    info(INTEREST, "HIGH")
+    info(ARCHIVE,  "10 VAL")
+}
