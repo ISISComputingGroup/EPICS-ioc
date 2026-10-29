@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<ioc_config xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://epics.isis.rl.ac.uk/schema/ioc_config/1.0">
+
+<xi:include href="../iocLKSH625-IOC-01/config.xml"/>
+
+</ioc_config>
