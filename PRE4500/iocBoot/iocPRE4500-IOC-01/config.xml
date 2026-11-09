@@ -5,6 +5,10 @@
 <ioc_details>IOC for the Fermi Chopper temperature monitoring device</ioc_details>
 <macros>
 <xi:include href="../../../COMMON/PORT.xml" />
+<macro name="CHAN1_NAME" pattern="^.*$" description="Channel 1 name." defaultValue="Channel 1" hasDefault="YES" />
+<macro name="CHAN2_NAME" pattern="^.*$" description="Channel 2 name." defaultValue="Channel 2" hasDefault="YES" />
+<macro name="CHAN3_NAME" pattern="^.*$" description="Channel 3 name." defaultValue="Channel 3" hasDefault="YES" />
+<macro name="CHAN4_NAME" pattern="^.*$" description="Channel 4 name." defaultValue="Channel 4" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>
