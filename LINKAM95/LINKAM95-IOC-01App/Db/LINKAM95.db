@@ -95,7 +95,7 @@ record(fanout, "$(P)FAN_STAT")
 record(scalcout, "$(P)CALC_STAT")
 {
     field(CALC, "BYTE(AA[0,0])")
-    field(INAA, "$(P)STAT_FILTER.SVAL.SVAL MS")
+    field(INAA, "$(P)STAT_FILTER.SVAL MS")
     field(OUT, "$(P)STATUS.RVAL PP MS")
 }
 
