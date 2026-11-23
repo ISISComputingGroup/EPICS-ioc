@@ -1,0 +1,50 @@
+global{NS="\$(NS)",P="\$(P)",SUBS="\$(SUBS)",DEBUG="\$(DEBUG=0)"}
+file "$(TOP)/OPCUA-IOC-01App/Db/MAPS_vacuum.template" {
+	pattern{ RECORD_TYPE, PV_NAME, NAME_PREFIX, NAME_SUFFIX}
+    { "stringin", "UNIT", "\$(NAME_PREFIX)", ".ENG_UNIT" }
+	{ "bi", "COMMS_ERROR", "\$(NAME_PREFIX)", ".COMM_ERROR" }
+ 
+	{ "stringin", "NAME_A1", "\$(NAME_PREFIX)", ".TPG_A1.NAME" }
+	{ "stringin", "THRESHOLD_LOW_A1", "\$(NAME_PREFIX)", ".RL1.MIN_ON_SP" }
+    { "stringin", "THRESHOLD_HI_A1", "\$(NAME_PREFIX)", ".RL1.MAX_OFF_SP" }
+	{ "bi", "SWITCH_FUNC_STATUS_A1", "\$(NAME_PREFIX)", ".RL1.OUTPUT" }
+	
+	{ "stringin", "NAME_A2", "\$(NAME_PREFIX)", ".TPG_A2.NAME" }
+	{ "stringin", "THRESHOLD_LOW_A2", "\$(NAME_PREFIX)", ".RL2.MIN_ON_SP" }
+    { "stringin", "THRESHOLD_HI_A2", "\$(NAME_PREFIX)", ".RL2.MAX_OFF_SP" }
+	{ "bi", "SWITCH_FUNC_STATUS_A2", "\$(NAME_PREFIX)", ".RL2.OUTPUT" }
+
+	{ "stringin", "NAME_B1", "\$(NAME_PREFIX)", ".TPG_B1.NAME" }
+	{ "stringin", "THRESHOLD_LOW_B1", "\$(NAME_PREFIX)", ".RL3.MIN_ON_SP" }
+    { "stringin", "THRESHOLD_HI_B1", "\$(NAME_PREFIX)", ".RL3.MAX_OFF_SP" }
+	{ "bi", "SWITCH_FUNC_STATUS_B1", "\$(NAME_PREFIX)", ".RL3.OUTPUT" }
+
+	{ "stringin", "NAME_B2", "\$(NAME_PREFIX)", ".TPG_B2.NAME" }
+	{ "stringin", "THRESHOLD_LOW_B2", "\$(NAME_PREFIX)", ".RL4.MIN_ON_SP" }
+    { "stringin", "THRESHOLD_HI_B2", "\$(NAME_PREFIX)", ".RL4.MAX_OFF_SP" }
+	{ "bi", "SWITCH_FUNC_STATUS_B2", "\$(NAME_PREFIX)", ".RL4.OUTPUT" }
+}
+
+file "$(TOP)/OPCUA-IOC-01App/Db/GEM_Relay_Assignment.template" {
+	pattern{ RECORD_TYPE, PV_NAME, NAME_PREFIX, NAME_SUFFIX}
+	{ "mbbi", "SWITCH_FUNC_ASSIGN_A1", "\$(NAME_PREFIX)", ".RL1.ASSIGNED_CIRCUIT" }
+	{ "mbbi", "SWITCH_FUNC_ASSIGN_A2", "\$(NAME_PREFIX)", ".RL2.ASSIGNED_CIRCUIT" }
+	{ "mbbi", "SWITCH_FUNC_ASSIGN_B1", "\$(NAME_PREFIX)", ".RL3.ASSIGNED_CIRCUIT" }
+	{ "mbbi", "SWITCH_FUNC_ASSIGN_B2", "\$(NAME_PREFIX)", ".RL4.ASSIGNED_CIRCUIT" }
+}
+
+file "$(TOP)/OPCUA-IOC-01App/Db/GEM_Sensor_Status.template" {
+	pattern{ RECORD_TYPE, PV_NAME, NAME_PREFIX, NAME_SUFFIX}
+	{ "mbbi", "MEASURED_VALUE_A1", "\$(NAME_PREFIX)", ".TPG_A1.PRESSURE_STATUS" }
+	{ "mbbi", "MEASURED_VALUE_A2", "\$(NAME_PREFIX)", ".TPG_A2.PRESSURE_STATUS" }
+	{ "mbbi", "MEASURED_VALUE_B1", "\$(NAME_PREFIX)", ".TPG_B1.PRESSURE_STATUS" }
+	{ "mbbi", "MEASURED_VALUE_B2", "\$(NAME_PREFIX)", ".TPG_B2.PRESSURE_STATUS" }
+}
+
+file "$(TOP)/OPCUA-IOC-01App/Db/GEM_Vacuum_Pressure_Value.template" {
+	pattern{ RECORD_TYPE, PV_NAME, NAME_PREFIX, NAME_SUFFIX}
+	{ "ai", "PRESSURE_A1", "\$(NAME_PREFIX)", ".TPG_A1.PRESSURE_VALUE" }
+	{ "ai", "PRESSURE_A2", "\$(NAME_PREFIX)", ".TPG_A2.PRESSURE_VALUE" }
+	{ "ai", "PRESSURE_B1", "\$(NAME_PREFIX)", ".TPG_B1.PRESSURE_VALUE" }
+	{ "ai", "PRESSURE_B2", "\$(NAME_PREFIX)", ".TPG_B2.PRESSURE_VALUE" }
+}

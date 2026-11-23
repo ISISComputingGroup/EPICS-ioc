@@ -1,0 +1,17 @@
+record(mbbi, "$(P)$(R):$(PV_NAME)") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=$(NS);s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+    field(SCAN, "I/O Intr")
+	field(ZRVL, "0")
+	field(ZRST, "None")
+	field(ONVL, "1")
+	field(ONST, "A1")
+	field(TWVL, "2")
+	field(TWST, "A2")
+	field(THVL, "3")
+	field(THST, "B1")
+	field(FRVL, "4")
+	field(FRST, "B2")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}

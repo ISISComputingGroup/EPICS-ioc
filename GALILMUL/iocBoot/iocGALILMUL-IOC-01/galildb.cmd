@@ -37,3 +37,6 @@ dbLoadRecords("$(GALILIOC)/db/galil_user_array.db","P=$(MYPVPREFIX)MOT:,CCP=$(MT
 #Load profiles
 dbLoadRecords("$(GALILIOC)/db/galil_profileMoveController.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL),PORT=$(GALIL_PORT)")
 dbLoadRecords("$(GALILIOC)/db/galil_profileMoveAxis.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL),PORT=$(GALIL_PORT)")
+
+#Load homing routine records 
+dbLoadRecords("$(GALILIOC)/db/galil_homing_routines.db", "P=$(MYPVPREFIX)MOT:,CCP=$(MTRCTRL),PORT=$(GALIL_PORT)")

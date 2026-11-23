@@ -1,0 +1,8 @@
+record($(RECORD_TYPE), "$(P)$(R):$(PV_NAME)") {
+    field(DTYP, "OPCUA")
+    field(INP,  "@$(SUBS) ns=$(NS);s=$(NAME_PREFIX)$(NAME_SUFFIX)")
+	field(PREC, "7")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(TPRO, "$(DEBUG=0)")
+}

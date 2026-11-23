@@ -12,6 +12,8 @@ set PYTHONUNBUFFERED=TRUE
 
 set "GETMACRO=%EPICS_KIT_ROOT%\support\icpconfig\master\bin\%EPICS_HOST_ARCH%\icpconfigGetMacro.exe"
 set "MYIOCNAME=BGRSCRPT_03"
+set "IOC=iocBGRSCRPT-IOC-03"
+set "TOP=../.."
 
 REM for loop is used to capture the output
 for /f %%a in ( '%GETMACRO% "SCRIPT_PATH" %MYIOCNAME%'  ) do ( set "SCRIPT_PATH_MACRO=%%a" )

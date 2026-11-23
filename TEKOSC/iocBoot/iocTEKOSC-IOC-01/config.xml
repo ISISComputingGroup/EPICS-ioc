@@ -4,6 +4,8 @@
 <ioc_desc>Tektronix Oscilloscopes, 3000 series+</ioc_desc>
 <macros>
 <macro name="ADDR" pattern="^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$" description="Device IP Address" defaultValue="" hasDefault="NO" />
+<macro name="SCAN_CHANNELS" pattern="^(YES|NO)$" description="Periodically scan channels" defaultValue="YES" hasDefault="YES" />
+<macro name="MEASURE_CHANNELS" pattern="^(YES|NO)$" description="Periodically measure channels" defaultValue="NO" hasDefault="YES" />
 </macros>
 <pvsets>
 </pvsets>
