@@ -53,6 +53,8 @@ IOCMAKES = $(wildcard */Makefile)
 ALLIOCDIRS = $(IOCMAKES:/Makefile=)
 MISSIOCDIRS = $(filter-out $(IOCDIRS),$(ALLIOCDIRS))
 
+DIRS_NOTBUILD += ECLAB
+
 ## modules not to build on linux
 ifneq ($(findstring linux,$(EPICS_HOST_ARCH)),)
 DIRS_NOTBUILD += MK3CHOPR ECLAB GALIL GALILMUL HIFIMAG SECI2IBEX
