@@ -12,8 +12,8 @@
     <macro name="HIFI_PV_TRANS_Y" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the transverse Y HIFI magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
     <macro name="EMU_PV_MAIN" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the main EMU magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
     <macro name="EMU_PV_TRANS" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the transverse EMU magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
-    <macro name="MUSR_PV_MAIN" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the main EMU magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
-    <macro name="MUSR_PV_TRANS" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the transverse EMU magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="MUSR_PV_MAIN" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the main MUSR magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="MUSR_PV_TRANS" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the transverse MUSR magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
     <macro name="NUM_STEER" pattern="2|4|6" description="Number of Steering Magnets" hasDefault="YES" defaultValue="2" />
     <macro name="ENABLED_DEFAULT" pattern="ENABLED|DISABLED" description="Whether corrections are enabled by default or not" hasDefault="YES" defaultValue="DISABLED" />
   </macros>
