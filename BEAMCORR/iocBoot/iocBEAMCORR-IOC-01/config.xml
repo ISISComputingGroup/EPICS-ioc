@@ -7,6 +7,8 @@
     <macro name="STEER_2_PV" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the second steering magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
     <macro name="STEER_3_PV" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the third steering magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
     <macro name="STEER_4_PV" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the fourth steering magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="STEER_5_PV" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the fifth steering magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
+    <macro name="STEER_6_PV" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the sixth steering magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
     <macro name="HIFI_PV_MAIN" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the main magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
     <macro name="HIFI_PV_TRANS_X" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the transverse X HIFI magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
     <macro name="HIFI_PV_TRANS_Y" pattern="^[0-9a-zA-Z:\.\-_]+$" description="PV for the readback of the transverse Y HIFI magnet e.g. IN:INSTNAME:DFKPS_01:CURR" hasDefault="NO" />
