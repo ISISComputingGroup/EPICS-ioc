@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 DB += single_axis.db
 DB += axis_monitors.db
 DB += autoonoff.db
+DB += velo_monitor.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

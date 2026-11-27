@@ -38,6 +38,8 @@ $(APPNAME)_DBD += adsMotorSupport.dbd
 $(APPNAME)_DBD += luaSupport.dbd
 $(APPNAME)_DBD += asubFunctions.dbd 
 $(APPNAME)_DBD += ads.dbd 
+$(APPNAME)_DBD += sampleChanger.dbd 
+
 
 
 # Add all the support libraries needed by this IOC
@@ -67,6 +69,8 @@ $(APPNAME)_LIBS += utilities pugixml libjson zlib
 $(APPNAME)_LIBS += calc sscan
 $(APPNAME)_LIBS += pcrecpp pcre
 $(APPNAME)_LIBS += seq pv
+$(APPNAME)_LIBS += sampleChanger
+$(APPNAME)_LIBS += TinyXML
 
 # TC-IOC-01_registerRecordDeviceDriver.cpp derives from TC-IOC-01.dbd
 $(APPNAME)_SRCS += $(APPNAME)_registerRecordDeviceDriver.cpp
